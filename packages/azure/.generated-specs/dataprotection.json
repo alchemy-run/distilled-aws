@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObject": {
@@ -471,13 +472,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObject": {
+    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObjectRequest"
+        "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObjectResponse"
+        "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -490,7 +491,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObjectResponse": {
+    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -522,7 +523,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObjectRequest": {
+    "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -562,10 +563,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#GetResourceGuardBackupSecurityPinRequestObject": {
+    "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjects": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPinRequestObjectRequest"
+        "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjectsRequest"
       },
       "output": {
         "target": "com.azure.dataprotection#DppBaseResourceList"
@@ -581,7 +582,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#GetResourceGuardBackupSecurityPinRequestObjectRequest": {
+    "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjectsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1137,7 +1138,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#ResourceGuardsPatchResponseTagsMap",
+          "target": "com.azure.dataprotection#PatchResourceGuardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1278,7 +1279,7 @@
         "smithy.api#documentation": "Provisioning state of the BackupVault resource"
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPatchResponseTagsMap": {
+    "com.azure.dataprotection#PatchResourceGuardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1318,7 +1319,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#ResourceGuardsPatchRequestTagsMap",
+          "target": "com.azure.dataprotection#PatchResourceGuardRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource Guard tags."
           }
@@ -1328,7 +1329,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPatchRequestTagsMap": {
+    "com.azure.dataprotection#PatchResourceGuardRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1340,13 +1341,13 @@
         "smithy.api#documentation": "Resource Guard tags."
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPut": {
+    "com.azure.dataprotection#PutResourceGuard": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#ResourceGuardsPutRequest"
+        "target": "com.azure.dataprotection#PutResourceGuardRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#ResourceGuardsPutResponse"
+        "target": "com.azure.dataprotection#PutResourceGuardResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1359,7 +1360,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPutResponse": {
+    "com.azure.dataprotection#PutResourceGuardResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1387,7 +1388,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#ResourceGuardsPutResponseTagsMap",
+          "target": "com.azure.dataprotection#PutResourceGuardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1416,7 +1417,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPutResponseTagsMap": {
+    "com.azure.dataprotection#PutResourceGuardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1428,7 +1429,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPutRequest": {
+    "com.azure.dataprotection#PutResourceGuardRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1456,7 +1457,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#ResourceGuardsPutRequestTagsMap",
+          "target": "com.azure.dataprotection#PutResourceGuardRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1506,7 +1507,7 @@
         "smithy.api#documentation": "List of critical operations which are not protected by this resourceGuard"
       }
     },
-    "com.azure.dataprotection#ResourceGuardsPutRequestTagsMap": {
+    "com.azure.dataprotection#PutResourceGuardRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1565,7 +1566,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#ResourceGuardsGetResponseTagsMap",
+          "target": "com.azure.dataprotection#GetResourceGuardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1594,7 +1595,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#ResourceGuardsGetResponseTagsMap": {
+    "com.azure.dataprotection#GetResourceGuardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1638,13 +1639,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInResourceGroup": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#GetResourceGuardResourceInResourceGroupRequest"
+        "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#GetResourceGuardResourceInResourceGroupResponse"
+        "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1657,7 +1658,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInResourceGroupResponse": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupResponse": {
       "type": "structure",
       "members": {
         "nextLink": {
@@ -1667,7 +1668,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#ResourceGuardsGetResourcesInResourceGroupResponseValueList",
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -1677,7 +1678,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#ResourceGuardsGetResourcesInResourceGroupResponseValueList": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#ResourceGuardResource"
@@ -1755,7 +1756,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInResourceGroupRequest": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1967,13 +1968,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegion": {
+    "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegionRequest"
+        "target": "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestoreRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegionResponse"
+        "target": "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1986,7 +1987,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegionResponse": {
+    "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestoreResponse": {
       "type": "structure",
       "members": {
         "objectType": {
@@ -2007,7 +2008,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegionRequest": {
+    "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2249,7 +2250,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#FetchSecondaryRecoveryPointsListResponseValueList",
+          "target": "com.azure.dataprotection#ListFetchSecondaryRecoveryPointsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -2259,7 +2260,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#FetchSecondaryRecoveryPointsListResponseValueList": {
+    "com.azure.dataprotection#ListFetchSecondaryRecoveryPointsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#AzureBackupRecoveryPointResource"
@@ -2378,13 +2379,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobsList": {
+    "com.azure.dataprotection#ListFetchCrossRegionRestoreJobs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobsListRequest"
+        "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobsListResponse"
+        "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2397,7 +2398,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobsListResponse": {
+    "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsResponse": {
       "type": "structure",
       "members": {
         "nextLink": {
@@ -2407,7 +2408,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobsListResponseValueList",
+          "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -2417,7 +2418,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobsListResponseValueList": {
+    "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#AzureBackupJobResource"
@@ -2983,7 +2984,7 @@
         "smithy.api#documentation": "A List, detailing the errors related to the job"
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobsListRequest": {
+    "com.azure.dataprotection#ListFetchCrossRegionRestoreJobsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3034,13 +3035,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobGet": {
+    "com.azure.dataprotection#GetFetchCrossRegionRestoreJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobGetRequest"
+        "target": "com.azure.dataprotection#GetFetchCrossRegionRestoreJobRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobGetResponse"
+        "target": "com.azure.dataprotection#GetFetchCrossRegionRestoreJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3053,7 +3054,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobGetResponse": {
+    "com.azure.dataprotection#GetFetchCrossRegionRestoreJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3091,7 +3092,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#FetchCrossRegionRestoreJobGetRequest": {
+    "com.azure.dataprotection#GetFetchCrossRegionRestoreJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3141,13 +3142,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegion": {
+    "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegionRequest"
+        "target": "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestoreRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegionResponse"
+        "target": "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3160,7 +3161,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegionResponse": {
+    "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestoreResponse": {
       "type": "structure",
       "members": {
         "objectType": {
@@ -3181,7 +3182,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegionRequest": {
+    "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3316,13 +3317,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesValidateForBackup": {
+    "com.azure.dataprotection#ValidateBackupInstanceForBackup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#BackupInstancesValidateForBackupRequest"
+        "target": "com.azure.dataprotection#ValidateBackupInstanceForBackupRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#BackupInstancesValidateForBackupResponse"
+        "target": "com.azure.dataprotection#ValidateBackupInstanceForBackupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3335,7 +3336,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#BackupInstancesValidateForBackupResponse": {
+    "com.azure.dataprotection#ValidateBackupInstanceForBackupResponse": {
       "type": "structure",
       "members": {
         "objectType": {
@@ -3356,7 +3357,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesValidateForBackupRequest": {
+    "com.azure.dataprotection#ValidateBackupInstanceForBackupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3872,7 +3873,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupVaultOperationResultsGetResponseTagsMap",
+          "target": "com.azure.dataprotection#GetBackupVaultOperationResultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4753,7 +4754,7 @@
       },
       "traits": {}
     },
-    "com.azure.dataprotection#BackupVaultOperationResultsGetResponseTagsMap": {
+    "com.azure.dataprotection#GetBackupVaultOperationResultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4805,10 +4806,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#ExportJobsTrigger": {
+    "com.azure.dataprotection#TriggerExportJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#ExportJobsTriggerRequest"
+        "target": "com.azure.dataprotection#TriggerExportJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4824,7 +4825,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#ExportJobsTriggerRequest": {
+    "com.azure.dataprotection#TriggerExportJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4856,10 +4857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#DeletedBackupInstancesUndelete": {
+    "com.azure.dataprotection#UndeleteDeletedBackupInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#DeletedBackupInstancesUndeleteRequest"
+        "target": "com.azure.dataprotection#UndeleteDeletedBackupInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4875,7 +4876,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#DeletedBackupInstancesUndeleteRequest": {
+    "com.azure.dataprotection#UndeleteDeletedBackupInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5343,7 +5344,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#DeletedBackupInstancesListResponseValueList",
+          "target": "com.azure.dataprotection#ListDeletedBackupInstancesResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -5353,7 +5354,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#DeletedBackupInstancesListResponseValueList": {
+    "com.azure.dataprotection#ListDeletedBackupInstancesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#DeletedBackupInstanceResource"
@@ -5432,10 +5433,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#DeleteDppResourceGuardProxyUnlock": {
+    "com.azure.dataprotection#DppResourceGuardProxyUnlockDelete": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#DeleteDppResourceGuardProxyUnlockRequest"
+        "target": "com.azure.dataprotection#DppResourceGuardProxyUnlockDeleteRequest"
       },
       "output": {
         "target": "com.azure.dataprotection#UnlockDeleteResponse"
@@ -5465,7 +5466,7 @@
         "smithy.api#documentation": "Response of Unlock Delete API."
       }
     },
-    "com.azure.dataprotection#DeleteDppResourceGuardProxyUnlockRequest": {
+    "com.azure.dataprotection#DppResourceGuardProxyUnlockDeleteRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5852,7 +5853,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#DppResourceGuardProxyListResponseValueList",
+          "target": "com.azure.dataprotection#ListDppResourceGuardProxyResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -5862,7 +5863,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#DppResourceGuardProxyListResponseValueList": {
+    "com.azure.dataprotection#ListDppResourceGuardProxyResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#ResourceGuardProxyBaseResource"
@@ -6256,7 +6257,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#BackupPoliciesListResponseValueList",
+          "target": "com.azure.dataprotection#ListBackupPoliciesResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -6266,7 +6267,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupPoliciesListResponseValueList": {
+    "com.azure.dataprotection#ListBackupPoliciesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#BaseBackupPolicyResource"
@@ -6345,10 +6346,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#GetExportJobOperationResult": {
+    "com.azure.dataprotection#GetExportJobsOperationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#GetExportJobOperationResultRequest"
+        "target": "com.azure.dataprotection#GetExportJobsOperationResultRequest"
       },
       "output": {
         "target": "com.azure.dataprotection#ExportJobsResult"
@@ -6396,7 +6397,7 @@
         "smithy.api#documentation": "The result for export jobs containing blob details."
       }
     },
-    "com.azure.dataprotection#GetExportJobOperationResultRequest": {
+    "com.azure.dataprotection#GetExportJobsOperationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6562,7 +6563,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#JobsListResponseValueList",
+          "target": "com.azure.dataprotection#ListJobsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -6572,7 +6573,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#JobsListResponseValueList": {
+    "com.azure.dataprotection#ListJobsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#AzureBackupJobResource"
@@ -6613,13 +6614,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateFor": {
+    "com.azure.dataprotection#BackupInstancesValidateForRestore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceValidateForRequest"
+        "target": "com.azure.dataprotection#BackupInstancesValidateForRestoreRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceValidateForResponse"
+        "target": "com.azure.dataprotection#BackupInstancesValidateForRestoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6632,7 +6633,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateForResponse": {
+    "com.azure.dataprotection#BackupInstancesValidateForRestoreResponse": {
       "type": "structure",
       "members": {
         "objectType": {
@@ -6653,7 +6654,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceValidateForRequest": {
+    "com.azure.dataprotection#BackupInstancesValidateForRestoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6766,10 +6767,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesSyncBackupInstance": {
+    "com.azure.dataprotection#SyncBackupInstanceBackupInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#BackupInstancesSyncBackupInstanceRequest"
+        "target": "com.azure.dataprotection#SyncBackupInstanceBackupInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6785,7 +6786,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#BackupInstancesSyncBackupInstanceRequest": {
+    "com.azure.dataprotection#SyncBackupInstanceBackupInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6851,10 +6852,10 @@
         "smithy.api#documentation": "Field indicating sync type e.g. to sync only in case of failure or in all cases"
       }
     },
-    "com.azure.dataprotection#SuspendBackupInstanceBackup": {
+    "com.azure.dataprotection#SuspendBackupInstanceBackups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#SuspendBackupInstanceBackupRequest"
+        "target": "com.azure.dataprotection#SuspendBackupInstanceBackupsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6870,7 +6871,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#SuspendBackupInstanceBackupRequest": {
+    "com.azure.dataprotection#SuspendBackupInstanceBackupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6906,7 +6907,7 @@
           }
         },
         "resourceGuardOperationRequests": {
-          "target": "com.azure.dataprotection#BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList",
+          "target": "com.azure.dataprotection#SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList",
           "traits": {
             "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
           }
@@ -6916,7 +6917,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList": {
+    "com.azure.dataprotection#SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6980,7 +6981,7 @@
           }
         },
         "resourceGuardOperationRequests": {
-          "target": "com.azure.dataprotection#BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList",
+          "target": "com.azure.dataprotection#StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList",
           "traits": {
             "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
           }
@@ -6990,7 +6991,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList": {
+    "com.azure.dataprotection#StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6999,10 +7000,10 @@
         "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
       }
     },
-    "com.azure.dataprotection#BackupInstancesResumeProtection": {
+    "com.azure.dataprotection#ResumeBackupInstanceProtection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#BackupInstancesResumeProtectionRequest"
+        "target": "com.azure.dataprotection#ResumeBackupInstanceProtectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7018,7 +7019,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#BackupInstancesResumeProtectionRequest": {
+    "com.azure.dataprotection#ResumeBackupInstanceProtectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7058,10 +7059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesResumeBackups": {
+    "com.azure.dataprotection#ResumeBackupInstanceBackups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#BackupInstancesResumeBackupsRequest"
+        "target": "com.azure.dataprotection#ResumeBackupInstanceBackupsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7077,7 +7078,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#BackupInstancesResumeBackupsRequest": {
+    "com.azure.dataprotection#ResumeBackupInstanceBackupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7117,13 +7118,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTrigger": {
+    "com.azure.dataprotection#BackupInstancesTriggerRestore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceTriggerRequest"
+        "target": "com.azure.dataprotection#BackupInstancesTriggerRestoreRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#RestoreBackupInstanceTriggerResponse"
+        "target": "com.azure.dataprotection#BackupInstancesTriggerRestoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7136,7 +7137,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTriggerResponse": {
+    "com.azure.dataprotection#BackupInstancesTriggerRestoreResponse": {
       "type": "structure",
       "members": {
         "objectType": {
@@ -7157,7 +7158,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#RestoreBackupInstanceTriggerRequest": {
+    "com.azure.dataprotection#BackupInstancesTriggerRestoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7244,10 +7245,10 @@
         "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
       }
     },
-    "com.azure.dataprotection#BackupInstancesTriggerRehydrate": {
+    "com.azure.dataprotection#TriggerBackupInstanceRehydrate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#BackupInstancesTriggerRehydrateRequest"
+        "target": "com.azure.dataprotection#TriggerBackupInstanceRehydrateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7263,7 +7264,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#BackupInstancesTriggerRehydrateRequest": {
+    "com.azure.dataprotection#TriggerBackupInstanceRehydrateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7482,7 +7483,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#RecoveryPointsListResponseValueList",
+          "target": "com.azure.dataprotection#ListRecoveryPointsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -7492,7 +7493,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#RecoveryPointsListResponseValueList": {
+    "com.azure.dataprotection#ListRecoveryPointsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#AzureBackupRecoveryPointResource"
@@ -7608,7 +7609,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupInstancesGetBackupInstanceOperationResultResponseTagsMap",
+          "target": "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Proxy Resource tags."
           }
@@ -7618,7 +7619,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesGetBackupInstanceOperationResultResponseTagsMap": {
+    "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8443,7 +8444,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupInstancesGetResponseTagsMap",
+          "target": "com.azure.dataprotection#GetBackupInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Proxy Resource tags."
           }
@@ -8453,7 +8454,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesGetResponseTagsMap": {
+    "com.azure.dataprotection#GetBackupInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8534,7 +8535,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#BackupInstancesListResponseValueList",
+          "target": "com.azure.dataprotection#ListBackupInstancesResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -8544,7 +8545,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesListResponseValueList": {
+    "com.azure.dataprotection#ListBackupInstancesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#BackupInstanceResource"
@@ -8739,7 +8740,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupVaultsUpdateResponseTagsMap",
+          "target": "com.azure.dataprotection#UpdateBackupVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8775,7 +8776,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupVaultsUpdateResponseTagsMap": {
+    "com.azure.dataprotection#UpdateBackupVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8827,7 +8828,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupVaultsUpdateRequestTagsMap",
+          "target": "com.azure.dataprotection#UpdateBackupVaultRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8837,7 +8838,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#BackupVaultsUpdateRequestTagsMap": {
+    "com.azure.dataprotection#UpdateBackupVaultRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9230,7 +9231,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dataprotection#BackupVaultsGetResponseTagsMap",
+          "target": "com.azure.dataprotection#GetBackupVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9266,7 +9267,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupVaultsGetResponseTagsMap": {
+    "com.azure.dataprotection#GetBackupVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9339,7 +9340,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#BackupVaultsGetInResourceGroupResponseValueList",
+          "target": "com.azure.dataprotection#GetBackupVaultInResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -9349,7 +9350,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupVaultsGetInResourceGroupResponseValueList": {
+    "com.azure.dataprotection#GetBackupVaultInResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#BackupVaultResource"
@@ -9458,13 +9459,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInSubscription": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#GetResourceGuardResourceInSubscriptionRequest"
+        "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#GetResourceGuardResourceInSubscriptionResponse"
+        "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9477,7 +9478,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInSubscriptionResponse": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionResponse": {
       "type": "structure",
       "members": {
         "nextLink": {
@@ -9487,7 +9488,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#ResourceGuardsGetResourcesInSubscriptionResponseValueList",
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -9497,7 +9498,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#ResourceGuardsGetResourcesInSubscriptionResponseValueList": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#ResourceGuardResource"
@@ -9506,7 +9507,7 @@
         "smithy.api#documentation": "List of resources."
       }
     },
-    "com.azure.dataprotection#GetResourceGuardResourceInSubscriptionRequest": {
+    "com.azure.dataprotection#GetResourceGuardResourcesInSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10104,7 +10105,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#BackupVaultsGetInSubscriptionResponseValueList",
+          "target": "com.azure.dataprotection#GetBackupVaultInSubscriptionResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -10114,7 +10115,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupVaultsGetInSubscriptionResponseValueList": {
+    "com.azure.dataprotection#GetBackupVaultInSubscriptionResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#BackupVaultResource"
@@ -10162,7 +10163,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.dataprotection#DataProtectionOperationsListResponseValueList",
+          "target": "com.azure.dataprotection#ListDataProtectionOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -10178,7 +10179,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#DataProtectionOperationsListResponseValueList": {
+    "com.azure.dataprotection#ListDataProtectionOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#Operation"
@@ -10297,13 +10298,13 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.dataprotection#ListBackupInstanceExtensionRouting": {
+    "com.azure.dataprotection#ListBackupInstancesExtensionRouting": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dataprotection#ListBackupInstanceExtensionRoutingRequest"
+        "target": "com.azure.dataprotection#ListBackupInstancesExtensionRoutingRequest"
       },
       "output": {
-        "target": "com.azure.dataprotection#ListBackupInstanceExtensionRoutingResponse"
+        "target": "com.azure.dataprotection#ListBackupInstancesExtensionRoutingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10316,7 +10317,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.dataprotection#ListBackupInstanceExtensionRoutingResponse": {
+    "com.azure.dataprotection#ListBackupInstancesExtensionRoutingResponse": {
       "type": "structure",
       "members": {
         "nextLink": {
@@ -10326,7 +10327,7 @@
           }
         },
         "value": {
-          "target": "com.azure.dataprotection#BackupInstancesExtensionRoutingListResponseValueList",
+          "target": "com.azure.dataprotection#ListBackupInstancesExtensionRoutingResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of resources."
           }
@@ -10336,7 +10337,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dataprotection#BackupInstancesExtensionRoutingListResponseValueList": {
+    "com.azure.dataprotection#ListBackupInstancesExtensionRoutingResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dataprotection#BackupInstanceResource"
@@ -10345,7 +10346,7 @@
         "smithy.api#documentation": "List of resources."
       }
     },
-    "com.azure.dataprotection#ListBackupInstanceExtensionRoutingRequest": {
+    "com.azure.dataprotection#ListBackupInstancesExtensionRoutingRequest": {
       "type": "structure",
       "members": {
         "resourceId": {
@@ -10366,196 +10367,67 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectionPolicyRequestsObjects"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectedItemRequestsObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectedItemRequestsObjects"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPinRequestObject"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPinRequestObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDisableSoftDeleteRequestsObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDisableSoftDeleteRequestsObjects"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteResourceGuardProxyRequestsObjects"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteProtectedItemRequestsObject"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteProtectedItemRequestsObjects"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteResourceGuard"
-        },
-        {
-          "target": "com.azure.dataprotection#PatchResourceGuard"
-        },
-        {
-          "target": "com.azure.dataprotection#ResourceGuardsPut"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuard"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuardResourceInResourceGroup"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationStatusResourceGroupContext"
-        },
-        {
-          "target": "com.azure.dataprotection#RestoreBackupInstanceValidateCrossRegion"
-        },
-        {
-          "target": "com.azure.dataprotection#ListFetchSecondaryRecoveryPoints"
-        },
-        {
-          "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobsList"
-        },
-        {
-          "target": "com.azure.dataprotection#FetchCrossRegionRestoreJobGet"
-        },
-        {
-          "target": "com.azure.dataprotection#RestoreBackupInstanceTriggerCrossRegion"
-        },
-        {
-          "target": "com.azure.dataprotection#CheckBackupVaultNameAvailability"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesValidateForBackup"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationStatusBackupVaultContext"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupVaultOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#ExportJobsTrigger"
-        },
-        {
-          "target": "com.azure.dataprotection#DeletedBackupInstancesUndelete"
-        },
-        {
-          "target": "com.azure.dataprotection#GetDeletedBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#ListDeletedBackupInstances"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteDppResourceGuardProxyUnlock"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#DppResourceGuardProxyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dataprotection#GetDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#ListDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteBackupPolicy"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupPolicy"
-        },
-        {
-          "target": "com.azure.dataprotection#ListBackupPolicies"
-        },
-        {
-          "target": "com.azure.dataprotection#GetExportJobOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#GetJob"
-        },
-        {
-          "target": "com.azure.dataprotection#ListJobs"
-        },
-        {
-          "target": "com.azure.dataprotection#RestoreBackupInstanceValidateFor"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesValidateForModifyBackup"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesSyncBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#SuspendBackupInstanceBackup"
-        },
-        {
-          "target": "com.azure.dataprotection#StopBackupInstanceProtection"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesResumeProtection"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesResumeBackups"
-        },
-        {
-          "target": "com.azure.dataprotection#RestoreBackupInstanceTrigger"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesTriggerRehydrate"
-        },
-        {
-          "target": "com.azure.dataprotection#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.dataprotection#ListRecoveryPoints"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#RestorableTimeRangesFind"
-        },
-        {
           "target": "com.azure.dataprotection#BackupInstancesAdhocBackup"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteBackupInstance"
         },
         {
           "target": "com.azure.dataprotection#BackupInstancesCreateOrUpdate"
         },
         {
-          "target": "com.azure.dataprotection#GetBackupInstance"
+          "target": "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestore"
         },
         {
-          "target": "com.azure.dataprotection#ListBackupInstances"
+          "target": "com.azure.dataprotection#BackupInstancesTriggerRestore"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestore"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesValidateForModifyBackup"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesValidateForRestore"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupVaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#CheckBackupVaultNameAvailability"
+        },
+        {
+          "target": "com.azure.dataprotection#CheckDataProtectionFeatureSupport"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteBackupPolicy"
         },
         {
           "target": "com.azure.dataprotection#DeleteBackupVault"
         },
         {
-          "target": "com.azure.dataprotection#UpdateBackupVault"
+          "target": "com.azure.dataprotection#DeleteDppResourceGuardProxy"
         },
         {
-          "target": "com.azure.dataprotection#BackupVaultsCreateOrUpdate"
+          "target": "com.azure.dataprotection#DeleteResourceGuard"
+        },
+        {
+          "target": "com.azure.dataprotection#DppResourceGuardProxyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#DppResourceGuardProxyUnlockDelete"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResult"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupPolicy"
         },
         {
           "target": "com.azure.dataprotection#GetBackupVault"
@@ -10564,31 +10436,160 @@
           "target": "com.azure.dataprotection#GetBackupVaultInResourceGroup"
         },
         {
-          "target": "com.azure.dataprotection#GetResourceGuardResourceInSubscription"
+          "target": "com.azure.dataprotection#GetBackupVaultInSubscription"
         },
         {
-          "target": "com.azure.dataprotection#GetOperationStatus"
+          "target": "com.azure.dataprotection#GetBackupVaultOperationResult"
         },
         {
-          "target": "com.azure.dataprotection#GetOperationResult"
+          "target": "com.azure.dataprotection#GetDeletedBackupInstance"
         },
         {
           "target": "com.azure.dataprotection#GetDeletedBackupVault"
         },
         {
-          "target": "com.azure.dataprotection#ListDeletedBackupVaultByLocation"
+          "target": "com.azure.dataprotection#GetDppResourceGuardProxy"
         },
         {
-          "target": "com.azure.dataprotection#CheckDataProtectionFeatureSupport"
+          "target": "com.azure.dataprotection#GetExportJobsOperationResult"
         },
         {
-          "target": "com.azure.dataprotection#GetBackupVaultInSubscription"
+          "target": "com.azure.dataprotection#GetFetchCrossRegionRestoreJob"
+        },
+        {
+          "target": "com.azure.dataprotection#GetJob"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationResult"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationStatusBackupVaultContext"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationStatusResourceGroupContext"
+        },
+        {
+          "target": "com.azure.dataprotection#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuard"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroup"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscription"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupInstances"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupInstancesExtensionRouting"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupPolicies"
         },
         {
           "target": "com.azure.dataprotection#ListDataProtectionOperations"
         },
         {
-          "target": "com.azure.dataprotection#ListBackupInstanceExtensionRouting"
+          "target": "com.azure.dataprotection#ListDeletedBackupInstances"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDeletedBackupVaultByLocation"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDppResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobs"
+        },
+        {
+          "target": "com.azure.dataprotection#ListFetchSecondaryRecoveryPoints"
+        },
+        {
+          "target": "com.azure.dataprotection#ListJobs"
+        },
+        {
+          "target": "com.azure.dataprotection#ListRecoveryPoints"
+        },
+        {
+          "target": "com.azure.dataprotection#PatchResourceGuard"
+        },
+        {
+          "target": "com.azure.dataprotection#PutResourceGuard"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteProtectedItemRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDisableSoftDeleteRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectedItemRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObject"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteProtectedItemRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteResourceGuardProxyRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetDisableSoftDeleteRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectedItemRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectionPolicyRequestsObjects"
+        },
+        {
+          "target": "com.azure.dataprotection#RestorableTimeRangesFind"
+        },
+        {
+          "target": "com.azure.dataprotection#ResumeBackupInstanceBackups"
+        },
+        {
+          "target": "com.azure.dataprotection#ResumeBackupInstanceProtection"
+        },
+        {
+          "target": "com.azure.dataprotection#StopBackupInstanceProtection"
+        },
+        {
+          "target": "com.azure.dataprotection#SuspendBackupInstanceBackups"
+        },
+        {
+          "target": "com.azure.dataprotection#SyncBackupInstanceBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#TriggerBackupInstanceRehydrate"
+        },
+        {
+          "target": "com.azure.dataprotection#TriggerExportJob"
+        },
+        {
+          "target": "com.azure.dataprotection#UndeleteDeletedBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#UpdateBackupVault"
+        },
+        {
+          "target": "com.azure.dataprotection#ValidateBackupInstanceForBackup"
         }
       ],
       "traits": {

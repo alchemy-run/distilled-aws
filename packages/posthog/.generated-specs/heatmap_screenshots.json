@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.heatmap_screenshots#HeatmapScreenshotsContentRetrieveRequest": {
+    "com.posthog.heatmap_screenshots#GetHeatmapScreenshotsContentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -48,10 +49,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.heatmap_screenshots#HeatmapScreenshotsContentRetrieve": {
+    "com.posthog.heatmap_screenshots#GetHeatmapScreenshotsContent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.heatmap_screenshots#HeatmapScreenshotsContentRetrieveRequest"
+        "target": "com.posthog.heatmap_screenshots#GetHeatmapScreenshotsContentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -104,7 +105,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.heatmap_screenshots#HeatmapScreenshotsContentRetrieve"
+          "target": "com.posthog.heatmap_screenshots#GetHeatmapScreenshotsContent"
         }
       ],
       "traits": {

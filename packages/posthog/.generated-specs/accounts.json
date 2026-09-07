@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.accounts#AccountsListRequestOrdering": {
+    "com.posthog.accounts#ListAccountsRequestOrdering": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -106,7 +107,7 @@
           }
         },
         "ordering": {
-          "target": "com.posthog.accounts#AccountsListRequestOrdering",
+          "target": "com.posthog.accounts#ListAccountsRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "ordering",
             "smithy.api#documentation": "Sort order. Defaults to '-created_at'."
@@ -116,7 +117,7 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#httpQuery": "search",
-            "smithy.api#documentation": "Case-insensitive substring search across account name and external ID."
+            "smithy.api#documentation": "Case-insensitive substring search across account name and external ID. A query holding an email address also matches accounts that list it as a known email, and a query holding a domain matches accounts that own that email domain."
           }
         },
         "tags": {
@@ -411,7 +412,7 @@
         }
       }
     },
-    "com.posthog.accounts#AccountsCreateRequestPropertiesEmailDomainsList": {
+    "com.posthog.accounts#CreateAccountRequestPropertiesEmailDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -420,7 +421,7 @@
         "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
       }
     },
-    "com.posthog.accounts#AccountsCreateRequestPropertiesKnownEmailsList": {
+    "com.posthog.accounts#CreateAccountRequestPropertiesKnownEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
       }
     },
-    "com.posthog.accounts#AccountsCreateRequestProperties": {
+    "com.posthog.accounts#CreateAccountRequestProperties": {
       "type": "structure",
       "members": {
         "website_domain": {
@@ -440,13 +441,13 @@
           }
         },
         "email_domains": {
-          "target": "com.posthog.accounts#AccountsCreateRequestPropertiesEmailDomainsList",
+          "target": "com.posthog.accounts#CreateAccountRequestPropertiesEmailDomainsList",
           "traits": {
             "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
           }
         },
         "known_emails": {
-          "target": "com.posthog.accounts#AccountsCreateRequestPropertiesKnownEmailsList",
+          "target": "com.posthog.accounts#CreateAccountRequestPropertiesKnownEmailsList",
           "traits": {
             "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
           }
@@ -504,7 +505,7 @@
         "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here."
       }
     },
-    "com.posthog.accounts#AccountsCreateRequestTagsList": {
+    "com.posthog.accounts#CreateAccountRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -539,14 +540,14 @@
           }
         },
         "properties": {
-          "target": "com.posthog.accounts#AccountsCreateRequestProperties",
+          "target": "com.posthog.accounts#CreateAccountRequestProperties",
           "traits": {
             "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "tags": {
-          "target": "com.posthog.accounts#AccountsCreateRequestTagsList",
+          "target": "com.posthog.accounts#CreateAccountRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Tag names attached to the account. Pass a list to replace existing tags."
           }
@@ -586,7 +587,7 @@
         }
       }
     },
-    "com.posthog.accounts#AccountsRetrieveRequest": {
+    "com.posthog.accounts#GetAccountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -610,10 +611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.accounts#AccountsRetrieve": {
+    "com.posthog.accounts#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#AccountsRetrieveRequest"
+        "target": "com.posthog.accounts#GetAccountRequest"
       },
       "output": {
         "target": "com.posthog.accounts#Account"
@@ -626,7 +627,7 @@
         }
       }
     },
-    "com.posthog.accounts#AccountsUpdateRequestPropertiesEmailDomainsList": {
+    "com.posthog.accounts#UpdateAccountRequestPropertiesEmailDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -635,7 +636,7 @@
         "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
       }
     },
-    "com.posthog.accounts#AccountsUpdateRequestPropertiesKnownEmailsList": {
+    "com.posthog.accounts#UpdateAccountRequestPropertiesKnownEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -644,7 +645,7 @@
         "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
       }
     },
-    "com.posthog.accounts#AccountsUpdateRequestProperties": {
+    "com.posthog.accounts#UpdateAccountRequestProperties": {
       "type": "structure",
       "members": {
         "website_domain": {
@@ -655,13 +656,13 @@
           }
         },
         "email_domains": {
-          "target": "com.posthog.accounts#AccountsUpdateRequestPropertiesEmailDomainsList",
+          "target": "com.posthog.accounts#UpdateAccountRequestPropertiesEmailDomainsList",
           "traits": {
             "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
           }
         },
         "known_emails": {
-          "target": "com.posthog.accounts#AccountsUpdateRequestPropertiesKnownEmailsList",
+          "target": "com.posthog.accounts#UpdateAccountRequestPropertiesKnownEmailsList",
           "traits": {
             "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
           }
@@ -719,7 +720,7 @@
         "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here."
       }
     },
-    "com.posthog.accounts#AccountsUpdateRequestTagsList": {
+    "com.posthog.accounts#UpdateAccountRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -762,14 +763,14 @@
           }
         },
         "properties": {
-          "target": "com.posthog.accounts#AccountsUpdateRequestProperties",
+          "target": "com.posthog.accounts#UpdateAccountRequestProperties",
           "traits": {
             "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "tags": {
-          "target": "com.posthog.accounts#AccountsUpdateRequestTagsList",
+          "target": "com.posthog.accounts#UpdateAccountRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Tag names attached to the account. Pass a list to replace existing tags."
           }
@@ -809,7 +810,7 @@
         }
       }
     },
-    "com.posthog.accounts#AccountsPartialUpdateRequestPropertiesEmailDomainsList": {
+    "com.posthog.accounts#UpdateAccountsPartialRequestPropertiesEmailDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -818,7 +819,7 @@
         "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
       }
     },
-    "com.posthog.accounts#AccountsPartialUpdateRequestPropertiesKnownEmailsList": {
+    "com.posthog.accounts#UpdateAccountsPartialRequestPropertiesKnownEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -827,7 +828,7 @@
         "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
       }
     },
-    "com.posthog.accounts#AccountsPartialUpdateRequestProperties": {
+    "com.posthog.accounts#UpdateAccountsPartialRequestProperties": {
       "type": "structure",
       "members": {
         "website_domain": {
@@ -838,13 +839,13 @@
           }
         },
         "email_domains": {
-          "target": "com.posthog.accounts#AccountsPartialUpdateRequestPropertiesEmailDomainsList",
+          "target": "com.posthog.accounts#UpdateAccountsPartialRequestPropertiesEmailDomainsList",
           "traits": {
             "smithy.api#documentation": "Email domains owned by this account's company, used to match inbound touchpoints to the account."
           }
         },
         "known_emails": {
-          "target": "com.posthog.accounts#AccountsPartialUpdateRequestPropertiesKnownEmailsList",
+          "target": "com.posthog.accounts#UpdateAccountsPartialRequestPropertiesKnownEmailsList",
           "traits": {
             "smithy.api#documentation": "Individual email addresses pinned to this account, matched before the domain fallback."
           }
@@ -902,7 +903,7 @@
         "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here."
       }
     },
-    "com.posthog.accounts#AccountsPartialUpdateRequestTagsList": {
+    "com.posthog.accounts#UpdateAccountsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -911,7 +912,7 @@
         "smithy.api#documentation": "Tag names attached to the account. Pass a list to replace existing tags."
       }
     },
-    "com.posthog.accounts#UpdateAccountPartialRequest": {
+    "com.posthog.accounts#UpdateAccountsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -944,14 +945,14 @@
           }
         },
         "properties": {
-          "target": "com.posthog.accounts#AccountsPartialUpdateRequestProperties",
+          "target": "com.posthog.accounts#UpdateAccountsPartialRequestProperties",
           "traits": {
             "smithy.api#documentation": "Typed account properties: website_domain, external system identifiers (stripe_customer_id, hubspot_deal_id, billing_id, sfdc_id, zendesk_id, slack_channel_id, usage_dashboard_link, metabase_link), and touchpoint matching lists: email_domains (the company's email domains) and known_emails (individual addresses pinned to the account). Defaults to an empty object. Unknown keys are rejected. User assignments live on account relationships, not here.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "tags": {
-          "target": "com.posthog.accounts#AccountsPartialUpdateRequestTagsList",
+          "target": "com.posthog.accounts#UpdateAccountsPartialRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Tag names attached to the account. Pass a list to replace existing tags."
           }
@@ -975,10 +976,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.accounts#UpdateAccountPartial": {
+    "com.posthog.accounts#UpdateAccountsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#UpdateAccountPartialRequest"
+        "target": "com.posthog.accounts#UpdateAccountsPartialRequest"
       },
       "output": {
         "target": "com.posthog.accounts#Account"
@@ -1031,7 +1032,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountEmailThreadsRequest": {
+    "com.posthog.accounts#ListAccountsEmailThreadsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1327,10 +1328,10 @@
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountEmailThreads": {
+    "com.posthog.accounts#ListAccountsEmailThreads": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountEmailThreadsRequest"
+        "target": "com.posthog.accounts#ListAccountsEmailThreadsRequest"
       },
       "output": {
         "target": "com.posthog.accounts#PaginatedAccountEmailThreadList"
@@ -1343,7 +1344,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountEmailThreadMessagesRequest": {
+    "com.posthog.accounts#ListAccountsEmailThreadMessagesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1525,10 +1526,10 @@
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountEmailThreadMessages": {
+    "com.posthog.accounts#ListAccountsEmailThreadMessages": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountEmailThreadMessagesRequest"
+        "target": "com.posthog.accounts#ListAccountsEmailThreadMessagesRequest"
       },
       "output": {
         "target": "com.posthog.accounts#PaginatedAccountEmailThreadMessageList"
@@ -1541,7 +1542,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountMeetingsRequest": {
+    "com.posthog.accounts#ListAccountsMeetingsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1742,10 +1743,10 @@
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountMeetings": {
+    "com.posthog.accounts#ListAccountsMeetings": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountMeetingsRequest"
+        "target": "com.posthog.accounts#ListAccountsMeetingsRequest"
       },
       "output": {
         "target": "com.posthog.accounts#PaginatedMeetingList"
@@ -1758,7 +1759,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountSummariesRequest": {
+    "com.posthog.accounts#ListAccountsSummariesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1942,10 +1943,10 @@
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountSummaries": {
+    "com.posthog.accounts#ListAccountsSummaries": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountSummariesRequest"
+        "target": "com.posthog.accounts#ListAccountsSummariesRequest"
       },
       "output": {
         "target": "com.posthog.accounts#PaginatedAccountChannelSummaryList"
@@ -1958,7 +1959,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountSupportTicketsRequest": {
+    "com.posthog.accounts#ListAccountsSupportTicketsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2063,18 +2064,18 @@
         "smithy.api#documentation": "A support ticket linked to an account, sourced from the conversations product (read-only)."
       }
     },
-    "com.posthog.accounts#AccountsSupportTicketsListResponseBodyList": {
+    "com.posthog.accounts#ListAccountsSupportTicketsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.accounts#SupportTicket"
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountSupportTicketsResponse": {
+    "com.posthog.accounts#ListAccountsSupportTicketsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.accounts#AccountsSupportTicketsListResponseBodyList",
+          "target": "com.posthog.accounts#ListAccountsSupportTicketsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2085,13 +2086,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.accounts#ListAccountSupportTickets": {
+    "com.posthog.accounts#ListAccountsSupportTickets": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountSupportTicketsRequest"
+        "target": "com.posthog.accounts#ListAccountsSupportTicketsRequest"
       },
       "output": {
-        "target": "com.posthog.accounts#ListAccountSupportTicketsResponse"
+        "target": "com.posthog.accounts#ListAccountsSupportTicketsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2101,7 +2102,7 @@
         }
       }
     },
-    "com.posthog.accounts#ListAccountSupportTicketMessagesRequest": {
+    "com.posthog.accounts#ListAccountsSupportTicketMessagesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2231,10 +2232,10 @@
       },
       "traits": {}
     },
-    "com.posthog.accounts#ListAccountSupportTicketMessages": {
+    "com.posthog.accounts#ListAccountsSupportTicketMessages": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.accounts#ListAccountSupportTicketMessagesRequest"
+        "target": "com.posthog.accounts#ListAccountsSupportTicketMessagesRequest"
       },
       "output": {
         "target": "com.posthog.accounts#PaginatedAccountSupportTicketMessageList"
@@ -2252,40 +2253,40 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.accounts#ListAccounts"
+          "target": "com.posthog.accounts#AccountsDestroy"
         },
         {
           "target": "com.posthog.accounts#CreateAccount"
         },
         {
-          "target": "com.posthog.accounts#AccountsRetrieve"
+          "target": "com.posthog.accounts#GetAccount"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccounts"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsEmailThreadMessages"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsEmailThreads"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsMeetings"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsSummaries"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsSupportTicketMessages"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsSupportTickets"
         },
         {
           "target": "com.posthog.accounts#UpdateAccount"
         },
         {
-          "target": "com.posthog.accounts#UpdateAccountPartial"
-        },
-        {
-          "target": "com.posthog.accounts#AccountsDestroy"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountEmailThreads"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountEmailThreadMessages"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountMeetings"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountSummaries"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountSupportTickets"
-        },
-        {
-          "target": "com.posthog.accounts#ListAccountSupportTicketMessages"
+          "target": "com.posthog.accounts#UpdateAccountsPartial"
         }
       ],
       "traits": {

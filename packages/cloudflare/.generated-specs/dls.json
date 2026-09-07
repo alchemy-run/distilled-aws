@@ -24,7 +24,8 @@
       "regionKey": "region_key",
       "resultInfo": "result_info",
       "versionCreatedOn": "version_created_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.dls#RegionalServicesPrefixBindingsListResultItem": {
@@ -141,25 +142,25 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsCreate"
+          "target": "com.cloudflare.dls#CreateRegionalServicePrefixBinding"
         },
         {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsDelete"
+          "target": "com.cloudflare.dls#DeleteRegionalServicePrefixBinding"
         },
         {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsEdit"
+          "target": "com.cloudflare.dls#GetRegion"
         },
         {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsGet"
+          "target": "com.cloudflare.dls#GetRegionalServicePrefixBinding"
         },
         {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsList"
+          "target": "com.cloudflare.dls#ListRegionalServicePrefixBindings"
         },
         {
-          "target": "com.cloudflare.dls#RegionsGet"
+          "target": "com.cloudflare.dls#ListRegions"
         },
         {
-          "target": "com.cloudflare.dls#RegionsList"
+          "target": "com.cloudflare.dls#PatchRegionalServicePrefixBinding"
         }
       ],
       "traits": {

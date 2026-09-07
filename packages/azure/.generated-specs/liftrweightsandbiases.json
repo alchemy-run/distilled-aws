@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.liftrweightsandbiases#DeleteInstance": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.liftrweightsandbiases#InstancesUpdateResponseTagsMap",
+          "target": "com.azure.liftrweightsandbiases#UpdateInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -134,7 +135,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.liftrweightsandbiases#InstancesUpdateResponseIdentity",
+          "target": "com.azure.liftrweightsandbiases#UpdateInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -144,7 +145,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.liftrweightsandbiases#InstancesUpdateResponseIdentity": {
+    "com.azure.liftrweightsandbiases#UpdateInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "Marketplace subscription status of a resource."
       }
     },
-    "com.azure.liftrweightsandbiases#InstancesUpdateResponseTagsMap": {
+    "com.azure.liftrweightsandbiases#UpdateInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -756,7 +757,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.liftrweightsandbiases#InstancesUpdateRequestTagsMap",
+          "target": "com.azure.liftrweightsandbiases#UpdateInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -843,7 +844,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.liftrweightsandbiases#InstancesUpdateRequestTagsMap": {
+    "com.azure.liftrweightsandbiases#UpdateInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1159,7 +1160,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.liftrweightsandbiases#InstancesGetResponseTagsMap",
+          "target": "com.azure.liftrweightsandbiases#GetInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1178,7 +1179,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.liftrweightsandbiases#InstancesGetResponseIdentity",
+          "target": "com.azure.liftrweightsandbiases#GetInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1188,7 +1189,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.liftrweightsandbiases#InstancesGetResponseIdentity": {
+    "com.azure.liftrweightsandbiases#GetInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1217,7 +1218,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.liftrweightsandbiases#InstancesGetResponseTagsMap": {
+    "com.azure.liftrweightsandbiases#GetInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1490,7 +1491,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.liftrweightsandbiases#OperationsListResponseValueList",
+          "target": "com.azure.liftrweightsandbiases#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1506,7 +1507,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.liftrweightsandbiases#OperationsListResponseValueList": {
+    "com.azure.liftrweightsandbiases#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.liftrweightsandbiases#Operation"
@@ -1633,13 +1634,10 @@
           "target": "com.azure.liftrweightsandbiases#DeleteInstance"
         },
         {
-          "target": "com.azure.liftrweightsandbiases#UpdateInstance"
+          "target": "com.azure.liftrweightsandbiases#GetInstance"
         },
         {
           "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.liftrweightsandbiases#GetInstance"
         },
         {
           "target": "com.azure.liftrweightsandbiases#ListInstanceByResourceGroup"
@@ -1649,6 +1647,9 @@
         },
         {
           "target": "com.azure.liftrweightsandbiases#ListOperations"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#UpdateInstance"
         }
       ],
       "traits": {

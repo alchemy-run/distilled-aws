@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.dashboards#DashboardsListRequestFormat": {
+    "com.posthog.dashboards#ListDashboardsRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -54,7 +55,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsListRequestFormat",
+          "target": "com.posthog.dashboards#ListDashboardsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -183,7 +184,7 @@
           "target": "smithy.api#Boolean"
         },
         "creation_mode": {
-          "target": "com.posthog.dashboards#CreationModeEnum"
+          "target": "com.posthog.dashboards#DashboardCreationModeEnum"
         },
         "tags": {
           "target": "com.posthog.dashboards#DashboardBasicTagsList"
@@ -195,10 +196,10 @@
           }
         },
         "effective_restriction_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#RestrictionLevelEnum"
         },
         "effective_privilege_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#PrivilegeLevelEnum"
         },
         "user_access_level": {
           "target": "smithy.api#String",
@@ -372,7 +373,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#CreationModeEnum": {
+    "com.posthog.dashboards#DashboardCreationModeEnum": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -431,7 +432,7 @@
         "smithy.api#documentation": "* `21` - Everyone in the project can edit\n* `37` - Only those invited to this dashboard can edit"
       }
     },
-    "com.posthog.dashboards#EffectivePrivilegeLevelEnum": {
+    "com.posthog.dashboards#PrivilegeLevelEnum": {
       "type": "intEnum",
       "members": {
         "_21": {
@@ -447,7 +448,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "* `21` - Can view dashboard\n* `37` - Can edit dashboard"
+      }
     },
     "com.posthog.dashboards#SearchMatchTypeEnum": {
       "type": "enum",
@@ -501,7 +504,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsCreateRequestFormat": {
+    "com.posthog.dashboards#CreateDashboardRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -519,14 +522,14 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsCreateRequestTagsList": {
+    "com.posthog.dashboards#CreateDashboardRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsCreateRequestQuickFilterIdsList": {
+    "com.posthog.dashboards#CreateDashboardRequestQuickFilterIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -611,7 +614,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsCreateRequestFormat",
+          "target": "com.posthog.dashboards#CreateDashboardRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -658,7 +661,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.dashboards#DashboardsCreateRequestTagsList"
+          "target": "com.posthog.dashboards#CreateDashboardRequestTagsList"
         },
         "restriction_level": {
           "target": "com.posthog.dashboards#RestrictionLevelEnum"
@@ -670,7 +673,7 @@
           }
         },
         "quick_filter_ids": {
-          "target": "com.posthog.dashboards#DashboardsCreateRequestQuickFilterIdsList",
+          "target": "com.posthog.dashboards#CreateDashboardRequestQuickFilterIdsList",
           "traits": {
             "smithy.api#documentation": "List of quick filter IDs associated with this dashboard",
             "com.distilled.openapi#nullable": {}
@@ -782,7 +785,7 @@
           "target": "smithy.api#Boolean"
         },
         "creation_mode": {
-          "target": "com.posthog.dashboards#CreationModeEnum"
+          "target": "com.posthog.dashboards#DashboardCreationModeEnum"
         },
         "filters": {
           "target": "com.posthog.dashboards#DashboardOutputFiltersMap"
@@ -813,10 +816,10 @@
           "target": "com.posthog.dashboards#RestrictionLevelEnum"
         },
         "effective_restriction_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#RestrictionLevelEnum"
         },
         "effective_privilege_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#PrivilegeLevelEnum"
         },
         "user_access_level": {
           "target": "smithy.api#String",
@@ -991,7 +994,7 @@
         }
       }
     },
-    "com.posthog.dashboards#ListDashboardCollaboratorsRequest": {
+    "com.posthog.dashboards#ListDashboardsCollaboratorsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1041,18 +1044,18 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsCollaboratorsListResponseBodyList": {
+    "com.posthog.dashboards#ListDashboardsCollaboratorsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.dashboards#DashboardCollaboratorOutput"
       },
       "traits": {}
     },
-    "com.posthog.dashboards#ListDashboardCollaboratorsResponse": {
+    "com.posthog.dashboards#ListDashboardsCollaboratorsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.dashboards#DashboardsCollaboratorsListResponseBodyList",
+          "target": "com.posthog.dashboards#ListDashboardsCollaboratorsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1063,13 +1066,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.dashboards#ListDashboardCollaborators": {
+    "com.posthog.dashboards#ListDashboardsCollaborators": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#ListDashboardCollaboratorsRequest"
+        "target": "com.posthog.dashboards#ListDashboardsCollaboratorsRequest"
       },
       "output": {
-        "target": "com.posthog.dashboards#ListDashboardCollaboratorsResponse"
+        "target": "com.posthog.dashboards#ListDashboardsCollaboratorsResponse"
       },
       "errors": [
         {
@@ -1087,7 +1090,7 @@
         }
       }
     },
-    "com.posthog.dashboards#CreateDashboardCollaboratorRequest": {
+    "com.posthog.dashboards#CreateDashboardsCollaboratorRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1116,10 +1119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardCollaborator": {
+    "com.posthog.dashboards#CreateDashboardsCollaborator": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardCollaboratorRequest"
+        "target": "com.posthog.dashboards#CreateDashboardsCollaboratorRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardCollaboratorOutput"
@@ -1197,7 +1200,7 @@
         }
       }
     },
-    "com.posthog.dashboards#ListDashboardSharingRequest": {
+    "com.posthog.dashboards#ListDashboardsSharingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1288,18 +1291,18 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsSharingListResponseBodyList": {
+    "com.posthog.dashboards#ListDashboardsSharingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.dashboards#SharingConfiguration"
       },
       "traits": {}
     },
-    "com.posthog.dashboards#ListDashboardSharingResponse": {
+    "com.posthog.dashboards#ListDashboardsSharingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.dashboards#DashboardsSharingListResponseBodyList",
+          "target": "com.posthog.dashboards#ListDashboardsSharingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1310,13 +1313,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.dashboards#ListDashboardSharing": {
+    "com.posthog.dashboards#ListDashboardsSharing": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#ListDashboardSharingRequest"
+        "target": "com.posthog.dashboards#ListDashboardsSharingRequest"
       },
       "output": {
-        "target": "com.posthog.dashboards#ListDashboardSharingResponse"
+        "target": "com.posthog.dashboards#ListDashboardsSharingResponse"
       },
       "errors": [
         {
@@ -1334,7 +1337,7 @@
         }
       }
     },
-    "com.posthog.dashboards#CreateDashboardSharingPasswordRequest": {
+    "com.posthog.dashboards#CreateDashboardsSharingPasswordRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1366,10 +1369,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardSharingPassword": {
+    "com.posthog.dashboards#CreateDashboardsSharingPassword": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardSharingPasswordRequest"
+        "target": "com.posthog.dashboards#CreateDashboardsSharingPasswordRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#SharingConfiguration"
@@ -1449,7 +1452,7 @@
         "smithy.api#documentation": "Delete a password from the sharing configuration."
       }
     },
-    "com.posthog.dashboards#CreateDashboardSharingRefreshRequest": {
+    "com.posthog.dashboards#DashboardsSharingRefreshCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1481,10 +1484,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardSharingRefresh": {
+    "com.posthog.dashboards#DashboardsSharingRefreshCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardSharingRefreshRequest"
+        "target": "com.posthog.dashboards#DashboardsSharingRefreshCreateRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#SharingConfiguration"
@@ -1508,7 +1511,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsRetrieveRequestFormat": {
+    "com.posthog.dashboards#GetDashboardRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -1526,7 +1529,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsRetrieveRequest": {
+    "com.posthog.dashboards#GetDashboardRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1553,7 +1556,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsRetrieveRequestFormat",
+          "target": "com.posthog.dashboards#GetDashboardRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1577,10 +1580,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#DashboardsRetrieve": {
+    "com.posthog.dashboards#GetDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#DashboardsRetrieveRequest"
+        "target": "com.posthog.dashboards#GetDashboardRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardOutput"
@@ -1604,7 +1607,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsUpdateRequestFormat": {
+    "com.posthog.dashboards#UpdateDashboardRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -1622,14 +1625,14 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsUpdateRequestTagsList": {
+    "com.posthog.dashboards#UpdateDashboardRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsUpdateRequestQuickFilterIdsList": {
+    "com.posthog.dashboards#UpdateDashboardRequestQuickFilterIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1658,7 +1661,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsUpdateRequestFormat",
+          "target": "com.posthog.dashboards#UpdateDashboardRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1705,7 +1708,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.dashboards#DashboardsUpdateRequestTagsList"
+          "target": "com.posthog.dashboards#UpdateDashboardRequestTagsList"
         },
         "restriction_level": {
           "target": "com.posthog.dashboards#RestrictionLevelEnum"
@@ -1717,7 +1720,7 @@
           }
         },
         "quick_filter_ids": {
-          "target": "com.posthog.dashboards#DashboardsUpdateRequestQuickFilterIdsList",
+          "target": "com.posthog.dashboards#UpdateDashboardRequestQuickFilterIdsList",
           "traits": {
             "smithy.api#documentation": "List of quick filter IDs associated with this dashboard",
             "com.distilled.openapi#nullable": {}
@@ -1789,7 +1792,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsPartialUpdateRequestFormat": {
+    "com.posthog.dashboards#UpdateDashboardsPartialRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -1835,14 +1838,14 @@
         "smithy.api#documentation": "OpenAPI-only shape for a dashboard's filters object (agents/MCP).\n\nDocuments the dashboard-level filters that act as the single source of truth for the\ndashboard's tiles. Runtime persistence reads the raw ``filters`` dict from the request body, so\nextra keys are accepted, but these are the ones agents should set."
       }
     },
-    "com.posthog.dashboards#DashboardsPartialUpdateRequestTagsList": {
+    "com.posthog.dashboards#UpdateDashboardsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsPartialUpdateRequestQuickFilterIdsList": {
+    "com.posthog.dashboards#UpdateDashboardsPartialRequestQuickFilterIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3389,7 +3392,7 @@
         "smithy.api#documentation": "Only show tickets assigned to these users or roles. 'me' means the requesting user and 'unassigned' means tickets without an assignment. Empty shows all assignees."
       }
     },
-    "com.posthog.dashboards#DashboardsPartialUpdateRequestTilesList": {
+    "com.posthog.dashboards#UpdateDashboardsPartialRequestTilesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.dashboards#DashboardPatchTileOpenApi"
@@ -3398,7 +3401,7 @@
         "smithy.api#documentation": "Dashboard tiles to update. Widget tiles accept nested widget.config patches."
       }
     },
-    "com.posthog.dashboards#UpdateDashboardPartialRequest": {
+    "com.posthog.dashboards#UpdateDashboardsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3418,7 +3421,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsPartialUpdateRequestFormat",
+          "target": "com.posthog.dashboards#UpdateDashboardsPartialRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -3462,13 +3465,16 @@
           }
         },
         "tags": {
-          "target": "com.posthog.dashboards#DashboardsPartialUpdateRequestTagsList"
+          "target": "com.posthog.dashboards#UpdateDashboardsPartialRequestTagsList"
         },
         "restriction_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#RestrictionLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Who can edit this dashboard.\n\n* `21` - Everyone in the project can edit\n* `37` - Only those invited to this dashboard can edit"
+          }
         },
         "quick_filter_ids": {
-          "target": "com.posthog.dashboards#DashboardsPartialUpdateRequestQuickFilterIdsList",
+          "target": "com.posthog.dashboards#UpdateDashboardsPartialRequestQuickFilterIdsList",
           "traits": {
             "smithy.api#documentation": "List of quick filter IDs associated with this dashboard.",
             "com.distilled.openapi#nullable": {}
@@ -3487,7 +3493,7 @@
           }
         },
         "tiles": {
-          "target": "com.posthog.dashboards#DashboardsPartialUpdateRequestTilesList",
+          "target": "com.posthog.dashboards#UpdateDashboardsPartialRequestTilesList",
           "traits": {
             "smithy.api#documentation": "Dashboard tiles to update. Widget tiles accept nested widget.config patches."
           }
@@ -3516,10 +3522,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#UpdateDashboardPartial": {
+    "com.posthog.dashboards#UpdateDashboardsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#UpdateDashboardPartialRequest"
+        "target": "com.posthog.dashboards#UpdateDashboardsPartialRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardOutput"
@@ -3637,7 +3643,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#CreateDashboardCopyTileRequest": {
+    "com.posthog.dashboards#DashboardsCopyTileCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3679,10 +3685,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardCopyTile": {
+    "com.posthog.dashboards#DashboardsCopyTileCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardCopyTileRequest"
+        "target": "com.posthog.dashboards#DashboardsCopyTileCreateRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardOutput"
@@ -3724,6 +3730,26 @@
         }
       },
       "traits": {}
+    },
+    "com.posthog.dashboards#CreateTextTileRequestTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `text` - text\n* `image` - image"
+      }
     },
     "com.posthog.dashboards#TileLayouts": {
       "type": "structure",
@@ -3798,10 +3824,16 @@
             "smithy.api#httpQuery": "format"
           }
         },
+        "type": {
+          "target": "com.posthog.dashboards#CreateTextTileRequestTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Tile type. Use image for a body with exactly one Markdown image. Defaults to text.\n\n* `text` - text\n* `image` - image"
+          }
+        },
         "body": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Markdown body for the text tile. Supports headings, lists, and inline formatting. Useful as a dashboard section heading, divider, or annotation between insights. Max 4000 characters.",
+            "smithy.api#documentation": "Markdown body for the dashboard tile. Text tiles support headings, lists, and inline formatting. Image tiles require exactly one Markdown image. Max 4000 characters.",
             "smithy.api#required": {}
           }
         },
@@ -4004,10 +4036,10 @@
           "target": "smithy.api#Boolean"
         },
         "effective_restriction_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#RestrictionLevelEnum"
         },
         "effective_privilege_level": {
-          "target": "com.posthog.dashboards#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.dashboards#PrivilegeLevelEnum"
         },
         "user_access_level": {
           "target": "smithy.api#String",
@@ -4834,6 +4866,12 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "customBotDefinitions": {
+          "target": "com.posthog.dashboards#HogQLQueryModifiersCustomBotDefinitionsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "customChannelTypeRules": {
           "target": "com.posthog.dashboards#HogQLQueryModifiersCustomChannelTypeRulesList",
           "traits": {
@@ -5046,6 +5084,125 @@
             "smithy.api#enumValue": "uniq_page_screen_autocaptures"
           }
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#CustomBotDefinition": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_traffic_category`. Defaults to `custom`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "com.posthog.dashboards#CustomBotField",
+          "traits": {
+            "smithy.api#documentation": "The event property this rule reads.",
+            "smithy.api#required": {}
+          }
+        },
+        "matcher": {
+          "target": "com.posthog.dashboards#CustomBotMatcher",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_bot_name` and `$virt_bot_operator` when the rule matches.",
+            "smithy.api#required": {}
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Matched against the property named by `key`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#CustomBotField": {
+      "type": "enum",
+      "members": {
+        "RAW_USER_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$raw_user_agent"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ip"
+          }
+        },
+        "LIB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$lib"
+          }
+        },
+        "HOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$host"
+          }
+        },
+        "PATHNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$pathname"
+          }
+        },
+        "CURRENT_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$current_url"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#CustomBotMatcher": {
+      "type": "enum",
+      "members": {
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contains"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "CIDR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cidr"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#HogQLQueryModifiersCustomBotDefinitionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.dashboards#CustomBotDefinition"
       },
       "traits": {}
     },
@@ -17281,6 +17438,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStale": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -17681,6 +17845,13 @@
           "target": "com.posthog.dashboards#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -19305,6 +19476,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.dashboards#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -19450,6 +19628,13 @@
         "offset": {
           "target": "smithy.api#Integer",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -19949,6 +20134,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.dashboards#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -20090,6 +20282,13 @@
           "target": "com.posthog.dashboards#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -21627,6 +21826,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "aws-s3"
+          }
+        },
+        "AWS_REDSHIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aws-redshift"
           }
         },
         "S3_COMPATIBLE": {
@@ -23887,6 +24092,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "account_fields"
+          }
+        },
+        "ACCOUNT_RELATIONSHIPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_relationships"
           }
         },
         "ACCOUNT_CUSTOM_PROPERTIES": {
@@ -30046,6 +30257,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.dashboards#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -30645,6 +30863,13 @@
           "target": "com.posthog.dashboards#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -36859,12 +37084,85 @@
         "smithy.api#documentation": "Match accounts where any listed user actively holds any relationship."
       }
     },
+    "com.posthog.dashboards#AccountsTableAssignedFilter": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
     "com.posthog.dashboards#AccountsTableUnassignedFilter": {
       "type": "structure",
       "members": {
         "kind": {
           "target": "smithy.api#String"
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#AccountsTableRelationshipFilter": {
+      "type": "structure",
+      "members": {
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "operator": {
+          "target": "com.posthog.dashboards#AccountsTableRelationshipOperator",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userIds": {
+          "target": "com.posthog.dashboards#AccountsTableRelationshipFilterUserIdsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#AccountsTableRelationshipOperator": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "IS_NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not"
+          }
+        },
+        "IS_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_set"
+          }
+        },
+        "IS_NOT_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not_set"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboards#AccountsTableRelationshipFilterUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
       },
       "traits": {}
     },
@@ -37135,8 +37433,14 @@
         "AccountsTableAssignedToFilter": {
           "target": "com.posthog.dashboards#AccountsTableAssignedToFilter"
         },
+        "AccountsTableAssignedFilter": {
+          "target": "com.posthog.dashboards#AccountsTableAssignedFilter"
+        },
         "AccountsTableUnassignedFilter": {
           "target": "com.posthog.dashboards#AccountsTableUnassignedFilter"
+        },
+        "AccountsTableRelationshipFilter": {
+          "target": "com.posthog.dashboards#AccountsTableRelationshipFilter"
         },
         "AccountsTableAccountIdFilter": {
           "target": "com.posthog.dashboards#AccountsTableAccountIdFilter"
@@ -37690,6 +37994,13 @@
         "leftYAxisSettings": {
           "target": "com.posthog.dashboards#YAxisSettings",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "legendPosition": {
+          "target": "com.posthog.dashboards#LegendPosition",
+          "traits": {
+            "smithy.api#documentation": "Where the legend sits relative to the chart. Unset falls back per chart type: right for pie, top for the rest.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -39196,7 +39507,7 @@
         "smithy.api#documentation": "Add a markdown text tile to a dashboard.\n\nText tiles render as markdown blocks on the dashboard — useful as section headings, dividers,\nor annotations between insight tiles to give the dashboard structure."
       }
     },
-    "com.posthog.dashboards#DashboardsDeleteTileRequestFormat": {
+    "com.posthog.dashboards#DeleteDashboardTileRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39234,7 +39545,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsDeleteTileRequestFormat",
+          "target": "com.posthog.dashboards#DeleteDashboardTileRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -39299,7 +39610,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#CreateDashboardMoveTileRequest": {
+    "com.posthog.dashboards#DashboardsMoveTileCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39343,10 +39654,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardMoveTile": {
+    "com.posthog.dashboards#DashboardsMoveTileCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardMoveTileRequest"
+        "target": "com.posthog.dashboards#DashboardsMoveTileCreateRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardOutput"
@@ -39359,7 +39670,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsReorderTilesCreateRequestFormat": {
+    "com.posthog.dashboards#CreateDashboardsReorderTileRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39377,7 +39688,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsReorderTilesCreateRequestTileOrderList": {
+    "com.posthog.dashboards#CreateDashboardsReorderTileRequestTileOrderList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -39412,7 +39723,7 @@
         "smithy.api#documentation": "* `preserve` - preserve\n* `two_column` - two_column\n* `full_width` - full_width"
       }
     },
-    "com.posthog.dashboards#CreateDashboardReorderTileRequest": {
+    "com.posthog.dashboards#CreateDashboardsReorderTileRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39432,13 +39743,13 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsReorderTilesCreateRequestFormat",
+          "target": "com.posthog.dashboards#CreateDashboardsReorderTileRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "tile_order": {
-          "target": "com.posthog.dashboards#DashboardsReorderTilesCreateRequestTileOrderList",
+          "target": "com.posthog.dashboards#CreateDashboardsReorderTileRequestTileOrderList",
           "traits": {
             "smithy.api#documentation": "Array of tile IDs in the desired display order (top to bottom, left to right)."
           }
@@ -39454,10 +39765,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#CreateDashboardReorderTile": {
+    "com.posthog.dashboards#CreateDashboardsReorderTile": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardReorderTileRequest"
+        "target": "com.posthog.dashboards#CreateDashboardsReorderTileRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardOutput"
@@ -39481,7 +39792,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestFormat": {
+    "com.posthog.dashboards#GetDashboardsRunInsightRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39499,7 +39810,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestOutputFormat": {
+    "com.posthog.dashboards#GetDashboardsRunInsightRequestOutputFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39517,7 +39828,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestRefresh": {
+    "com.posthog.dashboards#GetDashboardsRunInsightRequestRefresh": {
       "type": "enum",
       "members": {
         "BLOCKING": {
@@ -39541,7 +39852,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequest": {
+    "com.posthog.dashboards#GetDashboardsRunInsightRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39568,20 +39879,20 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestFormat",
+          "target": "com.posthog.dashboards#GetDashboardsRunInsightRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "output_format": {
-          "target": "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestOutputFormat",
+          "target": "com.posthog.dashboards#GetDashboardsRunInsightRequestOutputFormat",
           "traits": {
             "smithy.api#httpQuery": "output_format",
             "smithy.api#documentation": "'optimized' (default) returns LLM-friendly formatted text per insight. 'json' returns the raw query result objects."
           }
         },
         "refresh": {
-          "target": "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequestRefresh",
+          "target": "com.posthog.dashboards#GetDashboardsRunInsightRequestRefresh",
           "traits": {
             "smithy.api#httpQuery": "refresh",
             "smithy.api#documentation": "Cache behavior. 'force_cache' (default) serves from cache even if stale. 'blocking' uses cache if fresh, otherwise recalculates. 'force_blocking' always recalculates."
@@ -39663,10 +39974,10 @@
         "smithy.api#documentation": "Results for each insight tile on the dashboard."
       }
     },
-    "com.posthog.dashboards#DashboardsRunInsightsRetrieve": {
+    "com.posthog.dashboards#GetDashboardsRunInsight": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#DashboardsRunInsightsRetrieveRequest"
+        "target": "com.posthog.dashboards#GetDashboardsRunInsightRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#RunInsightsResponse"
@@ -39691,7 +40002,7 @@
         "smithy.api#documentation": "Run all insights on a dashboard and return their results."
       }
     },
-    "com.posthog.dashboards#DashboardsRunWidgetsRetrieveRequestFormat": {
+    "com.posthog.dashboards#GetDashboardsRunWidgetRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39709,7 +40020,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsRunWidgetsRetrieveRequest": {
+    "com.posthog.dashboards#GetDashboardsRunWidgetRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39729,7 +40040,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsRunWidgetsRetrieveRequestFormat",
+          "target": "com.posthog.dashboards#GetDashboardsRunWidgetRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -39805,10 +40116,10 @@
         "smithy.api#documentation": "Per-tile widget run results."
       }
     },
-    "com.posthog.dashboards#DashboardsRunWidgetsRetrieve": {
+    "com.posthog.dashboards#GetDashboardsRunWidget": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#DashboardsRunWidgetsRetrieveRequest"
+        "target": "com.posthog.dashboards#GetDashboardsRunWidgetRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#RunWidgetsResponse"
@@ -39821,7 +40132,7 @@
         }
       }
     },
-    "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequestFormat": {
+    "com.posthog.dashboards#GetDashboardsStreamTileRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -39839,7 +40150,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequestLayoutSize": {
+    "com.posthog.dashboards#GetDashboardsStreamTileRequestLayoutSize": {
       "type": "enum",
       "members": {
         "SM": {
@@ -39857,7 +40168,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequest": {
+    "com.posthog.dashboards#GetDashboardsStreamTileRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39884,13 +40195,13 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequestFormat",
+          "target": "com.posthog.dashboards#GetDashboardsStreamTileRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "layoutSize": {
-          "target": "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequestLayoutSize",
+          "target": "com.posthog.dashboards#GetDashboardsStreamTileRequestLayoutSize",
           "traits": {
             "smithy.api#httpQuery": "layoutSize",
             "smithy.api#documentation": "Layout size for tile positioning. 'sm' (default) for standard, 'xs' for mobile. The snake_case alias `layout_size` is also accepted for backward compatibility."
@@ -39908,10 +40219,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboards#DashboardsStreamTilesRetrieve": {
+    "com.posthog.dashboards#GetDashboardsStreamTile": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#DashboardsStreamTilesRetrieveRequest"
+        "target": "com.posthog.dashboards#GetDashboardsStreamTileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -39954,7 +40265,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#CreateDashboardSubscribeNudgeRequest": {
+    "com.posthog.dashboards#DashboardsSubscribeNudgeCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39997,10 +40308,10 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#CreateDashboardSubscribeNudge": {
+    "com.posthog.dashboards#DashboardsSubscribeNudgeCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardSubscribeNudgeRequest"
+        "target": "com.posthog.dashboards#DashboardsSubscribeNudgeCreateRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#DashboardSubscribeNudgeResponse"
@@ -40105,7 +40416,7 @@
         "smithy.api#documentation": "Update the markdown body, layout, or color of an existing text tile on a dashboard."
       }
     },
-    "com.posthog.dashboards#DashboardsWidgetsBatchCreateRequestFormat": {
+    "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -40665,7 +40976,7 @@
         "smithy.api#documentation": "* `conversations_recent_tickets` - conversations_recent_tickets"
       }
     },
-    "com.posthog.dashboards#DashboardsWidgetsBatchCreateRequestWidgetsList": {
+    "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequestWidgetsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.dashboards#AddDashboardWidgetRequest"
@@ -40674,7 +40985,7 @@
         "smithy.api#documentation": "Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request)."
       }
     },
-    "com.posthog.dashboards#CreateDashboardWidgetBatchRequest": {
+    "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -40694,13 +41005,13 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsWidgetsBatchCreateRequestFormat",
+          "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "widgets": {
-          "target": "com.posthog.dashboards#DashboardsWidgetsBatchCreateRequestWidgetsList",
+          "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequestWidgetsList",
           "traits": {
             "smithy.api#documentation": "Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request).",
             "smithy.api#required": {}
@@ -40733,10 +41044,10 @@
         "smithy.api#documentation": "Created dashboard widget tiles in request order."
       }
     },
-    "com.posthog.dashboards#CreateDashboardWidgetBatch": {
+    "com.posthog.dashboards#CreateDashboardsWidgetsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#CreateDashboardWidgetBatchRequest"
+        "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatchRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#AddDashboardWidgetsBatchResponseOutput"
@@ -40750,7 +41061,7 @@
         "smithy.api#documentation": "Add multiple widget tiles to a dashboard in one atomic request."
       }
     },
-    "com.posthog.dashboards#DashboardsUpdateWidgetsBatchRequestFormat": {
+    "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -41102,7 +41413,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsUpdateWidgetsBatchRequestWidgetsList": {
+    "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequestWidgetsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.dashboards#UpdateDashboardWidgetRequest"
@@ -41111,7 +41422,7 @@
         "smithy.api#documentation": "Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request)."
       }
     },
-    "com.posthog.dashboards#UpdateDashboardWidgetBatchRequest": {
+    "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -41131,13 +41442,13 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsUpdateWidgetsBatchRequestFormat",
+          "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "widgets": {
-          "target": "com.posthog.dashboards#DashboardsUpdateWidgetsBatchRequestWidgetsList",
+          "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequestWidgetsList",
           "traits": {
             "smithy.api#documentation": "Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request)."
           }
@@ -41169,10 +41480,10 @@
         "smithy.api#documentation": "Updated dashboard widget tiles in request order."
       }
     },
-    "com.posthog.dashboards#UpdateDashboardWidgetBatch": {
+    "com.posthog.dashboards#UpdateDashboardWidgetsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#UpdateDashboardWidgetBatchRequest"
+        "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatchRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatchResponseOutput"
@@ -41186,7 +41497,7 @@
         "smithy.api#documentation": "Update the settings of existing widgets in place, atomically — config, name, and description.\n\nEach entry targets a widget by its tile_id and reuses the same write path as the dashboard PATCH endpoint.\nThe widget_type is immutable. This edits widget settings only (config, name, description); tile placement\n(layouts, show_description) is a dashboard concern — use the dashboard PATCH endpoint or reorder_tiles for\nthat. All updates succeed or fail together. To add new widgets, use the widgets/batch POST endpoint; to\nremove one, use delete_tile."
       }
     },
-    "com.posthog.dashboards#DashboardsWidgetCatalogRetrieveRequestFormat": {
+    "com.posthog.dashboards#GetDashboardsWidgetCatalogRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -41204,7 +41515,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboards#DashboardsWidgetCatalogRetrieveRequest": {
+    "com.posthog.dashboards#GetDashboardsWidgetCatalogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -41216,7 +41527,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.dashboards#DashboardsWidgetCatalogRetrieveRequestFormat",
+          "target": "com.posthog.dashboards#GetDashboardsWidgetCatalogRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -41726,10 +42037,10 @@
         "smithy.api#documentation": "Registered dashboard widget types available when dashboard-widgets is enabled."
       }
     },
-    "com.posthog.dashboards#DashboardsWidgetCatalogRetrieve": {
+    "com.posthog.dashboards#GetDashboardsWidgetCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboards#DashboardsWidgetCatalogRetrieveRequest"
+        "target": "com.posthog.dashboards#GetDashboardsWidgetCatalogRequest"
       },
       "output": {
         "target": "com.posthog.dashboards#WidgetCatalogResponse"
@@ -41787,82 +42098,82 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.dashboards#ListDashboards"
-        },
-        {
           "target": "com.posthog.dashboards#CreateDashboard"
         },
         {
-          "target": "com.posthog.dashboards#ListDashboardCollaborators"
+          "target": "com.posthog.dashboards#CreateDashboardsCollaborator"
         },
         {
-          "target": "com.posthog.dashboards#CreateDashboardCollaborator"
+          "target": "com.posthog.dashboards#CreateDashboardsReorderTile"
+        },
+        {
+          "target": "com.posthog.dashboards#CreateDashboardsSharingPassword"
+        },
+        {
+          "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatch"
         },
         {
           "target": "com.posthog.dashboards#DashboardsCollaboratorsDestroy"
         },
         {
-          "target": "com.posthog.dashboards#ListDashboardSharing"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardSharingPassword"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsSharingPasswordsDestroy"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardSharingRefresh"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsRetrieve"
-        },
-        {
-          "target": "com.posthog.dashboards#UpdateDashboard"
-        },
-        {
-          "target": "com.posthog.dashboards#UpdateDashboardPartial"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsDestroy"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardCopyTile"
+          "target": "com.posthog.dashboards#DashboardsCopyTileCreate"
         },
         {
           "target": "com.posthog.dashboards#DashboardsCreateTextTileCreate"
         },
         {
-          "target": "com.posthog.dashboards#DeleteDashboardTile"
+          "target": "com.posthog.dashboards#DashboardsDestroy"
         },
         {
-          "target": "com.posthog.dashboards#CreateDashboardMoveTile"
+          "target": "com.posthog.dashboards#DashboardsMoveTileCreate"
         },
         {
-          "target": "com.posthog.dashboards#CreateDashboardReorderTile"
+          "target": "com.posthog.dashboards#DashboardsSharingPasswordsDestroy"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsRunInsightsRetrieve"
+          "target": "com.posthog.dashboards#DashboardsSharingRefreshCreate"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsRunWidgetsRetrieve"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsStreamTilesRetrieve"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardSubscribeNudge"
+          "target": "com.posthog.dashboards#DashboardsSubscribeNudgeCreate"
         },
         {
           "target": "com.posthog.dashboards#DashboardsUpdateTextTileCreate"
         },
         {
-          "target": "com.posthog.dashboards#CreateDashboardWidgetBatch"
+          "target": "com.posthog.dashboards#DeleteDashboardTile"
         },
         {
-          "target": "com.posthog.dashboards#UpdateDashboardWidgetBatch"
+          "target": "com.posthog.dashboards#GetDashboard"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsWidgetCatalogRetrieve"
+          "target": "com.posthog.dashboards#GetDashboardsRunInsight"
+        },
+        {
+          "target": "com.posthog.dashboards#GetDashboardsRunWidget"
+        },
+        {
+          "target": "com.posthog.dashboards#GetDashboardsStreamTile"
+        },
+        {
+          "target": "com.posthog.dashboards#GetDashboardsWidgetCatalog"
+        },
+        {
+          "target": "com.posthog.dashboards#ListDashboards"
+        },
+        {
+          "target": "com.posthog.dashboards#ListDashboardsCollaborators"
+        },
+        {
+          "target": "com.posthog.dashboards#ListDashboardsSharing"
+        },
+        {
+          "target": "com.posthog.dashboards#UpdateDashboard"
+        },
+        {
+          "target": "com.posthog.dashboards#UpdateDashboardsPartial"
+        },
+        {
+          "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatch"
         }
       ],
       "traits": {

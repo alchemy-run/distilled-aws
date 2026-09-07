@@ -441,13 +441,11 @@ export const GetDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDashboardRequest>;
 
 /** Resource tags. */
-export type DashboardsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DashboardsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDashboardResponseTagsMap = { [key: string]: string | undefined };
+export const GetDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DashboardsGetResponseTagsMap>;
+) as any as S.Schema<GetDashboardResponseTagsMap>;
 
 export interface GetDashboardResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -459,7 +457,7 @@ export interface GetDashboardResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DashboardsGetResponseTagsMap;
+  tags?: GetDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -471,7 +469,7 @@ export const GetDashboardResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DashboardsGetResponseTagsMap),
+    tags: S.optional(GetDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(DashboardPropertiesWithProvisioningState),
   }),
@@ -621,6 +619,58 @@ export const ListDashboardBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDashboardBySubscriptionRequest",
 }) as any as S.Schema<ListDashboardBySubscriptionRequest>;
 
+export interface ListListTenantConfigurationViolationsRequest {}
+export const ListListTenantConfigurationViolationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Portal/listTenantConfigurationViolations",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListListTenantConfigurationViolationsRequest",
+  }) as any as S.Schema<ListListTenantConfigurationViolationsRequest>;
+
+/** Violation information. */
+export interface Violation {
+  /** Id of the item that violates tenant configuration. */
+  id?: string;
+  /** Id of the user who owns violated item. */
+  userId?: string;
+  /** Error message. */
+  errorMessage?: string;
+}
+export const Violation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    userId: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+  }),
+).annotate({ identifier: "Violation" }) as any as S.Schema<Violation>;
+
+/** The Violation items on this page */
+export type ViolationsListValueList = Array<Violation>;
+export const ViolationsListValueList = /*@__PURE__*/ S.Array(
+  Violation,
+) as any as S.Schema<ViolationsListValueList>;
+
+/** List of list of items that violate tenant's configuration. */
+export interface ViolationsList {
+  /** The Violation items on this page */
+  value: ViolationsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ViolationsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ViolationsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ViolationsList" }) as any as S.Schema<ViolationsList>;
+
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -689,20 +739,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -768,58 +818,6 @@ export const ConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigurationListResult",
 }) as any as S.Schema<ConfigurationListResult>;
 
-export interface ListTenantConfigurationViolationsListRequest {}
-export const ListTenantConfigurationViolationsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Portal/listTenantConfigurationViolations",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListTenantConfigurationViolationsListRequest",
-  }) as any as S.Schema<ListTenantConfigurationViolationsListRequest>;
-
-/** Violation information. */
-export interface Violation {
-  /** Id of the item that violates tenant configuration. */
-  id?: string;
-  /** Id of the user who owns violated item. */
-  userId?: string;
-  /** Error message. */
-  errorMessage?: string;
-}
-export const Violation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    userId: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-  }),
-).annotate({ identifier: "Violation" }) as any as S.Schema<Violation>;
-
-/** The Violation items on this page */
-export type ViolationsListValueList = Array<Violation>;
-export const ViolationsListValueList = /*@__PURE__*/ S.Array(
-  Violation,
-) as any as S.Schema<ViolationsListValueList>;
-
-/** List of list of items that violate tenant's configuration. */
-export interface ViolationsList {
-  /** The Violation items on this page */
-  value: ViolationsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ViolationsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ViolationsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ViolationsList" }) as any as S.Schema<ViolationsList>;
-
 /** The dashboard lenses. */
 export type DashboardPropertiesLensesList = Array<DashboardLens>;
 export const DashboardPropertiesLensesList = /*@__PURE__*/ S.Array(
@@ -843,13 +841,13 @@ export const DashboardProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DashboardProperties>;
 
 /** Resource tags */
-export type DashboardsUpdateRequestTagsMap = {
+export type UpdateDashboardRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DashboardsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDashboardRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DashboardsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDashboardRequestTagsMap>;
 
 export interface UpdateDashboardRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -861,7 +859,7 @@ export interface UpdateDashboardRequest {
   /** The shared dashboard properties. */
   properties?: DashboardProperties;
   /** Resource tags */
-  tags?: DashboardsUpdateRequestTagsMap;
+  tags?: UpdateDashboardRequestTagsMap;
 }
 export const UpdateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -869,7 +867,7 @@ export const UpdateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     dashboardName: S.String.pipe(T.Label()),
     properties: S.optional(DashboardProperties),
-    tags: S.optional(DashboardsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDashboardRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -883,13 +881,13 @@ export const UpdateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDashboardRequest>;
 
 /** Resource tags. */
-export type DashboardsUpdateResponseTagsMap = {
+export type UpdateDashboardResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DashboardsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DashboardsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDashboardResponseTagsMap>;
 
 export interface UpdateDashboardResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -901,7 +899,7 @@ export interface UpdateDashboardResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DashboardsUpdateResponseTagsMap;
+  tags?: UpdateDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -913,7 +911,7 @@ export const UpdateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DashboardsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(DashboardPropertiesWithProvisioningState),
   }),
@@ -1041,6 +1039,21 @@ export const ListDashboardBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListListTenantConfigurationViolationsError = AzureOpError;
+/** Gets list of items that violate tenant's configuration. */
+export const ListListTenantConfigurationViolations: API.OperationMethod<
+  ListListTenantConfigurationViolationsRequest,
+  ViolationsList,
+  ListListTenantConfigurationViolationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListListTenantConfigurationViolationsRequest,
+  output: ViolationsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
 export const ListOperations: API.OperationMethod<
@@ -1066,21 +1079,6 @@ export const ListTenantConfigurations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTenantConfigurationsRequest,
   output: ConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListTenantConfigurationViolationsListError = AzureOpError;
-/** Gets list of items that violate tenant's configuration. */
-export const ListTenantConfigurationViolationsList: API.OperationMethod<
-  ListTenantConfigurationViolationsListRequest,
-  ViolationsList,
-  ListTenantConfigurationViolationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListTenantConfigurationViolationsListRequest,
-  output: ViolationsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

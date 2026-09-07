@@ -557,18 +557,18 @@ export const GetAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccessConnectorRequest>;
 
 /** Resource tags. */
-export type AccessConnectorsGetResponseTagsMap = {
+export type GetAccessConnectorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessConnectorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAccessConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessConnectorsGetResponseTagsMap>;
+) as any as S.Schema<GetAccessConnectorResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsGetResponseIdentity =
+export type GetAccessConnectorResponseIdentity =
   AccessConnectorsCreateOrUpdateResponseIdentity;
-export const AccessConnectorsGetResponseIdentity =
+export const GetAccessConnectorResponseIdentity =
   AccessConnectorsCreateOrUpdateResponseIdentity;
 
 export interface GetAccessConnectorResponse {
@@ -579,7 +579,7 @@ export interface GetAccessConnectorResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: AccessConnectorsGetResponseTagsMap;
+  tags?: GetAccessConnectorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Azure Databricks Access Connector properties */
@@ -592,7 +592,7 @@ export const GetAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(AccessConnectorsGetResponseTagsMap),
+    tags: S.optional(GetAccessConnectorResponseTagsMap),
     location: S.String,
     properties: S.optional(AccessConnectorProperties),
     identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
@@ -913,13 +913,11 @@ export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid' */
 export type ComputeMode = "Serverless" | "Hybrid";
@@ -1525,7 +1523,7 @@ export interface GetWorkspaceResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The workspace properties. */
@@ -1538,7 +1536,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     location: S.String,
     properties: WorkspaceProperties,
     sku: S.optional(Sku),
@@ -1728,7 +1726,7 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export interface ListOutboundNetworkDependencyEndpointsRequest {
+export interface ListOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1736,7 +1734,7 @@ export interface ListOutboundNetworkDependencyEndpointsRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const ListOutboundNetworkDependencyEndpointsRequest =
+export const ListOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1751,8 +1749,8 @@ export const ListOutboundNetworkDependencyEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListOutboundNetworkDependencyEndpointsRequest>;
+    identifier: "ListOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Connect information from the Workspace to a single endpoint. */
 export interface EndpointDetail {
@@ -1826,14 +1824,132 @@ export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.Array(
   OutboundEnvironmentEndpoint,
 ) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
 
-export type ListOutboundNetworkDependencyEndpointsResponse =
+export type ListOutboundNetworkDependenciesEndpointsResponse =
   OutboundEnvironmentEndpointCollection;
-export const ListOutboundNetworkDependencyEndpointsResponse =
+export const ListOutboundNetworkDependenciesEndpointsResponse =
   /*@__PURE__*/ S.suspend(() =>
     OutboundEnvironmentEndpointCollection.pipe(T.RawResponseRoot()),
   ).annotate({
-    identifier: "ListOutboundNetworkDependencyEndpointsResponse",
-  }) as any as S.Schema<ListOutboundNetworkDependencyEndpointsResponse>;
+    identifier: "ListOutboundNetworkDependenciesEndpointsResponse",
+  }) as any as S.Schema<ListOutboundNetworkDependenciesEndpointsResponse>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionsListValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionsListValueList = /*@__PURE__*/ S.Array(
+  PrivateEndpointConnection,
+) as any as S.Schema<PrivateEndpointConnectionsListValueList>;
+
+/** List of private link connections. */
+export interface PrivateEndpointConnectionsList {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionsList",
+}) as any as S.Schema<PrivateEndpointConnectionsList>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** The group information for creating a private endpoint on a workspace */
+export interface GroupIdInformation {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** The group id properties. */
+  properties: GroupIdInformationProperties;
+}
+export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: GroupIdInformationProperties,
+  }),
+).annotate({
+  identifier: "GroupIdInformation",
+}) as any as S.Schema<GroupIdInformation>;
+
+/** The GroupIdInformation items on this page */
+export type PrivateLinkResourcesListValueList = Array<GroupIdInformation>;
+export const PrivateLinkResourcesListValueList = /*@__PURE__*/ S.Array(
+  GroupIdInformation,
+) as any as S.Schema<PrivateLinkResourcesListValueList>;
+
+/** The available private link resources for a workspace */
+export interface PrivateLinkResourcesList {
+  /** The GroupIdInformation items on this page */
+  value: PrivateLinkResourcesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateLinkResourcesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourcesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourcesList",
+}) as any as S.Schema<PrivateLinkResourcesList>;
 
 export interface ListVNetPeeringByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2003,137 +2119,19 @@ export const ListWorkspaceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkspaceBySubscriptionRequest",
 }) as any as S.Schema<ListWorkspaceBySubscriptionRequest>;
 
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionsListValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsListValueList = /*@__PURE__*/ S.Array(
-  PrivateEndpointConnection,
-) as any as S.Schema<PrivateEndpointConnectionsListValueList>;
-
-/** List of private link connections. */
-export interface PrivateEndpointConnectionsList {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsList",
-}) as any as S.Schema<PrivateEndpointConnectionsList>;
-
-export interface PrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** The group information for creating a private endpoint on a workspace */
-export interface GroupIdInformation {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** The group id properties. */
-  properties: GroupIdInformationProperties;
-}
-export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: GroupIdInformationProperties,
-  }),
-).annotate({
-  identifier: "GroupIdInformation",
-}) as any as S.Schema<GroupIdInformation>;
-
-/** The GroupIdInformation items on this page */
-export type PrivateLinkResourcesListValueList = Array<GroupIdInformation>;
-export const PrivateLinkResourcesListValueList = /*@__PURE__*/ S.Array(
-  GroupIdInformation,
-) as any as S.Schema<PrivateLinkResourcesListValueList>;
-
-/** The available private link resources for a workspace */
-export interface PrivateLinkResourcesList {
-  /** The GroupIdInformation items on this page */
-  value: PrivateLinkResourcesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateLinkResourcesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourcesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesList",
-}) as any as S.Schema<PrivateLinkResourcesList>;
-
 /** Resource tags. */
-export type AccessConnectorsUpdateRequestTagsMap = {
+export type UpdateAccessConnectorRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessConnectorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccessConnectorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessConnectorsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccessConnectorRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsUpdateRequestIdentity =
+export type UpdateAccessConnectorRequestIdentity =
   AccessConnectorsCreateOrUpdateRequestIdentity;
-export const AccessConnectorsUpdateRequestIdentity =
+export const UpdateAccessConnectorRequestIdentity =
   AccessConnectorsCreateOrUpdateRequestIdentity;
 
 export interface UpdateAccessConnectorRequest {
@@ -2144,7 +2142,7 @@ export interface UpdateAccessConnectorRequest {
   /** The name of the Azure Databricks Access Connector. */
   connectorName: string;
   /** Resource tags. */
-  tags?: AccessConnectorsUpdateRequestTagsMap;
+  tags?: UpdateAccessConnectorRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: AccessConnectorsCreateOrUpdateRequestIdentity;
 }
@@ -2153,7 +2151,7 @@ export const UpdateAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     connectorName: S.String.pipe(T.Label()),
-    tags: S.optional(AccessConnectorsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccessConnectorRequestTagsMap),
     identity: S.optional(AccessConnectorsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
@@ -2168,18 +2166,18 @@ export const UpdateAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccessConnectorRequest>;
 
 /** Resource tags. */
-export type AccessConnectorsUpdateResponseTagsMap = {
+export type UpdateAccessConnectorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessConnectorsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccessConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessConnectorsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccessConnectorResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsUpdateResponseIdentity =
+export type UpdateAccessConnectorResponseIdentity =
   AccessConnectorsCreateOrUpdateResponseIdentity;
-export const AccessConnectorsUpdateResponseIdentity =
+export const UpdateAccessConnectorResponseIdentity =
   AccessConnectorsCreateOrUpdateResponseIdentity;
 
 export interface UpdateAccessConnectorResponse {
@@ -2190,7 +2188,7 @@ export interface UpdateAccessConnectorResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: AccessConnectorsUpdateResponseTagsMap;
+  tags?: UpdateAccessConnectorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Azure Databricks Access Connector properties */
@@ -2203,7 +2201,7 @@ export const UpdateAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(AccessConnectorsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccessConnectorResponseTagsMap),
     location: S.String,
     properties: S.optional(AccessConnectorProperties),
     identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
@@ -2213,13 +2211,13 @@ export const UpdateAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccessConnectorResponse>;
 
 /** Resource tags. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 export interface UpdateWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2229,14 +2227,14 @@ export interface UpdateWorkspaceRequest {
   /** The name of the workspace. */
   workspaceName: string;
   /** Resource tags. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
 }
 export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2250,13 +2248,13 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 export interface UpdateWorkspaceResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2266,7 +2264,7 @@ export interface UpdateWorkspaceResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The workspace properties. */
@@ -2279,7 +2277,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     location: S.String,
     properties: WorkspaceProperties,
     sku: S.optional(Sku),
@@ -2710,16 +2708,46 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListOutboundNetworkDependencyEndpointsError = AzureOpError;
+export type ListOutboundNetworkDependenciesEndpointsError = AzureOpError;
 /** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified Workspace. Gets the list of endpoints that VNET Injected Workspace calls Azure Databricks Control Plane. You must configure outbound access with these endpoints. For more information, see https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/udr */
-export const ListOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListOutboundNetworkDependencyEndpointsRequest,
-  ListOutboundNetworkDependencyEndpointsResponse,
-  ListOutboundNetworkDependencyEndpointsError,
+export const ListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListOutboundNetworkDependenciesEndpointsRequest,
+  ListOutboundNetworkDependenciesEndpointsResponse,
+  ListOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOutboundNetworkDependencyEndpointsRequest,
-  output: ListOutboundNetworkDependencyEndpointsResponse,
+  input: ListOutboundNetworkDependenciesEndpointsRequest,
+  output: ListOutboundNetworkDependenciesEndpointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** List private endpoint connections List private endpoint connections of the workspace */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionsList,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** List private link resources List private link resources for a given workspace */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourcesList,
+  ListPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourcesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2765,36 +2793,6 @@ export const ListWorkspaceBySubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkspaceBySubscriptionRequest,
   output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsList2Error = AzureOpError;
-/** List private endpoint connections List private endpoint connections of the workspace */
-export const PrivateEndpointConnectionsList2: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionsList,
-  PrivateEndpointConnectionsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesList2Error = AzureOpError;
-/** List private link resources List private link resources for a given workspace */
-export const PrivateLinkResourcesList2: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourcesList,
-  PrivateLinkResourcesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourcesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

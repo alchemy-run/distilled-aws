@@ -30,12 +30,12 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface SessionsPropertyDefinitionsRetrieveRequest {
+export interface GetSessionsPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const SessionsPropertyDefinitionsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetSessionsPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -45,21 +45,22 @@ export const SessionsPropertyDefinitionsRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "SessionsPropertyDefinitionsRetrieveRequest",
-  }) as any as S.Schema<SessionsPropertyDefinitionsRetrieveRequest>;
+).annotate({
+  identifier: "GetSessionsPropertyDefinitionRequest",
+}) as any as S.Schema<GetSessionsPropertyDefinitionRequest>;
 
-export interface SessionsPropertyDefinitionsRetrieveResponse {}
-export const SessionsPropertyDefinitionsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SessionsPropertyDefinitionsRetrieveResponse",
-  }) as any as S.Schema<SessionsPropertyDefinitionsRetrieveResponse>;
+export interface GetSessionsPropertyDefinitionResponse {}
+export const GetSessionsPropertyDefinitionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetSessionsPropertyDefinitionResponse",
+}) as any as S.Schema<GetSessionsPropertyDefinitionResponse>;
 
-export interface SessionsValuesRetrieveRequest {
+export interface GetSessionsValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const SessionsValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSessionsValueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -70,42 +71,42 @@ export const SessionsValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SessionsValuesRetrieveRequest",
-}) as any as S.Schema<SessionsValuesRetrieveRequest>;
+  identifier: "GetSessionsValueRequest",
+}) as any as S.Schema<GetSessionsValueRequest>;
 
-export interface SessionsValuesRetrieveResponse {}
-export const SessionsValuesRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetSessionsValueResponse {}
+export const GetSessionsValueResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SessionsValuesRetrieveResponse",
-}) as any as S.Schema<SessionsValuesRetrieveResponse>;
+  identifier: "GetSessionsValueResponse",
+}) as any as S.Schema<GetSessionsValueResponse>;
 
-export type SessionsPropertyDefinitionsRetrieveError =
+export type GetSessionsPropertyDefinitionError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const sessionsPropertyDefinitionsRetrieve: API.OperationMethod<
-  SessionsPropertyDefinitionsRetrieveRequest,
-  SessionsPropertyDefinitionsRetrieveResponse,
-  SessionsPropertyDefinitionsRetrieveError,
+export const getSessionsPropertyDefinition: API.OperationMethod<
+  GetSessionsPropertyDefinitionRequest,
+  GetSessionsPropertyDefinitionResponse,
+  GetSessionsPropertyDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SessionsPropertyDefinitionsRetrieveRequest,
-  output: SessionsPropertyDefinitionsRetrieveResponse,
+  input: GetSessionsPropertyDefinitionRequest,
+  output: GetSessionsPropertyDefinitionResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type SessionsValuesRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const sessionsValuesRetrieve: API.OperationMethod<
-  SessionsValuesRetrieveRequest,
-  SessionsValuesRetrieveResponse,
-  SessionsValuesRetrieveError,
+export type GetSessionsValueError = Forbidden | NotFound | PosthogOpError;
+export const getSessionsValue: API.OperationMethod<
+  GetSessionsValueRequest,
+  GetSessionsValueResponse,
+  GetSessionsValueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SessionsValuesRetrieveRequest,
-  output: SessionsValuesRetrieveResponse,
+  input: GetSessionsValueRequest,
+  output: GetSessionsValueResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -3497,153 +3497,6 @@ export const CreateSiteAclResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSiteAclResponse",
 }) as any as S.Schema<CreateSiteAclResponse>;
 
-export type SitesAppConfigurationCreateRequestPreferredWansList = Array<string>;
-export const SitesAppConfigurationCreateRequestPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationCreateRequestPreferredWansList>;
-
-export interface CreateSiteAppConfigurationRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  siteId: string;
-  /** Magic account app ID. */
-  accountAppId?: string;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationCreateRequestPreferredWansList;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number;
-  /** Managed app ID. */
-  managedAppId?: string;
-}
-export const CreateSiteAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    siteId: S.String.pipe(T.Label("site_id")),
-    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
-    breakout: S.optional(S.Boolean),
-    preferredWans: S.optional(
-      SitesAppConfigurationCreateRequestPreferredWansList.pipe(
-        T.Body("preferred_wans"),
-      ),
-    ),
-    priority: S.optional(S.Number),
-    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateSiteAppConfigurationRequest",
-}) as any as S.Schema<CreateSiteAppConfigurationRequest>;
-
-export type SitesAppConfigurationCreateResultAccountAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationCreateResultAccountAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationCreateResultAccountAppPreferredWansList>;
-
-export interface SitesAppConfigurationCreateResultAccountApp {
-  /** Magic account app ID. */
-  accountAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationCreateResultAccountAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationCreateResultAccountApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountAppId: S.String.pipe(T.Body("account_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationCreateResultAccountAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationCreateResultAccountApp",
-  }) as any as S.Schema<SitesAppConfigurationCreateResultAccountApp>;
-
-export type SitesAppConfigurationCreateResultManagedAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationCreateResultManagedAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationCreateResultManagedAppPreferredWansList>;
-
-export interface SitesAppConfigurationCreateResultManagedApp {
-  /** Managed app ID. */
-  managedAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationCreateResultManagedAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationCreateResultManagedApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managedAppId: S.String.pipe(T.Body("managed_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationCreateResultManagedAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationCreateResultManagedApp",
-  }) as any as S.Schema<SitesAppConfigurationCreateResultManagedApp>;
-
-export type CreateSiteAppConfigurationResult =
-  | SitesAppConfigurationCreateResultAccountApp
-  | SitesAppConfigurationCreateResultManagedApp;
-export const CreateSiteAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-  ]),
-);
-
-export type CreateSiteAppConfigurationResponse =
-  CreateSiteAppConfigurationResult;
-export const CreateSiteAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
-  CreateSiteAppConfigurationResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "CreateSiteAppConfigurationResponse",
-}) as any as S.Schema<CreateSiteAppConfigurationResponse>;
-
 export interface SitesLansCreateRequestNat {
   /** A valid CIDR notation representing an IP range. */
   staticPrefix?: string;
@@ -4136,6 +3989,153 @@ export const CreateSiteLanResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateSiteLanResponse",
 }) as any as S.Schema<CreateSiteLanResponse>;
+
+export type CreateSitesAppConfigurationRequestPreferredWansList = Array<string>;
+export const CreateSitesAppConfigurationRequestPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSitesAppConfigurationRequestPreferredWansList>;
+
+export interface CreateSitesAppConfigurationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  siteId: string;
+  /** Magic account app ID. */
+  accountAppId?: string;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: CreateSitesAppConfigurationRequestPreferredWansList;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number;
+  /** Managed app ID. */
+  managedAppId?: string;
+}
+export const CreateSitesAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    siteId: S.String.pipe(T.Label("site_id")),
+    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
+    breakout: S.optional(S.Boolean),
+    preferredWans: S.optional(
+      CreateSitesAppConfigurationRequestPreferredWansList.pipe(
+        T.Body("preferred_wans"),
+      ),
+    ),
+    priority: S.optional(S.Number),
+    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateSitesAppConfigurationRequest",
+}) as any as S.Schema<CreateSitesAppConfigurationRequest>;
+
+export type CreateSitesAppConfigurationResultAccountAppPreferredWansList =
+  Array<string>;
+export const CreateSitesAppConfigurationResultAccountAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSitesAppConfigurationResultAccountAppPreferredWansList>;
+
+export interface CreateSitesAppConfigurationResultAccountApp {
+  /** Magic account app ID. */
+  accountAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: CreateSitesAppConfigurationResultAccountAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const CreateSitesAppConfigurationResultAccountApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountAppId: S.String.pipe(T.Body("account_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          CreateSitesAppConfigurationResultAccountAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "CreateSitesAppConfigurationResultAccountApp",
+  }) as any as S.Schema<CreateSitesAppConfigurationResultAccountApp>;
+
+export type CreateSitesAppConfigurationResultManagedAppPreferredWansList =
+  Array<string>;
+export const CreateSitesAppConfigurationResultManagedAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSitesAppConfigurationResultManagedAppPreferredWansList>;
+
+export interface CreateSitesAppConfigurationResultManagedApp {
+  /** Managed app ID. */
+  managedAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: CreateSitesAppConfigurationResultManagedAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const CreateSitesAppConfigurationResultManagedApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managedAppId: S.String.pipe(T.Body("managed_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          CreateSitesAppConfigurationResultManagedAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "CreateSitesAppConfigurationResultManagedApp",
+  }) as any as S.Schema<CreateSitesAppConfigurationResultManagedApp>;
+
+export type CreateSitesAppConfigurationResult =
+  | CreateSitesAppConfigurationResultAccountApp
+  | CreateSitesAppConfigurationResultManagedApp;
+export const CreateSitesAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+  ]),
+);
+
+export type CreateSitesAppConfigurationResponse =
+  CreateSitesAppConfigurationResult;
+export const CreateSitesAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  CreateSitesAppConfigurationResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "CreateSitesAppConfigurationResponse",
+}) as any as S.Schema<CreateSitesAppConfigurationResponse>;
 
 export interface SitesWansCreateRequestStaticAddressing {
   /** A valid CIDR notation representing an IP range. */
@@ -5465,131 +5465,6 @@ export const DeleteSiteAclResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteSiteAclResponse",
 }) as any as S.Schema<DeleteSiteAclResponse>;
 
-export interface DeleteSiteAppConfigurationRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  siteId: string;
-  /** Identifier */
-  appConfigId: string;
-}
-export const DeleteSiteAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    siteId: S.String.pipe(T.Label("site_id")),
-    appConfigId: S.String.pipe(T.Label("app_config_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteSiteAppConfigurationRequest",
-}) as any as S.Schema<DeleteSiteAppConfigurationRequest>;
-
-export type SitesAppConfigurationDeleteResultAccountAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationDeleteResultAccountAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationDeleteResultAccountAppPreferredWansList>;
-
-export interface SitesAppConfigurationDeleteResultAccountApp {
-  /** Magic account app ID. */
-  accountAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationDeleteResultAccountAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationDeleteResultAccountApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountAppId: S.String.pipe(T.Body("account_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationDeleteResultAccountAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationDeleteResultAccountApp",
-  }) as any as S.Schema<SitesAppConfigurationDeleteResultAccountApp>;
-
-export type SitesAppConfigurationDeleteResultManagedAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationDeleteResultManagedAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationDeleteResultManagedAppPreferredWansList>;
-
-export interface SitesAppConfigurationDeleteResultManagedApp {
-  /** Managed app ID. */
-  managedAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationDeleteResultManagedAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationDeleteResultManagedApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managedAppId: S.String.pipe(T.Body("managed_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationDeleteResultManagedAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationDeleteResultManagedApp",
-  }) as any as S.Schema<SitesAppConfigurationDeleteResultManagedApp>;
-
-export type DeleteSiteAppConfigurationResult =
-  | SitesAppConfigurationDeleteResultAccountApp
-  | SitesAppConfigurationDeleteResultManagedApp;
-export const DeleteSiteAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-  ]),
-);
-
-export type DeleteSiteAppConfigurationResponse =
-  DeleteSiteAppConfigurationResult;
-export const DeleteSiteAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
-  DeleteSiteAppConfigurationResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "DeleteSiteAppConfigurationResponse",
-}) as any as S.Schema<DeleteSiteAppConfigurationResponse>;
-
 export interface DeleteSiteLanRequest {
   /** Identifier */
   accountId: string;
@@ -5834,6 +5709,131 @@ export const DeleteSiteLanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteSiteLanResponse",
 }) as any as S.Schema<DeleteSiteLanResponse>;
 
+export interface DeleteSitesAppConfigurationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  siteId: string;
+  /** Identifier */
+  appConfigId: string;
+}
+export const DeleteSitesAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    siteId: S.String.pipe(T.Label("site_id")),
+    appConfigId: S.String.pipe(T.Label("app_config_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteSitesAppConfigurationRequest",
+}) as any as S.Schema<DeleteSitesAppConfigurationRequest>;
+
+export type DeleteSitesAppConfigurationResultAccountAppPreferredWansList =
+  Array<string>;
+export const DeleteSitesAppConfigurationResultAccountAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeleteSitesAppConfigurationResultAccountAppPreferredWansList>;
+
+export interface DeleteSitesAppConfigurationResultAccountApp {
+  /** Magic account app ID. */
+  accountAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: DeleteSitesAppConfigurationResultAccountAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const DeleteSitesAppConfigurationResultAccountApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountAppId: S.String.pipe(T.Body("account_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          DeleteSitesAppConfigurationResultAccountAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "DeleteSitesAppConfigurationResultAccountApp",
+  }) as any as S.Schema<DeleteSitesAppConfigurationResultAccountApp>;
+
+export type DeleteSitesAppConfigurationResultManagedAppPreferredWansList =
+  Array<string>;
+export const DeleteSitesAppConfigurationResultManagedAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeleteSitesAppConfigurationResultManagedAppPreferredWansList>;
+
+export interface DeleteSitesAppConfigurationResultManagedApp {
+  /** Managed app ID. */
+  managedAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: DeleteSitesAppConfigurationResultManagedAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const DeleteSitesAppConfigurationResultManagedApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managedAppId: S.String.pipe(T.Body("managed_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          DeleteSitesAppConfigurationResultManagedAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "DeleteSitesAppConfigurationResultManagedApp",
+  }) as any as S.Schema<DeleteSitesAppConfigurationResultManagedApp>;
+
+export type DeleteSitesAppConfigurationResult =
+  | DeleteSitesAppConfigurationResultAccountApp
+  | DeleteSitesAppConfigurationResultManagedApp;
+export const DeleteSitesAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+  ]),
+);
+
+export type DeleteSitesAppConfigurationResponse =
+  DeleteSitesAppConfigurationResult;
+export const DeleteSitesAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  DeleteSitesAppConfigurationResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "DeleteSitesAppConfigurationResponse",
+}) as any as S.Schema<DeleteSitesAppConfigurationResponse>;
+
 export interface DeleteSiteWanRequest {
   /** Identifier */
   accountId: string;
@@ -5907,6 +5907,155 @@ export const DeleteSiteWanResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteSiteWanResponse",
 }) as any as S.Schema<DeleteSiteWanResponse>;
+
+export type EditSitesAppConfigurationRequestPreferredWansList = Array<string>;
+export const EditSitesAppConfigurationRequestPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EditSitesAppConfigurationRequestPreferredWansList>;
+
+export interface EditSitesAppConfigurationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  siteId: string;
+  /** Identifier */
+  appConfigId: string;
+  /** Magic account app ID. */
+  accountAppId?: string;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean;
+  /** Managed app ID. */
+  managedAppId?: string;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: EditSitesAppConfigurationRequestPreferredWansList;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number;
+}
+export const EditSitesAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    siteId: S.String.pipe(T.Label("site_id")),
+    appConfigId: S.String.pipe(T.Label("app_config_id")),
+    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
+    breakout: S.optional(S.Boolean),
+    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
+    preferredWans: S.optional(
+      EditSitesAppConfigurationRequestPreferredWansList.pipe(
+        T.Body("preferred_wans"),
+      ),
+    ),
+    priority: S.optional(S.Number),
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "EditSitesAppConfigurationRequest",
+}) as any as S.Schema<EditSitesAppConfigurationRequest>;
+
+export type EditSitesAppConfigurationResultAccountAppPreferredWansList =
+  Array<string>;
+export const EditSitesAppConfigurationResultAccountAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EditSitesAppConfigurationResultAccountAppPreferredWansList>;
+
+export interface EditSitesAppConfigurationResultAccountApp {
+  /** Magic account app ID. */
+  accountAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: EditSitesAppConfigurationResultAccountAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const EditSitesAppConfigurationResultAccountApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountAppId: S.String.pipe(T.Body("account_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          EditSitesAppConfigurationResultAccountAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "EditSitesAppConfigurationResultAccountApp",
+  }) as any as S.Schema<EditSitesAppConfigurationResultAccountApp>;
+
+export type EditSitesAppConfigurationResultManagedAppPreferredWansList =
+  Array<string>;
+export const EditSitesAppConfigurationResultManagedAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EditSitesAppConfigurationResultManagedAppPreferredWansList>;
+
+export interface EditSitesAppConfigurationResultManagedApp {
+  /** Managed app ID. */
+  managedAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: EditSitesAppConfigurationResultManagedAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const EditSitesAppConfigurationResultManagedApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managedAppId: S.String.pipe(T.Body("managed_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          EditSitesAppConfigurationResultManagedAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "EditSitesAppConfigurationResultManagedApp",
+  }) as any as S.Schema<EditSitesAppConfigurationResultManagedApp>;
+
+export type EditSitesAppConfigurationResult =
+  | EditSitesAppConfigurationResultAccountApp
+  | EditSitesAppConfigurationResultManagedApp;
+export const EditSitesAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+  ]),
+);
+
+export type EditSitesAppConfigurationResponse = EditSitesAppConfigurationResult;
+export const EditSitesAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  EditSitesAppConfigurationResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "EditSitesAppConfigurationResponse",
+}) as any as S.Schema<EditSitesAppConfigurationResponse>;
 
 export interface EmptyRouteRequest {
   /** Identifier */
@@ -6026,59 +6175,6 @@ export const EmptyRouteResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EmptyRouteResponse",
 }) as any as S.Schema<EmptyRouteResponse>;
-
-export interface GeneratePskIpsecTunnelRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  ipsecTunnelId: string;
-}
-export const GeneratePskIpsecTunnelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    ipsecTunnelId: S.String.pipe(T.Label("ipsec_tunnel_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GeneratePskIpsecTunnelRequest",
-}) as any as S.Schema<GeneratePskIpsecTunnelRequest>;
-
-export type IpsecTunnelsPskGenerateResponsePskMetadata =
-  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
-export const IpsecTunnelsPskGenerateResponsePskMetadata =
-  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface GeneratePskIpsecTunnelResponse {
-  /** Identifier */
-  ipsecTunnelId?: string | null;
-  /** A randomly generated or provided string for use in the IPsec tunnel. */
-  psk?: string | null;
-  /** The PSK metadata that includes when the PSK was generated. */
-  pskMetadata?: IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata | null;
-}
-export const GeneratePskIpsecTunnelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipsecTunnelId: S.optional(
-      S.NullOr(S.String).pipe(T.Body("ipsec_tunnel_id")),
-    ),
-    psk: S.optional(S.NullOr(S.String)),
-    pskMetadata: S.optional(
-      S.NullOr(
-        IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata,
-      ).pipe(T.Body("psk_metadata")),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GeneratePskIpsecTunnelResponse",
-}) as any as S.Schema<GeneratePskIpsecTunnelResponse>;
 
 export interface GetCf1SiteRequest {
   /** Identifier */
@@ -12854,134 +12950,6 @@ export const ListSiteAclsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSiteAclsResponse",
 }) as any as S.Schema<ListSiteAclsResponse>;
 
-export interface ListSiteAppConfigurationRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  siteId: string;
-}
-export const ListSiteAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    siteId: S.String.pipe(T.Label("site_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ListSiteAppConfigurationRequest",
-}) as any as S.Schema<ListSiteAppConfigurationRequest>;
-
-export type SitesAppConfigurationListResultItemAccountAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationListResultItemAccountAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationListResultItemAccountAppPreferredWansList>;
-
-export interface SitesAppConfigurationListResultItemAccountApp {
-  /** Magic account app ID. */
-  accountAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationListResultItemAccountAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationListResultItemAccountApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountAppId: S.String.pipe(T.Body("account_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationListResultItemAccountAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationListResultItemAccountApp",
-  }) as any as S.Schema<SitesAppConfigurationListResultItemAccountApp>;
-
-export type SitesAppConfigurationListResultItemManagedAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationListResultItemManagedAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationListResultItemManagedAppPreferredWansList>;
-
-export interface SitesAppConfigurationListResultItemManagedApp {
-  /** Managed app ID. */
-  managedAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationListResultItemManagedAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationListResultItemManagedApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managedAppId: S.String.pipe(T.Body("managed_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationListResultItemManagedAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationListResultItemManagedApp",
-  }) as any as S.Schema<SitesAppConfigurationListResultItemManagedApp>;
-
-export type SitesAppConfigurationListResultItem =
-  | SitesAppConfigurationListResultItemAccountApp
-  | SitesAppConfigurationListResultItemManagedApp;
-export const SitesAppConfigurationListResultItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-  ]),
-);
-
-export type SitesAppConfigurationListResultList =
-  Array<SitesAppConfigurationListResultItem>;
-export const SitesAppConfigurationListResultList = /*@__PURE__*/ S.Array(
-  SitesAppConfigurationListResultItem,
-) as any as S.Schema<SitesAppConfigurationListResultList>;
-
-export type ListSiteAppConfigurationResponse =
-  SitesAppConfigurationListResultList;
-export const ListSiteAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
-  SitesAppConfigurationListResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "ListSiteAppConfigurationResponse",
-}) as any as S.Schema<ListSiteAppConfigurationResponse>;
-
 export interface ListSiteLansRequest {
   /** Identifier */
   accountId: string;
@@ -13318,6 +13286,134 @@ export const ListSitesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListSitesResponse",
 }) as any as S.Schema<ListSitesResponse>;
+
+export interface ListSitesAppConfigurationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  siteId: string;
+}
+export const ListSitesAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    siteId: S.String.pipe(T.Label("site_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListSitesAppConfigurationRequest",
+}) as any as S.Schema<ListSitesAppConfigurationRequest>;
+
+export type ListSitesAppConfigurationResultItemAccountAppPreferredWansList =
+  Array<string>;
+export const ListSitesAppConfigurationResultItemAccountAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListSitesAppConfigurationResultItemAccountAppPreferredWansList>;
+
+export interface ListSitesAppConfigurationResultItemAccountApp {
+  /** Magic account app ID. */
+  accountAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: ListSitesAppConfigurationResultItemAccountAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const ListSitesAppConfigurationResultItemAccountApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountAppId: S.String.pipe(T.Body("account_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          ListSitesAppConfigurationResultItemAccountAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "ListSitesAppConfigurationResultItemAccountApp",
+  }) as any as S.Schema<ListSitesAppConfigurationResultItemAccountApp>;
+
+export type ListSitesAppConfigurationResultItemManagedAppPreferredWansList =
+  Array<string>;
+export const ListSitesAppConfigurationResultItemManagedAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListSitesAppConfigurationResultItemManagedAppPreferredWansList>;
+
+export interface ListSitesAppConfigurationResultItemManagedApp {
+  /** Managed app ID. */
+  managedAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: ListSitesAppConfigurationResultItemManagedAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const ListSitesAppConfigurationResultItemManagedApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managedAppId: S.String.pipe(T.Body("managed_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          ListSitesAppConfigurationResultItemManagedAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "ListSitesAppConfigurationResultItemManagedApp",
+  }) as any as S.Schema<ListSitesAppConfigurationResultItemManagedApp>;
+
+export type ListSitesAppConfigurationResultItem =
+  | ListSitesAppConfigurationResultItemAccountApp
+  | ListSitesAppConfigurationResultItemManagedApp;
+export const ListSitesAppConfigurationResultItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+  ]),
+);
+
+export type ListSitesAppConfigurationResultList =
+  Array<ListSitesAppConfigurationResultItem>;
+export const ListSitesAppConfigurationResultList = /*@__PURE__*/ S.Array(
+  ListSitesAppConfigurationResultItem,
+) as any as S.Schema<ListSitesAppConfigurationResultList>;
+
+export type ListSitesAppConfigurationResponse =
+  ListSitesAppConfigurationResultList;
+export const ListSitesAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSitesAppConfigurationResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "ListSitesAppConfigurationResponse",
+}) as any as S.Schema<ListSitesAppConfigurationResponse>;
 
 export interface ListSiteWansRequest {
   /** Identifier */
@@ -14541,6 +14637,180 @@ export const PatchSiteWanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchSiteWanResponse",
 }) as any as S.Schema<PatchSiteWanResponse>;
 
+export interface PskGenerateIpsecTunnelRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  ipsecTunnelId: string;
+}
+export const PskGenerateIpsecTunnelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    ipsecTunnelId: S.String.pipe(T.Label("ipsec_tunnel_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PskGenerateIpsecTunnelRequest",
+}) as any as S.Schema<PskGenerateIpsecTunnelRequest>;
+
+export type IpsecTunnelsPskGenerateResponsePskMetadata =
+  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
+export const IpsecTunnelsPskGenerateResponsePskMetadata =
+  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface PskGenerateIpsecTunnelResponse {
+  /** Identifier */
+  ipsecTunnelId?: string | null;
+  /** A randomly generated or provided string for use in the IPsec tunnel. */
+  psk?: string | null;
+  /** The PSK metadata that includes when the PSK was generated. */
+  pskMetadata?: IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata | null;
+}
+export const PskGenerateIpsecTunnelResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipsecTunnelId: S.optional(
+      S.NullOr(S.String).pipe(T.Body("ipsec_tunnel_id")),
+    ),
+    psk: S.optional(S.NullOr(S.String)),
+    pskMetadata: S.optional(
+      S.NullOr(
+        IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata,
+      ).pipe(T.Body("psk_metadata")),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PskGenerateIpsecTunnelResponse",
+}) as any as S.Schema<PskGenerateIpsecTunnelResponse>;
+
+export interface IpsecTunnelsPskSetRequestPsksItem {
+  /** The ID of the IPsec tunnel. */
+  id: string;
+  /** A randomly generated or provided string for use in the IPsec tunnel. */
+  psk: string;
+}
+export const IpsecTunnelsPskSetRequestPsksItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    psk: S.String,
+  }),
+).annotate({
+  identifier: "IpsecTunnelsPskSetRequestPsksItem",
+}) as any as S.Schema<IpsecTunnelsPskSetRequestPsksItem>;
+
+export type IpsecTunnelsPskSetRequestPsksList =
+  Array<IpsecTunnelsPskSetRequestPsksItem>;
+export const IpsecTunnelsPskSetRequestPsksList = /*@__PURE__*/ S.Array(
+  IpsecTunnelsPskSetRequestPsksItem,
+) as any as S.Schema<IpsecTunnelsPskSetRequestPsksList>;
+
+export interface PskSetIpsecTunnelRequest {
+  /** Identifier */
+  accountId: string;
+  /** If `true`, only run validation without persisting changes. */
+  validateOnly?: boolean;
+  /** List of tunnel ID and PSK pairs. */
+  psks: IpsecTunnelsPskSetRequestPsksList;
+}
+export const PskSetIpsecTunnelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    validateOnly: S.optional(S.Boolean.pipe(T.Query("validate_only"))),
+    psks: IpsecTunnelsPskSetRequestPsksList,
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/magic/ipsec_tunnels/psk",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PskSetIpsecTunnelRequest",
+}) as any as S.Schema<PskSetIpsecTunnelRequest>;
+
+export type IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValuePskMetadata =
+  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
+export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValuePskMetadata =
+  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
+
+export interface IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue {
+  /** The IKE identifier used for this tunnel on the Cloudflare edge. */
+  ipsecId: string;
+  /** Identifier */
+  ipsecTunnelId: string;
+  /** A randomly generated or provided string for use in the IPsec tunnel. */
+  psk: string;
+  /** The PSK metadata that includes when the PSK was generated. */
+  pskMetadata: IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
+}
+export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ipsecId: S.String.pipe(T.Body("ipsec_id")),
+      ipsecTunnelId: S.String.pipe(T.Body("ipsec_tunnel_id")),
+      psk: S.String,
+      pskMetadata:
+        IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata.pipe(
+          T.Body("psk_metadata"),
+        ),
+    }),
+  ).annotate({
+    identifier: "IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue",
+  }) as any as S.Schema<IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue>;
+
+export type IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap = {
+  [key: string]:
+    | IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue
+    | undefined;
+};
+export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue,
+  ) as any as S.Schema<IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap>;
+
+export type IpsecTunnelsPskSetResponseUnappliedPsksMap = {
+  [key: string]: string | undefined;
+};
+export const IpsecTunnelsPskSetResponseUnappliedPsksMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<IpsecTunnelsPskSetResponseUnappliedPsksMap>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface PskSetIpsecTunnelResponse {
+  /** Map of tunnel IDs to successfully applied PSK details. */
+  successfullyAppliedPsks?: IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap | null;
+  /** Map of tunnel IDs to failure reasons for PSKs that could not be applied. */
+  unappliedPsks?: IpsecTunnelsPskSetResponseUnappliedPsksMap | null;
+}
+export const PskSetIpsecTunnelResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    successfullyAppliedPsks: S.optional(
+      S.NullOr(IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap).pipe(
+        T.Body("successfully_applied_psks"),
+      ),
+    ),
+    unappliedPsks: S.optional(
+      S.NullOr(IpsecTunnelsPskSetResponseUnappliedPsksMap).pipe(
+        T.Body("unapplied_psks"),
+      ),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PskSetIpsecTunnelResponse",
+}) as any as S.Schema<PskSetIpsecTunnelResponse>;
+
 export interface CfInterconnectsUpdateRequestGre {
   /** The IP address assigned to the Cloudflare side of the GRE tunnel created as part of the Interconnect. */
   cloudflareEndpoint?: string;
@@ -14795,276 +15065,6 @@ export const PutCfInterconnectResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PutCfInterconnectResponse",
 }) as any as S.Schema<PutCfInterconnectResponse>;
-
-export interface IpsecTunnelsPskSetRequestPsksItem {
-  /** The ID of the IPsec tunnel. */
-  id: string;
-  /** A randomly generated or provided string for use in the IPsec tunnel. */
-  psk: string;
-}
-export const IpsecTunnelsPskSetRequestPsksItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    psk: S.String,
-  }),
-).annotate({
-  identifier: "IpsecTunnelsPskSetRequestPsksItem",
-}) as any as S.Schema<IpsecTunnelsPskSetRequestPsksItem>;
-
-export type IpsecTunnelsPskSetRequestPsksList =
-  Array<IpsecTunnelsPskSetRequestPsksItem>;
-export const IpsecTunnelsPskSetRequestPsksList = /*@__PURE__*/ S.Array(
-  IpsecTunnelsPskSetRequestPsksItem,
-) as any as S.Schema<IpsecTunnelsPskSetRequestPsksList>;
-
-export interface SetPskIpsecTunnelRequest {
-  /** Identifier */
-  accountId: string;
-  /** If `true`, only run validation without persisting changes. */
-  validateOnly?: boolean;
-  /** List of tunnel ID and PSK pairs. */
-  psks: IpsecTunnelsPskSetRequestPsksList;
-}
-export const SetPskIpsecTunnelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    validateOnly: S.optional(S.Boolean.pipe(T.Query("validate_only"))),
-    psks: IpsecTunnelsPskSetRequestPsksList,
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/magic/ipsec_tunnels/psk",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "SetPskIpsecTunnelRequest",
-}) as any as S.Schema<SetPskIpsecTunnelRequest>;
-
-export type IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValuePskMetadata =
-  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
-export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValuePskMetadata =
-  IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
-
-export interface IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue {
-  /** The IKE identifier used for this tunnel on the Cloudflare edge. */
-  ipsecId: string;
-  /** Identifier */
-  ipsecTunnelId: string;
-  /** A randomly generated or provided string for use in the IPsec tunnel. */
-  psk: string;
-  /** The PSK metadata that includes when the PSK was generated. */
-  pskMetadata: IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata;
-}
-export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ipsecId: S.String.pipe(T.Body("ipsec_id")),
-      ipsecTunnelId: S.String.pipe(T.Body("ipsec_tunnel_id")),
-      psk: S.String,
-      pskMetadata:
-        IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemPskMetadata.pipe(
-          T.Body("psk_metadata"),
-        ),
-    }),
-  ).annotate({
-    identifier: "IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue",
-  }) as any as S.Schema<IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue>;
-
-export type IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap = {
-  [key: string]:
-    | IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue
-    | undefined;
-};
-export const IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksValue,
-  ) as any as S.Schema<IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap>;
-
-export type IpsecTunnelsPskSetResponseUnappliedPsksMap = {
-  [key: string]: string | undefined;
-};
-export const IpsecTunnelsPskSetResponseUnappliedPsksMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IpsecTunnelsPskSetResponseUnappliedPsksMap>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface SetPskIpsecTunnelResponse {
-  /** Map of tunnel IDs to successfully applied PSK details. */
-  successfullyAppliedPsks?: IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap | null;
-  /** Map of tunnel IDs to failure reasons for PSKs that could not be applied. */
-  unappliedPsks?: IpsecTunnelsPskSetResponseUnappliedPsksMap | null;
-}
-export const SetPskIpsecTunnelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    successfullyAppliedPsks: S.optional(
-      S.NullOr(IpsecTunnelsPskSetResponseSuccessfullyAppliedPsksMap).pipe(
-        T.Body("successfully_applied_psks"),
-      ),
-    ),
-    unappliedPsks: S.optional(
-      S.NullOr(IpsecTunnelsPskSetResponseUnappliedPsksMap).pipe(
-        T.Body("unapplied_psks"),
-      ),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "SetPskIpsecTunnelResponse",
-}) as any as S.Schema<SetPskIpsecTunnelResponse>;
-
-export type SitesAppConfigurationEditRequestPreferredWansList = Array<string>;
-export const SitesAppConfigurationEditRequestPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationEditRequestPreferredWansList>;
-
-export interface SitesAppConfigurationEditRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  siteId: string;
-  /** Identifier */
-  appConfigId: string;
-  /** Magic account app ID. */
-  accountAppId?: string;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean;
-  /** Managed app ID. */
-  managedAppId?: string;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationEditRequestPreferredWansList;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number;
-}
-export const SitesAppConfigurationEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    siteId: S.String.pipe(T.Label("site_id")),
-    appConfigId: S.String.pipe(T.Label("app_config_id")),
-    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
-    breakout: S.optional(S.Boolean),
-    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
-    preferredWans: S.optional(
-      SitesAppConfigurationEditRequestPreferredWansList.pipe(
-        T.Body("preferred_wans"),
-      ),
-    ),
-    priority: S.optional(S.Number),
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "SitesAppConfigurationEditRequest",
-}) as any as S.Schema<SitesAppConfigurationEditRequest>;
-
-export type SitesAppConfigurationEditResultAccountAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationEditResultAccountAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationEditResultAccountAppPreferredWansList>;
-
-export interface SitesAppConfigurationEditResultAccountApp {
-  /** Magic account app ID. */
-  accountAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationEditResultAccountAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationEditResultAccountApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountAppId: S.String.pipe(T.Body("account_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationEditResultAccountAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationEditResultAccountApp",
-  }) as any as S.Schema<SitesAppConfigurationEditResultAccountApp>;
-
-export type SitesAppConfigurationEditResultManagedAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationEditResultManagedAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationEditResultManagedAppPreferredWansList>;
-
-export interface SitesAppConfigurationEditResultManagedApp {
-  /** Managed app ID. */
-  managedAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationEditResultManagedAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationEditResultManagedApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managedAppId: S.String.pipe(T.Body("managed_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationEditResultManagedAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationEditResultManagedApp",
-  }) as any as S.Schema<SitesAppConfigurationEditResultManagedApp>;
-
-export type SitesAppConfigurationEditResult =
-  | SitesAppConfigurationEditResultAccountApp
-  | SitesAppConfigurationEditResultManagedApp;
-export const SitesAppConfigurationEditResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-  ]),
-);
-
-export type SitesAppConfigurationEditResponse = SitesAppConfigurationEditResult;
-export const SitesAppConfigurationEditResponse = /*@__PURE__*/ S.suspend(() =>
-  SitesAppConfigurationEditResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "SitesAppConfigurationEditResponse",
-}) as any as S.Schema<SitesAppConfigurationEditResponse>;
 
 export interface StopPcapRequest {
   /** Identifier. */
@@ -16547,156 +16547,6 @@ export const UpdateSiteAclResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSiteAclResponse",
 }) as any as S.Schema<UpdateSiteAclResponse>;
 
-export type SitesAppConfigurationUpdateRequestPreferredWansList = Array<string>;
-export const SitesAppConfigurationUpdateRequestPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationUpdateRequestPreferredWansList>;
-
-export interface UpdateSiteAppConfigurationRequest {
-  /** Identifier */
-  accountId: string;
-  /** Identifier */
-  siteId: string;
-  /** Identifier */
-  appConfigId: string;
-  /** Magic account app ID. */
-  accountAppId?: string;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean;
-  /** Managed app ID. */
-  managedAppId?: string;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationUpdateRequestPreferredWansList;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number;
-}
-export const UpdateSiteAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    siteId: S.String.pipe(T.Label("site_id")),
-    appConfigId: S.String.pipe(T.Label("app_config_id")),
-    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
-    breakout: S.optional(S.Boolean),
-    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
-    preferredWans: S.optional(
-      SitesAppConfigurationUpdateRequestPreferredWansList.pipe(
-        T.Body("preferred_wans"),
-      ),
-    ),
-    priority: S.optional(S.Number),
-  })
-    .pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "UpdateSiteAppConfigurationRequest",
-}) as any as S.Schema<UpdateSiteAppConfigurationRequest>;
-
-export type SitesAppConfigurationUpdateResultAccountAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationUpdateResultAccountAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationUpdateResultAccountAppPreferredWansList>;
-
-export interface SitesAppConfigurationUpdateResultAccountApp {
-  /** Magic account app ID. */
-  accountAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationUpdateResultAccountAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationUpdateResultAccountApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountAppId: S.String.pipe(T.Body("account_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationUpdateResultAccountAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationUpdateResultAccountApp",
-  }) as any as S.Schema<SitesAppConfigurationUpdateResultAccountApp>;
-
-export type SitesAppConfigurationUpdateResultManagedAppPreferredWansList =
-  Array<string>;
-export const SitesAppConfigurationUpdateResultManagedAppPreferredWansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SitesAppConfigurationUpdateResultManagedAppPreferredWansList>;
-
-export interface SitesAppConfigurationUpdateResultManagedApp {
-  /** Managed app ID. */
-  managedAppId: string;
-  /** Identifier */
-  id?: string | null;
-  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
-  breakout?: boolean | null;
-  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
-  preferredWans?: SitesAppConfigurationUpdateResultManagedAppPreferredWansList | null;
-  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
-  priority?: number | null;
-  /** Identifier */
-  siteId?: string | null;
-}
-export const SitesAppConfigurationUpdateResultManagedApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managedAppId: S.String.pipe(T.Body("managed_app_id")),
-      id: S.optional(S.NullOr(S.String)),
-      breakout: S.optional(S.NullOr(S.Boolean)),
-      preferredWans: S.optional(
-        S.NullOr(
-          SitesAppConfigurationUpdateResultManagedAppPreferredWansList,
-        ).pipe(T.Body("preferred_wans")),
-      ),
-      priority: S.optional(S.NullOr(S.Number)),
-      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
-    }),
-  ).annotate({
-    identifier: "SitesAppConfigurationUpdateResultManagedApp",
-  }) as any as S.Schema<SitesAppConfigurationUpdateResultManagedApp>;
-
-export type UpdateSiteAppConfigurationResult =
-  | SitesAppConfigurationUpdateResultAccountApp
-  | SitesAppConfigurationUpdateResultManagedApp;
-export const UpdateSiteAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
-  ]),
-);
-
-export type UpdateSiteAppConfigurationResponse =
-  UpdateSiteAppConfigurationResult;
-export const UpdateSiteAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
-  UpdateSiteAppConfigurationResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "UpdateSiteAppConfigurationResponse",
-}) as any as S.Schema<UpdateSiteAppConfigurationResponse>;
-
 export type SitesLansUpdateRequestNat = SitesLansCreateRequestNat;
 export const SitesLansUpdateRequestNat = SitesLansCreateRequestNat;
 
@@ -17127,6 +16977,156 @@ export const UpdateSiteLanResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateSiteLanResponse",
 }) as any as S.Schema<UpdateSiteLanResponse>;
+
+export type UpdateSitesAppConfigurationRequestPreferredWansList = Array<string>;
+export const UpdateSitesAppConfigurationRequestPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateSitesAppConfigurationRequestPreferredWansList>;
+
+export interface UpdateSitesAppConfigurationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Identifier */
+  siteId: string;
+  /** Identifier */
+  appConfigId: string;
+  /** Magic account app ID. */
+  accountAppId?: string;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean;
+  /** Managed app ID. */
+  managedAppId?: string;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: UpdateSitesAppConfigurationRequestPreferredWansList;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number;
+}
+export const UpdateSitesAppConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    siteId: S.String.pipe(T.Label("site_id")),
+    appConfigId: S.String.pipe(T.Label("app_config_id")),
+    accountAppId: S.optional(S.String.pipe(T.Body("account_app_id"))),
+    breakout: S.optional(S.Boolean),
+    managedAppId: S.optional(S.String.pipe(T.Body("managed_app_id"))),
+    preferredWans: S.optional(
+      UpdateSitesAppConfigurationRequestPreferredWansList.pipe(
+        T.Body("preferred_wans"),
+      ),
+    ),
+    priority: S.optional(S.Number),
+  })
+    .pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateSitesAppConfigurationRequest",
+}) as any as S.Schema<UpdateSitesAppConfigurationRequest>;
+
+export type UpdateSitesAppConfigurationResultAccountAppPreferredWansList =
+  Array<string>;
+export const UpdateSitesAppConfigurationResultAccountAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateSitesAppConfigurationResultAccountAppPreferredWansList>;
+
+export interface UpdateSitesAppConfigurationResultAccountApp {
+  /** Magic account app ID. */
+  accountAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: UpdateSitesAppConfigurationResultAccountAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const UpdateSitesAppConfigurationResultAccountApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountAppId: S.String.pipe(T.Body("account_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          UpdateSitesAppConfigurationResultAccountAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "UpdateSitesAppConfigurationResultAccountApp",
+  }) as any as S.Schema<UpdateSitesAppConfigurationResultAccountApp>;
+
+export type UpdateSitesAppConfigurationResultManagedAppPreferredWansList =
+  Array<string>;
+export const UpdateSitesAppConfigurationResultManagedAppPreferredWansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateSitesAppConfigurationResultManagedAppPreferredWansList>;
+
+export interface UpdateSitesAppConfigurationResultManagedApp {
+  /** Managed app ID. */
+  managedAppId: string;
+  /** Identifier */
+  id?: string | null;
+  /** Whether to breakout traffic to the app's endpoints directly. Null preserves default behavior. */
+  breakout?: boolean | null;
+  /** WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true). */
+  preferredWans?: UpdateSitesAppConfigurationResultManagedAppPreferredWansList | null;
+  /** Priority of traffic. 0 is default, anything greater is prioritized. (Currently only 0 and 1 are supported) */
+  priority?: number | null;
+  /** Identifier */
+  siteId?: string | null;
+}
+export const UpdateSitesAppConfigurationResultManagedApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managedAppId: S.String.pipe(T.Body("managed_app_id")),
+      id: S.optional(S.NullOr(S.String)),
+      breakout: S.optional(S.NullOr(S.Boolean)),
+      preferredWans: S.optional(
+        S.NullOr(
+          UpdateSitesAppConfigurationResultManagedAppPreferredWansList,
+        ).pipe(T.Body("preferred_wans")),
+      ),
+      priority: S.optional(S.NullOr(S.Number)),
+      siteId: S.optional(S.NullOr(S.String).pipe(T.Body("site_id"))),
+    }),
+  ).annotate({
+    identifier: "UpdateSitesAppConfigurationResultManagedApp",
+  }) as any as S.Schema<UpdateSitesAppConfigurationResultManagedApp>;
+
+export type UpdateSitesAppConfigurationResult =
+  | UpdateSitesAppConfigurationResultAccountApp
+  | UpdateSitesAppConfigurationResultManagedApp;
+export const UpdateSitesAppConfigurationResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["accountAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+    ["managedAppId", "id", "breakout", "preferredWans", "priority", "siteId"],
+  ]),
+);
+
+export type UpdateSitesAppConfigurationResponse =
+  UpdateSitesAppConfigurationResult;
+export const UpdateSitesAppConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  UpdateSitesAppConfigurationResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "UpdateSitesAppConfigurationResponse",
+}) as any as S.Schema<UpdateSitesAppConfigurationResponse>;
 
 export type SitesWansUpdateRequestStaticAddressing =
   SitesWansCreateRequestStaticAddressing;
@@ -17564,21 +17564,6 @@ export const createSiteAcl: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSiteAppConfigurationError = CloudflareOpError;
-/** Creates a new App Config for a site */
-export const createSiteAppConfiguration: API.OperationMethod<
-  CreateSiteAppConfigurationRequest,
-  CreateSiteAppConfigurationResponse,
-  CreateSiteAppConfigurationError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSiteAppConfigurationRequest,
-  output: CreateSiteAppConfigurationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateSiteLanError =
   | MagicWanUnauthorized
   | Forbidden
@@ -17606,6 +17591,21 @@ export const createSiteLan: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
+
+export type CreateSitesAppConfigurationError = CloudflareOpError;
+/** Creates a new App Config for a site */
+export const createSitesAppConfiguration: API.OperationMethod<
+  CreateSitesAppConfigurationRequest,
+  CreateSitesAppConfigurationResponse,
+  CreateSitesAppConfigurationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSitesAppConfigurationRequest,
+  output: CreateSitesAppConfigurationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CreateSiteWanError =
   | MagicWanUnauthorized
@@ -17845,21 +17845,6 @@ export const deleteSiteAcl: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSiteAppConfigurationError = CloudflareOpError;
-/** Deletes specific App Config associated with a site. */
-export const deleteSiteAppConfiguration: API.OperationMethod<
-  DeleteSiteAppConfigurationRequest,
-  DeleteSiteAppConfigurationResponse,
-  DeleteSiteAppConfigurationError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSiteAppConfigurationRequest,
-  output: DeleteSiteAppConfigurationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteSiteLanError =
   | SiteLanNotFound
   | MagicWanUnauthorized
@@ -17881,6 +17866,21 @@ export const deleteSiteLan: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSitesAppConfigurationError = CloudflareOpError;
+/** Deletes specific App Config associated with a site. */
+export const deleteSitesAppConfiguration: API.OperationMethod<
+  DeleteSitesAppConfigurationRequest,
+  DeleteSitesAppConfigurationResponse,
+  DeleteSitesAppConfigurationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSitesAppConfigurationRequest,
+  output: DeleteSitesAppConfigurationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -17910,6 +17910,21 @@ export const deleteSiteWan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type EditSitesAppConfigurationError = CloudflareOpError;
+/** Updates an App Config for a site */
+export const editSitesAppConfiguration: API.OperationMethod<
+  EditSitesAppConfigurationRequest,
+  EditSitesAppConfigurationResponse,
+  EditSitesAppConfigurationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditSitesAppConfigurationRequest,
+  output: EditSitesAppConfigurationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type EmptyRouteError = CloudflareOpError;
 /** Delete multiple Magic static routes. */
 export const emptyRoute: API.OperationMethod<
@@ -17920,21 +17935,6 @@ export const emptyRoute: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EmptyRouteRequest,
   output: EmptyRouteResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GeneratePskIpsecTunnelError = CloudflareOpError;
-/** Generates a Pre-Shared Key for a specific IPsec tunnel used in the IKE session. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After a PSK is generated, the PSK is immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSK in a safe place. */
-export const generatePskIpsecTunnel: API.OperationMethod<
-  GeneratePskIpsecTunnelRequest,
-  GeneratePskIpsecTunnelResponse,
-  GeneratePskIpsecTunnelError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GeneratePskIpsecTunnelRequest,
-  output: GeneratePskIpsecTunnelResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -18535,21 +18535,6 @@ export const listSiteAcls: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
-export type ListSiteAppConfigurationError = CloudflareOpError;
-/** Lists App Configs associated with a site. */
-export const listSiteAppConfiguration: API.OperationMethod<
-  ListSiteAppConfigurationRequest,
-  ListSiteAppConfigurationResponse,
-  ListSiteAppConfigurationError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteAppConfigurationRequest,
-  output: ListSiteAppConfigurationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListSiteLansError =
   | MagicWanUnauthorized
   | Forbidden
@@ -18605,6 +18590,21 @@ export const listSites: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
+
+export type ListSitesAppConfigurationError = CloudflareOpError;
+/** Lists App Configs associated with a site. */
+export const listSitesAppConfiguration: API.OperationMethod<
+  ListSitesAppConfigurationRequest,
+  ListSitesAppConfigurationResponse,
+  ListSitesAppConfigurationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSitesAppConfigurationRequest,
+  output: ListSitesAppConfigurationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListSiteWansError =
   | MagicWanUnauthorized
@@ -18789,6 +18789,36 @@ export const patchSiteWan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PskGenerateIpsecTunnelError = CloudflareOpError;
+/** Generates a Pre-Shared Key for a specific IPsec tunnel used in the IKE session. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After a PSK is generated, the PSK is immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSK in a safe place. */
+export const pskGenerateIpsecTunnel: API.OperationMethod<
+  PskGenerateIpsecTunnelRequest,
+  PskGenerateIpsecTunnelResponse,
+  PskGenerateIpsecTunnelError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PskGenerateIpsecTunnelRequest,
+  output: PskGenerateIpsecTunnelResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PskSetIpsecTunnelError = CloudflareOpError;
+/** Sets Pre-Shared Keys for multiple IPsec tunnels associated with an account. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After PSKs are applied, they are immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSKs in a safe place. */
+export const pskSetIpsecTunnel: API.OperationMethod<
+  PskSetIpsecTunnelRequest,
+  PskSetIpsecTunnelResponse,
+  PskSetIpsecTunnelError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PskSetIpsecTunnelRequest,
+  output: PskSetIpsecTunnelResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PutCfInterconnectError = CloudflareOpError;
 /** Updates a specific interconnect associated with an account. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. */
 export const putCfInterconnect: API.OperationMethod<
@@ -18799,36 +18829,6 @@ export const putCfInterconnect: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PutCfInterconnectRequest,
   output: PutCfInterconnectResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetPskIpsecTunnelError = CloudflareOpError;
-/** Sets Pre-Shared Keys for multiple IPsec tunnels associated with an account. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After PSKs are applied, they are immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSKs in a safe place. */
-export const setPskIpsecTunnel: API.OperationMethod<
-  SetPskIpsecTunnelRequest,
-  SetPskIpsecTunnelResponse,
-  SetPskIpsecTunnelError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetPskIpsecTunnelRequest,
-  output: SetPskIpsecTunnelResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SitesAppConfigurationEditError = CloudflareOpError;
-/** Updates an App Config for a site */
-export const sitesAppConfigurationEdit: API.OperationMethod<
-  SitesAppConfigurationEditRequest,
-  SitesAppConfigurationEditResponse,
-  SitesAppConfigurationEditError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SitesAppConfigurationEditRequest,
-  output: SitesAppConfigurationEditResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -19014,21 +19014,6 @@ export const updateSiteAcl: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSiteAppConfigurationError = CloudflareOpError;
-/** Updates an App Config for a site */
-export const updateSiteAppConfiguration: API.OperationMethod<
-  UpdateSiteAppConfigurationRequest,
-  UpdateSiteAppConfigurationResponse,
-  UpdateSiteAppConfigurationError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSiteAppConfigurationRequest,
-  output: UpdateSiteAppConfigurationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateSiteLanError =
   | SiteLanNotFound
   | MagicWanUnauthorized
@@ -19050,6 +19035,21 @@ export const updateSiteLan: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSitesAppConfigurationError = CloudflareOpError;
+/** Updates an App Config for a site */
+export const updateSitesAppConfiguration: API.OperationMethod<
+  UpdateSitesAppConfigurationRequest,
+  UpdateSitesAppConfigurationResponse,
+  UpdateSitesAppConfigurationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSitesAppConfigurationRequest,
+  output: UpdateSitesAppConfigurationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

@@ -138,13 +138,13 @@ export const GraphQueryProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GraphQueryProperties>;
 
 /** Resource tags. */
-export type GraphQueryGetResponseTagsMap = {
+export type GetGraphQueryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GraphQueryGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetGraphQueryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GraphQueryGetResponseTagsMap>;
+) as any as S.Schema<GetGraphQueryResponseTagsMap>;
 
 export interface GetGraphQueryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -158,7 +158,7 @@ export interface GetGraphQueryResponse {
   /** Metadata describing a graph query for an Azure resource. */
   properties?: GraphQueryProperties;
   /** Resource tags. */
-  tags?: GraphQueryGetResponseTagsMap;
+  tags?: GetGraphQueryResponseTagsMap;
   /** The location of the resource */
   location?: string;
   /** This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict. */
@@ -171,7 +171,7 @@ export const GetGraphQueryResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(GraphQueryProperties),
-    tags: S.optional(GraphQueryGetResponseTagsMap),
+    tags: S.optional(GetGraphQueryResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
@@ -353,20 +353,20 @@ export const GraphQueryListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GraphQueryListResultValueList>;
 
 /** Graph query list result. */
-export interface ListGraphQueryResult {
+export interface GraphQueryListResult {
   /** The GraphQueryResource items on this page */
   value: GraphQueryListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListGraphQueryResult = /*@__PURE__*/ S.suspend(() =>
+export const GraphQueryListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: GraphQueryListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListGraphQueryResult",
-}) as any as S.Schema<ListGraphQueryResult>;
+  identifier: "GraphQueryListResult",
+}) as any as S.Schema<GraphQueryListResult>;
 
 export interface ListGraphQueryBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -647,13 +647,13 @@ export const QueryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "QueryResponse" }) as any as S.Schema<QueryResponse>;
 
 /** Resource tags */
-export type GraphQueryUpdateRequestTagsMap = {
+export type UpdateGraphQueryRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GraphQueryUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGraphQueryRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GraphQueryUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateGraphQueryRequestTagsMap>;
 
 /** Properties that contain a workbook for PATCH operation. */
 export interface GraphQueryPropertiesUpdateParameters {
@@ -680,7 +680,7 @@ export interface UpdateGraphQueryRequest {
   /** The name of the Graph Query resource. */
   resourceName: string;
   /** Resource tags */
-  tags?: GraphQueryUpdateRequestTagsMap;
+  tags?: UpdateGraphQueryRequestTagsMap;
   /** This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict. */
   etag?: string;
   /** Metadata describing a graph query for an Azure resource. */
@@ -691,7 +691,7 @@ export const UpdateGraphQueryRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(GraphQueryUpdateRequestTagsMap),
+    tags: S.optional(UpdateGraphQueryRequestTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(GraphQueryPropertiesUpdateParameters),
   }).pipe(
@@ -707,13 +707,13 @@ export const UpdateGraphQueryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGraphQueryRequest>;
 
 /** Resource tags. */
-export type GraphQueryUpdateResponseTagsMap = {
+export type UpdateGraphQueryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GraphQueryUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGraphQueryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GraphQueryUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateGraphQueryResponseTagsMap>;
 
 export interface UpdateGraphQueryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -727,7 +727,7 @@ export interface UpdateGraphQueryResponse {
   /** Metadata describing a graph query for an Azure resource. */
   properties?: GraphQueryProperties;
   /** Resource tags. */
-  tags?: GraphQueryUpdateResponseTagsMap;
+  tags?: UpdateGraphQueryResponseTagsMap;
   /** The location of the resource */
   location?: string;
   /** This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict. */
@@ -740,7 +740,7 @@ export const UpdateGraphQueryResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(GraphQueryProperties),
-    tags: S.optional(GraphQueryUpdateResponseTagsMap),
+    tags: S.optional(UpdateGraphQueryResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
@@ -797,12 +797,12 @@ export type ListGraphQueryError = AzureOpError;
 /** Get all graph queries defined within a specified subscription and resource group. */
 export const ListGraphQuery: API.OperationMethod<
   ListGraphQueryRequest,
-  ListGraphQueryResult,
+  GraphQueryListResult,
   ListGraphQueryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGraphQueryRequest,
-  output: ListGraphQueryResult,
+  output: GraphQueryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -812,12 +812,12 @@ export type ListGraphQueryBySubscriptionError = AzureOpError;
 /** Get all graph queries defined within a specified subscription. */
 export const ListGraphQueryBySubscription: API.OperationMethod<
   ListGraphQueryBySubscriptionRequest,
-  ListGraphQueryResult,
+  GraphQueryListResult,
   ListGraphQueryBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGraphQueryBySubscriptionRequest,
-  output: ListGraphQueryResult,
+  output: GraphQueryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

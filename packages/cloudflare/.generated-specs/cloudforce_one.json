@@ -32,7 +32,8 @@
       "requestType": "request_type",
       "sortBy": "sort_by",
       "sortOrder": "sort_order"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.cloudforce_one#RequestsConstantsRequest": {
@@ -433,7 +434,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListRequestSortOrder": {
+    "com.cloudflare.cloudforce_one#ListRequestsRequestSortOrder": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -450,7 +451,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListRequestStatus": {
+    "com.cloudflare.cloudforce_one#ListRequestsRequestStatus": {
       "type": "enum",
       "members": {
         "OPEN": {
@@ -553,13 +554,13 @@
           }
         },
         "sort_order": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListRequestSortOrder",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsRequestSortOrder",
           "traits": {
             "smithy.api#documentation": "Sort order (asc or desc)."
           }
         },
         "status": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListRequestStatus",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsRequestStatus",
           "traits": {
             "smithy.api#documentation": "Request Status."
           }
@@ -569,7 +570,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListResultItemPriority": {
+    "com.cloudflare.cloudforce_one#ListRequestsResultItemPriority": {
       "type": "enum",
       "members": {
         "ROUTINE": {
@@ -592,7 +593,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListResultItemTlp": {
+    "com.cloudflare.cloudforce_one#ListRequestsResultItemTlp": {
       "type": "enum",
       "members": {
         "CLEAR": {
@@ -627,7 +628,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListResultItemStatus": {
+    "com.cloudflare.cloudforce_one#ListRequestsResultItemStatus": {
       "type": "enum",
       "members": {
         "OPEN": {
@@ -668,7 +669,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListResultItem": {
+    "com.cloudflare.cloudforce_one#ListRequestsResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -686,7 +687,7 @@
           }
         },
         "priority": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListResultItemPriority",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsResultItemPriority",
           "traits": {
             "smithy.api#required": {}
           }
@@ -706,7 +707,7 @@
           }
         },
         "tlp": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListResultItemTlp",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsResultItemTlp",
           "traits": {
             "smithy.api#documentation": "The CISA defined Traffic Light Protocol (TLP).",
             "smithy.api#required": {}
@@ -738,7 +739,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListResultItemStatus",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsResultItemStatus",
           "traits": {
             "smithy.api#documentation": "Request Status."
           }
@@ -751,17 +752,17 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsListResultList": {
+    "com.cloudflare.cloudforce_one#ListRequestsResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.cloudforce_one#RequestsListResultItem"
+        "target": "com.cloudflare.cloudforce_one#ListRequestsResultItem"
       }
     },
     "com.cloudflare.cloudforce_one#ListRequestsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.cloudforce_one#RequestsListResultList",
+          "target": "com.cloudflare.cloudforce_one#ListRequestsResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -905,7 +906,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsUpdateRequestTlp": {
+    "com.cloudflare.cloudforce_one#UpdateRequestRequestTlp": {
       "type": "enum",
       "members": {
         "CLEAR": {
@@ -984,7 +985,7 @@
           }
         },
         "tlp": {
-          "target": "com.cloudflare.cloudforce_one#RequestsUpdateRequestTlp",
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestRequestTlp",
           "traits": {
             "smithy.api#documentation": "The CISA defined Traffic Light Protocol (TLP)."
           }
@@ -994,7 +995,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsUpdateResponseTlp": {
+    "com.cloudflare.cloudforce_one#UpdateRequestResponseTlp": {
       "type": "enum",
       "members": {
         "CLEAR": {
@@ -1029,7 +1030,7 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsUpdateResponseStatus": {
+    "com.cloudflare.cloudforce_one#UpdateRequestResponseStatus": {
       "type": "enum",
       "members": {
         "OPEN": {
@@ -1114,7 +1115,7 @@
           }
         },
         "tlp": {
-          "target": "com.cloudflare.cloudforce_one#RequestsUpdateResponseTlp",
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestResponseTlp",
           "traits": {
             "smithy.api#documentation": "The CISA defined Traffic Light Protocol (TLP).",
             "smithy.api#required": {}
@@ -1142,7 +1143,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.cloudforce_one#RequestsUpdateResponseStatus",
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestResponseStatus",
           "traits": {
             "smithy.api#documentation": "Request Status."
           }
@@ -1220,7 +1221,7 @@
         "target": "com.cloudflare.cloudforce_one#RequestsAssetsCreateResultItem"
       }
     },
-    "com.cloudflare.cloudforce_one#GetRequestAssetRequest": {
+    "com.cloudflare.cloudforce_one#GetRequestsAssetRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1252,7 +1253,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsAssetsGetResultItem": {
+    "com.cloudflare.cloudforce_one#GetRequestsAssetResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -1289,17 +1290,17 @@
         }
       }
     },
-    "com.cloudflare.cloudforce_one#RequestsAssetsGetResultList": {
+    "com.cloudflare.cloudforce_one#GetRequestsAssetResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.cloudforce_one#RequestsAssetsGetResultItem"
+        "target": "com.cloudflare.cloudforce_one#GetRequestsAssetResultItem"
       }
     },
-    "com.cloudflare.cloudforce_one#GetRequestAssetResponse": {
+    "com.cloudflare.cloudforce_one#GetRequestsAssetResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.cloudforce_one#RequestsAssetsGetResultList",
+          "target": "com.cloudflare.cloudforce_one#GetRequestsAssetResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -1310,13 +1311,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.cloudforce_one#GetRequestAsset": {
+    "com.cloudflare.cloudforce_one#GetRequestsAsset": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cloudforce_one#GetRequestAssetRequest"
+        "target": "com.cloudflare.cloudforce_one#GetRequestsAssetRequest"
       },
       "output": {
-        "target": "com.cloudflare.cloudforce_one#GetRequestAssetResponse"
+        "target": "com.cloudflare.cloudforce_one#GetRequestsAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2785,25 +2786,145 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.cloudforce_one#BinaryStorageCreate"
+          "target": "com.cloudflare.cloudforce_one#BulkCreateThreatEvents"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#BinaryStorageGet"
+          "target": "com.cloudflare.cloudforce_one#CreateBinaryStorage"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#RequestsConstants"
+          "target": "com.cloudflare.cloudforce_one#CreateRequest"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#RequestsCreate"
+          "target": "com.cloudflare.cloudforce_one#CreateRequestAsset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateRequestMessage"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateRequestPriority"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateScanConfig"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateThreatEvent"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateThreatEventCategory"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateThreatEventDataset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateThreatEventEventTag"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#CreateThreatEventTag"
         },
         {
           "target": "com.cloudflare.cloudforce_one#DeleteRequest"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#RequestsGet"
+          "target": "com.cloudflare.cloudforce_one#DeleteRequestAsset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteRequestMessage"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteRequestPriority"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteScanConfig"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteThreatEventCategory"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteThreatEventEventTag"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteThreatEventRelate"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetBinaryStorage"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetRequest"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetRequestMessage"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetRequestPriority"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetRequestsAsset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetScanResult"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetThreatEvent"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetThreatEventCategory"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetThreatEventDataset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetThreatEventRaw"
         },
         {
           "target": "com.cloudflare.cloudforce_one#ListRequests"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListScanConfigs"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventAttackers"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventCategories"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventCountries"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventDatasets"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypes"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEvents"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListThreatEventTargetIndustries"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#PatchScanConfig"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#PatchThreatEvent"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#PatchThreatEventCategory"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#PatchThreatEventDataset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#PatchThreatEventRaw"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#QuotaRequestPriority"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#RawThreatEventDataset"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#RequestsConstants"
         },
         {
           "target": "com.cloudflare.cloudforce_one#RequestsQuota"
@@ -2815,133 +2936,13 @@
           "target": "com.cloudflare.cloudforce_one#UpdateRequest"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#RequestsAssetsCreate"
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestAsset"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#RequestsAssetsDelete"
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestMessage"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#GetRequestAsset"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsAssetsUpdate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsMessageCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsMessageDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsMessageGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsMessageUpdate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsPriorityCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsPriorityDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsPriorityGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsPriorityQuota"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsPriorityUpdate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ScansConfigCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ScansConfigDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ScansConfigEdit"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ScansConfigList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ScansResultsGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsBulkCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsEdit"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsAttackersList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCategoriesCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCategoriesDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCategoriesEdit"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCategoriesGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCategoriesList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsCountriesList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsDatasetsCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsDatasetsEdit"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsDatasetsGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsDatasetsList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsDatasetsRaw"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsEventTagsCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsEventTagsDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsIndicatorTypesList"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsRawEdit"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsRawGet"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsRelateDelete"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsTagsCreate"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ThreatEventsTargetIndustriesList"
+          "target": "com.cloudflare.cloudforce_one#UpdateRequestPriority"
         }
       ],
       "traits": {
@@ -2969,13 +2970,13 @@
         ]
       }
     },
-    "com.cloudflare.cloudforce_one#CreateBulkThreatEvent": {
+    "com.cloudflare.cloudforce_one#BulkCreateThreatEvents": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cloudforce_one#CreateBulkThreatEventRequest"
+        "target": "com.cloudflare.cloudforce_one#BulkCreateThreatEventsRequest"
       },
       "output": {
-        "target": "com.cloudflare.cloudforce_one#CreateBulkThreatEventResponse"
+        "target": "com.cloudflare.cloudforce_one#BulkCreateThreatEventsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2986,7 +2987,7 @@
         "smithy.api#documentation": "The `datasetId` parameter must be defined. To list existing datasets (and their IDs) in your account, use the [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/) endpoint."
       }
     },
-    "com.cloudflare.cloudforce_one#CreateBulkThreatEventRequest": {
+    "com.cloudflare.cloudforce_one#BulkCreateThreatEventsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3020,7 +3021,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cloudforce_one#CreateBulkThreatEventResponse": {
+    "com.cloudflare.cloudforce_one#BulkCreateThreatEventsResponse": {
       "type": "structure",
       "members": {
         "createdEventsCount": {
@@ -7065,13 +7066,13 @@
         "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
       }
     },
-    "com.cloudflare.cloudforce_one#RequestQuotaPriority": {
+    "com.cloudflare.cloudforce_one#QuotaRequestPriority": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cloudforce_one#RequestQuotaPriorityRequest"
+        "target": "com.cloudflare.cloudforce_one#QuotaRequestPriorityRequest"
       },
       "output": {
-        "target": "com.cloudflare.cloudforce_one#RequestQuotaPriorityResponse"
+        "target": "com.cloudflare.cloudforce_one#QuotaRequestPriorityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7083,7 +7084,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestQuotaPriorityRequest": {
+    "com.cloudflare.cloudforce_one#QuotaRequestPriorityRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -7099,7 +7100,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cloudforce_one#RequestQuotaPriorityResponse": {
+    "com.cloudflare.cloudforce_one#QuotaRequestPriorityResponse": {
       "type": "structure",
       "members": {
         "anniversary_date": {

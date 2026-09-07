@@ -12,43 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export type AppDisconnectReason =
-  | "APP_DISCONNECT_REASON_UNSPECIFIED"
-  | "APP_DISCONNECT_REASON_LOCAL_EXCEPTION"
-  | "APP_DISCONNECT_REASON_KEYBOARD_INTERRUPT"
-  | "APP_DISCONNECT_REASON_ENTRYPOINT_COMPLETED"
-  | "APP_DISCONNECT_REASON_DEPLOYMENT_EXCEPTION"
-  | "APP_DISCONNECT_REASON_REMOTE_EXCEPTION";
-export const AppDisconnectReason = /*@__PURE__*/ S.String;
-
-export interface AppClientDisconnectRequest {
-  appId?: string;
-  reason?: AppDisconnectReason | (string & {});
-  exception?: string;
-}
-export const AppClientDisconnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    reason: S.optional(AppDisconnectReason),
-    exception: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppClientDisconnect",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppClientDisconnectRequest",
-}) as any as S.Schema<AppClientDisconnectRequest>;
-
-export interface AppClientDisconnectResponse {}
-export const AppClientDisconnectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AppClientDisconnectResponse",
-}) as any as S.Schema<AppClientDisconnectResponse>;
-
 export type FileDescriptor =
   | "FILE_DESCRIPTOR_UNSPECIFIED"
   | "FILE_DESCRIPTOR_STDOUT"
@@ -126,50 +89,6 @@ export const AppCountLogsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AppCountLogsResponse",
 }) as any as S.Schema<AppCountLogsResponse>;
-
-/** gRPC protos for Modal's public API surface. Warning: direct usage of Modal's gRPC API is discouraged, and no support or compatibility guarantees are provided. Message fields or entire RPCs may be changed or removed without notice. We recommend using official SDKs instead. */
-export type AppDeployVisibility =
-  | "APP_DEPLOY_VISIBILITY_UNSPECIFIED"
-  | "APP_DEPLOY_VISIBILITY_WORKSPACE"
-  | "APP_DEPLOY_VISIBILITY_PUBLIC";
-export const AppDeployVisibility = /*@__PURE__*/ S.String;
-
-export interface AppDeployRequest {
-  appId?: string;
-  /** namespace */
-  name?: string;
-  objectEntity?: string;
-  visibility?: AppDeployVisibility | (string & {});
-  tag?: string;
-}
-export const AppDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    name: S.optional(S.String),
-    objectEntity: S.optional(S.String),
-    visibility: S.optional(AppDeployVisibility),
-    tag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppDeploy",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppDeployRequest",
-}) as any as S.Schema<AppDeployRequest>;
-
-export interface AppDeployResponse {
-  url?: string;
-}
-export const AppDeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppDeployResponse",
-}) as any as S.Schema<AppDeployResponse>;
 
 export interface AppDeploymentHistoryRequest {
   appId?: string;
@@ -417,35 +336,25 @@ export const AppFetchLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppFetchLogsResponse",
 }) as any as S.Schema<AppFetchLogsResponse>;
 
-export type ObjectCreationType =
-  | "OBJECT_CREATION_TYPE_UNSPECIFIED"
-  | "OBJECT_CREATION_TYPE_CREATE_IF_MISSING"
-  | "OBJECT_CREATION_TYPE_CREATE_FAIL_IF_EXISTS"
-  | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
-  | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
-  | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
-
-export interface AppGetOrCreateRequest {
-  appName?: string;
+export interface AppGetByDeploymentNameRequest {
+  /** removed namespace */
+  name?: string;
   environmentName?: string;
-  objectCreationType?: ObjectCreationType | (string & {});
 }
-export const AppGetOrCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppGetByDeploymentNameRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    appName: S.optional(S.String),
+    name: S.optional(S.String),
     environmentName: S.optional(S.String),
-    objectCreationType: S.optional(ObjectCreationType),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/AppGetOrCreate",
+      uri: "/modal.client.ModalClient/AppGetByDeploymentName",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AppGetOrCreateRequest",
-}) as any as S.Schema<AppGetOrCreateRequest>;
+  identifier: "AppGetByDeploymentNameRequest",
+}) as any as S.Schema<AppGetByDeploymentNameRequest>;
 
 /** NOTE: make sure to update the frontend if we add a new state here https://github.com/modal-labs/modal/blob/main/frontend/src/routes/(dashboard)/%5B%5Bworkspace%5D%5D/apps/+page.svelte#L95 */
 export type AppState =
@@ -490,6 +399,43 @@ export const AppLifecycle = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AppLifecycle" }) as any as S.Schema<AppLifecycle>;
 
+export interface AppGetByDeploymentNameResponse {
+  appId?: string;
+  /** Null when App with requested name is not deployed */
+  previousAppId?: string;
+  /** Populated if App with requested name was recently stopped */
+  environmentName?: string;
+  /** Populated because server may resolve default environment */
+  lifecycle?: AppLifecycle;
+}
+export const AppGetByDeploymentNameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    previousAppId: S.optional(S.String),
+    environmentName: S.optional(S.String),
+    lifecycle: S.optional(AppLifecycle),
+  }),
+).annotate({
+  identifier: "AppGetByDeploymentNameResponse",
+}) as any as S.Schema<AppGetByDeploymentNameResponse>;
+
+export interface AppGetInfoRequest {
+  appId?: string;
+}
+export const AppGetInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppGetInfo",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppGetInfoRequest",
+}) as any as S.Schema<AppGetInfoRequest>;
+
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -518,374 +464,21 @@ export const AppHandleMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppHandleMetadata",
 }) as any as S.Schema<AppHandleMetadata>;
 
-export interface AppGetOrCreateResponse {
-  appId?: string;
-  handleMetadata?: AppHandleMetadata;
-}
-export const AppGetOrCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    handleMetadata: S.optional(AppHandleMetadata),
-  }),
-).annotate({
-  identifier: "AppGetOrCreateResponse",
-}) as any as S.Schema<AppGetOrCreateResponse>;
-
-export interface AppHeartbeatRequest {
-  appId?: string;
-}
-export const AppHeartbeatRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppHeartbeat",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppHeartbeatRequest",
-}) as any as S.Schema<AppHeartbeatRequest>;
-
-export interface AppHeartbeatResponse {}
-export const AppHeartbeatResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AppHeartbeatResponse",
-}) as any as S.Schema<AppHeartbeatResponse>;
-
-export interface AppLookupRequest {
-  appName?: string;
-  environmentName?: string;
-}
-export const AppLookupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appName: S.optional(S.String),
-    environmentName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppLookup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppLookupRequest",
-}) as any as S.Schema<AppLookupRequest>;
-
-export interface AppLookupResponse {
-  appId?: string;
-}
-export const AppLookupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppLookupResponse",
-}) as any as S.Schema<AppLookupResponse>;
-
-export interface AppPromoteRequest {
-  appId?: string;
-  version?: number;
-}
-export const AppPromoteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    version: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppPromote",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppPromoteRequest",
-}) as any as S.Schema<AppPromoteRequest>;
-
-export type WarningWarningType =
-  | "WARNING_TYPE_UNSPECIFIED"
-  | "WARNING_TYPE_CLIENT_DEPRECATION"
-  | "WARNING_TYPE_RESOURCE_LIMIT"
-  | "WARNING_TYPE_FUNCTION_CONFIGURATION";
-export const WarningWarningType = /*@__PURE__*/ S.String;
-
-export interface Warning {
-  type?: WarningWarningType;
-  message?: string;
-}
-export const Warning = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(WarningWarningType),
-    message: S.optional(S.String),
-  }),
-).annotate({ identifier: "Warning" }) as any as S.Schema<Warning>;
-
-export type WarningList = Array<Warning>;
-export const WarningList = /*@__PURE__*/ S.Array(
-  Warning,
-) as any as S.Schema<WarningList>;
-
-export interface AppPromoteResponse {
-  url?: string;
-  serverWarnings?: WarningList;
-  deployedAt?: number;
-}
-export const AppPromoteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    serverWarnings: S.optional(WarningList),
-    deployedAt: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AppPromoteResponse",
-}) as any as S.Schema<AppPromoteResponse>;
-
-export interface AppPublishRequest {
-  appId?: string;
-  name?: string;
-  deploymentTag?: string;
-  /** Additional metadata to identify a deployment */
-  appState?: AppState | (string & {});
-  /** Published app will be in this state */
-  functionIds?: StringMap;
-  /** function_name -> function_id */
-  classIds?: StringMap;
-  /** class_name -> class_id */
-  definitionIds?: StringMap;
-  /** function_id -> definition_id */
-  rollbackVersion?: number;
-  /** Unused by client, but used internally */
-  clientVersion?: string;
-  /** Unused by client, but used internally */
-  commitInfo?: CommitInfo;
-  /** Git information for deployment tracking */
-  tags?: StringMap;
-  /** Additional metadata to attach to the App If true, create a version pinned deployment but don't update the production deployment definition on publish */
-  staged?: boolean;
-  deploymentType?: DeploymentType | (string & {});
-}
-export const AppPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    name: S.optional(S.String),
-    deploymentTag: S.optional(S.String),
-    appState: S.optional(AppState),
-    functionIds: S.optional(StringMap),
-    classIds: S.optional(StringMap),
-    definitionIds: S.optional(StringMap),
-    rollbackVersion: S.optional(S.Number),
-    clientVersion: S.optional(S.String),
-    commitInfo: S.optional(CommitInfo),
-    tags: S.optional(StringMap),
-    staged: S.optional(S.Boolean),
-    deploymentType: S.optional(DeploymentType),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppPublish",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppPublishRequest",
-}) as any as S.Schema<AppPublishRequest>;
-
-export interface AppPublishResponse {
-  url?: string;
-  serverWarnings?: WarningList;
-  deployedAt?: number;
-}
-export const AppPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    serverWarnings: S.optional(WarningList),
-    deployedAt: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AppPublishResponse",
-}) as any as S.Schema<AppPublishResponse>;
-
-export interface AppRollbackRequest {
-  appId?: string;
-  version?: number;
-}
-export const AppRollbackRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    version: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppRollback",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppRollbackRequest",
-}) as any as S.Schema<AppRollbackRequest>;
-
-export interface AppRollbackResponse {
-  url?: string;
-  serverWarnings?: WarningList;
-  deployedAt?: number;
-}
-export const AppRollbackResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    serverWarnings: S.optional(WarningList),
-    deployedAt: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AppRollbackResponse",
-}) as any as S.Schema<AppRollbackResponse>;
-
-export interface AppRolloverRequest {
-  appId?: string;
-}
-export const AppRolloverRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppRollover",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AppRolloverRequest",
-}) as any as S.Schema<AppRolloverRequest>;
-
-export interface AppRolloverResponse {
-  url?: string;
-  serverWarnings?: WarningList;
-  deployedAt?: number;
-}
-export const AppRolloverResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    serverWarnings: S.optional(WarningList),
-    deployedAt: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AppRolloverResponse",
-}) as any as S.Schema<AppRolloverResponse>;
-
-export interface CreateAppRequest {
-  clientId?: string;
-  description?: string;
-  /** Human readable label for the app */
-  environmentName?: string;
-  appState?: AppState | (string & {});
-  tags?: StringMap;
-}
-export const CreateAppRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clientId: S.optional(S.String),
-    description: S.optional(S.String),
-    environmentName: S.optional(S.String),
-    appState: S.optional(AppState),
-    tags: S.optional(StringMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppCreate",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateAppRequest",
-}) as any as S.Schema<CreateAppRequest>;
-
-export interface CreateAppResponse {
-  appId?: string;
-  appPageUrl?: string;
-  appLogsUrl?: string;
-}
-export const CreateAppResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    appPageUrl: S.optional(S.String),
-    appLogsUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CreateAppResponse",
-}) as any as S.Schema<CreateAppResponse>;
-
-export interface GetAppByDeploymentNameRequest {
-  /** removed namespace */
-  name?: string;
-  environmentName?: string;
-}
-export const GetAppByDeploymentNameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    environmentName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppGetByDeploymentName",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetAppByDeploymentNameRequest",
-}) as any as S.Schema<GetAppByDeploymentNameRequest>;
-
-export interface GetAppByDeploymentNameResponse {
-  appId?: string;
-  /** Null when App with requested name is not deployed */
-  previousAppId?: string;
-  /** Populated if App with requested name was recently stopped */
-  environmentName?: string;
-  /** Populated because server may resolve default environment */
-  lifecycle?: AppLifecycle;
-}
-export const GetAppByDeploymentNameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    previousAppId: S.optional(S.String),
-    environmentName: S.optional(S.String),
-    lifecycle: S.optional(AppLifecycle),
-  }),
-).annotate({
-  identifier: "GetAppByDeploymentNameResponse",
-}) as any as S.Schema<GetAppByDeploymentNameResponse>;
-
-export interface GetAppInfoRequest {
-  appId?: string;
-}
-export const GetAppInfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/AppGetInfo",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetAppInfoRequest",
-}) as any as S.Schema<GetAppInfoRequest>;
-
-export interface GetAppInfoResponse {
+export interface AppGetInfoResponse {
   info?: AppHandleMetadata;
 }
-export const GetAppInfoResponse = /*@__PURE__*/ S.suspend(() =>
+export const AppGetInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     info: S.optional(AppHandleMetadata),
   }),
 ).annotate({
-  identifier: "GetAppInfoResponse",
-}) as any as S.Schema<GetAppInfoResponse>;
+  identifier: "AppGetInfoResponse",
+}) as any as S.Schema<AppGetInfoResponse>;
 
-export interface GetAppLayoutRequest {
+export interface AppGetLayoutRequest {
   appId?: string;
 }
-export const GetAppLayoutRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppGetLayoutRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
   }).pipe(
@@ -896,8 +489,8 @@ export const GetAppLayoutRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAppLayoutRequest",
-}) as any as S.Schema<GetAppLayoutRequest>;
+  identifier: "AppGetLayoutRequest",
+}) as any as S.Schema<AppGetLayoutRequest>;
 
 export type FunctionFunctionType =
   | "FUNCTION_TYPE_UNSPECIFIED"
@@ -1265,21 +858,21 @@ export const AppLayout = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AppLayout" }) as any as S.Schema<AppLayout>;
 
-export interface GetAppLayoutResponse {
+export interface AppGetLayoutResponse {
   appLayout?: AppLayout;
 }
-export const GetAppLayoutResponse = /*@__PURE__*/ S.suspend(() =>
+export const AppGetLayoutResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appLayout: S.optional(AppLayout),
   }),
 ).annotate({
-  identifier: "GetAppLayoutResponse",
-}) as any as S.Schema<GetAppLayoutResponse>;
+  identifier: "AppGetLayoutResponse",
+}) as any as S.Schema<AppGetLayoutResponse>;
 
-export interface GetAppLifecycleRequest {
+export interface AppGetLifecycleRequest {
   appId?: string;
 }
-export const GetAppLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppGetLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
   }).pipe(
@@ -1290,26 +883,26 @@ export const GetAppLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAppLifecycleRequest",
-}) as any as S.Schema<GetAppLifecycleRequest>;
+  identifier: "AppGetLifecycleRequest",
+}) as any as S.Schema<AppGetLifecycleRequest>;
 
-export interface GetAppLifecycleResponse {
+export interface AppGetLifecycleResponse {
   lifecycle?: AppLifecycle;
 }
-export const GetAppLifecycleResponse = /*@__PURE__*/ S.suspend(() =>
+export const AppGetLifecycleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     lifecycle: S.optional(AppLifecycle),
   }),
 ).annotate({
-  identifier: "GetAppLifecycleResponse",
-}) as any as S.Schema<GetAppLifecycleResponse>;
+  identifier: "AppGetLifecycleResponse",
+}) as any as S.Schema<AppGetLifecycleResponse>;
 
-export interface GetAppObjectRequest {
+export interface AppGetObjectsRequest {
   appId?: string;
   includeUnindexed?: boolean;
   onlyClassFunction?: boolean;
 }
-export const GetAppObjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppGetObjectsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
     includeUnindexed: S.optional(S.Boolean),
@@ -1322,8 +915,8 @@ export const GetAppObjectRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAppObjectRequest",
-}) as any as S.Schema<GetAppObjectRequest>;
+  identifier: "AppGetObjectsRequest",
+}) as any as S.Schema<AppGetObjectsRequest>;
 
 export interface AppGetObjectsItem {
   tag?: string;
@@ -1343,21 +936,64 @@ export const AppGetObjectsItemList = /*@__PURE__*/ S.Array(
   AppGetObjectsItem,
 ) as any as S.Schema<AppGetObjectsItemList>;
 
-export interface GetAppObjectResponse {
+export interface AppGetObjectsResponse {
   items?: AppGetObjectsItemList;
 }
-export const GetAppObjectResponse = /*@__PURE__*/ S.suspend(() =>
+export const AppGetObjectsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     items: S.optional(AppGetObjectsItemList),
   }),
 ).annotate({
-  identifier: "GetAppObjectResponse",
-}) as any as S.Schema<GetAppObjectResponse>;
+  identifier: "AppGetObjectsResponse",
+}) as any as S.Schema<AppGetObjectsResponse>;
 
-export interface GetAppTagRequest {
+export type ObjectCreationType =
+  | "OBJECT_CREATION_TYPE_UNSPECIFIED"
+  | "OBJECT_CREATION_TYPE_CREATE_IF_MISSING"
+  | "OBJECT_CREATION_TYPE_CREATE_FAIL_IF_EXISTS"
+  | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
+  | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
+  | "OBJECT_CREATION_TYPE_EPHEMERAL";
+export const ObjectCreationType = /*@__PURE__*/ S.String;
+
+export interface AppGetOrCreateRequest {
+  appName?: string;
+  environmentName?: string;
+  objectCreationType?: ObjectCreationType | (string & {});
+}
+export const AppGetOrCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appName: S.optional(S.String),
+    environmentName: S.optional(S.String),
+    objectCreationType: S.optional(ObjectCreationType),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppGetOrCreate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppGetOrCreateRequest",
+}) as any as S.Schema<AppGetOrCreateRequest>;
+
+export interface AppGetOrCreateResponse {
+  appId?: string;
+  handleMetadata?: AppHandleMetadata;
+}
+export const AppGetOrCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    handleMetadata: S.optional(AppHandleMetadata),
+  }),
+).annotate({
+  identifier: "AppGetOrCreateResponse",
+}) as any as S.Schema<AppGetOrCreateResponse>;
+
+export interface AppGetTagsRequest {
   appId?: string;
 }
-export const GetAppTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppGetTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
   }).pipe(
@@ -1368,19 +1004,312 @@ export const GetAppTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAppTagRequest",
-}) as any as S.Schema<GetAppTagRequest>;
+  identifier: "AppGetTagsRequest",
+}) as any as S.Schema<AppGetTagsRequest>;
 
-export interface GetAppTagResponse {
+export interface AppGetTagsResponse {
   tags?: StringMap;
 }
-export const GetAppTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const AppGetTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tags: S.optional(StringMap),
   }),
 ).annotate({
-  identifier: "GetAppTagResponse",
-}) as any as S.Schema<GetAppTagResponse>;
+  identifier: "AppGetTagsResponse",
+}) as any as S.Schema<AppGetTagsResponse>;
+
+export interface AppHeartbeatRequest {
+  appId?: string;
+}
+export const AppHeartbeatRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppHeartbeat",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppHeartbeatRequest",
+}) as any as S.Schema<AppHeartbeatRequest>;
+
+export interface AppHeartbeatResponse {}
+export const AppHeartbeatResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AppHeartbeatResponse",
+}) as any as S.Schema<AppHeartbeatResponse>;
+
+export interface AppRollbackRequest {
+  appId?: string;
+  version?: number;
+}
+export const AppRollbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    version: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppRollback",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppRollbackRequest",
+}) as any as S.Schema<AppRollbackRequest>;
+
+export type WarningWarningType =
+  | "WARNING_TYPE_UNSPECIFIED"
+  | "WARNING_TYPE_CLIENT_DEPRECATION"
+  | "WARNING_TYPE_RESOURCE_LIMIT"
+  | "WARNING_TYPE_FUNCTION_CONFIGURATION";
+export const WarningWarningType = /*@__PURE__*/ S.String;
+
+export interface Warning {
+  type?: WarningWarningType;
+  message?: string;
+}
+export const Warning = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(WarningWarningType),
+    message: S.optional(S.String),
+  }),
+).annotate({ identifier: "Warning" }) as any as S.Schema<Warning>;
+
+export type WarningList = Array<Warning>;
+export const WarningList = /*@__PURE__*/ S.Array(
+  Warning,
+) as any as S.Schema<WarningList>;
+
+export interface AppRollbackResponse {
+  url?: string;
+  serverWarnings?: WarningList;
+  deployedAt?: number;
+}
+export const AppRollbackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    serverWarnings: S.optional(WarningList),
+    deployedAt: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AppRollbackResponse",
+}) as any as S.Schema<AppRollbackResponse>;
+
+export interface AppRolloverRequest {
+  appId?: string;
+}
+export const AppRolloverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppRollover",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppRolloverRequest",
+}) as any as S.Schema<AppRolloverRequest>;
+
+export interface AppRolloverResponse {
+  url?: string;
+  serverWarnings?: WarningList;
+  deployedAt?: number;
+}
+export const AppRolloverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    serverWarnings: S.optional(WarningList),
+    deployedAt: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AppRolloverResponse",
+}) as any as S.Schema<AppRolloverResponse>;
+
+export interface AppSetObjectsRequest {
+  appId?: string;
+  indexedObjectIds?: StringMap;
+  clientId?: string;
+  unindexedObjectIds?: StringList;
+  newAppState?: AppState | (string & {});
+}
+export const AppSetObjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    indexedObjectIds: S.optional(StringMap),
+    clientId: S.optional(S.String),
+    unindexedObjectIds: S.optional(StringList),
+    newAppState: S.optional(AppState),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppSetObjects",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppSetObjectsRequest",
+}) as any as S.Schema<AppSetObjectsRequest>;
+
+export interface AppSetObjectsResponse {}
+export const AppSetObjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AppSetObjectsResponse",
+}) as any as S.Schema<AppSetObjectsResponse>;
+
+export interface AppSetTagsRequest {
+  appId?: string;
+  tags?: StringMap;
+}
+export const AppSetTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    tags: S.optional(StringMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppSetTags",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AppSetTagsRequest",
+}) as any as S.Schema<AppSetTagsRequest>;
+
+export interface AppSetTagsResponse {}
+export const AppSetTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AppSetTagsResponse",
+}) as any as S.Schema<AppSetTagsResponse>;
+
+export interface CreateAppRequest {
+  clientId?: string;
+  description?: string;
+  /** Human readable label for the app */
+  environmentName?: string;
+  appState?: AppState | (string & {});
+  tags?: StringMap;
+}
+export const CreateAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientId: S.optional(S.String),
+    description: S.optional(S.String),
+    environmentName: S.optional(S.String),
+    appState: S.optional(AppState),
+    tags: S.optional(StringMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppCreate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateAppRequest",
+}) as any as S.Schema<CreateAppRequest>;
+
+export interface CreateAppResponse {
+  appId?: string;
+  appPageUrl?: string;
+  appLogsUrl?: string;
+}
+export const CreateAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    appPageUrl: S.optional(S.String),
+    appLogsUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateAppResponse",
+}) as any as S.Schema<CreateAppResponse>;
+
+/** gRPC protos for Modal's public API surface. Warning: direct usage of Modal's gRPC API is discouraged, and no support or compatibility guarantees are provided. Message fields or entire RPCs may be changed or removed without notice. We recommend using official SDKs instead. */
+export type AppDeployVisibility =
+  | "APP_DEPLOY_VISIBILITY_UNSPECIFIED"
+  | "APP_DEPLOY_VISIBILITY_WORKSPACE"
+  | "APP_DEPLOY_VISIBILITY_PUBLIC";
+export const AppDeployVisibility = /*@__PURE__*/ S.String;
+
+export interface DeployAppRequest {
+  appId?: string;
+  /** namespace */
+  name?: string;
+  objectEntity?: string;
+  visibility?: AppDeployVisibility | (string & {});
+  tag?: string;
+}
+export const DeployAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    name: S.optional(S.String),
+    objectEntity: S.optional(S.String),
+    visibility: S.optional(AppDeployVisibility),
+    tag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppDeploy",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployAppRequest",
+}) as any as S.Schema<DeployAppRequest>;
+
+export interface DeployAppResponse {
+  url?: string;
+}
+export const DeployAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeployAppResponse",
+}) as any as S.Schema<DeployAppResponse>;
+
+export type AppDisconnectReason =
+  | "APP_DISCONNECT_REASON_UNSPECIFIED"
+  | "APP_DISCONNECT_REASON_LOCAL_EXCEPTION"
+  | "APP_DISCONNECT_REASON_KEYBOARD_INTERRUPT"
+  | "APP_DISCONNECT_REASON_ENTRYPOINT_COMPLETED"
+  | "APP_DISCONNECT_REASON_DEPLOYMENT_EXCEPTION"
+  | "APP_DISCONNECT_REASON_REMOTE_EXCEPTION";
+export const AppDisconnectReason = /*@__PURE__*/ S.String;
+
+export interface DisconnectAppClientRequest {
+  appId?: string;
+  reason?: AppDisconnectReason | (string & {});
+  exception?: string;
+}
+export const DisconnectAppClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    reason: S.optional(AppDisconnectReason),
+    exception: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppClientDisconnect",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DisconnectAppClientRequest",
+}) as any as S.Schema<DisconnectAppClientRequest>;
+
+export interface DisconnectAppClientResponse {}
+export const DisconnectAppClientResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DisconnectAppClientResponse",
+}) as any as S.Schema<DisconnectAppClientResponse>;
 
 export interface ListAppRequest {
   environmentName?: string;
@@ -1397,7 +1326,7 @@ export const ListAppRequest = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "ListAppRequest" }) as any as S.Schema<ListAppRequest>;
 
-export interface AppListResponseAppListItem {
+export interface ListAppResponseAppListItem {
   appId?: string;
   description?: string;
   state?: AppState;
@@ -1406,7 +1335,7 @@ export interface AppListResponseAppListItem {
   nRunningTasks?: number;
   name?: string;
 }
-export const AppListResponseAppListItem = /*@__PURE__*/ S.suspend(() =>
+export const ListAppResponseAppListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
     description: S.optional(S.String),
@@ -1417,82 +1346,153 @@ export const AppListResponseAppListItem = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AppListResponseAppListItem",
-}) as any as S.Schema<AppListResponseAppListItem>;
+  identifier: "ListAppResponseAppListItem",
+}) as any as S.Schema<ListAppResponseAppListItem>;
 
-export type AppListResponseAppListItemList = Array<AppListResponseAppListItem>;
-export const AppListResponseAppListItemList = /*@__PURE__*/ S.Array(
-  AppListResponseAppListItem,
-) as any as S.Schema<AppListResponseAppListItemList>;
+export type ListAppResponseAppListItemList = Array<ListAppResponseAppListItem>;
+export const ListAppResponseAppListItemList = /*@__PURE__*/ S.Array(
+  ListAppResponseAppListItem,
+) as any as S.Schema<ListAppResponseAppListItemList>;
 
 export interface ListAppResponse {
-  apps?: AppListResponseAppListItemList;
+  apps?: ListAppResponseAppListItemList;
 }
 export const ListAppResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    apps: S.optional(AppListResponseAppListItemList),
+    apps: S.optional(ListAppResponseAppListItemList),
   }),
 ).annotate({
   identifier: "ListAppResponse",
 }) as any as S.Schema<ListAppResponse>;
 
-export interface SetAppObjectRequest {
-  appId?: string;
-  indexedObjectIds?: StringMap;
-  clientId?: string;
-  unindexedObjectIds?: StringList;
-  newAppState?: AppState | (string & {});
+export interface LookupAppRequest {
+  appName?: string;
+  environmentName?: string;
 }
-export const SetAppObjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const LookupAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    appId: S.optional(S.String),
-    indexedObjectIds: S.optional(StringMap),
-    clientId: S.optional(S.String),
-    unindexedObjectIds: S.optional(StringList),
-    newAppState: S.optional(AppState),
+    appName: S.optional(S.String),
+    environmentName: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/AppSetObjects",
+      uri: "/modal.client.ModalClient/AppLookup",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SetAppObjectRequest",
-}) as any as S.Schema<SetAppObjectRequest>;
+  identifier: "LookupAppRequest",
+}) as any as S.Schema<LookupAppRequest>;
 
-export interface SetAppObjectResponse {}
-export const SetAppObjectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SetAppObjectResponse",
-}) as any as S.Schema<SetAppObjectResponse>;
-
-export interface SetAppTagRequest {
+export interface LookupAppResponse {
   appId?: string;
+}
+export const LookupAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LookupAppResponse",
+}) as any as S.Schema<LookupAppResponse>;
+
+export interface PromoteAppRequest {
+  appId?: string;
+  version?: number;
+}
+export const PromoteAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    version: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/AppPromote",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PromoteAppRequest",
+}) as any as S.Schema<PromoteAppRequest>;
+
+export interface PromoteAppResponse {
+  url?: string;
+  serverWarnings?: WarningList;
+  deployedAt?: number;
+}
+export const PromoteAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    serverWarnings: S.optional(WarningList),
+    deployedAt: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "PromoteAppResponse",
+}) as any as S.Schema<PromoteAppResponse>;
+
+export interface PublishAppRequest {
+  appId?: string;
+  name?: string;
+  deploymentTag?: string;
+  /** Additional metadata to identify a deployment */
+  appState?: AppState | (string & {});
+  /** Published app will be in this state */
+  functionIds?: StringMap;
+  /** function_name -> function_id */
+  classIds?: StringMap;
+  /** class_name -> class_id */
+  definitionIds?: StringMap;
+  /** function_id -> definition_id */
+  rollbackVersion?: number;
+  /** Unused by client, but used internally */
+  clientVersion?: string;
+  /** Unused by client, but used internally */
+  commitInfo?: CommitInfo;
+  /** Git information for deployment tracking */
   tags?: StringMap;
+  /** Additional metadata to attach to the App If true, create a version pinned deployment but don't update the production deployment definition on publish */
+  staged?: boolean;
+  deploymentType?: DeploymentType | (string & {});
 }
-export const SetAppTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const PublishAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
+    name: S.optional(S.String),
+    deploymentTag: S.optional(S.String),
+    appState: S.optional(AppState),
+    functionIds: S.optional(StringMap),
+    classIds: S.optional(StringMap),
+    definitionIds: S.optional(StringMap),
+    rollbackVersion: S.optional(S.Number),
+    clientVersion: S.optional(S.String),
+    commitInfo: S.optional(CommitInfo),
     tags: S.optional(StringMap),
+    staged: S.optional(S.Boolean),
+    deploymentType: S.optional(DeploymentType),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/AppSetTags",
+      uri: "/modal.client.ModalClient/AppPublish",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SetAppTagRequest",
-}) as any as S.Schema<SetAppTagRequest>;
+  identifier: "PublishAppRequest",
+}) as any as S.Schema<PublishAppRequest>;
 
-export interface SetAppTagResponse {}
-export const SetAppTagResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface PublishAppResponse {
+  url?: string;
+  serverWarnings?: WarningList;
+  deployedAt?: number;
+}
+export const PublishAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    serverWarnings: S.optional(WarningList),
+    deployedAt: S.optional(S.Number),
+  }),
 ).annotate({
-  identifier: "SetAppTagResponse",
-}) as any as S.Schema<SetAppTagResponse>;
+  identifier: "PublishAppResponse",
+}) as any as S.Schema<PublishAppResponse>;
 
 export type AppStopSource =
   | "APP_STOP_SOURCE_UNSPECIFIED"
@@ -1525,21 +1525,6 @@ export const StopAppResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopAppResponse",
 }) as any as S.Schema<StopAppResponse>;
 
-export type AppClientDisconnectError = ModalOpError;
-/** Apps */
-export const appClientDisconnect: API.OperationMethod<
-  AppClientDisconnectRequest,
-  AppClientDisconnectResponse,
-  AppClientDisconnectError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppClientDisconnectRequest,
-  output: AppClientDisconnectResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AppCountLogsError = ModalOpError;
 export const appCountLogs: API.OperationMethod<
   AppCountLogsRequest,
@@ -1549,20 +1534,6 @@ export const appCountLogs: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AppCountLogsRequest,
   output: AppCountLogsResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppDeployError = ModalOpError;
-export const appDeploy: API.OperationMethod<
-  AppDeployRequest,
-  AppDeployResponse,
-  AppDeployError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppDeployRequest,
-  output: AppDeployResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -1596,6 +1567,76 @@ export const appFetchLogs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AppGetByDeploymentNameError = ModalOpError;
+export const appGetByDeploymentName: API.OperationMethod<
+  AppGetByDeploymentNameRequest,
+  AppGetByDeploymentNameResponse,
+  AppGetByDeploymentNameError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetByDeploymentNameRequest,
+  output: AppGetByDeploymentNameResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AppGetInfoError = ModalOpError;
+export const appGetInfo: API.OperationMethod<
+  AppGetInfoRequest,
+  AppGetInfoResponse,
+  AppGetInfoError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetInfoRequest,
+  output: AppGetInfoResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AppGetLayoutError = ModalOpError;
+export const appGetLayout: API.OperationMethod<
+  AppGetLayoutRequest,
+  AppGetLayoutResponse,
+  AppGetLayoutError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetLayoutRequest,
+  output: AppGetLayoutResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AppGetLifecycleError = ModalOpError;
+export const appGetLifecycle: API.OperationMethod<
+  AppGetLifecycleRequest,
+  AppGetLifecycleResponse,
+  AppGetLifecycleError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetLifecycleRequest,
+  output: AppGetLifecycleResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AppGetObjectsError = ModalOpError;
+export const appGetObjects: API.OperationMethod<
+  AppGetObjectsRequest,
+  AppGetObjectsResponse,
+  AppGetObjectsError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetObjectsRequest,
+  output: AppGetObjectsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AppGetOrCreateError = ModalOpError;
 export const appGetOrCreate: API.OperationMethod<
   AppGetOrCreateRequest,
@@ -1610,6 +1651,20 @@ export const appGetOrCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AppGetTagsError = ModalOpError;
+export const appGetTags: API.OperationMethod<
+  AppGetTagsRequest,
+  AppGetTagsResponse,
+  AppGetTagsError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppGetTagsRequest,
+  output: AppGetTagsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AppHeartbeatError = ModalOpError;
 export const appHeartbeat: API.OperationMethod<
   AppHeartbeatRequest,
@@ -1619,48 +1674,6 @@ export const appHeartbeat: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AppHeartbeatRequest,
   output: AppHeartbeatResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppLookupError = ModalOpError;
-export const appLookup: API.OperationMethod<
-  AppLookupRequest,
-  AppLookupResponse,
-  AppLookupError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppLookupRequest,
-  output: AppLookupResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppPromoteError = ModalOpError;
-export const appPromote: API.OperationMethod<
-  AppPromoteRequest,
-  AppPromoteResponse,
-  AppPromoteError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppPromoteRequest,
-  output: AppPromoteResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppPublishError = ModalOpError;
-export const appPublish: API.OperationMethod<
-  AppPublishRequest,
-  AppPublishResponse,
-  AppPublishError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppPublishRequest,
-  output: AppPublishResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -1694,6 +1707,34 @@ export const appRollover: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AppSetObjectsError = ModalOpError;
+export const appSetObjects: API.OperationMethod<
+  AppSetObjectsRequest,
+  AppSetObjectsResponse,
+  AppSetObjectsError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppSetObjectsRequest,
+  output: AppSetObjectsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AppSetTagsError = ModalOpError;
+export const appSetTags: API.OperationMethod<
+  AppSetTagsRequest,
+  AppSetTagsResponse,
+  AppSetTagsError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AppSetTagsRequest,
+  output: AppSetTagsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateAppError = ModalOpError;
 export const createApp: API.OperationMethod<
   CreateAppRequest,
@@ -1708,85 +1749,30 @@ export const createApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAppByDeploymentNameError = ModalOpError;
-export const getAppByDeploymentName: API.OperationMethod<
-  GetAppByDeploymentNameRequest,
-  GetAppByDeploymentNameResponse,
-  GetAppByDeploymentNameError,
+export type DeployAppError = ModalOpError;
+export const deployApp: API.OperationMethod<
+  DeployAppRequest,
+  DeployAppResponse,
+  DeployAppError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAppByDeploymentNameRequest,
-  output: GetAppByDeploymentNameResponse,
+  input: DeployAppRequest,
+  output: DeployAppResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAppInfoError = ModalOpError;
-export const getAppInfo: API.OperationMethod<
-  GetAppInfoRequest,
-  GetAppInfoResponse,
-  GetAppInfoError,
+export type DisconnectAppClientError = ModalOpError;
+/** Apps */
+export const disconnectAppClient: API.OperationMethod<
+  DisconnectAppClientRequest,
+  DisconnectAppClientResponse,
+  DisconnectAppClientError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAppInfoRequest,
-  output: GetAppInfoResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAppLayoutError = ModalOpError;
-export const getAppLayout: API.OperationMethod<
-  GetAppLayoutRequest,
-  GetAppLayoutResponse,
-  GetAppLayoutError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAppLayoutRequest,
-  output: GetAppLayoutResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAppLifecycleError = ModalOpError;
-export const getAppLifecycle: API.OperationMethod<
-  GetAppLifecycleRequest,
-  GetAppLifecycleResponse,
-  GetAppLifecycleError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAppLifecycleRequest,
-  output: GetAppLifecycleResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAppObjectError = ModalOpError;
-export const getAppObject: API.OperationMethod<
-  GetAppObjectRequest,
-  GetAppObjectResponse,
-  GetAppObjectError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAppObjectRequest,
-  output: GetAppObjectResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAppTagError = ModalOpError;
-export const getAppTag: API.OperationMethod<
-  GetAppTagRequest,
-  GetAppTagResponse,
-  GetAppTagError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAppTagRequest,
-  output: GetAppTagResponse,
+  input: DisconnectAppClientRequest,
+  output: DisconnectAppClientResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -1806,29 +1792,43 @@ export const listApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetAppObjectError = ModalOpError;
-export const setAppObject: API.OperationMethod<
-  SetAppObjectRequest,
-  SetAppObjectResponse,
-  SetAppObjectError,
+export type LookupAppError = ModalOpError;
+export const lookupApp: API.OperationMethod<
+  LookupAppRequest,
+  LookupAppResponse,
+  LookupAppError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetAppObjectRequest,
-  output: SetAppObjectResponse,
+  input: LookupAppRequest,
+  output: LookupAppResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetAppTagError = ModalOpError;
-export const setAppTag: API.OperationMethod<
-  SetAppTagRequest,
-  SetAppTagResponse,
-  SetAppTagError,
+export type PromoteAppError = ModalOpError;
+export const promoteApp: API.OperationMethod<
+  PromoteAppRequest,
+  PromoteAppResponse,
+  PromoteAppError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetAppTagRequest,
-  output: SetAppTagResponse,
+  input: PromoteAppRequest,
+  output: PromoteAppResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishAppError = ModalOpError;
+export const publishApp: API.OperationMethod<
+  PublishAppRequest,
+  PublishAppResponse,
+  PublishAppError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishAppRequest,
+  output: PublishAppResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

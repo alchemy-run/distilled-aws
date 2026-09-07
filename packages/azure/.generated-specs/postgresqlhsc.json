@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.postgresqlhsc#GetPrivateLinkResource": {
@@ -1143,7 +1144,7 @@
           }
         },
         "type": {
-          "target": "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequestType",
+          "target": "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "Resource type used for verification.",
             "smithy.api#required": {}
@@ -1154,7 +1155,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequestType": {
+    "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_DBFORPOSTGRESQL_SERVERGROUPSV2": {
@@ -3626,7 +3627,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4006,7 +4007,7 @@
         "smithy.api#documentation": "Schedule settings for regular cluster updates."
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateResponseTagsMap": {
+    "com.azure.postgresqlhsc#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4052,7 +4053,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.postgresqlhsc#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application-specific metadata in the form of key-value pairs."
           }
@@ -4062,7 +4063,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateRequestTagsMap": {
+    "com.azure.postgresqlhsc#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4220,7 +4221,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersCreateResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#CreateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4243,7 +4244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateResponseTagsMap": {
+    "com.azure.postgresqlhsc#CreateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4283,7 +4284,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersCreateRequestTagsMap",
+          "target": "com.azure.postgresqlhsc#CreateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4429,7 +4430,7 @@
         "smithy.api#documentation": "Properties of the cluster."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateRequestTagsMap": {
+    "com.azure.postgresqlhsc#CreateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4488,7 +4489,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersGetResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4511,7 +4512,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersGetResponseTagsMap": {
+    "com.azure.postgresqlhsc#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4730,79 +4731,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.postgresqlhsc#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListPrivateLinkResourceByCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListOperations"
-        },
-        {
           "target": "com.azure.postgresqlhsc#CheckClusterNameAvailability"
         },
         {
           "target": "com.azure.postgresqlhsc#ClustersPromoteReadReplica"
         },
         {
-          "target": "com.azure.postgresqlhsc#StopCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#StartCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#RestartCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListRoleByCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#DeleteRole"
+          "target": "com.azure.postgresqlhsc#CreateCluster"
         },
         {
           "target": "com.azure.postgresqlhsc#CreateRole"
         },
         {
-          "target": "com.azure.postgresqlhsc#GetRole"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListFirewallRuleByCluster"
+          "target": "com.azure.postgresqlhsc#DeleteCluster"
         },
         {
           "target": "com.azure.postgresqlhsc#DeleteFirewallRule"
         },
         {
+          "target": "com.azure.postgresqlhsc#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#DeleteRole"
+        },
+        {
           "target": "com.azure.postgresqlhsc#FirewallRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.postgresqlhsc#GetFirewallRule"
+          "target": "com.azure.postgresqlhsc#GetCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnNode"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#GetConfigurationNode"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinator"
+          "target": "com.azure.postgresqlhsc#GetConfiguration"
         },
         {
           "target": "com.azure.postgresqlhsc#GetConfigurationCoordinator"
         },
         {
-          "target": "com.azure.postgresqlhsc#GetConfiguration"
+          "target": "com.azure.postgresqlhsc#GetConfigurationNode"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#GetRole"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#GetServer"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListClusters"
         },
         {
           "target": "com.azure.postgresqlhsc#ListConfigurationByCluster"
@@ -4811,28 +4797,43 @@
           "target": "com.azure.postgresqlhsc#ListConfigurationByServer"
         },
         {
-          "target": "com.azure.postgresqlhsc#GetServer"
+          "target": "com.azure.postgresqlhsc#ListFirewallRuleByCluster"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListOperations"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByCluster"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListPrivateLinkResourceByCluster"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#ListRoleByCluster"
         },
         {
           "target": "com.azure.postgresqlhsc#ListServerByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#DeleteCluster"
+          "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#RestartCluster"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#StartCluster"
+        },
+        {
+          "target": "com.azure.postgresqlhsc#StopCluster"
         },
         {
           "target": "com.azure.postgresqlhsc#UpdateCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#CreateCluster"
+          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinator"
         },
         {
-          "target": "com.azure.postgresqlhsc#GetCluster"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.postgresqlhsc#ListClusters"
+          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnNode"
         }
       ],
       "traits": {

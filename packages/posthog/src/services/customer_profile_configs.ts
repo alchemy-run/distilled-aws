@@ -94,26 +94,25 @@ export const CustomerProfileConfigsDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "CustomerProfileConfigsDestroyResponse",
 }) as any as S.Schema<CustomerProfileConfigsDestroyResponse>;
 
-export interface CustomerProfileConfigsRetrieveRequest {
+export interface GetCustomerProfileConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const CustomerProfileConfigsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/customer_profile_configs/{id}/",
-        code: 200,
-      }),
-    ),
+export const GetCustomerProfileConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/customer_profile_configs/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "CustomerProfileConfigsRetrieveRequest",
-}) as any as S.Schema<CustomerProfileConfigsRetrieveRequest>;
+  identifier: "GetCustomerProfileConfigRequest",
+}) as any as S.Schema<GetCustomerProfileConfigRequest>;
 
 export interface ListCustomerProfileConfigsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -189,7 +188,7 @@ export const UpdateCustomerProfileConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateCustomerProfileConfigRequest",
 }) as any as S.Schema<UpdateCustomerProfileConfigRequest>;
 
-export interface UpdateCustomerProfileConfigPartialRequest {
+export interface UpdateCustomerProfileConfigsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -197,7 +196,7 @@ export interface UpdateCustomerProfileConfigPartialRequest {
   content?: unknown;
   sidebar?: unknown;
 }
-export const UpdateCustomerProfileConfigPartialRequest =
+export const UpdateCustomerProfileConfigsPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -213,8 +212,8 @@ export const UpdateCustomerProfileConfigPartialRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateCustomerProfileConfigPartialRequest",
-  }) as any as S.Schema<UpdateCustomerProfileConfigPartialRequest>;
+    identifier: "UpdateCustomerProfileConfigsPartialRequest",
+  }) as any as S.Schema<UpdateCustomerProfileConfigsPartialRequest>;
 
 export type CreateCustomerProfileConfigError = PosthogOpError;
 export const createCustomerProfileConfig: API.OperationMethod<
@@ -244,14 +243,14 @@ export const customerProfileConfigsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomerProfileConfigsRetrieveError = PosthogOpError;
-export const customerProfileConfigsRetrieve: API.OperationMethod<
-  CustomerProfileConfigsRetrieveRequest,
+export type GetCustomerProfileConfigError = PosthogOpError;
+export const getCustomerProfileConfig: API.OperationMethod<
+  GetCustomerProfileConfigRequest,
   CustomerProfileConfig,
-  CustomerProfileConfigsRetrieveError,
+  GetCustomerProfileConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerProfileConfigsRetrieveRequest,
+  input: GetCustomerProfileConfigRequest,
   output: CustomerProfileConfig,
   errors: [],
   protocol: PosthogProtocol,
@@ -286,14 +285,14 @@ export const updateCustomerProfileConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCustomerProfileConfigPartialError = PosthogOpError;
-export const updateCustomerProfileConfigPartial: API.OperationMethod<
-  UpdateCustomerProfileConfigPartialRequest,
+export type UpdateCustomerProfileConfigsPartialError = PosthogOpError;
+export const updateCustomerProfileConfigsPartial: API.OperationMethod<
+  UpdateCustomerProfileConfigsPartialRequest,
   CustomerProfileConfig,
-  UpdateCustomerProfileConfigPartialError,
+  UpdateCustomerProfileConfigsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCustomerProfileConfigPartialRequest,
+  input: UpdateCustomerProfileConfigsPartialRequest,
   output: CustomerProfileConfig,
   errors: [],
   protocol: PosthogProtocol,

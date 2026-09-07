@@ -21,6 +21,56 @@ const KEY_DICTIONARY: Record<string, string | ReadonlyArray<string>> = {
   totalCount: "total_count",
 };
 
+export type BulkDeleteRequestIdList = Array<string>;
+export const BulkDeleteRequestIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkDeleteRequestIdList>;
+
+export interface BulkDeleteFiltersRequest {
+  /** Defines an identifier. */
+  zoneId: string;
+  id: BulkDeleteRequestIdList;
+}
+export const BulkDeleteFiltersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    id: BulkDeleteRequestIdList.pipe(T.Query()),
+  })
+    .pipe(
+      T.Http({ method: "DELETE", uri: "/zones/{zone_id}/filters", code: 200 }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteFiltersRequest",
+}) as any as S.Schema<BulkDeleteFiltersRequest>;
+
+export interface BulkDeleteResultItem {
+  /** The unique identifier of the filter. */
+  id?: string | null;
+}
+export const BulkDeleteResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "BulkDeleteResultItem",
+}) as any as S.Schema<BulkDeleteResultItem>;
+
+export type BulkDeleteResultList = Array<BulkDeleteResultItem>;
+export const BulkDeleteResultList = /*@__PURE__*/ S.Array(
+  BulkDeleteResultItem,
+) as any as S.Schema<BulkDeleteResultList>;
+
+export type BulkDeleteFiltersResponse = BulkDeleteResultList;
+export const BulkDeleteFiltersResponse = /*@__PURE__*/ S.suspend(() =>
+  BulkDeleteResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "BulkDeleteFiltersResponse",
+}) as any as S.Schema<BulkDeleteFiltersResponse>;
+
 export interface BulkUpdateRequestBodyItem {
   /** The unique identifier of the filter. */
   id?: string;
@@ -158,56 +208,6 @@ export const CreateFilterResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateFilterResponse",
 }) as any as S.Schema<CreateFilterResponse>;
-
-export type BulkDeleteRequestIdList = Array<string>;
-export const BulkDeleteRequestIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkDeleteRequestIdList>;
-
-export interface DeleteBulkFilterRequest {
-  /** Defines an identifier. */
-  zoneId: string;
-  id: BulkDeleteRequestIdList;
-}
-export const DeleteBulkFilterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    id: BulkDeleteRequestIdList.pipe(T.Query()),
-  })
-    .pipe(
-      T.Http({ method: "DELETE", uri: "/zones/{zone_id}/filters", code: 200 }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkFilterRequest",
-}) as any as S.Schema<DeleteBulkFilterRequest>;
-
-export interface BulkDeleteResultItem {
-  /** The unique identifier of the filter. */
-  id?: string | null;
-}
-export const BulkDeleteResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "BulkDeleteResultItem",
-}) as any as S.Schema<BulkDeleteResultItem>;
-
-export type BulkDeleteResultList = Array<BulkDeleteResultItem>;
-export const BulkDeleteResultList = /*@__PURE__*/ S.Array(
-  BulkDeleteResultItem,
-) as any as S.Schema<BulkDeleteResultList>;
-
-export type DeleteBulkFilterResponse = BulkDeleteResultList;
-export const DeleteBulkFilterResponse = /*@__PURE__*/ S.suspend(() =>
-  BulkDeleteResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "DeleteBulkFilterResponse",
-}) as any as S.Schema<DeleteBulkFilterResponse>;
 
 export interface DeleteFilterRequest {
   /** Defines an identifier. */
@@ -411,6 +411,21 @@ export const UpdateFilterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateFilterResponse",
 }) as any as S.Schema<UpdateFilterResponse>;
 
+export type BulkDeleteFiltersError = CloudflareOpError;
+/** Deletes one or more existing filters. */
+export const bulkDeleteFilters: API.OperationMethod<
+  BulkDeleteFiltersRequest,
+  BulkDeleteFiltersResponse,
+  BulkDeleteFiltersError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteFiltersRequest,
+  output: BulkDeleteFiltersResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BulkPutFiltersError = CloudflareOpError;
 /** Updates one or more existing filters. */
 export const bulkPutFilters: API.PaginatedOperationMethod<
@@ -450,21 +465,6 @@ export const createFilter: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
-
-export type DeleteBulkFilterError = CloudflareOpError;
-/** Deletes one or more existing filters. */
-export const deleteBulkFilter: API.OperationMethod<
-  DeleteBulkFilterRequest,
-  DeleteBulkFilterResponse,
-  DeleteBulkFilterError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkFilterRequest,
-  output: DeleteBulkFilterResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
 
 export type DeleteFilterError = CloudflareOpError;
 /** Deletes an existing filter. */

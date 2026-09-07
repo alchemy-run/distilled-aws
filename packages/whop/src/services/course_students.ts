@@ -49,6 +49,101 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetCourseStudentRequest {
+  /** The unique identifier of the course student record to retrieve. */
+  id: string;
+}
+export const GetCourseStudentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/course_students/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCourseStudentRequest",
+}) as any as S.Schema<GetCourseStudentRequest>;
+
+/** The parent experience that this course belongs to. */
+export interface CourseStudentCourseExperience {
+  /** The unique identifier for the experience. */
+  id: string;
+}
+export const CourseStudentCourseExperience = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "CourseStudentCourseExperience",
+}) as any as S.Schema<CourseStudentCourseExperience>;
+
+/** The course this student is enrolled in. */
+export interface CourseStudentCourse {
+  /** The parent experience that this course belongs to. */
+  experience: CourseStudentCourseExperience;
+  /** The unique identifier for the course. */
+  id: string;
+  /** The display name of the course shown to students. Null if no title has been set. */
+  title: string | null;
+}
+export const CourseStudentCourse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experience: CourseStudentCourseExperience,
+    id: S.String,
+    title: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CourseStudentCourse",
+}) as any as S.Schema<CourseStudentCourse>;
+
+/** The user profile of the enrolled student. */
+export interface CourseStudentUser {
+  /** The unique identifier for the user. */
+  id: string;
+  /** The user's display name shown on their public profile. */
+  name: string | null;
+  /** The user's unique username shown on their public profile. */
+  username: string;
+}
+export const CourseStudentUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.NullOr(S.String),
+    username: S.String,
+  }),
+).annotate({
+  identifier: "CourseStudentUser",
+}) as any as S.Schema<CourseStudentUser>;
+
+/** An enrollment record for a student in a course, including progress and completion metrics. */
+export interface CourseStudent {
+  /** The total number of lessons this student has marked as completed in the course. */
+  completed_lessons_count: number;
+  /** The percentage of available lessons the student has completed, as a value from 0 to 100 rounded to two decimal places. */
+  completion_rate: number;
+  /** The course this student is enrolled in. */
+  course: CourseStudentCourse;
+  /** The timestamp when the student first interacted with this course, as a Unix timestamp. */
+  first_interaction_at: string;
+  /** The unique identifier for the course student type. */
+  id: string;
+  /** The timestamp when the student most recently interacted with this course, as a Unix timestamp. */
+  last_interaction_at: string;
+  /** The total number of visible lessons available to this student in the course. */
+  total_lessons_count: number;
+  /** The user profile of the enrolled student. */
+  user: CourseStudentUser;
+}
+export const CourseStudent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed_lessons_count: S.Number,
+    completion_rate: S.Number,
+    course: CourseStudentCourse,
+    first_interaction_at: S.String,
+    id: S.String,
+    last_interaction_at: S.String,
+    total_lessons_count: S.Number,
+    user: CourseStudentUser,
+  }),
+).annotate({ identifier: "CourseStudent" }) as any as S.Schema<CourseStudent>;
+
 export interface ListCourseStudentRequest {
   after?: string;
   before?: string;
@@ -71,23 +166,8 @@ export const ListCourseStudentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCourseStudentRequest>;
 
 /** The user profile of the enrolled student. */
-export interface CourseStudentListItemUser {
-  /** The unique identifier for the user. */
-  id: string;
-  /** The user's display name shown on their public profile. */
-  name: string | null;
-  /** The user's unique username shown on their public profile. */
-  username: string;
-}
-export const CourseStudentListItemUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.NullOr(S.String),
-    username: S.String,
-  }),
-).annotate({
-  identifier: "CourseStudentListItemUser",
-}) as any as S.Schema<CourseStudentListItemUser>;
+export type CourseStudentListItemUser = CourseStudentUser;
+export const CourseStudentListItemUser = CourseStudentUser;
 
 /** An enrollment record for a student in a course, including progress and completion metrics. */
 export interface CourseStudentListItem {
@@ -104,7 +184,7 @@ export interface CourseStudentListItem {
   /** The total number of visible lessons available to this student in the course. */
   total_lessons_count: number;
   /** The user profile of the enrolled student. */
-  user: CourseStudentListItemUser;
+  user: CourseStudentUser;
 }
 export const CourseStudentListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -114,7 +194,7 @@ export const CourseStudentListItem = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     last_interaction_at: S.String,
     total_lessons_count: S.Number,
-    user: CourseStudentListItemUser,
+    user: CourseStudentUser,
   }),
 ).annotate({
   identifier: "CourseStudentListItem",
@@ -161,85 +241,25 @@ export const ListCourseStudentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCourseStudentResponse",
 }) as any as S.Schema<ListCourseStudentResponse>;
 
-export interface RetrieveCourseStudentRequest {
-  /** The unique identifier of the course student record to retrieve. */
-  id: string;
-}
-export const RetrieveCourseStudentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/course_students/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCourseStudentRequest",
-}) as any as S.Schema<RetrieveCourseStudentRequest>;
-
-/** The parent experience that this course belongs to. */
-export interface CourseStudentCourseExperience {
-  /** The unique identifier for the experience. */
-  id: string;
-}
-export const CourseStudentCourseExperience = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "CourseStudentCourseExperience",
-}) as any as S.Schema<CourseStudentCourseExperience>;
-
-/** The course this student is enrolled in. */
-export interface CourseStudentCourse {
-  /** The parent experience that this course belongs to. */
-  experience: CourseStudentCourseExperience;
-  /** The unique identifier for the course. */
-  id: string;
-  /** The display name of the course shown to students. Null if no title has been set. */
-  title: string | null;
-}
-export const CourseStudentCourse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experience: CourseStudentCourseExperience,
-    id: S.String,
-    title: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "CourseStudentCourse",
-}) as any as S.Schema<CourseStudentCourse>;
-
-/** The user profile of the enrolled student. */
-export type CourseStudentUser = CourseStudentListItemUser;
-export const CourseStudentUser = CourseStudentListItemUser;
-
-/** An enrollment record for a student in a course, including progress and completion metrics. */
-export interface CourseStudent {
-  /** The total number of lessons this student has marked as completed in the course. */
-  completed_lessons_count: number;
-  /** The percentage of available lessons the student has completed, as a value from 0 to 100 rounded to two decimal places. */
-  completion_rate: number;
-  /** The course this student is enrolled in. */
-  course: CourseStudentCourse;
-  /** The timestamp when the student first interacted with this course, as a Unix timestamp. */
-  first_interaction_at: string;
-  /** The unique identifier for the course student type. */
-  id: string;
-  /** The timestamp when the student most recently interacted with this course, as a Unix timestamp. */
-  last_interaction_at: string;
-  /** The total number of visible lessons available to this student in the course. */
-  total_lessons_count: number;
-  /** The user profile of the enrolled student. */
-  user: CourseStudentListItemUser;
-}
-export const CourseStudent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed_lessons_count: S.Number,
-    completion_rate: S.Number,
-    course: CourseStudentCourse,
-    first_interaction_at: S.String,
-    id: S.String,
-    last_interaction_at: S.String,
-    total_lessons_count: S.Number,
-    user: CourseStudentListItemUser,
-  }),
-).annotate({ identifier: "CourseStudent" }) as any as S.Schema<CourseStudent>;
+export type GetCourseStudentError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve course student [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course student. Required permissions: - `courses:read` - `course_analytics:read` */
+export const getCourseStudent: API.OperationMethod<
+  GetCourseStudentRequest,
+  CourseStudent,
+  GetCourseStudentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCourseStudentRequest,
+  output: CourseStudent,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListCourseStudentError =
   | BadRequest
@@ -272,23 +292,3 @@ export const listCourseStudent: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCourseStudentError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve course student [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course student. Required permissions: - `courses:read` - `course_analytics:read` */
-export const retrieveCourseStudent: API.OperationMethod<
-  RetrieveCourseStudentRequest,
-  CourseStudent,
-  RetrieveCourseStudentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCourseStudentRequest,
-  output: CourseStudent,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

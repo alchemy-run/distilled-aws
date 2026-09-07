@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.datalake_analytics#CheckAccountNameAvailability": {
@@ -89,7 +90,7 @@
           }
         },
         "type": {
-          "target": "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequestType",
+          "target": "com.azure.datalake_analytics#CheckAccountNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts",
             "smithy.api#required": {}
@@ -100,7 +101,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequestType": {
+    "com.azure.datalake_analytics#CheckAccountNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_DATALAKEANALYTICS_ACCOUNTS": {
@@ -2152,10 +2153,10 @@
         "smithy.api#documentation": "The Azure Storage account properties to use when updating an Azure Storage account."
       }
     },
-    "com.azure.datalake_analytics#StorageAccountsAdd": {
+    "com.azure.datalake_analytics#AddStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_analytics#StorageAccountsAddRequest"
+        "target": "com.azure.datalake_analytics#AddStorageAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2171,7 +2172,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_analytics#StorageAccountsAddRequest": {
+    "com.azure.datalake_analytics#AddStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2557,10 +2558,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_analytics#DataLakeStoreAccountsAdd": {
+    "com.azure.datalake_analytics#AddDataLakeStoreAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsAddRequest"
+        "target": "com.azure.datalake_analytics#AddDataLakeStoreAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2576,7 +2577,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_analytics#DataLakeStoreAccountsAddRequest": {
+    "com.azure.datalake_analytics#AddDataLakeStoreAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2993,7 +2994,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_analytics#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.datalake_analytics#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3717,7 +3718,7 @@
         "smithy.api#documentation": "The provisioning status of the Data Lake Analytics account."
       }
     },
-    "com.azure.datalake_analytics#AccountsUpdateResponseTagsMap": {
+    "com.azure.datalake_analytics#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3757,7 +3758,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_analytics#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.datalake_analytics#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -4089,7 +4090,7 @@
         "smithy.api#documentation": "The Data Lake Store account properties to use when updating a Data Lake Store account."
       }
     },
-    "com.azure.datalake_analytics#AccountsUpdateRequestTagsMap": {
+    "com.azure.datalake_analytics#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4148,7 +4149,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_analytics#AccountsCreateResponseTagsMap",
+          "target": "com.azure.datalake_analytics#CreateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -4164,7 +4165,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_analytics#AccountsCreateResponseTagsMap": {
+    "com.azure.datalake_analytics#CreateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4211,7 +4212,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_analytics#AccountsCreateRequestTagsMap",
+          "target": "com.azure.datalake_analytics#CreateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -4539,7 +4540,7 @@
         "smithy.api#documentation": "The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account."
       }
     },
-    "com.azure.datalake_analytics#AccountsCreateRequestTagsMap": {
+    "com.azure.datalake_analytics#CreateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4598,7 +4599,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_analytics#AccountsGetResponseTagsMap",
+          "target": "com.azure.datalake_analytics#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -4614,7 +4615,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_analytics#AccountsGetResponseTagsMap": {
+    "com.azure.datalake_analytics#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5054,97 +5055,97 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.datalake_analytics#AddDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AddStorageAccount"
+        },
+        {
           "target": "com.azure.datalake_analytics#CheckAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetLocationCapability"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListOperations"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListFirewallRuleByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteComputePolicy"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateComputePolicy"
         },
         {
           "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.datalake_analytics#GetComputePolicy"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListComputePolicyByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountSasTokens"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetStorageAccountStorageContainer"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountStorageContainers"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteStorageAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateStorageAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#StorageAccountsAdd"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetStorageAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteDataLakeStoreAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DataLakeStoreAccountsAdd"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetDataLakeStoreAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListDataLakeStoreAccountByAccount"
+          "target": "com.azure.datalake_analytics#CreateAccount"
         },
         {
           "target": "com.azure.datalake_analytics#DeleteAccount"
         },
         {
-          "target": "com.azure.datalake_analytics#UpdateAccount"
+          "target": "com.azure.datalake_analytics#DeleteComputePolicy"
         },
         {
-          "target": "com.azure.datalake_analytics#CreateAccount"
+          "target": "com.azure.datalake_analytics#DeleteDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate"
         },
         {
           "target": "com.azure.datalake_analytics#GetAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetComputePolicy"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetLocationCapability"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetStorageAccountStorageContainer"
         },
         {
           "target": "com.azure.datalake_analytics#ListAccountByResourceGroup"
         },
         {
           "target": "com.azure.datalake_analytics#ListAccounts"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListComputePolicyByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListDataLakeStoreAccountByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListFirewallRuleByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListOperations"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountSasTokens"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountStorageContainers"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateComputePolicy"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateStorageAccount"
         }
       ],
       "traits": {

@@ -40,13 +40,492 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface AuthorizeV1JitAccessRequest {
+export interface V1AcceptInviteExternalJitAccessRequest {
+  /** Project ref */
+  ref: string;
+  email: string;
+  token: string;
+}
+export const V1AcceptInviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ref: S.String.pipe(T.Label()),
+      email: S.String,
+      token: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/projects/{ref}/database/jit/invite/accept",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "V1AcceptInviteExternalJitAccessRequest",
+}) as any as S.Schema<V1AcceptInviteExternalJitAccessRequest>;
+
+export interface JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem {
+  cidr: string;
+}
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      cidr: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem",
+  }) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList>;
+
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List>;
+
+export interface JitAccessResponseOutputUserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List;
+}
+export const JitAccessResponseOutputUserRolesItemAllowedNetworks =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowed_cidrs: S.optional(
+        JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList,
+      ),
+      allowed_cidrs_v6: S.optional(
+        JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List,
+      ),
+    }),
+  ).annotate({
+    identifier: "JitAccessResponseOutputUserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworks>;
+
+export interface JitAccessResponseOutputUserRolesItem {
+  role: string;
+  expires_at?: number;
+  allowed_networks?: JitAccessResponseOutputUserRolesItemAllowedNetworks;
+  branches_only?: boolean;
+}
+export const JitAccessResponseOutputUserRolesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        JitAccessResponseOutputUserRolesItemAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "JitAccessResponseOutputUserRolesItem",
+}) as any as S.Schema<JitAccessResponseOutputUserRolesItem>;
+
+export type JitAccessResponseOutputUserRolesList =
+  Array<JitAccessResponseOutputUserRolesItem>;
+export const JitAccessResponseOutputUserRolesList = /*@__PURE__*/ S.Array(
+  JitAccessResponseOutputUserRolesItem,
+) as any as S.Schema<JitAccessResponseOutputUserRolesList>;
+
+export interface JitAccessResponseOutput {
+  user_id?: string;
+  user_roles: JitAccessResponseOutputUserRolesList;
+}
+export const JitAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.optional(S.String),
+    user_roles: JitAccessResponseOutputUserRolesList,
+  }),
+).annotate({
+  identifier: "JitAccessResponseOutput",
+}) as any as S.Schema<JitAccessResponseOutput>;
+
+export interface V1ActivateCustomHostnameRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1ActivateCustomHostnameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/custom-hostname/activate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ActivateCustomHostnameRequest",
+}) as any as S.Schema<V1ActivateCustomHostnameRequest>;
+
+export type UpdateCustomHostnameResponseOutputStatus =
+  | "1_not_started"
+  | "2_initiated"
+  | "3_challenge_verified"
+  | "4_origin_setup_completed"
+  | "5_services_reconfigured";
+export const UpdateCustomHostnameResponseOutputStatus = /*@__PURE__*/ S.String;
+
+export type JsonValueOutputCase0 = string | number | boolean;
+export const JsonValueOutputCase0 = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], [], []]),
+);
+
+export type JsonValueOutputCase1List = Array<JsonValueOutput>;
+export const JsonValueOutputCase1List = /*@__PURE__*/ S.Array(
+  S.suspend(() => JsonValueOutput),
+) as any as S.Schema<JsonValueOutputCase1List>;
+
+export type JsonValueOutputCase2Map = {
+  [key: string]: JsonValueOutput | undefined;
+};
+export const JsonValueOutputCase2Map = /*@__PURE__*/ S.Record(
+  S.String,
+  S.suspend(() => JsonValueOutput),
+) as any as S.Schema<JsonValueOutputCase2Map>;
+
+/** Any JSON-serializable value */
+export type JsonValueOutput =
+  | JsonValueOutputCase0
+  | JsonValueOutputCase1List
+  | JsonValueOutputCase2Map;
+export const JsonValueOutput = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], [], []]),
+);
+
+export type UpdateCustomHostnameResponseOutputDataErrorsList =
+  Array<JsonValueOutput>;
+export const UpdateCustomHostnameResponseOutputDataErrorsList =
+  /*@__PURE__*/ S.Array(
+    JsonValueOutput,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataErrorsList>;
+
+export type UpdateCustomHostnameResponseOutputDataMessagesList =
+  Array<JsonValueOutput>;
+export const UpdateCustomHostnameResponseOutputDataMessagesList =
+  /*@__PURE__*/ S.Array(
+    JsonValueOutput,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataMessagesList>;
+
+export interface UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem {
+  txt_name: string;
+  txt_value: string;
+}
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      txt_name: S.String,
+      txt_value: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem>;
+
+export type UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList =
+  Array<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem>;
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList =
+  /*@__PURE__*/ S.Array(
+    UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList>;
+
+export interface UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem {
+  message: string;
+}
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      message: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem>;
+
+export type UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList =
+  Array<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem>;
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList =
+  /*@__PURE__*/ S.Array(
+    UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList>;
+
+export interface UpdateCustomHostnameResponseOutputDataResultSsl {
+  status: string;
+  validation_records?: UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList;
+  validation_errors?: UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList;
+}
+export const UpdateCustomHostnameResponseOutputDataResultSsl =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.String,
+      validation_records: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList,
+      ),
+      validation_errors: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateCustomHostnameResponseOutputDataResultSsl",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSsl>;
+
+export interface UpdateCustomHostnameResponseOutputDataResultOwnershipVerification {
+  type: string;
+  name: string;
+  value: string;
+}
+export const UpdateCustomHostnameResponseOutputDataResultOwnershipVerification =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.String,
+      name: S.String,
+      value: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateCustomHostnameResponseOutputDataResultOwnershipVerification",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultOwnershipVerification>;
+
+export type UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList =
+  Array<string>;
+export const UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList>;
+
+export interface UpdateCustomHostnameResponseOutputDataResult {
+  id: string;
+  hostname: string;
+  ssl: UpdateCustomHostnameResponseOutputDataResultSsl;
+  ownership_verification?: UpdateCustomHostnameResponseOutputDataResultOwnershipVerification;
+  custom_origin_server: string;
+  verification_errors?: UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList;
+  status: string;
+}
+export const UpdateCustomHostnameResponseOutputDataResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      hostname: S.String,
+      ssl: UpdateCustomHostnameResponseOutputDataResultSsl,
+      ownership_verification: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultOwnershipVerification,
+      ),
+      custom_origin_server: S.String,
+      verification_errors: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList,
+      ),
+      status: S.String,
+    }),
+  ).annotate({
+    identifier: "UpdateCustomHostnameResponseOutputDataResult",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResult>;
+
+export interface UpdateCustomHostnameResponseOutputData {
+  success: boolean;
+  errors: UpdateCustomHostnameResponseOutputDataErrorsList;
+  messages: UpdateCustomHostnameResponseOutputDataMessagesList;
+  result: UpdateCustomHostnameResponseOutputDataResult;
+}
+export const UpdateCustomHostnameResponseOutputData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      success: S.Boolean,
+      errors: UpdateCustomHostnameResponseOutputDataErrorsList,
+      messages: UpdateCustomHostnameResponseOutputDataMessagesList,
+      result: UpdateCustomHostnameResponseOutputDataResult,
+    }),
+).annotate({
+  identifier: "UpdateCustomHostnameResponseOutputData",
+}) as any as S.Schema<UpdateCustomHostnameResponseOutputData>;
+
+export interface UpdateCustomHostnameResponseOutput {
+  status: UpdateCustomHostnameResponseOutputStatus;
+  custom_hostname: string;
+  data: UpdateCustomHostnameResponseOutputData;
+}
+export const UpdateCustomHostnameResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: UpdateCustomHostnameResponseOutputStatus,
+    custom_hostname: S.String,
+    data: UpdateCustomHostnameResponseOutputData,
+  }),
+).annotate({
+  identifier: "UpdateCustomHostnameResponseOutput",
+}) as any as S.Schema<UpdateCustomHostnameResponseOutput>;
+
+export interface V1ActivateVanitySubdomainConfigRequest {
+  /** Project ref */
+  ref: string;
+  vanity_subdomain: string;
+}
+export const V1ActivateVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ref: S.String.pipe(T.Label()),
+      vanity_subdomain: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/projects/{ref}/vanity-subdomain/activate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "V1ActivateVanitySubdomainConfigRequest",
+}) as any as S.Schema<V1ActivateVanitySubdomainConfigRequest>;
+
+export interface ActivateVanitySubdomainResponseOutput {
+  custom_domain: string;
+}
+export const ActivateVanitySubdomainResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      custom_domain: S.String,
+    }),
+).annotate({
+  identifier: "ActivateVanitySubdomainResponseOutput",
+}) as any as S.Schema<ActivateVanitySubdomainResponseOutput>;
+
+export interface V1ApplyAMigrationRequest {
+  /** Project ref */
+  ref: string;
+  query: string;
+  name?: string;
+  rollback?: string;
+}
+export const V1ApplyAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    query: S.String,
+    name: S.optional(S.String),
+    rollback: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/migrations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ApplyAMigrationRequest",
+}) as any as S.Schema<V1ApplyAMigrationRequest>;
+
+export interface V1ApplyAMigrationResponse {}
+export const V1ApplyAMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ApplyAMigrationResponse",
+}) as any as S.Schema<V1ApplyAMigrationResponse>;
+
+export type V1ApplyProjectAddonRequestAddonVariantCase0 =
+  | "ci_micro"
+  | "ci_small"
+  | "ci_medium"
+  | "ci_large"
+  | "ci_xlarge"
+  | "ci_2xlarge"
+  | "ci_4xlarge"
+  | "ci_8xlarge"
+  | "ci_12xlarge"
+  | "ci_16xlarge"
+  | "ci_24xlarge"
+  | "ci_24xlarge_optimized_cpu"
+  | "ci_24xlarge_optimized_memory"
+  | "ci_24xlarge_high_memory"
+  | "ci_48xlarge"
+  | "ci_48xlarge_optimized_cpu"
+  | "ci_48xlarge_optimized_memory"
+  | "ci_48xlarge_high_memory";
+export const V1ApplyProjectAddonRequestAddonVariantCase0 =
+  /*@__PURE__*/ S.String;
+
+export type V1ApplyProjectAddonRequestAddonVariantCase1 = "cd_default";
+export const V1ApplyProjectAddonRequestAddonVariantCase1 =
+  /*@__PURE__*/ S.String;
+
+export type V1ApplyProjectAddonRequestAddonVariantCase2 =
+  | "pitr_7"
+  | "pitr_14"
+  | "pitr_28";
+export const V1ApplyProjectAddonRequestAddonVariantCase2 =
+  /*@__PURE__*/ S.String;
+
+export type V1ApplyProjectAddonRequestAddonVariantCase3 = "ipv4_default";
+export const V1ApplyProjectAddonRequestAddonVariantCase3 =
+  /*@__PURE__*/ S.String;
+
+export type V1ApplyProjectAddonRequestAddonVariant =
+  | V1ApplyProjectAddonRequestAddonVariantCase0
+  | (string & {})
+  | V1ApplyProjectAddonRequestAddonVariantCase1
+  | (string & {})
+  | V1ApplyProjectAddonRequestAddonVariantCase2
+  | (string & {})
+  | V1ApplyProjectAddonRequestAddonVariantCase3
+  | (string & {});
+export const V1ApplyProjectAddonRequestAddonVariant =
+  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
+
+export type V1ApplyProjectAddonRequestAddonType =
+  | "custom_domain"
+  | "compute_instance"
+  | "pitr"
+  | "ipv4"
+  | "auth_mfa_phone"
+  | "auth_mfa_web_authn"
+  | "log_drain"
+  | "etl_pipeline";
+export const V1ApplyProjectAddonRequestAddonType = /*@__PURE__*/ S.String;
+
+export interface V1ApplyProjectAddonRequest {
+  /** Project ref */
+  ref: string;
+  addon_variant: V1ApplyProjectAddonRequestAddonVariant;
+  addon_type: V1ApplyProjectAddonRequestAddonType | (string & {});
+}
+export const V1ApplyProjectAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    addon_variant: V1ApplyProjectAddonRequestAddonVariant,
+    addon_type: V1ApplyProjectAddonRequestAddonType,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/projects/{ref}/billing/addons",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ApplyProjectAddonRequest",
+}) as any as S.Schema<V1ApplyProjectAddonRequest>;
+
+export interface V1ApplyProjectAddonResponse {}
+export const V1ApplyProjectAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ApplyProjectAddonResponse",
+}) as any as S.Schema<V1ApplyProjectAddonResponse>;
+
+export interface V1AuthorizeJitAccessRequest {
   /** Project ref */
   ref: string;
   role: string;
   rhost: string;
 }
-export const AuthorizeV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1AuthorizeJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     role: S.String,
@@ -59,151 +538,83 @@ export const AuthorizeV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AuthorizeV1JitAccessRequest",
-}) as any as S.Schema<AuthorizeV1JitAccessRequest>;
+  identifier: "V1AuthorizeJitAccessRequest",
+}) as any as S.Schema<V1AuthorizeJitAccessRequest>;
 
-export interface JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem {
-  cidr: string;
-}
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      cidr: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem",
-  }) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList =
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList>;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List =
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitAuthorizeAccessResponseUserRoleAllowedNetworks {
-  allowed_cidrs?: JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List;
+export interface JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks {
+  allowed_cidrs?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List;
 }
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworks =
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList,
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List,
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
-    identifier: "JitAuthorizeAccessResponseUserRoleAllowedNetworks",
-  }) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworks>;
+    identifier: "JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks",
+  }) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks>;
 
-export interface JitAuthorizeAccessResponseUserRole {
+export interface JitAuthorizeAccessResponseOutputUserRole {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitAuthorizeAccessResponseUserRoleAllowedNetworks;
+  allowed_networks?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitAuthorizeAccessResponseUserRole = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.String,
-    expires_at: S.optional(S.Number),
-    allowed_networks: S.optional(
-      JitAuthorizeAccessResponseUserRoleAllowedNetworks,
-    ),
-    branches_only: S.optional(S.Boolean),
-  }),
+export const JitAuthorizeAccessResponseOutputUserRole = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
 ).annotate({
-  identifier: "JitAuthorizeAccessResponseUserRole",
-}) as any as S.Schema<JitAuthorizeAccessResponseUserRole>;
+  identifier: "JitAuthorizeAccessResponseOutputUserRole",
+}) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRole>;
 
-export interface JitAuthorizeAccessResponse {
+export interface JitAuthorizeAccessResponseOutput {
   user_id: string;
-  user_role: JitAuthorizeAccessResponseUserRole;
+  user_role: JitAuthorizeAccessResponseOutputUserRole;
 }
-export const JitAuthorizeAccessResponse = /*@__PURE__*/ S.suspend(() =>
+export const JitAuthorizeAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
-    user_role: JitAuthorizeAccessResponseUserRole,
+    user_role: JitAuthorizeAccessResponseOutputUserRole,
   }),
 ).annotate({
-  identifier: "JitAuthorizeAccessResponse",
-}) as any as S.Schema<JitAuthorizeAccessResponse>;
-
-export type V1OauthAuthorizeProjectClaimRequestResponseType =
-  | "code"
-  | "token"
-  | "id_token token";
-export const V1OauthAuthorizeProjectClaimRequestResponseType =
-  /*@__PURE__*/ S.String;
-
-export type V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
-  | "plain"
-  | "sha256"
-  | "S256";
-export const V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
-  /*@__PURE__*/ S.String;
-
-export interface AuthorizeV1OauthProjectClaimRequest {
-  /** Project ref */
-  project_ref: string;
-  client_id: string;
-  response_type:
-    | V1OauthAuthorizeProjectClaimRequestResponseType
-    | (string & {});
-  redirect_uri: string;
-  state?: string;
-  response_mode?: string;
-  code_challenge?: string;
-  code_challenge_method?:
-    | V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod
-    | (string & {});
-}
-export const AuthorizeV1OauthProjectClaimRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_ref: S.String.pipe(T.Query()),
-    client_id: S.String.pipe(T.Query()),
-    response_type: V1OauthAuthorizeProjectClaimRequestResponseType.pipe(
-      T.Query(),
-    ),
-    redirect_uri: S.String.pipe(T.Query()),
-    state: S.optional(S.String.pipe(T.Query())),
-    response_mode: S.optional(S.String.pipe(T.Query())),
-    code_challenge: S.optional(S.String.pipe(T.Query())),
-    code_challenge_method: S.optional(
-      V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/oauth/authorize/project-claim",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizeV1OauthProjectClaimRequest",
-}) as any as S.Schema<AuthorizeV1OauthProjectClaimRequest>;
-
-export interface AuthorizeV1OauthProjectClaimResponse {}
-export const AuthorizeV1OauthProjectClaimResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AuthorizeV1OauthProjectClaimResponse",
-}) as any as S.Schema<AuthorizeV1OauthProjectClaimResponse>;
+  identifier: "JitAuthorizeAccessResponseOutput",
+}) as any as S.Schema<JitAuthorizeAccessResponseOutput>;
 
 export type V1AuthorizeUserRequestResponseType =
   | "code"
@@ -217,7 +628,7 @@ export type V1AuthorizeUserRequestCodeChallengeMethod =
   | "S256";
 export const V1AuthorizeUserRequestCodeChallengeMethod = /*@__PURE__*/ S.String;
 
-export interface AuthorizeV1UserRequest {
+export interface V1AuthorizeUserRequest {
   client_id: string;
   response_type: V1AuthorizeUserRequestResponseType | (string & {});
   redirect_uri: string;
@@ -234,7 +645,7 @@ export interface AuthorizeV1UserRequest {
   /** Resource indicator for MCP (Model Context Protocol) clients */
   resource?: string;
 }
-export const AuthorizeV1UserRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1AuthorizeUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     client_id: S.String.pipe(T.Query()),
     response_type: V1AuthorizeUserRequestResponseType.pipe(T.Query()),
@@ -251,22 +662,234 @@ export const AuthorizeV1UserRequest = /*@__PURE__*/ S.suspend(() =>
     resource: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v1/oauth/authorize", code: 200 })),
 ).annotate({
-  identifier: "AuthorizeV1UserRequest",
-}) as any as S.Schema<AuthorizeV1UserRequest>;
+  identifier: "V1AuthorizeUserRequest",
+}) as any as S.Schema<V1AuthorizeUserRequest>;
 
-export interface AuthorizeV1UserResponse {}
-export const AuthorizeV1UserResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1AuthorizeUserResponse {}
+export const V1AuthorizeUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AuthorizeV1UserResponse",
-}) as any as S.Schema<AuthorizeV1UserResponse>;
+  identifier: "V1AuthorizeUserResponse",
+}) as any as S.Schema<V1AuthorizeUserResponse>;
 
-export interface CheckV1VanitySubdomainAvailabilityRequest {
+export interface CreateSecretBodyItem {
+  /** Secret name must not start with the SUPABASE_ prefix. */
+  name: string;
+  value: string;
+}
+export const CreateSecretBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "CreateSecretBodyItem",
+}) as any as S.Schema<CreateSecretBodyItem>;
+
+export type CreateSecretBody = Array<CreateSecretBodyItem>;
+export const CreateSecretBody = /*@__PURE__*/ S.Array(
+  CreateSecretBodyItem,
+) as any as S.Schema<CreateSecretBody>;
+
+export interface V1BulkCreateSecretsRequest {
+  /** Project ref */
+  ref: string;
+  body: CreateSecretBody;
+}
+export const V1BulkCreateSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    body: CreateSecretBody.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/projects/{ref}/secrets", code: 200 }),
+  ),
+).annotate({
+  identifier: "V1BulkCreateSecretsRequest",
+}) as any as S.Schema<V1BulkCreateSecretsRequest>;
+
+export interface V1BulkCreateSecretsResponse {}
+export const V1BulkCreateSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1BulkCreateSecretsResponse",
+}) as any as S.Schema<V1BulkCreateSecretsResponse>;
+
+export type DeleteSecretsBody = Array<string>;
+export const DeleteSecretsBody = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteSecretsBody>;
+
+export interface V1BulkDeleteSecretsRequest {
+  /** Project ref */
+  ref: string;
+  body: DeleteSecretsBody;
+}
+export const V1BulkDeleteSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    body: DeleteSecretsBody.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/projects/{ref}/secrets", code: 200 }),
+  ),
+).annotate({
+  identifier: "V1BulkDeleteSecretsRequest",
+}) as any as S.Schema<V1BulkDeleteSecretsRequest>;
+
+export interface V1BulkDeleteSecretsResponse {}
+export const V1BulkDeleteSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1BulkDeleteSecretsResponse",
+}) as any as S.Schema<V1BulkDeleteSecretsResponse>;
+
+export type BulkUpdateFunctionBodyItemStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const BulkUpdateFunctionBodyItemStatus = /*@__PURE__*/ S.String;
+
+export interface BulkUpdateFunctionBodyItem {
+  id: string;
+  slug: string;
+  name: string;
+  status: BulkUpdateFunctionBodyItemStatus | (string & {});
+  version: number;
+  created_at?: number;
+  verify_jwt?: boolean;
+  import_map?: boolean;
+  entrypoint_path?: string;
+  import_map_path?: string;
+  ezbr_sha256?: string;
+}
+export const BulkUpdateFunctionBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    slug: S.String,
+    name: S.String,
+    status: BulkUpdateFunctionBodyItemStatus,
+    version: S.Number,
+    created_at: S.optional(S.Number),
+    verify_jwt: S.optional(S.Boolean),
+    import_map: S.optional(S.Boolean),
+    entrypoint_path: S.optional(S.String),
+    import_map_path: S.optional(S.String),
+    ezbr_sha256: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkUpdateFunctionBodyItem",
+}) as any as S.Schema<BulkUpdateFunctionBodyItem>;
+
+export type BulkUpdateFunctionBody = Array<BulkUpdateFunctionBodyItem>;
+export const BulkUpdateFunctionBody = /*@__PURE__*/ S.Array(
+  BulkUpdateFunctionBodyItem,
+) as any as S.Schema<BulkUpdateFunctionBody>;
+
+export interface V1BulkUpdateFunctionsRequest {
+  /** Project ref */
+  ref: string;
+  body: BulkUpdateFunctionBody;
+}
+export const V1BulkUpdateFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    body: BulkUpdateFunctionBody.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/v1/projects/{ref}/functions", code: 200 }),
+  ),
+).annotate({
+  identifier: "V1BulkUpdateFunctionsRequest",
+}) as any as S.Schema<V1BulkUpdateFunctionsRequest>;
+
+export type BulkUpdateFunctionResponseOutputFunctionsItemStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const BulkUpdateFunctionResponseOutputFunctionsItemStatus =
+  /*@__PURE__*/ S.String;
+
+export interface BulkUpdateFunctionResponseOutputFunctionsItem {
+  id: string;
+  slug: string;
+  name: string;
+  status: BulkUpdateFunctionResponseOutputFunctionsItemStatus;
+  version: number;
+  created_at: number;
+  updated_at: number;
+  verify_jwt?: boolean;
+  import_map?: boolean;
+  entrypoint_path?: string;
+  import_map_path?: string;
+  ezbr_sha256?: string;
+}
+export const BulkUpdateFunctionResponseOutputFunctionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      slug: S.String,
+      name: S.String,
+      status: BulkUpdateFunctionResponseOutputFunctionsItemStatus,
+      version: S.Number,
+      created_at: S.Number,
+      updated_at: S.Number,
+      verify_jwt: S.optional(S.Boolean),
+      import_map: S.optional(S.Boolean),
+      entrypoint_path: S.optional(S.String),
+      import_map_path: S.optional(S.String),
+      ezbr_sha256: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "BulkUpdateFunctionResponseOutputFunctionsItem",
+  }) as any as S.Schema<BulkUpdateFunctionResponseOutputFunctionsItem>;
+
+export type BulkUpdateFunctionResponseOutputFunctionsList =
+  Array<BulkUpdateFunctionResponseOutputFunctionsItem>;
+export const BulkUpdateFunctionResponseOutputFunctionsList =
+  /*@__PURE__*/ S.Array(
+    BulkUpdateFunctionResponseOutputFunctionsItem,
+  ) as any as S.Schema<BulkUpdateFunctionResponseOutputFunctionsList>;
+
+export interface BulkUpdateFunctionResponseOutput {
+  functions: BulkUpdateFunctionResponseOutputFunctionsList;
+}
+export const BulkUpdateFunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    functions: BulkUpdateFunctionResponseOutputFunctionsList,
+  }),
+).annotate({
+  identifier: "BulkUpdateFunctionResponseOutput",
+}) as any as S.Schema<BulkUpdateFunctionResponseOutput>;
+
+export interface V1CancelAProjectRestorationRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1CancelAProjectRestorationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/restore/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1CancelAProjectRestorationRequest",
+}) as any as S.Schema<V1CancelAProjectRestorationRequest>;
+
+export interface V1CancelAProjectRestorationResponse {}
+export const V1CancelAProjectRestorationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1CancelAProjectRestorationResponse",
+}) as any as S.Schema<V1CancelAProjectRestorationResponse>;
+
+export interface V1CheckVanitySubdomainAvailabilityRequest {
   /** Project ref */
   ref: string;
   vanity_subdomain: string;
 }
-export const CheckV1VanitySubdomainAvailabilityRequest =
+export const V1CheckVanitySubdomainAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -279,19 +902,47 @@ export const CheckV1VanitySubdomainAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckV1VanitySubdomainAvailabilityRequest",
-  }) as any as S.Schema<CheckV1VanitySubdomainAvailabilityRequest>;
+    identifier: "V1CheckVanitySubdomainAvailabilityRequest",
+  }) as any as S.Schema<V1CheckVanitySubdomainAvailabilityRequest>;
 
-export interface SubdomainAvailabilityResponse {
+export interface SubdomainAvailabilityResponseOutput {
   available: boolean;
 }
-export const SubdomainAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
+export const SubdomainAvailabilityResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     available: S.Boolean,
   }),
 ).annotate({
-  identifier: "SubdomainAvailabilityResponse",
-}) as any as S.Schema<SubdomainAvailabilityResponse>;
+  identifier: "SubdomainAvailabilityResponseOutput",
+}) as any as S.Schema<SubdomainAvailabilityResponseOutput>;
+
+export interface V1ClaimProjectForOrganizationRequest {
+  /** Organization slug */
+  slug: string;
+  token: string;
+}
+export const V1ClaimProjectForOrganizationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      slug: S.String.pipe(T.Label()),
+      token: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/organizations/{slug}/project-claim/{token}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "V1ClaimProjectForOrganizationRequest",
+}) as any as S.Schema<V1ClaimProjectForOrganizationRequest>;
+
+export interface V1ClaimProjectForOrganizationResponse {}
+export const V1ClaimProjectForOrganizationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "V1ClaimProjectForOrganizationResponse",
+}) as any as S.Schema<V1ClaimProjectForOrganizationResponse>;
 
 export type V1CreateABranchRequestDesiredInstanceSize =
   | "pico"
@@ -338,7 +989,7 @@ export const V1CreateABranchRequestSecretsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<V1CreateABranchRequestSecretsMap>;
 
-export interface CreateV1ABranchRequest {
+export interface V1CreateABranchRequest {
   /** Project ref */
   ref: string;
   branch_name: string;
@@ -358,7 +1009,7 @@ export interface CreateV1ABranchRequest {
   /** HTTP endpoint to receive branch status updates. */
   notify_url?: string;
 }
-export const CreateV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateABranchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     branch_name: S.String,
@@ -378,20 +1029,20 @@ export const CreateV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v1/projects/{ref}/branches", code: 200 }),
   ),
 ).annotate({
-  identifier: "CreateV1ABranchRequest",
-}) as any as S.Schema<CreateV1ABranchRequest>;
+  identifier: "V1CreateABranchRequest",
+}) as any as S.Schema<V1CreateABranchRequest>;
 
 /** This field is deprecated. List action runs to get branch status instead. */
-export type BranchResponseStatus =
+export type BranchResponseOutputStatus =
   | "CREATING_PROJECT"
   | "RUNNING_MIGRATIONS"
   | "MIGRATIONS_PASSED"
   | "MIGRATIONS_FAILED"
   | "FUNCTIONS_DEPLOYED"
   | "FUNCTIONS_FAILED";
-export const BranchResponseStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export type BranchResponsePreviewProjectStatus =
+export type BranchResponseOutputPreviewProjectStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -407,9 +1058,9 @@ export type BranchResponsePreviewProjectStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchResponsePreviewProjectStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputPreviewProjectStatus = /*@__PURE__*/ S.String;
 
-export interface BranchResponse {
+export interface BranchResponseOutput {
   id: string;
   name: string;
   project_ref: string;
@@ -421,16 +1072,16 @@ export interface BranchResponse {
   latest_check_run_id?: number;
   persistent: boolean;
   /** This field is deprecated. List action runs to get branch status instead. */
-  status: BranchResponseStatus;
+  status: BranchResponseOutputStatus;
   created_at: string;
   updated_at: string;
   review_requested_at?: string;
   with_data: boolean;
   notify_url?: string;
   deletion_scheduled_at?: string;
-  preview_project_status?: BranchResponsePreviewProjectStatus;
+  preview_project_status?: BranchResponseOutputPreviewProjectStatus;
 }
-export const BranchResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
@@ -441,44 +1092,48 @@ export const BranchResponse = /*@__PURE__*/ S.suspend(() =>
     pr_number: S.optional(S.Number),
     latest_check_run_id: S.optional(S.Number),
     persistent: S.Boolean,
-    status: BranchResponseStatus,
+    status: BranchResponseOutputStatus,
     created_at: S.String,
     updated_at: S.String,
     review_requested_at: S.optional(S.String),
     with_data: S.Boolean,
     notify_url: S.optional(S.String),
     deletion_scheduled_at: S.optional(S.String),
-    preview_project_status: S.optional(BranchResponsePreviewProjectStatus),
+    preview_project_status: S.optional(
+      BranchResponseOutputPreviewProjectStatus,
+    ),
   }),
-).annotate({ identifier: "BranchResponse" }) as any as S.Schema<BranchResponse>;
+).annotate({
+  identifier: "BranchResponseOutput",
+}) as any as S.Schema<BranchResponseOutput>;
 
-export interface CreateV1AnOrganizationRequest {
+export interface V1CreateAnOrganizationRequest {
   name: string;
 }
-export const CreateV1AnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateAnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/v1/organizations", code: 200 })),
 ).annotate({
-  identifier: "CreateV1AnOrganizationRequest",
-}) as any as S.Schema<CreateV1AnOrganizationRequest>;
+  identifier: "V1CreateAnOrganizationRequest",
+}) as any as S.Schema<V1CreateAnOrganizationRequest>;
 
-export interface OrganizationResponseV1 {
+export interface OrganizationResponseV1Output {
   /** Deprecated: Use `slug` instead. */
   id: string;
   /** Organization slug */
   slug: string;
   name: string;
 }
-export const OrganizationResponseV1 = /*@__PURE__*/ S.suspend(() =>
+export const OrganizationResponseV1Output = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
   }),
 ).annotate({
-  identifier: "OrganizationResponseV1",
-}) as any as S.Schema<OrganizationResponseV1>;
+  identifier: "OrganizationResponseV1Output",
+}) as any as S.Schema<OrganizationResponseV1Output>;
 
 /** Subscription Plan is now set on organization level and is ignored in this request */
 export type V1CreateAProjectRequestPlan = "free" | "pro";
@@ -611,7 +1266,7 @@ export type V1CreateAProjectRequestDesiredInstanceSize =
 export const V1CreateAProjectRequestDesiredInstanceSize =
   /*@__PURE__*/ S.String;
 
-export interface CreateV1AProjectRequest {
+export interface V1CreateAProjectRequest {
   /** Database password */
   db_pass: string;
   /** Name of your project */
@@ -639,7 +1294,7 @@ export interface CreateV1AProjectRequest {
   /** [Experimental] Whether to enable high availability for the project. */
   high_availability?: boolean;
 }
-export const CreateV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     db_pass: S.String,
     name: S.String,
@@ -658,10 +1313,10 @@ export const CreateV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
     high_availability: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/v1/projects", code: 200 })),
 ).annotate({
-  identifier: "CreateV1AProjectRequest",
-}) as any as S.Schema<CreateV1AProjectRequest>;
+  identifier: "V1CreateAProjectRequest",
+}) as any as S.Schema<V1CreateAProjectRequest>;
 
-export type V1ProjectResponseStatus =
+export type V1ProjectResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -677,9 +1332,9 @@ export type V1ProjectResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectResponseStatus = /*@__PURE__*/ S.String;
+export const V1ProjectResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface V1ProjectResponse {
+export interface V1ProjectResponseOutput {
   /** Deprecated: Use `ref` instead. */
   id: string;
   /** Project ref */
@@ -694,9 +1349,9 @@ export interface V1ProjectResponse {
   region: string;
   /** Creation timestamp */
   created_at: string;
-  status: V1ProjectResponseStatus;
+  status: V1ProjectResponseOutputStatus;
 }
-export const V1ProjectResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     ref: S.String,
@@ -705,11 +1360,11 @@ export const V1ProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     region: S.String,
     created_at: S.String,
-    status: V1ProjectResponseStatus,
+    status: V1ProjectResponseOutputStatus,
   }),
 ).annotate({
-  identifier: "V1ProjectResponse",
-}) as any as S.Schema<V1ProjectResponse>;
+  identifier: "V1ProjectResponseOutput",
+}) as any as S.Schema<V1ProjectResponseOutput>;
 
 /** What type of provider will be created */
 export type V1CreateASsoProviderRequestType = "saml";
@@ -738,8 +1393,8 @@ export const V1CreateASsoProviderRequestAttributeMappingKeysValueDefault =
 export interface V1CreateASsoProviderRequestAttributeMappingKeysValue {
   name?: string;
   names?: V1CreateASsoProviderRequestAttributeMappingKeysValueNamesList;
-  default?: V1CreateASsoProviderRequestAttributeMappingKeysValueDefault;
   array?: boolean;
+  default?: V1CreateASsoProviderRequestAttributeMappingKeysValueDefault;
 }
 export const V1CreateASsoProviderRequestAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
@@ -748,10 +1403,10 @@ export const V1CreateASsoProviderRequestAttributeMappingKeysValue =
       names: S.optional(
         V1CreateASsoProviderRequestAttributeMappingKeysValueNamesList,
       ),
+      array: S.optional(S.Boolean),
       default: S.optional(
         V1CreateASsoProviderRequestAttributeMappingKeysValueDefault,
       ),
-      array: S.optional(S.Boolean),
     }),
   ).annotate({
     identifier: "V1CreateASsoProviderRequestAttributeMappingKeysValue",
@@ -787,7 +1442,7 @@ export type V1CreateASsoProviderRequestNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
 export const V1CreateASsoProviderRequestNameIdFormat = /*@__PURE__*/ S.String;
 
-export interface CreateV1ASsoProviderRequest {
+export interface V1CreateASsoProviderRequest {
   /** Project ref */
   ref: string;
   /** What type of provider will be created */
@@ -798,7 +1453,7 @@ export interface CreateV1ASsoProviderRequest {
   attribute_mapping?: V1CreateASsoProviderRequestAttributeMapping;
   name_id_format?: V1CreateASsoProviderRequestNameIdFormat | (string & {});
 }
-export const CreateV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     type: V1CreateASsoProviderRequestType,
@@ -815,182 +1470,144 @@ export const CreateV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateV1ASsoProviderRequest",
-}) as any as S.Schema<CreateV1ASsoProviderRequest>;
+  identifier: "V1CreateASsoProviderRequest",
+}) as any as S.Schema<V1CreateASsoProviderRequest>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const CreateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysValueDefault =
+export type CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const CreateProviderResponseSamlAttributeMappingKeysValueDefault =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface CreateProviderResponseSamlAttributeMappingKeysValue {
+export interface CreateProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: CreateProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: CreateProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const CreateProviderResponseSamlAttributeMappingKeysValue =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        CreateProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        CreateProviderResponseSamlAttributeMappingKeysValueDefault,
+        CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "CreateProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "CreateProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysMap = {
+export type CreateProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | CreateProviderResponseSamlAttributeMappingKeysValue
+    | CreateProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const CreateProviderResponseSamlAttributeMappingKeysMap =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    CreateProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysMap>;
+    CreateProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface CreateProviderResponseSamlAttributeMapping {
-  keys: CreateProviderResponseSamlAttributeMappingKeysMap;
+export interface CreateProviderResponseOutputSamlAttributeMapping {
+  keys: CreateProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const CreateProviderResponseSamlAttributeMapping =
+export const CreateProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: CreateProviderResponseSamlAttributeMappingKeysMap,
+      keys: CreateProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "CreateProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<CreateProviderResponseSamlAttributeMapping>;
+    identifier: "CreateProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMapping>;
 
-export type CreateProviderResponseSamlNameIdFormat =
+export type CreateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const CreateProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const CreateProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface CreateProviderResponseSaml {
+export interface CreateProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: CreateProviderResponseSamlAttributeMapping;
-  name_id_format?: CreateProviderResponseSamlNameIdFormat;
+  attribute_mapping?: CreateProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: CreateProviderResponseOutputSamlNameIdFormat;
 }
-export const CreateProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const CreateProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(CreateProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(CreateProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      CreateProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(CreateProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "CreateProviderResponseSaml",
-}) as any as S.Schema<CreateProviderResponseSaml>;
+  identifier: "CreateProviderResponseOutputSaml",
+}) as any as S.Schema<CreateProviderResponseOutputSaml>;
 
-export interface CreateProviderResponseDomainsItem {
+export interface CreateProviderResponseOutputDomainsItem {
   domain?: string;
   created_at?: string;
   updated_at?: string;
 }
-export const CreateProviderResponseDomainsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(S.String),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
+export const CreateProviderResponseOutputDomainsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      domain: S.optional(S.String),
+      created_at: S.optional(S.String),
+      updated_at: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "CreateProviderResponseDomainsItem",
-}) as any as S.Schema<CreateProviderResponseDomainsItem>;
+  identifier: "CreateProviderResponseOutputDomainsItem",
+}) as any as S.Schema<CreateProviderResponseOutputDomainsItem>;
 
-export type CreateProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const CreateProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<CreateProviderResponseDomainsList>;
+export type CreateProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const CreateProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<CreateProviderResponseOutputDomainsList>;
 
-export interface CreateProviderResponse {
+export interface CreateProviderResponseOutput {
   id: string;
-  saml?: CreateProviderResponseSaml;
-  domains?: CreateProviderResponseDomainsList;
+  saml?: CreateProviderResponseOutputSaml;
+  domains?: CreateProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const CreateProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(CreateProviderResponseSaml),
-    domains: S.optional(CreateProviderResponseDomainsList),
+    saml: S.optional(CreateProviderResponseOutputSaml),
+    domains: S.optional(CreateProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CreateProviderResponse",
-}) as any as S.Schema<CreateProviderResponse>;
+  identifier: "CreateProviderResponseOutput",
+}) as any as S.Schema<CreateProviderResponseOutput>;
 
-export interface CreateSecretBodyItem {
-  /** Secret name must not start with the SUPABASE_ prefix. */
-  name: string;
-  value: string;
-}
-export const CreateSecretBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "CreateSecretBodyItem",
-}) as any as S.Schema<CreateSecretBodyItem>;
-
-export type CreateSecretBody = Array<CreateSecretBodyItem>;
-export const CreateSecretBody = /*@__PURE__*/ S.Array(
-  CreateSecretBodyItem,
-) as any as S.Schema<CreateSecretBody>;
-
-export interface CreateV1BulkSecretRequest {
-  /** Project ref */
-  ref: string;
-  body: CreateSecretBody;
-}
-export const CreateV1BulkSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    body: CreateSecretBody.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/projects/{ref}/secrets", code: 200 }),
-  ),
-).annotate({
-  identifier: "CreateV1BulkSecretRequest",
-}) as any as S.Schema<CreateV1BulkSecretRequest>;
-
-export interface CreateV1BulkSecretResponse {}
-export const CreateV1BulkSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CreateV1BulkSecretResponse",
-}) as any as S.Schema<CreateV1BulkSecretResponse>;
-
-export interface CreateV1LegacySigningKeyRequest {
+export interface V1CreateLegacySigningKeyRequest {
   /** Project ref */
   ref: string;
 }
-export const CreateV1LegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateLegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -1001,46 +1618,50 @@ export const CreateV1LegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateV1LegacySigningKeyRequest",
-}) as any as S.Schema<CreateV1LegacySigningKeyRequest>;
+  identifier: "V1CreateLegacySigningKeyRequest",
+}) as any as S.Schema<V1CreateLegacySigningKeyRequest>;
 
-export type SigningKeyResponseAlgorithm = "EdDSA" | "ES256" | "RS256" | "HS256";
-export const SigningKeyResponseAlgorithm = /*@__PURE__*/ S.String;
+export type SigningKeyResponseOutputAlgorithm =
+  | "EdDSA"
+  | "ES256"
+  | "RS256"
+  | "HS256";
+export const SigningKeyResponseOutputAlgorithm = /*@__PURE__*/ S.String;
 
-export type SigningKeyResponseStatus =
+export type SigningKeyResponseOutputStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeyResponseStatus = /*@__PURE__*/ S.String;
+export const SigningKeyResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface SigningKeyResponse {
+export interface SigningKeyResponseOutput {
   id: string;
-  algorithm: SigningKeyResponseAlgorithm;
-  status: SigningKeyResponseStatus;
+  algorithm: SigningKeyResponseOutputAlgorithm;
+  status: SigningKeyResponseOutputStatus;
   public_jwk: unknown | null;
   created_at: string;
   updated_at: string;
 }
-export const SigningKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeyResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    algorithm: SigningKeyResponseAlgorithm,
-    status: SigningKeyResponseStatus,
+    algorithm: SigningKeyResponseOutputAlgorithm,
+    status: SigningKeyResponseOutputStatus,
     public_jwk: S.NullOr(S.Unknown),
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "SigningKeyResponse",
-}) as any as S.Schema<SigningKeyResponse>;
+  identifier: "SigningKeyResponseOutput",
+}) as any as S.Schema<SigningKeyResponseOutput>;
 
-export interface CreateV1LoginRoleRequest {
+export interface V1CreateLoginRoleRequest {
   /** Project ref */
   ref: string;
   read_only: boolean;
 }
-export const CreateV1LoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateLoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     read_only: S.Boolean,
@@ -1052,23 +1673,23 @@ export const CreateV1LoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateV1LoginRoleRequest",
-}) as any as S.Schema<CreateV1LoginRoleRequest>;
+  identifier: "V1CreateLoginRoleRequest",
+}) as any as S.Schema<V1CreateLoginRoleRequest>;
 
-export interface CreateRoleResponse {
+export interface CreateRoleResponseOutput {
   role: string;
   password: T.Sensitive;
   ttl_seconds: number;
 }
-export const CreateRoleResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateRoleResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     role: S.String,
     password: S.String.pipe(T.SensitiveValue({})),
     ttl_seconds: S.Number,
   }),
 ).annotate({
-  identifier: "CreateRoleResponse",
-}) as any as S.Schema<CreateRoleResponse>;
+  identifier: "CreateRoleResponseOutput",
+}) as any as S.Schema<CreateRoleResponseOutput>;
 
 export type V1CreateProjectApiKeyRequestType = "publishable" | "secret";
 export const V1CreateProjectApiKeyRequestType = /*@__PURE__*/ S.String;
@@ -1082,7 +1703,7 @@ export const V1CreateProjectApiKeyRequestSecretJwtTemplateMap =
     S.Unknown,
   ) as any as S.Schema<V1CreateProjectApiKeyRequestSecretJwtTemplateMap>;
 
-export interface CreateV1ProjectApiKeyRequest {
+export interface V1CreateProjectApiKeyRequest {
   /** Project ref */
   ref: string;
   /** Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
@@ -1092,7 +1713,7 @@ export interface CreateV1ProjectApiKeyRequest {
   description?: string | null;
   secret_jwt_template?: V1CreateProjectApiKeyRequestSecretJwtTemplateMap | null;
 }
-export const CreateV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     reveal: S.optional(S.String.pipe(T.Query())),
@@ -1106,54 +1727,56 @@ export const CreateV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v1/projects/{ref}/api-keys", code: 200 }),
   ),
 ).annotate({
-  identifier: "CreateV1ProjectApiKeyRequest",
-}) as any as S.Schema<CreateV1ProjectApiKeyRequest>;
+  identifier: "V1CreateProjectApiKeyRequest",
+}) as any as S.Schema<V1CreateProjectApiKeyRequest>;
 
-export type ApiKeyResponseType = "legacy" | "publishable" | "secret";
-export const ApiKeyResponseType = /*@__PURE__*/ S.String;
+export type ApiKeyResponseOutputType = "legacy" | "publishable" | "secret";
+export const ApiKeyResponseOutputType = /*@__PURE__*/ S.String;
 
-export type ApiKeyResponseSecretJwtTemplateMap = {
+export type ApiKeyResponseOutputSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
 };
-export const ApiKeyResponseSecretJwtTemplateMap = /*@__PURE__*/ S.Record(
+export const ApiKeyResponseOutputSecretJwtTemplateMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<ApiKeyResponseSecretJwtTemplateMap>;
+) as any as S.Schema<ApiKeyResponseOutputSecretJwtTemplateMap>;
 
-export interface ApiKeyResponse {
+export interface ApiKeyResponseOutput {
   api_key?: T.Sensitive | null;
   id?: string | null;
-  type?: ApiKeyResponseType | null;
+  type?: ApiKeyResponseOutputType | null;
   prefix?: string | null;
   name: string;
   description?: string | null;
   hash?: string | null;
-  secret_jwt_template?: ApiKeyResponseSecretJwtTemplateMap | null;
+  secret_jwt_template?: ApiKeyResponseOutputSecretJwtTemplateMap | null;
   inserted_at?: string | null;
   updated_at?: string | null;
 }
-export const ApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const ApiKeyResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     api_key: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
     id: S.optional(S.NullOr(S.String)),
-    type: S.optional(S.NullOr(ApiKeyResponseType)),
+    type: S.optional(S.NullOr(ApiKeyResponseOutputType)),
     prefix: S.optional(S.NullOr(S.String)),
     name: S.String,
     description: S.optional(S.NullOr(S.String)),
     hash: S.optional(S.NullOr(S.String)),
     secret_jwt_template: S.optional(
-      S.NullOr(ApiKeyResponseSecretJwtTemplateMap),
+      S.NullOr(ApiKeyResponseOutputSecretJwtTemplateMap),
     ),
     inserted_at: S.optional(S.NullOr(S.String)),
     updated_at: S.optional(S.NullOr(S.String)),
   }),
-).annotate({ identifier: "ApiKeyResponse" }) as any as S.Schema<ApiKeyResponse>;
+).annotate({
+  identifier: "ApiKeyResponseOutput",
+}) as any as S.Schema<ApiKeyResponseOutput>;
 
-export interface CreateV1ProjectClaimTokenRequest {
+export interface V1CreateProjectClaimTokenRequest {
   /** Project ref */
   ref: string;
 }
-export const CreateV1ProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -1164,27 +1787,28 @@ export const CreateV1ProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateV1ProjectClaimTokenRequest",
-}) as any as S.Schema<CreateV1ProjectClaimTokenRequest>;
+  identifier: "V1CreateProjectClaimTokenRequest",
+}) as any as S.Schema<V1CreateProjectClaimTokenRequest>;
 
-export interface CreateProjectClaimTokenResponse {
+export interface CreateProjectClaimTokenResponseOutput {
   token: string;
   token_alias: string;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const CreateProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-    token_alias: S.String,
-    expires_at: S.String,
-    created_at: S.String,
-    created_by: S.String,
-  }),
+export const CreateProjectClaimTokenResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      token: S.String,
+      token_alias: S.String,
+      expires_at: S.String,
+      created_at: S.String,
+      created_by: S.String,
+    }),
 ).annotate({
-  identifier: "CreateProjectClaimTokenResponse",
-}) as any as S.Schema<CreateProjectClaimTokenResponse>;
+  identifier: "CreateProjectClaimTokenResponseOutput",
+}) as any as S.Schema<CreateProjectClaimTokenResponseOutput>;
 
 export type V1CreateProjectSigningKeyRequestAlgorithm =
   | "EdDSA"
@@ -1470,14 +2094,14 @@ export const V1CreateProjectSigningKeyRequestPrivateJwk =
     ]),
   );
 
-export interface CreateV1ProjectSigningKeyRequest {
+export interface V1CreateProjectSigningKeyRequest {
   /** Project ref */
   ref: string;
   algorithm: V1CreateProjectSigningKeyRequestAlgorithm | (string & {});
   status?: V1CreateProjectSigningKeyRequestStatus | (string & {});
   private_jwk?: V1CreateProjectSigningKeyRequestPrivateJwk;
 }
-export const CreateV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1CreateProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     algorithm: V1CreateProjectSigningKeyRequestAlgorithm,
@@ -1491,17 +2115,17 @@ export const CreateV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateV1ProjectSigningKeyRequest",
-}) as any as S.Schema<CreateV1ProjectSigningKeyRequest>;
+  identifier: "V1CreateProjectSigningKeyRequest",
+}) as any as S.Schema<V1CreateProjectSigningKeyRequest>;
 
-export interface CreateV1ProjectTpaIntegrationRequest {
+export interface V1CreateProjectTpaIntegrationRequest {
   /** Project ref */
   ref: string;
   oidc_issuer_url?: string;
   jwks_url?: string;
   custom_jwks?: unknown;
 }
-export const CreateV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
+export const V1CreateProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -1516,10 +2140,10 @@ export const CreateV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateV1ProjectTpaIntegrationRequest",
-}) as any as S.Schema<CreateV1ProjectTpaIntegrationRequest>;
+  identifier: "V1CreateProjectTpaIntegrationRequest",
+}) as any as S.Schema<V1CreateProjectTpaIntegrationRequest>;
 
-export interface ThirdPartyAuth {
+export interface ThirdPartyAuthOutput {
   id: string;
   type: string;
   oidc_issuer_url?: string | null;
@@ -1530,7 +2154,7 @@ export interface ThirdPartyAuth {
   updated_at: string;
   resolved_at?: string | null;
 }
-export const ThirdPartyAuth = /*@__PURE__*/ S.suspend(() =>
+export const ThirdPartyAuthOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
@@ -1542,15 +2166,84 @@ export const ThirdPartyAuth = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
     resolved_at: S.optional(S.NullOr(S.String)),
   }),
-).annotate({ identifier: "ThirdPartyAuth" }) as any as S.Schema<ThirdPartyAuth>;
+).annotate({
+  identifier: "ThirdPartyAuthOutput",
+}) as any as S.Schema<ThirdPartyAuthOutput>;
 
-export interface DeleteV1ABranchRequest {
+export interface V1CreateRestorePointRequest {
+  /** Project ref */
+  ref: string;
+  name: string;
+}
+export const V1CreateRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/backups/restore-point",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1CreateRestorePointRequest",
+}) as any as S.Schema<V1CreateRestorePointRequest>;
+
+export type V1RestorePointResponseStatus =
+  | "AVAILABLE"
+  | "PENDING"
+  | "REMOVED"
+  | "FAILED";
+export const V1RestorePointResponseStatus = /*@__PURE__*/ S.String;
+
+export interface V1RestorePointResponse {
+  name: string;
+  status: V1RestorePointResponseStatus;
+  completed_on: string | null;
+}
+export const V1RestorePointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    status: V1RestorePointResponseStatus,
+    completed_on: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "V1RestorePointResponse",
+}) as any as S.Schema<V1RestorePointResponse>;
+
+export interface V1DeactivateVanitySubdomainConfigRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1DeactivateVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ref: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/projects/{ref}/vanity-subdomain",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "V1DeactivateVanitySubdomainConfigRequest",
+}) as any as S.Schema<V1DeactivateVanitySubdomainConfigRequest>;
+
+export interface V1DeactivateVanitySubdomainConfigResponse {}
+export const V1DeactivateVanitySubdomainConfigResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "V1DeactivateVanitySubdomainConfigResponse",
+  }) as any as S.Schema<V1DeactivateVanitySubdomainConfigResponse>;
+
+export interface V1DeleteABranchRequest {
   /** Branch ref or deprecated branch ID */
   branch_id_or_ref: string;
   /** If set to false, schedule deletion with 1-hour grace period (only when soft deletion is enabled). */
   force?: string;
 }
-export const DeleteV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteABranchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     branch_id_or_ref: S.String.pipe(T.Label()),
     force: S.optional(S.String.pipe(T.Query())),
@@ -1562,30 +2255,30 @@ export const DeleteV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1ABranchRequest",
-}) as any as S.Schema<DeleteV1ABranchRequest>;
+  identifier: "V1DeleteABranchRequest",
+}) as any as S.Schema<V1DeleteABranchRequest>;
 
-export type BranchDeleteResponseMessage = "ok";
-export const BranchDeleteResponseMessage = /*@__PURE__*/ S.String;
+export type BranchDeleteResponseOutputMessage = "ok";
+export const BranchDeleteResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface BranchDeleteResponse {
-  message: BranchDeleteResponseMessage;
+export interface BranchDeleteResponseOutput {
+  message: BranchDeleteResponseOutputMessage;
 }
-export const BranchDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchDeleteResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: BranchDeleteResponseMessage,
+    message: BranchDeleteResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "BranchDeleteResponse",
-}) as any as S.Schema<BranchDeleteResponse>;
+  identifier: "BranchDeleteResponseOutput",
+}) as any as S.Schema<BranchDeleteResponseOutput>;
 
-export interface DeleteV1AFunctionRequest {
+export interface V1DeleteAFunctionRequest {
   /** Project ref */
   ref: string;
   /** Function slug */
   function_slug: string;
 }
-export const DeleteV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     function_slug: S.String.pipe(T.Label()),
@@ -1597,49 +2290,49 @@ export const DeleteV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1AFunctionRequest",
-}) as any as S.Schema<DeleteV1AFunctionRequest>;
+  identifier: "V1DeleteAFunctionRequest",
+}) as any as S.Schema<V1DeleteAFunctionRequest>;
 
-export interface DeleteV1AFunctionResponse {}
-export const DeleteV1AFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DeleteAFunctionResponse {}
+export const V1DeleteAFunctionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1AFunctionResponse",
-}) as any as S.Schema<DeleteV1AFunctionResponse>;
+  identifier: "V1DeleteAFunctionResponse",
+}) as any as S.Schema<V1DeleteAFunctionResponse>;
 
-export interface DeleteV1AProjectRequest {
+export interface V1DeleteAProjectRequest {
   /** Project ref */
   ref: string;
 }
-export const DeleteV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/v1/projects/{ref}", code: 200 })),
 ).annotate({
-  identifier: "DeleteV1AProjectRequest",
-}) as any as S.Schema<DeleteV1AProjectRequest>;
+  identifier: "V1DeleteAProjectRequest",
+}) as any as S.Schema<V1DeleteAProjectRequest>;
 
-export interface V1ProjectRefResponse {
+export interface V1ProjectRefResponseOutput {
   id: number;
   ref: string;
   name: string;
 }
-export const V1ProjectRefResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectRefResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     ref: S.String,
     name: S.String,
   }),
 ).annotate({
-  identifier: "V1ProjectRefResponse",
-}) as any as S.Schema<V1ProjectRefResponse>;
+  identifier: "V1ProjectRefResponseOutput",
+}) as any as S.Schema<V1ProjectRefResponseOutput>;
 
-export interface DeleteV1ASsoProviderRequest {
+export interface V1DeleteASsoProviderRequest {
   /** Project ref */
   ref: string;
   provider_id: string;
 }
-export const DeleteV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     provider_id: S.String.pipe(T.Label()),
@@ -1651,160 +2344,135 @@ export const DeleteV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1ASsoProviderRequest",
-}) as any as S.Schema<DeleteV1ASsoProviderRequest>;
+  identifier: "V1DeleteASsoProviderRequest",
+}) as any as S.Schema<V1DeleteASsoProviderRequest>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const DeleteProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysValueDefault =
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const DeleteProviderResponseSamlAttributeMappingKeysValueDefault =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface DeleteProviderResponseSamlAttributeMappingKeysValue {
+export interface DeleteProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: DeleteProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: DeleteProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const DeleteProviderResponseSamlAttributeMappingKeysValue =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        DeleteProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        DeleteProviderResponseSamlAttributeMappingKeysValueDefault,
+        DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "DeleteProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "DeleteProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysMap = {
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | DeleteProviderResponseSamlAttributeMappingKeysValue
+    | DeleteProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const DeleteProviderResponseSamlAttributeMappingKeysMap =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    DeleteProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysMap>;
+    DeleteProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface DeleteProviderResponseSamlAttributeMapping {
-  keys: DeleteProviderResponseSamlAttributeMappingKeysMap;
+export interface DeleteProviderResponseOutputSamlAttributeMapping {
+  keys: DeleteProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const DeleteProviderResponseSamlAttributeMapping =
+export const DeleteProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: DeleteProviderResponseSamlAttributeMappingKeysMap,
+      keys: DeleteProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "DeleteProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<DeleteProviderResponseSamlAttributeMapping>;
+    identifier: "DeleteProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMapping>;
 
-export type DeleteProviderResponseSamlNameIdFormat =
+export type DeleteProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const DeleteProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const DeleteProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface DeleteProviderResponseSaml {
+export interface DeleteProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: DeleteProviderResponseSamlAttributeMapping;
-  name_id_format?: DeleteProviderResponseSamlNameIdFormat;
+  attribute_mapping?: DeleteProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: DeleteProviderResponseOutputSamlNameIdFormat;
 }
-export const DeleteProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(DeleteProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(DeleteProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      DeleteProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(DeleteProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "DeleteProviderResponseSaml",
-}) as any as S.Schema<DeleteProviderResponseSaml>;
+  identifier: "DeleteProviderResponseOutputSaml",
+}) as any as S.Schema<DeleteProviderResponseOutputSaml>;
 
-export type DeleteProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const DeleteProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type DeleteProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const DeleteProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type DeleteProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const DeleteProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<DeleteProviderResponseDomainsList>;
+export type DeleteProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const DeleteProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<DeleteProviderResponseOutputDomainsList>;
 
-export interface DeleteProviderResponse {
+export interface DeleteProviderResponseOutput {
   id: string;
-  saml?: DeleteProviderResponseSaml;
-  domains?: DeleteProviderResponseDomainsList;
+  saml?: DeleteProviderResponseOutputSaml;
+  domains?: DeleteProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const DeleteProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(DeleteProviderResponseSaml),
-    domains: S.optional(DeleteProviderResponseDomainsList),
+    saml: S.optional(DeleteProviderResponseOutputSaml),
+    domains: S.optional(DeleteProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteProviderResponse",
-}) as any as S.Schema<DeleteProviderResponse>;
+  identifier: "DeleteProviderResponseOutput",
+}) as any as S.Schema<DeleteProviderResponseOutput>;
 
-export type DeleteSecretsBody = Array<string>;
-export const DeleteSecretsBody = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DeleteSecretsBody>;
-
-export interface DeleteV1BulkSecretRequest {
-  /** Project ref */
-  ref: string;
-  body: DeleteSecretsBody;
-}
-export const DeleteV1BulkSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    body: DeleteSecretsBody.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/projects/{ref}/secrets", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1BulkSecretRequest",
-}) as any as S.Schema<DeleteV1BulkSecretRequest>;
-
-export interface DeleteV1BulkSecretResponse {}
-export const DeleteV1BulkSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1BulkSecretResponse",
-}) as any as S.Schema<DeleteV1BulkSecretResponse>;
-
-export interface DeleteV1HostnameConfigRequest {
+export interface V1DeleteHostnameConfigRequest {
   /** Project ref */
   ref: string;
   /** If true, also removes the custom domain add-on from the project subscription. */
   remove_addon?: string;
 }
-export const DeleteV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteHostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     remove_addon: S.optional(S.String.pipe(T.Query())),
@@ -1816,22 +2484,22 @@ export const DeleteV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1HostnameConfigRequest",
-}) as any as S.Schema<DeleteV1HostnameConfigRequest>;
+  identifier: "V1DeleteHostnameConfigRequest",
+}) as any as S.Schema<V1DeleteHostnameConfigRequest>;
 
-export interface DeleteV1HostnameConfigResponse {}
-export const DeleteV1HostnameConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DeleteHostnameConfigResponse {}
+export const V1DeleteHostnameConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1HostnameConfigResponse",
-}) as any as S.Schema<DeleteV1HostnameConfigResponse>;
+  identifier: "V1DeleteHostnameConfigResponse",
+}) as any as S.Schema<V1DeleteHostnameConfigResponse>;
 
-export interface DeleteV1InviteExternalJitAccessRequest {
+export interface V1DeleteInviteExternalJitAccessRequest {
   /** Project ref */
   ref: string;
   invite_id: string;
 }
-export const DeleteV1InviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
+export const V1DeleteInviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -1844,22 +2512,22 @@ export const DeleteV1InviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteV1InviteExternalJitAccessRequest",
-}) as any as S.Schema<DeleteV1InviteExternalJitAccessRequest>;
+  identifier: "V1DeleteInviteExternalJitAccessRequest",
+}) as any as S.Schema<V1DeleteInviteExternalJitAccessRequest>;
 
-export interface DeleteV1InviteExternalJitAccessResponse {}
-export const DeleteV1InviteExternalJitAccessResponse = /*@__PURE__*/ S.suspend(
+export interface V1DeleteInviteExternalJitAccessResponse {}
+export const V1DeleteInviteExternalJitAccessResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1InviteExternalJitAccessResponse",
-}) as any as S.Schema<DeleteV1InviteExternalJitAccessResponse>;
+  identifier: "V1DeleteInviteExternalJitAccessResponse",
+}) as any as S.Schema<V1DeleteInviteExternalJitAccessResponse>;
 
-export interface DeleteV1JitAccessRequest {
+export interface V1DeleteJitAccessRequest {
   /** Project ref */
   ref: string;
   user_id: string;
 }
-export const DeleteV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     user_id: S.String.pipe(T.Label()),
@@ -1871,21 +2539,21 @@ export const DeleteV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1JitAccessRequest",
-}) as any as S.Schema<DeleteV1JitAccessRequest>;
+  identifier: "V1DeleteJitAccessRequest",
+}) as any as S.Schema<V1DeleteJitAccessRequest>;
 
-export interface DeleteV1JitAccessResponse {}
-export const DeleteV1JitAccessResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DeleteJitAccessResponse {}
+export const V1DeleteJitAccessResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1JitAccessResponse",
-}) as any as S.Schema<DeleteV1JitAccessResponse>;
+  identifier: "V1DeleteJitAccessResponse",
+}) as any as S.Schema<V1DeleteJitAccessResponse>;
 
-export interface DeleteV1LoginRoleRequest {
+export interface V1DeleteLoginRolesRequest {
   /** Project ref */
   ref: string;
 }
-export const DeleteV1LoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteLoginRolesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -1896,22 +2564,22 @@ export const DeleteV1LoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1LoginRoleRequest",
-}) as any as S.Schema<DeleteV1LoginRoleRequest>;
+  identifier: "V1DeleteLoginRolesRequest",
+}) as any as S.Schema<V1DeleteLoginRolesRequest>;
 
-export type DeleteRolesResponseMessage = "ok";
-export const DeleteRolesResponseMessage = /*@__PURE__*/ S.String;
+export type DeleteRolesResponseOutputMessage = "ok";
+export const DeleteRolesResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface DeleteRolesResponse {
-  message: DeleteRolesResponseMessage;
+export interface DeleteRolesResponseOutput {
+  message: DeleteRolesResponseOutputMessage;
 }
-export const DeleteRolesResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRolesResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: DeleteRolesResponseMessage,
+    message: DeleteRolesResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "DeleteRolesResponse",
-}) as any as S.Schema<DeleteRolesResponse>;
+  identifier: "DeleteRolesResponseOutput",
+}) as any as S.Schema<DeleteRolesResponseOutput>;
 
 /** List of IP addresses to unban. */
 export type V1DeleteNetworkBansRequestIpv4AddressesList = Array<string>;
@@ -1920,7 +2588,7 @@ export const V1DeleteNetworkBansRequestIpv4AddressesList =
     S.String,
   ) as any as S.Schema<V1DeleteNetworkBansRequestIpv4AddressesList>;
 
-export interface DeleteV1NetworkBanRequest {
+export interface V1DeleteNetworkBansRequest {
   /** Project ref */
   ref: string;
   /** List of IP addresses to unban. */
@@ -1929,7 +2597,7 @@ export interface DeleteV1NetworkBanRequest {
   requester_ip?: boolean;
   identifier?: string;
 }
-export const DeleteV1NetworkBanRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteNetworkBansRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     ipv4_addresses: V1DeleteNetworkBansRequestIpv4AddressesList,
@@ -1943,17 +2611,17 @@ export const DeleteV1NetworkBanRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1NetworkBanRequest",
-}) as any as S.Schema<DeleteV1NetworkBanRequest>;
+  identifier: "V1DeleteNetworkBansRequest",
+}) as any as S.Schema<V1DeleteNetworkBansRequest>;
 
-export interface DeleteV1NetworkBanResponse {}
-export const DeleteV1NetworkBanResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DeleteNetworkBansResponse {}
+export const V1DeleteNetworkBansResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1NetworkBanResponse",
-}) as any as S.Schema<DeleteV1NetworkBanResponse>;
+  identifier: "V1DeleteNetworkBansResponse",
+}) as any as S.Schema<V1DeleteNetworkBansResponse>;
 
-export interface DeleteV1ProjectApiKeyRequest {
+export interface V1DeleteProjectApiKeyRequest {
   /** Project ref */
   ref: string;
   id: string;
@@ -1963,7 +2631,7 @@ export interface DeleteV1ProjectApiKeyRequest {
   was_compromised?: string;
   reason?: string;
 }
-export const DeleteV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1978,14 +2646,14 @@ export const DeleteV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1ProjectApiKeyRequest",
-}) as any as S.Schema<DeleteV1ProjectApiKeyRequest>;
+  identifier: "V1DeleteProjectApiKeyRequest",
+}) as any as S.Schema<V1DeleteProjectApiKeyRequest>;
 
-export interface DeleteV1ProjectClaimTokenRequest {
+export interface V1DeleteProjectClaimTokenRequest {
   /** Project ref */
   ref: string;
 }
-export const DeleteV1ProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DeleteProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -1996,22 +2664,22 @@ export const DeleteV1ProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteV1ProjectClaimTokenRequest",
-}) as any as S.Schema<DeleteV1ProjectClaimTokenRequest>;
+  identifier: "V1DeleteProjectClaimTokenRequest",
+}) as any as S.Schema<V1DeleteProjectClaimTokenRequest>;
 
-export interface DeleteV1ProjectClaimTokenResponse {}
-export const DeleteV1ProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DeleteProjectClaimTokenResponse {}
+export const V1DeleteProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteV1ProjectClaimTokenResponse",
-}) as any as S.Schema<DeleteV1ProjectClaimTokenResponse>;
+  identifier: "V1DeleteProjectClaimTokenResponse",
+}) as any as S.Schema<V1DeleteProjectClaimTokenResponse>;
 
-export interface DeleteV1ProjectTpaIntegrationRequest {
+export interface V1DeleteProjectTpaIntegrationRequest {
   /** Project ref */
   ref: string;
   tpa_id: string;
 }
-export const DeleteV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
+export const V1DeleteProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -2024,35 +2692,163 @@ export const DeleteV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteV1ProjectTpaIntegrationRequest",
-}) as any as S.Schema<DeleteV1ProjectTpaIntegrationRequest>;
+  identifier: "V1DeleteProjectTpaIntegrationRequest",
+}) as any as S.Schema<V1DeleteProjectTpaIntegrationRequest>;
 
-export interface DisableV1PreviewBranchingRequest {
+export type V1DeployAFunctionRequestFileList = Array<string>;
+export const V1DeployAFunctionRequestFileList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<V1DeployAFunctionRequestFileList>;
+
+export type V1DeployAFunctionRequestMetadataStaticPatternsList = Array<string>;
+export const V1DeployAFunctionRequestMetadataStaticPatternsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1DeployAFunctionRequestMetadataStaticPatternsList>;
+
+export interface V1DeployAFunctionRequestMetadata {
+  entrypoint_path: string;
+  import_map_path?: string;
+  static_patterns?: V1DeployAFunctionRequestMetadataStaticPatternsList;
+  verify_jwt?: boolean;
+  name?: string;
+}
+export const V1DeployAFunctionRequestMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entrypoint_path: S.String,
+    import_map_path: S.optional(S.String),
+    static_patterns: S.optional(
+      V1DeployAFunctionRequestMetadataStaticPatternsList,
+    ),
+    verify_jwt: S.optional(S.Boolean),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1DeployAFunctionRequestMetadata",
+}) as any as S.Schema<V1DeployAFunctionRequestMetadata>;
+
+export interface V1DeployAFunctionRequest {
+  /** Project ref */
+  ref: string;
+  slug?: string;
+  bundleOnly?: string;
+  file: V1DeployAFunctionRequestFileList;
+  metadata: V1DeployAFunctionRequestMetadata;
+}
+export const V1DeployAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    slug: S.optional(S.String.pipe(T.Query())),
+    bundleOnly: S.optional(S.String.pipe(T.Query())),
+    file: V1DeployAFunctionRequestFileList,
+    metadata: V1DeployAFunctionRequestMetadata,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/functions/deploy",
+      code: 200,
+      contentType: "multipart",
+    }),
+  ),
+).annotate({
+  identifier: "V1DeployAFunctionRequest",
+}) as any as S.Schema<V1DeployAFunctionRequest>;
+
+export type DeployFunctionResponseOutputStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const DeployFunctionResponseOutputStatus = /*@__PURE__*/ S.String;
+
+export interface DeployFunctionResponseOutput {
+  id: string;
+  slug: string;
+  name: string;
+  status: DeployFunctionResponseOutputStatus;
+  version: number;
+  created_at?: number;
+  updated_at?: number;
+  verify_jwt?: boolean;
+  import_map?: boolean;
+  entrypoint_path?: string;
+  import_map_path?: string;
+  ezbr_sha256?: string;
+}
+export const DeployFunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    slug: S.String,
+    name: S.String,
+    status: DeployFunctionResponseOutputStatus,
+    version: S.Number,
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    verify_jwt: S.optional(S.Boolean),
+    import_map: S.optional(S.Boolean),
+    entrypoint_path: S.optional(S.String),
+    import_map_path: S.optional(S.String),
+    ezbr_sha256: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeployFunctionResponseOutput",
+}) as any as S.Schema<DeployFunctionResponseOutput>;
+
+export interface V1DiffABranchRequest {
+  /** Branch ref or deprecated branch ID */
+  branch_id_or_ref: string;
+  included_schemas?: string;
+  /** Use pg-delta instead of Migra for diffing when true. Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
+  pgdelta?: string;
+}
+export const V1DiffABranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branch_id_or_ref: S.String.pipe(T.Label()),
+    included_schemas: S.optional(S.String.pipe(T.Query())),
+    pgdelta: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/branches/{branch_id_or_ref}/diff",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1DiffABranchRequest",
+}) as any as S.Schema<V1DiffABranchRequest>;
+
+export interface V1DiffABranchResponse {}
+export const V1DiffABranchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1DiffABranchResponse",
+}) as any as S.Schema<V1DiffABranchResponse>;
+
+export interface V1DisablePreviewBranchingRequest {
   /** Project ref */
   ref: string;
 }
-export const DisableV1PreviewBranchingRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1DisablePreviewBranchingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/v1/projects/{ref}/branches", code: 200 }),
   ),
 ).annotate({
-  identifier: "DisableV1PreviewBranchingRequest",
-}) as any as S.Schema<DisableV1PreviewBranchingRequest>;
+  identifier: "V1DisablePreviewBranchingRequest",
+}) as any as S.Schema<V1DisablePreviewBranchingRequest>;
 
-export interface DisableV1PreviewBranchingResponse {}
-export const DisableV1PreviewBranchingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1DisablePreviewBranchingResponse {}
+export const V1DisablePreviewBranchingResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DisableV1PreviewBranchingResponse",
-}) as any as S.Schema<DisableV1PreviewBranchingResponse>;
+  identifier: "V1DisablePreviewBranchingResponse",
+}) as any as S.Schema<V1DisablePreviewBranchingResponse>;
 
-export interface DisableV1ReadonlyModeTemporarilyRequest {
+export interface V1DisableReadonlyModeTemporarilyRequest {
   /** Project ref */
   ref: string;
 }
-export const DisableV1ReadonlyModeTemporarilyRequest = /*@__PURE__*/ S.suspend(
+export const V1DisableReadonlyModeTemporarilyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -2064,21 +2860,21 @@ export const DisableV1ReadonlyModeTemporarilyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DisableV1ReadonlyModeTemporarilyRequest",
-}) as any as S.Schema<DisableV1ReadonlyModeTemporarilyRequest>;
+  identifier: "V1DisableReadonlyModeTemporarilyRequest",
+}) as any as S.Schema<V1DisableReadonlyModeTemporarilyRequest>;
 
-export interface DisableV1ReadonlyModeTemporarilyResponse {}
-export const DisableV1ReadonlyModeTemporarilyResponse = /*@__PURE__*/ S.suspend(
+export interface V1DisableReadonlyModeTemporarilyResponse {}
+export const V1DisableReadonlyModeTemporarilyResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DisableV1ReadonlyModeTemporarilyResponse",
-}) as any as S.Schema<DisableV1ReadonlyModeTemporarilyResponse>;
+  identifier: "V1DisableReadonlyModeTemporarilyResponse",
+}) as any as S.Schema<V1DisableReadonlyModeTemporarilyResponse>;
 
-export interface EnableV1DatabaseWebhookRequest {
+export interface V1EnableDatabaseWebhookRequest {
   /** Project ref */
   ref: string;
 }
-export const EnableV1DatabaseWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1EnableDatabaseWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -2089,22 +2885,87 @@ export const EnableV1DatabaseWebhookRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EnableV1DatabaseWebhookRequest",
-}) as any as S.Schema<EnableV1DatabaseWebhookRequest>;
+  identifier: "V1EnableDatabaseWebhookRequest",
+}) as any as S.Schema<V1EnableDatabaseWebhookRequest>;
 
-export interface EnableV1DatabaseWebhookResponse {}
-export const EnableV1DatabaseWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1EnableDatabaseWebhookResponse {}
+export const V1EnableDatabaseWebhookResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "EnableV1DatabaseWebhookResponse",
-}) as any as S.Schema<EnableV1DatabaseWebhookResponse>;
+  identifier: "V1EnableDatabaseWebhookResponse",
+}) as any as S.Schema<V1EnableDatabaseWebhookResponse>;
 
-export interface GenerateV1TypescriptTypeRequest {
+export type V1ExchangeOauthTokenRequestGrantType =
+  | "authorization_code"
+  | "refresh_token"
+  | "urn:ietf:params:oauth:grant-type:jwt-bearer";
+export const V1ExchangeOauthTokenRequestGrantType = /*@__PURE__*/ S.String;
+
+export interface V1ExchangeOauthTokenRequest {
+  grant_type?: V1ExchangeOauthTokenRequestGrantType | (string & {});
+  client_id?: string;
+  client_secret?: T.Sensitive;
+  code?: string;
+  code_verifier?: string;
+  redirect_uri?: string;
+  refresh_token?: T.Sensitive;
+  /** IDJAG assertion JWT for grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer. Beta - available on Team and Enterprise plans only. */
+  assertion?: string;
+  /** Resource indicator for MCP (Model Context Protocol) clients */
+  resource?: string;
+  scope?: string;
+}
+export const V1ExchangeOauthTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    grant_type: S.optional(V1ExchangeOauthTokenRequestGrantType),
+    client_id: S.optional(S.String),
+    client_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    code: S.optional(S.String),
+    code_verifier: S.optional(S.String),
+    redirect_uri: S.optional(S.String),
+    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    assertion: S.optional(S.String),
+    resource: S.optional(S.String),
+    scope: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/oauth/token",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "V1ExchangeOauthTokenRequest",
+}) as any as S.Schema<V1ExchangeOauthTokenRequest>;
+
+export type OAuthTokenResponseOutputTokenType = "Bearer";
+export const OAuthTokenResponseOutputTokenType = /*@__PURE__*/ S.String;
+
+export interface OAuthTokenResponseOutput {
+  access_token: T.Sensitive;
+  /** The `urn:ietf:params:oauth:grant-type:jwt-bearer` grant type issues access tokens only, no refresh token is returned and the token cannot be revoked via `/v1/oauth/revoke`. */
+  refresh_token?: T.Sensitive;
+  expires_in: number;
+  token_type: OAuthTokenResponseOutputTokenType;
+}
+export const OAuthTokenResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    access_token: S.String.pipe(T.SensitiveValue({})),
+    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    expires_in: S.Number,
+    token_type: OAuthTokenResponseOutputTokenType,
+  }),
+).annotate({
+  identifier: "OAuthTokenResponseOutput",
+}) as any as S.Schema<OAuthTokenResponseOutput>;
+
+export interface V1GenerateTypescriptTypesRequest {
   /** Project ref */
   ref: string;
   included_schemas?: string;
 }
-export const GenerateV1TypescriptTypeRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GenerateTypescriptTypesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     included_schemas: S.optional(S.String.pipe(T.Query())),
@@ -2116,26 +2977,26 @@ export const GenerateV1TypescriptTypeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateV1TypescriptTypeRequest",
-}) as any as S.Schema<GenerateV1TypescriptTypeRequest>;
+  identifier: "V1GenerateTypescriptTypesRequest",
+}) as any as S.Schema<V1GenerateTypescriptTypesRequest>;
 
-export interface TypescriptResponse {
+export interface TypescriptResponseOutput {
   types: string;
 }
-export const TypescriptResponse = /*@__PURE__*/ S.suspend(() =>
+export const TypescriptResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     types: S.String,
   }),
 ).annotate({
-  identifier: "TypescriptResponse",
-}) as any as S.Schema<TypescriptResponse>;
+  identifier: "TypescriptResponseOutput",
+}) as any as S.Schema<TypescriptResponseOutput>;
 
-export interface GetV1ABranchRequest {
+export interface V1GetABranchRequest {
   /** Project ref */
   ref: string;
   name: string;
 }
-export const GetV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetABranchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
@@ -2147,14 +3008,14 @@ export const GetV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ABranchRequest",
-}) as any as S.Schema<GetV1ABranchRequest>;
+  identifier: "V1GetABranchRequest",
+}) as any as S.Schema<V1GetABranchRequest>;
 
-export interface GetV1ABranchConfigRequest {
+export interface V1GetABranchConfigRequest {
   /** Branch ref or deprecated branch ID */
   branch_id_or_ref: string;
 }
-export const GetV1ABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     branch_id_or_ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -2165,10 +3026,10 @@ export const GetV1ABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ABranchConfigRequest",
-}) as any as S.Schema<GetV1ABranchConfigRequest>;
+  identifier: "V1GetABranchConfigRequest",
+}) as any as S.Schema<V1GetABranchConfigRequest>;
 
-export type BranchDetailResponseStatus =
+export type BranchDetailResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -2184,27 +3045,27 @@ export type BranchDetailResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchDetailResponseStatus = /*@__PURE__*/ S.String;
+export const BranchDetailResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface BranchDetailResponse {
+export interface BranchDetailResponseOutput {
   ref: string;
   postgres_version: string;
   postgres_engine: string;
   release_channel: string;
-  status: BranchDetailResponseStatus;
+  status: BranchDetailResponseOutputStatus;
   db_host: string;
   db_port: number;
   db_user?: string;
   db_pass?: string;
   jwt_secret?: T.Sensitive;
 }
-export const BranchDetailResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchDetailResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String,
     postgres_version: S.String,
     postgres_engine: S.String,
     release_channel: S.String,
-    status: BranchDetailResponseStatus,
+    status: BranchDetailResponseOutputStatus,
     db_host: S.String,
     db_port: S.Number,
     db_user: S.optional(S.String),
@@ -2212,16 +3073,16 @@ export const BranchDetailResponse = /*@__PURE__*/ S.suspend(() =>
     jwt_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
   }),
 ).annotate({
-  identifier: "BranchDetailResponse",
-}) as any as S.Schema<BranchDetailResponse>;
+  identifier: "BranchDetailResponseOutput",
+}) as any as S.Schema<BranchDetailResponseOutput>;
 
-export interface GetV1ActionRunRequest {
+export interface V1GetActionRunRequest {
   /** Project ref */
   ref: string;
   /** Action Run ID */
   run_id: string;
 }
-export const GetV1ActionRunRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetActionRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     run_id: S.String.pipe(T.Label()),
@@ -2233,10 +3094,10 @@ export const GetV1ActionRunRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ActionRunRequest",
-}) as any as S.Schema<GetV1ActionRunRequest>;
+  identifier: "V1GetActionRunRequest",
+}) as any as S.Schema<V1GetActionRunRequest>;
 
-export type ActionRunResponseRunStepsItemName =
+export type ActionRunResponseOutputRunStepsItemName =
   | "clone"
   | "pull"
   | "health"
@@ -2244,9 +3105,9 @@ export type ActionRunResponseRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ActionRunResponseRunStepsItemName = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemName = /*@__PURE__*/ S.String;
 
-export type ActionRunResponseRunStepsItemStatus =
+export type ActionRunResponseOutputRunStepsItemStatus =
   | "CREATED"
   | "DEAD"
   | "EXITED"
@@ -2254,46 +3115,46 @@ export type ActionRunResponseRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ActionRunResponseRunStepsItemStatus = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemStatus = /*@__PURE__*/ S.String;
 
-export interface ActionRunResponseRunStepsItem {
-  name: ActionRunResponseRunStepsItemName;
-  status: ActionRunResponseRunStepsItemStatus;
+export interface ActionRunResponseOutputRunStepsItem {
+  name: ActionRunResponseOutputRunStepsItemName;
+  status: ActionRunResponseOutputRunStepsItemStatus;
   created_at: string;
   updated_at: string;
 }
-export const ActionRunResponseRunStepsItem = /*@__PURE__*/ S.suspend(() =>
+export const ActionRunResponseOutputRunStepsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: ActionRunResponseRunStepsItemName,
-    status: ActionRunResponseRunStepsItemStatus,
+    name: ActionRunResponseOutputRunStepsItemName,
+    status: ActionRunResponseOutputRunStepsItemStatus,
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ActionRunResponseRunStepsItem",
-}) as any as S.Schema<ActionRunResponseRunStepsItem>;
+  identifier: "ActionRunResponseOutputRunStepsItem",
+}) as any as S.Schema<ActionRunResponseOutputRunStepsItem>;
 
-export type ActionRunResponseRunStepsList =
-  Array<ActionRunResponseRunStepsItem>;
-export const ActionRunResponseRunStepsList = /*@__PURE__*/ S.Array(
-  ActionRunResponseRunStepsItem,
-) as any as S.Schema<ActionRunResponseRunStepsList>;
+export type ActionRunResponseOutputRunStepsList =
+  Array<ActionRunResponseOutputRunStepsItem>;
+export const ActionRunResponseOutputRunStepsList = /*@__PURE__*/ S.Array(
+  ActionRunResponseOutputRunStepsItem,
+) as any as S.Schema<ActionRunResponseOutputRunStepsList>;
 
-export interface ActionRunResponse {
+export interface ActionRunResponseOutput {
   id: string;
   branch_id: string;
-  run_steps: ActionRunResponseRunStepsList;
+  run_steps: ActionRunResponseOutputRunStepsList;
   git_config?: unknown | null;
   workdir: string | null;
   check_run_id: number | null;
   created_at: string;
   updated_at: string;
 }
-export const ActionRunResponse = /*@__PURE__*/ S.suspend(() =>
+export const ActionRunResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     branch_id: S.String,
-    run_steps: ActionRunResponseRunStepsList,
+    run_steps: ActionRunResponseOutputRunStepsList,
     git_config: S.optional(S.NullOr(S.Unknown)),
     workdir: S.NullOr(S.String),
     check_run_id: S.NullOr(S.Number),
@@ -2301,16 +3162,16 @@ export const ActionRunResponse = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ActionRunResponse",
-}) as any as S.Schema<ActionRunResponse>;
+  identifier: "ActionRunResponseOutput",
+}) as any as S.Schema<ActionRunResponseOutput>;
 
-export interface GetV1ActionRunLogRequest {
+export interface V1GetActionRunLogsRequest {
   /** Project ref */
   ref: string;
   /** Action Run ID */
   run_id: string;
 }
-export const GetV1ActionRunLogRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetActionRunLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     run_id: S.String.pipe(T.Label()),
@@ -2322,23 +3183,23 @@ export const GetV1ActionRunLogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ActionRunLogRequest",
-}) as any as S.Schema<GetV1ActionRunLogRequest>;
+  identifier: "V1GetActionRunLogsRequest",
+}) as any as S.Schema<V1GetActionRunLogsRequest>;
 
-export interface GetV1ActionRunLogResponse {}
-export const GetV1ActionRunLogResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1GetActionRunLogsResponse {}
+export const V1GetActionRunLogsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "GetV1ActionRunLogResponse",
-}) as any as S.Schema<GetV1ActionRunLogResponse>;
+  identifier: "V1GetActionRunLogsResponse",
+}) as any as S.Schema<V1GetActionRunLogsResponse>;
 
-export interface GetV1AFunctionRequest {
+export interface V1GetAFunctionRequest {
   /** Project ref */
   ref: string;
   /** Function slug */
   function_slug: string;
 }
-export const GetV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     function_slug: S.String.pipe(T.Label()),
@@ -2350,17 +3211,20 @@ export const GetV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1AFunctionRequest",
-}) as any as S.Schema<GetV1AFunctionRequest>;
+  identifier: "V1GetAFunctionRequest",
+}) as any as S.Schema<V1GetAFunctionRequest>;
 
-export type FunctionSlugResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const FunctionSlugResponseStatus = /*@__PURE__*/ S.String;
+export type FunctionSlugResponseOutputStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const FunctionSlugResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface FunctionSlugResponse {
+export interface FunctionSlugResponseOutput {
   id: string;
   slug: string;
   name: string;
-  status: FunctionSlugResponseStatus;
+  status: FunctionSlugResponseOutputStatus;
   version: number;
   created_at: number;
   updated_at: number;
@@ -2370,12 +3234,12 @@ export interface FunctionSlugResponse {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const FunctionSlugResponse = /*@__PURE__*/ S.suspend(() =>
+export const FunctionSlugResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
-    status: FunctionSlugResponseStatus,
+    status: FunctionSlugResponseOutputStatus,
     version: S.Number,
     created_at: S.Number,
     updated_at: S.Number,
@@ -2386,16 +3250,16 @@ export const FunctionSlugResponse = /*@__PURE__*/ S.suspend(() =>
     ezbr_sha256: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FunctionSlugResponse",
-}) as any as S.Schema<FunctionSlugResponse>;
+  identifier: "FunctionSlugResponseOutput",
+}) as any as S.Schema<FunctionSlugResponseOutput>;
 
-export interface GetV1AFunctionBodyRequest {
+export interface V1GetAFunctionBodyRequest {
   /** Project ref */
   ref: string;
   /** Function slug */
   function_slug: string;
 }
-export const GetV1AFunctionBodyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAFunctionBodyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     function_slug: S.String.pipe(T.Label()),
@@ -2407,15 +3271,15 @@ export const GetV1AFunctionBodyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1AFunctionBodyRequest",
-}) as any as S.Schema<GetV1AFunctionBodyRequest>;
+  identifier: "V1GetAFunctionBodyRequest",
+}) as any as S.Schema<V1GetAFunctionBodyRequest>;
 
-export type GetV1AFunctionBodyResponse = unknown;
-export const GetV1AFunctionBodyResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetAFunctionBodyResponse = unknown;
+export const V1GetAFunctionBodyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1AFunctionBodyResponse",
-}) as any as S.Schema<GetV1AFunctionBodyResponse>;
+  identifier: "V1GetAFunctionBodyResponse",
+}) as any as S.Schema<V1GetAFunctionBodyResponse>;
 
 export type V1GetAllProjectsForOrganizationRequestSort =
   | "name_asc"
@@ -2425,7 +3289,7 @@ export type V1GetAllProjectsForOrganizationRequestSort =
 export const V1GetAllProjectsForOrganizationRequestSort =
   /*@__PURE__*/ S.String;
 
-export interface GetV1AllProjectForOrganizationRequest {
+export interface V1GetAllProjectsForOrganizationRequest {
   /** Organization slug */
   slug: string;
   /** Number of projects to skip */
@@ -2439,7 +3303,7 @@ export interface GetV1AllProjectForOrganizationRequest {
   /** A comma-separated list of project statuses to filter by. The following values are supported: `ACTIVE_HEALTHY`, `INACTIVE`. */
   statuses?: string;
 }
-export const GetV1AllProjectForOrganizationRequest = /*@__PURE__*/ S.suspend(
+export const V1GetAllProjectsForOrganizationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       slug: S.String.pipe(T.Label()),
@@ -2458,10 +3322,10 @@ export const GetV1AllProjectForOrganizationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1AllProjectForOrganizationRequest",
-}) as any as S.Schema<GetV1AllProjectForOrganizationRequest>;
+  identifier: "V1GetAllProjectsForOrganizationRequest",
+}) as any as S.Schema<V1GetAllProjectsForOrganizationRequest>;
 
-export type OrganizationProjectsResponseProjectsItemStatus =
+export type OrganizationProjectsResponseOutputProjectsItemStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -2477,10 +3341,10 @@ export type OrganizationProjectsResponseProjectsItemStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const OrganizationProjectsResponseProjectsItemStatus =
+export const OrganizationProjectsResponseOutputProjectsItemStatus =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
   | "pico"
   | "nano"
   | "micro"
@@ -2501,10 +3365,10 @@ export type OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSiz
   | "48xlarge_optimized_memory"
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
   | "COMING_UP"
@@ -2517,95 +3381,96 @@ export type OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
   | "INIT_READ_REPLICA_FAILED"
   | "RESTARTING"
   | "RESIZING";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemType =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
   | "PRIMARY"
   | "READ_REPLICA";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemType =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemDiskType =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
   | "gp3"
   | "io2";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemDiskType =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
   /*@__PURE__*/ S.String;
 
-export interface OrganizationProjectsResponseProjectsItemDatabasesItem {
-  infra_compute_size?: OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize;
+export interface OrganizationProjectsResponseOutputProjectsItemDatabasesItem {
+  infra_compute_size?: OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize;
   region: string;
-  status: OrganizationProjectsResponseProjectsItemDatabasesItemStatus;
+  status: OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus;
   cloud_provider: string;
   identifier: string;
-  type: OrganizationProjectsResponseProjectsItemDatabasesItemType;
+  type: OrganizationProjectsResponseOutputProjectsItemDatabasesItemType;
   disk_volume_size_gb?: number;
-  disk_type?: OrganizationProjectsResponseProjectsItemDatabasesItemDiskType;
+  disk_type?: OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType;
   disk_throughput_mbps?: number;
   disk_last_modified_at?: string;
 }
-export const OrganizationProjectsResponseProjectsItemDatabasesItem =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       infra_compute_size: S.optional(
-        OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize,
+        OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize,
       ),
       region: S.String,
-      status: OrganizationProjectsResponseProjectsItemDatabasesItemStatus,
+      status: OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus,
       cloud_provider: S.String,
       identifier: S.String,
-      type: OrganizationProjectsResponseProjectsItemDatabasesItemType,
+      type: OrganizationProjectsResponseOutputProjectsItemDatabasesItemType,
       disk_volume_size_gb: S.optional(S.Number),
       disk_type: S.optional(
-        OrganizationProjectsResponseProjectsItemDatabasesItemDiskType,
+        OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType,
       ),
       disk_throughput_mbps: S.optional(S.Number),
       disk_last_modified_at: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "OrganizationProjectsResponseProjectsItemDatabasesItem",
-  }) as any as S.Schema<OrganizationProjectsResponseProjectsItemDatabasesItem>;
+    identifier: "OrganizationProjectsResponseOutputProjectsItemDatabasesItem",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItemDatabasesItem>;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesList =
-  Array<OrganizationProjectsResponseProjectsItemDatabasesItem>;
-export const OrganizationProjectsResponseProjectsItemDatabasesList =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesList =
+  Array<OrganizationProjectsResponseOutputProjectsItemDatabasesItem>;
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectsResponseProjectsItemDatabasesItem,
-  ) as any as S.Schema<OrganizationProjectsResponseProjectsItemDatabasesList>;
+    OrganizationProjectsResponseOutputProjectsItemDatabasesItem,
+  ) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItemDatabasesList>;
 
-export interface OrganizationProjectsResponseProjectsItem {
+export interface OrganizationProjectsResponseOutputProjectsItem {
   ref: string;
   name: string;
   cloud_provider: string;
   region: string;
   is_branch: boolean;
-  status: OrganizationProjectsResponseProjectsItemStatus;
+  status: OrganizationProjectsResponseOutputProjectsItemStatus;
   inserted_at: string;
-  databases: OrganizationProjectsResponseProjectsItemDatabasesList;
+  databases: OrganizationProjectsResponseOutputProjectsItemDatabasesList;
 }
-export const OrganizationProjectsResponseProjectsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectsResponseOutputProjectsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ref: S.String,
       name: S.String,
       cloud_provider: S.String,
       region: S.String,
       is_branch: S.Boolean,
-      status: OrganizationProjectsResponseProjectsItemStatus,
+      status: OrganizationProjectsResponseOutputProjectsItemStatus,
       inserted_at: S.String,
-      databases: OrganizationProjectsResponseProjectsItemDatabasesList,
+      databases: OrganizationProjectsResponseOutputProjectsItemDatabasesList,
     }),
-).annotate({
-  identifier: "OrganizationProjectsResponseProjectsItem",
-}) as any as S.Schema<OrganizationProjectsResponseProjectsItem>;
+  ).annotate({
+    identifier: "OrganizationProjectsResponseOutputProjectsItem",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItem>;
 
-export type OrganizationProjectsResponseProjectsList =
-  Array<OrganizationProjectsResponseProjectsItem>;
-export const OrganizationProjectsResponseProjectsList = /*@__PURE__*/ S.Array(
-  OrganizationProjectsResponseProjectsItem,
-) as any as S.Schema<OrganizationProjectsResponseProjectsList>;
+export type OrganizationProjectsResponseOutputProjectsList =
+  Array<OrganizationProjectsResponseOutputProjectsItem>;
+export const OrganizationProjectsResponseOutputProjectsList =
+  /*@__PURE__*/ S.Array(
+    OrganizationProjectsResponseOutputProjectsItem,
+  ) as any as S.Schema<OrganizationProjectsResponseOutputProjectsList>;
 
-export interface OrganizationProjectsResponsePagination {
+export interface OrganizationProjectsResponseOutputPagination {
   /** Total number of projects. Use this to calculate the total number of pages. */
   count: number;
   /** Maximum number of projects per page */
@@ -2613,36 +3478,36 @@ export interface OrganizationProjectsResponsePagination {
   /** Number of projects skipped in this response */
   offset: number;
 }
-export const OrganizationProjectsResponsePagination = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectsResponseOutputPagination =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       count: S.Number,
       limit: S.Number,
       offset: S.Number,
     }),
-).annotate({
-  identifier: "OrganizationProjectsResponsePagination",
-}) as any as S.Schema<OrganizationProjectsResponsePagination>;
+  ).annotate({
+    identifier: "OrganizationProjectsResponseOutputPagination",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputPagination>;
 
-export interface OrganizationProjectsResponse {
-  projects: OrganizationProjectsResponseProjectsList;
-  pagination: OrganizationProjectsResponsePagination;
+export interface OrganizationProjectsResponseOutput {
+  projects: OrganizationProjectsResponseOutputProjectsList;
+  pagination: OrganizationProjectsResponseOutputPagination;
 }
-export const OrganizationProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+export const OrganizationProjectsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projects: OrganizationProjectsResponseProjectsList,
-    pagination: OrganizationProjectsResponsePagination,
+    projects: OrganizationProjectsResponseOutputProjectsList,
+    pagination: OrganizationProjectsResponseOutputPagination,
   }),
 ).annotate({
-  identifier: "OrganizationProjectsResponse",
-}) as any as S.Schema<OrganizationProjectsResponse>;
+  identifier: "OrganizationProjectsResponseOutput",
+}) as any as S.Schema<OrganizationProjectsResponseOutput>;
 
-export interface GetV1AMigrationRequest {
+export interface V1GetAMigrationRequest {
   /** Project ref */
   ref: string;
   version: string;
 }
-export const GetV1AMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     version: S.String.pipe(T.Label()),
@@ -2654,212 +3519,218 @@ export const GetV1AMigrationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1AMigrationRequest",
-}) as any as S.Schema<GetV1AMigrationRequest>;
+  identifier: "V1GetAMigrationRequest",
+}) as any as S.Schema<V1GetAMigrationRequest>;
 
-export type V1GetMigrationResponseStatementsList = Array<string>;
-export const V1GetMigrationResponseStatementsList = /*@__PURE__*/ S.Array(
+export type V1GetMigrationResponseOutputStatementsList = Array<string>;
+export const V1GetMigrationResponseOutputStatementsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<V1GetMigrationResponseStatementsList>;
+) as any as S.Schema<V1GetMigrationResponseOutputStatementsList>;
 
-export type V1GetMigrationResponseRollbackList = Array<string>;
-export const V1GetMigrationResponseRollbackList = /*@__PURE__*/ S.Array(
+export type V1GetMigrationResponseOutputRollbackList = Array<string>;
+export const V1GetMigrationResponseOutputRollbackList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<V1GetMigrationResponseRollbackList>;
+) as any as S.Schema<V1GetMigrationResponseOutputRollbackList>;
 
-export interface V1GetMigrationResponse {
+export interface V1GetMigrationResponseOutput {
   version: string;
   name?: string;
-  statements?: V1GetMigrationResponseStatementsList;
-  rollback?: V1GetMigrationResponseRollbackList;
+  statements?: V1GetMigrationResponseOutputStatementsList;
+  rollback?: V1GetMigrationResponseOutputRollbackList;
   created_by?: string;
   idempotency_key?: string;
 }
-export const V1GetMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1GetMigrationResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     version: S.String,
     name: S.optional(S.String),
-    statements: S.optional(V1GetMigrationResponseStatementsList),
-    rollback: S.optional(V1GetMigrationResponseRollbackList),
+    statements: S.optional(V1GetMigrationResponseOutputStatementsList),
+    rollback: S.optional(V1GetMigrationResponseOutputRollbackList),
     created_by: S.optional(S.String),
     idempotency_key: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1GetMigrationResponse",
-}) as any as S.Schema<V1GetMigrationResponse>;
+  identifier: "V1GetMigrationResponseOutput",
+}) as any as S.Schema<V1GetMigrationResponseOutput>;
 
-export interface GetV1AnOrganizationRequest {
+export interface V1GetAnOrganizationRequest {
   /** Organization slug */
   slug: string;
 }
-export const GetV1AnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/organizations/{slug}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1AnOrganizationRequest",
-}) as any as S.Schema<GetV1AnOrganizationRequest>;
+  identifier: "V1GetAnOrganizationRequest",
+}) as any as S.Schema<V1GetAnOrganizationRequest>;
 
-export type V1OrganizationSlugResponsePlan =
+export type V1OrganizationSlugResponseOutputPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const V1OrganizationSlugResponsePlan = /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputPlan = /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseOptInTagsItem =
+export type V1OrganizationSlugResponseOutputOptInTagsItem =
   | "AI_SQL_GENERATOR_OPT_IN"
   | "AI_DATA_GENERATOR_OPT_IN"
   | "AI_LOG_GENERATOR_OPT_IN";
-export const V1OrganizationSlugResponseOptInTagsItem = /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputOptInTagsItem =
+  /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseOptInTagsList =
-  Array<V1OrganizationSlugResponseOptInTagsItem>;
-export const V1OrganizationSlugResponseOptInTagsList = /*@__PURE__*/ S.Array(
-  V1OrganizationSlugResponseOptInTagsItem,
-) as any as S.Schema<V1OrganizationSlugResponseOptInTagsList>;
+export type V1OrganizationSlugResponseOutputOptInTagsList =
+  Array<V1OrganizationSlugResponseOutputOptInTagsItem>;
+export const V1OrganizationSlugResponseOutputOptInTagsList =
+  /*@__PURE__*/ S.Array(
+    V1OrganizationSlugResponseOutputOptInTagsItem,
+  ) as any as S.Schema<V1OrganizationSlugResponseOutputOptInTagsList>;
 
-export type V1OrganizationSlugResponseAllowedReleaseChannelsItem =
+export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const V1OrganizationSlugResponseAllowedReleaseChannelsItem =
+export const V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
   /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseAllowedReleaseChannelsList =
-  Array<V1OrganizationSlugResponseAllowedReleaseChannelsItem>;
-export const V1OrganizationSlugResponseAllowedReleaseChannelsList =
+export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsList =
+  Array<V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem>;
+export const V1OrganizationSlugResponseOutputAllowedReleaseChannelsList =
   /*@__PURE__*/ S.Array(
-    V1OrganizationSlugResponseAllowedReleaseChannelsItem,
-  ) as any as S.Schema<V1OrganizationSlugResponseAllowedReleaseChannelsList>;
+    V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem,
+  ) as any as S.Schema<V1OrganizationSlugResponseOutputAllowedReleaseChannelsList>;
 
-export interface V1OrganizationSlugResponse {
+export interface V1OrganizationSlugResponseOutput {
   id: string;
   name: string;
-  plan?: V1OrganizationSlugResponsePlan;
-  opt_in_tags: V1OrganizationSlugResponseOptInTagsList;
-  allowed_release_channels: V1OrganizationSlugResponseAllowedReleaseChannelsList;
+  plan?: V1OrganizationSlugResponseOutputPlan;
+  opt_in_tags: V1OrganizationSlugResponseOutputOptInTagsList;
+  allowed_release_channels: V1OrganizationSlugResponseOutputAllowedReleaseChannelsList;
 }
-export const V1OrganizationSlugResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1OrganizationSlugResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
-    plan: S.optional(V1OrganizationSlugResponsePlan),
-    opt_in_tags: V1OrganizationSlugResponseOptInTagsList,
+    plan: S.optional(V1OrganizationSlugResponseOutputPlan),
+    opt_in_tags: V1OrganizationSlugResponseOutputOptInTagsList,
     allowed_release_channels:
-      V1OrganizationSlugResponseAllowedReleaseChannelsList,
+      V1OrganizationSlugResponseOutputAllowedReleaseChannelsList,
   }),
 ).annotate({
-  identifier: "V1OrganizationSlugResponse",
-}) as any as S.Schema<V1OrganizationSlugResponse>;
+  identifier: "V1OrganizationSlugResponseOutput",
+}) as any as S.Schema<V1OrganizationSlugResponseOutput>;
 
-export interface GetV1ASnippetRequest {
+export interface V1GetASnippetRequest {
   id: string;
 }
-export const GetV1ASnippetRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetASnippetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/v1/snippets/{id}", code: 200 })),
 ).annotate({
-  identifier: "GetV1ASnippetRequest",
-}) as any as S.Schema<GetV1ASnippetRequest>;
+  identifier: "V1GetASnippetRequest",
+}) as any as S.Schema<V1GetASnippetRequest>;
 
-export type SnippetResponseType = "sql";
-export const SnippetResponseType = /*@__PURE__*/ S.String;
+export type SnippetResponseOutputType = "sql";
+export const SnippetResponseOutputType = /*@__PURE__*/ S.String;
 
-export type SnippetResponseVisibility = "user" | "project" | "org" | "public";
-export const SnippetResponseVisibility = /*@__PURE__*/ S.String;
+export type SnippetResponseOutputVisibility =
+  | "user"
+  | "project"
+  | "org"
+  | "public";
+export const SnippetResponseOutputVisibility = /*@__PURE__*/ S.String;
 
-export interface SnippetResponseProject {
+export interface SnippetResponseOutputProject {
   id: number;
   name: string;
 }
-export const SnippetResponseProject = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputProject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     name: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseProject",
-}) as any as S.Schema<SnippetResponseProject>;
+  identifier: "SnippetResponseOutputProject",
+}) as any as S.Schema<SnippetResponseOutputProject>;
 
-export interface SnippetResponseOwner {
+export interface SnippetResponseOutputOwner {
   id: number;
   username: string;
 }
-export const SnippetResponseOwner = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputOwner = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     username: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseOwner",
-}) as any as S.Schema<SnippetResponseOwner>;
+  identifier: "SnippetResponseOutputOwner",
+}) as any as S.Schema<SnippetResponseOutputOwner>;
 
-export type SnippetResponseUpdatedBy = SnippetResponseOwner;
-export const SnippetResponseUpdatedBy = SnippetResponseOwner;
+export type SnippetResponseOutputUpdatedBy = SnippetResponseOutputOwner;
+export const SnippetResponseOutputUpdatedBy = SnippetResponseOutputOwner;
 
-export interface SnippetResponseContent {
+export interface SnippetResponseOutputContent {
   /** Deprecated: Rely on root-level favorite property instead. */
   favorite?: boolean;
   schema_version: string;
   sql: string;
 }
-export const SnippetResponseContent = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputContent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     favorite: S.optional(S.Boolean),
     schema_version: S.String,
     sql: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseContent",
-}) as any as S.Schema<SnippetResponseContent>;
+  identifier: "SnippetResponseOutputContent",
+}) as any as S.Schema<SnippetResponseOutputContent>;
 
-export interface SnippetResponse {
+export interface SnippetResponseOutput {
   id: string;
   inserted_at: string;
   updated_at: string;
-  type: SnippetResponseType;
-  visibility: SnippetResponseVisibility;
+  type: SnippetResponseOutputType;
+  visibility: SnippetResponseOutputVisibility;
   name: string;
   description: string | null;
-  project: SnippetResponseProject;
-  owner: SnippetResponseOwner;
-  updated_by: SnippetResponseOwner;
+  project: SnippetResponseOutputProject;
+  owner: SnippetResponseOutputOwner;
+  updated_by: SnippetResponseOutputOwner;
   favorite: boolean;
-  content: SnippetResponseContent;
+  content: SnippetResponseOutputContent;
 }
-export const SnippetResponse = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     inserted_at: S.String,
     updated_at: S.String,
-    type: SnippetResponseType,
-    visibility: SnippetResponseVisibility,
+    type: SnippetResponseOutputType,
+    visibility: SnippetResponseOutputVisibility,
     name: S.String,
     description: S.NullOr(S.String),
-    project: SnippetResponseProject,
-    owner: SnippetResponseOwner,
-    updated_by: SnippetResponseOwner,
+    project: SnippetResponseOutputProject,
+    owner: SnippetResponseOutputOwner,
+    updated_by: SnippetResponseOutputOwner,
     favorite: S.Boolean,
-    content: SnippetResponseContent,
+    content: SnippetResponseOutputContent,
   }),
 ).annotate({
-  identifier: "SnippetResponse",
-}) as any as S.Schema<SnippetResponse>;
+  identifier: "SnippetResponseOutput",
+}) as any as S.Schema<SnippetResponseOutput>;
 
-export interface GetV1ASsoProviderRequest {
+export interface V1GetASsoProviderRequest {
   /** Project ref */
   ref: string;
   provider_id: string;
 }
-export const GetV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     provider_id: S.String.pipe(T.Label()),
@@ -2871,163 +3742,172 @@ export const GetV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ASsoProviderRequest",
-}) as any as S.Schema<GetV1ASsoProviderRequest>;
+  identifier: "V1GetASsoProviderRequest",
+}) as any as S.Schema<V1GetASsoProviderRequest>;
 
-export type GetProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const GetProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type GetProviderResponseSamlAttributeMappingKeysValueDefault =
+export type GetProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const GetProviderResponseSamlAttributeMappingKeysValueDefault =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface GetProviderResponseSamlAttributeMappingKeysValue {
+export interface GetProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: GetProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: GetProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: GetProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const GetProviderResponseSamlAttributeMappingKeysValue =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        GetProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        GetProviderResponseSamlAttributeMappingKeysValueDefault,
+        GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        GetProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "GetProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "GetProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type GetProviderResponseSamlAttributeMappingKeysMap = {
-  [key: string]: GetProviderResponseSamlAttributeMappingKeysValue | undefined;
+export type GetProviderResponseOutputSamlAttributeMappingKeysMap = {
+  [key: string]:
+    | GetProviderResponseOutputSamlAttributeMappingKeysValue
+    | undefined;
 };
-export const GetProviderResponseSamlAttributeMappingKeysMap =
+export const GetProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    GetProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysMap>;
+    GetProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface GetProviderResponseSamlAttributeMapping {
-  keys: GetProviderResponseSamlAttributeMappingKeysMap;
+export interface GetProviderResponseOutputSamlAttributeMapping {
+  keys: GetProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const GetProviderResponseSamlAttributeMapping = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetProviderResponseOutputSamlAttributeMapping =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: GetProviderResponseSamlAttributeMappingKeysMap,
+      keys: GetProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
-).annotate({
-  identifier: "GetProviderResponseSamlAttributeMapping",
-}) as any as S.Schema<GetProviderResponseSamlAttributeMapping>;
+  ).annotate({
+    identifier: "GetProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<GetProviderResponseOutputSamlAttributeMapping>;
 
-export type GetProviderResponseSamlNameIdFormat =
+export type GetProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const GetProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const GetProviderResponseOutputSamlNameIdFormat = /*@__PURE__*/ S.String;
 
-export interface GetProviderResponseSaml {
+export interface GetProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: GetProviderResponseSamlAttributeMapping;
-  name_id_format?: GetProviderResponseSamlNameIdFormat;
+  attribute_mapping?: GetProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: GetProviderResponseOutputSamlNameIdFormat;
 }
-export const GetProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(GetProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(GetProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      GetProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(GetProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "GetProviderResponseSaml",
-}) as any as S.Schema<GetProviderResponseSaml>;
+  identifier: "GetProviderResponseOutputSaml",
+}) as any as S.Schema<GetProviderResponseOutputSaml>;
 
-export type GetProviderResponseDomainsItem = CreateProviderResponseDomainsItem;
-export const GetProviderResponseDomainsItem = CreateProviderResponseDomainsItem;
+export type GetProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const GetProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type GetProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const GetProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<GetProviderResponseDomainsList>;
+export type GetProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const GetProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<GetProviderResponseOutputDomainsList>;
 
-export interface GetProviderResponse {
+export interface GetProviderResponseOutput {
   id: string;
-  saml?: GetProviderResponseSaml;
-  domains?: GetProviderResponseDomainsList;
+  saml?: GetProviderResponseOutputSaml;
+  domains?: GetProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const GetProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(GetProviderResponseSaml),
-    domains: S.optional(GetProviderResponseDomainsList),
+    saml: S.optional(GetProviderResponseOutputSaml),
+    domains: S.optional(GetProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetProviderResponse",
-}) as any as S.Schema<GetProviderResponse>;
+  identifier: "GetProviderResponseOutput",
+}) as any as S.Schema<GetProviderResponseOutput>;
 
-export interface GetV1AuthServiceConfigRequest {
+export interface V1GetAuthServiceConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1AuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/config/auth", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1AuthServiceConfigRequest",
-}) as any as S.Schema<GetV1AuthServiceConfigRequest>;
+  identifier: "V1GetAuthServiceConfigRequest",
+}) as any as S.Schema<V1GetAuthServiceConfigRequest>;
 
-export type AuthConfigResponseDbMaxPoolSizeUnit = "connections" | "percent";
-export const AuthConfigResponseDbMaxPoolSizeUnit = /*@__PURE__*/ S.String;
+export type AuthConfigResponseOutputDbMaxPoolSizeUnit =
+  | "connections"
+  | "percent";
+export const AuthConfigResponseOutputDbMaxPoolSizeUnit = /*@__PURE__*/ S.String;
 
-export type AuthConfigResponsePasswordRequiredCharacters =
+export type AuthConfigResponseOutputPasswordRequiredCharacters =
   | "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789:!@#$%^&*()_+-=[]{};'\\\\:\"|<>?,./`~"
   | "";
-export const AuthConfigResponsePasswordRequiredCharacters =
+export const AuthConfigResponseOutputPasswordRequiredCharacters =
   /*@__PURE__*/ S.String;
 
-export type AuthConfigResponseSecurityCaptchaProvider =
+export type AuthConfigResponseOutputSecurityCaptchaProvider =
   | "turnstile"
   | "hcaptcha";
-export const AuthConfigResponseSecurityCaptchaProvider = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSecurityCaptchaProvider =
+  /*@__PURE__*/ S.String;
 
-export type AuthConfigResponseSmsProvider =
+export type AuthConfigResponseOutputSmsProvider =
   | "messagebird"
   | "textlocal"
   | "twilio"
   | "twilio_verify"
   | "vonage";
-export const AuthConfigResponseSmsProvider = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSmsProvider = /*@__PURE__*/ S.String;
 
-export interface AuthConfigResponse {
+export interface AuthConfigResponseOutput {
   api_max_request_duration: number | null;
   db_max_pool_size: number | null;
-  db_max_pool_size_unit: AuthConfigResponseDbMaxPoolSizeUnit | null;
+  db_max_pool_size_unit: AuthConfigResponseOutputDbMaxPoolSizeUnit | null;
   disable_signup: boolean | null;
   external_anonymous_users_enabled: boolean | null;
   external_apple_additional_client_ids: string | null;
@@ -3203,7 +4083,7 @@ export interface AuthConfigResponse {
   nimbus_oauth_client_secret: T.Sensitive | null;
   password_hibp_enabled: boolean | null;
   password_min_length: number | null;
-  password_required_characters: AuthConfigResponsePasswordRequiredCharacters | null;
+  password_required_characters: AuthConfigResponseOutputPasswordRequiredCharacters | null;
   rate_limit_anonymous_users: number | null;
   rate_limit_email_sent: number | null;
   rate_limit_sms_sent: number | null;
@@ -3217,7 +4097,7 @@ export interface AuthConfigResponse {
   saml_allow_encrypted_assertions: boolean | null;
   security_sb_forwarded_for_enabled: boolean | null;
   security_captcha_enabled: boolean | null;
-  security_captcha_provider: AuthConfigResponseSecurityCaptchaProvider | null;
+  security_captcha_provider: AuthConfigResponseOutputSecurityCaptchaProvider | null;
   security_captcha_secret: T.Sensitive | null;
   security_manual_linking_enabled: boolean | null;
   security_refresh_token_reuse_interval: number | null;
@@ -3233,7 +4113,7 @@ export interface AuthConfigResponse {
   sms_messagebird_originator: string | null;
   sms_otp_exp: number | null;
   sms_otp_length: number;
-  sms_provider: AuthConfigResponseSmsProvider | null;
+  sms_provider: AuthConfigResponseOutputSmsProvider | null;
   sms_template: string | null;
   sms_test_otp: string | null;
   sms_test_otp_valid_until: string | null;
@@ -3263,11 +4143,11 @@ export interface AuthConfigResponse {
   custom_oauth_enabled: boolean;
   custom_oauth_max_providers: number;
 }
-export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const AuthConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     api_max_request_duration: S.NullOr(S.Number),
     db_max_pool_size: S.NullOr(S.Number),
-    db_max_pool_size_unit: S.NullOr(AuthConfigResponseDbMaxPoolSizeUnit),
+    db_max_pool_size_unit: S.NullOr(AuthConfigResponseOutputDbMaxPoolSizeUnit),
     disable_signup: S.NullOr(S.Boolean),
     external_anonymous_users_enabled: S.NullOr(S.Boolean),
     external_apple_additional_client_ids: S.NullOr(S.String),
@@ -3458,7 +4338,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     password_hibp_enabled: S.NullOr(S.Boolean),
     password_min_length: S.NullOr(S.Number),
     password_required_characters: S.NullOr(
-      AuthConfigResponsePasswordRequiredCharacters,
+      AuthConfigResponseOutputPasswordRequiredCharacters,
     ),
     rate_limit_anonymous_users: S.NullOr(S.Number),
     rate_limit_email_sent: S.NullOr(S.Number),
@@ -3474,7 +4354,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     security_sb_forwarded_for_enabled: S.NullOr(S.Boolean),
     security_captcha_enabled: S.NullOr(S.Boolean),
     security_captcha_provider: S.NullOr(
-      AuthConfigResponseSecurityCaptchaProvider,
+      AuthConfigResponseOutputSecurityCaptchaProvider,
     ),
     security_captcha_secret: S.NullOr(S.String).pipe(T.SensitiveValue({})),
     security_manual_linking_enabled: S.NullOr(S.Boolean),
@@ -3491,7 +4371,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     sms_messagebird_originator: S.NullOr(S.String),
     sms_otp_exp: S.NullOr(S.Number),
     sms_otp_length: S.Number,
-    sms_provider: S.NullOr(AuthConfigResponseSmsProvider),
+    sms_provider: S.NullOr(AuthConfigResponseOutputSmsProvider),
     sms_template: S.NullOr(S.String),
     sms_test_otp: S.NullOr(S.String),
     sms_test_otp_valid_until: S.NullOr(S.String),
@@ -3522,8 +4402,8 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     custom_oauth_max_providers: S.Number,
   }),
 ).annotate({
-  identifier: "AuthConfigResponse",
-}) as any as S.Schema<AuthConfigResponse>;
+  identifier: "AuthConfigResponseOutput",
+}) as any as S.Schema<AuthConfigResponseOutput>;
 
 export type V1GetAvailableRegionsRequestContinent =
   | "NA"
@@ -3558,7 +4438,7 @@ export type V1GetAvailableRegionsRequestDesiredInstanceSize =
 export const V1GetAvailableRegionsRequestDesiredInstanceSize =
   /*@__PURE__*/ S.String;
 
-export interface GetV1AvailableRegionRequest {
+export interface V1GetAvailableRegionsRequest {
   /** Slug of your organization */
   organization_slug: string;
   /** Continent code to determine regional recommendations: NA (North America), SA (South America), EU (Europe), AF (Africa), AS (Asia), OC (Oceania), AN (Antarctica) */
@@ -3568,7 +4448,7 @@ export interface GetV1AvailableRegionRequest {
     | V1GetAvailableRegionsRequestDesiredInstanceSize
     | (string & {});
 }
-export const GetV1AvailableRegionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetAvailableRegionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_slug: S.String.pipe(T.Query()),
     continent: S.optional(
@@ -3581,35 +4461,37 @@ export const GetV1AvailableRegionRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/projects/available-regions", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1AvailableRegionRequest",
-}) as any as S.Schema<GetV1AvailableRegionRequest>;
+  identifier: "V1GetAvailableRegionsRequest",
+}) as any as S.Schema<V1GetAvailableRegionsRequest>;
 
-export type RegionsInfoRecommendationsSmartGroupCode =
+export type RegionsInfoOutputRecommendationsSmartGroupCode =
   | "americas"
   | "emea"
   | "apac";
-export const RegionsInfoRecommendationsSmartGroupCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSmartGroupCode =
+  /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSmartGroupType = "smartGroup";
-export const RegionsInfoRecommendationsSmartGroupType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputRecommendationsSmartGroupType = "smartGroup";
+export const RegionsInfoOutputRecommendationsSmartGroupType =
+  /*@__PURE__*/ S.String;
 
-export interface RegionsInfoRecommendationsSmartGroup {
+export interface RegionsInfoOutputRecommendationsSmartGroup {
   name: string;
-  code: RegionsInfoRecommendationsSmartGroupCode;
-  type: RegionsInfoRecommendationsSmartGroupType;
+  code: RegionsInfoOutputRecommendationsSmartGroupCode;
+  type: RegionsInfoOutputRecommendationsSmartGroupType;
 }
-export const RegionsInfoRecommendationsSmartGroup = /*@__PURE__*/ S.suspend(
-  () =>
+export const RegionsInfoOutputRecommendationsSmartGroup =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
-      code: RegionsInfoRecommendationsSmartGroupCode,
-      type: RegionsInfoRecommendationsSmartGroupType,
+      code: RegionsInfoOutputRecommendationsSmartGroupCode,
+      type: RegionsInfoOutputRecommendationsSmartGroupType,
     }),
-).annotate({
-  identifier: "RegionsInfoRecommendationsSmartGroup",
-}) as any as S.Schema<RegionsInfoRecommendationsSmartGroup>;
+  ).annotate({
+    identifier: "RegionsInfoOutputRecommendationsSmartGroup",
+  }) as any as S.Schema<RegionsInfoOutputRecommendationsSmartGroup>;
 
-export type RegionsInfoRecommendationsSpecificItemCode =
+export type RegionsInfoOutputRecommendationsSpecificItemCode =
   | "us-east-1"
   | "us-east-2"
   | "us-west-1"
@@ -3628,90 +4510,97 @@ export type RegionsInfoRecommendationsSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoRecommendationsSpecificItemCode =
+export const RegionsInfoOutputRecommendationsSpecificItemCode =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemType = "specific";
-export const RegionsInfoRecommendationsSpecificItemType =
+export type RegionsInfoOutputRecommendationsSpecificItemType = "specific";
+export const RegionsInfoOutputRecommendationsSpecificItemType =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemProvider =
+export type RegionsInfoOutputRecommendationsSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoRecommendationsSpecificItemProvider =
+export const RegionsInfoOutputRecommendationsSpecificItemProvider =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemStatus = "capacity" | "other";
-export const RegionsInfoRecommendationsSpecificItemStatus =
+export type RegionsInfoOutputRecommendationsSpecificItemStatus =
+  | "capacity"
+  | "other";
+export const RegionsInfoOutputRecommendationsSpecificItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface RegionsInfoRecommendationsSpecificItem {
+export interface RegionsInfoOutputRecommendationsSpecificItem {
   name: string;
-  code: RegionsInfoRecommendationsSpecificItemCode;
-  type: RegionsInfoRecommendationsSpecificItemType;
-  provider: RegionsInfoRecommendationsSpecificItemProvider;
-  status?: RegionsInfoRecommendationsSpecificItemStatus;
+  code: RegionsInfoOutputRecommendationsSpecificItemCode;
+  type: RegionsInfoOutputRecommendationsSpecificItemType;
+  provider: RegionsInfoOutputRecommendationsSpecificItemProvider;
+  status?: RegionsInfoOutputRecommendationsSpecificItemStatus;
 }
-export const RegionsInfoRecommendationsSpecificItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const RegionsInfoOutputRecommendationsSpecificItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
-      code: RegionsInfoRecommendationsSpecificItemCode,
-      type: RegionsInfoRecommendationsSpecificItemType,
-      provider: RegionsInfoRecommendationsSpecificItemProvider,
-      status: S.optional(RegionsInfoRecommendationsSpecificItemStatus),
+      code: RegionsInfoOutputRecommendationsSpecificItemCode,
+      type: RegionsInfoOutputRecommendationsSpecificItemType,
+      provider: RegionsInfoOutputRecommendationsSpecificItemProvider,
+      status: S.optional(RegionsInfoOutputRecommendationsSpecificItemStatus),
     }),
-).annotate({
-  identifier: "RegionsInfoRecommendationsSpecificItem",
-}) as any as S.Schema<RegionsInfoRecommendationsSpecificItem>;
+  ).annotate({
+    identifier: "RegionsInfoOutputRecommendationsSpecificItem",
+  }) as any as S.Schema<RegionsInfoOutputRecommendationsSpecificItem>;
 
-export type RegionsInfoRecommendationsSpecificList =
-  Array<RegionsInfoRecommendationsSpecificItem>;
-export const RegionsInfoRecommendationsSpecificList = /*@__PURE__*/ S.Array(
-  RegionsInfoRecommendationsSpecificItem,
-) as any as S.Schema<RegionsInfoRecommendationsSpecificList>;
+export type RegionsInfoOutputRecommendationsSpecificList =
+  Array<RegionsInfoOutputRecommendationsSpecificItem>;
+export const RegionsInfoOutputRecommendationsSpecificList =
+  /*@__PURE__*/ S.Array(
+    RegionsInfoOutputRecommendationsSpecificItem,
+  ) as any as S.Schema<RegionsInfoOutputRecommendationsSpecificList>;
 
-export interface RegionsInfoRecommendations {
-  smartGroup: RegionsInfoRecommendationsSmartGroup;
-  specific: RegionsInfoRecommendationsSpecificList;
+export interface RegionsInfoOutputRecommendations {
+  smartGroup: RegionsInfoOutputRecommendationsSmartGroup;
+  specific: RegionsInfoOutputRecommendationsSpecificList;
 }
-export const RegionsInfoRecommendations = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputRecommendations = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smartGroup: RegionsInfoRecommendationsSmartGroup,
-    specific: RegionsInfoRecommendationsSpecificList,
+    smartGroup: RegionsInfoOutputRecommendationsSmartGroup,
+    specific: RegionsInfoOutputRecommendationsSpecificList,
   }),
 ).annotate({
-  identifier: "RegionsInfoRecommendations",
-}) as any as S.Schema<RegionsInfoRecommendations>;
+  identifier: "RegionsInfoOutputRecommendations",
+}) as any as S.Schema<RegionsInfoOutputRecommendations>;
 
-export type RegionsInfoAllSmartGroupItemCode = "americas" | "emea" | "apac";
-export const RegionsInfoAllSmartGroupItemCode = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSmartGroupItemCode =
+  | "americas"
+  | "emea"
+  | "apac";
+export const RegionsInfoOutputAllSmartGroupItemCode = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSmartGroupItemType = "smartGroup";
-export const RegionsInfoAllSmartGroupItemType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSmartGroupItemType = "smartGroup";
+export const RegionsInfoOutputAllSmartGroupItemType = /*@__PURE__*/ S.String;
 
-export interface RegionsInfoAllSmartGroupItem {
+export interface RegionsInfoOutputAllSmartGroupItem {
   name: string;
-  code: RegionsInfoAllSmartGroupItemCode;
-  type: RegionsInfoAllSmartGroupItemType;
+  code: RegionsInfoOutputAllSmartGroupItemCode;
+  type: RegionsInfoOutputAllSmartGroupItemType;
 }
-export const RegionsInfoAllSmartGroupItem = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAllSmartGroupItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
-    code: RegionsInfoAllSmartGroupItemCode,
-    type: RegionsInfoAllSmartGroupItemType,
+    code: RegionsInfoOutputAllSmartGroupItemCode,
+    type: RegionsInfoOutputAllSmartGroupItemType,
   }),
 ).annotate({
-  identifier: "RegionsInfoAllSmartGroupItem",
-}) as any as S.Schema<RegionsInfoAllSmartGroupItem>;
+  identifier: "RegionsInfoOutputAllSmartGroupItem",
+}) as any as S.Schema<RegionsInfoOutputAllSmartGroupItem>;
 
-export type RegionsInfoAllSmartGroupList = Array<RegionsInfoAllSmartGroupItem>;
-export const RegionsInfoAllSmartGroupList = /*@__PURE__*/ S.Array(
-  RegionsInfoAllSmartGroupItem,
-) as any as S.Schema<RegionsInfoAllSmartGroupList>;
+export type RegionsInfoOutputAllSmartGroupList =
+  Array<RegionsInfoOutputAllSmartGroupItem>;
+export const RegionsInfoOutputAllSmartGroupList = /*@__PURE__*/ S.Array(
+  RegionsInfoOutputAllSmartGroupItem,
+) as any as S.Schema<RegionsInfoOutputAllSmartGroupList>;
 
-export type RegionsInfoAllSpecificItemCode =
+export type RegionsInfoOutputAllSpecificItemCode =
   | "us-east-1"
   | "us-east-2"
   | "us-west-1"
@@ -3730,71 +4619,76 @@ export type RegionsInfoAllSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoAllSpecificItemCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemCode = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemType = "specific";
-export const RegionsInfoAllSpecificItemType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSpecificItemType = "specific";
+export const RegionsInfoOutputAllSpecificItemType = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemProvider =
+export type RegionsInfoOutputAllSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoAllSpecificItemProvider = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemProvider = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemStatus = "capacity" | "other";
-export const RegionsInfoAllSpecificItemStatus = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSpecificItemStatus = "capacity" | "other";
+export const RegionsInfoOutputAllSpecificItemStatus = /*@__PURE__*/ S.String;
 
-export interface RegionsInfoAllSpecificItem {
+export interface RegionsInfoOutputAllSpecificItem {
   name: string;
-  code: RegionsInfoAllSpecificItemCode;
-  type: RegionsInfoAllSpecificItemType;
-  provider: RegionsInfoAllSpecificItemProvider;
-  status?: RegionsInfoAllSpecificItemStatus;
+  code: RegionsInfoOutputAllSpecificItemCode;
+  type: RegionsInfoOutputAllSpecificItemType;
+  provider: RegionsInfoOutputAllSpecificItemProvider;
+  status?: RegionsInfoOutputAllSpecificItemStatus;
 }
-export const RegionsInfoAllSpecificItem = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAllSpecificItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
-    code: RegionsInfoAllSpecificItemCode,
-    type: RegionsInfoAllSpecificItemType,
-    provider: RegionsInfoAllSpecificItemProvider,
-    status: S.optional(RegionsInfoAllSpecificItemStatus),
+    code: RegionsInfoOutputAllSpecificItemCode,
+    type: RegionsInfoOutputAllSpecificItemType,
+    provider: RegionsInfoOutputAllSpecificItemProvider,
+    status: S.optional(RegionsInfoOutputAllSpecificItemStatus),
   }),
 ).annotate({
-  identifier: "RegionsInfoAllSpecificItem",
-}) as any as S.Schema<RegionsInfoAllSpecificItem>;
+  identifier: "RegionsInfoOutputAllSpecificItem",
+}) as any as S.Schema<RegionsInfoOutputAllSpecificItem>;
 
-export type RegionsInfoAllSpecificList = Array<RegionsInfoAllSpecificItem>;
-export const RegionsInfoAllSpecificList = /*@__PURE__*/ S.Array(
-  RegionsInfoAllSpecificItem,
-) as any as S.Schema<RegionsInfoAllSpecificList>;
+export type RegionsInfoOutputAllSpecificList =
+  Array<RegionsInfoOutputAllSpecificItem>;
+export const RegionsInfoOutputAllSpecificList = /*@__PURE__*/ S.Array(
+  RegionsInfoOutputAllSpecificItem,
+) as any as S.Schema<RegionsInfoOutputAllSpecificList>;
 
-export interface RegionsInfoAll {
-  smartGroup: RegionsInfoAllSmartGroupList;
-  specific: RegionsInfoAllSpecificList;
+export interface RegionsInfoOutputAll {
+  smartGroup: RegionsInfoOutputAllSmartGroupList;
+  specific: RegionsInfoOutputAllSpecificList;
 }
-export const RegionsInfoAll = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAll = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smartGroup: RegionsInfoAllSmartGroupList,
-    specific: RegionsInfoAllSpecificList,
+    smartGroup: RegionsInfoOutputAllSmartGroupList,
+    specific: RegionsInfoOutputAllSpecificList,
   }),
-).annotate({ identifier: "RegionsInfoAll" }) as any as S.Schema<RegionsInfoAll>;
+).annotate({
+  identifier: "RegionsInfoOutputAll",
+}) as any as S.Schema<RegionsInfoOutputAll>;
 
-export interface RegionsInfo {
-  recommendations: RegionsInfoRecommendations;
-  all: RegionsInfoAll;
+export interface RegionsInfoOutput {
+  recommendations: RegionsInfoOutputRecommendations;
+  all: RegionsInfoOutputAll;
 }
-export const RegionsInfo = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    recommendations: RegionsInfoRecommendations,
-    all: RegionsInfoAll,
+    recommendations: RegionsInfoOutputRecommendations,
+    all: RegionsInfoOutputAll,
   }),
-).annotate({ identifier: "RegionsInfo" }) as any as S.Schema<RegionsInfo>;
+).annotate({
+  identifier: "RegionsInfoOutput",
+}) as any as S.Schema<RegionsInfoOutput>;
 
-export interface GetV1BackupScheduleRequest {
+export interface V1GetBackupScheduleRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1BackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetBackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -3805,104 +4699,106 @@ export const GetV1BackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1BackupScheduleRequest",
-}) as any as S.Schema<GetV1BackupScheduleRequest>;
+  identifier: "V1GetBackupScheduleRequest",
+}) as any as S.Schema<V1GetBackupScheduleRequest>;
 
-export interface V1BackupScheduleResponse {
+export interface V1BackupScheduleResponseOutput {
   /** Time of day to schedule daily backups, in UTC. Format: HH:MM:SS. */
   schedule_for: string;
   /** Timestamp of when the backup schedule was last updated. */
   updated_at: string;
 }
-export const V1BackupScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupScheduleResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     schedule_for: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "V1BackupScheduleResponse",
-}) as any as S.Schema<V1BackupScheduleResponse>;
+  identifier: "V1BackupScheduleResponseOutput",
+}) as any as S.Schema<V1BackupScheduleResponseOutput>;
 
-export interface GetV1DatabaseDiskRequest {
+export interface V1GetDatabaseDiskRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1DatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetDatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/config/disk", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1DatabaseDiskRequest",
-}) as any as S.Schema<GetV1DatabaseDiskRequest>;
+  identifier: "V1GetDatabaseDiskRequest",
+}) as any as S.Schema<V1GetDatabaseDiskRequest>;
 
-export type DiskResponseAttributesCase0Type = "gp3";
-export const DiskResponseAttributesCase0Type = /*@__PURE__*/ S.String;
+export type DiskResponseOutputAttributesCase0Type = "gp3";
+export const DiskResponseOutputAttributesCase0Type = /*@__PURE__*/ S.String;
 
-export interface DiskResponseAttributesCase0 {
+export interface DiskResponseOutputAttributesCase0 {
   iops: number;
   size_gb: number;
   throughput_mibps?: number;
-  type: DiskResponseAttributesCase0Type;
+  type: DiskResponseOutputAttributesCase0Type;
 }
-export const DiskResponseAttributesCase0 = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutputAttributesCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     iops: S.Number,
     size_gb: S.Number,
     throughput_mibps: S.optional(S.Number),
-    type: DiskResponseAttributesCase0Type,
+    type: DiskResponseOutputAttributesCase0Type,
   }),
 ).annotate({
-  identifier: "DiskResponseAttributesCase0",
-}) as any as S.Schema<DiskResponseAttributesCase0>;
+  identifier: "DiskResponseOutputAttributesCase0",
+}) as any as S.Schema<DiskResponseOutputAttributesCase0>;
 
-export type DiskResponseAttributesCase1Type = "io2";
-export const DiskResponseAttributesCase1Type = /*@__PURE__*/ S.String;
+export type DiskResponseOutputAttributesCase1Type = "io2";
+export const DiskResponseOutputAttributesCase1Type = /*@__PURE__*/ S.String;
 
-export interface DiskResponseAttributesCase1 {
+export interface DiskResponseOutputAttributesCase1 {
   iops: number;
   size_gb: number;
-  type: DiskResponseAttributesCase1Type;
+  type: DiskResponseOutputAttributesCase1Type;
 }
-export const DiskResponseAttributesCase1 = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutputAttributesCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     iops: S.Number,
     size_gb: S.Number,
-    type: DiskResponseAttributesCase1Type,
+    type: DiskResponseOutputAttributesCase1Type,
   }),
 ).annotate({
-  identifier: "DiskResponseAttributesCase1",
-}) as any as S.Schema<DiskResponseAttributesCase1>;
+  identifier: "DiskResponseOutputAttributesCase1",
+}) as any as S.Schema<DiskResponseOutputAttributesCase1>;
 
-export type DiskResponseAttributes =
-  | DiskResponseAttributesCase0
-  | DiskResponseAttributesCase1;
-export const DiskResponseAttributes = /*@__PURE__*/ S.Unknown.pipe(
+export type DiskResponseOutputAttributes =
+  | DiskResponseOutputAttributesCase0
+  | DiskResponseOutputAttributesCase1;
+export const DiskResponseOutputAttributes = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     ["iops", "size_gb", "throughput_mibps", "type"],
     ["iops", "size_gb", "type"],
   ]),
 );
 
-export interface DiskResponse {
-  attributes: DiskResponseAttributes;
+export interface DiskResponseOutput {
+  attributes: DiskResponseOutputAttributes;
   last_modified_at?: string;
 }
-export const DiskResponse = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    attributes: DiskResponseAttributes,
+    attributes: DiskResponseOutputAttributes,
     last_modified_at: S.optional(S.String),
   }),
-).annotate({ identifier: "DiskResponse" }) as any as S.Schema<DiskResponse>;
+).annotate({
+  identifier: "DiskResponseOutput",
+}) as any as S.Schema<DiskResponseOutput>;
 
-export interface GetV1DatabaseOpenapiRequest {
+export interface V1GetDatabaseOpenapiRequest {
   /** Project ref */
   ref: string;
   /** The database schema to generate the OpenAPI spec for */
   schema?: string;
 }
-export const GetV1DatabaseOpenapiRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetDatabaseOpenapiRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     schema: S.optional(S.String.pipe(T.Query())),
@@ -3914,21 +4810,21 @@ export const GetV1DatabaseOpenapiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1DatabaseOpenapiRequest",
-}) as any as S.Schema<GetV1DatabaseOpenapiRequest>;
+  identifier: "V1GetDatabaseOpenapiRequest",
+}) as any as S.Schema<V1GetDatabaseOpenapiRequest>;
 
-export type GetV1DatabaseOpenapiResponse = unknown;
-export const GetV1DatabaseOpenapiResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetDatabaseOpenapiResponse = unknown;
+export const V1GetDatabaseOpenapiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1DatabaseOpenapiResponse",
-}) as any as S.Schema<GetV1DatabaseOpenapiResponse>;
+  identifier: "V1GetDatabaseOpenapiResponse",
+}) as any as S.Schema<V1GetDatabaseOpenapiResponse>;
 
-export interface GetV1DiskUtilizationRequest {
+export interface V1GetDiskUtilizationRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1DiskUtilizationRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetDiskUtilizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -3939,42 +4835,43 @@ export const GetV1DiskUtilizationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1DiskUtilizationRequest",
-}) as any as S.Schema<GetV1DiskUtilizationRequest>;
+  identifier: "V1GetDiskUtilizationRequest",
+}) as any as S.Schema<V1GetDiskUtilizationRequest>;
 
-export interface DiskUtilMetricsResponseMetrics {
+export interface DiskUtilMetricsResponseOutputMetrics {
   fs_size_bytes: number;
   fs_avail_bytes: number;
   fs_used_bytes: number;
 }
-export const DiskUtilMetricsResponseMetrics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fs_size_bytes: S.Number,
-    fs_avail_bytes: S.Number,
-    fs_used_bytes: S.Number,
-  }),
+export const DiskUtilMetricsResponseOutputMetrics = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      fs_size_bytes: S.Number,
+      fs_avail_bytes: S.Number,
+      fs_used_bytes: S.Number,
+    }),
 ).annotate({
-  identifier: "DiskUtilMetricsResponseMetrics",
-}) as any as S.Schema<DiskUtilMetricsResponseMetrics>;
+  identifier: "DiskUtilMetricsResponseOutputMetrics",
+}) as any as S.Schema<DiskUtilMetricsResponseOutputMetrics>;
 
-export interface DiskUtilMetricsResponse {
+export interface DiskUtilMetricsResponseOutput {
   timestamp: string;
-  metrics: DiskUtilMetricsResponseMetrics;
+  metrics: DiskUtilMetricsResponseOutputMetrics;
 }
-export const DiskUtilMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+export const DiskUtilMetricsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     timestamp: S.String,
-    metrics: DiskUtilMetricsResponseMetrics,
+    metrics: DiskUtilMetricsResponseOutputMetrics,
   }),
 ).annotate({
-  identifier: "DiskUtilMetricsResponse",
-}) as any as S.Schema<DiskUtilMetricsResponse>;
+  identifier: "DiskUtilMetricsResponseOutput",
+}) as any as S.Schema<DiskUtilMetricsResponseOutput>;
 
-export interface GetV1HostnameConfigRequest {
+export interface V1GetHostnameConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetHostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -3985,208 +4882,14 @@ export const GetV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1HostnameConfigRequest",
-}) as any as S.Schema<GetV1HostnameConfigRequest>;
+  identifier: "V1GetHostnameConfigRequest",
+}) as any as S.Schema<V1GetHostnameConfigRequest>;
 
-export type UpdateCustomHostnameResponseStatus =
-  | "1_not_started"
-  | "2_initiated"
-  | "3_challenge_verified"
-  | "4_origin_setup_completed"
-  | "5_services_reconfigured";
-export const UpdateCustomHostnameResponseStatus = /*@__PURE__*/ S.String;
-
-export type UpdateCustomHostnameResponseJsonValueCase0 =
-  | string
-  | number
-  | boolean;
-export const UpdateCustomHostnameResponseJsonValueCase0 =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
-
-export type UpdateCustomHostnameResponseJsonValueCase1List =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseJsonValueCase1List =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => UpdateCustomHostnameResponseJsonValue),
-  ) as any as S.Schema<UpdateCustomHostnameResponseJsonValueCase1List>;
-
-export type UpdateCustomHostnameResponseJsonValueCase2Map = {
-  [key: string]: UpdateCustomHostnameResponseJsonValue | undefined;
-};
-export const UpdateCustomHostnameResponseJsonValueCase2Map =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.suspend(() => UpdateCustomHostnameResponseJsonValue),
-  ) as any as S.Schema<UpdateCustomHostnameResponseJsonValueCase2Map>;
-
-/** Any JSON-serializable value */
-export type UpdateCustomHostnameResponseJsonValue =
-  | UpdateCustomHostnameResponseJsonValueCase0
-  | UpdateCustomHostnameResponseJsonValueCase1List
-  | UpdateCustomHostnameResponseJsonValueCase2Map;
-export const UpdateCustomHostnameResponseJsonValue =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
-
-export type UpdateCustomHostnameResponseDataErrorsList =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseDataErrorsList = /*@__PURE__*/ S.Array(
-  UpdateCustomHostnameResponseJsonValue,
-) as any as S.Schema<UpdateCustomHostnameResponseDataErrorsList>;
-
-export type UpdateCustomHostnameResponseDataMessagesList =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseDataMessagesList =
-  /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseJsonValue,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataMessagesList>;
-
-export interface UpdateCustomHostnameResponseDataResultSslValidationRecordsItem {
-  txt_name: string;
-  txt_value: string;
-}
-export const UpdateCustomHostnameResponseDataResultSslValidationRecordsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      txt_name: S.String,
-      txt_value: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "UpdateCustomHostnameResponseDataResultSslValidationRecordsItem",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationRecordsItem>;
-
-export type UpdateCustomHostnameResponseDataResultSslValidationRecordsList =
-  Array<UpdateCustomHostnameResponseDataResultSslValidationRecordsItem>;
-export const UpdateCustomHostnameResponseDataResultSslValidationRecordsList =
-  /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseDataResultSslValidationRecordsItem,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationRecordsList>;
-
-export interface UpdateCustomHostnameResponseDataResultSslValidationErrorsItem {
-  message: string;
-}
-export const UpdateCustomHostnameResponseDataResultSslValidationErrorsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      message: S.String,
-    }),
-  ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultSslValidationErrorsItem",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationErrorsItem>;
-
-export type UpdateCustomHostnameResponseDataResultSslValidationErrorsList =
-  Array<UpdateCustomHostnameResponseDataResultSslValidationErrorsItem>;
-export const UpdateCustomHostnameResponseDataResultSslValidationErrorsList =
-  /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseDataResultSslValidationErrorsItem,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationErrorsList>;
-
-export interface UpdateCustomHostnameResponseDataResultSsl {
-  status: string;
-  validation_records: UpdateCustomHostnameResponseDataResultSslValidationRecordsList;
-  validation_errors?: UpdateCustomHostnameResponseDataResultSslValidationErrorsList;
-}
-export const UpdateCustomHostnameResponseDataResultSsl =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.String,
-      validation_records:
-        UpdateCustomHostnameResponseDataResultSslValidationRecordsList,
-      validation_errors: S.optional(
-        UpdateCustomHostnameResponseDataResultSslValidationErrorsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultSsl",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSsl>;
-
-export interface UpdateCustomHostnameResponseDataResultOwnershipVerification {
-  type: string;
-  name: string;
-  value: string;
-}
-export const UpdateCustomHostnameResponseDataResultOwnershipVerification =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      name: S.String,
-      value: S.String,
-    }),
-  ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultOwnershipVerification",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultOwnershipVerification>;
-
-export type UpdateCustomHostnameResponseDataResultVerificationErrorsList =
-  Array<string>;
-export const UpdateCustomHostnameResponseDataResultVerificationErrorsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultVerificationErrorsList>;
-
-export interface UpdateCustomHostnameResponseDataResult {
-  id: string;
-  hostname: string;
-  ssl: UpdateCustomHostnameResponseDataResultSsl;
-  ownership_verification: UpdateCustomHostnameResponseDataResultOwnershipVerification;
-  custom_origin_server: string;
-  verification_errors?: UpdateCustomHostnameResponseDataResultVerificationErrorsList;
-  status: string;
-}
-export const UpdateCustomHostnameResponseDataResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      hostname: S.String,
-      ssl: UpdateCustomHostnameResponseDataResultSsl,
-      ownership_verification:
-        UpdateCustomHostnameResponseDataResultOwnershipVerification,
-      custom_origin_server: S.String,
-      verification_errors: S.optional(
-        UpdateCustomHostnameResponseDataResultVerificationErrorsList,
-      ),
-      status: S.String,
-    }),
-).annotate({
-  identifier: "UpdateCustomHostnameResponseDataResult",
-}) as any as S.Schema<UpdateCustomHostnameResponseDataResult>;
-
-export interface UpdateCustomHostnameResponseData {
-  success: boolean;
-  errors: UpdateCustomHostnameResponseDataErrorsList;
-  messages: UpdateCustomHostnameResponseDataMessagesList;
-  result: UpdateCustomHostnameResponseDataResult;
-}
-export const UpdateCustomHostnameResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-    errors: UpdateCustomHostnameResponseDataErrorsList,
-    messages: UpdateCustomHostnameResponseDataMessagesList,
-    result: UpdateCustomHostnameResponseDataResult,
-  }),
-).annotate({
-  identifier: "UpdateCustomHostnameResponseData",
-}) as any as S.Schema<UpdateCustomHostnameResponseData>;
-
-export interface UpdateCustomHostnameResponse {
-  status: UpdateCustomHostnameResponseStatus;
-  custom_hostname: string;
-  data: UpdateCustomHostnameResponseData;
-}
-export const UpdateCustomHostnameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: UpdateCustomHostnameResponseStatus,
-    custom_hostname: S.String,
-    data: UpdateCustomHostnameResponseData,
-  }),
-).annotate({
-  identifier: "UpdateCustomHostnameResponse",
-}) as any as S.Schema<UpdateCustomHostnameResponse>;
-
-export interface GetV1JitAccessRequest {
+export interface V1GetJitAccessRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -4197,100 +4900,22 @@ export const GetV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1JitAccessRequest",
-}) as any as S.Schema<GetV1JitAccessRequest>;
+  identifier: "V1GetJitAccessRequest",
+}) as any as S.Schema<V1GetJitAccessRequest>;
 
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList>;
-
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List>;
-
-export interface JitAccessResponseUserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List;
-}
-export const JitAccessResponseUserRolesItemAllowedNetworks =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowed_cidrs: S.optional(
-        JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList,
-      ),
-      allowed_cidrs_v6: S.optional(
-        JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List,
-      ),
-    }),
-  ).annotate({
-    identifier: "JitAccessResponseUserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworks>;
-
-export interface JitAccessResponseUserRolesItem {
-  role: string;
-  expires_at?: number;
-  allowed_networks?: JitAccessResponseUserRolesItemAllowedNetworks;
-  branches_only?: boolean;
-}
-export const JitAccessResponseUserRolesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.String,
-    expires_at: S.optional(S.Number),
-    allowed_networks: S.optional(JitAccessResponseUserRolesItemAllowedNetworks),
-    branches_only: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "JitAccessResponseUserRolesItem",
-}) as any as S.Schema<JitAccessResponseUserRolesItem>;
-
-export type JitAccessResponseUserRolesList =
-  Array<JitAccessResponseUserRolesItem>;
-export const JitAccessResponseUserRolesList = /*@__PURE__*/ S.Array(
-  JitAccessResponseUserRolesItem,
-) as any as S.Schema<JitAccessResponseUserRolesList>;
-
-export interface JitAccessResponse {
-  user_id?: string;
-  user_roles: JitAccessResponseUserRolesList;
-}
-export const JitAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.optional(S.String),
-    user_roles: JitAccessResponseUserRolesList,
-  }),
-).annotate({
-  identifier: "JitAccessResponse",
-}) as any as S.Schema<JitAccessResponse>;
-
-export interface GetV1JitAccessConfigRequest {
+export interface V1GetJitAccessConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1JitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetJitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/jit-access", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1JitAccessConfigRequest",
-}) as any as S.Schema<GetV1JitAccessConfigRequest>;
+  identifier: "V1GetJitAccessConfigRequest",
+}) as any as S.Schema<V1GetJitAccessConfigRequest>;
 
 export type V1GetJitAccessConfigResponseBodyCase0State = "enabled" | "disabled";
 export const V1GetJitAccessConfigResponseBodyCase0State =
@@ -4311,6 +4936,7 @@ export const V1GetJitAccessConfigResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<V1GetJitAccessConfigResponseBodyCase0>;
 
 export type V1GetJitAccessConfigResponseBodyCase1UnavailableReason =
+  | "platform_unsupported"
   | "postgres_upgrade_required"
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
@@ -4341,18 +4967,18 @@ export const V1GetJitAccessConfigResponseBody = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export type GetV1JitAccessConfigResponse = V1GetJitAccessConfigResponseBody;
-export const GetV1JitAccessConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetJitAccessConfigResponse = V1GetJitAccessConfigResponseBody;
+export const V1GetJitAccessConfigResponse = /*@__PURE__*/ S.suspend(() =>
   V1GetJitAccessConfigResponseBody.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1JitAccessConfigResponse",
-}) as any as S.Schema<GetV1JitAccessConfigResponse>;
+  identifier: "V1GetJitAccessConfigResponse",
+}) as any as S.Schema<V1GetJitAccessConfigResponse>;
 
-export interface GetV1LegacySigningKeyRequest {
+export interface V1GetLegacySigningKeyRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1LegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetLegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -4363,14 +4989,14 @@ export const GetV1LegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1LegacySigningKeyRequest",
-}) as any as S.Schema<GetV1LegacySigningKeyRequest>;
+  identifier: "V1GetLegacySigningKeyRequest",
+}) as any as S.Schema<V1GetLegacySigningKeyRequest>;
 
-export interface GetV1NetworkRestrictionRequest {
+export interface V1GetNetworkRestrictionsRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1NetworkRestrictionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -4381,121 +5007,127 @@ export const GetV1NetworkRestrictionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1NetworkRestrictionRequest",
-}) as any as S.Schema<GetV1NetworkRestrictionRequest>;
+  identifier: "V1GetNetworkRestrictionsRequest",
+}) as any as S.Schema<V1GetNetworkRestrictionsRequest>;
 
-export type NetworkRestrictionsResponseEntitlement = "disallowed" | "allowed";
-export const NetworkRestrictionsResponseEntitlement = /*@__PURE__*/ S.String;
+export type NetworkRestrictionsResponseOutputEntitlement =
+  | "disallowed"
+  | "allowed";
+export const NetworkRestrictionsResponseOutputEntitlement =
+  /*@__PURE__*/ S.String;
 
-export type NetworkRestrictionsResponseConfigDbAllowedCidrsList = Array<string>;
-export const NetworkRestrictionsResponseConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseConfigDbAllowedCidrsList>;
-
-export type NetworkRestrictionsResponseConfigDbAllowedCidrsV6List =
+export type NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList =
   Array<string>;
-export const NetworkRestrictionsResponseConfigDbAllowedCidrsV6List =
+export const NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseConfigDbAllowedCidrsV6List>;
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList>;
+
+export type NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List>;
 
 /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-export interface NetworkRestrictionsResponseConfig {
-  dbAllowedCidrs?: NetworkRestrictionsResponseConfigDbAllowedCidrsList;
-  dbAllowedCidrsV6?: NetworkRestrictionsResponseConfigDbAllowedCidrsV6List;
+export interface NetworkRestrictionsResponseOutputConfig {
+  dbAllowedCidrs?: NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList;
+  dbAllowedCidrsV6?: NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List;
 }
-export const NetworkRestrictionsResponseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dbAllowedCidrs: S.optional(
-      NetworkRestrictionsResponseConfigDbAllowedCidrsList,
-    ),
-    dbAllowedCidrsV6: S.optional(
-      NetworkRestrictionsResponseConfigDbAllowedCidrsV6List,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkRestrictionsResponseConfig",
-}) as any as S.Schema<NetworkRestrictionsResponseConfig>;
-
-export type NetworkRestrictionsResponseOldConfigDbAllowedCidrsList =
-  Array<string>;
-export const NetworkRestrictionsResponseOldConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseOldConfigDbAllowedCidrsList>;
-
-export type NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List =
-  Array<string>;
-export const NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List>;
-
-/** Populated when a new config has been received, but not registered as successfully applied to a project. */
-export interface NetworkRestrictionsResponseOldConfig {
-  dbAllowedCidrs?: NetworkRestrictionsResponseOldConfigDbAllowedCidrsList;
-  dbAllowedCidrsV6?: NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List;
-}
-export const NetworkRestrictionsResponseOldConfig = /*@__PURE__*/ S.suspend(
+export const NetworkRestrictionsResponseOutputConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       dbAllowedCidrs: S.optional(
-        NetworkRestrictionsResponseOldConfigDbAllowedCidrsList,
+        NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList,
       ),
       dbAllowedCidrsV6: S.optional(
-        NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List,
+        NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List,
       ),
     }),
 ).annotate({
-  identifier: "NetworkRestrictionsResponseOldConfig",
-}) as any as S.Schema<NetworkRestrictionsResponseOldConfig>;
+  identifier: "NetworkRestrictionsResponseOutputConfig",
+}) as any as S.Schema<NetworkRestrictionsResponseOutputConfig>;
 
-export type NetworkRestrictionsResponseStatus = "stored" | "applied";
-export const NetworkRestrictionsResponseStatus = /*@__PURE__*/ S.String;
+export type NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList>;
 
-export interface NetworkRestrictionsResponse {
-  entitlement: NetworkRestrictionsResponseEntitlement;
+export type NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List>;
+
+/** Populated when a new config has been received, but not registered as successfully applied to a project. */
+export interface NetworkRestrictionsResponseOutputOldConfig {
+  dbAllowedCidrs?: NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList;
+  dbAllowedCidrsV6?: NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List;
+}
+export const NetworkRestrictionsResponseOutputOldConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList,
+      ),
+      dbAllowedCidrsV6: S.optional(
+        NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsResponseOutputOldConfig",
+  }) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfig>;
+
+export type NetworkRestrictionsResponseOutputStatus = "stored" | "applied";
+export const NetworkRestrictionsResponseOutputStatus = /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsResponseOutput {
+  entitlement: NetworkRestrictionsResponseOutputEntitlement;
   /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-  config: NetworkRestrictionsResponseConfig;
+  config: NetworkRestrictionsResponseOutputConfig;
   /** Populated when a new config has been received, but not registered as successfully applied to a project. */
-  old_config?: NetworkRestrictionsResponseOldConfig;
-  status: NetworkRestrictionsResponseStatus;
+  old_config?: NetworkRestrictionsResponseOutputOldConfig;
+  status: NetworkRestrictionsResponseOutputStatus;
   updated_at?: string;
   applied_at?: string;
 }
-export const NetworkRestrictionsResponse = /*@__PURE__*/ S.suspend(() =>
+export const NetworkRestrictionsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entitlement: NetworkRestrictionsResponseEntitlement,
-    config: NetworkRestrictionsResponseConfig,
-    old_config: S.optional(NetworkRestrictionsResponseOldConfig),
-    status: NetworkRestrictionsResponseStatus,
+    entitlement: NetworkRestrictionsResponseOutputEntitlement,
+    config: NetworkRestrictionsResponseOutputConfig,
+    old_config: S.optional(NetworkRestrictionsResponseOutputOldConfig),
+    status: NetworkRestrictionsResponseOutputStatus,
     updated_at: S.optional(S.String),
     applied_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NetworkRestrictionsResponse",
-}) as any as S.Schema<NetworkRestrictionsResponse>;
+  identifier: "NetworkRestrictionsResponseOutput",
+}) as any as S.Schema<NetworkRestrictionsResponseOutput>;
 
-export interface GetV1OrganizationEntitlementRequest {
+export interface V1GetOrganizationEntitlementsRequest {
   /** Organization slug */
   slug: string;
 }
-export const GetV1OrganizationEntitlementRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/organizations/{slug}/entitlements",
-      code: 200,
-    }),
-  ),
+export const V1GetOrganizationEntitlementsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      slug: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/organizations/{slug}/entitlements",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetV1OrganizationEntitlementRequest",
-}) as any as S.Schema<GetV1OrganizationEntitlementRequest>;
+  identifier: "V1GetOrganizationEntitlementsRequest",
+}) as any as S.Schema<V1GetOrganizationEntitlementsRequest>;
 
-export type V1ListEntitlementsResponseEntitlementsItemFeatureKey =
+export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
   | "instances.compute_update_available_sizes"
   | "instances.read_replicas"
   | "instances.disk_modifications"
@@ -4560,56 +5192,56 @@ export type V1ListEntitlementsResponseEntitlementsItemFeatureKey =
   | "observability.dashboard_advanced_metrics"
   | "api.members.invitations"
   | "api.members.roles";
-export const V1ListEntitlementsResponseEntitlementsItemFeatureKey =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
   /*@__PURE__*/ S.String;
 
-export type V1ListEntitlementsResponseEntitlementsItemFeatureType =
+export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
   | "boolean"
   | "numeric"
   | "set";
-export const V1ListEntitlementsResponseEntitlementsItemFeatureType =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
   /*@__PURE__*/ S.String;
 
-export interface V1ListEntitlementsResponseEntitlementsItemFeature {
-  key: V1ListEntitlementsResponseEntitlementsItemFeatureKey;
-  type: V1ListEntitlementsResponseEntitlementsItemFeatureType;
+export interface V1ListEntitlementsResponseOutputEntitlementsItemFeature {
+  key: V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey;
+  type: V1ListEntitlementsResponseOutputEntitlementsItemFeatureType;
 }
-export const V1ListEntitlementsResponseEntitlementsItemFeature =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeature =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      key: V1ListEntitlementsResponseEntitlementsItemFeatureKey,
-      type: V1ListEntitlementsResponseEntitlementsItemFeatureType,
+      key: V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey,
+      type: V1ListEntitlementsResponseOutputEntitlementsItemFeatureType,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemFeature",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemFeature>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemFeature",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemFeature>;
 
-export type V1ListEntitlementsResponseEntitlementsItemType =
+export type V1ListEntitlementsResponseOutputEntitlementsItemType =
   | "boolean"
   | "numeric"
   | "set";
-export const V1ListEntitlementsResponseEntitlementsItemType =
+export const V1ListEntitlementsResponseOutputEntitlementsItemType =
   /*@__PURE__*/ S.String;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase0 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0 {
   enabled: boolean;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase0 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase0",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase0>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0>;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase1 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1 {
   enabled: boolean;
   value: number;
   unlimited: boolean;
   unit: string;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase1 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -4618,35 +5250,35 @@ export const V1ListEntitlementsResponseEntitlementsItemConfigCase1 =
       unit: S.String,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase1",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase1>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1>;
 
-export type V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList =
+export type V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList =
   Array<string>;
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList>;
+  ) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList>;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase2 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2 {
   enabled: boolean;
-  set: V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList;
+  set: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase2 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
-      set: V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList,
+      set: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase2",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase2>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2>;
 
-export type V1ListEntitlementsResponseEntitlementsItemConfig =
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase0
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase1
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase2;
-export const V1ListEntitlementsResponseEntitlementsItemConfig =
+export type V1ListEntitlementsResponseOutputEntitlementsItemConfig =
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2;
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfig =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([
       ["enabled"],
@@ -4655,47 +5287,48 @@ export const V1ListEntitlementsResponseEntitlementsItemConfig =
     ]),
   );
 
-export interface V1ListEntitlementsResponseEntitlementsItem {
-  feature: V1ListEntitlementsResponseEntitlementsItemFeature;
+export interface V1ListEntitlementsResponseOutputEntitlementsItem {
+  feature: V1ListEntitlementsResponseOutputEntitlementsItemFeature;
   hasAccess: boolean;
-  type: V1ListEntitlementsResponseEntitlementsItemType;
-  config: V1ListEntitlementsResponseEntitlementsItemConfig;
+  type: V1ListEntitlementsResponseOutputEntitlementsItemType;
+  config: V1ListEntitlementsResponseOutputEntitlementsItemConfig;
 }
-export const V1ListEntitlementsResponseEntitlementsItem =
+export const V1ListEntitlementsResponseOutputEntitlementsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      feature: V1ListEntitlementsResponseEntitlementsItemFeature,
+      feature: V1ListEntitlementsResponseOutputEntitlementsItemFeature,
       hasAccess: S.Boolean,
-      type: V1ListEntitlementsResponseEntitlementsItemType,
-      config: V1ListEntitlementsResponseEntitlementsItemConfig,
+      type: V1ListEntitlementsResponseOutputEntitlementsItemType,
+      config: V1ListEntitlementsResponseOutputEntitlementsItemConfig,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItem",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItem>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItem",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItem>;
 
-export type V1ListEntitlementsResponseEntitlementsList =
-  Array<V1ListEntitlementsResponseEntitlementsItem>;
-export const V1ListEntitlementsResponseEntitlementsList = /*@__PURE__*/ S.Array(
-  V1ListEntitlementsResponseEntitlementsItem,
-) as any as S.Schema<V1ListEntitlementsResponseEntitlementsList>;
+export type V1ListEntitlementsResponseOutputEntitlementsList =
+  Array<V1ListEntitlementsResponseOutputEntitlementsItem>;
+export const V1ListEntitlementsResponseOutputEntitlementsList =
+  /*@__PURE__*/ S.Array(
+    V1ListEntitlementsResponseOutputEntitlementsItem,
+  ) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsList>;
 
-export interface V1ListEntitlementsResponse {
-  entitlements: V1ListEntitlementsResponseEntitlementsList;
+export interface V1ListEntitlementsResponseOutput {
+  entitlements: V1ListEntitlementsResponseOutputEntitlementsList;
 }
-export const V1ListEntitlementsResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ListEntitlementsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entitlements: V1ListEntitlementsResponseEntitlementsList,
+    entitlements: V1ListEntitlementsResponseOutputEntitlementsList,
   }),
 ).annotate({
-  identifier: "V1ListEntitlementsResponse",
-}) as any as S.Schema<V1ListEntitlementsResponse>;
+  identifier: "V1ListEntitlementsResponseOutput",
+}) as any as S.Schema<V1ListEntitlementsResponseOutput>;
 
-export interface GetV1OrganizationProjectClaimRequest {
+export interface V1GetOrganizationProjectClaimRequest {
   /** Organization slug */
   slug: string;
   token: string;
 }
-export const GetV1OrganizationProjectClaimRequest = /*@__PURE__*/ S.suspend(
+export const V1GetOrganizationProjectClaimRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       slug: S.String.pipe(T.Label()),
@@ -4708,73 +5341,73 @@ export const GetV1OrganizationProjectClaimRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1OrganizationProjectClaimRequest",
-}) as any as S.Schema<GetV1OrganizationProjectClaimRequest>;
+  identifier: "V1GetOrganizationProjectClaimRequest",
+}) as any as S.Schema<V1GetOrganizationProjectClaimRequest>;
 
-export interface OrganizationProjectClaimResponseProject {
+export interface OrganizationProjectClaimResponseOutputProject {
   ref: string;
   name: string;
 }
-export const OrganizationProjectClaimResponseProject = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectClaimResponseOutputProject =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ref: S.String,
       name: S.String,
     }),
-).annotate({
-  identifier: "OrganizationProjectClaimResponseProject",
-}) as any as S.Schema<OrganizationProjectClaimResponseProject>;
+  ).annotate({
+    identifier: "OrganizationProjectClaimResponseOutputProject",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputProject>;
 
-export interface OrganizationProjectClaimResponsePreviewWarningsItem {
+export interface OrganizationProjectClaimResponseOutputPreviewWarningsItem {
   key: string;
   message: string;
 }
-export const OrganizationProjectClaimResponsePreviewWarningsItem =
+export const OrganizationProjectClaimResponseOutputPreviewWarningsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       key: S.String,
       message: S.String,
     }),
   ).annotate({
-    identifier: "OrganizationProjectClaimResponsePreviewWarningsItem",
-  }) as any as S.Schema<OrganizationProjectClaimResponsePreviewWarningsItem>;
+    identifier: "OrganizationProjectClaimResponseOutputPreviewWarningsItem",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
 
-export type OrganizationProjectClaimResponsePreviewWarningsList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewWarningsList =
+export type OrganizationProjectClaimResponseOutputPreviewWarningsList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewWarningsList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewWarningsList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewWarningsList>;
 
-export type OrganizationProjectClaimResponsePreviewErrorsItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
-export const OrganizationProjectClaimResponsePreviewErrorsItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
+export type OrganizationProjectClaimResponseOutputPreviewErrorsItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
+export const OrganizationProjectClaimResponseOutputPreviewErrorsItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
 
-export type OrganizationProjectClaimResponsePreviewErrorsList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewErrorsList =
+export type OrganizationProjectClaimResponseOutputPreviewErrorsList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewErrorsList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewErrorsList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewErrorsList>;
 
-export type OrganizationProjectClaimResponsePreviewInfoItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
-export const OrganizationProjectClaimResponsePreviewInfoItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
+export type OrganizationProjectClaimResponseOutputPreviewInfoItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
+export const OrganizationProjectClaimResponseOutputPreviewInfoItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
 
-export type OrganizationProjectClaimResponsePreviewInfoList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewInfoList =
+export type OrganizationProjectClaimResponseOutputPreviewInfoList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewInfoList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewInfoList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewInfoList>;
 
-export interface OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem {
+export interface OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem {
   name: string;
   limit: number;
 }
-export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem =
+export const OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
@@ -4782,112 +5415,113 @@ export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectL
     }),
   ).annotate({
     identifier:
-      "OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem",
-  }) as any as S.Schema<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem>;
+      "OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem>;
 
-export type OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList =
-  Array<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem>;
-export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList =
+export type OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList =
+  Array<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem>;
+export const OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList>;
+    OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList>;
 
-export type OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan =
+export type OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan =
+export const OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan =
+export type OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan =
+export const OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
   /*@__PURE__*/ S.String;
 
-export interface OrganizationProjectClaimResponsePreview {
+export interface OrganizationProjectClaimResponseOutputPreview {
   valid: boolean;
-  warnings: OrganizationProjectClaimResponsePreviewWarningsList;
-  errors: OrganizationProjectClaimResponsePreviewErrorsList;
-  info: OrganizationProjectClaimResponsePreviewInfoList;
-  members_exceeding_free_project_limit: OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList;
-  source_subscription_plan: OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan;
-  target_subscription_plan: OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan | null;
+  warnings: OrganizationProjectClaimResponseOutputPreviewWarningsList;
+  errors: OrganizationProjectClaimResponseOutputPreviewErrorsList;
+  info: OrganizationProjectClaimResponseOutputPreviewInfoList;
+  members_exceeding_free_project_limit: OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList;
+  source_subscription_plan: OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan;
+  target_subscription_plan: OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan | null;
 }
-export const OrganizationProjectClaimResponsePreview = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectClaimResponseOutputPreview =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       valid: S.Boolean,
-      warnings: OrganizationProjectClaimResponsePreviewWarningsList,
-      errors: OrganizationProjectClaimResponsePreviewErrorsList,
-      info: OrganizationProjectClaimResponsePreviewInfoList,
+      warnings: OrganizationProjectClaimResponseOutputPreviewWarningsList,
+      errors: OrganizationProjectClaimResponseOutputPreviewErrorsList,
+      info: OrganizationProjectClaimResponseOutputPreviewInfoList,
       members_exceeding_free_project_limit:
-        OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList,
+        OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList,
       source_subscription_plan:
-        OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan,
+        OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan,
       target_subscription_plan: S.NullOr(
-        OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan,
+        OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan,
       ),
     }),
-).annotate({
-  identifier: "OrganizationProjectClaimResponsePreview",
-}) as any as S.Schema<OrganizationProjectClaimResponsePreview>;
+  ).annotate({
+    identifier: "OrganizationProjectClaimResponseOutputPreview",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreview>;
 
-export interface OrganizationProjectClaimResponse {
-  project: OrganizationProjectClaimResponseProject;
-  preview: OrganizationProjectClaimResponsePreview;
+export interface OrganizationProjectClaimResponseOutput {
+  project: OrganizationProjectClaimResponseOutputProject;
+  preview: OrganizationProjectClaimResponseOutputPreview;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const OrganizationProjectClaimResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: OrganizationProjectClaimResponseProject,
-    preview: OrganizationProjectClaimResponsePreview,
-    expires_at: S.String,
-    created_at: S.String,
-    created_by: S.String,
-  }),
+export const OrganizationProjectClaimResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project: OrganizationProjectClaimResponseOutputProject,
+      preview: OrganizationProjectClaimResponseOutputPreview,
+      expires_at: S.String,
+      created_at: S.String,
+      created_by: S.String,
+    }),
 ).annotate({
-  identifier: "OrganizationProjectClaimResponse",
-}) as any as S.Schema<OrganizationProjectClaimResponse>;
+  identifier: "OrganizationProjectClaimResponseOutput",
+}) as any as S.Schema<OrganizationProjectClaimResponseOutput>;
 
-export interface GetV1PgsodiumConfigRequest {
+export interface V1GetPgsodiumConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1PgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetPgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/pgsodium", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1PgsodiumConfigRequest",
-}) as any as S.Schema<GetV1PgsodiumConfigRequest>;
+  identifier: "V1GetPgsodiumConfigRequest",
+}) as any as S.Schema<V1GetPgsodiumConfigRequest>;
 
-export interface PgsodiumConfigResponse {
+export interface PgsodiumConfigResponseOutput {
   /** The pgsodium root key: 32 bytes, hex-encoded (64 characters). */
   root_key: string;
 }
-export const PgsodiumConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const PgsodiumConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     root_key: S.String,
   }),
 ).annotate({
-  identifier: "PgsodiumConfigResponse",
-}) as any as S.Schema<PgsodiumConfigResponse>;
+  identifier: "PgsodiumConfigResponseOutput",
+}) as any as S.Schema<PgsodiumConfigResponseOutput>;
 
-export interface GetV1PoolerConfigRequest {
+export interface V1GetPoolerConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1PoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetPoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -4898,18 +5532,20 @@ export const GetV1PoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1PoolerConfigRequest",
-}) as any as S.Schema<GetV1PoolerConfigRequest>;
+  identifier: "V1GetPoolerConfigRequest",
+}) as any as S.Schema<V1GetPoolerConfigRequest>;
 
-export type SupavisorConfigResponseDatabaseType = "PRIMARY" | "READ_REPLICA";
-export const SupavisorConfigResponseDatabaseType = /*@__PURE__*/ S.String;
+export type SupavisorConfigResponseOutputDatabaseType =
+  | "PRIMARY"
+  | "READ_REPLICA";
+export const SupavisorConfigResponseOutputDatabaseType = /*@__PURE__*/ S.String;
 
-export type SupavisorConfigResponsePoolMode = "transaction" | "session";
-export const SupavisorConfigResponsePoolMode = /*@__PURE__*/ S.String;
+export type SupavisorConfigResponseOutputPoolMode = "transaction" | "session";
+export const SupavisorConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
 
-export interface SupavisorConfigResponse {
+export interface SupavisorConfigResponseOutput {
   identifier: string;
-  database_type: SupavisorConfigResponseDatabaseType;
+  database_type: SupavisorConfigResponseOutputDatabaseType;
   is_using_scram_auth: boolean;
   db_user: string;
   db_host: string;
@@ -4920,12 +5556,12 @@ export interface SupavisorConfigResponse {
   connectionString: T.Sensitive;
   default_pool_size: number | null;
   max_client_conn: number | null;
-  pool_mode: SupavisorConfigResponsePoolMode;
+  pool_mode: SupavisorConfigResponseOutputPoolMode;
 }
-export const SupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const SupavisorConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     identifier: S.String,
-    database_type: SupavisorConfigResponseDatabaseType,
+    database_type: SupavisorConfigResponseOutputDatabaseType,
     is_using_scram_auth: S.Boolean,
     db_user: S.String,
     db_host: S.String,
@@ -4935,29 +5571,30 @@ export const SupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
     connectionString: S.String.pipe(T.SensitiveValue({})),
     default_pool_size: S.NullOr(S.Number),
     max_client_conn: S.NullOr(S.Number),
-    pool_mode: SupavisorConfigResponsePoolMode,
+    pool_mode: SupavisorConfigResponseOutputPoolMode,
   }),
 ).annotate({
-  identifier: "SupavisorConfigResponse",
-}) as any as S.Schema<SupavisorConfigResponse>;
+  identifier: "SupavisorConfigResponseOutput",
+}) as any as S.Schema<SupavisorConfigResponseOutput>;
 
-export type V1GetPoolerConfigResponseBodyList = Array<SupavisorConfigResponse>;
+export type V1GetPoolerConfigResponseBodyList =
+  Array<SupavisorConfigResponseOutput>;
 export const V1GetPoolerConfigResponseBodyList = /*@__PURE__*/ S.Array(
-  SupavisorConfigResponse,
+  SupavisorConfigResponseOutput,
 ) as any as S.Schema<V1GetPoolerConfigResponseBodyList>;
 
-export type GetV1PoolerConfigResponse = V1GetPoolerConfigResponseBodyList;
-export const GetV1PoolerConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetPoolerConfigResponse = V1GetPoolerConfigResponseBodyList;
+export const V1GetPoolerConfigResponse = /*@__PURE__*/ S.suspend(() =>
   V1GetPoolerConfigResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1PoolerConfigResponse",
-}) as any as S.Schema<GetV1PoolerConfigResponse>;
+  identifier: "V1GetPoolerConfigResponse",
+}) as any as S.Schema<V1GetPoolerConfigResponse>;
 
-export interface GetV1PostgresConfigRequest {
+export interface V1GetPostgresConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1PostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetPostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -4968,17 +5605,17 @@ export const GetV1PostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1PostgresConfigRequest",
-}) as any as S.Schema<GetV1PostgresConfigRequest>;
+  identifier: "V1GetPostgresConfigRequest",
+}) as any as S.Schema<V1GetPostgresConfigRequest>;
 
-export type PostgresConfigResponseSessionReplicationRole =
+export type PostgresConfigResponseOutputSessionReplicationRole =
   | "origin"
   | "replica"
   | "local";
-export const PostgresConfigResponseSessionReplicationRole =
+export const PostgresConfigResponseOutputSessionReplicationRole =
   /*@__PURE__*/ S.String;
 
-export interface PostgresConfigResponse {
+export interface PostgresConfigResponseOutput {
   effective_cache_size?: string;
   logical_decoding_work_mem?: string;
   cron_log_statement?: boolean;
@@ -5010,7 +5647,7 @@ export interface PostgresConfigResponse {
   max_wal_size?: string;
   max_wal_senders?: number;
   max_worker_processes?: number;
-  session_replication_role?: PostgresConfigResponseSessionReplicationRole;
+  session_replication_role?: PostgresConfigResponseOutputSessionReplicationRole;
   shared_buffers?: string;
   /** Default unit: ms */
   statement_timeout?: string;
@@ -5023,7 +5660,7 @@ export interface PostgresConfigResponse {
   checkpoint_timeout?: string;
   hot_standby_feedback?: boolean;
 }
-export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const PostgresConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     effective_cache_size: S.optional(S.String),
     logical_decoding_work_mem: S.optional(S.String),
@@ -5057,7 +5694,7 @@ export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
     max_wal_senders: S.optional(S.Number),
     max_worker_processes: S.optional(S.Number),
     session_replication_role: S.optional(
-      PostgresConfigResponseSessionReplicationRole,
+      PostgresConfigResponseOutputSessionReplicationRole,
     ),
     shared_buffers: S.optional(S.String),
     statement_timeout: S.optional(S.String),
@@ -5069,24 +5706,24 @@ export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
     hot_standby_feedback: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "PostgresConfigResponse",
-}) as any as S.Schema<PostgresConfigResponse>;
+  identifier: "PostgresConfigResponseOutput",
+}) as any as S.Schema<PostgresConfigResponseOutput>;
 
-export interface GetV1PostgrestServiceConfigRequest {
+export interface V1GetPostgrestServiceConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1PostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetPostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/postgrest", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1PostgrestServiceConfigRequest",
-}) as any as S.Schema<GetV1PostgrestServiceConfigRequest>;
+  identifier: "V1GetPostgrestServiceConfigRequest",
+}) as any as S.Schema<V1GetPostgrestServiceConfigRequest>;
 
-export interface PostgrestConfigWithJWTSecretResponse {
+export interface PostgrestConfigWithJWTSecretResponseOutput {
   db_schema: string;
   max_rows: number;
   db_extra_search_path: string;
@@ -5096,8 +5733,8 @@ export interface PostgrestConfigWithJWTSecretResponse {
   db_pool_acquisition_timeout: number | null;
   jwt_secret?: T.Sensitive;
 }
-export const PostgrestConfigWithJWTSecretResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const PostgrestConfigWithJWTSecretResponseOutput =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       db_schema: S.String,
       max_rows: S.Number,
@@ -5106,15 +5743,15 @@ export const PostgrestConfigWithJWTSecretResponse = /*@__PURE__*/ S.suspend(
       db_pool_acquisition_timeout: S.NullOr(S.Number),
       jwt_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
     }),
-).annotate({
-  identifier: "PostgrestConfigWithJWTSecretResponse",
-}) as any as S.Schema<PostgrestConfigWithJWTSecretResponse>;
+  ).annotate({
+    identifier: "PostgrestConfigWithJWTSecretResponseOutput",
+  }) as any as S.Schema<PostgrestConfigWithJWTSecretResponseOutput>;
 
-export interface GetV1PostgresUpgradeEligibilityRequest {
+export interface V1GetPostgresUpgradeEligibilityRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1PostgresUpgradeEligibilityRequest = /*@__PURE__*/ S.suspend(
+export const V1GetPostgresUpgradeEligibilityRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -5126,335 +5763,346 @@ export const GetV1PostgresUpgradeEligibilityRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1PostgresUpgradeEligibilityRequest",
-}) as any as S.Schema<GetV1PostgresUpgradeEligibilityRequest>;
+  identifier: "V1GetPostgresUpgradeEligibilityRequest",
+}) as any as S.Schema<V1GetPostgresUpgradeEligibilityRequest>;
 
-export type ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel =
+export type ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel =
+export const ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
   | "13"
   | "14"
   | "15"
   | "17"
   | "17-oriole";
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem {
-  postgres_version: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion;
-  release_channel: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel;
+export interface ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem {
+  postgres_version: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion;
+  release_channel: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel;
   app_version: string;
 }
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       postgres_version:
-        ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion,
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion,
       release_channel:
-        ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel,
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel,
       app_version: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem>;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList =
-  Array<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem>;
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList =
+  Array<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem>;
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList>;
+    ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList>;
 
-export type ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList =
+export type ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList =
+export const ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseObjectsToBeDroppedList =
+export type ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseObjectsToBeDroppedList =
+export const ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseObjectsToBeDroppedList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseUnsupportedExtensionsList =
+export type ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseUnsupportedExtensionsList =
+export const ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseUnsupportedExtensionsList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList =
+export type ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList =
+export const ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
   "objects_depending_on_pg_cron";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList>;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase0 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type;
-  dependents: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type;
+  dependents: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type,
       dependents:
-        ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList,
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase0",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase0>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
   "indexes_referencing_ll_to_earth";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase1 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type;
   schema_name: string;
   table_name: string;
   index_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase1 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type,
       schema_name: S.String,
       table_name: S.String,
       index_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase1",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase1>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
   "function_using_obsolete_lang";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase2 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type;
   schema_name: string;
   function_name: string;
   lang_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase2 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type,
       schema_name: S.String,
       function_name: S.String,
       lang_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase2",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase2>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
   "unsupported_extension";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase3 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type;
   extension_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase3 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type,
       extension_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase3",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase3>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
   "unsupported_fdw_handler";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase4 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type;
   fdw_name: string;
   fdw_handler_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase4 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type,
       fdw_name: S.String,
       fdw_handler_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase4",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase4>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
   "unlogged_table_with_persistent_sequence";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase5 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type;
   schema_name: string;
   table_name: string;
   sequence_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase5 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type,
       schema_name: S.String,
       table_name: S.String,
       sequence_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase5",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase5>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
   "user_defined_objects_in_internal_schemas";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0 =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
   "table";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1 =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
   "function";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType =
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType =
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], []]));
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase6 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type;
-  obj_type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type;
+  obj_type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType;
   schema_name: string;
   obj_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type,
       obj_type:
-        ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType,
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType,
       schema_name: S.String,
       obj_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase6",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase6>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
   "active_replication_slot";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase7 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type;
   slot_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase7 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type,
       slot_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase7",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase7>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
   "x86_architecture";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase8 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase8 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase8",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase8>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
   "project_hibernating";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase9 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase9 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase9",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase9>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItem =
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase0
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase1
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase2
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase3
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase4
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase5
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase7
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase8
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase9;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItem =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItem =
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItem =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([
       ["type", "dependents"],
@@ -5470,126 +6118,148 @@ export const ProjectUpgradeEligibilityResponseValidationErrorsItem =
     ]),
   );
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsList =
-  Array<ProjectUpgradeEligibilityResponseValidationErrorsItem>;
-export const ProjectUpgradeEligibilityResponseValidationErrorsList =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsList =
+  Array<ProjectUpgradeEligibilityResponseOutputValidationErrorsItem>;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseValidationErrorsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsList>;
+    ProjectUpgradeEligibilityResponseOutputValidationErrorsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsList>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase0Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
   "pg_graphql_introspection_change";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase0Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase0 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase0Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase0 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase0Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase0",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase0>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase0",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase0>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase1Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
   "ltree_reindex_required";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase1Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase1 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase1Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase1 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase1Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase1",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase1>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase1",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase1>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase2Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
   "operator_estimator_gate";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase2Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase2 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase2Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase2 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase2Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase2",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase2>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase2",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase2>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItem =
-  | ProjectUpgradeEligibilityResponseWarningsItemCase0
-  | ProjectUpgradeEligibilityResponseWarningsItemCase1
-  | ProjectUpgradeEligibilityResponseWarningsItemCase2;
-export const ProjectUpgradeEligibilityResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([["type"], ["type"], ["type"]]));
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
+  "btree_gist_nan_reindex";
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
+  /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseWarningsList =
-  Array<ProjectUpgradeEligibilityResponseWarningsItem>;
-export const ProjectUpgradeEligibilityResponseWarningsList =
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase3 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type;
+}
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase3 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type,
+    }),
+  ).annotate({
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase3",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase3>;
+
+export type ProjectUpgradeEligibilityResponseOutputWarningsItem =
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase0
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase1
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase2
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase3;
+export const ProjectUpgradeEligibilityResponseOutputWarningsItem =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([["type"], ["type"], ["type"], ["type"]]),
+  );
+
+export type ProjectUpgradeEligibilityResponseOutputWarningsList =
+  Array<ProjectUpgradeEligibilityResponseOutputWarningsItem>;
+export const ProjectUpgradeEligibilityResponseOutputWarningsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseWarningsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsList>;
+    ProjectUpgradeEligibilityResponseOutputWarningsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsList>;
 
-export interface ProjectUpgradeEligibilityResponse {
+export interface ProjectUpgradeEligibilityResponseOutput {
   eligible: boolean;
   current_app_version: string;
-  current_app_version_release_channel: ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel;
+  current_app_version_release_channel: ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel;
   latest_app_version: string;
-  target_upgrade_versions: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList;
+  target_upgrade_versions: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList;
   duration_estimate_hours: number;
-  legacy_auth_custom_roles: ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList;
+  legacy_auth_custom_roles: ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList;
   /** Use validation_errors instead. */
-  objects_to_be_dropped: ProjectUpgradeEligibilityResponseObjectsToBeDroppedList;
+  objects_to_be_dropped: ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList;
   /** Use validation_errors instead. */
-  unsupported_extensions: ProjectUpgradeEligibilityResponseUnsupportedExtensionsList;
+  unsupported_extensions: ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList;
   /** Use validation_errors instead. */
-  user_defined_objects_in_internal_schemas: ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList;
-  validation_errors: ProjectUpgradeEligibilityResponseValidationErrorsList;
-  warnings: ProjectUpgradeEligibilityResponseWarningsList;
+  user_defined_objects_in_internal_schemas: ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList;
+  validation_errors: ProjectUpgradeEligibilityResponseOutputValidationErrorsList;
+  warnings: ProjectUpgradeEligibilityResponseOutputWarningsList;
 }
-export const ProjectUpgradeEligibilityResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eligible: S.Boolean,
-    current_app_version: S.String,
-    current_app_version_release_channel:
-      ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel,
-    latest_app_version: S.String,
-    target_upgrade_versions:
-      ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList,
-    duration_estimate_hours: S.Number,
-    legacy_auth_custom_roles:
-      ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList,
-    objects_to_be_dropped:
-      ProjectUpgradeEligibilityResponseObjectsToBeDroppedList,
-    unsupported_extensions:
-      ProjectUpgradeEligibilityResponseUnsupportedExtensionsList,
-    user_defined_objects_in_internal_schemas:
-      ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList,
-    validation_errors: ProjectUpgradeEligibilityResponseValidationErrorsList,
-    warnings: ProjectUpgradeEligibilityResponseWarningsList,
-  }),
+export const ProjectUpgradeEligibilityResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eligible: S.Boolean,
+      current_app_version: S.String,
+      current_app_version_release_channel:
+        ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel,
+      latest_app_version: S.String,
+      target_upgrade_versions:
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList,
+      duration_estimate_hours: S.Number,
+      legacy_auth_custom_roles:
+        ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList,
+      objects_to_be_dropped:
+        ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList,
+      unsupported_extensions:
+        ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList,
+      user_defined_objects_in_internal_schemas:
+        ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList,
+      validation_errors:
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsList,
+      warnings: ProjectUpgradeEligibilityResponseOutputWarningsList,
+    }),
 ).annotate({
-  identifier: "ProjectUpgradeEligibilityResponse",
-}) as any as S.Schema<ProjectUpgradeEligibilityResponse>;
+  identifier: "ProjectUpgradeEligibilityResponseOutput",
+}) as any as S.Schema<ProjectUpgradeEligibilityResponseOutput>;
 
-export interface GetV1PostgresUpgradeStatusRequest {
+export interface V1GetPostgresUpgradeStatusRequest {
   /** Project ref */
   ref: string;
   tracking_id?: string;
 }
-export const GetV1PostgresUpgradeStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetPostgresUpgradeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     tracking_id: S.optional(S.String.pipe(T.Query())),
@@ -5601,10 +6271,10 @@ export const GetV1PostgresUpgradeStatusRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1PostgresUpgradeStatusRequest",
-}) as any as S.Schema<GetV1PostgresUpgradeStatusRequest>;
+  identifier: "V1GetPostgresUpgradeStatusRequest",
+}) as any as S.Schema<V1GetPostgresUpgradeStatusRequest>;
 
-export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
+export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
   | "1_upgraded_instance_launch_failed"
   | "2_volume_detachchment_from_upgraded_instance_failed"
   | "3_volume_attachment_to_original_instance_failed"
@@ -5614,10 +6284,10 @@ export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
   | "7_volume_attachment_to_upgraded_instance_failed"
   | "8_upgrade_completion_failed"
   | "9_post_physical_backup_failed";
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
   /*@__PURE__*/ S.String;
 
-export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
+export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   | "0_requested"
   | "1_started"
   | "2_launched_upgraded_instance"
@@ -5629,83 +6299,83 @@ export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
   | "8_attached_volume_to_upgraded_instance"
   | "9_completed_upgrade"
   | "10_completed_post_physical_backup";
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   /*@__PURE__*/ S.String;
 
-export interface DatabaseUpgradeStatusResponseDatabaseUpgradeStatus {
+export interface DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus {
   initiated_at: string;
   latest_status_at: string;
-  target_version: number;
-  error?: DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError;
-  progress?: DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress;
+  target_version: string;
+  error?: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError;
+  progress?: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress;
   status: number;
 }
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatus =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       initiated_at: S.String,
       latest_status_at: S.String,
-      target_version: S.Number,
+      target_version: S.String,
       error: S.optional(
-        DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError,
+        DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError,
       ),
       progress: S.optional(
-        DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress,
+        DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress,
       ),
       status: S.Number,
     }),
   ).annotate({
-    identifier: "DatabaseUpgradeStatusResponseDatabaseUpgradeStatus",
-  }) as any as S.Schema<DatabaseUpgradeStatusResponseDatabaseUpgradeStatus>;
+    identifier: "DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus",
+  }) as any as S.Schema<DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus>;
 
-export interface DatabaseUpgradeStatusResponse {
-  databaseUpgradeStatus: DatabaseUpgradeStatusResponseDatabaseUpgradeStatus | null;
+export interface DatabaseUpgradeStatusResponseOutput {
+  databaseUpgradeStatus: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus | null;
 }
-export const DatabaseUpgradeStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const DatabaseUpgradeStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     databaseUpgradeStatus: S.NullOr(
-      DatabaseUpgradeStatusResponseDatabaseUpgradeStatus,
+      DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus,
     ),
   }),
 ).annotate({
-  identifier: "DatabaseUpgradeStatusResponse",
-}) as any as S.Schema<DatabaseUpgradeStatusResponse>;
+  identifier: "DatabaseUpgradeStatusResponseOutput",
+}) as any as S.Schema<DatabaseUpgradeStatusResponseOutput>;
 
-export interface GetV1ProfileRequest {}
-export const GetV1ProfileRequest = /*@__PURE__*/ S.suspend(() =>
+export interface V1GetProfileRequest {}
+export const V1GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/profile", code: 200 })),
 ).annotate({
-  identifier: "GetV1ProfileRequest",
-}) as any as S.Schema<GetV1ProfileRequest>;
+  identifier: "V1GetProfileRequest",
+}) as any as S.Schema<V1GetProfileRequest>;
 
-export interface V1ProfileResponse {
+export interface V1ProfileResponseOutput {
   gotrue_id: string;
   primary_email: string;
   username: string;
 }
-export const V1ProfileResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProfileResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     gotrue_id: S.String,
     primary_email: S.String,
     username: S.String,
   }),
 ).annotate({
-  identifier: "V1ProfileResponse",
-}) as any as S.Schema<V1ProfileResponse>;
+  identifier: "V1ProfileResponseOutput",
+}) as any as S.Schema<V1ProfileResponseOutput>;
 
-export interface GetV1ProjectRequest {
+export interface V1GetProjectRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/v1/projects/{ref}", code: 200 })),
 ).annotate({
-  identifier: "GetV1ProjectRequest",
-}) as any as S.Schema<GetV1ProjectRequest>;
+  identifier: "V1GetProjectRequest",
+}) as any as S.Schema<V1GetProjectRequest>;
 
-export type V1ProjectWithDatabaseResponseStatus =
+export type V1ProjectWithDatabaseResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -5721,9 +6391,9 @@ export type V1ProjectWithDatabaseResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectWithDatabaseResponseStatus = /*@__PURE__*/ S.String;
+export const V1ProjectWithDatabaseResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface V1ProjectWithDatabaseResponseDatabase {
+export interface V1ProjectWithDatabaseResponseOutputDatabase {
   /** Database host */
   host: string;
   /** Database version */
@@ -5733,19 +6403,19 @@ export interface V1ProjectWithDatabaseResponseDatabase {
   /** Release channel */
   release_channel: string;
 }
-export const V1ProjectWithDatabaseResponseDatabase = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1ProjectWithDatabaseResponseOutputDatabase =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       host: S.String,
       version: S.String,
       postgres_engine: S.String,
       release_channel: S.String,
     }),
-).annotate({
-  identifier: "V1ProjectWithDatabaseResponseDatabase",
-}) as any as S.Schema<V1ProjectWithDatabaseResponseDatabase>;
+  ).annotate({
+    identifier: "V1ProjectWithDatabaseResponseOutputDatabase",
+  }) as any as S.Schema<V1ProjectWithDatabaseResponseOutputDatabase>;
 
-export interface V1ProjectWithDatabaseResponse {
+export interface V1ProjectWithDatabaseResponseOutput {
   /** Deprecated: Use `ref` instead. */
   id: string;
   /** Project ref */
@@ -5760,10 +6430,10 @@ export interface V1ProjectWithDatabaseResponse {
   region: string;
   /** Creation timestamp */
   created_at: string;
-  status: V1ProjectWithDatabaseResponseStatus;
-  database: V1ProjectWithDatabaseResponseDatabase;
+  status: V1ProjectWithDatabaseResponseOutputStatus;
+  database: V1ProjectWithDatabaseResponseOutputDatabase;
 }
-export const V1ProjectWithDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectWithDatabaseResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     ref: S.String,
@@ -5772,20 +6442,43 @@ export const V1ProjectWithDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     region: S.String,
     created_at: S.String,
-    status: V1ProjectWithDatabaseResponseStatus,
-    database: V1ProjectWithDatabaseResponseDatabase,
+    status: V1ProjectWithDatabaseResponseOutputStatus,
+    database: V1ProjectWithDatabaseResponseOutputDatabase,
   }),
 ).annotate({
-  identifier: "V1ProjectWithDatabaseResponse",
-}) as any as S.Schema<V1ProjectWithDatabaseResponse>;
+  identifier: "V1ProjectWithDatabaseResponseOutput",
+}) as any as S.Schema<V1ProjectWithDatabaseResponseOutput>;
 
-export interface GetV1ProjectApiKeyRequest {
+export interface V1GetProjectApiKeyRequest {
+  /** Project ref */
+  ref: string;
+  id: string;
+  /** Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
+  reveal?: string;
+}
+export const V1GetProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    reveal: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{ref}/api-keys/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1GetProjectApiKeyRequest",
+}) as any as S.Schema<V1GetProjectApiKeyRequest>;
+
+export interface V1GetProjectApiKeysRequest {
   /** Project ref */
   ref: string;
   /** Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
   reveal?: string;
 }
-export const GetV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     reveal: S.optional(S.String.pipe(T.Query())),
@@ -5793,42 +6486,42 @@ export const GetV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/api-keys", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectApiKeyRequest",
-}) as any as S.Schema<GetV1ProjectApiKeyRequest>;
+  identifier: "V1GetProjectApiKeysRequest",
+}) as any as S.Schema<V1GetProjectApiKeysRequest>;
 
-export type V1GetProjectApiKeysResponseBodyList = Array<ApiKeyResponse>;
+export type V1GetProjectApiKeysResponseBodyList = Array<ApiKeyResponseOutput>;
 export const V1GetProjectApiKeysResponseBodyList = /*@__PURE__*/ S.Array(
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
 ) as any as S.Schema<V1GetProjectApiKeysResponseBodyList>;
 
-export type GetV1ProjectApiKeyResponse = V1GetProjectApiKeysResponseBodyList;
-export const GetV1ProjectApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetProjectApiKeysResponse = V1GetProjectApiKeysResponseBodyList;
+export const V1GetProjectApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
   V1GetProjectApiKeysResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1ProjectApiKeyResponse",
-}) as any as S.Schema<GetV1ProjectApiKeyResponse>;
+  identifier: "V1GetProjectApiKeysResponse",
+}) as any as S.Schema<V1GetProjectApiKeysResponse>;
 
-export interface GetV1ProjectClaimTokenRequest {
+export interface V1GetProjectClaimTokenRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/claim-token", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectClaimTokenRequest",
-}) as any as S.Schema<GetV1ProjectClaimTokenRequest>;
+  identifier: "V1GetProjectClaimTokenRequest",
+}) as any as S.Schema<V1GetProjectClaimTokenRequest>;
 
-export interface ProjectClaimTokenResponse {
+export interface ProjectClaimTokenResponseOutput {
   token_alias: string;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const ProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export const ProjectClaimTokenResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token_alias: S.String,
     expires_at: S.String,
@@ -5836,14 +6529,14 @@ export const ProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
     created_by: S.String,
   }),
 ).annotate({
-  identifier: "ProjectClaimTokenResponse",
-}) as any as S.Schema<ProjectClaimTokenResponse>;
+  identifier: "ProjectClaimTokenResponseOutput",
+}) as any as S.Schema<ProjectClaimTokenResponseOutput>;
 
-export interface GetV1ProjectDiskAutoscaleConfigRequest {
+export interface V1GetProjectDiskAutoscaleConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectDiskAutoscaleConfigRequest = /*@__PURE__*/ S.suspend(
+export const V1GetProjectDiskAutoscaleConfigRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -5855,10 +6548,10 @@ export const GetV1ProjectDiskAutoscaleConfigRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1ProjectDiskAutoscaleConfigRequest",
-}) as any as S.Schema<GetV1ProjectDiskAutoscaleConfigRequest>;
+  identifier: "V1GetProjectDiskAutoscaleConfigRequest",
+}) as any as S.Schema<V1GetProjectDiskAutoscaleConfigRequest>;
 
-export interface DiskAutoscaleConfig {
+export interface DiskAutoscaleConfigOutput {
   /** Growth percentage for disk autoscaling */
   growth_percent: number | null;
   /** Minimum increment size for disk autoscaling in GB */
@@ -5866,15 +6559,15 @@ export interface DiskAutoscaleConfig {
   /** Maximum limit the disk size will grow to in GB */
   max_size_gb: number | null;
 }
-export const DiskAutoscaleConfig = /*@__PURE__*/ S.suspend(() =>
+export const DiskAutoscaleConfigOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     growth_percent: S.NullOr(S.Number),
     min_increment_gb: S.NullOr(S.Number),
     max_size_gb: S.NullOr(S.Number),
   }),
 ).annotate({
-  identifier: "DiskAutoscaleConfig",
-}) as any as S.Schema<DiskAutoscaleConfig>;
+  identifier: "DiskAutoscaleConfigOutput",
+}) as any as S.Schema<DiskAutoscaleConfigOutput>;
 
 export type V1GetProjectFunctionCombinedStatsRequestInterval =
   | "15min"
@@ -5884,13 +6577,13 @@ export type V1GetProjectFunctionCombinedStatsRequestInterval =
 export const V1GetProjectFunctionCombinedStatsRequestInterval =
   /*@__PURE__*/ S.String;
 
-export interface GetV1ProjectFunctionCombinedStatRequest {
+export interface V1GetProjectFunctionCombinedStatsRequest {
   /** Project ref */
   ref: string;
   interval: V1GetProjectFunctionCombinedStatsRequestInterval | (string & {});
   function_id: string;
 }
-export const GetV1ProjectFunctionCombinedStatRequest = /*@__PURE__*/ S.suspend(
+export const V1GetProjectFunctionCombinedStatsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -5906,23 +6599,23 @@ export const GetV1ProjectFunctionCombinedStatRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1ProjectFunctionCombinedStatRequest",
-}) as any as S.Schema<GetV1ProjectFunctionCombinedStatRequest>;
+  identifier: "V1GetProjectFunctionCombinedStatsRequest",
+}) as any as S.Schema<V1GetProjectFunctionCombinedStatsRequest>;
 
-export type AnalyticsResponseResultList = Array<unknown>;
-export const AnalyticsResponseResultList = /*@__PURE__*/ S.Array(
+export type AnalyticsResponseOutputResultList = Array<unknown>;
+export const AnalyticsResponseOutputResultList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<AnalyticsResponseResultList>;
+) as any as S.Schema<AnalyticsResponseOutputResultList>;
 
-export interface AnalyticsResponseErrorCase1ErrorsItem {
+export interface AnalyticsResponseOutputErrorCase1ErrorsItem {
   domain: string;
   location: string;
   locationType: string;
   message: string;
   reason: string;
 }
-export const AnalyticsResponseErrorCase1ErrorsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const AnalyticsResponseOutputErrorCase1ErrorsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       domain: S.String,
       location: S.String,
@@ -5930,56 +6623,59 @@ export const AnalyticsResponseErrorCase1ErrorsItem = /*@__PURE__*/ S.suspend(
       message: S.String,
       reason: S.String,
     }),
-).annotate({
-  identifier: "AnalyticsResponseErrorCase1ErrorsItem",
-}) as any as S.Schema<AnalyticsResponseErrorCase1ErrorsItem>;
+  ).annotate({
+    identifier: "AnalyticsResponseOutputErrorCase1ErrorsItem",
+  }) as any as S.Schema<AnalyticsResponseOutputErrorCase1ErrorsItem>;
 
-export type AnalyticsResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const AnalyticsResponseErrorCase1ErrorsList = /*@__PURE__*/ S.Array(
-  AnalyticsResponseErrorCase1ErrorsItem,
-) as any as S.Schema<AnalyticsResponseErrorCase1ErrorsList>;
+export type AnalyticsResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const AnalyticsResponseOutputErrorCase1ErrorsList =
+  /*@__PURE__*/ S.Array(
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<AnalyticsResponseOutputErrorCase1ErrorsList>;
 
-export interface AnalyticsResponseErrorCase1 {
+export interface AnalyticsResponseOutputErrorCase1 {
   code: number;
-  errors: AnalyticsResponseErrorCase1ErrorsList;
+  errors: AnalyticsResponseOutputErrorCase1ErrorsList;
   message: string;
   status: string;
 }
-export const AnalyticsResponseErrorCase1 = /*@__PURE__*/ S.suspend(() =>
+export const AnalyticsResponseOutputErrorCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     code: S.Number,
-    errors: AnalyticsResponseErrorCase1ErrorsList,
+    errors: AnalyticsResponseOutputErrorCase1ErrorsList,
     message: S.String,
     status: S.String,
   }),
 ).annotate({
-  identifier: "AnalyticsResponseErrorCase1",
-}) as any as S.Schema<AnalyticsResponseErrorCase1>;
+  identifier: "AnalyticsResponseOutputErrorCase1",
+}) as any as S.Schema<AnalyticsResponseOutputErrorCase1>;
 
-export type AnalyticsResponseError = string | AnalyticsResponseErrorCase1;
-export const AnalyticsResponseError = /*@__PURE__*/ S.Unknown.pipe(
+export type AnalyticsResponseOutputError =
+  | string
+  | AnalyticsResponseOutputErrorCase1;
+export const AnalyticsResponseOutputError = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], ["code", "errors", "message", "status"]]),
 );
 
-export interface AnalyticsResponse {
-  result?: AnalyticsResponseResultList;
-  error?: AnalyticsResponseError;
+export interface AnalyticsResponseOutput {
+  result?: AnalyticsResponseOutputResultList;
+  error?: AnalyticsResponseOutputError;
 }
-export const AnalyticsResponse = /*@__PURE__*/ S.suspend(() =>
+export const AnalyticsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(AnalyticsResponseResultList),
-    error: S.optional(AnalyticsResponseError),
+    result: S.optional(AnalyticsResponseOutputResultList),
+    error: S.optional(AnalyticsResponseOutputError),
   }),
 ).annotate({
-  identifier: "AnalyticsResponse",
-}) as any as S.Schema<AnalyticsResponse>;
+  identifier: "AnalyticsResponseOutput",
+}) as any as S.Schema<AnalyticsResponseOutput>;
 
-export interface GetV1ProjectLegacyApiKeyRequest {
+export interface V1GetProjectLegacyApiKeysRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectLegacyApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectLegacyApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -5990,21 +6686,21 @@ export const GetV1ProjectLegacyApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectLegacyApiKeyRequest",
-}) as any as S.Schema<GetV1ProjectLegacyApiKeyRequest>;
+  identifier: "V1GetProjectLegacyApiKeysRequest",
+}) as any as S.Schema<V1GetProjectLegacyApiKeysRequest>;
 
-export interface LegacyApiKeysResponse {
+export interface LegacyApiKeysResponseOutput {
   enabled: boolean;
 }
-export const LegacyApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const LegacyApiKeysResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     enabled: S.Boolean,
   }),
 ).annotate({
-  identifier: "LegacyApiKeysResponse",
-}) as any as S.Schema<LegacyApiKeysResponse>;
+  identifier: "LegacyApiKeysResponseOutput",
+}) as any as S.Schema<LegacyApiKeysResponseOutput>;
 
-export interface GetV1ProjectLogRequest {
+export interface V1GetProjectLogsRequest {
   /** Project ref */
   ref: string;
   /** Custom SQL query to execute on the logs. See [querying logs](https://supabase.com/docs/guides/monitoring-and-debugging/logs#querying-with-the-logs-explorer) for more details. */
@@ -6012,7 +6708,7 @@ export interface GetV1ProjectLogRequest {
   iso_timestamp_start?: string;
   iso_timestamp_end?: string;
 }
-export const GetV1ProjectLogRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     sql: S.optional(S.String.pipe(T.Query())),
@@ -6026,14 +6722,14 @@ export const GetV1ProjectLogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectLogRequest",
-}) as any as S.Schema<GetV1ProjectLogRequest>;
+  identifier: "V1GetProjectLogsRequest",
+}) as any as S.Schema<V1GetProjectLogsRequest>;
 
-export interface GetV1ProjectPgbouncerConfigRequest {
+export interface V1GetProjectPgbouncerConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectPgbouncerConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectPgbouncerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6044,32 +6740,32 @@ export const GetV1ProjectPgbouncerConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectPgbouncerConfigRequest",
-}) as any as S.Schema<GetV1ProjectPgbouncerConfigRequest>;
+  identifier: "V1GetProjectPgbouncerConfigRequest",
+}) as any as S.Schema<V1GetProjectPgbouncerConfigRequest>;
 
-export type V1PgbouncerConfigResponsePoolMode =
+export type V1PgbouncerConfigResponseOutputPoolMode =
   | "transaction"
   | "session"
   | "statement";
-export const V1PgbouncerConfigResponsePoolMode = /*@__PURE__*/ S.String;
+export const V1PgbouncerConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
 
-export interface V1PgbouncerConfigResponse {
+export interface V1PgbouncerConfigResponseOutput {
   default_pool_size?: number;
   ignore_startup_parameters?: string;
   max_client_conn?: number;
-  pool_mode?: V1PgbouncerConfigResponsePoolMode;
+  pool_mode?: V1PgbouncerConfigResponseOutputPoolMode;
   connection_string?: T.Sensitive;
   server_idle_timeout?: number;
   server_lifetime?: number;
   query_wait_timeout?: number;
   reserve_pool_size?: number;
 }
-export const V1PgbouncerConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1PgbouncerConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     default_pool_size: S.optional(S.Number),
     ignore_startup_parameters: S.optional(S.String),
     max_client_conn: S.optional(S.Number),
-    pool_mode: S.optional(V1PgbouncerConfigResponsePoolMode),
+    pool_mode: S.optional(V1PgbouncerConfigResponseOutputPoolMode),
     connection_string: S.optional(S.String.pipe(T.SensitiveValue({}))),
     server_idle_timeout: S.optional(S.Number),
     server_lifetime: S.optional(S.Number),
@@ -6077,14 +6773,34 @@ export const V1PgbouncerConfigResponse = /*@__PURE__*/ S.suspend(() =>
     reserve_pool_size: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "V1PgbouncerConfigResponse",
-}) as any as S.Schema<V1PgbouncerConfigResponse>;
+  identifier: "V1PgbouncerConfigResponseOutput",
+}) as any as S.Schema<V1PgbouncerConfigResponseOutput>;
 
-export interface GetV1ProjectSigningKeyRequest {
+export interface V1GetProjectSigningKeyRequest {
+  /** Project ref */
+  ref: string;
+  id: string;
+}
+export const V1GetProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{ref}/config/auth/signing-keys/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1GetProjectSigningKeyRequest",
+}) as any as S.Schema<V1GetProjectSigningKeyRequest>;
+
+export interface V1GetProjectSigningKeysRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectSigningKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6095,66 +6811,68 @@ export const GetV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectSigningKeyRequest",
-}) as any as S.Schema<GetV1ProjectSigningKeyRequest>;
+  identifier: "V1GetProjectSigningKeysRequest",
+}) as any as S.Schema<V1GetProjectSigningKeysRequest>;
 
-export type SigningKeysResponseKeysItemAlgorithm =
+export type SigningKeysResponseOutputKeysItemAlgorithm =
   | "EdDSA"
   | "ES256"
   | "RS256"
   | "HS256";
-export const SigningKeysResponseKeysItemAlgorithm = /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemAlgorithm =
+  /*@__PURE__*/ S.String;
 
-export type SigningKeysResponseKeysItemStatus =
+export type SigningKeysResponseOutputKeysItemStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeysResponseKeysItemStatus = /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemStatus = /*@__PURE__*/ S.String;
 
-export interface SigningKeysResponseKeysItem {
+export interface SigningKeysResponseOutputKeysItem {
   id: string;
-  algorithm: SigningKeysResponseKeysItemAlgorithm;
-  status: SigningKeysResponseKeysItemStatus;
+  algorithm: SigningKeysResponseOutputKeysItemAlgorithm;
+  status: SigningKeysResponseOutputKeysItemStatus;
   public_jwk: unknown | null;
   created_at: string;
   updated_at: string;
 }
-export const SigningKeysResponseKeysItem = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeysResponseOutputKeysItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    algorithm: SigningKeysResponseKeysItemAlgorithm,
-    status: SigningKeysResponseKeysItemStatus,
+    algorithm: SigningKeysResponseOutputKeysItemAlgorithm,
+    status: SigningKeysResponseOutputKeysItemStatus,
     public_jwk: S.NullOr(S.Unknown),
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "SigningKeysResponseKeysItem",
-}) as any as S.Schema<SigningKeysResponseKeysItem>;
+  identifier: "SigningKeysResponseOutputKeysItem",
+}) as any as S.Schema<SigningKeysResponseOutputKeysItem>;
 
-export type SigningKeysResponseKeysList = Array<SigningKeysResponseKeysItem>;
-export const SigningKeysResponseKeysList = /*@__PURE__*/ S.Array(
-  SigningKeysResponseKeysItem,
-) as any as S.Schema<SigningKeysResponseKeysList>;
+export type SigningKeysResponseOutputKeysList =
+  Array<SigningKeysResponseOutputKeysItem>;
+export const SigningKeysResponseOutputKeysList = /*@__PURE__*/ S.Array(
+  SigningKeysResponseOutputKeysItem,
+) as any as S.Schema<SigningKeysResponseOutputKeysList>;
 
-export interface SigningKeysResponse {
-  keys: SigningKeysResponseKeysList;
+export interface SigningKeysResponseOutput {
+  keys: SigningKeysResponseOutputKeysList;
 }
-export const SigningKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeysResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    keys: SigningKeysResponseKeysList,
+    keys: SigningKeysResponseOutputKeysList,
   }),
 ).annotate({
-  identifier: "SigningKeysResponse",
-}) as any as S.Schema<SigningKeysResponse>;
+  identifier: "SigningKeysResponseOutput",
+}) as any as S.Schema<SigningKeysResponseOutput>;
 
-export interface GetV1ProjectTpaIntegrationRequest {
+export interface V1GetProjectTpaIntegrationRequest {
   /** Project ref */
   ref: string;
   tpa_id: string;
 }
-export const GetV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     tpa_id: S.String.pipe(T.Label()),
@@ -6166,8 +6884,8 @@ export const GetV1ProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectTpaIntegrationRequest",
-}) as any as S.Schema<GetV1ProjectTpaIntegrationRequest>;
+  identifier: "V1GetProjectTpaIntegrationRequest",
+}) as any as S.Schema<V1GetProjectTpaIntegrationRequest>;
 
 export type V1GetProjectUsageApiCountRequestInterval =
   | "15min"
@@ -6179,12 +6897,12 @@ export type V1GetProjectUsageApiCountRequestInterval =
   | "7day";
 export const V1GetProjectUsageApiCountRequestInterval = /*@__PURE__*/ S.String;
 
-export interface GetV1ProjectUsageApiCountRequest {
+export interface V1GetProjectUsageApiCountRequest {
   /** Project ref */
   ref: string;
   interval?: V1GetProjectUsageApiCountRequestInterval | (string & {});
 }
-export const GetV1ProjectUsageApiCountRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectUsageApiCountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     interval: S.optional(
@@ -6198,18 +6916,18 @@ export const GetV1ProjectUsageApiCountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1ProjectUsageApiCountRequest",
-}) as any as S.Schema<GetV1ProjectUsageApiCountRequest>;
+  identifier: "V1GetProjectUsageApiCountRequest",
+}) as any as S.Schema<V1GetProjectUsageApiCountRequest>;
 
-export interface V1GetUsageApiCountResponseResultItem {
+export interface V1GetUsageApiCountResponseOutputResultItem {
   timestamp: string;
   total_auth_requests: number;
   total_realtime_requests: number;
   total_rest_requests: number;
   total_storage_requests: number;
 }
-export const V1GetUsageApiCountResponseResultItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1GetUsageApiCountResponseOutputResultItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       timestamp: S.String,
       total_auth_requests: S.Number,
@@ -6217,100 +6935,191 @@ export const V1GetUsageApiCountResponseResultItem = /*@__PURE__*/ S.suspend(
       total_rest_requests: S.Number,
       total_storage_requests: S.Number,
     }),
-).annotate({
-  identifier: "V1GetUsageApiCountResponseResultItem",
-}) as any as S.Schema<V1GetUsageApiCountResponseResultItem>;
+  ).annotate({
+    identifier: "V1GetUsageApiCountResponseOutputResultItem",
+  }) as any as S.Schema<V1GetUsageApiCountResponseOutputResultItem>;
 
-export type V1GetUsageApiCountResponseResultList =
-  Array<V1GetUsageApiCountResponseResultItem>;
-export const V1GetUsageApiCountResponseResultList = /*@__PURE__*/ S.Array(
-  V1GetUsageApiCountResponseResultItem,
-) as any as S.Schema<V1GetUsageApiCountResponseResultList>;
+export type V1GetUsageApiCountResponseOutputResultList =
+  Array<V1GetUsageApiCountResponseOutputResultItem>;
+export const V1GetUsageApiCountResponseOutputResultList = /*@__PURE__*/ S.Array(
+  V1GetUsageApiCountResponseOutputResultItem,
+) as any as S.Schema<V1GetUsageApiCountResponseOutputResultList>;
 
-export type V1GetUsageApiCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
-export const V1GetUsageApiCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
+export type V1GetUsageApiCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
+export const V1GetUsageApiCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
 
-export type V1GetUsageApiCountResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const V1GetUsageApiCountResponseErrorCase1ErrorsList =
+export type V1GetUsageApiCountResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const V1GetUsageApiCountResponseOutputErrorCase1ErrorsList =
   /*@__PURE__*/ S.Array(
-    AnalyticsResponseErrorCase1ErrorsItem,
-  ) as any as S.Schema<V1GetUsageApiCountResponseErrorCase1ErrorsList>;
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<V1GetUsageApiCountResponseOutputErrorCase1ErrorsList>;
 
-export interface V1GetUsageApiCountResponseErrorCase1 {
+export interface V1GetUsageApiCountResponseOutputErrorCase1 {
   code: number;
-  errors: V1GetUsageApiCountResponseErrorCase1ErrorsList;
+  errors: V1GetUsageApiCountResponseOutputErrorCase1ErrorsList;
   message: string;
   status: string;
 }
-export const V1GetUsageApiCountResponseErrorCase1 = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1GetUsageApiCountResponseOutputErrorCase1 =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       code: S.Number,
-      errors: V1GetUsageApiCountResponseErrorCase1ErrorsList,
+      errors: V1GetUsageApiCountResponseOutputErrorCase1ErrorsList,
       message: S.String,
       status: S.String,
     }),
-).annotate({
-  identifier: "V1GetUsageApiCountResponseErrorCase1",
-}) as any as S.Schema<V1GetUsageApiCountResponseErrorCase1>;
+  ).annotate({
+    identifier: "V1GetUsageApiCountResponseOutputErrorCase1",
+  }) as any as S.Schema<V1GetUsageApiCountResponseOutputErrorCase1>;
 
-export type V1GetUsageApiCountResponseError =
+export type V1GetUsageApiCountResponseOutputError =
   | string
-  | V1GetUsageApiCountResponseErrorCase1;
-export const V1GetUsageApiCountResponseError = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], ["code", "errors", "message", "status"]]),
-);
+  | V1GetUsageApiCountResponseOutputErrorCase1;
+export const V1GetUsageApiCountResponseOutputError =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([[], ["code", "errors", "message", "status"]]),
+  );
 
-export interface V1GetUsageApiCountResponse {
-  result?: V1GetUsageApiCountResponseResultList;
-  error?: V1GetUsageApiCountResponseError;
+export interface V1GetUsageApiCountResponseOutput {
+  result?: V1GetUsageApiCountResponseOutputResultList;
+  error?: V1GetUsageApiCountResponseOutputError;
 }
-export const V1GetUsageApiCountResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1GetUsageApiCountResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(V1GetUsageApiCountResponseResultList),
-    error: S.optional(V1GetUsageApiCountResponseError),
+    result: S.optional(V1GetUsageApiCountResponseOutputResultList),
+    error: S.optional(V1GetUsageApiCountResponseOutputError),
   }),
 ).annotate({
-  identifier: "V1GetUsageApiCountResponse",
-}) as any as S.Schema<V1GetUsageApiCountResponse>;
+  identifier: "V1GetUsageApiCountResponseOutput",
+}) as any as S.Schema<V1GetUsageApiCountResponseOutput>;
 
-export interface GetV1ReadonlyModeStatusRequest {
+export interface V1GetProjectUsageRequestCountRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1ReadonlyModeStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetProjectUsageRequestCountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ref: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{ref}/analytics/endpoints/usage.api-requests-count",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "V1GetProjectUsageRequestCountRequest",
+}) as any as S.Schema<V1GetProjectUsageRequestCountRequest>;
+
+export interface V1GetUsageApiRequestsCountResponseOutputResultItem {
+  count: number;
+}
+export const V1GetUsageApiRequestsCountResponseOutputResultItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      count: S.Number,
+    }),
+  ).annotate({
+    identifier: "V1GetUsageApiRequestsCountResponseOutputResultItem",
+  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputResultItem>;
+
+export type V1GetUsageApiRequestsCountResponseOutputResultList =
+  Array<V1GetUsageApiRequestsCountResponseOutputResultItem>;
+export const V1GetUsageApiRequestsCountResponseOutputResultList =
+  /*@__PURE__*/ S.Array(
+    V1GetUsageApiRequestsCountResponseOutputResultItem,
+  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputResultList>;
+
+export type V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
+
+export type V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList =
+  /*@__PURE__*/ S.Array(
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList>;
+
+export interface V1GetUsageApiRequestsCountResponseOutputErrorCase1 {
+  code: number;
+  errors: V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList;
+  message: string;
+  status: string;
+}
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.Number,
+      errors: V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList,
+      message: S.String,
+      status: S.String,
+    }),
+  ).annotate({
+    identifier: "V1GetUsageApiRequestsCountResponseOutputErrorCase1",
+  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputErrorCase1>;
+
+export type V1GetUsageApiRequestsCountResponseOutputError =
+  | string
+  | V1GetUsageApiRequestsCountResponseOutputErrorCase1;
+export const V1GetUsageApiRequestsCountResponseOutputError =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([[], ["code", "errors", "message", "status"]]),
+  );
+
+export interface V1GetUsageApiRequestsCountResponseOutput {
+  result?: V1GetUsageApiRequestsCountResponseOutputResultList;
+  error?: V1GetUsageApiRequestsCountResponseOutputError;
+}
+export const V1GetUsageApiRequestsCountResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      result: S.optional(V1GetUsageApiRequestsCountResponseOutputResultList),
+      error: S.optional(V1GetUsageApiRequestsCountResponseOutputError),
+    }),
+).annotate({
+  identifier: "V1GetUsageApiRequestsCountResponseOutput",
+}) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutput>;
+
+export interface V1GetReadonlyModeStatusRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1GetReadonlyModeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/readonly", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1ReadonlyModeStatusRequest",
-}) as any as S.Schema<GetV1ReadonlyModeStatusRequest>;
+  identifier: "V1GetReadonlyModeStatusRequest",
+}) as any as S.Schema<V1GetReadonlyModeStatusRequest>;
 
-export interface ReadOnlyStatusResponse {
+export interface ReadOnlyStatusResponseOutput {
   enabled: boolean;
   override_enabled: boolean;
   override_active_until: string;
 }
-export const ReadOnlyStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const ReadOnlyStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     enabled: S.Boolean,
     override_enabled: S.Boolean,
     override_active_until: S.String,
   }),
 ).annotate({
-  identifier: "ReadOnlyStatusResponse",
-}) as any as S.Schema<ReadOnlyStatusResponse>;
+  identifier: "ReadOnlyStatusResponseOutput",
+}) as any as S.Schema<ReadOnlyStatusResponseOutput>;
 
-export interface GetV1RealtimeConfigRequest {
+export interface V1GetRealtimeConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1RealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetRealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6321,10 +7130,10 @@ export const GetV1RealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1RealtimeConfigRequest",
-}) as any as S.Schema<GetV1RealtimeConfigRequest>;
+  identifier: "V1GetRealtimeConfigRequest",
+}) as any as S.Schema<V1GetRealtimeConfigRequest>;
 
-export interface RealtimeConfigResponse {
+export interface RealtimeConfigResponseOutput {
   /** Whether to only allow private channels */
   private_only: boolean | null;
   /** Sets connection pool size for Realtime Authorization */
@@ -6350,7 +7159,7 @@ export interface RealtimeConfigResponse {
   /** Whether to enable presence */
   presence_enabled: boolean;
 }
-export const RealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const RealtimeConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     private_only: S.NullOr(S.Boolean),
     connection_pool: S.NullOr(S.Number),
@@ -6366,8 +7175,28 @@ export const RealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
     presence_enabled: S.Boolean,
   }),
 ).annotate({
-  identifier: "RealtimeConfigResponse",
-}) as any as S.Schema<RealtimeConfigResponse>;
+  identifier: "RealtimeConfigResponseOutput",
+}) as any as S.Schema<RealtimeConfigResponseOutput>;
+
+export interface V1GetRestorePointRequest {
+  /** Project ref */
+  ref: string;
+  name?: string;
+}
+export const V1GetRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    name: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{ref}/database/backups/restore-point",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1GetRestorePointRequest",
+}) as any as S.Schema<V1GetRestorePointRequest>;
 
 export type V1GetServicesHealthRequestServicesCase1Item =
   | "auth"
@@ -6397,14 +7226,14 @@ export const V1GetServicesHealthRequestServices = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], []]),
 );
 
-export interface GetV1ServiceHealthRequest {
+export interface V1GetServicesHealthRequest {
   /** Project ref */
   ref: string;
   /** Comma-separated list of enums or array of enums. */
   services: V1GetServicesHealthRequestServices;
   timeout_ms?: number;
 }
-export const GetV1ServiceHealthRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetServicesHealthRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     services: V1GetServicesHealthRequestServices.pipe(T.Query()),
@@ -6413,10 +7242,10 @@ export const GetV1ServiceHealthRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/health", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1ServiceHealthRequest",
-}) as any as S.Schema<GetV1ServiceHealthRequest>;
+  identifier: "V1GetServicesHealthRequest",
+}) as any as S.Schema<V1GetServicesHealthRequest>;
 
-export type V1ServiceHealthResponseName =
+export type V1ServiceHealthResponseOutputName =
   | "auth"
   | "db"
   | "db_postgres_user"
@@ -6425,66 +7254,70 @@ export type V1ServiceHealthResponseName =
   | "rest"
   | "storage"
   | "pg_bouncer";
-export const V1ServiceHealthResponseName = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputName = /*@__PURE__*/ S.String;
 
-export type V1ServiceHealthResponseStatus =
+export type V1ServiceHealthResponseOutputStatus =
   | "COMING_UP"
   | "ACTIVE_HEALTHY"
   | "UNHEALTHY";
-export const V1ServiceHealthResponseStatus = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export type V1ServiceHealthResponseInfoCase0Name = "GoTrue";
-export const V1ServiceHealthResponseInfoCase0Name = /*@__PURE__*/ S.String;
+export type V1ServiceHealthResponseOutputInfoCase0Name = "GoTrue";
+export const V1ServiceHealthResponseOutputInfoCase0Name =
+  /*@__PURE__*/ S.String;
 
-export interface V1ServiceHealthResponseInfoCase0 {
-  name: V1ServiceHealthResponseInfoCase0Name;
+export interface V1ServiceHealthResponseOutputInfoCase0 {
+  name: V1ServiceHealthResponseOutputInfoCase0Name;
   version: string;
   description: string;
 }
-export const V1ServiceHealthResponseInfoCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: V1ServiceHealthResponseInfoCase0Name,
-    version: S.String,
-    description: S.String,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: V1ServiceHealthResponseOutputInfoCase0Name,
+      version: S.String,
+      description: S.String,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase0",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase0>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase0",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase0>;
 
-export interface V1ServiceHealthResponseInfoCase1 {
+export interface V1ServiceHealthResponseOutputInfoCase1 {
   /** Deprecated. Use `status` instead. */
   healthy: boolean;
   db_connected: boolean;
   replication_connected: boolean;
   connected_cluster: number;
 }
-export const V1ServiceHealthResponseInfoCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    healthy: S.Boolean,
-    db_connected: S.Boolean,
-    replication_connected: S.Boolean,
-    connected_cluster: S.Number,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      healthy: S.Boolean,
+      db_connected: S.Boolean,
+      replication_connected: S.Boolean,
+      connected_cluster: S.Number,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase1",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase1>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase1",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase1>;
 
-export interface V1ServiceHealthResponseInfoCase2 {
+export interface V1ServiceHealthResponseOutputInfoCase2 {
   db_schema: string;
 }
-export const V1ServiceHealthResponseInfoCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    db_schema: S.String,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase2 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      db_schema: S.String,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase2",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase2>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase2",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase2>;
 
-export type V1ServiceHealthResponseInfo =
-  | V1ServiceHealthResponseInfoCase0
-  | V1ServiceHealthResponseInfoCase1
-  | V1ServiceHealthResponseInfoCase2;
-export const V1ServiceHealthResponseInfo = /*@__PURE__*/ S.Unknown.pipe(
+export type V1ServiceHealthResponseOutputInfo =
+  | V1ServiceHealthResponseOutputInfoCase0
+  | V1ServiceHealthResponseOutputInfoCase1
+  | V1ServiceHealthResponseOutputInfoCase2;
+export const V1ServiceHealthResponseOutputInfo = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     ["name", "version", "description"],
     ["healthy", "db_connected", "replication_connected", "connected_cluster"],
@@ -6492,44 +7325,44 @@ export const V1ServiceHealthResponseInfo = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export interface V1ServiceHealthResponse {
-  name: V1ServiceHealthResponseName;
+export interface V1ServiceHealthResponseOutput {
+  name: V1ServiceHealthResponseOutputName;
   /** Deprecated. Use `status` instead. */
   healthy: boolean;
-  status: V1ServiceHealthResponseStatus;
-  info?: V1ServiceHealthResponseInfo;
+  status: V1ServiceHealthResponseOutputStatus;
+  info?: V1ServiceHealthResponseOutputInfo;
   error?: string;
 }
-export const V1ServiceHealthResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ServiceHealthResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: V1ServiceHealthResponseName,
+    name: V1ServiceHealthResponseOutputName,
     healthy: S.Boolean,
-    status: V1ServiceHealthResponseStatus,
-    info: S.optional(V1ServiceHealthResponseInfo),
+    status: V1ServiceHealthResponseOutputStatus,
+    info: S.optional(V1ServiceHealthResponseOutputInfo),
     error: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1ServiceHealthResponse",
-}) as any as S.Schema<V1ServiceHealthResponse>;
+  identifier: "V1ServiceHealthResponseOutput",
+}) as any as S.Schema<V1ServiceHealthResponseOutput>;
 
 export type V1GetServicesHealthResponseBodyList =
-  Array<V1ServiceHealthResponse>;
+  Array<V1ServiceHealthResponseOutput>;
 export const V1GetServicesHealthResponseBodyList = /*@__PURE__*/ S.Array(
-  V1ServiceHealthResponse,
+  V1ServiceHealthResponseOutput,
 ) as any as S.Schema<V1GetServicesHealthResponseBodyList>;
 
-export type GetV1ServiceHealthResponse = V1GetServicesHealthResponseBodyList;
-export const GetV1ServiceHealthResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1GetServicesHealthResponse = V1GetServicesHealthResponseBodyList;
+export const V1GetServicesHealthResponse = /*@__PURE__*/ S.suspend(() =>
   V1GetServicesHealthResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1ServiceHealthResponse",
-}) as any as S.Schema<GetV1ServiceHealthResponse>;
+  identifier: "V1GetServicesHealthResponse",
+}) as any as S.Schema<V1GetServicesHealthResponse>;
 
-export interface GetV1SslEnforcementConfigRequest {
+export interface V1GetSslEnforcementConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1SslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetSslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6540,38 +7373,39 @@ export const GetV1SslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1SslEnforcementConfigRequest",
-}) as any as S.Schema<GetV1SslEnforcementConfigRequest>;
+  identifier: "V1GetSslEnforcementConfigRequest",
+}) as any as S.Schema<V1GetSslEnforcementConfigRequest>;
 
-export interface SslEnforcementResponseCurrentConfig {
+export interface SslEnforcementResponseOutputCurrentConfig {
   database: boolean;
 }
-export const SslEnforcementResponseCurrentConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    database: S.Boolean,
-  }),
-).annotate({
-  identifier: "SslEnforcementResponseCurrentConfig",
-}) as any as S.Schema<SslEnforcementResponseCurrentConfig>;
+export const SslEnforcementResponseOutputCurrentConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      database: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "SslEnforcementResponseOutputCurrentConfig",
+  }) as any as S.Schema<SslEnforcementResponseOutputCurrentConfig>;
 
-export interface SslEnforcementResponse {
-  currentConfig: SslEnforcementResponseCurrentConfig;
+export interface SslEnforcementResponseOutput {
+  currentConfig: SslEnforcementResponseOutputCurrentConfig;
   appliedSuccessfully: boolean;
 }
-export const SslEnforcementResponse = /*@__PURE__*/ S.suspend(() =>
+export const SslEnforcementResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    currentConfig: SslEnforcementResponseCurrentConfig,
+    currentConfig: SslEnforcementResponseOutputCurrentConfig,
     appliedSuccessfully: S.Boolean,
   }),
 ).annotate({
-  identifier: "SslEnforcementResponse",
-}) as any as S.Schema<SslEnforcementResponse>;
+  identifier: "SslEnforcementResponseOutput",
+}) as any as S.Schema<SslEnforcementResponseOutput>;
 
-export interface GetV1StorageConfigRequest {
+export interface V1GetStorageConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1StorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetStorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6582,31 +7416,31 @@ export const GetV1StorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1StorageConfigRequest",
-}) as any as S.Schema<GetV1StorageConfigRequest>;
+  identifier: "V1GetStorageConfigRequest",
+}) as any as S.Schema<V1GetStorageConfigRequest>;
 
-export type StorageConfigResponseFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesImageTransformation =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesImageTransformation =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export type StorageConfigResponseFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesS3Protocol =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesS3Protocol =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export type StorageConfigResponseFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesPurgeCache =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesPurgeCache =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export interface StorageConfigResponseFeaturesIcebergCatalog {
+export interface StorageConfigResponseOutputFeaturesIcebergCatalog {
   enabled: boolean;
   maxNamespaces: number;
   maxTables: number;
   maxCatalogs: number;
 }
-export const StorageConfigResponseFeaturesIcebergCatalog =
+export const StorageConfigResponseOutputFeaturesIcebergCatalog =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -6615,15 +7449,15 @@ export const StorageConfigResponseFeaturesIcebergCatalog =
       maxCatalogs: S.Number,
     }),
   ).annotate({
-    identifier: "StorageConfigResponseFeaturesIcebergCatalog",
-  }) as any as S.Schema<StorageConfigResponseFeaturesIcebergCatalog>;
+    identifier: "StorageConfigResponseOutputFeaturesIcebergCatalog",
+  }) as any as S.Schema<StorageConfigResponseOutputFeaturesIcebergCatalog>;
 
-export interface StorageConfigResponseFeaturesVectorBuckets {
+export interface StorageConfigResponseOutputFeaturesVectorBuckets {
   enabled: boolean;
   maxBuckets: number;
   maxIndexes: number;
 }
-export const StorageConfigResponseFeaturesVectorBuckets =
+export const StorageConfigResponseOutputFeaturesVectorBuckets =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -6631,82 +7465,84 @@ export const StorageConfigResponseFeaturesVectorBuckets =
       maxIndexes: S.Number,
     }),
   ).annotate({
-    identifier: "StorageConfigResponseFeaturesVectorBuckets",
-  }) as any as S.Schema<StorageConfigResponseFeaturesVectorBuckets>;
+    identifier: "StorageConfigResponseOutputFeaturesVectorBuckets",
+  }) as any as S.Schema<StorageConfigResponseOutputFeaturesVectorBuckets>;
 
-export interface StorageConfigResponseFeatures {
-  imageTransformation: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  s3Protocol: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  purgeCache: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  icebergCatalog: StorageConfigResponseFeaturesIcebergCatalog;
-  vectorBuckets: StorageConfigResponseFeaturesVectorBuckets;
+export interface StorageConfigResponseOutputFeatures {
+  imageTransformation: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  s3Protocol: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  purgeCache: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  icebergCatalog: StorageConfigResponseOutputFeaturesIcebergCatalog;
+  vectorBuckets: StorageConfigResponseOutputFeaturesVectorBuckets;
 }
-export const StorageConfigResponseFeatures = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutputFeatures = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    imageTransformation: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    s3Protocol: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    purgeCache: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    icebergCatalog: StorageConfigResponseFeaturesIcebergCatalog,
-    vectorBuckets: StorageConfigResponseFeaturesVectorBuckets,
+    imageTransformation:
+      V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    s3Protocol: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    purgeCache: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    icebergCatalog: StorageConfigResponseOutputFeaturesIcebergCatalog,
+    vectorBuckets: StorageConfigResponseOutputFeaturesVectorBuckets,
   }),
 ).annotate({
-  identifier: "StorageConfigResponseFeatures",
-}) as any as S.Schema<StorageConfigResponseFeatures>;
+  identifier: "StorageConfigResponseOutputFeatures",
+}) as any as S.Schema<StorageConfigResponseOutputFeatures>;
 
-export interface StorageConfigResponseCapabilities {
+export interface StorageConfigResponseOutputCapabilities {
   list_v2: boolean;
   iceberg_catalog: boolean;
 }
-export const StorageConfigResponseCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_v2: S.Boolean,
-    iceberg_catalog: S.Boolean,
-  }),
+export const StorageConfigResponseOutputCapabilities = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      list_v2: S.Boolean,
+      iceberg_catalog: S.Boolean,
+    }),
 ).annotate({
-  identifier: "StorageConfigResponseCapabilities",
-}) as any as S.Schema<StorageConfigResponseCapabilities>;
+  identifier: "StorageConfigResponseOutputCapabilities",
+}) as any as S.Schema<StorageConfigResponseOutputCapabilities>;
 
-export type StorageConfigResponseExternalUpstreamTarget = "main" | "canary";
-export const StorageConfigResponseExternalUpstreamTarget =
+export type StorageConfigResponseOutputExternalUpstreamTarget =
+  | "main"
+  | "canary";
+export const StorageConfigResponseOutputExternalUpstreamTarget =
   /*@__PURE__*/ S.String;
 
-export interface StorageConfigResponseExternal {
-  upstreamTarget: StorageConfigResponseExternalUpstreamTarget;
+export interface StorageConfigResponseOutputExternal {
+  upstreamTarget: StorageConfigResponseOutputExternalUpstreamTarget;
 }
-export const StorageConfigResponseExternal = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutputExternal = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    upstreamTarget: StorageConfigResponseExternalUpstreamTarget,
+    upstreamTarget: StorageConfigResponseOutputExternalUpstreamTarget,
   }),
 ).annotate({
-  identifier: "StorageConfigResponseExternal",
-}) as any as S.Schema<StorageConfigResponseExternal>;
+  identifier: "StorageConfigResponseOutputExternal",
+}) as any as S.Schema<StorageConfigResponseOutputExternal>;
 
-export interface StorageConfigResponse {
+export interface StorageConfigResponseOutput {
   fileSizeLimit: number;
-  features: StorageConfigResponseFeatures;
-  capabilities: StorageConfigResponseCapabilities;
-  external: StorageConfigResponseExternal;
+  features: StorageConfigResponseOutputFeatures;
+  capabilities: StorageConfigResponseOutputCapabilities;
+  external: StorageConfigResponseOutputExternal;
   migrationVersion: string;
-  databasePoolMode: string;
 }
-export const StorageConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fileSizeLimit: S.Number,
-    features: StorageConfigResponseFeatures,
-    capabilities: StorageConfigResponseCapabilities,
-    external: StorageConfigResponseExternal,
+    features: StorageConfigResponseOutputFeatures,
+    capabilities: StorageConfigResponseOutputCapabilities,
+    external: StorageConfigResponseOutputExternal,
     migrationVersion: S.String,
-    databasePoolMode: S.String,
   }),
 ).annotate({
-  identifier: "StorageConfigResponse",
-}) as any as S.Schema<StorageConfigResponse>;
+  identifier: "StorageConfigResponseOutput",
+}) as any as S.Schema<StorageConfigResponseOutput>;
 
-export interface GetV1VanitySubdomainConfigRequest {
+export interface V1GetVanitySubdomainConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const GetV1VanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1GetVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6717,35 +7553,210 @@ export const GetV1VanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1VanitySubdomainConfigRequest",
-}) as any as S.Schema<GetV1VanitySubdomainConfigRequest>;
+  identifier: "V1GetVanitySubdomainConfigRequest",
+}) as any as S.Schema<V1GetVanitySubdomainConfigRequest>;
 
-export type VanitySubdomainConfigResponseStatus =
+export type VanitySubdomainConfigResponseOutputStatus =
   | "not-used"
   | "custom-domain-used"
   | "active";
-export const VanitySubdomainConfigResponseStatus = /*@__PURE__*/ S.String;
+export const VanitySubdomainConfigResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface VanitySubdomainConfigResponse {
-  status: VanitySubdomainConfigResponseStatus;
+export interface VanitySubdomainConfigResponseOutput {
+  status: VanitySubdomainConfigResponseOutputStatus;
   custom_domain?: string;
 }
-export const VanitySubdomainConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const VanitySubdomainConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: VanitySubdomainConfigResponseStatus,
+    status: VanitySubdomainConfigResponseOutputStatus,
     custom_domain: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "VanitySubdomainConfigResponse",
-}) as any as S.Schema<VanitySubdomainConfigResponse>;
+  identifier: "VanitySubdomainConfigResponseOutput",
+}) as any as S.Schema<VanitySubdomainConfigResponseOutput>;
 
-export interface ListV1ActionRunsRequest {
+export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+
+export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList>;
+
+export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+
+export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List>;
+
+export interface V1InviteExternalJitAccessRequestRolesItemAllowedNetworks {
+  allowed_cidrs?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List;
+}
+export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworks =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowed_cidrs: S.optional(
+        V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList,
+      ),
+      allowed_cidrs_v6: S.optional(
+        V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List,
+      ),
+    }),
+  ).annotate({
+    identifier: "V1InviteExternalJitAccessRequestRolesItemAllowedNetworks",
+  }) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworks>;
+
+export interface V1InviteExternalJitAccessRequestRolesItem {
+  role: string;
+  expires_at?: number;
+  allowed_networks?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworks;
+  branches_only?: boolean;
+}
+export const V1InviteExternalJitAccessRequestRolesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        V1InviteExternalJitAccessRequestRolesItemAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "V1InviteExternalJitAccessRequestRolesItem",
+  }) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItem>;
+
+export type V1InviteExternalJitAccessRequestRolesList =
+  Array<V1InviteExternalJitAccessRequestRolesItem>;
+export const V1InviteExternalJitAccessRequestRolesList = /*@__PURE__*/ S.Array(
+  V1InviteExternalJitAccessRequestRolesItem,
+) as any as S.Schema<V1InviteExternalJitAccessRequestRolesList>;
+
+export interface V1InviteExternalJitAccessRequest {
+  /** Project ref */
+  ref: string;
+  email: string;
+  roles: V1InviteExternalJitAccessRequestRolesList;
+}
+export const V1InviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    email: S.String,
+    roles: V1InviteExternalJitAccessRequestRolesList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/jit/invite",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1InviteExternalJitAccessRequest",
+}) as any as S.Schema<V1InviteExternalJitAccessRequest>;
+
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList>;
+
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List>;
+
+export interface InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks {
+  allowed_cidrs?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List;
+}
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowed_cidrs: S.optional(
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList,
+      ),
+      allowed_cidrs_v6: S.optional(
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks",
+  }) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks>;
+
+export interface InviteExternalUserJitResponseOutputUserRolesItem {
+  role: string;
+  expires_at?: number;
+  allowed_networks?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks;
+  branches_only?: boolean;
+}
+export const InviteExternalUserJitResponseOutputUserRolesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "InviteExternalUserJitResponseOutputUserRolesItem",
+  }) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItem>;
+
+export type InviteExternalUserJitResponseOutputUserRolesList =
+  Array<InviteExternalUserJitResponseOutputUserRolesItem>;
+export const InviteExternalUserJitResponseOutputUserRolesList =
+  /*@__PURE__*/ S.Array(
+    InviteExternalUserJitResponseOutputUserRolesItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesList>;
+
+export interface InviteExternalUserJitResponseOutput {
+  email: string;
+  invite_id: string;
+  user_roles: InviteExternalUserJitResponseOutputUserRolesList;
+}
+export const InviteExternalUserJitResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String,
+    invite_id: S.String,
+    user_roles: InviteExternalUserJitResponseOutputUserRolesList,
+  }),
+).annotate({
+  identifier: "InviteExternalUserJitResponseOutput",
+}) as any as S.Schema<InviteExternalUserJitResponseOutput>;
+
+export interface V1ListActionRunsRequest {
   /** Project ref */
   ref: string;
   offset?: number;
   limit?: number;
 }
-export const ListV1ActionRunsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListActionRunsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     offset: S.optional(S.Number.pipe(T.Query())),
@@ -6754,10 +7765,10 @@ export const ListV1ActionRunsRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/actions", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListV1ActionRunsRequest",
-}) as any as S.Schema<ListV1ActionRunsRequest>;
+  identifier: "V1ListActionRunsRequest",
+}) as any as S.Schema<V1ListActionRunsRequest>;
 
-export type ListActionRunResponseItemRunStepsItemName =
+export type ListActionRunResponseOutputItemRunStepsItemName =
   | "clone"
   | "pull"
   | "health"
@@ -6765,9 +7776,10 @@ export type ListActionRunResponseItemRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ListActionRunResponseItemRunStepsItemName = /*@__PURE__*/ S.String;
+export const ListActionRunResponseOutputItemRunStepsItemName =
+  /*@__PURE__*/ S.String;
 
-export type ListActionRunResponseItemRunStepsItemStatus =
+export type ListActionRunResponseOutputItemRunStepsItemStatus =
   | "CREATED"
   | "DEAD"
   | "EXITED"
@@ -6775,48 +7787,49 @@ export type ListActionRunResponseItemRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ListActionRunResponseItemRunStepsItemStatus =
+export const ListActionRunResponseOutputItemRunStepsItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface ListActionRunResponseItemRunStepsItem {
-  name: ListActionRunResponseItemRunStepsItemName;
-  status: ListActionRunResponseItemRunStepsItemStatus;
+export interface ListActionRunResponseOutputItemRunStepsItem {
+  name: ListActionRunResponseOutputItemRunStepsItemName;
+  status: ListActionRunResponseOutputItemRunStepsItemStatus;
   created_at: string;
   updated_at: string;
 }
-export const ListActionRunResponseItemRunStepsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListActionRunResponseOutputItemRunStepsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: ListActionRunResponseItemRunStepsItemName,
-      status: ListActionRunResponseItemRunStepsItemStatus,
+      name: ListActionRunResponseOutputItemRunStepsItemName,
+      status: ListActionRunResponseOutputItemRunStepsItemStatus,
       created_at: S.String,
       updated_at: S.String,
     }),
-).annotate({
-  identifier: "ListActionRunResponseItemRunStepsItem",
-}) as any as S.Schema<ListActionRunResponseItemRunStepsItem>;
+  ).annotate({
+    identifier: "ListActionRunResponseOutputItemRunStepsItem",
+  }) as any as S.Schema<ListActionRunResponseOutputItemRunStepsItem>;
 
-export type ListActionRunResponseItemRunStepsList =
-  Array<ListActionRunResponseItemRunStepsItem>;
-export const ListActionRunResponseItemRunStepsList = /*@__PURE__*/ S.Array(
-  ListActionRunResponseItemRunStepsItem,
-) as any as S.Schema<ListActionRunResponseItemRunStepsList>;
+export type ListActionRunResponseOutputItemRunStepsList =
+  Array<ListActionRunResponseOutputItemRunStepsItem>;
+export const ListActionRunResponseOutputItemRunStepsList =
+  /*@__PURE__*/ S.Array(
+    ListActionRunResponseOutputItemRunStepsItem,
+  ) as any as S.Schema<ListActionRunResponseOutputItemRunStepsList>;
 
-export interface ListActionRunResponseItem {
+export interface ListActionRunResponseOutputItem {
   id: string;
   branch_id: string;
-  run_steps: ListActionRunResponseItemRunStepsList;
+  run_steps: ListActionRunResponseOutputItemRunStepsList;
   git_config?: unknown | null;
   workdir: string | null;
   check_run_id: number | null;
   created_at: string;
   updated_at: string;
 }
-export const ListActionRunResponseItem = /*@__PURE__*/ S.suspend(() =>
+export const ListActionRunResponseOutputItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     branch_id: S.String,
-    run_steps: ListActionRunResponseItemRunStepsList,
+    run_steps: ListActionRunResponseOutputItemRunStepsList,
     git_config: S.optional(S.NullOr(S.Unknown)),
     workdir: S.NullOr(S.String),
     check_run_id: S.NullOr(S.Number),
@@ -6824,26 +7837,27 @@ export const ListActionRunResponseItem = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ListActionRunResponseItem",
-}) as any as S.Schema<ListActionRunResponseItem>;
+  identifier: "ListActionRunResponseOutputItem",
+}) as any as S.Schema<ListActionRunResponseOutputItem>;
 
-export type ListActionRunResponse = Array<ListActionRunResponseItem>;
-export const ListActionRunResponse = /*@__PURE__*/ S.Array(
-  ListActionRunResponseItem,
-) as any as S.Schema<ListActionRunResponse>;
+export type ListActionRunResponseOutput =
+  Array<ListActionRunResponseOutputItem>;
+export const ListActionRunResponseOutput = /*@__PURE__*/ S.Array(
+  ListActionRunResponseOutputItem,
+) as any as S.Schema<ListActionRunResponseOutput>;
 
-export type ListV1ActionRunsResponse = ListActionRunResponse;
-export const ListV1ActionRunsResponse = /*@__PURE__*/ S.suspend(() =>
-  ListActionRunResponse.pipe(T.RawResponseRoot()),
+export type V1ListActionRunsResponse = ListActionRunResponseOutput;
+export const V1ListActionRunsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListActionRunResponseOutput.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1ActionRunsResponse",
-}) as any as S.Schema<ListV1ActionRunsResponse>;
+  identifier: "V1ListActionRunsResponse",
+}) as any as S.Schema<V1ListActionRunsResponse>;
 
-export interface ListV1AllBackupsRequest {
+export interface V1ListAllBackupsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllBackupsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6854,103 +7868,105 @@ export const ListV1AllBackupsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1AllBackupsRequest",
-}) as any as S.Schema<ListV1AllBackupsRequest>;
+  identifier: "V1ListAllBackupsRequest",
+}) as any as S.Schema<V1ListAllBackupsRequest>;
 
-export type V1BackupsResponseBackupsItemStatus =
+export type V1BackupsResponseOutputBackupsItemStatus =
   | "COMPLETED"
   | "FAILED"
   | "PENDING"
   | "REMOVED"
   | "ARCHIVED"
   | "CANCELLED";
-export const V1BackupsResponseBackupsItemStatus = /*@__PURE__*/ S.String;
+export const V1BackupsResponseOutputBackupsItemStatus = /*@__PURE__*/ S.String;
 
-export interface V1BackupsResponseBackupsItem {
+export interface V1BackupsResponseOutputBackupsItem {
   id: number;
   is_physical_backup: boolean;
-  status: V1BackupsResponseBackupsItemStatus;
+  status: V1BackupsResponseOutputBackupsItemStatus;
   inserted_at: string;
 }
-export const V1BackupsResponseBackupsItem = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupsResponseOutputBackupsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     is_physical_backup: S.Boolean,
-    status: V1BackupsResponseBackupsItemStatus,
+    status: V1BackupsResponseOutputBackupsItemStatus,
     inserted_at: S.String,
   }),
 ).annotate({
-  identifier: "V1BackupsResponseBackupsItem",
-}) as any as S.Schema<V1BackupsResponseBackupsItem>;
+  identifier: "V1BackupsResponseOutputBackupsItem",
+}) as any as S.Schema<V1BackupsResponseOutputBackupsItem>;
 
-export type V1BackupsResponseBackupsList = Array<V1BackupsResponseBackupsItem>;
-export const V1BackupsResponseBackupsList = /*@__PURE__*/ S.Array(
-  V1BackupsResponseBackupsItem,
-) as any as S.Schema<V1BackupsResponseBackupsList>;
+export type V1BackupsResponseOutputBackupsList =
+  Array<V1BackupsResponseOutputBackupsItem>;
+export const V1BackupsResponseOutputBackupsList = /*@__PURE__*/ S.Array(
+  V1BackupsResponseOutputBackupsItem,
+) as any as S.Schema<V1BackupsResponseOutputBackupsList>;
 
-export interface V1BackupsResponsePhysicalBackupData {
+export interface V1BackupsResponseOutputPhysicalBackupData {
   earliest_physical_backup_date_unix?: number;
   latest_physical_backup_date_unix?: number;
 }
-export const V1BackupsResponsePhysicalBackupData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    earliest_physical_backup_date_unix: S.optional(S.Number),
-    latest_physical_backup_date_unix: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "V1BackupsResponsePhysicalBackupData",
-}) as any as S.Schema<V1BackupsResponsePhysicalBackupData>;
+export const V1BackupsResponseOutputPhysicalBackupData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      earliest_physical_backup_date_unix: S.optional(S.Number),
+      latest_physical_backup_date_unix: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "V1BackupsResponseOutputPhysicalBackupData",
+  }) as any as S.Schema<V1BackupsResponseOutputPhysicalBackupData>;
 
-export interface V1BackupsResponse {
+export interface V1BackupsResponseOutput {
   region: string;
   walg_enabled: boolean;
   pitr_enabled: boolean;
-  backups: V1BackupsResponseBackupsList;
-  physical_backup_data: V1BackupsResponsePhysicalBackupData;
+  backups: V1BackupsResponseOutputBackupsList;
+  physical_backup_data: V1BackupsResponseOutputPhysicalBackupData;
 }
-export const V1BackupsResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     region: S.String,
     walg_enabled: S.Boolean,
     pitr_enabled: S.Boolean,
-    backups: V1BackupsResponseBackupsList,
-    physical_backup_data: V1BackupsResponsePhysicalBackupData,
+    backups: V1BackupsResponseOutputBackupsList,
+    physical_backup_data: V1BackupsResponseOutputPhysicalBackupData,
   }),
 ).annotate({
-  identifier: "V1BackupsResponse",
-}) as any as S.Schema<V1BackupsResponse>;
+  identifier: "V1BackupsResponseOutput",
+}) as any as S.Schema<V1BackupsResponseOutput>;
 
-export interface ListV1AllBranchesRequest {
+export interface V1ListAllBranchesRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllBranchesRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllBranchesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/branches", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListV1AllBranchesRequest",
-}) as any as S.Schema<ListV1AllBranchesRequest>;
+  identifier: "V1ListAllBranchesRequest",
+}) as any as S.Schema<V1ListAllBranchesRequest>;
 
-export type V1ListAllBranchesResponseBodyList = Array<BranchResponse>;
+export type V1ListAllBranchesResponseBodyList = Array<BranchResponseOutput>;
 export const V1ListAllBranchesResponseBodyList = /*@__PURE__*/ S.Array(
-  BranchResponse,
+  BranchResponseOutput,
 ) as any as S.Schema<V1ListAllBranchesResponseBodyList>;
 
-export type ListV1AllBranchesResponse = V1ListAllBranchesResponseBodyList;
-export const ListV1AllBranchesResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1ListAllBranchesResponse = V1ListAllBranchesResponseBodyList;
+export const V1ListAllBranchesResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllBranchesResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllBranchesResponse",
-}) as any as S.Schema<ListV1AllBranchesResponse>;
+  identifier: "V1ListAllBranchesResponse",
+}) as any as S.Schema<V1ListAllBranchesResponse>;
 
-export interface ListV1AllBucketsRequest {
+export interface V1ListAllBucketsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllBucketsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllBucketsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -6961,10 +7977,10 @@ export const ListV1AllBucketsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1AllBucketsRequest",
-}) as any as S.Schema<ListV1AllBucketsRequest>;
+  identifier: "V1ListAllBucketsRequest",
+}) as any as S.Schema<V1ListAllBucketsRequest>;
 
-export interface V1StorageBucketResponse {
+export interface V1StorageBucketResponseOutput {
   id: string;
   name: string;
   owner: string;
@@ -6972,7 +7988,7 @@ export interface V1StorageBucketResponse {
   updated_at: string;
   public: boolean;
 }
-export const V1StorageBucketResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1StorageBucketResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
@@ -6982,43 +7998,44 @@ export const V1StorageBucketResponse = /*@__PURE__*/ S.suspend(() =>
     public: S.Boolean,
   }),
 ).annotate({
-  identifier: "V1StorageBucketResponse",
-}) as any as S.Schema<V1StorageBucketResponse>;
+  identifier: "V1StorageBucketResponseOutput",
+}) as any as S.Schema<V1StorageBucketResponseOutput>;
 
-export type V1ListAllBucketsResponseBodyList = Array<V1StorageBucketResponse>;
+export type V1ListAllBucketsResponseBodyList =
+  Array<V1StorageBucketResponseOutput>;
 export const V1ListAllBucketsResponseBodyList = /*@__PURE__*/ S.Array(
-  V1StorageBucketResponse,
+  V1StorageBucketResponseOutput,
 ) as any as S.Schema<V1ListAllBucketsResponseBodyList>;
 
-export type ListV1AllBucketsResponse = V1ListAllBucketsResponseBodyList;
-export const ListV1AllBucketsResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1ListAllBucketsResponse = V1ListAllBucketsResponseBodyList;
+export const V1ListAllBucketsResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllBucketsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllBucketsResponse",
-}) as any as S.Schema<ListV1AllBucketsResponse>;
+  identifier: "V1ListAllBucketsResponse",
+}) as any as S.Schema<V1ListAllBucketsResponse>;
 
-export interface ListV1AllFunctionsRequest {
+export interface V1ListAllFunctionsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/functions", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListV1AllFunctionsRequest",
-}) as any as S.Schema<ListV1AllFunctionsRequest>;
+  identifier: "V1ListAllFunctionsRequest",
+}) as any as S.Schema<V1ListAllFunctionsRequest>;
 
-export type FunctionResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const FunctionResponseStatus = /*@__PURE__*/ S.String;
+export type FunctionResponseOutputStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
+export const FunctionResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface FunctionResponse {
+export interface FunctionResponseOutput {
   id: string;
   slug: string;
   name: string;
-  status: FunctionResponseStatus;
+  status: FunctionResponseOutputStatus;
   version: number;
   created_at: number;
   updated_at: number;
@@ -7028,12 +8045,12 @@ export interface FunctionResponse {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const FunctionResponse = /*@__PURE__*/ S.suspend(() =>
+export const FunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
-    status: FunctionResponseStatus,
+    status: FunctionResponseOutputStatus,
     version: S.Number,
     created_at: S.Number,
     updated_at: S.Number,
@@ -7044,78 +8061,26 @@ export const FunctionResponse = /*@__PURE__*/ S.suspend(() =>
     ezbr_sha256: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FunctionResponse",
-}) as any as S.Schema<FunctionResponse>;
+  identifier: "FunctionResponseOutput",
+}) as any as S.Schema<FunctionResponseOutput>;
 
-export type V1ListAllFunctionsResponseBodyList = Array<FunctionResponse>;
+export type V1ListAllFunctionsResponseBodyList = Array<FunctionResponseOutput>;
 export const V1ListAllFunctionsResponseBodyList = /*@__PURE__*/ S.Array(
-  FunctionResponse,
+  FunctionResponseOutput,
 ) as any as S.Schema<V1ListAllFunctionsResponseBodyList>;
 
-export type ListV1AllFunctionsResponse = V1ListAllFunctionsResponseBodyList;
-export const ListV1AllFunctionsResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1ListAllFunctionsResponse = V1ListAllFunctionsResponseBodyList;
+export const V1ListAllFunctionsResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllFunctionsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllFunctionsResponse",
-}) as any as S.Schema<ListV1AllFunctionsResponse>;
+  identifier: "V1ListAllFunctionsResponse",
+}) as any as S.Schema<V1ListAllFunctionsResponse>;
 
-export interface ListV1AllNetworkBanEnrichedRequest {
+export interface V1ListAllNetworkBansRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllNetworkBanEnrichedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/network-bans/retrieve/enriched",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListV1AllNetworkBanEnrichedRequest",
-}) as any as S.Schema<ListV1AllNetworkBanEnrichedRequest>;
-
-export interface NetworkBanResponseEnrichedBannedIpv4AddressesItem {
-  banned_address: string;
-  identifier: string;
-  type: string;
-}
-export const NetworkBanResponseEnrichedBannedIpv4AddressesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      banned_address: S.String,
-      identifier: S.String,
-      type: S.String,
-    }),
-  ).annotate({
-    identifier: "NetworkBanResponseEnrichedBannedIpv4AddressesItem",
-  }) as any as S.Schema<NetworkBanResponseEnrichedBannedIpv4AddressesItem>;
-
-export type NetworkBanResponseEnrichedBannedIpv4AddressesList =
-  Array<NetworkBanResponseEnrichedBannedIpv4AddressesItem>;
-export const NetworkBanResponseEnrichedBannedIpv4AddressesList =
-  /*@__PURE__*/ S.Array(
-    NetworkBanResponseEnrichedBannedIpv4AddressesItem,
-  ) as any as S.Schema<NetworkBanResponseEnrichedBannedIpv4AddressesList>;
-
-export interface NetworkBanResponseEnriched {
-  banned_ipv4_addresses: NetworkBanResponseEnrichedBannedIpv4AddressesList;
-}
-export const NetworkBanResponseEnriched = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    banned_ipv4_addresses: NetworkBanResponseEnrichedBannedIpv4AddressesList,
-  }),
-).annotate({
-  identifier: "NetworkBanResponseEnriched",
-}) as any as S.Schema<NetworkBanResponseEnriched>;
-
-export interface ListV1AllNetworkBansRequest {
-  /** Project ref */
-  ref: string;
-}
-export const ListV1AllNetworkBansRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllNetworkBansRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -7126,106 +8091,162 @@ export const ListV1AllNetworkBansRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1AllNetworkBansRequest",
-}) as any as S.Schema<ListV1AllNetworkBansRequest>;
+  identifier: "V1ListAllNetworkBansRequest",
+}) as any as S.Schema<V1ListAllNetworkBansRequest>;
 
-export type NetworkBanResponseBannedIpv4AddressesList = Array<string>;
-export const NetworkBanResponseBannedIpv4AddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkBanResponseBannedIpv4AddressesList>;
+export type NetworkBanResponseOutputBannedIpv4AddressesList = Array<string>;
+export const NetworkBanResponseOutputBannedIpv4AddressesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkBanResponseOutputBannedIpv4AddressesList>;
 
-export interface NetworkBanResponse {
-  banned_ipv4_addresses: NetworkBanResponseBannedIpv4AddressesList;
+export interface NetworkBanResponseOutput {
+  banned_ipv4_addresses: NetworkBanResponseOutputBannedIpv4AddressesList;
 }
-export const NetworkBanResponse = /*@__PURE__*/ S.suspend(() =>
+export const NetworkBanResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    banned_ipv4_addresses: NetworkBanResponseBannedIpv4AddressesList,
+    banned_ipv4_addresses: NetworkBanResponseOutputBannedIpv4AddressesList,
   }),
 ).annotate({
-  identifier: "NetworkBanResponse",
-}) as any as S.Schema<NetworkBanResponse>;
+  identifier: "NetworkBanResponseOutput",
+}) as any as S.Schema<NetworkBanResponseOutput>;
 
-export interface ListV1AllOrganizationsRequest {}
-export const ListV1AllOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface V1ListAllNetworkBansEnrichedRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1ListAllNetworkBansEnrichedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/network-bans/retrieve/enriched",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ListAllNetworkBansEnrichedRequest",
+}) as any as S.Schema<V1ListAllNetworkBansEnrichedRequest>;
+
+export interface NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem {
+  banned_address: string;
+  identifier: string;
+  type: string;
+}
+export const NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      banned_address: S.String,
+      identifier: S.String,
+      type: S.String,
+    }),
+  ).annotate({
+    identifier: "NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem",
+  }) as any as S.Schema<NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem>;
+
+export type NetworkBanResponseEnrichedOutputBannedIpv4AddressesList =
+  Array<NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem>;
+export const NetworkBanResponseEnrichedOutputBannedIpv4AddressesList =
+  /*@__PURE__*/ S.Array(
+    NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem,
+  ) as any as S.Schema<NetworkBanResponseEnrichedOutputBannedIpv4AddressesList>;
+
+export interface NetworkBanResponseEnrichedOutput {
+  banned_ipv4_addresses: NetworkBanResponseEnrichedOutputBannedIpv4AddressesList;
+}
+export const NetworkBanResponseEnrichedOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    banned_ipv4_addresses:
+      NetworkBanResponseEnrichedOutputBannedIpv4AddressesList,
+  }),
+).annotate({
+  identifier: "NetworkBanResponseEnrichedOutput",
+}) as any as S.Schema<NetworkBanResponseEnrichedOutput>;
+
+export interface V1ListAllOrganizationsRequest {}
+export const V1ListAllOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/v1/organizations", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListV1AllOrganizationsRequest",
-}) as any as S.Schema<ListV1AllOrganizationsRequest>;
+  identifier: "V1ListAllOrganizationsRequest",
+}) as any as S.Schema<V1ListAllOrganizationsRequest>;
 
 export type V1ListAllOrganizationsResponseBodyList =
-  Array<OrganizationResponseV1>;
+  Array<OrganizationResponseV1Output>;
 export const V1ListAllOrganizationsResponseBodyList = /*@__PURE__*/ S.Array(
-  OrganizationResponseV1,
+  OrganizationResponseV1Output,
 ) as any as S.Schema<V1ListAllOrganizationsResponseBodyList>;
 
-export type ListV1AllOrganizationsResponse =
+export type V1ListAllOrganizationsResponse =
   V1ListAllOrganizationsResponseBodyList;
-export const ListV1AllOrganizationsResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllOrganizationsResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllOrganizationsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllOrganizationsResponse",
-}) as any as S.Schema<ListV1AllOrganizationsResponse>;
+  identifier: "V1ListAllOrganizationsResponse",
+}) as any as S.Schema<V1ListAllOrganizationsResponse>;
 
-export interface ListV1AllProjectsRequest {}
-export const ListV1AllProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface V1ListAllProjectsRequest {}
+export const V1ListAllProjectsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/projects", code: 200 })),
 ).annotate({
-  identifier: "ListV1AllProjectsRequest",
-}) as any as S.Schema<ListV1AllProjectsRequest>;
+  identifier: "V1ListAllProjectsRequest",
+}) as any as S.Schema<V1ListAllProjectsRequest>;
 
 export type V1ListAllProjectsResponseBodyList =
-  Array<V1ProjectWithDatabaseResponse>;
+  Array<V1ProjectWithDatabaseResponseOutput>;
 export const V1ListAllProjectsResponseBodyList = /*@__PURE__*/ S.Array(
-  V1ProjectWithDatabaseResponse,
+  V1ProjectWithDatabaseResponseOutput,
 ) as any as S.Schema<V1ListAllProjectsResponseBodyList>;
 
-export type ListV1AllProjectsResponse = V1ListAllProjectsResponseBodyList;
-export const ListV1AllProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1ListAllProjectsResponse = V1ListAllProjectsResponseBodyList;
+export const V1ListAllProjectsResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllProjectsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllProjectsResponse",
-}) as any as S.Schema<ListV1AllProjectsResponse>;
+  identifier: "V1ListAllProjectsResponse",
+}) as any as S.Schema<V1ListAllProjectsResponse>;
 
-export interface ListV1AllSecretsRequest {
+export interface V1ListAllSecretsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllSecretsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/projects/{ref}/secrets", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListV1AllSecretsRequest",
-}) as any as S.Schema<ListV1AllSecretsRequest>;
+  identifier: "V1ListAllSecretsRequest",
+}) as any as S.Schema<V1ListAllSecretsRequest>;
 
-export interface SecretResponse {
+export interface SecretResponseOutput {
   name: string;
   value: string;
   updated_at?: string;
 }
-export const SecretResponse = /*@__PURE__*/ S.suspend(() =>
+export const SecretResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     value: S.String,
     updated_at: S.optional(S.String),
   }),
-).annotate({ identifier: "SecretResponse" }) as any as S.Schema<SecretResponse>;
+).annotate({
+  identifier: "SecretResponseOutput",
+}) as any as S.Schema<SecretResponseOutput>;
 
-export type V1ListAllSecretsResponseBodyList = Array<SecretResponse>;
+export type V1ListAllSecretsResponseBodyList = Array<SecretResponseOutput>;
 export const V1ListAllSecretsResponseBodyList = /*@__PURE__*/ S.Array(
-  SecretResponse,
+  SecretResponseOutput,
 ) as any as S.Schema<V1ListAllSecretsResponseBodyList>;
 
-export type ListV1AllSecretsResponse = V1ListAllSecretsResponseBodyList;
-export const ListV1AllSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+export type V1ListAllSecretsResponse = V1ListAllSecretsResponseBodyList;
+export const V1ListAllSecretsResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListAllSecretsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1AllSecretsResponse",
-}) as any as S.Schema<ListV1AllSecretsResponse>;
+  identifier: "V1ListAllSecretsResponse",
+}) as any as S.Schema<V1ListAllSecretsResponse>;
 
 export type V1ListAllSnippetsRequestSortBy = "name" | "inserted_at";
 export const V1ListAllSnippetsRequestSortBy = /*@__PURE__*/ S.String;
@@ -7233,7 +8254,7 @@ export const V1ListAllSnippetsRequestSortBy = /*@__PURE__*/ S.String;
 export type V1ListAllSnippetsRequestSortOrder = "asc" | "desc";
 export const V1ListAllSnippetsRequestSortOrder = /*@__PURE__*/ S.String;
 
-export interface ListV1AllSnippetsRequest {
+export interface V1ListAllSnippetsRequest {
   /** Project ref */
   project_ref?: string;
   cursor?: string;
@@ -7241,7 +8262,7 @@ export interface ListV1AllSnippetsRequest {
   sort_by?: V1ListAllSnippetsRequestSortBy | (string & {});
   sort_order?: V1ListAllSnippetsRequestSortOrder | (string & {});
 }
-export const ListV1AllSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_ref: S.optional(S.String.pipe(T.Query())),
     cursor: S.optional(S.String.pipe(T.Query())),
@@ -7250,80 +8271,82 @@ export const ListV1AllSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
     sort_order: S.optional(V1ListAllSnippetsRequestSortOrder.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v1/snippets", code: 200 })),
 ).annotate({
-  identifier: "ListV1AllSnippetsRequest",
-}) as any as S.Schema<ListV1AllSnippetsRequest>;
+  identifier: "V1ListAllSnippetsRequest",
+}) as any as S.Schema<V1ListAllSnippetsRequest>;
 
-export type SnippetListDataItemType = "sql";
-export const SnippetListDataItemType = /*@__PURE__*/ S.String;
+export type SnippetListOutputDataItemType = "sql";
+export const SnippetListOutputDataItemType = /*@__PURE__*/ S.String;
 
-export type SnippetListDataItemVisibility =
+export type SnippetListOutputDataItemVisibility =
   | "user"
   | "project"
   | "org"
   | "public";
-export const SnippetListDataItemVisibility = /*@__PURE__*/ S.String;
+export const SnippetListOutputDataItemVisibility = /*@__PURE__*/ S.String;
 
-export type SnippetListDataItemProject = SnippetResponseProject;
-export const SnippetListDataItemProject = SnippetResponseProject;
+export type SnippetListOutputDataItemProject = SnippetResponseOutputProject;
+export const SnippetListOutputDataItemProject = SnippetResponseOutputProject;
 
-export type SnippetListDataItemOwner = SnippetResponseOwner;
-export const SnippetListDataItemOwner = SnippetResponseOwner;
+export type SnippetListOutputDataItemOwner = SnippetResponseOutputOwner;
+export const SnippetListOutputDataItemOwner = SnippetResponseOutputOwner;
 
-export type SnippetListDataItemUpdatedBy = SnippetResponseOwner;
-export const SnippetListDataItemUpdatedBy = SnippetResponseOwner;
+export type SnippetListOutputDataItemUpdatedBy = SnippetResponseOutputOwner;
+export const SnippetListOutputDataItemUpdatedBy = SnippetResponseOutputOwner;
 
-export interface SnippetListDataItem {
+export interface SnippetListOutputDataItem {
   id: string;
   inserted_at: string;
   updated_at: string;
-  type: SnippetListDataItemType;
-  visibility: SnippetListDataItemVisibility;
+  type: SnippetListOutputDataItemType;
+  visibility: SnippetListOutputDataItemVisibility;
   name: string;
   description: string | null;
-  project: SnippetResponseProject;
-  owner: SnippetResponseOwner;
-  updated_by: SnippetResponseOwner;
+  project: SnippetResponseOutputProject;
+  owner: SnippetResponseOutputOwner;
+  updated_by: SnippetResponseOutputOwner;
   favorite: boolean;
 }
-export const SnippetListDataItem = /*@__PURE__*/ S.suspend(() =>
+export const SnippetListOutputDataItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     inserted_at: S.String,
     updated_at: S.String,
-    type: SnippetListDataItemType,
-    visibility: SnippetListDataItemVisibility,
+    type: SnippetListOutputDataItemType,
+    visibility: SnippetListOutputDataItemVisibility,
     name: S.String,
     description: S.NullOr(S.String),
-    project: SnippetResponseProject,
-    owner: SnippetResponseOwner,
-    updated_by: SnippetResponseOwner,
+    project: SnippetResponseOutputProject,
+    owner: SnippetResponseOutputOwner,
+    updated_by: SnippetResponseOutputOwner,
     favorite: S.Boolean,
   }),
 ).annotate({
-  identifier: "SnippetListDataItem",
-}) as any as S.Schema<SnippetListDataItem>;
+  identifier: "SnippetListOutputDataItem",
+}) as any as S.Schema<SnippetListOutputDataItem>;
 
-export type SnippetListDataList = Array<SnippetListDataItem>;
-export const SnippetListDataList = /*@__PURE__*/ S.Array(
-  SnippetListDataItem,
-) as any as S.Schema<SnippetListDataList>;
+export type SnippetListOutputDataList = Array<SnippetListOutputDataItem>;
+export const SnippetListOutputDataList = /*@__PURE__*/ S.Array(
+  SnippetListOutputDataItem,
+) as any as S.Schema<SnippetListOutputDataList>;
 
-export interface SnippetList {
-  data: SnippetListDataList;
+export interface SnippetListOutput {
+  data: SnippetListOutputDataList;
   cursor?: string;
 }
-export const SnippetList = /*@__PURE__*/ S.suspend(() =>
+export const SnippetListOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: SnippetListDataList,
+    data: SnippetListOutputDataList,
     cursor: S.optional(S.String),
   }),
-).annotate({ identifier: "SnippetList" }) as any as S.Schema<SnippetList>;
+).annotate({
+  identifier: "SnippetListOutput",
+}) as any as S.Schema<SnippetListOutput>;
 
-export interface ListV1AllSsoProviderRequest {
+export interface V1ListAllSsoProviderRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1AllSsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAllSsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -7334,150 +8357,229 @@ export const ListV1AllSsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1AllSsoProviderRequest",
-}) as any as S.Schema<ListV1AllSsoProviderRequest>;
+  identifier: "V1ListAllSsoProviderRequest",
+}) as any as S.Schema<V1ListAllSsoProviderRequest>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList =
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault =
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface ListProvidersResponseItemsItemSamlAttributeMappingKeysValue {
+export interface ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue {
   name?: string;
-  names?: ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList;
-  default?: ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault;
+  names?: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault;
 }
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValue =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault,
+        ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "ListProvidersResponseItemsItemSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysValue>;
+    identifier:
+      "ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysMap = {
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap = {
   [key: string]:
-    | ListProvidersResponseItemsItemSamlAttributeMappingKeysValue
+    | ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue
     | undefined;
 };
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysMap =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ListProvidersResponseItemsItemSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysMap>;
+    ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap>;
 
-export interface ListProvidersResponseItemsItemSamlAttributeMapping {
-  keys: ListProvidersResponseItemsItemSamlAttributeMappingKeysMap;
+export interface ListProvidersResponseOutputItemsItemSamlAttributeMapping {
+  keys: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap;
 }
-export const ListProvidersResponseItemsItemSamlAttributeMapping =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: ListProvidersResponseItemsItemSamlAttributeMappingKeysMap,
+      keys: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "ListProvidersResponseItemsItemSamlAttributeMapping",
-  }) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMapping>;
+    identifier: "ListProvidersResponseOutputItemsItemSamlAttributeMapping",
+  }) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMapping>;
 
-export type ListProvidersResponseItemsItemSamlNameIdFormat =
+export type ListProvidersResponseOutputItemsItemSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const ListProvidersResponseItemsItemSamlNameIdFormat =
+export const ListProvidersResponseOutputItemsItemSamlNameIdFormat =
   /*@__PURE__*/ S.String;
 
-export interface ListProvidersResponseItemsItemSaml {
+export interface ListProvidersResponseOutputItemsItemSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: ListProvidersResponseItemsItemSamlAttributeMapping;
-  name_id_format?: ListProvidersResponseItemsItemSamlNameIdFormat;
+  attribute_mapping?: ListProvidersResponseOutputItemsItemSamlAttributeMapping;
+  name_id_format?: ListProvidersResponseOutputItemsItemSamlNameIdFormat;
 }
-export const ListProvidersResponseItemsItemSaml = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entity_id: S.String,
-    metadata_url: S.optional(S.String),
-    metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(
-      ListProvidersResponseItemsItemSamlAttributeMapping,
-    ),
-    name_id_format: S.optional(ListProvidersResponseItemsItemSamlNameIdFormat),
-  }),
+export const ListProvidersResponseOutputItemsItemSaml = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      entity_id: S.String,
+      metadata_url: S.optional(S.String),
+      metadata_xml: S.optional(S.String),
+      attribute_mapping: S.optional(
+        ListProvidersResponseOutputItemsItemSamlAttributeMapping,
+      ),
+      name_id_format: S.optional(
+        ListProvidersResponseOutputItemsItemSamlNameIdFormat,
+      ),
+    }),
 ).annotate({
-  identifier: "ListProvidersResponseItemsItemSaml",
-}) as any as S.Schema<ListProvidersResponseItemsItemSaml>;
+  identifier: "ListProvidersResponseOutputItemsItemSaml",
+}) as any as S.Schema<ListProvidersResponseOutputItemsItemSaml>;
 
-export type ListProvidersResponseItemsItemDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const ListProvidersResponseItemsItemDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type ListProvidersResponseOutputItemsItemDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const ListProvidersResponseOutputItemsItemDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type ListProvidersResponseItemsItemDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const ListProvidersResponseItemsItemDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<ListProvidersResponseItemsItemDomainsList>;
+export type ListProvidersResponseOutputItemsItemDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const ListProvidersResponseOutputItemsItemDomainsList =
+  /*@__PURE__*/ S.Array(
+    CreateProviderResponseOutputDomainsItem,
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemDomainsList>;
 
-export interface ListProvidersResponseItemsItem {
+export interface ListProvidersResponseOutputItemsItem {
   id: string;
-  saml?: ListProvidersResponseItemsItemSaml;
-  domains?: ListProvidersResponseItemsItemDomainsList;
+  saml?: ListProvidersResponseOutputItemsItemSaml;
+  domains?: ListProvidersResponseOutputItemsItemDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const ListProvidersResponseItemsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    saml: S.optional(ListProvidersResponseItemsItemSaml),
-    domains: S.optional(ListProvidersResponseItemsItemDomainsList),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
+export const ListProvidersResponseOutputItemsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      saml: S.optional(ListProvidersResponseOutputItemsItemSaml),
+      domains: S.optional(ListProvidersResponseOutputItemsItemDomainsList),
+      created_at: S.optional(S.String),
+      updated_at: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "ListProvidersResponseItemsItem",
-}) as any as S.Schema<ListProvidersResponseItemsItem>;
+  identifier: "ListProvidersResponseOutputItemsItem",
+}) as any as S.Schema<ListProvidersResponseOutputItemsItem>;
 
-export type ListProvidersResponseItemsList =
-  Array<ListProvidersResponseItemsItem>;
-export const ListProvidersResponseItemsList = /*@__PURE__*/ S.Array(
-  ListProvidersResponseItemsItem,
-) as any as S.Schema<ListProvidersResponseItemsList>;
+export type ListProvidersResponseOutputItemsList =
+  Array<ListProvidersResponseOutputItemsItem>;
+export const ListProvidersResponseOutputItemsList = /*@__PURE__*/ S.Array(
+  ListProvidersResponseOutputItemsItem,
+) as any as S.Schema<ListProvidersResponseOutputItemsList>;
 
-export interface ListProvidersResponse {
-  items: ListProvidersResponseItemsList;
+export interface ListProvidersResponseOutput {
+  items: ListProvidersResponseOutputItemsList;
 }
-export const ListProvidersResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListProvidersResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: ListProvidersResponseItemsList,
+    items: ListProvidersResponseOutputItemsList,
   }),
 ).annotate({
-  identifier: "ListProvidersResponse",
-}) as any as S.Schema<ListProvidersResponse>;
+  identifier: "ListProvidersResponseOutput",
+}) as any as S.Schema<ListProvidersResponseOutput>;
 
-export interface ListV1JitAccessRequest {
+export interface V1ListAvailableRestoreVersionsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListAvailableRestoreVersionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ref: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({ method: "GET", uri: "/v1/projects/{ref}/restore", code: 200 }),
+    ),
+).annotate({
+  identifier: "V1ListAvailableRestoreVersionsRequest",
+}) as any as S.Schema<V1ListAvailableRestoreVersionsRequest>;
+
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel =
+  | "internal"
+  | "alpha"
+  | "beta"
+  | "ga"
+  | "withdrawn"
+  | "preview";
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel =
+  /*@__PURE__*/ S.String;
+
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
+  | "13"
+  | "14"
+  | "15"
+  | "17"
+  | "17-oriole";
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem {
+  version: string;
+  release_channel: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel;
+  postgres_engine: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine;
+}
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      version: S.String,
+      release_channel:
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel,
+      postgres_engine:
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine,
+    }),
+  ).annotate({
+    identifier:
+      "GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem",
+  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem>;
+
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList =
+  Array<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem>;
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList =
+  /*@__PURE__*/ S.Array(
+    GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem,
+  ) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList>;
+
+export interface GetProjectAvailableRestoreVersionsResponseOutput {
+  available_versions: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList;
+}
+export const GetProjectAvailableRestoreVersionsResponseOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      available_versions:
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList,
+    }),
+  ).annotate({
+    identifier: "GetProjectAvailableRestoreVersionsResponseOutput",
+  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutput>;
+
+export interface V1ListJitAccessRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1ListJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -7488,219 +8590,222 @@ export const ListV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1JitAccessRequest",
-}) as any as S.Schema<ListV1JitAccessRequest>;
+  identifier: "V1ListJitAccessRequest",
+}) as any as S.Schema<V1ListJitAccessRequest>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks =
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
     identifier:
-      "JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks>;
+      "JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks>;
 
-export interface JitListAccessResponseItemsItemCase0UserRolesItem {
+export interface JitListAccessResponseOutputItemsItemCase0UserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks;
+  allowed_networks?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitListAccessResponseItemsItemCase0UserRolesItem =
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       role: S.String,
       expires_at: S.optional(S.Number),
       allowed_networks: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks,
       ),
       branches_only: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "JitListAccessResponseItemsItemCase0UserRolesItem",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItem>;
+    identifier: "JitListAccessResponseOutputItemsItemCase0UserRolesItem",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItem>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesList =
-  Array<JitListAccessResponseItemsItemCase0UserRolesItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesList =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesList =
+  Array<JitListAccessResponseOutputItemsItemCase0UserRolesItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesList =
   /*@__PURE__*/ S.Array(
-    JitListAccessResponseItemsItemCase0UserRolesItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesList>;
+    JitListAccessResponseOutputItemsItemCase0UserRolesItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesList>;
 
-export interface JitListAccessResponseItemsItemCase0 {
+export interface JitListAccessResponseOutputItemsItemCase0 {
   user_id: string;
   primary_email: string | null;
   invite_id: unknown | null;
   expires_at: unknown | null;
-  user_roles: JitListAccessResponseItemsItemCase0UserRolesList;
+  user_roles: JitListAccessResponseOutputItemsItemCase0UserRolesList;
 }
-export const JitListAccessResponseItemsItemCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String,
-    primary_email: S.NullOr(S.String),
-    invite_id: S.NullOr(S.Unknown),
-    expires_at: S.NullOr(S.Unknown),
-    user_roles: JitListAccessResponseItemsItemCase0UserRolesList,
-  }),
-).annotate({
-  identifier: "JitListAccessResponseItemsItemCase0",
-}) as any as S.Schema<JitListAccessResponseItemsItemCase0>;
+export const JitListAccessResponseOutputItemsItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user_id: S.String,
+      primary_email: S.NullOr(S.String),
+      invite_id: S.NullOr(S.Unknown),
+      expires_at: S.NullOr(S.Unknown),
+      user_roles: JitListAccessResponseOutputItemsItemCase0UserRolesList,
+    }),
+  ).annotate({
+    identifier: "JitListAccessResponseOutputItemsItemCase0",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks =
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
     identifier:
-      "JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks>;
+      "JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks>;
 
-export interface JitListAccessResponseItemsItemCase1UserRolesItem {
+export interface JitListAccessResponseOutputItemsItemCase1UserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks;
+  allowed_networks?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitListAccessResponseItemsItemCase1UserRolesItem =
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       role: S.String,
       expires_at: S.optional(S.Number),
       allowed_networks: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks,
       ),
       branches_only: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "JitListAccessResponseItemsItemCase1UserRolesItem",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItem>;
+    identifier: "JitListAccessResponseOutputItemsItemCase1UserRolesItem",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItem>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesList =
-  Array<JitListAccessResponseItemsItemCase1UserRolesItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesList =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesList =
+  Array<JitListAccessResponseOutputItemsItemCase1UserRolesItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesList =
   /*@__PURE__*/ S.Array(
-    JitListAccessResponseItemsItemCase1UserRolesItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesList>;
+    JitListAccessResponseOutputItemsItemCase1UserRolesItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesList>;
 
-export interface JitListAccessResponseItemsItemCase1 {
+export interface JitListAccessResponseOutputItemsItemCase1 {
   user_id: unknown | null;
   primary_email: string;
   invite_id: string;
   expires_at: string;
-  user_roles: JitListAccessResponseItemsItemCase1UserRolesList;
+  user_roles: JitListAccessResponseOutputItemsItemCase1UserRolesList;
 }
-export const JitListAccessResponseItemsItemCase1 = /*@__PURE__*/ S.suspend(() =>
+export const JitListAccessResponseOutputItemsItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user_id: S.NullOr(S.Unknown),
+      primary_email: S.String,
+      invite_id: S.String,
+      expires_at: S.String,
+      user_roles: JitListAccessResponseOutputItemsItemCase1UserRolesList,
+    }),
+  ).annotate({
+    identifier: "JitListAccessResponseOutputItemsItemCase1",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1>;
+
+export type JitListAccessResponseOutputItemsItem =
+  | JitListAccessResponseOutputItemsItemCase0
+  | JitListAccessResponseOutputItemsItemCase1;
+export const JitListAccessResponseOutputItemsItem =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
+      ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
+    ]),
+  );
+
+export type JitListAccessResponseOutputItemsList =
+  Array<JitListAccessResponseOutputItemsItem>;
+export const JitListAccessResponseOutputItemsList = /*@__PURE__*/ S.Array(
+  JitListAccessResponseOutputItemsItem,
+) as any as S.Schema<JitListAccessResponseOutputItemsList>;
+
+export interface JitListAccessResponseOutput {
+  items: JitListAccessResponseOutputItemsList;
+}
+export const JitListAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    user_id: S.NullOr(S.Unknown),
-    primary_email: S.String,
-    invite_id: S.String,
-    expires_at: S.String,
-    user_roles: JitListAccessResponseItemsItemCase1UserRolesList,
+    items: JitListAccessResponseOutputItemsList,
   }),
 ).annotate({
-  identifier: "JitListAccessResponseItemsItemCase1",
-}) as any as S.Schema<JitListAccessResponseItemsItemCase1>;
+  identifier: "JitListAccessResponseOutput",
+}) as any as S.Schema<JitListAccessResponseOutput>;
 
-export type JitListAccessResponseItemsItem =
-  | JitListAccessResponseItemsItemCase0
-  | JitListAccessResponseItemsItemCase1;
-export const JitListAccessResponseItemsItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
-    ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
-  ]),
-);
-
-export type JitListAccessResponseItemsList =
-  Array<JitListAccessResponseItemsItem>;
-export const JitListAccessResponseItemsList = /*@__PURE__*/ S.Array(
-  JitListAccessResponseItemsItem,
-) as any as S.Schema<JitListAccessResponseItemsList>;
-
-export interface JitListAccessResponse {
-  items: JitListAccessResponseItemsList;
-}
-export const JitListAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: JitListAccessResponseItemsList,
-  }),
-).annotate({
-  identifier: "JitListAccessResponse",
-}) as any as S.Schema<JitListAccessResponse>;
-
-export interface ListV1MigrationHistoryRequest {
+export interface V1ListMigrationHistoryRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1MigrationHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListMigrationHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -7711,39 +8816,40 @@ export const ListV1MigrationHistoryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1MigrationHistoryRequest",
-}) as any as S.Schema<ListV1MigrationHistoryRequest>;
+  identifier: "V1ListMigrationHistoryRequest",
+}) as any as S.Schema<V1ListMigrationHistoryRequest>;
 
-export interface V1ListMigrationsResponseItem {
+export interface V1ListMigrationsResponseOutputItem {
   version: string;
   name?: string;
 }
-export const V1ListMigrationsResponseItem = /*@__PURE__*/ S.suspend(() =>
+export const V1ListMigrationsResponseOutputItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     version: S.String,
     name: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1ListMigrationsResponseItem",
-}) as any as S.Schema<V1ListMigrationsResponseItem>;
+  identifier: "V1ListMigrationsResponseOutputItem",
+}) as any as S.Schema<V1ListMigrationsResponseOutputItem>;
 
-export type V1ListMigrationsResponse = Array<V1ListMigrationsResponseItem>;
-export const V1ListMigrationsResponse = /*@__PURE__*/ S.Array(
-  V1ListMigrationsResponseItem,
-) as any as S.Schema<V1ListMigrationsResponse>;
+export type V1ListMigrationsResponseOutput =
+  Array<V1ListMigrationsResponseOutputItem>;
+export const V1ListMigrationsResponseOutput = /*@__PURE__*/ S.Array(
+  V1ListMigrationsResponseOutputItem,
+) as any as S.Schema<V1ListMigrationsResponseOutput>;
 
-export type ListV1MigrationHistoryResponse = V1ListMigrationsResponse;
-export const ListV1MigrationHistoryResponse = /*@__PURE__*/ S.suspend(() =>
-  V1ListMigrationsResponse.pipe(T.RawResponseRoot()),
+export type V1ListMigrationHistoryResponse = V1ListMigrationsResponseOutput;
+export const V1ListMigrationHistoryResponse = /*@__PURE__*/ S.suspend(() =>
+  V1ListMigrationsResponseOutput.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1MigrationHistoryResponse",
-}) as any as S.Schema<ListV1MigrationHistoryResponse>;
+  identifier: "V1ListMigrationHistoryResponse",
+}) as any as S.Schema<V1ListMigrationHistoryResponse>;
 
-export interface ListV1OrganizationMembersRequest {
+export interface V1ListOrganizationMembersRequest {
   /** Organization slug */
   slug: string;
 }
-export const ListV1OrganizationMembersRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListOrganizationMembersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.String.pipe(T.Label()),
   }).pipe(
@@ -7754,49 +8860,49 @@ export const ListV1OrganizationMembersRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1OrganizationMembersRequest",
-}) as any as S.Schema<ListV1OrganizationMembersRequest>;
+  identifier: "V1ListOrganizationMembersRequest",
+}) as any as S.Schema<V1ListOrganizationMembersRequest>;
 
-export interface V1OrganizationMemberResponse {
+export interface V1OrganizationMemberResponseOutput {
   user_id: string;
   user_name: string;
   email?: string;
-  role_name: string;
+  role_name?: string;
   mfa_enabled: boolean;
   avatar_url: string | null;
 }
-export const V1OrganizationMemberResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1OrganizationMemberResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
     user_name: S.String,
     email: S.optional(S.String),
-    role_name: S.String,
+    role_name: S.optional(S.String),
     mfa_enabled: S.Boolean,
     avatar_url: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "V1OrganizationMemberResponse",
-}) as any as S.Schema<V1OrganizationMemberResponse>;
+  identifier: "V1OrganizationMemberResponseOutput",
+}) as any as S.Schema<V1OrganizationMemberResponseOutput>;
 
 export type V1ListOrganizationMembersResponseBodyList =
-  Array<V1OrganizationMemberResponse>;
+  Array<V1OrganizationMemberResponseOutput>;
 export const V1ListOrganizationMembersResponseBodyList = /*@__PURE__*/ S.Array(
-  V1OrganizationMemberResponse,
+  V1OrganizationMemberResponseOutput,
 ) as any as S.Schema<V1ListOrganizationMembersResponseBodyList>;
 
-export type ListV1OrganizationMembersResponse =
+export type V1ListOrganizationMembersResponse =
   V1ListOrganizationMembersResponseBodyList;
-export const ListV1OrganizationMembersResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ListOrganizationMembersResponse = /*@__PURE__*/ S.suspend(() =>
   V1ListOrganizationMembersResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1OrganizationMembersResponse",
-}) as any as S.Schema<ListV1OrganizationMembersResponse>;
+  identifier: "V1ListOrganizationMembersResponse",
+}) as any as S.Schema<V1ListOrganizationMembersResponse>;
 
-export interface ListV1ProjectAddonsRequest {
+export interface V1ListProjectAddonsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1ProjectAddonsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListProjectAddonsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -7807,10 +8913,10 @@ export const ListV1ProjectAddonsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1ProjectAddonsRequest",
-}) as any as S.Schema<ListV1ProjectAddonsRequest>;
+  identifier: "V1ListProjectAddonsRequest",
+}) as any as S.Schema<V1ListProjectAddonsRequest>;
 
-export type ListProjectAddonsResponseSelectedAddonsItemType =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemType =
   | "custom_domain"
   | "compute_instance"
   | "pitr"
@@ -7819,10 +8925,10 @@ export type ListProjectAddonsResponseSelectedAddonsItemType =
   | "auth_mfa_web_authn"
   | "log_drain"
   | "etl_pipeline";
-export const ListProjectAddonsResponseSelectedAddonsItemType =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemType =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   | "ci_micro"
   | "ci_small"
   | "ci_medium"
@@ -7841,336 +8947,311 @@ export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
   | "ci_48xlarge_optimized_cpu"
   | "ci_48xlarge_optimized_memory"
   | "ci_48xlarge_high_memory";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
   "cd_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
   | "pitr_7"
   | "pitr_14"
   | "pitr_28";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
   "ipv4_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
   "auth_mfa_phone_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
   "auth_mfa_web_authn_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
   "log_drain_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
   "etl_pipeline_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantId =
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7;
-export const ListProjectAddonsResponseSelectedAddonsItemVariantId =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantId =
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7;
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantId =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantPriceType =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
   | "fixed"
   | "usage";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPriceType =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
   | "monthly"
   | "hourly";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
   /*@__PURE__*/ S.String;
 
-export interface ListProjectAddonsResponseSelectedAddonsItemVariantPrice {
+export interface ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice {
   description: string;
-  type: ListProjectAddonsResponseSelectedAddonsItemVariantPriceType;
-  interval: ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval;
+  type: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType;
+  interval: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval;
   amount: number;
 }
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPrice =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       description: S.String,
-      type: ListProjectAddonsResponseSelectedAddonsItemVariantPriceType,
-      interval: ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval,
-      amount: S.Number,
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItemVariantPrice",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItemVariantPrice>;
-
-export type ListProjectAddonsResponseJsonValueCase0 = string | number | boolean;
-export const ListProjectAddonsResponseJsonValueCase0 =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
-
-export type ListProjectAddonsResponseJsonValueCase1List =
-  Array<ListProjectAddonsResponseJsonValue>;
-export const ListProjectAddonsResponseJsonValueCase1List =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => ListProjectAddonsResponseJsonValue),
-  ) as any as S.Schema<ListProjectAddonsResponseJsonValueCase1List>;
-
-export type ListProjectAddonsResponseJsonValueCase2Map = {
-  [key: string]: ListProjectAddonsResponseJsonValue | undefined;
-};
-export const ListProjectAddonsResponseJsonValueCase2Map =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.suspend(() => ListProjectAddonsResponseJsonValue),
-  ) as any as S.Schema<ListProjectAddonsResponseJsonValueCase2Map>;
-
-/** Any JSON-serializable value */
-export type ListProjectAddonsResponseJsonValue =
-  | ListProjectAddonsResponseJsonValueCase0
-  | ListProjectAddonsResponseJsonValueCase1List
-  | ListProjectAddonsResponseJsonValueCase2Map;
-export const ListProjectAddonsResponseJsonValue = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], [], []]),
-);
-
-export interface ListProjectAddonsResponseSelectedAddonsItemVariant {
-  id: ListProjectAddonsResponseSelectedAddonsItemVariantId;
-  name: string;
-  price: ListProjectAddonsResponseSelectedAddonsItemVariantPrice;
-  meta?: ListProjectAddonsResponseJsonValue;
-}
-export const ListProjectAddonsResponseSelectedAddonsItemVariant =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: ListProjectAddonsResponseSelectedAddonsItemVariantId,
-      name: S.String,
-      price: ListProjectAddonsResponseSelectedAddonsItemVariantPrice,
-      meta: S.optional(ListProjectAddonsResponseJsonValue),
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItemVariant",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItemVariant>;
-
-export interface ListProjectAddonsResponseSelectedAddonsItem {
-  type: ListProjectAddonsResponseSelectedAddonsItemType;
-  variant: ListProjectAddonsResponseSelectedAddonsItemVariant;
-}
-export const ListProjectAddonsResponseSelectedAddonsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ListProjectAddonsResponseSelectedAddonsItemType,
-      variant: ListProjectAddonsResponseSelectedAddonsItemVariant,
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItem>;
-
-export type ListProjectAddonsResponseSelectedAddonsList =
-  Array<ListProjectAddonsResponseSelectedAddonsItem>;
-export const ListProjectAddonsResponseSelectedAddonsList =
-  /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseSelectedAddonsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsList>;
-
-export type ListProjectAddonsResponseAvailableAddonsItemType =
-  | "custom_domain"
-  | "compute_instance"
-  | "pitr"
-  | "ipv4"
-  | "auth_mfa_phone"
-  | "auth_mfa_web_authn"
-  | "log_drain"
-  | "etl_pipeline";
-export const ListProjectAddonsResponseAvailableAddonsItemType =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0 =
-  | "ci_micro"
-  | "ci_small"
-  | "ci_medium"
-  | "ci_large"
-  | "ci_xlarge"
-  | "ci_2xlarge"
-  | "ci_4xlarge"
-  | "ci_8xlarge"
-  | "ci_12xlarge"
-  | "ci_16xlarge"
-  | "ci_24xlarge"
-  | "ci_24xlarge_optimized_cpu"
-  | "ci_24xlarge_optimized_memory"
-  | "ci_24xlarge_high_memory"
-  | "ci_48xlarge"
-  | "ci_48xlarge_optimized_cpu"
-  | "ci_48xlarge_optimized_memory"
-  | "ci_48xlarge_high_memory";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1 =
-  "cd_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2 =
-  | "pitr_7"
-  | "pitr_14"
-  | "pitr_28";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3 =
-  "ipv4_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4 =
-  "auth_mfa_phone_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5 =
-  "auth_mfa_web_authn_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6 =
-  "log_drain_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7 =
-  "etl_pipeline_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemId =
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7;
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemId =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType =
-  | "fixed"
-  | "usage";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval =
-  | "monthly"
-  | "hourly";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval =
-  /*@__PURE__*/ S.String;
-
-export interface ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice {
-  description: string;
-  type: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType;
-  interval: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval;
-  amount: number;
-}
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      description: S.String,
-      type: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType,
+      type: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType,
       interval:
-        ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval,
+        ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval,
       amount: S.Number,
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice>;
 
-export interface ListProjectAddonsResponseAvailableAddonsItemVariantsItem {
-  id: ListProjectAddonsResponseAvailableAddonsItemVariantsItemId;
+export interface ListProjectAddonsResponseOutputSelectedAddonsItemVariant {
+  id: ListProjectAddonsResponseOutputSelectedAddonsItemVariantId;
   name: string;
-  price: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice;
-  meta?: ListProjectAddonsResponseJsonValue;
+  price: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice;
+  meta?: JsonValueOutput;
 }
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItem =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariant =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: ListProjectAddonsResponseAvailableAddonsItemVariantsItemId,
+      id: ListProjectAddonsResponseOutputSelectedAddonsItemVariantId,
       name: S.String,
-      price: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice,
-      meta: S.optional(ListProjectAddonsResponseJsonValue),
+      price: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice,
+      meta: S.optional(JsonValueOutput),
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItemVariantsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsItem>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItemVariant",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItemVariant>;
 
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsList =
-  Array<ListProjectAddonsResponseAvailableAddonsItemVariantsItem>;
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsList =
-  /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseAvailableAddonsItemVariantsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsList>;
-
-export interface ListProjectAddonsResponseAvailableAddonsItem {
-  type: ListProjectAddonsResponseAvailableAddonsItemType;
-  name: string;
-  variants: ListProjectAddonsResponseAvailableAddonsItemVariantsList;
+export interface ListProjectAddonsResponseOutputSelectedAddonsItem {
+  type: ListProjectAddonsResponseOutputSelectedAddonsItemType;
+  variant: ListProjectAddonsResponseOutputSelectedAddonsItemVariant;
 }
-export const ListProjectAddonsResponseAvailableAddonsItem =
+export const ListProjectAddonsResponseOutputSelectedAddonsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ListProjectAddonsResponseAvailableAddonsItemType,
-      name: S.String,
-      variants: ListProjectAddonsResponseAvailableAddonsItemVariantsList,
+      type: ListProjectAddonsResponseOutputSelectedAddonsItemType,
+      variant: ListProjectAddonsResponseOutputSelectedAddonsItemVariant,
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItem>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItem>;
 
-export type ListProjectAddonsResponseAvailableAddonsList =
-  Array<ListProjectAddonsResponseAvailableAddonsItem>;
-export const ListProjectAddonsResponseAvailableAddonsList =
+export type ListProjectAddonsResponseOutputSelectedAddonsList =
+  Array<ListProjectAddonsResponseOutputSelectedAddonsItem>;
+export const ListProjectAddonsResponseOutputSelectedAddonsList =
   /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseAvailableAddonsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsList>;
+    ListProjectAddonsResponseOutputSelectedAddonsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsList>;
 
-export interface ListProjectAddonsResponse {
-  selected_addons: ListProjectAddonsResponseSelectedAddonsList;
-  available_addons: ListProjectAddonsResponseAvailableAddonsList;
+export type ListProjectAddonsResponseOutputAvailableAddonsItemType =
+  | "custom_domain"
+  | "compute_instance"
+  | "pitr"
+  | "ipv4"
+  | "auth_mfa_phone"
+  | "auth_mfa_web_authn"
+  | "log_drain"
+  | "etl_pipeline";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemType =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
+  | "ci_micro"
+  | "ci_small"
+  | "ci_medium"
+  | "ci_large"
+  | "ci_xlarge"
+  | "ci_2xlarge"
+  | "ci_4xlarge"
+  | "ci_8xlarge"
+  | "ci_12xlarge"
+  | "ci_16xlarge"
+  | "ci_24xlarge"
+  | "ci_24xlarge_optimized_cpu"
+  | "ci_24xlarge_optimized_memory"
+  | "ci_24xlarge_high_memory"
+  | "ci_48xlarge"
+  | "ci_48xlarge_optimized_cpu"
+  | "ci_48xlarge_optimized_memory"
+  | "ci_48xlarge_high_memory";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
+  "cd_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
+  | "pitr_7"
+  | "pitr_14"
+  | "pitr_28";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
+  "ipv4_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
+  "auth_mfa_phone_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
+  "auth_mfa_web_authn_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
+  "log_drain_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
+  "etl_pipeline_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId =
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7;
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId =
+  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType =
+  | "fixed"
+  | "usage";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
+  | "monthly"
+  | "hourly";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
+  /*@__PURE__*/ S.String;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice {
+  description: string;
+  type: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType;
+  interval: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval;
+  amount: number;
 }
-export const ListProjectAddonsResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      description: S.String,
+      type: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType,
+      interval:
+        ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval,
+      amount: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice>;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem {
+  id: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId;
+  name: string;
+  price: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice;
+  meta?: JsonValueOutput;
+}
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId,
+      name: S.String,
+      price:
+        ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice,
+      meta: S.optional(JsonValueOutput),
+    }),
+  ).annotate({
+    identifier:
+      "ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem>;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList =
+  Array<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem>;
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList =
+  /*@__PURE__*/ S.Array(
+    ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList>;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItem {
+  type: ListProjectAddonsResponseOutputAvailableAddonsItemType;
+  name: string;
+  variants: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList;
+}
+export const ListProjectAddonsResponseOutputAvailableAddonsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListProjectAddonsResponseOutputAvailableAddonsItemType,
+      name: S.String,
+      variants: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList,
+    }),
+  ).annotate({
+    identifier: "ListProjectAddonsResponseOutputAvailableAddonsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItem>;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsList =
+  Array<ListProjectAddonsResponseOutputAvailableAddonsItem>;
+export const ListProjectAddonsResponseOutputAvailableAddonsList =
+  /*@__PURE__*/ S.Array(
+    ListProjectAddonsResponseOutputAvailableAddonsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsList>;
+
+export interface ListProjectAddonsResponseOutput {
+  selected_addons: ListProjectAddonsResponseOutputSelectedAddonsList;
+  available_addons: ListProjectAddonsResponseOutputAvailableAddonsList;
+}
+export const ListProjectAddonsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    selected_addons: ListProjectAddonsResponseSelectedAddonsList,
-    available_addons: ListProjectAddonsResponseAvailableAddonsList,
+    selected_addons: ListProjectAddonsResponseOutputSelectedAddonsList,
+    available_addons: ListProjectAddonsResponseOutputAvailableAddonsList,
   }),
 ).annotate({
-  identifier: "ListProjectAddonsResponse",
-}) as any as S.Schema<ListProjectAddonsResponse>;
+  identifier: "ListProjectAddonsResponseOutput",
+}) as any as S.Schema<ListProjectAddonsResponseOutput>;
 
-export interface ListV1ProjectTpaIntegrationsRequest {
+export interface V1ListProjectTpaIntegrationsRequest {
   /** Project ref */
   ref: string;
 }
-export const ListV1ProjectTpaIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1ListProjectTpaIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -8181,50 +9262,630 @@ export const ListV1ProjectTpaIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListV1ProjectTpaIntegrationsRequest",
-}) as any as S.Schema<ListV1ProjectTpaIntegrationsRequest>;
+  identifier: "V1ListProjectTpaIntegrationsRequest",
+}) as any as S.Schema<V1ListProjectTpaIntegrationsRequest>;
 
 export type V1ListProjectTpaIntegrationsResponseBodyList =
-  Array<ThirdPartyAuth>;
+  Array<ThirdPartyAuthOutput>;
 export const V1ListProjectTpaIntegrationsResponseBodyList =
   /*@__PURE__*/ S.Array(
-    ThirdPartyAuth,
+    ThirdPartyAuthOutput,
   ) as any as S.Schema<V1ListProjectTpaIntegrationsResponseBodyList>;
 
-export type ListV1ProjectTpaIntegrationsResponse =
+export type V1ListProjectTpaIntegrationsResponse =
   V1ListProjectTpaIntegrationsResponseBodyList;
-export const ListV1ProjectTpaIntegrationsResponse = /*@__PURE__*/ S.suspend(
+export const V1ListProjectTpaIntegrationsResponse = /*@__PURE__*/ S.suspend(
   () => V1ListProjectTpaIntegrationsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListV1ProjectTpaIntegrationsResponse",
-}) as any as S.Schema<ListV1ProjectTpaIntegrationsResponse>;
+  identifier: "V1ListProjectTpaIntegrationsResponse",
+}) as any as S.Schema<V1ListProjectTpaIntegrationsResponse>;
 
-export interface RestartV1AProjectRequest {
+export interface V1MergeABranchRequest {
+  /** Branch ref or deprecated branch ID */
+  branch_id_or_ref: string;
+  migration_version?: string;
+}
+export const V1MergeABranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branch_id_or_ref: S.String.pipe(T.Label()),
+    migration_version: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/branches/{branch_id_or_ref}/merge",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1MergeABranchRequest",
+}) as any as S.Schema<V1MergeABranchRequest>;
+
+export type BranchUpdateResponseOutputMessage = "ok";
+export const BranchUpdateResponseOutputMessage = /*@__PURE__*/ S.String;
+
+export interface BranchUpdateResponseOutput {
+  workflow_run_id: string;
+  message: BranchUpdateResponseOutputMessage;
+}
+export const BranchUpdateResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workflow_run_id: S.String,
+    message: BranchUpdateResponseOutputMessage,
+  }),
+).annotate({
+  identifier: "BranchUpdateResponseOutput",
+}) as any as S.Schema<BranchUpdateResponseOutput>;
+
+export type V1ModifyDatabaseDiskRequestAttributesCase0Type = "gp3";
+export const V1ModifyDatabaseDiskRequestAttributesCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface V1ModifyDatabaseDiskRequestAttributesCase0 {
+  iops: number;
+  size_gb: number;
+  throughput_mibps?: number;
+  type: V1ModifyDatabaseDiskRequestAttributesCase0Type;
+}
+export const V1ModifyDatabaseDiskRequestAttributesCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      iops: S.Number,
+      size_gb: S.Number,
+      throughput_mibps: S.optional(S.Number),
+      type: V1ModifyDatabaseDiskRequestAttributesCase0Type,
+    }),
+  ).annotate({
+    identifier: "V1ModifyDatabaseDiskRequestAttributesCase0",
+  }) as any as S.Schema<V1ModifyDatabaseDiskRequestAttributesCase0>;
+
+export type V1ModifyDatabaseDiskRequestAttributesCase1Type = "io2";
+export const V1ModifyDatabaseDiskRequestAttributesCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface V1ModifyDatabaseDiskRequestAttributesCase1 {
+  iops: number;
+  size_gb: number;
+  type: V1ModifyDatabaseDiskRequestAttributesCase1Type;
+}
+export const V1ModifyDatabaseDiskRequestAttributesCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      iops: S.Number,
+      size_gb: S.Number,
+      type: V1ModifyDatabaseDiskRequestAttributesCase1Type,
+    }),
+  ).annotate({
+    identifier: "V1ModifyDatabaseDiskRequestAttributesCase1",
+  }) as any as S.Schema<V1ModifyDatabaseDiskRequestAttributesCase1>;
+
+export type V1ModifyDatabaseDiskRequestAttributes =
+  | V1ModifyDatabaseDiskRequestAttributesCase0
+  | V1ModifyDatabaseDiskRequestAttributesCase1;
+export const V1ModifyDatabaseDiskRequestAttributes =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["iops", "size_gb", "throughput_mibps", "type"],
+      ["iops", "size_gb", "type"],
+    ]),
+  );
+
+export interface V1ModifyDatabaseDiskRequest {
+  /** Project ref */
+  ref: string;
+  attributes: V1ModifyDatabaseDiskRequestAttributes;
+}
+export const V1ModifyDatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    attributes: V1ModifyDatabaseDiskRequestAttributes,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/config/disk",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ModifyDatabaseDiskRequest",
+}) as any as S.Schema<V1ModifyDatabaseDiskRequest>;
+
+export interface V1ModifyDatabaseDiskResponse {}
+export const V1ModifyDatabaseDiskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ModifyDatabaseDiskResponse",
+}) as any as S.Schema<V1ModifyDatabaseDiskResponse>;
+
+export type V1OauthAuthorizeProjectClaimRequestResponseType =
+  | "code"
+  | "token"
+  | "id_token token";
+export const V1OauthAuthorizeProjectClaimRequestResponseType =
+  /*@__PURE__*/ S.String;
+
+export type V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
+  | "plain"
+  | "sha256"
+  | "S256";
+export const V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
+  /*@__PURE__*/ S.String;
+
+export interface V1OauthAuthorizeProjectClaimRequest {
+  /** Project ref */
+  project_ref: string;
+  client_id: string;
+  response_type:
+    | V1OauthAuthorizeProjectClaimRequestResponseType
+    | (string & {});
+  redirect_uri: string;
+  state?: string;
+  response_mode?: string;
+  code_challenge?: string;
+  code_challenge_method?:
+    | V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod
+    | (string & {});
+}
+export const V1OauthAuthorizeProjectClaimRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_ref: S.String.pipe(T.Query()),
+    client_id: S.String.pipe(T.Query()),
+    response_type: V1OauthAuthorizeProjectClaimRequestResponseType.pipe(
+      T.Query(),
+    ),
+    redirect_uri: S.String.pipe(T.Query()),
+    state: S.optional(S.String.pipe(T.Query())),
+    response_mode: S.optional(S.String.pipe(T.Query())),
+    code_challenge: S.optional(S.String.pipe(T.Query())),
+    code_challenge_method: S.optional(
+      V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/oauth/authorize/project-claim",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1OauthAuthorizeProjectClaimRequest",
+}) as any as S.Schema<V1OauthAuthorizeProjectClaimRequest>;
+
+export interface V1OauthAuthorizeProjectClaimResponse {}
+export const V1OauthAuthorizeProjectClaimResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "V1OauthAuthorizeProjectClaimResponse",
+}) as any as S.Schema<V1OauthAuthorizeProjectClaimResponse>;
+
+export interface V1PatchAMigrationRequest {
+  /** Project ref */
+  ref: string;
+  version: string;
+  name?: string;
+  rollback?: string;
+}
+export const V1PatchAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    rollback: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/projects/{ref}/database/migrations/{version}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1PatchAMigrationRequest",
+}) as any as S.Schema<V1PatchAMigrationRequest>;
+
+export interface V1PatchAMigrationResponse {}
+export const V1PatchAMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1PatchAMigrationResponse",
+}) as any as S.Schema<V1PatchAMigrationResponse>;
+
+export type V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList =
+  Array<string>;
+export const V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList>;
+
+export type V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List =
+  Array<string>;
+export const V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List>;
+
+export interface V1PatchNetworkRestrictionsRequestAdd {
+  dbAllowedCidrs?: V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList;
+  dbAllowedCidrsV6?: V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List;
+}
+export const V1PatchNetworkRestrictionsRequestAdd = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList,
+      ),
+      dbAllowedCidrsV6: S.optional(
+        V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List,
+      ),
+    }),
+).annotate({
+  identifier: "V1PatchNetworkRestrictionsRequestAdd",
+}) as any as S.Schema<V1PatchNetworkRestrictionsRequestAdd>;
+
+export type V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList =
+  Array<string>;
+export const V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList>;
+
+export type V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List =
+  Array<string>;
+export const V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List>;
+
+export interface V1PatchNetworkRestrictionsRequestRemove {
+  dbAllowedCidrs?: V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList;
+  dbAllowedCidrsV6?: V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List;
+}
+export const V1PatchNetworkRestrictionsRequestRemove = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList,
+      ),
+      dbAllowedCidrsV6: S.optional(
+        V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List,
+      ),
+    }),
+).annotate({
+  identifier: "V1PatchNetworkRestrictionsRequestRemove",
+}) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemove>;
+
+export interface V1PatchNetworkRestrictionsRequest {
+  /** Project ref */
+  ref: string;
+  add?: V1PatchNetworkRestrictionsRequestAdd;
+  remove?: V1PatchNetworkRestrictionsRequestRemove;
+}
+export const V1PatchNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    add: S.optional(V1PatchNetworkRestrictionsRequestAdd),
+    remove: S.optional(V1PatchNetworkRestrictionsRequestRemove),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/projects/{ref}/network-restrictions",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1PatchNetworkRestrictionsRequest",
+}) as any as S.Schema<V1PatchNetworkRestrictionsRequest>;
+
+export type NetworkRestrictionsV2ResponseOutputEntitlement =
+  | "disallowed"
+  | "allowed";
+export const NetworkRestrictionsV2ResponseOutputEntitlement =
+  /*@__PURE__*/ S.String;
+
+export type NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
+  | "v4"
+  | "v6";
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem {
+  address: string;
+  type: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType;
+}
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      address: S.String,
+      type: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType,
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem>;
+
+export type NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList =
+  Array<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem>;
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem,
+  ) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList>;
+
+/** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
+export interface NetworkRestrictionsV2ResponseOutputConfig {
+  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList;
+}
+export const NetworkRestrictionsV2ResponseOutputConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsV2ResponseOutputConfig",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfig>;
+
+export type NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
+  | "v4"
+  | "v6";
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem {
+  address: string;
+  type: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType;
+}
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      address: S.String,
+      type: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType,
+    }),
+  ).annotate({
+    identifier:
+      "NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem>;
+
+export type NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList =
+  Array<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem>;
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem,
+  ) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList>;
+
+/** Populated when a new config has been received, but not registered as successfully applied to a project. */
+export interface NetworkRestrictionsV2ResponseOutputOldConfig {
+  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList;
+}
+export const NetworkRestrictionsV2ResponseOutputOldConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsV2ResponseOutputOldConfig",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfig>;
+
+export type NetworkRestrictionsV2ResponseOutputStatus = "stored" | "applied";
+export const NetworkRestrictionsV2ResponseOutputStatus = /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsV2ResponseOutput {
+  entitlement: NetworkRestrictionsV2ResponseOutputEntitlement;
+  /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
+  config: NetworkRestrictionsV2ResponseOutputConfig;
+  /** Populated when a new config has been received, but not registered as successfully applied to a project. */
+  old_config?: NetworkRestrictionsV2ResponseOutputOldConfig;
+  updated_at?: string;
+  applied_at?: string;
+  status: NetworkRestrictionsV2ResponseOutputStatus;
+}
+export const NetworkRestrictionsV2ResponseOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entitlement: NetworkRestrictionsV2ResponseOutputEntitlement,
+    config: NetworkRestrictionsV2ResponseOutputConfig,
+    old_config: S.optional(NetworkRestrictionsV2ResponseOutputOldConfig),
+    updated_at: S.optional(S.String),
+    applied_at: S.optional(S.String),
+    status: NetworkRestrictionsV2ResponseOutputStatus,
+  }),
+).annotate({
+  identifier: "NetworkRestrictionsV2ResponseOutput",
+}) as any as S.Schema<NetworkRestrictionsV2ResponseOutput>;
+
+export interface V1PauseAProjectRequest {
   /** Project ref */
   ref: string;
 }
-export const RestartV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1PauseAProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/projects/{ref}/pause", code: 200 }),
+  ),
+).annotate({
+  identifier: "V1PauseAProjectRequest",
+}) as any as S.Schema<V1PauseAProjectRequest>;
+
+export interface V1PauseAProjectResponse {}
+export const V1PauseAProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1PauseAProjectResponse",
+}) as any as S.Schema<V1PauseAProjectResponse>;
+
+export interface V1PushABranchRequest {
+  /** Branch ref or deprecated branch ID */
+  branch_id_or_ref: string;
+  migration_version?: string;
+}
+export const V1PushABranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branch_id_or_ref: S.String.pipe(T.Label()),
+    migration_version: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/branches/{branch_id_or_ref}/push",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1PushABranchRequest",
+}) as any as S.Schema<V1PushABranchRequest>;
+
+export type V1ReadOnlyQueryRequestParametersList = Array<unknown>;
+export const V1ReadOnlyQueryRequestParametersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<V1ReadOnlyQueryRequestParametersList>;
+
+export interface V1ReadOnlyQueryRequest {
+  /** Project ref */
+  ref: string;
+  query: string;
+  parameters?: V1ReadOnlyQueryRequestParametersList;
+}
+export const V1ReadOnlyQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    query: S.String,
+    parameters: S.optional(V1ReadOnlyQueryRequestParametersList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/query/read-only",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ReadOnlyQueryRequest",
+}) as any as S.Schema<V1ReadOnlyQueryRequest>;
+
+export interface V1ReadOnlyQueryResponse {}
+export const V1ReadOnlyQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ReadOnlyQueryResponse",
+}) as any as S.Schema<V1ReadOnlyQueryResponse>;
+
+export interface V1RemoveAReadReplicaRequest {
+  /** Project ref */
+  ref: string;
+  database_identifier: string;
+}
+export const V1RemoveAReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    database_identifier: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/read-replicas/remove",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1RemoveAReadReplicaRequest",
+}) as any as S.Schema<V1RemoveAReadReplicaRequest>;
+
+export interface V1RemoveAReadReplicaResponse {}
+export const V1RemoveAReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1RemoveAReadReplicaResponse",
+}) as any as S.Schema<V1RemoveAReadReplicaResponse>;
+
+export interface V1RemoveProjectAddonRequest {
+  /** Project ref */
+  ref: string;
+  addon_variant: string;
+}
+export const V1RemoveProjectAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    addon_variant: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/projects/{ref}/billing/addons/{addon_variant}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1RemoveProjectAddonRequest",
+}) as any as S.Schema<V1RemoveProjectAddonRequest>;
+
+export interface V1RemoveProjectAddonResponse {}
+export const V1RemoveProjectAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1RemoveProjectAddonResponse",
+}) as any as S.Schema<V1RemoveProjectAddonResponse>;
+
+export interface V1RemoveProjectSigningKeyRequest {
+  /** Project ref */
+  ref: string;
+  id: string;
+}
+export const V1RemoveProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/projects/{ref}/config/auth/signing-keys/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1RemoveProjectSigningKeyRequest",
+}) as any as S.Schema<V1RemoveProjectSigningKeyRequest>;
+
+export interface V1ResetABranchRequest {
+  /** Branch ref or deprecated branch ID */
+  branch_id_or_ref: string;
+  migration_version?: string;
+}
+export const V1ResetABranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branch_id_or_ref: S.String.pipe(T.Label()),
+    migration_version: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/branches/{branch_id_or_ref}/reset",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ResetABranchRequest",
+}) as any as S.Schema<V1ResetABranchRequest>;
+
+export interface V1RestartAProjectRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1RestartAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/projects/{ref}/restart", code: 200 }),
   ),
 ).annotate({
-  identifier: "RestartV1AProjectRequest",
-}) as any as S.Schema<RestartV1AProjectRequest>;
+  identifier: "V1RestartAProjectRequest",
+}) as any as S.Schema<V1RestartAProjectRequest>;
 
-export interface RestartV1AProjectResponse {}
-export const RestartV1AProjectResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1RestartAProjectResponse {}
+export const V1RestartAProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestartV1AProjectResponse",
-}) as any as S.Schema<RestartV1AProjectResponse>;
+  identifier: "V1RestartAProjectResponse",
+}) as any as S.Schema<V1RestartAProjectResponse>;
 
-export interface RestoreV1ABranchRequest {
+export interface V1RestoreABranchRequest {
   /** Branch ref or deprecated branch ID */
   branch_id_or_ref: string;
 }
-export const RestoreV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1RestoreABranchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     branch_id_or_ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -8235,50 +9896,50 @@ export const RestoreV1ABranchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestoreV1ABranchRequest",
-}) as any as S.Schema<RestoreV1ABranchRequest>;
+  identifier: "V1RestoreABranchRequest",
+}) as any as S.Schema<V1RestoreABranchRequest>;
 
-export type BranchRestoreResponseMessage = "Branch restoration initiated";
-export const BranchRestoreResponseMessage = /*@__PURE__*/ S.String;
+export type BranchRestoreResponseOutputMessage = "Branch restoration initiated";
+export const BranchRestoreResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface BranchRestoreResponse {
-  message: BranchRestoreResponseMessage;
+export interface BranchRestoreResponseOutput {
+  message: BranchRestoreResponseOutputMessage;
 }
-export const BranchRestoreResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchRestoreResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: BranchRestoreResponseMessage,
+    message: BranchRestoreResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "BranchRestoreResponse",
-}) as any as S.Schema<BranchRestoreResponse>;
+  identifier: "BranchRestoreResponseOutput",
+}) as any as S.Schema<BranchRestoreResponseOutput>;
 
-export interface RestoreV1AProjectRequest {
+export interface V1RestoreAProjectRequest {
   /** Project ref */
   ref: string;
 }
-export const RestoreV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1RestoreAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/projects/{ref}/restore", code: 200 }),
   ),
 ).annotate({
-  identifier: "RestoreV1AProjectRequest",
-}) as any as S.Schema<RestoreV1AProjectRequest>;
+  identifier: "V1RestoreAProjectRequest",
+}) as any as S.Schema<V1RestoreAProjectRequest>;
 
-export interface RestoreV1AProjectResponse {}
-export const RestoreV1AProjectResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1RestoreAProjectResponse {}
+export const V1RestoreAProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestoreV1AProjectResponse",
-}) as any as S.Schema<RestoreV1AProjectResponse>;
+  identifier: "V1RestoreAProjectResponse",
+}) as any as S.Schema<V1RestoreAProjectResponse>;
 
-export interface RestoreV1PhysicalBackupRequest {
+export interface V1RestorePhysicalBackupRequest {
   /** Project ref */
   ref: string;
   id: number;
 }
-export const RestoreV1PhysicalBackupRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1RestorePhysicalBackupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     id: S.Number,
@@ -8290,22 +9951,22 @@ export const RestoreV1PhysicalBackupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestoreV1PhysicalBackupRequest",
-}) as any as S.Schema<RestoreV1PhysicalBackupRequest>;
+  identifier: "V1RestorePhysicalBackupRequest",
+}) as any as S.Schema<V1RestorePhysicalBackupRequest>;
 
-export interface RestoreV1PhysicalBackupResponse {}
-export const RestoreV1PhysicalBackupResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1RestorePhysicalBackupResponse {}
+export const V1RestorePhysicalBackupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestoreV1PhysicalBackupResponse",
-}) as any as S.Schema<RestoreV1PhysicalBackupResponse>;
+  identifier: "V1RestorePhysicalBackupResponse",
+}) as any as S.Schema<V1RestorePhysicalBackupResponse>;
 
-export interface RestoreV1PitrBackupRequest {
+export interface V1RestorePitrBackupRequest {
   /** Project ref */
   ref: string;
   recovery_time_target_unix: number;
 }
-export const RestoreV1PitrBackupRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1RestorePitrBackupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     recovery_time_target_unix: S.Number,
@@ -8317,15 +9978,227 @@ export const RestoreV1PitrBackupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestoreV1PitrBackupRequest",
-}) as any as S.Schema<RestoreV1PitrBackupRequest>;
+  identifier: "V1RestorePitrBackupRequest",
+}) as any as S.Schema<V1RestorePitrBackupRequest>;
 
-export interface RestoreV1PitrBackupResponse {}
-export const RestoreV1PitrBackupResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1RestorePitrBackupResponse {}
+export const V1RestorePitrBackupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestoreV1PitrBackupResponse",
-}) as any as S.Schema<RestoreV1PitrBackupResponse>;
+  identifier: "V1RestorePitrBackupResponse",
+}) as any as S.Schema<V1RestorePitrBackupResponse>;
+
+export interface V1RevokeTokenRequest {
+  client_id: string;
+  client_secret: T.Sensitive;
+  refresh_token: T.Sensitive;
+}
+export const V1RevokeTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client_id: S.String,
+    client_secret: S.String.pipe(T.SensitiveValue({})),
+    refresh_token: S.String.pipe(T.SensitiveValue({})),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/oauth/revoke", code: 200 })),
+).annotate({
+  identifier: "V1RevokeTokenRequest",
+}) as any as S.Schema<V1RevokeTokenRequest>;
+
+export interface V1RevokeTokenResponse {}
+export const V1RevokeTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1RevokeTokenResponse",
+}) as any as S.Schema<V1RevokeTokenResponse>;
+
+export interface V1RollbackMigrationsRequest {
+  /** Project ref */
+  ref: string;
+  /** Rollback migrations greater or equal to this version */
+  gte: string;
+}
+export const V1RollbackMigrationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    gte: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/projects/{ref}/database/migrations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1RollbackMigrationsRequest",
+}) as any as S.Schema<V1RollbackMigrationsRequest>;
+
+export interface V1RollbackMigrationsResponse {}
+export const V1RollbackMigrationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1RollbackMigrationsResponse",
+}) as any as S.Schema<V1RollbackMigrationsResponse>;
+
+export type V1RunAQueryRequestParametersList = Array<unknown>;
+export const V1RunAQueryRequestParametersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<V1RunAQueryRequestParametersList>;
+
+export interface V1RunAQueryRequest {
+  /** Project ref */
+  ref: string;
+  query: string;
+  parameters?: V1RunAQueryRequestParametersList;
+  read_only?: boolean;
+}
+export const V1RunAQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    query: S.String,
+    parameters: S.optional(V1RunAQueryRequestParametersList),
+    read_only: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/query",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1RunAQueryRequest",
+}) as any as S.Schema<V1RunAQueryRequest>;
+
+export interface V1RunAQueryResponse {}
+export const V1RunAQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1RunAQueryResponse",
+}) as any as S.Schema<V1RunAQueryResponse>;
+
+export interface V1ScrapeProjectMetricsRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1ScrapeProjectMetricsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{ref}/analytics/endpoints/metrics",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ScrapeProjectMetricsRequest",
+}) as any as S.Schema<V1ScrapeProjectMetricsRequest>;
+
+export interface V1ScrapeProjectMetricsResponse {}
+export const V1ScrapeProjectMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ScrapeProjectMetricsResponse",
+}) as any as S.Schema<V1ScrapeProjectMetricsResponse>;
+
+/** Region you want your read replica to reside in */
+export type V1SetupAReadReplicaRequestReadReplicaRegion =
+  | "us-east-1"
+  | "us-east-2"
+  | "us-west-1"
+  | "us-west-2"
+  | "ap-east-1"
+  | "ap-southeast-1"
+  | "ap-northeast-1"
+  | "ap-northeast-2"
+  | "ap-southeast-2"
+  | "eu-west-1"
+  | "eu-west-2"
+  | "eu-west-3"
+  | "eu-north-1"
+  | "eu-central-1"
+  | "eu-central-2"
+  | "ca-central-1"
+  | "ap-south-1"
+  | "sa-east-1";
+export const V1SetupAReadReplicaRequestReadReplicaRegion =
+  /*@__PURE__*/ S.String;
+
+export interface V1SetupAReadReplicaRequest {
+  /** Project ref */
+  ref: string;
+  /** Region you want your read replica to reside in */
+  read_replica_region:
+    | V1SetupAReadReplicaRequestReadReplicaRegion
+    | (string & {});
+}
+export const V1SetupAReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    read_replica_region: V1SetupAReadReplicaRequestReadReplicaRegion,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/read-replicas/setup",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1SetupAReadReplicaRequest",
+}) as any as S.Schema<V1SetupAReadReplicaRequest>;
+
+export interface V1SetupAReadReplicaResponse {}
+export const V1SetupAReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1SetupAReadReplicaResponse",
+}) as any as S.Schema<V1SetupAReadReplicaResponse>;
+
+export interface V1ShutdownRealtimeRequest {
+  /** Project ref */
+  ref: string;
+}
+export const V1ShutdownRealtimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/config/realtime/shutdown",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1ShutdownRealtimeRequest",
+}) as any as S.Schema<V1ShutdownRealtimeRequest>;
+
+export interface V1ShutdownRealtimeResponse {}
+export const V1ShutdownRealtimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1ShutdownRealtimeResponse",
+}) as any as S.Schema<V1ShutdownRealtimeResponse>;
+
+export interface V1UndoRequest {
+  /** Project ref */
+  ref: string;
+  name: string;
+}
+export const V1UndoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{ref}/database/backups/undo",
+      code: 200,
+    }),
+  ),
+).annotate({ identifier: "V1UndoRequest" }) as any as S.Schema<V1UndoRequest>;
+
+export interface V1UndoResponse {}
+export const V1UndoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({ identifier: "V1UndoResponse" }) as any as S.Schema<V1UndoResponse>;
 
 export type V1UpdateABranchConfigRequestStatus =
   | "CREATING_PROJECT"
@@ -8336,7 +10209,7 @@ export type V1UpdateABranchConfigRequestStatus =
   | "FUNCTIONS_FAILED";
 export const V1UpdateABranchConfigRequestStatus = /*@__PURE__*/ S.String;
 
-export interface UpdateV1ABranchConfigRequest {
+export interface V1UpdateABranchConfigRequest {
   /** Branch ref or deprecated branch ID */
   branch_id_or_ref: string;
   branch_name?: string;
@@ -8349,7 +10222,7 @@ export interface UpdateV1ABranchConfigRequest {
   /** HTTP endpoint to receive branch status updates. */
   notify_url?: string;
 }
-export const UpdateV1ABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     branch_id_or_ref: S.String.pipe(T.Label()),
     branch_name: S.optional(S.String),
@@ -8367,8 +10240,8 @@ export const UpdateV1ABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ABranchConfigRequest",
-}) as any as S.Schema<UpdateV1ABranchConfigRequest>;
+  identifier: "V1UpdateABranchConfigRequest",
+}) as any as S.Schema<V1UpdateABranchConfigRequest>;
 
 export type V1UpdateActionRunStatusRequestClone =
   | "CREATED"
@@ -8440,7 +10313,7 @@ export type V1UpdateActionRunStatusRequestDeploy =
   | "RUNNING";
 export const V1UpdateActionRunStatusRequestDeploy = /*@__PURE__*/ S.String;
 
-export interface UpdateV1ActionRunStatusRequest {
+export interface V1UpdateActionRunStatusRequest {
   /** Project ref */
   ref: string;
   /** Action Run ID */
@@ -8453,7 +10326,7 @@ export interface UpdateV1ActionRunStatusRequest {
   seed?: V1UpdateActionRunStatusRequestSeed | (string & {});
   deploy?: V1UpdateActionRunStatusRequestDeploy | (string & {});
 }
-export const UpdateV1ActionRunStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateActionRunStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     run_id: S.String.pipe(T.Label()),
@@ -8472,24 +10345,24 @@ export const UpdateV1ActionRunStatusRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ActionRunStatusRequest",
-}) as any as S.Schema<UpdateV1ActionRunStatusRequest>;
+  identifier: "V1UpdateActionRunStatusRequest",
+}) as any as S.Schema<V1UpdateActionRunStatusRequest>;
 
-export type UpdateRunStatusResponseMessage = "ok";
-export const UpdateRunStatusResponseMessage = /*@__PURE__*/ S.String;
+export type UpdateRunStatusResponseOutputMessage = "ok";
+export const UpdateRunStatusResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface UpdateRunStatusResponse {
-  message: UpdateRunStatusResponseMessage;
+export interface UpdateRunStatusResponseOutput {
+  message: UpdateRunStatusResponseOutputMessage;
 }
-export const UpdateRunStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRunStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: UpdateRunStatusResponseMessage,
+    message: UpdateRunStatusResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "UpdateRunStatusResponse",
-}) as any as S.Schema<UpdateRunStatusResponse>;
+  identifier: "UpdateRunStatusResponseOutput",
+}) as any as S.Schema<UpdateRunStatusResponseOutput>;
 
-export interface UpdateV1AFunctionRequest {
+export interface V1UpdateAFunctionRequest {
   /** Project ref */
   ref: string;
   /** Function slug */
@@ -8503,7 +10376,7 @@ export interface UpdateV1AFunctionRequest {
   ezbr_sha256?: string;
   body?: string;
 }
-export const UpdateV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     function_slug: S.String.pipe(T.Label()),
@@ -8523,22 +10396,22 @@ export const UpdateV1AFunctionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1AFunctionRequest",
-}) as any as S.Schema<UpdateV1AFunctionRequest>;
+  identifier: "V1UpdateAFunctionRequest",
+}) as any as S.Schema<V1UpdateAFunctionRequest>;
 
-export interface UpdateV1AProjectRequest {
+export interface V1UpdateAProjectRequest {
   /** Project ref */
   ref: string;
   name: string;
 }
-export const UpdateV1AProjectRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     name: S.String,
   }).pipe(T.Http({ method: "PATCH", uri: "/v1/projects/{ref}", code: 200 })),
 ).annotate({
-  identifier: "UpdateV1AProjectRequest",
-}) as any as S.Schema<UpdateV1AProjectRequest>;
+  identifier: "V1UpdateAProjectRequest",
+}) as any as S.Schema<V1UpdateAProjectRequest>;
 
 export type V1UpdateASsoProviderRequestDomainsList = Array<string>;
 export const V1UpdateASsoProviderRequestDomainsList = /*@__PURE__*/ S.Array(
@@ -8563,8 +10436,8 @@ export const V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault =
 export interface V1UpdateASsoProviderRequestAttributeMappingKeysValue {
   name?: string;
   names?: V1UpdateASsoProviderRequestAttributeMappingKeysValueNamesList;
-  default?: V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault;
   array?: boolean;
+  default?: V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault;
 }
 export const V1UpdateASsoProviderRequestAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
@@ -8573,10 +10446,10 @@ export const V1UpdateASsoProviderRequestAttributeMappingKeysValue =
       names: S.optional(
         V1UpdateASsoProviderRequestAttributeMappingKeysValueNamesList,
       ),
+      array: S.optional(S.Boolean),
       default: S.optional(
         V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault,
       ),
-      array: S.optional(S.Boolean),
     }),
   ).annotate({
     identifier: "V1UpdateASsoProviderRequestAttributeMappingKeysValue",
@@ -8612,7 +10485,7 @@ export type V1UpdateASsoProviderRequestNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
 export const V1UpdateASsoProviderRequestNameIdFormat = /*@__PURE__*/ S.String;
 
-export interface UpdateV1ASsoProviderRequest {
+export interface V1UpdateASsoProviderRequest {
   /** Project ref */
   ref: string;
   provider_id: string;
@@ -8622,7 +10495,7 @@ export interface UpdateV1ASsoProviderRequest {
   attribute_mapping?: V1UpdateASsoProviderRequestAttributeMapping;
   name_id_format?: V1UpdateASsoProviderRequestNameIdFormat | (string & {});
 }
-export const UpdateV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     provider_id: S.String.pipe(T.Label()),
@@ -8639,124 +10512,127 @@ export const UpdateV1ASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ASsoProviderRequest",
-}) as any as S.Schema<UpdateV1ASsoProviderRequest>;
+  identifier: "V1UpdateASsoProviderRequest",
+}) as any as S.Schema<V1UpdateASsoProviderRequest>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const UpdateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysValueDefault =
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const UpdateProviderResponseSamlAttributeMappingKeysValueDefault =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface UpdateProviderResponseSamlAttributeMappingKeysValue {
+export interface UpdateProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: UpdateProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: UpdateProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const UpdateProviderResponseSamlAttributeMappingKeysValue =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        UpdateProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        UpdateProviderResponseSamlAttributeMappingKeysValueDefault,
+        UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "UpdateProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "UpdateProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysMap = {
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | UpdateProviderResponseSamlAttributeMappingKeysValue
+    | UpdateProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const UpdateProviderResponseSamlAttributeMappingKeysMap =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    UpdateProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysMap>;
+    UpdateProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface UpdateProviderResponseSamlAttributeMapping {
-  keys: UpdateProviderResponseSamlAttributeMappingKeysMap;
+export interface UpdateProviderResponseOutputSamlAttributeMapping {
+  keys: UpdateProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const UpdateProviderResponseSamlAttributeMapping =
+export const UpdateProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: UpdateProviderResponseSamlAttributeMappingKeysMap,
+      keys: UpdateProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "UpdateProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<UpdateProviderResponseSamlAttributeMapping>;
+    identifier: "UpdateProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMapping>;
 
-export type UpdateProviderResponseSamlNameIdFormat =
+export type UpdateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const UpdateProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const UpdateProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface UpdateProviderResponseSaml {
+export interface UpdateProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: UpdateProviderResponseSamlAttributeMapping;
-  name_id_format?: UpdateProviderResponseSamlNameIdFormat;
+  attribute_mapping?: UpdateProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: UpdateProviderResponseOutputSamlNameIdFormat;
 }
-export const UpdateProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(UpdateProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(UpdateProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      UpdateProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(UpdateProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "UpdateProviderResponseSaml",
-}) as any as S.Schema<UpdateProviderResponseSaml>;
+  identifier: "UpdateProviderResponseOutputSaml",
+}) as any as S.Schema<UpdateProviderResponseOutputSaml>;
 
-export type UpdateProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const UpdateProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type UpdateProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const UpdateProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type UpdateProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const UpdateProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<UpdateProviderResponseDomainsList>;
+export type UpdateProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const UpdateProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<UpdateProviderResponseOutputDomainsList>;
 
-export interface UpdateProviderResponse {
+export interface UpdateProviderResponseOutput {
   id: string;
-  saml?: UpdateProviderResponseSaml;
-  domains?: UpdateProviderResponseDomainsList;
+  saml?: UpdateProviderResponseOutputSaml;
+  domains?: UpdateProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const UpdateProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(UpdateProviderResponseSaml),
-    domains: S.optional(UpdateProviderResponseDomainsList),
+    saml: S.optional(UpdateProviderResponseOutputSaml),
+    domains: S.optional(UpdateProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateProviderResponse",
-}) as any as S.Schema<UpdateProviderResponse>;
+  identifier: "UpdateProviderResponseOutput",
+}) as any as S.Schema<UpdateProviderResponseOutput>;
 
 export type V1UpdateAuthServiceConfigRequestSecurityCaptchaProvider =
   | "turnstile"
@@ -8787,7 +10663,7 @@ export type V1UpdateAuthServiceConfigRequestDbMaxPoolSizeUnit =
 export const V1UpdateAuthServiceConfigRequestDbMaxPoolSizeUnit =
   /*@__PURE__*/ S.String;
 
-export interface UpdateV1AuthServiceConfigRequest {
+export interface V1UpdateAuthServiceConfigRequest {
   /** Project ref */
   ref: string;
   site_url?: string | null;
@@ -8849,7 +10725,9 @@ export interface UpdateV1AuthServiceConfigRequest {
     | (string & {})
     | null;
   security_captcha_secret?: T.Sensitive | null;
+  /** Session timebox in hours. Maximum 8760 hours (1 year). */
   sessions_timebox?: number | null;
+  /** Session inactivity timeout in hours. Maximum 8760 hours (1 year). */
   sessions_inactivity_timeout?: number | null;
   sessions_single_per_user?: boolean | null;
   sessions_tags?: string | null;
@@ -8870,6 +10748,7 @@ export interface UpdateV1AuthServiceConfigRequest {
     | null;
   security_manual_linking_enabled?: boolean | null;
   security_update_password_require_reauthentication?: boolean | null;
+  /** Refresh token reuse interval in seconds. Maximum 300 seconds (5 minutes). */
   security_refresh_token_reuse_interval?: number | null;
   mailer_otp_exp?: number;
   mailer_otp_length?: number | null;
@@ -9037,7 +10916,7 @@ export interface UpdateV1AuthServiceConfigRequest {
   oauth_server_authorization_path?: string | null;
   custom_oauth_enabled?: boolean;
 }
-export const UpdateV1AuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateAuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     site_url: S.optional(S.NullOr(S.String)),
@@ -9378,16 +11257,16 @@ export const UpdateV1AuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1AuthServiceConfigRequest",
-}) as any as S.Schema<UpdateV1AuthServiceConfigRequest>;
+  identifier: "V1UpdateAuthServiceConfigRequest",
+}) as any as S.Schema<V1UpdateAuthServiceConfigRequest>;
 
-export interface UpdateV1BackupScheduleRequest {
+export interface V1UpdateBackupScheduleRequest {
   /** Project ref */
   ref: string;
   /** Time of day to schedule daily backups, in UTC. Format: HH:MM:SS. */
   schedule_for: string;
 }
-export const UpdateV1BackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateBackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     schedule_for: S.String,
@@ -9399,131 +11278,15 @@ export const UpdateV1BackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1BackupScheduleRequest",
-}) as any as S.Schema<UpdateV1BackupScheduleRequest>;
+  identifier: "V1UpdateBackupScheduleRequest",
+}) as any as S.Schema<V1UpdateBackupScheduleRequest>;
 
-export type BulkUpdateFunctionBodyItemStatus =
-  | "ACTIVE"
-  | "REMOVED"
-  | "THROTTLED";
-export const BulkUpdateFunctionBodyItemStatus = /*@__PURE__*/ S.String;
-
-export interface BulkUpdateFunctionBodyItem {
-  id: string;
-  slug: string;
-  name: string;
-  status: BulkUpdateFunctionBodyItemStatus | (string & {});
-  version: number;
-  created_at?: number;
-  verify_jwt?: boolean;
-  import_map?: boolean;
-  entrypoint_path?: string;
-  import_map_path?: string;
-  ezbr_sha256?: string;
-}
-export const BulkUpdateFunctionBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    slug: S.String,
-    name: S.String,
-    status: BulkUpdateFunctionBodyItemStatus,
-    version: S.Number,
-    created_at: S.optional(S.Number),
-    verify_jwt: S.optional(S.Boolean),
-    import_map: S.optional(S.Boolean),
-    entrypoint_path: S.optional(S.String),
-    import_map_path: S.optional(S.String),
-    ezbr_sha256: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BulkUpdateFunctionBodyItem",
-}) as any as S.Schema<BulkUpdateFunctionBodyItem>;
-
-export type BulkUpdateFunctionBody = Array<BulkUpdateFunctionBodyItem>;
-export const BulkUpdateFunctionBody = /*@__PURE__*/ S.Array(
-  BulkUpdateFunctionBodyItem,
-) as any as S.Schema<BulkUpdateFunctionBody>;
-
-export interface UpdateV1BulkFunctionRequest {
-  /** Project ref */
-  ref: string;
-  body: BulkUpdateFunctionBody;
-}
-export const UpdateV1BulkFunctionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    body: BulkUpdateFunctionBody.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/v1/projects/{ref}/functions", code: 200 }),
-  ),
-).annotate({
-  identifier: "UpdateV1BulkFunctionRequest",
-}) as any as S.Schema<UpdateV1BulkFunctionRequest>;
-
-export type BulkUpdateFunctionResponseFunctionsItemStatus =
-  | "ACTIVE"
-  | "REMOVED"
-  | "THROTTLED";
-export const BulkUpdateFunctionResponseFunctionsItemStatus =
-  /*@__PURE__*/ S.String;
-
-export interface BulkUpdateFunctionResponseFunctionsItem {
-  id: string;
-  slug: string;
-  name: string;
-  status: BulkUpdateFunctionResponseFunctionsItemStatus;
-  version: number;
-  created_at: number;
-  updated_at: number;
-  verify_jwt?: boolean;
-  import_map?: boolean;
-  entrypoint_path?: string;
-  import_map_path?: string;
-  ezbr_sha256?: string;
-}
-export const BulkUpdateFunctionResponseFunctionsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      slug: S.String,
-      name: S.String,
-      status: BulkUpdateFunctionResponseFunctionsItemStatus,
-      version: S.Number,
-      created_at: S.Number,
-      updated_at: S.Number,
-      verify_jwt: S.optional(S.Boolean),
-      import_map: S.optional(S.Boolean),
-      entrypoint_path: S.optional(S.String),
-      import_map_path: S.optional(S.String),
-      ezbr_sha256: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BulkUpdateFunctionResponseFunctionsItem",
-}) as any as S.Schema<BulkUpdateFunctionResponseFunctionsItem>;
-
-export type BulkUpdateFunctionResponseFunctionsList =
-  Array<BulkUpdateFunctionResponseFunctionsItem>;
-export const BulkUpdateFunctionResponseFunctionsList = /*@__PURE__*/ S.Array(
-  BulkUpdateFunctionResponseFunctionsItem,
-) as any as S.Schema<BulkUpdateFunctionResponseFunctionsList>;
-
-export interface BulkUpdateFunctionResponse {
-  functions: BulkUpdateFunctionResponseFunctionsList;
-}
-export const BulkUpdateFunctionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    functions: BulkUpdateFunctionResponseFunctionsList,
-  }),
-).annotate({
-  identifier: "BulkUpdateFunctionResponse",
-}) as any as S.Schema<BulkUpdateFunctionResponse>;
-
-export interface UpdateV1DatabasePasswordRequest {
+export interface V1UpdateDatabasePasswordRequest {
   /** Project ref */
   ref: string;
   password: T.Sensitive;
 }
-export const UpdateV1DatabasePasswordRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateDatabasePasswordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     password: S.String.pipe(T.SensitiveValue({})),
@@ -9535,26 +11298,26 @@ export const UpdateV1DatabasePasswordRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1DatabasePasswordRequest",
-}) as any as S.Schema<UpdateV1DatabasePasswordRequest>;
+  identifier: "V1UpdateDatabasePasswordRequest",
+}) as any as S.Schema<V1UpdateDatabasePasswordRequest>;
 
-export interface V1UpdatePasswordResponse {
+export interface V1UpdatePasswordResponseOutput {
   message: string;
 }
-export const V1UpdatePasswordResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdatePasswordResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.String,
   }),
 ).annotate({
-  identifier: "V1UpdatePasswordResponse",
-}) as any as S.Schema<V1UpdatePasswordResponse>;
+  identifier: "V1UpdatePasswordResponseOutput",
+}) as any as S.Schema<V1UpdatePasswordResponseOutput>;
 
-export interface UpdateV1HostnameConfigRequest {
+export interface V1UpdateHostnameConfigRequest {
   /** Project ref */
   ref: string;
   custom_hostname: string;
 }
-export const UpdateV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateHostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     custom_hostname: S.String,
@@ -9566,31 +11329,31 @@ export const UpdateV1HostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1HostnameConfigRequest",
-}) as any as S.Schema<UpdateV1HostnameConfigRequest>;
+  identifier: "V1UpdateHostnameConfigRequest",
+}) as any as S.Schema<V1UpdateHostnameConfigRequest>;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList>;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List>;
 
 export interface V1UpdateJitAccessRequestRolesItemAllowedNetworks {
@@ -9636,13 +11399,13 @@ export const V1UpdateJitAccessRequestRolesList = /*@__PURE__*/ S.Array(
   V1UpdateJitAccessRequestRolesItem,
 ) as any as S.Schema<V1UpdateJitAccessRequestRolesList>;
 
-export interface UpdateV1JitAccessRequest {
+export interface V1UpdateJitAccessRequest {
   /** Project ref */
   ref: string;
   user_id: string;
   roles: V1UpdateJitAccessRequestRolesList;
 }
-export const UpdateV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     user_id: S.String,
@@ -9655,18 +11418,18 @@ export const UpdateV1JitAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1JitAccessRequest",
-}) as any as S.Schema<UpdateV1JitAccessRequest>;
+  identifier: "V1UpdateJitAccessRequest",
+}) as any as S.Schema<V1UpdateJitAccessRequest>;
 
 export type V1UpdateJitAccessConfigRequestState = "enabled" | "disabled";
 export const V1UpdateJitAccessConfigRequestState = /*@__PURE__*/ S.String;
 
-export interface UpdateV1JitAccessConfigRequest {
+export interface V1UpdateJitAccessConfigRequest {
   /** Project ref */
   ref: string;
   state: V1UpdateJitAccessConfigRequestState | (string & {});
 }
-export const UpdateV1JitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateJitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     state: V1UpdateJitAccessConfigRequestState,
@@ -9674,8 +11437,8 @@ export const UpdateV1JitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/v1/projects/{ref}/jit-access", code: 200 }),
   ),
 ).annotate({
-  identifier: "UpdateV1JitAccessConfigRequest",
-}) as any as S.Schema<UpdateV1JitAccessConfigRequest>;
+  identifier: "V1UpdateJitAccessConfigRequest",
+}) as any as S.Schema<V1UpdateJitAccessConfigRequest>;
 
 export type V1UpdateJitAccessConfigResponseBodyCase0State =
   | "enabled"
@@ -9698,6 +11461,7 @@ export const V1UpdateJitAccessConfigResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<V1UpdateJitAccessConfigResponseBodyCase0>;
 
 export type V1UpdateJitAccessConfigResponseBodyCase1UnavailableReason =
+  | "platform_unsupported"
   | "postgres_upgrade_required"
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
@@ -9729,13 +11493,13 @@ export const V1UpdateJitAccessConfigResponseBody = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export type UpdateV1JitAccessConfigResponse =
+export type V1UpdateJitAccessConfigResponse =
   V1UpdateJitAccessConfigResponseBody;
-export const UpdateV1JitAccessConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateJitAccessConfigResponse = /*@__PURE__*/ S.suspend(() =>
   V1UpdateJitAccessConfigResponseBody.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "UpdateV1JitAccessConfigResponse",
-}) as any as S.Schema<UpdateV1JitAccessConfigResponse>;
+  identifier: "V1UpdateJitAccessConfigResponse",
+}) as any as S.Schema<V1UpdateJitAccessConfigResponse>;
 
 export type V1UpdateNetworkRestrictionsRequestDbAllowedCidrsList =
   Array<string>;
@@ -9751,13 +11515,13 @@ export const V1UpdateNetworkRestrictionsRequestDbAllowedCidrsV6List =
     S.String,
   ) as any as S.Schema<V1UpdateNetworkRestrictionsRequestDbAllowedCidrsV6List>;
 
-export interface UpdateV1NetworkRestrictionRequest {
+export interface V1UpdateNetworkRestrictionsRequest {
   /** Project ref */
   ref: string;
   dbAllowedCidrs?: V1UpdateNetworkRestrictionsRequestDbAllowedCidrsList;
   dbAllowedCidrsV6?: V1UpdateNetworkRestrictionsRequestDbAllowedCidrsV6List;
 }
-export const UpdateV1NetworkRestrictionRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     dbAllowedCidrs: S.optional(
@@ -9774,16 +11538,16 @@ export const UpdateV1NetworkRestrictionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1NetworkRestrictionRequest",
-}) as any as S.Schema<UpdateV1NetworkRestrictionRequest>;
+  identifier: "V1UpdateNetworkRestrictionsRequest",
+}) as any as S.Schema<V1UpdateNetworkRestrictionsRequest>;
 
-export interface UpdateV1PgsodiumConfigRequest {
+export interface V1UpdatePgsodiumConfigRequest {
   /** Project ref */
   ref: string;
   /** The pgsodium root key: 32 bytes, hex-encoded (64 characters). */
   root_key: string;
 }
-export const UpdateV1PgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdatePgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     root_key: S.String,
@@ -9791,21 +11555,21 @@ export const UpdateV1PgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/v1/projects/{ref}/pgsodium", code: 200 }),
   ),
 ).annotate({
-  identifier: "UpdateV1PgsodiumConfigRequest",
-}) as any as S.Schema<UpdateV1PgsodiumConfigRequest>;
+  identifier: "V1UpdatePgsodiumConfigRequest",
+}) as any as S.Schema<V1UpdatePgsodiumConfigRequest>;
 
 /** Dedicated pooler mode for the project */
 export type V1UpdatePoolerConfigRequestPoolMode = "transaction" | "session";
 export const V1UpdatePoolerConfigRequestPoolMode = /*@__PURE__*/ S.String;
 
-export interface UpdateV1PoolerConfigRequest {
+export interface V1UpdatePoolerConfigRequest {
   /** Project ref */
   ref: string;
   default_pool_size?: number | null;
   /** Dedicated pooler mode for the project */
   pool_mode?: V1UpdatePoolerConfigRequestPoolMode | (string & {});
 }
-export const UpdateV1PoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdatePoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     default_pool_size: S.optional(S.NullOr(S.Number)),
@@ -9818,21 +11582,21 @@ export const UpdateV1PoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1PoolerConfigRequest",
-}) as any as S.Schema<UpdateV1PoolerConfigRequest>;
+  identifier: "V1UpdatePoolerConfigRequest",
+}) as any as S.Schema<V1UpdatePoolerConfigRequest>;
 
-export interface UpdateSupavisorConfigResponse {
+export interface UpdateSupavisorConfigResponseOutput {
   default_pool_size: number | null;
   pool_mode: string;
 }
-export const UpdateSupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSupavisorConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     default_pool_size: S.NullOr(S.Number),
     pool_mode: S.String,
   }),
 ).annotate({
-  identifier: "UpdateSupavisorConfigResponse",
-}) as any as S.Schema<UpdateSupavisorConfigResponse>;
+  identifier: "UpdateSupavisorConfigResponseOutput",
+}) as any as S.Schema<UpdateSupavisorConfigResponseOutput>;
 
 export type V1UpdatePostgresConfigRequestSessionReplicationRole =
   | "origin"
@@ -9841,7 +11605,7 @@ export type V1UpdatePostgresConfigRequestSessionReplicationRole =
 export const V1UpdatePostgresConfigRequestSessionReplicationRole =
   /*@__PURE__*/ S.String;
 
-export interface UpdateV1PostgresConfigRequest {
+export interface V1UpdatePostgresConfigRequest {
   /** Project ref */
   ref: string;
   effective_cache_size?: string;
@@ -9891,7 +11655,7 @@ export interface UpdateV1PostgresConfigRequest {
   hot_standby_feedback?: boolean;
   restart_database?: boolean;
 }
-export const UpdateV1PostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdatePostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     effective_cache_size: S.optional(S.String),
@@ -9945,10 +11709,10 @@ export const UpdateV1PostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1PostgresConfigRequest",
-}) as any as S.Schema<UpdateV1PostgresConfigRequest>;
+  identifier: "V1UpdatePostgresConfigRequest",
+}) as any as S.Schema<V1UpdatePostgresConfigRequest>;
 
-export interface UpdateV1PostgrestServiceConfigRequest {
+export interface V1UpdatePostgrestServiceConfigRequest {
   /** Project ref */
   ref: string;
   db_extra_search_path?: string;
@@ -9957,7 +11721,7 @@ export interface UpdateV1PostgrestServiceConfigRequest {
   db_pool?: number;
   db_pool_acquisition_timeout?: number;
 }
-export const UpdateV1PostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(
+export const V1UpdatePostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ref: S.String.pipe(T.Label()),
@@ -9974,10 +11738,10 @@ export const UpdateV1PostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateV1PostgrestServiceConfigRequest",
-}) as any as S.Schema<UpdateV1PostgrestServiceConfigRequest>;
+  identifier: "V1UpdatePostgrestServiceConfigRequest",
+}) as any as S.Schema<V1UpdatePostgrestServiceConfigRequest>;
 
-export interface V1PostgrestConfigResponse {
+export interface V1PostgrestConfigResponseOutput {
   db_schema: string;
   max_rows: number;
   db_extra_search_path: string;
@@ -9986,7 +11750,7 @@ export interface V1PostgrestConfigResponse {
   /** If `null`, the value is automatically configured to 10. */
   db_pool_acquisition_timeout: number | null;
 }
-export const V1PostgrestConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1PostgrestConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     db_schema: S.String,
     max_rows: S.Number,
@@ -9995,8 +11759,8 @@ export const V1PostgrestConfigResponse = /*@__PURE__*/ S.suspend(() =>
     db_pool_acquisition_timeout: S.NullOr(S.Number),
   }),
 ).annotate({
-  identifier: "V1PostgrestConfigResponse",
-}) as any as S.Schema<V1PostgrestConfigResponse>;
+  identifier: "V1PostgrestConfigResponseOutput",
+}) as any as S.Schema<V1PostgrestConfigResponseOutput>;
 
 export type V1UpdateProjectApiKeyRequestSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
@@ -10007,7 +11771,7 @@ export const V1UpdateProjectApiKeyRequestSecretJwtTemplateMap =
     S.Unknown,
   ) as any as S.Schema<V1UpdateProjectApiKeyRequestSecretJwtTemplateMap>;
 
-export interface UpdateV1ProjectApiKeyRequest {
+export interface V1UpdateProjectApiKeyRequest {
   /** Project ref */
   ref: string;
   id: string;
@@ -10017,7 +11781,7 @@ export interface UpdateV1ProjectApiKeyRequest {
   description?: string | null;
   secret_jwt_template?: V1UpdateProjectApiKeyRequestSecretJwtTemplateMap | null;
 }
-export const UpdateV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -10035,16 +11799,16 @@ export const UpdateV1ProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ProjectApiKeyRequest",
-}) as any as S.Schema<UpdateV1ProjectApiKeyRequest>;
+  identifier: "V1UpdateProjectApiKeyRequest",
+}) as any as S.Schema<V1UpdateProjectApiKeyRequest>;
 
-export interface UpdateV1ProjectLegacyApiKeyRequest {
+export interface V1UpdateProjectLegacyApiKeysRequest {
   /** Project ref */
   ref: string;
   /** Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
   enabled: string;
 }
-export const UpdateV1ProjectLegacyApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateProjectLegacyApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     enabled: S.String.pipe(T.Query()),
@@ -10056,8 +11820,8 @@ export const UpdateV1ProjectLegacyApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ProjectLegacyApiKeyRequest",
-}) as any as S.Schema<UpdateV1ProjectLegacyApiKeyRequest>;
+  identifier: "V1UpdateProjectLegacyApiKeysRequest",
+}) as any as S.Schema<V1UpdateProjectLegacyApiKeysRequest>;
 
 export type V1UpdateProjectSigningKeyRequestStatus =
   | "in_use"
@@ -10066,13 +11830,13 @@ export type V1UpdateProjectSigningKeyRequestStatus =
   | "standby";
 export const V1UpdateProjectSigningKeyRequestStatus = /*@__PURE__*/ S.String;
 
-export interface UpdateV1ProjectSigningKeyRequest {
+export interface V1UpdateProjectSigningKeyRequest {
   /** Project ref */
   ref: string;
   id: string;
   status: V1UpdateProjectSigningKeyRequestStatus | (string & {});
 }
-export const UpdateV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -10085,10 +11849,10 @@ export const UpdateV1ProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1ProjectSigningKeyRequest",
-}) as any as S.Schema<UpdateV1ProjectSigningKeyRequest>;
+  identifier: "V1UpdateProjectSigningKeyRequest",
+}) as any as S.Schema<V1UpdateProjectSigningKeyRequest>;
 
-export interface UpdateV1RealtimeConfigRequest {
+export interface V1UpdateRealtimeConfigRequest {
   /** Project ref */
   ref: string;
   /** Whether to only allow private channels */
@@ -10116,7 +11880,7 @@ export interface UpdateV1RealtimeConfigRequest {
   /** Whether to enable presence */
   presence_enabled?: boolean;
 }
-export const UpdateV1RealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateRealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     private_only: S.optional(S.Boolean),
@@ -10139,30 +11903,30 @@ export const UpdateV1RealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1RealtimeConfigRequest",
-}) as any as S.Schema<UpdateV1RealtimeConfigRequest>;
+  identifier: "V1UpdateRealtimeConfigRequest",
+}) as any as S.Schema<V1UpdateRealtimeConfigRequest>;
 
-export interface UpdateV1RealtimeConfigResponse {}
-export const UpdateV1RealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1UpdateRealtimeConfigResponse {}
+export const V1UpdateRealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "UpdateV1RealtimeConfigResponse",
-}) as any as S.Schema<UpdateV1RealtimeConfigResponse>;
+  identifier: "V1UpdateRealtimeConfigResponse",
+}) as any as S.Schema<V1UpdateRealtimeConfigResponse>;
 
 export type V1UpdateSslEnforcementConfigRequestRequestedConfig =
-  SslEnforcementResponseCurrentConfig;
+  SslEnforcementResponseOutputCurrentConfig;
 export const V1UpdateSslEnforcementConfigRequestRequestedConfig =
-  SslEnforcementResponseCurrentConfig;
+  SslEnforcementResponseOutputCurrentConfig;
 
-export interface UpdateV1SslEnforcementConfigRequest {
+export interface V1UpdateSslEnforcementConfigRequest {
   /** Project ref */
   ref: string;
-  requestedConfig: SslEnforcementResponseCurrentConfig;
+  requestedConfig: SslEnforcementResponseOutputCurrentConfig;
 }
-export const UpdateV1SslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateSslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
-    requestedConfig: SslEnforcementResponseCurrentConfig,
+    requestedConfig: SslEnforcementResponseOutputCurrentConfig,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -10171,55 +11935,59 @@ export const UpdateV1SslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1SslEnforcementConfigRequest",
-}) as any as S.Schema<UpdateV1SslEnforcementConfigRequest>;
+  identifier: "V1UpdateSslEnforcementConfigRequest",
+}) as any as S.Schema<V1UpdateSslEnforcementConfigRequest>;
 
 export type V1UpdateStorageConfigRequestFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesIcebergCatalog =
-  StorageConfigResponseFeaturesIcebergCatalog;
+  StorageConfigResponseOutputFeaturesIcebergCatalog;
 export const V1UpdateStorageConfigRequestFeaturesIcebergCatalog =
-  StorageConfigResponseFeaturesIcebergCatalog;
+  StorageConfigResponseOutputFeaturesIcebergCatalog;
 
 export type V1UpdateStorageConfigRequestFeaturesVectorBuckets =
-  StorageConfigResponseFeaturesVectorBuckets;
+  StorageConfigResponseOutputFeaturesVectorBuckets;
 export const V1UpdateStorageConfigRequestFeaturesVectorBuckets =
-  StorageConfigResponseFeaturesVectorBuckets;
+  StorageConfigResponseOutputFeaturesVectorBuckets;
 
 export interface V1UpdateStorageConfigRequestFeatures {
-  imageTransformation?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  s3Protocol?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  purgeCache?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  icebergCatalog?: StorageConfigResponseFeaturesIcebergCatalog;
-  vectorBuckets?: StorageConfigResponseFeaturesVectorBuckets;
+  imageTransformation?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  s3Protocol?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  purgeCache?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  icebergCatalog?: StorageConfigResponseOutputFeaturesIcebergCatalog;
+  vectorBuckets?: StorageConfigResponseOutputFeaturesVectorBuckets;
 }
 export const V1UpdateStorageConfigRequestFeatures = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       imageTransformation: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
       s3Protocol: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
       purgeCache: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
-      icebergCatalog: S.optional(StorageConfigResponseFeaturesIcebergCatalog),
-      vectorBuckets: S.optional(StorageConfigResponseFeaturesVectorBuckets),
+      icebergCatalog: S.optional(
+        StorageConfigResponseOutputFeaturesIcebergCatalog,
+      ),
+      vectorBuckets: S.optional(
+        StorageConfigResponseOutputFeaturesVectorBuckets,
+      ),
     }),
 ).annotate({
   identifier: "V1UpdateStorageConfigRequestFeatures",
@@ -10245,14 +12013,14 @@ export const V1UpdateStorageConfigRequestExternal = /*@__PURE__*/ S.suspend(
   identifier: "V1UpdateStorageConfigRequestExternal",
 }) as any as S.Schema<V1UpdateStorageConfigRequestExternal>;
 
-export interface UpdateV1StorageConfigRequest {
+export interface V1UpdateStorageConfigRequest {
   /** Project ref */
   ref: string;
   fileSizeLimit?: number;
   features?: V1UpdateStorageConfigRequestFeatures;
   external?: V1UpdateStorageConfigRequestExternal;
 }
-export const UpdateV1StorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdateStorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
     fileSizeLimit: S.optional(S.Number),
@@ -10266,1673 +12034,15 @@ export const UpdateV1StorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateV1StorageConfigRequest",
-}) as any as S.Schema<UpdateV1StorageConfigRequest>;
+  identifier: "V1UpdateStorageConfigRequest",
+}) as any as S.Schema<V1UpdateStorageConfigRequest>;
 
-export interface UpdateV1StorageConfigResponse {}
-export const UpdateV1StorageConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export interface V1UpdateStorageConfigResponse {}
+export const V1UpdateStorageConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "UpdateV1StorageConfigResponse",
-}) as any as S.Schema<UpdateV1StorageConfigResponse>;
-
-export interface UpsertV1AMigrationRequest {
-  /** Project ref */
-  ref: string;
-  query: string;
-  name?: string;
-  rollback?: string;
-}
-export const UpsertV1AMigrationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    query: S.String,
-    name: S.optional(S.String),
-    rollback: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/v1/projects/{ref}/database/migrations",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UpsertV1AMigrationRequest",
-}) as any as S.Schema<UpsertV1AMigrationRequest>;
-
-export interface UpsertV1AMigrationResponse {}
-export const UpsertV1AMigrationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpsertV1AMigrationResponse",
-}) as any as S.Schema<UpsertV1AMigrationResponse>;
-
-export interface V1AcceptInviteExternalJitAccessRequest {
-  /** Project ref */
-  ref: string;
-  email: string;
-  token: string;
-}
-export const V1AcceptInviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ref: S.String.pipe(T.Label()),
-      email: S.String,
-      token: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/projects/{ref}/database/jit/invite/accept",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "V1AcceptInviteExternalJitAccessRequest",
-}) as any as S.Schema<V1AcceptInviteExternalJitAccessRequest>;
-
-export interface V1ActivateCustomHostnameRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1ActivateCustomHostnameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/custom-hostname/activate",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ActivateCustomHostnameRequest",
-}) as any as S.Schema<V1ActivateCustomHostnameRequest>;
-
-export interface V1ActivateVanitySubdomainConfigRequest {
-  /** Project ref */
-  ref: string;
-  vanity_subdomain: string;
-}
-export const V1ActivateVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ref: S.String.pipe(T.Label()),
-      vanity_subdomain: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/projects/{ref}/vanity-subdomain/activate",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "V1ActivateVanitySubdomainConfigRequest",
-}) as any as S.Schema<V1ActivateVanitySubdomainConfigRequest>;
-
-export interface ActivateVanitySubdomainResponse {
-  custom_domain: string;
-}
-export const ActivateVanitySubdomainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_domain: S.String,
-  }),
-).annotate({
-  identifier: "ActivateVanitySubdomainResponse",
-}) as any as S.Schema<ActivateVanitySubdomainResponse>;
-
-export interface V1ApplyAMigrationRequest {
-  /** Project ref */
-  ref: string;
-  query: string;
-  name?: string;
-  rollback?: string;
-}
-export const V1ApplyAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    query: S.String,
-    name: S.optional(S.String),
-    rollback: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/migrations",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ApplyAMigrationRequest",
-}) as any as S.Schema<V1ApplyAMigrationRequest>;
-
-export interface V1ApplyAMigrationResponse {}
-export const V1ApplyAMigrationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ApplyAMigrationResponse",
-}) as any as S.Schema<V1ApplyAMigrationResponse>;
-
-export type V1ApplyProjectAddonRequestAddonVariantCase0 =
-  | "ci_micro"
-  | "ci_small"
-  | "ci_medium"
-  | "ci_large"
-  | "ci_xlarge"
-  | "ci_2xlarge"
-  | "ci_4xlarge"
-  | "ci_8xlarge"
-  | "ci_12xlarge"
-  | "ci_16xlarge"
-  | "ci_24xlarge"
-  | "ci_24xlarge_optimized_cpu"
-  | "ci_24xlarge_optimized_memory"
-  | "ci_24xlarge_high_memory"
-  | "ci_48xlarge"
-  | "ci_48xlarge_optimized_cpu"
-  | "ci_48xlarge_optimized_memory"
-  | "ci_48xlarge_high_memory";
-export const V1ApplyProjectAddonRequestAddonVariantCase0 =
-  /*@__PURE__*/ S.String;
-
-export type V1ApplyProjectAddonRequestAddonVariantCase1 = "cd_default";
-export const V1ApplyProjectAddonRequestAddonVariantCase1 =
-  /*@__PURE__*/ S.String;
-
-export type V1ApplyProjectAddonRequestAddonVariantCase2 =
-  | "pitr_7"
-  | "pitr_14"
-  | "pitr_28";
-export const V1ApplyProjectAddonRequestAddonVariantCase2 =
-  /*@__PURE__*/ S.String;
-
-export type V1ApplyProjectAddonRequestAddonVariantCase3 = "ipv4_default";
-export const V1ApplyProjectAddonRequestAddonVariantCase3 =
-  /*@__PURE__*/ S.String;
-
-export type V1ApplyProjectAddonRequestAddonVariant =
-  | V1ApplyProjectAddonRequestAddonVariantCase0
-  | (string & {})
-  | V1ApplyProjectAddonRequestAddonVariantCase1
-  | (string & {})
-  | V1ApplyProjectAddonRequestAddonVariantCase2
-  | (string & {})
-  | V1ApplyProjectAddonRequestAddonVariantCase3
-  | (string & {});
-export const V1ApplyProjectAddonRequestAddonVariant =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
-
-export type V1ApplyProjectAddonRequestAddonType =
-  | "custom_domain"
-  | "compute_instance"
-  | "pitr"
-  | "ipv4"
-  | "auth_mfa_phone"
-  | "auth_mfa_web_authn"
-  | "log_drain"
-  | "etl_pipeline";
-export const V1ApplyProjectAddonRequestAddonType = /*@__PURE__*/ S.String;
-
-export interface V1ApplyProjectAddonRequest {
-  /** Project ref */
-  ref: string;
-  addon_variant: V1ApplyProjectAddonRequestAddonVariant;
-  addon_type: V1ApplyProjectAddonRequestAddonType | (string & {});
-}
-export const V1ApplyProjectAddonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    addon_variant: V1ApplyProjectAddonRequestAddonVariant,
-    addon_type: V1ApplyProjectAddonRequestAddonType,
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v1/projects/{ref}/billing/addons",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ApplyProjectAddonRequest",
-}) as any as S.Schema<V1ApplyProjectAddonRequest>;
-
-export interface V1ApplyProjectAddonResponse {}
-export const V1ApplyProjectAddonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ApplyProjectAddonResponse",
-}) as any as S.Schema<V1ApplyProjectAddonResponse>;
-
-export interface V1CancelAProjectRestorationRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1CancelAProjectRestorationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/restore/cancel",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1CancelAProjectRestorationRequest",
-}) as any as S.Schema<V1CancelAProjectRestorationRequest>;
-
-export interface V1CancelAProjectRestorationResponse {}
-export const V1CancelAProjectRestorationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1CancelAProjectRestorationResponse",
-}) as any as S.Schema<V1CancelAProjectRestorationResponse>;
-
-export interface V1ClaimProjectForOrganizationRequest {
-  /** Organization slug */
-  slug: string;
-  token: string;
-}
-export const V1ClaimProjectForOrganizationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      slug: S.String.pipe(T.Label()),
-      token: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/organizations/{slug}/project-claim/{token}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "V1ClaimProjectForOrganizationRequest",
-}) as any as S.Schema<V1ClaimProjectForOrganizationRequest>;
-
-export interface V1ClaimProjectForOrganizationResponse {}
-export const V1ClaimProjectForOrganizationResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "V1ClaimProjectForOrganizationResponse",
-}) as any as S.Schema<V1ClaimProjectForOrganizationResponse>;
-
-export interface V1CreateRestorePointRequest {
-  /** Project ref */
-  ref: string;
-  name: string;
-}
-export const V1CreateRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    name: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/backups/restore-point",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1CreateRestorePointRequest",
-}) as any as S.Schema<V1CreateRestorePointRequest>;
-
-export type V1RestorePointResponseStatus =
-  | "AVAILABLE"
-  | "PENDING"
-  | "REMOVED"
-  | "FAILED";
-export const V1RestorePointResponseStatus = /*@__PURE__*/ S.String;
-
-export interface V1RestorePointResponse {
-  name: string;
-  status: V1RestorePointResponseStatus;
-  completed_on: string | null;
-}
-export const V1RestorePointResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    status: V1RestorePointResponseStatus,
-    completed_on: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "V1RestorePointResponse",
-}) as any as S.Schema<V1RestorePointResponse>;
-
-export interface V1DeactivateVanitySubdomainConfigRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1DeactivateVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ref: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/projects/{ref}/vanity-subdomain",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "V1DeactivateVanitySubdomainConfigRequest",
-}) as any as S.Schema<V1DeactivateVanitySubdomainConfigRequest>;
-
-export interface V1DeactivateVanitySubdomainConfigResponse {}
-export const V1DeactivateVanitySubdomainConfigResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "V1DeactivateVanitySubdomainConfigResponse",
-  }) as any as S.Schema<V1DeactivateVanitySubdomainConfigResponse>;
-
-export type V1DeployAFunctionRequestFileList = Array<string>;
-export const V1DeployAFunctionRequestFileList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<V1DeployAFunctionRequestFileList>;
-
-export type V1DeployAFunctionRequestMetadataStaticPatternsList = Array<string>;
-export const V1DeployAFunctionRequestMetadataStaticPatternsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1DeployAFunctionRequestMetadataStaticPatternsList>;
-
-export interface V1DeployAFunctionRequestMetadata {
-  entrypoint_path: string;
-  import_map_path?: string;
-  static_patterns?: V1DeployAFunctionRequestMetadataStaticPatternsList;
-  verify_jwt?: boolean;
-  name?: string;
-}
-export const V1DeployAFunctionRequestMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entrypoint_path: S.String,
-    import_map_path: S.optional(S.String),
-    static_patterns: S.optional(
-      V1DeployAFunctionRequestMetadataStaticPatternsList,
-    ),
-    verify_jwt: S.optional(S.Boolean),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1DeployAFunctionRequestMetadata",
-}) as any as S.Schema<V1DeployAFunctionRequestMetadata>;
-
-export interface V1DeployAFunctionRequest {
-  /** Project ref */
-  ref: string;
-  slug?: string;
-  bundleOnly?: string;
-  file: V1DeployAFunctionRequestFileList;
-  metadata: V1DeployAFunctionRequestMetadata;
-}
-export const V1DeployAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    slug: S.optional(S.String.pipe(T.Query())),
-    bundleOnly: S.optional(S.String.pipe(T.Query())),
-    file: V1DeployAFunctionRequestFileList,
-    metadata: V1DeployAFunctionRequestMetadata,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/functions/deploy",
-      code: 200,
-      contentType: "multipart",
-    }),
-  ),
-).annotate({
-  identifier: "V1DeployAFunctionRequest",
-}) as any as S.Schema<V1DeployAFunctionRequest>;
-
-export type DeployFunctionResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const DeployFunctionResponseStatus = /*@__PURE__*/ S.String;
-
-export interface DeployFunctionResponse {
-  id: string;
-  slug: string;
-  name: string;
-  status: DeployFunctionResponseStatus;
-  version: number;
-  created_at?: number;
-  updated_at?: number;
-  verify_jwt?: boolean;
-  import_map?: boolean;
-  entrypoint_path?: string;
-  import_map_path?: string;
-  ezbr_sha256?: string;
-}
-export const DeployFunctionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    slug: S.String,
-    name: S.String,
-    status: DeployFunctionResponseStatus,
-    version: S.Number,
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    verify_jwt: S.optional(S.Boolean),
-    import_map: S.optional(S.Boolean),
-    entrypoint_path: S.optional(S.String),
-    import_map_path: S.optional(S.String),
-    ezbr_sha256: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeployFunctionResponse",
-}) as any as S.Schema<DeployFunctionResponse>;
-
-export interface V1DiffABranchRequest {
-  /** Branch ref or deprecated branch ID */
-  branch_id_or_ref: string;
-  included_schemas?: string;
-  /** Use pg-delta instead of Migra for diffing when true. Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
-  pgdelta?: string;
-}
-export const V1DiffABranchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branch_id_or_ref: S.String.pipe(T.Label()),
-    included_schemas: S.optional(S.String.pipe(T.Query())),
-    pgdelta: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/branches/{branch_id_or_ref}/diff",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1DiffABranchRequest",
-}) as any as S.Schema<V1DiffABranchRequest>;
-
-export interface V1DiffABranchResponse {}
-export const V1DiffABranchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1DiffABranchResponse",
-}) as any as S.Schema<V1DiffABranchResponse>;
-
-export type V1ExchangeOauthTokenRequestGrantType =
-  | "authorization_code"
-  | "refresh_token"
-  | "urn:ietf:params:oauth:grant-type:jwt-bearer";
-export const V1ExchangeOauthTokenRequestGrantType = /*@__PURE__*/ S.String;
-
-export interface V1ExchangeOauthTokenRequest {
-  grant_type?: V1ExchangeOauthTokenRequestGrantType | (string & {});
-  client_id?: string;
-  client_secret?: T.Sensitive;
-  code?: string;
-  code_verifier?: string;
-  redirect_uri?: string;
-  refresh_token?: T.Sensitive;
-  /** IDJAG assertion JWT for grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer. Beta - available on Team and Enterprise plans only. */
-  assertion?: string;
-  /** Resource indicator for MCP (Model Context Protocol) clients */
-  resource?: string;
-  scope?: string;
-}
-export const V1ExchangeOauthTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    grant_type: S.optional(V1ExchangeOauthTokenRequestGrantType),
-    client_id: S.optional(S.String),
-    client_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    code: S.optional(S.String),
-    code_verifier: S.optional(S.String),
-    redirect_uri: S.optional(S.String),
-    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    assertion: S.optional(S.String),
-    resource: S.optional(S.String),
-    scope: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/oauth/token",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "V1ExchangeOauthTokenRequest",
-}) as any as S.Schema<V1ExchangeOauthTokenRequest>;
-
-export type OAuthTokenResponseTokenType = "Bearer";
-export const OAuthTokenResponseTokenType = /*@__PURE__*/ S.String;
-
-export interface OAuthTokenResponse {
-  access_token: T.Sensitive;
-  /** The `urn:ietf:params:oauth:grant-type:jwt-bearer` grant type issues access tokens only, no refresh token is returned and the token cannot be revoked via `/v1/oauth/revoke`. */
-  refresh_token?: T.Sensitive;
-  expires_in: number;
-  token_type: OAuthTokenResponseTokenType;
-}
-export const OAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    access_token: S.String.pipe(T.SensitiveValue({})),
-    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    expires_in: S.Number,
-    token_type: OAuthTokenResponseTokenType,
-  }),
-).annotate({
-  identifier: "OAuthTokenResponse",
-}) as any as S.Schema<OAuthTokenResponse>;
-
-export interface V1GetProjectApiKeyRequest {
-  /** Project ref */
-  ref: string;
-  id: string;
-  /** Boolean string. Truthy values: `true`, `1`, `yes`, `on`, `y`, `enabled` Falsy values: `false`, `0`, `no`, `off`, `n`, `disabled` */
-  reveal?: string;
-}
-export const V1GetProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    reveal: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/projects/{ref}/api-keys/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1GetProjectApiKeyRequest",
-}) as any as S.Schema<V1GetProjectApiKeyRequest>;
-
-export interface V1GetProjectSigningKeyRequest {
-  /** Project ref */
-  ref: string;
-  id: string;
-}
-export const V1GetProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/projects/{ref}/config/auth/signing-keys/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1GetProjectSigningKeyRequest",
-}) as any as S.Schema<V1GetProjectSigningKeyRequest>;
-
-export interface V1GetProjectUsageRequestCountRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1GetProjectUsageRequestCountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ref: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{ref}/analytics/endpoints/usage.api-requests-count",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "V1GetProjectUsageRequestCountRequest",
-}) as any as S.Schema<V1GetProjectUsageRequestCountRequest>;
-
-export interface V1GetUsageApiRequestsCountResponseResultItem {
-  count: number;
-}
-export const V1GetUsageApiRequestsCountResponseResultItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      count: S.Number,
-    }),
-  ).annotate({
-    identifier: "V1GetUsageApiRequestsCountResponseResultItem",
-  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseResultItem>;
-
-export type V1GetUsageApiRequestsCountResponseResultList =
-  Array<V1GetUsageApiRequestsCountResponseResultItem>;
-export const V1GetUsageApiRequestsCountResponseResultList =
-  /*@__PURE__*/ S.Array(
-    V1GetUsageApiRequestsCountResponseResultItem,
-  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseResultList>;
-
-export type V1GetUsageApiRequestsCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
-export const V1GetUsageApiRequestsCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
-
-export type V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList =
-  /*@__PURE__*/ S.Array(
-    AnalyticsResponseErrorCase1ErrorsItem,
-  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList>;
-
-export interface V1GetUsageApiRequestsCountResponseErrorCase1 {
-  code: number;
-  errors: V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList;
-  message: string;
-  status: string;
-}
-export const V1GetUsageApiRequestsCountResponseErrorCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.Number,
-      errors: V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList,
-      message: S.String,
-      status: S.String,
-    }),
-  ).annotate({
-    identifier: "V1GetUsageApiRequestsCountResponseErrorCase1",
-  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseErrorCase1>;
-
-export type V1GetUsageApiRequestsCountResponseError =
-  | string
-  | V1GetUsageApiRequestsCountResponseErrorCase1;
-export const V1GetUsageApiRequestsCountResponseError =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([[], ["code", "errors", "message", "status"]]),
-  );
-
-export interface V1GetUsageApiRequestsCountResponse {
-  result?: V1GetUsageApiRequestsCountResponseResultList;
-  error?: V1GetUsageApiRequestsCountResponseError;
-}
-export const V1GetUsageApiRequestsCountResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: S.optional(V1GetUsageApiRequestsCountResponseResultList),
-    error: S.optional(V1GetUsageApiRequestsCountResponseError),
-  }),
-).annotate({
-  identifier: "V1GetUsageApiRequestsCountResponse",
-}) as any as S.Schema<V1GetUsageApiRequestsCountResponse>;
-
-export interface V1GetRestorePointRequest {
-  /** Project ref */
-  ref: string;
-  name?: string;
-}
-export const V1GetRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    name: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/projects/{ref}/database/backups/restore-point",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1GetRestorePointRequest",
-}) as any as S.Schema<V1GetRestorePointRequest>;
-
-export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList>;
-
-export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List>;
-
-export interface V1InviteExternalJitAccessRequestRolesItemAllowedNetworks {
-  allowed_cidrs?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List;
-}
-export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworks =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowed_cidrs: S.optional(
-        V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList,
-      ),
-      allowed_cidrs_v6: S.optional(
-        V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List,
-      ),
-    }),
-  ).annotate({
-    identifier: "V1InviteExternalJitAccessRequestRolesItemAllowedNetworks",
-  }) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworks>;
-
-export interface V1InviteExternalJitAccessRequestRolesItem {
-  role: string;
-  expires_at?: number;
-  allowed_networks?: V1InviteExternalJitAccessRequestRolesItemAllowedNetworks;
-  branches_only?: boolean;
-}
-export const V1InviteExternalJitAccessRequestRolesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      role: S.String,
-      expires_at: S.optional(S.Number),
-      allowed_networks: S.optional(
-        V1InviteExternalJitAccessRequestRolesItemAllowedNetworks,
-      ),
-      branches_only: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "V1InviteExternalJitAccessRequestRolesItem",
-  }) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItem>;
-
-export type V1InviteExternalJitAccessRequestRolesList =
-  Array<V1InviteExternalJitAccessRequestRolesItem>;
-export const V1InviteExternalJitAccessRequestRolesList = /*@__PURE__*/ S.Array(
-  V1InviteExternalJitAccessRequestRolesItem,
-) as any as S.Schema<V1InviteExternalJitAccessRequestRolesList>;
-
-export interface V1InviteExternalJitAccessRequest {
-  /** Project ref */
-  ref: string;
-  email: string;
-  roles: V1InviteExternalJitAccessRequestRolesList;
-}
-export const V1InviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    email: S.String,
-    roles: V1InviteExternalJitAccessRequestRolesList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/jit/invite",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1InviteExternalJitAccessRequest",
-}) as any as S.Schema<V1InviteExternalJitAccessRequest>;
-
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList>;
-
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem;
-
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem>;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List>;
-
-export interface InviteExternalUserJitResponseUserRolesItemAllowedNetworks {
-  allowed_cidrs?: InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List;
-}
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworks =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowed_cidrs: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList,
-      ),
-      allowed_cidrs_v6: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List,
-      ),
-    }),
-  ).annotate({
-    identifier: "InviteExternalUserJitResponseUserRolesItemAllowedNetworks",
-  }) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworks>;
-
-export interface InviteExternalUserJitResponseUserRolesItem {
-  role: string;
-  expires_at?: number;
-  allowed_networks?: InviteExternalUserJitResponseUserRolesItemAllowedNetworks;
-  branches_only?: boolean;
-}
-export const InviteExternalUserJitResponseUserRolesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      role: S.String,
-      expires_at: S.optional(S.Number),
-      allowed_networks: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworks,
-      ),
-      branches_only: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "InviteExternalUserJitResponseUserRolesItem",
-  }) as any as S.Schema<InviteExternalUserJitResponseUserRolesItem>;
-
-export type InviteExternalUserJitResponseUserRolesList =
-  Array<InviteExternalUserJitResponseUserRolesItem>;
-export const InviteExternalUserJitResponseUserRolesList = /*@__PURE__*/ S.Array(
-  InviteExternalUserJitResponseUserRolesItem,
-) as any as S.Schema<InviteExternalUserJitResponseUserRolesList>;
-
-export interface InviteExternalUserJitResponse {
-  email: string;
-  invite_id: string;
-  user_roles: InviteExternalUserJitResponseUserRolesList;
-}
-export const InviteExternalUserJitResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-    invite_id: S.String,
-    user_roles: InviteExternalUserJitResponseUserRolesList,
-  }),
-).annotate({
-  identifier: "InviteExternalUserJitResponse",
-}) as any as S.Schema<InviteExternalUserJitResponse>;
-
-export interface V1ListAvailableRestoreVersionsRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1ListAvailableRestoreVersionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ref: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({ method: "GET", uri: "/v1/projects/{ref}/restore", code: 200 }),
-    ),
-).annotate({
-  identifier: "V1ListAvailableRestoreVersionsRequest",
-}) as any as S.Schema<V1ListAvailableRestoreVersionsRequest>;
-
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel =
-  | "internal"
-  | "alpha"
-  | "beta"
-  | "ga"
-  | "withdrawn"
-  | "preview";
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel =
-  /*@__PURE__*/ S.String;
-
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine =
-  | "13"
-  | "14"
-  | "15"
-  | "17"
-  | "17-oriole";
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine =
-  /*@__PURE__*/ S.String;
-
-export interface GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem {
-  version: string;
-  release_channel: GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel;
-  postgres_engine: GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine;
-}
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      version: S.String,
-      release_channel:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel,
-      postgres_engine:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine,
-    }),
-  ).annotate({
-    identifier:
-      "GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem",
-  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem>;
-
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsList =
-  Array<GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem>;
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsList =
-  /*@__PURE__*/ S.Array(
-    GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem,
-  ) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseAvailableVersionsList>;
-
-export interface GetProjectAvailableRestoreVersionsResponse {
-  available_versions: GetProjectAvailableRestoreVersionsResponseAvailableVersionsList;
-}
-export const GetProjectAvailableRestoreVersionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      available_versions:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsList,
-    }),
-  ).annotate({
-    identifier: "GetProjectAvailableRestoreVersionsResponse",
-  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponse>;
-
-export interface V1MergeABranchRequest {
-  /** Branch ref or deprecated branch ID */
-  branch_id_or_ref: string;
-  migration_version?: string;
-}
-export const V1MergeABranchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branch_id_or_ref: S.String.pipe(T.Label()),
-    migration_version: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/branches/{branch_id_or_ref}/merge",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1MergeABranchRequest",
-}) as any as S.Schema<V1MergeABranchRequest>;
-
-export type BranchUpdateResponseMessage = "ok";
-export const BranchUpdateResponseMessage = /*@__PURE__*/ S.String;
-
-export interface BranchUpdateResponse {
-  workflow_run_id: string;
-  message: BranchUpdateResponseMessage;
-}
-export const BranchUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workflow_run_id: S.String,
-    message: BranchUpdateResponseMessage,
-  }),
-).annotate({
-  identifier: "BranchUpdateResponse",
-}) as any as S.Schema<BranchUpdateResponse>;
-
-export type V1ModifyDatabaseDiskRequestAttributesCase0Type = "gp3";
-export const V1ModifyDatabaseDiskRequestAttributesCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface V1ModifyDatabaseDiskRequestAttributesCase0 {
-  iops: number;
-  size_gb: number;
-  throughput_mibps?: number;
-  type: V1ModifyDatabaseDiskRequestAttributesCase0Type;
-}
-export const V1ModifyDatabaseDiskRequestAttributesCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      iops: S.Number,
-      size_gb: S.Number,
-      throughput_mibps: S.optional(S.Number),
-      type: V1ModifyDatabaseDiskRequestAttributesCase0Type,
-    }),
-  ).annotate({
-    identifier: "V1ModifyDatabaseDiskRequestAttributesCase0",
-  }) as any as S.Schema<V1ModifyDatabaseDiskRequestAttributesCase0>;
-
-export type V1ModifyDatabaseDiskRequestAttributesCase1Type = "io2";
-export const V1ModifyDatabaseDiskRequestAttributesCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface V1ModifyDatabaseDiskRequestAttributesCase1 {
-  iops: number;
-  size_gb: number;
-  type: V1ModifyDatabaseDiskRequestAttributesCase1Type;
-}
-export const V1ModifyDatabaseDiskRequestAttributesCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      iops: S.Number,
-      size_gb: S.Number,
-      type: V1ModifyDatabaseDiskRequestAttributesCase1Type,
-    }),
-  ).annotate({
-    identifier: "V1ModifyDatabaseDiskRequestAttributesCase1",
-  }) as any as S.Schema<V1ModifyDatabaseDiskRequestAttributesCase1>;
-
-export type V1ModifyDatabaseDiskRequestAttributes =
-  | V1ModifyDatabaseDiskRequestAttributesCase0
-  | V1ModifyDatabaseDiskRequestAttributesCase1;
-export const V1ModifyDatabaseDiskRequestAttributes =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["iops", "size_gb", "throughput_mibps", "type"],
-      ["iops", "size_gb", "type"],
-    ]),
-  );
-
-export interface V1ModifyDatabaseDiskRequest {
-  /** Project ref */
-  ref: string;
-  attributes: V1ModifyDatabaseDiskRequestAttributes;
-}
-export const V1ModifyDatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    attributes: V1ModifyDatabaseDiskRequestAttributes,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/config/disk",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ModifyDatabaseDiskRequest",
-}) as any as S.Schema<V1ModifyDatabaseDiskRequest>;
-
-export interface V1ModifyDatabaseDiskResponse {}
-export const V1ModifyDatabaseDiskResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ModifyDatabaseDiskResponse",
-}) as any as S.Schema<V1ModifyDatabaseDiskResponse>;
-
-export interface V1PatchAMigrationRequest {
-  /** Project ref */
-  ref: string;
-  version: string;
-  name?: string;
-  rollback?: string;
-}
-export const V1PatchAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    rollback: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v1/projects/{ref}/database/migrations/{version}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1PatchAMigrationRequest",
-}) as any as S.Schema<V1PatchAMigrationRequest>;
-
-export interface V1PatchAMigrationResponse {}
-export const V1PatchAMigrationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1PatchAMigrationResponse",
-}) as any as S.Schema<V1PatchAMigrationResponse>;
-
-export type V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList =
-  Array<string>;
-export const V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList>;
-
-export type V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List =
-  Array<string>;
-export const V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List>;
-
-export interface V1PatchNetworkRestrictionsRequestAdd {
-  dbAllowedCidrs?: V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList;
-  dbAllowedCidrsV6?: V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List;
-}
-export const V1PatchNetworkRestrictionsRequestAdd = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      dbAllowedCidrs: S.optional(
-        V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsList,
-      ),
-      dbAllowedCidrsV6: S.optional(
-        V1PatchNetworkRestrictionsRequestAddDbAllowedCidrsV6List,
-      ),
-    }),
-).annotate({
-  identifier: "V1PatchNetworkRestrictionsRequestAdd",
-}) as any as S.Schema<V1PatchNetworkRestrictionsRequestAdd>;
-
-export type V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList =
-  Array<string>;
-export const V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList>;
-
-export type V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List =
-  Array<string>;
-export const V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List>;
-
-export interface V1PatchNetworkRestrictionsRequestRemove {
-  dbAllowedCidrs?: V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList;
-  dbAllowedCidrsV6?: V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List;
-}
-export const V1PatchNetworkRestrictionsRequestRemove = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      dbAllowedCidrs: S.optional(
-        V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsList,
-      ),
-      dbAllowedCidrsV6: S.optional(
-        V1PatchNetworkRestrictionsRequestRemoveDbAllowedCidrsV6List,
-      ),
-    }),
-).annotate({
-  identifier: "V1PatchNetworkRestrictionsRequestRemove",
-}) as any as S.Schema<V1PatchNetworkRestrictionsRequestRemove>;
-
-export interface V1PatchNetworkRestrictionsRequest {
-  /** Project ref */
-  ref: string;
-  add?: V1PatchNetworkRestrictionsRequestAdd;
-  remove?: V1PatchNetworkRestrictionsRequestRemove;
-}
-export const V1PatchNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    add: S.optional(V1PatchNetworkRestrictionsRequestAdd),
-    remove: S.optional(V1PatchNetworkRestrictionsRequestRemove),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v1/projects/{ref}/network-restrictions",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1PatchNetworkRestrictionsRequest",
-}) as any as S.Schema<V1PatchNetworkRestrictionsRequest>;
-
-export type NetworkRestrictionsV2ResponseEntitlement = "disallowed" | "allowed";
-export const NetworkRestrictionsV2ResponseEntitlement = /*@__PURE__*/ S.String;
-
-export type NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType =
-  | "v4"
-  | "v6";
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType =
-  /*@__PURE__*/ S.String;
-
-export interface NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem {
-  address: string;
-  type: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType;
-}
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      address: S.String,
-      type: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType,
-    }),
-  ).annotate({
-    identifier: "NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem",
-  }) as any as S.Schema<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem>;
-
-export type NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList =
-  Array<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem>;
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem,
-  ) as any as S.Schema<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList>;
-
-/** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-export interface NetworkRestrictionsV2ResponseConfig {
-  dbAllowedCidrs?: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList;
-}
-export const NetworkRestrictionsV2ResponseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dbAllowedCidrs: S.optional(
-      NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkRestrictionsV2ResponseConfig",
-}) as any as S.Schema<NetworkRestrictionsV2ResponseConfig>;
-
-export type NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType =
-  | "v4"
-  | "v6";
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType =
-  /*@__PURE__*/ S.String;
-
-export interface NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem {
-  address: string;
-  type: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType;
-}
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      address: S.String,
-      type: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType,
-    }),
-  ).annotate({
-    identifier: "NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem",
-  }) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem>;
-
-export type NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList =
-  Array<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem>;
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem,
-  ) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList>;
-
-/** Populated when a new config has been received, but not registered as successfully applied to a project. */
-export interface NetworkRestrictionsV2ResponseOldConfig {
-  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList;
-}
-export const NetworkRestrictionsV2ResponseOldConfig = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      dbAllowedCidrs: S.optional(
-        NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList,
-      ),
-    }),
-).annotate({
-  identifier: "NetworkRestrictionsV2ResponseOldConfig",
-}) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfig>;
-
-export type NetworkRestrictionsV2ResponseStatus = "stored" | "applied";
-export const NetworkRestrictionsV2ResponseStatus = /*@__PURE__*/ S.String;
-
-export interface NetworkRestrictionsV2Response {
-  entitlement: NetworkRestrictionsV2ResponseEntitlement;
-  /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-  config: NetworkRestrictionsV2ResponseConfig;
-  /** Populated when a new config has been received, but not registered as successfully applied to a project. */
-  old_config?: NetworkRestrictionsV2ResponseOldConfig;
-  updated_at?: string;
-  applied_at?: string;
-  status: NetworkRestrictionsV2ResponseStatus;
-}
-export const NetworkRestrictionsV2Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entitlement: NetworkRestrictionsV2ResponseEntitlement,
-    config: NetworkRestrictionsV2ResponseConfig,
-    old_config: S.optional(NetworkRestrictionsV2ResponseOldConfig),
-    updated_at: S.optional(S.String),
-    applied_at: S.optional(S.String),
-    status: NetworkRestrictionsV2ResponseStatus,
-  }),
-).annotate({
-  identifier: "NetworkRestrictionsV2Response",
-}) as any as S.Schema<NetworkRestrictionsV2Response>;
-
-export interface V1PauseAProjectRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1PauseAProjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/projects/{ref}/pause", code: 200 }),
-  ),
-).annotate({
-  identifier: "V1PauseAProjectRequest",
-}) as any as S.Schema<V1PauseAProjectRequest>;
-
-export interface V1PauseAProjectResponse {}
-export const V1PauseAProjectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1PauseAProjectResponse",
-}) as any as S.Schema<V1PauseAProjectResponse>;
-
-export interface V1PushABranchRequest {
-  /** Branch ref or deprecated branch ID */
-  branch_id_or_ref: string;
-  migration_version?: string;
-}
-export const V1PushABranchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branch_id_or_ref: S.String.pipe(T.Label()),
-    migration_version: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/branches/{branch_id_or_ref}/push",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1PushABranchRequest",
-}) as any as S.Schema<V1PushABranchRequest>;
-
-export type V1ReadOnlyQueryRequestParametersList = Array<unknown>;
-export const V1ReadOnlyQueryRequestParametersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<V1ReadOnlyQueryRequestParametersList>;
-
-export interface V1ReadOnlyQueryRequest {
-  /** Project ref */
-  ref: string;
-  query: string;
-  parameters?: V1ReadOnlyQueryRequestParametersList;
-}
-export const V1ReadOnlyQueryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    query: S.String,
-    parameters: S.optional(V1ReadOnlyQueryRequestParametersList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/query/read-only",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ReadOnlyQueryRequest",
-}) as any as S.Schema<V1ReadOnlyQueryRequest>;
-
-export interface V1ReadOnlyQueryResponse {}
-export const V1ReadOnlyQueryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ReadOnlyQueryResponse",
-}) as any as S.Schema<V1ReadOnlyQueryResponse>;
-
-export interface V1RemoveAReadReplicaRequest {
-  /** Project ref */
-  ref: string;
-  database_identifier: string;
-}
-export const V1RemoveAReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    database_identifier: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/read-replicas/remove",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1RemoveAReadReplicaRequest",
-}) as any as S.Schema<V1RemoveAReadReplicaRequest>;
-
-export interface V1RemoveAReadReplicaResponse {}
-export const V1RemoveAReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1RemoveAReadReplicaResponse",
-}) as any as S.Schema<V1RemoveAReadReplicaResponse>;
-
-export interface V1RemoveProjectAddonRequest {
-  /** Project ref */
-  ref: string;
-  addon_variant: string;
-}
-export const V1RemoveProjectAddonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    addon_variant: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/projects/{ref}/billing/addons/{addon_variant}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1RemoveProjectAddonRequest",
-}) as any as S.Schema<V1RemoveProjectAddonRequest>;
-
-export interface V1RemoveProjectAddonResponse {}
-export const V1RemoveProjectAddonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1RemoveProjectAddonResponse",
-}) as any as S.Schema<V1RemoveProjectAddonResponse>;
-
-export interface V1RemoveProjectSigningKeyRequest {
-  /** Project ref */
-  ref: string;
-  id: string;
-}
-export const V1RemoveProjectSigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/projects/{ref}/config/auth/signing-keys/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1RemoveProjectSigningKeyRequest",
-}) as any as S.Schema<V1RemoveProjectSigningKeyRequest>;
-
-export interface V1ResetABranchRequest {
-  /** Branch ref or deprecated branch ID */
-  branch_id_or_ref: string;
-  migration_version?: string;
-}
-export const V1ResetABranchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branch_id_or_ref: S.String.pipe(T.Label()),
-    migration_version: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/branches/{branch_id_or_ref}/reset",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ResetABranchRequest",
-}) as any as S.Schema<V1ResetABranchRequest>;
-
-export interface V1RevokeTokenRequest {
-  client_id: string;
-  client_secret: T.Sensitive;
-  refresh_token: T.Sensitive;
-}
-export const V1RevokeTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_id: S.String,
-    client_secret: S.String.pipe(T.SensitiveValue({})),
-    refresh_token: S.String.pipe(T.SensitiveValue({})),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/oauth/revoke", code: 200 })),
-).annotate({
-  identifier: "V1RevokeTokenRequest",
-}) as any as S.Schema<V1RevokeTokenRequest>;
-
-export interface V1RevokeTokenResponse {}
-export const V1RevokeTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1RevokeTokenResponse",
-}) as any as S.Schema<V1RevokeTokenResponse>;
-
-export interface V1RollbackMigrationsRequest {
-  /** Project ref */
-  ref: string;
-  /** Rollback migrations greater or equal to this version */
-  gte: string;
-}
-export const V1RollbackMigrationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    gte: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/projects/{ref}/database/migrations",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1RollbackMigrationsRequest",
-}) as any as S.Schema<V1RollbackMigrationsRequest>;
-
-export interface V1RollbackMigrationsResponse {}
-export const V1RollbackMigrationsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1RollbackMigrationsResponse",
-}) as any as S.Schema<V1RollbackMigrationsResponse>;
-
-export type V1RunAQueryRequestParametersList = Array<unknown>;
-export const V1RunAQueryRequestParametersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<V1RunAQueryRequestParametersList>;
-
-export interface V1RunAQueryRequest {
-  /** Project ref */
-  ref: string;
-  query: string;
-  parameters?: V1RunAQueryRequestParametersList;
-  read_only?: boolean;
-}
-export const V1RunAQueryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    query: S.String,
-    parameters: S.optional(V1RunAQueryRequestParametersList),
-    read_only: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/query",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1RunAQueryRequest",
-}) as any as S.Schema<V1RunAQueryRequest>;
-
-export interface V1RunAQueryResponse {}
-export const V1RunAQueryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1RunAQueryResponse",
-}) as any as S.Schema<V1RunAQueryResponse>;
-
-export interface V1ScrapeProjectMetricsRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1ScrapeProjectMetricsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/projects/{ref}/analytics/endpoints/metrics",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ScrapeProjectMetricsRequest",
-}) as any as S.Schema<V1ScrapeProjectMetricsRequest>;
-
-export interface V1ScrapeProjectMetricsResponse {}
-export const V1ScrapeProjectMetricsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ScrapeProjectMetricsResponse",
-}) as any as S.Schema<V1ScrapeProjectMetricsResponse>;
-
-/** Region you want your read replica to reside in */
-export type V1SetupAReadReplicaRequestReadReplicaRegion =
-  | "us-east-1"
-  | "us-east-2"
-  | "us-west-1"
-  | "us-west-2"
-  | "ap-east-1"
-  | "ap-southeast-1"
-  | "ap-northeast-1"
-  | "ap-northeast-2"
-  | "ap-southeast-2"
-  | "eu-west-1"
-  | "eu-west-2"
-  | "eu-west-3"
-  | "eu-north-1"
-  | "eu-central-1"
-  | "eu-central-2"
-  | "ca-central-1"
-  | "ap-south-1"
-  | "sa-east-1";
-export const V1SetupAReadReplicaRequestReadReplicaRegion =
-  /*@__PURE__*/ S.String;
-
-export interface V1SetupAReadReplicaRequest {
-  /** Project ref */
-  ref: string;
-  /** Region you want your read replica to reside in */
-  read_replica_region:
-    | V1SetupAReadReplicaRequestReadReplicaRegion
-    | (string & {});
-}
-export const V1SetupAReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    read_replica_region: V1SetupAReadReplicaRequestReadReplicaRegion,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/read-replicas/setup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1SetupAReadReplicaRequest",
-}) as any as S.Schema<V1SetupAReadReplicaRequest>;
-
-export interface V1SetupAReadReplicaResponse {}
-export const V1SetupAReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1SetupAReadReplicaResponse",
-}) as any as S.Schema<V1SetupAReadReplicaResponse>;
-
-export interface V1ShutdownRealtimeRequest {
-  /** Project ref */
-  ref: string;
-}
-export const V1ShutdownRealtimeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/config/realtime/shutdown",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "V1ShutdownRealtimeRequest",
-}) as any as S.Schema<V1ShutdownRealtimeRequest>;
-
-export interface V1ShutdownRealtimeResponse {}
-export const V1ShutdownRealtimeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "V1ShutdownRealtimeResponse",
-}) as any as S.Schema<V1ShutdownRealtimeResponse>;
-
-export interface V1UndoRequest {
-  /** Project ref */
-  ref: string;
-  name: string;
-}
-export const V1UndoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ref: S.String.pipe(T.Label()),
-    name: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{ref}/database/backups/undo",
-      code: 200,
-    }),
-  ),
-).annotate({ identifier: "V1UndoRequest" }) as any as S.Schema<V1UndoRequest>;
-
-export interface V1UndoResponse {}
-export const V1UndoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({ identifier: "V1UndoResponse" }) as any as S.Schema<V1UndoResponse>;
+  identifier: "V1UpdateStorageConfigResponse",
+}) as any as S.Schema<V1UpdateStorageConfigResponse>;
 
 export type V1UpgradePostgresVersionRequestReleaseChannel =
   | "internal"
@@ -11964,22 +12074,54 @@ export const V1UpgradePostgresVersionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpgradePostgresVersionRequest",
 }) as any as S.Schema<V1UpgradePostgresVersionRequest>;
 
-export interface ProjectUpgradeInitiateResponse {
+export interface ProjectUpgradeInitiateResponseOutput {
   tracking_id: string;
 }
-export const ProjectUpgradeInitiateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tracking_id: S.String,
-  }),
+export const ProjectUpgradeInitiateResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      tracking_id: S.String,
+    }),
 ).annotate({
-  identifier: "ProjectUpgradeInitiateResponse",
-}) as any as S.Schema<ProjectUpgradeInitiateResponse>;
+  identifier: "ProjectUpgradeInitiateResponseOutput",
+}) as any as S.Schema<ProjectUpgradeInitiateResponseOutput>;
 
-export interface VerifyV1DnsConfigRequest {
+export interface V1UpsertAMigrationRequest {
+  /** Project ref */
+  ref: string;
+  query: string;
+  name?: string;
+  rollback?: string;
+}
+export const V1UpsertAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ref: S.String.pipe(T.Label()),
+    query: S.String,
+    name: S.optional(S.String),
+    rollback: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/projects/{ref}/database/migrations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "V1UpsertAMigrationRequest",
+}) as any as S.Schema<V1UpsertAMigrationRequest>;
+
+export interface V1UpsertAMigrationResponse {}
+export const V1UpsertAMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "V1UpsertAMigrationResponse",
+}) as any as S.Schema<V1UpsertAMigrationResponse>;
+
+export interface V1VerifyDnsConfigRequest {
   /** Project ref */
   ref: string;
 }
-export const VerifyV1DnsConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const V1VerifyDnsConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
   }).pipe(
@@ -11990,2176 +12132,19 @@ export const VerifyV1DnsConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VerifyV1DnsConfigRequest",
-}) as any as S.Schema<VerifyV1DnsConfigRequest>;
-
-export type AuthorizeV1JitAccessError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Authorize user-id to role mappings for JIT access Authorizes the request to assume a role in the project database */
-export const authorizeV1JitAccess: API.OperationMethod<
-  AuthorizeV1JitAccessRequest,
-  JitAuthorizeAccessResponse,
-  AuthorizeV1JitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizeV1JitAccessRequest,
-  output: JitAuthorizeAccessResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AuthorizeV1OauthProjectClaimError = Forbidden | SupabaseOpError;
-/** Authorize user through oauth and claim a project Initiates the OAuth authorization flow for the specified provider. After successful authentication, the user can claim ownership of the specified project. */
-export const authorizeV1OauthProjectClaim: API.OperationMethod<
-  AuthorizeV1OauthProjectClaimRequest,
-  AuthorizeV1OauthProjectClaimResponse,
-  AuthorizeV1OauthProjectClaimError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizeV1OauthProjectClaimRequest,
-  output: AuthorizeV1OauthProjectClaimResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AuthorizeV1UserError = Forbidden | SupabaseOpError;
-/** [Beta] Authorize user through oauth */
-export const authorizeV1User: API.OperationMethod<
-  AuthorizeV1UserRequest,
-  AuthorizeV1UserResponse,
-  AuthorizeV1UserError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizeV1UserRequest,
-  output: AuthorizeV1UserResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckV1VanitySubdomainAvailabilityError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Checks vanity subdomain availability */
-export const checkV1VanitySubdomainAvailability: API.OperationMethod<
-  CheckV1VanitySubdomainAvailabilityRequest,
-  SubdomainAvailabilityResponse,
-  CheckV1VanitySubdomainAvailabilityError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckV1VanitySubdomainAvailabilityRequest,
-  output: SubdomainAvailabilityResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ABranchError = BadRequest | NotFound | SupabaseOpError;
-/** Create a database branch Creates a database branch from the specified project. */
-export const createV1ABranch: API.OperationMethod<
-  CreateV1ABranchRequest,
-  BranchResponse,
-  CreateV1ABranchError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ABranchRequest,
-  output: BranchResponse,
-  errors: [BadRequest, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1AnOrganizationError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Create an organization */
-export const createV1AnOrganization: API.OperationMethod<
-  CreateV1AnOrganizationRequest,
-  OrganizationResponseV1,
-  CreateV1AnOrganizationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1AnOrganizationRequest,
-  output: OrganizationResponseV1,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1AProjectError = BadRequest | Forbidden | SupabaseOpError;
-/** Create a project */
-export const createV1AProject: API.OperationMethod<
-  CreateV1AProjectRequest,
-  V1ProjectResponse,
-  CreateV1AProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1AProjectRequest,
-  output: V1ProjectResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ASsoProviderError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Creates a new SSO provider */
-export const createV1ASsoProvider: API.OperationMethod<
-  CreateV1ASsoProviderRequest,
-  CreateProviderResponse,
-  CreateV1ASsoProviderError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ASsoProviderRequest,
-  output: CreateProviderResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1BulkSecretError = BadRequest | Forbidden | SupabaseOpError;
-/** Bulk create secrets Creates multiple secrets and adds them to the specified project. */
-export const createV1BulkSecret: API.OperationMethod<
-  CreateV1BulkSecretRequest,
-  CreateV1BulkSecretResponse,
-  CreateV1BulkSecretError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1BulkSecretRequest,
-  output: CreateV1BulkSecretResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1LegacySigningKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Set up the project's existing JWT secret as an in_use JWT signing key. This endpoint will be removed in the future always check for HTTP 404 Not Found. */
-export const createV1LegacySigningKey: API.OperationMethod<
-  CreateV1LegacySigningKeyRequest,
-  SigningKeyResponse,
-  CreateV1LegacySigningKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1LegacySigningKeyRequest,
-  output: SigningKeyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1LoginRoleError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Create a login role for CLI with temporary password */
-export const createV1LoginRole: API.OperationMethod<
-  CreateV1LoginRoleRequest,
-  CreateRoleResponse,
-  CreateV1LoginRoleError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1LoginRoleRequest,
-  output: CreateRoleResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ProjectApiKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Creates a new API key for the project */
-export const createV1ProjectApiKey: API.OperationMethod<
-  CreateV1ProjectApiKeyRequest,
-  ApiKeyResponse,
-  CreateV1ProjectApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ProjectApiKeyRequest,
-  output: ApiKeyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ProjectClaimTokenError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Creates project claim token */
-export const createV1ProjectClaimToken: API.OperationMethod<
-  CreateV1ProjectClaimTokenRequest,
-  CreateProjectClaimTokenResponse,
-  CreateV1ProjectClaimTokenError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ProjectClaimTokenRequest,
-  output: CreateProjectClaimTokenResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ProjectSigningKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Create a new signing key for the project in standby status */
-export const createV1ProjectSigningKey: API.OperationMethod<
-  CreateV1ProjectSigningKeyRequest,
-  SigningKeyResponse,
-  CreateV1ProjectSigningKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ProjectSigningKeyRequest,
-  output: SigningKeyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateV1ProjectTpaIntegrationError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Creates a new third-party auth integration */
-export const createV1ProjectTpaIntegration: API.OperationMethod<
-  CreateV1ProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
-  CreateV1ProjectTpaIntegrationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateV1ProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ABranchError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Delete a database branch Deletes the specified database branch. By default, deletes immediately. Use force=false to schedule deletion with 1-hour grace period (only when soft deletion is enabled). */
-export const deleteV1ABranch: API.OperationMethod<
-  DeleteV1ABranchRequest,
-  BranchDeleteResponse,
-  DeleteV1ABranchError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ABranchRequest,
-  output: BranchDeleteResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1AFunctionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Delete a function Deletes a function with the specified slug from the specified project. */
-export const deleteV1AFunction: API.OperationMethod<
-  DeleteV1AFunctionRequest,
-  DeleteV1AFunctionResponse,
-  DeleteV1AFunctionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1AFunctionRequest,
-  output: DeleteV1AFunctionResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1AProjectError = BadRequest | Forbidden | SupabaseOpError;
-/** Deletes the given project */
-export const deleteV1AProject: API.OperationMethod<
-  DeleteV1AProjectRequest,
-  V1ProjectRefResponse,
-  DeleteV1AProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1AProjectRequest,
-  output: V1ProjectRefResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ASsoProviderError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Removes a SSO provider by its UUID */
-export const deleteV1ASsoProvider: API.OperationMethod<
-  DeleteV1ASsoProviderRequest,
-  DeleteProviderResponse,
-  DeleteV1ASsoProviderError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ASsoProviderRequest,
-  output: DeleteProviderResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1BulkSecretError = BadRequest | Forbidden | SupabaseOpError;
-/** Bulk delete secrets Deletes all secrets with the given names from the specified project */
-export const deleteV1BulkSecret: API.OperationMethod<
-  DeleteV1BulkSecretRequest,
-  DeleteV1BulkSecretResponse,
-  DeleteV1BulkSecretError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1BulkSecretRequest,
-  output: DeleteV1BulkSecretResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1HostnameConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Deletes a project's custom hostname configuration */
-export const deleteV1HostnameConfig: API.OperationMethod<
-  DeleteV1HostnameConfigRequest,
-  DeleteV1HostnameConfigResponse,
-  DeleteV1HostnameConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1HostnameConfigRequest,
-  output: DeleteV1HostnameConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1InviteExternalJitAccessError = Forbidden | SupabaseOpError;
-/** Deletes the invite for an external user to a database for JIT access Revokes and deletes the invitation */
-export const deleteV1InviteExternalJitAccess: API.OperationMethod<
-  DeleteV1InviteExternalJitAccessRequest,
-  DeleteV1InviteExternalJitAccessResponse,
-  DeleteV1InviteExternalJitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1InviteExternalJitAccessRequest,
-  output: DeleteV1InviteExternalJitAccessResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1JitAccessError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Delete JIT access by user-id Remove JIT mappings of a user, revoking all JIT database access */
-export const deleteV1JitAccess: API.OperationMethod<
-  DeleteV1JitAccessRequest,
-  DeleteV1JitAccessResponse,
-  DeleteV1JitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1JitAccessRequest,
-  output: DeleteV1JitAccessResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1LoginRoleError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Delete existing login roles used by CLI */
-export const deleteV1LoginRole: API.OperationMethod<
-  DeleteV1LoginRoleRequest,
-  DeleteRolesResponse,
-  DeleteV1LoginRoleError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1LoginRoleRequest,
-  output: DeleteRolesResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1NetworkBanError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Remove network bans. */
-export const deleteV1NetworkBan: API.OperationMethod<
-  DeleteV1NetworkBanRequest,
-  DeleteV1NetworkBanResponse,
-  DeleteV1NetworkBanError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1NetworkBanRequest,
-  output: DeleteV1NetworkBanResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectApiKeyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Deletes an API key for the project */
-export const deleteV1ProjectApiKey: API.OperationMethod<
-  DeleteV1ProjectApiKeyRequest,
-  ApiKeyResponse,
-  DeleteV1ProjectApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ProjectApiKeyRequest,
-  output: ApiKeyResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectClaimTokenError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Revokes project claim token */
-export const deleteV1ProjectClaimToken: API.OperationMethod<
-  DeleteV1ProjectClaimTokenRequest,
-  DeleteV1ProjectClaimTokenResponse,
-  DeleteV1ProjectClaimTokenError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ProjectClaimTokenRequest,
-  output: DeleteV1ProjectClaimTokenResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectTpaIntegrationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Removes a third-party auth integration */
-export const deleteV1ProjectTpaIntegration: API.OperationMethod<
-  DeleteV1ProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
-  DeleteV1ProjectTpaIntegrationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DisableV1PreviewBranchingError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Disables preview branching Disables preview branching for the specified project */
-export const disableV1PreviewBranching: API.OperationMethod<
-  DisableV1PreviewBranchingRequest,
-  DisableV1PreviewBranchingResponse,
-  DisableV1PreviewBranchingError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisableV1PreviewBranchingRequest,
-  output: DisableV1PreviewBranchingResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DisableV1ReadonlyModeTemporarilyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Disables project's readonly mode for the next 15 minutes */
-export const disableV1ReadonlyModeTemporarily: API.OperationMethod<
-  DisableV1ReadonlyModeTemporarilyRequest,
-  DisableV1ReadonlyModeTemporarilyResponse,
-  DisableV1ReadonlyModeTemporarilyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisableV1ReadonlyModeTemporarilyRequest,
-  output: DisableV1ReadonlyModeTemporarilyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnableV1DatabaseWebhookError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Enables Database Webhooks on the project */
-export const enableV1DatabaseWebhook: API.OperationMethod<
-  EnableV1DatabaseWebhookRequest,
-  EnableV1DatabaseWebhookResponse,
-  EnableV1DatabaseWebhookError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnableV1DatabaseWebhookRequest,
-  output: EnableV1DatabaseWebhookResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GenerateV1TypescriptTypeError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Generate TypeScript types Returns the TypeScript types of your schema for use with supabase-js. */
-export const generateV1TypescriptType: API.OperationMethod<
-  GenerateV1TypescriptTypeRequest,
-  TypescriptResponse,
-  GenerateV1TypescriptTypeError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GenerateV1TypescriptTypeRequest,
-  output: TypescriptResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ABranchError = BadRequest | NotFound | SupabaseOpError;
-/** Get a database branch Fetches the specified database branch by its name. */
-export const getV1ABranch: API.OperationMethod<
-  GetV1ABranchRequest,
-  BranchResponse,
-  GetV1ABranchError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ABranchRequest,
-  output: BranchResponse,
-  errors: [BadRequest, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ABranchConfigError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Get database branch config Fetches configurations of the specified database branch */
-export const getV1ABranchConfig: API.OperationMethod<
-  GetV1ABranchConfigRequest,
-  BranchDetailResponse,
-  GetV1ABranchConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ABranchConfigRequest,
-  output: BranchDetailResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ActionRunError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Get the status of an action run Returns the current status of the specified action run. */
-export const getV1ActionRun: API.OperationMethod<
-  GetV1ActionRunRequest,
-  ActionRunResponse,
-  GetV1ActionRunError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ActionRunRequest,
-  output: ActionRunResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ActionRunLogError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Get the logs of an action run Returns the logs from the specified action run. */
-export const getV1ActionRunLog: API.OperationMethod<
-  GetV1ActionRunLogRequest,
-  GetV1ActionRunLogResponse,
-  GetV1ActionRunLogError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ActionRunLogRequest,
-  output: GetV1ActionRunLogResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AFunctionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Retrieve a function Retrieves a function with the specified slug and project. */
-export const getV1AFunction: API.OperationMethod<
-  GetV1AFunctionRequest,
-  FunctionSlugResponse,
-  GetV1AFunctionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AFunctionRequest,
-  output: FunctionSlugResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AFunctionBodyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Retrieve a function body Retrieves a function body for the specified slug and project. */
-export const getV1AFunctionBody: API.OperationMethod<
-  GetV1AFunctionBodyRequest,
-  GetV1AFunctionBodyResponse,
-  GetV1AFunctionBodyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AFunctionBodyRequest,
-  output: GetV1AFunctionBodyResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AllProjectForOrganizationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Gets all projects for the given organization Returns a paginated list of projects for the specified organization. This endpoint uses offset-based pagination. Use the `offset` parameter to skip a number of projects and the `limit` parameter to control the number of projects returned per page. */
-export const getV1AllProjectForOrganization: API.OperationMethod<
-  GetV1AllProjectForOrganizationRequest,
-  OrganizationProjectsResponse,
-  GetV1AllProjectForOrganizationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AllProjectForOrganizationRequest,
-  output: OrganizationProjectsResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AMigrationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Fetch an existing entry from migration history */
-export const getV1AMigration: API.OperationMethod<
-  GetV1AMigrationRequest,
-  V1GetMigrationResponse,
-  GetV1AMigrationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AMigrationRequest,
-  output: V1GetMigrationResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AnOrganizationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Gets information about the organization */
-export const getV1AnOrganization: API.OperationMethod<
-  GetV1AnOrganizationRequest,
-  V1OrganizationSlugResponse,
-  GetV1AnOrganizationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AnOrganizationRequest,
-  output: V1OrganizationSlugResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ASnippetError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Gets a specific SQL snippet */
-export const getV1ASnippet: API.OperationMethod<
-  GetV1ASnippetRequest,
-  SnippetResponse,
-  GetV1ASnippetError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ASnippetRequest,
-  output: SnippetResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ASsoProviderError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Gets a SSO provider by its UUID */
-export const getV1ASsoProvider: API.OperationMethod<
-  GetV1ASsoProviderRequest,
-  GetProviderResponse,
-  GetV1ASsoProviderError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ASsoProviderRequest,
-  output: GetProviderResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AuthServiceConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets project's auth config */
-export const getV1AuthServiceConfig: API.OperationMethod<
-  GetV1AuthServiceConfigRequest,
-  AuthConfigResponse,
-  GetV1AuthServiceConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AuthServiceConfigRequest,
-  output: AuthConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1AvailableRegionError = Forbidden | SupabaseOpError;
-/** [Beta] Gets the list of available regions that can be used for a new project */
-export const getV1AvailableRegion: API.OperationMethod<
-  GetV1AvailableRegionRequest,
-  RegionsInfo,
-  GetV1AvailableRegionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1AvailableRegionRequest,
-  output: RegionsInfo,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BackupScheduleError = Forbidden | NotFound | SupabaseOpError;
-/** Gets the backup schedule for a project */
-export const getV1BackupSchedule: API.OperationMethod<
-  GetV1BackupScheduleRequest,
-  V1BackupScheduleResponse,
-  GetV1BackupScheduleError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BackupScheduleRequest,
-  output: V1BackupScheduleResponse,
-  errors: [Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabaseDiskError = BadRequest | Forbidden | SupabaseOpError;
-/** Get database disk attributes */
-export const getV1DatabaseDisk: API.OperationMethod<
-  GetV1DatabaseDiskRequest,
-  DiskResponse,
-  GetV1DatabaseDiskError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabaseDiskRequest,
-  output: DiskResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabaseOpenapiError = Forbidden | SupabaseOpError;
-/** Get PostgREST OpenAPI spec Returns the PostgREST OpenAPI specification for the project. This is the replacement for querying `/rest/v1/` directly with the anon key. */
-export const getV1DatabaseOpenapi: API.OperationMethod<
-  GetV1DatabaseOpenapiRequest,
-  GetV1DatabaseOpenapiResponse,
-  GetV1DatabaseOpenapiError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabaseOpenapiRequest,
-  output: GetV1DatabaseOpenapiResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DiskUtilizationError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Get disk utilization */
-export const getV1DiskUtilization: API.OperationMethod<
-  GetV1DiskUtilizationRequest,
-  DiskUtilMetricsResponse,
-  GetV1DiskUtilizationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DiskUtilizationRequest,
-  output: DiskUtilMetricsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1HostnameConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Gets project's custom hostname config */
-export const getV1HostnameConfig: API.OperationMethod<
-  GetV1HostnameConfigRequest,
-  UpdateCustomHostnameResponse,
-  GetV1HostnameConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1HostnameConfigRequest,
-  output: UpdateCustomHostnameResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1JitAccessError = BadRequest | Forbidden | SupabaseOpError;
-/** Get user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
-export const getV1JitAccess: API.OperationMethod<
-  GetV1JitAccessRequest,
-  JitAccessResponse,
-  GetV1JitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1JitAccessRequest,
-  output: JitAccessResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1JitAccessConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Get project's temporary access configuration. */
-export const getV1JitAccessConfig: API.OperationMethod<
-  GetV1JitAccessConfigRequest,
-  GetV1JitAccessConfigResponse,
-  GetV1JitAccessConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1JitAccessConfigRequest,
-  output: GetV1JitAccessConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1LegacySigningKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Get the signing key information for the JWT secret imported as signing key for this project. This endpoint will be removed in the future, check for HTTP 404 Not Found. */
-export const getV1LegacySigningKey: API.OperationMethod<
-  GetV1LegacySigningKeyRequest,
-  SigningKeyResponse,
-  GetV1LegacySigningKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1LegacySigningKeyRequest,
-  output: SigningKeyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1NetworkRestrictionError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Gets project's network restrictions */
-export const getV1NetworkRestriction: API.OperationMethod<
-  GetV1NetworkRestrictionRequest,
-  NetworkRestrictionsResponse,
-  GetV1NetworkRestrictionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1NetworkRestrictionRequest,
-  output: NetworkRestrictionsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1OrganizationEntitlementError = Forbidden | SupabaseOpError;
-/** Get entitlements for an organization Returns the entitlements available to the organization based on their plan and any overrides. */
-export const getV1OrganizationEntitlement: API.OperationMethod<
-  GetV1OrganizationEntitlementRequest,
-  V1ListEntitlementsResponse,
-  GetV1OrganizationEntitlementError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1OrganizationEntitlementRequest,
-  output: V1ListEntitlementsResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1OrganizationProjectClaimError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Gets project details for the specified organization and claim token */
-export const getV1OrganizationProjectClaim: API.OperationMethod<
-  GetV1OrganizationProjectClaimRequest,
-  OrganizationProjectClaimResponse,
-  GetV1OrganizationProjectClaimError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1OrganizationProjectClaimRequest,
-  output: OrganizationProjectClaimResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PgsodiumConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Gets project's pgsodium config */
-export const getV1PgsodiumConfig: API.OperationMethod<
-  GetV1PgsodiumConfigRequest,
-  PgsodiumConfigResponse,
-  GetV1PgsodiumConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PgsodiumConfigRequest,
-  output: PgsodiumConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PoolerConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets project's supavisor config */
-export const getV1PoolerConfig: API.OperationMethod<
-  GetV1PoolerConfigRequest,
-  GetV1PoolerConfigResponse,
-  GetV1PoolerConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PoolerConfigRequest,
-  output: GetV1PoolerConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PostgresConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets project's Postgres config */
-export const getV1PostgresConfig: API.OperationMethod<
-  GetV1PostgresConfigRequest,
-  PostgresConfigResponse,
-  GetV1PostgresConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PostgresConfigRequest,
-  output: PostgresConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PostgrestServiceConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets project's postgrest config */
-export const getV1PostgrestServiceConfig: API.OperationMethod<
-  GetV1PostgrestServiceConfigRequest,
-  PostgrestConfigWithJWTSecretResponse,
-  GetV1PostgrestServiceConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PostgrestServiceConfigRequest,
-  output: PostgrestConfigWithJWTSecretResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PostgresUpgradeEligibilityError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Returns the project's eligibility for upgrades */
-export const getV1PostgresUpgradeEligibility: API.OperationMethod<
-  GetV1PostgresUpgradeEligibilityRequest,
-  ProjectUpgradeEligibilityResponse,
-  GetV1PostgresUpgradeEligibilityError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PostgresUpgradeEligibilityRequest,
-  output: ProjectUpgradeEligibilityResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1PostgresUpgradeStatusError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Gets the latest status of the project's upgrade */
-export const getV1PostgresUpgradeStatus: API.OperationMethod<
-  GetV1PostgresUpgradeStatusRequest,
-  DatabaseUpgradeStatusResponse,
-  GetV1PostgresUpgradeStatusError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1PostgresUpgradeStatusRequest,
-  output: DatabaseUpgradeStatusResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProfileError = SupabaseOpError;
-/** Gets the user's profile */
-export const getV1Profile: API.OperationMethod<
-  GetV1ProfileRequest,
-  V1ProfileResponse,
-  GetV1ProfileError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProfileRequest,
-  output: V1ProfileResponse,
-  errors: [],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets a specific project that belongs to the authenticated user */
-export const getV1Project: API.OperationMethod<
-  GetV1ProjectRequest,
-  V1ProjectWithDatabaseResponse,
-  GetV1ProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectRequest,
-  output: V1ProjectWithDatabaseResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectApiKeyError = BadRequest | Forbidden | SupabaseOpError;
-/** Get project api keys */
-export const getV1ProjectApiKey: API.OperationMethod<
-  GetV1ProjectApiKeyRequest,
-  GetV1ProjectApiKeyResponse,
-  GetV1ProjectApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectApiKeyRequest,
-  output: GetV1ProjectApiKeyResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectClaimTokenError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets project claim token */
-export const getV1ProjectClaimToken: API.OperationMethod<
-  GetV1ProjectClaimTokenRequest,
-  ProjectClaimTokenResponse,
-  GetV1ProjectClaimTokenError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectClaimTokenRequest,
-  output: ProjectClaimTokenResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectDiskAutoscaleConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets project disk autoscale config */
-export const getV1ProjectDiskAutoscaleConfig: API.OperationMethod<
-  GetV1ProjectDiskAutoscaleConfigRequest,
-  DiskAutoscaleConfig,
-  GetV1ProjectDiskAutoscaleConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectDiskAutoscaleConfigRequest,
-  output: DiskAutoscaleConfig,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectFunctionCombinedStatError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets a project's function combined statistics */
-export const getV1ProjectFunctionCombinedStat: API.OperationMethod<
-  GetV1ProjectFunctionCombinedStatRequest,
-  AnalyticsResponse,
-  GetV1ProjectFunctionCombinedStatError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectFunctionCombinedStatRequest,
-  output: AnalyticsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectLegacyApiKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Check whether JWT based legacy (anon, service_role) API keys are enabled. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
-export const getV1ProjectLegacyApiKey: API.OperationMethod<
-  GetV1ProjectLegacyApiKeyRequest,
-  LegacyApiKeysResponse,
-  GetV1ProjectLegacyApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectLegacyApiKeyRequest,
-  output: LegacyApiKeysResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectLogError = Forbidden | SupabaseOpError;
-/** Gets all project's logs in a single log stream Executes an SQL or LQL query on the project's unified logs stream. Either the `iso_timestamp_start` and `iso_timestamp_end` parameters must be provided. If both are not provided, only the last 1 minute of logs will be queried. The timestamp range must be no more than 24 hours and is rounded to the nearest minute. If the range is more than 24 hours, a validation error will be thrown. Filter by the `source` column to specify specific log sources, such as edge_logs, postgres_logs, etc. Note: SQL must be written in **ClickHouse SQL dialect**. */
-export const getV1ProjectLog: API.OperationMethod<
-  GetV1ProjectLogRequest,
-  AnalyticsResponse,
-  GetV1ProjectLogError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectLogRequest,
-  output: AnalyticsResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectPgbouncerConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Get project's pgbouncer config */
-export const getV1ProjectPgbouncerConfig: API.OperationMethod<
-  GetV1ProjectPgbouncerConfigRequest,
-  V1PgbouncerConfigResponse,
-  GetV1ProjectPgbouncerConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectPgbouncerConfigRequest,
-  output: V1PgbouncerConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectSigningKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** List all signing keys for the project */
-export const getV1ProjectSigningKey: API.OperationMethod<
-  GetV1ProjectSigningKeyRequest,
-  SigningKeysResponse,
-  GetV1ProjectSigningKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectSigningKeyRequest,
-  output: SigningKeysResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectTpaIntegrationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Get a third-party integration */
-export const getV1ProjectTpaIntegration: API.OperationMethod<
-  GetV1ProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
-  GetV1ProjectTpaIntegrationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectUsageApiCountError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Gets project's usage api counts */
-export const getV1ProjectUsageApiCount: API.OperationMethod<
-  GetV1ProjectUsageApiCountRequest,
-  V1GetUsageApiCountResponse,
-  GetV1ProjectUsageApiCountError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectUsageApiCountRequest,
-  output: V1GetUsageApiCountResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ReadonlyModeStatusError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Returns project's readonly mode status */
-export const getV1ReadonlyModeStatus: API.OperationMethod<
-  GetV1ReadonlyModeStatusRequest,
-  ReadOnlyStatusResponse,
-  GetV1ReadonlyModeStatusError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ReadonlyModeStatusRequest,
-  output: ReadOnlyStatusResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1RealtimeConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets realtime configuration */
-export const getV1RealtimeConfig: API.OperationMethod<
-  GetV1RealtimeConfigRequest,
-  RealtimeConfigResponse,
-  GetV1RealtimeConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1RealtimeConfigRequest,
-  output: RealtimeConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ServiceHealthError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets project's service health status */
-export const getV1ServiceHealth: API.OperationMethod<
-  GetV1ServiceHealthRequest,
-  GetV1ServiceHealthResponse,
-  GetV1ServiceHealthError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ServiceHealthRequest,
-  output: GetV1ServiceHealthResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1SslEnforcementConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Get project's SSL enforcement configuration. */
-export const getV1SslEnforcementConfig: API.OperationMethod<
-  GetV1SslEnforcementConfigRequest,
-  SslEnforcementResponse,
-  GetV1SslEnforcementConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1SslEnforcementConfigRequest,
-  output: SslEnforcementResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1StorageConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** Gets project's storage config */
-export const getV1StorageConfig: API.OperationMethod<
-  GetV1StorageConfigRequest,
-  StorageConfigResponse,
-  GetV1StorageConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1StorageConfigRequest,
-  output: StorageConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1VanitySubdomainConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Gets current vanity subdomain config */
-export const getV1VanitySubdomainConfig: API.OperationMethod<
-  GetV1VanitySubdomainConfigRequest,
-  VanitySubdomainConfigResponse,
-  GetV1VanitySubdomainConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1VanitySubdomainConfigRequest,
-  output: VanitySubdomainConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1ActionRunsError = BadRequest | Forbidden | SupabaseOpError;
-/** List all action runs Returns a paginated list of action runs of the specified project. */
-export const listV1ActionRuns: API.OperationMethod<
-  ListV1ActionRunsRequest,
-  ListV1ActionRunsResponse,
-  ListV1ActionRunsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1ActionRunsRequest,
-  output: ListV1ActionRunsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllBackupsError = BadRequest | Forbidden | SupabaseOpError;
-/** Lists all backups */
-export const listV1AllBackups: API.OperationMethod<
-  ListV1AllBackupsRequest,
-  V1BackupsResponse,
-  ListV1AllBackupsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllBackupsRequest,
-  output: V1BackupsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllBranchesError = BadRequest | NotFound | SupabaseOpError;
-/** List all database branches Returns all database branches of the specified project. */
-export const listV1AllBranches: API.OperationMethod<
-  ListV1AllBranchesRequest,
-  ListV1AllBranchesResponse,
-  ListV1AllBranchesError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllBranchesRequest,
-  output: ListV1AllBranchesResponse,
-  errors: [BadRequest, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllBucketsError = BadRequest | Forbidden | SupabaseOpError;
-/** Lists all buckets */
-export const listV1AllBuckets: API.OperationMethod<
-  ListV1AllBucketsRequest,
-  ListV1AllBucketsResponse,
-  ListV1AllBucketsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllBucketsRequest,
-  output: ListV1AllBucketsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllFunctionsError = BadRequest | Forbidden | SupabaseOpError;
-/** List all functions Returns all functions you've previously added to the specified project. */
-export const listV1AllFunctions: API.OperationMethod<
-  ListV1AllFunctionsRequest,
-  ListV1AllFunctionsResponse,
-  ListV1AllFunctionsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllFunctionsRequest,
-  output: ListV1AllFunctionsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllNetworkBanEnrichedError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Gets project's network bans with additional information about which databases they affect */
-export const listV1AllNetworkBanEnriched: API.OperationMethod<
-  ListV1AllNetworkBanEnrichedRequest,
-  NetworkBanResponseEnriched,
-  ListV1AllNetworkBanEnrichedError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllNetworkBanEnrichedRequest,
-  output: NetworkBanResponseEnriched,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllNetworkBansError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Gets project's network bans */
-export const listV1AllNetworkBans: API.OperationMethod<
-  ListV1AllNetworkBansRequest,
-  NetworkBanResponse,
-  ListV1AllNetworkBansError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllNetworkBansRequest,
-  output: NetworkBanResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllOrganizationsError = Forbidden | SupabaseOpError;
-/** List all organizations Returns a list of organizations that you currently belong to. */
-export const listV1AllOrganizations: API.OperationMethod<
-  ListV1AllOrganizationsRequest,
-  ListV1AllOrganizationsResponse,
-  ListV1AllOrganizationsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllOrganizationsRequest,
-  output: ListV1AllOrganizationsResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllProjectsError = Forbidden | SupabaseOpError;
-/** List all projects Returns a list of all projects you've previously created. */
-export const listV1AllProjects: API.OperationMethod<
-  ListV1AllProjectsRequest,
-  ListV1AllProjectsResponse,
-  ListV1AllProjectsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllProjectsRequest,
-  output: ListV1AllProjectsResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllSecretsError = BadRequest | Forbidden | SupabaseOpError;
-/** List all secrets Returns all secrets you've previously added to the specified project. */
-export const listV1AllSecrets: API.OperationMethod<
-  ListV1AllSecretsRequest,
-  ListV1AllSecretsResponse,
-  ListV1AllSecretsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllSecretsRequest,
-  output: ListV1AllSecretsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllSnippetsError = Forbidden | SupabaseOpError;
-/** Lists SQL snippets for the logged in user */
-export const listV1AllSnippets: API.OperationMethod<
-  ListV1AllSnippetsRequest,
-  SnippetList,
-  ListV1AllSnippetsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllSnippetsRequest,
-  output: SnippetList,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1AllSsoProviderError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Lists all SSO providers */
-export const listV1AllSsoProvider: API.OperationMethod<
-  ListV1AllSsoProviderRequest,
-  ListProvidersResponse,
-  ListV1AllSsoProviderError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1AllSsoProviderRequest,
-  output: ListProvidersResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1JitAccessError = BadRequest | Forbidden | SupabaseOpError;
-/** List all user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
-export const listV1JitAccess: API.OperationMethod<
-  ListV1JitAccessRequest,
-  JitListAccessResponse,
-  ListV1JitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1JitAccessRequest,
-  output: JitListAccessResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1MigrationHistoryError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** List applied migration versions */
-export const listV1MigrationHistory: API.OperationMethod<
-  ListV1MigrationHistoryRequest,
-  ListV1MigrationHistoryResponse,
-  ListV1MigrationHistoryError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1MigrationHistoryRequest,
-  output: ListV1MigrationHistoryResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1OrganizationMembersError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** List members of an organization */
-export const listV1OrganizationMembers: API.OperationMethod<
-  ListV1OrganizationMembersRequest,
-  ListV1OrganizationMembersResponse,
-  ListV1OrganizationMembersError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1OrganizationMembersRequest,
-  output: ListV1OrganizationMembersResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1ProjectAddonsError = BadRequest | Forbidden | SupabaseOpError;
-/** List billing addons and compute instance selections Returns the billing addons that are currently applied, including the active compute instance size, and lists every addon option that can be provisioned with pricing metadata. */
-export const listV1ProjectAddons: API.OperationMethod<
-  ListV1ProjectAddonsRequest,
-  ListProjectAddonsResponse,
-  ListV1ProjectAddonsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1ProjectAddonsRequest,
-  output: ListProjectAddonsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListV1ProjectTpaIntegrationsError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Lists all third-party auth integrations */
-export const listV1ProjectTpaIntegrations: API.OperationMethod<
-  ListV1ProjectTpaIntegrationsRequest,
-  ListV1ProjectTpaIntegrationsResponse,
-  ListV1ProjectTpaIntegrationsError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListV1ProjectTpaIntegrationsRequest,
-  output: ListV1ProjectTpaIntegrationsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestartV1AProjectError = Forbidden | SupabaseOpError;
-/** Restarts the given project */
-export const restartV1AProject: API.OperationMethod<
-  RestartV1AProjectRequest,
-  RestartV1AProjectResponse,
-  RestartV1AProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestartV1AProjectRequest,
-  output: RestartV1AProjectResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreV1ABranchError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Restore a scheduled branch deletion Cancels scheduled deletion and restores the branch to active state */
-export const restoreV1ABranch: API.OperationMethod<
-  RestoreV1ABranchRequest,
-  BranchRestoreResponse,
-  RestoreV1ABranchError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreV1ABranchRequest,
-  output: BranchRestoreResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreV1AProjectError = BadRequest | Forbidden | SupabaseOpError;
-/** Restores the given project */
-export const restoreV1AProject: API.OperationMethod<
-  RestoreV1AProjectRequest,
-  RestoreV1AProjectResponse,
-  RestoreV1AProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreV1AProjectRequest,
-  output: RestoreV1AProjectResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreV1PhysicalBackupError = Forbidden | SupabaseOpError;
-/** Restores a physical backup for a database */
-export const restoreV1PhysicalBackup: API.OperationMethod<
-  RestoreV1PhysicalBackupRequest,
-  RestoreV1PhysicalBackupResponse,
-  RestoreV1PhysicalBackupError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreV1PhysicalBackupRequest,
-  output: RestoreV1PhysicalBackupResponse,
-  errors: [Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreV1PitrBackupError = BadRequest | Forbidden | SupabaseOpError;
-/** Restores a PITR backup for a database */
-export const restoreV1PitrBackup: API.OperationMethod<
-  RestoreV1PitrBackupRequest,
-  RestoreV1PitrBackupResponse,
-  RestoreV1PitrBackupError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreV1PitrBackupRequest,
-  output: RestoreV1PitrBackupResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ABranchConfigError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Update database branch config Updates the configuration of the specified database branch */
-export const updateV1ABranchConfig: API.OperationMethod<
-  UpdateV1ABranchConfigRequest,
-  BranchResponse,
-  UpdateV1ABranchConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ABranchConfigRequest,
-  output: BranchResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ActionRunStatusError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Update the status of an action run Updates the status of an ongoing action run. */
-export const updateV1ActionRunStatus: API.OperationMethod<
-  UpdateV1ActionRunStatusRequest,
-  UpdateRunStatusResponse,
-  UpdateV1ActionRunStatusError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ActionRunStatusRequest,
-  output: UpdateRunStatusResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1AFunctionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Update a function Updates a function with the specified slug and project. */
-export const updateV1AFunction: API.OperationMethod<
-  UpdateV1AFunctionRequest,
-  FunctionResponse,
-  UpdateV1AFunctionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1AFunctionRequest,
-  output: FunctionResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1AProjectError = BadRequest | Forbidden | SupabaseOpError;
-/** Updates the given project */
-export const updateV1AProject: API.OperationMethod<
-  UpdateV1AProjectRequest,
-  V1ProjectRefResponse,
-  UpdateV1AProjectError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1AProjectRequest,
-  output: V1ProjectRefResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ASsoProviderError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Updates a SSO provider by its UUID */
-export const updateV1ASsoProvider: API.OperationMethod<
-  UpdateV1ASsoProviderRequest,
-  UpdateProviderResponse,
-  UpdateV1ASsoProviderError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ASsoProviderRequest,
-  output: UpdateProviderResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1AuthServiceConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates a project's auth config */
-export const updateV1AuthServiceConfig: API.OperationMethod<
-  UpdateV1AuthServiceConfigRequest,
-  AuthConfigResponse,
-  UpdateV1AuthServiceConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1AuthServiceConfigRequest,
-  output: AuthConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1BackupScheduleError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Updates the backup schedule time for a project Sets the time at which the daily backup runs. The change takes effect on the next backup window that includes the new time. If the new time has already passed for today, the first backup at the new time will occur the following day. It can only be updated 3 times per 24 hours. */
-export const updateV1BackupSchedule: API.OperationMethod<
-  UpdateV1BackupScheduleRequest,
-  V1BackupScheduleResponse,
-  UpdateV1BackupScheduleError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1BackupScheduleRequest,
-  output: V1BackupScheduleResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1BulkFunctionError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Bulk update functions Bulk update functions. It will create a new function or replace existing. The operation is idempotent. NOTE: You will need to manually bump the version. */
-export const updateV1BulkFunction: API.OperationMethod<
-  UpdateV1BulkFunctionRequest,
-  BulkUpdateFunctionResponse,
-  UpdateV1BulkFunctionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1BulkFunctionRequest,
-  output: BulkUpdateFunctionResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1DatabasePasswordError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates the database password */
-export const updateV1DatabasePassword: API.OperationMethod<
-  UpdateV1DatabasePasswordRequest,
-  V1UpdatePasswordResponse,
-  UpdateV1DatabasePasswordError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1DatabasePasswordRequest,
-  output: V1UpdatePasswordResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1HostnameConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Updates project's custom hostname configuration */
-export const updateV1HostnameConfig: API.OperationMethod<
-  UpdateV1HostnameConfigRequest,
-  UpdateCustomHostnameResponse,
-  UpdateV1HostnameConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1HostnameConfigRequest,
-  output: UpdateCustomHostnameResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1JitAccessError = BadRequest | Forbidden | SupabaseOpError;
-/** Updates a user mapping for JIT access Modifies the roles that can be assumed and for how long */
-export const updateV1JitAccess: API.OperationMethod<
-  UpdateV1JitAccessRequest,
-  JitAccessResponse,
-  UpdateV1JitAccessError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1JitAccessRequest,
-  output: JitAccessResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1JitAccessConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Update project's temporary access configuration. */
-export const updateV1JitAccessConfig: API.OperationMethod<
-  UpdateV1JitAccessConfigRequest,
-  UpdateV1JitAccessConfigResponse,
-  UpdateV1JitAccessConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1JitAccessConfigRequest,
-  output: UpdateV1JitAccessConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1NetworkRestrictionError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Updates project's network restrictions */
-export const updateV1NetworkRestriction: API.OperationMethod<
-  UpdateV1NetworkRestrictionRequest,
-  NetworkRestrictionsResponse,
-  UpdateV1NetworkRestrictionError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1NetworkRestrictionRequest,
-  output: NetworkRestrictionsResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1PgsodiumConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Updates project's pgsodium config. Updating the root_key can cause all data encrypted with the older key to become inaccessible. */
-export const updateV1PgsodiumConfig: API.OperationMethod<
-  UpdateV1PgsodiumConfigRequest,
-  PgsodiumConfigResponse,
-  UpdateV1PgsodiumConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1PgsodiumConfigRequest,
-  output: PgsodiumConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1PoolerConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates project's supavisor config */
-export const updateV1PoolerConfig: API.OperationMethod<
-  UpdateV1PoolerConfigRequest,
-  UpdateSupavisorConfigResponse,
-  UpdateV1PoolerConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1PoolerConfigRequest,
-  output: UpdateSupavisorConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1PostgresConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates project's Postgres config */
-export const updateV1PostgresConfig: API.OperationMethod<
-  UpdateV1PostgresConfigRequest,
-  PostgresConfigResponse,
-  UpdateV1PostgresConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1PostgresConfigRequest,
-  output: PostgresConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1PostgrestServiceConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates project's postgrest config */
-export const updateV1PostgrestServiceConfig: API.OperationMethod<
-  UpdateV1PostgrestServiceConfigRequest,
-  V1PostgrestConfigResponse,
-  UpdateV1PostgrestServiceConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1PostgrestServiceConfigRequest,
-  output: V1PostgrestConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ProjectApiKeyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Updates an API key for the project */
-export const updateV1ProjectApiKey: API.OperationMethod<
-  UpdateV1ProjectApiKeyRequest,
-  ApiKeyResponse,
-  UpdateV1ProjectApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ProjectApiKeyRequest,
-  output: ApiKeyResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ProjectLegacyApiKeyError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Disable or re-enable JWT based legacy (anon, service_role) API keys. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
-export const updateV1ProjectLegacyApiKey: API.OperationMethod<
-  UpdateV1ProjectLegacyApiKeyRequest,
-  LegacyApiKeysResponse,
-  UpdateV1ProjectLegacyApiKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ProjectLegacyApiKeyRequest,
-  output: LegacyApiKeysResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1ProjectSigningKeyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SupabaseOpError;
-/** Update a signing key, mainly its status */
-export const updateV1ProjectSigningKey: API.OperationMethod<
-  UpdateV1ProjectSigningKeyRequest,
-  SigningKeyResponse,
-  UpdateV1ProjectSigningKeyError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1ProjectSigningKeyRequest,
-  output: SigningKeyResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1RealtimeConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates realtime configuration */
-export const updateV1RealtimeConfig: API.OperationMethod<
-  UpdateV1RealtimeConfigRequest,
-  UpdateV1RealtimeConfigResponse,
-  UpdateV1RealtimeConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1RealtimeConfigRequest,
-  output: UpdateV1RealtimeConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1SslEnforcementConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** [Beta] Update project's SSL enforcement configuration. */
-export const updateV1SslEnforcementConfig: API.OperationMethod<
-  UpdateV1SslEnforcementConfigRequest,
-  SslEnforcementResponse,
-  UpdateV1SslEnforcementConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1SslEnforcementConfigRequest,
-  output: SslEnforcementResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateV1StorageConfigError =
-  | BadRequest
-  | Forbidden
-  | SupabaseOpError;
-/** Updates project's storage config */
-export const updateV1StorageConfig: API.OperationMethod<
-  UpdateV1StorageConfigRequest,
-  UpdateV1StorageConfigResponse,
-  UpdateV1StorageConfigError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateV1StorageConfigRequest,
-  output: UpdateV1StorageConfigResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpsertV1AMigrationError = BadRequest | Forbidden | SupabaseOpError;
-/** Upsert a database migration without applying */
-export const upsertV1AMigration: API.OperationMethod<
-  UpsertV1AMigrationRequest,
-  UpsertV1AMigrationResponse,
-  UpsertV1AMigrationError,
-  SupabaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpsertV1AMigrationRequest,
-  output: UpsertV1AMigrationResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: SupabaseProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "V1VerifyDnsConfigRequest",
+}) as any as S.Schema<V1VerifyDnsConfigRequest>;
 
 export type V1AcceptInviteExternalJitAccessError = SupabaseOpError;
 /** Accepts invitation for JIT database access Accepts the invitation to JIT database access */
 export const v1AcceptInviteExternalJitAccess: API.OperationMethod<
   V1AcceptInviteExternalJitAccessRequest,
-  JitAccessResponse,
+  JitAccessResponseOutput,
   V1AcceptInviteExternalJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1AcceptInviteExternalJitAccessRequest,
-  output: JitAccessResponse,
+  output: JitAccessResponseOutput,
   errors: [],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14172,12 +12157,12 @@ export type V1ActivateCustomHostnameError =
 /** [Beta] Activates a custom hostname for a project. */
 export const v1ActivateCustomHostname: API.OperationMethod<
   V1ActivateCustomHostnameRequest,
-  UpdateCustomHostnameResponse,
+  UpdateCustomHostnameResponseOutput,
   V1ActivateCustomHostnameError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ActivateCustomHostnameRequest,
-  output: UpdateCustomHostnameResponse,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14190,12 +12175,12 @@ export type V1ActivateVanitySubdomainConfigError =
 /** [Beta] Activates a vanity subdomain for a project. */
 export const v1ActivateVanitySubdomainConfig: API.OperationMethod<
   V1ActivateVanitySubdomainConfigRequest,
-  ActivateVanitySubdomainResponse,
+  ActivateVanitySubdomainResponseOutput,
   V1ActivateVanitySubdomainConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ActivateVanitySubdomainConfigRequest,
-  output: ActivateVanitySubdomainResponse,
+  output: ActivateVanitySubdomainResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14231,6 +12216,87 @@ export const v1ApplyProjectAddon: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type V1AuthorizeJitAccessError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Authorize user-id to role mappings for JIT access Authorizes the request to assume a role in the project database */
+export const v1AuthorizeJitAccess: API.OperationMethod<
+  V1AuthorizeJitAccessRequest,
+  JitAuthorizeAccessResponseOutput,
+  V1AuthorizeJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1AuthorizeJitAccessRequest,
+  output: JitAuthorizeAccessResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1AuthorizeUserError = Forbidden | SupabaseOpError;
+/** [Beta] Authorize user through oauth */
+export const v1AuthorizeUser: API.OperationMethod<
+  V1AuthorizeUserRequest,
+  V1AuthorizeUserResponse,
+  V1AuthorizeUserError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1AuthorizeUserRequest,
+  output: V1AuthorizeUserResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1BulkCreateSecretsError = BadRequest | Forbidden | SupabaseOpError;
+/** Bulk create secrets Creates multiple secrets and adds them to the specified project. */
+export const v1BulkCreateSecrets: API.OperationMethod<
+  V1BulkCreateSecretsRequest,
+  V1BulkCreateSecretsResponse,
+  V1BulkCreateSecretsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1BulkCreateSecretsRequest,
+  output: V1BulkCreateSecretsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1BulkDeleteSecretsError = BadRequest | Forbidden | SupabaseOpError;
+/** Bulk delete secrets Deletes all secrets with the given names from the specified project */
+export const v1BulkDeleteSecrets: API.OperationMethod<
+  V1BulkDeleteSecretsRequest,
+  V1BulkDeleteSecretsResponse,
+  V1BulkDeleteSecretsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1BulkDeleteSecretsRequest,
+  output: V1BulkDeleteSecretsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1BulkUpdateFunctionsError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Bulk update functions Bulk update functions. It will create a new function or replace existing. The operation is idempotent. NOTE: You will need to manually bump the version. */
+export const v1BulkUpdateFunctions: API.OperationMethod<
+  V1BulkUpdateFunctionsRequest,
+  BulkUpdateFunctionResponseOutput,
+  V1BulkUpdateFunctionsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1BulkUpdateFunctionsRequest,
+  output: BulkUpdateFunctionResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type V1CancelAProjectRestorationError =
   | BadRequest
   | Forbidden
@@ -14244,6 +12310,24 @@ export const v1CancelAProjectRestoration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CancelAProjectRestorationRequest,
   output: V1CancelAProjectRestorationResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CheckVanitySubdomainAvailabilityError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Checks vanity subdomain availability */
+export const v1CheckVanitySubdomainAvailability: API.OperationMethod<
+  V1CheckVanitySubdomainAvailabilityRequest,
+  SubdomainAvailabilityResponseOutput,
+  V1CheckVanitySubdomainAvailabilityError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CheckVanitySubdomainAvailabilityRequest,
+  output: SubdomainAvailabilityResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14264,6 +12348,178 @@ export const v1ClaimProjectForOrganization: API.OperationMethod<
   input: V1ClaimProjectForOrganizationRequest,
   output: V1ClaimProjectForOrganizationResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateABranchError = BadRequest | NotFound | SupabaseOpError;
+/** Create a database branch Creates a database branch from the specified project. */
+export const v1CreateABranch: API.OperationMethod<
+  V1CreateABranchRequest,
+  BranchResponseOutput,
+  V1CreateABranchError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateABranchRequest,
+  output: BranchResponseOutput,
+  errors: [BadRequest, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateAnOrganizationError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Create an organization */
+export const v1CreateAnOrganization: API.OperationMethod<
+  V1CreateAnOrganizationRequest,
+  OrganizationResponseV1Output,
+  V1CreateAnOrganizationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateAnOrganizationRequest,
+  output: OrganizationResponseV1Output,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateAProjectError = BadRequest | Forbidden | SupabaseOpError;
+/** Create a project */
+export const v1CreateAProject: API.OperationMethod<
+  V1CreateAProjectRequest,
+  V1ProjectResponseOutput,
+  V1CreateAProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateAProjectRequest,
+  output: V1ProjectResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateASsoProviderError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Creates a new SSO provider */
+export const v1CreateASsoProvider: API.OperationMethod<
+  V1CreateASsoProviderRequest,
+  CreateProviderResponseOutput,
+  V1CreateASsoProviderError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateASsoProviderRequest,
+  output: CreateProviderResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateLegacySigningKeyError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Set up the project's existing JWT secret as an in_use JWT signing key. This endpoint will be removed in the future always check for HTTP 404 Not Found. */
+export const v1CreateLegacySigningKey: API.OperationMethod<
+  V1CreateLegacySigningKeyRequest,
+  SigningKeyResponseOutput,
+  V1CreateLegacySigningKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateLegacySigningKeyRequest,
+  output: SigningKeyResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateLoginRoleError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Create a login role for CLI with temporary password */
+export const v1CreateLoginRole: API.OperationMethod<
+  V1CreateLoginRoleRequest,
+  CreateRoleResponseOutput,
+  V1CreateLoginRoleError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateLoginRoleRequest,
+  output: CreateRoleResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateProjectApiKeyError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Creates a new API key for the project */
+export const v1CreateProjectApiKey: API.OperationMethod<
+  V1CreateProjectApiKeyRequest,
+  ApiKeyResponseOutput,
+  V1CreateProjectApiKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateProjectApiKeyRequest,
+  output: ApiKeyResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateProjectClaimTokenError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Creates project claim token */
+export const v1CreateProjectClaimToken: API.OperationMethod<
+  V1CreateProjectClaimTokenRequest,
+  CreateProjectClaimTokenResponseOutput,
+  V1CreateProjectClaimTokenError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateProjectClaimTokenRequest,
+  output: CreateProjectClaimTokenResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateProjectSigningKeyError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Create a new signing key for the project in standby status */
+export const v1CreateProjectSigningKey: API.OperationMethod<
+  V1CreateProjectSigningKeyRequest,
+  SigningKeyResponseOutput,
+  V1CreateProjectSigningKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateProjectSigningKeyRequest,
+  output: SigningKeyResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1CreateProjectTpaIntegrationError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Creates a new third-party auth integration */
+export const v1CreateProjectTpaIntegration: API.OperationMethod<
+  V1CreateProjectTpaIntegrationRequest,
+  ThirdPartyAuthOutput,
+  V1CreateProjectTpaIntegrationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1CreateProjectTpaIntegrationRequest,
+  output: ThirdPartyAuthOutput,
+  errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14304,16 +12560,226 @@ export const v1DeactivateVanitySubdomainConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type V1DeleteABranchError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Delete a database branch Deletes the specified database branch. By default, deletes immediately. Use force=false to schedule deletion with 1-hour grace period (only when soft deletion is enabled). */
+export const v1DeleteABranch: API.OperationMethod<
+  V1DeleteABranchRequest,
+  BranchDeleteResponseOutput,
+  V1DeleteABranchError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteABranchRequest,
+  output: BranchDeleteResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteAFunctionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Delete a function Deletes a function with the specified slug from the specified project. */
+export const v1DeleteAFunction: API.OperationMethod<
+  V1DeleteAFunctionRequest,
+  V1DeleteAFunctionResponse,
+  V1DeleteAFunctionError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteAFunctionRequest,
+  output: V1DeleteAFunctionResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteAProjectError = BadRequest | Forbidden | SupabaseOpError;
+/** Deletes the given project */
+export const v1DeleteAProject: API.OperationMethod<
+  V1DeleteAProjectRequest,
+  V1ProjectRefResponseOutput,
+  V1DeleteAProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteAProjectRequest,
+  output: V1ProjectRefResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteASsoProviderError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Removes a SSO provider by its UUID */
+export const v1DeleteASsoProvider: API.OperationMethod<
+  V1DeleteASsoProviderRequest,
+  DeleteProviderResponseOutput,
+  V1DeleteASsoProviderError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteASsoProviderRequest,
+  output: DeleteProviderResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteHostnameConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Deletes a project's custom hostname configuration */
+export const v1DeleteHostnameConfig: API.OperationMethod<
+  V1DeleteHostnameConfigRequest,
+  V1DeleteHostnameConfigResponse,
+  V1DeleteHostnameConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteHostnameConfigRequest,
+  output: V1DeleteHostnameConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteInviteExternalJitAccessError = Forbidden | SupabaseOpError;
+/** Deletes the invite for an external user to a database for JIT access Revokes and deletes the invitation */
+export const v1DeleteInviteExternalJitAccess: API.OperationMethod<
+  V1DeleteInviteExternalJitAccessRequest,
+  V1DeleteInviteExternalJitAccessResponse,
+  V1DeleteInviteExternalJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteInviteExternalJitAccessRequest,
+  output: V1DeleteInviteExternalJitAccessResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteJitAccessError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Delete JIT access by user-id Remove JIT mappings of a user, revoking all JIT database access */
+export const v1DeleteJitAccess: API.OperationMethod<
+  V1DeleteJitAccessRequest,
+  V1DeleteJitAccessResponse,
+  V1DeleteJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteJitAccessRequest,
+  output: V1DeleteJitAccessResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteLoginRolesError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Delete existing login roles used by CLI */
+export const v1DeleteLoginRoles: API.OperationMethod<
+  V1DeleteLoginRolesRequest,
+  DeleteRolesResponseOutput,
+  V1DeleteLoginRolesError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteLoginRolesRequest,
+  output: DeleteRolesResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteNetworkBansError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Remove network bans. */
+export const v1DeleteNetworkBans: API.OperationMethod<
+  V1DeleteNetworkBansRequest,
+  V1DeleteNetworkBansResponse,
+  V1DeleteNetworkBansError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteNetworkBansRequest,
+  output: V1DeleteNetworkBansResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteProjectApiKeyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Deletes an API key for the project */
+export const v1DeleteProjectApiKey: API.OperationMethod<
+  V1DeleteProjectApiKeyRequest,
+  ApiKeyResponseOutput,
+  V1DeleteProjectApiKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteProjectApiKeyRequest,
+  output: ApiKeyResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteProjectClaimTokenError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Revokes project claim token */
+export const v1DeleteProjectClaimToken: API.OperationMethod<
+  V1DeleteProjectClaimTokenRequest,
+  V1DeleteProjectClaimTokenResponse,
+  V1DeleteProjectClaimTokenError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteProjectClaimTokenRequest,
+  output: V1DeleteProjectClaimTokenResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DeleteProjectTpaIntegrationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Removes a third-party auth integration */
+export const v1DeleteProjectTpaIntegration: API.OperationMethod<
+  V1DeleteProjectTpaIntegrationRequest,
+  ThirdPartyAuthOutput,
+  V1DeleteProjectTpaIntegrationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DeleteProjectTpaIntegrationRequest,
+  output: ThirdPartyAuthOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type V1DeployAFunctionError = BadRequest | Forbidden | SupabaseOpError;
 /** Deploy a function A new endpoint to deploy functions. It will create if function does not exist. */
 export const v1DeployAFunction: API.OperationMethod<
   V1DeployAFunctionRequest,
-  DeployFunctionResponse,
+  DeployFunctionResponseOutput,
   V1DeployAFunctionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeployAFunctionRequest,
-  output: DeployFunctionResponse,
+  output: DeployFunctionResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14338,6 +12804,61 @@ export const v1DiffABranch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type V1DisablePreviewBranchingError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Disables preview branching Disables preview branching for the specified project */
+export const v1DisablePreviewBranching: API.OperationMethod<
+  V1DisablePreviewBranchingRequest,
+  V1DisablePreviewBranchingResponse,
+  V1DisablePreviewBranchingError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DisablePreviewBranchingRequest,
+  output: V1DisablePreviewBranchingResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1DisableReadonlyModeTemporarilyError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Disables project's readonly mode for the next 15 minutes */
+export const v1DisableReadonlyModeTemporarily: API.OperationMethod<
+  V1DisableReadonlyModeTemporarilyRequest,
+  V1DisableReadonlyModeTemporarilyResponse,
+  V1DisableReadonlyModeTemporarilyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1DisableReadonlyModeTemporarilyRequest,
+  output: V1DisableReadonlyModeTemporarilyResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1EnableDatabaseWebhookError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Enables Database Webhooks on the project */
+export const v1EnableDatabaseWebhook: API.OperationMethod<
+  V1EnableDatabaseWebhookRequest,
+  V1EnableDatabaseWebhookResponse,
+  V1EnableDatabaseWebhookError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1EnableDatabaseWebhookRequest,
+  output: V1EnableDatabaseWebhookResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type V1ExchangeOauthTokenError =
   | BadRequest
   | Forbidden
@@ -14345,12 +12866,578 @@ export type V1ExchangeOauthTokenError =
 /** [Beta] Exchange auth code for user's access and refresh token Supports `authorization_code`, `refresh_token`, and `urn:ietf:params:oauth:grant-type:jwt-bearer` grant types. The `jwt-bearer` grant type (IDJAG — identity-directed JWT assertion) is in beta and available on Team and Enterprise plans only. */
 export const v1ExchangeOauthToken: API.OperationMethod<
   V1ExchangeOauthTokenRequest,
-  OAuthTokenResponse,
+  OAuthTokenResponseOutput,
   V1ExchangeOauthTokenError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ExchangeOauthTokenRequest,
-  output: OAuthTokenResponse,
+  output: OAuthTokenResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GenerateTypescriptTypesError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Generate TypeScript types Returns the TypeScript types of your schema for use with supabase-js. */
+export const v1GenerateTypescriptTypes: API.OperationMethod<
+  V1GenerateTypescriptTypesRequest,
+  TypescriptResponseOutput,
+  V1GenerateTypescriptTypesError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GenerateTypescriptTypesRequest,
+  output: TypescriptResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetABranchError = BadRequest | NotFound | SupabaseOpError;
+/** Get a database branch Fetches the specified database branch by its name. */
+export const v1GetABranch: API.OperationMethod<
+  V1GetABranchRequest,
+  BranchResponseOutput,
+  V1GetABranchError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetABranchRequest,
+  output: BranchResponseOutput,
+  errors: [BadRequest, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetABranchConfigError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Get database branch config Fetches configurations of the specified database branch */
+export const v1GetABranchConfig: API.OperationMethod<
+  V1GetABranchConfigRequest,
+  BranchDetailResponseOutput,
+  V1GetABranchConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetABranchConfigRequest,
+  output: BranchDetailResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetActionRunError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Get the status of an action run Returns the current status of the specified action run. */
+export const v1GetActionRun: API.OperationMethod<
+  V1GetActionRunRequest,
+  ActionRunResponseOutput,
+  V1GetActionRunError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetActionRunRequest,
+  output: ActionRunResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetActionRunLogsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Get the logs of an action run Returns the logs from the specified action run. */
+export const v1GetActionRunLogs: API.OperationMethod<
+  V1GetActionRunLogsRequest,
+  V1GetActionRunLogsResponse,
+  V1GetActionRunLogsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetActionRunLogsRequest,
+  output: V1GetActionRunLogsResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAFunctionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Retrieve a function Retrieves a function with the specified slug and project. */
+export const v1GetAFunction: API.OperationMethod<
+  V1GetAFunctionRequest,
+  FunctionSlugResponseOutput,
+  V1GetAFunctionError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAFunctionRequest,
+  output: FunctionSlugResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAFunctionBodyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Retrieve a function body Retrieves a function body for the specified slug and project. */
+export const v1GetAFunctionBody: API.OperationMethod<
+  V1GetAFunctionBodyRequest,
+  V1GetAFunctionBodyResponse,
+  V1GetAFunctionBodyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAFunctionBodyRequest,
+  output: V1GetAFunctionBodyResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAllProjectsForOrganizationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Gets all projects for the given organization Returns a paginated list of projects for the specified organization. This endpoint uses offset-based pagination. Use the `offset` parameter to skip a number of projects and the `limit` parameter to control the number of projects returned per page. */
+export const v1GetAllProjectsForOrganization: API.OperationMethod<
+  V1GetAllProjectsForOrganizationRequest,
+  OrganizationProjectsResponseOutput,
+  V1GetAllProjectsForOrganizationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAllProjectsForOrganizationRequest,
+  output: OrganizationProjectsResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAMigrationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Fetch an existing entry from migration history */
+export const v1GetAMigration: API.OperationMethod<
+  V1GetAMigrationRequest,
+  V1GetMigrationResponseOutput,
+  V1GetAMigrationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAMigrationRequest,
+  output: V1GetMigrationResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAnOrganizationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Gets information about the organization */
+export const v1GetAnOrganization: API.OperationMethod<
+  V1GetAnOrganizationRequest,
+  V1OrganizationSlugResponseOutput,
+  V1GetAnOrganizationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAnOrganizationRequest,
+  output: V1OrganizationSlugResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetASnippetError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Gets a specific SQL snippet */
+export const v1GetASnippet: API.OperationMethod<
+  V1GetASnippetRequest,
+  SnippetResponseOutput,
+  V1GetASnippetError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetASnippetRequest,
+  output: SnippetResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetASsoProviderError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Gets a SSO provider by its UUID */
+export const v1GetASsoProvider: API.OperationMethod<
+  V1GetASsoProviderRequest,
+  GetProviderResponseOutput,
+  V1GetASsoProviderError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetASsoProviderRequest,
+  output: GetProviderResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAuthServiceConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets project's auth config */
+export const v1GetAuthServiceConfig: API.OperationMethod<
+  V1GetAuthServiceConfigRequest,
+  AuthConfigResponseOutput,
+  V1GetAuthServiceConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAuthServiceConfigRequest,
+  output: AuthConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetAvailableRegionsError = Forbidden | SupabaseOpError;
+/** [Beta] Gets the list of available regions that can be used for a new project */
+export const v1GetAvailableRegions: API.OperationMethod<
+  V1GetAvailableRegionsRequest,
+  RegionsInfoOutput,
+  V1GetAvailableRegionsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetAvailableRegionsRequest,
+  output: RegionsInfoOutput,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetBackupScheduleError = Forbidden | NotFound | SupabaseOpError;
+/** Gets the backup schedule for a project */
+export const v1GetBackupSchedule: API.OperationMethod<
+  V1GetBackupScheduleRequest,
+  V1BackupScheduleResponseOutput,
+  V1GetBackupScheduleError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetBackupScheduleRequest,
+  output: V1BackupScheduleResponseOutput,
+  errors: [Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetDatabaseDiskError = BadRequest | Forbidden | SupabaseOpError;
+/** Get database disk attributes */
+export const v1GetDatabaseDisk: API.OperationMethod<
+  V1GetDatabaseDiskRequest,
+  DiskResponseOutput,
+  V1GetDatabaseDiskError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetDatabaseDiskRequest,
+  output: DiskResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetDatabaseOpenapiError = Forbidden | SupabaseOpError;
+/** Get PostgREST OpenAPI spec Returns the PostgREST OpenAPI specification for the project. This is the replacement for querying `/rest/v1/` directly with the anon key. */
+export const v1GetDatabaseOpenapi: API.OperationMethod<
+  V1GetDatabaseOpenapiRequest,
+  V1GetDatabaseOpenapiResponse,
+  V1GetDatabaseOpenapiError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetDatabaseOpenapiRequest,
+  output: V1GetDatabaseOpenapiResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetDiskUtilizationError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Get disk utilization */
+export const v1GetDiskUtilization: API.OperationMethod<
+  V1GetDiskUtilizationRequest,
+  DiskUtilMetricsResponseOutput,
+  V1GetDiskUtilizationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetDiskUtilizationRequest,
+  output: DiskUtilMetricsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetHostnameConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Gets project's custom hostname config */
+export const v1GetHostnameConfig: API.OperationMethod<
+  V1GetHostnameConfigRequest,
+  UpdateCustomHostnameResponseOutput,
+  V1GetHostnameConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetHostnameConfigRequest,
+  output: UpdateCustomHostnameResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetJitAccessError = BadRequest | Forbidden | SupabaseOpError;
+/** Get user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
+export const v1GetJitAccess: API.OperationMethod<
+  V1GetJitAccessRequest,
+  JitAccessResponseOutput,
+  V1GetJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetJitAccessRequest,
+  output: JitAccessResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetJitAccessConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Get project's temporary access configuration. */
+export const v1GetJitAccessConfig: API.OperationMethod<
+  V1GetJitAccessConfigRequest,
+  V1GetJitAccessConfigResponse,
+  V1GetJitAccessConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetJitAccessConfigRequest,
+  output: V1GetJitAccessConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetLegacySigningKeyError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Get the signing key information for the JWT secret imported as signing key for this project. This endpoint will be removed in the future, check for HTTP 404 Not Found. */
+export const v1GetLegacySigningKey: API.OperationMethod<
+  V1GetLegacySigningKeyRequest,
+  SigningKeyResponseOutput,
+  V1GetLegacySigningKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetLegacySigningKeyRequest,
+  output: SigningKeyResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetNetworkRestrictionsError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Gets project's network restrictions */
+export const v1GetNetworkRestrictions: API.OperationMethod<
+  V1GetNetworkRestrictionsRequest,
+  NetworkRestrictionsResponseOutput,
+  V1GetNetworkRestrictionsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetNetworkRestrictionsRequest,
+  output: NetworkRestrictionsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetOrganizationEntitlementsError = Forbidden | SupabaseOpError;
+/** Get entitlements for an organization Returns the entitlements available to the organization based on their plan and any overrides. */
+export const v1GetOrganizationEntitlements: API.OperationMethod<
+  V1GetOrganizationEntitlementsRequest,
+  V1ListEntitlementsResponseOutput,
+  V1GetOrganizationEntitlementsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetOrganizationEntitlementsRequest,
+  output: V1ListEntitlementsResponseOutput,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetOrganizationProjectClaimError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Gets project details for the specified organization and claim token */
+export const v1GetOrganizationProjectClaim: API.OperationMethod<
+  V1GetOrganizationProjectClaimRequest,
+  OrganizationProjectClaimResponseOutput,
+  V1GetOrganizationProjectClaimError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetOrganizationProjectClaimRequest,
+  output: OrganizationProjectClaimResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPgsodiumConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Gets project's pgsodium config */
+export const v1GetPgsodiumConfig: API.OperationMethod<
+  V1GetPgsodiumConfigRequest,
+  PgsodiumConfigResponseOutput,
+  V1GetPgsodiumConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPgsodiumConfigRequest,
+  output: PgsodiumConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPoolerConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets project's supavisor config */
+export const v1GetPoolerConfig: API.OperationMethod<
+  V1GetPoolerConfigRequest,
+  V1GetPoolerConfigResponse,
+  V1GetPoolerConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPoolerConfigRequest,
+  output: V1GetPoolerConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPostgresConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets project's Postgres config */
+export const v1GetPostgresConfig: API.OperationMethod<
+  V1GetPostgresConfigRequest,
+  PostgresConfigResponseOutput,
+  V1GetPostgresConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPostgresConfigRequest,
+  output: PostgresConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPostgrestServiceConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets project's postgrest config */
+export const v1GetPostgrestServiceConfig: API.OperationMethod<
+  V1GetPostgrestServiceConfigRequest,
+  PostgrestConfigWithJWTSecretResponseOutput,
+  V1GetPostgrestServiceConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPostgrestServiceConfigRequest,
+  output: PostgrestConfigWithJWTSecretResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPostgresUpgradeEligibilityError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Returns the project's eligibility for upgrades */
+export const v1GetPostgresUpgradeEligibility: API.OperationMethod<
+  V1GetPostgresUpgradeEligibilityRequest,
+  ProjectUpgradeEligibilityResponseOutput,
+  V1GetPostgresUpgradeEligibilityError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPostgresUpgradeEligibilityRequest,
+  output: ProjectUpgradeEligibilityResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetPostgresUpgradeStatusError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Gets the latest status of the project's upgrade */
+export const v1GetPostgresUpgradeStatus: API.OperationMethod<
+  V1GetPostgresUpgradeStatusRequest,
+  DatabaseUpgradeStatusResponseOutput,
+  V1GetPostgresUpgradeStatusError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetPostgresUpgradeStatusRequest,
+  output: DatabaseUpgradeStatusResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProfileError = SupabaseOpError;
+/** Gets the user's profile */
+export const v1GetProfile: API.OperationMethod<
+  V1GetProfileRequest,
+  V1ProfileResponseOutput,
+  V1GetProfileError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProfileRequest,
+  output: V1ProfileResponseOutput,
+  errors: [],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets a specific project that belongs to the authenticated user */
+export const v1GetProject: API.OperationMethod<
+  V1GetProjectRequest,
+  V1ProjectWithDatabaseResponseOutput,
+  V1GetProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectRequest,
+  output: V1ProjectWithDatabaseResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14364,13 +13451,133 @@ export type V1GetProjectApiKeyError =
 /** Get API key */
 export const v1GetProjectApiKey: API.OperationMethod<
   V1GetProjectApiKeyRequest,
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
   V1GetProjectApiKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectApiKeyRequest,
-  output: ApiKeyResponse,
+  output: ApiKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectApiKeysError = BadRequest | Forbidden | SupabaseOpError;
+/** Get project api keys */
+export const v1GetProjectApiKeys: API.OperationMethod<
+  V1GetProjectApiKeysRequest,
+  V1GetProjectApiKeysResponse,
+  V1GetProjectApiKeysError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectApiKeysRequest,
+  output: V1GetProjectApiKeysResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectClaimTokenError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets project claim token */
+export const v1GetProjectClaimToken: API.OperationMethod<
+  V1GetProjectClaimTokenRequest,
+  ProjectClaimTokenResponseOutput,
+  V1GetProjectClaimTokenError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectClaimTokenRequest,
+  output: ProjectClaimTokenResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectDiskAutoscaleConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets project disk autoscale config */
+export const v1GetProjectDiskAutoscaleConfig: API.OperationMethod<
+  V1GetProjectDiskAutoscaleConfigRequest,
+  DiskAutoscaleConfigOutput,
+  V1GetProjectDiskAutoscaleConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectDiskAutoscaleConfigRequest,
+  output: DiskAutoscaleConfigOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectFunctionCombinedStatsError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets a project's function combined statistics */
+export const v1GetProjectFunctionCombinedStats: API.OperationMethod<
+  V1GetProjectFunctionCombinedStatsRequest,
+  AnalyticsResponseOutput,
+  V1GetProjectFunctionCombinedStatsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectFunctionCombinedStatsRequest,
+  output: AnalyticsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectLegacyApiKeysError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Check whether JWT based legacy (anon, service_role) API keys are enabled. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
+export const v1GetProjectLegacyApiKeys: API.OperationMethod<
+  V1GetProjectLegacyApiKeysRequest,
+  LegacyApiKeysResponseOutput,
+  V1GetProjectLegacyApiKeysError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectLegacyApiKeysRequest,
+  output: LegacyApiKeysResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectLogsError = Forbidden | SupabaseOpError;
+/** Gets all project's logs in a single log stream Executes an SQL or LQL query on the project's unified logs stream. Either the `iso_timestamp_start` and `iso_timestamp_end` parameters must be provided. If both are not provided, only the last 1 minute of logs will be queried. The timestamp range must be no more than 24 hours and is rounded to the nearest minute. If the range is more than 24 hours, a validation error will be thrown. Filter by the `source` column to specify specific log sources, such as edge_logs, postgres_logs, etc. Note: SQL must be written in **ClickHouse SQL dialect**. */
+export const v1GetProjectLogs: API.OperationMethod<
+  V1GetProjectLogsRequest,
+  AnalyticsResponseOutput,
+  V1GetProjectLogsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectLogsRequest,
+  output: AnalyticsResponseOutput,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectPgbouncerConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Get project's pgbouncer config */
+export const v1GetProjectPgbouncerConfig: API.OperationMethod<
+  V1GetProjectPgbouncerConfigRequest,
+  V1PgbouncerConfigResponseOutput,
+  V1GetProjectPgbouncerConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectPgbouncerConfigRequest,
+  output: V1PgbouncerConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14383,13 +13590,68 @@ export type V1GetProjectSigningKeyError =
 /** Get information about a signing key */
 export const v1GetProjectSigningKey: API.OperationMethod<
   V1GetProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1GetProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectSigningKeysError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** List all signing keys for the project */
+export const v1GetProjectSigningKeys: API.OperationMethod<
+  V1GetProjectSigningKeysRequest,
+  SigningKeysResponseOutput,
+  V1GetProjectSigningKeysError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectSigningKeysRequest,
+  output: SigningKeysResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectTpaIntegrationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Get a third-party integration */
+export const v1GetProjectTpaIntegration: API.OperationMethod<
+  V1GetProjectTpaIntegrationRequest,
+  ThirdPartyAuthOutput,
+  V1GetProjectTpaIntegrationError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectTpaIntegrationRequest,
+  output: ThirdPartyAuthOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetProjectUsageApiCountError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Gets project's usage api counts */
+export const v1GetProjectUsageApiCount: API.OperationMethod<
+  V1GetProjectUsageApiCountRequest,
+  V1GetUsageApiCountResponseOutput,
+  V1GetProjectUsageApiCountError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetProjectUsageApiCountRequest,
+  output: V1GetUsageApiCountResponseOutput,
+  errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14401,12 +13663,45 @@ export type V1GetProjectUsageRequestCountError =
 /** Gets project's usage api requests count */
 export const v1GetProjectUsageRequestCount: API.OperationMethod<
   V1GetProjectUsageRequestCountRequest,
-  V1GetUsageApiRequestsCountResponse,
+  V1GetUsageApiRequestsCountResponseOutput,
   V1GetProjectUsageRequestCountError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectUsageRequestCountRequest,
-  output: V1GetUsageApiRequestsCountResponse,
+  output: V1GetUsageApiRequestsCountResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetReadonlyModeStatusError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Returns project's readonly mode status */
+export const v1GetReadonlyModeStatus: API.OperationMethod<
+  V1GetReadonlyModeStatusRequest,
+  ReadOnlyStatusResponseOutput,
+  V1GetReadonlyModeStatusError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetReadonlyModeStatusRequest,
+  output: ReadOnlyStatusResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetRealtimeConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets realtime configuration */
+export const v1GetRealtimeConfig: API.OperationMethod<
+  V1GetRealtimeConfigRequest,
+  RealtimeConfigResponseOutput,
+  V1GetRealtimeConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetRealtimeConfigRequest,
+  output: RealtimeConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14427,17 +13722,273 @@ export const v1GetRestorePoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type V1GetServicesHealthError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets project's service health status */
+export const v1GetServicesHealth: API.OperationMethod<
+  V1GetServicesHealthRequest,
+  V1GetServicesHealthResponse,
+  V1GetServicesHealthError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetServicesHealthRequest,
+  output: V1GetServicesHealthResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetSslEnforcementConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Get project's SSL enforcement configuration. */
+export const v1GetSslEnforcementConfig: API.OperationMethod<
+  V1GetSslEnforcementConfigRequest,
+  SslEnforcementResponseOutput,
+  V1GetSslEnforcementConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetSslEnforcementConfigRequest,
+  output: SslEnforcementResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetStorageConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** Gets project's storage config */
+export const v1GetStorageConfig: API.OperationMethod<
+  V1GetStorageConfigRequest,
+  StorageConfigResponseOutput,
+  V1GetStorageConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetStorageConfigRequest,
+  output: StorageConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1GetVanitySubdomainConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Gets current vanity subdomain config */
+export const v1GetVanitySubdomainConfig: API.OperationMethod<
+  V1GetVanitySubdomainConfigRequest,
+  VanitySubdomainConfigResponseOutput,
+  V1GetVanitySubdomainConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1GetVanitySubdomainConfigRequest,
+  output: VanitySubdomainConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type V1InviteExternalJitAccessError = Forbidden | SupabaseOpError;
 /** Invites an external user to a database for JIT access Invites the external user and sets initial roles that can be assumed and for how long */
 export const v1InviteExternalJitAccess: API.OperationMethod<
   V1InviteExternalJitAccessRequest,
-  InviteExternalUserJitResponse,
+  InviteExternalUserJitResponseOutput,
   V1InviteExternalJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1InviteExternalJitAccessRequest,
-  output: InviteExternalUserJitResponse,
+  output: InviteExternalUserJitResponseOutput,
   errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListActionRunsError = BadRequest | Forbidden | SupabaseOpError;
+/** List all action runs Returns a paginated list of action runs of the specified project. */
+export const v1ListActionRuns: API.OperationMethod<
+  V1ListActionRunsRequest,
+  V1ListActionRunsResponse,
+  V1ListActionRunsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListActionRunsRequest,
+  output: V1ListActionRunsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllBackupsError = BadRequest | Forbidden | SupabaseOpError;
+/** Lists all backups */
+export const v1ListAllBackups: API.OperationMethod<
+  V1ListAllBackupsRequest,
+  V1BackupsResponseOutput,
+  V1ListAllBackupsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllBackupsRequest,
+  output: V1BackupsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllBranchesError = BadRequest | NotFound | SupabaseOpError;
+/** List all database branches Returns all database branches of the specified project. */
+export const v1ListAllBranches: API.OperationMethod<
+  V1ListAllBranchesRequest,
+  V1ListAllBranchesResponse,
+  V1ListAllBranchesError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllBranchesRequest,
+  output: V1ListAllBranchesResponse,
+  errors: [BadRequest, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllBucketsError = BadRequest | Forbidden | SupabaseOpError;
+/** Lists all buckets */
+export const v1ListAllBuckets: API.OperationMethod<
+  V1ListAllBucketsRequest,
+  V1ListAllBucketsResponse,
+  V1ListAllBucketsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllBucketsRequest,
+  output: V1ListAllBucketsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllFunctionsError = BadRequest | Forbidden | SupabaseOpError;
+/** List all functions Returns all functions you've previously added to the specified project. */
+export const v1ListAllFunctions: API.OperationMethod<
+  V1ListAllFunctionsRequest,
+  V1ListAllFunctionsResponse,
+  V1ListAllFunctionsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllFunctionsRequest,
+  output: V1ListAllFunctionsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllNetworkBansError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Gets project's network bans */
+export const v1ListAllNetworkBans: API.OperationMethod<
+  V1ListAllNetworkBansRequest,
+  NetworkBanResponseOutput,
+  V1ListAllNetworkBansError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllNetworkBansRequest,
+  output: NetworkBanResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllNetworkBansEnrichedError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Gets project's network bans with additional information about which databases they affect */
+export const v1ListAllNetworkBansEnriched: API.OperationMethod<
+  V1ListAllNetworkBansEnrichedRequest,
+  NetworkBanResponseEnrichedOutput,
+  V1ListAllNetworkBansEnrichedError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllNetworkBansEnrichedRequest,
+  output: NetworkBanResponseEnrichedOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllOrganizationsError = Forbidden | SupabaseOpError;
+/** List all organizations Returns a list of organizations that you currently belong to. */
+export const v1ListAllOrganizations: API.OperationMethod<
+  V1ListAllOrganizationsRequest,
+  V1ListAllOrganizationsResponse,
+  V1ListAllOrganizationsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllOrganizationsRequest,
+  output: V1ListAllOrganizationsResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllProjectsError = Forbidden | SupabaseOpError;
+/** List all projects Returns a list of all projects you've previously created. */
+export const v1ListAllProjects: API.OperationMethod<
+  V1ListAllProjectsRequest,
+  V1ListAllProjectsResponse,
+  V1ListAllProjectsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllProjectsRequest,
+  output: V1ListAllProjectsResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllSecretsError = BadRequest | Forbidden | SupabaseOpError;
+/** List all secrets Returns all secrets you've previously added to the specified project. */
+export const v1ListAllSecrets: API.OperationMethod<
+  V1ListAllSecretsRequest,
+  V1ListAllSecretsResponse,
+  V1ListAllSecretsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllSecretsRequest,
+  output: V1ListAllSecretsResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllSnippetsError = Forbidden | SupabaseOpError;
+/** Lists SQL snippets for the logged in user */
+export const v1ListAllSnippets: API.OperationMethod<
+  V1ListAllSnippetsRequest,
+  SnippetListOutput,
+  V1ListAllSnippetsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllSnippetsRequest,
+  output: SnippetListOutput,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListAllSsoProviderError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Lists all SSO providers */
+export const v1ListAllSsoProvider: API.OperationMethod<
+  V1ListAllSsoProviderRequest,
+  ListProvidersResponseOutput,
+  V1ListAllSsoProviderError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListAllSsoProviderRequest,
+  output: ListProvidersResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14449,12 +14000,97 @@ export type V1ListAvailableRestoreVersionsError =
 /** Lists available restore versions for the given project */
 export const v1ListAvailableRestoreVersions: API.OperationMethod<
   V1ListAvailableRestoreVersionsRequest,
-  GetProjectAvailableRestoreVersionsResponse,
+  GetProjectAvailableRestoreVersionsResponseOutput,
   V1ListAvailableRestoreVersionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAvailableRestoreVersionsRequest,
-  output: GetProjectAvailableRestoreVersionsResponse,
+  output: GetProjectAvailableRestoreVersionsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListJitAccessError = BadRequest | Forbidden | SupabaseOpError;
+/** List all user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
+export const v1ListJitAccess: API.OperationMethod<
+  V1ListJitAccessRequest,
+  JitListAccessResponseOutput,
+  V1ListJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListJitAccessRequest,
+  output: JitListAccessResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListMigrationHistoryError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** List applied migration versions */
+export const v1ListMigrationHistory: API.OperationMethod<
+  V1ListMigrationHistoryRequest,
+  V1ListMigrationHistoryResponse,
+  V1ListMigrationHistoryError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListMigrationHistoryRequest,
+  output: V1ListMigrationHistoryResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListOrganizationMembersError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** List members of an organization */
+export const v1ListOrganizationMembers: API.OperationMethod<
+  V1ListOrganizationMembersRequest,
+  V1ListOrganizationMembersResponse,
+  V1ListOrganizationMembersError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListOrganizationMembersRequest,
+  output: V1ListOrganizationMembersResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListProjectAddonsError = BadRequest | Forbidden | SupabaseOpError;
+/** List billing addons and compute instance selections Returns the billing addons that are currently applied, including the active compute instance size, and lists every addon option that can be provisioned with pricing metadata. */
+export const v1ListProjectAddons: API.OperationMethod<
+  V1ListProjectAddonsRequest,
+  ListProjectAddonsResponseOutput,
+  V1ListProjectAddonsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListProjectAddonsRequest,
+  output: ListProjectAddonsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1ListProjectTpaIntegrationsError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Lists all third-party auth integrations */
+export const v1ListProjectTpaIntegrations: API.OperationMethod<
+  V1ListProjectTpaIntegrationsRequest,
+  V1ListProjectTpaIntegrationsResponse,
+  V1ListProjectTpaIntegrationsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1ListProjectTpaIntegrationsRequest,
+  output: V1ListProjectTpaIntegrationsResponse,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14468,12 +14104,12 @@ export type V1MergeABranchError =
 /** Merges a database branch Merges the specified database branch */
 export const v1MergeABranch: API.OperationMethod<
   V1MergeABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1MergeABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1MergeABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14493,6 +14129,21 @@ export const v1ModifyDatabaseDisk: API.OperationMethod<
   input: V1ModifyDatabaseDiskRequest,
   output: V1ModifyDatabaseDiskResponse,
   errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1OauthAuthorizeProjectClaimError = Forbidden | SupabaseOpError;
+/** Authorize user through oauth and claim a project Initiates the OAuth authorization flow for the specified provider. After successful authentication, the user can claim ownership of the specified project. */
+export const v1OauthAuthorizeProjectClaim: API.OperationMethod<
+  V1OauthAuthorizeProjectClaimRequest,
+  V1OauthAuthorizeProjectClaimResponse,
+  V1OauthAuthorizeProjectClaimError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1OauthAuthorizeProjectClaimRequest,
+  output: V1OauthAuthorizeProjectClaimResponse,
+  errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14523,12 +14174,12 @@ export type V1PatchNetworkRestrictionsError =
 /** [Alpha] Updates project's network restrictions by adding or removing CIDRs */
 export const v1PatchNetworkRestrictions: API.OperationMethod<
   V1PatchNetworkRestrictionsRequest,
-  NetworkRestrictionsV2Response,
+  NetworkRestrictionsV2ResponseOutput,
   V1PatchNetworkRestrictionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1PatchNetworkRestrictionsRequest,
-  output: NetworkRestrictionsV2Response,
+  output: NetworkRestrictionsV2ResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14557,12 +14208,12 @@ export type V1PushABranchError =
 /** Pushes a database branch Pushes the specified database branch */
 export const v1PushABranch: API.OperationMethod<
   V1PushABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1PushABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1PushABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14628,12 +14279,12 @@ export type V1RemoveProjectSigningKeyError =
 /** Remove a signing key from a project. Only possible if the key has been in revoked status for a while. */
 export const v1RemoveProjectSigningKey: API.OperationMethod<
   V1RemoveProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1RemoveProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1RemoveProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14647,13 +14298,92 @@ export type V1ResetABranchError =
 /** Resets a database branch Resets the specified database branch */
 export const v1ResetABranch: API.OperationMethod<
   V1ResetABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1ResetABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ResetABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1RestartAProjectError = Forbidden | SupabaseOpError;
+/** Restarts the given project */
+export const v1RestartAProject: API.OperationMethod<
+  V1RestartAProjectRequest,
+  V1RestartAProjectResponse,
+  V1RestartAProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1RestartAProjectRequest,
+  output: V1RestartAProjectResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1RestoreABranchError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Restore a scheduled branch deletion Cancels scheduled deletion and restores the branch to active state */
+export const v1RestoreABranch: API.OperationMethod<
+  V1RestoreABranchRequest,
+  BranchRestoreResponseOutput,
+  V1RestoreABranchError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1RestoreABranchRequest,
+  output: BranchRestoreResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1RestoreAProjectError = BadRequest | Forbidden | SupabaseOpError;
+/** Restores the given project */
+export const v1RestoreAProject: API.OperationMethod<
+  V1RestoreAProjectRequest,
+  V1RestoreAProjectResponse,
+  V1RestoreAProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1RestoreAProjectRequest,
+  output: V1RestoreAProjectResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1RestorePhysicalBackupError = Forbidden | SupabaseOpError;
+/** Restores a physical backup for a database */
+export const v1RestorePhysicalBackup: API.OperationMethod<
+  V1RestorePhysicalBackupRequest,
+  V1RestorePhysicalBackupResponse,
+  V1RestorePhysicalBackupError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1RestorePhysicalBackupRequest,
+  output: V1RestorePhysicalBackupResponse,
+  errors: [Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1RestorePitrBackupError = BadRequest | Forbidden | SupabaseOpError;
+/** Restores a PITR backup for a database */
+export const v1RestorePitrBackup: API.OperationMethod<
+  V1RestorePitrBackupRequest,
+  V1RestorePitrBackupResponse,
+  V1RestorePitrBackupError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1RestorePitrBackupRequest,
+  output: V1RestorePitrBackupResponse,
+  errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
@@ -14773,6 +14503,403 @@ export const v1Undo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type V1UpdateABranchConfigError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Update database branch config Updates the configuration of the specified database branch */
+export const v1UpdateABranchConfig: API.OperationMethod<
+  V1UpdateABranchConfigRequest,
+  BranchResponseOutput,
+  V1UpdateABranchConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateABranchConfigRequest,
+  output: BranchResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateActionRunStatusError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Update the status of an action run Updates the status of an ongoing action run. */
+export const v1UpdateActionRunStatus: API.OperationMethod<
+  V1UpdateActionRunStatusRequest,
+  UpdateRunStatusResponseOutput,
+  V1UpdateActionRunStatusError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateActionRunStatusRequest,
+  output: UpdateRunStatusResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateAFunctionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Update a function Updates a function with the specified slug and project. */
+export const v1UpdateAFunction: API.OperationMethod<
+  V1UpdateAFunctionRequest,
+  FunctionSlugResponseOutput,
+  V1UpdateAFunctionError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateAFunctionRequest,
+  output: FunctionSlugResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateAProjectError = BadRequest | Forbidden | SupabaseOpError;
+/** Updates the given project */
+export const v1UpdateAProject: API.OperationMethod<
+  V1UpdateAProjectRequest,
+  V1ProjectRefResponseOutput,
+  V1UpdateAProjectError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateAProjectRequest,
+  output: V1ProjectRefResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateASsoProviderError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Updates a SSO provider by its UUID */
+export const v1UpdateASsoProvider: API.OperationMethod<
+  V1UpdateASsoProviderRequest,
+  UpdateProviderResponseOutput,
+  V1UpdateASsoProviderError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateASsoProviderRequest,
+  output: UpdateProviderResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateAuthServiceConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates a project's auth config */
+export const v1UpdateAuthServiceConfig: API.OperationMethod<
+  V1UpdateAuthServiceConfigRequest,
+  AuthConfigResponseOutput,
+  V1UpdateAuthServiceConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateAuthServiceConfigRequest,
+  output: AuthConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateBackupScheduleError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Updates the backup schedule time for a project Sets the time at which the daily backup runs. The change takes effect on the next backup window that includes the new time. If the new time has already passed for today, the first backup at the new time will occur the following day. It can only be updated 3 times per 24 hours. */
+export const v1UpdateBackupSchedule: API.OperationMethod<
+  V1UpdateBackupScheduleRequest,
+  V1BackupScheduleResponseOutput,
+  V1UpdateBackupScheduleError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateBackupScheduleRequest,
+  output: V1BackupScheduleResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateDatabasePasswordError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates the database password */
+export const v1UpdateDatabasePassword: API.OperationMethod<
+  V1UpdateDatabasePasswordRequest,
+  V1UpdatePasswordResponseOutput,
+  V1UpdateDatabasePasswordError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateDatabasePasswordRequest,
+  output: V1UpdatePasswordResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateHostnameConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Updates project's custom hostname configuration */
+export const v1UpdateHostnameConfig: API.OperationMethod<
+  V1UpdateHostnameConfigRequest,
+  UpdateCustomHostnameResponseOutput,
+  V1UpdateHostnameConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateHostnameConfigRequest,
+  output: UpdateCustomHostnameResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateJitAccessError = BadRequest | Forbidden | SupabaseOpError;
+/** Updates a user mapping for JIT access Modifies the roles that can be assumed and for how long */
+export const v1UpdateJitAccess: API.OperationMethod<
+  V1UpdateJitAccessRequest,
+  JitAccessResponseOutput,
+  V1UpdateJitAccessError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateJitAccessRequest,
+  output: JitAccessResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateJitAccessConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Update project's temporary access configuration. */
+export const v1UpdateJitAccessConfig: API.OperationMethod<
+  V1UpdateJitAccessConfigRequest,
+  V1UpdateJitAccessConfigResponse,
+  V1UpdateJitAccessConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateJitAccessConfigRequest,
+  output: V1UpdateJitAccessConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateNetworkRestrictionsError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Updates project's network restrictions */
+export const v1UpdateNetworkRestrictions: API.OperationMethod<
+  V1UpdateNetworkRestrictionsRequest,
+  NetworkRestrictionsResponseOutput,
+  V1UpdateNetworkRestrictionsError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateNetworkRestrictionsRequest,
+  output: NetworkRestrictionsResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdatePgsodiumConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Updates project's pgsodium config. Updating the root_key can cause all data encrypted with the older key to become inaccessible. */
+export const v1UpdatePgsodiumConfig: API.OperationMethod<
+  V1UpdatePgsodiumConfigRequest,
+  PgsodiumConfigResponseOutput,
+  V1UpdatePgsodiumConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdatePgsodiumConfigRequest,
+  output: PgsodiumConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdatePoolerConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates project's supavisor config */
+export const v1UpdatePoolerConfig: API.OperationMethod<
+  V1UpdatePoolerConfigRequest,
+  UpdateSupavisorConfigResponseOutput,
+  V1UpdatePoolerConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdatePoolerConfigRequest,
+  output: UpdateSupavisorConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdatePostgresConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates project's Postgres config */
+export const v1UpdatePostgresConfig: API.OperationMethod<
+  V1UpdatePostgresConfigRequest,
+  PostgresConfigResponseOutput,
+  V1UpdatePostgresConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdatePostgresConfigRequest,
+  output: PostgresConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdatePostgrestServiceConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates project's postgrest config */
+export const v1UpdatePostgrestServiceConfig: API.OperationMethod<
+  V1UpdatePostgrestServiceConfigRequest,
+  V1PostgrestConfigResponseOutput,
+  V1UpdatePostgrestServiceConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdatePostgrestServiceConfigRequest,
+  output: V1PostgrestConfigResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateProjectApiKeyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Updates an API key for the project */
+export const v1UpdateProjectApiKey: API.OperationMethod<
+  V1UpdateProjectApiKeyRequest,
+  ApiKeyResponseOutput,
+  V1UpdateProjectApiKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateProjectApiKeyRequest,
+  output: ApiKeyResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateProjectLegacyApiKeysError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Disable or re-enable JWT based legacy (anon, service_role) API keys. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
+export const v1UpdateProjectLegacyApiKeys: API.OperationMethod<
+  V1UpdateProjectLegacyApiKeysRequest,
+  LegacyApiKeysResponseOutput,
+  V1UpdateProjectLegacyApiKeysError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateProjectLegacyApiKeysRequest,
+  output: LegacyApiKeysResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateProjectSigningKeyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SupabaseOpError;
+/** Update a signing key, mainly its status */
+export const v1UpdateProjectSigningKey: API.OperationMethod<
+  V1UpdateProjectSigningKeyRequest,
+  SigningKeyResponseOutput,
+  V1UpdateProjectSigningKeyError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateProjectSigningKeyRequest,
+  output: SigningKeyResponseOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateRealtimeConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates realtime configuration */
+export const v1UpdateRealtimeConfig: API.OperationMethod<
+  V1UpdateRealtimeConfigRequest,
+  V1UpdateRealtimeConfigResponse,
+  V1UpdateRealtimeConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateRealtimeConfigRequest,
+  output: V1UpdateRealtimeConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateSslEnforcementConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** [Beta] Update project's SSL enforcement configuration. */
+export const v1UpdateSslEnforcementConfig: API.OperationMethod<
+  V1UpdateSslEnforcementConfigRequest,
+  SslEnforcementResponseOutput,
+  V1UpdateSslEnforcementConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateSslEnforcementConfigRequest,
+  output: SslEnforcementResponseOutput,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1UpdateStorageConfigError =
+  | BadRequest
+  | Forbidden
+  | SupabaseOpError;
+/** Updates project's storage config */
+export const v1UpdateStorageConfig: API.OperationMethod<
+  V1UpdateStorageConfigRequest,
+  V1UpdateStorageConfigResponse,
+  V1UpdateStorageConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1UpdateStorageConfigRequest,
+  output: V1UpdateStorageConfigResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type V1UpgradePostgresVersionError =
   | BadRequest
   | Forbidden
@@ -14780,27 +14907,42 @@ export type V1UpgradePostgresVersionError =
 /** [Beta] Upgrades the project's Postgres version */
 export const v1UpgradePostgresVersion: API.OperationMethod<
   V1UpgradePostgresVersionRequest,
-  ProjectUpgradeInitiateResponse,
+  ProjectUpgradeInitiateResponseOutput,
   V1UpgradePostgresVersionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpgradePostgresVersionRequest,
-  output: ProjectUpgradeInitiateResponse,
+  output: ProjectUpgradeInitiateResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
 }));
 
-export type VerifyV1DnsConfigError = BadRequest | Forbidden | SupabaseOpError;
-/** [Beta] Attempts to verify the DNS configuration for project's custom hostname configuration */
-export const verifyV1DnsConfig: API.OperationMethod<
-  VerifyV1DnsConfigRequest,
-  UpdateCustomHostnameResponse,
-  VerifyV1DnsConfigError,
+export type V1UpsertAMigrationError = BadRequest | Forbidden | SupabaseOpError;
+/** Upsert a database migration without applying */
+export const v1UpsertAMigration: API.OperationMethod<
+  V1UpsertAMigrationRequest,
+  V1UpsertAMigrationResponse,
+  V1UpsertAMigrationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VerifyV1DnsConfigRequest,
-  output: UpdateCustomHostnameResponse,
+  input: V1UpsertAMigrationRequest,
+  output: V1UpsertAMigrationResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: SupabaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type V1VerifyDnsConfigError = BadRequest | Forbidden | SupabaseOpError;
+/** [Beta] Attempts to verify the DNS configuration for project's custom hostname configuration */
+export const v1VerifyDnsConfig: API.OperationMethod<
+  V1VerifyDnsConfigRequest,
+  UpdateCustomHostnameResponseOutput,
+  V1VerifyDnsConfigError,
+  SupabaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: V1VerifyDnsConfigRequest,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,

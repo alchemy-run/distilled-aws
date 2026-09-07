@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.monitoringservice#MetricsContainersCreateOrUpdate": {
@@ -288,13 +289,13 @@
         "smithy.api#documentation": "Properties of a metrics container."
       }
     },
-    "com.azure.monitoringservice#GetMetricContainer": {
+    "com.azure.monitoringservice#GetMetricsContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#GetMetricContainerRequest"
+        "target": "com.azure.monitoringservice#GetMetricsContainerRequest"
       },
       "output": {
-        "target": "com.azure.monitoringservice#GetMetricContainerResponse"
+        "target": "com.azure.monitoringservice#GetMetricsContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -307,7 +308,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-03"
       }
     },
-    "com.azure.monitoringservice#GetMetricContainerResponse": {
+    "com.azure.monitoringservice#GetMetricsContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -345,7 +346,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitoringservice#GetMetricContainerRequest": {
+    "com.azure.monitoringservice#GetMetricsContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.monitoringservice#ListMetricContainerByAzureMonitorWorkspace": {
+    "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#ListMetricContainerByAzureMonitorWorkspaceRequest"
+        "target": "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspaceRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#MetricsContainerResourceListResult"
@@ -472,7 +473,7 @@
         "smithy.api#documentation": "Metrics container resource for an Azure Monitor Workspace."
       }
     },
-    "com.azure.monitoringservice#ListMetricContainerByAzureMonitorWorkspaceRequest": {
+    "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -914,10 +915,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.monitoringservice#IssueFetchInvestigationResult": {
+    "com.azure.monitoringservice#FetchIssueInvestigationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#IssueFetchInvestigationResultRequest"
+        "target": "com.azure.monitoringservice#FetchIssueInvestigationResultRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#InvestigationResult"
@@ -973,7 +974,7 @@
         "smithy.api#documentation": "Details about the investigation result"
       }
     },
-    "com.azure.monitoringservice#IssueFetchInvestigationResultRequest": {
+    "com.azure.monitoringservice#FetchIssueInvestigationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1020,10 +1021,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.monitoringservice#IssueFetchBackgroundVisualization": {
+    "com.azure.monitoringservice#FetchIssueBackgroundVisualization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#IssueFetchBackgroundVisualizationRequest"
+        "target": "com.azure.monitoringservice#FetchIssueBackgroundVisualizationRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#BackgroundVisualization"
@@ -1061,7 +1062,7 @@
         "smithy.api#documentation": "The issue background visualization"
       }
     },
-    "com.azure.monitoringservice#IssueFetchBackgroundVisualizationRequest": {
+    "com.azure.monitoringservice#FetchIssueBackgroundVisualizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1101,10 +1102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.monitoringservice#UpdateIssueAddOrResource": {
+    "com.azure.monitoringservice#IssueAddOrUpdateResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#UpdateIssueAddOrResourceRequest"
+        "target": "com.azure.monitoringservice#IssueAddOrUpdateResourcesRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#RelatedResources"
@@ -1144,7 +1145,7 @@
         "smithy.api#documentation": "A list of related resources"
       }
     },
-    "com.azure.monitoringservice#UpdateIssueAddOrResourceRequest": {
+    "com.azure.monitoringservice#IssueAddOrUpdateResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1222,10 +1223,10 @@
         "smithy.api#documentation": "Properties of a resource which is related to the issue"
       }
     },
-    "com.azure.monitoringservice#UpdateIssueAddOrAlert": {
+    "com.azure.monitoringservice#IssueAddOrUpdateAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#UpdateIssueAddOrAlertRequest"
+        "target": "com.azure.monitoringservice#IssueAddOrUpdateAlertsRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#RelatedAlerts"
@@ -1265,7 +1266,7 @@
         "smithy.api#documentation": "A list of related alerts"
       }
     },
-    "com.azure.monitoringservice#UpdateIssueAddOrAlertRequest": {
+    "com.azure.monitoringservice#IssueAddOrUpdateAlertsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1343,10 +1344,10 @@
         "smithy.api#documentation": "Properties of an alert which is related to the issue"
       }
     },
-    "com.azure.monitoringservice#IssueAddInvestigationResult": {
+    "com.azure.monitoringservice#AddIssueInvestigationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitoringservice#IssueAddInvestigationResultRequest"
+        "target": "com.azure.monitoringservice#AddIssueInvestigationResultRequest"
       },
       "output": {
         "target": "com.azure.monitoringservice#InvestigationResult"
@@ -1362,7 +1363,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-03"
       }
     },
-    "com.azure.monitoringservice#IssueAddInvestigationResultRequest": {
+    "com.azure.monitoringservice#AddIssueInvestigationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2391,7 +2392,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2410,7 +2411,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseIdentity",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2426,7 +2427,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseIdentity": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2448,7 +2449,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2458,7 +2459,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2845,7 +2846,7 @@
         "smithy.api#documentation": "Properties related to the metrics container in the Azure Monitor Workspace"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateResponseTagsMap": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2885,13 +2886,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestIdentity",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2941,7 +2942,7 @@
         "smithy.api#documentation": "Properties related to the metrics container in the Azure Monitor Workspace"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestIdentity": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -2951,7 +2952,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2961,7 +2962,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2980,7 +2981,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesUpdateRequestTagsMap": {
+    "com.azure.monitoringservice#UpdateAzureMonitorWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3278,7 +3279,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseTagsMap",
+          "target": "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3297,7 +3298,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseIdentity",
+          "target": "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3313,7 +3314,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseIdentity": {
+    "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3335,7 +3336,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3345,7 +3346,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3357,7 +3358,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.monitoringservice#AzureMonitorWorkspacesGetResponseTagsMap": {
+    "com.azure.monitoringservice#GetAzureMonitorWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3651,7 +3652,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.monitoringservice#OperationsListResponseValueList",
+          "target": "com.azure.monitoringservice#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3667,7 +3668,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitoringservice#OperationsListResponseValueList": {
+    "com.azure.monitoringservice#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.monitoringservice#Operation"
@@ -3884,7 +3885,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#PipelineGroupsUpdateResponseTagsMap",
+          "target": "com.azure.monitoringservice#UpdatePipelineGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5023,7 +5024,7 @@
         "smithy.api#documentation": "The receiver type."
       }
     },
-    "com.azure.monitoringservice#PipelineGroupsUpdateResponseTagsMap": {
+    "com.azure.monitoringservice#UpdatePipelineGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5063,7 +5064,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#PipelineGroupsUpdateRequestTagsMap",
+          "target": "com.azure.monitoringservice#UpdatePipelineGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5208,7 +5209,7 @@
         "smithy.api#documentation": "The receivers specified for a pipeline group instance."
       }
     },
-    "com.azure.monitoringservice#PipelineGroupsUpdateRequestTagsMap": {
+    "com.azure.monitoringservice#UpdatePipelineGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5514,7 +5515,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitoringservice#PipelineGroupsGetResponseTagsMap",
+          "target": "com.azure.monitoringservice#GetPipelineGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5543,7 +5544,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitoringservice#PipelineGroupsGetResponseTagsMap": {
+    "com.azure.monitoringservice#GetPipelineGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5769,64 +5770,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.monitoringservice#MetricsContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitoringservice#GetMetricContainer"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListMetricContainerByAzureMonitorWorkspace"
-        },
-        {
-          "target": "com.azure.monitoringservice#SetIssueBackgroundVisualization"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListIssueResources"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListIssueAlerts"
-        },
-        {
-          "target": "com.azure.monitoringservice#IssueFetchInvestigationResult"
-        },
-        {
-          "target": "com.azure.monitoringservice#IssueFetchBackgroundVisualization"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateIssueAddOrResource"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateIssueAddOrAlert"
-        },
-        {
-          "target": "com.azure.monitoringservice#IssueAddInvestigationResult"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeleteIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#CreateIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#GetIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeleteAzureMonitorWorkspace"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspace"
+          "target": "com.azure.monitoringservice#AddIssueInvestigationResult"
         },
         {
           "target": "com.azure.monitoringservice#AzureMonitorWorkspacesCreateOrUpdate"
         },
         {
+          "target": "com.azure.monitoringservice#CreateIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeleteAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeleteIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeletePipelineGroup"
+        },
+        {
+          "target": "com.azure.monitoringservice#FetchIssueBackgroundVisualization"
+        },
+        {
+          "target": "com.azure.monitoringservice#FetchIssueInvestigationResult"
+        },
+        {
           "target": "com.azure.monitoringservice#GetAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetMetricsContainer"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetPipelineGroup"
+        },
+        {
+          "target": "com.azure.monitoringservice#IssueAddOrUpdateAlerts"
+        },
+        {
+          "target": "com.azure.monitoringservice#IssueAddOrUpdateResources"
         },
         {
           "target": "com.azure.monitoringservice#ListAzureMonitorWorkspaceByResourceGroup"
@@ -5835,25 +5818,43 @@
           "target": "com.azure.monitoringservice#ListAzureMonitorWorkspaceBySubscription"
         },
         {
+          "target": "com.azure.monitoringservice#ListIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListIssueAlerts"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListIssueResources"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspace"
+        },
+        {
           "target": "com.azure.monitoringservice#ListOperations"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeletePipelineGroup"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdatePipelineGroup"
-        },
-        {
-          "target": "com.azure.monitoringservice#PipelineGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitoringservice#GetPipelineGroup"
         },
         {
           "target": "com.azure.monitoringservice#ListPipelineGroupByResourceGroup"
         },
         {
           "target": "com.azure.monitoringservice#ListPipelineGroupBySubscription"
+        },
+        {
+          "target": "com.azure.monitoringservice#MetricsContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitoringservice#PipelineGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitoringservice#SetIssueBackgroundVisualization"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdateIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdatePipelineGroup"
         }
       ],
       "traits": {

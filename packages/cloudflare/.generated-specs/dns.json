@@ -77,7 +77,8 @@
       "tsigId": "tsig_id",
       "zoneDefaults": "zone_defaults",
       "zoneMode": "zone_mode"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.dns#AnalyticsReportsGetResponseDataItemDimensionsList": {
@@ -31602,175 +31603,175 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.dns#AnalyticsReportsGet"
+          "target": "com.cloudflare.dns#BatchRecord"
         },
         {
-          "target": "com.cloudflare.dns#AnalyticsReportsBytimesGet"
+          "target": "com.cloudflare.dns#CreateRecord"
         },
         {
-          "target": "com.cloudflare.dns#DnssecDelete"
+          "target": "com.cloudflare.dns#CreateSettingAccountView"
         },
         {
-          "target": "com.cloudflare.dns#DnssecEdit"
+          "target": "com.cloudflare.dns#CreateZoneTransferAcl"
         },
         {
-          "target": "com.cloudflare.dns#DnssecGet"
+          "target": "com.cloudflare.dns#CreateZoneTransferForceAxfr"
         },
         {
-          "target": "com.cloudflare.dns#RecordsBatch"
+          "target": "com.cloudflare.dns#CreateZoneTransferIncoming"
         },
         {
-          "target": "com.cloudflare.dns#RecordsCreate"
+          "target": "com.cloudflare.dns#CreateZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#RecordsDelete"
+          "target": "com.cloudflare.dns#CreateZoneTransferPeer"
         },
         {
-          "target": "com.cloudflare.dns#RecordsEdit"
+          "target": "com.cloudflare.dns#CreateZoneTransferTsig"
         },
         {
-          "target": "com.cloudflare.dns#RecordsExport"
+          "target": "com.cloudflare.dns#DeleteDnssec"
         },
         {
-          "target": "com.cloudflare.dns#RecordsGet"
+          "target": "com.cloudflare.dns#DeleteRecord"
         },
         {
-          "target": "com.cloudflare.dns#RecordsImport"
+          "target": "com.cloudflare.dns#DeleteSettingAccountView"
         },
         {
-          "target": "com.cloudflare.dns#RecordsList"
+          "target": "com.cloudflare.dns#DeleteZoneTransferAcl"
         },
         {
-          "target": "com.cloudflare.dns#RecordsScan"
+          "target": "com.cloudflare.dns#DeleteZoneTransferIncoming"
         },
         {
-          "target": "com.cloudflare.dns#RecordsScanList"
+          "target": "com.cloudflare.dns#DeleteZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#RecordsScanReview"
+          "target": "com.cloudflare.dns#DeleteZoneTransferPeer"
         },
         {
-          "target": "com.cloudflare.dns#RecordsScanTrigger"
+          "target": "com.cloudflare.dns#DeleteZoneTransferTsig"
         },
         {
-          "target": "com.cloudflare.dns#RecordsUpdate"
+          "target": "com.cloudflare.dns#DisableZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountEdit"
+          "target": "com.cloudflare.dns#EnableZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountGet"
+          "target": "com.cloudflare.dns#ExportRecord"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountViewsCreate"
+          "target": "com.cloudflare.dns#ForceNotifyZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountViewsDelete"
+          "target": "com.cloudflare.dns#GetAnalyticReport"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountViewsEdit"
+          "target": "com.cloudflare.dns#GetAnalyticReportBytime"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountViewsGet"
+          "target": "com.cloudflare.dns#GetDnssec"
         },
         {
-          "target": "com.cloudflare.dns#SettingsAccountViewsList"
+          "target": "com.cloudflare.dns#GetRecord"
         },
         {
-          "target": "com.cloudflare.dns#SettingsZoneEdit"
+          "target": "com.cloudflare.dns#GetSettingAccount"
         },
         {
-          "target": "com.cloudflare.dns#SettingsZoneGet"
+          "target": "com.cloudflare.dns#GetSettingAccountView"
         },
         {
-          "target": "com.cloudflare.dns#UsageAccountGet"
+          "target": "com.cloudflare.dns#GetSettingZone"
         },
         {
-          "target": "com.cloudflare.dns#UsageZoneGet"
+          "target": "com.cloudflare.dns#GetUsageAccount"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersAclsCreate"
+          "target": "com.cloudflare.dns#GetUsageZone"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersAclsDelete"
+          "target": "com.cloudflare.dns#GetZoneTransferAcl"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersAclsGet"
+          "target": "com.cloudflare.dns#GetZoneTransferIncoming"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersAclsList"
+          "target": "com.cloudflare.dns#GetZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersAclsUpdate"
+          "target": "com.cloudflare.dns#GetZoneTransferOutgoingStatus"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersForceAxfrCreate"
+          "target": "com.cloudflare.dns#GetZoneTransferPeer"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersIncomingCreate"
+          "target": "com.cloudflare.dns#GetZoneTransferTsig"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersIncomingDelete"
+          "target": "com.cloudflare.dns#ImportRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersIncomingGet"
+          "target": "com.cloudflare.dns#ListRecords"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersIncomingUpdate"
+          "target": "com.cloudflare.dns#ListSettingAccountViews"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingCreate"
+          "target": "com.cloudflare.dns#ListZoneTransferAcls"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingDelete"
+          "target": "com.cloudflare.dns#ListZoneTransferPeers"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingDisable"
+          "target": "com.cloudflare.dns#ListZoneTransferTsigs"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingEnable"
+          "target": "com.cloudflare.dns#PatchDnssec"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingForceNotify"
+          "target": "com.cloudflare.dns#PatchRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingGet"
+          "target": "com.cloudflare.dns#PatchSettingAccount"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingUpdate"
+          "target": "com.cloudflare.dns#PatchSettingAccountView"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersOutgoingStatusGet"
+          "target": "com.cloudflare.dns#PatchSettingZone"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersPeersCreate"
+          "target": "com.cloudflare.dns#ScanListRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersPeersDelete"
+          "target": "com.cloudflare.dns#ScanRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersPeersGet"
+          "target": "com.cloudflare.dns#ScanReviewRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersPeersList"
+          "target": "com.cloudflare.dns#ScanTriggerRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersPeersUpdate"
+          "target": "com.cloudflare.dns#UpdateRecord"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersTsigsCreate"
+          "target": "com.cloudflare.dns#UpdateZoneTransferAcl"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersTsigsDelete"
+          "target": "com.cloudflare.dns#UpdateZoneTransferIncoming"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersTsigsGet"
+          "target": "com.cloudflare.dns#UpdateZoneTransferOutgoing"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersTsigsList"
+          "target": "com.cloudflare.dns#UpdateZoneTransferPeer"
         },
         {
-          "target": "com.cloudflare.dns#ZoneTransfersTsigsUpdate"
+          "target": "com.cloudflare.dns#UpdateZoneTransferTsig"
         }
       ],
       "traits": {
@@ -35899,13 +35900,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.dns#ListScanRecord": {
+    "com.cloudflare.dns#ScanListRecord": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.dns#ListScanRecordRequest"
+        "target": "com.cloudflare.dns#ScanListRecordRequest"
       },
       "output": {
-        "target": "com.cloudflare.dns#ListScanRecordResponse"
+        "target": "com.cloudflare.dns#ScanListRecordResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -35921,7 +35922,7 @@
         }
       }
     },
-    "com.cloudflare.dns#ListScanRecordRequest": {
+    "com.cloudflare.dns#ScanListRecordRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -35937,7 +35938,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.dns#ListScanRecordResponse": {
+    "com.cloudflare.dns#ScanListRecordResponse": {
       "type": "structure",
       "members": {
         "result": {

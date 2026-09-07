@@ -319,7 +319,7 @@ export const ConnectedClusterIdentityInput = /*@__PURE__*/ S.suspend(() =>
 export type ConnectedClusterKind = "ProvisionedCluster";
 export const ConnectedClusterKind = /*@__PURE__*/ S.String;
 
-export interface CreateConnectedClusterOrReplaceRequest {
+export interface ConnectedClusterCreateOrReplaceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -337,7 +337,7 @@ export interface CreateConnectedClusterOrReplaceRequest {
   /** The kind of connected cluster. */
   kind?: ConnectedClusterKind | (string & {});
 }
-export const CreateConnectedClusterOrReplaceRequest = /*@__PURE__*/ S.suspend(
+export const ConnectedClusterCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -357,8 +357,8 @@ export const CreateConnectedClusterOrReplaceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateConnectedClusterOrReplaceRequest",
-}) as any as S.Schema<CreateConnectedClusterOrReplaceRequest>;
+  identifier: "ConnectedClusterCreateOrReplaceRequest",
+}) as any as S.Schema<ConnectedClusterCreateOrReplaceRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -662,7 +662,7 @@ export const ConnectedClusterIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectedClusterIdentity",
 }) as any as S.Schema<ConnectedClusterIdentity>;
 
-export interface CreateConnectedClusterOrReplaceResponse {
+export interface ConnectedClusterCreateOrReplaceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -682,7 +682,7 @@ export interface CreateConnectedClusterOrReplaceResponse {
   /** The kind of connected cluster. */
   kind?: ConnectedClusterKind;
 }
-export const CreateConnectedClusterOrReplaceResponse = /*@__PURE__*/ S.suspend(
+export const ConnectedClusterCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -696,8 +696,8 @@ export const CreateConnectedClusterOrReplaceResponse = /*@__PURE__*/ S.suspend(
       kind: S.optional(ConnectedClusterKind),
     }),
 ).annotate({
-  identifier: "CreateConnectedClusterOrReplaceResponse",
-}) as any as S.Schema<CreateConnectedClusterOrReplaceResponse>;
+  identifier: "ConnectedClusterCreateOrReplaceResponse",
+}) as any as S.Schema<ConnectedClusterCreateOrReplaceResponse>;
 
 export interface DeleteConnectedClusterRequest {
   /** The ID of the target subscription. */
@@ -757,13 +757,13 @@ export const GetConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConnectedClusterRequest>;
 
 /** Resource tags. */
-export type ConnectedClusterGetResponseTagsMap = {
+export type GetConnectedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedClusterGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConnectedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedClusterGetResponseTagsMap>;
+) as any as S.Schema<GetConnectedClusterResponseTagsMap>;
 
 export interface GetConnectedClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -775,7 +775,7 @@ export interface GetConnectedClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedClusterGetResponseTagsMap;
+  tags?: GetConnectedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the connected cluster resource properties. */
@@ -791,7 +791,7 @@ export const GetConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedClusterGetResponseTagsMap),
+    tags: S.optional(GetConnectedClusterResponseTagsMap),
     location: S.String,
     properties: ConnectedClusterProperties,
     identity: ConnectedClusterIdentity,
@@ -1102,13 +1102,13 @@ export const CredentialResults = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CredentialResults>;
 
 /** Resource tags. */
-export type ConnectedClusterUpdateRequestTagsMap = {
+export type UpdateConnectedClusterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedClusterUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConnectedClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedClusterUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConnectedClusterRequestTagsMap>;
 
 /** Indicates whether Azure Hybrid Benefit is opted in */
 export type AzureHybridBenefit = "True" | "False" | "NotApplicable";
@@ -1144,7 +1144,7 @@ export interface UpdateConnectedClusterRequest {
   /** The name of the Kubernetes cluster on which get is called. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ConnectedClusterUpdateRequestTagsMap;
+  tags?: UpdateConnectedClusterRequestTagsMap;
   /** Describes the connected cluster resource properties that can be updated during PATCH operation. */
   properties?: ConnectedClusterPatchProperties;
 }
@@ -1153,7 +1153,7 @@ export const UpdateConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ConnectedClusterUpdateRequestTagsMap),
+    tags: S.optional(UpdateConnectedClusterRequestTagsMap),
     properties: S.optional(ConnectedClusterPatchProperties),
   }).pipe(
     T.Http({
@@ -1168,13 +1168,13 @@ export const UpdateConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConnectedClusterRequest>;
 
 /** Resource tags. */
-export type ConnectedClusterUpdateResponseTagsMap = {
+export type UpdateConnectedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedClusterUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConnectedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedClusterUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateConnectedClusterResponseTagsMap>;
 
 export interface UpdateConnectedClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1186,7 +1186,7 @@ export interface UpdateConnectedClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedClusterUpdateResponseTagsMap;
+  tags?: UpdateConnectedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the connected cluster resource properties. */
@@ -1202,7 +1202,7 @@ export const UpdateConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedClusterUpdateResponseTagsMap),
+    tags: S.optional(UpdateConnectedClusterResponseTagsMap),
     location: S.String,
     properties: ConnectedClusterProperties,
     identity: ConnectedClusterIdentity,
@@ -1212,16 +1212,16 @@ export const UpdateConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateConnectedClusterResponse",
 }) as any as S.Schema<UpdateConnectedClusterResponse>;
 
-export type CreateConnectedClusterOrReplaceError = AzureOpError;
+export type ConnectedClusterCreateOrReplaceError = AzureOpError;
 /** Register a new Kubernetes cluster with Azure Resource Manager. API to register a new Kubernetes cluster and create or replace a connected cluster tracked resource in Azure Resource Manager (ARM). */
-export const CreateConnectedClusterOrReplace: API.OperationMethod<
-  CreateConnectedClusterOrReplaceRequest,
-  CreateConnectedClusterOrReplaceResponse,
-  CreateConnectedClusterOrReplaceError,
+export const ConnectedClusterCreateOrReplace: API.OperationMethod<
+  ConnectedClusterCreateOrReplaceRequest,
+  ConnectedClusterCreateOrReplaceResponse,
+  ConnectedClusterCreateOrReplaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateConnectedClusterOrReplaceRequest,
-  output: CreateConnectedClusterOrReplaceResponse,
+  input: ConnectedClusterCreateOrReplaceRequest,
+  output: ConnectedClusterCreateOrReplaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

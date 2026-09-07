@@ -119,6 +119,36 @@ export class StoreNotFound
     [{ code: 1001, message: { includes: "store_not_found" } }],
   ) {}
 
+export interface BulkDeleteStoreSecretsRequest {
+  /** Account Identifier */
+  accountId: string;
+  /** Store Identifier */
+  storeId: string;
+}
+export const BulkDeleteStoreSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    storeId: S.String.pipe(T.Label("store_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteStoreSecretsRequest",
+}) as any as S.Schema<BulkDeleteStoreSecretsRequest>;
+
+export type BulkDeleteStoreSecretsResponse = unknown;
+export const BulkDeleteStoreSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.EnvelopePayloadRoot(), T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteStoreSecretsResponse",
+}) as any as S.Schema<BulkDeleteStoreSecretsResponse>;
+
 export interface CreateStoreRequest {
   /** Account Identifier */
   accountId: string;
@@ -288,36 +318,6 @@ export const CreateStoreSecretResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateStoreSecretResponse",
 }) as any as S.Schema<CreateStoreSecretResponse>;
-
-export interface DeleteBulkStoreSecretRequest {
-  /** Account Identifier */
-  accountId: string;
-  /** Store Identifier */
-  storeId: string;
-}
-export const DeleteBulkStoreSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    storeId: S.String.pipe(T.Label("store_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkStoreSecretRequest",
-}) as any as S.Schema<DeleteBulkStoreSecretRequest>;
-
-export type DeleteBulkStoreSecretResponse = unknown;
-export const DeleteBulkStoreSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.EnvelopePayloadRoot(), T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkStoreSecretResponse",
-}) as any as S.Schema<DeleteBulkStoreSecretResponse>;
 
 export interface DeleteStoreRequest {
   /** Account Identifier */
@@ -919,6 +919,31 @@ export const PatchStoreSecretResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchStoreSecretResponse",
 }) as any as S.Schema<PatchStoreSecretResponse>;
 
+export type BulkDeleteStoreSecretsError =
+  | StoreNotFound
+  | InvalidAccountId
+  | InvalidJsonBody
+  | CloudflareOpError;
+/** Deletes one or more secrets */
+export const bulkDeleteStoreSecrets: API.OperationMethod<
+  BulkDeleteStoreSecretsRequest,
+  BulkDeleteStoreSecretsResponse,
+  BulkDeleteStoreSecretsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteStoreSecretsRequest,
+  output: BulkDeleteStoreSecretsResponse,
+  errors: [
+    StoreNotFound,
+    InvalidAccountId,
+    InvalidJsonBody,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateStoreError =
   | InvalidAccountId
   | MaximumStoresExceeded
@@ -975,31 +1000,6 @@ export const createStoreSecret: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
-
-export type DeleteBulkStoreSecretError =
-  | StoreNotFound
-  | InvalidAccountId
-  | InvalidJsonBody
-  | CloudflareOpError;
-/** Deletes one or more secrets */
-export const deleteBulkStoreSecret: API.OperationMethod<
-  DeleteBulkStoreSecretRequest,
-  DeleteBulkStoreSecretResponse,
-  DeleteBulkStoreSecretError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkStoreSecretRequest,
-  output: DeleteBulkStoreSecretResponse,
-  errors: [
-    StoreNotFound,
-    InvalidAccountId,
-    InvalidJsonBody,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
 
 export type DeleteStoreError =
   | StoreNotFound

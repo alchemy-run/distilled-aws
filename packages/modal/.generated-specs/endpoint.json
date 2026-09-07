@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.endpoint#StringList": {
@@ -267,7 +268,7 @@
         "smithy.api#documentation": "Endpoints"
       }
     },
-    "com.modal.endpoint#GetEndpointByNameRequest": {
+    "com.modal.endpoint#EndpointGetByNameRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -281,7 +282,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.endpoint#GetEndpointByNameResponse": {
+    "com.modal.endpoint#EndpointGetByNameResponse": {
       "type": "structure",
       "members": {
         "endpointId": {
@@ -295,13 +296,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.endpoint#GetEndpointByName": {
+    "com.modal.endpoint#EndpointGetByName": {
       "type": "operation",
       "input": {
-        "target": "com.modal.endpoint#GetEndpointByNameRequest"
+        "target": "com.modal.endpoint#EndpointGetByNameRequest"
       },
       "output": {
-        "target": "com.modal.endpoint#GetEndpointByNameResponse"
+        "target": "com.modal.endpoint#EndpointGetByNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -311,7 +312,7 @@
         }
       }
     },
-    "com.modal.endpoint#GetEndpointLifecycleRequest": {
+    "com.modal.endpoint#EndpointGetLifecycleRequest": {
       "type": "structure",
       "members": {
         "endpointId": {
@@ -377,7 +378,7 @@
         }
       }
     },
-    "com.modal.endpoint#GetEndpointLifecycleResponse": {
+    "com.modal.endpoint#EndpointGetLifecycleResponse": {
       "type": "structure",
       "members": {
         "lifecycle": {
@@ -388,13 +389,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.endpoint#GetEndpointLifecycle": {
+    "com.modal.endpoint#EndpointGetLifecycle": {
       "type": "operation",
       "input": {
-        "target": "com.modal.endpoint#GetEndpointLifecycleRequest"
+        "target": "com.modal.endpoint#EndpointGetLifecycleRequest"
       },
       "output": {
-        "target": "com.modal.endpoint#GetEndpointLifecycleResponse"
+        "target": "com.modal.endpoint#EndpointGetLifecycleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -726,10 +727,10 @@
           "target": "com.modal.endpoint#CreateEndpoint"
         },
         {
-          "target": "com.modal.endpoint#GetEndpointByName"
+          "target": "com.modal.endpoint#EndpointGetByName"
         },
         {
-          "target": "com.modal.endpoint#GetEndpointLifecycle"
+          "target": "com.modal.endpoint#EndpointGetLifecycle"
         },
         {
           "target": "com.modal.endpoint#ListEndpoint"

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.canvases#CanvasesListRequestKind": {
+    "com.posthog.canvases#ListCanvasesRequestKind": {
       "type": "enum",
       "members": {
         "COMPONENT": {
@@ -60,7 +61,7 @@
           }
         },
         "kind": {
-          "target": "com.posthog.canvases#CanvasesListRequestKind",
+          "target": "com.posthog.canvases#ListCanvasesRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#documentation": "Only return canvases of this kind. kind=component lists the component store."
@@ -586,7 +587,7 @@
         "smithy.api#documentation": "Create a new, empty canvas in a channel; give it source by publishing a project."
       }
     },
-    "com.posthog.canvases#CanvasesRetrieveRequest": {
+    "com.posthog.canvases#GetCanvaseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -610,10 +611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CanvasesRetrieve": {
+    "com.posthog.canvases#GetCanvase": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvaseRequest"
       },
       "output": {
         "target": "com.posthog.canvases#Canvas"
@@ -627,7 +628,7 @@
         "smithy.api#documentation": "Canvases: agent-built sandboxed browser apps, filed into channels.\n\nSource is versioned per publish and built server-side; the canvas app\nrenders the published build's artifact from the isolated artifact origin."
       }
     },
-    "com.posthog.canvases#UpdateCanvasePartialRequest": {
+    "com.posthog.canvases#UpdateCanvasesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -688,10 +689,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#UpdateCanvasePartial": {
+    "com.posthog.canvases#UpdateCanvasesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#UpdateCanvasePartialRequest"
+        "target": "com.posthog.canvases#UpdateCanvasesPartialRequest"
       },
       "output": {
         "target": "com.posthog.canvases#Canvas"
@@ -746,7 +747,7 @@
         "smithy.api#documentation": "Canvases: agent-built sandboxed browser apps, filed into channels.\n\nSource is versioned per publish and built server-side; the canvas app\nrenders the published build's artifact from the isolated artifact origin."
       }
     },
-    "com.posthog.canvases#CanvasesActionsInvokeRequestPayloadMap": {
+    "com.posthog.canvases#InvokeCanvasesActionRequestPayloadMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -758,7 +759,7 @@
         "smithy.api#documentation": "Verb-specific arguments, validated against the verb's payload schema."
       }
     },
-    "com.posthog.canvases#CanvasesActionsInvokeRequest": {
+    "com.posthog.canvases#InvokeCanvasesActionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -785,7 +786,7 @@
           }
         },
         "payload": {
-          "target": "com.posthog.canvases#CanvasesActionsInvokeRequestPayloadMap",
+          "target": "com.posthog.canvases#InvokeCanvasesActionRequestPayloadMap",
           "traits": {
             "smithy.api#documentation": "Verb-specific arguments, validated against the verb's payload schema."
           }
@@ -829,10 +830,10 @@
         "smithy.api#documentation": "Verb-specific result, e.g. {'task_id': ...} for tasks.create."
       }
     },
-    "com.posthog.canvases#CanvasesActionsInvoke": {
+    "com.posthog.canvases#InvokeCanvasesAction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesActionsInvokeRequest"
+        "target": "com.posthog.canvases#InvokeCanvasesActionRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasActionResult"
@@ -854,7 +855,7 @@
         "smithy.api#documentation": "Invoke one registered action verb as the viewer.\n\nThe canvas must declare the verb in capabilities.posthog.actions (the\nreviewed permission boundary); the write itself runs with the viewer's\nown permissions, exactly as if they acted in the app."
       }
     },
-    "com.posthog.canvases#CanvasesBuildsRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesBuildRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1246,10 +1247,10 @@
         "smithy.api#documentation": "Most recent builds, newest first (capped at 20; the live build is always included)."
       }
     },
-    "com.posthog.canvases#CanvasesBuildsRetrieve": {
+    "com.posthog.canvases#GetCanvasesBuild": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesBuildsRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesBuildRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasBuildsResponse"
@@ -1295,7 +1296,7 @@
         "smithy.api#documentation": "* `retry` - retry\n* `pin` - pin\n* `unpin` - unpin\n* `cancel` - cancel"
       }
     },
-    "com.posthog.canvases#CreateCanvaseBuildActionRequest": {
+    "com.posthog.canvases#CreateCanvasesBuildActionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1331,10 +1332,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvaseBuildAction": {
+    "com.posthog.canvases#CreateCanvasesBuildAction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseBuildActionRequest"
+        "target": "com.posthog.canvases#CreateCanvasesBuildActionRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasBuild"
@@ -1671,7 +1672,7 @@
       },
       "traits": {}
     },
-    "com.posthog.canvases#CreateCanvaseDraftRequest": {
+    "com.posthog.canvases#CreateCanvasesDraftRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1862,10 +1863,10 @@
         "smithy.api#documentation": "Action verbs the draft newly declares it may invoke via ph.actions."
       }
     },
-    "com.posthog.canvases#CreateCanvaseDraft": {
+    "com.posthog.canvases#CreateCanvasesDraft": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseDraftRequest"
+        "target": "com.posthog.canvases#CreateCanvasesDraftRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasSourceDraftResponse"
@@ -1884,7 +1885,7 @@
         "smithy.api#documentation": "Stage a complete source project as a draft version and build it, without publishing.\n\nThe draft gets the same validation, versioning, and server-side build as\na publish, but the canvas's head and live build never move, so nothing\nchanges for viewers. Promote the version with `promote` to make it live.\nThe response reports how the draft's declared capabilities widen the\ncurrent head's, so growth in access can be reviewed before it ships.\nNo version guard applies: a draft conflicts with nothing."
       }
     },
-    "com.posthog.canvases#CanvasesDraftsRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesDraftRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2013,10 +2014,10 @@
       },
       "traits": {}
     },
-    "com.posthog.canvases#CanvasesDraftsRetrieve": {
+    "com.posthog.canvases#GetCanvasesDraft": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesDraftsRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesDraftRequest"
       },
       "output": {
         "target": "com.posthog.canvases#PaginatedCanvasDraftList"
@@ -2061,7 +2062,7 @@
         "smithy.api#documentation": "Edits applied in order to the canvas's current source project."
       }
     },
-    "com.posthog.canvases#CreateCanvaseEditRequest": {
+    "com.posthog.canvases#CanvasesEditCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2216,10 +2217,10 @@
         "smithy.api#documentation": "Advisory (warning-severity) diagnostics recorded for the published project."
       }
     },
-    "com.posthog.canvases#CreateCanvaseEdit": {
+    "com.posthog.canvases#CanvasesEditCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseEditRequest"
+        "target": "com.posthog.canvases#CanvasesEditCreateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasSourcePublishResponse"
@@ -2241,7 +2242,7 @@
         "smithy.api#documentation": "Publish per-file edits against the canvas's current source project.\n\nDiff-aware alternative to sending the complete project: each operation\nsets a file's content or (content null) deletes it, applied to the head\nthe caller read. `expected_current_version_id` is mandatory here —\nrelative edits against an unverified base could silently merge into\nsomeone else's newer work."
       }
     },
-    "com.posthog.canvases#CanvasesLayoutRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesLayoutRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2550,10 +2551,10 @@
         "smithy.api#documentation": "The placed widgets, at most 24. Placements may not overlap or extend past the grid."
       }
     },
-    "com.posthog.canvases#CanvasesLayoutRetrieve": {
+    "com.posthog.canvases#GetCanvasesLayout": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesLayoutRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesLayoutRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasLayoutResponse"
@@ -2836,7 +2837,7 @@
         "smithy.api#documentation": "Apply surgical operations to the grid canvas's current layout.\n\nThe default write path for both the editor and agents: add, move,\nresize, fill, or remove one placement without resending the layout.\n`expected_current_version_id` is mandatory so an agent filling a box\nand a user rearranging widgets cannot overwrite each other."
       }
     },
-    "com.posthog.canvases#CreateCanvaseLayoutPublishRequest": {
+    "com.posthog.canvases#CanvasesLayoutPublishCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2880,10 +2881,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvaseLayoutPublish": {
+    "com.posthog.canvases#CanvasesLayoutPublishCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseLayoutPublishRequest"
+        "target": "com.posthog.canvases#CanvasesLayoutPublishCreateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasLayoutPublishResponse"
@@ -2905,7 +2906,7 @@
         "smithy.api#documentation": "Publish a complete layout document as the grid canvas's new head version.\n\nLayout is data, not code: the new version is live immediately, with no\nbuild. Validation errors reject the publish (400) and leave the canvas\nuntouched; a stale `expected_current_version_id` is rejected with 409."
       }
     },
-    "com.posthog.canvases#CreateCanvasePromoteRequest": {
+    "com.posthog.canvases#CreateCanvasesPromoteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2944,10 +2945,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvasePromote": {
+    "com.posthog.canvases#CreateCanvasesPromote": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvasePromoteRequest"
+        "target": "com.posthog.canvases#CreateCanvasesPromoteRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasBuild"
@@ -2966,7 +2967,7 @@
         "smithy.api#documentation": "Make a draft version the canvas's live head.\n\nA draft whose build is ready goes live immediately, with no rebuild;\notherwise a fresh build is queued. Returns that build."
       }
     },
-    "com.posthog.canvases#CreateCanvasePublishRequest": {
+    "com.posthog.canvases#CanvasesPublishCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3016,10 +3017,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvasePublish": {
+    "com.posthog.canvases#CanvasesPublishCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvasePublishRequest"
+        "target": "com.posthog.canvases#CanvasesPublishCreateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasSourcePublishResponse"
@@ -3041,7 +3042,7 @@
         "smithy.api#documentation": "Publish a complete source project as the canvas's new head version.\n\nValidation errors reject the publish (400) and leave the canvas\nuntouched; a stale `expected_current_version_id` is rejected with 409.\nA successful publish queues a server-side build."
       }
     },
-    "com.posthog.canvases#CreateCanvasePublishCurrentVersionRequest": {
+    "com.posthog.canvases#CanvasesPublishCurrentVersionCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3072,10 +3073,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvasePublishCurrentVersion": {
+    "com.posthog.canvases#CanvasesPublishCurrentVersionCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvasePublishCurrentVersionRequest"
+        "target": "com.posthog.canvases#CanvasesPublishCurrentVersionCreateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasBuild"
@@ -3094,7 +3095,7 @@
         "smithy.api#documentation": "Queue a build for the current source version without changing source or metadata."
       }
     },
-    "com.posthog.canvases#CreateCanvaseReportErrorRequest": {
+    "com.posthog.canvases#CreateCanvasesReportErrorRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3132,10 +3133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvaseReportError": {
+    "com.posthog.canvases#CreateCanvasesReportError": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseReportErrorRequest"
+        "target": "com.posthog.canvases#CreateCanvasesReportErrorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3154,7 +3155,7 @@
         "smithy.api#documentation": "Report a runtime error observed while rendering a canvas build.\n\nFiles the report in the authoring task's thread (deduped per build and\nerror type) so the canvas's agent can be asked to fix it. Reports never\nstart an agent run by themselves — dispatch is `request_fix`. Only the\nerror class crosses the server; full messages and stacks stay\nclient-side because rendering sessions can carry viewer data."
       }
     },
-    "com.posthog.canvases#CanvasesRequestAgentCreateRequest": {
+    "com.posthog.canvases#CreateCanvasesRequestAgentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3185,10 +3186,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CanvasesRequestAgentCreate": {
+    "com.posthog.canvases#CreateCanvasesRequestAgent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesRequestAgentCreateRequest"
+        "target": "com.posthog.canvases#CreateCanvasesRequestAgentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3210,7 +3211,7 @@
         "smithy.api#documentation": "Route a viewer-approved change request to the canvas's authoring task."
       }
     },
-    "com.posthog.canvases#CanvasesRequestFixCreateRequest": {
+    "com.posthog.canvases#CreateCanvasesRequestFixRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3247,10 +3248,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CanvasesRequestFixCreate": {
+    "com.posthog.canvases#CreateCanvasesRequestFix": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesRequestFixCreateRequest"
+        "target": "com.posthog.canvases#CreateCanvasesRequestFixRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3275,7 +3276,7 @@
         "smithy.api#documentation": "Wake the canvas's authoring agent to fix a failing build or runtime error.\n\nStarts (or signals) an agent run on the authoring task, instructed to\nstage the fix as a draft the user reviews and promotes. This is the\nhuman-initiated dispatch step behind error reports; it spends agent\ncompute, so it never fires automatically, and only the authoring\ntask's creator may dispatch — the run executes with their credentials."
       }
     },
-    "com.posthog.canvases#CreateCanvaseRevertRequest": {
+    "com.posthog.canvases#CreateCanvasesRevertRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3314,10 +3315,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvaseRevert": {
+    "com.posthog.canvases#CreateCanvasesRevert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseRevertRequest"
+        "target": "com.posthog.canvases#CreateCanvasesRevertRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasBuild"
@@ -3331,7 +3332,7 @@
         "smithy.api#documentation": "Move the canvas's head back to an existing source version and rebuild it."
       }
     },
-    "com.posthog.canvases#CanvasesSourceRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesSourceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3392,10 +3393,10 @@
         "smithy.api#documentation": "A canvas's source project plus the version pointer edits must be based on."
       }
     },
-    "com.posthog.canvases#CanvasesSourceRetrieve": {
+    "com.posthog.canvases#GetCanvasesSource": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesSourceRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesSourceRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasSourceResponse"
@@ -3409,7 +3410,7 @@
         "smithy.api#documentation": "Read the canvas's source project and its `current_version_id`.\n\nAlways call this before editing: edit the returned files, then publish\nthe complete project passing the returned version id as\n`expected_current_version_id` so concurrent edits are not overwritten.\n`?version_id=` reads a historical version instead of the head."
       }
     },
-    "com.posthog.canvases#CanvasesStateRetrieveRequestScope": {
+    "com.posthog.canvases#GetCanvasesStateRequestScope": {
       "type": "enum",
       "members": {
         "SHARED": {
@@ -3427,7 +3428,7 @@
       },
       "traits": {}
     },
-    "com.posthog.canvases#CanvasesStateRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesStateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3447,7 +3448,7 @@
           }
         },
         "scope": {
-          "target": "com.posthog.canvases#CanvasesStateRetrieveRequestScope",
+          "target": "com.posthog.canvases#GetCanvasesStateRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
             "smithy.api#documentation": "Only return entries in this scope."
@@ -3518,10 +3519,10 @@
         "smithy.api#documentation": "The canvas's shared entries plus the caller's own user-scoped entries."
       }
     },
-    "com.posthog.canvases#CanvasesStateRetrieve": {
+    "com.posthog.canvases#GetCanvasesState": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesStateRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesStateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasStateResponse"
@@ -3540,7 +3541,7 @@
         "smithy.api#documentation": "Read the canvas's runtime key-value state (the ph.state store).\n\nReturns shared entries plus the authenticated user's own user-scoped\nentries — never another user's."
       }
     },
-    "com.posthog.canvases#SetCanvaseStateRequest": {
+    "com.posthog.canvases#SetCanvasesStateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3585,10 +3586,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#SetCanvaseState": {
+    "com.posthog.canvases#SetCanvasesState": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#SetCanvaseStateRequest"
+        "target": "com.posthog.canvases#SetCanvasesStateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasStateEntry"
@@ -3610,7 +3611,7 @@
         "smithy.api#documentation": "Write one key of the canvas's runtime state, or delete it with a null value."
       }
     },
-    "com.posthog.canvases#CreateCanvaseValidateRequest": {
+    "com.posthog.canvases#CanvasesValidateCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3672,10 +3673,10 @@
         "smithy.api#documentation": "Structured diagnostics; errors block publishing, warnings are advisory."
       }
     },
-    "com.posthog.canvases#CreateCanvaseValidate": {
+    "com.posthog.canvases#CanvasesValidateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseValidateRequest"
+        "target": "com.posthog.canvases#CanvasesValidateCreateRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasValidateResponse"
@@ -3689,7 +3690,7 @@
         "smithy.api#documentation": "Validate a candidate source project without publishing it. Side-effect free."
       }
     },
-    "com.posthog.canvases#CanvasesVersionsRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesVersionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3824,10 +3825,10 @@
       },
       "traits": {}
     },
-    "com.posthog.canvases#CanvasesVersionsRetrieve": {
+    "com.posthog.canvases#GetCanvasesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesVersionsRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesVersionRequest"
       },
       "output": {
         "target": "com.posthog.canvases#PaginatedCanvasVersionList"
@@ -3841,7 +3842,7 @@
         "smithy.api#documentation": "The canvas's published source-version history, newest first (metadata only).\n\nDrafts are excluded: they are staged versions that have never been the\nhead, so they are not part of the undo/revert timeline. Fetch a draft's\nfiles with `source?version_id=` to preview it before promoting."
       }
     },
-    "com.posthog.canvases#CanvasesActionsRetrieveRequest": {
+    "com.posthog.canvases#GetCanvasesActionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3917,10 +3918,10 @@
         "smithy.api#documentation": "Registered verbs, sorted by name."
       }
     },
-    "com.posthog.canvases#CanvasesActionsRetrieve": {
+    "com.posthog.canvases#GetCanvasesAction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CanvasesActionsRetrieveRequest"
+        "target": "com.posthog.canvases#GetCanvasesActionRequest"
       },
       "output": {
         "target": "com.posthog.canvases#CanvasActionsResponse"
@@ -3934,7 +3935,7 @@
         "smithy.api#documentation": "List the action registry: every verb a canvas may declare and invoke."
       }
     },
-    "com.posthog.canvases#CreateCanvaseHomeRequest": {
+    "com.posthog.canvases#CreateCanvasesHomeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3950,10 +3951,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.canvases#CreateCanvaseHome": {
+    "com.posthog.canvases#CreateCanvasesHome": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.canvases#CreateCanvaseHomeRequest"
+        "target": "com.posthog.canvases#CreateCanvasesHomeRequest"
       },
       "output": {
         "target": "com.posthog.canvases#Canvas"
@@ -4029,88 +4030,88 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.canvases#ListCanvases"
-        },
-        {
-          "target": "com.posthog.canvases#CreateCanvase"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesRetrieve"
-        },
-        {
-          "target": "com.posthog.canvases#UpdateCanvasePartial"
-        },
-        {
           "target": "com.posthog.canvases#CanvasesDestroy"
         },
         {
-          "target": "com.posthog.canvases#CanvasesActionsInvoke"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesBuildsRetrieve"
-        },
-        {
-          "target": "com.posthog.canvases#CreateCanvaseBuildAction"
-        },
-        {
-          "target": "com.posthog.canvases#CreateCanvaseDraft"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesDraftsRetrieve"
-        },
-        {
-          "target": "com.posthog.canvases#CreateCanvaseEdit"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesLayoutRetrieve"
+          "target": "com.posthog.canvases#CanvasesEditCreate"
         },
         {
           "target": "com.posthog.canvases#CanvasesLayoutPatchCreate"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvaseLayoutPublish"
+          "target": "com.posthog.canvases#CanvasesLayoutPublishCreate"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvasePromote"
+          "target": "com.posthog.canvases#CanvasesPublishCreate"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvasePublish"
+          "target": "com.posthog.canvases#CanvasesPublishCurrentVersionCreate"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvasePublishCurrentVersion"
+          "target": "com.posthog.canvases#CanvasesValidateCreate"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvaseReportError"
+          "target": "com.posthog.canvases#CreateCanvase"
         },
         {
-          "target": "com.posthog.canvases#CanvasesRequestAgentCreate"
+          "target": "com.posthog.canvases#CreateCanvasesBuildAction"
         },
         {
-          "target": "com.posthog.canvases#CanvasesRequestFixCreate"
+          "target": "com.posthog.canvases#CreateCanvasesDraft"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvaseRevert"
+          "target": "com.posthog.canvases#CreateCanvasesHome"
         },
         {
-          "target": "com.posthog.canvases#CanvasesSourceRetrieve"
+          "target": "com.posthog.canvases#CreateCanvasesPromote"
         },
         {
-          "target": "com.posthog.canvases#CanvasesStateRetrieve"
+          "target": "com.posthog.canvases#CreateCanvasesReportError"
         },
         {
-          "target": "com.posthog.canvases#SetCanvaseState"
+          "target": "com.posthog.canvases#CreateCanvasesRequestAgent"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvaseValidate"
+          "target": "com.posthog.canvases#CreateCanvasesRequestFix"
         },
         {
-          "target": "com.posthog.canvases#CanvasesVersionsRetrieve"
+          "target": "com.posthog.canvases#CreateCanvasesRevert"
         },
         {
-          "target": "com.posthog.canvases#CanvasesActionsRetrieve"
+          "target": "com.posthog.canvases#GetCanvase"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvaseHome"
+          "target": "com.posthog.canvases#GetCanvasesAction"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesBuild"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesDraft"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesLayout"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesSource"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesState"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesVersion"
+        },
+        {
+          "target": "com.posthog.canvases#InvokeCanvasesAction"
+        },
+        {
+          "target": "com.posthog.canvases#ListCanvases"
+        },
+        {
+          "target": "com.posthog.canvases#SetCanvasesState"
+        },
+        {
+          "target": "com.posthog.canvases#UpdateCanvasesPartial"
         }
       ],
       "traits": {

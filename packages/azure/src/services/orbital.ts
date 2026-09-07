@@ -976,13 +976,13 @@ export const GetContactProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContactProfileRequest>;
 
 /** Resource tags. */
-export type ContactProfilesGetResponseTagsMap = {
+export type GetContactProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContactProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetContactProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContactProfilesGetResponseTagsMap>;
+) as any as S.Schema<GetContactProfileResponseTagsMap>;
 
 export interface GetContactProfileResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -994,7 +994,7 @@ export interface GetContactProfileResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContactProfilesGetResponseTagsMap;
+  tags?: GetContactProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the contact profile resource. */
@@ -1006,7 +1006,7 @@ export const GetContactProfileResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContactProfilesGetResponseTagsMap),
+    tags: S.optional(GetContactProfileResponseTagsMap),
     location: S.String,
     properties: ContactProfilesProperties,
   }),
@@ -1040,11 +1040,11 @@ export const GetEdgeSiteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEdgeSiteRequest>;
 
 /** Resource tags. */
-export type EdgeSitesGetResponseTagsMap = { [key: string]: string | undefined };
-export const EdgeSitesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetEdgeSiteResponseTagsMap = { [key: string]: string | undefined };
+export const GetEdgeSiteResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EdgeSitesGetResponseTagsMap>;
+) as any as S.Schema<GetEdgeSiteResponseTagsMap>;
 
 export interface GetEdgeSiteResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1056,7 +1056,7 @@ export interface GetEdgeSiteResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EdgeSitesGetResponseTagsMap;
+  tags?: GetEdgeSiteResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties bag for this resource. */
@@ -1068,7 +1068,7 @@ export const GetEdgeSiteResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EdgeSitesGetResponseTagsMap),
+    tags: S.optional(GetEdgeSiteResponseTagsMap),
     location: S.String,
     properties: EdgeSitesProperties,
   }),
@@ -1102,13 +1102,13 @@ export const GetGroundStationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGroundStationRequest>;
 
 /** Resource tags. */
-export type GroundStationsGetResponseTagsMap = {
+export type GetGroundStationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GroundStationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetGroundStationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GroundStationsGetResponseTagsMap>;
+) as any as S.Schema<GetGroundStationResponseTagsMap>;
 
 /** Capability of the Ground Station. */
 export type Capability = "EarthObservation" | "Communication";
@@ -1168,7 +1168,7 @@ export interface GetGroundStationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GroundStationsGetResponseTagsMap;
+  tags?: GetGroundStationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Ground Station. */
@@ -1180,7 +1180,7 @@ export const GetGroundStationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GroundStationsGetResponseTagsMap),
+    tags: S.optional(GetGroundStationResponseTagsMap),
     location: S.String,
     properties: S.optional(GroundStationsProperties),
   }),
@@ -1214,13 +1214,13 @@ export const GetL2ConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetL2ConnectionRequest>;
 
 /** Resource tags. */
-export type L2ConnectionsGetResponseTagsMap = {
+export type GetL2ConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2ConnectionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetL2ConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2ConnectionsGetResponseTagsMap>;
+) as any as S.Schema<GetL2ConnectionResponseTagsMap>;
 
 /** The current state of the resource's creation, deletion, or modification. */
 export type ProvisioningState_2 =
@@ -1302,7 +1302,7 @@ export interface GetL2ConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2ConnectionsGetResponseTagsMap;
+  tags?: GetL2ConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties bag for this resource. */
@@ -1314,7 +1314,7 @@ export const GetL2ConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2ConnectionsGetResponseTagsMap),
+    tags: S.optional(GetL2ConnectionResponseTagsMap),
     location: S.String,
     properties: L2ConnectionsProperties,
   }),
@@ -1322,7 +1322,7 @@ export const GetL2ConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetL2ConnectionResponse",
 }) as any as S.Schema<GetL2ConnectionResponse>;
 
-export interface GetOperationResultRequest {
+export interface GetOperationsResultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -1330,7 +1330,7 @@ export interface GetOperationResultRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -1344,8 +1344,8 @@ export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetOperationResultRequest",
-}) as any as S.Schema<GetOperationResultRequest>;
+  identifier: "GetOperationsResultRequest",
+}) as any as S.Schema<GetOperationsResultRequest>;
 
 /** The status of operation. */
 export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
@@ -1436,13 +1436,13 @@ export const GetSpacecraftRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSpacecraftRequest>;
 
 /** Resource tags. */
-export type SpacecraftsGetResponseTagsMap = {
+export type GetSpacecraftResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSpacecraftResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsGetResponseTagsMap>;
+) as any as S.Schema<GetSpacecraftResponseTagsMap>;
 
 /** Direction (Uplink or Downlink). */
 export type SpacecraftLinkDirection = "Uplink" | "Downlink";
@@ -1548,7 +1548,7 @@ export interface GetSpacecraftResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SpacecraftsGetResponseTagsMap;
+  tags?: GetSpacecraftResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Spacecraft Properties */
@@ -1560,7 +1560,7 @@ export const GetSpacecraftResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SpacecraftsGetResponseTagsMap),
+    tags: S.optional(GetSpacecraftResponseTagsMap),
     location: S.String,
     properties: SpacecraftsProperties,
   }),
@@ -1814,10 +1814,10 @@ export const L2ConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "L2ConnectionsCreateOrUpdateResponse",
 }) as any as S.Schema<L2ConnectionsCreateOrUpdateResponse>;
 
-export type AvailableGroundStationsListByCapabilityRequestCapability =
+export type ListAvailableGroundStationByCapabilityRequestCapability =
   | "EarthObservation"
   | "Communication";
-export const AvailableGroundStationsListByCapabilityRequestCapability =
+export const ListAvailableGroundStationByCapabilityRequestCapability =
   /*@__PURE__*/ S.String;
 
 export interface ListAvailableGroundStationByCapabilityRequest {
@@ -1825,14 +1825,14 @@ export interface ListAvailableGroundStationByCapabilityRequest {
   subscriptionId: string;
   /** Ground Station Capability. */
   capability:
-    | AvailableGroundStationsListByCapabilityRequestCapability
+    | ListAvailableGroundStationByCapabilityRequestCapability
     | (string & {});
 }
 export const ListAvailableGroundStationByCapabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      capability: AvailableGroundStationsListByCapabilityRequestCapability.pipe(
+      capability: ListAvailableGroundStationByCapabilityRequestCapability.pipe(
         T.Query(),
       ),
     }).pipe(
@@ -2271,11 +2271,11 @@ export const ListEdgeSitesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEdgeSitesRequest",
 }) as any as S.Schema<ListEdgeSitesRequest>;
 
-export interface ListGlobalCommunicationSiteBySubscriptionRequest {
+export interface ListGlobalCommunicationsSiteBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListGlobalCommunicationSiteBySubscriptionRequest =
+export const ListGlobalCommunicationsSiteBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2288,8 +2288,8 @@ export const ListGlobalCommunicationSiteBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListGlobalCommunicationSiteBySubscriptionRequest",
-  }) as any as S.Schema<ListGlobalCommunicationSiteBySubscriptionRequest>;
+    identifier: "ListGlobalCommunicationsSiteBySubscriptionRequest",
+  }) as any as S.Schema<ListGlobalCommunicationsSiteBySubscriptionRequest>;
 
 /** Describes a location outside of Azure. */
 export interface LocationData {
@@ -2716,20 +2716,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -3111,15 +3111,15 @@ export const SpacecraftsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SpacecraftsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type ContactProfilesUpdateTagsRequestTagsMap = {
+export type UpdateContactProfileTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContactProfilesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContactProfileTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContactProfilesUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateContactProfileTagsRequestTagsMap>;
 
-export interface UpdateContactProfileTagRequest {
+export interface UpdateContactProfileTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3127,14 +3127,14 @@ export interface UpdateContactProfileTagRequest {
   /** Contact Profile name. */
   contactProfileName: string;
   /** Resource tags. */
-  tags?: ContactProfilesUpdateTagsRequestTagsMap;
+  tags?: UpdateContactProfileTagsRequestTagsMap;
 }
-export const UpdateContactProfileTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateContactProfileTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     contactProfileName: S.String.pipe(T.Label()),
-    tags: S.optional(ContactProfilesUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateContactProfileTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3144,19 +3144,19 @@ export const UpdateContactProfileTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateContactProfileTagRequest",
-}) as any as S.Schema<UpdateContactProfileTagRequest>;
+  identifier: "UpdateContactProfileTagsRequest",
+}) as any as S.Schema<UpdateContactProfileTagsRequest>;
 
 /** Resource tags. */
-export type ContactProfilesUpdateTagsResponseTagsMap = {
+export type UpdateContactProfileTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContactProfilesUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContactProfileTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContactProfilesUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateContactProfileTagsResponseTagsMap>;
 
-export interface UpdateContactProfileTagResponse {
+export interface UpdateContactProfileTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3166,36 +3166,36 @@ export interface UpdateContactProfileTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContactProfilesUpdateTagsResponseTagsMap;
+  tags?: UpdateContactProfileTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the contact profile resource. */
   properties: ContactProfilesProperties;
 }
-export const UpdateContactProfileTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateContactProfileTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContactProfilesUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateContactProfileTagsResponseTagsMap),
     location: S.String,
     properties: ContactProfilesProperties,
   }),
 ).annotate({
-  identifier: "UpdateContactProfileTagResponse",
-}) as any as S.Schema<UpdateContactProfileTagResponse>;
+  identifier: "UpdateContactProfileTagsResponse",
+}) as any as S.Schema<UpdateContactProfileTagsResponse>;
 
 /** Resource tags. */
-export type EdgeSitesUpdateTagsRequestTagsMap = {
+export type UpdateEdgeSiteTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EdgeSitesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEdgeSiteTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EdgeSitesUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateEdgeSiteTagsRequestTagsMap>;
 
-export interface UpdateEdgeSiteTagRequest {
+export interface UpdateEdgeSiteTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3203,14 +3203,14 @@ export interface UpdateEdgeSiteTagRequest {
   /** Edge site name. */
   edgeSiteName: string;
   /** Resource tags. */
-  tags?: EdgeSitesUpdateTagsRequestTagsMap;
+  tags?: UpdateEdgeSiteTagsRequestTagsMap;
 }
-export const UpdateEdgeSiteTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEdgeSiteTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     edgeSiteName: S.String.pipe(T.Label()),
-    tags: S.optional(EdgeSitesUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateEdgeSiteTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3220,19 +3220,19 @@ export const UpdateEdgeSiteTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateEdgeSiteTagRequest",
-}) as any as S.Schema<UpdateEdgeSiteTagRequest>;
+  identifier: "UpdateEdgeSiteTagsRequest",
+}) as any as S.Schema<UpdateEdgeSiteTagsRequest>;
 
 /** Resource tags. */
-export type EdgeSitesUpdateTagsResponseTagsMap = {
+export type UpdateEdgeSiteTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EdgeSitesUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEdgeSiteTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EdgeSitesUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateEdgeSiteTagsResponseTagsMap>;
 
-export interface UpdateEdgeSiteTagResponse {
+export interface UpdateEdgeSiteTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3242,36 +3242,36 @@ export interface UpdateEdgeSiteTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EdgeSitesUpdateTagsResponseTagsMap;
+  tags?: UpdateEdgeSiteTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties bag for this resource. */
   properties: EdgeSitesProperties;
 }
-export const UpdateEdgeSiteTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEdgeSiteTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EdgeSitesUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateEdgeSiteTagsResponseTagsMap),
     location: S.String,
     properties: EdgeSitesProperties,
   }),
 ).annotate({
-  identifier: "UpdateEdgeSiteTagResponse",
-}) as any as S.Schema<UpdateEdgeSiteTagResponse>;
+  identifier: "UpdateEdgeSiteTagsResponse",
+}) as any as S.Schema<UpdateEdgeSiteTagsResponse>;
 
 /** Resource tags. */
-export type GroundStationsUpdateTagsRequestTagsMap = {
+export type UpdateGroundStationTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GroundStationsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGroundStationTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GroundStationsUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateGroundStationTagsRequestTagsMap>;
 
-export interface UpdateGroundStationTagRequest {
+export interface UpdateGroundStationTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3279,14 +3279,14 @@ export interface UpdateGroundStationTagRequest {
   /** Ground Station name. */
   groundStationName: string;
   /** Resource tags. */
-  tags?: GroundStationsUpdateTagsRequestTagsMap;
+  tags?: UpdateGroundStationTagsRequestTagsMap;
 }
-export const UpdateGroundStationTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroundStationTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     groundStationName: S.String.pipe(T.Label()),
-    tags: S.optional(GroundStationsUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateGroundStationTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3296,19 +3296,19 @@ export const UpdateGroundStationTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateGroundStationTagRequest",
-}) as any as S.Schema<UpdateGroundStationTagRequest>;
+  identifier: "UpdateGroundStationTagsRequest",
+}) as any as S.Schema<UpdateGroundStationTagsRequest>;
 
 /** Resource tags. */
-export type GroundStationsUpdateTagsResponseTagsMap = {
+export type UpdateGroundStationTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GroundStationsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGroundStationTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GroundStationsUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateGroundStationTagsResponseTagsMap>;
 
-export interface UpdateGroundStationTagResponse {
+export interface UpdateGroundStationTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3318,36 +3318,36 @@ export interface UpdateGroundStationTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GroundStationsUpdateTagsResponseTagsMap;
+  tags?: UpdateGroundStationTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Ground Station. */
   properties?: GroundStationsProperties;
 }
-export const UpdateGroundStationTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroundStationTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GroundStationsUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateGroundStationTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(GroundStationsProperties),
   }),
 ).annotate({
-  identifier: "UpdateGroundStationTagResponse",
-}) as any as S.Schema<UpdateGroundStationTagResponse>;
+  identifier: "UpdateGroundStationTagsResponse",
+}) as any as S.Schema<UpdateGroundStationTagsResponse>;
 
 /** Resource tags. */
-export type L2ConnectionsUpdateTagsRequestTagsMap = {
+export type UpdateL2ConnectionTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2ConnectionsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL2ConnectionTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2ConnectionsUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateL2ConnectionTagsRequestTagsMap>;
 
-export interface UpdateL2ConnectionTagRequest {
+export interface UpdateL2ConnectionTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3355,14 +3355,14 @@ export interface UpdateL2ConnectionTagRequest {
   /** L2 Connection name. */
   l2ConnectionName: string;
   /** Resource tags. */
-  tags?: L2ConnectionsUpdateTagsRequestTagsMap;
+  tags?: UpdateL2ConnectionTagsRequestTagsMap;
 }
-export const UpdateL2ConnectionTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateL2ConnectionTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l2ConnectionName: S.String.pipe(T.Label()),
-    tags: S.optional(L2ConnectionsUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateL2ConnectionTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3372,19 +3372,19 @@ export const UpdateL2ConnectionTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateL2ConnectionTagRequest",
-}) as any as S.Schema<UpdateL2ConnectionTagRequest>;
+  identifier: "UpdateL2ConnectionTagsRequest",
+}) as any as S.Schema<UpdateL2ConnectionTagsRequest>;
 
 /** Resource tags. */
-export type L2ConnectionsUpdateTagsResponseTagsMap = {
+export type UpdateL2ConnectionTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2ConnectionsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL2ConnectionTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2ConnectionsUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateL2ConnectionTagsResponseTagsMap>;
 
-export interface UpdateL2ConnectionTagResponse {
+export interface UpdateL2ConnectionTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3394,36 +3394,36 @@ export interface UpdateL2ConnectionTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2ConnectionsUpdateTagsResponseTagsMap;
+  tags?: UpdateL2ConnectionTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties bag for this resource. */
   properties: L2ConnectionsProperties;
 }
-export const UpdateL2ConnectionTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateL2ConnectionTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2ConnectionsUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateL2ConnectionTagsResponseTagsMap),
     location: S.String,
     properties: L2ConnectionsProperties,
   }),
 ).annotate({
-  identifier: "UpdateL2ConnectionTagResponse",
-}) as any as S.Schema<UpdateL2ConnectionTagResponse>;
+  identifier: "UpdateL2ConnectionTagsResponse",
+}) as any as S.Schema<UpdateL2ConnectionTagsResponse>;
 
 /** Resource tags. */
-export type SpacecraftsUpdateTagsRequestTagsMap = {
+export type UpdateSpacecraftTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSpacecraftTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateSpacecraftTagsRequestTagsMap>;
 
-export interface UpdateSpacecraftTagRequest {
+export interface UpdateSpacecraftTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3431,14 +3431,14 @@ export interface UpdateSpacecraftTagRequest {
   /** Spacecraft ID. */
   spacecraftName: string;
   /** Resource tags. */
-  tags?: SpacecraftsUpdateTagsRequestTagsMap;
+  tags?: UpdateSpacecraftTagsRequestTagsMap;
 }
-export const UpdateSpacecraftTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSpacecraftTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     spacecraftName: S.String.pipe(T.Label()),
-    tags: S.optional(SpacecraftsUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateSpacecraftTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3448,19 +3448,19 @@ export const UpdateSpacecraftTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSpacecraftTagRequest",
-}) as any as S.Schema<UpdateSpacecraftTagRequest>;
+  identifier: "UpdateSpacecraftTagsRequest",
+}) as any as S.Schema<UpdateSpacecraftTagsRequest>;
 
 /** Resource tags. */
-export type SpacecraftsUpdateTagsResponseTagsMap = {
+export type UpdateSpacecraftTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSpacecraftTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateSpacecraftTagsResponseTagsMap>;
 
-export interface UpdateSpacecraftTagResponse {
+export interface UpdateSpacecraftTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3470,25 +3470,25 @@ export interface UpdateSpacecraftTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SpacecraftsUpdateTagsResponseTagsMap;
+  tags?: UpdateSpacecraftTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Spacecraft Properties */
   properties: SpacecraftsProperties;
 }
-export const UpdateSpacecraftTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSpacecraftTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SpacecraftsUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateSpacecraftTagsResponseTagsMap),
     location: S.String,
     properties: SpacecraftsProperties,
   }),
 ).annotate({
-  identifier: "UpdateSpacecraftTagResponse",
-}) as any as S.Schema<UpdateSpacecraftTagResponse>;
+  identifier: "UpdateSpacecraftTagsResponse",
+}) as any as S.Schema<UpdateSpacecraftTagsResponse>;
 
 export type ContactProfilesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a contact profile. */
@@ -3700,15 +3700,15 @@ export const GetL2Connection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOperationResultError = AzureOpError;
+export type GetOperationsResultError = AzureOpError;
 /** Returns operation results. */
-export const GetOperationResult: API.OperationMethod<
-  GetOperationResultRequest,
+export const GetOperationsResult: API.OperationMethod<
+  GetOperationsResultRequest,
   OperationResult,
-  GetOperationResultError,
+  GetOperationsResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOperationResultRequest,
+  input: GetOperationsResultRequest,
   output: OperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3865,15 +3865,15 @@ export const ListEdgeSites: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListGlobalCommunicationSiteBySubscriptionError = AzureOpError;
+export type ListGlobalCommunicationsSiteBySubscriptionError = AzureOpError;
 /** Returns a list of the global communications sites that a subscription is authorized to use. */
-export const ListGlobalCommunicationSiteBySubscription: API.OperationMethod<
-  ListGlobalCommunicationSiteBySubscriptionRequest,
+export const ListGlobalCommunicationsSiteBySubscription: API.OperationMethod<
+  ListGlobalCommunicationsSiteBySubscriptionRequest,
   GlobalCommunicationsSiteListResult,
-  ListGlobalCommunicationSiteBySubscriptionError,
+  ListGlobalCommunicationsSiteBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGlobalCommunicationSiteBySubscriptionRequest,
+  input: ListGlobalCommunicationsSiteBySubscriptionRequest,
   output: GlobalCommunicationsSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4030,76 +4030,76 @@ export const SpacecraftsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateContactProfileTagError = AzureOpError;
+export type UpdateContactProfileTagsError = AzureOpError;
 /** Updates the specified contact profile tags. */
-export const UpdateContactProfileTag: API.OperationMethod<
-  UpdateContactProfileTagRequest,
-  UpdateContactProfileTagResponse,
-  UpdateContactProfileTagError,
+export const UpdateContactProfileTags: API.OperationMethod<
+  UpdateContactProfileTagsRequest,
+  UpdateContactProfileTagsResponse,
+  UpdateContactProfileTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateContactProfileTagRequest,
-  output: UpdateContactProfileTagResponse,
+  input: UpdateContactProfileTagsRequest,
+  output: UpdateContactProfileTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateEdgeSiteTagError = AzureOpError;
+export type UpdateEdgeSiteTagsError = AzureOpError;
 /** Updates the specified edge site's tags. */
-export const UpdateEdgeSiteTag: API.OperationMethod<
-  UpdateEdgeSiteTagRequest,
-  UpdateEdgeSiteTagResponse,
-  UpdateEdgeSiteTagError,
+export const UpdateEdgeSiteTags: API.OperationMethod<
+  UpdateEdgeSiteTagsRequest,
+  UpdateEdgeSiteTagsResponse,
+  UpdateEdgeSiteTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateEdgeSiteTagRequest,
-  output: UpdateEdgeSiteTagResponse,
+  input: UpdateEdgeSiteTagsRequest,
+  output: UpdateEdgeSiteTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateGroundStationTagError = AzureOpError;
+export type UpdateGroundStationTagsError = AzureOpError;
 /** Updates the specified ground station tags. */
-export const UpdateGroundStationTag: API.OperationMethod<
-  UpdateGroundStationTagRequest,
-  UpdateGroundStationTagResponse,
-  UpdateGroundStationTagError,
+export const UpdateGroundStationTags: API.OperationMethod<
+  UpdateGroundStationTagsRequest,
+  UpdateGroundStationTagsResponse,
+  UpdateGroundStationTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateGroundStationTagRequest,
-  output: UpdateGroundStationTagResponse,
+  input: UpdateGroundStationTagsRequest,
+  output: UpdateGroundStationTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateL2ConnectionTagError = AzureOpError;
+export type UpdateL2ConnectionTagsError = AzureOpError;
 /** Updates the specified L2 Connection's tags. */
-export const UpdateL2ConnectionTag: API.OperationMethod<
-  UpdateL2ConnectionTagRequest,
-  UpdateL2ConnectionTagResponse,
-  UpdateL2ConnectionTagError,
+export const UpdateL2ConnectionTags: API.OperationMethod<
+  UpdateL2ConnectionTagsRequest,
+  UpdateL2ConnectionTagsResponse,
+  UpdateL2ConnectionTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateL2ConnectionTagRequest,
-  output: UpdateL2ConnectionTagResponse,
+  input: UpdateL2ConnectionTagsRequest,
+  output: UpdateL2ConnectionTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSpacecraftTagError = AzureOpError;
+export type UpdateSpacecraftTagsError = AzureOpError;
 /** Updates the specified spacecraft tags. */
-export const UpdateSpacecraftTag: API.OperationMethod<
-  UpdateSpacecraftTagRequest,
-  UpdateSpacecraftTagResponse,
-  UpdateSpacecraftTagError,
+export const UpdateSpacecraftTags: API.OperationMethod<
+  UpdateSpacecraftTagsRequest,
+  UpdateSpacecraftTagsResponse,
+  UpdateSpacecraftTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSpacecraftTagRequest,
-  output: UpdateSpacecraftTagResponse,
+  input: UpdateSpacecraftTagsRequest,
+  output: UpdateSpacecraftTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.network_actions#ListNetworksActionsRequestIdList": {
@@ -2322,15 +2323,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.network_actions#ListNetworksActions"
-        },
-        {
-          "target": "com.hetzner.network_actions#GetNetworksAction"
-        },
-        {
-          "target": "com.hetzner.network_actions#ListNetworkActions"
-        },
-        {
           "target": "com.hetzner.network_actions#AddNetworkRoute"
         },
         {
@@ -2347,6 +2339,15 @@
         },
         {
           "target": "com.hetzner.network_actions#DeleteNetworkSubnet"
+        },
+        {
+          "target": "com.hetzner.network_actions#GetNetworksAction"
+        },
+        {
+          "target": "com.hetzner.network_actions#ListNetworkActions"
+        },
+        {
+          "target": "com.hetzner.network_actions#ListNetworksActions"
         }
       ],
       "traits": {

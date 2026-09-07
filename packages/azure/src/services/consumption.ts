@@ -427,6 +427,65 @@ export const DeleteBudgetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteBudgetResponse",
 }) as any as S.Schema<DeleteBudgetResponse>;
 
+export interface DownloadPriceSheetByBillingAccountPeriodRequest {
+  /** BillingAccount ID */
+  billingAccountId: string;
+  /** Billing Period Name. */
+  billingPeriodName: string;
+}
+export const DownloadPriceSheetByBillingAccountPeriodRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountId: S.String.pipe(T.Label()),
+      billingPeriodName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingPeriods/{billingPeriodName}/providers/Microsoft.Consumption/pricesheets/download",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadPriceSheetByBillingAccountPeriodRequest",
+  }) as any as S.Schema<DownloadPriceSheetByBillingAccountPeriodRequest>;
+
+/** The status of the long running operation. */
+export type OperationStatusType = "Running" | "Completed" | "Failed";
+export const OperationStatusType = /*@__PURE__*/ S.String;
+
+/** The properties of the price sheet download. */
+export interface PricesheetDownloadProperties {
+  /** The link (url) to download the pricesheet. */
+  downloadUrl?: string;
+  /** Download link validity. */
+  validTill?: string;
+}
+export const PricesheetDownloadProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    downloadUrl: S.optional(S.String),
+    validTill: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PricesheetDownloadProperties",
+}) as any as S.Schema<PricesheetDownloadProperties>;
+
+/** The status of the long running operation. */
+export interface OperationStatus {
+  /** The status of the long running operation. */
+  status?: OperationStatusType;
+  /** The properties of the resource generated. */
+  properties?: PricesheetDownloadProperties;
+}
+export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(OperationStatusType),
+    properties: S.optional(PricesheetDownloadProperties),
+  }),
+).annotate({
+  identifier: "OperationStatus",
+}) as any as S.Schema<OperationStatus>;
+
 export interface GetAggregatedCostByManagementGroupRequest {
   /** Order Id of the reservation */
   managementGroupId: string;
@@ -563,14 +622,14 @@ export const ManagementGroupAggregatedCostProperties = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ManagementGroupAggregatedCostProperties>;
 
 /** Resource tags. */
-export type AggregatedCostGetByManagementGroupResponseTagsMap = {
+export type GetAggregatedCostByManagementGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AggregatedCostGetByManagementGroupResponseTagsMap =
+export const GetAggregatedCostByManagementGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AggregatedCostGetByManagementGroupResponseTagsMap>;
+  ) as any as S.Schema<GetAggregatedCostByManagementGroupResponseTagsMap>;
 
 export interface GetAggregatedCostByManagementGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -586,7 +645,7 @@ export interface GetAggregatedCostByManagementGroupResponse {
   /** The etag for the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: AggregatedCostGetByManagementGroupResponseTagsMap;
+  tags?: GetAggregatedCostByManagementGroupResponseTagsMap;
 }
 export const GetAggregatedCostByManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -597,7 +656,7 @@ export const GetAggregatedCostByManagementGroupResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ManagementGroupAggregatedCostProperties),
       etag: S.optional(S.String),
-      tags: S.optional(AggregatedCostGetByManagementGroupResponseTagsMap),
+      tags: S.optional(GetAggregatedCostByManagementGroupResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetAggregatedCostByManagementGroupResponse",
@@ -627,13 +686,13 @@ export const GetAggregatedCostForBillingPeriodByManagementGroupRequest =
   }) as any as S.Schema<GetAggregatedCostForBillingPeriodByManagementGroupRequest>;
 
 /** Resource tags. */
-export type AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap =
+export type GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap =
   { [key: string]: string | undefined };
-export const AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap =
+export const GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap>;
+  ) as any as S.Schema<GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap>;
 
 export interface GetAggregatedCostForBillingPeriodByManagementGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -649,7 +708,7 @@ export interface GetAggregatedCostForBillingPeriodByManagementGroupResponse {
   /** The etag for the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap;
+  tags?: GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap;
 }
 export const GetAggregatedCostForBillingPeriodByManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -661,7 +720,7 @@ export const GetAggregatedCostForBillingPeriodByManagementGroupResponse =
       properties: S.optional(ManagementGroupAggregatedCostProperties),
       etag: S.optional(S.String),
       tags: S.optional(
-        AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap,
+        GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -796,14 +855,13 @@ export const BalanceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BalanceProperties>;
 
 /** Resource tags. */
-export type BalancesGetByBillingAccountResponseTagsMap = {
+export type GetBalanceByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BalancesGetByBillingAccountResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BalancesGetByBillingAccountResponseTagsMap>;
+export const GetBalanceByBillingAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBalanceByBillingAccountResponseTagsMap>;
 
 export interface GetBalanceByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -819,7 +877,7 @@ export interface GetBalanceByBillingAccountResponse {
   /** The etag for the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: BalancesGetByBillingAccountResponseTagsMap;
+  tags?: GetBalanceByBillingAccountResponseTagsMap;
 }
 export const GetBalanceByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -829,7 +887,7 @@ export const GetBalanceByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(BalanceProperties),
     etag: S.optional(S.String),
-    tags: S.optional(BalancesGetByBillingAccountResponseTagsMap),
+    tags: S.optional(GetBalanceByBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBalanceByBillingAccountResponse",
@@ -859,14 +917,14 @@ export const GetBalanceForBillingPeriodByBillingAccountRequest =
   }) as any as S.Schema<GetBalanceForBillingPeriodByBillingAccountRequest>;
 
 /** Resource tags. */
-export type BalancesGetForBillingPeriodByBillingAccountResponseTagsMap = {
+export type GetBalanceForBillingPeriodByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BalancesGetForBillingPeriodByBillingAccountResponseTagsMap =
+export const GetBalanceForBillingPeriodByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BalancesGetForBillingPeriodByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetBalanceForBillingPeriodByBillingAccountResponseTagsMap>;
 
 export interface GetBalanceForBillingPeriodByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -882,7 +940,7 @@ export interface GetBalanceForBillingPeriodByBillingAccountResponse {
   /** The etag for the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: BalancesGetForBillingPeriodByBillingAccountResponseTagsMap;
+  tags?: GetBalanceForBillingPeriodByBillingAccountResponseTagsMap;
 }
 export const GetBalanceForBillingPeriodByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -894,7 +952,7 @@ export const GetBalanceForBillingPeriodByBillingAccountResponse =
       properties: S.optional(BalanceProperties),
       etag: S.optional(S.String),
       tags: S.optional(
-        BalancesGetForBillingPeriodByBillingAccountResponseTagsMap,
+        GetBalanceForBillingPeriodByBillingAccountResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -1079,11 +1137,11 @@ export const CreditSummaryProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreditSummaryProperties>;
 
 /** A list of Tag. */
-export type CreditsGetResponseTagsMap = { [key: string]: string | undefined };
-export const CreditsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCreditResponseTagsMap = { [key: string]: string | undefined };
+export const GetCreditResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CreditsGetResponseTagsMap>;
+) as any as S.Schema<GetCreditResponseTagsMap>;
 
 export interface GetCreditResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1099,7 +1157,7 @@ export interface GetCreditResponse {
   /** eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the user is updating the latest version or not. */
   eTag?: string;
   /** A list of Tag. */
-  tags?: CreditsGetResponseTagsMap;
+  tags?: GetCreditResponseTagsMap;
 }
 export const GetCreditResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1109,7 +1167,7 @@ export const GetCreditResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(CreditSummaryProperties),
     eTag: S.optional(S.String),
-    tags: S.optional(CreditsGetResponseTagsMap),
+    tags: S.optional(GetCreditResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetCreditResponse",
@@ -1261,13 +1319,13 @@ export const PriceSheetModel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PriceSheetModel>;
 
 /** Resource tags. */
-export type PriceSheetGetResponseTagsMap = {
+export type GetPriceSheetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PriceSheetGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPriceSheetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PriceSheetGetResponseTagsMap>;
+) as any as S.Schema<GetPriceSheetResponseTagsMap>;
 
 export interface GetPriceSheetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1283,7 +1341,7 @@ export interface GetPriceSheetResponse {
   /** eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the user is updating the latest version or not. */
   etag?: string;
   /** Resource tags. */
-  tags?: PriceSheetGetResponseTagsMap;
+  tags?: GetPriceSheetResponseTagsMap;
 }
 export const GetPriceSheetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1293,7 +1351,7 @@ export const GetPriceSheetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(PriceSheetModel),
     etag: S.optional(S.String),
-    tags: S.optional(PriceSheetGetResponseTagsMap),
+    tags: S.optional(GetPriceSheetResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPriceSheetResponse",
@@ -1331,14 +1389,14 @@ export const GetPriceSheetByBillingPeriodRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPriceSheetByBillingPeriodRequest>;
 
 /** Resource tags. */
-export type PriceSheetGetByBillingPeriodResponseTagsMap = {
+export type GetPriceSheetByBillingPeriodResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PriceSheetGetByBillingPeriodResponseTagsMap =
+export const GetPriceSheetByBillingPeriodResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PriceSheetGetByBillingPeriodResponseTagsMap>;
+  ) as any as S.Schema<GetPriceSheetByBillingPeriodResponseTagsMap>;
 
 export interface GetPriceSheetByBillingPeriodResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1354,7 +1412,7 @@ export interface GetPriceSheetByBillingPeriodResponse {
   /** eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the user is updating the latest version or not. */
   etag?: string;
   /** Resource tags. */
-  tags?: PriceSheetGetByBillingPeriodResponseTagsMap;
+  tags?: GetPriceSheetByBillingPeriodResponseTagsMap;
 }
 export const GetPriceSheetByBillingPeriodResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -1365,45 +1423,45 @@ export const GetPriceSheetByBillingPeriodResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(PriceSheetModel),
       etag: S.optional(S.String),
-      tags: S.optional(PriceSheetGetByBillingPeriodResponseTagsMap),
+      tags: S.optional(GetPriceSheetByBillingPeriodResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetPriceSheetByBillingPeriodResponse",
 }) as any as S.Schema<GetPriceSheetByBillingPeriodResponse>;
 
-export type ReservationRecommendationDetailsGetRequestScope =
+export type GetReservationRecommendationDetailRequestScope =
   | "Single"
   | "Shared"
   | "ManagementGroup";
-export const ReservationRecommendationDetailsGetRequestScope =
+export const GetReservationRecommendationDetailRequestScope =
   /*@__PURE__*/ S.String;
 
-export type ReservationRecommendationDetailsGetRequestTerm =
+export type GetReservationRecommendationDetailRequestTerm =
   | "P1M"
   | "P1Y"
   | "P3Y";
-export const ReservationRecommendationDetailsGetRequestTerm =
+export const GetReservationRecommendationDetailRequestTerm =
   /*@__PURE__*/ S.String;
 
-export type ReservationRecommendationDetailsGetRequestLookBackPeriod =
+export type GetReservationRecommendationDetailRequestLookBackPeriod =
   | "Last7Days"
   | "Last30Days"
   | "Last60Days";
-export const ReservationRecommendationDetailsGetRequestLookBackPeriod =
+export const GetReservationRecommendationDetailRequestLookBackPeriod =
   /*@__PURE__*/ S.String;
 
 export interface GetReservationRecommendationDetailRequest {
   /** The scope associated with reservation recommendation details operations. This includes '/subscriptions/{subscriptionId}/' for subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resource group scope, /providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope, and '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for billingProfile scope */
   resourceScope: string;
   /** Scope of the reservation. */
-  scope: ReservationRecommendationDetailsGetRequestScope | (string & {});
+  scope: GetReservationRecommendationDetailRequestScope | (string & {});
   /** Used to select the region the recommendation should be generated for. */
   region: string;
   /** Specify length of reservation recommendation term. */
-  term: ReservationRecommendationDetailsGetRequestTerm | (string & {});
+  term: GetReservationRecommendationDetailRequestTerm | (string & {});
   /** Filter the time period on which reservation recommendation results are based. */
   lookBackPeriod:
-    | ReservationRecommendationDetailsGetRequestLookBackPeriod
+    | GetReservationRecommendationDetailRequestLookBackPeriod
     | (string & {});
   /** Filter the products for which reservation recommendation results are generated. Examples: Standard_DS1_v2 (for VM), Premium_SSD_Managed_Disks_P30 (for Managed Disks) */
   product: string;
@@ -1416,13 +1474,11 @@ export const GetReservationRecommendationDetailRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceScope: S.String.pipe(T.Label()),
-      scope: ReservationRecommendationDetailsGetRequestScope.pipe(T.Query()),
+      scope: GetReservationRecommendationDetailRequestScope.pipe(T.Query()),
       region: S.String.pipe(T.Query()),
-      term: ReservationRecommendationDetailsGetRequestTerm.pipe(T.Query()),
+      term: GetReservationRecommendationDetailRequestTerm.pipe(T.Query()),
       lookBackPeriod:
-        ReservationRecommendationDetailsGetRequestLookBackPeriod.pipe(
-          T.Query(),
-        ),
+        GetReservationRecommendationDetailRequestLookBackPeriod.pipe(T.Query()),
       product: S.String.pipe(T.Query()),
       _filter: S.optional(S.String.pipe(T.Query("$filter"))),
       managementGroupId: S.optional(S.String.pipe(T.Query())),
@@ -1639,14 +1695,14 @@ export const ReservationRecommendationDetailsProperties =
   }) as any as S.Schema<ReservationRecommendationDetailsProperties>;
 
 /** Resource tags. */
-export type ReservationRecommendationDetailsGetResponseTagsMap = {
+export type GetReservationRecommendationDetailResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReservationRecommendationDetailsGetResponseTagsMap =
+export const GetReservationRecommendationDetailResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ReservationRecommendationDetailsGetResponseTagsMap>;
+  ) as any as S.Schema<GetReservationRecommendationDetailResponseTagsMap>;
 
 export interface GetReservationRecommendationDetailResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1666,7 +1722,7 @@ export interface GetReservationRecommendationDetailResponse {
   /** The etag for the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: ReservationRecommendationDetailsGetResponseTagsMap;
+  tags?: GetReservationRecommendationDetailResponseTagsMap;
 }
 export const GetReservationRecommendationDetailResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -1679,7 +1735,7 @@ export const GetReservationRecommendationDetailResponse =
       sku: S.optional(S.String),
       properties: S.optional(ReservationRecommendationDetailsProperties),
       etag: S.optional(S.String),
-      tags: S.optional(ReservationRecommendationDetailsGetResponseTagsMap),
+      tags: S.optional(GetReservationRecommendationDetailResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetReservationRecommendationDetailResponse",
@@ -1822,20 +1878,20 @@ export const BudgetsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<BudgetsListResultValueList>;
 
 /** Result of listing budgets. It contains a list of available budgets in the scope provided. */
-export interface ListBudgetsResult {
+export interface BudgetsListResult {
   /** The list of budgets. */
   value?: BudgetsListResultValueList;
   /** The link (url) to the next page of results. */
   nextLink?: string;
 }
-export const ListBudgetsResult = /*@__PURE__*/ S.suspend(() =>
+export const BudgetsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(BudgetsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListBudgetsResult",
-}) as any as S.Schema<ListBudgetsResult>;
+  identifier: "BudgetsListResult",
+}) as any as S.Schema<BudgetsListResult>;
 
 export interface ListChargesRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -1905,17 +1961,17 @@ export const ChargesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ChargesListResultValueList>;
 
 /** Result of listing charge summary. */
-export interface ListChargesResult {
+export interface ChargesListResult {
   /** The list of charge summary */
   value?: ChargesListResultValueList;
 }
-export const ListChargesResult = /*@__PURE__*/ S.suspend(() =>
+export const ChargesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(ChargesListResultValueList),
   }),
 ).annotate({
-  identifier: "ListChargesResult",
-}) as any as S.Schema<ListChargesResult>;
+  identifier: "ChargesListResult",
+}) as any as S.Schema<ChargesListResult>;
 
 export interface ListEventByBillingAccountRequest {
   /** BillingAccount ID */
@@ -2467,20 +2523,20 @@ export const MarketplacesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MarketplacesListResultValueList>;
 
 /** Result of listing marketplaces. It contains a list of available marketplaces in reverse chronological order by billing period. */
-export interface ListMarketplacesResult {
+export interface MarketplacesListResult {
   /** The list of marketplaces. */
   value?: MarketplacesListResultValueList;
   /** The link (url) to the next page of results. */
   nextLink?: string;
 }
-export const ListMarketplacesResult = /*@__PURE__*/ S.suspend(() =>
+export const MarketplacesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(MarketplacesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListMarketplacesResult",
-}) as any as S.Schema<ListMarketplacesResult>;
+  identifier: "MarketplacesListResult",
+}) as any as S.Schema<MarketplacesListResult>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -2556,192 +2612,6 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
-
-export interface ListReservationDetailByReservationOrderRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
-  _filter: string;
-}
-export const ListReservationDetailByReservationOrderRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reservationOrderId: S.String.pipe(T.Label()),
-      _filter: S.String.pipe(T.Query("$filter")),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/providers/Microsoft.Consumption/reservationDetails",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListReservationDetailByReservationOrderRequest",
-  }) as any as S.Schema<ListReservationDetailByReservationOrderRequest>;
-
-/** The properties of the reservation detail. */
-export interface ReservationDetailProperties {
-  /** The reservation order ID is the identifier for a reservation purchase. Each reservation order ID represents a single purchase transaction. A reservation order contains reservations. The reservation order specifies the VM size and region for the reservations. */
-  reservationOrderId?: string;
-  /** The instance Flexibility Ratio. */
-  instanceFlexibilityRatio?: string;
-  /** The instance Flexibility Group. */
-  instanceFlexibilityGroup?: string;
-  /** The reservation ID is the identifier of a reservation within a reservation order. Each reservation is the grouping for applying the benefit scope and also specifies the number of instances to which the reservation benefit can be applied to. */
-  reservationId?: string;
-  /** This is the ARM Sku name. It can be used to join with the serviceType field in additional info in usage records. */
-  skuName?: string;
-  /** This is the total hours reserved for the day. E.g. if reservation for 1 instance was made on 1 PM, this will be 11 hours for that day and 24 hours from subsequent days. */
-  reservedHours?: number;
-  /** The date on which consumption occurred. */
-  usageDate?: string;
-  /** This is the total hours used by the instance. */
-  usedHours?: number;
-  /** This identifier is the name of the resource or the fully qualified Resource ID. */
-  instanceId?: string;
-  /** This is the total count of instances that are reserved for the reservationId. */
-  totalReservedQuantity?: number;
-  /** The reservation kind. */
-  kind?: string;
-}
-export const ReservationDetailProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.optional(S.String),
-    instanceFlexibilityRatio: S.optional(S.String),
-    instanceFlexibilityGroup: S.optional(S.String),
-    reservationId: S.optional(S.String),
-    skuName: S.optional(S.String),
-    reservedHours: S.optional(S.Number),
-    usageDate: S.optional(S.String),
-    usedHours: S.optional(S.Number),
-    instanceId: S.optional(S.String),
-    totalReservedQuantity: S.optional(S.Number),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationDetailProperties",
-}) as any as S.Schema<ReservationDetailProperties>;
-
-/** Resource tags. */
-export type ReservationDetailTagsMap = { [key: string]: string | undefined };
-export const ReservationDetailTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ReservationDetailTagsMap>;
-
-/** reservation detail resource. */
-export interface ReservationDetail {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the reservation detail. */
-  properties?: ReservationDetailProperties;
-  /** The etag for the resource. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: ReservationDetailTagsMap;
-}
-export const ReservationDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationDetailProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ReservationDetailTagsMap),
-  }),
-).annotate({
-  identifier: "ReservationDetail",
-}) as any as S.Schema<ReservationDetail>;
-
-/** The list of reservation details. */
-export type ReservationDetailsListResultValueList = Array<ReservationDetail>;
-export const ReservationDetailsListResultValueList = /*@__PURE__*/ S.Array(
-  ReservationDetail,
-) as any as S.Schema<ReservationDetailsListResultValueList>;
-
-/** Result of listing reservation details. */
-export interface ReservationDetailsListResult {
-  /** The list of reservation details. */
-  value?: ReservationDetailsListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const ReservationDetailsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ReservationDetailsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationDetailsListResult",
-}) as any as S.Schema<ReservationDetailsListResult>;
-
-export interface ListReservationDetailByReservationOrderAndReservationRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Id of the reservation */
-  reservationId: string;
-  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
-  _filter: string;
-}
-export const ListReservationDetailByReservationOrderAndReservationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reservationOrderId: S.String.pipe(T.Label()),
-      reservationId: S.String.pipe(T.Label()),
-      _filter: S.String.pipe(T.Query("$filter")),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationDetails",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListReservationDetailByReservationOrderAndReservationRequest",
-  }) as any as S.Schema<ListReservationDetailByReservationOrderAndReservationRequest>;
-
-export interface ListReservationDetailsRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceScope: string;
-  /** Start date. Only applicable when querying with billing profile */
-  startDate?: string;
-  /** End date. Only applicable when querying with billing profile */
-  endDate?: string;
-  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge'. Not applicable when querying with billing profile */
-  _filter?: string;
-  /** Reservation Id GUID. Only valid if reservationOrderId is also provided. Filter to a specific reservation */
-  reservationId?: string;
-  /** Reservation Order Id GUID. Required if reservationId is provided. Filter to a specific reservation order */
-  reservationOrderId?: string;
-}
-export const ListReservationDetailsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceScope: S.String.pipe(T.Label()),
-    startDate: S.optional(S.String.pipe(T.Query())),
-    endDate: S.optional(S.String.pipe(T.Query())),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    reservationId: S.optional(S.String.pipe(T.Query())),
-    reservationOrderId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceScope}/providers/Microsoft.Consumption/reservationDetails",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListReservationDetailsRequest",
-}) as any as S.Schema<ListReservationDetailsRequest>;
 
 export interface ListReservationRecommendationsRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -2873,7 +2743,7 @@ export const ReservationRecommendationsListResultValueList =
   ) as any as S.Schema<ReservationRecommendationsListResultValueList>;
 
 /** Result of listing reservation recommendations. */
-export interface ListReservationRecommendationsResult {
+export interface ReservationRecommendationsListResult {
   /** The list of reservation recommendations. */
   value?: ReservationRecommendationsListResultValueList;
   /** The link (url) to the next page of results. */
@@ -2881,7 +2751,7 @@ export interface ListReservationRecommendationsResult {
   /** The link (url) to the previous page of results. */
   previousLink?: string;
 }
-export const ListReservationRecommendationsResult = /*@__PURE__*/ S.suspend(
+export const ReservationRecommendationsListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(ReservationRecommendationsListResultValueList),
@@ -2889,17 +2759,177 @@ export const ListReservationRecommendationsResult = /*@__PURE__*/ S.suspend(
       previousLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListReservationRecommendationsResult",
-}) as any as S.Schema<ListReservationRecommendationsResult>;
+  identifier: "ReservationRecommendationsListResult",
+}) as any as S.Schema<ReservationRecommendationsListResult>;
 
-export type ReservationsSummariesListRequestGrain = "daily" | "monthly";
-export const ReservationsSummariesListRequestGrain = /*@__PURE__*/ S.String;
+export interface ListReservationsDetailByReservationOrderRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
+  _filter: string;
+}
+export const ListReservationsDetailByReservationOrderRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      reservationOrderId: S.String.pipe(T.Label()),
+      _filter: S.String.pipe(T.Query("$filter")),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/providers/Microsoft.Consumption/reservationDetails",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListReservationsDetailByReservationOrderRequest",
+  }) as any as S.Schema<ListReservationsDetailByReservationOrderRequest>;
 
-export interface ListReservationSummariesRequest {
+/** The properties of the reservation detail. */
+export interface ReservationDetailProperties {
+  /** The reservation order ID is the identifier for a reservation purchase. Each reservation order ID represents a single purchase transaction. A reservation order contains reservations. The reservation order specifies the VM size and region for the reservations. */
+  reservationOrderId?: string;
+  /** The instance Flexibility Ratio. */
+  instanceFlexibilityRatio?: string;
+  /** The instance Flexibility Group. */
+  instanceFlexibilityGroup?: string;
+  /** The reservation ID is the identifier of a reservation within a reservation order. Each reservation is the grouping for applying the benefit scope and also specifies the number of instances to which the reservation benefit can be applied to. */
+  reservationId?: string;
+  /** This is the ARM Sku name. It can be used to join with the serviceType field in additional info in usage records. */
+  skuName?: string;
+  /** This is the total hours reserved for the day. E.g. if reservation for 1 instance was made on 1 PM, this will be 11 hours for that day and 24 hours from subsequent days. */
+  reservedHours?: number;
+  /** The date on which consumption occurred. */
+  usageDate?: string;
+  /** This is the total hours used by the instance. */
+  usedHours?: number;
+  /** This identifier is the name of the resource or the fully qualified Resource ID. */
+  instanceId?: string;
+  /** This is the total count of instances that are reserved for the reservationId. */
+  totalReservedQuantity?: number;
+  /** The reservation kind. */
+  kind?: string;
+}
+export const ReservationDetailProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.optional(S.String),
+    instanceFlexibilityRatio: S.optional(S.String),
+    instanceFlexibilityGroup: S.optional(S.String),
+    reservationId: S.optional(S.String),
+    skuName: S.optional(S.String),
+    reservedHours: S.optional(S.Number),
+    usageDate: S.optional(S.String),
+    usedHours: S.optional(S.Number),
+    instanceId: S.optional(S.String),
+    totalReservedQuantity: S.optional(S.Number),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationDetailProperties",
+}) as any as S.Schema<ReservationDetailProperties>;
+
+/** Resource tags. */
+export type ReservationDetailTagsMap = { [key: string]: string | undefined };
+export const ReservationDetailTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ReservationDetailTagsMap>;
+
+/** reservation detail resource. */
+export interface ReservationDetail {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the reservation detail. */
+  properties?: ReservationDetailProperties;
+  /** The etag for the resource. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: ReservationDetailTagsMap;
+}
+export const ReservationDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationDetailProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(ReservationDetailTagsMap),
+  }),
+).annotate({
+  identifier: "ReservationDetail",
+}) as any as S.Schema<ReservationDetail>;
+
+/** The list of reservation details. */
+export type ReservationDetailsListResultValueList = Array<ReservationDetail>;
+export const ReservationDetailsListResultValueList = /*@__PURE__*/ S.Array(
+  ReservationDetail,
+) as any as S.Schema<ReservationDetailsListResultValueList>;
+
+/** Result of listing reservation details. */
+export interface ReservationDetailsListResult {
+  /** The list of reservation details. */
+  value?: ReservationDetailsListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const ReservationDetailsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ReservationDetailsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationDetailsListResult",
+}) as any as S.Schema<ReservationDetailsListResult>;
+
+export interface ListReservationsDetailsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceScope: string;
+  /** Start date. Only applicable when querying with billing profile */
+  startDate?: string;
+  /** End date. Only applicable when querying with billing profile */
+  endDate?: string;
+  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge'. Not applicable when querying with billing profile */
+  _filter?: string;
+  /** Reservation Id GUID. Only valid if reservationOrderId is also provided. Filter to a specific reservation */
+  reservationId?: string;
+  /** Reservation Order Id GUID. Required if reservationId is provided. Filter to a specific reservation order */
+  reservationOrderId?: string;
+}
+export const ListReservationsDetailsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceScope: S.String.pipe(T.Label()),
+    startDate: S.optional(S.String.pipe(T.Query())),
+    endDate: S.optional(S.String.pipe(T.Query())),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    reservationId: S.optional(S.String.pipe(T.Query())),
+    reservationOrderId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceScope}/providers/Microsoft.Consumption/reservationDetails",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReservationsDetailsRequest",
+}) as any as S.Schema<ListReservationsDetailsRequest>;
+
+export type ListReservationsSummariesRequestGrain = "daily" | "monthly";
+export const ListReservationsSummariesRequestGrain = /*@__PURE__*/ S.String;
+
+export interface ListReservationsSummariesRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceScope: string;
   /** Can be daily or monthly */
-  grain: ReservationsSummariesListRequestGrain | (string & {});
+  grain: ListReservationsSummariesRequestGrain | (string & {});
   /** Start date. Only applicable when querying with billing profile */
   startDate?: string;
   /** End date. Only applicable when querying with billing profile */
@@ -2911,10 +2941,10 @@ export interface ListReservationSummariesRequest {
   /** Reservation Order Id GUID. Required if reservationId is provided. Filter to a specific reservation order */
   reservationOrderId?: string;
 }
-export const ListReservationSummariesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListReservationsSummariesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceScope: S.String.pipe(T.Label()),
-    grain: ReservationsSummariesListRequestGrain.pipe(T.Query()),
+    grain: ListReservationsSummariesRequestGrain.pipe(T.Query()),
     startDate: S.optional(S.String.pipe(T.Query())),
     endDate: S.optional(S.String.pipe(T.Query())),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -2929,8 +2959,8 @@ export const ListReservationSummariesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListReservationSummariesRequest",
-}) as any as S.Schema<ListReservationSummariesRequest>;
+  identifier: "ListReservationsSummariesRequest",
+}) as any as S.Schema<ListReservationsSummariesRequest>;
 
 /** The properties of the reservation summary. */
 export interface ReservationSummaryProperties {
@@ -3047,27 +3077,25 @@ export const ReservationSummariesListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReservationSummariesListResult",
 }) as any as S.Schema<ReservationSummariesListResult>;
 
-export type ReservationsSummariesListByReservationOrderRequestGrain =
+export type ListReservationsSummaryByReservationOrderRequestGrain =
   | "daily"
   | "monthly";
-export const ReservationsSummariesListByReservationOrderRequestGrain =
+export const ListReservationsSummaryByReservationOrderRequestGrain =
   /*@__PURE__*/ S.String;
 
-export interface ListReservationSummaryByReservationOrderRequest {
+export interface ListReservationsSummaryByReservationOrderRequest {
   /** Order Id of the reservation */
   reservationOrderId: string;
   /** Can be daily or monthly */
-  grain:
-    | ReservationsSummariesListByReservationOrderRequestGrain
-    | (string & {});
+  grain: ListReservationsSummaryByReservationOrderRequestGrain | (string & {});
   /** Required only for daily grain. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
   _filter?: string;
 }
-export const ListReservationSummaryByReservationOrderRequest =
+export const ListReservationsSummaryByReservationOrderRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       reservationOrderId: S.String.pipe(T.Label()),
-      grain: ReservationsSummariesListByReservationOrderRequestGrain.pipe(
+      grain: ListReservationsSummaryByReservationOrderRequestGrain.pipe(
         T.Query(),
       ),
       _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -3080,48 +3108,8 @@ export const ListReservationSummaryByReservationOrderRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListReservationSummaryByReservationOrderRequest",
-  }) as any as S.Schema<ListReservationSummaryByReservationOrderRequest>;
-
-export type ReservationsSummariesListByReservationOrderAndReservationRequestGrain =
-  | "daily"
-  | "monthly";
-export const ReservationsSummariesListByReservationOrderAndReservationRequestGrain =
-  /*@__PURE__*/ S.String;
-
-export interface ListReservationSummaryByReservationOrderAndReservationRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Id of the reservation */
-  reservationId: string;
-  /** Can be daily or monthly */
-  grain:
-    | ReservationsSummariesListByReservationOrderAndReservationRequestGrain
-    | (string & {});
-  /** Required only for daily grain. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
-  _filter?: string;
-}
-export const ListReservationSummaryByReservationOrderAndReservationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reservationOrderId: S.String.pipe(T.Label()),
-      reservationId: S.String.pipe(T.Label()),
-      grain:
-        ReservationsSummariesListByReservationOrderAndReservationRequestGrain.pipe(
-          T.Query(),
-        ),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationSummaries",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListReservationSummaryByReservationOrderAndReservationRequest",
-  }) as any as S.Schema<ListReservationSummaryByReservationOrderAndReservationRequest>;
+    identifier: "ListReservationsSummaryByReservationOrderRequest",
+  }) as any as S.Schema<ListReservationsSummaryByReservationOrderRequest>;
 
 export interface ListReservationTransactionByBillingProfileRequest {
   /** BillingAccount ID */
@@ -3429,26 +3417,26 @@ export const ReservationTransactionsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ReservationTransactionsListResultValueList>;
 
 /** Result of listing reservation recommendations. */
-export interface ListReservationTransactionsResult {
+export interface ReservationTransactionsListResult {
   /** The list of reservation recommendations. */
   value?: ReservationTransactionsListResultValueList;
   /** The link (url) to the next page of results. */
   nextLink?: string;
 }
-export const ListReservationTransactionsResult = /*@__PURE__*/ S.suspend(() =>
+export const ReservationTransactionsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(ReservationTransactionsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListReservationTransactionsResult",
-}) as any as S.Schema<ListReservationTransactionsResult>;
+  identifier: "ReservationTransactionsListResult",
+}) as any as S.Schema<ReservationTransactionsListResult>;
 
-export type UsageDetailsListRequestMetric =
+export type ListUsageDetailsRequestMetric =
   | "actualcost"
   | "amortizedcost"
   | "usage";
-export const UsageDetailsListRequestMetric = /*@__PURE__*/ S.String;
+export const ListUsageDetailsRequestMetric = /*@__PURE__*/ S.String;
 
 export interface ListUsageDetailsRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -3462,7 +3450,7 @@ export interface ListUsageDetailsRequest {
   /** May be used to limit the number of results to the most recent N usageDetails. */
   _top?: number;
   /** Allows to select different type of cost/usage records. */
-  metric?: UsageDetailsListRequestMetric | (string & {});
+  metric?: ListUsageDetailsRequestMetric | (string & {});
 }
 export const ListUsageDetailsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3471,7 +3459,7 @@ export const ListUsageDetailsRequest = /*@__PURE__*/ S.suspend(() =>
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    metric: S.optional(UsageDetailsListRequestMetric.pipe(T.Query())),
+    metric: S.optional(ListUsageDetailsRequestMetric.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3531,79 +3519,88 @@ export const UsageDetailsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UsageDetailsListResultValueList>;
 
 /** Result of listing usage details. It contains a list of available usage details in reverse chronological order by billing period. */
-export interface ListUsageDetailsResult {
+export interface UsageDetailsListResult {
   /** The list of usage details. */
   value?: UsageDetailsListResultValueList;
   /** The link (url) to the next page of results. */
   nextLink?: string;
 }
-export const ListUsageDetailsResult = /*@__PURE__*/ S.suspend(() =>
+export const UsageDetailsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(UsageDetailsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListUsageDetailsResult",
-}) as any as S.Schema<ListUsageDetailsResult>;
+  identifier: "UsageDetailsListResult",
+}) as any as S.Schema<UsageDetailsListResult>;
 
-export interface PriceSheetDownloadByBillingAccountPeriodRequest {
-  /** BillingAccount ID */
-  billingAccountId: string;
-  /** Billing Period Name. */
-  billingPeriodName: string;
+export interface ReservationsDetailsListByReservationOrderAndReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Id of the reservation */
+  reservationId: string;
+  /** Filter reservation details by date range. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
+  _filter: string;
 }
-export const PriceSheetDownloadByBillingAccountPeriodRequest =
+export const ReservationsDetailsListByReservationOrderAndReservationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      billingAccountId: S.String.pipe(T.Label()),
-      billingPeriodName: S.String.pipe(T.Label()),
+      reservationOrderId: S.String.pipe(T.Label()),
+      reservationId: S.String.pipe(T.Label()),
+      _filter: S.String.pipe(T.Query("$filter")),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingPeriods/{billingPeriodName}/providers/Microsoft.Consumption/pricesheets/download",
+        method: "GET",
+        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationDetails",
         code: 200,
         apiVersion: "2026-06-01",
       }),
     ),
   ).annotate({
-    identifier: "PriceSheetDownloadByBillingAccountPeriodRequest",
-  }) as any as S.Schema<PriceSheetDownloadByBillingAccountPeriodRequest>;
+    identifier:
+      "ReservationsDetailsListByReservationOrderAndReservationRequest",
+  }) as any as S.Schema<ReservationsDetailsListByReservationOrderAndReservationRequest>;
 
-/** The status of the long running operation. */
-export type OperationStatusType = "Running" | "Completed" | "Failed";
-export const OperationStatusType = /*@__PURE__*/ S.String;
+export type ReservationsSummariesListByReservationOrderAndReservationRequestGrain =
+  | "daily"
+  | "monthly";
+export const ReservationsSummariesListByReservationOrderAndReservationRequestGrain =
+  /*@__PURE__*/ S.String;
 
-/** The properties of the price sheet download. */
-export interface PricesheetDownloadProperties {
-  /** The link (url) to download the pricesheet. */
-  downloadUrl?: string;
-  /** Download link validity. */
-  validTill?: string;
+export interface ReservationsSummariesListByReservationOrderAndReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Id of the reservation */
+  reservationId: string;
+  /** Can be daily or monthly */
+  grain:
+    | ReservationsSummariesListByReservationOrderAndReservationRequestGrain
+    | (string & {});
+  /** Required only for daily grain. The properties/UsageDate for start date and end date. The filter supports 'le' and 'ge' */
+  _filter?: string;
 }
-export const PricesheetDownloadProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    downloadUrl: S.optional(S.String),
-    validTill: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PricesheetDownloadProperties",
-}) as any as S.Schema<PricesheetDownloadProperties>;
-
-/** The status of the long running operation. */
-export interface OperationStatus {
-  /** The status of the long running operation. */
-  status?: OperationStatusType;
-  /** The properties of the resource generated. */
-  properties?: PricesheetDownloadProperties;
-}
-export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(OperationStatusType),
-    properties: S.optional(PricesheetDownloadProperties),
-  }),
-).annotate({
-  identifier: "OperationStatus",
-}) as any as S.Schema<OperationStatus>;
+export const ReservationsSummariesListByReservationOrderAndReservationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      reservationOrderId: S.String.pipe(T.Label()),
+      reservationId: S.String.pipe(T.Label()),
+      grain:
+        ReservationsSummariesListByReservationOrderAndReservationRequestGrain.pipe(
+          T.Query(),
+        ),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationSummaries",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ReservationsSummariesListByReservationOrderAndReservationRequest",
+  }) as any as S.Schema<ReservationsSummariesListByReservationOrderAndReservationRequest>;
 
 export type BudgetsCreateOrUpdateError = AzureOpError;
 /** The operation to create or update a budget. You can optionally provide an eTag if desired as a form of concurrency control. To obtain the latest eTag for a given budget, perform a get operation prior to your put operation. */
@@ -3630,6 +3627,21 @@ export const DeleteBudget: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteBudgetRequest,
   output: DeleteBudgetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadPriceSheetByBillingAccountPeriodError = AzureOpError;
+/** Generates the pricesheet for the provided billing period asynchronously based on the enrollment id */
+export const DownloadPriceSheetByBillingAccountPeriod: API.OperationMethod<
+  DownloadPriceSheetByBillingAccountPeriodRequest,
+  OperationStatus,
+  DownloadPriceSheetByBillingAccountPeriodError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadPriceSheetByBillingAccountPeriodRequest,
+  output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3790,12 +3802,12 @@ export type ListBudgetsError = AzureOpError;
 /** Lists all budgets for the defined scope. */
 export const ListBudgets: API.OperationMethod<
   ListBudgetsRequest,
-  ListBudgetsResult,
+  BudgetsListResult,
   ListBudgetsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListBudgetsRequest,
-  output: ListBudgetsResult,
+  output: BudgetsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3805,12 +3817,12 @@ export type ListChargesError = AzureOpError;
 /** Lists the charges based for the defined scope. */
 export const ListCharges: API.OperationMethod<
   ListChargesRequest,
-  ListChargesResult,
+  ChargesListResult,
   ListChargesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListChargesRequest,
-  output: ListChargesResult,
+  output: ChargesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3895,12 +3907,12 @@ export type ListMarketplacesError = AzureOpError;
 /** Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1, 2014 or later. */
 export const ListMarketplaces: API.OperationMethod<
   ListMarketplacesRequest,
-  ListMarketplacesResult,
+  MarketplacesListResult,
   ListMarketplacesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListMarketplacesRequest,
-  output: ListMarketplacesResult,
+  output: MarketplacesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3921,107 +3933,75 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListReservationDetailByReservationOrderError = AzureOpError;
-/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
-export const ListReservationDetailByReservationOrder: API.OperationMethod<
-  ListReservationDetailByReservationOrderRequest,
-  ReservationDetailsListResult,
-  ListReservationDetailByReservationOrderError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationDetailByReservationOrderRequest,
-  output: ReservationDetailsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListReservationDetailByReservationOrderAndReservationError =
-  AzureOpError;
-/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
-export const ListReservationDetailByReservationOrderAndReservation: API.OperationMethod<
-  ListReservationDetailByReservationOrderAndReservationRequest,
-  ReservationDetailsListResult,
-  ListReservationDetailByReservationOrderAndReservationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationDetailByReservationOrderAndReservationRequest,
-  output: ReservationDetailsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListReservationDetailsError = AzureOpError;
-/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
-export const ListReservationDetails: API.OperationMethod<
-  ListReservationDetailsRequest,
-  ReservationDetailsListResult,
-  ListReservationDetailsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationDetailsRequest,
-  output: ReservationDetailsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListReservationRecommendationsError = AzureOpError;
 /** List of recommendations for purchasing reserved instances. */
 export const ListReservationRecommendations: API.OperationMethod<
   ListReservationRecommendationsRequest,
-  ListReservationRecommendationsResult,
+  ReservationRecommendationsListResult,
   ListReservationRecommendationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListReservationRecommendationsRequest,
-  output: ListReservationRecommendationsResult,
+  output: ReservationRecommendationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListReservationSummariesError = AzureOpError;
+export type ListReservationsDetailByReservationOrderError = AzureOpError;
+/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
+export const ListReservationsDetailByReservationOrder: API.OperationMethod<
+  ListReservationsDetailByReservationOrderRequest,
+  ReservationDetailsListResult,
+  ListReservationsDetailByReservationOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReservationsDetailByReservationOrderRequest,
+  output: ReservationDetailsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReservationsDetailsError = AzureOpError;
+/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
+export const ListReservationsDetails: API.OperationMethod<
+  ListReservationsDetailsRequest,
+  ReservationDetailsListResult,
+  ListReservationsDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReservationsDetailsRequest,
+  output: ReservationDetailsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReservationsSummariesError = AzureOpError;
 /** Lists the reservations summaries for the defined scope daily or monthly grain. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller date ranges. */
-export const ListReservationSummaries: API.OperationMethod<
-  ListReservationSummariesRequest,
+export const ListReservationsSummaries: API.OperationMethod<
+  ListReservationsSummariesRequest,
   ReservationSummariesListResult,
-  ListReservationSummariesError,
+  ListReservationsSummariesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationSummariesRequest,
+  input: ListReservationsSummariesRequest,
   output: ReservationSummariesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListReservationSummaryByReservationOrderError = AzureOpError;
+export type ListReservationsSummaryByReservationOrderError = AzureOpError;
 /** Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller date ranges. */
-export const ListReservationSummaryByReservationOrder: API.OperationMethod<
-  ListReservationSummaryByReservationOrderRequest,
+export const ListReservationsSummaryByReservationOrder: API.OperationMethod<
+  ListReservationsSummaryByReservationOrderRequest,
   ReservationSummariesListResult,
-  ListReservationSummaryByReservationOrderError,
+  ListReservationsSummaryByReservationOrderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationSummaryByReservationOrderRequest,
-  output: ReservationSummariesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListReservationSummaryByReservationOrderAndReservationError =
-  AzureOpError;
-/** Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller date ranges. */
-export const ListReservationSummaryByReservationOrderAndReservation: API.OperationMethod<
-  ListReservationSummaryByReservationOrderAndReservationRequest,
-  ReservationSummariesListResult,
-  ListReservationSummaryByReservationOrderAndReservationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListReservationSummaryByReservationOrderAndReservationRequest,
+  input: ListReservationsSummaryByReservationOrderRequest,
   output: ReservationSummariesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4047,12 +4027,12 @@ export type ListReservationTransactionsError = AzureOpError;
 /** List of transactions for reserved instances on billing account scope. Note: The refund transactions are posted along with its purchase transaction (i.e. in the purchase billing month). For example, The refund is requested in May 2021. This refund transaction will have event date as May 2021 but the billing month as April 2020 when the reservation purchase was made. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller date ranges. */
 export const ListReservationTransactions: API.OperationMethod<
   ListReservationTransactionsRequest,
-  ListReservationTransactionsResult,
+  ReservationTransactionsListResult,
   ListReservationTransactionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListReservationTransactionsRequest,
-  output: ListReservationTransactionsResult,
+  output: ReservationTransactionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4062,27 +4042,44 @@ export type ListUsageDetailsError = AzureOpError;
 /** Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or later. **Note:Microsoft will be retiring the Consumption Usage Details API at some point in the future. We do not recommend that you take a new dependency on this API. Please use the Cost Details API instead. We will notify customers once a date for retirement has been determined.For Learn more,see [Generate Cost Details Report - Create Operation](https://learn.microsoft.com/en-us/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP)** */
 export const ListUsageDetails: API.OperationMethod<
   ListUsageDetailsRequest,
-  ListUsageDetailsResult,
+  UsageDetailsListResult,
   ListUsageDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListUsageDetailsRequest,
-  output: ListUsageDetailsResult,
+  output: UsageDetailsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PriceSheetDownloadByBillingAccountPeriodError = AzureOpError;
-/** Generates the pricesheet for the provided billing period asynchronously based on the enrollment id */
-export const PriceSheetDownloadByBillingAccountPeriod: API.OperationMethod<
-  PriceSheetDownloadByBillingAccountPeriodRequest,
-  OperationStatus,
-  PriceSheetDownloadByBillingAccountPeriodError,
+export type ReservationsDetailsListByReservationOrderAndReservationError =
+  AzureOpError;
+/** Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into response size time outs. */
+export const ReservationsDetailsListByReservationOrderAndReservation: API.OperationMethod<
+  ReservationsDetailsListByReservationOrderAndReservationRequest,
+  ReservationDetailsListResult,
+  ReservationsDetailsListByReservationOrderAndReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PriceSheetDownloadByBillingAccountPeriodRequest,
-  output: OperationStatus,
+  input: ReservationsDetailsListByReservationOrderAndReservationRequest,
+  output: ReservationDetailsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReservationsSummariesListByReservationOrderAndReservationError =
+  AzureOpError;
+/** Lists the reservations summaries for daily or monthly grain. Note: ARM has a payload size limit of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller date ranges. */
+export const ReservationsSummariesListByReservationOrderAndReservation: API.OperationMethod<
+  ReservationsSummariesListByReservationOrderAndReservationRequest,
+  ReservationSummariesListResult,
+  ReservationsSummariesListByReservationOrderAndReservationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReservationsSummariesListByReservationOrderAndReservationRequest,
+  output: ReservationSummariesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

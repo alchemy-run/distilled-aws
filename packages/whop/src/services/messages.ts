@@ -308,6 +308,18 @@ export const DeleteMessageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteMessageResponse",
 }) as any as S.Schema<DeleteMessageResponse>;
 
+export interface GetMessageRequest {
+  /** The unique identifier of the message to retrieve. */
+  id: string;
+}
+export const GetMessageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/messages/{id}", code: 200 })),
+).annotate({
+  identifier: "GetMessageRequest",
+}) as any as S.Schema<GetMessageRequest>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -483,18 +495,6 @@ export const ListMessageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMessageResponse",
 }) as any as S.Schema<ListMessageResponse>;
 
-export interface RetrieveMessageRequest {
-  /** The unique identifier of the message to retrieve. */
-  id: string;
-}
-export const RetrieveMessageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/messages/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveMessageRequest",
-}) as any as S.Schema<RetrieveMessageRequest>;
-
 /** Input for an attachment */
 export type UpdateMessageRequestAttachmentsItem =
   CreateMessageRequestAttachmentsItem;
@@ -569,6 +569,26 @@ export const deleteMessage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetMessageError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve message [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing message. Required permissions (one of): - `chat:read` - `dms:read` - `livestream:chat:read` - `support_chat:read` */
+export const getMessage: API.OperationMethod<
+  GetMessageRequest,
+  Message,
+  GetMessageError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMessageRequest,
+  output: Message,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListMessageError =
   | BadRequest
   | Forbidden
@@ -600,26 +620,6 @@ export const listMessage: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveMessageError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve message [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing message. Required permissions (one of): - `chat:read` - `dms:read` - `livestream:chat:read` - `support_chat:read` */
-export const retrieveMessage: API.OperationMethod<
-  RetrieveMessageRequest,
-  Message,
-  RetrieveMessageError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMessageRequest,
-  output: Message,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateMessageError =
   | BadRequest

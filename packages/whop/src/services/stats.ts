@@ -505,6 +505,257 @@ export const DescribeStatsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeStatsResponse",
 }) as any as S.Schema<DescribeStatsResponse>;
 
+export type GetMetricRequestInterval =
+  | "minute"
+  | "five_minutes"
+  | "thirty_minutes"
+  | "hour"
+  | "day"
+  | "week"
+  | "month"
+  | "year";
+export const GetMetricRequestInterval = /*@__PURE__*/ S.String;
+
+export type GetMetricRequestEventType =
+  | "page_view"
+  | "checkout_start"
+  | "other";
+export const GetMetricRequestEventType = /*@__PURE__*/ S.String;
+
+export type GetMetricRequestAdCampaignIdsList = Array<string>;
+export const GetMetricRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetMetricRequestAdCampaignIdsList>;
+
+export type GetMetricRequestAdGroupIdsList = Array<string>;
+export const GetMetricRequestAdGroupIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetMetricRequestAdGroupIdsList>;
+
+export type GetMetricRequestAdIdsList = Array<string>;
+export const GetMetricRequestAdIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetMetricRequestAdIdsList>;
+
+export type GetMetricRequestSnapshotWindow = "7d" | "28d" | "30d";
+export const GetMetricRequestSnapshotWindow = /*@__PURE__*/ S.String;
+
+export interface GetMetricRequest {
+  /** The metric to retrieve, for example net_revenue. Use GET /stats to see every metric key. The metric sets the unit and the properties you can filter or break down by. */
+  metric: string;
+  /** The account this query concerns, for example biz_AbC123. */
+  account_id?: string;
+  /** The user this query concerns, for example user_AbC123. Available on metrics that support user subjects, such as account_balance. */
+  user_id?: string;
+  /** Start of the range — a date (YYYY-MM-DD), expanded to the start of that day, or an ISO 8601 timestamp (for example 2026-07-16T16:37:00Z), used exactly. */
+  from: string;
+  /** End of the range — a date (YYYY-MM-DD), expanded to the end of that day, or an ISO 8601 timestamp (for example 2026-07-17T16:37:00Z), used exactly. */
+  to: string;
+  /** How wide each point is. Defaults to day. Snapshot metrics are day-only. */
+  interval?: GetMetricRequestInterval | (string & {});
+  /** Split the metric out by one of its properties — each point gets a breakdown array. For example breakdown_by=currency returns an entry for usd, an entry for eur, and so on. */
+  breakdown_by?: string;
+  /** Display currency for money metrics — every amount is converted into this ISO currency using the exchange rate on each period's date. Defaults to usd. For the ads metrics (ad_spend, ad_delivery), pass the account's ads reporting currency to match the ad entity endpoints. On transaction metrics, it is ignored when you filter or break down by currency (those report the original transaction currency, unconverted). */
+  convert_to?: string;
+  /** Select the source currency or asset on metrics that list currency. For transaction metrics, for example currency=eur, values are reported without conversion. For market_prices, use btc or xaut and convert_to=usd. Pair with breakdown_by=currency to split a metric by currency. */
+  currency?: string;
+  /** IANA time zone to bucket the series in, for example America/New_York. Defaults to UTC. Not accepted by snapshot metrics, which are UTC only. */
+  time_zone?: string;
+  /** Filter to a single payment method, for example card or crypto. Available on metrics that list payment_method. */
+  payment_method?: string;
+  /** Filter to a single card brand, for example visa. A refinement of payment_method=card. Available on metrics that list card_network. */
+  card_network?: string;
+  /** Filter disputes to a normalized reason, for example product_not_received. Pair with breakdown_by=dispute_reason to split dispute counts by reason. */
+  dispute_reason?: string;
+  /** Filter to a single GMV source, for example payments — or, on the traffic metrics, a visit source (whop_ads, direct, or a utm_source value). Pair with breakdown_by=source to split by source. Available on metrics that list source. */
+  source?: string;
+  /** Filter traffic metrics to one website hostname, for example shop.example.com. Pair with breakdown_by=hostname to split by website. */
+  hostname?: string;
+  /** Filter traffic metrics to one page — a hostname plus normalized path, for example shop.example.com/pricing. Pair with breakdown_by=page to split by page. */
+  page?: string;
+  /** Filter traffic metrics to one device type: desktop, mobile, tablet, or unknown. Pair with breakdown_by=device_type to split by device. */
+  device_type?: string;
+  /** Filter traffic metrics to one visitor country (uppercase ISO 3166-1 alpha-2, for example US). Pair with breakdown_by=country_code to split by country. */
+  country_code?: string;
+  /** Filter the events metric to one tracked event name, for example pixel.page or pixel.custom. Pair with breakdown_by=event_name to split by event. */
+  event_name?: string;
+  /** Filter the events metric to a canonical group of events: page_view (pixel page views plus whop.com store views), checkout_start (hosted and embedded checkout views), or other. Pair with breakdown_by=event_type to split by group. */
+  event_type?: GetMetricRequestEventType | (string & {});
+  /** Filter the events metric to one merchant-defined custom event name. Only valid alongside event_name=pixel.custom. Pair with breakdown_by=custom_name to split custom events by name. */
+  custom_name?: string;
+  /** Filter to a single wallet-balance segment, for example available. Pair with breakdown_by=segment to split the balance. Available on metrics that list segment. */
+  segment?: string;
+  /** Filter to a single balance-activity category, for example payments. Pair with breakdown_by=category to split the activity. Available on metrics that list category. */
+  category?: string;
+  /** Filter to a single cashback merchant bucket, for example whop-ads. Pair with breakdown_by=merchant to split cashback by merchant. Available on metrics that list merchant. */
+  merchant?: string;
+  /** Filter to a single fee type. Pair with breakdown_by=fee_type to split fees by type. Available on metrics that list fee_type. */
+  fee_type?: string;
+  /** Filter to a single product (access pass id), for example prod_AbC123. Pair with breakdown_by=product. Available on metrics that list product. */
+  product?: string;
+  /** Filter to a single membership status. Pair with breakdown_by=status. Available on metrics that list status. */
+  status?: string;
+  /** Filter to a single access level. Pair with breakdown_by=access_level. Available on metrics that list access_level. */
+  access_level?: string;
+  /** Filter to a single most-recent member action. Pair with breakdown_by=most_recent_action. Available on metrics that list most_recent_action. */
+  most_recent_action?: string;
+  /** Filter a referral metric to the businesses attributed to one person you referred, for example user_AbC123. Available on metrics that list referred_user_id. */
+  referred_user_id?: string;
+  /** Ad campaign ids (adcamp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_campaign_ids. */
+  ad_campaign_ids?: GetMetricRequestAdCampaignIdsList;
+  /** Ad group ids (adgrp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_group_ids. */
+  ad_group_ids?: GetMetricRequestAdGroupIdsList;
+  /** Ad ids (ad_...) to scope the report to; stats are summed across them. Available on metrics that list ad_ids. */
+  ad_ids?: GetMetricRequestAdIdsList;
+  /** Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Each metric lists its accepted values in the catalog. */
+  snapshot_window?: GetMetricRequestSnapshotWindow | (string & {});
+  /** Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separate several to break the metric down by each event. Available on metrics that list event. */
+  event?: string;
+}
+export const GetMetricRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metric: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    user_id: S.optional(S.String.pipe(T.Query())),
+    from: S.String.pipe(T.Query()),
+    to: S.String.pipe(T.Query()),
+    interval: S.optional(GetMetricRequestInterval.pipe(T.Query())),
+    breakdown_by: S.optional(S.String.pipe(T.Query())),
+    convert_to: S.optional(S.String.pipe(T.Query())),
+    currency: S.optional(S.String.pipe(T.Query())),
+    time_zone: S.optional(S.String.pipe(T.Query())),
+    payment_method: S.optional(S.String.pipe(T.Query())),
+    card_network: S.optional(S.String.pipe(T.Query())),
+    dispute_reason: S.optional(S.String.pipe(T.Query())),
+    source: S.optional(S.String.pipe(T.Query())),
+    hostname: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.String.pipe(T.Query())),
+    device_type: S.optional(S.String.pipe(T.Query())),
+    country_code: S.optional(S.String.pipe(T.Query())),
+    event_name: S.optional(S.String.pipe(T.Query())),
+    event_type: S.optional(GetMetricRequestEventType.pipe(T.Query())),
+    custom_name: S.optional(S.String.pipe(T.Query())),
+    segment: S.optional(S.String.pipe(T.Query())),
+    category: S.optional(S.String.pipe(T.Query())),
+    merchant: S.optional(S.String.pipe(T.Query())),
+    fee_type: S.optional(S.String.pipe(T.Query())),
+    product: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(S.String.pipe(T.Query())),
+    access_level: S.optional(S.String.pipe(T.Query())),
+    most_recent_action: S.optional(S.String.pipe(T.Query())),
+    referred_user_id: S.optional(S.String.pipe(T.Query())),
+    ad_campaign_ids: S.optional(
+      GetMetricRequestAdCampaignIdsList.pipe(T.Query()),
+    ),
+    ad_group_ids: S.optional(GetMetricRequestAdGroupIdsList.pipe(T.Query())),
+    ad_ids: S.optional(GetMetricRequestAdIdsList.pipe(T.Query())),
+    snapshot_window: S.optional(GetMetricRequestSnapshotWindow.pipe(T.Query())),
+    event: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/stats/{metric}", code: 200 })),
+).annotate({
+  identifier: "GetMetricRequest",
+}) as any as S.Schema<GetMetricRequest>;
+
+export interface GetMetricResponseDataPointsItemBreakdownItem {
+  /** The property value, for example usd or visa. */
+  name: string;
+  /** The metric's value for this entry. */
+  value: number | null;
+}
+export const GetMetricResponseDataPointsItemBreakdownItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      value: S.NullOr(S.Number),
+    }),
+  ).annotate({
+    identifier: "GetMetricResponseDataPointsItemBreakdownItem",
+  }) as any as S.Schema<GetMetricResponseDataPointsItemBreakdownItem>;
+
+/** Present only when broken down: one entry per property value in this period. */
+export type GetMetricResponseDataPointsItemBreakdownList =
+  Array<GetMetricResponseDataPointsItemBreakdownItem>;
+export const GetMetricResponseDataPointsItemBreakdownList =
+  /*@__PURE__*/ S.Array(
+    GetMetricResponseDataPointsItemBreakdownItem,
+  ) as any as S.Schema<GetMetricResponseDataPointsItemBreakdownList>;
+
+export interface GetMetricResponseDataPointsItem {
+  /** Present only when broken down: one entry per property value in this period. */
+  breakdown?: GetMetricResponseDataPointsItemBreakdownList;
+  /** Unix timestamp (seconds) of the period start. */
+  timestamp: number;
+  /** The metric's value for this period, in the metric's unit. */
+  value: number | null;
+}
+export const GetMetricResponseDataPointsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    breakdown: S.optional(GetMetricResponseDataPointsItemBreakdownList),
+    timestamp: S.Number,
+    value: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "GetMetricResponseDataPointsItem",
+}) as any as S.Schema<GetMetricResponseDataPointsItem>;
+
+/** One entry per period, oldest first. */
+export type GetMetricResponseDataPointsList =
+  Array<GetMetricResponseDataPointsItem>;
+export const GetMetricResponseDataPointsList = /*@__PURE__*/ S.Array(
+  GetMetricResponseDataPointsItem,
+) as any as S.Schema<GetMetricResponseDataPointsList>;
+
+export interface GetMetricResponseDataTotalsItem {
+  /** The property value this total is for, or the metric's name when it isn't split by a property. */
+  name: string;
+  /** The metric's whole-window value for this entry. */
+  value: number | null;
+}
+export const GetMetricResponseDataTotalsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    value: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "GetMetricResponseDataTotalsItem",
+}) as any as S.Schema<GetMetricResponseDataTotalsItem>;
+
+/** Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level. */
+export type GetMetricResponseDataTotalsList =
+  Array<GetMetricResponseDataTotalsItem>;
+export const GetMetricResponseDataTotalsList = /*@__PURE__*/ S.Array(
+  GetMetricResponseDataTotalsItem,
+) as any as S.Schema<GetMetricResponseDataTotalsList>;
+
+export interface GetMetricResponseData {
+  /** ISO currency the values are denominated in. Present for currency-unit metrics: the convert_to currency, or usd. */
+  currency?: string | null;
+  /** One entry per period, oldest first. */
+  points: GetMetricResponseDataPointsList;
+  /** Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level. */
+  totals?: GetMetricResponseDataTotalsList | null;
+}
+export const GetMetricResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currency: S.optional(S.NullOr(S.String)),
+    points: GetMetricResponseDataPointsList,
+    totals: S.optional(S.NullOr(GetMetricResponseDataTotalsList)),
+  }),
+).annotate({
+  identifier: "GetMetricResponseData",
+}) as any as S.Schema<GetMetricResponseData>;
+
+export interface GetMetricResponse {
+  data: GetMetricResponseData;
+}
+export const GetMetricResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetMetricResponseData,
+  }),
+).annotate({
+  identifier: "GetMetricResponse",
+}) as any as S.Schema<GetMetricResponse>;
+
 export interface ListMetricsRequest {}
 export const ListMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/stats", code: 200 })),
@@ -779,263 +1030,6 @@ export const RawStatsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RawStatsResponse",
 }) as any as S.Schema<RawStatsResponse>;
 
-export type RetrieveMetricRequestInterval =
-  | "minute"
-  | "five_minutes"
-  | "thirty_minutes"
-  | "hour"
-  | "day"
-  | "week"
-  | "month"
-  | "year";
-export const RetrieveMetricRequestInterval = /*@__PURE__*/ S.String;
-
-export type RetrieveMetricRequestEventType =
-  | "page_view"
-  | "checkout_start"
-  | "other";
-export const RetrieveMetricRequestEventType = /*@__PURE__*/ S.String;
-
-export type RetrieveMetricRequestAdCampaignIdsList = Array<string>;
-export const RetrieveMetricRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveMetricRequestAdCampaignIdsList>;
-
-export type RetrieveMetricRequestAdGroupIdsList = Array<string>;
-export const RetrieveMetricRequestAdGroupIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveMetricRequestAdGroupIdsList>;
-
-export type RetrieveMetricRequestAdIdsList = Array<string>;
-export const RetrieveMetricRequestAdIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveMetricRequestAdIdsList>;
-
-export type RetrieveMetricRequestSnapshotWindow = "7d" | "28d" | "30d";
-export const RetrieveMetricRequestSnapshotWindow = /*@__PURE__*/ S.String;
-
-export interface RetrieveMetricRequest {
-  /** The metric to retrieve, for example net_revenue. Use GET /stats to see every metric key. The metric sets the unit and the properties you can filter or break down by. */
-  metric: string;
-  /** The account this query concerns, for example biz_AbC123. */
-  account_id?: string;
-  /** The user this query concerns, for example user_AbC123. Available on metrics that support user subjects, such as account_balance. */
-  user_id?: string;
-  /** Start of the range — a date (YYYY-MM-DD), expanded to the start of that day, or an ISO 8601 timestamp (for example 2026-07-16T16:37:00Z), used exactly. */
-  from: string;
-  /** End of the range — a date (YYYY-MM-DD), expanded to the end of that day, or an ISO 8601 timestamp (for example 2026-07-17T16:37:00Z), used exactly. */
-  to: string;
-  /** How wide each point is. Defaults to day. Snapshot metrics are day-only. */
-  interval?: RetrieveMetricRequestInterval | (string & {});
-  /** Split the metric out by one of its properties — each point gets a breakdown array. For example breakdown_by=currency returns an entry for usd, an entry for eur, and so on. */
-  breakdown_by?: string;
-  /** Display currency for money metrics — every amount is converted into this ISO currency using the exchange rate on each period's date. Defaults to usd. For the ads metrics (ad_spend, ad_delivery), pass the account's ads reporting currency to match the ad entity endpoints. On transaction metrics, it is ignored when you filter or break down by currency (those report the original transaction currency, unconverted). */
-  convert_to?: string;
-  /** Select the source currency or asset on metrics that list currency. For transaction metrics, for example currency=eur, values are reported without conversion. For market_prices, use btc or xaut and convert_to=usd. Pair with breakdown_by=currency to split a metric by currency. */
-  currency?: string;
-  /** IANA time zone to bucket the series in, for example America/New_York. Defaults to UTC. Not accepted by snapshot metrics, which are UTC only. */
-  time_zone?: string;
-  /** Filter to a single payment method, for example card or crypto. Available on metrics that list payment_method. */
-  payment_method?: string;
-  /** Filter to a single card brand, for example visa. A refinement of payment_method=card. Available on metrics that list card_network. */
-  card_network?: string;
-  /** Filter disputes to a normalized reason, for example product_not_received. Pair with breakdown_by=dispute_reason to split dispute counts by reason. */
-  dispute_reason?: string;
-  /** Filter to a single GMV source, for example payments — or, on the traffic metrics, a visit source (whop_ads, direct, or a utm_source value). Pair with breakdown_by=source to split by source. Available on metrics that list source. */
-  source?: string;
-  /** Filter traffic metrics to one website hostname, for example shop.example.com. Pair with breakdown_by=hostname to split by website. */
-  hostname?: string;
-  /** Filter traffic metrics to one page — a hostname plus normalized path, for example shop.example.com/pricing. Pair with breakdown_by=page to split by page. */
-  page?: string;
-  /** Filter traffic metrics to one device type: desktop, mobile, tablet, or unknown. Pair with breakdown_by=device_type to split by device. */
-  device_type?: string;
-  /** Filter traffic metrics to one visitor country (uppercase ISO 3166-1 alpha-2, for example US). Pair with breakdown_by=country_code to split by country. */
-  country_code?: string;
-  /** Filter the events metric to one tracked event name, for example pixel.page or pixel.custom. Pair with breakdown_by=event_name to split by event. */
-  event_name?: string;
-  /** Filter the events metric to a canonical group of events: page_view (pixel page views plus whop.com store views), checkout_start (hosted and embedded checkout views), or other. Pair with breakdown_by=event_type to split by group. */
-  event_type?: RetrieveMetricRequestEventType | (string & {});
-  /** Filter the events metric to one merchant-defined custom event name. Only valid alongside event_name=pixel.custom. Pair with breakdown_by=custom_name to split custom events by name. */
-  custom_name?: string;
-  /** Filter to a single wallet-balance segment, for example available. Pair with breakdown_by=segment to split the balance. Available on metrics that list segment. */
-  segment?: string;
-  /** Filter to a single balance-activity category, for example payments. Pair with breakdown_by=category to split the activity. Available on metrics that list category. */
-  category?: string;
-  /** Filter to a single cashback merchant bucket, for example whop-ads. Pair with breakdown_by=merchant to split cashback by merchant. Available on metrics that list merchant. */
-  merchant?: string;
-  /** Filter to a single fee type. Pair with breakdown_by=fee_type to split fees by type. Available on metrics that list fee_type. */
-  fee_type?: string;
-  /** Filter to a single product (access pass id), for example prod_AbC123. Pair with breakdown_by=product. Available on metrics that list product. */
-  product?: string;
-  /** Filter to a single membership status. Pair with breakdown_by=status. Available on metrics that list status. */
-  status?: string;
-  /** Filter to a single access level. Pair with breakdown_by=access_level. Available on metrics that list access_level. */
-  access_level?: string;
-  /** Filter to a single most-recent member action. Pair with breakdown_by=most_recent_action. Available on metrics that list most_recent_action. */
-  most_recent_action?: string;
-  /** Filter a referral metric to the businesses attributed to one person you referred, for example user_AbC123. Available on metrics that list referred_user_id. */
-  referred_user_id?: string;
-  /** Ad campaign ids (adcamp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_campaign_ids. */
-  ad_campaign_ids?: RetrieveMetricRequestAdCampaignIdsList;
-  /** Ad group ids (adgrp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_group_ids. */
-  ad_group_ids?: RetrieveMetricRequestAdGroupIdsList;
-  /** Ad ids (ad_...) to scope the report to; stats are summed across them. Available on metrics that list ad_ids. */
-  ad_ids?: RetrieveMetricRequestAdIdsList;
-  /** Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Each metric lists its accepted values in the catalog. */
-  snapshot_window?: RetrieveMetricRequestSnapshotWindow | (string & {});
-  /** Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separate several to break the metric down by each event. Available on metrics that list event. */
-  event?: string;
-}
-export const RetrieveMetricRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metric: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    user_id: S.optional(S.String.pipe(T.Query())),
-    from: S.String.pipe(T.Query()),
-    to: S.String.pipe(T.Query()),
-    interval: S.optional(RetrieveMetricRequestInterval.pipe(T.Query())),
-    breakdown_by: S.optional(S.String.pipe(T.Query())),
-    convert_to: S.optional(S.String.pipe(T.Query())),
-    currency: S.optional(S.String.pipe(T.Query())),
-    time_zone: S.optional(S.String.pipe(T.Query())),
-    payment_method: S.optional(S.String.pipe(T.Query())),
-    card_network: S.optional(S.String.pipe(T.Query())),
-    dispute_reason: S.optional(S.String.pipe(T.Query())),
-    source: S.optional(S.String.pipe(T.Query())),
-    hostname: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.String.pipe(T.Query())),
-    device_type: S.optional(S.String.pipe(T.Query())),
-    country_code: S.optional(S.String.pipe(T.Query())),
-    event_name: S.optional(S.String.pipe(T.Query())),
-    event_type: S.optional(RetrieveMetricRequestEventType.pipe(T.Query())),
-    custom_name: S.optional(S.String.pipe(T.Query())),
-    segment: S.optional(S.String.pipe(T.Query())),
-    category: S.optional(S.String.pipe(T.Query())),
-    merchant: S.optional(S.String.pipe(T.Query())),
-    fee_type: S.optional(S.String.pipe(T.Query())),
-    product: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(S.String.pipe(T.Query())),
-    access_level: S.optional(S.String.pipe(T.Query())),
-    most_recent_action: S.optional(S.String.pipe(T.Query())),
-    referred_user_id: S.optional(S.String.pipe(T.Query())),
-    ad_campaign_ids: S.optional(
-      RetrieveMetricRequestAdCampaignIdsList.pipe(T.Query()),
-    ),
-    ad_group_ids: S.optional(
-      RetrieveMetricRequestAdGroupIdsList.pipe(T.Query()),
-    ),
-    ad_ids: S.optional(RetrieveMetricRequestAdIdsList.pipe(T.Query())),
-    snapshot_window: S.optional(
-      RetrieveMetricRequestSnapshotWindow.pipe(T.Query()),
-    ),
-    event: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/stats/{metric}", code: 200 })),
-).annotate({
-  identifier: "RetrieveMetricRequest",
-}) as any as S.Schema<RetrieveMetricRequest>;
-
-export interface RetrieveMetricResponseDataPointsItemBreakdownItem {
-  /** The property value, for example usd or visa. */
-  name: string;
-  /** The metric's value for this entry. */
-  value: number | null;
-}
-export const RetrieveMetricResponseDataPointsItemBreakdownItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      value: S.NullOr(S.Number),
-    }),
-  ).annotate({
-    identifier: "RetrieveMetricResponseDataPointsItemBreakdownItem",
-  }) as any as S.Schema<RetrieveMetricResponseDataPointsItemBreakdownItem>;
-
-/** Present only when broken down: one entry per property value in this period. */
-export type RetrieveMetricResponseDataPointsItemBreakdownList =
-  Array<RetrieveMetricResponseDataPointsItemBreakdownItem>;
-export const RetrieveMetricResponseDataPointsItemBreakdownList =
-  /*@__PURE__*/ S.Array(
-    RetrieveMetricResponseDataPointsItemBreakdownItem,
-  ) as any as S.Schema<RetrieveMetricResponseDataPointsItemBreakdownList>;
-
-export interface RetrieveMetricResponseDataPointsItem {
-  /** Present only when broken down: one entry per property value in this period. */
-  breakdown?: RetrieveMetricResponseDataPointsItemBreakdownList;
-  /** Unix timestamp (seconds) of the period start. */
-  timestamp: number;
-  /** The metric's value for this period, in the metric's unit. */
-  value: number | null;
-}
-export const RetrieveMetricResponseDataPointsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      breakdown: S.optional(RetrieveMetricResponseDataPointsItemBreakdownList),
-      timestamp: S.Number,
-      value: S.NullOr(S.Number),
-    }),
-).annotate({
-  identifier: "RetrieveMetricResponseDataPointsItem",
-}) as any as S.Schema<RetrieveMetricResponseDataPointsItem>;
-
-/** One entry per period, oldest first. */
-export type RetrieveMetricResponseDataPointsList =
-  Array<RetrieveMetricResponseDataPointsItem>;
-export const RetrieveMetricResponseDataPointsList = /*@__PURE__*/ S.Array(
-  RetrieveMetricResponseDataPointsItem,
-) as any as S.Schema<RetrieveMetricResponseDataPointsList>;
-
-export interface RetrieveMetricResponseDataTotalsItem {
-  /** The property value this total is for, or the metric's name when it isn't split by a property. */
-  name: string;
-  /** The metric's whole-window value for this entry. */
-  value: number | null;
-}
-export const RetrieveMetricResponseDataTotalsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      value: S.NullOr(S.Number),
-    }),
-).annotate({
-  identifier: "RetrieveMetricResponseDataTotalsItem",
-}) as any as S.Schema<RetrieveMetricResponseDataTotalsItem>;
-
-/** Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level. */
-export type RetrieveMetricResponseDataTotalsList =
-  Array<RetrieveMetricResponseDataTotalsItem>;
-export const RetrieveMetricResponseDataTotalsList = /*@__PURE__*/ S.Array(
-  RetrieveMetricResponseDataTotalsItem,
-) as any as S.Schema<RetrieveMetricResponseDataTotalsList>;
-
-export interface RetrieveMetricResponseData {
-  /** ISO currency the values are denominated in. Present for currency-unit metrics: the convert_to currency, or usd. */
-  currency?: string | null;
-  /** One entry per period, oldest first. */
-  points: RetrieveMetricResponseDataPointsList;
-  /** Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level. */
-  totals?: RetrieveMetricResponseDataTotalsList | null;
-}
-export const RetrieveMetricResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currency: S.optional(S.NullOr(S.String)),
-    points: RetrieveMetricResponseDataPointsList,
-    totals: S.optional(S.NullOr(RetrieveMetricResponseDataTotalsList)),
-  }),
-).annotate({
-  identifier: "RetrieveMetricResponseData",
-}) as any as S.Schema<RetrieveMetricResponseData>;
-
-export interface RetrieveMetricResponse {
-  data: RetrieveMetricResponseData;
-}
-export const RetrieveMetricResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: RetrieveMetricResponseData,
-  }),
-).annotate({
-  identifier: "RetrieveMetricResponse",
-}) as any as S.Schema<RetrieveMetricResponse>;
-
 export type DescribeStatsError =
   | BadRequest
   | Forbidden
@@ -1052,6 +1046,21 @@ export const describeStats: API.OperationMethod<
   input: DescribeStatsRequest,
   output: DescribeStatsResponse,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMetricError = BadRequest | Forbidden | NotFound | WhopOpError;
+/** Retrieve Metric Retrieves a metric as a time series of points for an account or user over a time range. The `market_prices` metric is public and requires no authentication. */
+export const getMetric: API.OperationMethod<
+  GetMetricRequest,
+  GetMetricResponse,
+  GetMetricError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMetricRequest,
+  output: GetMetricResponse,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));
@@ -1107,25 +1116,6 @@ export const rawStats: API.OperationMethod<
   input: RawStatsRequest,
   output: RawStatsResponse,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveMetricError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | WhopOpError;
-/** Retrieve Metric Retrieves a metric as a time series of points for an account or user over a time range. The `market_prices` metric is public and requires no authentication. */
-export const retrieveMetric: API.OperationMethod<
-  RetrieveMetricRequest,
-  RetrieveMetricResponse,
-  RetrieveMetricError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMetricRequest,
-  output: RetrieveMetricResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

@@ -932,39 +932,6 @@ export const JobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobsCreateOrUpdateRequest",
 }) as any as S.Schema<JobsCreateOrUpdateRequest>;
 
-export interface JobsRunRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The job collection name. */
-  jobCollectionName: string;
-  /** The job name. */
-  jobName: string;
-}
-export const JobsRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobCollectionName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}/run",
-      code: 200,
-      apiVersion: "2016-03-01",
-    }),
-  ),
-).annotate({ identifier: "JobsRunRequest" }) as any as S.Schema<JobsRunRequest>;
-
-export interface JobsRunResponse {}
-export const JobsRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobsRunResponse",
-}) as any as S.Schema<JobsRunResponse>;
-
 export interface ListJobCollectionByResourceGroupRequest {
   /** The subscription id. */
   subscriptionId: string;
@@ -1236,13 +1203,13 @@ export const PatchJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchJobRequest>;
 
 /** Gets or sets the tags. */
-export type JobCollectionsPatchRequestTagsMap = {
+export type PatchJobCollectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const JobCollectionsPatchRequestTagsMap = /*@__PURE__*/ S.Record(
+export const PatchJobCollectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobCollectionsPatchRequestTagsMap>;
+) as any as S.Schema<PatchJobCollectionRequestTagsMap>;
 
 export interface PatchJobCollectionRequest {
   /** The subscription id. */
@@ -1256,7 +1223,7 @@ export interface PatchJobCollectionRequest {
   /** Gets or sets the storage account location. */
   location?: string;
   /** Gets or sets the tags. */
-  tags?: JobCollectionsPatchRequestTagsMap;
+  tags?: PatchJobCollectionRequestTagsMap;
   /** Gets or sets the job collection properties. */
   properties?: JobCollectionProperties;
 }
@@ -1267,7 +1234,7 @@ export const PatchJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
     jobCollectionName: S.String.pipe(T.Label()),
     name: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(JobCollectionsPatchRequestTagsMap),
+    tags: S.optional(PatchJobCollectionRequestTagsMap),
     properties: S.optional(JobCollectionProperties),
   }).pipe(
     T.Http({
@@ -1280,6 +1247,37 @@ export const PatchJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PatchJobCollectionRequest",
 }) as any as S.Schema<PatchJobCollectionRequest>;
+
+export interface RunJobRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The job collection name. */
+  jobCollectionName: string;
+  /** The job name. */
+  jobName: string;
+}
+export const RunJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobCollectionName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}/run",
+      code: 200,
+      apiVersion: "2016-03-01",
+    }),
+  ),
+).annotate({ identifier: "RunJobRequest" }) as any as S.Schema<RunJobRequest>;
+
+export interface RunJobResponse {}
+export const RunJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({ identifier: "RunJobResponse" }) as any as S.Schema<RunJobResponse>;
 
 export type DeleteJobError = AzureOpError;
 /** Deletes a job. */
@@ -1401,21 +1399,6 @@ export const JobsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type JobsRunError = AzureOpError;
-/** Runs a job. */
-export const JobsRun: API.OperationMethod<
-  JobsRunRequest,
-  JobsRunResponse,
-  JobsRunError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsRunRequest,
-  output: JobsRunResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListJobCollectionByResourceGroupError = AzureOpError;
 /** Gets all job collections under specified resource group. */
 export const ListJobCollectionByResourceGroup: API.OperationMethod<
@@ -1501,6 +1484,21 @@ export const PatchJobCollection: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PatchJobCollectionRequest,
   output: JobCollectionDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunJobError = AzureOpError;
+/** Runs a job. */
+export const RunJob: API.OperationMethod<
+  RunJobRequest,
+  RunJobResponse,
+  RunJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunJobRequest,
+  output: RunJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

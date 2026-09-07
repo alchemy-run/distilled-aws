@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.property_definitions#PropertyDefinitionsListRequestType": {
+    "com.posthog.property_definitions#ListPropertyDefinitionsRequestType": {
       "type": "enum",
       "members": {
         "EVENT": {
@@ -150,7 +151,7 @@
           }
         },
         "type": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsListRequestType",
+          "target": "com.posthog.property_definitions#ListPropertyDefinitionsRequestType",
           "traits": {
             "smithy.api#httpQuery": "type",
             "smithy.api#documentation": "What property definitions to return\n\n* `event` - event\n* `person` - person\n* `group` - group\n* `session` - session"
@@ -414,7 +415,7 @@
       },
       "traits": {}
     },
-    "com.posthog.property_definitions#PropertyDefinitionTypeEnum": {
+    "com.posthog.property_definitions#PropertyTypeEnum": {
       "type": "enum",
       "members": {
         "DATETIME": {
@@ -455,8 +456,8 @@
     "com.posthog.property_definitions#EnterprisePropertyDefinitionPropertyType": {
       "type": "union",
       "members": {
-        "PropertyDefinitionTypeEnum": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionTypeEnum"
+        "PropertyTypeEnum": {
+          "target": "com.posthog.property_definitions#PropertyTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.property_definitions#BlankEnum"
@@ -498,7 +499,7 @@
         }
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsRetrieveRequest": {
+    "com.posthog.property_definitions#GetPropertyDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -522,10 +523,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsRetrieve": {
+    "com.posthog.property_definitions#GetPropertyDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.property_definitions#PropertyDefinitionsRetrieveRequest"
+        "target": "com.posthog.property_definitions#GetPropertyDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.property_definitions#EnterprisePropertyDefinition"
@@ -546,18 +547,18 @@
         }
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsUpdateRequestTagsList": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.property_definitions#PropertyDefinitionsUpdateRequestPropertyType": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionRequestPropertyType": {
       "type": "union",
       "members": {
-        "PropertyDefinitionTypeEnum": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionTypeEnum"
+        "PropertyTypeEnum": {
+          "target": "com.posthog.property_definitions#PropertyTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.property_definitions#BlankEnum"
@@ -591,10 +592,10 @@
           }
         },
         "tags": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsUpdateRequestTagsList"
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionRequestTagsList"
         },
         "property_type": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsUpdateRequestPropertyType",
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionRequestPropertyType",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -640,18 +641,18 @@
         }
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsPartialUpdateRequestTagsList": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.property_definitions#PropertyDefinitionsPartialUpdateRequestPropertyType": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequestPropertyType": {
       "type": "union",
       "members": {
-        "PropertyDefinitionTypeEnum": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionTypeEnum"
+        "PropertyTypeEnum": {
+          "target": "com.posthog.property_definitions#PropertyTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.property_definitions#BlankEnum"
@@ -659,7 +660,7 @@
       },
       "traits": {}
     },
-    "com.posthog.property_definitions#UpdatePropertyDefinitionPartialRequest": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -685,10 +686,10 @@
           }
         },
         "tags": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsPartialUpdateRequestTagsList"
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequestTagsList"
         },
         "property_type": {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsPartialUpdateRequestPropertyType",
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequestPropertyType",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -707,10 +708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.property_definitions#UpdatePropertyDefinitionPartial": {
+    "com.posthog.property_definitions#UpdatePropertyDefinitionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.property_definitions#UpdatePropertyDefinitionPartialRequest"
+        "target": "com.posthog.property_definitions#UpdatePropertyDefinitionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.property_definitions#EnterprisePropertyDefinition"
@@ -945,7 +946,7 @@
         "smithy.api#documentation": "Bulk update tags on multiple objects.\n\nPAT access: this action has no ``required_scopes=`` on the decorator —\ninheriting viewsets must add ``\"bulk_update_tags\"`` to their\n``scope_object_write_actions`` list to accept personal API keys.\nWithout that opt-in, ``APIScopePermission`` rejects PAT requests with\n\"This action does not support personal API key access\". Done per-viewset\nso granting ``<scope>:write`` for one resource doesn't leak access to\nsibling resources that share this mixin.\n\nAccepts:\n- {\"ids\": [...], \"action\": \"add\"|\"remove\"|\"set\", \"tags\": [\"tag1\", \"tag2\"]}\n\nActions:\n- \"add\": Add tags to existing tags on each object\n- \"remove\": Remove specific tags from each object\n- \"set\": Replace all tags on each object with the provided list"
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsSeenTogetherRetrieveRequest": {
+    "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogetherRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -961,10 +962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.property_definitions#PropertyDefinitionsSeenTogetherRetrieve": {
+    "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogether": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.property_definitions#PropertyDefinitionsSeenTogetherRetrieveRequest"
+        "target": "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogetherRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1030,25 +1031,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.property_definitions#GetPropertyDefinition"
+        },
+        {
+          "target": "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogether"
+        },
+        {
           "target": "com.posthog.property_definitions#ListPropertyDefinitions"
-        },
-        {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsRetrieve"
-        },
-        {
-          "target": "com.posthog.property_definitions#UpdatePropertyDefinition"
-        },
-        {
-          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionPartial"
-        },
-        {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsDestroy"
         },
         {
           "target": "com.posthog.property_definitions#PropertyDefinitionsBulkUpdateTagsCreate"
         },
         {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsSeenTogetherRetrieve"
+          "target": "com.posthog.property_definitions#PropertyDefinitionsDestroy"
+        },
+        {
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinition"
+        },
+        {
+          "target": "com.posthog.property_definitions#UpdatePropertyDefinitionsPartial"
         }
       ],
       "traits": {

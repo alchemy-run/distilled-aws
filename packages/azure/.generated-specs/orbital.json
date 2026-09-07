@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.orbital#GetOperationResult": {
+    "com.azure.orbital#GetOperationsResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#GetOperationResultRequest"
+        "target": "com.azure.orbital#GetOperationsResultRequest"
       },
       "output": {
         "target": "com.azure.orbital#OperationResult"
@@ -156,7 +157,7 @@
         "smithy.api#documentation": "The status of operation."
       }
     },
-    "com.azure.orbital#GetOperationResultRequest": {
+    "com.azure.orbital#GetOperationsResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -351,7 +352,7 @@
           }
         },
         "capability": {
-          "target": "com.azure.orbital#AvailableGroundStationsListByCapabilityRequestCapability",
+          "target": "com.azure.orbital#ListAvailableGroundStationByCapabilityRequestCapability",
           "traits": {
             "smithy.api#httpQuery": "capability",
             "smithy.api#required": {},
@@ -363,7 +364,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#AvailableGroundStationsListByCapabilityRequestCapability": {
+    "com.azure.orbital#ListAvailableGroundStationByCapabilityRequestCapability": {
       "type": "enum",
       "members": {
         "EARTHOBSERVATION": {
@@ -1132,13 +1133,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#UpdateContactProfileTag": {
+    "com.azure.orbital#UpdateContactProfileTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#UpdateContactProfileTagRequest"
+        "target": "com.azure.orbital#UpdateContactProfileTagsRequest"
       },
       "output": {
-        "target": "com.azure.orbital#UpdateContactProfileTagResponse"
+        "target": "com.azure.orbital#UpdateContactProfileTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1151,7 +1152,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-01"
       }
     },
-    "com.azure.orbital#UpdateContactProfileTagResponse": {
+    "com.azure.orbital#UpdateContactProfileTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1179,7 +1180,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#ContactProfilesUpdateTagsResponseTagsMap",
+          "target": "com.azure.orbital#UpdateContactProfileTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1203,7 +1204,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#ContactProfilesUpdateTagsResponseTagsMap": {
+    "com.azure.orbital#UpdateContactProfileTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1215,7 +1216,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.orbital#UpdateContactProfileTagRequest": {
+    "com.azure.orbital#UpdateContactProfileTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1243,7 +1244,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#ContactProfilesUpdateTagsRequestTagsMap",
+          "target": "com.azure.orbital#UpdateContactProfileTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1253,7 +1254,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#ContactProfilesUpdateTagsRequestTagsMap": {
+    "com.azure.orbital#UpdateContactProfileTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1620,7 +1621,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#ContactProfilesGetResponseTagsMap",
+          "target": "com.azure.orbital#GetContactProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1644,7 +1645,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#ContactProfilesGetResponseTagsMap": {
+    "com.azure.orbital#GetContactProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2557,13 +2558,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#UpdateSpacecraftTag": {
+    "com.azure.orbital#UpdateSpacecraftTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#UpdateSpacecraftTagRequest"
+        "target": "com.azure.orbital#UpdateSpacecraftTagsRequest"
       },
       "output": {
-        "target": "com.azure.orbital#UpdateSpacecraftTagResponse"
+        "target": "com.azure.orbital#UpdateSpacecraftTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2576,7 +2577,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-01"
       }
     },
-    "com.azure.orbital#UpdateSpacecraftTagResponse": {
+    "com.azure.orbital#UpdateSpacecraftTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2604,7 +2605,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#SpacecraftsUpdateTagsResponseTagsMap",
+          "target": "com.azure.orbital#UpdateSpacecraftTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2817,7 +2818,7 @@
         "smithy.api#documentation": "Direction (Uplink or Downlink)."
       }
     },
-    "com.azure.orbital#SpacecraftsUpdateTagsResponseTagsMap": {
+    "com.azure.orbital#UpdateSpacecraftTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2829,7 +2830,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.orbital#UpdateSpacecraftTagRequest": {
+    "com.azure.orbital#UpdateSpacecraftTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2857,7 +2858,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#SpacecraftsUpdateTagsRequestTagsMap",
+          "target": "com.azure.orbital#UpdateSpacecraftTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2867,7 +2868,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#SpacecraftsUpdateTagsRequestTagsMap": {
+    "com.azure.orbital#UpdateSpacecraftTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3225,7 +3226,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#SpacecraftsGetResponseTagsMap",
+          "target": "com.azure.orbital#GetSpacecraftResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3249,7 +3250,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#SpacecraftsGetResponseTagsMap": {
+    "com.azure.orbital#GetSpacecraftResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3501,7 +3502,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.orbital#OperationsListResponseValueList",
+          "target": "com.azure.orbital#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3517,7 +3518,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#OperationsListResponseValueList": {
+    "com.azure.orbital#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.orbital#Operation"
@@ -3636,10 +3637,10 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.orbital#ListGlobalCommunicationSiteBySubscription": {
+    "com.azure.orbital#ListGlobalCommunicationsSiteBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#ListGlobalCommunicationSiteBySubscriptionRequest"
+        "target": "com.azure.orbital#ListGlobalCommunicationsSiteBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.orbital#GlobalCommunicationsSiteListResult"
@@ -3839,7 +3840,7 @@
         "smithy.api#documentation": "Describes a location outside of Azure."
       }
     },
-    "com.azure.orbital#ListGlobalCommunicationSiteBySubscriptionRequest": {
+    "com.azure.orbital#ListGlobalCommunicationsSiteBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4363,13 +4364,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#UpdateL2ConnectionTag": {
+    "com.azure.orbital#UpdateL2ConnectionTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#UpdateL2ConnectionTagRequest"
+        "target": "com.azure.orbital#UpdateL2ConnectionTagsRequest"
       },
       "output": {
-        "target": "com.azure.orbital#UpdateL2ConnectionTagResponse"
+        "target": "com.azure.orbital#UpdateL2ConnectionTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4382,7 +4383,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.orbital#UpdateL2ConnectionTagResponse": {
+    "com.azure.orbital#UpdateL2ConnectionTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4410,7 +4411,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#L2ConnectionsUpdateTagsResponseTagsMap",
+          "target": "com.azure.orbital#UpdateL2ConnectionTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4434,7 +4435,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#L2ConnectionsUpdateTagsResponseTagsMap": {
+    "com.azure.orbital#UpdateL2ConnectionTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4446,7 +4447,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.orbital#UpdateL2ConnectionTagRequest": {
+    "com.azure.orbital#UpdateL2ConnectionTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4474,7 +4475,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#L2ConnectionsUpdateTagsRequestTagsMap",
+          "target": "com.azure.orbital#UpdateL2ConnectionTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4484,7 +4485,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#L2ConnectionsUpdateTagsRequestTagsMap": {
+    "com.azure.orbital#UpdateL2ConnectionTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4763,7 +4764,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#L2ConnectionsGetResponseTagsMap",
+          "target": "com.azure.orbital#GetL2ConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4787,7 +4788,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#L2ConnectionsGetResponseTagsMap": {
+    "com.azure.orbital#GetL2ConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5082,13 +5083,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#UpdateEdgeSiteTag": {
+    "com.azure.orbital#UpdateEdgeSiteTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#UpdateEdgeSiteTagRequest"
+        "target": "com.azure.orbital#UpdateEdgeSiteTagsRequest"
       },
       "output": {
-        "target": "com.azure.orbital#UpdateEdgeSiteTagResponse"
+        "target": "com.azure.orbital#UpdateEdgeSiteTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5101,7 +5102,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.orbital#UpdateEdgeSiteTagResponse": {
+    "com.azure.orbital#UpdateEdgeSiteTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5129,7 +5130,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#EdgeSitesUpdateTagsResponseTagsMap",
+          "target": "com.azure.orbital#UpdateEdgeSiteTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5153,7 +5154,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#EdgeSitesUpdateTagsResponseTagsMap": {
+    "com.azure.orbital#UpdateEdgeSiteTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5165,7 +5166,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.orbital#UpdateEdgeSiteTagRequest": {
+    "com.azure.orbital#UpdateEdgeSiteTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5193,7 +5194,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#EdgeSitesUpdateTagsRequestTagsMap",
+          "target": "com.azure.orbital#UpdateEdgeSiteTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5203,7 +5204,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#EdgeSitesUpdateTagsRequestTagsMap": {
+    "com.azure.orbital#UpdateEdgeSiteTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5409,7 +5410,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#EdgeSitesGetResponseTagsMap",
+          "target": "com.azure.orbital#GetEdgeSiteResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5433,7 +5434,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#EdgeSitesGetResponseTagsMap": {
+    "com.azure.orbital#GetEdgeSiteResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5528,13 +5529,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#UpdateGroundStationTag": {
+    "com.azure.orbital#UpdateGroundStationTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.orbital#UpdateGroundStationTagRequest"
+        "target": "com.azure.orbital#UpdateGroundStationTagsRequest"
       },
       "output": {
-        "target": "com.azure.orbital#UpdateGroundStationTagResponse"
+        "target": "com.azure.orbital#UpdateGroundStationTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5547,7 +5548,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.orbital#UpdateGroundStationTagResponse": {
+    "com.azure.orbital#UpdateGroundStationTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5575,7 +5576,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#GroundStationsUpdateTagsResponseTagsMap",
+          "target": "com.azure.orbital#UpdateGroundStationTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5705,7 +5706,7 @@
         "smithy.api#documentation": "Capability of the Ground Station."
       }
     },
-    "com.azure.orbital#GroundStationsUpdateTagsResponseTagsMap": {
+    "com.azure.orbital#UpdateGroundStationTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5717,7 +5718,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.orbital#UpdateGroundStationTagRequest": {
+    "com.azure.orbital#UpdateGroundStationTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5745,7 +5746,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#GroundStationsUpdateTagsRequestTagsMap",
+          "target": "com.azure.orbital#UpdateGroundStationTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5755,7 +5756,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.orbital#GroundStationsUpdateTagsRequestTagsMap": {
+    "com.azure.orbital#UpdateGroundStationTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6020,7 +6021,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.orbital#GroundStationsGetResponseTagsMap",
+          "target": "com.azure.orbital#GetGroundStationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6043,7 +6044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.orbital#GroundStationsGetResponseTagsMap": {
+    "com.azure.orbital#GetGroundStationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6276,73 +6277,91 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.orbital#GetOperationResult"
-        },
-        {
-          "target": "com.azure.orbital#ListAvailableGroundStationByCapability"
-        },
-        {
-          "target": "com.azure.orbital#ListContactProfiles"
-        },
-        {
-          "target": "com.azure.orbital#ListContactProfileBySubscription"
-        },
-        {
-          "target": "com.azure.orbital#DeleteContactProfile"
-        },
-        {
-          "target": "com.azure.orbital#UpdateContactProfileTag"
-        },
-        {
           "target": "com.azure.orbital#ContactProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#GetContactProfile"
-        },
-        {
-          "target": "com.azure.orbital#ListSpacecraftAvailableContacts"
-        },
-        {
-          "target": "com.azure.orbital#DeleteContact"
         },
         {
           "target": "com.azure.orbital#CreateContact"
         },
         {
-          "target": "com.azure.orbital#GetContact"
+          "target": "com.azure.orbital#DeleteContact"
         },
         {
-          "target": "com.azure.orbital#ListContacts"
+          "target": "com.azure.orbital#DeleteContactProfile"
+        },
+        {
+          "target": "com.azure.orbital#DeleteEdgeSite"
+        },
+        {
+          "target": "com.azure.orbital#DeleteGroundStation"
+        },
+        {
+          "target": "com.azure.orbital#DeleteL2Connection"
         },
         {
           "target": "com.azure.orbital#DeleteSpacecraft"
         },
         {
-          "target": "com.azure.orbital#UpdateSpacecraftTag"
+          "target": "com.azure.orbital#EdgeSitesCreateOrUpdate"
         },
         {
-          "target": "com.azure.orbital#SpacecraftsCreateOrUpdate"
+          "target": "com.azure.orbital#GetContact"
+        },
+        {
+          "target": "com.azure.orbital#GetContactProfile"
+        },
+        {
+          "target": "com.azure.orbital#GetEdgeSite"
+        },
+        {
+          "target": "com.azure.orbital#GetGroundStation"
+        },
+        {
+          "target": "com.azure.orbital#GetL2Connection"
+        },
+        {
+          "target": "com.azure.orbital#GetOperationsResult"
         },
         {
           "target": "com.azure.orbital#GetSpacecraft"
         },
         {
-          "target": "com.azure.orbital#ListSpacecrafts"
+          "target": "com.azure.orbital#GroundStationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.orbital#ListSpacecraftBySubscription"
+          "target": "com.azure.orbital#L2ConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.orbital#ListOperations"
+          "target": "com.azure.orbital#ListAvailableGroundStationByCapability"
         },
         {
-          "target": "com.azure.orbital#ListGlobalCommunicationSiteBySubscription"
+          "target": "com.azure.orbital#ListContactProfileBySubscription"
+        },
+        {
+          "target": "com.azure.orbital#ListContactProfiles"
+        },
+        {
+          "target": "com.azure.orbital#ListContacts"
+        },
+        {
+          "target": "com.azure.orbital#ListEdgeSiteBySubscription"
+        },
+        {
+          "target": "com.azure.orbital#ListEdgeSiteL2Connections"
+        },
+        {
+          "target": "com.azure.orbital#ListEdgeSites"
+        },
+        {
+          "target": "com.azure.orbital#ListGlobalCommunicationsSiteBySubscription"
+        },
+        {
+          "target": "com.azure.orbital#ListGroundStationBySubscription"
         },
         {
           "target": "com.azure.orbital#ListGroundStationL2Connections"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSiteL2Connections"
+          "target": "com.azure.orbital#ListGroundStations"
         },
         {
           "target": "com.azure.orbital#ListL2ConnectionBySubscription"
@@ -6351,52 +6370,34 @@
           "target": "com.azure.orbital#ListL2Connections"
         },
         {
-          "target": "com.azure.orbital#DeleteL2Connection"
+          "target": "com.azure.orbital#ListOperations"
         },
         {
-          "target": "com.azure.orbital#UpdateL2ConnectionTag"
+          "target": "com.azure.orbital#ListSpacecraftAvailableContacts"
         },
         {
-          "target": "com.azure.orbital#L2ConnectionsCreateOrUpdate"
+          "target": "com.azure.orbital#ListSpacecraftBySubscription"
         },
         {
-          "target": "com.azure.orbital#GetL2Connection"
+          "target": "com.azure.orbital#ListSpacecrafts"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSites"
+          "target": "com.azure.orbital#SpacecraftsCreateOrUpdate"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSiteBySubscription"
+          "target": "com.azure.orbital#UpdateContactProfileTags"
         },
         {
-          "target": "com.azure.orbital#DeleteEdgeSite"
+          "target": "com.azure.orbital#UpdateEdgeSiteTags"
         },
         {
-          "target": "com.azure.orbital#UpdateEdgeSiteTag"
+          "target": "com.azure.orbital#UpdateGroundStationTags"
         },
         {
-          "target": "com.azure.orbital#EdgeSitesCreateOrUpdate"
+          "target": "com.azure.orbital#UpdateL2ConnectionTags"
         },
         {
-          "target": "com.azure.orbital#GetEdgeSite"
-        },
-        {
-          "target": "com.azure.orbital#DeleteGroundStation"
-        },
-        {
-          "target": "com.azure.orbital#UpdateGroundStationTag"
-        },
-        {
-          "target": "com.azure.orbital#GroundStationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#GetGroundStation"
-        },
-        {
-          "target": "com.azure.orbital#ListGroundStations"
-        },
-        {
-          "target": "com.azure.orbital#ListGroundStationBySubscription"
+          "target": "com.azure.orbital#UpdateSpacecraftTags"
         }
       ],
       "traits": {

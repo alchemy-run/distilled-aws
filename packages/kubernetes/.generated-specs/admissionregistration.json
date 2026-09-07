@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.admissionregistration#GetAdmissionregistrationApiGroup": {
+    "com.kubernetes.admissionregistration#GetAdmissionregistrationAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1ApiResources": {
+    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2132,7 +2133,8 @@
         "parameterNotFoundAction": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "parameterNotFoundAction controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy.\n\nAllowed values are `Allow` or `Deny`\n\nRequired"
+            "smithy.api#documentation": "parameterNotFoundAction controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy.\n\nAllowed values are `Allow` or `Deny`\n\nRequired",
+            "smithy.api#required": {}
           }
         },
         "selector": {
@@ -4114,8 +4116,7 @@
         "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string."
           }
         },
         "observedGeneration": {
@@ -6728,7 +6729,7 @@
         "smithy.api#documentation": "delete a ValidatingWebhookConfiguration"
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6841,10 +6842,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicy": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6975,7 +6976,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingAdmissionPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyBindingRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBindingListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7067,10 +7068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyBinding": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBindingList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyBindingRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBindingListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7201,7 +7202,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingAdmissionPolicyBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingWebhookConfigurationRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfigurationListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7293,10 +7294,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingWebhookConfiguration": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfigurationList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingWebhookConfigurationRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfigurationListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7427,7 +7428,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7519,10 +7520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicy": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7653,7 +7654,7 @@
         "smithy.api#documentation": "watch changes to an object of kind ValidatingAdmissionPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7745,10 +7746,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7879,7 +7880,7 @@
         "smithy.api#documentation": "watch changes to an object of kind ValidatingAdmissionPolicyBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfigurationListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7971,10 +7972,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingWebhookConfiguration": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfigurationList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfigurationListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -8105,7 +8106,7 @@
         "smithy.api#documentation": "watch changes to an object of kind ValidatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1alpha1ApiResources": {
+    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1alpha1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -10029,7 +10030,7 @@
         "smithy.api#documentation": "delete a MutatingAdmissionPolicyBinding"
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -10121,10 +10122,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -10255,7 +10256,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingAdmissionPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -10347,10 +10348,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -10481,7 +10482,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingAdmissionPolicyBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1beta1ApiResources": {
+    "com.kubernetes.admissionregistration#GetAdmissionregistrationV1beta1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -11795,7 +11796,8 @@
         "parameterNotFoundAction": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "parameterNotFoundAction controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy.\n\nAllowed values are `Allow` or `Deny`\n\nRequired"
+            "smithy.api#documentation": "parameterNotFoundAction controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy.\n\nAllowed values are `Allow` or `Deny`\n\nRequired",
+            "smithy.api#required": {}
           }
         },
         "selector": {
@@ -12407,7 +12409,7 @@
         "smithy.api#documentation": "delete a MutatingAdmissionPolicyBinding"
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -12499,10 +12501,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicy": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -12633,7 +12635,7 @@
         "smithy.api#documentation": "watch changes to an object of kind MutatingAdmissionPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingRequest": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -12725,10 +12727,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding": {
+    "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingRequest"
+        "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingListRequest"
       },
       "output": {
         "target": "com.kubernetes.admissionregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -12903,295 +12905,295 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationApiGroup"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfiguration"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1alpha1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
           "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1CollectionMutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
         },
         {
           "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
         },
         {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1CollectionMutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1beta1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
           "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1CollectionMutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1MutatingAdmissionPolicy"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
         },
         {
           "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
         },
         {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#CreateAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1CollectionMutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1CollectionMutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1CollectionMutatingAdmissionPolicy"
+        },
+        {
           "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1CollectionMutatingAdmissionPolicyBinding"
         },
         {
-          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
-        },
-        {
-          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1MutatingAdmissionPolicy"
         },
         {
           "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
         },
         {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicy"
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionMutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1CollectionValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#DeleteAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1alpha1APIResources"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#GetAdmissionregistrationV1beta1APIResources"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1beta1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ListAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1beta1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#PatchAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1beta1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReadAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1beta1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingAdmissionPolicyStatus"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#ReplaceAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyBindingList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1alpha1MutatingAdmissionPolicyList"
         },
         {
           "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicy"
         },
         {
-          "target": "com.kubernetes.admissionregistration#ListWatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
         },
         {
-          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBinding"
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyBindingList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1beta1MutatingAdmissionPolicyList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyBindingList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingAdmissionPolicyList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1MutatingWebhookConfigurationList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicy"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBinding"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyBindingList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingAdmissionPolicyList"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfiguration"
+        },
+        {
+          "target": "com.kubernetes.admissionregistration#WatchAdmissionregistrationV1ValidatingWebhookConfigurationList"
         }
       ],
       "traits": {

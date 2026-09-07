@@ -13500,186 +13500,223 @@
       "type": "enum",
       "members": {
         "EniLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EniLimitExceeded"
           }
         },
         "InsufficientRolePermissions": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InsufficientRolePermissions"
           }
         },
         "InvalidConfiguration": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidConfiguration"
           }
         },
         "InternalError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InternalError"
           }
         },
         "SubnetOutOfIPAddresses": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "SubnetOutOfIPAddresses"
           }
         },
         "InvalidSubnet": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidSubnet"
           }
         },
         "InvalidSecurityGroup": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidSecurityGroup"
           }
         },
         "ImageDeleted": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ImageDeleted"
           }
         },
         "ImageAccessDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ImageAccessDenied"
           }
         },
         "InvalidImage": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidImage"
           }
         },
         "KMSKeyAccessDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "KMSKeyAccessDenied"
           }
         },
         "KMSKeyNotFound": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "KMSKeyNotFound"
           }
         },
         "InvalidStateKMSKey": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidStateKMSKey"
           }
         },
         "DisabledKMSKey": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DisabledKMSKey"
           }
         },
         "EFSIOError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSIOError"
           }
         },
         "EFSMountConnectivityError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountConnectivityError"
           }
         },
         "EFSMountFailure": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountFailure"
           }
         },
         "EFSMountTimeout": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountTimeout"
           }
         },
         "InvalidRuntime": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidRuntime"
           }
         },
         "InvalidZipFileException": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidZipFileException"
           }
         },
         "FunctionError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError"
           }
         },
         "ServiceQuotaExceededException": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ServiceQuotaExceededException"
           }
         },
         "VcpuLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "VcpuLimitExceeded"
           }
         },
         "CapacityProviderScalingLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "CapacityProviderScalingLimitExceeded"
           }
         },
         "InsufficientCapacity": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InsufficientCapacity"
           }
         },
         "EC2RequestLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EC2RequestLimitExceeded"
           }
         },
         "FunctionError_InitTimeout": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InitTimeout"
           }
         },
         "FunctionError_RuntimeInitError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.RuntimeInitError"
           }
         },
         "FunctionError_ExtensionInitError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.ExtensionInitError"
           }
         },
         "FunctionError_InvalidEntryPoint": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InvalidEntryPoint"
           }
         },
         "FunctionError_InvalidWorkingDirectory": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InvalidWorkingDirectory"
           }
         },
         "FunctionError_PermissionDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.PermissionDenied"
           }
         },
         "FunctionError_TooManyExtensions": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.TooManyExtensions"
           }
         },
         "FunctionError_InitResourceExhausted": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InitResourceExhausted"
           }
         },
         "DisallowedByVpcEncryptionControl": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DisallowedByVpcEncryptionControl"
           }
         },
         "DependencyError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DependencyError"
           }
         },
         "Creating": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Creating"
           }
@@ -20570,201 +20607,241 @@
       "type": "enum",
       "members": {
         "Idle": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Idle"
           }
         },
         "Creating": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Creating"
           }
         },
         "Restoring": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Restoring"
           }
         },
         "EniLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EniLimitExceeded"
           }
         },
         "InsufficientRolePermissions": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InsufficientRolePermissions"
           }
         },
         "InvalidConfiguration": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidConfiguration"
           }
         },
         "InternalError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InternalError"
           }
         },
         "SubnetOutOfIPAddresses": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "SubnetOutOfIPAddresses"
           }
         },
         "InvalidSubnet": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidSubnet"
           }
         },
         "InvalidSecurityGroup": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidSecurityGroup"
           }
         },
         "ImageDeleted": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ImageDeleted"
           }
         },
         "ImageAccessDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ImageAccessDenied"
           }
         },
         "InvalidImage": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidImage"
           }
         },
         "KMSKeyAccessDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "KMSKeyAccessDenied"
           }
         },
         "KMSKeyNotFound": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "KMSKeyNotFound"
           }
         },
         "InvalidStateKMSKey": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidStateKMSKey"
           }
         },
         "DisabledKMSKey": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DisabledKMSKey"
           }
         },
         "EFSIOError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSIOError"
           }
         },
         "EFSMountConnectivityError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountConnectivityError"
           }
         },
         "EFSMountFailure": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountFailure"
           }
         },
         "EFSMountTimeout": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EFSMountTimeout"
           }
         },
         "InvalidRuntime": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidRuntime"
           }
         },
         "InvalidZipFileException": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InvalidZipFileException"
           }
         },
         "FunctionError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError"
           }
         },
         "ServiceQuotaExceededException": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ServiceQuotaExceededException"
           }
         },
         "VcpuLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "VcpuLimitExceeded"
           }
         },
         "CapacityProviderScalingLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "CapacityProviderScalingLimitExceeded"
           }
         },
         "InsufficientCapacity": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "InsufficientCapacity"
           }
         },
         "EC2RequestLimitExceeded": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "EC2RequestLimitExceeded"
           }
         },
         "FunctionError_InitTimeout": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InitTimeout"
           }
         },
         "FunctionError_RuntimeInitError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.RuntimeInitError"
           }
         },
         "FunctionError_ExtensionInitError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.ExtensionInitError"
           }
         },
         "FunctionError_InvalidEntryPoint": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InvalidEntryPoint"
           }
         },
         "FunctionError_InvalidWorkingDirectory": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InvalidWorkingDirectory"
           }
         },
         "FunctionError_PermissionDenied": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.PermissionDenied"
           }
         },
         "FunctionError_TooManyExtensions": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.TooManyExtensions"
           }
         },
         "FunctionError_InitResourceExhausted": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "FunctionError.InitResourceExhausted"
           }
         },
         "DisallowedByVpcEncryptionControl": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DisallowedByVpcEncryptionControl"
           }
         },
         "DrainingDurableExecutions": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DrainingDurableExecutions"
           }
         },
         "DependencyError": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "DependencyError"
           }

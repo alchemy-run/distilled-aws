@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListRequestOrderBy": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2RequestOrderBy": {
       "type": "enum",
       "members": {
         "COUNT": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListRequestSeverity": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2RequestSeverity": {
       "type": "enum",
       "members": {
         "INFO": {
@@ -59,7 +60,7 @@
       },
       "traits": {}
     },
-    "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2Request": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2Request": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -85,7 +86,7 @@
           }
         },
         "order_by": {
-          "target": "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListRequestOrderBy",
+          "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2RequestOrderBy",
           "traits": {
             "smithy.api#httpQuery": "order_by",
             "smithy.api#documentation": "Sort order for warning types: 'count' (most frequent first, the default) or 'last_seen' (most recent first).\n\n* `count` - count\n* `last_seen` - last_seen"
@@ -106,7 +107,7 @@
           }
         },
         "severity": {
-          "target": "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListRequestSeverity",
+          "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2RequestSeverity",
           "traits": {
             "smithy.api#httpQuery": "severity",
             "smithy.api#documentation": "Only return warnings with this severity. Warnings from producers that don't yet emit a severity have severity 'warning'.\n\n* `info` - info\n* `warning` - warning\n* `error` - error"
@@ -309,18 +310,18 @@
         "smithy.api#documentation": "The most recent warnings of this type (up to the `samples` query parameter, 5 by default), newest first."
       }
     },
-    "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListResponseBodyList": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2ResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.ingestion_warnings_v2#IngestionWarningsV2Summary"
       },
       "traits": {}
     },
-    "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2Response": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2Response": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.ingestion_warnings_v2#IngestionWarningsV2ListResponseBodyList",
+          "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2ResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -331,13 +332,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2": {
+    "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2Request"
+        "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2Request"
       },
       "output": {
-        "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2Response"
+        "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -353,7 +354,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningV2"
+          "target": "com.posthog.ingestion_warnings_v2#ListIngestionWarningsV2"
         }
       ],
       "traits": {

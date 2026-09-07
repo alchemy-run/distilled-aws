@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.chat_channels#ListChatChannelRequest": {
@@ -306,7 +307,7 @@
         }
       }
     },
-    "com.whop.chat_channels#RetrieveChatChannelRequest": {
+    "com.whop.chat_channels#GetChatChannelRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -418,10 +419,10 @@
         "smithy.api#documentation": "The experience this chat feed is attached to."
       }
     },
-    "com.whop.chat_channels#RetrieveChatChannel": {
+    "com.whop.chat_channels#GetChatChannel": {
       "type": "operation",
       "input": {
-        "target": "com.whop.chat_channels#RetrieveChatChannelRequest"
+        "target": "com.whop.chat_channels#GetChatChannelRequest"
       },
       "output": {
         "target": "com.whop.chat_channels#ChatChannel"
@@ -604,10 +605,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.chat_channels#ListChatChannel"
+          "target": "com.whop.chat_channels#GetChatChannel"
         },
         {
-          "target": "com.whop.chat_channels#RetrieveChatChannel"
+          "target": "com.whop.chat_channels#ListChatChannel"
         },
         {
           "target": "com.whop.chat_channels#UpdateChatChannel"

@@ -67,21 +67,21 @@ export class NotFound
 
 /** Acquire SSRS lease context. */
 export interface AcquireSsrsLeaseContext {
-  /** The username to be used as the setup login to connect to the database server for SSRS setup. */
-  setupLogin?: string;
-  /** The username to be used as the service login to connect to the report database for SSRS setup. */
-  serviceLogin?: string;
   /** Lease duration needed for SSRS setup. */
   duration?: string;
+  /** The username to be used as the setup login to connect to the database server for SSRS setup. */
+  setupLogin?: string;
   /** The report database to be used for SSRS setup. */
   reportDatabase?: string;
+  /** The username to be used as the service login to connect to the report database for SSRS setup. */
+  serviceLogin?: string;
 }
 export const AcquireSsrsLeaseContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    setupLogin: S.optional(S.String),
-    serviceLogin: S.optional(S.String),
     duration: S.optional(S.String),
+    setupLogin: S.optional(S.String),
     reportDatabase: S.optional(S.String),
+    serviceLogin: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AcquireSsrsLeaseContext",
@@ -101,17 +101,20 @@ export const InstancesAcquireSsrsLeaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesAcquireSsrsLeaseRequest>;
 
 export interface AcquireSsrsLeaseInstancesRequest {
-  /** Required. Project ID of the project that contains the instance (Example: project-id). */
-  project: string;
   /** Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id). */
   instance: string;
+  /** Required. Project ID of the project that contains the instance (Example: project-id). */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesAcquireSsrsLeaseRequest;
 }
 export const AcquireSsrsLeaseInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(InstancesAcquireSsrsLeaseRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -139,16 +142,19 @@ export const SqlInstancesAcquireSsrsLeaseResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SqlInstancesAcquireSsrsLeaseResponse>;
 
 export interface AddEntraIdCertificateInstancesRequest {
-  /** Required. Project ID of the project that contains the instance. */
-  project: string;
   /** Required. Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Required. Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const AddEntraIdCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "POST",
@@ -159,234 +165,6 @@ export const AddEntraIdCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "AddEntraIdCertificateInstancesRequest",
 }) as any as S.Schema<AddEntraIdCertificateInstancesRequest>;
-
-/** Database instance operation error. */
-export interface OperationError {
-  /** Identifies the specific error that occurred. */
-  code?: string;
-  /** Additional information about the error encountered. */
-  message?: string;
-  /** This is always `sql#operationError`. */
-  kind?: string;
-}
-export const OperationError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "OperationError" }) as any as S.Schema<OperationError>;
-
-export type OperationErrorList = Array<OperationError>;
-export const OperationErrorList = /*@__PURE__*/ S.Array(
-  OperationError,
-) as any as S.Schema<OperationErrorList>;
-
-/** Database instance operation errors list wrapper. */
-export interface OperationErrors {
-  /** This is always `sql#operationErrors`. */
-  kind?: string;
-  /** The list of errors encountered while processing this operation. */
-  errors?: OperationErrorList;
-}
-export const OperationErrors = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    errors: S.optional(OperationErrorList),
-  }),
-).annotate({
-  identifier: "OperationErrors",
-}) as any as S.Schema<OperationErrors>;
-
-export type ExportContextFileTypeEnum =
-  | "SQL_FILE_TYPE_UNSPECIFIED"
-  | "SQL"
-  | "CSV"
-  | "BAK"
-  | "TDE";
-export const ExportContextFileTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ExportContextCsvExportOptions {
-  /** The select query used to extract the data. */
-  selectQuery?: string;
-  /** Specifies the quoting character to be used when a data value is quoted. */
-  quoteCharacter?: string;
-  /** This is used to separate lines. If a line does not contain all fields, the rest of the columns are set to their default values. */
-  linesTerminatedBy?: string;
-  /** Specifies the character that should appear before a data character that needs to be escaped. */
-  escapeCharacter?: string;
-  /** Specifies the character that separates columns within each row (line) of the file. */
-  fieldsTerminatedBy?: string;
-}
-export const ExportContextCsvExportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selectQuery: S.optional(S.String),
-    quoteCharacter: S.optional(S.String),
-    linesTerminatedBy: S.optional(S.String),
-    escapeCharacter: S.optional(S.String),
-    fieldsTerminatedBy: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExportContextCsvExportOptions",
-}) as any as S.Schema<ExportContextCsvExportOptions>;
-
-export interface ExportContextSqlExportOptionsPostgresExportOptions {
-  /** Optional. Use this option to include DROP <object> SQL statements. Use these statements to delete database objects before running the import operation. */
-  clean?: boolean;
-  /** Optional. Option to include an IF EXISTS SQL statement with each DROP statement produced by clean. */
-  ifExists?: boolean;
-}
-export const ExportContextSqlExportOptionsPostgresExportOptions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      clean: S.optional(S.Boolean),
-      ifExists: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "ExportContextSqlExportOptionsPostgresExportOptions",
-  }) as any as S.Schema<ExportContextSqlExportOptionsPostgresExportOptions>;
-
-export interface ExportContextSqlExportOptionsMysqlExportOptions {
-  /** Option to include SQL statement required to set up replication. If set to `1`, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates, and --set-gtid-purged is set to ON. If set to `2`, the CHANGE MASTER TO statement is written as a SQL comment and has no effect. If set to any value other than `1`, --set-gtid-purged is set to OFF. */
-  masterData?: number;
-}
-export const ExportContextSqlExportOptionsMysqlExportOptions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      masterData: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ExportContextSqlExportOptionsMysqlExportOptions",
-  }) as any as S.Schema<ExportContextSqlExportOptionsMysqlExportOptions>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-export interface ExportContextSqlExportOptions {
-  /** Options for exporting from a Cloud SQL for PostgreSQL instance. */
-  postgresExportOptions?: ExportContextSqlExportOptionsPostgresExportOptions;
-  /** Options for exporting from MySQL. */
-  mysqlExportOptions?: ExportContextSqlExportOptionsMysqlExportOptions;
-  /** Export only schemas. */
-  schemaOnly?: boolean;
-  /** Tables to export, or that were exported, from the specified database. If you specify tables, specify one and only one database. For PostgreSQL instances, you can specify only one table. */
-  tables?: StringList;
-  /** Optional. Whether or not the export should be parallel. */
-  parallel?: boolean;
-  /** Optional. The number of threads to use for parallel export. */
-  threads?: number;
-}
-export const ExportContextSqlExportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    postgresExportOptions: S.optional(
-      ExportContextSqlExportOptionsPostgresExportOptions,
-    ),
-    mysqlExportOptions: S.optional(
-      ExportContextSqlExportOptionsMysqlExportOptions,
-    ),
-    schemaOnly: S.optional(S.Boolean),
-    tables: S.optional(StringList),
-    parallel: S.optional(S.Boolean),
-    threads: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ExportContextSqlExportOptions",
-}) as any as S.Schema<ExportContextSqlExportOptions>;
-
-export type ExportContextBakExportOptionsBakTypeEnum =
-  | "BAK_TYPE_UNSPECIFIED"
-  | "FULL"
-  | "DIFF"
-  | "TLOG";
-export const ExportContextBakExportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ExportContextBakExportOptions {
-  /** Optional. The begin timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs from the beginning of retention period will be included. Only applied to Cloud SQL for SQL Server. */
-  exportLogStartTime?: string;
-  /** Whether or not the export should be striped. */
-  striped?: boolean;
-  /** Type of this bak file will be export, FULL or DIFF, SQL Server only */
-  bakType?: ExportContextBakExportOptionsBakTypeEnum | (string & {});
-  /** Whether or not the backup can be used as a differential base copy_only backup can not be served as differential base */
-  differentialBase?: boolean;
-  /** Deprecated: copy_only is deprecated. Use differential_base instead */
-  copyOnly?: boolean;
-  /** Option for specifying how many stripes to use for the export. If blank, and the value of the striped field is true, the number of stripes is automatically chosen. */
-  stripeCount?: number;
-  /** Optional. The end timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs until current time will be included. Only applied to Cloud SQL for SQL Server. */
-  exportLogEndTime?: string;
-}
-export const ExportContextBakExportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    exportLogStartTime: S.optional(S.String),
-    striped: S.optional(S.Boolean),
-    bakType: S.optional(ExportContextBakExportOptionsBakTypeEnum),
-    differentialBase: S.optional(S.Boolean),
-    copyOnly: S.optional(S.Boolean),
-    stripeCount: S.optional(S.Number),
-    exportLogEndTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExportContextBakExportOptions",
-}) as any as S.Schema<ExportContextBakExportOptions>;
-
-export interface ExportContextTdeExportOptions {
-  /** Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have write access to the location. Applicable only for SQL Server instances. */
-  privateKeyPath?: string;
-  /** Required. Certificate name. Applicable only for SQL Server instances. */
-  name?: string;
-  /** Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have write access to the bucket. Applicable only for SQL Server instances. */
-  certificatePath?: string;
-  /** Required. Password that encrypts the private key. */
-  privateKeyPassword?: string;
-}
-export const ExportContextTdeExportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateKeyPath: S.optional(S.String),
-    name: S.optional(S.String),
-    certificatePath: S.optional(S.String),
-    privateKeyPassword: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExportContextTdeExportOptions",
-}) as any as S.Schema<ExportContextTdeExportOptions>;
-
-/** Database instance export context. */
-export interface ExportContext {
-  /** The file type for the specified uri. */
-  fileType?: ExportContextFileTypeEnum | (string & {});
-  /** The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`. If the file already exists, the request succeeds, but the operation fails. If `fileType` is `SQL` and the filename ends with .gz, the contents are compressed. */
-  uri?: string;
-  /** Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only. */
-  csvExportOptions?: ExportContextCsvExportOptions;
-  /** This is always `sql#exportContext`. */
-  kind?: string;
-  /** Options for exporting data as SQL statements. */
-  sqlExportOptions?: ExportContextSqlExportOptions;
-  /** Databases to be exported. `MySQL instances:` If `fileType` is `SQL` and no database is specified, all databases are exported, except for the `mysql` system database. If `fileType` is `CSV`, you can specify one database, either by using this property or by using the `csvExportOptions.selectQuery` property, which takes precedence over this property. `PostgreSQL instances:` If you don't specify a database by name, all user databases in the instance are exported. This excludes system databases and Cloud SQL databases used to manage internal operations. Exporting all user databases is only available for directory-formatted parallel export. If `fileType` is `CSV`, this database must match the one specified in the `csvExportOptions.selectQuery` property. `SQL Server instances:` You must specify one database to be exported, and the `fileType` must be `BAK`. */
-  databases?: StringList;
-  /** Options for exporting BAK files (SQL Server-only) */
-  bakExportOptions?: ExportContextBakExportOptions;
-  /** Optional. Export parameters specific to SQL Server TDE certificates */
-  tdeExportOptions?: ExportContextTdeExportOptions;
-  /** Whether to perform a serverless export. */
-  offload?: boolean;
-}
-export const ExportContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileType: S.optional(ExportContextFileTypeEnum),
-    uri: S.optional(S.String),
-    csvExportOptions: S.optional(ExportContextCsvExportOptions),
-    kind: S.optional(S.String),
-    sqlExportOptions: S.optional(ExportContextSqlExportOptions),
-    databases: S.optional(StringList),
-    bakExportOptions: S.optional(ExportContextBakExportOptions),
-    tdeExportOptions: S.optional(ExportContextTdeExportOptions),
-    offload: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "ExportContext" }) as any as S.Schema<ExportContext>;
 
 export type OperationOperationTypeEnum =
   | "SQL_OPERATION_TYPE_UNSPECIFIED"
@@ -442,8 +220,66 @@ export type OperationOperationTypeEnum =
   | "REPAIR_READ_POOL"
   | "CREATE_READ_POOL"
   | "PRE_CHECK_MAJOR_VERSION_UPGRADE"
-  | "SETUP_MIGRATION";
+  | "SETUP_MIGRATION"
+  | "CREATE_BLUE_GREEN_DEPLOYMENT"
+  | "SWITCHOVER_BLUE_GREEN_DEPLOYMENT"
+  | "DELETE_BLUE_GREEN_DEPLOYMENT";
 export const OperationOperationTypeEnum = /*@__PURE__*/ S.String;
+
+/** Database instance operation error. */
+export interface OperationError {
+  /** Additional information about the error encountered. */
+  message?: string;
+  /** Identifies the specific error that occurred. */
+  code?: string;
+  /** This is always `sql#operationError`. */
+  kind?: string;
+}
+export const OperationError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    code: S.optional(S.String),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "OperationError" }) as any as S.Schema<OperationError>;
+
+export type OperationErrorList = Array<OperationError>;
+export const OperationErrorList = /*@__PURE__*/ S.Array(
+  OperationError,
+) as any as S.Schema<OperationErrorList>;
+
+/** Database instance operation errors list wrapper. */
+export interface OperationErrors {
+  /** This is always `sql#operationErrors`. */
+  kind?: string;
+  /** The list of errors encountered while processing this operation. */
+  errors?: OperationErrorList;
+}
+export const OperationErrors = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    errors: S.optional(OperationErrorList),
+  }),
+).annotate({
+  identifier: "OperationErrors",
+}) as any as S.Schema<OperationErrors>;
+
+/** Backup context. */
+export interface BackupContext {
+  /** The identifier of the backup. */
+  backupId?: string;
+  /** The name of the backup. Format: projects/{project}/backups/{backup} */
+  name?: string;
+  /** This is always `sql#backupContext`. */
+  kind?: string;
+}
+export const BackupContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupId: S.optional(S.String),
+    name: S.optional(S.String),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "BackupContext" }) as any as S.Schema<BackupContext>;
 
 export type OperationStatusEnum =
   | "SQL_OPERATION_STATUS_UNSPECIFIED"
@@ -451,6 +287,429 @@ export type OperationStatusEnum =
   | "RUNNING"
   | "DONE";
 export const OperationStatusEnum = /*@__PURE__*/ S.String;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+export interface ImportContextCsvImportOptions {
+  /** This is used to separate lines. If a line does not contain all fields, the rest of the columns are set to their default values. */
+  linesTerminatedBy?: string;
+  /** Specifies the quoting character to be used when a data value is quoted. */
+  quoteCharacter?: string;
+  /** Specifies the character that separates columns within each row (line) of the file. */
+  fieldsTerminatedBy?: string;
+  /** Specifies the character that should appear before a data character that needs to be escaped. */
+  escapeCharacter?: string;
+  /** The table to which CSV data is imported. */
+  table?: string;
+  /** The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data. */
+  columns?: StringList;
+}
+export const ImportContextCsvImportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    linesTerminatedBy: S.optional(S.String),
+    quoteCharacter: S.optional(S.String),
+    fieldsTerminatedBy: S.optional(S.String),
+    escapeCharacter: S.optional(S.String),
+    table: S.optional(S.String),
+    columns: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "ImportContextCsvImportOptions",
+}) as any as S.Schema<ImportContextCsvImportOptions>;
+
+export interface ImportContextTdeImportOptions {
+  /** Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances. */
+  certificatePath?: string;
+  /** Required. Password that encrypts the private key. */
+  privateKeyPassword?: string;
+  /** Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances. */
+  privateKeyPath?: string;
+  /** Required. Certificate name. Applicable only for SQL Server instances. */
+  name?: string;
+}
+export const ImportContextTdeImportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificatePath: S.optional(S.String),
+    privateKeyPassword: S.optional(S.String),
+    privateKeyPath: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImportContextTdeImportOptions",
+}) as any as S.Schema<ImportContextTdeImportOptions>;
+
+export type ImportContextFileTypeEnum =
+  | "SQL_FILE_TYPE_UNSPECIFIED"
+  | "SQL"
+  | "CSV"
+  | "BAK"
+  | "TDE";
+export const ImportContextFileTypeEnum = /*@__PURE__*/ S.String;
+
+export type ImportContextBakImportOptionsBakTypeEnum =
+  | "BAK_TYPE_UNSPECIFIED"
+  | "FULL"
+  | "DIFF"
+  | "TLOG";
+export const ImportContextBakImportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ImportContextBakImportOptionsEncryptionOptions {
+  /** Optional. Whether the imported file remains encrypted. */
+  keepEncrypted?: boolean;
+  /** Password that encrypts the private key */
+  pvkPassword?: string;
+  /** Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file. */
+  certPath?: string;
+  /** Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file. */
+  pvkPath?: string;
+}
+export const ImportContextBakImportOptionsEncryptionOptions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      keepEncrypted: S.optional(S.Boolean),
+      pvkPassword: S.optional(S.String),
+      certPath: S.optional(S.String),
+      pvkPath: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ImportContextBakImportOptionsEncryptionOptions",
+  }) as any as S.Schema<ImportContextBakImportOptionsEncryptionOptions>;
+
+export interface ImportContextBakImportOptions {
+  /** Whether or not the backup importing will restore database with NORECOVERY option. Applies only to Cloud SQL for SQL Server. */
+  noRecovery?: boolean;
+  /** Optional. The timestamp when the import should stop. This timestamp is in the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT keyword and applies to Cloud SQL for SQL Server only. */
+  stopAt?: string;
+  /** Whether or not the backup set being restored is striped. Applies only to Cloud SQL for SQL Server. */
+  striped?: boolean;
+  /** Optional. The marked transaction where the import should stop. This field is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL Server only. */
+  stopAtMark?: string;
+  /** Type of the bak content, FULL or DIFF */
+  bakType?: ImportContextBakImportOptionsBakTypeEnum | (string & {});
+  /** Whether or not the backup importing request will just bring database online without downloading Bak content only one of "no_recovery" and "recovery_only" can be true otherwise error will return. Applies only to Cloud SQL for SQL Server. */
+  recoveryOnly?: boolean;
+  encryptionOptions?: ImportContextBakImportOptionsEncryptionOptions;
+}
+export const ImportContextBakImportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    noRecovery: S.optional(S.Boolean),
+    stopAt: S.optional(S.String),
+    striped: S.optional(S.Boolean),
+    stopAtMark: S.optional(S.String),
+    bakType: S.optional(ImportContextBakImportOptionsBakTypeEnum),
+    recoveryOnly: S.optional(S.Boolean),
+    encryptionOptions: S.optional(
+      ImportContextBakImportOptionsEncryptionOptions,
+    ),
+  }),
+).annotate({
+  identifier: "ImportContextBakImportOptions",
+}) as any as S.Schema<ImportContextBakImportOptions>;
+
+export interface ImportContextSqlImportOptionsPostgresImportOptions {
+  /** Optional. The --if-exists flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel. */
+  ifExists?: boolean;
+  /** Optional. The --clean flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel. */
+  clean?: boolean;
+}
+export const ImportContextSqlImportOptionsPostgresImportOptions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ifExists: S.optional(S.Boolean),
+      clean: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "ImportContextSqlImportOptionsPostgresImportOptions",
+  }) as any as S.Schema<ImportContextSqlImportOptionsPostgresImportOptions>;
+
+export interface ImportContextSqlImportOptions {
+  /** Optional. The number of threads to use for parallel import. */
+  threads?: number;
+  /** Optional. Whether or not the import should be parallel. */
+  parallel?: boolean;
+  /** Optional. Options for importing from a Cloud SQL for PostgreSQL instance. */
+  postgresImportOptions?: ImportContextSqlImportOptionsPostgresImportOptions;
+}
+export const ImportContextSqlImportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    threads: S.optional(S.Number),
+    parallel: S.optional(S.Boolean),
+    postgresImportOptions: S.optional(
+      ImportContextSqlImportOptionsPostgresImportOptions,
+    ),
+  }),
+).annotate({
+  identifier: "ImportContextSqlImportOptions",
+}) as any as S.Schema<ImportContextSqlImportOptions>;
+
+/** Database instance import context. */
+export interface ImportContext {
+  /** This is always `sql#importContext`. */
+  kind?: string;
+  /** The PostgreSQL user for this import operation. PostgreSQL instances only. */
+  importUser?: string;
+  /** The target database for the import. If `fileType` is `SQL`, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. For entire instance parallel import operations, the database is overridden by the database name stored in subdirectory name. If `fileType` is `CSV`, one database must be specified. */
+  database?: string;
+  /** Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file. */
+  uri?: string;
+  /** Options for importing data as CSV. */
+  csvImportOptions?: ImportContextCsvImportOptions;
+  /** Optional. Import parameters specific to SQL Server TDE certificates */
+  tdeImportOptions?: ImportContextTdeImportOptions;
+  /** The file type for the specified uri.\`SQL`: The file contains SQL statements. \`CSV`: The file contains CSV data. */
+  fileType?: ImportContextFileTypeEnum | (string & {});
+  /** Import parameters specific to SQL Server .BAK files */
+  bakImportOptions?: ImportContextBakImportOptions;
+  /** Optional. Options for importing data from SQL statements. */
+  sqlImportOptions?: ImportContextSqlImportOptions;
+}
+export const ImportContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    importUser: S.optional(S.String),
+    database: S.optional(S.String),
+    uri: S.optional(S.String),
+    csvImportOptions: S.optional(ImportContextCsvImportOptions),
+    tdeImportOptions: S.optional(ImportContextTdeImportOptions),
+    fileType: S.optional(ImportContextFileTypeEnum),
+    bakImportOptions: S.optional(ImportContextBakImportOptions),
+    sqlImportOptions: S.optional(ImportContextSqlImportOptions),
+  }),
+).annotate({ identifier: "ImportContext" }) as any as S.Schema<ImportContext>;
+
+export type ApiWarningCodeEnum =
+  | "SQL_API_WARNING_CODE_UNSPECIFIED"
+  | "REGION_UNREACHABLE"
+  | "MAX_RESULTS_EXCEEDS_LIMIT"
+  | "COMPROMISED_CREDENTIALS"
+  | "INTERNAL_STATE_FAILURE";
+export const ApiWarningCodeEnum = /*@__PURE__*/ S.String;
+
+/** An Admin API warning message. */
+export interface ApiWarning {
+  /** Code to uniquely identify the warning type. */
+  code?: ApiWarningCodeEnum;
+  /** The warning message. */
+  message?: string;
+  /** The region name for REGION_UNREACHABLE warning. */
+  region?: string;
+}
+export const ApiWarning = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(ApiWarningCodeEnum),
+    message: S.optional(S.String),
+    region: S.optional(S.String),
+  }),
+).annotate({ identifier: "ApiWarning" }) as any as S.Schema<ApiWarning>;
+
+export interface ExportContextTdeExportOptions {
+  /** Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have write access to the bucket. Applicable only for SQL Server instances. */
+  certificatePath?: string;
+  /** Required. Certificate name. Applicable only for SQL Server instances. */
+  name?: string;
+  /** Required. Password that encrypts the private key. */
+  privateKeyPassword?: string;
+  /** Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have write access to the location. Applicable only for SQL Server instances. */
+  privateKeyPath?: string;
+}
+export const ExportContextTdeExportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificatePath: S.optional(S.String),
+    name: S.optional(S.String),
+    privateKeyPassword: S.optional(S.String),
+    privateKeyPath: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExportContextTdeExportOptions",
+}) as any as S.Schema<ExportContextTdeExportOptions>;
+
+export type ExportContextBakExportOptionsBakTypeEnum =
+  | "BAK_TYPE_UNSPECIFIED"
+  | "FULL"
+  | "DIFF"
+  | "TLOG";
+export const ExportContextBakExportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ExportContextBakExportOptions {
+  /** Type of this bak file will be export, FULL or DIFF, SQL Server only */
+  bakType?: ExportContextBakExportOptionsBakTypeEnum | (string & {});
+  /** Whether or not the backup can be used as a differential base copy_only backup can not be served as differential base */
+  differentialBase?: boolean;
+  /** Deprecated: copy_only is deprecated. Use differential_base instead */
+  copyOnly?: boolean;
+  /** Optional. The end timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs until current time will be included. Only applied to Cloud SQL for SQL Server. */
+  exportLogEndTime?: string;
+  /** Optional. The begin timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs from the beginning of retention period will be included. Only applied to Cloud SQL for SQL Server. */
+  exportLogStartTime?: string;
+  /** Whether or not the export should be striped. */
+  striped?: boolean;
+  /** Option for specifying how many stripes to use for the export. If blank, and the value of the striped field is true, the number of stripes is automatically chosen. */
+  stripeCount?: number;
+}
+export const ExportContextBakExportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bakType: S.optional(ExportContextBakExportOptionsBakTypeEnum),
+    differentialBase: S.optional(S.Boolean),
+    copyOnly: S.optional(S.Boolean),
+    exportLogEndTime: S.optional(S.String),
+    exportLogStartTime: S.optional(S.String),
+    striped: S.optional(S.Boolean),
+    stripeCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ExportContextBakExportOptions",
+}) as any as S.Schema<ExportContextBakExportOptions>;
+
+export interface ExportContextSqlExportOptionsPostgresExportOptions {
+  /** Optional. Use this option to include DROP <object> SQL statements. Use these statements to delete database objects before running the import operation. */
+  clean?: boolean;
+  /** Optional. Option to include an IF EXISTS SQL statement with each DROP statement produced by clean. */
+  ifExists?: boolean;
+}
+export const ExportContextSqlExportOptionsPostgresExportOptions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      clean: S.optional(S.Boolean),
+      ifExists: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "ExportContextSqlExportOptionsPostgresExportOptions",
+  }) as any as S.Schema<ExportContextSqlExportOptionsPostgresExportOptions>;
+
+export interface ExportContextSqlExportOptionsMysqlExportOptions {
+  /** Option to include SQL statement required to set up replication. If set to `1`, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates, and --set-gtid-purged is set to ON. If set to `2`, the CHANGE MASTER TO statement is written as a SQL comment and has no effect. If set to any value other than `1`, --set-gtid-purged is set to OFF. */
+  masterData?: number;
+}
+export const ExportContextSqlExportOptionsMysqlExportOptions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      masterData: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ExportContextSqlExportOptionsMysqlExportOptions",
+  }) as any as S.Schema<ExportContextSqlExportOptionsMysqlExportOptions>;
+
+export interface ExportContextSqlExportOptions {
+  /** Options for exporting from a Cloud SQL for PostgreSQL instance. */
+  postgresExportOptions?: ExportContextSqlExportOptionsPostgresExportOptions;
+  /** Optional. The number of threads to use for parallel export. */
+  threads?: number;
+  /** Optional. Whether or not the export should be parallel. */
+  parallel?: boolean;
+  /** Options for exporting from MySQL. */
+  mysqlExportOptions?: ExportContextSqlExportOptionsMysqlExportOptions;
+  /** Tables to export, or that were exported, from the specified database. If you specify tables, specify one and only one database. For PostgreSQL instances, you can specify only one table. */
+  tables?: StringList;
+  /** Export only schemas. */
+  schemaOnly?: boolean;
+}
+export const ExportContextSqlExportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    postgresExportOptions: S.optional(
+      ExportContextSqlExportOptionsPostgresExportOptions,
+    ),
+    threads: S.optional(S.Number),
+    parallel: S.optional(S.Boolean),
+    mysqlExportOptions: S.optional(
+      ExportContextSqlExportOptionsMysqlExportOptions,
+    ),
+    tables: S.optional(StringList),
+    schemaOnly: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ExportContextSqlExportOptions",
+}) as any as S.Schema<ExportContextSqlExportOptions>;
+
+export interface ExportContextCsvExportOptions {
+  /** Specifies the character that separates columns within each row (line) of the file. */
+  fieldsTerminatedBy?: string;
+  /** Specifies the quoting character to be used when a data value is quoted. */
+  quoteCharacter?: string;
+  /** This is used to separate lines. If a line does not contain all fields, the rest of the columns are set to their default values. */
+  linesTerminatedBy?: string;
+  /** Specifies the character that should appear before a data character that needs to be escaped. */
+  escapeCharacter?: string;
+  /** The select query used to extract the data. */
+  selectQuery?: string;
+}
+export const ExportContextCsvExportOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fieldsTerminatedBy: S.optional(S.String),
+    quoteCharacter: S.optional(S.String),
+    linesTerminatedBy: S.optional(S.String),
+    escapeCharacter: S.optional(S.String),
+    selectQuery: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExportContextCsvExportOptions",
+}) as any as S.Schema<ExportContextCsvExportOptions>;
+
+export type ExportContextFileTypeEnum =
+  | "SQL_FILE_TYPE_UNSPECIFIED"
+  | "SQL"
+  | "CSV"
+  | "BAK"
+  | "TDE";
+export const ExportContextFileTypeEnum = /*@__PURE__*/ S.String;
+
+/** Database instance export context. */
+export interface ExportContext {
+  /** Optional. Export parameters specific to SQL Server TDE certificates */
+  tdeExportOptions?: ExportContextTdeExportOptions;
+  /** This is always `sql#exportContext`. */
+  kind?: string;
+  /** Options for exporting BAK files (SQL Server-only) */
+  bakExportOptions?: ExportContextBakExportOptions;
+  /** Options for exporting data as SQL statements. */
+  sqlExportOptions?: ExportContextSqlExportOptions;
+  /** Databases to be exported. `MySQL instances:` If `fileType` is `SQL` and no database is specified, all databases are exported, except for the `mysql` system database. If `fileType` is `CSV`, you can specify one database, either by using this property or by using the `csvExportOptions.selectQuery` property, which takes precedence over this property. `PostgreSQL instances:` If you don't specify a database by name, all user databases in the instance are exported. This excludes system databases and Cloud SQL databases used to manage internal operations. Exporting all user databases is only available for directory-formatted parallel export. If `fileType` is `CSV`, this database must match the one specified in the `csvExportOptions.selectQuery` property. `SQL Server instances:` You must specify one database to be exported, and the `fileType` must be `BAK`. */
+  databases?: StringList;
+  /** Whether to perform a serverless export. */
+  offload?: boolean;
+  /** Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only. */
+  csvExportOptions?: ExportContextCsvExportOptions;
+  /** The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`. If the file already exists, the request succeeds, but the operation fails. If `fileType` is `SQL` and the filename ends with .gz, the contents are compressed. */
+  uri?: string;
+  /** The file type for the specified uri. */
+  fileType?: ExportContextFileTypeEnum | (string & {});
+}
+export const ExportContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tdeExportOptions: S.optional(ExportContextTdeExportOptions),
+    kind: S.optional(S.String),
+    bakExportOptions: S.optional(ExportContextBakExportOptions),
+    sqlExportOptions: S.optional(ExportContextSqlExportOptions),
+    databases: S.optional(StringList),
+    offload: S.optional(S.Boolean),
+    csvExportOptions: S.optional(ExportContextCsvExportOptions),
+    uri: S.optional(S.String),
+    fileType: S.optional(ExportContextFileTypeEnum),
+  }),
+).annotate({ identifier: "ExportContext" }) as any as S.Schema<ExportContext>;
+
+export type SqlSubOperationTypeMaintenanceTypeEnum =
+  | "SQL_MAINTENANCE_TYPE_UNSPECIFIED"
+  | "INSTANCE_MAINTENANCE"
+  | "REPLICA_INCLUDED_MAINTENANCE"
+  | "INSTANCE_SELF_SERVICE_MAINTENANCE"
+  | "REPLICA_INCLUDED_SELF_SERVICE_MAINTENANCE";
+export const SqlSubOperationTypeMaintenanceTypeEnum = /*@__PURE__*/ S.String;
+
+/** The sub operation type based on the operation type. */
+export interface SqlSubOperationType {
+  /** The type of maintenance to be performed on the instance. */
+  maintenanceType?: SqlSubOperationTypeMaintenanceTypeEnum;
+}
+export const SqlSubOperationType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maintenanceType: S.optional(SqlSubOperationTypeMaintenanceTypeEnum),
+  }),
+).annotate({
+  identifier: "SqlSubOperationType",
+}) as any as S.Schema<SqlSubOperationType>;
 
 export type PreCheckMajorVersionUpgradeContextTargetDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -521,18 +780,18 @@ export const PreCheckResponseMessageTypeEnum = /*@__PURE__*/ S.String;
 
 /** Structured PreCheckResponse containing message, type, and required actions. */
 export interface PreCheckResponse {
-  /** The actions that the user needs to take. Use repeated for multiple actions. */
-  actionsRequired?: StringList;
-  /** The message to be displayed to the user. */
-  message?: string;
   /** The type of message whether it is an info, warning, or error. */
   messageType?: PreCheckResponseMessageTypeEnum | (string & {});
+  /** The message to be displayed to the user. */
+  message?: string;
+  /** The actions that the user needs to take. Use repeated for multiple actions. */
+  actionsRequired?: StringList;
 }
 export const PreCheckResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    actionsRequired: S.optional(StringList),
-    message: S.optional(S.String),
     messageType: S.optional(PreCheckResponseMessageTypeEnum),
+    message: S.optional(S.String),
+    actionsRequired: S.optional(StringList),
   }),
 ).annotate({
   identifier: "PreCheckResponse",
@@ -545,356 +804,109 @@ export const PreCheckResponseList = /*@__PURE__*/ S.Array(
 
 /** Pre-check major version upgrade context. */
 export interface PreCheckMajorVersionUpgradeContext {
+  /** Optional. This is always `sql#preCheckMajorVersionUpgradeContext`. */
+  kind?: string;
   /** Required. The target database version to upgrade to. */
   targetDatabaseVersion?:
     | PreCheckMajorVersionUpgradeContextTargetDatabaseVersionEnum
     | (string & {});
   /** Output only. The responses from the precheck operation. */
   preCheckResponse?: PreCheckResponseList;
-  /** Optional. This is always `sql#preCheckMajorVersionUpgradeContext`. */
-  kind?: string;
 }
 export const PreCheckMajorVersionUpgradeContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    kind: S.optional(S.String),
     targetDatabaseVersion: S.optional(
       PreCheckMajorVersionUpgradeContextTargetDatabaseVersionEnum,
     ),
     preCheckResponse: S.optional(PreCheckResponseList),
-    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "PreCheckMajorVersionUpgradeContext",
 }) as any as S.Schema<PreCheckMajorVersionUpgradeContext>;
 
-/** Backup context. */
-export interface BackupContext {
-  /** This is always `sql#backupContext`. */
-  kind?: string;
-  /** The name of the backup. Format: projects/{project}/backups/{backup} */
-  name?: string;
-  /** The identifier of the backup. */
-  backupId?: string;
-}
-export const BackupContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    name: S.optional(S.String),
-    backupId: S.optional(S.String),
-  }),
-).annotate({ identifier: "BackupContext" }) as any as S.Schema<BackupContext>;
-
-export type SqlSubOperationTypeMaintenanceTypeEnum =
-  | "SQL_MAINTENANCE_TYPE_UNSPECIFIED"
-  | "INSTANCE_MAINTENANCE"
-  | "REPLICA_INCLUDED_MAINTENANCE"
-  | "INSTANCE_SELF_SERVICE_MAINTENANCE"
-  | "REPLICA_INCLUDED_SELF_SERVICE_MAINTENANCE";
-export const SqlSubOperationTypeMaintenanceTypeEnum = /*@__PURE__*/ S.String;
-
-/** The sub operation type based on the operation type. */
-export interface SqlSubOperationType {
-  /** The type of maintenance to be performed on the instance. */
-  maintenanceType?: SqlSubOperationTypeMaintenanceTypeEnum;
-}
-export const SqlSubOperationType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maintenanceType: S.optional(SqlSubOperationTypeMaintenanceTypeEnum),
-  }),
-).annotate({
-  identifier: "SqlSubOperationType",
-}) as any as S.Schema<SqlSubOperationType>;
-
-export type ImportContextBakImportOptionsBakTypeEnum =
-  | "BAK_TYPE_UNSPECIFIED"
-  | "FULL"
-  | "DIFF"
-  | "TLOG";
-export const ImportContextBakImportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ImportContextBakImportOptionsEncryptionOptions {
-  /** Optional. Whether the imported file remains encrypted. */
-  keepEncrypted?: boolean;
-  /** Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file. */
-  certPath?: string;
-  /** Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file. */
-  pvkPath?: string;
-  /** Password that encrypts the private key */
-  pvkPassword?: string;
-}
-export const ImportContextBakImportOptionsEncryptionOptions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      keepEncrypted: S.optional(S.Boolean),
-      certPath: S.optional(S.String),
-      pvkPath: S.optional(S.String),
-      pvkPassword: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ImportContextBakImportOptionsEncryptionOptions",
-  }) as any as S.Schema<ImportContextBakImportOptionsEncryptionOptions>;
-
-export interface ImportContextBakImportOptions {
-  /** Whether or not the backup set being restored is striped. Applies only to Cloud SQL for SQL Server. */
-  striped?: boolean;
-  /** Whether or not the backup importing will restore database with NORECOVERY option. Applies only to Cloud SQL for SQL Server. */
-  noRecovery?: boolean;
-  /** Type of the bak content, FULL or DIFF */
-  bakType?: ImportContextBakImportOptionsBakTypeEnum | (string & {});
-  /** Optional. The marked transaction where the import should stop. This field is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL Server only. */
-  stopAtMark?: string;
-  encryptionOptions?: ImportContextBakImportOptionsEncryptionOptions;
-  /** Whether or not the backup importing request will just bring database online without downloading Bak content only one of "no_recovery" and "recovery_only" can be true otherwise error will return. Applies only to Cloud SQL for SQL Server. */
-  recoveryOnly?: boolean;
-  /** Optional. The timestamp when the import should stop. This timestamp is in the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT keyword and applies to Cloud SQL for SQL Server only. */
-  stopAt?: string;
-}
-export const ImportContextBakImportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    striped: S.optional(S.Boolean),
-    noRecovery: S.optional(S.Boolean),
-    bakType: S.optional(ImportContextBakImportOptionsBakTypeEnum),
-    stopAtMark: S.optional(S.String),
-    encryptionOptions: S.optional(
-      ImportContextBakImportOptionsEncryptionOptions,
-    ),
-    recoveryOnly: S.optional(S.Boolean),
-    stopAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImportContextBakImportOptions",
-}) as any as S.Schema<ImportContextBakImportOptions>;
-
-export interface ImportContextCsvImportOptions {
-  /** Specifies the quoting character to be used when a data value is quoted. */
-  quoteCharacter?: string;
-  /** The table to which CSV data is imported. */
-  table?: string;
-  /** This is used to separate lines. If a line does not contain all fields, the rest of the columns are set to their default values. */
-  linesTerminatedBy?: string;
-  /** The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data. */
-  columns?: StringList;
-  /** Specifies the character that should appear before a data character that needs to be escaped. */
-  escapeCharacter?: string;
-  /** Specifies the character that separates columns within each row (line) of the file. */
-  fieldsTerminatedBy?: string;
-}
-export const ImportContextCsvImportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    quoteCharacter: S.optional(S.String),
-    table: S.optional(S.String),
-    linesTerminatedBy: S.optional(S.String),
-    columns: S.optional(StringList),
-    escapeCharacter: S.optional(S.String),
-    fieldsTerminatedBy: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImportContextCsvImportOptions",
-}) as any as S.Schema<ImportContextCsvImportOptions>;
-
-export interface ImportContextTdeImportOptions {
-  /** Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances. */
-  certificatePath?: string;
-  /** Required. Password that encrypts the private key. */
-  privateKeyPassword?: string;
-  /** Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances. */
-  privateKeyPath?: string;
-  /** Required. Certificate name. Applicable only for SQL Server instances. */
-  name?: string;
-}
-export const ImportContextTdeImportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificatePath: S.optional(S.String),
-    privateKeyPassword: S.optional(S.String),
-    privateKeyPath: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImportContextTdeImportOptions",
-}) as any as S.Schema<ImportContextTdeImportOptions>;
-
-export type ImportContextFileTypeEnum =
-  | "SQL_FILE_TYPE_UNSPECIFIED"
-  | "SQL"
-  | "CSV"
-  | "BAK"
-  | "TDE";
-export const ImportContextFileTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ImportContextSqlImportOptionsPostgresImportOptions {
-  /** Optional. The --clean flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel. */
-  clean?: boolean;
-  /** Optional. The --if-exists flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel. */
-  ifExists?: boolean;
-}
-export const ImportContextSqlImportOptionsPostgresImportOptions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      clean: S.optional(S.Boolean),
-      ifExists: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "ImportContextSqlImportOptionsPostgresImportOptions",
-  }) as any as S.Schema<ImportContextSqlImportOptionsPostgresImportOptions>;
-
-export interface ImportContextSqlImportOptions {
-  /** Optional. Whether or not the import should be parallel. */
-  parallel?: boolean;
-  /** Optional. The number of threads to use for parallel import. */
-  threads?: number;
-  /** Optional. Options for importing from a Cloud SQL for PostgreSQL instance. */
-  postgresImportOptions?: ImportContextSqlImportOptionsPostgresImportOptions;
-}
-export const ImportContextSqlImportOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    parallel: S.optional(S.Boolean),
-    threads: S.optional(S.Number),
-    postgresImportOptions: S.optional(
-      ImportContextSqlImportOptionsPostgresImportOptions,
-    ),
-  }),
-).annotate({
-  identifier: "ImportContextSqlImportOptions",
-}) as any as S.Schema<ImportContextSqlImportOptions>;
-
-/** Database instance import context. */
-export interface ImportContext {
-  /** The target database for the import. If `fileType` is `SQL`, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. For entire instance parallel import operations, the database is overridden by the database name stored in subdirectory name. If `fileType` is `CSV`, one database must be specified. */
-  database?: string;
-  /** Import parameters specific to SQL Server .BAK files */
-  bakImportOptions?: ImportContextBakImportOptions;
-  /** Options for importing data as CSV. */
-  csvImportOptions?: ImportContextCsvImportOptions;
-  /** Optional. Import parameters specific to SQL Server TDE certificates */
-  tdeImportOptions?: ImportContextTdeImportOptions;
-  /** The file type for the specified uri.\`SQL`: The file contains SQL statements. \`CSV`: The file contains CSV data. */
-  fileType?: ImportContextFileTypeEnum | (string & {});
-  /** Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file. */
-  uri?: string;
-  /** Optional. Options for importing data from SQL statements. */
-  sqlImportOptions?: ImportContextSqlImportOptions;
-  /** The PostgreSQL user for this import operation. PostgreSQL instances only. */
-  importUser?: string;
-  /** This is always `sql#importContext`. */
-  kind?: string;
-}
-export const ImportContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    database: S.optional(S.String),
-    bakImportOptions: S.optional(ImportContextBakImportOptions),
-    csvImportOptions: S.optional(ImportContextCsvImportOptions),
-    tdeImportOptions: S.optional(ImportContextTdeImportOptions),
-    fileType: S.optional(ImportContextFileTypeEnum),
-    uri: S.optional(S.String),
-    sqlImportOptions: S.optional(ImportContextSqlImportOptions),
-    importUser: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "ImportContext" }) as any as S.Schema<ImportContext>;
-
-export type ApiWarningCodeEnum =
-  | "SQL_API_WARNING_CODE_UNSPECIFIED"
-  | "REGION_UNREACHABLE"
-  | "MAX_RESULTS_EXCEEDS_LIMIT"
-  | "COMPROMISED_CREDENTIALS"
-  | "INTERNAL_STATE_FAILURE";
-export const ApiWarningCodeEnum = /*@__PURE__*/ S.String;
-
-/** An Admin API warning message. */
-export interface ApiWarning {
-  /** The region name for REGION_UNREACHABLE warning. */
-  region?: string;
-  /** Code to uniquely identify the warning type. */
-  code?: ApiWarningCodeEnum;
-  /** The warning message. */
-  message?: string;
-}
-export const ApiWarning = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    region: S.optional(S.String),
-    code: S.optional(ApiWarningCodeEnum),
-    message: S.optional(S.String),
-  }),
-).annotate({ identifier: "ApiWarning" }) as any as S.Schema<ApiWarning>;
-
 /** An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource. */
 export interface Operation {
-  /** If errors occurred during processing of this operation, this field will be populated. */
-  error?: OperationErrors;
-  /** The context for export operation, if applicable. */
-  exportContext?: ExportContext;
-  /** The type of the operation. Valid values are: * `CREATE` * `DELETE` * `UPDATE` * `RESTART` * `IMPORT` * `EXPORT` * `BACKUP_VOLUME` * `RESTORE_VOLUME` * `CREATE_USER` * `DELETE_USER` * `CREATE_DATABASE` * `DELETE_DATABASE` */
-  operationType?: OperationOperationTypeEnum;
   /** The email address of the user who initiated this operation. */
   user?: string;
-  /** The status of an operation. */
-  status?: OperationStatusEnum;
-  /** Name of the resource on which this operation runs. */
-  targetId?: string;
-  /** The context for acquire SSRS lease operation, if applicable. */
-  acquireSsrsLeaseContext?: AcquireSsrsLeaseContext;
-  targetLink?: string;
-  /** This field is only populated when the operation_type is PRE_CHECK_MAJOR_VERSION_UPGRADE. The PreCheckMajorVersionUpgradeContext message itself contains the details for that pre-check, such as the target database version for the upgrade and the results of the check (including any warnings or errors found). */
-  preCheckMajorVersionUpgradeContext?: PreCheckMajorVersionUpgradeContext;
-  /** An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation. */
-  name?: string;
+  /** The type of the operation. Valid values are: * `CREATE` * `DELETE` * `UPDATE` * `RESTART` * `IMPORT` * `EXPORT` * `BACKUP_VOLUME` * `RESTORE_VOLUME` * `CREATE_USER` * `DELETE_USER` * `CREATE_DATABASE` * `DELETE_DATABASE` */
+  operationType?: OperationOperationTypeEnum;
+  /** If errors occurred during processing of this operation, this field will be populated. */
+  error?: OperationErrors;
   /** The context for backup operation, if applicable. */
   backupContext?: BackupContext;
-  /** The time this operation actually started in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  startTime?: string;
-  /** The time this operation was enqueued in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  insertTime?: string;
-  /** The project ID of the target instance related to this operation. */
-  targetProject?: string;
-  /** The URI of this resource. */
-  selfLink?: string;
-  /** Optional. The sub operation based on the operation type. */
-  subOperationType?: SqlSubOperationType;
-  /** The context for import operation, if applicable. */
-  importContext?: ImportContext;
-  /** The time this operation finished in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  endTime?: string;
+  /** Name of the resource on which this operation runs. */
+  targetId?: string;
   /** This is always `sql#operation`. */
   kind?: string;
+  /** The status of an operation. */
+  status?: OperationStatusEnum;
+  /** The context for import operation, if applicable. */
+  importContext?: ImportContext;
+  targetLink?: string;
+  /** The time this operation actually started in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  startTime?: string;
   /** An Admin API warning message. */
   apiWarning?: ApiWarning;
+  /** The context for acquire SSRS lease operation, if applicable. */
+  acquireSsrsLeaseContext?: AcquireSsrsLeaseContext;
+  /** The context for export operation, if applicable. */
+  exportContext?: ExportContext;
+  /** The project ID of the target instance related to this operation. */
+  targetProject?: string;
+  /** The time this operation was enqueued in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  insertTime?: string;
+  /** Optional. The sub operation based on the operation type. */
+  subOperationType?: SqlSubOperationType;
+  /** The URI of this resource. */
+  selfLink?: string;
+  /** This field is only populated when the operation_type is PRE_CHECK_MAJOR_VERSION_UPGRADE. The PreCheckMajorVersionUpgradeContext message itself contains the details for that pre-check, such as the target database version for the upgrade and the results of the check (including any warnings or errors found). */
+  preCheckMajorVersionUpgradeContext?: PreCheckMajorVersionUpgradeContext;
+  /** The time this operation finished in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  endTime?: string;
+  /** An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation. */
+  name?: string;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    error: S.optional(OperationErrors),
-    exportContext: S.optional(ExportContext),
-    operationType: S.optional(OperationOperationTypeEnum),
     user: S.optional(S.String),
-    status: S.optional(OperationStatusEnum),
+    operationType: S.optional(OperationOperationTypeEnum),
+    error: S.optional(OperationErrors),
+    backupContext: S.optional(BackupContext),
     targetId: S.optional(S.String),
-    acquireSsrsLeaseContext: S.optional(AcquireSsrsLeaseContext),
+    kind: S.optional(S.String),
+    status: S.optional(OperationStatusEnum),
+    importContext: S.optional(ImportContext),
     targetLink: S.optional(S.String),
+    startTime: S.optional(S.String),
+    apiWarning: S.optional(ApiWarning),
+    acquireSsrsLeaseContext: S.optional(AcquireSsrsLeaseContext),
+    exportContext: S.optional(ExportContext),
+    targetProject: S.optional(S.String),
+    insertTime: S.optional(S.String),
+    subOperationType: S.optional(SqlSubOperationType),
+    selfLink: S.optional(S.String),
     preCheckMajorVersionUpgradeContext: S.optional(
       PreCheckMajorVersionUpgradeContext,
     ),
-    name: S.optional(S.String),
-    backupContext: S.optional(BackupContext),
-    startTime: S.optional(S.String),
-    insertTime: S.optional(S.String),
-    targetProject: S.optional(S.String),
-    selfLink: S.optional(S.String),
-    subOperationType: S.optional(SqlSubOperationType),
-    importContext: S.optional(ImportContext),
     endTime: S.optional(S.String),
-    kind: S.optional(S.String),
-    apiWarning: S.optional(ApiWarning),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 export interface AddServerCaInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const AddServerCaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -907,6 +919,8 @@ export const AddServerCaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddServerCaInstancesRequest>;
 
 export interface AddServerCertificateInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -915,6 +929,7 @@ export interface AddServerCertificateInstancesRequest {
 export const AddServerCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      location: S.optional(S.String.pipe(T.Query())),
       project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
     }).pipe(
@@ -929,17 +944,17 @@ export const AddServerCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AddServerCertificateInstancesRequest>;
 
 export interface CancelOperationsRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Optional. Region of the Cloud SQL instance. */
   location?: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** Instance operation ID. */
   operation: string;
 }
 export const CancelOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     location: S.optional(S.String.pipe(T.Query())),
+    project: S.String.pipe(T.Label()),
     operation: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -957,49 +972,6 @@ export interface Empty {}
 export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
-
-/** Request for Pre-checks for MVU */
-export interface InstancesPreCheckMajorVersionUpgradeRequest {
-  /** Required. Contains details about the pre-check major version upgrade operation. */
-  preCheckMajorVersionUpgradeContext?: PreCheckMajorVersionUpgradeContext;
-}
-export const InstancesPreCheckMajorVersionUpgradeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      preCheckMajorVersionUpgradeContext: S.optional(
-        PreCheckMajorVersionUpgradeContext,
-      ),
-    }),
-  ).annotate({
-    identifier: "InstancesPreCheckMajorVersionUpgradeRequest",
-  }) as any as S.Schema<InstancesPreCheckMajorVersionUpgradeRequest>;
-
-export interface CheckPreMajorVersionUpgradeInstanceRequest {
-  /** Required. Project ID of the project that contains the instance. */
-  project: string;
-  /** Required. Cloud SQL instance ID. This does not include the project ID. */
-  instance: string;
-  /** Request body */
-  body?: InstancesPreCheckMajorVersionUpgradeRequest;
-}
-export const CheckPreMajorVersionUpgradeInstanceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project: S.String.pipe(T.Label()),
-      instance: S.String.pipe(T.Label()),
-      body: S.optional(
-        InstancesPreCheckMajorVersionUpgradeRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "v1/projects/{project}/instances/{instance}/preCheckMajorVersionUpgrade",
-        baseUrl: "https://sqladmin.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckPreMajorVersionUpgradeInstanceRequest",
-  }) as any as S.Schema<CheckPreMajorVersionUpgradeInstanceRequest>;
 
 /** Binary log coordinates. */
 export interface BinLogCoordinates {
@@ -1022,45 +994,45 @@ export const BinLogCoordinates = /*@__PURE__*/ S.suspend(() =>
 
 /** Database instance clone context. */
 export interface CloneContext {
+  /** Reserved for future use. */
+  pitrTimestampMs?: string;
+  /** The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp. */
+  sourceInstanceDeletionTime?: string;
+  /** Required. Name of the Cloud SQL instance to be created as a clone. */
+  destinationInstanceName?: string;
   /** Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field. This field applies to all DB types. */
   preferredSecondaryZone?: string;
+  /** Optional. The project ID of the destination project where the cloned instance will be created. To perform a cross-project clone, this field is required. If not specified, the clone is created in the same project as the source instance. */
+  destinationProject?: string;
+  /** Timestamp, if specified, identifies the time to which the source instance is cloned. */
+  pointInTime?: string;
+  /** This is always `sql#cloneContext`. */
+  kind?: string;
+  /** The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. */
+  allocatedIpRange?: string;
   /** Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance. This field applies to all DB types. */
   preferredZone?: string;
   /** Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via private services access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning. */
   destinationNetwork?: string;
-  /** This is always `sql#cloneContext`. */
-  kind?: string;
   /** Binary log coordinates, if specified, identify the position up to which the source instance is cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates. */
   binLogCoordinates?: BinLogCoordinates;
-  /** Reserved for future use. */
-  pitrTimestampMs?: string;
-  /** Required. Name of the Cloud SQL instance to be created as a clone. */
-  destinationInstanceName?: string;
-  /** Timestamp, if specified, identifies the time to which the source instance is cloned. */
-  pointInTime?: string;
   /** (SQL Server only) Clone only the specified databases from the source instance. Clone all databases if empty. */
   databaseNames?: StringList;
-  /** The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. */
-  allocatedIpRange?: string;
-  /** The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp. */
-  sourceInstanceDeletionTime?: string;
-  /** Optional. The project ID of the destination project where the cloned instance will be created. To perform a cross-project clone, this field is required. If not specified, the clone is created in the same project as the source instance. */
-  destinationProject?: string;
 }
 export const CloneContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pitrTimestampMs: S.optional(S.String),
+    sourceInstanceDeletionTime: S.optional(S.String),
+    destinationInstanceName: S.optional(S.String),
     preferredSecondaryZone: S.optional(S.String),
+    destinationProject: S.optional(S.String),
+    pointInTime: S.optional(S.String),
+    kind: S.optional(S.String),
+    allocatedIpRange: S.optional(S.String),
     preferredZone: S.optional(S.String),
     destinationNetwork: S.optional(S.String),
-    kind: S.optional(S.String),
     binLogCoordinates: S.optional(BinLogCoordinates),
-    pitrTimestampMs: S.optional(S.String),
-    destinationInstanceName: S.optional(S.String),
-    pointInTime: S.optional(S.String),
     databaseNames: S.optional(StringList),
-    allocatedIpRange: S.optional(S.String),
-    sourceInstanceDeletionTime: S.optional(S.String),
-    destinationProject: S.optional(S.String),
   }),
 ).annotate({ identifier: "CloneContext" }) as any as S.Schema<CloneContext>;
 
@@ -1078,6 +1050,8 @@ export const InstancesCloneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesCloneRequest>;
 
 export interface CloneInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Required. Project ID of the source Cloud SQL instance. */
   project: string;
   /** Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID. */
@@ -1087,6 +1061,7 @@ export interface CloneInstancesRequest {
 }
 export const CloneInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(InstancesCloneRequest.pipe(T.HttpBody())),
@@ -1101,12 +1076,304 @@ export const CloneInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CloneInstancesRequest",
 }) as any as S.Schema<CloneInstancesRequest>;
 
-export type BackupTypeEnum =
-  | "SQL_BACKUP_TYPE_UNSPECIFIED"
-  | "AUTOMATED"
-  | "ON_DEMAND"
-  | "FINAL";
-export const BackupTypeEnum = /*@__PURE__*/ S.String;
+export interface ConnectResolveRequest {
+  /** Required. Cloud SQL instance ID. This does not include the project ID. */
+  dnsName: string;
+  /** Required. The region of the instance. */
+  location: string;
+}
+export const ConnectResolveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dnsName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "v1/locations/{location}/dns/{dnsName}:resolveConnectSettings",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "ConnectResolveRequest",
+}) as any as S.Schema<ConnectResolveRequest>;
+
+export type IpMappingTypeEnum =
+  | "SQL_IP_ADDRESS_TYPE_UNSPECIFIED"
+  | "PRIMARY"
+  | "OUTGOING"
+  | "PRIVATE"
+  | "MIGRATED_1ST_GEN";
+export const IpMappingTypeEnum = /*@__PURE__*/ S.String;
+
+/** Database instance IP mapping */
+export interface IpMapping {
+  /** The IP address assigned. */
+  ipAddress?: string;
+  /** The type of this IP address. A `PRIMARY` address is a public address that can accept incoming connections. A `PRIVATE` address is a private address that can accept incoming connections. An `OUTGOING` address is the source address of connections originating from the instance, if supported. */
+  type?: IpMappingTypeEnum | (string & {});
+  /** The due time for this IP to be retired in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. This field is only available when the IP is scheduled to be retired. */
+  timeToRetire?: string;
+}
+export const IpMapping = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    type: S.optional(IpMappingTypeEnum),
+    timeToRetire: S.optional(S.String),
+  }),
+).annotate({ identifier: "IpMapping" }) as any as S.Schema<IpMapping>;
+
+export type IpMappingList = Array<IpMapping>;
+export const IpMappingList = /*@__PURE__*/ S.Array(
+  IpMapping,
+) as any as S.Schema<IpMappingList>;
+
+export type ConnectSettingsMdxProtocolSupportItemEnum =
+  | "MDX_PROTOCOL_SUPPORT_UNSPECIFIED"
+  | "CLIENT_PROTOCOL_TYPE";
+export const ConnectSettingsMdxProtocolSupportItemEnum = /*@__PURE__*/ S.String;
+
+export type ConnectSettingsMdxProtocolSupportItemEnumList =
+  Array<ConnectSettingsMdxProtocolSupportItemEnum>;
+export const ConnectSettingsMdxProtocolSupportItemEnumList =
+  /*@__PURE__*/ S.Array(
+    ConnectSettingsMdxProtocolSupportItemEnum,
+  ) as any as S.Schema<ConnectSettingsMdxProtocolSupportItemEnumList>;
+
+/** SslCerts Resource */
+export interface SslCert {
+  /** User supplied name. Constrained to [a-zA-Z.-_ ]+. */
+  commonName?: string;
+  /** PEM representation. */
+  cert?: string;
+  /** The URI of this resource. */
+  selfLink?: string;
+  /** Sha1 Fingerprint. */
+  sha1Fingerprint?: string;
+  /** Name of the database instance. */
+  instance?: string;
+  /** The time when the certificate expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  expirationTime?: string;
+  /** This is always `sql#sslCert`. */
+  kind?: string;
+  /** Serial number, as extracted from the certificate. */
+  certSerialNumber?: string;
+  /** The time when the certificate was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z` */
+  createTime?: string;
+}
+export const SslCert = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commonName: S.optional(S.String),
+    cert: S.optional(S.String),
+    selfLink: S.optional(S.String),
+    sha1Fingerprint: S.optional(S.String),
+    instance: S.optional(S.String),
+    expirationTime: S.optional(S.String),
+    kind: S.optional(S.String),
+    certSerialNumber: S.optional(S.String),
+    createTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "SslCert" }) as any as S.Schema<SslCert>;
+
+export type DnsNameMappingConnectionTypeEnum =
+  | "CONNECTION_TYPE_UNSPECIFIED"
+  | "PUBLIC"
+  | "PRIVATE_SERVICES_ACCESS"
+  | "PRIVATE_SERVICE_CONNECT";
+export const DnsNameMappingConnectionTypeEnum = /*@__PURE__*/ S.String;
+
+export type DnsNameMappingDnsScopeEnum =
+  | "DNS_SCOPE_UNSPECIFIED"
+  | "INSTANCE"
+  | "CLUSTER";
+export const DnsNameMappingDnsScopeEnum = /*@__PURE__*/ S.String;
+
+export type DnsNameMappingRecordManagerEnum =
+  | "RECORD_MANAGER_UNSPECIFIED"
+  | "CUSTOMER"
+  | "CLOUD_SQL_AUTOMATION";
+export const DnsNameMappingRecordManagerEnum = /*@__PURE__*/ S.String;
+
+/** DNS metadata. */
+export interface DnsNameMapping {
+  /** Output only. The connection type of the DNS name. */
+  connectionType?: DnsNameMappingConnectionTypeEnum | (string & {});
+  /** Output only. The DNS name. */
+  name?: string;
+  /** Output only. The scope that the DNS name applies to. */
+  dnsScope?: DnsNameMappingDnsScopeEnum | (string & {});
+  /** Output only. The manager for this DNS record. */
+  recordManager?: DnsNameMappingRecordManagerEnum | (string & {});
+}
+export const DnsNameMapping = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionType: S.optional(DnsNameMappingConnectionTypeEnum),
+    name: S.optional(S.String),
+    dnsScope: S.optional(DnsNameMappingDnsScopeEnum),
+    recordManager: S.optional(DnsNameMappingRecordManagerEnum),
+  }),
+).annotate({ identifier: "DnsNameMapping" }) as any as S.Schema<DnsNameMapping>;
+
+export type DnsNameMappingList = Array<DnsNameMapping>;
+export const DnsNameMappingList = /*@__PURE__*/ S.Array(
+  DnsNameMapping,
+) as any as S.Schema<DnsNameMappingList>;
+
+/** Details of a single read pool node of a read pool. */
+export interface ConnectPoolNodeConfig {
+  /** Output only. The DNS name of the read pool node. */
+  dnsName?: string;
+  /** Output only. The list of DNS names used by this read pool node. */
+  dnsNames?: DnsNameMappingList;
+  /** Output only. The name of the read pool node. Doesn't include the project ID. */
+  name?: string;
+  /** Output only. Mappings containing IP addresses that can be used to connect to the read pool node. */
+  ipAddresses?: IpMappingList;
+}
+export const ConnectPoolNodeConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dnsName: S.optional(S.String),
+    dnsNames: S.optional(DnsNameMappingList),
+    name: S.optional(S.String),
+    ipAddresses: S.optional(IpMappingList),
+  }),
+).annotate({
+  identifier: "ConnectPoolNodeConfig",
+}) as any as S.Schema<ConnectPoolNodeConfig>;
+
+export type ConnectPoolNodeConfigList = Array<ConnectPoolNodeConfig>;
+export const ConnectPoolNodeConfigList = /*@__PURE__*/ S.Array(
+  ConnectPoolNodeConfig,
+) as any as S.Schema<ConnectPoolNodeConfigList>;
+
+export type ConnectSettingsBackendTypeEnum =
+  | "SQL_BACKEND_TYPE_UNSPECIFIED"
+  | "FIRST_GEN"
+  | "SECOND_GEN"
+  | "EXTERNAL";
+export const ConnectSettingsBackendTypeEnum = /*@__PURE__*/ S.String;
+
+export type ConnectSettingsDatabaseVersionEnum =
+  | "SQL_DATABASE_VERSION_UNSPECIFIED"
+  | "MYSQL_5_1"
+  | "MYSQL_5_5"
+  | "MYSQL_5_6"
+  | "MYSQL_5_7"
+  | "MYSQL_8_0"
+  | "MYSQL_8_0_18"
+  | "MYSQL_8_0_26"
+  | "MYSQL_8_0_27"
+  | "MYSQL_8_0_28"
+  | "MYSQL_8_0_29"
+  | "MYSQL_8_0_30"
+  | "MYSQL_8_0_31"
+  | "MYSQL_8_0_32"
+  | "MYSQL_8_0_33"
+  | "MYSQL_8_0_34"
+  | "MYSQL_8_0_35"
+  | "MYSQL_8_0_36"
+  | "MYSQL_8_0_37"
+  | "MYSQL_8_0_39"
+  | "MYSQL_8_0_40"
+  | "MYSQL_8_0_41"
+  | "MYSQL_8_0_42"
+  | "MYSQL_8_0_43"
+  | "MYSQL_8_0_44"
+  | "MYSQL_8_0_45"
+  | "MYSQL_8_0_46"
+  | "MYSQL_8_4"
+  | "MYSQL_9_7"
+  | "SQLSERVER_2017_STANDARD"
+  | "SQLSERVER_2017_ENTERPRISE"
+  | "SQLSERVER_2017_EXPRESS"
+  | "SQLSERVER_2017_WEB"
+  | "POSTGRES_9_6"
+  | "POSTGRES_10"
+  | "POSTGRES_11"
+  | "POSTGRES_12"
+  | "POSTGRES_13"
+  | "POSTGRES_14"
+  | "POSTGRES_15"
+  | "POSTGRES_16"
+  | "POSTGRES_17"
+  | "POSTGRES_18"
+  | "POSTGRES_19"
+  | "POSTGRES_20"
+  | "SQLSERVER_2019_STANDARD"
+  | "SQLSERVER_2019_ENTERPRISE"
+  | "SQLSERVER_2019_EXPRESS"
+  | "SQLSERVER_2019_WEB"
+  | "SQLSERVER_2022_STANDARD"
+  | "SQLSERVER_2022_ENTERPRISE"
+  | "SQLSERVER_2022_EXPRESS"
+  | "SQLSERVER_2022_WEB"
+  | "SQLSERVER_2025_STANDARD"
+  | "SQLSERVER_2025_ENTERPRISE"
+  | "SQLSERVER_2025_EXPRESS";
+export const ConnectSettingsDatabaseVersionEnum = /*@__PURE__*/ S.String;
+
+export type ConnectSettingsServerCaModeEnum =
+  | "CA_MODE_UNSPECIFIED"
+  | "GOOGLE_MANAGED_INTERNAL_CA"
+  | "GOOGLE_MANAGED_CAS_CA"
+  | "CUSTOMER_MANAGED_CAS_CA";
+export const ConnectSettingsServerCaModeEnum = /*@__PURE__*/ S.String;
+
+/** Connect settings retrieval response. */
+export interface ConnectSettings {
+  /** Optional. Output only. Connection name of the Cloud SQL instance used in connection strings, in the format project:region:instance. */
+  connectionName?: string;
+  /** The number of read pool nodes in a read pool. */
+  nodeCount?: number;
+  /** The assigned IP addresses for the instance. */
+  ipAddresses?: IpMappingList;
+  /** The dns name of the instance. */
+  dnsName?: string;
+  /** Optional. Output only. mdx_protocol_support controls how the client uses metadata exchange when connecting to the instance. The values in the list representing parts of the MDX protocol that are supported by this instance. When the list is empty, the instance does not support MDX, so the client must not send an MDX request. The default is empty. */
+  mdxProtocolSupport?: ConnectSettingsMdxProtocolSupportItemEnumList;
+  /** Whether PSC connectivity is enabled for this instance. */
+  pscEnabled?: boolean;
+  /** Custom subject alternative names for the server certificate. */
+  customSubjectAlternativeNames?: StringList;
+  /** This is always `sql#connectSettings`. */
+  kind?: string;
+  /** SSL configuration. */
+  serverCaCert?: SslCert;
+  /** Output only. Entries containing information about each read pool node of the read pool. */
+  nodes?: ConnectPoolNodeConfigList;
+  /** Output only. The list of DNS names used by this instance. */
+  dnsNames?: DnsNameMappingList;
+  /** `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type. */
+  backendType?: ConnectSettingsBackendTypeEnum;
+  /** The cloud region for the instance. For example, `us-central1`, `europe-west1`. The region cannot be changed after instance creation. */
+  region?: string;
+  /** The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default), or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`. SQL Server instances: `SQLSERVER_2017_STANDARD` (default), `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`. */
+  databaseVersion?: ConnectSettingsDatabaseVersionEnum;
+  /** Specify what type of CA is used for the server certificate. */
+  serverCaMode?: ConnectSettingsServerCaModeEnum;
+}
+export const ConnectSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionName: S.optional(S.String),
+    nodeCount: S.optional(S.Number),
+    ipAddresses: S.optional(IpMappingList),
+    dnsName: S.optional(S.String),
+    mdxProtocolSupport: S.optional(
+      ConnectSettingsMdxProtocolSupportItemEnumList,
+    ),
+    pscEnabled: S.optional(S.Boolean),
+    customSubjectAlternativeNames: S.optional(StringList),
+    kind: S.optional(S.String),
+    serverCaCert: S.optional(SslCert),
+    nodes: S.optional(ConnectPoolNodeConfigList),
+    dnsNames: S.optional(DnsNameMappingList),
+    backendType: S.optional(ConnectSettingsBackendTypeEnum),
+    region: S.optional(S.String),
+    databaseVersion: S.optional(ConnectSettingsDatabaseVersionEnum),
+    serverCaMode: S.optional(ConnectSettingsServerCaModeEnum),
+  }),
+).annotate({
+  identifier: "ConnectSettings",
+}) as any as S.Schema<ConnectSettings>;
 
 export type BackupStateEnum =
   | "SQL_BACKUP_STATE_UNSPECIFIED"
@@ -1183,19 +1450,120 @@ export type BackupDatabaseVersionEnum =
   | "SQLSERVER_2025_EXPRESS";
 export const BackupDatabaseVersionEnum = /*@__PURE__*/ S.String;
 
-/** Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time. */
-export interface Interval {
-  /** Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end. */
-  endTime?: string;
-  /** Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start. */
-  startTime?: string;
+export type PoolNodeConfigStateEnum =
+  | "SQL_INSTANCE_STATE_UNSPECIFIED"
+  | "RUNNABLE"
+  | "SUSPENDED"
+  | "PENDING_DELETE"
+  | "PENDING_CREATE"
+  | "MAINTENANCE"
+  | "FAILED"
+  | "ONLINE_MAINTENANCE"
+  | "REPAIRING";
+export const PoolNodeConfigStateEnum = /*@__PURE__*/ S.String;
+
+export type PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
+  | "AUTO_DNS_STATUS_UNSPECIFIED"
+  | "AUTO_DNS_OK"
+  | "AUTO_DNS_FAILED"
+  | "AUTO_DNS_UNKNOWN";
+export const PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
+  /*@__PURE__*/ S.String;
+
+export type PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
+  | "AUTO_DNS_STATUS_UNSPECIFIED"
+  | "AUTO_DNS_OK"
+  | "AUTO_DNS_FAILED"
+  | "AUTO_DNS_UNKNOWN";
+export const PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
+  /*@__PURE__*/ S.String;
+
+/** Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance. */
+export interface PscAutoConnectionConfig {
+  /** Output only. The status of automated DNS provisioning for the write endpoint. */
+  writeEndpointAutoDnsStatus?:
+    | PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum
+    | (string & {});
+  /** The connection status of the consumer endpoint. */
+  status?: string;
+  /** Optional. This is the project ID of consumer service project of this consumer endpoint. This is only applicable if `consumer_network` is a shared VPC network. */
+  consumerProject?: string;
+  /** The IP address of the consumer endpoint. */
+  ipAddress?: string;
+  /** Output only. The status of service connection policy creation. */
+  serviceConnectionPolicyCreationResult?: string;
+  /** Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project. */
+  consumerNetwork?: string;
+  /** Output only. The service connection policy created automatically for the consumer network when `psc_auto_connection_policy_enabled` is true. It is in the format of: `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}` The `policy_id` is in format of `$NETWORK-$RANDOM`. */
+  serviceConnectionPolicy?: string;
+  /** The connection policy status of the consumer network. */
+  consumerNetworkStatus?: string;
+  /** Output only. The status of automated DNS provisioning. */
+  instanceAutoDnsStatus?:
+    | PscAutoConnectionConfigInstanceAutoDnsStatusEnum
+    | (string & {});
 }
-export const Interval = /*@__PURE__*/ S.suspend(() =>
+export const PscAutoConnectionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endTime: S.optional(S.String),
-    startTime: S.optional(S.String),
+    writeEndpointAutoDnsStatus: S.optional(
+      PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum,
+    ),
+    status: S.optional(S.String),
+    consumerProject: S.optional(S.String),
+    ipAddress: S.optional(S.String),
+    serviceConnectionPolicyCreationResult: S.optional(S.String),
+    consumerNetwork: S.optional(S.String),
+    serviceConnectionPolicy: S.optional(S.String),
+    consumerNetworkStatus: S.optional(S.String),
+    instanceAutoDnsStatus: S.optional(
+      PscAutoConnectionConfigInstanceAutoDnsStatusEnum,
+    ),
   }),
-).annotate({ identifier: "Interval" }) as any as S.Schema<Interval>;
+).annotate({
+  identifier: "PscAutoConnectionConfig",
+}) as any as S.Schema<PscAutoConnectionConfig>;
+
+export type PscAutoConnectionConfigList = Array<PscAutoConnectionConfig>;
+export const PscAutoConnectionConfigList = /*@__PURE__*/ S.Array(
+  PscAutoConnectionConfig,
+) as any as S.Schema<PscAutoConnectionConfigList>;
+
+/** Details of a single read pool node of a read pool. */
+export interface PoolNodeConfig {
+  /** Output only. The name of the read pool node, to be used for retrieving metrics and logs. */
+  name?: string;
+  /** Output only. The current state of the read pool node. */
+  state?: PoolNodeConfigStateEnum | (string & {});
+  /** Output only. The Private Service Connect (PSC) service attachment of the read pool node. */
+  pscServiceAttachmentLink?: string;
+  /** Output only. The DNS name of the read pool node. */
+  dnsName?: string;
+  /** Output only. The list of DNS names used by this read pool node. */
+  dnsNames?: DnsNameMappingList;
+  /** Output only. The list of settings for requested automatically-setup Private Service Connect (PSC) consumer endpoints that can be used to connect to this read pool node. */
+  pscAutoConnections?: PscAutoConnectionConfigList;
+  /** Output only. Mappings containing IP addresses that can be used to connect to the read pool node. */
+  ipAddresses?: IpMappingList;
+  /** Output only. The zone of the read pool node. */
+  gceZone?: string;
+}
+export const PoolNodeConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    state: S.optional(PoolNodeConfigStateEnum),
+    pscServiceAttachmentLink: S.optional(S.String),
+    dnsName: S.optional(S.String),
+    dnsNames: S.optional(DnsNameMappingList),
+    pscAutoConnections: S.optional(PscAutoConnectionConfigList),
+    ipAddresses: S.optional(IpMappingList),
+    gceZone: S.optional(S.String),
+  }),
+).annotate({ identifier: "PoolNodeConfig" }) as any as S.Schema<PoolNodeConfig>;
+
+export type PoolNodeConfigList = Array<PoolNodeConfig>;
+export const PoolNodeConfigList = /*@__PURE__*/ S.Array(
+  PoolNodeConfig,
+) as any as S.Schema<PoolNodeConfigList>;
 
 export type DatabaseInstanceBackendTypeEnum =
   | "SQL_BACKEND_TYPE_UNSPECIFIED"
@@ -1204,29 +1572,254 @@ export type DatabaseInstanceBackendTypeEnum =
   | "EXTERNAL";
 export const DatabaseInstanceBackendTypeEnum = /*@__PURE__*/ S.String;
 
-/** An available database version. It can be a major or a minor version. */
-export interface AvailableDatabaseVersion {
-  /** The database version name. For MySQL 8.0, this string provides the database major and minor version. */
+/** Reference to another Cloud SQL instance. */
+export interface InstanceReference {
+  /** The project ID of the Cloud SQL instance being referenced. The default is the same project ID as the instance references it. */
+  project?: string;
+  /** The name of the Cloud SQL instance being referenced. This does not include the project ID. */
   name?: string;
-  /** The database version's display name. */
-  displayName?: string;
-  /** The version's major version name. */
-  majorVersion?: string;
+  /** The region of the Cloud SQL instance being referenced. */
+  region?: string;
 }
-export const AvailableDatabaseVersion = /*@__PURE__*/ S.suspend(() =>
+export const InstanceReference = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    project: S.optional(S.String),
     name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    majorVersion: S.optional(S.String),
+    region: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AvailableDatabaseVersion",
-}) as any as S.Schema<AvailableDatabaseVersion>;
+  identifier: "InstanceReference",
+}) as any as S.Schema<InstanceReference>;
 
-export type AvailableDatabaseVersionList = Array<AvailableDatabaseVersion>;
-export const AvailableDatabaseVersionList = /*@__PURE__*/ S.Array(
-  AvailableDatabaseVersion,
-) as any as S.Schema<AvailableDatabaseVersionList>;
+/** The target instance for the Blue-Green deployment. */
+export interface TargetRole {
+  /** Output only. The source instance paired with this target instance in a blue-green deployment. */
+  sourceId?: InstanceReference;
+}
+export const TargetRole = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceId: S.optional(InstanceReference),
+  }),
+).annotate({ identifier: "TargetRole" }) as any as S.Schema<TargetRole>;
+
+/** The source instance for the Blue-Green deployment. */
+export interface SourceRole {
+  /** Output only. The target instance paired with this source instance in a blue-green deployment. */
+  targetId?: InstanceReference;
+}
+export const SourceRole = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetId: S.optional(InstanceReference),
+  }),
+).annotate({ identifier: "SourceRole" }) as any as S.Schema<SourceRole>;
+
+export type BlueGreenDeploymentInfoStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "PRE_SWITCHOVER"
+  | "POST_SWITCHOVER";
+export const BlueGreenDeploymentInfoStateEnum = /*@__PURE__*/ S.String;
+
+/** Blue-green deployment metadata for a database instance. In a blue-green deployment, we maintain two environments, one of which is live. This message contains details about the blue-green deployment. */
+export interface BlueGreenDeploymentInfo {
+  /** Output only. The resource ID of the blue-green deployment. */
+  deploymentId?: string;
+  /** Output only. The target instance for the Blue-Green deployment. */
+  target?: TargetRole;
+  /** Output only. The source instance for the Blue-Green deployment. */
+  source?: SourceRole;
+  /** Output only. The current state of blue-green-deployment for UI tags */
+  state?: BlueGreenDeploymentInfoStateEnum | (string & {});
+}
+export const BlueGreenDeploymentInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.optional(S.String),
+    target: S.optional(TargetRole),
+    source: S.optional(SourceRole),
+    state: S.optional(BlueGreenDeploymentInfoStateEnum),
+  }),
+).annotate({
+  identifier: "BlueGreenDeploymentInfo",
+}) as any as S.Schema<BlueGreenDeploymentInfo>;
+
+export type SqlOutOfDiskReportSqlOutOfDiskStateEnum =
+  | "SQL_OUT_OF_DISK_STATE_UNSPECIFIED"
+  | "NORMAL"
+  | "SOFT_SHUTDOWN";
+export const SqlOutOfDiskReportSqlOutOfDiskStateEnum = /*@__PURE__*/ S.String;
+
+/** This message wraps up the information written by out-of-disk detection job. */
+export interface SqlOutOfDiskReport {
+  /** The minimum recommended increase size in GigaBytes This field is consumed by the frontend * Writers: * the proactive database wellness job for OOD. * Readers: */
+  sqlMinRecommendedIncreaseSizeGb?: number;
+  /** This field represents the state generated by the proactive database wellness job for OutOfDisk issues. * Writers: * the proactive database wellness job for OOD. * Readers: * the proactive database wellness job */
+  sqlOutOfDiskState?: SqlOutOfDiskReportSqlOutOfDiskStateEnum | (string & {});
+}
+export const SqlOutOfDiskReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sqlMinRecommendedIncreaseSizeGb: S.optional(S.Number),
+    sqlOutOfDiskState: S.optional(SqlOutOfDiskReportSqlOutOfDiskStateEnum),
+  }),
+).annotate({
+  identifier: "SqlOutOfDiskReport",
+}) as any as S.Schema<SqlOutOfDiskReport>;
+
+/** Read-replica configuration specific to MySQL databases. */
+export interface MySqlReplicaConfiguration {
+  /** PEM representation of the replica's x509 certificate. */
+  clientCertificate?: string;
+  /** Seconds to wait between connect retries. MySQL's default is 60 seconds. */
+  connectRetryInterval?: number;
+  /** PEM representation of the trusted CA's x509 certificate. */
+  caCertificate?: string;
+  /** A list of permissible ciphers to use for SSL encryption. */
+  sslCipher?: string;
+  /** The password for the replication connection. */
+  password?: string;
+  /** Path to a SQL dump file in Google Cloud Storage from which the replica instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps have the binlog co-ordinates from which replication begins. This can be accomplished by setting --master-data to 1 when using mysqldump. */
+  dumpFilePath?: string;
+  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. */
+  clientKey?: string;
+  /** The username for the replication connection. */
+  username?: string;
+  /** Interval in milliseconds between replication heartbeats. */
+  masterHeartbeatPeriod?: string;
+  /** Whether or not to check the primary instance's Common Name value in the certificate that it sends during the SSL handshake. */
+  verifyServerCertificate?: boolean;
+  /** This is always `sql#mysqlReplicaConfiguration`. */
+  kind?: string;
+}
+export const MySqlReplicaConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientCertificate: S.optional(S.String),
+    connectRetryInterval: S.optional(S.Number),
+    caCertificate: S.optional(S.String),
+    sslCipher: S.optional(S.String),
+    password: S.optional(S.String),
+    dumpFilePath: S.optional(S.String),
+    clientKey: S.optional(S.String),
+    username: S.optional(S.String),
+    masterHeartbeatPeriod: S.optional(S.String),
+    verifyServerCertificate: S.optional(S.Boolean),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MySqlReplicaConfiguration",
+}) as any as S.Schema<MySqlReplicaConfiguration>;
+
+/** Read-replica configuration for connecting to the primary instance. */
+export interface ReplicaConfiguration {
+  /** MySQL specific configuration when replicating from a MySQL on-premises primary instance. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named `master.info` in the data directory. */
+  mysqlReplicaConfiguration?: MySqlReplicaConfiguration;
+  /** Specifies if the replica is the failover target. If the field is set to `true`, the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance. */
+  failoverTarget?: boolean;
+  /** This is always `sql#replicaConfiguration`. */
+  kind?: string;
+  /** Optional. Specifies if a SQL Server replica is a cascadable replica. A cascadable replica is a SQL Server cross region replica that supports replica(s) under it. */
+  cascadableReplica?: boolean;
+}
+export const ReplicaConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mysqlReplicaConfiguration: S.optional(MySqlReplicaConfiguration),
+    failoverTarget: S.optional(S.Boolean),
+    kind: S.optional(S.String),
+    cascadableReplica: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ReplicaConfiguration",
+}) as any as S.Schema<ReplicaConfiguration>;
+
+/** Gemini instance configuration. */
+export interface GeminiInstanceConfig {
+  /** Output only. Whether the vacuum management is enabled. */
+  googleVacuumMgmtEnabled?: boolean;
+  /** Output only. Whether the flag recommender is enabled. */
+  flagRecommenderEnabled?: boolean;
+  /** Output only. Whether canceling the out-of-memory (OOM) session is enabled. */
+  oomSessionCancelEnabled?: boolean;
+  /** Output only. Whether the index advisor is enabled. */
+  indexAdvisorEnabled?: boolean;
+  /** Output only. Whether Gemini is enabled. */
+  entitled?: boolean;
+  /** Output only. Whether the active query is enabled. */
+  activeQueryEnabled?: boolean;
+}
+export const GeminiInstanceConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    googleVacuumMgmtEnabled: S.optional(S.Boolean),
+    flagRecommenderEnabled: S.optional(S.Boolean),
+    oomSessionCancelEnabled: S.optional(S.Boolean),
+    indexAdvisorEnabled: S.optional(S.Boolean),
+    entitled: S.optional(S.Boolean),
+    activeQueryEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "GeminiInstanceConfig",
+}) as any as S.Schema<GeminiInstanceConfig>;
+
+export type DatabaseInstanceStateEnum =
+  | "SQL_INSTANCE_STATE_UNSPECIFIED"
+  | "RUNNABLE"
+  | "SUSPENDED"
+  | "PENDING_DELETE"
+  | "PENDING_CREATE"
+  | "MAINTENANCE"
+  | "FAILED"
+  | "ONLINE_MAINTENANCE"
+  | "REPAIRING";
+export const DatabaseInstanceStateEnum = /*@__PURE__*/ S.String;
+
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StringMap>;
+
+/** Disk encryption configuration for an instance. */
+export interface DiskEncryptionConfiguration {
+  /** Resource name of KMS key for disk encryption */
+  kmsKeyName?: string;
+  /** This is always `sql#diskEncryptionConfiguration`. */
+  kind?: string;
+  /** Optional. If true, enables Confidential Mode for the instance's Hyperdisk Balanced volumes. Only supported for zonal C4A instances currently. */
+  confidentialMode?: boolean;
+}
+export const DiskEncryptionConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kmsKeyName: S.optional(S.String),
+    kind: S.optional(S.String),
+    confidentialMode: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DiskEncryptionConfiguration",
+}) as any as S.Schema<DiskEncryptionConfiguration>;
+
+export type DatabaseInstanceSqlNetworkArchitectureEnum =
+  | "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED"
+  | "NEW_NETWORK_ARCHITECTURE"
+  | "OLD_NETWORK_ARCHITECTURE";
+export const DatabaseInstanceSqlNetworkArchitectureEnum =
+  /*@__PURE__*/ S.String;
+
+/** Any scheduled maintenance for this instance. */
+export interface SqlScheduledMaintenance {
+  /** The start time of any upcoming scheduled maintenance for this instance. */
+  startTime?: string;
+  /** If the scheduled maintenance can be rescheduled. */
+  canReschedule?: boolean;
+  canDefer?: boolean;
+  /** Maintenance cannot be rescheduled to start beyond this deadline. */
+  scheduleDeadlineTime?: string;
+}
+export const SqlScheduledMaintenance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    canReschedule: S.optional(S.Boolean),
+    canDefer: S.optional(S.Boolean),
+    scheduleDeadlineTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SqlScheduledMaintenance",
+}) as any as S.Schema<SqlScheduledMaintenance>;
 
 /** A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL. */
 export interface ReplicationCluster {
@@ -1247,301 +1840,848 @@ export const ReplicationCluster = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicationCluster",
 }) as any as S.Schema<ReplicationCluster>;
 
-export type PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
-  | "AUTO_DNS_STATUS_UNSPECIFIED"
-  | "AUTO_DNS_OK"
-  | "AUTO_DNS_FAILED"
-  | "AUTO_DNS_UNKNOWN";
-export const PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
-  /*@__PURE__*/ S.String;
+export type DatabaseInstanceInstanceTypeEnum =
+  | "SQL_INSTANCE_TYPE_UNSPECIFIED"
+  | "CLOUD_SQL_INSTANCE"
+  | "ON_PREMISES_INSTANCE"
+  | "READ_REPLICA_INSTANCE"
+  | "READ_POOL_INSTANCE"
+  | "GREEN_INSTANCE";
+export const DatabaseInstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
 
-export type PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
-  | "AUTO_DNS_STATUS_UNSPECIFIED"
-  | "AUTO_DNS_OK"
-  | "AUTO_DNS_FAILED"
-  | "AUTO_DNS_UNKNOWN";
-export const PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
-  /*@__PURE__*/ S.String;
-
-/** Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance. */
-export interface PscAutoConnectionConfig {
-  /** The IP address of the consumer endpoint. */
-  ipAddress?: string;
-  /** The connection status of the consumer endpoint. */
-  status?: string;
-  /** The connection policy status of the consumer network. */
-  consumerNetworkStatus?: string;
-  /** Output only. The status of automated DNS provisioning for the write endpoint. */
-  writeEndpointAutoDnsStatus?:
-    | PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum
-    | (string & {});
-  /** Output only. The service connection policy created automatically for the consumer network when `psc_auto_connection_policy_enabled` is true. It is in the format of: `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}` The `policy_id` is in format of `$NETWORK-$RANDOM`. */
-  serviceConnectionPolicy?: string;
-  /** Output only. The status of service connection policy creation. */
-  serviceConnectionPolicyCreationResult?: string;
-  /** Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project. */
-  consumerNetwork?: string;
-  /** Optional. This is the project ID of consumer service project of this consumer endpoint. This is only applicable if `consumer_network` is a shared VPC network. */
-  consumerProject?: string;
-  /** Output only. The status of automated DNS provisioning. */
-  instanceAutoDnsStatus?:
-    | PscAutoConnectionConfigInstanceAutoDnsStatusEnum
-    | (string & {});
+/** Deny maintenance Periods. This specifies a date range during when all CSA rollout will be denied. */
+export interface DenyMaintenancePeriod {
+  /** "deny maintenance period" end date. If the year of the end date is empty, the year of the start date also must be empty. In this case, it means the no maintenance interval recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01 */
+  endDate?: string;
+  /** Time in UTC when the "deny maintenance period" starts on start_date and ends on end_date. The time is in format: HH:mm:SS, i.e., 00:00:00 */
+  time?: string;
+  /** "deny maintenance period" start date. If the year of the start date is empty, the year of the end date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01 */
+  startDate?: string;
 }
-export const PscAutoConnectionConfig = /*@__PURE__*/ S.suspend(() =>
+export const DenyMaintenancePeriod = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ipAddress: S.optional(S.String),
-    status: S.optional(S.String),
-    consumerNetworkStatus: S.optional(S.String),
-    writeEndpointAutoDnsStatus: S.optional(
-      PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum,
-    ),
-    serviceConnectionPolicy: S.optional(S.String),
-    serviceConnectionPolicyCreationResult: S.optional(S.String),
-    consumerNetwork: S.optional(S.String),
-    consumerProject: S.optional(S.String),
-    instanceAutoDnsStatus: S.optional(
-      PscAutoConnectionConfigInstanceAutoDnsStatusEnum,
-    ),
+    endDate: S.optional(S.String),
+    time: S.optional(S.String),
+    startDate: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PscAutoConnectionConfig",
-}) as any as S.Schema<PscAutoConnectionConfig>;
+  identifier: "DenyMaintenancePeriod",
+}) as any as S.Schema<DenyMaintenancePeriod>;
 
-export type PscAutoConnectionConfigList = Array<PscAutoConnectionConfig>;
-export const PscAutoConnectionConfigList = /*@__PURE__*/ S.Array(
-  PscAutoConnectionConfig,
-) as any as S.Schema<PscAutoConnectionConfigList>;
+export type DenyMaintenancePeriodList = Array<DenyMaintenancePeriod>;
+export const DenyMaintenancePeriodList = /*@__PURE__*/ S.Array(
+  DenyMaintenancePeriod,
+) as any as S.Schema<DenyMaintenancePeriodList>;
 
-export type PoolNodeConfigStateEnum =
-  | "SQL_INSTANCE_STATE_UNSPECIFIED"
-  | "RUNNABLE"
-  | "SUSPENDED"
-  | "PENDING_DELETE"
-  | "PENDING_CREATE"
-  | "MAINTENANCE"
-  | "FAILED"
-  | "ONLINE_MAINTENANCE"
-  | "REPAIRING";
-export const PoolNodeConfigStateEnum = /*@__PURE__*/ S.String;
-
-export type IpMappingTypeEnum =
-  | "SQL_IP_ADDRESS_TYPE_UNSPECIFIED"
-  | "PRIMARY"
-  | "OUTGOING"
-  | "PRIVATE"
-  | "MIGRATED_1ST_GEN";
-export const IpMappingTypeEnum = /*@__PURE__*/ S.String;
-
-/** Database instance IP mapping */
-export interface IpMapping {
-  /** The IP address assigned. */
-  ipAddress?: string;
-  /** The type of this IP address. A `PRIMARY` address is a public address that can accept incoming connections. A `PRIVATE` address is a private address that can accept incoming connections. An `OUTGOING` address is the source address of connections originating from the instance, if supported. */
-  type?: IpMappingTypeEnum | (string & {});
-  /** The due time for this IP to be retired in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. This field is only available when the IP is scheduled to be retired. */
-  timeToRetire?: string;
-}
-export const IpMapping = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    type: S.optional(IpMappingTypeEnum),
-    timeToRetire: S.optional(S.String),
-  }),
-).annotate({ identifier: "IpMapping" }) as any as S.Schema<IpMapping>;
-
-export type IpMappingList = Array<IpMapping>;
-export const IpMappingList = /*@__PURE__*/ S.Array(
-  IpMapping,
-) as any as S.Schema<IpMappingList>;
-
-export type DnsNameMappingDnsScopeEnum =
-  | "DNS_SCOPE_UNSPECIFIED"
-  | "INSTANCE"
-  | "CLUSTER";
-export const DnsNameMappingDnsScopeEnum = /*@__PURE__*/ S.String;
-
-export type DnsNameMappingConnectionTypeEnum =
-  | "CONNECTION_TYPE_UNSPECIFIED"
-  | "PUBLIC"
-  | "PRIVATE_SERVICES_ACCESS"
-  | "PRIVATE_SERVICE_CONNECT";
-export const DnsNameMappingConnectionTypeEnum = /*@__PURE__*/ S.String;
-
-export type DnsNameMappingRecordManagerEnum =
-  | "RECORD_MANAGER_UNSPECIFIED"
-  | "CUSTOMER"
-  | "CLOUD_SQL_AUTOMATION";
-export const DnsNameMappingRecordManagerEnum = /*@__PURE__*/ S.String;
-
-/** DNS metadata. */
-export interface DnsNameMapping {
-  /** Output only. The scope that the DNS name applies to. */
-  dnsScope?: DnsNameMappingDnsScopeEnum | (string & {});
-  /** Output only. The connection type of the DNS name. */
-  connectionType?: DnsNameMappingConnectionTypeEnum | (string & {});
-  /** Output only. The DNS name. */
+/** Database flags for Cloud SQL instances. */
+export interface DatabaseFlags {
+  /** The value of the flag. Boolean flags are set to `on` for true and `off` for false. This field must be omitted if the flag doesn't take a value. */
+  value?: string;
+  /** The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags) in the Cloud SQL documentation. */
   name?: string;
-  /** Output only. The manager for this DNS record. */
-  recordManager?: DnsNameMappingRecordManagerEnum | (string & {});
 }
-export const DnsNameMapping = /*@__PURE__*/ S.suspend(() =>
+export const DatabaseFlags = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dnsScope: S.optional(DnsNameMappingDnsScopeEnum),
-    connectionType: S.optional(DnsNameMappingConnectionTypeEnum),
+    value: S.optional(S.String),
     name: S.optional(S.String),
-    recordManager: S.optional(DnsNameMappingRecordManagerEnum),
   }),
-).annotate({ identifier: "DnsNameMapping" }) as any as S.Schema<DnsNameMapping>;
+).annotate({ identifier: "DatabaseFlags" }) as any as S.Schema<DatabaseFlags>;
 
-export type DnsNameMappingList = Array<DnsNameMapping>;
-export const DnsNameMappingList = /*@__PURE__*/ S.Array(
-  DnsNameMapping,
-) as any as S.Schema<DnsNameMappingList>;
+export type DatabaseFlagsList = Array<DatabaseFlags>;
+export const DatabaseFlagsList = /*@__PURE__*/ S.Array(
+  DatabaseFlags,
+) as any as S.Schema<DatabaseFlagsList>;
 
-/** Details of a single read pool node of a read pool. */
-export interface PoolNodeConfig {
-  /** Output only. The DNS name of the read pool node. */
-  dnsName?: string;
-  /** Output only. The list of settings for requested automatically-setup Private Service Connect (PSC) consumer endpoints that can be used to connect to this read pool node. */
-  pscAutoConnections?: PscAutoConnectionConfigList;
-  /** Output only. The Private Service Connect (PSC) service attachment of the read pool node. */
-  pscServiceAttachmentLink?: string;
-  /** Output only. The zone of the read pool node. */
-  gceZone?: string;
-  /** Output only. The current state of the read pool node. */
-  state?: PoolNodeConfigStateEnum | (string & {});
-  /** Output only. The name of the read pool node, to be used for retrieving metrics and logs. */
-  name?: string;
-  /** Output only. Mappings containing IP addresses that can be used to connect to the read pool node. */
-  ipAddresses?: IpMappingList;
-  /** Output only. The list of DNS names used by this read pool node. */
-  dnsNames?: DnsNameMappingList;
+export type SettingsDataApiAccessEnum =
+  | "DATA_API_ACCESS_UNSPECIFIED"
+  | "DISALLOW_DATA_API"
+  | "ALLOW_DATA_API";
+export const SettingsDataApiAccessEnum = /*@__PURE__*/ S.String;
+
+export type BackupConfigurationBackupTierEnum =
+  | "BACKUP_TIER_UNSPECIFIED"
+  | "STANDARD"
+  | "ADVANCED"
+  | "ENHANCED";
+export const BackupConfigurationBackupTierEnum = /*@__PURE__*/ S.String;
+
+export type BackupRetentionSettingsRetentionUnitEnum =
+  | "RETENTION_UNIT_UNSPECIFIED"
+  | "COUNT";
+export const BackupRetentionSettingsRetentionUnitEnum = /*@__PURE__*/ S.String;
+
+/** We currently only support backup retention by specifying the number of backups we will retain. */
+export interface BackupRetentionSettings {
+  /** Depending on the value of retention_unit, this is used to determine if a backup needs to be deleted. If retention_unit is 'COUNT', we will retain this many backups. */
+  retainedBackups?: number;
+  /** The unit that 'retained_backups' represents. */
+  retentionUnit?: BackupRetentionSettingsRetentionUnitEnum | (string & {});
 }
-export const PoolNodeConfig = /*@__PURE__*/ S.suspend(() =>
+export const BackupRetentionSettings = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dnsName: S.optional(S.String),
-    pscAutoConnections: S.optional(PscAutoConnectionConfigList),
-    pscServiceAttachmentLink: S.optional(S.String),
-    gceZone: S.optional(S.String),
-    state: S.optional(PoolNodeConfigStateEnum),
-    name: S.optional(S.String),
-    ipAddresses: S.optional(IpMappingList),
-    dnsNames: S.optional(DnsNameMappingList),
+    retainedBackups: S.optional(S.Number),
+    retentionUnit: S.optional(BackupRetentionSettingsRetentionUnitEnum),
   }),
-).annotate({ identifier: "PoolNodeConfig" }) as any as S.Schema<PoolNodeConfig>;
+).annotate({
+  identifier: "BackupRetentionSettings",
+}) as any as S.Schema<BackupRetentionSettings>;
 
-export type PoolNodeConfigList = Array<PoolNodeConfig>;
-export const PoolNodeConfigList = /*@__PURE__*/ S.Array(
-  PoolNodeConfig,
-) as any as S.Schema<PoolNodeConfigList>;
-
-export type DatabaseInstanceSqlNetworkArchitectureEnum =
-  | "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED"
-  | "NEW_NETWORK_ARCHITECTURE"
-  | "OLD_NETWORK_ARCHITECTURE";
-export const DatabaseInstanceSqlNetworkArchitectureEnum =
+export type BackupConfigurationTransactionalLogStorageStateEnum =
+  | "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED"
+  | "DISK"
+  | "SWITCHING_TO_CLOUD_STORAGE"
+  | "SWITCHED_TO_CLOUD_STORAGE"
+  | "CLOUD_STORAGE";
+export const BackupConfigurationTransactionalLogStorageStateEnum =
   /*@__PURE__*/ S.String;
 
-/** SslCerts Resource */
-export interface SslCert {
-  /** The time when the certificate expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  expirationTime?: string;
-  /** PEM representation. */
-  cert?: string;
-  /** User supplied name. Constrained to [a-zA-Z.-_ ]+. */
-  commonName?: string;
-  /** This is always `sql#sslCert`. */
+/** Database instance backup configuration. */
+export interface BackupConfiguration {
+  /** Whether point in time recovery is enabled. */
+  pointInTimeRecoveryEnabled?: boolean;
+  /** Output only. Backup tier that manages the backups for the instance. */
+  backupTier?: BackupConfigurationBackupTierEnum | (string & {});
+  /** Location of the backup */
+  location?: string;
+  /** Backup retention settings. */
+  backupRetentionSettings?: BackupRetentionSettings;
+  /** This is always `sql#backupConfiguration`. */
   kind?: string;
-  /** Sha1 Fingerprint. */
-  sha1Fingerprint?: string;
-  /** The URI of this resource. */
-  selfLink?: string;
-  /** Serial number, as extracted from the certificate. */
-  certSerialNumber?: string;
-  /** Name of the database instance. */
-  instance?: string;
-  /** The time when the certificate was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z` */
-  createTime?: string;
+  /** (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well. */
+  binaryLogEnabled?: boolean;
+  /** Whether this configuration is enabled. */
+  enabled?: boolean;
+  /** The number of days of transaction logs we retain for point in time restore, from 1-7. */
+  transactionLogRetentionDays?: number;
+  /** Start time for the daily backup configuration in UTC timezone in the 24 hour format - `HH:MM`. */
+  startTime?: string;
+  /** Output only. This value contains the storage location of transactional logs used to perform point-in-time recovery (PITR) for the database. */
+  transactionalLogStorageState?:
+    | BackupConfigurationTransactionalLogStorageStateEnum
+    | (string & {});
+  /** Optional. Deprecated: replication_log_archiving_enabled is deprecated and will be removed from a future version of the API. Use point_in_time_recovery_enabled instead. */
+  replicationLogArchivingEnabled?: boolean;
 }
-export const SslCert = /*@__PURE__*/ S.suspend(() =>
+export const BackupConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pointInTimeRecoveryEnabled: S.optional(S.Boolean),
+    backupTier: S.optional(BackupConfigurationBackupTierEnum),
+    location: S.optional(S.String),
+    backupRetentionSettings: S.optional(BackupRetentionSettings),
+    kind: S.optional(S.String),
+    binaryLogEnabled: S.optional(S.Boolean),
+    enabled: S.optional(S.Boolean),
+    transactionLogRetentionDays: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    transactionalLogStorageState: S.optional(
+      BackupConfigurationTransactionalLogStorageStateEnum,
+    ),
+    replicationLogArchivingEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "BackupConfiguration",
+}) as any as S.Schema<BackupConfiguration>;
+
+/** Data cache configurations. */
+export interface DataCacheConfig {
+  /** Whether data cache is enabled for the instance. */
+  dataCacheEnabled?: boolean;
+}
+export const DataCacheConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dataCacheEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DataCacheConfig",
+}) as any as S.Schema<DataCacheConfig>;
+
+/** SQL Server Entra ID configuration. */
+export interface SqlServerEntraIdConfig {
+  /** Optional. The application ID for the Entra ID configuration. */
+  applicationId?: string;
+  /** Output only. This is always sql#sqlServerEntraIdConfig */
+  kind?: string;
+  /** Optional. The tenant ID for the Entra ID configuration. */
+  tenantId?: string;
+}
+export const SqlServerEntraIdConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationId: S.optional(S.String),
+    kind: S.optional(S.String),
+    tenantId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SqlServerEntraIdConfig",
+}) as any as S.Schema<SqlServerEntraIdConfig>;
+
+/** Target metric for read pool auto scaling. */
+export interface TargetMetric {
+  /** The target value for the metric. */
+  targetValue?: number;
+  /** The metric name to be used for auto scaling. */
+  metric?: string;
+}
+export const TargetMetric = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetValue: S.optional(S.Number),
+    metric: S.optional(S.String),
+  }),
+).annotate({ identifier: "TargetMetric" }) as any as S.Schema<TargetMetric>;
+
+export type TargetMetricList = Array<TargetMetric>;
+export const TargetMetricList = /*@__PURE__*/ S.Array(
+  TargetMetric,
+) as any as S.Schema<TargetMetricList>;
+
+/** The read pool auto-scale configuration. */
+export interface ReadPoolAutoScaleConfig {
+  /** The cooldown period for scale-in operations. */
+  scaleInCooldownSeconds?: number;
+  /** Maximum number of read pool nodes to be maintained. */
+  maxNodeCount?: number;
+  /** The cooldown period for scale-out operations. */
+  scaleOutCooldownSeconds?: number;
+  /** Optional. Target metrics for read pool auto scaling. */
+  targetMetrics?: TargetMetricList;
+  /** Minimum number of read pool nodes to be maintained. */
+  minNodeCount?: number;
+  /** Indicates whether read pool auto scaling supports scale in operations (removing nodes). */
+  disableScaleIn?: boolean;
+  /** Indicates whether read pool auto scaling is enabled. */
+  enabled?: boolean;
+}
+export const ReadPoolAutoScaleConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scaleInCooldownSeconds: S.optional(S.Number),
+    maxNodeCount: S.optional(S.Number),
+    scaleOutCooldownSeconds: S.optional(S.Number),
+    targetMetrics: S.optional(TargetMetricList),
+    minNodeCount: S.optional(S.Number),
+    disableScaleIn: S.optional(S.Boolean),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ReadPoolAutoScaleConfig",
+}) as any as S.Schema<ReadPoolAutoScaleConfig>;
+
+export type SettingsDataDiskTypeEnum =
+  | "SQL_DATA_DISK_TYPE_UNSPECIFIED"
+  | "PD_SSD"
+  | "PD_HDD"
+  | "OBSOLETE_LOCAL_SSD"
+  | "HYPERDISK_BALANCED";
+export const SettingsDataDiskTypeEnum = /*@__PURE__*/ S.String;
+
+export type SettingsPricingPlanEnum =
+  | "SQL_PRICING_PLAN_UNSPECIFIED"
+  | "PACKAGE"
+  | "PER_USE";
+export const SettingsPricingPlanEnum = /*@__PURE__*/ S.String;
+
+/** Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified. */
+export interface LocationPreference {
+  /** The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.). WARNING: Changing this might restart the instance. */
+  zone?: string;
+  /** This is always `sql#locationPreference`. */
+  kind?: string;
+  /** The App Engine application to follow, it must be in the same region as the Cloud SQL instance. WARNING: Changing this might restart the instance. */
+  followGaeApplication?: string;
+  /** The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). To disable this field, set it to 'no_secondary_zone'. */
+  secondaryZone?: string;
+}
+export const LocationPreference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zone: S.optional(S.String),
+    kind: S.optional(S.String),
+    followGaeApplication: S.optional(S.String),
+    secondaryZone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LocationPreference",
+}) as any as S.Schema<LocationPreference>;
+
+export type MaintenanceWindowUpdateTrackEnum =
+  | "SQL_UPDATE_TRACK_UNSPECIFIED"
+  | "canary"
+  | "stable"
+  | "week5";
+export const MaintenanceWindowUpdateTrackEnum = /*@__PURE__*/ S.String;
+
+/** Maintenance window. This specifies when a Cloud SQL instance is restarted for system maintenance purposes. */
+export interface MaintenanceWindow {
+  /** Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday. */
+  day?: number;
+  /** This is always `sql#maintenanceWindow`. */
+  kind?: string;
+  /** Hour of day - 0 to 23. Specify in the UTC time zone. */
+  hour?: number;
+  /** Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance). */
+  updateTrack?: MaintenanceWindowUpdateTrackEnum | (string & {});
+}
+export const MaintenanceWindow = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    day: S.optional(S.Number),
+    kind: S.optional(S.String),
+    hour: S.optional(S.Number),
+    updateTrack: S.optional(MaintenanceWindowUpdateTrackEnum),
+  }),
+).annotate({
+  identifier: "MaintenanceWindow",
+}) as any as S.Schema<MaintenanceWindow>;
+
+/** Config used to determine the final backup settings for the instance. */
+export interface FinalBackupConfig {
+  /** The number of days to retain the final backup after the instance deletion. The final backup will be purged at (time_of_instance_deletion + retention_days). */
+  retentionDays?: number;
+  /** Whether the final backup is enabled for the instance. */
+  enabled?: boolean;
+}
+export const FinalBackupConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionDays: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "FinalBackupConfig",
+}) as any as S.Schema<FinalBackupConfig>;
+
+/** PSC settings for a Cloud SQL instance. */
+export interface PscConfig {
+  /** Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance. */
+  pscAutoConnections?: PscAutoConnectionConfigList;
+  /** Whether PSC connectivity is enabled for this instance. */
+  pscEnabled?: boolean;
+  /** Optional. Whether to set up the PSC service connection policy automatically. */
+  pscAutoConnectionPolicyEnabled?: boolean;
+  /** Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric). */
+  allowedConsumerProjects?: StringList;
+  /** Optional. Indicates whether Private Service Connect write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect auto-connections that points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new Enterprise Plus instances when `psc_auto_dns_enabled` is enabled. */
+  pscWriteEndpointDnsEnabled?: boolean;
+  /** Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect using the PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID */
+  networkAttachmentUri?: string;
+  /** Optional. Indicates whether Private Service Connect DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect auto-connections. This will default to true for new instances when Private Service Connect is enabled. */
+  pscAutoDnsEnabled?: boolean;
+}
+export const PscConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pscAutoConnections: S.optional(PscAutoConnectionConfigList),
+    pscEnabled: S.optional(S.Boolean),
+    pscAutoConnectionPolicyEnabled: S.optional(S.Boolean),
+    allowedConsumerProjects: S.optional(StringList),
+    pscWriteEndpointDnsEnabled: S.optional(S.Boolean),
+    networkAttachmentUri: S.optional(S.String),
+    pscAutoDnsEnabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "PscConfig" }) as any as S.Schema<PscConfig>;
+
+export type IpConfigurationSslModeEnum =
+  | "SSL_MODE_UNSPECIFIED"
+  | "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
+  | "ENCRYPTED_ONLY"
+  | "TRUSTED_CLIENT_CERTIFICATE_REQUIRED";
+export const IpConfigurationSslModeEnum = /*@__PURE__*/ S.String;
+
+export type IpConfigurationServerCertificateRotationModeEnum =
+  | "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED"
+  | "NO_AUTOMATIC_ROTATION"
+  | "AUTOMATIC_ROTATION_DURING_MAINTENANCE";
+export const IpConfigurationServerCertificateRotationModeEnum =
+  /*@__PURE__*/ S.String;
+
+export type IpConfigurationServerCaModeEnum =
+  | "CA_MODE_UNSPECIFIED"
+  | "GOOGLE_MANAGED_INTERNAL_CA"
+  | "GOOGLE_MANAGED_CAS_CA"
+  | "CUSTOMER_MANAGED_CAS_CA";
+export const IpConfigurationServerCaModeEnum = /*@__PURE__*/ S.String;
+
+/** An entry for an Access Control list. */
+export interface AclEntry {
+  /** The time when this access control entry expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  expirationTime?: string;
+  /** This is always `sql#aclEntry`. */
+  kind?: string;
+  /** The allowlisted value for the access control list. */
+  value?: string;
+  /** Optional. A label to identify this entry. */
+  name?: string;
+}
+export const AclEntry = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expirationTime: S.optional(S.String),
-    cert: S.optional(S.String),
-    commonName: S.optional(S.String),
     kind: S.optional(S.String),
-    sha1Fingerprint: S.optional(S.String),
-    selfLink: S.optional(S.String),
-    certSerialNumber: S.optional(S.String),
-    instance: S.optional(S.String),
-    createTime: S.optional(S.String),
+    value: S.optional(S.String),
+    name: S.optional(S.String),
   }),
-).annotate({ identifier: "SslCert" }) as any as S.Schema<SslCert>;
+).annotate({ identifier: "AclEntry" }) as any as S.Schema<AclEntry>;
 
-/** Any scheduled maintenance for this instance. */
-export interface SqlScheduledMaintenance {
-  /** The start time of any upcoming scheduled maintenance for this instance. */
-  startTime?: string;
-  canDefer?: boolean;
-  /** If the scheduled maintenance can be rescheduled. */
-  canReschedule?: boolean;
-  /** Maintenance cannot be rescheduled to start beyond this deadline. */
-  scheduleDeadlineTime?: string;
+export type AclEntryList = Array<AclEntry>;
+export const AclEntryList = /*@__PURE__*/ S.Array(
+  AclEntry,
+) as any as S.Schema<AclEntryList>;
+
+/** IP Management configuration. */
+export interface IpConfiguration {
+  /** PSC settings for this instance. */
+  pscConfig?: PscConfig;
+  /** Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the `require_ssl` flag. */
+  requireSsl?: boolean;
+  /** Whether the instance is assigned a public IP address or not. */
+  ipv4Enabled?: boolean;
+  /** The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` */
+  allocatedIpRange?: string;
+  /** Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID} */
+  serverCaPool?: string;
+  /** Controls connectivity to private IP instances from Google services, such as BigQuery. */
+  enablePrivatePathForGoogleCloudServices?: boolean;
+  /** Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections. */
+  sslMode?: IpConfigurationSslModeEnum | (string & {});
+  /** The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set. */
+  privateNetwork?: string;
+  /** Optional. Controls the automatic server certificate rotation feature. This feature is disabled by default. When enabled, the server certificate will be automatically rotated during Cloud SQL scheduled maintenance or self-service maintenance updates up to six months before it expires. This setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA or CUSTOMER_MANAGED_CAS_CA. */
+  serverCertificateRotationMode?:
+    | IpConfigurationServerCertificateRotationModeEnum
+    | (string & {});
+  /** Specify what type of CA is used for the server certificate. */
+  serverCaMode?: IpConfigurationServerCaModeEnum | (string & {});
+  /** The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: `157.197.200.0/24`). */
+  authorizedNetworks?: AclEntryList;
+  /** Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance. */
+  customSubjectAlternativeNames?: StringList;
 }
-export const SqlScheduledMaintenance = /*@__PURE__*/ S.suspend(() =>
+export const IpConfiguration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startTime: S.optional(S.String),
-    canDefer: S.optional(S.Boolean),
-    canReschedule: S.optional(S.Boolean),
-    scheduleDeadlineTime: S.optional(S.String),
+    pscConfig: S.optional(PscConfig),
+    requireSsl: S.optional(S.Boolean),
+    ipv4Enabled: S.optional(S.Boolean),
+    allocatedIpRange: S.optional(S.String),
+    serverCaPool: S.optional(S.String),
+    enablePrivatePathForGoogleCloudServices: S.optional(S.Boolean),
+    sslMode: S.optional(IpConfigurationSslModeEnum),
+    privateNetwork: S.optional(S.String),
+    serverCertificateRotationMode: S.optional(
+      IpConfigurationServerCertificateRotationModeEnum,
+    ),
+    serverCaMode: S.optional(IpConfigurationServerCaModeEnum),
+    authorizedNetworks: S.optional(AclEntryList),
+    customSubjectAlternativeNames: S.optional(StringList),
   }),
 ).annotate({
-  identifier: "SqlScheduledMaintenance",
-}) as any as S.Schema<SqlScheduledMaintenance>;
+  identifier: "IpConfiguration",
+}) as any as S.Schema<IpConfiguration>;
 
-/** Gemini instance configuration. */
-export interface GeminiInstanceConfig {
-  /** Output only. Whether the flag recommender is enabled. */
-  flagRecommenderEnabled?: boolean;
-  /** Output only. Whether Gemini is enabled. */
-  entitled?: boolean;
-  /** Output only. Whether the vacuum management is enabled. */
-  googleVacuumMgmtEnabled?: boolean;
-  /** Output only. Whether the active query is enabled. */
-  activeQueryEnabled?: boolean;
-  /** Output only. Whether canceling the out-of-memory (OOM) session is enabled. */
-  oomSessionCancelEnabled?: boolean;
-  /** Output only. Whether the index advisor is enabled. */
-  indexAdvisorEnabled?: boolean;
+/** Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration. */
+export interface InsightsConfig {
+  /** Whether Query Insights will record client address when enabled. */
+  recordClientAddress?: boolean;
+  /** Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database. */
+  queryStringLength?: number;
+  /** Number of query execution plans captured by Insights per minute for all queries combined. Default is 5. */
+  queryPlansPerMinute?: number;
+  /** Whether Query Insights feature is enabled. */
+  queryInsightsEnabled?: boolean;
+  /** Whether Query Insights will record application tags from query when enabled. */
+  recordApplicationTags?: boolean;
+  /** Optional. Whether enhanced query insights feature is enabled. */
+  enhancedQueryInsightsEnabled?: boolean;
 }
-export const GeminiInstanceConfig = /*@__PURE__*/ S.suspend(() =>
+export const InsightsConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    flagRecommenderEnabled: S.optional(S.Boolean),
-    entitled: S.optional(S.Boolean),
-    googleVacuumMgmtEnabled: S.optional(S.Boolean),
-    activeQueryEnabled: S.optional(S.Boolean),
-    oomSessionCancelEnabled: S.optional(S.Boolean),
-    indexAdvisorEnabled: S.optional(S.Boolean),
+    recordClientAddress: S.optional(S.Boolean),
+    queryStringLength: S.optional(S.Number),
+    queryPlansPerMinute: S.optional(S.Number),
+    queryInsightsEnabled: S.optional(S.Boolean),
+    recordApplicationTags: S.optional(S.Boolean),
+    enhancedQueryInsightsEnabled: S.optional(S.Boolean),
   }),
-).annotate({
-  identifier: "GeminiInstanceConfig",
-}) as any as S.Schema<GeminiInstanceConfig>;
+).annotate({ identifier: "InsightsConfig" }) as any as S.Schema<InsightsConfig>;
 
-/** Disk encryption configuration for an instance. */
-export interface DiskEncryptionConfiguration {
-  /** Resource name of KMS key for disk encryption */
-  kmsKeyName?: string;
-  /** This is always `sql#diskEncryptionConfiguration`. */
+/** SQL Server specific audit configuration. */
+export interface SqlServerAuditConfig {
+  /** The name of the destination bucket (e.g., gs://mybucket). */
+  bucket?: string;
+  /** This is always sql#sqlServerAuditConfig */
   kind?: string;
+  /** How long to keep generated audit files. */
+  retentionInterval?: string;
+  /** How often to upload generated audit files. */
+  uploadInterval?: string;
 }
-export const DiskEncryptionConfiguration = /*@__PURE__*/ S.suspend(() =>
+export const SqlServerAuditConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kmsKeyName: S.optional(S.String),
+    bucket: S.optional(S.String),
     kind: S.optional(S.String),
+    retentionInterval: S.optional(S.String),
+    uploadInterval: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DiskEncryptionConfiguration",
-}) as any as S.Schema<DiskEncryptionConfiguration>;
+  identifier: "SqlServerAuditConfig",
+}) as any as S.Schema<SqlServerAuditConfig>;
+
+export type SettingsConnectorEnforcementEnum =
+  | "CONNECTOR_ENFORCEMENT_UNSPECIFIED"
+  | "NOT_REQUIRED"
+  | "REQUIRED";
+export const SettingsConnectorEnforcementEnum = /*@__PURE__*/ S.String;
+
+/** Connection pool flags for Cloud SQL instances managed connection pool configuration. */
+export interface ConnectionPoolFlags {
+  /** Required. The name of the flag. */
+  name?: string;
+  /** Required. The value of the flag. Boolean flags are set to `on` for true and `off` for false. This field must be omitted if the flag doesn't take a value. */
+  value?: string;
+}
+export const ConnectionPoolFlags = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectionPoolFlags",
+}) as any as S.Schema<ConnectionPoolFlags>;
+
+export type ConnectionPoolFlagsList = Array<ConnectionPoolFlags>;
+export const ConnectionPoolFlagsList = /*@__PURE__*/ S.Array(
+  ConnectionPoolFlags,
+) as any as S.Schema<ConnectionPoolFlagsList>;
+
+/** The managed connection pooling configuration. */
+export interface ConnectionPoolConfig {
+  /** Whether managed connection pooling is enabled. */
+  connectionPoolingEnabled?: boolean;
+  /** Output only. Number of connection poolers. */
+  poolerCount?: number;
+  /** Optional. List of connection pool configuration flags. */
+  flags?: ConnectionPoolFlagsList;
+}
+export const ConnectionPoolConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionPoolingEnabled: S.optional(S.Boolean),
+    poolerCount: S.optional(S.Number),
+    flags: S.optional(ConnectionPoolFlagsList),
+  }),
+).annotate({
+  identifier: "ConnectionPoolConfig",
+}) as any as S.Schema<ConnectionPoolConfig>;
+
+export type PasswordValidationPolicyComplexityEnum =
+  | "COMPLEXITY_UNSPECIFIED"
+  | "COMPLEXITY_DEFAULT";
+export const PasswordValidationPolicyComplexityEnum = /*@__PURE__*/ S.String;
+
+/** Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access. */
+export interface PasswordValidationPolicy {
+  /** This field is deprecated and will be removed in a future version of the API. */
+  disallowCompromisedCredentials?: boolean;
+  /** Minimum interval after which the password can be changed. This flag is only supported for PostgreSQL. */
+  passwordChangeInterval?: string;
+  /** Number of previous passwords that cannot be reused. */
+  reuseInterval?: number;
+  /** Disallow username as a part of the password. */
+  disallowUsernameSubstring?: boolean;
+  /** The complexity of the password. */
+  complexity?: PasswordValidationPolicyComplexityEnum | (string & {});
+  /** Minimum number of characters allowed. */
+  minLength?: number;
+  /** Whether to enable the password policy or not. When enabled, passwords must meet complexity requirements. Keep this policy enabled to help prevent unauthorized access. Disabling this policy allows weak passwords. */
+  enablePasswordPolicy?: boolean;
+}
+export const PasswordValidationPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    disallowCompromisedCredentials: S.optional(S.Boolean),
+    passwordChangeInterval: S.optional(S.String),
+    reuseInterval: S.optional(S.Number),
+    disallowUsernameSubstring: S.optional(S.Boolean),
+    complexity: S.optional(PasswordValidationPolicyComplexityEnum),
+    minLength: S.optional(S.Number),
+    enablePasswordPolicy: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "PasswordValidationPolicy",
+}) as any as S.Schema<PasswordValidationPolicy>;
+
+export type SqlActiveDirectoryConfigModeEnum =
+  | "ACTIVE_DIRECTORY_MODE_UNSPECIFIED"
+  | "MANAGED_ACTIVE_DIRECTORY"
+  | "SELF_MANAGED_ACTIVE_DIRECTORY"
+  | "CUSTOMER_MANAGED_ACTIVE_DIRECTORY";
+export const SqlActiveDirectoryConfigModeEnum = /*@__PURE__*/ S.String;
+
+/** Active Directory configuration, relevant only for Cloud SQL for SQL Server. */
+export interface SqlActiveDirectoryConfig {
+  /** Optional. The mode of the Active Directory configuration. */
+  mode?: SqlActiveDirectoryConfigModeEnum | (string & {});
+  /** Optional. The secret manager key storing the administrator credential. (e.g., projects/{project}/secrets/{secret}). */
+  adminCredentialSecretName?: string;
+  /** Optional. The organizational unit distinguished name. This is the full hierarchical path to the organizational unit. */
+  organizationalUnit?: string;
+  /** Optional. Domain controller IPv4 addresses used to bootstrap Active Directory. */
+  dnsServers?: StringList;
+  /** This is always sql#activeDirectoryConfig. */
+  kind?: string;
+  /** The name of the domain (e.g., mydomain.com). */
+  domain?: string;
+}
+export const SqlActiveDirectoryConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mode: S.optional(SqlActiveDirectoryConfigModeEnum),
+    adminCredentialSecretName: S.optional(S.String),
+    organizationalUnit: S.optional(S.String),
+    dnsServers: S.optional(StringList),
+    kind: S.optional(S.String),
+    domain: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SqlActiveDirectoryConfig",
+}) as any as S.Schema<SqlActiveDirectoryConfig>;
+
+export type SettingsActivationPolicyEnum =
+  | "SQL_ACTIVATION_POLICY_UNSPECIFIED"
+  | "ALWAYS"
+  | "NEVER"
+  | "ON_DEMAND";
+export const SettingsActivationPolicyEnum = /*@__PURE__*/ S.String;
+
+export type SettingsAvailabilityTypeEnum =
+  | "SQL_AVAILABILITY_TYPE_UNSPECIFIED"
+  | "ZONAL"
+  | "REGIONAL";
+export const SettingsAvailabilityTypeEnum = /*@__PURE__*/ S.String;
+
+export type SettingsReplicationTypeEnum =
+  | "SQL_REPLICATION_TYPE_UNSPECIFIED"
+  | "SYNCHRONOUS"
+  | "ASYNCHRONOUS";
+export const SettingsReplicationTypeEnum = /*@__PURE__*/ S.String;
+
+export type SettingsEditionEnum =
+  | "EDITION_UNSPECIFIED"
+  | "ENTERPRISE"
+  | "ENTERPRISE_PLUS"
+  | "DEVELOPER";
+export const SettingsEditionEnum = /*@__PURE__*/ S.String;
+
+export type PerformanceCaptureConfigTransactionKillTypeEnum =
+  | "TRANSACTION_KILL_TYPE_UNSPECIFIED"
+  | "READ_ONLY_TRANSACTIONS"
+  | "ALL_TRANSACTIONS";
+export const PerformanceCaptureConfigTransactionKillTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Performance capture configuration. */
+export interface PerformanceCaptureConfig {
+  /** Optional. Specifies the minimum percentage of CPU utilization to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check. */
+  cpuUtilizationThresholdPercent?: number;
+  /** Optional. Specifies the minimum percentage of memory usage to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check. */
+  memoryUsageThresholdPercent?: number;
+  /** Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts terminating it. Valid integers range from `60` to `604800` (7 days). Enter `0` to disable. If enabled (i.e., > 0), this value must be greater than or equal to `transaction_duration_threshold`. Configurations where `0 < transaction_kill_threshold_seconds < transaction_duration_threshold` will be rejected. */
+  transactionKillThresholdSeconds?: number;
+  /** Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture. */
+  probeThreshold?: number;
+  /** Optional. Enables or disables the performance capture feature. */
+  enabled?: boolean;
+  /** Optional. Specifies the minimum number of seconds replica must be lagging behind primary instance to trigger the performance capture on replica. */
+  secondsBehindSourceThreshold?: number;
+  /** Optional. Determines which transactions are allowed to be terminated when they exceed `transaction_kill_threshold_seconds`. This allows protecting write-heavy transactions from auto-termination if desired. Defaults to `READ_ONLY_TRANSACTIONS` if unspecified. */
+  transactionKillType?:
+    | PerformanceCaptureConfigTransactionKillTypeEnum
+    | (string & {});
+  /** Optional. Specifies the minimum allowed number of transactions in lock wait state to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check. */
+  transactionLockWaitThresholdCount?: number;
+  /** Optional. Specifies the minimum allowed number of semaphore waits to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check. */
+  semaphoreWaitThresholdCount?: number;
+  /** Optional. Specifies a customer-defined list of users to exclude from transaction termination. Entries can be in the format 'user@host' or just 'user'. A standalone 'user' implies 'user@%', excluding the user from any host. Wildcard '%' is allowed in the host part of the 'user@host' format. Example: `["app_user", "db_admin@10.1.2.3", "report_user@%"]` */
+  transactionKillExcludedUserHosts?: StringList;
+  /** Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it. */
+  transactionDurationThreshold?: number;
+  /** Optional. Specifies the minimum number of undo log entries in the history list length to trigger the performance capture. Valid integers range from `10000` to `10000000`. Enter `0` to disable the check. */
+  historyListLengthThresholdCount?: number;
+  /** Optional. Specifies the interval in seconds between consecutive probes that check if any trigger condition thresholds have been reached. */
+  probingIntervalSeconds?: number;
+  /** Optional. Specifies the minimum number of MySQL `Threads_running` to trigger the performance capture on the primary instance. */
+  runningThreadsThreshold?: number;
+}
+export const PerformanceCaptureConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cpuUtilizationThresholdPercent: S.optional(S.Number),
+    memoryUsageThresholdPercent: S.optional(S.Number),
+    transactionKillThresholdSeconds: S.optional(S.Number),
+    probeThreshold: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+    secondsBehindSourceThreshold: S.optional(S.Number),
+    transactionKillType: S.optional(
+      PerformanceCaptureConfigTransactionKillTypeEnum,
+    ),
+    transactionLockWaitThresholdCount: S.optional(S.Number),
+    semaphoreWaitThresholdCount: S.optional(S.Number),
+    transactionKillExcludedUserHosts: S.optional(StringList),
+    transactionDurationThreshold: S.optional(S.Number),
+    historyListLengthThresholdCount: S.optional(S.Number),
+    probingIntervalSeconds: S.optional(S.Number),
+    runningThreadsThreshold: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "PerformanceCaptureConfig",
+}) as any as S.Schema<PerformanceCaptureConfig>;
+
+/** Specifies options for controlling advanced machine features. */
+export interface AdvancedMachineFeatures {
+  /** The number of threads per physical core. */
+  threadsPerCore?: number;
+}
+export const AdvancedMachineFeatures = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    threadsPerCore: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AdvancedMachineFeatures",
+}) as any as S.Schema<AdvancedMachineFeatures>;
+
+/** Database instance settings. */
+export interface Settings {
+  /** The size of data disk, in GB. The data disk size minimum is 10GB. */
+  dataDiskSizeGb?: string;
+  /** Deny maintenance periods */
+  denyMaintenancePeriods?: DenyMaintenancePeriodList;
+  /** Optional. Cloud SQL for MySQL auto-upgrade configuration. When this parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor versions. The MySQL version must be 8.0.35 or higher. */
+  autoUpgradeEnabled?: boolean;
+  /** The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. */
+  storageAutoResizeLimit?: string;
+  /** The database flags passed to the instance at startup. */
+  databaseFlags?: DatabaseFlagsList;
+  /** Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances. */
+  crashSafeReplicationEnabled?: boolean;
+  /** This parameter controls whether to allow using ExecuteSql API to connect to the instance. Not allowed by default. */
+  dataApiAccess?: SettingsDataApiAccessEnum | (string & {});
+  /** The daily backup configuration for the instance. */
+  backupConfiguration?: BackupConfiguration;
+  /** Configuration for data cache. */
+  dataCacheConfig?: DataCacheConfig;
+  /** Optional. The Microsoft Entra ID configuration for the SQL Server instance. */
+  entraidConfig?: SqlServerEntraIdConfig;
+  /** Optional. The read pool auto-scale configuration for the instance. */
+  readPoolAutoScaleConfig?: ReadPoolAutoScaleConfig;
+  /** This is always `sql#settings`. */
+  kind?: string;
+  /** The name of server Instance collation. */
+  collation?: string;
+  /** The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for First Generation instances. */
+  dataDiskType?: SettingsDataDiskTypeEnum | (string & {});
+  /** Server timezone, relevant only for Cloud SQL for SQL Server. */
+  timeZone?: string;
+  /** The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value. */
+  settingsVersion?: string;
+  /** The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances. */
+  pricingPlan?: SettingsPricingPlanEnum | (string & {});
+  /** The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only. */
+  authorizedGaeApplications?: StringList;
+  /** Configuration to protect against accidental instance deletion. */
+  deletionProtectionEnabled?: boolean;
+  /** Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated. */
+  enableDataplexIntegration?: boolean;
+  /** The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location was only applicable to First Generation instances. */
+  locationPreference?: LocationPreference;
+  /** Configuration to increase storage size automatically. The default value is true. */
+  storageAutoResize?: boolean;
+  /** Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances. */
+  enableGoogleMlIntegration?: boolean;
+  /** The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes. */
+  maintenanceWindow?: MaintenanceWindow;
+  /** User-provided labels, represented as a dictionary where each label is a single key value pair. */
+  userLabels?: StringMap;
+  /** Optional. Provisioned throughput measured in MiB per second for the data disk. This field is only used for hyperdisk-balanced disk types. */
+  dataDiskProvisionedThroughput?: string;
+  /** Optional. The final backup configuration for the instance. */
+  finalBackupConfig?: FinalBackupConfig;
+  /** The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances. */
+  ipConfiguration?: IpConfiguration;
+  /** Configuration specific to read replica instances. Indicates whether replication is enabled or not. WARNING: Changing this restarts the instance. */
+  databaseReplicationEnabled?: boolean;
+  /** The tier (or machine type) for this instance, for example `db-custom-1-3840`. WARNING: Changing this restarts the instance. */
+  tier?: string;
+  /** Optional. Whether the replica is in accelerated mode. This feature is in private preview and requires allowlisting to take effect. */
+  acceleratedReplicaMode?: boolean;
+  /** Insights configuration, for now relevant only for Postgres. */
+  insightsConfig?: InsightsConfig;
+  /** SQL Server specific audit configuration. */
+  sqlServerAuditConfig?: SqlServerAuditConfig;
+  /** Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors). Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance. */
+  connectorEnforcement?: SettingsConnectorEnforcementEnum | (string & {});
+  /** Optional. The managed connection pooling configuration for the instance. */
+  connectionPoolConfig?: ConnectionPoolConfig;
+  /** The local user password validation policy of the instance for PostgreSQL and MySQL. */
+  passwordValidationPolicy?: PasswordValidationPolicy;
+  /** Optional. Provisioned number of I/O operations per second for the data disk. This field is only used for hyperdisk-balanced disk types. */
+  dataDiskProvisionedIops?: string;
+  /** Active Directory configuration, relevant only for Cloud SQL for SQL Server. */
+  activeDirectoryConfig?: SqlActiveDirectoryConfig;
+  /** The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: * `ALWAYS`: The instance is on, and remains so even in the absence of connection requests. * `NEVER`: The instance is off; it is not activated, even if a connection request arrives. */
+  activationPolicy?: SettingsActivationPolicyEnum | (string & {});
+  /** Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available)./ For more information, see [Overview of the High Availability Configuration](https://cloud.google.com/sql/docs/mysql/high-availability). */
+  availabilityType?: SettingsAvailabilityTypeEnum | (string & {});
+  /** The type of replication this instance uses. This can be either `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only applicable to First Generation instances. */
+  replicationType?: SettingsReplicationTypeEnum | (string & {});
+  /** Optional. The edition type of the Cloud SQL instance. */
+  edition?: SettingsEditionEnum | (string & {});
+  /** Optional. Configuration value for recreation of replica after certain replication lag */
+  replicationLagMaxSeconds?: number;
+  /** Optional. When this parameter is set to true, Cloud SQL retains backups of the instance even after the instance is deleted. The ON_DEMAND backup will be retained until customer deletes the backup or the project. The AUTOMATED backup will be retained based on the backups retention setting. */
+  retainBackupsOnDelete?: boolean;
+  /** Optional. Configuration for Performance Capture, provides diagnostic metrics during high load situations. */
+  performanceCaptureConfig?: PerformanceCaptureConfig;
+  /** Specifies advanced machine configuration for the instances relevant only for SQL Server. */
+  advancedMachineFeatures?: AdvancedMachineFeatures;
+}
+export const Settings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dataDiskSizeGb: S.optional(S.String),
+    denyMaintenancePeriods: S.optional(DenyMaintenancePeriodList),
+    autoUpgradeEnabled: S.optional(S.Boolean),
+    storageAutoResizeLimit: S.optional(S.String),
+    databaseFlags: S.optional(DatabaseFlagsList),
+    crashSafeReplicationEnabled: S.optional(S.Boolean),
+    dataApiAccess: S.optional(SettingsDataApiAccessEnum),
+    backupConfiguration: S.optional(BackupConfiguration),
+    dataCacheConfig: S.optional(DataCacheConfig),
+    entraidConfig: S.optional(SqlServerEntraIdConfig),
+    readPoolAutoScaleConfig: S.optional(ReadPoolAutoScaleConfig),
+    kind: S.optional(S.String),
+    collation: S.optional(S.String),
+    dataDiskType: S.optional(SettingsDataDiskTypeEnum),
+    timeZone: S.optional(S.String),
+    settingsVersion: S.optional(S.String),
+    pricingPlan: S.optional(SettingsPricingPlanEnum),
+    authorizedGaeApplications: S.optional(StringList),
+    deletionProtectionEnabled: S.optional(S.Boolean),
+    enableDataplexIntegration: S.optional(S.Boolean),
+    locationPreference: S.optional(LocationPreference),
+    storageAutoResize: S.optional(S.Boolean),
+    enableGoogleMlIntegration: S.optional(S.Boolean),
+    maintenanceWindow: S.optional(MaintenanceWindow),
+    userLabels: S.optional(StringMap),
+    dataDiskProvisionedThroughput: S.optional(S.String),
+    finalBackupConfig: S.optional(FinalBackupConfig),
+    ipConfiguration: S.optional(IpConfiguration),
+    databaseReplicationEnabled: S.optional(S.Boolean),
+    tier: S.optional(S.String),
+    acceleratedReplicaMode: S.optional(S.Boolean),
+    insightsConfig: S.optional(InsightsConfig),
+    sqlServerAuditConfig: S.optional(SqlServerAuditConfig),
+    connectorEnforcement: S.optional(SettingsConnectorEnforcementEnum),
+    connectionPoolConfig: S.optional(ConnectionPoolConfig),
+    passwordValidationPolicy: S.optional(PasswordValidationPolicy),
+    dataDiskProvisionedIops: S.optional(S.String),
+    activeDirectoryConfig: S.optional(SqlActiveDirectoryConfig),
+    activationPolicy: S.optional(SettingsActivationPolicyEnum),
+    availabilityType: S.optional(SettingsAvailabilityTypeEnum),
+    replicationType: S.optional(SettingsReplicationTypeEnum),
+    edition: S.optional(SettingsEditionEnum),
+    replicationLagMaxSeconds: S.optional(S.Number),
+    retainBackupsOnDelete: S.optional(S.Boolean),
+    performanceCaptureConfig: S.optional(PerformanceCaptureConfig),
+    advancedMachineFeatures: S.optional(AdvancedMachineFeatures),
+  }),
+).annotate({ identifier: "Settings" }) as any as S.Schema<Settings>;
 
 export type DatabaseInstanceDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -1602,924 +2742,6 @@ export type DatabaseInstanceDatabaseVersionEnum =
   | "SQLSERVER_2025_EXPRESS";
 export const DatabaseInstanceDatabaseVersionEnum = /*@__PURE__*/ S.String;
 
-export type SettingsAvailabilityTypeEnum =
-  | "SQL_AVAILABILITY_TYPE_UNSPECIFIED"
-  | "ZONAL"
-  | "REGIONAL";
-export const SettingsAvailabilityTypeEnum = /*@__PURE__*/ S.String;
-
-export type SettingsActivationPolicyEnum =
-  | "SQL_ACTIVATION_POLICY_UNSPECIFIED"
-  | "ALWAYS"
-  | "NEVER"
-  | "ON_DEMAND";
-export const SettingsActivationPolicyEnum = /*@__PURE__*/ S.String;
-
-export type SettingsEditionEnum =
-  | "EDITION_UNSPECIFIED"
-  | "ENTERPRISE"
-  | "ENTERPRISE_PLUS"
-  | "DEVELOPER";
-export const SettingsEditionEnum = /*@__PURE__*/ S.String;
-
-export type SqlActiveDirectoryConfigModeEnum =
-  | "ACTIVE_DIRECTORY_MODE_UNSPECIFIED"
-  | "MANAGED_ACTIVE_DIRECTORY"
-  | "SELF_MANAGED_ACTIVE_DIRECTORY"
-  | "CUSTOMER_MANAGED_ACTIVE_DIRECTORY";
-export const SqlActiveDirectoryConfigModeEnum = /*@__PURE__*/ S.String;
-
-/** Active Directory configuration, relevant only for Cloud SQL for SQL Server. */
-export interface SqlActiveDirectoryConfig {
-  /** Optional. The mode of the Active Directory configuration. */
-  mode?: SqlActiveDirectoryConfigModeEnum | (string & {});
-  /** The name of the domain (e.g., mydomain.com). */
-  domain?: string;
-  /** Optional. The organizational unit distinguished name. This is the full hierarchical path to the organizational unit. */
-  organizationalUnit?: string;
-  /** Optional. Domain controller IPv4 addresses used to bootstrap Active Directory. */
-  dnsServers?: StringList;
-  /** This is always sql#activeDirectoryConfig. */
-  kind?: string;
-  /** Optional. The secret manager key storing the administrator credential. (e.g., projects/{project}/secrets/{secret}). */
-  adminCredentialSecretName?: string;
-}
-export const SqlActiveDirectoryConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mode: S.optional(SqlActiveDirectoryConfigModeEnum),
-    domain: S.optional(S.String),
-    organizationalUnit: S.optional(S.String),
-    dnsServers: S.optional(StringList),
-    kind: S.optional(S.String),
-    adminCredentialSecretName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SqlActiveDirectoryConfig",
-}) as any as S.Schema<SqlActiveDirectoryConfig>;
-
-export type SettingsDataDiskTypeEnum =
-  | "SQL_DATA_DISK_TYPE_UNSPECIFIED"
-  | "PD_SSD"
-  | "PD_HDD"
-  | "OBSOLETE_LOCAL_SSD"
-  | "HYPERDISK_BALANCED";
-export const SettingsDataDiskTypeEnum = /*@__PURE__*/ S.String;
-
-/** PSC settings for a Cloud SQL instance. */
-export interface PscConfig {
-  /** Optional. Whether to set up the PSC service connection policy automatically. */
-  pscAutoConnectionPolicyEnabled?: boolean;
-  /** Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance. */
-  pscAutoConnections?: PscAutoConnectionConfigList;
-  /** Optional. Indicates whether Private Service Connect DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect auto-connections. This will default to true for new instances when Private Service Connect is enabled. */
-  pscAutoDnsEnabled?: boolean;
-  /** Whether PSC connectivity is enabled for this instance. */
-  pscEnabled?: boolean;
-  /** Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric). */
-  allowedConsumerProjects?: StringList;
-  /** Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID */
-  networkAttachmentUri?: string;
-  /** Optional. Indicates whether Private Service Connect write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect auto-connections that points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new Enterprise Plus instances when `psc_auto_dns_enabled` is enabled. */
-  pscWriteEndpointDnsEnabled?: boolean;
-}
-export const PscConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pscAutoConnectionPolicyEnabled: S.optional(S.Boolean),
-    pscAutoConnections: S.optional(PscAutoConnectionConfigList),
-    pscAutoDnsEnabled: S.optional(S.Boolean),
-    pscEnabled: S.optional(S.Boolean),
-    allowedConsumerProjects: S.optional(StringList),
-    networkAttachmentUri: S.optional(S.String),
-    pscWriteEndpointDnsEnabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "PscConfig" }) as any as S.Schema<PscConfig>;
-
-export type IpConfigurationServerCertificateRotationModeEnum =
-  | "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED"
-  | "NO_AUTOMATIC_ROTATION"
-  | "AUTOMATIC_ROTATION_DURING_MAINTENANCE";
-export const IpConfigurationServerCertificateRotationModeEnum =
-  /*@__PURE__*/ S.String;
-
-export type IpConfigurationServerCaModeEnum =
-  | "CA_MODE_UNSPECIFIED"
-  | "GOOGLE_MANAGED_INTERNAL_CA"
-  | "GOOGLE_MANAGED_CAS_CA"
-  | "CUSTOMER_MANAGED_CAS_CA";
-export const IpConfigurationServerCaModeEnum = /*@__PURE__*/ S.String;
-
-/** An entry for an Access Control list. */
-export interface AclEntry {
-  /** Optional. A label to identify this entry. */
-  name?: string;
-  /** This is always `sql#aclEntry`. */
-  kind?: string;
-  /** The allowlisted value for the access control list. */
-  value?: string;
-  /** The time when this access control entry expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  expirationTime?: string;
-}
-export const AclEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    kind: S.optional(S.String),
-    value: S.optional(S.String),
-    expirationTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "AclEntry" }) as any as S.Schema<AclEntry>;
-
-export type AclEntryList = Array<AclEntry>;
-export const AclEntryList = /*@__PURE__*/ S.Array(
-  AclEntry,
-) as any as S.Schema<AclEntryList>;
-
-export type IpConfigurationSslModeEnum =
-  | "SSL_MODE_UNSPECIFIED"
-  | "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
-  | "ENCRYPTED_ONLY"
-  | "TRUSTED_CLIENT_CERTIFICATE_REQUIRED";
-export const IpConfigurationSslModeEnum = /*@__PURE__*/ S.String;
-
-/** IP Management configuration. */
-export interface IpConfiguration {
-  /** PSC settings for this instance. */
-  pscConfig?: PscConfig;
-  /** The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set. */
-  privateNetwork?: string;
-  /** Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the `require_ssl` flag. */
-  requireSsl?: boolean;
-  /** The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` */
-  allocatedIpRange?: string;
-  /** Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance. */
-  customSubjectAlternativeNames?: StringList;
-  /** Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID} */
-  serverCaPool?: string;
-  /** Controls connectivity to private IP instances from Google services, such as BigQuery. */
-  enablePrivatePathForGoogleCloudServices?: boolean;
-  /** Optional. Controls the automatic server certificate rotation feature. This feature is disabled by default. When enabled, the server certificate will be automatically rotated during Cloud SQL scheduled maintenance or self-service maintenance updates up to six months before it expires. This setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA or CUSTOMER_MANAGED_CAS_CA. */
-  serverCertificateRotationMode?:
-    | IpConfigurationServerCertificateRotationModeEnum
-    | (string & {});
-  /** Whether the instance is assigned a public IP address or not. */
-  ipv4Enabled?: boolean;
-  /** Specify what type of CA is used for the server certificate. */
-  serverCaMode?: IpConfigurationServerCaModeEnum | (string & {});
-  /** The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: `157.197.200.0/24`). */
-  authorizedNetworks?: AclEntryList;
-  /** Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections. */
-  sslMode?: IpConfigurationSslModeEnum | (string & {});
-}
-export const IpConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pscConfig: S.optional(PscConfig),
-    privateNetwork: S.optional(S.String),
-    requireSsl: S.optional(S.Boolean),
-    allocatedIpRange: S.optional(S.String),
-    customSubjectAlternativeNames: S.optional(StringList),
-    serverCaPool: S.optional(S.String),
-    enablePrivatePathForGoogleCloudServices: S.optional(S.Boolean),
-    serverCertificateRotationMode: S.optional(
-      IpConfigurationServerCertificateRotationModeEnum,
-    ),
-    ipv4Enabled: S.optional(S.Boolean),
-    serverCaMode: S.optional(IpConfigurationServerCaModeEnum),
-    authorizedNetworks: S.optional(AclEntryList),
-    sslMode: S.optional(IpConfigurationSslModeEnum),
-  }),
-).annotate({
-  identifier: "IpConfiguration",
-}) as any as S.Schema<IpConfiguration>;
-
-/** Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified. */
-export interface LocationPreference {
-  /** The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). To disable this field, set it to 'no_secondary_zone'. */
-  secondaryZone?: string;
-  /** The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.). WARNING: Changing this might restart the instance. */
-  zone?: string;
-  /** This is always `sql#locationPreference`. */
-  kind?: string;
-  /** The App Engine application to follow, it must be in the same region as the Cloud SQL instance. WARNING: Changing this might restart the instance. */
-  followGaeApplication?: string;
-}
-export const LocationPreference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secondaryZone: S.optional(S.String),
-    zone: S.optional(S.String),
-    kind: S.optional(S.String),
-    followGaeApplication: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LocationPreference",
-}) as any as S.Schema<LocationPreference>;
-
-/** Target metric for read pool auto scaling. */
-export interface TargetMetric {
-  /** The target value for the metric. */
-  targetValue?: number;
-  /** The metric name to be used for auto scaling. */
-  metric?: string;
-}
-export const TargetMetric = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetValue: S.optional(S.Number),
-    metric: S.optional(S.String),
-  }),
-).annotate({ identifier: "TargetMetric" }) as any as S.Schema<TargetMetric>;
-
-export type TargetMetricList = Array<TargetMetric>;
-export const TargetMetricList = /*@__PURE__*/ S.Array(
-  TargetMetric,
-) as any as S.Schema<TargetMetricList>;
-
-/** The read pool auto-scale configuration. */
-export interface ReadPoolAutoScaleConfig {
-  /** Maximum number of read pool nodes to be maintained. */
-  maxNodeCount?: number;
-  /** Minimum number of read pool nodes to be maintained. */
-  minNodeCount?: number;
-  /** Optional. Target metrics for read pool auto scaling. */
-  targetMetrics?: TargetMetricList;
-  /** Indicates whether read pool auto scaling supports scale in operations (removing nodes). */
-  disableScaleIn?: boolean;
-  /** The cooldown period for scale-out operations. */
-  scaleOutCooldownSeconds?: number;
-  /** Indicates whether read pool auto scaling is enabled. */
-  enabled?: boolean;
-  /** The cooldown period for scale-in operations. */
-  scaleInCooldownSeconds?: number;
-}
-export const ReadPoolAutoScaleConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxNodeCount: S.optional(S.Number),
-    minNodeCount: S.optional(S.Number),
-    targetMetrics: S.optional(TargetMetricList),
-    disableScaleIn: S.optional(S.Boolean),
-    scaleOutCooldownSeconds: S.optional(S.Number),
-    enabled: S.optional(S.Boolean),
-    scaleInCooldownSeconds: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReadPoolAutoScaleConfig",
-}) as any as S.Schema<ReadPoolAutoScaleConfig>;
-
-/** SQL Server specific audit configuration. */
-export interface SqlServerAuditConfig {
-  /** This is always sql#sqlServerAuditConfig */
-  kind?: string;
-  /** How long to keep generated audit files. */
-  retentionInterval?: string;
-  /** The name of the destination bucket (e.g., gs://mybucket). */
-  bucket?: string;
-  /** How often to upload generated audit files. */
-  uploadInterval?: string;
-}
-export const SqlServerAuditConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    retentionInterval: S.optional(S.String),
-    bucket: S.optional(S.String),
-    uploadInterval: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SqlServerAuditConfig",
-}) as any as S.Schema<SqlServerAuditConfig>;
-
-export type SettingsPricingPlanEnum =
-  | "SQL_PRICING_PLAN_UNSPECIFIED"
-  | "PACKAGE"
-  | "PER_USE";
-export const SettingsPricingPlanEnum = /*@__PURE__*/ S.String;
-
-export type SettingsDataApiAccessEnum =
-  | "DATA_API_ACCESS_UNSPECIFIED"
-  | "DISALLOW_DATA_API"
-  | "ALLOW_DATA_API";
-export const SettingsDataApiAccessEnum = /*@__PURE__*/ S.String;
-
-/** SQL Server Entra ID configuration. */
-export interface SqlServerEntraIdConfig {
-  /** Optional. The tenant ID for the Entra ID configuration. */
-  tenantId?: string;
-  /** Output only. This is always sql#sqlServerEntraIdConfig */
-  kind?: string;
-  /** Optional. The application ID for the Entra ID configuration. */
-  applicationId?: string;
-}
-export const SqlServerEntraIdConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    kind: S.optional(S.String),
-    applicationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SqlServerEntraIdConfig",
-}) as any as S.Schema<SqlServerEntraIdConfig>;
-
-export type MaintenanceWindowUpdateTrackEnum =
-  | "SQL_UPDATE_TRACK_UNSPECIFIED"
-  | "canary"
-  | "stable"
-  | "week5";
-export const MaintenanceWindowUpdateTrackEnum = /*@__PURE__*/ S.String;
-
-/** Maintenance window. This specifies when a Cloud SQL instance is restarted for system maintenance purposes. */
-export interface MaintenanceWindow {
-  /** Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday. */
-  day?: number;
-  /** Hour of day - 0 to 23. Specify in the UTC time zone. */
-  hour?: number;
-  /** Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance). */
-  updateTrack?: MaintenanceWindowUpdateTrackEnum | (string & {});
-  /** This is always `sql#maintenanceWindow`. */
-  kind?: string;
-}
-export const MaintenanceWindow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    day: S.optional(S.Number),
-    hour: S.optional(S.Number),
-    updateTrack: S.optional(MaintenanceWindowUpdateTrackEnum),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MaintenanceWindow",
-}) as any as S.Schema<MaintenanceWindow>;
-
-/** Deny maintenance Periods. This specifies a date range during when all CSA rollout will be denied. */
-export interface DenyMaintenancePeriod {
-  /** "deny maintenance period" start date. If the year of the start date is empty, the year of the end date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01 */
-  startDate?: string;
-  /** "deny maintenance period" end date. If the year of the end date is empty, the year of the start date also must be empty. In this case, it means the no maintenance interval recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01 */
-  endDate?: string;
-  /** Time in UTC when the "deny maintenance period" starts on start_date and ends on end_date. The time is in format: HH:mm:SS, i.e., 00:00:00 */
-  time?: string;
-}
-export const DenyMaintenancePeriod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startDate: S.optional(S.String),
-    endDate: S.optional(S.String),
-    time: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DenyMaintenancePeriod",
-}) as any as S.Schema<DenyMaintenancePeriod>;
-
-export type DenyMaintenancePeriodList = Array<DenyMaintenancePeriod>;
-export const DenyMaintenancePeriodList = /*@__PURE__*/ S.Array(
-  DenyMaintenancePeriod,
-) as any as S.Schema<DenyMaintenancePeriodList>;
-
-/** Specifies options for controlling advanced machine features. */
-export interface AdvancedMachineFeatures {
-  /** The number of threads per physical core. */
-  threadsPerCore?: number;
-}
-export const AdvancedMachineFeatures = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    threadsPerCore: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AdvancedMachineFeatures",
-}) as any as S.Schema<AdvancedMachineFeatures>;
-
-export type PerformanceCaptureConfigTransactionKillTypeEnum =
-  | "TRANSACTION_KILL_TYPE_UNSPECIFIED"
-  | "READ_ONLY_TRANSACTIONS"
-  | "ALL_TRANSACTIONS";
-export const PerformanceCaptureConfigTransactionKillTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Performance capture configuration. */
-export interface PerformanceCaptureConfig {
-  /** Optional. Specifies the interval in seconds between consecutive probes that check if any trigger condition thresholds have been reached. */
-  probingIntervalSeconds?: number;
-  /** Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it. */
-  transactionDurationThreshold?: number;
-  /** Optional. Specifies the minimum percentage of CPU utilization to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check. */
-  cpuUtilizationThresholdPercent?: number;
-  /** Optional. Determines which transactions are allowed to be terminated when they exceed `transaction_kill_threshold_seconds`. This allows protecting write-heavy transactions from auto-termination if desired. Defaults to `READ_ONLY_TRANSACTIONS` if unspecified. */
-  transactionKillType?:
-    | PerformanceCaptureConfigTransactionKillTypeEnum
-    | (string & {});
-  /** Optional. Specifies a customer-defined list of users to exclude from transaction termination. Entries can be in the format 'user@host' or just 'user'. A standalone 'user' implies 'user@%', excluding the user from any host. Wildcard '%' is allowed in the host part of the 'user@host' format. Example: `["app_user", "db_admin@10.1.2.3", "report_user@%"]` */
-  transactionKillExcludedUserHosts?: StringList;
-  /** Optional. Enables or disables the performance capture feature. */
-  enabled?: boolean;
-  /** Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts terminating it. Valid integers range from `60` to `604800` (7 days). Enter `0` to disable. If enabled (i.e., > 0), this value must be greater than or equal to `transaction_duration_threshold`. Configurations where `0 < transaction_kill_threshold_seconds < transaction_duration_threshold` will be rejected. */
-  transactionKillThresholdSeconds?: number;
-  /** Optional. Specifies the minimum number of seconds replica must be lagging behind primary instance to trigger the performance capture on replica. */
-  secondsBehindSourceThreshold?: number;
-  /** Optional. Specifies the minimum number of undo log entries in the history list length to trigger the performance capture. Valid integers range from `10000` to `10000000`. Enter `0` to disable the check. */
-  historyListLengthThresholdCount?: number;
-  /** Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture. */
-  probeThreshold?: number;
-  /** Optional. Specifies the minimum number of MySQL `Threads_running` to trigger the performance capture on the primary instance. */
-  runningThreadsThreshold?: number;
-  /** Optional. Specifies the minimum allowed number of transactions in lock wait state to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check. */
-  transactionLockWaitThresholdCount?: number;
-  /** Optional. Specifies the minimum allowed number of semaphore waits to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check. */
-  semaphoreWaitThresholdCount?: number;
-  /** Optional. Specifies the minimum percentage of memory usage to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check. */
-  memoryUsageThresholdPercent?: number;
-}
-export const PerformanceCaptureConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    probingIntervalSeconds: S.optional(S.Number),
-    transactionDurationThreshold: S.optional(S.Number),
-    cpuUtilizationThresholdPercent: S.optional(S.Number),
-    transactionKillType: S.optional(
-      PerformanceCaptureConfigTransactionKillTypeEnum,
-    ),
-    transactionKillExcludedUserHosts: S.optional(StringList),
-    enabled: S.optional(S.Boolean),
-    transactionKillThresholdSeconds: S.optional(S.Number),
-    secondsBehindSourceThreshold: S.optional(S.Number),
-    historyListLengthThresholdCount: S.optional(S.Number),
-    probeThreshold: S.optional(S.Number),
-    runningThreadsThreshold: S.optional(S.Number),
-    transactionLockWaitThresholdCount: S.optional(S.Number),
-    semaphoreWaitThresholdCount: S.optional(S.Number),
-    memoryUsageThresholdPercent: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PerformanceCaptureConfig",
-}) as any as S.Schema<PerformanceCaptureConfig>;
-
-export type BackupConfigurationBackupTierEnum =
-  | "BACKUP_TIER_UNSPECIFIED"
-  | "STANDARD"
-  | "ADVANCED"
-  | "ENHANCED";
-export const BackupConfigurationBackupTierEnum = /*@__PURE__*/ S.String;
-
-export type BackupRetentionSettingsRetentionUnitEnum =
-  | "RETENTION_UNIT_UNSPECIFIED"
-  | "COUNT";
-export const BackupRetentionSettingsRetentionUnitEnum = /*@__PURE__*/ S.String;
-
-/** We currently only support backup retention by specifying the number of backups we will retain. */
-export interface BackupRetentionSettings {
-  /** Depending on the value of retention_unit, this is used to determine if a backup needs to be deleted. If retention_unit is 'COUNT', we will retain this many backups. */
-  retainedBackups?: number;
-  /** The unit that 'retained_backups' represents. */
-  retentionUnit?: BackupRetentionSettingsRetentionUnitEnum | (string & {});
-}
-export const BackupRetentionSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retainedBackups: S.optional(S.Number),
-    retentionUnit: S.optional(BackupRetentionSettingsRetentionUnitEnum),
-  }),
-).annotate({
-  identifier: "BackupRetentionSettings",
-}) as any as S.Schema<BackupRetentionSettings>;
-
-export type BackupConfigurationTransactionalLogStorageStateEnum =
-  | "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED"
-  | "DISK"
-  | "SWITCHING_TO_CLOUD_STORAGE"
-  | "SWITCHED_TO_CLOUD_STORAGE"
-  | "CLOUD_STORAGE";
-export const BackupConfigurationTransactionalLogStorageStateEnum =
-  /*@__PURE__*/ S.String;
-
-/** Database instance backup configuration. */
-export interface BackupConfiguration {
-  /** Start time for the daily backup configuration in UTC timezone in the 24 hour format - `HH:MM`. */
-  startTime?: string;
-  /** Output only. Backup tier that manages the backups for the instance. */
-  backupTier?: BackupConfigurationBackupTierEnum | (string & {});
-  /** Optional. Deprecated: replication_log_archiving_enabled is deprecated and will be removed from a future version of the API. Use point_in_time_recovery_enabled instead. */
-  replicationLogArchivingEnabled?: boolean;
-  /** Backup retention settings. */
-  backupRetentionSettings?: BackupRetentionSettings;
-  /** Output only. This value contains the storage location of transactional logs used to perform point-in-time recovery (PITR) for the database. */
-  transactionalLogStorageState?:
-    | BackupConfigurationTransactionalLogStorageStateEnum
-    | (string & {});
-  /** Whether point in time recovery is enabled. */
-  pointInTimeRecoveryEnabled?: boolean;
-  /** Whether this configuration is enabled. */
-  enabled?: boolean;
-  /** This is always `sql#backupConfiguration`. */
-  kind?: string;
-  /** The number of days of transaction logs we retain for point in time restore, from 1-7. */
-  transactionLogRetentionDays?: number;
-  /** Location of the backup */
-  location?: string;
-  /** (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well. */
-  binaryLogEnabled?: boolean;
-}
-export const BackupConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    backupTier: S.optional(BackupConfigurationBackupTierEnum),
-    replicationLogArchivingEnabled: S.optional(S.Boolean),
-    backupRetentionSettings: S.optional(BackupRetentionSettings),
-    transactionalLogStorageState: S.optional(
-      BackupConfigurationTransactionalLogStorageStateEnum,
-    ),
-    pointInTimeRecoveryEnabled: S.optional(S.Boolean),
-    enabled: S.optional(S.Boolean),
-    kind: S.optional(S.String),
-    transactionLogRetentionDays: S.optional(S.Number),
-    location: S.optional(S.String),
-    binaryLogEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "BackupConfiguration",
-}) as any as S.Schema<BackupConfiguration>;
-
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
-
-export type PasswordValidationPolicyComplexityEnum =
-  | "COMPLEXITY_UNSPECIFIED"
-  | "COMPLEXITY_DEFAULT";
-export const PasswordValidationPolicyComplexityEnum = /*@__PURE__*/ S.String;
-
-/** Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access. */
-export interface PasswordValidationPolicy {
-  /** Number of previous passwords that cannot be reused. */
-  reuseInterval?: number;
-  /** Minimum interval after which the password can be changed. This flag is only supported for PostgreSQL. */
-  passwordChangeInterval?: string;
-  /** The complexity of the password. */
-  complexity?: PasswordValidationPolicyComplexityEnum | (string & {});
-  /** Minimum number of characters allowed. */
-  minLength?: number;
-  /** Whether to enable the password policy or not. When enabled, passwords must meet complexity requirements. Keep this policy enabled to help prevent unauthorized access. Disabling this policy allows weak passwords. */
-  enablePasswordPolicy?: boolean;
-  /** Disallow username as a part of the password. */
-  disallowUsernameSubstring?: boolean;
-  /** This field is deprecated and will be removed in a future version of the API. */
-  disallowCompromisedCredentials?: boolean;
-}
-export const PasswordValidationPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reuseInterval: S.optional(S.Number),
-    passwordChangeInterval: S.optional(S.String),
-    complexity: S.optional(PasswordValidationPolicyComplexityEnum),
-    minLength: S.optional(S.Number),
-    enablePasswordPolicy: S.optional(S.Boolean),
-    disallowUsernameSubstring: S.optional(S.Boolean),
-    disallowCompromisedCredentials: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "PasswordValidationPolicy",
-}) as any as S.Schema<PasswordValidationPolicy>;
-
-/** Config used to determine the final backup settings for the instance. */
-export interface FinalBackupConfig {
-  /** Whether the final backup is enabled for the instance. */
-  enabled?: boolean;
-  /** The number of days to retain the final backup after the instance deletion. The final backup will be purged at (time_of_instance_deletion + retention_days). */
-  retentionDays?: number;
-}
-export const FinalBackupConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    retentionDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "FinalBackupConfig",
-}) as any as S.Schema<FinalBackupConfig>;
-
-export type SettingsConnectorEnforcementEnum =
-  | "CONNECTOR_ENFORCEMENT_UNSPECIFIED"
-  | "NOT_REQUIRED"
-  | "REQUIRED";
-export const SettingsConnectorEnforcementEnum = /*@__PURE__*/ S.String;
-
-/** Database flags for Cloud SQL instances. */
-export interface DatabaseFlags {
-  /** The value of the flag. Boolean flags are set to `on` for true and `off` for false. This field must be omitted if the flag doesn't take a value. */
-  value?: string;
-  /** The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags) in the Cloud SQL documentation. */
-  name?: string;
-}
-export const DatabaseFlags = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatabaseFlags" }) as any as S.Schema<DatabaseFlags>;
-
-export type DatabaseFlagsList = Array<DatabaseFlags>;
-export const DatabaseFlagsList = /*@__PURE__*/ S.Array(
-  DatabaseFlags,
-) as any as S.Schema<DatabaseFlagsList>;
-
-/** Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration. */
-export interface InsightsConfig {
-  /** Number of query execution plans captured by Insights per minute for all queries combined. Default is 5. */
-  queryPlansPerMinute?: number;
-  /** Optional. Whether enhanced query insights feature is enabled. */
-  enhancedQueryInsightsEnabled?: boolean;
-  /** Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database. */
-  queryStringLength?: number;
-  /** Whether Query Insights feature is enabled. */
-  queryInsightsEnabled?: boolean;
-  /** Whether Query Insights will record application tags from query when enabled. */
-  recordApplicationTags?: boolean;
-  /** Whether Query Insights will record client address when enabled. */
-  recordClientAddress?: boolean;
-}
-export const InsightsConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queryPlansPerMinute: S.optional(S.Number),
-    enhancedQueryInsightsEnabled: S.optional(S.Boolean),
-    queryStringLength: S.optional(S.Number),
-    queryInsightsEnabled: S.optional(S.Boolean),
-    recordApplicationTags: S.optional(S.Boolean),
-    recordClientAddress: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "InsightsConfig" }) as any as S.Schema<InsightsConfig>;
-
-/** Connection pool flags for Cloud SQL instances managed connection pool configuration. */
-export interface ConnectionPoolFlags {
-  /** Required. The value of the flag. Boolean flags are set to `on` for true and `off` for false. This field must be omitted if the flag doesn't take a value. */
-  value?: string;
-  /** Required. The name of the flag. */
-  name?: string;
-}
-export const ConnectionPoolFlags = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectionPoolFlags",
-}) as any as S.Schema<ConnectionPoolFlags>;
-
-export type ConnectionPoolFlagsList = Array<ConnectionPoolFlags>;
-export const ConnectionPoolFlagsList = /*@__PURE__*/ S.Array(
-  ConnectionPoolFlags,
-) as any as S.Schema<ConnectionPoolFlagsList>;
-
-/** The managed connection pooling configuration. */
-export interface ConnectionPoolConfig {
-  /** Optional. List of connection pool configuration flags. */
-  flags?: ConnectionPoolFlagsList;
-  /** Whether managed connection pooling is enabled. */
-  connectionPoolingEnabled?: boolean;
-  /** Output only. Number of connection poolers. */
-  poolerCount?: number;
-}
-export const ConnectionPoolConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    flags: S.optional(ConnectionPoolFlagsList),
-    connectionPoolingEnabled: S.optional(S.Boolean),
-    poolerCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ConnectionPoolConfig",
-}) as any as S.Schema<ConnectionPoolConfig>;
-
-export type SettingsReplicationTypeEnum =
-  | "SQL_REPLICATION_TYPE_UNSPECIFIED"
-  | "SYNCHRONOUS"
-  | "ASYNCHRONOUS";
-export const SettingsReplicationTypeEnum = /*@__PURE__*/ S.String;
-
-/** Data cache configurations. */
-export interface DataCacheConfig {
-  /** Whether data cache is enabled for the instance. */
-  dataCacheEnabled?: boolean;
-}
-export const DataCacheConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dataCacheEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DataCacheConfig",
-}) as any as S.Schema<DataCacheConfig>;
-
-/** Database instance settings. */
-export interface Settings {
-  /** Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available)./ For more information, see [Overview of the High Availability Configuration](https://cloud.google.com/sql/docs/mysql/high-availability). */
-  availabilityType?: SettingsAvailabilityTypeEnum | (string & {});
-  /** The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: * `ALWAYS`: The instance is on, and remains so even in the absence of connection requests. * `NEVER`: The instance is off; it is not activated, even if a connection request arrives. */
-  activationPolicy?: SettingsActivationPolicyEnum | (string & {});
-  /** Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances. */
-  enableGoogleMlIntegration?: boolean;
-  /** Optional. The edition type of the Cloud SQL instance. */
-  edition?: SettingsEditionEnum | (string & {});
-  /** Optional. Configuration value for recreation of replica after certain replication lag */
-  replicationLagMaxSeconds?: number;
-  /** Optional. When this parameter is set to true, Cloud SQL retains backups of the instance even after the instance is deleted. The ON_DEMAND backup will be retained until customer deletes the backup or the project. The AUTOMATED backup will be retained based on the backups retention setting. */
-  retainBackupsOnDelete?: boolean;
-  /** Active Directory configuration, relevant only for Cloud SQL for SQL Server. */
-  activeDirectoryConfig?: SqlActiveDirectoryConfig;
-  /** The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for First Generation instances. */
-  dataDiskType?: SettingsDataDiskTypeEnum | (string & {});
-  /** The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances. */
-  ipConfiguration?: IpConfiguration;
-  /** The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location was only applicable to First Generation instances. */
-  locationPreference?: LocationPreference;
-  /** Optional. The read pool auto-scale configuration for the instance. */
-  readPoolAutoScaleConfig?: ReadPoolAutoScaleConfig;
-  /** SQL Server specific audit configuration. */
-  sqlServerAuditConfig?: SqlServerAuditConfig;
-  /** Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated. */
-  enableDataplexIntegration?: boolean;
-  /** The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value. */
-  settingsVersion?: string;
-  /** The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances. */
-  pricingPlan?: SettingsPricingPlanEnum | (string & {});
-  /** This parameter controls whether to allow using ExecuteSql API to connect to the instance. Not allowed by default. */
-  dataApiAccess?: SettingsDataApiAccessEnum | (string & {});
-  /** Optional. The Microsoft Entra ID configuration for the SQL Server instance. */
-  entraidConfig?: SqlServerEntraIdConfig;
-  /** This is always `sql#settings`. */
-  kind?: string;
-  /** Configuration to increase storage size automatically. The default value is true. */
-  storageAutoResize?: boolean;
-  /** Configuration to protect against accidental instance deletion. */
-  deletionProtectionEnabled?: boolean;
-  /** The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes. */
-  maintenanceWindow?: MaintenanceWindow;
-  /** Deny maintenance periods */
-  denyMaintenancePeriods?: DenyMaintenancePeriodList;
-  /** Specifies advanced machine configuration for the instances relevant only for SQL Server. */
-  advancedMachineFeatures?: AdvancedMachineFeatures;
-  /** Optional. Whether the replica is in accelerated mode. This feature is in private preview and requires allowlisting to take effect. */
-  acceleratedReplicaMode?: boolean;
-  /** Optional. Configuration for Performance Capture, provides diagnostic metrics during high load situations. */
-  performanceCaptureConfig?: PerformanceCaptureConfig;
-  /** The daily backup configuration for the instance. */
-  backupConfiguration?: BackupConfiguration;
-  /** Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances. */
-  crashSafeReplicationEnabled?: boolean;
-  /** Optional. Provisioned number of I/O operations per second for the data disk. This field is only used for hyperdisk-balanced disk types. */
-  dataDiskProvisionedIops?: string;
-  /** User-provided labels, represented as a dictionary where each label is a single key value pair. */
-  userLabels?: StringMap;
-  /** The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only. */
-  authorizedGaeApplications?: StringList;
-  /** The local user password validation policy of the instance. */
-  passwordValidationPolicy?: PasswordValidationPolicy;
-  /** Optional. The final backup configuration for the instance. */
-  finalBackupConfig?: FinalBackupConfig;
-  /** The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. */
-  storageAutoResizeLimit?: string;
-  /** The size of data disk, in GB. The data disk size minimum is 10GB. */
-  dataDiskSizeGb?: string;
-  /** Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors). Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance. */
-  connectorEnforcement?: SettingsConnectorEnforcementEnum | (string & {});
-  /** The database flags passed to the instance at startup. */
-  databaseFlags?: DatabaseFlagsList;
-  /** Insights configuration, for now relevant only for Postgres. */
-  insightsConfig?: InsightsConfig;
-  /** Optional. Provisioned throughput measured in MiB per second for the data disk. This field is only used for hyperdisk-balanced disk types. */
-  dataDiskProvisionedThroughput?: string;
-  /** Optional. The managed connection pooling configuration for the instance. */
-  connectionPoolConfig?: ConnectionPoolConfig;
-  /** The tier (or machine type) for this instance, for example `db-custom-1-3840`. WARNING: Changing this restarts the instance. */
-  tier?: string;
-  /** The name of server Instance collation. */
-  collation?: string;
-  /** The type of replication this instance uses. This can be either `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only applicable to First Generation instances. */
-  replicationType?: SettingsReplicationTypeEnum | (string & {});
-  /** Configuration specific to read replica instances. Indicates whether replication is enabled or not. WARNING: Changing this restarts the instance. */
-  databaseReplicationEnabled?: boolean;
-  /** Server timezone, relevant only for Cloud SQL for SQL Server. */
-  timeZone?: string;
-  /** Optional. Cloud SQL for MySQL auto-upgrade configuration. When this parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor versions. The MySQL version must be 8.0.35 or higher. */
-  autoUpgradeEnabled?: boolean;
-  /** Configuration for data cache. */
-  dataCacheConfig?: DataCacheConfig;
-}
-export const Settings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availabilityType: S.optional(SettingsAvailabilityTypeEnum),
-    activationPolicy: S.optional(SettingsActivationPolicyEnum),
-    enableGoogleMlIntegration: S.optional(S.Boolean),
-    edition: S.optional(SettingsEditionEnum),
-    replicationLagMaxSeconds: S.optional(S.Number),
-    retainBackupsOnDelete: S.optional(S.Boolean),
-    activeDirectoryConfig: S.optional(SqlActiveDirectoryConfig),
-    dataDiskType: S.optional(SettingsDataDiskTypeEnum),
-    ipConfiguration: S.optional(IpConfiguration),
-    locationPreference: S.optional(LocationPreference),
-    readPoolAutoScaleConfig: S.optional(ReadPoolAutoScaleConfig),
-    sqlServerAuditConfig: S.optional(SqlServerAuditConfig),
-    enableDataplexIntegration: S.optional(S.Boolean),
-    settingsVersion: S.optional(S.String),
-    pricingPlan: S.optional(SettingsPricingPlanEnum),
-    dataApiAccess: S.optional(SettingsDataApiAccessEnum),
-    entraidConfig: S.optional(SqlServerEntraIdConfig),
-    kind: S.optional(S.String),
-    storageAutoResize: S.optional(S.Boolean),
-    deletionProtectionEnabled: S.optional(S.Boolean),
-    maintenanceWindow: S.optional(MaintenanceWindow),
-    denyMaintenancePeriods: S.optional(DenyMaintenancePeriodList),
-    advancedMachineFeatures: S.optional(AdvancedMachineFeatures),
-    acceleratedReplicaMode: S.optional(S.Boolean),
-    performanceCaptureConfig: S.optional(PerformanceCaptureConfig),
-    backupConfiguration: S.optional(BackupConfiguration),
-    crashSafeReplicationEnabled: S.optional(S.Boolean),
-    dataDiskProvisionedIops: S.optional(S.String),
-    userLabels: S.optional(StringMap),
-    authorizedGaeApplications: S.optional(StringList),
-    passwordValidationPolicy: S.optional(PasswordValidationPolicy),
-    finalBackupConfig: S.optional(FinalBackupConfig),
-    storageAutoResizeLimit: S.optional(S.String),
-    dataDiskSizeGb: S.optional(S.String),
-    connectorEnforcement: S.optional(SettingsConnectorEnforcementEnum),
-    databaseFlags: S.optional(DatabaseFlagsList),
-    insightsConfig: S.optional(InsightsConfig),
-    dataDiskProvisionedThroughput: S.optional(S.String),
-    connectionPoolConfig: S.optional(ConnectionPoolConfig),
-    tier: S.optional(S.String),
-    collation: S.optional(S.String),
-    replicationType: S.optional(SettingsReplicationTypeEnum),
-    databaseReplicationEnabled: S.optional(S.Boolean),
-    timeZone: S.optional(S.String),
-    autoUpgradeEnabled: S.optional(S.Boolean),
-    dataCacheConfig: S.optional(DataCacheConfig),
-  }),
-).annotate({ identifier: "Settings" }) as any as S.Schema<Settings>;
-
-/** Disk encryption status for an instance. */
-export interface DiskEncryptionStatus {
-  /** KMS key version used to encrypt the Cloud SQL instance resource */
-  kmsKeyVersionName?: string;
-  /** This is always `sql#diskEncryptionStatus`. */
-  kind?: string;
-}
-export const DiskEncryptionStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kmsKeyVersionName: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DiskEncryptionStatus",
-}) as any as S.Schema<DiskEncryptionStatus>;
-
-export type DatabaseInstanceSuspensionReasonItemEnum =
-  | "SQL_SUSPENSION_REASON_UNSPECIFIED"
-  | "BILLING_ISSUE"
-  | "LEGAL_ISSUE"
-  | "OPERATIONAL_ISSUE"
-  | "KMS_KEY_ISSUE"
-  | "PROJECT_ABUSE";
-export const DatabaseInstanceSuspensionReasonItemEnum = /*@__PURE__*/ S.String;
-
-export type DatabaseInstanceSuspensionReasonItemEnumList = Array<
-  DatabaseInstanceSuspensionReasonItemEnum | (string & {})
->;
-export const DatabaseInstanceSuspensionReasonItemEnumList =
-  /*@__PURE__*/ S.Array(
-    DatabaseInstanceSuspensionReasonItemEnum,
-  ) as any as S.Schema<DatabaseInstanceSuspensionReasonItemEnumList>;
-
-export type DatabaseInstanceInstanceTypeEnum =
-  | "SQL_INSTANCE_TYPE_UNSPECIFIED"
-  | "CLOUD_SQL_INSTANCE"
-  | "ON_PREMISES_INSTANCE"
-  | "READ_REPLICA_INSTANCE"
-  | "READ_POOL_INSTANCE";
-export const DatabaseInstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
-
-export interface DatabaseInstanceFailoverReplica {
-  /** The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only failover to the failover replica when the status is true. */
-  available?: boolean;
-  /** The name of the failover replica. If specified at instance creation, a failover replica is created for the instance. The name doesn't include the project ID. */
-  name?: string;
-}
-export const DatabaseInstanceFailoverReplica = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    available: S.optional(S.Boolean),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabaseInstanceFailoverReplica",
-}) as any as S.Schema<DatabaseInstanceFailoverReplica>;
-
-export type SqlOutOfDiskReportSqlOutOfDiskStateEnum =
-  | "SQL_OUT_OF_DISK_STATE_UNSPECIFIED"
-  | "NORMAL"
-  | "SOFT_SHUTDOWN";
-export const SqlOutOfDiskReportSqlOutOfDiskStateEnum = /*@__PURE__*/ S.String;
-
-/** This message wraps up the information written by out-of-disk detection job. */
-export interface SqlOutOfDiskReport {
-  /** The minimum recommended increase size in GigaBytes This field is consumed by the frontend * Writers: * the proactive database wellness job for OOD. * Readers: */
-  sqlMinRecommendedIncreaseSizeGb?: number;
-  /** This field represents the state generated by the proactive database wellness job for OutOfDisk issues. * Writers: * the proactive database wellness job for OOD. * Readers: * the proactive database wellness job */
-  sqlOutOfDiskState?: SqlOutOfDiskReportSqlOutOfDiskStateEnum | (string & {});
-}
-export const SqlOutOfDiskReport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sqlMinRecommendedIncreaseSizeGb: S.optional(S.Number),
-    sqlOutOfDiskState: S.optional(SqlOutOfDiskReportSqlOutOfDiskStateEnum),
-  }),
-).annotate({
-  identifier: "SqlOutOfDiskReport",
-}) as any as S.Schema<SqlOutOfDiskReport>;
-
 export type OnPremisesConfigurationSslOptionEnum =
   | "SSL_OPTION_UNSPECIFIED"
   | "DISABLE"
@@ -2545,391 +2767,391 @@ export const SelectedObjectsList = /*@__PURE__*/ S.Array(
   SelectedObjects,
 ) as any as S.Schema<SelectedObjectsList>;
 
-/** Reference to another Cloud SQL instance. */
-export interface InstanceReference {
-  /** The name of the Cloud SQL instance being referenced. This does not include the project ID. */
-  name?: string;
-  /** The region of the Cloud SQL instance being referenced. */
-  region?: string;
-  /** The project ID of the Cloud SQL instance being referenced. The default is the same project ID as the instance references it. */
-  project?: string;
-}
-export const InstanceReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    region: S.optional(S.String),
-    project: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InstanceReference",
-}) as any as S.Schema<InstanceReference>;
-
 /** On-premises instance configuration. */
 export interface OnPremisesConfiguration {
-  /** The host and port of the on-premises instance in host:port format */
-  hostPort?: string;
-  /** PEM representation of the replica's x509 certificate. */
-  clientCertificate?: string;
-  /** Optional. SSL option for replica connection to the on-premises source. */
-  sslOption?: OnPremisesConfigurationSslOptionEnum | (string & {});
-  /** The password for connecting to on-premises instance. */
-  password?: string;
-  /** Optional. A list of objects that the user selects for replication from an external source instance. */
-  selectedObjects?: SelectedObjectsList;
-  /** PEM representation of the trusted CA's x509 certificate. */
-  caCertificate?: string;
-  /** The dump file to create the Cloud SQL replica. */
-  dumpFilePath?: string;
-  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. */
-  clientKey?: string;
-  /** Output only. Indicates whether the resource is managed by Database Migration Service. */
-  dmsManaged?: boolean;
-  /** This is always `sql#onPremisesConfiguration`. */
-  kind?: string;
-  /** The username for connecting to on-premises instance. */
-  username?: string;
   /** The reference to Cloud SQL instance if the source is Cloud SQL. */
   sourceInstance?: InstanceReference;
+  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. */
+  clientKey?: string;
+  /** Optional. SSL option for replica connection to the on-premises source. */
+  sslOption?: OnPremisesConfigurationSslOptionEnum | (string & {});
+  /** The host and port of the on-premises instance in host:port format */
+  hostPort?: string;
+  /** Output only. Indicates whether the resource is managed by Database Migration Service. */
+  dmsManaged?: boolean;
+  /** PEM representation of the trusted CA's x509 certificate. */
+  caCertificate?: string;
+  /** This is always `sql#onPremisesConfiguration`. */
+  kind?: string;
+  /** The password for connecting to on-premises instance. */
+  password?: string;
+  /** PEM representation of the replica's x509 certificate. */
+  clientCertificate?: string;
+  /** Optional. A list of objects that the user selects for replication from an external source instance. */
+  selectedObjects?: SelectedObjectsList;
+  /** The dump file to create the Cloud SQL replica. */
+  dumpFilePath?: string;
+  /** The username for connecting to on-premises instance. */
+  username?: string;
 }
 export const OnPremisesConfiguration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hostPort: S.optional(S.String),
-    clientCertificate: S.optional(S.String),
-    sslOption: S.optional(OnPremisesConfigurationSslOptionEnum),
-    password: S.optional(S.String),
-    selectedObjects: S.optional(SelectedObjectsList),
-    caCertificate: S.optional(S.String),
-    dumpFilePath: S.optional(S.String),
-    clientKey: S.optional(S.String),
-    dmsManaged: S.optional(S.Boolean),
-    kind: S.optional(S.String),
-    username: S.optional(S.String),
     sourceInstance: S.optional(InstanceReference),
+    clientKey: S.optional(S.String),
+    sslOption: S.optional(OnPremisesConfigurationSslOptionEnum),
+    hostPort: S.optional(S.String),
+    dmsManaged: S.optional(S.Boolean),
+    caCertificate: S.optional(S.String),
+    kind: S.optional(S.String),
+    password: S.optional(S.String),
+    clientCertificate: S.optional(S.String),
+    selectedObjects: S.optional(SelectedObjectsList),
+    dumpFilePath: S.optional(S.String),
+    username: S.optional(S.String),
   }),
 ).annotate({
   identifier: "OnPremisesConfiguration",
 }) as any as S.Schema<OnPremisesConfiguration>;
 
-export type DatabaseInstanceStateEnum =
-  | "SQL_INSTANCE_STATE_UNSPECIFIED"
-  | "RUNNABLE"
-  | "SUSPENDED"
-  | "PENDING_DELETE"
-  | "PENDING_CREATE"
-  | "MAINTENANCE"
-  | "FAILED"
-  | "ONLINE_MAINTENANCE"
-  | "REPAIRING";
-export const DatabaseInstanceStateEnum = /*@__PURE__*/ S.String;
-
-/** Read-replica configuration specific to MySQL databases. */
-export interface MySqlReplicaConfiguration {
-  /** The password for the replication connection. */
-  password?: string;
-  /** Seconds to wait between connect retries. MySQL's default is 60 seconds. */
-  connectRetryInterval?: number;
-  /** PEM representation of the replica's x509 certificate. */
-  clientCertificate?: string;
-  /** A list of permissible ciphers to use for SSL encryption. */
-  sslCipher?: string;
-  /** Interval in milliseconds between replication heartbeats. */
-  masterHeartbeatPeriod?: string;
-  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. */
-  clientKey?: string;
-  /** Whether or not to check the primary instance's Common Name value in the certificate that it sends during the SSL handshake. */
-  verifyServerCertificate?: boolean;
-  /** Path to a SQL dump file in Google Cloud Storage from which the replica instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps have the binlog co-ordinates from which replication begins. This can be accomplished by setting --master-data to 1 when using mysqldump. */
-  dumpFilePath?: string;
-  /** PEM representation of the trusted CA's x509 certificate. */
-  caCertificate?: string;
-  /** The username for the replication connection. */
-  username?: string;
-  /** This is always `sql#mysqlReplicaConfiguration`. */
+/** Disk encryption status for an instance. */
+export interface DiskEncryptionStatus {
+  /** KMS key version used to encrypt the Cloud SQL instance resource */
+  kmsKeyVersionName?: string;
+  /** This is always `sql#diskEncryptionStatus`. */
   kind?: string;
 }
-export const MySqlReplicaConfiguration = /*@__PURE__*/ S.suspend(() =>
+export const DiskEncryptionStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    password: S.optional(S.String),
-    connectRetryInterval: S.optional(S.Number),
-    clientCertificate: S.optional(S.String),
-    sslCipher: S.optional(S.String),
-    masterHeartbeatPeriod: S.optional(S.String),
-    clientKey: S.optional(S.String),
-    verifyServerCertificate: S.optional(S.Boolean),
-    dumpFilePath: S.optional(S.String),
-    caCertificate: S.optional(S.String),
-    username: S.optional(S.String),
+    kmsKeyVersionName: S.optional(S.String),
     kind: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "MySqlReplicaConfiguration",
-}) as any as S.Schema<MySqlReplicaConfiguration>;
+  identifier: "DiskEncryptionStatus",
+}) as any as S.Schema<DiskEncryptionStatus>;
 
-/** Read-replica configuration for connecting to the primary instance. */
-export interface ReplicaConfiguration {
-  /** This is always `sql#replicaConfiguration`. */
-  kind?: string;
-  /** MySQL specific configuration when replicating from a MySQL on-premises primary instance. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named `master.info` in the data directory. */
-  mysqlReplicaConfiguration?: MySqlReplicaConfiguration;
-  /** Specifies if the replica is the failover target. If the field is set to `true`, the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance. */
-  failoverTarget?: boolean;
-  /** Optional. Specifies if a SQL Server replica is a cascadable replica. A cascadable replica is a SQL Server cross region replica that supports replica(s) under it. */
-  cascadableReplica?: boolean;
+export interface DatabaseInstanceFailoverReplica {
+  /** The name of the failover replica. If specified at instance creation, a failover replica is created for the instance. The name doesn't include the project ID. */
+  name?: string;
+  /** The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only failover to the failover replica when the status is true. */
+  available?: boolean;
 }
-export const ReplicaConfiguration = /*@__PURE__*/ S.suspend(() =>
+export const DatabaseInstanceFailoverReplica = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    mysqlReplicaConfiguration: S.optional(MySqlReplicaConfiguration),
-    failoverTarget: S.optional(S.Boolean),
-    cascadableReplica: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    available: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "ReplicaConfiguration",
-}) as any as S.Schema<ReplicaConfiguration>;
+  identifier: "DatabaseInstanceFailoverReplica",
+}) as any as S.Schema<DatabaseInstanceFailoverReplica>;
+
+/** An available database version. It can be a major or a minor version. */
+export interface AvailableDatabaseVersion {
+  /** The database version's display name. */
+  displayName?: string;
+  /** The database version name. For MySQL 8.0, this string provides the database major and minor version. */
+  name?: string;
+  /** The version's major version name. */
+  majorVersion?: string;
+}
+export const AvailableDatabaseVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    name: S.optional(S.String),
+    majorVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableDatabaseVersion",
+}) as any as S.Schema<AvailableDatabaseVersion>;
+
+export type AvailableDatabaseVersionList = Array<AvailableDatabaseVersion>;
+export const AvailableDatabaseVersionList = /*@__PURE__*/ S.Array(
+  AvailableDatabaseVersion,
+) as any as S.Schema<AvailableDatabaseVersionList>;
+
+export type DatabaseInstanceSuspensionReasonItemEnum =
+  | "SQL_SUSPENSION_REASON_UNSPECIFIED"
+  | "BILLING_ISSUE"
+  | "LEGAL_ISSUE"
+  | "OPERATIONAL_ISSUE"
+  | "KMS_KEY_ISSUE"
+  | "PROJECT_ABUSE";
+export const DatabaseInstanceSuspensionReasonItemEnum = /*@__PURE__*/ S.String;
+
+export type DatabaseInstanceSuspensionReasonItemEnumList = Array<
+  DatabaseInstanceSuspensionReasonItemEnum | (string & {})
+>;
+export const DatabaseInstanceSuspensionReasonItemEnumList =
+  /*@__PURE__*/ S.Array(
+    DatabaseInstanceSuspensionReasonItemEnum,
+  ) as any as S.Schema<DatabaseInstanceSuspensionReasonItemEnumList>;
 
 /** A Cloud SQL instance resource. */
 export interface DatabaseInstance {
-  /** Output only. The dns name of the primary instance in a replication group. */
-  writeEndpoint?: string;
-  /** The backend type. `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type. */
-  backendType?: DatabaseInstanceBackendTypeEnum | (string & {});
-  /** The current software version on the instance. */
-  maintenanceVersion?: string;
-  /** Output only. All database versions that are available for upgrade. */
-  upgradableDatabaseVersions?: AvailableDatabaseVersionList;
-  /** Output only. The link to service attachment of PSC instance. */
-  pscServiceAttachmentLink?: string;
-  /** The replicas of the instance. */
-  replicaNames?: StringList;
-  /** Input only. Determines whether an in-place major version upgrade of replicas happens when an in-place major version upgrade of a primary instance is initiated. */
-  includeReplicasForMajorVersionUpgrade?: boolean;
-  /** This status indicates whether the instance satisfies PZS. The status is reserved for future use. */
-  satisfiesPzs?: boolean;
-  /** Name of the Cloud SQL instance. This does not include the project ID. */
-  name?: string;
-  /** Connection name of the Cloud SQL instance used in connection strings. */
-  connectionName?: string;
-  /** The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone. WARNING: Changing this might restart the instance. */
-  gceZone?: string;
-  /** Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL. */
-  replicationCluster?: ReplicationCluster;
-  /** The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable. */
-  project?: string;
-  /** The IPv6 address assigned to the instance. (Deprecated) This property was applicable only to First Generation instances. */
-  ipv6Address?: string;
+  /** Output only. The list of DNS names used by this instance. */
+  dnsNames?: DnsNameMappingList;
   /** Output only. Entries containing information about each read pool node of the read pool. */
   nodes?: PoolNodeConfigList;
+  /** The backend type. `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type. */
+  backendType?: DatabaseInstanceBackendTypeEnum | (string & {});
+  /** Output only. Deployment info for the instance. This is set if the instance is currently part of any blue-green setup. */
+  deploymentInfo?: BlueGreenDeploymentInfo;
+  /** The service account email address assigned to the instance.\This property is read-only. */
+  serviceAccountEmailAddress?: string;
+  /** This field represents the report generated by the proactive database wellness job for OutOfDisk issues. * Writers: * the proactive database wellness job for OOD. * Readers: * the proactive database wellness job */
+  outOfDiskReport?: SqlOutOfDiskReport;
+  /** The URI of this resource. */
+  selfLink?: string;
+  /** Output only. The time when the instance was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  createTime?: string;
+  /** Configuration specific to failover replicas and read replicas. */
+  replicaConfiguration?: ReplicaConfiguration;
+  /** Input only. Determines whether an in-place major version upgrade of replicas happens when an in-place major version upgrade of a primary instance is initiated. */
+  includeReplicasForMajorVersionUpgrade?: boolean;
+  /** Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances. */
+  rootPassword?: string;
+  /** Gemini instance configuration. */
+  geminiConfig?: GeminiInstanceConfig;
+  /** Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage. */
+  switchTransactionLogsToCloudStorageEnabled?: boolean;
+  /** Connection name of the Cloud SQL instance used in connection strings. */
+  connectionName?: string;
+  /** Output only. Stores the current database version running on the instance including minor version such as `MYSQL_8_0_18`. */
+  databaseInstalledVersion?: string;
+  /** Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center. */
+  databaseCenterIntegrationEnabled?: boolean;
+  /** Output only. This status indicates whether the instance satisfies PZI. The status is reserved for future use. */
+  satisfiesPzi?: boolean;
+  /** Output only. The dns name of the instance. */
+  dnsName?: string;
+  /** The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone. WARNING: Changing this might restart the instance. */
+  gceZone?: string;
+  /** The current serving state of the Cloud SQL instance. */
+  state?: DatabaseInstanceStateEnum | (string & {});
+  /** Optional. Input only. Immutable. Tag keys and tag values that are bound to this instance. You must represent each item in the map as: `"" : ""`. For example, a single resource can have the following tags: ``` "123/environment": "production", "123/costCenter": "marketing", ``` For more information on tag creation and management, see https://cloud.google.com/resource-manager/docs/tags/tags-overview. */
+  tags?: StringMap;
+  /** Disk encryption configuration specific to an instance. */
+  diskEncryptionConfiguration?: DiskEncryptionConfiguration;
+  /** This field is deprecated and will be removed from a future version of the API. Use the `settings.settingsVersion` field instead. */
+  etag?: string;
+  /** The current software version on the instance. */
+  maintenanceVersion?: string;
+  /** Output only. The link to service attachment of PSC instance. */
+  pscServiceAttachmentLink?: string;
+  /** Output only. List all maintenance versions applicable on the instance */
+  availableMaintenanceVersions?: StringList;
   sqlNetworkArchitecture?:
     | DatabaseInstanceSqlNetworkArchitectureEnum
     | (string & {});
-  /** SSL configuration. */
-  serverCaCert?: SslCert;
   /** The start time of any upcoming scheduled maintenance for this instance. */
   scheduledMaintenance?: SqlScheduledMaintenance;
-  /** Output only. The dns name of the instance. */
-  dnsName?: string;
-  /** The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. */
-  secondaryGceZone?: string;
-  /** Output only. DEPRECATED: please use write_endpoint instead. */
-  primaryDnsName?: string;
-  /** Gemini instance configuration. */
-  geminiConfig?: GeminiInstanceConfig;
-  /** Disk encryption configuration specific to an instance. */
-  diskEncryptionConfiguration?: DiskEncryptionConfiguration;
-  /** Output only. The time when the instance was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  createTime?: string;
-  /** Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage. */
-  switchTransactionLogsToCloudStorageEnabled?: boolean;
-  /** Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center. */
-  databaseCenterIntegrationEnabled?: boolean;
-  /** The service account email address assigned to the instance.\This property is read-only. */
-  serviceAccountEmailAddress?: string;
-  /** The number of read pool nodes in a read pool. */
-  nodeCount?: number;
-  /** The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. */
-  databaseVersion?: DatabaseInstanceDatabaseVersionEnum | (string & {});
-  /** Output only. Stores the current database version running on the instance including minor version such as `MYSQL_8_0_18`. */
-  databaseInstalledVersion?: string;
-  /** The user settings. */
-  settings?: Settings;
-  /** This field is deprecated and will be removed from a future version of the API. Use the `settings.settingsVersion` field instead. */
-  etag?: string;
-  /** The URI of this resource. */
-  selfLink?: string;
-  /** This is always `sql#instance`. */
-  kind?: string;
-  /** The name of the instance which will act as primary in the replication setup. */
-  masterInstanceName?: string;
-  /** Disk encryption status specific to an instance. */
-  diskEncryptionStatus?: DiskEncryptionStatus;
-  /** Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances. */
-  rootPassword?: string;
-  /** Output only. This status indicates whether the instance satisfies PZI. The status is reserved for future use. */
-  satisfiesPzi?: boolean;
-  /** If the instance state is SUSPENDED, the reason for the suspension. */
-  suspensionReason?: DatabaseInstanceSuspensionReasonItemEnumList;
+  /** Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL. */
+  replicationCluster?: ReplicationCluster;
   /** The instance type. */
   instanceType?: DatabaseInstanceInstanceTypeEnum | (string & {});
-  /** Output only. The list of DNS names used by this instance. */
-  dnsNames?: DnsNameMappingList;
-  /** The name and status of the failover replica. */
-  failoverReplica?: DatabaseInstanceFailoverReplica;
-  /** The maximum disk size of the instance in bytes. */
-  maxDiskSize?: string;
-  /** The geographical region of the Cloud SQL instance. It can be one of the [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r) where Cloud SQL operates: For example, `asia-east1`, `europe-west1`, and `us-central1`. The default value is `us-central1`. */
-  region?: string;
-  /** The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see [this announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ) for details. */
-  currentDiskSize?: string;
-  /** The assigned IP addresses for the instance. */
-  ipAddresses?: IpMappingList;
-  /** This field represents the report generated by the proactive database wellness job for OutOfDisk issues. * Writers: * the proactive database wellness job for OOD. * Readers: * the proactive database wellness job */
-  outOfDiskReport?: SqlOutOfDiskReport;
-  /** Optional. Input only. Immutable. Tag keys and tag values that are bound to this instance. You must represent each item in the map as: `"" : ""`. For example, a single resource can have the following tags: ``` "123/environment": "production", "123/costCenter": "marketing", ``` For more information on tag creation and management, see https://cloud.google.com/resource-manager/docs/tags/tags-overview. */
-  tags?: StringMap;
+  /** The user settings. */
+  settings?: Settings;
+  /** Output only. The dns name of the primary instance in a replication group. */
+  writeEndpoint?: string;
+  /** The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable. */
+  project?: string;
+  /** The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. */
+  databaseVersion?: DatabaseInstanceDatabaseVersionEnum | (string & {});
   /** Configuration specific to on-premises instances. */
   onPremisesConfiguration?: OnPremisesConfiguration;
-  /** Output only. List all maintenance versions applicable on the instance */
-  availableMaintenanceVersions?: StringList;
-  /** The current serving state of the Cloud SQL instance. */
-  state?: DatabaseInstanceStateEnum | (string & {});
-  /** Configuration specific to failover replicas and read replicas. */
-  replicaConfiguration?: ReplicaConfiguration;
+  /** Disk encryption status specific to an instance. */
+  diskEncryptionStatus?: DiskEncryptionStatus;
+  /** The name and status of the failover replica. */
+  failoverReplica?: DatabaseInstanceFailoverReplica;
+  /** SSL configuration. */
+  serverCaCert?: SslCert;
+  /** Output only. All database versions that are available for upgrade. */
+  upgradableDatabaseVersions?: AvailableDatabaseVersionList;
+  /** Name of the Cloud SQL instance. This does not include the project ID. */
+  name?: string;
+  /** If the instance state is SUSPENDED, the reason for the suspension. */
+  suspensionReason?: DatabaseInstanceSuspensionReasonItemEnumList;
+  /** The maximum disk size of the instance in bytes. */
+  maxDiskSize?: string;
+  /** The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. */
+  secondaryGceZone?: string;
+  /** This is always `sql#instance`. */
+  kind?: string;
+  /** The number of read pool nodes in a read pool. */
+  nodeCount?: number;
+  /** The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see [this announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ) for details. */
+  currentDiskSize?: string;
+  /** The IPv6 address assigned to the instance. (Deprecated) This property was applicable only to First Generation instances. */
+  ipv6Address?: string;
+  /** Output only. DEPRECATED: please use write_endpoint instead. */
+  primaryDnsName?: string;
+  /** The replicas of the instance. */
+  replicaNames?: StringList;
+  /** The assigned IP addresses for the instance. */
+  ipAddresses?: IpMappingList;
+  /** The geographical region of the Cloud SQL instance. It can be one of the [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r) where Cloud SQL operates: For example, `asia-east1`, `europe-west1`, and `us-central1`. The default value is `us-central1`. */
+  region?: string;
+  /** This status indicates whether the instance satisfies PZS. The status is reserved for future use. */
+  satisfiesPzs?: boolean;
+  /** The name of the instance which will act as primary in the replication setup. */
+  masterInstanceName?: string;
 }
 export const DatabaseInstance = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    writeEndpoint: S.optional(S.String),
-    backendType: S.optional(DatabaseInstanceBackendTypeEnum),
-    maintenanceVersion: S.optional(S.String),
-    upgradableDatabaseVersions: S.optional(AvailableDatabaseVersionList),
-    pscServiceAttachmentLink: S.optional(S.String),
-    replicaNames: S.optional(StringList),
-    includeReplicasForMajorVersionUpgrade: S.optional(S.Boolean),
-    satisfiesPzs: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    connectionName: S.optional(S.String),
-    gceZone: S.optional(S.String),
-    replicationCluster: S.optional(ReplicationCluster),
-    project: S.optional(S.String),
-    ipv6Address: S.optional(S.String),
+    dnsNames: S.optional(DnsNameMappingList),
     nodes: S.optional(PoolNodeConfigList),
+    backendType: S.optional(DatabaseInstanceBackendTypeEnum),
+    deploymentInfo: S.optional(BlueGreenDeploymentInfo),
+    serviceAccountEmailAddress: S.optional(S.String),
+    outOfDiskReport: S.optional(SqlOutOfDiskReport),
+    selfLink: S.optional(S.String),
+    createTime: S.optional(S.String),
+    replicaConfiguration: S.optional(ReplicaConfiguration),
+    includeReplicasForMajorVersionUpgrade: S.optional(S.Boolean),
+    rootPassword: S.optional(S.String),
+    geminiConfig: S.optional(GeminiInstanceConfig),
+    switchTransactionLogsToCloudStorageEnabled: S.optional(S.Boolean),
+    connectionName: S.optional(S.String),
+    databaseInstalledVersion: S.optional(S.String),
+    databaseCenterIntegrationEnabled: S.optional(S.Boolean),
+    satisfiesPzi: S.optional(S.Boolean),
+    dnsName: S.optional(S.String),
+    gceZone: S.optional(S.String),
+    state: S.optional(DatabaseInstanceStateEnum),
+    tags: S.optional(StringMap),
+    diskEncryptionConfiguration: S.optional(DiskEncryptionConfiguration),
+    etag: S.optional(S.String),
+    maintenanceVersion: S.optional(S.String),
+    pscServiceAttachmentLink: S.optional(S.String),
+    availableMaintenanceVersions: S.optional(StringList),
     sqlNetworkArchitecture: S.optional(
       DatabaseInstanceSqlNetworkArchitectureEnum,
     ),
-    serverCaCert: S.optional(SslCert),
     scheduledMaintenance: S.optional(SqlScheduledMaintenance),
-    dnsName: S.optional(S.String),
-    secondaryGceZone: S.optional(S.String),
-    primaryDnsName: S.optional(S.String),
-    geminiConfig: S.optional(GeminiInstanceConfig),
-    diskEncryptionConfiguration: S.optional(DiskEncryptionConfiguration),
-    createTime: S.optional(S.String),
-    switchTransactionLogsToCloudStorageEnabled: S.optional(S.Boolean),
-    databaseCenterIntegrationEnabled: S.optional(S.Boolean),
-    serviceAccountEmailAddress: S.optional(S.String),
-    nodeCount: S.optional(S.Number),
-    databaseVersion: S.optional(DatabaseInstanceDatabaseVersionEnum),
-    databaseInstalledVersion: S.optional(S.String),
-    settings: S.optional(Settings),
-    etag: S.optional(S.String),
-    selfLink: S.optional(S.String),
-    kind: S.optional(S.String),
-    masterInstanceName: S.optional(S.String),
-    diskEncryptionStatus: S.optional(DiskEncryptionStatus),
-    rootPassword: S.optional(S.String),
-    satisfiesPzi: S.optional(S.Boolean),
-    suspensionReason: S.optional(DatabaseInstanceSuspensionReasonItemEnumList),
+    replicationCluster: S.optional(ReplicationCluster),
     instanceType: S.optional(DatabaseInstanceInstanceTypeEnum),
-    dnsNames: S.optional(DnsNameMappingList),
-    failoverReplica: S.optional(DatabaseInstanceFailoverReplica),
-    maxDiskSize: S.optional(S.String),
-    region: S.optional(S.String),
-    currentDiskSize: S.optional(S.String),
-    ipAddresses: S.optional(IpMappingList),
-    outOfDiskReport: S.optional(SqlOutOfDiskReport),
-    tags: S.optional(StringMap),
+    settings: S.optional(Settings),
+    writeEndpoint: S.optional(S.String),
+    project: S.optional(S.String),
+    databaseVersion: S.optional(DatabaseInstanceDatabaseVersionEnum),
     onPremisesConfiguration: S.optional(OnPremisesConfiguration),
-    availableMaintenanceVersions: S.optional(StringList),
-    state: S.optional(DatabaseInstanceStateEnum),
-    replicaConfiguration: S.optional(ReplicaConfiguration),
+    diskEncryptionStatus: S.optional(DiskEncryptionStatus),
+    failoverReplica: S.optional(DatabaseInstanceFailoverReplica),
+    serverCaCert: S.optional(SslCert),
+    upgradableDatabaseVersions: S.optional(AvailableDatabaseVersionList),
+    name: S.optional(S.String),
+    suspensionReason: S.optional(DatabaseInstanceSuspensionReasonItemEnumList),
+    maxDiskSize: S.optional(S.String),
+    secondaryGceZone: S.optional(S.String),
+    kind: S.optional(S.String),
+    nodeCount: S.optional(S.Number),
+    currentDiskSize: S.optional(S.String),
+    ipv6Address: S.optional(S.String),
+    primaryDnsName: S.optional(S.String),
+    replicaNames: S.optional(StringList),
+    ipAddresses: S.optional(IpMappingList),
+    region: S.optional(S.String),
+    satisfiesPzs: S.optional(S.Boolean),
+    masterInstanceName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DatabaseInstance",
 }) as any as S.Schema<DatabaseInstance>;
 
+export type BackupTypeEnum =
+  | "SQL_BACKUP_TYPE_UNSPECIFIED"
+  | "AUTOMATED"
+  | "ON_DEMAND"
+  | "FINAL";
+export const BackupTypeEnum = /*@__PURE__*/ S.String;
+
+/** Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time. */
+export interface Interval {
+  /** Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end. */
+  endTime?: string;
+  /** Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start. */
+  startTime?: string;
+}
+export const Interval = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endTime: S.optional(S.String),
+    startTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "Interval" }) as any as S.Schema<Interval>;
+
 /** A backup resource. */
 export interface Backup {
-  /** The storage location of the backups. The location can be multi-regional. */
-  location?: string;
-  /** Output only. This status indicates whether the backup satisfies PZS. The status is reserved for future use. */
-  satisfiesPzs?: boolean;
-  /** Output only. This is always `sql#backup`. */
-  kind?: string;
-  /** Output only. The URI of this resource. */
-  selfLink?: string;
-  /** Output only. The type of this backup. The type can be "AUTOMATED", "ON_DEMAND" or “FINAL”. */
-  type?: BackupTypeEnum | (string & {});
-  /** Optional. Output only. Timestamp in UTC of when the instance associated with this backup is deleted. */
-  instanceDeletionTime?: string;
-  /** Backup expiration time. A UTC timestamp of when this backup expired. */
-  expiryTime?: string;
-  /** Output only. This status indicates whether the backup satisfies PZI. The status is reserved for future use. */
-  satisfiesPzi?: boolean;
-  /** Output only. The status of this backup. */
-  state?: BackupStateEnum | (string & {});
-  /** Output only. Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT. */
-  backupKind?: BackupBackupKindEnum | (string & {});
-  /** Output only. This output contains a backup time zone. If a Cloud SQL for SQL Server instance has a different time zone from the backup's time zone, then the restore to the instance doesn't happen. */
-  timeZone?: string;
-  /** Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}. */
-  name?: string;
-  /** Output only. The database version of the instance of at the time this backup was made. */
-  databaseVersion?: BackupDatabaseVersionEnum | (string & {});
-  /** Input only. The time-to-live (TTL) interval for this resource (in days). For example: ttlDays:7, means 7 days from the current time. The expiration time can't exceed 365 days from the time that the backup is created. */
-  ttlDays?: string;
-  /** The name of the source database instance. */
-  instance?: string;
-  /** Output only. This output contains the following values: start_time: All database writes up to this time are available. end_time: Any database writes after this time aren't available. */
-  backupInterval?: Interval;
-  /** Optional. Output only. The instance setting of the source instance that's associated with this backup. */
-  instanceSettings?: DatabaseInstance;
-  /** Output only. This output contains the encryption status for a backup and the version of the KMS key that's used to encrypt the Cloud SQL instance. */
-  kmsKeyVersion?: string;
-  /** The description of this backup. */
-  description?: string;
-  /** Output only. This output contains the encryption configuration for a backup and the resource name of the KMS key for disk encryption. */
-  kmsKey?: string;
-  /** Output only. The mapping to backup run resource used for IAM validations. */
-  backupRun?: string;
   /** Output only. Information about why the backup operation fails (for example, when the backup state fails). */
   error?: OperationError;
+  /** Backup expiration time. A UTC timestamp of when this backup expired. */
+  expiryTime?: string;
+  /** Output only. This status indicates whether the backup satisfies PZS. The status is reserved for future use. */
+  satisfiesPzs?: boolean;
+  /** Output only. The mapping to backup run resource used for IAM validations. */
+  backupRun?: string;
+  /** Input only. The time-to-live (TTL) interval for this resource (in days). For example: ttlDays:7, means 7 days from the current time. The expiration time can't exceed 365 days from the time that the backup is created. */
+  ttlDays?: string;
+  /** Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}. */
+  name?: string;
+  /** Output only. The status of this backup. */
+  state?: BackupStateEnum | (string & {});
+  /** The storage location of the backups. The location can be multi-regional. */
+  location?: string;
+  /** Output only. Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT. */
+  backupKind?: BackupBackupKindEnum | (string & {});
+  /** Output only. The database version of the instance of at the time this backup was made. */
+  databaseVersion?: BackupDatabaseVersionEnum | (string & {});
+  /** Output only. This output contains the encryption status for a backup and the version of the KMS key that's used to encrypt the Cloud SQL instance. */
+  kmsKeyVersion?: string;
   /** Output only. The maximum chargeable bytes for the backup. */
   maxChargeableBytes?: string;
+  /** The description of this backup. */
+  description?: string;
+  /** Optional. Output only. The instance setting of the source instance that's associated with this backup. */
+  instanceSettings?: DatabaseInstance;
+  /** Optional. Output only. Timestamp in UTC of when the instance associated with this backup is deleted. */
+  instanceDeletionTime?: string;
+  /** Output only. This status indicates whether the backup satisfies PZI. The status is reserved for future use. */
+  satisfiesPzi?: boolean;
+  /** Output only. This is always `sql#backup`. */
+  kind?: string;
+  /** Output only. The type of this backup. The type can be "AUTOMATED", "ON_DEMAND" or “FINAL”. */
+  type?: BackupTypeEnum | (string & {});
+  /** Output only. The URI of this resource. */
+  selfLink?: string;
+  /** Output only. This output contains the following values: start_time: All database writes up to this time are available. end_time: Any database writes after this time aren't available. */
+  backupInterval?: Interval;
+  /** The name of the source database instance. */
+  instance?: string;
+  /** Output only. This output contains a backup time zone. If a Cloud SQL for SQL Server instance has a different time zone from the backup's time zone, then the restore to the instance doesn't happen. */
+  timeZone?: string;
+  /** Output only. This output contains the encryption configuration for a backup and the resource name of the KMS key for disk encryption. */
+  kmsKey?: string;
 }
 export const Backup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    location: S.optional(S.String),
-    satisfiesPzs: S.optional(S.Boolean),
-    kind: S.optional(S.String),
-    selfLink: S.optional(S.String),
-    type: S.optional(BackupTypeEnum),
-    instanceDeletionTime: S.optional(S.String),
-    expiryTime: S.optional(S.String),
-    satisfiesPzi: S.optional(S.Boolean),
-    state: S.optional(BackupStateEnum),
-    backupKind: S.optional(BackupBackupKindEnum),
-    timeZone: S.optional(S.String),
-    name: S.optional(S.String),
-    databaseVersion: S.optional(BackupDatabaseVersionEnum),
-    ttlDays: S.optional(S.String),
-    instance: S.optional(S.String),
-    backupInterval: S.optional(Interval),
-    instanceSettings: S.optional(DatabaseInstance),
-    kmsKeyVersion: S.optional(S.String),
-    description: S.optional(S.String),
-    kmsKey: S.optional(S.String),
-    backupRun: S.optional(S.String),
     error: S.optional(OperationError),
+    expiryTime: S.optional(S.String),
+    satisfiesPzs: S.optional(S.Boolean),
+    backupRun: S.optional(S.String),
+    ttlDays: S.optional(S.String),
+    name: S.optional(S.String),
+    state: S.optional(BackupStateEnum),
+    location: S.optional(S.String),
+    backupKind: S.optional(BackupBackupKindEnum),
+    databaseVersion: S.optional(BackupDatabaseVersionEnum),
+    kmsKeyVersion: S.optional(S.String),
     maxChargeableBytes: S.optional(S.String),
+    description: S.optional(S.String),
+    instanceSettings: S.optional(DatabaseInstance),
+    instanceDeletionTime: S.optional(S.String),
+    satisfiesPzi: S.optional(S.Boolean),
+    kind: S.optional(S.String),
+    type: S.optional(BackupTypeEnum),
+    selfLink: S.optional(S.String),
+    backupInterval: S.optional(Interval),
+    instance: S.optional(S.String),
+    timeZone: S.optional(S.String),
+    kmsKey: S.optional(S.String),
   }),
 ).annotate({ identifier: "Backup" }) as any as S.Schema<Backup>;
 
@@ -2954,34 +3176,264 @@ export const CreateBackupBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateBackupBackupsRequest",
 }) as any as S.Schema<CreateBackupBackupsRequest>;
 
+export type DeploymentTaskStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "PENDING"
+  | "RUNNING"
+  | "SUCCEEDED"
+  | "FAILED";
+export const DeploymentTaskStateEnum = /*@__PURE__*/ S.String;
+
+export type DeploymentTaskTypeEnum =
+  | "TYPE_UNSPECIFIED"
+  | "PROVISION"
+  | "UPGRADE"
+  | "SWITCHOVER"
+  | "DELETE"
+  | "POST_SWITCHOVER_OPERATIONS";
+export const DeploymentTaskTypeEnum = /*@__PURE__*/ S.String;
+
+/** Represents a task executed as part of the deployment on a target instance. */
+export interface DeploymentTask {
+  /** Output only. The current state of the task. */
+  state?: DeploymentTaskStateEnum | (string & {});
+  /** Output only. Task start time. */
+  startTime?: string;
+  /** Output only. Optional error details if the task state is `FAILED`. */
+  errorMessage?: string;
+  /** Output only. The type of the task. */
+  type?: DeploymentTaskTypeEnum | (string & {});
+  /** Output only. Task end time (if completed). */
+  endTime?: string;
+}
+export const DeploymentTask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(DeploymentTaskStateEnum),
+    startTime: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    type: S.optional(DeploymentTaskTypeEnum),
+    endTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "DeploymentTask" }) as any as S.Schema<DeploymentTask>;
+
+export type DeploymentTaskList = Array<DeploymentTask>;
+export const DeploymentTaskList = /*@__PURE__*/ S.Array(
+  DeploymentTask,
+) as any as S.Schema<DeploymentTaskList>;
+
+/** Combined list of tasks for all paired nodes in the deployment. */
+export interface DeploymentTasks {
+  /** Output only. Tasks performed or being performed on the paired nodes of the deployment at a consolidated level. */
+  task?: DeploymentTaskList;
+}
+export const DeploymentTasks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task: S.optional(DeploymentTaskList),
+  }),
+).annotate({
+  identifier: "DeploymentTasks",
+}) as any as S.Schema<DeploymentTasks>;
+
+/** Configuration specified by the user at creation time for the target (green) instance. */
+export interface RequestedConfig {
+  /** Optional. The target database major version for the upgrade. For example, `MYSQL_8_0` or `POSTGRES_15`. */
+  databaseVersion?: string;
+}
+export const RequestedConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RequestedConfig",
+}) as any as S.Schema<RequestedConfig>;
+
+export type SourceTargetPairedNodeStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "UPGRADING"
+  | "UPGRADED"
+  | "UPGRADE_FAILED"
+  | "SWITCHOVER_IN_PROGRESS"
+  | "SWITCHOVER_FAILED"
+  | "SWITCHOVER_SUCCEEDED"
+  | "DELETING";
+export const SourceTargetPairedNodeStateEnum = /*@__PURE__*/ S.String;
+
+/** Represents a specific configuration difference between blue and green instances. */
+export interface ConfigDiff {
+  /** Output only. The value on the target instance. */
+  targetValue?: string;
+  /** Output only. The name of the field that differs in the blue and green instances, fully-qualified. Example: `settings.tier` */
+  field?: string;
+  /** Output only. The value on the source instance. */
+  sourceValue?: string;
+}
+export const ConfigDiff = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetValue: S.optional(S.String),
+    field: S.optional(S.String),
+    sourceValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "ConfigDiff" }) as any as S.Schema<ConfigDiff>;
+
+export type ConfigDiffList = Array<ConfigDiff>;
+export const ConfigDiffList = /*@__PURE__*/ S.Array(
+  ConfigDiff,
+) as any as S.Schema<ConfigDiffList>;
+
+/** Details about an instance within the deployment. */
+export interface NodeInfo {
+  /** Output only. The list of IP addresses for this instance. */
+  ipMappings?: IpMappingList;
+  /** Output only. The full resource name of the instance. Format: projects/{project}/instances/{instance} */
+  instance?: string;
+  /** Output only. The unique DNS name for this instance. */
+  dns?: string;
+  /** Output only. The instance connection name. */
+  connection?: string;
+}
+export const NodeInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipMappings: S.optional(IpMappingList),
+    instance: S.optional(S.String),
+    dns: S.optional(S.String),
+    connection: S.optional(S.String),
+  }),
+).annotate({ identifier: "NodeInfo" }) as any as S.Schema<NodeInfo>;
+
+/** Represents a pairing of a source instance node and a target instance node. */
+export interface SourceTargetPairedNode {
+  /** Output only. Specifies the current state of this specific source-target pair. */
+  state?: SourceTargetPairedNodeStateEnum | (string & {});
+  /** Output only. Describes the list of differences for the `SourceTargetPairedNode`. */
+  diffs?: ConfigDiffList;
+  /** Output only. Specifies the resource name of the source instance in this pair. */
+  source?: NodeInfo;
+  /** Output only. Specifies details of the corresponding target instance in this pair. */
+  target?: NodeInfo;
+}
+export const SourceTargetPairedNode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(SourceTargetPairedNodeStateEnum),
+    diffs: S.optional(ConfigDiffList),
+    source: S.optional(NodeInfo),
+    target: S.optional(NodeInfo),
+  }),
+).annotate({
+  identifier: "SourceTargetPairedNode",
+}) as any as S.Schema<SourceTargetPairedNode>;
+
+export type SourceTargetPairedNodeList = Array<SourceTargetPairedNode>;
+export const SourceTargetPairedNodeList = /*@__PURE__*/ S.Array(
+  SourceTargetPairedNode,
+) as any as S.Schema<SourceTargetPairedNodeList>;
+
+export type BlueGreenDeploymentStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "PROVISIONING"
+  | "SWITCHOVER_READY"
+  | "SWITCHOVER_NOT_READY"
+  | "SWITCHOVER_IN_PROGRESS"
+  | "SWITCHOVER_COMPLETED"
+  | "DELETING";
+export const BlueGreenDeploymentStateEnum = /*@__PURE__*/ S.String;
+
+/** A `BlueGreenDeployment` resource represents a Cloud SQL blue-green deployment setup. */
+export interface BlueGreenDeployment {
+  /** Output only. The full resource name of the primary target instance (the "green" instance) that will be promoted during switchover. This field is always populated once the deployment is created. Format: projects/{project}/instances/{instance} */
+  switchoverTargetInstance?: string;
+  /** Output only. Identifier. The full resource name of the deployment. Format: projects/{project}/locations/{location}/blueGreenDeployments/{deployment_id} */
+  name?: string;
+  /** Output only. Combined list of tasks for all paired nodes. */
+  deploymentTasks?: DeploymentTasks;
+  /** Optional. Immutable. Optional on create, and immutable. The configuration intended for the target instance(s) when the deployment was created. */
+  requestedConfig?: RequestedConfig;
+  /** Output only. Provides details on why switchover is not possible. This field is empty unless a switchover attempt failed or the state is `SWITCHOVER_NOT_READY`. Example: "The target database version does not match the source instance database version." */
+  errorDetail?: string;
+  /** Output only. A list representing the pairs of source and target instances in the deployment. */
+  deploymentMappings?: SourceTargetPairedNodeList;
+  /** Output only. The current state of the blue-green deployment. */
+  state?: BlueGreenDeploymentStateEnum | (string & {});
+  /** Output only. The time when the deployment was created. Example: `2024-01-01T00:00:00Z` */
+  createTime?: string;
+  /** Required. Immutable. Required on create, and immutable. The full resource name of the source instance (the "blue" instance). Format: projects/{project}/instances/{instance} */
+  sourceInstance?: string;
+  /** Optional. User-provided description for the deployment. The description can be up to 255 characters long. */
+  description?: string;
+}
+export const BlueGreenDeployment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    switchoverTargetInstance: S.optional(S.String),
+    name: S.optional(S.String),
+    deploymentTasks: S.optional(DeploymentTasks),
+    requestedConfig: S.optional(RequestedConfig),
+    errorDetail: S.optional(S.String),
+    deploymentMappings: S.optional(SourceTargetPairedNodeList),
+    state: S.optional(BlueGreenDeploymentStateEnum),
+    createTime: S.optional(S.String),
+    sourceInstance: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BlueGreenDeployment",
+}) as any as S.Schema<BlueGreenDeployment>;
+
+export interface CreateBlueGreenDeploymentsRequest {
+  /** Required. The ID to use for the blue-green deployment, which will become the final component of the deployment's resource name. The ID must be unique within the given project and location and between 2-63 characters. */
+  blueGreenDeploymentId?: string;
+  /** Required. The parent resource where this blue-green deployment will be created. Format: projects/{project}/locations/{location} */
+  parent: string;
+  /** Request body */
+  body?: BlueGreenDeployment;
+}
+export const CreateBlueGreenDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    blueGreenDeploymentId: S.optional(S.String.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
+    body: S.optional(BlueGreenDeployment.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "v1/{+parent}/blueGreenDeployments",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "CreateBlueGreenDeploymentsRequest",
+}) as any as S.Schema<CreateBlueGreenDeploymentsRequest>;
+
 /** SslCerts create ephemeral certificate request. */
 export interface SslCertsCreateEphemeralRequest {
-  /** PEM encoded public key to include in the signed certificate. */
-  public_key?: string;
   /** Access token to include in the signed certificate. */
   access_token?: string;
+  /** PEM encoded public key to include in the signed certificate. */
+  public_key?: string;
 }
 export const SslCertsCreateEphemeralRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    public_key: S.optional(S.String),
     access_token: S.optional(S.String),
+    public_key: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SslCertsCreateEphemeralRequest",
 }) as any as S.Schema<SslCertsCreateEphemeralRequest>;
 
 export interface CreateEphemeralSslCertsRequest {
-  /** Project ID of the Cloud SQL project. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the Cloud SQL project. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: SslCertsCreateEphemeralRequest;
 }
 export const CreateEphemeralSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(SslCertsCreateEphemeralRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3015,16 +3467,16 @@ export const DeleteBackupBackupsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface DeleteBackupRunsRequest {
   /** The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/backupRuns/list) method. */
   id: string;
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const DeleteBackupRunsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -3036,7 +3488,30 @@ export const DeleteBackupRunsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteBackupRunsRequest",
 }) as any as S.Schema<DeleteBackupRunsRequest>;
 
+export interface DeleteBlueGreenDeploymentsRequest {
+  /** Required. The name of the blue-green deployment to delete. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment} */
+  name: string;
+  /** Optional. If set to true, and the switchover is complete, this deletes the old source instance along with the deployment. */
+  deleteOldSource?: boolean;
+}
+export const DeleteBlueGreenDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    deleteOldSource: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "v1/{+name}",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBlueGreenDeploymentsRequest",
+}) as any as S.Schema<DeleteBlueGreenDeploymentsRequest>;
+
 export interface DeleteDatabasesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Name of the database to be deleted in the instance. */
   database: string;
   /** Project ID of the project that contains the instance. */
@@ -3046,6 +3521,7 @@ export interface DeleteDatabasesRequest {
 }
 export const DeleteDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     database: S.String.pipe(T.Label()),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
@@ -3061,27 +3537,30 @@ export const DeleteDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDatabasesRequest>;
 
 export interface DeleteInstancesRequest {
-  /** Project ID of the project that contains the instance to be deleted. */
-  project: string;
-  /** Cloud SQL instance ID. This does not include the project ID. */
-  instance: string;
-  /** Flag to opt-in for final backup. By default, it is turned off. */
-  enableFinalBackup?: boolean;
-  /** Optional. The description of the final backup. */
-  finalBackupDescription?: string;
   /** Optional. Retention period of the final backup. */
   finalBackupTtlDays?: string;
+  /** Flag to opt-in for final backup. By default, it is turned off. */
+  enableFinalBackup?: boolean;
+  /** Cloud SQL instance ID. This does not include the project ID. */
+  instance: string;
+  /** Optional. The description of the final backup. */
+  finalBackupDescription?: string;
   /** Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired. */
   finalBackupExpiryTime?: string;
+  /** Project ID of the project that contains the instance to be deleted. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const DeleteInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
-    enableFinalBackup: S.optional(S.Boolean.pipe(T.Query())),
-    finalBackupDescription: S.optional(S.String.pipe(T.Query())),
     finalBackupTtlDays: S.optional(S.String.pipe(T.Query())),
+    enableFinalBackup: S.optional(S.Boolean.pipe(T.Query())),
+    instance: S.String.pipe(T.Label()),
+    finalBackupDescription: S.optional(S.String.pipe(T.Query())),
     finalBackupExpiryTime: S.optional(S.String.pipe(T.Query())),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -3094,18 +3573,18 @@ export const DeleteInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteInstancesRequest>;
 
 export interface DeleteSslCertsRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Cloud SQL instance ID. This does not include the project ID. */
-  instance: string;
   /** Sha1 FingerPrint. */
   sha1Fingerprint: string;
+  /** Cloud SQL instance ID. This does not include the project ID. */
+  instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const DeleteSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
     sha1Fingerprint: S.String.pipe(T.Label()),
+    instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -3120,19 +3599,22 @@ export const DeleteSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface DeleteUsersRequest {
   /** Host of the user in the instance. */
   host?: string;
-  /** Name of the user in the instance. */
-  name?: string;
-  /** Project ID of the project that contains the instance. */
-  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Database instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Name of the user in the instance. */
+  name?: string;
 }
 export const DeleteUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     host: S.optional(S.String.pipe(T.Query())),
-    name: S.optional(S.String.pipe(T.Query())),
-    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    name: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -3146,15 +3628,15 @@ export const DeleteUsersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** This context is used to demote an existing standalone instance to be a Cloud SQL read replica for an external database server. */
 export interface DemoteContext {
-  /** Required. The name of the instance which acts as the on-premises primary instance in the replication setup. */
-  sourceRepresentativeInstanceName?: string;
   /** This is always `sql#demoteContext`. */
   kind?: string;
+  /** Required. The name of the instance which acts as the on-premises primary instance in the replication setup. */
+  sourceRepresentativeInstanceName?: string;
 }
 export const DemoteContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sourceRepresentativeInstanceName: S.optional(S.String),
     kind: S.optional(S.String),
+    sourceRepresentativeInstanceName: S.optional(S.String),
   }),
 ).annotate({ identifier: "DemoteContext" }) as any as S.Schema<DemoteContext>;
 
@@ -3172,17 +3654,20 @@ export const InstancesDemoteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesDemoteRequest>;
 
 export interface DemoteInstancesRequest {
-  /** Required. ID of the project that contains the instance. */
-  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Required. Cloud SQL instance name. */
   instance: string;
+  /** Required. ID of the project that contains the instance. */
+  project: string;
   /** Request body */
   body?: InstancesDemoteRequest;
 }
 export const DemoteInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
     body: S.optional(InstancesDemoteRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3197,28 +3682,28 @@ export const DemoteInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Read-replica configuration specific to MySQL databases. */
 export interface DemoteMasterMySqlReplicaConfiguration {
-  /** PEM representation of the replica's x509 certificate. */
-  clientCertificate?: string;
-  /** PEM representation of the trusted CA's x509 certificate. */
-  caCertificate?: string;
   /** The password for the replication connection. */
   password?: string;
-  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8. */
-  clientKey?: string;
-  /** The username for the replication connection. */
-  username?: string;
   /** This is always `sql#demoteMasterMysqlReplicaConfiguration`. */
   kind?: string;
+  /** PEM representation of the replica's x509 certificate. */
+  clientCertificate?: string;
+  /** PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8. */
+  clientKey?: string;
+  /** PEM representation of the trusted CA's x509 certificate. */
+  caCertificate?: string;
+  /** The username for the replication connection. */
+  username?: string;
 }
 export const DemoteMasterMySqlReplicaConfiguration = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      clientCertificate: S.optional(S.String),
-      caCertificate: S.optional(S.String),
       password: S.optional(S.String),
-      clientKey: S.optional(S.String),
-      username: S.optional(S.String),
       kind: S.optional(S.String),
+      clientCertificate: S.optional(S.String),
+      clientKey: S.optional(S.String),
+      caCertificate: S.optional(S.String),
+      username: S.optional(S.String),
     }),
 ).annotate({
   identifier: "DemoteMasterMySqlReplicaConfiguration",
@@ -3226,17 +3711,17 @@ export const DemoteMasterMySqlReplicaConfiguration = /*@__PURE__*/ S.suspend(
 
 /** Read-replica configuration for connecting to the on-premises primary instance. */
 export interface DemoteMasterConfiguration {
-  /** This is always `sql#demoteMasterConfiguration`. */
-  kind?: string;
   /** MySQL specific configuration when replicating from a MySQL on-premises primary instance. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named `master.info` in the data directory. */
   mysqlReplicaConfiguration?: DemoteMasterMySqlReplicaConfiguration;
+  /** This is always `sql#demoteMasterConfiguration`. */
+  kind?: string;
 }
 export const DemoteMasterConfiguration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     mysqlReplicaConfiguration: S.optional(
       DemoteMasterMySqlReplicaConfiguration,
     ),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DemoteMasterConfiguration",
@@ -3244,8 +3729,6 @@ export const DemoteMasterConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Database instance demote primary instance context. */
 export interface DemoteMasterContext {
-  /** Configuration specific to read-replicas replicating from the on-premises primary instance. */
-  replicaConfiguration?: DemoteMasterConfiguration;
   /** This is always `sql#demoteMasterContext`. */
   kind?: string;
   /** The name of the instance which will act as on-premises primary instance in the replication setup. */
@@ -3254,14 +3737,16 @@ export interface DemoteMasterContext {
   skipReplicationSetup?: boolean;
   /** Verify the GTID consistency for demote operation. Default value: `True`. Setting this flag to `false` enables you to bypass the GTID consistency check between on-premises primary instance and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues. */
   verifyGtidConsistency?: boolean;
+  /** Configuration specific to read-replicas replicating from the on-premises primary instance. */
+  replicaConfiguration?: DemoteMasterConfiguration;
 }
 export const DemoteMasterContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    replicaConfiguration: S.optional(DemoteMasterConfiguration),
     kind: S.optional(S.String),
     masterInstanceName: S.optional(S.String),
     skipReplicationSetup: S.optional(S.Boolean),
     verifyGtidConsistency: S.optional(S.Boolean),
+    replicaConfiguration: S.optional(DemoteMasterConfiguration),
   }),
 ).annotate({
   identifier: "DemoteMasterContext",
@@ -3285,6 +3770,8 @@ export interface DemoteMasterInstancesRequest {
   project: string;
   /** Cloud SQL instance name. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesDemoteMasterRequest;
 }
@@ -3292,6 +3779,7 @@ export const DemoteMasterInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(InstancesDemoteMasterRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3314,16 +3802,16 @@ export const ExecuteSqlPayloadPartialResultModeEnum = /*@__PURE__*/ S.String;
 export interface ExecuteSqlPayload {
   /** Optional. The name of an existing database user to connect to the database. When `auto_iam_authn` is set to true, this field is ignored and the API caller's IAM user is used. */
   user?: string;
-  /** Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons. */
-  sqlStatement?: string;
-  /** Optional. The resource name of the Secret Manager secret holding the password for the user to log into the database. The secret should be created using the regional endpoint (for API) or from the Regional Secrets page (for UI), and stored in the same region as the Cloud SQL instance. The expected resource name format is `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`. Used together with the `user` field. The secret resource name will not be stored. */
-  passwordSecretVersion?: string;
-  /** Optional. The maximum number of rows returned per SQL statement. */
-  rowLimit?: string;
-  /** Optional. Specifies the name of the application that is making the request. This field is used for telemetry. Only alphanumeric characters, dashes, and underscores are allowed. The maximum length is 32 characters. */
-  application?: string;
   /** Optional. Name of the database on which the statement will be executed. */
   database?: string;
+  /** Optional. The resource name of the Secret Manager secret holding the password for the user to log into the database. The secret should be created using the regional endpoint (for API) or from the Regional Secrets page (for UI), and stored in the same region as the Cloud SQL instance. The expected resource name format is `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`. Used together with the `user` field. The secret resource name will not be stored. */
+  passwordSecretVersion?: string;
+  /** Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons. */
+  sqlStatement?: string;
+  /** Optional. Specifies the name of the application that is making the request. This field is used for telemetry. Only alphanumeric characters, dashes, and underscores are allowed. The maximum length is 32 characters. */
+  application?: string;
+  /** Optional. The maximum number of rows returned per SQL statement. */
+  rowLimit?: string;
   /** Optional. When set to `true`, the API caller identity associated with the request is used for database authentication. The API caller must be an IAM user in the database. */
   autoIamAuthn?: boolean;
   /** Optional. Controls how the API should respond when the SQL execution result is incomplete due to the size limit or another error. The default mode is to throw an error. */
@@ -3332,11 +3820,11 @@ export interface ExecuteSqlPayload {
 export const ExecuteSqlPayload = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user: S.optional(S.String),
-    sqlStatement: S.optional(S.String),
-    passwordSecretVersion: S.optional(S.String),
-    rowLimit: S.optional(S.String),
-    application: S.optional(S.String),
     database: S.optional(S.String),
+    passwordSecretVersion: S.optional(S.String),
+    sqlStatement: S.optional(S.String),
+    application: S.optional(S.String),
+    rowLimit: S.optional(S.String),
     autoIamAuthn: S.optional(S.Boolean),
     partialResultMode: S.optional(ExecuteSqlPayloadPartialResultModeEnum),
   }),
@@ -3345,17 +3833,20 @@ export const ExecuteSqlPayload = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExecuteSqlPayload>;
 
 export interface ExecuteSqlInstancesRequest {
-  /** Required. Project ID of the project that contains the instance. */
-  project: string;
   /** Required. Database instance ID. This does not include the project ID. */
   instance: string;
+  /** Required. Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: ExecuteSqlPayload;
 }
 export const ExecuteSqlInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(ExecuteSqlPayload.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3368,28 +3859,17 @@ export const ExecuteSqlInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecuteSqlInstancesRequest",
 }) as any as S.Schema<ExecuteSqlInstancesRequest>;
 
-/** The additional metadata information regarding the execution of the SQL statements. */
-export interface Metadata {
-  /** The time taken to execute the SQL statements. */
-  sqlStatementExecutionTime?: string;
-}
-export const Metadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sqlStatementExecutionTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
-
 /** Represents a notice or warning message from the database. */
 export interface Message {
-  /** The full message string. For PostgreSQL, this is a formatted string that may include severity, code, and the notice/warning message. For MySQL, this contains the warning message. */
-  message?: string;
   /** The severity of the message (e.g., "NOTICE" for PostgreSQL, "WARNING" for MySQL). */
   severity?: string;
+  /** The full message string. For PostgreSQL, this is a formatted string that may include severity, code, and the notice/warning message. For MySQL, this contains the warning message. */
+  message?: string;
 }
 export const Message = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: S.optional(S.String),
     severity: S.optional(S.String),
+    message: S.optional(S.String),
   }),
 ).annotate({ identifier: "Message" }) as any as S.Schema<Message>;
 
@@ -3400,15 +3880,15 @@ export const MessageList = /*@__PURE__*/ S.Array(
 
 /** Contains the name and datatype of a column. */
 export interface Column {
-  /** Name of the column. */
-  name?: string;
   /** Datatype of the column. */
   type?: string;
+  /** Name of the column. */
+  name?: string;
 }
 export const Column = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     type: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Column" }) as any as S.Schema<Column>;
 
@@ -3447,15 +3927,15 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 
 /** The cell value of the table. */
 export interface Value {
-  /** The cell value in string format. */
-  value?: string;
   /** If cell value is null, then this flag will be set to true. */
   nullValue?: boolean;
+  /** The cell value in string format. */
+  value?: string;
 }
 export const Value = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(S.String),
     nullValue: S.optional(S.Boolean),
+    value: S.optional(S.String),
   }),
 ).annotate({ identifier: "Value" }) as any as S.Schema<Value>;
 
@@ -3480,23 +3960,23 @@ export const RowList = /*@__PURE__*/ S.Array(Row) as any as S.Schema<RowList>;
 
 /** QueryResult contains the result of executing a single SQL statement. */
 export interface QueryResult {
-  /** Message related to the SQL execution result. */
-  message?: string;
   /** Set to true if the SQL execution's result is truncated due to size limits or an error retrieving results. */
   partialResult?: boolean;
   /** List of columns included in the result. This also includes the data type of the column. */
   columns?: ColumnList;
   /** If results were truncated due to an error, details of that error. */
   status?: Status;
+  /** Message related to the SQL execution result. */
+  message?: string;
   /** Rows returned by the SQL statement. */
   rows?: RowList;
 }
 export const QueryResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: S.optional(S.String),
     partialResult: S.optional(S.Boolean),
     columns: S.optional(ColumnList),
     status: S.optional(Status),
+    message: S.optional(S.String),
     rows: S.optional(RowList),
   }),
 ).annotate({ identifier: "QueryResult" }) as any as S.Schema<QueryResult>;
@@ -3506,23 +3986,34 @@ export const QueryResultList = /*@__PURE__*/ S.Array(
   QueryResult,
 ) as any as S.Schema<QueryResultList>;
 
+/** The additional metadata information regarding the execution of the SQL statements. */
+export interface Metadata {
+  /** The time taken to execute the SQL statements. */
+  sqlStatementExecutionTime?: string;
+}
+export const Metadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sqlStatementExecutionTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
+
 /** Execute SQL statements response. */
 export interface SqlInstancesExecuteSqlResponse {
-  /** The additional metadata information regarding the execution of the SQL statements. */
-  metadata?: Metadata;
   /** A list of notices and warnings generated during query execution. For PostgreSQL, this includes all notices and warnings. For MySQL, this includes warnings generated by the last executed statement. To retrieve all warnings for a multi-statement query, `SHOW WARNINGS` must be executed after each statement. */
   messages?: MessageList;
   /** The list of results after executing all the SQL statements. */
   results?: QueryResultList;
   /** Contains the error from the database if the SQL execution failed. */
   status?: Status;
+  /** The additional metadata information regarding the execution of the SQL statements. */
+  metadata?: Metadata;
 }
 export const SqlInstancesExecuteSqlResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metadata: S.optional(Metadata),
     messages: S.optional(MessageList),
     results: S.optional(QueryResultList),
     status: S.optional(Status),
+    metadata: S.optional(Metadata),
   }),
 ).annotate({
   identifier: "SqlInstancesExecuteSqlResponse",
@@ -3542,17 +4033,20 @@ export const InstancesExportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesExportRequest>;
 
 export interface ExportInstancesRequest {
-  /** Project ID of the project that contains the instance to be exported. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance to be exported. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesExportRequest;
 }
 export const ExportInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(InstancesExportRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3595,17 +4089,20 @@ export const InstancesFailoverRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesFailoverRequest>;
 
 export interface FailoverInstancesRequest {
-  /** ID of the project that contains the read replica. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** ID of the project that contains the read replica. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesFailoverRequest;
 }
 export const FailoverInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(InstancesFailoverRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3620,21 +4117,21 @@ export const FailoverInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Ephemeral certificate creation request. */
 export interface GenerateEphemeralCertRequest {
+  /** Optional. Optional snapshot read timestamp to trade freshness for performance. */
+  readTime?: string;
   /** Optional. If set, it will contain the cert valid duration. */
   validDuration?: string;
   /** PEM encoded public key to include in the signed certificate. */
   public_key?: string;
   /** Optional. Access token to include in the signed certificate. */
   access_token?: string;
-  /** Optional. Optional snapshot read timestamp to trade freshness for performance. */
-  readTime?: string;
 }
 export const GenerateEphemeralCertRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    readTime: S.optional(S.String),
     validDuration: S.optional(S.String),
     public_key: S.optional(S.String),
     access_token: S.optional(S.String),
-    readTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GenerateEphemeralCertRequest",
@@ -3719,18 +4216,11 @@ export const GetBackupRunsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetBackupRunsRequest",
 }) as any as S.Schema<GetBackupRunsRequest>;
 
-export type BackupRunStatusEnum =
-  | "SQL_BACKUP_RUN_STATUS_UNSPECIFIED"
-  | "ENQUEUED"
-  | "OVERDUE"
-  | "RUNNING"
-  | "FAILED"
-  | "SUCCESSFUL"
-  | "SKIPPED"
-  | "DELETION_PENDING"
-  | "DELETION_FAILED"
-  | "DELETED";
-export const BackupRunStatusEnum = /*@__PURE__*/ S.String;
+export type BackupRunTypeEnum =
+  | "SQL_BACKUP_RUN_TYPE_UNSPECIFIED"
+  | "AUTOMATED"
+  | "ON_DEMAND";
+export const BackupRunTypeEnum = /*@__PURE__*/ S.String;
 
 export type BackupRunDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -3797,90 +4287,124 @@ export type BackupRunBackupKindEnum =
   | "PHYSICAL";
 export const BackupRunBackupKindEnum = /*@__PURE__*/ S.String;
 
-export type BackupRunTypeEnum =
-  | "SQL_BACKUP_RUN_TYPE_UNSPECIFIED"
-  | "AUTOMATED"
-  | "ON_DEMAND";
-export const BackupRunTypeEnum = /*@__PURE__*/ S.String;
+export type BackupRunStatusEnum =
+  | "SQL_BACKUP_RUN_STATUS_UNSPECIFIED"
+  | "ENQUEUED"
+  | "OVERDUE"
+  | "RUNNING"
+  | "FAILED"
+  | "SUCCESSFUL"
+  | "SKIPPED"
+  | "DELETION_PENDING"
+  | "DELETION_FAILED"
+  | "DELETED";
+export const BackupRunStatusEnum = /*@__PURE__*/ S.String;
 
 /** A BackupRun resource. */
 export interface BackupRun {
-  /** The status of this run. */
-  status?: BackupRunStatusEnum | (string & {});
-  /** The description of this run, only applicable to on-demand backups. */
-  description?: string;
-  /** The identifier for this backup run. Unique only for a specific Cloud SQL instance. */
-  id?: string;
-  /** Information about why the backup operation failed. This is only present if the run has the FAILED status. */
-  error?: OperationError;
-  /** Output only. The maximum chargeable bytes for the backup. */
-  maxChargeableBytes?: string;
-  /** Output only. The instance database version at the time this backup was made. */
-  databaseVersion?: BackupRunDatabaseVersionEnum | (string & {});
-  /** The time the run was enqueued in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  enqueuedTime?: string;
-  /** Name of the database instance. */
-  instance?: string;
-  /** The time the backup operation actually started in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  startTime?: string;
-  /** The start time of the backup window during which this the backup was attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  windowStartTime?: string;
-  /** Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT. */
-  backupKind?: BackupRunBackupKindEnum | (string & {});
   /** Backup time zone to prevent restores to an instance with a different time zone. Now relevant only for SQL Server. */
   timeZone?: string;
-  /** This is always `sql#backupRun`. */
-  kind?: string;
-  /** Encryption status specific to a backup. */
-  diskEncryptionStatus?: DiskEncryptionStatus;
-  /** Location of the backups. */
-  location?: string;
-  /** The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL". This field defaults to "ON_DEMAND" and is ignored, when specified for insert requests. */
-  type?: BackupRunTypeEnum | (string & {});
+  /** Name of the database instance. */
+  instance?: string;
+  /** The start time of the backup window during which this the backup was attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  windowStartTime?: string;
   /** The URI of this resource. */
   selfLink?: string;
-  /** The time the backup operation completed in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  endTime?: string;
+  /** Information about why the backup operation failed. This is only present if the run has the FAILED status. */
+  error?: OperationError;
+  /** The identifier for this backup run. Unique only for a specific Cloud SQL instance. */
+  id?: string;
+  /** Encryption status specific to a backup. */
+  diskEncryptionStatus?: DiskEncryptionStatus;
+  /** This is always `sql#backupRun`. */
+  kind?: string;
+  /** The description of this run, only applicable to on-demand backups. */
+  description?: string;
+  /** The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL". This field defaults to "ON_DEMAND" and is ignored, when specified for insert requests. */
+  type?: BackupRunTypeEnum | (string & {});
+  /** The time the backup operation actually started in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  startTime?: string;
+  /** Output only. The instance database version at the time this backup was made. */
+  databaseVersion?: BackupRunDatabaseVersionEnum | (string & {});
   /** Encryption configuration specific to a backup. */
   diskEncryptionConfiguration?: DiskEncryptionConfiguration;
+  /** Location of the backups. */
+  location?: string;
+  /** Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT. */
+  backupKind?: BackupRunBackupKindEnum | (string & {});
+  /** The time the run was enqueued in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  enqueuedTime?: string;
+  /** The status of this run. */
+  status?: BackupRunStatusEnum | (string & {});
+  /** The time the backup operation completed in UTC timezone in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  endTime?: string;
+  /** Output only. The maximum chargeable bytes for the backup. */
+  maxChargeableBytes?: string;
 }
 export const BackupRun = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(BackupRunStatusEnum),
-    description: S.optional(S.String),
-    id: S.optional(S.String),
-    error: S.optional(OperationError),
-    maxChargeableBytes: S.optional(S.String),
-    databaseVersion: S.optional(BackupRunDatabaseVersionEnum),
-    enqueuedTime: S.optional(S.String),
-    instance: S.optional(S.String),
-    startTime: S.optional(S.String),
-    windowStartTime: S.optional(S.String),
-    backupKind: S.optional(BackupRunBackupKindEnum),
     timeZone: S.optional(S.String),
-    kind: S.optional(S.String),
-    diskEncryptionStatus: S.optional(DiskEncryptionStatus),
-    location: S.optional(S.String),
-    type: S.optional(BackupRunTypeEnum),
+    instance: S.optional(S.String),
+    windowStartTime: S.optional(S.String),
     selfLink: S.optional(S.String),
-    endTime: S.optional(S.String),
+    error: S.optional(OperationError),
+    id: S.optional(S.String),
+    diskEncryptionStatus: S.optional(DiskEncryptionStatus),
+    kind: S.optional(S.String),
+    description: S.optional(S.String),
+    type: S.optional(BackupRunTypeEnum),
+    startTime: S.optional(S.String),
+    databaseVersion: S.optional(BackupRunDatabaseVersionEnum),
     diskEncryptionConfiguration: S.optional(DiskEncryptionConfiguration),
+    location: S.optional(S.String),
+    backupKind: S.optional(BackupRunBackupKindEnum),
+    enqueuedTime: S.optional(S.String),
+    status: S.optional(BackupRunStatusEnum),
+    endTime: S.optional(S.String),
+    maxChargeableBytes: S.optional(S.String),
   }),
 ).annotate({ identifier: "BackupRun" }) as any as S.Schema<BackupRun>;
 
+export type GetBlueGreenDeploymentsViewEnum =
+  | "BLUE_GREEN_DEPLOYMENT_VIEW_UNSPECIFIED"
+  | "BASIC"
+  | "DETAILED";
+export const GetBlueGreenDeploymentsViewEnum = /*@__PURE__*/ S.String;
+
+export interface GetBlueGreenDeploymentsRequest {
+  /** Required. The name of the blue-green deployment to retrieve. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment} */
+  name: string;
+  /** Optional. Specifies whether to return the basic or detailed view of the resource in the response. */
+  view?: GetBlueGreenDeploymentsViewEnum | (string & {});
+}
+export const GetBlueGreenDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    view: S.optional(GetBlueGreenDeploymentsViewEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "v1/{+name}",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "GetBlueGreenDeploymentsRequest",
+}) as any as S.Schema<GetBlueGreenDeploymentsRequest>;
+
 export interface GetConnectRequest {
+  /** Cloud SQL instance ID. This does not include the project ID. */
+  instance: string;
   /** Optional. Optional snapshot read timestamp to trade freshness for performance. */
   readTime?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
-  /** Cloud SQL instance ID. This does not include the project ID. */
-  instance: string;
 }
 export const GetConnectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    instance: S.String.pipe(T.Label()),
     readTime: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3892,188 +4416,22 @@ export const GetConnectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConnectRequest",
 }) as any as S.Schema<GetConnectRequest>;
 
-export type ConnectSettingsMdxProtocolSupportItemEnum =
-  | "MDX_PROTOCOL_SUPPORT_UNSPECIFIED"
-  | "CLIENT_PROTOCOL_TYPE";
-export const ConnectSettingsMdxProtocolSupportItemEnum = /*@__PURE__*/ S.String;
-
-export type ConnectSettingsMdxProtocolSupportItemEnumList =
-  Array<ConnectSettingsMdxProtocolSupportItemEnum>;
-export const ConnectSettingsMdxProtocolSupportItemEnumList =
-  /*@__PURE__*/ S.Array(
-    ConnectSettingsMdxProtocolSupportItemEnum,
-  ) as any as S.Schema<ConnectSettingsMdxProtocolSupportItemEnumList>;
-
-export type ConnectSettingsBackendTypeEnum =
-  | "SQL_BACKEND_TYPE_UNSPECIFIED"
-  | "FIRST_GEN"
-  | "SECOND_GEN"
-  | "EXTERNAL";
-export const ConnectSettingsBackendTypeEnum = /*@__PURE__*/ S.String;
-
-/** Details of a single read pool node of a read pool. */
-export interface ConnectPoolNodeConfig {
-  /** Output only. The name of the read pool node. Doesn't include the project ID. */
-  name?: string;
-  /** Output only. The DNS name of the read pool node. */
-  dnsName?: string;
-  /** Output only. Mappings containing IP addresses that can be used to connect to the read pool node. */
-  ipAddresses?: IpMappingList;
-  /** Output only. The list of DNS names used by this read pool node. */
-  dnsNames?: DnsNameMappingList;
-}
-export const ConnectPoolNodeConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    dnsName: S.optional(S.String),
-    ipAddresses: S.optional(IpMappingList),
-    dnsNames: S.optional(DnsNameMappingList),
-  }),
-).annotate({
-  identifier: "ConnectPoolNodeConfig",
-}) as any as S.Schema<ConnectPoolNodeConfig>;
-
-export type ConnectPoolNodeConfigList = Array<ConnectPoolNodeConfig>;
-export const ConnectPoolNodeConfigList = /*@__PURE__*/ S.Array(
-  ConnectPoolNodeConfig,
-) as any as S.Schema<ConnectPoolNodeConfigList>;
-
-export type ConnectSettingsDatabaseVersionEnum =
-  | "SQL_DATABASE_VERSION_UNSPECIFIED"
-  | "MYSQL_5_1"
-  | "MYSQL_5_5"
-  | "MYSQL_5_6"
-  | "MYSQL_5_7"
-  | "MYSQL_8_0"
-  | "MYSQL_8_0_18"
-  | "MYSQL_8_0_26"
-  | "MYSQL_8_0_27"
-  | "MYSQL_8_0_28"
-  | "MYSQL_8_0_29"
-  | "MYSQL_8_0_30"
-  | "MYSQL_8_0_31"
-  | "MYSQL_8_0_32"
-  | "MYSQL_8_0_33"
-  | "MYSQL_8_0_34"
-  | "MYSQL_8_0_35"
-  | "MYSQL_8_0_36"
-  | "MYSQL_8_0_37"
-  | "MYSQL_8_0_39"
-  | "MYSQL_8_0_40"
-  | "MYSQL_8_0_41"
-  | "MYSQL_8_0_42"
-  | "MYSQL_8_0_43"
-  | "MYSQL_8_0_44"
-  | "MYSQL_8_0_45"
-  | "MYSQL_8_0_46"
-  | "MYSQL_8_4"
-  | "MYSQL_9_7"
-  | "SQLSERVER_2017_STANDARD"
-  | "SQLSERVER_2017_ENTERPRISE"
-  | "SQLSERVER_2017_EXPRESS"
-  | "SQLSERVER_2017_WEB"
-  | "POSTGRES_9_6"
-  | "POSTGRES_10"
-  | "POSTGRES_11"
-  | "POSTGRES_12"
-  | "POSTGRES_13"
-  | "POSTGRES_14"
-  | "POSTGRES_15"
-  | "POSTGRES_16"
-  | "POSTGRES_17"
-  | "POSTGRES_18"
-  | "POSTGRES_19"
-  | "POSTGRES_20"
-  | "SQLSERVER_2019_STANDARD"
-  | "SQLSERVER_2019_ENTERPRISE"
-  | "SQLSERVER_2019_EXPRESS"
-  | "SQLSERVER_2019_WEB"
-  | "SQLSERVER_2022_STANDARD"
-  | "SQLSERVER_2022_ENTERPRISE"
-  | "SQLSERVER_2022_EXPRESS"
-  | "SQLSERVER_2022_WEB"
-  | "SQLSERVER_2025_STANDARD"
-  | "SQLSERVER_2025_ENTERPRISE"
-  | "SQLSERVER_2025_EXPRESS";
-export const ConnectSettingsDatabaseVersionEnum = /*@__PURE__*/ S.String;
-
-export type ConnectSettingsServerCaModeEnum =
-  | "CA_MODE_UNSPECIFIED"
-  | "GOOGLE_MANAGED_INTERNAL_CA"
-  | "GOOGLE_MANAGED_CAS_CA"
-  | "CUSTOMER_MANAGED_CAS_CA";
-export const ConnectSettingsServerCaModeEnum = /*@__PURE__*/ S.String;
-
-/** Connect settings retrieval response. */
-export interface ConnectSettings {
-  /** The assigned IP addresses for the instance. */
-  ipAddresses?: IpMappingList;
-  /** This is always `sql#connectSettings`. */
-  kind?: string;
-  /** Optional. Output only. mdx_protocol_support controls how the client uses metadata exchange when connecting to the instance. The values in the list representing parts of the MDX protocol that are supported by this instance. When the list is empty, the instance does not support MDX, so the client must not send an MDX request. The default is empty. */
-  mdxProtocolSupport?: ConnectSettingsMdxProtocolSupportItemEnumList;
-  /** Optional. Output only. Connection name of the Cloud SQL instance used in connection strings, in the format project:region:instance. */
-  connectionName?: string;
-  /** Custom subject alternative names for the server certificate. */
-  customSubjectAlternativeNames?: StringList;
-  /** Whether PSC connectivity is enabled for this instance. */
-  pscEnabled?: boolean;
-  /** `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type. */
-  backendType?: ConnectSettingsBackendTypeEnum;
-  /** Output only. The list of DNS names used by this instance. */
-  dnsNames?: DnsNameMappingList;
-  /** Output only. Entries containing information about each read pool node of the read pool. */
-  nodes?: ConnectPoolNodeConfigList;
-  /** The number of read pool nodes in a read pool. */
-  nodeCount?: number;
-  /** The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default), or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`. SQL Server instances: `SQLSERVER_2017_STANDARD` (default), `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`. */
-  databaseVersion?: ConnectSettingsDatabaseVersionEnum;
-  /** Specify what type of CA is used for the server certificate. */
-  serverCaMode?: ConnectSettingsServerCaModeEnum;
-  /** SSL configuration. */
-  serverCaCert?: SslCert;
-  /** The cloud region for the instance. For example, `us-central1`, `europe-west1`. The region cannot be changed after instance creation. */
-  region?: string;
-  /** The dns name of the instance. */
-  dnsName?: string;
-}
-export const ConnectSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddresses: S.optional(IpMappingList),
-    kind: S.optional(S.String),
-    mdxProtocolSupport: S.optional(
-      ConnectSettingsMdxProtocolSupportItemEnumList,
-    ),
-    connectionName: S.optional(S.String),
-    customSubjectAlternativeNames: S.optional(StringList),
-    pscEnabled: S.optional(S.Boolean),
-    backendType: S.optional(ConnectSettingsBackendTypeEnum),
-    dnsNames: S.optional(DnsNameMappingList),
-    nodes: S.optional(ConnectPoolNodeConfigList),
-    nodeCount: S.optional(S.Number),
-    databaseVersion: S.optional(ConnectSettingsDatabaseVersionEnum),
-    serverCaMode: S.optional(ConnectSettingsServerCaModeEnum),
-    serverCaCert: S.optional(SslCert),
-    region: S.optional(S.String),
-    dnsName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectSettings",
-}) as any as S.Schema<ConnectSettings>;
-
 export interface GetDatabasesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Database instance ID. This does not include the project ID. */
-  instance: string;
   /** Name of the database in the instance. */
   database: string;
+  /** Database instance ID. This does not include the project ID. */
+  instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const GetDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
     database: S.String.pipe(T.Label()),
+    instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
+    project: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4087,15 +4445,15 @@ export const GetDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents a Sql Server database on the Cloud SQL instance. */
 export interface SqlServerDatabaseDetails {
-  /** The version of SQL Server with which the database is to be made compatible */
-  compatibilityLevel?: number;
   /** The recovery model of a SQL Server database */
   recoveryModel?: string;
+  /** The version of SQL Server with which the database is to be made compatible */
+  compatibilityLevel?: number;
 }
 export const SqlServerDatabaseDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    compatibilityLevel: S.optional(S.Number),
     recoveryModel: S.optional(S.String),
+    compatibilityLevel: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "SqlServerDatabaseDetails",
@@ -4103,49 +4461,52 @@ export const SqlServerDatabaseDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents a SQL database on the Cloud SQL instance. */
 export interface Database {
-  /** This is always `sql#database`. */
-  kind?: string;
-  /** The name of the Cloud SQL instance. This does not include the project ID. */
-  instance?: string;
+  /** The name of the database in the Cloud SQL instance. This does not include the project ID or instance name. */
+  name?: string;
   /** The Cloud SQL charset value. */
   charset?: string;
   /** The URI of this resource. */
   selfLink?: string;
-  sqlserverDatabaseDetails?: SqlServerDatabaseDetails;
-  /** This field is deprecated and will be removed from a future version of the API. */
-  etag?: string;
-  /** The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. */
-  project?: string;
+  /** The name of the Cloud SQL instance. This does not include the project ID. */
+  instance?: string;
+  /** This is always `sql#database`. */
+  kind?: string;
   /** The Cloud SQL collation value. */
   collation?: string;
-  /** The name of the database in the Cloud SQL instance. This does not include the project ID or instance name. */
-  name?: string;
+  /** The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. */
+  project?: string;
+  /** This field is deprecated and will be removed from a future version of the API. */
+  etag?: string;
+  sqlserverDatabaseDetails?: SqlServerDatabaseDetails;
 }
 export const Database = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    instance: S.optional(S.String),
+    name: S.optional(S.String),
     charset: S.optional(S.String),
     selfLink: S.optional(S.String),
-    sqlserverDatabaseDetails: S.optional(SqlServerDatabaseDetails),
-    etag: S.optional(S.String),
-    project: S.optional(S.String),
+    instance: S.optional(S.String),
+    kind: S.optional(S.String),
     collation: S.optional(S.String),
-    name: S.optional(S.String),
+    project: S.optional(S.String),
+    etag: S.optional(S.String),
+    sqlserverDatabaseDetails: S.optional(SqlServerDatabaseDetails),
   }),
 ).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
 
 export interface GetDiskShrinkConfigProjectsInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const GetDiskShrinkConfigProjectsInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4159,25 +4520,27 @@ export const GetDiskShrinkConfigProjectsInstancesRequest =
 
 /** Instance get disk shrink config response. */
 export interface SqlInstancesGetDiskShrinkConfigResponse {
-  /** Additional message to customers. */
-  message?: string;
   /** This is always `sql#getDiskShrinkConfig`. */
   kind?: string;
   /** The minimum size to which a disk can be shrunk in GigaBytes. */
   minimalTargetSizeGb?: string;
+  /** Additional message to customers. */
+  message?: string;
 }
 export const SqlInstancesGetDiskShrinkConfigResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      message: S.optional(S.String),
       kind: S.optional(S.String),
       minimalTargetSizeGb: S.optional(S.String),
+      message: S.optional(S.String),
     }),
 ).annotate({
   identifier: "SqlInstancesGetDiskShrinkConfigResponse",
 }) as any as S.Schema<SqlInstancesGetDiskShrinkConfigResponse>;
 
 export interface GetInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Required. Project ID of the project that contains the instance. */
   project: string;
   /** Required. Database instance ID. This does not include the project ID. */
@@ -4185,6 +4548,7 @@ export interface GetInstancesRequest {
 }
 export const GetInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
   }).pipe(
@@ -4199,19 +4563,22 @@ export const GetInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInstancesRequest>;
 
 export interface GetLatestRecoveryTimeProjectsInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
   /** The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp. */
   sourceInstanceDeletionTime?: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const GetLatestRecoveryTimeProjectsInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
       instance: S.String.pipe(T.Label()),
       sourceInstanceDeletionTime: S.optional(S.String.pipe(T.Query())),
+      project: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4225,19 +4592,19 @@ export const GetLatestRecoveryTimeProjectsInstancesRequest =
 
 /** Instance get latest recovery time response. */
 export interface SqlInstancesGetLatestRecoveryTimeResponse {
-  /** This is always `sql#getLatestRecoveryTime`. */
-  kind?: string;
   /** Timestamp, identifies the earliest recovery time of the source instance. */
   earliestRecoveryTime?: string;
   /** Timestamp, identifies the latest recovery time of the source instance. */
   latestRecoveryTime?: string;
+  /** This is always `sql#getLatestRecoveryTime`. */
+  kind?: string;
 }
 export const SqlInstancesGetLatestRecoveryTimeResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      kind: S.optional(S.String),
       earliestRecoveryTime: S.optional(S.String),
       latestRecoveryTime: S.optional(S.String),
+      kind: S.optional(S.String),
     }),
   ).annotate({
     identifier: "SqlInstancesGetLatestRecoveryTimeResponse",
@@ -4268,17 +4635,17 @@ export const GetOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOperationsRequest>;
 
 export interface GetSslCertsRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** Sha1 FingerPrint. */
   sha1Fingerprint: string;
 }
 export const GetSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
     sha1Fingerprint: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -4292,21 +4659,24 @@ export const GetSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSslCertsRequest>;
 
 export interface GetUsersRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Database instance ID. This does not include the project ID. */
-  instance: string;
-  /** User of the instance. */
-  name: string;
   /** Host of a user of the instance. */
   host?: string;
+  /** Database instance ID. This does not include the project ID. */
+  instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** User of the instance. */
+  name: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const GetUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
     host: S.optional(S.String.pipe(T.Query())),
+    instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4317,6 +4687,39 @@ export const GetUsersRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetUsersRequest",
 }) as any as S.Schema<GetUsersRequest>;
+
+export type UserIamStatusEnum =
+  | "IAM_STATUS_UNSPECIFIED"
+  | "INACTIVE"
+  | "ACTIVE";
+export const UserIamStatusEnum = /*@__PURE__*/ S.String;
+
+export type UserTypeEnum =
+  | "BUILT_IN"
+  | "CLOUD_IAM_USER"
+  | "CLOUD_IAM_SERVICE_ACCOUNT"
+  | "CLOUD_IAM_GROUP"
+  | "CLOUD_IAM_GROUP_USER"
+  | "CLOUD_IAM_GROUP_SERVICE_ACCOUNT"
+  | "CLOUD_IAM_WORKFORCE_IDENTITY"
+  | "ENTRAID_USER";
+export const UserTypeEnum = /*@__PURE__*/ S.String;
+
+/** Represents a Sql Server user on the Cloud SQL instance. */
+export interface SqlServerUserDetails {
+  /** Indicates the server roles for this user. */
+  serverRoles?: StringList;
+  /** Indicates if the user has been disabled. */
+  disabled?: boolean;
+}
+export const SqlServerUserDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serverRoles: S.optional(StringList),
+    disabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SqlServerUserDetails",
+}) as any as S.Schema<SqlServerUserDetails>;
 
 /** Read-only password status. */
 export interface PasswordStatus {
@@ -4334,39 +4737,28 @@ export const PasswordStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** User level password validation policy. */
 export interface UserPasswordValidationPolicy {
-  /** Expiration duration after password is updated. */
-  passwordExpirationDuration?: string;
-  /** If true, failed login attempts check will be enabled. */
-  enableFailedAttemptsCheck?: boolean;
   /** Output only. Read-only password status. */
   status?: PasswordStatus;
   /** Number of failed login attempts allowed before user get locked. */
   allowedFailedAttempts?: number;
+  /** Expiration duration after password is updated. */
+  passwordExpirationDuration?: string;
+  /** If true, failed login attempts check will be enabled. */
+  enableFailedAttemptsCheck?: boolean;
   /** If true, the user must specify the current password before changing the password. This flag is supported only for MySQL. */
   enablePasswordVerification?: boolean;
 }
 export const UserPasswordValidationPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    passwordExpirationDuration: S.optional(S.String),
-    enableFailedAttemptsCheck: S.optional(S.Boolean),
     status: S.optional(PasswordStatus),
     allowedFailedAttempts: S.optional(S.Number),
+    passwordExpirationDuration: S.optional(S.String),
+    enableFailedAttemptsCheck: S.optional(S.Boolean),
     enablePasswordVerification: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "UserPasswordValidationPolicy",
 }) as any as S.Schema<UserPasswordValidationPolicy>;
-
-export type UserTypeEnum =
-  | "BUILT_IN"
-  | "CLOUD_IAM_USER"
-  | "CLOUD_IAM_SERVICE_ACCOUNT"
-  | "CLOUD_IAM_GROUP"
-  | "CLOUD_IAM_GROUP_USER"
-  | "CLOUD_IAM_GROUP_SERVICE_ACCOUNT"
-  | "CLOUD_IAM_WORKFORCE_IDENTITY"
-  | "ENTRAID_USER";
-export const UserTypeEnum = /*@__PURE__*/ S.String;
 
 export type UserDualPasswordTypeEnum =
   | "DUAL_PASSWORD_TYPE_UNSPECIFIED"
@@ -4375,77 +4767,55 @@ export type UserDualPasswordTypeEnum =
   | "DUAL_PASSWORD";
 export const UserDualPasswordTypeEnum = /*@__PURE__*/ S.String;
 
-export type UserIamStatusEnum =
-  | "IAM_STATUS_UNSPECIFIED"
-  | "INACTIVE"
-  | "ACTIVE";
-export const UserIamStatusEnum = /*@__PURE__*/ S.String;
-
-/** Represents a Sql Server user on the Cloud SQL instance. */
-export interface SqlServerUserDetails {
-  /** The server roles for this user */
-  serverRoles?: StringList;
-  /** If the user has been disabled */
-  disabled?: boolean;
-}
-export const SqlServerUserDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serverRoles: S.optional(StringList),
-    disabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "SqlServerUserDetails",
-}) as any as S.Schema<SqlServerUserDetails>;
-
 /** A Cloud SQL user resource. */
 export interface User {
-  /** The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for `update` because it is already specified on the URL. */
-  project?: string;
-  /** The password for the user. */
-  password?: string;
-  /** The name of the user in the Cloud SQL instance. Can be omitted for `update` because it is already specified in the URL. */
-  name?: string;
-  /** Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional. */
-  host?: string;
-  /** User level password validation policy. */
-  passwordPolicy?: UserPasswordValidationPolicy;
-  /** The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type. */
-  type?: UserTypeEnum | (string & {});
-  /** Optional. The full email for an IAM user. For normal database users, this will not be filled. Only applicable to MySQL database users. */
-  iamEmail?: string;
-  /** Dual password status for the user. */
-  dualPasswordType?: UserDualPasswordTypeEnum | (string & {});
   /** Indicates if a group is active or inactive for IAM database authentication. */
   iamStatus?: UserIamStatusEnum | (string & {});
+  /** The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type. */
+  type?: UserTypeEnum | (string & {});
+  /** Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional. */
+  host?: string;
   /** This is always `sql#user`. */
   kind?: string;
-  /** This field is deprecated and will be removed from a future version of the API. */
-  etag?: string;
-  /** The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL. */
-  instance?: string;
+  /** The password for the user. */
+  password?: string;
+  sqlserverUserDetails?: SqlServerUserDetails;
   /** Optional. The server roles for the SQL Server login. */
   serverRoles?: StringList;
-  sqlserverUserDetails?: SqlServerUserDetails;
   /** Optional. Role memberships of the user */
   databaseRoles?: StringList;
+  /** The name of the user in the Cloud SQL instance. Can be omitted for `update` because it is already specified in the URL. */
+  name?: string;
+  /** The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for `update` because it is already specified on the URL. */
+  project?: string;
+  /** User level password validation policy. */
+  passwordPolicy?: UserPasswordValidationPolicy;
+  /** Optional. The full email for an IAM user. For normal database users, this will not be filled. Only applicable to MySQL database users. */
+  iamEmail?: string;
+  /** The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL. */
+  instance?: string;
+  /** This field is deprecated and will be removed from a future version of the API. */
+  etag?: string;
+  /** Dual password status for the user. */
+  dualPasswordType?: UserDualPasswordTypeEnum | (string & {});
 }
 export const User = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.optional(S.String),
-    password: S.optional(S.String),
-    name: S.optional(S.String),
-    host: S.optional(S.String),
-    passwordPolicy: S.optional(UserPasswordValidationPolicy),
-    type: S.optional(UserTypeEnum),
-    iamEmail: S.optional(S.String),
-    dualPasswordType: S.optional(UserDualPasswordTypeEnum),
     iamStatus: S.optional(UserIamStatusEnum),
+    type: S.optional(UserTypeEnum),
+    host: S.optional(S.String),
     kind: S.optional(S.String),
-    etag: S.optional(S.String),
-    instance: S.optional(S.String),
-    serverRoles: S.optional(StringList),
+    password: S.optional(S.String),
     sqlserverUserDetails: S.optional(SqlServerUserDetails),
+    serverRoles: S.optional(StringList),
     databaseRoles: S.optional(StringList),
+    name: S.optional(S.String),
+    project: S.optional(S.String),
+    passwordPolicy: S.optional(UserPasswordValidationPolicy),
+    iamEmail: S.optional(S.String),
+    instance: S.optional(S.String),
+    etag: S.optional(S.String),
+    dualPasswordType: S.optional(UserDualPasswordTypeEnum),
   }),
 ).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
@@ -4463,6 +4833,8 @@ export const InstancesImportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesImportRequest>;
 
 export interface ImportInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -4472,6 +4844,7 @@ export interface ImportInstancesRequest {
 }
 export const ImportInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(InstancesImportRequest.pipe(T.HttpBody())),
@@ -4511,6 +4884,8 @@ export const InsertBackupRunsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertBackupRunsRequest>;
 
 export interface InsertDatabasesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Database instance ID. This does not include the project ID. */
@@ -4520,6 +4895,7 @@ export interface InsertDatabasesRequest {
 }
 export const InsertDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(Database.pipe(T.HttpBody())),
@@ -4537,12 +4913,15 @@ export const InsertDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
 export interface InsertInstancesRequest {
   /** Project ID of the project to which the newly created Cloud SQL instances should belong. */
   project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: DatabaseInstance;
 }
 export const InsertInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(DatabaseInstance.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4608,38 +4987,41 @@ export const SslCertDetail = /*@__PURE__*/ S.suspend(() =>
 
 /** SslCert insert response. */
 export interface SslCertsInsertResponse {
-  /** The operation to track the ssl certs insert request. */
-  operation?: Operation;
-  /** The new client certificate and private key. */
-  clientCert?: SslCertDetail;
   /** The server Certificate Authority's certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource. */
   serverCaCert?: SslCert;
   /** This is always `sql#sslCertsInsert`. */
   kind?: string;
+  /** The new client certificate and private key. */
+  clientCert?: SslCertDetail;
+  /** The operation to track the ssl certs insert request. */
+  operation?: Operation;
 }
 export const SslCertsInsertResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operation: S.optional(Operation),
-    clientCert: S.optional(SslCertDetail),
     serverCaCert: S.optional(SslCert),
     kind: S.optional(S.String),
+    clientCert: S.optional(SslCertDetail),
+    operation: S.optional(Operation),
   }),
 ).annotate({
   identifier: "SslCertsInsertResponse",
 }) as any as S.Schema<SslCertsInsertResponse>;
 
 export interface InsertUsersRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Database instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: User;
 }
 export const InsertUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(User.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4653,21 +5035,21 @@ export const InsertUsersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertUsersRequest>;
 
 export interface ListBackupRunsRequest {
+  /** Cloud SQL instance ID, or "-" for all instances. This does not include the project ID. */
+  instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** A previously-returned page token representing part of the larger set of results to view. */
   pageToken?: string;
   /** Maximum number of backup runs per response. */
   maxResults?: number;
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Cloud SQL instance ID, or "-" for all instances. This does not include the project ID. */
-  instance: string;
 }
 export const ListBackupRunsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4686,18 +5068,18 @@ export const BackupRunList = /*@__PURE__*/ S.Array(
 
 /** Backup run list results. */
 export interface BackupRunsListResponse {
-  /** This is always `sql#backupRunsList`. */
-  kind?: string;
-  /** A list of backup runs in reverse chronological order of the enqueued time. */
-  items: BackupRunList;
   /** The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results. */
   nextPageToken?: string;
+  /** A list of backup runs in reverse chronological order of the enqueued time. */
+  items: BackupRunList;
+  /** This is always `sql#backupRunsList`. */
+  kind?: string;
 }
 export const BackupRunsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    items: BackupRunList,
     nextPageToken: S.optional(S.String),
+    items: BackupRunList,
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BackupRunsListResponse",
@@ -4706,18 +5088,18 @@ export const BackupRunsListResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListBackupsBackupsRequest {
   /** Required. The parent that owns this collection of backups. Format: projects/{project} */
   parent: string;
-  /** A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token. */
-  pageToken?: string;
   /** The maximum number of backups to return per response. The service might return fewer backups than this value. If a value for this parameter isn't specified, then, at most, 500 backups are returned. The maximum value is 2,000. Any values that you set, which are greater than 2,000, are changed to 2,000. */
   pageSize?: number;
+  /** A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token. */
+  pageToken?: string;
   /** Multiple filter queries are separated by spaces. For example, 'instance:abc AND type:FINAL, 'location:us', 'backupInterval.startTime>=1950-01-01T01:01:25.771Z'. You can filter by type, instance, backupInterval.startTime (creation time), or location. */
   filter?: string;
 }
 export const ListBackupsBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     parent: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -4730,36 +5112,89 @@ export const ListBackupsBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBackupsBackupsRequest",
 }) as any as S.Schema<ListBackupsBackupsRequest>;
 
-export type BackupList = Array<Backup>;
-export const BackupList = /*@__PURE__*/ S.Array(
-  Backup,
-) as any as S.Schema<BackupList>;
-
 export type ApiWarningList = Array<ApiWarning>;
 export const ApiWarningList = /*@__PURE__*/ S.Array(
   ApiWarning,
 ) as any as S.Schema<ApiWarningList>;
 
+export type BackupList = Array<Backup>;
+export const BackupList = /*@__PURE__*/ S.Array(
+  Backup,
+) as any as S.Schema<BackupList>;
+
 /** The response payload containing a list of the backups. */
 export interface ListBackupsResponse {
-  /** A list of backups. */
-  backups?: BackupList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, then there aren't subsequent pages. */
   nextPageToken?: string;
   /** If a region isn't unavailable or if an unknown error occurs, then a warning message is returned. */
   warnings?: ApiWarningList;
+  /** A list of backups. */
+  backups?: BackupList;
 }
 export const ListBackupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    backups: S.optional(BackupList),
     nextPageToken: S.optional(S.String),
     warnings: S.optional(ApiWarningList),
+    backups: S.optional(BackupList),
   }),
 ).annotate({
   identifier: "ListBackupsResponse",
 }) as any as S.Schema<ListBackupsResponse>;
 
+export interface ListBlueGreenDeploymentsRequest {
+  /** Optional. A comma-separated list of fields to order the results by. */
+  orderBy?: string;
+  /** Optional. A filter expression that filters the results. */
+  filter?: string;
+  /** Optional. The maximum number of deployments to return. The service may return fewer deployments than this value. If unspecified, at most 500 deployments are returned. The maximum value is 1000; values above 1000 are treated as 1000. */
+  pageSize?: number;
+  /** Required. The parent resource whose blue-green deployments are to be listed. Format: projects/{project}/locations/{location} */
+  parent: string;
+  /** Optional. A page token, received from a previous `ListBlueGreenDeployments` call. Provide this to retrieve the subsequent page. */
+  pageToken?: string;
+}
+export const ListBlueGreenDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "v1/{+parent}/blueGreenDeployments",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "ListBlueGreenDeploymentsRequest",
+}) as any as S.Schema<ListBlueGreenDeploymentsRequest>;
+
+export type BlueGreenDeploymentList = Array<BlueGreenDeployment>;
+export const BlueGreenDeploymentList = /*@__PURE__*/ S.Array(
+  BlueGreenDeployment,
+) as any as S.Schema<BlueGreenDeploymentList>;
+
+/** The response message for listing blue-green deployment resources. */
+export interface ListBlueGreenDeploymentsResponse {
+  /** The list of blue-green deployment resources. */
+  blueGreenDeployments?: BlueGreenDeploymentList;
+  /** A token to retrieve the next page of results, or empty if there are no more results. */
+  nextPageToken?: string;
+}
+export const ListBlueGreenDeploymentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    blueGreenDeployments: S.optional(BlueGreenDeploymentList),
+    nextPageToken: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListBlueGreenDeploymentsResponse",
+}) as any as S.Schema<ListBlueGreenDeploymentsResponse>;
+
 export interface ListDatabasesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -4767,6 +5202,7 @@ export interface ListDatabasesRequest {
 }
 export const ListDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
   }).pipe(
@@ -4787,21 +5223,23 @@ export const DatabaseList = /*@__PURE__*/ S.Array(
 
 /** Database list response. */
 export interface DatabasesListResponse {
-  /** This is always `sql#databasesList`. */
-  kind?: string;
   /** List of database resources in the instance. */
   items?: DatabaseList;
+  /** This is always `sql#databasesList`. */
+  kind?: string;
 }
 export const DatabasesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     items: S.optional(DatabaseList),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DatabasesListResponse",
 }) as any as S.Schema<DatabasesListResponse>;
 
 export interface ListEntraIdCertificatesInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Required. Project ID of the project that contains the instance. */
   project: string;
   /** Required. Cloud SQL instance ID. This does not include the project ID. */
@@ -4810,6 +5248,7 @@ export interface ListEntraIdCertificatesInstancesRequest {
 export const ListEntraIdCertificatesInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      location: S.optional(S.String.pipe(T.Query())),
       project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
     }).pipe(
@@ -4855,15 +5294,15 @@ export type ListFlagsFlagScopeEnum =
 export const ListFlagsFlagScopeEnum = /*@__PURE__*/ S.String;
 
 export interface ListFlagsRequest {
-  /** Optional. Specify the scope of flags to be returned by SqlFlagsListService. Return list of database flags if unspecified. */
-  flagScope?: ListFlagsFlagScopeEnum | (string & {});
   /** Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions. */
   databaseVersion?: string;
+  /** Optional. Specify the scope of flags to be returned by SqlFlagsListService. Return list of database flags if unspecified. */
+  flagScope?: ListFlagsFlagScopeEnum | (string & {});
 }
 export const ListFlagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    flagScope: S.optional(ListFlagsFlagScopeEnum.pipe(T.Query())),
     databaseVersion: S.optional(S.String.pipe(T.Query())),
+    flagScope: S.optional(ListFlagsFlagScopeEnum.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4960,46 +5399,46 @@ export const FlagFlagScopeEnum = /*@__PURE__*/ S.String;
 export interface Flag {
   /** The database version this flag applies to. Can be MySQL instances: `MYSQL_8_0`, `MYSQL_8_0_18`, `MYSQL_8_0_26`, `MYSQL_5_7`, or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11` or `POSTGRES_12`. SQL Server instances: `SQLSERVER_2017_STANDARD`, `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`. See [the complete list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion). */
   appliesTo?: FlagAppliesToItemEnumList;
-  /** For `INTEGER` flags, the minimum allowed value. */
-  minValue?: string;
-  /** This is always `sql#flag`. */
-  kind?: string;
+  /** Whether or not the flag is considered in beta. */
+  inBeta?: boolean;
   /** Recommended int value in integer format for UI display. */
   recommendedIntValue?: string;
+  /** This is the name of the flag. Flag names always use underscores, not hyphens, for example: `max_allowed_packet` */
+  name?: string;
+  /** For `INTEGER` flags, the maximum allowed value. */
+  maxValue?: string;
+  /** Recommended string value in string format for UI display. */
+  recommendedStringValue?: string;
+  /** Use this field if only certain integers are accepted. Can be combined with min_value and max_value to add additional values. */
+  allowedIntValues?: StringList;
+  /** This is always `sql#flag`. */
+  kind?: string;
+  /** For `INTEGER` flags, the minimum allowed value. */
+  minValue?: string;
   /** The type of the flag. Flags are typed to being `BOOLEAN`, `STRING`, `INTEGER` or `NONE`. `NONE` is used for flags that do not take a value, such as `skip_grant_tables`. */
   type?: FlagTypeEnum;
+  /** Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances. */
+  requiresRestart?: boolean;
   /** Scope of flag. */
   flagScope?: FlagFlagScopeEnum;
   /** For `STRING` flags, a list of strings that the value can be set to. */
   allowedStringValues?: StringList;
-  /** This is the name of the flag. Flag names always use underscores, not hyphens, for example: `max_allowed_packet` */
-  name?: string;
-  /** Recommended string value in string format for UI display. */
-  recommendedStringValue?: string;
-  /** For `INTEGER` flags, the maximum allowed value. */
-  maxValue?: string;
-  /** Use this field if only certain integers are accepted. Can be combined with min_value and max_value to add additional values. */
-  allowedIntValues?: StringList;
-  /** Whether or not the flag is considered in beta. */
-  inBeta?: boolean;
-  /** Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances. */
-  requiresRestart?: boolean;
 }
 export const Flag = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appliesTo: S.optional(FlagAppliesToItemEnumList),
-    minValue: S.optional(S.String),
-    kind: S.optional(S.String),
+    inBeta: S.optional(S.Boolean),
     recommendedIntValue: S.optional(S.String),
+    name: S.optional(S.String),
+    maxValue: S.optional(S.String),
+    recommendedStringValue: S.optional(S.String),
+    allowedIntValues: S.optional(StringList),
+    kind: S.optional(S.String),
+    minValue: S.optional(S.String),
     type: S.optional(FlagTypeEnum),
+    requiresRestart: S.optional(S.Boolean),
     flagScope: S.optional(FlagFlagScopeEnum),
     allowedStringValues: S.optional(StringList),
-    name: S.optional(S.String),
-    recommendedStringValue: S.optional(S.String),
-    maxValue: S.optional(S.String),
-    allowedIntValues: S.optional(StringList),
-    inBeta: S.optional(S.Boolean),
-    requiresRestart: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Flag" }) as any as S.Schema<Flag>;
 
@@ -5025,21 +5464,24 @@ export const FlagsListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlagsListResponse>;
 
 export interface ListInstancesRequest {
+  /** The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000. */
+  maxResults?: number;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** A previously-returned page token representing part of the larger set of results to view. */
+  pageToken?: string;
   /** Project ID of the project for which to list Cloud SQL instances. */
   project: string;
   /** A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. */
   filter?: string;
-  /** The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000. */
-  maxResults?: number;
-  /** A previously-returned page token representing part of the larger set of results to view. */
-  pageToken?: string;
 }
 export const ListInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5058,27 +5500,29 @@ export const DatabaseInstanceList = /*@__PURE__*/ S.Array(
 
 /** Database instances list response. */
 export interface InstancesListResponse {
+  /** List of database instance resources. */
+  items: DatabaseInstanceList;
+  /** This is always `sql#instancesList`. */
+  kind?: string;
   /** List of warnings that occurred while handling the request. */
   warnings?: ApiWarningList;
   /** The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results. */
   nextPageToken?: string;
-  /** This is always `sql#instancesList`. */
-  kind?: string;
-  /** List of database instance resources. */
-  items: DatabaseInstanceList;
 }
 export const InstancesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    items: DatabaseInstanceList,
+    kind: S.optional(S.String),
     warnings: S.optional(ApiWarningList),
     nextPageToken: S.optional(S.String),
-    kind: S.optional(S.String),
-    items: DatabaseInstanceList,
   }),
 ).annotate({
   identifier: "InstancesListResponse",
 }) as any as S.Schema<InstancesListResponse>;
 
 export interface ListOperationsRequest {
+  /** Cloud SQL instance ID. This does not include the project ID. */
+  instance?: string;
   /** Optional. Region of the Cloud SQL instance. */
   location?: string;
   /** A previously-returned page token representing part of the larger set of results to view. */
@@ -5087,16 +5531,14 @@ export interface ListOperationsRequest {
   maxResults?: number;
   /** Project ID of the project that contains the instance. */
   project: string;
-  /** Cloud SQL instance ID. This does not include the project ID. */
-  instance?: string;
 }
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    instance: S.optional(S.String.pipe(T.Query())),
     location: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
-    instance: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5137,11 +5579,14 @@ export interface ListServerCasInstancesRequest {
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const ListServerCasInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5155,33 +5600,36 @@ export const ListServerCasInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Instances ListServerCas response. */
 export interface InstancesListServerCasResponse {
-  activeVersion?: string;
   /** List of server CA certificates for the instance. */
   certs?: SslCertList;
   /** This is always `sql#instancesListServerCas`. */
   kind?: string;
+  activeVersion?: string;
 }
 export const InstancesListServerCasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    activeVersion: S.optional(S.String),
     certs: S.optional(SslCertList),
     kind: S.optional(S.String),
+    activeVersion: S.optional(S.String),
   }),
 ).annotate({
   identifier: "InstancesListServerCasResponse",
 }) as any as S.Schema<InstancesListServerCasResponse>;
 
 export interface ListServerCertificatesInstancesRequest {
-  /** Required. Project ID of the project that contains the instance. */
-  project: string;
   /** Required. Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Required. Project ID of the project that contains the instance. */
+  project: string;
 }
 export const ListServerCertificatesInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
+      project: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -5195,37 +5643,37 @@ export const ListServerCertificatesInstancesRequest = /*@__PURE__*/ S.suspend(
 
 /** Instances ListServerCertificates response. */
 export interface InstancesListServerCertificatesResponse {
-  /** The `sha1_fingerprint` of the active certificate from `server_certs`. */
-  activeVersion?: string;
   /** This is always `sql#instancesListServerCertificates`. */
   kind?: string;
-  /** List of server CA certificates for the instance. */
-  caCerts?: SslCertList;
+  /** The `sha1_fingerprint` of the active certificate from `server_certs`. */
+  activeVersion?: string;
   /** List of server certificates for the instance, signed by the corresponding CA from the `ca_certs` list. */
   serverCerts?: SslCertList;
+  /** List of server CA certificates for the instance. */
+  caCerts?: SslCertList;
 }
 export const InstancesListServerCertificatesResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      activeVersion: S.optional(S.String),
       kind: S.optional(S.String),
-      caCerts: S.optional(SslCertList),
+      activeVersion: S.optional(S.String),
       serverCerts: S.optional(SslCertList),
+      caCerts: S.optional(SslCertList),
     }),
 ).annotate({
   identifier: "InstancesListServerCertificatesResponse",
 }) as any as S.Schema<InstancesListServerCertificatesResponse>;
 
 export interface ListSslCertsRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
 }
 export const ListSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5239,15 +5687,15 @@ export const ListSslCertsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** SslCerts list response. */
 export interface SslCertsListResponse {
-  /** List of client certificates for the instance. */
-  items?: SslCertList;
   /** This is always `sql#sslCertsList`. */
   kind?: string;
+  /** List of client certificates for the instance. */
+  items?: SslCertList;
 }
 export const SslCertsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: S.optional(SslCertList),
     kind: S.optional(S.String),
+    items: S.optional(SslCertList),
   }),
 ).annotate({
   identifier: "SslCertsListResponse",
@@ -5273,24 +5721,24 @@ export const ListTiersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A Google Cloud SQL service tier resource. */
 export interface Tier {
-  /** This is always `sql#tier`. */
-  kind?: string;
   /** An identifier for the machine type, for example, `db-custom-1-3840`. For related information, see [Pricing](/sql/pricing). */
   tier?: string;
-  /** The maximum disk size of this tier in bytes. */
-  DiskQuota?: string;
   /** The applicable regions for this tier. */
   region?: StringList;
   /** The maximum RAM usage of this tier in bytes. */
   RAM?: string;
+  /** The maximum disk size of this tier in bytes. */
+  DiskQuota?: string;
+  /** This is always `sql#tier`. */
+  kind?: string;
 }
 export const Tier = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     tier: S.optional(S.String),
-    DiskQuota: S.optional(S.String),
     region: S.optional(StringList),
     RAM: S.optional(S.String),
+    DiskQuota: S.optional(S.String),
+    kind: S.optional(S.String),
   }),
 ).annotate({ identifier: "Tier" }) as any as S.Schema<Tier>;
 
@@ -5316,15 +5764,18 @@ export const TiersListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TiersListResponse>;
 
 export interface ListUsersRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Database instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5361,20 +5812,23 @@ export const UsersListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UsersListResponse>;
 
 export interface PatchDatabasesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Name of the database to be updated in the instance. */
   database: string;
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Database instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** Request body */
   body?: Database;
 }
 export const PatchDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     database: S.String.pipe(T.Label()),
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
     body: S.optional(Database.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -5392,6 +5846,8 @@ export interface PatchInstancesRequest {
   reconcilePscNetworking?: boolean;
   /** Optional. Set PSC config to the same value as the existing config and force reconcile the PSC networking. */
   reconcilePscNetworkingForce?: boolean;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -5403,6 +5859,7 @@ export const PatchInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reconcilePscNetworking: S.optional(S.Boolean.pipe(T.Query())),
     reconcilePscNetworkingForce: S.optional(S.Boolean.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(DatabaseInstance.pipe(T.HttpBody())),
@@ -5431,18 +5888,21 @@ export const PerformDiskShrinkContext = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PerformDiskShrinkContext>;
 
 export interface PerformDiskShrinkProjectsInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: PerformDiskShrinkContext;
 }
 export const PerformDiskShrinkProjectsInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
       body: S.optional(PerformDiskShrinkContext.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -5455,9 +5915,118 @@ export const PerformDiskShrinkProjectsInstancesRequest =
     identifier: "PerformDiskShrinkProjectsInstancesRequest",
   }) as any as S.Schema<PerformDiskShrinkProjectsInstancesRequest>;
 
+/** The context to perform a point-in-time recovery of an instance managed by Backup and Disaster Recovery (DR) Service. */
+export interface PointInTimeRestoreContext {
+  /** Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. */
+  privateNetwork?: string;
+  /** Optional. Specifies the instance settings that will be cleared from the source instance. This field is only applicable for cross project PITRs. */
+  targetInstanceClearSettingsFieldNames?: StringList;
+  /** Optional. Specifies the instance settings that will be overridden from the source instance. This field is only applicable for cross project PITRs. */
+  targetInstanceSettings?: DatabaseInstance;
+  /** Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance. */
+  preferredZone?: string;
+  /** Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field. */
+  preferredSecondaryZone?: string;
+  /** The Backup and Disaster Recovery (DR) Service Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}. */
+  datasource?: string;
+  /** Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. */
+  allocatedIpRange?: string;
+  /** Target instance name. */
+  targetInstance?: string;
+  /** Required. The date and time to which you want to restore the instance. */
+  pointInTime?: string;
+  /** Optional. The region of the target instance where the datasource will be restored. For example: "us-central1". */
+  region?: string;
+}
+export const PointInTimeRestoreContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateNetwork: S.optional(S.String),
+    targetInstanceClearSettingsFieldNames: S.optional(StringList),
+    targetInstanceSettings: S.optional(DatabaseInstance),
+    preferredZone: S.optional(S.String),
+    preferredSecondaryZone: S.optional(S.String),
+    datasource: S.optional(S.String),
+    allocatedIpRange: S.optional(S.String),
+    targetInstance: S.optional(S.String),
+    pointInTime: S.optional(S.String),
+    region: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PointInTimeRestoreContext",
+}) as any as S.Schema<PointInTimeRestoreContext>;
+
+export interface PointInTimeRestoreInstancesRequest {
+  /** Required. The parent resource where you created this instance. Format: projects/{project} */
+  parent: string;
+  /** Request body */
+  body?: PointInTimeRestoreContext;
+}
+export const PointInTimeRestoreInstancesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    parent: S.String.pipe(T.Label()),
+    body: S.optional(PointInTimeRestoreContext.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "v1/{+parent}:pointInTimeRestore",
+      baseUrl: "https://sqladmin.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "PointInTimeRestoreInstancesRequest",
+}) as any as S.Schema<PointInTimeRestoreInstancesRequest>;
+
+/** Request for Pre-checks for MVU */
+export interface InstancesPreCheckMajorVersionUpgradeRequest {
+  /** Required. Contains details about the pre-check major version upgrade operation. */
+  preCheckMajorVersionUpgradeContext?: PreCheckMajorVersionUpgradeContext;
+}
+export const InstancesPreCheckMajorVersionUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      preCheckMajorVersionUpgradeContext: S.optional(
+        PreCheckMajorVersionUpgradeContext,
+      ),
+    }),
+  ).annotate({
+    identifier: "InstancesPreCheckMajorVersionUpgradeRequest",
+  }) as any as S.Schema<InstancesPreCheckMajorVersionUpgradeRequest>;
+
+export interface PreCheckMajorVersionUpgradeInstancesRequest {
+  /** Required. Cloud SQL instance ID. This does not include the project ID. */
+  instance: string;
+  /** Required. Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Request body */
+  body?: InstancesPreCheckMajorVersionUpgradeRequest;
+}
+export const PreCheckMajorVersionUpgradeInstancesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
+      body: S.optional(
+        InstancesPreCheckMajorVersionUpgradeRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "v1/projects/{project}/instances/{instance}/preCheckMajorVersionUpgrade",
+        baseUrl: "https://sqladmin.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "PreCheckMajorVersionUpgradeInstancesRequest",
+  }) as any as S.Schema<PreCheckMajorVersionUpgradeInstancesRequest>;
+
 export interface PromoteReplicaInstancesRequest {
   /** Set to true to invoke a replica failover to the DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance. */
   failover?: boolean;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** ID of the project that contains the read replica. */
   project: string;
   /** Cloud SQL read replica instance name. */
@@ -5466,6 +6035,7 @@ export interface PromoteReplicaInstancesRequest {
 export const PromoteReplicaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     failover: S.optional(S.Boolean.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
   }).pipe(
@@ -5515,17 +6085,20 @@ export const InstancesReencryptRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesReencryptRequest>;
 
 export interface ReencryptInstancesRequest {
-  /** ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesReencryptRequest;
 }
 export const ReencryptInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(InstancesReencryptRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -5539,15 +6112,18 @@ export const ReencryptInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReencryptInstancesRequest>;
 
 export interface ReleaseSsrsLeaseInstancesRequest {
-  /** Required. The project ID that contains the instance. */
-  project: string;
   /** Required. The Cloud SQL instance ID. This doesn't include the project ID. The instance ID contains lowercase letters, numbers, and hyphens, and it must start with a letter. This ID can have a maximum length of 98 characters. */
   instance: string;
+  /** Required. The project ID that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const ReleaseSsrsLeaseInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -5581,15 +6157,15 @@ export type RescheduleRescheduleTypeEnum =
 export const RescheduleRescheduleTypeEnum = /*@__PURE__*/ S.String;
 
 export interface Reschedule {
-  /** Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
-  scheduleTime?: string;
   /** Required. The type of the reschedule. */
   rescheduleType?: RescheduleRescheduleTypeEnum | (string & {});
+  /** Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2012-11-15T16:19:00.094Z`. */
+  scheduleTime?: string;
 }
 export const Reschedule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scheduleTime: S.optional(S.String),
     rescheduleType: S.optional(RescheduleRescheduleTypeEnum),
+    scheduleTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Reschedule" }) as any as S.Schema<Reschedule>;
 
@@ -5608,18 +6184,21 @@ export const SqlInstancesRescheduleMaintenanceRequestBody =
   }) as any as S.Schema<SqlInstancesRescheduleMaintenanceRequestBody>;
 
 export interface RescheduleMaintenanceProjectsInstancesRequest {
-  /** ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: SqlInstancesRescheduleMaintenanceRequestBody;
 }
 export const RescheduleMaintenanceProjectsInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
       body: S.optional(
         SqlInstancesRescheduleMaintenanceRequestBody.pipe(T.HttpBody()),
       ),
@@ -5635,26 +6214,31 @@ export const RescheduleMaintenanceProjectsInstancesRequest =
   }) as any as S.Schema<RescheduleMaintenanceProjectsInstancesRequest>;
 
 /** Instance reset replica size request. */
-export interface SqlInstancesResetReplicaSizeRequest {}
+export interface SqlInstancesResetReplicaSizeRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+}
 export const SqlInstancesResetReplicaSizeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+  S.Struct({
+    location: S.optional(S.String),
+  }),
 ).annotate({
   identifier: "SqlInstancesResetReplicaSizeRequest",
 }) as any as S.Schema<SqlInstancesResetReplicaSizeRequest>;
 
 export interface ResetReplicaSizeProjectsInstancesRequest {
-  /** ID of the project that contains the read replica. */
-  project: string;
   /** Cloud SQL read replica instance name. */
   instance: string;
+  /** ID of the project that contains the read replica. */
+  project: string;
   /** Request body */
   body?: SqlInstancesResetReplicaSizeRequest;
 }
 export const ResetReplicaSizeProjectsInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
       body: S.optional(SqlInstancesResetReplicaSizeRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -5674,18 +6258,21 @@ export type ResetSslConfigInstancesModeEnum =
 export const ResetSslConfigInstancesModeEnum = /*@__PURE__*/ S.String;
 
 export interface ResetSslConfigInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Cloud SQL instance ID. This does not include the project ID. */
-  instance: string;
   /** Optional. Reset SSL mode to use. */
   mode?: ResetSslConfigInstancesModeEnum | (string & {});
+  /** Cloud SQL instance ID. This does not include the project ID. */
+  instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const ResetSslConfigInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
     mode: S.optional(ResetSslConfigInstancesModeEnum.pipe(T.Query())),
+    instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -5697,28 +6284,9 @@ export const ResetSslConfigInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResetSslConfigInstancesRequest",
 }) as any as S.Schema<ResetSslConfigInstancesRequest>;
 
-export interface ResolveConnectRequest {
-  /** Required. The region of the instance. */
-  location: string;
-  /** Required. Cloud SQL instance ID. This does not include the project ID. */
-  dnsName: string;
-}
-export const ResolveConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.String.pipe(T.Label()),
-    dnsName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "v1/locations/{location}/dns/{dnsName}:resolveConnectSettings",
-      baseUrl: "https://sqladmin.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "ResolveConnectRequest",
-}) as any as S.Schema<ResolveConnectRequest>;
-
 export interface RestartInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance to be restarted. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -5726,6 +6294,7 @@ export interface RestartInstancesRequest {
 }
 export const RestartInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
   }).pipe(
@@ -5741,21 +6310,21 @@ export const RestartInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Database instance restore from backup context. Backup context contains source instance id and project id. */
 export interface RestoreBackupContext {
-  /** The full project ID of the source instance. */
-  project?: string;
-  /** The ID of the backup run to restore from. */
-  backupRunId?: string;
   /** The ID of the instance that the backup was taken from. */
   instanceId?: string;
+  /** The ID of the backup run to restore from. */
+  backupRunId?: string;
   /** This is always `sql#restoreBackupContext`. */
   kind?: string;
+  /** The full project ID of the source instance. */
+  project?: string;
 }
 export const RestoreBackupContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.optional(S.String),
-    backupRunId: S.optional(S.String),
     instanceId: S.optional(S.String),
+    backupRunId: S.optional(S.String),
     kind: S.optional(S.String),
+    project: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RestoreBackupContext",
@@ -5763,41 +6332,47 @@ export const RestoreBackupContext = /*@__PURE__*/ S.suspend(() =>
 
 /** Database instance restore backup request. */
 export interface InstancesRestoreBackupRequest {
-  /** Optional. By using this parameter, Cloud SQL overrides any instance settings stored in the backup you are restoring from. You can't change the instance's major database version and you can only increase the disk size. You can use this field to restore new instances only. This field is not applicable for restore to existing instances. */
-  restoreInstanceSettings?: DatabaseInstance;
-  /** The name of the backup that's used to restore a Cloud SQL instance: Format: "projects/{project-id}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input. */
-  backupdrBackup?: string;
   /** Optional. This field has the same purpose as restore_instance_settings, changes any instance settings stored in the backup you are restoring from. With the difference that these fields are cleared in the settings. */
   restoreInstanceClearOverridesFieldNames?: StringList;
-  /** Parameters required to perform the restore backup operation. */
-  restoreBackupContext?: RestoreBackupContext;
   /** The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id}/backups/{backup-uid}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input. */
   backup?: string;
+  /** Parameters required to perform the restore backup operation. */
+  restoreBackupContext?: RestoreBackupContext;
+  /** The name of the backup that's used to restore a Cloud SQL instance: Format: "projects/{project-id}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input. */
+  backupdrBackup?: string;
+  /** Optional. By using this parameter, Cloud SQL overrides any instance settings stored in the backup you are restoring from. You can't change the instance's major database version and you can only increase the disk size. You can use this field to restore new instances only. This field is not applicable for restore to existing instances. */
+  restoreInstanceSettings?: DatabaseInstance;
+  /** Optional. If true, the restore operation proceeds even if the target instance's maintenance version is older than the source instance's maintenance version. */
+  ignoreMaintenanceVersion?: boolean;
 }
 export const InstancesRestoreBackupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    restoreInstanceSettings: S.optional(DatabaseInstance),
-    backupdrBackup: S.optional(S.String),
     restoreInstanceClearOverridesFieldNames: S.optional(StringList),
-    restoreBackupContext: S.optional(RestoreBackupContext),
     backup: S.optional(S.String),
+    restoreBackupContext: S.optional(RestoreBackupContext),
+    backupdrBackup: S.optional(S.String),
+    restoreInstanceSettings: S.optional(DatabaseInstance),
+    ignoreMaintenanceVersion: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "InstancesRestoreBackupRequest",
 }) as any as S.Schema<InstancesRestoreBackupRequest>;
 
 export interface RestoreBackupInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** Request body */
   body?: InstancesRestoreBackupRequest;
 }
 export const RestoreBackupInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
+    project: S.String.pipe(T.Label()),
     body: S.optional(InstancesRestoreBackupRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -5809,67 +6384,6 @@ export const RestoreBackupInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RestoreBackupInstancesRequest",
 }) as any as S.Schema<RestoreBackupInstancesRequest>;
-
-/** The context to perform a point-in-time recovery of an instance managed by Backup and Disaster Recovery (DR) Service. */
-export interface PointInTimeRestoreContext {
-  /** The Backup and Disaster Recovery (DR) Service Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}. */
-  datasource?: string;
-  /** Target instance name. */
-  targetInstance?: string;
-  /** Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field. */
-  preferredSecondaryZone?: string;
-  /** Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance. */
-  preferredZone?: string;
-  /** Optional. Specifies the instance settings that will be overridden from the source instance. This field is only applicable for cross project PITRs. */
-  targetInstanceSettings?: DatabaseInstance;
-  /** Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. */
-  privateNetwork?: string;
-  /** Optional. The region of the target instance where the datasource will be restored. For example: "us-central1". */
-  region?: string;
-  /** Required. The date and time to which you want to restore the instance. */
-  pointInTime?: string;
-  /** Optional. Specifies the instance settings that will be cleared from the source instance. This field is only applicable for cross project PITRs. */
-  targetInstanceClearSettingsFieldNames?: StringList;
-  /** Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. */
-  allocatedIpRange?: string;
-}
-export const PointInTimeRestoreContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datasource: S.optional(S.String),
-    targetInstance: S.optional(S.String),
-    preferredSecondaryZone: S.optional(S.String),
-    preferredZone: S.optional(S.String),
-    targetInstanceSettings: S.optional(DatabaseInstance),
-    privateNetwork: S.optional(S.String),
-    region: S.optional(S.String),
-    pointInTime: S.optional(S.String),
-    targetInstanceClearSettingsFieldNames: S.optional(StringList),
-    allocatedIpRange: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PointInTimeRestoreContext",
-}) as any as S.Schema<PointInTimeRestoreContext>;
-
-export interface RestorePointInTimeInstanceRequest {
-  /** Required. The parent resource where you created this instance. Format: projects/{project} */
-  parent: string;
-  /** Request body */
-  body?: PointInTimeRestoreContext;
-}
-export const RestorePointInTimeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    parent: S.String.pipe(T.Label()),
-    body: S.optional(PointInTimeRestoreContext.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "v1/{+parent}:pointInTimeRestore",
-      baseUrl: "https://sqladmin.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointInTimeInstanceRequest",
-}) as any as S.Schema<RestorePointInTimeInstanceRequest>;
 
 /** Instance rotate Entra ID certificate context. */
 export interface RotateEntraIdCertificateContext {
@@ -5904,18 +6418,21 @@ export const InstancesRotateEntraIdCertificateRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<InstancesRotateEntraIdCertificateRequest>;
 
 export interface RotateEntraIdCertificateInstancesRequest {
-  /** Required. Project ID of the project that contains the instance. */
-  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Required. Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Required. Project ID of the project that contains the instance. */
+  project: string;
   /** Request body */
   body?: InstancesRotateEntraIdCertificateRequest;
 }
 export const RotateEntraIdCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
       body: S.optional(
         InstancesRotateEntraIdCertificateRequest.pipe(T.HttpBody()),
       ),
@@ -5932,15 +6449,15 @@ export const RotateEntraIdCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
 
 /** Instance rotate server CA context. */
 export interface RotateServerCaContext {
-  /** This is always `sql#rotateServerCaContext`. */
-  kind?: string;
   /** The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server CA version. */
   nextVersion?: string;
+  /** This is always `sql#rotateServerCaContext`. */
+  kind?: string;
 }
 export const RotateServerCaContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     nextVersion: S.optional(S.String),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RotateServerCaContext",
@@ -5960,6 +6477,8 @@ export const InstancesRotateServerCaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesRotateServerCaRequest>;
 
 export interface RotateServerCaInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the project that contains the instance. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -5969,6 +6488,7 @@ export interface RotateServerCaInstancesRequest {
 }
 export const RotateServerCaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(InstancesRotateServerCaRequest.pipe(T.HttpBody())),
@@ -6020,6 +6540,8 @@ export interface RotateServerCertificateInstancesRequest {
   project: string;
   /** Required. Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: InstancesRotateServerCertificateRequest;
 }
@@ -6028,6 +6550,7 @@ export const RotateServerCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
     S.Struct({
       project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      location: S.optional(S.String.pipe(T.Query())),
       body: S.optional(
         InstancesRotateServerCertificateRequest.pipe(T.HttpBody()),
       ),
@@ -6042,12 +6565,11 @@ export const RotateServerCertificateInstancesRequest = /*@__PURE__*/ S.suspend(
   identifier: "RotateServerCertificateInstancesRequest",
 }) as any as S.Schema<RotateServerCertificateInstancesRequest>;
 
-export type SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
-  | "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED"
-  | "MIN"
-  | "OPTIMAL"
-  | "MAX";
-export const SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
+export type SqlInstancesStartExternalSyncRequestSyncModeEnum =
+  | "EXTERNAL_SYNC_MODE_UNSPECIFIED"
+  | "ONLINE"
+  | "OFFLINE";
+export const SqlInstancesStartExternalSyncRequestSyncModeEnum =
   /*@__PURE__*/ S.String;
 
 /** Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump. */
@@ -6082,11 +6604,12 @@ export const MySqlSyncConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "MySqlSyncConfig",
 }) as any as S.Schema<MySqlSyncConfig>;
 
-export type SqlInstancesStartExternalSyncRequestSyncModeEnum =
-  | "EXTERNAL_SYNC_MODE_UNSPECIFIED"
-  | "ONLINE"
-  | "OFFLINE";
-export const SqlInstancesStartExternalSyncRequestSyncModeEnum =
+export type SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
+  | "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED"
+  | "MIN"
+  | "OPTIMAL"
+  | "MAX";
+export const SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
   /*@__PURE__*/ S.String;
 
 export type SqlInstancesStartExternalSyncRequestMigrationTypeEnum =
@@ -6098,35 +6621,38 @@ export const SqlInstancesStartExternalSyncRequestMigrationTypeEnum =
 
 /** Instance start external sync request. */
 export interface SqlInstancesStartExternalSyncRequest {
+  /** External sync mode. */
+  syncMode?: SqlInstancesStartExternalSyncRequestSyncModeEnum | (string & {});
+  /** Whether to skip the verification step (VESS). */
+  skipVerification?: boolean;
+  /** MySQL-specific settings for start external sync. */
+  mysqlSyncConfig?: MySqlSyncConfig;
   /** Optional. Parallel level for initial data sync. Currently only applicable for MySQL. */
   syncParallelLevel?:
     | SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum
     | (string & {});
-  /** MySQL-specific settings for start external sync. */
-  mysqlSyncConfig?: MySqlSyncConfig;
-  /** Whether to skip the verification step (VESS). */
-  skipVerification?: boolean;
-  /** External sync mode. */
-  syncMode?: SqlInstancesStartExternalSyncRequestSyncModeEnum | (string & {});
   /** Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL. */
   migrationType?:
     | SqlInstancesStartExternalSyncRequestMigrationTypeEnum
     | (string & {});
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Optional. MySQL only. True if end-user has confirmed that this SES call will wipe replica databases overlapping with the proposed selected_objects. If this field is not set and there are both overlapping and additional databases proposed, an error will be returned. */
   replicaOverwriteEnabled?: boolean;
 }
 export const SqlInstancesStartExternalSyncRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      syncMode: S.optional(SqlInstancesStartExternalSyncRequestSyncModeEnum),
+      skipVerification: S.optional(S.Boolean),
+      mysqlSyncConfig: S.optional(MySqlSyncConfig),
       syncParallelLevel: S.optional(
         SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum,
       ),
-      mysqlSyncConfig: S.optional(MySqlSyncConfig),
-      skipVerification: S.optional(S.Boolean),
-      syncMode: S.optional(SqlInstancesStartExternalSyncRequestSyncModeEnum),
       migrationType: S.optional(
         SqlInstancesStartExternalSyncRequestMigrationTypeEnum,
       ),
+      location: S.optional(S.String),
       replicaOverwriteEnabled: S.optional(S.Boolean),
     }),
 ).annotate({
@@ -6163,11 +6689,14 @@ export interface StartReplicaInstancesRequest {
   project: string;
   /** Cloud SQL read replica instance name. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const StartReplicaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -6180,6 +6709,8 @@ export const StartReplicaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartReplicaInstancesRequest>;
 
 export interface StopReplicaInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** ID of the project that contains the read replica. */
   project: string;
   /** Cloud SQL read replica instance name. */
@@ -6187,6 +6718,7 @@ export interface StopReplicaInstancesRequest {
 }
 export const StopReplicaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
   }).pipe(
@@ -6200,19 +6732,52 @@ export const StopReplicaInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopReplicaInstancesRequest",
 }) as any as S.Schema<StopReplicaInstancesRequest>;
 
+/** Request message for switching over a `BlueGreenDeployment` resource. */
+export interface SwitchoverBlueGreenDeploymentRequest {}
+export const SwitchoverBlueGreenDeploymentRequest = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SwitchoverBlueGreenDeploymentRequest",
+}) as any as S.Schema<SwitchoverBlueGreenDeploymentRequest>;
+
+export interface SwitchoverBlueGreenDeploymentsRequest {
+  /** Required. The name of the blue-green deployment to switch over. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment} */
+  name: string;
+  /** Request body */
+  body?: SwitchoverBlueGreenDeploymentRequest;
+}
+export const SwitchoverBlueGreenDeploymentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      body: S.optional(SwitchoverBlueGreenDeploymentRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "v1/{+name}:switchover",
+        baseUrl: "https://sqladmin.googleapis.com/",
+      }),
+    ),
+).annotate({
+  identifier: "SwitchoverBlueGreenDeploymentsRequest",
+}) as any as S.Schema<SwitchoverBlueGreenDeploymentsRequest>;
+
 export interface SwitchoverInstancesRequest {
-  /** Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours. */
-  dbTimeout?: string;
-  /** ID of the project that contains the replica. */
-  project: string;
   /** Cloud SQL read replica instance name. */
   instance: string;
+  /** ID of the project that contains the replica. */
+  project: string;
+  /** Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours. */
+  dbTimeout?: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
 }
 export const SwitchoverInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dbTimeout: S.optional(S.String.pipe(T.Query())),
-    project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    dbTimeout: S.optional(S.String.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -6254,6 +6819,8 @@ export const InstancesTruncateLogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstancesTruncateLogRequest>;
 
 export interface TruncateLogInstancesRequest {
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Project ID of the Cloud SQL project. */
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
@@ -6263,6 +6830,7 @@ export interface TruncateLogInstancesRequest {
 }
 export const TruncateLogInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String.pipe(T.Query())),
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
     body: S.optional(InstancesTruncateLogRequest.pipe(T.HttpBody())),
@@ -6302,20 +6870,23 @@ export const UpdateBackupBackupsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBackupBackupsRequest>;
 
 export interface UpdateDatabasesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Database instance ID. This does not include the project ID. */
-  instance: string;
   /** Name of the database to be updated in the instance. */
   database: string;
+  /** Database instance ID. This does not include the project ID. */
+  instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: Database;
 }
 export const UpdateDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
     database: S.String.pipe(T.Label()),
+    instance: S.String.pipe(T.Label()),
+    project: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(Database.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -6333,6 +6904,8 @@ export interface UpdateInstancesRequest {
   project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
   /** Request body */
   body?: DatabaseInstance;
 }
@@ -6340,6 +6913,7 @@ export const UpdateInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
     instance: S.String.pipe(T.Label()),
+    location: S.optional(S.String.pipe(T.Query())),
     body: S.optional(DatabaseInstance.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -6353,35 +6927,38 @@ export const UpdateInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInstancesRequest>;
 
 export interface UpdateUsersRequest {
-  /** Optional. List of database roles to grant to the user. body.database_roles will be ignored for update request. */
-  databaseRoles?: StringList;
-  /** Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles. */
-  revokeExistingRoles?: boolean;
-  /** Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles. */
-  revokeExistingServerRoles?: boolean;
-  /** Project ID of the project that contains the instance. */
-  project: string;
-  /** Database instance ID. This does not include the project ID. */
-  instance: string;
   /** Optional. Host of the user in the instance. */
   host?: string;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
+  /** Optional. List of database roles to grant to the user. body.database_roles will be ignored for update request. */
+  databaseRoles?: StringList;
   /** Name of the user in the instance. */
   name?: string;
+  /** Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles. */
+  revokeExistingRoles?: boolean;
+  /** Database instance ID. This does not include the project ID. */
+  instance: string;
   /** Optional. The server roles to grant to the SQL Server login. Existing server roles will not be revoked if revoke_existing_roles is false. body.server_roles will be ignored for update request. */
   serverRoles?: StringList;
+  /** Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles. */
+  revokeExistingServerRoles?: boolean;
   /** Request body */
   body?: User;
 }
 export const UpdateUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    databaseRoles: S.optional(StringList.pipe(T.Query())),
-    revokeExistingRoles: S.optional(S.Boolean.pipe(T.Query())),
-    revokeExistingServerRoles: S.optional(S.Boolean.pipe(T.Query())),
-    project: S.String.pipe(T.Label()),
-    instance: S.String.pipe(T.Label()),
     host: S.optional(S.String.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
+    project: S.String.pipe(T.Label()),
+    databaseRoles: S.optional(StringList.pipe(T.Query())),
     name: S.optional(S.String.pipe(T.Query())),
+    revokeExistingRoles: S.optional(S.Boolean.pipe(T.Query())),
+    instance: S.String.pipe(T.Label()),
     serverRoles: S.optional(StringList.pipe(T.Query())),
+    revokeExistingServerRoles: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(User.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -6402,20 +6979,6 @@ export type SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum =
 export const SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum =
   /*@__PURE__*/ S.String;
 
-export type SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
-  | "EXTERNAL_SYNC_MODE_UNSPECIFIED"
-  | "ONLINE"
-  | "OFFLINE";
-export const SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
-  /*@__PURE__*/ S.String;
-
-export type SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
-  | "MIGRATION_TYPE_UNSPECIFIED"
-  | "LOGICAL"
-  | "PHYSICAL";
-export const SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
-  /*@__PURE__*/ S.String;
-
 /** The selected object that Cloud SQL migrates. */
 export interface ExternalSyncSelectedObject {
   /** The name of the database that Cloud SQL migrates. */
@@ -6434,18 +6997,30 @@ export const ExternalSyncSelectedObjectList = /*@__PURE__*/ S.Array(
   ExternalSyncSelectedObject,
 ) as any as S.Schema<ExternalSyncSelectedObjectList>;
 
+export type SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
+  | "EXTERNAL_SYNC_MODE_UNSPECIFIED"
+  | "ONLINE"
+  | "OFFLINE";
+export const SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
+  /*@__PURE__*/ S.String;
+
+export type SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
+  | "MIGRATION_TYPE_UNSPECIFIED"
+  | "LOGICAL"
+  | "PHYSICAL";
+export const SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
+  /*@__PURE__*/ S.String;
+
 /** Instance verify external sync settings request. */
 export interface SqlInstancesVerifyExternalSyncSettingsRequest {
-  /** Optional. Flag to verify settings required by replication setup only */
-  verifyReplicationOnly?: boolean;
-  /** Optional. MySQL-specific settings for start external sync. */
-  mysqlSyncConfig?: MySqlSyncConfig;
-  /** Flag to enable verifying connection only */
-  verifyConnectionOnly?: boolean;
   /** Optional. Parallel level for initial data sync. Only applicable for PostgreSQL. */
   syncParallelLevel?:
     | SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum
     | (string & {});
+  /** Flag to enable verifying connection only */
+  verifyConnectionOnly?: boolean;
+  /** Optional. Migrate only the specified objects from the source instance. If this field is empty, then migrate all objects. */
+  selectedObjects?: ExternalSyncSelectedObjectList;
   /** External sync mode */
   syncMode?:
     | SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum
@@ -6454,43 +7029,48 @@ export interface SqlInstancesVerifyExternalSyncSettingsRequest {
   migrationType?:
     | SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum
     | (string & {});
-  /** Optional. Migrate only the specified objects from the source instance. If this field is empty, then migrate all objects. */
-  selectedObjects?: ExternalSyncSelectedObjectList;
+  /** Optional. Region of the Cloud SQL instance. */
+  location?: string;
+  /** Optional. MySQL-specific settings for start external sync. */
+  mysqlSyncConfig?: MySqlSyncConfig;
+  /** Optional. Flag to verify settings required by replication setup only */
+  verifyReplicationOnly?: boolean;
 }
 export const SqlInstancesVerifyExternalSyncSettingsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      verifyReplicationOnly: S.optional(S.Boolean),
-      mysqlSyncConfig: S.optional(MySqlSyncConfig),
-      verifyConnectionOnly: S.optional(S.Boolean),
       syncParallelLevel: S.optional(
         SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum,
       ),
+      verifyConnectionOnly: S.optional(S.Boolean),
+      selectedObjects: S.optional(ExternalSyncSelectedObjectList),
       syncMode: S.optional(
         SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum,
       ),
       migrationType: S.optional(
         SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum,
       ),
-      selectedObjects: S.optional(ExternalSyncSelectedObjectList),
+      location: S.optional(S.String),
+      mysqlSyncConfig: S.optional(MySqlSyncConfig),
+      verifyReplicationOnly: S.optional(S.Boolean),
     }),
   ).annotate({
     identifier: "SqlInstancesVerifyExternalSyncSettingsRequest",
   }) as any as S.Schema<SqlInstancesVerifyExternalSyncSettingsRequest>;
 
 export interface VerifyExternalSyncSettingsProjectsInstancesRequest {
-  /** Project ID of the project that contains the instance. */
-  project: string;
   /** Cloud SQL instance ID. This does not include the project ID. */
   instance: string;
+  /** Project ID of the project that contains the instance. */
+  project: string;
   /** Request body */
   body?: SqlInstancesVerifyExternalSyncSettingsRequest;
 }
 export const VerifyExternalSyncSettingsProjectsInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      project: S.String.pipe(T.Label()),
       instance: S.String.pipe(T.Label()),
+      project: S.String.pipe(T.Label()),
       body: S.optional(
         SqlInstancesVerifyExternalSyncSettingsRequest.pipe(T.HttpBody()),
       ),
@@ -6564,22 +7144,24 @@ export type SqlExternalSyncSettingErrorTypeEnum =
   | "SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS"
   | "PROMPT_DELETE_EXISTING"
   | "WILL_DELETE_EXISTING"
-  | "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE";
+  | "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
+  | "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME"
+  | "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED";
 export const SqlExternalSyncSettingErrorTypeEnum = /*@__PURE__*/ S.String;
 
 /** External primary instance migration setting error/warning. */
 export interface SqlExternalSyncSettingError {
-  /** Additional information about the error encountered. */
-  detail?: string;
   /** Can be `sql#externalSyncSettingError` or `sql#externalSyncSettingWarning`. */
   kind?: string;
+  /** Additional information about the error encountered. */
+  detail?: string;
   /** Identifies the specific error that occurred. */
   type?: SqlExternalSyncSettingErrorTypeEnum;
 }
 export const SqlExternalSyncSettingError = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    detail: S.optional(S.String),
     kind: S.optional(S.String),
+    detail: S.optional(S.String),
     type: S.optional(SqlExternalSyncSettingErrorTypeEnum),
   }),
 ).annotate({
@@ -6594,19 +7176,19 @@ export const SqlExternalSyncSettingErrorList = /*@__PURE__*/ S.Array(
 
 /** Instance verify external sync settings response. */
 export interface SqlInstancesVerifyExternalSyncSettingsResponse {
+  /** This is always `sql#migrationSettingErrorList`. */
+  kind?: string;
   /** List of migration violations. */
   errors?: SqlExternalSyncSettingErrorList;
   /** List of migration warnings. */
   warnings?: SqlExternalSyncSettingErrorList;
-  /** This is always `sql#migrationSettingErrorList`. */
-  kind?: string;
 }
 export const SqlInstancesVerifyExternalSyncSettingsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      kind: S.optional(S.String),
       errors: S.optional(SqlExternalSyncSettingErrorList),
       warnings: S.optional(SqlExternalSyncSettingErrorList),
-      kind: S.optional(S.String),
     }),
   ).annotate({
     identifier: "SqlInstancesVerifyExternalSyncSettingsResponse",
@@ -6712,26 +7294,6 @@ export const cancelOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckPreMajorVersionUpgradeInstanceError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Execute MVU Pre-checks */
-export const checkPreMajorVersionUpgradeInstance: API.OperationMethod<
-  CheckPreMajorVersionUpgradeInstanceRequest,
-  Operation,
-  CheckPreMajorVersionUpgradeInstanceError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckPreMajorVersionUpgradeInstanceRequest,
-  output: Operation,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CloneInstancesError =
   | NotFound
   | Forbidden
@@ -6752,6 +7314,21 @@ export const cloneInstances: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ConnectResolveError = NotFound | Forbidden | GcpOpError;
+/** Retrieves connect settings about a Cloud SQL instance using the instance DNS name. */
+export const connectResolve: API.OperationMethod<
+  ConnectResolveRequest,
+  ConnectSettings,
+  ConnectResolveError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConnectResolveRequest,
+  output: ConnectSettings,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateBackupBackupsError =
   | NotFound
   | Forbidden
@@ -6766,6 +7343,26 @@ export const createBackupBackups: API.OperationMethod<
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateBackupBackupsRequest,
+  output: Operation,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBlueGreenDeploymentsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Creates a blue-green deployment under a given project and location. */
+export const createBlueGreenDeployments: API.OperationMethod<
+  CreateBlueGreenDeploymentsRequest,
+  Operation,
+  CreateBlueGreenDeploymentsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBlueGreenDeploymentsRequest,
   output: Operation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
@@ -6826,6 +7423,26 @@ export const deleteBackupRuns: API.OperationMethod<
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteBackupRunsRequest,
+  output: Operation,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBlueGreenDeploymentsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Deletes a blue-green deployment. */
+export const deleteBlueGreenDeployments: API.OperationMethod<
+  DeleteBlueGreenDeploymentsRequest,
+  Operation,
+  DeleteBlueGreenDeploymentsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBlueGreenDeploymentsRequest,
   output: Operation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
@@ -7057,6 +7674,21 @@ export const getBackupRuns: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetBackupRunsRequest,
   output: BackupRun,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBlueGreenDeploymentsError = NotFound | Forbidden | GcpOpError;
+/** Retrieves a blue-green deployment resource under a given project and location. */
+export const getBlueGreenDeployments: API.OperationMethod<
+  GetBlueGreenDeploymentsRequest,
+  BlueGreenDeployment,
+  GetBlueGreenDeploymentsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBlueGreenDeploymentsRequest,
+  output: BlueGreenDeployment,
   errors: [NotFound, Forbidden, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -7349,6 +7981,26 @@ export const listBackupsBackups: API.PaginatedOperationMethod<
   } as const,
 })) as any;
 
+export type ListBlueGreenDeploymentsError = NotFound | Forbidden | GcpOpError;
+/** Lists blue-green deployments under a given project. */
+export const listBlueGreenDeployments: API.PaginatedOperationMethod<
+  ListBlueGreenDeploymentsRequest,
+  ListBlueGreenDeploymentsResponse,
+  ListBlueGreenDeploymentsError,
+  GcpOpContext,
+  ListBlueGreenDeploymentsResponse
+> = /*@__PURE__*/ API.makePaginated(() => ({
+  input: ListBlueGreenDeploymentsRequest,
+  output: ListBlueGreenDeploymentsResponse,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+  pagination: {
+    inputToken: "pageToken",
+    outputToken: "nextPageToken",
+  } as const,
+})) as any;
+
 export type ListDatabasesError = NotFound | Forbidden | GcpOpError;
 /** Lists databases in the specified Cloud SQL instance. */
 export const listDatabases: API.OperationMethod<
@@ -7577,6 +8229,46 @@ export const performDiskShrinkProjectsInstances: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PointInTimeRestoreInstancesError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery. */
+export const pointInTimeRestoreInstances: API.OperationMethod<
+  PointInTimeRestoreInstancesRequest,
+  Operation,
+  PointInTimeRestoreInstancesError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PointInTimeRestoreInstancesRequest,
+  output: Operation,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PreCheckMajorVersionUpgradeInstancesError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Execute MVU Pre-checks */
+export const preCheckMajorVersionUpgradeInstances: API.OperationMethod<
+  PreCheckMajorVersionUpgradeInstancesRequest,
+  Operation,
+  PreCheckMajorVersionUpgradeInstancesError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PreCheckMajorVersionUpgradeInstancesRequest,
+  output: Operation,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PromoteReplicaInstancesError =
   | NotFound
   | Forbidden
@@ -7697,21 +8389,6 @@ export const resetSslConfigInstances: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResolveConnectError = NotFound | Forbidden | GcpOpError;
-/** Retrieves connect settings about a Cloud SQL instance using the instance DNS name. */
-export const resolveConnect: API.OperationMethod<
-  ResolveConnectRequest,
-  ConnectSettings,
-  ResolveConnectError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResolveConnectRequest,
-  output: ConnectSettings,
-  errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RestartInstancesError =
   | NotFound
   | Forbidden
@@ -7746,26 +8423,6 @@ export const restoreBackupInstances: API.OperationMethod<
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: RestoreBackupInstancesRequest,
-  output: Operation,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointInTimeInstanceError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery. */
-export const restorePointInTimeInstance: API.OperationMethod<
-  RestorePointInTimeInstanceRequest,
-  Operation,
-  RestorePointInTimeInstanceError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointInTimeInstanceRequest,
   output: Operation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
@@ -7886,6 +8543,26 @@ export const stopReplicaInstances: API.OperationMethod<
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: StopReplicaInstancesRequest,
+  output: Operation,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SwitchoverBlueGreenDeploymentsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Switches over to green instance for a blue-green deployment. */
+export const switchoverBlueGreenDeployments: API.OperationMethod<
+  SwitchoverBlueGreenDeploymentsRequest,
+  Operation,
+  SwitchoverBlueGreenDeploymentsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SwitchoverBlueGreenDeploymentsRequest,
   output: Operation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,

@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistory": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistoryRequest"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistoryResponse"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistoryResponse": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap",
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -166,7 +167,7 @@
         "smithy.api#documentation": "Mcc cache node resource issue properties."
       }
     },
-    "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -286,7 +287,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistoryRequest": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -326,13 +327,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetail": {
+    "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetailRequest"
+        "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetailsRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetailResponse"
+        "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -345,7 +346,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetailResponse": {
+    "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -519,7 +520,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetailRequest": {
+    "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -826,13 +827,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidr": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidrRequest"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidrResponse"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -845,7 +846,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidrResponse": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -873,7 +874,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetBgpCidrsResponseTagsMap",
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -919,7 +920,7 @@
         "smithy.api#documentation": "Mcc cache node Bgp Cidr details."
       }
     },
-    "com.azure.connectedcache#IspCacheNodesOperationsGetBgpCidrsResponseTagsMap": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -931,7 +932,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidrRequest": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -971,10 +972,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#DeleteIspCacheNodeOperation": {
+    "com.azure.connectedcache#DeleteIspCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#DeleteIspCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#DeleteIspCacheNodesOperationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -990,7 +991,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#DeleteIspCacheNodeOperationRequest": {
+    "com.azure.connectedcache#DeleteIspCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1030,13 +1031,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#UpdateIspCacheNodeOperation": {
+    "com.azure.connectedcache#UpdateIspCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#UpdateIspCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#UpdateIspCacheNodesOperationRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#UpdateIspCacheNodeOperationResponse"
+        "target": "com.azure.connectedcache#UpdateIspCacheNodesOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1049,7 +1050,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#UpdateIspCacheNodeOperationResponse": {
+    "com.azure.connectedcache#UpdateIspCacheNodesOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1077,7 +1078,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsUpdateResponseTagsMap",
+          "target": "com.azure.connectedcache#UpdateIspCacheNodesOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2226,7 +2227,7 @@
         "smithy.api#documentation": "provisioning state of the resource"
       }
     },
-    "com.azure.connectedcache#IspCacheNodesOperationsUpdateResponseTagsMap": {
+    "com.azure.connectedcache#UpdateIspCacheNodesOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2238,7 +2239,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#UpdateIspCacheNodeOperationRequest": {
+    "com.azure.connectedcache#UpdateIspCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2274,7 +2275,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsUpdateRequestTagsMap",
+          "target": "com.azure.connectedcache#UpdateIspCacheNodesOperationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2284,7 +2285,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#IspCacheNodesOperationsUpdateRequestTagsMap": {
+    "com.azure.connectedcache#UpdateIspCacheNodesOperationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2777,13 +2778,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperation": {
+    "com.azure.connectedcache#GetIspCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetIspCacheNodeOperationResponse"
+        "target": "com.azure.connectedcache#GetIspCacheNodesOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2796,7 +2797,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationResponse": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2824,7 +2825,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetResponseTagsMap",
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2847,7 +2848,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#IspCacheNodesOperationsGetResponseTagsMap": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2859,7 +2860,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetIspCacheNodeOperationRequest": {
+    "com.azure.connectedcache#GetIspCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2899,10 +2900,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#ListIspCacheNodeOperationByIspCustomerResource": {
+    "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#ListIspCacheNodeOperationByIspCustomerResourceRequest"
+        "target": "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResourceRequest"
       },
       "output": {
         "target": "com.azure.connectedcache#IspCacheNodeResourceListResult"
@@ -3011,7 +3012,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#ListIspCacheNodeOperationByIspCustomerResourceRequest": {
+    "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3141,7 +3142,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCustomersUpdateResponseTagsMap",
+          "target": "com.azure.connectedcache#UpdateIspCustomerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3606,7 +3607,7 @@
         "smithy.api#documentation": "Model representing Customer resource for ConnectedCache resource"
       }
     },
-    "com.azure.connectedcache#IspCustomersUpdateResponseTagsMap": {
+    "com.azure.connectedcache#UpdateIspCustomerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3646,7 +3647,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCustomersUpdateRequestTagsMap",
+          "target": "com.azure.connectedcache#UpdateIspCustomerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3656,7 +3657,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#IspCustomersUpdateRequestTagsMap": {
+    "com.azure.connectedcache#UpdateIspCustomerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4065,7 +4066,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#IspCustomersGetResponseTagsMap",
+          "target": "com.azure.connectedcache#GetIspCustomerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4088,7 +4089,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#IspCustomersGetResponseTagsMap": {
+    "com.azure.connectedcache#GetIspCustomerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4268,13 +4269,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistory": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistoryRequest"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistoryResponse"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4287,7 +4288,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistoryResponse": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4315,7 +4316,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap",
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4373,7 +4374,7 @@
         "smithy.api#documentation": "Cache node resource tls certificate history details."
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4385,7 +4386,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistoryRequest": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4425,13 +4426,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistory": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistoryRequest"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistoryResponse"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4444,7 +4445,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistoryResponse": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4472,7 +4473,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap",
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4495,7 +4496,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4507,7 +4508,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistoryRequest": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4547,13 +4548,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetail": {
+    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetailRequest"
+        "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetailResponse"
+        "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4566,7 +4567,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetailResponse": {
+    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4629,7 +4630,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetailRequest": {
+    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4791,10 +4792,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#DeleteEnterpriseMccCacheNodeOperation": {
+    "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4810,7 +4811,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#DeleteEnterpriseMccCacheNodeOperationRequest": {
+    "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4850,13 +4851,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperation": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperationResponse"
+        "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4869,7 +4870,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperationResponse": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4897,7 +4898,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap",
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4920,7 +4921,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4932,7 +4933,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperationRequest": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4968,7 +4969,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap",
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4978,7 +4979,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5143,13 +5144,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperation": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationRequest"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationRequest"
       },
       "output": {
-        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationResponse"
+        "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5162,7 +5163,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationResponse": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5190,7 +5191,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetResponseTagsMap",
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5213,7 +5214,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetResponseTagsMap": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5225,7 +5226,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationRequest": {
+    "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5265,10 +5266,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#ListEnterpriseMccCacheNodeOperationByEnterpriseMccCustomerResource": {
+    "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodeOperationByEnterpriseMccCustomerResourceRequest"
+        "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest"
       },
       "output": {
         "target": "com.azure.connectedcache#EnterpriseMccCacheNodeResourceListResult"
@@ -5377,7 +5378,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.connectedcache#ListEnterpriseMccCacheNodeOperationByEnterpriseMccCustomerResourceRequest": {
+    "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5507,7 +5508,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCustomersUpdateResponseTagsMap",
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5530,7 +5531,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCustomersUpdateResponseTagsMap": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCustomerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5570,7 +5571,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCustomersUpdateRequestTagsMap",
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5580,7 +5581,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCustomersUpdateRequestTagsMap": {
+    "com.azure.connectedcache#UpdateEnterpriseMccCustomerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5784,7 +5785,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.connectedcache#EnterpriseMccCustomersGetResponseTagsMap",
+          "target": "com.azure.connectedcache#GetEnterpriseMccCustomerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5807,7 +5808,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#EnterpriseMccCustomersGetResponseTagsMap": {
+    "com.azure.connectedcache#GetEnterpriseMccCustomerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6080,7 +6081,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.connectedcache#OperationsListResponseValueList",
+          "target": "com.azure.connectedcache#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -6096,7 +6097,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.connectedcache#OperationsListResponseValueList": {
+    "com.azure.connectedcache#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.connectedcache#Operation"
@@ -6220,97 +6221,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeMccIssueDetailHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCacheNodeOperationCacheNodeInstallDetail"
-        },
-        {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCacheNodeOperationBgpCidr"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteIspCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#UpdateIspCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#ListIspCacheNodeOperationByIspCustomerResource"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteIspCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#UpdateIspCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#IspCustomersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#ListIspCustomerByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeTlsCertificateHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeMccIssueDetailHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperationCacheNodeInstallDetail"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodeOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodeOperationByEnterpriseMccCustomerResource"
+          "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperation"
         },
         {
           "target": "com.azure.connectedcache#DeleteEnterpriseMccCustomer"
         },
         {
-          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomer"
+          "target": "com.azure.connectedcache#DeleteIspCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#DeleteIspCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetails"
         },
         {
           "target": "com.azure.connectedcache#EnterpriseMccCustomersCreateOrUpdate"
         },
         {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistory"
+        },
+        {
           "target": "com.azure.connectedcache#GetEnterpriseMccCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrs"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#IspCacheNodesOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetails"
+        },
+        {
+          "target": "com.azure.connectedcache#IspCustomersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResource"
         },
         {
           "target": "com.azure.connectedcache#ListEnterpriseMccCustomerByResourceGroup"
         },
         {
-          "target": "com.azure.connectedcache#ListIspCustomerBySubscription"
-        },
-        {
           "target": "com.azure.connectedcache#ListEnterpriseMccCustomerBySubscription"
         },
         {
+          "target": "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResource"
+        },
+        {
+          "target": "com.azure.connectedcache#ListIspCustomerByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedcache#ListIspCustomerBySubscription"
+        },
+        {
           "target": "com.azure.connectedcache#ListOperations"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateIspCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateIspCustomer"
         }
       ],
       "traits": {

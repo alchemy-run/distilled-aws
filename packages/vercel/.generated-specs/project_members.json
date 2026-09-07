@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.project_members#GetProjectMembersRequest": {
@@ -604,10 +605,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.project_members#GetProjectMembers"
+          "target": "com.vercel.project_members#AddProjectMember"
         },
         {
-          "target": "com.vercel.project_members#AddProjectMember"
+          "target": "com.vercel.project_members#GetProjectMembers"
         },
         {
           "target": "com.vercel.project_members#RemoveProjectMember"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.maps#MapAwaitRequest": {
@@ -290,7 +291,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.modal.maps#CheckMapInputRequest": {
+    "com.modal.maps#MapCheckInputsRequest": {
       "type": "structure",
       "members": {
         "lastEntryId": {
@@ -313,7 +314,7 @@
         "target": "smithy.api#Boolean"
       }
     },
-    "com.modal.maps#CheckMapInputResponse": {
+    "com.modal.maps#MapCheckInputsResponse": {
       "type": "structure",
       "members": {
         "lost": {
@@ -324,13 +325,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.maps#CheckMapInput": {
+    "com.modal.maps#MapCheckInputs": {
       "type": "operation",
       "input": {
-        "target": "com.modal.maps#CheckMapInputRequest"
+        "target": "com.modal.maps#MapCheckInputsRequest"
       },
       "output": {
-        "target": "com.modal.maps#CheckMapInputResponse"
+        "target": "com.modal.maps#MapCheckInputsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -403,7 +404,7 @@
         "target": "com.modal.maps#MapStartOrContinueItem"
       }
     },
-    "com.modal.maps#StartMapOrContinueRequest": {
+    "com.modal.maps#MapStartOrContinueRequest": {
       "type": "structure",
       "members": {
         "functionId": {
@@ -452,7 +453,7 @@
         }
       }
     },
-    "com.modal.maps#StartMapOrContinueResponse": {
+    "com.modal.maps#MapStartOrContinueResponse": {
       "type": "structure",
       "members": {
         "mapToken": {
@@ -481,13 +482,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.maps#StartMapOrContinue": {
+    "com.modal.maps#MapStartOrContinue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.maps#StartMapOrContinueRequest"
+        "target": "com.modal.maps#MapStartOrContinueRequest"
       },
       "output": {
-        "target": "com.modal.maps#StartMapOrContinueResponse"
+        "target": "com.modal.maps#MapStartOrContinueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -505,10 +506,10 @@
           "target": "com.modal.maps#MapAwait"
         },
         {
-          "target": "com.modal.maps#CheckMapInput"
+          "target": "com.modal.maps#MapCheckInputs"
         },
         {
-          "target": "com.modal.maps#StartMapOrContinue"
+          "target": "com.modal.maps#MapStartOrContinue"
         }
       ],
       "traits": {

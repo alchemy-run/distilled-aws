@@ -37,26 +37,26 @@ export const PathsV2SegmentItem = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PathsV2SegmentItem>;
 
 /** The segment's path items in displayed order. In open mode exactly two items - a single edge, source then target. In anchored mode the concrete chain as shown, starting at the anchor. */
-export type PathsV2SegmentToFunnelCreateRequestItemsList =
+export type CreatePathsV2SegmentToFunnelRequestItemsList =
   Array<PathsV2SegmentItem>;
-export const PathsV2SegmentToFunnelCreateRequestItemsList =
+export const CreatePathsV2SegmentToFunnelRequestItemsList =
   /*@__PURE__*/ S.Array(
     PathsV2SegmentItem,
-  ) as any as S.Schema<PathsV2SegmentToFunnelCreateRequestItemsList>;
+  ) as any as S.Schema<CreatePathsV2SegmentToFunnelRequestItemsList>;
 
-export interface CreatePathV2SegmentToFunnelRequest {
+export interface CreatePathsV2SegmentToFunnelRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The PathsV2Query the segment is displayed under (JSON object with kind `PathsV2Query`). Step sources, path cleaning, excluded items, date range, and the gap or conversion window are read from it, so the emitted funnel counts exactly what the chart shows. */
   query: unknown;
   /** The segment's path items in displayed order. In open mode exactly two items - a single edge, source then target. In anchored mode the concrete chain as shown, starting at the anchor. */
-  items: PathsV2SegmentToFunnelCreateRequestItemsList;
+  items: CreatePathsV2SegmentToFunnelRequestItemsList;
 }
-export const CreatePathV2SegmentToFunnelRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePathsV2SegmentToFunnelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     query: S.Unknown,
-    items: PathsV2SegmentToFunnelCreateRequestItemsList,
+    items: CreatePathsV2SegmentToFunnelRequestItemsList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -65,8 +65,8 @@ export const CreatePathV2SegmentToFunnelRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreatePathV2SegmentToFunnelRequest",
-}) as any as S.Schema<CreatePathV2SegmentToFunnelRequest>;
+  identifier: "CreatePathsV2SegmentToFunnelRequest",
+}) as any as S.Schema<CreatePathsV2SegmentToFunnelRequest>;
 
 export interface PathsV2SegmentToFunnelResponse {
   /** The FunnelsQuery (JSON object with kind `FunnelsQuery`) that reproduces the segment's displayed unique-actor count exactly. Wrap it in an InsightVizNode to open it as a funnel insight. */
@@ -80,15 +80,15 @@ export const PathsV2SegmentToFunnelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PathsV2SegmentToFunnelResponse",
 }) as any as S.Schema<PathsV2SegmentToFunnelResponse>;
 
-export type CreatePathV2SegmentToFunnelError = BadRequest | PosthogOpError;
+export type CreatePathsV2SegmentToFunnelError = BadRequest | PosthogOpError;
 /** Convert a journey segment to a funnel Converts a displayed journeys segment into the funnel query that reproduces its unique-actor count exactly. In open mode only a single edge converts (a two-step funnel with the inactivity gap as conversion window); in anchored mode any anchor-rooted chain converts (window W). The funnel is returned as JSON and is not executed or persisted here. */
-export const createPathV2SegmentToFunnel: API.OperationMethod<
-  CreatePathV2SegmentToFunnelRequest,
+export const createPathsV2SegmentToFunnel: API.OperationMethod<
+  CreatePathsV2SegmentToFunnelRequest,
   PathsV2SegmentToFunnelResponse,
-  CreatePathV2SegmentToFunnelError,
+  CreatePathsV2SegmentToFunnelError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreatePathV2SegmentToFunnelRequest,
+  input: CreatePathsV2SegmentToFunnelRequest,
   output: PathsV2SegmentToFunnelResponse,
   errors: [BadRequest],
   protocol: PosthogProtocol,

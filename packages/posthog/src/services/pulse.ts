@@ -195,75 +195,26 @@ export const BriefConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BriefConfig" }) as any as S.Schema<BriefConfig>;
 
-export interface ListPulseBriefConfigsRequest {
+export interface GetPulseBriefRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  /** A UUID string identifying this product brief. */
+  id: string;
 }
-export const ListPulseBriefConfigsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPulseBriefRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/pulse/brief_configs/",
+      uri: "/api/projects/{project_id}/pulse/briefs/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListPulseBriefConfigsRequest",
-}) as any as S.Schema<ListPulseBriefConfigsRequest>;
-
-export type PaginatedBriefConfigListResultsList = Array<BriefConfig>;
-export const PaginatedBriefConfigListResultsList = /*@__PURE__*/ S.Array(
-  BriefConfig,
-) as any as S.Schema<PaginatedBriefConfigListResultsList>;
-
-export interface PaginatedBriefConfigList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedBriefConfigListResultsList;
-}
-export const PaginatedBriefConfigList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedBriefConfigListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedBriefConfigList",
-}) as any as S.Schema<PaginatedBriefConfigList>;
-
-export interface ListPulseBriefsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ListPulseBriefsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/pulse/briefs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListPulseBriefsRequest",
-}) as any as S.Schema<ListPulseBriefsRequest>;
+  identifier: "GetPulseBriefRequest",
+}) as any as S.Schema<GetPulseBriefRequest>;
 
 /** * `generating` - Generating * `ready` - Ready * `quiet` - Quiet * `failed` - Failed */
 export type ProductBriefStatusEnum =
@@ -293,143 +244,6 @@ export const Period = /*@__PURE__*/ S.suspend(() =>
     days: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Period" }) as any as S.Schema<Period>;
-
-/** Names of the brief sources that contributed items. */
-export type ProductBriefListSourcesUsedList = Array<string>;
-export const ProductBriefListSourcesUsedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProductBriefListSourcesUsedList>;
-
-export interface ProductBriefList {
-  id: string;
-  /** The brief config this brief was generated for, if any. */
-  config: string | null;
-  /** Lifecycle status: generating, ready, quiet (nothing confident to say), or failed. * `generating` - Generating * `ready` - Ready * `quiet` - Quiet * `failed` - Failed */
-  status: ProductBriefStatusEnum;
-  /** What started the generation: on_demand or scheduled. * `on_demand` - On Demand * `scheduled` - Scheduled */
-  trigger: ProductBriefTriggerEnum;
-  /** The resolved-at-gather period spec the brief covers. */
-  period: Period;
-  /** Names of the brief sources that contributed items. */
-  sources_used: ProductBriefListSourcesUsedList;
-  /** Error detail when status is failed. */
-  error: string | null;
-  created_at: string;
-  /** User who requested the brief. */
-  created_by: UserBasic | null;
-  updated_at: string | null;
-}
-export const ProductBriefList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    config: S.NullOr(S.String),
-    status: ProductBriefStatusEnum,
-    trigger: ProductBriefTriggerEnum,
-    period: Period,
-    sources_used: ProductBriefListSourcesUsedList,
-    error: S.NullOr(S.String),
-    created_at: S.String,
-    created_by: S.NullOr(UserBasic),
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "ProductBriefList",
-}) as any as S.Schema<ProductBriefList>;
-
-export type PaginatedProductBriefListListResultsList = Array<ProductBriefList>;
-export const PaginatedProductBriefListListResultsList = /*@__PURE__*/ S.Array(
-  ProductBriefList,
-) as any as S.Schema<PaginatedProductBriefListListResultsList>;
-
-export interface PaginatedProductBriefListList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedProductBriefListListResultsList;
-}
-export const PaginatedProductBriefListList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedProductBriefListListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedProductBriefListList",
-}) as any as S.Schema<PaginatedProductBriefListList>;
-
-export interface PulseBriefConfigsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this brief config. */
-  id: string;
-}
-export const PulseBriefConfigsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/pulse/brief_configs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PulseBriefConfigsDestroyRequest",
-}) as any as S.Schema<PulseBriefConfigsDestroyRequest>;
-
-export interface PulseBriefConfigsDestroyResponse {}
-export const PulseBriefConfigsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PulseBriefConfigsDestroyResponse",
-}) as any as S.Schema<PulseBriefConfigsDestroyResponse>;
-
-export interface PulseBriefConfigsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this brief config. */
-  id: string;
-}
-export const PulseBriefConfigsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/pulse/brief_configs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PulseBriefConfigsRetrieveRequest",
-}) as any as S.Schema<PulseBriefConfigsRetrieveRequest>;
-
-export interface PulseBriefsGenerateCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Optional brief config to generate for. Omit for the zero-config default brief. */
-  config_id?: string | null;
-  /** Period the brief should cover. Defaults to the last 7 days. */
-  period?: Period;
-}
-export const PulseBriefsGenerateCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    config_id: S.optional(S.NullOr(S.String)),
-    period: S.optional(Period),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/pulse/briefs/generate/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PulseBriefsGenerateCreateRequest",
-}) as any as S.Schema<PulseBriefsGenerateCreateRequest>;
 
 export interface BriefSectionCitation {
   /** Cited resource type, e.g. insight or dashboard. */
@@ -529,26 +343,212 @@ export const ProductBrief = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ProductBrief" }) as any as S.Schema<ProductBrief>;
 
-export interface PulseBriefsRetrieveRequest {
+export interface GetPulseBriefConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this product brief. */
+  /** A UUID string identifying this brief config. */
   id: string;
 }
-export const PulseBriefsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPulseBriefConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/pulse/briefs/{id}/",
+      uri: "/api/projects/{project_id}/pulse/brief_configs/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PulseBriefsRetrieveRequest",
-}) as any as S.Schema<PulseBriefsRetrieveRequest>;
+  identifier: "GetPulseBriefConfigRequest",
+}) as any as S.Schema<GetPulseBriefConfigRequest>;
+
+export interface ListPulseBriefConfigsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListPulseBriefConfigsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/pulse/brief_configs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListPulseBriefConfigsRequest",
+}) as any as S.Schema<ListPulseBriefConfigsRequest>;
+
+export type PaginatedBriefConfigListResultsList = Array<BriefConfig>;
+export const PaginatedBriefConfigListResultsList = /*@__PURE__*/ S.Array(
+  BriefConfig,
+) as any as S.Schema<PaginatedBriefConfigListResultsList>;
+
+export interface PaginatedBriefConfigList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedBriefConfigListResultsList;
+}
+export const PaginatedBriefConfigList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedBriefConfigListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedBriefConfigList",
+}) as any as S.Schema<PaginatedBriefConfigList>;
+
+export interface ListPulseBriefsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListPulseBriefsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/pulse/briefs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListPulseBriefsRequest",
+}) as any as S.Schema<ListPulseBriefsRequest>;
+
+/** Names of the brief sources that contributed items. */
+export type ProductBriefListSourcesUsedList = Array<string>;
+export const ProductBriefListSourcesUsedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProductBriefListSourcesUsedList>;
+
+export interface ProductBriefList {
+  id: string;
+  /** The brief config this brief was generated for, if any. */
+  config: string | null;
+  /** Lifecycle status: generating, ready, quiet (nothing confident to say), or failed. * `generating` - Generating * `ready` - Ready * `quiet` - Quiet * `failed` - Failed */
+  status: ProductBriefStatusEnum;
+  /** What started the generation: on_demand or scheduled. * `on_demand` - On Demand * `scheduled` - Scheduled */
+  trigger: ProductBriefTriggerEnum;
+  /** The resolved-at-gather period spec the brief covers. */
+  period: Period;
+  /** Names of the brief sources that contributed items. */
+  sources_used: ProductBriefListSourcesUsedList;
+  /** Error detail when status is failed. */
+  error: string | null;
+  created_at: string;
+  /** User who requested the brief. */
+  created_by: UserBasic | null;
+  updated_at: string | null;
+}
+export const ProductBriefList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    config: S.NullOr(S.String),
+    status: ProductBriefStatusEnum,
+    trigger: ProductBriefTriggerEnum,
+    period: Period,
+    sources_used: ProductBriefListSourcesUsedList,
+    error: S.NullOr(S.String),
+    created_at: S.String,
+    created_by: S.NullOr(UserBasic),
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ProductBriefList",
+}) as any as S.Schema<ProductBriefList>;
+
+export type PaginatedProductBriefListListResultsList = Array<ProductBriefList>;
+export const PaginatedProductBriefListListResultsList = /*@__PURE__*/ S.Array(
+  ProductBriefList,
+) as any as S.Schema<PaginatedProductBriefListListResultsList>;
+
+export interface PaginatedProductBriefListList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedProductBriefListListResultsList;
+}
+export const PaginatedProductBriefListList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedProductBriefListListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedProductBriefListList",
+}) as any as S.Schema<PaginatedProductBriefListList>;
+
+export interface PulseBriefConfigsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this brief config. */
+  id: string;
+}
+export const PulseBriefConfigsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/pulse/brief_configs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PulseBriefConfigsDestroyRequest",
+}) as any as S.Schema<PulseBriefConfigsDestroyRequest>;
+
+export interface PulseBriefConfigsDestroyResponse {}
+export const PulseBriefConfigsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PulseBriefConfigsDestroyResponse",
+}) as any as S.Schema<PulseBriefConfigsDestroyResponse>;
+
+export interface PulseBriefsGenerateCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Optional brief config to generate for. Omit for the zero-config default brief. */
+  config_id?: string | null;
+  /** Period the brief should cover. Defaults to the last 7 days. */
+  period?: Period;
+}
+export const PulseBriefsGenerateCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    config_id: S.optional(S.NullOr(S.String)),
+    period: S.optional(Period),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/pulse/briefs/generate/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PulseBriefsGenerateCreateRequest",
+}) as any as S.Schema<PulseBriefsGenerateCreateRequest>;
 
 export interface UpdatePulseBriefConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -589,7 +589,7 @@ export const UpdatePulseBriefConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatePulseBriefConfigRequest",
 }) as any as S.Schema<UpdatePulseBriefConfigRequest>;
 
-export interface UpdatePulseBriefConfigPartialRequest {
+export interface UpdatePulseBriefConfigsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this brief config. */
@@ -607,7 +607,7 @@ export interface UpdatePulseBriefConfigPartialRequest {
   /** Soft-delete flag. Deleted configs are hidden from lists but recoverable by patching this back to false. */
   deleted?: boolean;
 }
-export const UpdatePulseBriefConfigPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdatePulseBriefConfigsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -626,8 +626,8 @@ export const UpdatePulseBriefConfigPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdatePulseBriefConfigPartialRequest",
-}) as any as S.Schema<UpdatePulseBriefConfigPartialRequest>;
+  identifier: "UpdatePulseBriefConfigsPartialRequest",
+}) as any as S.Schema<UpdatePulseBriefConfigsPartialRequest>;
 
 export type CreatePulseBriefConfigError = PosthogOpError;
 export const createPulseBriefConfig: API.OperationMethod<
@@ -637,6 +637,34 @@ export const createPulseBriefConfig: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreatePulseBriefConfigRequest,
+  output: BriefConfig,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPulseBriefError = PosthogOpError;
+export const getPulseBrief: API.OperationMethod<
+  GetPulseBriefRequest,
+  ProductBrief,
+  GetPulseBriefError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPulseBriefRequest,
+  output: ProductBrief,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPulseBriefConfigError = PosthogOpError;
+export const getPulseBriefConfig: API.OperationMethod<
+  GetPulseBriefConfigRequest,
+  BriefConfig,
+  GetPulseBriefConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPulseBriefConfigRequest,
   output: BriefConfig,
   errors: [],
   protocol: PosthogProtocol,
@@ -685,20 +713,6 @@ export const pulseBriefConfigsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PulseBriefConfigsRetrieveError = PosthogOpError;
-export const pulseBriefConfigsRetrieve: API.OperationMethod<
-  PulseBriefConfigsRetrieveRequest,
-  BriefConfig,
-  PulseBriefConfigsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PulseBriefConfigsRetrieveRequest,
-  output: BriefConfig,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PulseBriefsGenerateCreateError = Conflict | PosthogOpError;
 export const pulseBriefsGenerateCreate: API.OperationMethod<
   PulseBriefsGenerateCreateRequest,
@@ -709,20 +723,6 @@ export const pulseBriefsGenerateCreate: API.OperationMethod<
   input: PulseBriefsGenerateCreateRequest,
   output: ProductBrief,
   errors: [Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PulseBriefsRetrieveError = PosthogOpError;
-export const pulseBriefsRetrieve: API.OperationMethod<
-  PulseBriefsRetrieveRequest,
-  ProductBrief,
-  PulseBriefsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PulseBriefsRetrieveRequest,
-  output: ProductBrief,
-  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -741,14 +741,14 @@ export const updatePulseBriefConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdatePulseBriefConfigPartialError = PosthogOpError;
-export const updatePulseBriefConfigPartial: API.OperationMethod<
-  UpdatePulseBriefConfigPartialRequest,
+export type UpdatePulseBriefConfigsPartialError = PosthogOpError;
+export const updatePulseBriefConfigsPartial: API.OperationMethod<
+  UpdatePulseBriefConfigsPartialRequest,
   BriefConfig,
-  UpdatePulseBriefConfigPartialError,
+  UpdatePulseBriefConfigsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePulseBriefConfigPartialRequest,
+  input: UpdatePulseBriefConfigsPartialRequest,
   output: BriefConfig,
   errors: [],
   protocol: PosthogProtocol,

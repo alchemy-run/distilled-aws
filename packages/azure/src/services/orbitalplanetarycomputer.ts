@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type GeoCatalogsCreateRequestTagsMap = {
+export type CreateGeoCatalogRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GeoCatalogsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateGeoCatalogRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GeoCatalogsCreateRequestTagsMap>;
+) as any as S.Schema<CreateGeoCatalogRequestTagsMap>;
 
 /** Tier of the catalog. This cannot be changed after the catalog is created. If not provided, defaults to Basic. */
 export type GeoCatalogPropertiesInputTier = "Basic";
@@ -80,18 +80,18 @@ export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface GeoCatalogsCreateRequestIdentity {
+export interface CreateGeoCatalogRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput;
 }
-export const GeoCatalogsCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateGeoCatalogRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
   }),
 ).annotate({
-  identifier: "GeoCatalogsCreateRequestIdentity",
-}) as any as S.Schema<GeoCatalogsCreateRequestIdentity>;
+  identifier: "CreateGeoCatalogRequestIdentity",
+}) as any as S.Schema<CreateGeoCatalogRequestIdentity>;
 
 export interface CreateGeoCatalogRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101,23 +101,23 @@ export interface CreateGeoCatalogRequest {
   /** The name of the catalog */
   catalogName: string;
   /** Resource tags. */
-  tags?: GeoCatalogsCreateRequestTagsMap;
+  tags?: CreateGeoCatalogRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: GeoCatalogPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GeoCatalogsCreateRequestIdentity;
+  identity?: CreateGeoCatalogRequestIdentity;
 }
 export const CreateGeoCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    tags: S.optional(GeoCatalogsCreateRequestTagsMap),
+    tags: S.optional(CreateGeoCatalogRequestTagsMap),
     location: S.String,
     properties: S.optional(GeoCatalogPropertiesInput),
-    identity: S.optional(GeoCatalogsCreateRequestIdentity),
+    identity: S.optional(CreateGeoCatalogRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -173,13 +173,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type GeoCatalogsCreateResponseTagsMap = {
+export type CreateGeoCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GeoCatalogsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateGeoCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GeoCatalogsCreateResponseTagsMap>;
+) as any as S.Schema<CreateGeoCatalogResponseTagsMap>;
 
 /** Tier of the catalog. This cannot be changed after the catalog is created. If not provided, defaults to Basic. */
 export type GeoCatalogPropertiesTier = "Basic";
@@ -255,7 +255,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface GeoCatalogsCreateResponseIdentity {
+export interface CreateGeoCatalogResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -263,7 +263,7 @@ export interface GeoCatalogsCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const GeoCatalogsCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateGeoCatalogResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -271,8 +271,8 @@ export const GeoCatalogsCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "GeoCatalogsCreateResponseIdentity",
-}) as any as S.Schema<GeoCatalogsCreateResponseIdentity>;
+  identifier: "CreateGeoCatalogResponseIdentity",
+}) as any as S.Schema<CreateGeoCatalogResponseIdentity>;
 
 export interface CreateGeoCatalogResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -284,13 +284,13 @@ export interface CreateGeoCatalogResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GeoCatalogsCreateResponseTagsMap;
+  tags?: CreateGeoCatalogResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: GeoCatalogProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GeoCatalogsCreateResponseIdentity;
+  identity?: CreateGeoCatalogResponseIdentity;
 }
 export const CreateGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -298,10 +298,10 @@ export const CreateGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GeoCatalogsCreateResponseTagsMap),
+    tags: S.optional(CreateGeoCatalogResponseTagsMap),
     location: S.String,
     properties: S.optional(GeoCatalogProperties),
-    identity: S.optional(GeoCatalogsCreateResponseIdentity),
+    identity: S.optional(CreateGeoCatalogResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateGeoCatalogResponse",
@@ -365,17 +365,17 @@ export const GetGeoCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGeoCatalogRequest>;
 
 /** Resource tags. */
-export type GeoCatalogsGetResponseTagsMap = {
+export type GetGeoCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GeoCatalogsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetGeoCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GeoCatalogsGetResponseTagsMap>;
+) as any as S.Schema<GetGeoCatalogResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GeoCatalogsGetResponseIdentity = GeoCatalogsCreateResponseIdentity;
-export const GeoCatalogsGetResponseIdentity = GeoCatalogsCreateResponseIdentity;
+export type GetGeoCatalogResponseIdentity = CreateGeoCatalogResponseIdentity;
+export const GetGeoCatalogResponseIdentity = CreateGeoCatalogResponseIdentity;
 
 export interface GetGeoCatalogResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -387,13 +387,13 @@ export interface GetGeoCatalogResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GeoCatalogsGetResponseTagsMap;
+  tags?: GetGeoCatalogResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: GeoCatalogProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GeoCatalogsCreateResponseIdentity;
+  identity?: CreateGeoCatalogResponseIdentity;
 }
 export const GetGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -401,10 +401,10 @@ export const GetGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GeoCatalogsGetResponseTagsMap),
+    tags: S.optional(GetGeoCatalogResponseTagsMap),
     location: S.String,
     properties: S.optional(GeoCatalogProperties),
-    identity: S.optional(GeoCatalogsCreateResponseIdentity),
+    identity: S.optional(CreateGeoCatalogResponseIdentity),
   }),
 ).annotate({
   identifier: "GetGeoCatalogResponse",
@@ -441,8 +441,8 @@ export const GeoCatalogTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GeoCatalogTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GeoCatalogIdentity = GeoCatalogsCreateResponseIdentity;
-export const GeoCatalogIdentity = GeoCatalogsCreateResponseIdentity;
+export type GeoCatalogIdentity = CreateGeoCatalogResponseIdentity;
+export const GeoCatalogIdentity = CreateGeoCatalogResponseIdentity;
 
 /** A Microsoft Planetary Computer Pro GeoCatalog resource */
 export interface GeoCatalog {
@@ -461,7 +461,7 @@ export interface GeoCatalog {
   /** The resource-specific properties for this resource. */
   properties?: GeoCatalogProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GeoCatalogsCreateResponseIdentity;
+  identity?: CreateGeoCatalogResponseIdentity;
 }
 export const GeoCatalog = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -472,7 +472,7 @@ export const GeoCatalog = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(GeoCatalogTagsMap),
     location: S.String,
     properties: S.optional(GeoCatalogProperties),
-    identity: S.optional(GeoCatalogsCreateResponseIdentity),
+    identity: S.optional(CreateGeoCatalogResponseIdentity),
   }),
 ).annotate({ identifier: "GeoCatalog" }) as any as S.Schema<GeoCatalog>;
 
@@ -518,13 +518,13 @@ export const ListGeoCatalogBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGeoCatalogBySubscriptionRequest>;
 
 /** Resource tags. */
-export type GeoCatalogsUpdateRequestTagsMap = {
+export type UpdateGeoCatalogRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GeoCatalogsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGeoCatalogRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GeoCatalogsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateGeoCatalogRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityUpdateInputType =
@@ -576,7 +576,7 @@ export interface UpdateGeoCatalogRequest {
   /** The name of the catalog */
   catalogName: string;
   /** Resource tags. */
-  tags?: GeoCatalogsUpdateRequestTagsMap;
+  tags?: UpdateGeoCatalogRequestTagsMap;
   /** The managed service identity properties to update. */
   identity?: ManagedServiceIdentityUpdateInput;
 }
@@ -585,7 +585,7 @@ export const UpdateGeoCatalogRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    tags: S.optional(GeoCatalogsUpdateRequestTagsMap),
+    tags: S.optional(UpdateGeoCatalogRequestTagsMap),
     identity: S.optional(ManagedServiceIdentityUpdateInput),
   }).pipe(
     T.Http({
@@ -600,19 +600,18 @@ export const UpdateGeoCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGeoCatalogRequest>;
 
 /** Resource tags. */
-export type GeoCatalogsUpdateResponseTagsMap = {
+export type UpdateGeoCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GeoCatalogsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGeoCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GeoCatalogsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateGeoCatalogResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GeoCatalogsUpdateResponseIdentity =
-  GeoCatalogsCreateResponseIdentity;
-export const GeoCatalogsUpdateResponseIdentity =
-  GeoCatalogsCreateResponseIdentity;
+export type UpdateGeoCatalogResponseIdentity = CreateGeoCatalogResponseIdentity;
+export const UpdateGeoCatalogResponseIdentity =
+  CreateGeoCatalogResponseIdentity;
 
 export interface UpdateGeoCatalogResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -624,13 +623,13 @@ export interface UpdateGeoCatalogResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GeoCatalogsUpdateResponseTagsMap;
+  tags?: UpdateGeoCatalogResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: GeoCatalogProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GeoCatalogsCreateResponseIdentity;
+  identity?: CreateGeoCatalogResponseIdentity;
 }
 export const UpdateGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -638,10 +637,10 @@ export const UpdateGeoCatalogResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GeoCatalogsUpdateResponseTagsMap),
+    tags: S.optional(UpdateGeoCatalogResponseTagsMap),
     location: S.String,
     properties: S.optional(GeoCatalogProperties),
-    identity: S.optional(GeoCatalogsCreateResponseIdentity),
+    identity: S.optional(CreateGeoCatalogResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateGeoCatalogResponse",

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.schema_property_groups#ListSchemaPropertyGroupsRequest": {
@@ -114,7 +115,7 @@
           "target": "smithy.api#String"
         },
         "property_type": {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum"
+          "target": "com.posthog.schema_property_groups#SchemaPropertyTypeEnum"
         },
         "is_required": {
           "target": "smithy.api#Boolean"
@@ -134,7 +135,7 @@
       },
       "traits": {}
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum": {
+    "com.posthog.schema_property_groups#SchemaPropertyTypeEnum": {
       "type": "enum",
       "members": {
         "DATETIME": {
@@ -380,7 +381,7 @@
           "target": "smithy.api#String"
         },
         "property_type": {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum"
+          "target": "com.posthog.schema_property_groups#SchemaPropertyTypeEnum"
         },
         "is_required": {
           "target": "smithy.api#Boolean"
@@ -394,7 +395,7 @@
       },
       "traits": {}
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequestPropertiesList": {
+    "com.posthog.schema_property_groups#CreateSchemaPropertyGroupRequestPropertiesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
@@ -419,7 +420,7 @@
           "target": "smithy.api#String"
         },
         "properties": {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequestPropertiesList"
+          "target": "com.posthog.schema_property_groups#CreateSchemaPropertyGroupRequestPropertiesList"
         }
       },
       "traits": {
@@ -453,7 +454,7 @@
         }
       }
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieveRequest": {
+    "com.posthog.schema_property_groups#GetSchemaPropertyGroupRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -477,10 +478,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieve": {
+    "com.posthog.schema_property_groups#GetSchemaPropertyGroup": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieveRequest"
+        "target": "com.posthog.schema_property_groups#GetSchemaPropertyGroupRequest"
       },
       "output": {
         "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
@@ -501,7 +502,7 @@
         }
       }
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequestPropertiesList": {
+    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupRequestPropertiesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
@@ -534,7 +535,7 @@
           "target": "smithy.api#String"
         },
         "properties": {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequestPropertiesList"
+          "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupRequestPropertiesList"
         }
       },
       "traits": {
@@ -568,14 +569,14 @@
         }
       }
     },
-    "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequestPropertiesList": {
+    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartialRequestPropertiesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
       },
       "traits": {}
     },
-    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupPartialRequest": {
+    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -601,17 +602,17 @@
           "target": "smithy.api#String"
         },
         "properties": {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequestPropertiesList"
+          "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartialRequestPropertiesList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupPartial": {
+    "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupPartialRequest"
+        "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartialRequest"
       },
       "output": {
         "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
@@ -727,22 +728,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.schema_property_groups#ListSchemaPropertyGroups"
-        },
-        {
           "target": "com.posthog.schema_property_groups#CreateSchemaPropertyGroup"
         },
         {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieve"
+          "target": "com.posthog.schema_property_groups#GetSchemaPropertyGroup"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#ListSchemaPropertyGroups"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy"
         },
         {
           "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroup"
         },
         {
-          "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupPartial"
-        },
-        {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy"
+          "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartial"
         }
       ],
       "traits": {

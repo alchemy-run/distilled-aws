@@ -208,172 +208,53 @@ export const CatalogsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CatalogsCreateOrUpdateResponse",
 }) as any as S.Schema<CatalogsCreateOrUpdateResponse>;
 
-/** Regional data boundary values. */
-export type RegionalDataBoundary = "None" | "EU";
-export const RegionalDataBoundary = /*@__PURE__*/ S.String;
+/** Device identifiers of the devices to be claimed. */
+export type ClaimDeviceGroupDevicesRequestDeviceIdentifiersList = Array<string>;
+export const ClaimDeviceGroupDevicesRequestDeviceIdentifiersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClaimDeviceGroupDevicesRequestDeviceIdentifiersList>;
 
-/** The properties of image */
-export interface ImagePropertiesInput {
-  /** Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads. */
-  image?: string;
-  /** Image ID */
-  imageId?: string;
-  /** Regional data boundary for an image */
-  regionalDataBoundary?: RegionalDataBoundary | (string & {});
-}
-export const ImagePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    image: S.optional(S.String),
-    imageId: S.optional(S.String),
-    regionalDataBoundary: S.optional(RegionalDataBoundary),
-  }),
-).annotate({
-  identifier: "ImagePropertiesInput",
-}) as any as S.Schema<ImagePropertiesInput>;
-
-export interface CatalogsUploadImageRequest {
+export interface ClaimDeviceGroupDevicesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of catalog */
   catalogName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ImagePropertiesInput;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Device identifiers of the devices to be claimed. */
+  deviceIdentifiers: ClaimDeviceGroupDevicesRequestDeviceIdentifiersList;
 }
-export const CatalogsUploadImageRequest = /*@__PURE__*/ S.suspend(() =>
+export const ClaimDeviceGroupDevicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    properties: S.optional(ImagePropertiesInput),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deviceIdentifiers: ClaimDeviceGroupDevicesRequestDeviceIdentifiersList,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/uploadImage",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "CatalogsUploadImageRequest",
-}) as any as S.Schema<CatalogsUploadImageRequest>;
+  identifier: "ClaimDeviceGroupDevicesRequest",
+}) as any as S.Schema<ClaimDeviceGroupDevicesRequest>;
 
-export interface CatalogsUploadImageResponse {}
-export const CatalogsUploadImageResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ClaimDeviceGroupDevicesResponse {}
+export const ClaimDeviceGroupDevicesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CatalogsUploadImageResponse",
-}) as any as S.Schema<CatalogsUploadImageResponse>;
-
-export interface CertificatesRetrieveCertChainRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Serial number of the certificate. Use '.default' to get current active certificate. */
-  serialNumber: string;
-}
-export const CertificatesRetrieveCertChainRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      serialNumber: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "CertificatesRetrieveCertChainRequest",
-}) as any as S.Schema<CertificatesRetrieveCertChainRequest>;
-
-/** The certificate chain response. */
-export interface CertificateChainResponse {
-  /** The certificate chain. */
-  certificateChain?: string;
-}
-export const CertificateChainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificateChain: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificateChainResponse",
-}) as any as S.Schema<CertificateChainResponse>;
-
-export interface CertificatesRetrieveProofOfPossessionNonceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Serial number of the certificate. Use '.default' to get current active certificate. */
-  serialNumber: string;
-  /** The proof of possession nonce */
-  proofOfPossessionNonce: string;
-}
-export const CertificatesRetrieveProofOfPossessionNonceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      serialNumber: S.String.pipe(T.Label()),
-      proofOfPossessionNonce: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CertificatesRetrieveProofOfPossessionNonceRequest",
-  }) as any as S.Schema<CertificatesRetrieveProofOfPossessionNonceRequest>;
-
-/** Certificate status values. */
-export type CertificateStatus = "Active" | "Inactive" | "Expired" | "Revoked";
-export const CertificateStatus = /*@__PURE__*/ S.String;
-
-export interface CertificatesRetrieveProofOfPossessionNonceResponse {
-  /** The certificate as a UTF-8 encoded base 64 string. */
-  certificate?: string;
-  /** The certificate status. */
-  status?: CertificateStatus;
-  /** The certificate subject. */
-  subject?: string;
-  /** The certificate thumbprint. */
-  thumbprint?: string;
-  /** The certificate expiry date. */
-  expiryUtc?: string;
-  /** The certificate not before date. */
-  notBeforeUtc?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const CertificatesRetrieveProofOfPossessionNonceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      certificate: S.optional(S.String),
-      status: S.optional(CertificateStatus),
-      subject: S.optional(S.String),
-      thumbprint: S.optional(S.String),
-      expiryUtc: S.optional(S.String),
-      notBeforeUtc: S.optional(S.String),
-      provisioningState: S.optional(ProvisioningState),
-    }),
-  ).annotate({
-    identifier: "CertificatesRetrieveProofOfPossessionNonceResponse",
-  }) as any as S.Schema<CertificatesRetrieveProofOfPossessionNonceResponse>;
+  identifier: "ClaimDeviceGroupDevicesResponse",
+}) as any as S.Schema<ClaimDeviceGroupDevicesResponse>;
 
 export interface DeleteCatalogRequest {
   /** The ID of the target subscription. */
@@ -597,6 +478,29 @@ export const DeleteProductResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProductResponse",
 }) as any as S.Schema<DeleteProductResponse>;
 
+/** Regional data boundary values. */
+export type RegionalDataBoundary = "None" | "EU";
+export const RegionalDataBoundary = /*@__PURE__*/ S.String;
+
+/** The properties of image */
+export interface ImagePropertiesInput {
+  /** Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads. */
+  image?: string;
+  /** Image ID */
+  imageId?: string;
+  /** Regional data boundary for an image */
+  regionalDataBoundary?: RegionalDataBoundary | (string & {});
+}
+export const ImagePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    image: S.optional(S.String),
+    imageId: S.optional(S.String),
+    regionalDataBoundary: S.optional(RegionalDataBoundary),
+  }),
+).annotate({
+  identifier: "ImagePropertiesInput",
+}) as any as S.Schema<ImagePropertiesInput>;
+
 /** An image resource belonging to a catalog resource. */
 export interface ImageInput {
   /** The resource-specific properties for this resource. */
@@ -807,55 +711,6 @@ export const DeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeploymentsCreateOrUpdateResponse",
 }) as any as S.Schema<DeploymentsCreateOrUpdateResponse>;
-
-/** Device identifiers of the devices to be claimed. */
-export type DeviceGroupsClaimDevicesRequestDeviceIdentifiersList =
-  Array<string>;
-export const DeviceGroupsClaimDevicesRequestDeviceIdentifiersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DeviceGroupsClaimDevicesRequestDeviceIdentifiersList>;
-
-export interface DeviceGroupsClaimDevicesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Device identifiers of the devices to be claimed. */
-  deviceIdentifiers: DeviceGroupsClaimDevicesRequestDeviceIdentifiersList;
-}
-export const DeviceGroupsClaimDevicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deviceIdentifiers: DeviceGroupsClaimDevicesRequestDeviceIdentifiersList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsClaimDevicesRequest",
-}) as any as S.Schema<DeviceGroupsClaimDevicesRequest>;
-
-export interface DeviceGroupsClaimDevicesResponse {}
-export const DeviceGroupsClaimDevicesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeviceGroupsClaimDevicesResponse",
-}) as any as S.Schema<DeviceGroupsClaimDevicesResponse>;
 
 export interface DeviceGroupsCountDevicesRequest {
   /** The ID of the target subscription. */
@@ -1136,13 +991,13 @@ export type CapabilityType = "ApplicationDevelopment" | "FieldServicing";
 export const CapabilityType = /*@__PURE__*/ S.String;
 
 /** List of capabilities to create */
-export type DevicesGenerateCapabilityImageRequestCapabilitiesList = Array<
+export type GenerateDeviceCapabilityImageRequestCapabilitiesList = Array<
   CapabilityType | (string & {})
 >;
-export const DevicesGenerateCapabilityImageRequestCapabilitiesList =
+export const GenerateDeviceCapabilityImageRequestCapabilitiesList =
   /*@__PURE__*/ S.Array(
     CapabilityType,
-  ) as any as S.Schema<DevicesGenerateCapabilityImageRequestCapabilitiesList>;
+  ) as any as S.Schema<GenerateDeviceCapabilityImageRequestCapabilitiesList>;
 
 export interface GenerateDeviceCapabilityImageRequest {
   /** The ID of the target subscription. */
@@ -1158,7 +1013,7 @@ export interface GenerateDeviceCapabilityImageRequest {
   /** Device name */
   deviceName: string;
   /** List of capabilities to create */
-  capabilities: DevicesGenerateCapabilityImageRequestCapabilitiesList;
+  capabilities: GenerateDeviceCapabilityImageRequestCapabilitiesList;
 }
 export const GenerateDeviceCapabilityImageRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -1169,7 +1024,7 @@ export const GenerateDeviceCapabilityImageRequest = /*@__PURE__*/ S.suspend(
       productName: S.String.pipe(T.Label()),
       deviceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
-      capabilities: DevicesGenerateCapabilityImageRequestCapabilitiesList,
+      capabilities: GenerateDeviceCapabilityImageRequestCapabilitiesList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -1195,7 +1050,7 @@ export const SignedCapabilityImageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignedCapabilityImageResponse",
 }) as any as S.Schema<SignedCapabilityImageResponse>;
 
-export interface GenerateProductDefaultDeviceGroupRequest {
+export interface GenerateProductDefaultDeviceGroupsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1205,8 +1060,8 @@ export interface GenerateProductDefaultDeviceGroupRequest {
   /** Name of product. */
   productName: string;
 }
-export const GenerateProductDefaultDeviceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GenerateProductDefaultDeviceGroupsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -1220,9 +1075,9 @@ export const GenerateProductDefaultDeviceGroupRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "GenerateProductDefaultDeviceGroupRequest",
-}) as any as S.Schema<GenerateProductDefaultDeviceGroupRequest>;
+  ).annotate({
+    identifier: "GenerateProductDefaultDeviceGroupsRequest",
+  }) as any as S.Schema<GenerateProductDefaultDeviceGroupsRequest>;
 
 /** An device group resource belonging to a product resource. */
 export interface DeviceGroup {
@@ -1295,11 +1150,11 @@ export const GetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCatalogRequest>;
 
 /** Resource tags. */
-export type CatalogsGetResponseTagsMap = { [key: string]: string | undefined };
-export const CatalogsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCatalogResponseTagsMap = { [key: string]: string | undefined };
+export const GetCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CatalogsGetResponseTagsMap>;
+) as any as S.Schema<GetCatalogResponseTagsMap>;
 
 export interface GetCatalogResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1311,7 +1166,7 @@ export interface GetCatalogResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CatalogsGetResponseTagsMap;
+  tags?: GetCatalogResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1323,7 +1178,7 @@ export const GetCatalogResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CatalogsGetResponseTagsMap),
+    tags: S.optional(GetCatalogResponseTagsMap),
     location: S.String,
     properties: S.optional(CatalogProperties),
   }),
@@ -1358,6 +1213,10 @@ export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetCertificateRequest",
 }) as any as S.Schema<GetCertificateRequest>;
+
+/** Certificate status values. */
+export type CertificateStatus = "Active" | "Inactive" | "Expired" | "Revoked";
+export const CertificateStatus = /*@__PURE__*/ S.String;
 
 /** The properties of certificate */
 export interface CertificateProperties {
@@ -1413,6 +1272,110 @@ export const GetCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetCertificateResponse",
 }) as any as S.Schema<GetCertificateResponse>;
+
+export interface GetCertificateCertChainRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Serial number of the certificate. Use '.default' to get current active certificate. */
+  serialNumber: string;
+}
+export const GetCertificateCertChainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    serialNumber: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCertificateCertChainRequest",
+}) as any as S.Schema<GetCertificateCertChainRequest>;
+
+/** The certificate chain response. */
+export interface CertificateChainResponse {
+  /** The certificate chain. */
+  certificateChain?: string;
+}
+export const CertificateChainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificateChain: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificateChainResponse",
+}) as any as S.Schema<CertificateChainResponse>;
+
+export interface GetCertificateProofOfPossessionNonceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Serial number of the certificate. Use '.default' to get current active certificate. */
+  serialNumber: string;
+  /** The proof of possession nonce */
+  proofOfPossessionNonce: string;
+}
+export const GetCertificateProofOfPossessionNonceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      catalogName: S.String.pipe(T.Label()),
+      serialNumber: S.String.pipe(T.Label()),
+      proofOfPossessionNonce: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetCertificateProofOfPossessionNonceRequest",
+  }) as any as S.Schema<GetCertificateProofOfPossessionNonceRequest>;
+
+export interface GetCertificateProofOfPossessionNonceResponse {
+  /** The certificate as a UTF-8 encoded base 64 string. */
+  certificate?: string;
+  /** The certificate status. */
+  status?: CertificateStatus;
+  /** The certificate subject. */
+  subject?: string;
+  /** The certificate thumbprint. */
+  thumbprint?: string;
+  /** The certificate expiry date. */
+  expiryUtc?: string;
+  /** The certificate not before date. */
+  notBeforeUtc?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const GetCertificateProofOfPossessionNonceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      certificate: S.optional(S.String),
+      status: S.optional(CertificateStatus),
+      subject: S.optional(S.String),
+      thumbprint: S.optional(S.String),
+      expiryUtc: S.optional(S.String),
+      notBeforeUtc: S.optional(S.String),
+      provisioningState: S.optional(ProvisioningState),
+    }),
+  ).annotate({
+    identifier: "GetCertificateProofOfPossessionNonceResponse",
+  }) as any as S.Schema<GetCertificateProofOfPossessionNonceResponse>;
 
 export interface GetDeploymentRequest {
   /** The ID of the target subscription. */
@@ -2477,20 +2440,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2663,13 +2626,11 @@ export const ProductsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type CatalogsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CatalogsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateCatalogRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateCatalogRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CatalogsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCatalogRequestTagsMap>;
 
 export interface UpdateCatalogRequest {
   /** The ID of the target subscription. */
@@ -2679,14 +2640,14 @@ export interface UpdateCatalogRequest {
   /** Name of catalog */
   catalogName: string;
   /** Resource tags. */
-  tags?: CatalogsUpdateRequestTagsMap;
+  tags?: UpdateCatalogRequestTagsMap;
 }
 export const UpdateCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    tags: S.optional(CatalogsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCatalogRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2700,13 +2661,13 @@ export const UpdateCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCatalogRequest>;
 
 /** Resource tags. */
-export type CatalogsUpdateResponseTagsMap = {
+export type UpdateCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CatalogsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CatalogsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCatalogResponseTagsMap>;
 
 export interface UpdateCatalogResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2718,7 +2679,7 @@ export interface UpdateCatalogResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CatalogsUpdateResponseTagsMap;
+  tags?: UpdateCatalogResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2730,7 +2691,7 @@ export const UpdateCatalogResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CatalogsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCatalogResponseTagsMap),
     location: S.String,
     properties: S.optional(CatalogProperties),
   }),
@@ -2942,6 +2903,41 @@ export const UpdateProductResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateProductResponse",
 }) as any as S.Schema<UpdateProductResponse>;
 
+export interface UploadCatalogImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ImagePropertiesInput;
+}
+export const UploadCatalogImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    properties: S.optional(ImagePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/uploadImage",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadCatalogImageRequest",
+}) as any as S.Schema<UploadCatalogImageRequest>;
+
+export interface UploadCatalogImageResponse {}
+export const UploadCatalogImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UploadCatalogImageResponse",
+}) as any as S.Schema<UploadCatalogImageResponse>;
+
 export type CatalogsCountDevicesError = AzureOpError;
 /** Counts devices in catalog. */
 export const CatalogsCountDevices: API.OperationMethod<
@@ -2972,46 +2968,16 @@ export const CatalogsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CatalogsUploadImageError = AzureOpError;
-/** Creates an image. Use this action when the image ID is unknown. */
-export const CatalogsUploadImage: API.OperationMethod<
-  CatalogsUploadImageRequest,
-  CatalogsUploadImageResponse,
-  CatalogsUploadImageError,
+export type ClaimDeviceGroupDevicesError = AzureOpError;
+/** Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only. */
+export const ClaimDeviceGroupDevices: API.OperationMethod<
+  ClaimDeviceGroupDevicesRequest,
+  ClaimDeviceGroupDevicesResponse,
+  ClaimDeviceGroupDevicesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsUploadImageRequest,
-  output: CatalogsUploadImageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesRetrieveCertChainError = AzureOpError;
-/** Retrieves cert chain. */
-export const CertificatesRetrieveCertChain: API.OperationMethod<
-  CertificatesRetrieveCertChainRequest,
-  CertificateChainResponse,
-  CertificatesRetrieveCertChainError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesRetrieveCertChainRequest,
-  output: CertificateChainResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesRetrieveProofOfPossessionNonceError = AzureOpError;
-/** Gets the proof of possession nonce. */
-export const CertificatesRetrieveProofOfPossessionNonce: API.OperationMethod<
-  CertificatesRetrieveProofOfPossessionNonceRequest,
-  CertificatesRetrieveProofOfPossessionNonceResponse,
-  CertificatesRetrieveProofOfPossessionNonceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesRetrieveProofOfPossessionNonceRequest,
-  output: CertificatesRetrieveProofOfPossessionNonceResponse,
+  input: ClaimDeviceGroupDevicesRequest,
+  output: ClaimDeviceGroupDevicesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3122,21 +3088,6 @@ export const DeploymentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeviceGroupsClaimDevicesError = AzureOpError;
-/** Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only. */
-export const DeviceGroupsClaimDevices: API.OperationMethod<
-  DeviceGroupsClaimDevicesRequest,
-  DeviceGroupsClaimDevicesResponse,
-  DeviceGroupsClaimDevicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsClaimDevicesRequest,
-  output: DeviceGroupsClaimDevicesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeviceGroupsCountDevicesError = AzureOpError;
 /** Counts devices in device group. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
 export const DeviceGroupsCountDevices: API.OperationMethod<
@@ -3197,15 +3148,15 @@ export const GenerateDeviceCapabilityImage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateProductDefaultDeviceGroupError = AzureOpError;
+export type GenerateProductDefaultDeviceGroupsError = AzureOpError;
 /** Generates default device groups for the product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
-export const GenerateProductDefaultDeviceGroup: API.OperationMethod<
-  GenerateProductDefaultDeviceGroupRequest,
+export const GenerateProductDefaultDeviceGroups: API.OperationMethod<
+  GenerateProductDefaultDeviceGroupsRequest,
   DeviceGroupListResult,
-  GenerateProductDefaultDeviceGroupError,
+  GenerateProductDefaultDeviceGroupsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateProductDefaultDeviceGroupRequest,
+  input: GenerateProductDefaultDeviceGroupsRequest,
   output: DeviceGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3237,6 +3188,36 @@ export const GetCertificate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCertificateRequest,
   output: GetCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCertificateCertChainError = AzureOpError;
+/** Retrieves cert chain. */
+export const GetCertificateCertChain: API.OperationMethod<
+  GetCertificateCertChainRequest,
+  CertificateChainResponse,
+  GetCertificateCertChainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCertificateCertChainRequest,
+  output: CertificateChainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCertificateProofOfPossessionNonceError = AzureOpError;
+/** Gets the proof of possession nonce. */
+export const GetCertificateProofOfPossessionNonce: API.OperationMethod<
+  GetCertificateProofOfPossessionNonceRequest,
+  GetCertificateProofOfPossessionNonceResponse,
+  GetCertificateProofOfPossessionNonceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCertificateProofOfPossessionNonceRequest,
+  output: GetCertificateProofOfPossessionNonceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3612,6 +3593,21 @@ export const UpdateProduct: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateProductRequest,
   output: UpdateProductResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadCatalogImageError = AzureOpError;
+/** Creates an image. Use this action when the image ID is unknown. */
+export const UploadCatalogImage: API.OperationMethod<
+  UploadCatalogImageRequest,
+  UploadCatalogImageResponse,
+  UploadCatalogImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadCatalogImageRequest,
+  output: UploadCatalogImageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

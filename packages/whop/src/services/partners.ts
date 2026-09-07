@@ -76,6 +76,612 @@ export const CreateReferralPartnerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateReferralPartnerResponse",
 }) as any as S.Schema<CreateReferralPartnerResponse>;
 
+export interface GetPartnerBusinessRequest {
+  /** The partner business ID (a coma_ identifier). */
+  id: string;
+}
+export const GetPartnerBusinessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/partners/businesses/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetPartnerBusinessRequest",
+}) as any as S.Schema<GetPartnerBusinessRequest>;
+
+/** Bank payins: debits, transfers, and local bank rails */
+export type AccountCapabilitiesAcceptBankPayments =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesAcceptBankPayments = /*@__PURE__*/ S.String;
+
+/** Buy-now-pay-later payins; requires approval */
+export type AccountCapabilitiesAcceptBnplPayments =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesAcceptBnplPayments = /*@__PURE__*/ S.String;
+
+/** Card payins, including Apple Pay and Google Pay */
+export type AccountCapabilitiesAcceptCardPayments =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesAcceptCardPayments = /*@__PURE__*/ S.String;
+
+/** Deposits by bank wire or ACH to the account's virtual bank account */
+export type AccountCapabilitiesBankDeposit = "active" | "inactive" | "pending";
+export const AccountCapabilitiesBankDeposit = /*@__PURE__*/ S.String;
+
+/** Balance top-ups by charging a stored payment method */
+export type AccountCapabilitiesCardDeposit = "active" | "inactive" | "pending";
+export const AccountCapabilitiesCardDeposit = /*@__PURE__*/ S.String;
+
+/** Issuing Whop cards; requires card application approval */
+export type AccountCapabilitiesCardIssuing = "active" | "inactive" | "pending";
+export const AccountCapabilitiesCardIssuing = /*@__PURE__*/ S.String;
+
+/** On-chain deposits to the account's crypto wallet */
+export type AccountCapabilitiesCryptoDeposit =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesCryptoDeposit = /*@__PURE__*/ S.String;
+
+/** On-chain payouts to a crypto wallet */
+export type AccountCapabilitiesCryptoPayout = "active" | "inactive" | "pending";
+export const AccountCapabilitiesCryptoPayout = /*@__PURE__*/ S.String;
+
+/** Instant payouts to an eligible payout destination */
+export type AccountCapabilitiesInstantPayout =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesInstantPayout = /*@__PURE__*/ S.String;
+
+/** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
+export type AccountCapabilitiesRunAds = "active" | "inactive" | "pending";
+export const AccountCapabilitiesRunAds = /*@__PURE__*/ S.String;
+
+/** Standard payouts to an external payout destination */
+export type AccountCapabilitiesStandardPayout =
+  | "active"
+  | "inactive"
+  | "pending";
+export const AccountCapabilitiesStandardPayout = /*@__PURE__*/ S.String;
+
+/** Transfers to other accounts */
+export type AccountCapabilitiesTransfer = "active" | "inactive" | "pending";
+export const AccountCapabilitiesTransfer = /*@__PURE__*/ S.String;
+
+export interface AccountCapabilities {
+  /** Bank payins: debits, transfers, and local bank rails */
+  accept_bank_payments: AccountCapabilitiesAcceptBankPayments;
+  /** Buy-now-pay-later payins; requires approval */
+  accept_bnpl_payments: AccountCapabilitiesAcceptBnplPayments;
+  /** Card payins, including Apple Pay and Google Pay */
+  accept_card_payments: AccountCapabilitiesAcceptCardPayments;
+  /** Deposits by bank wire or ACH to the account's virtual bank account */
+  bank_deposit: AccountCapabilitiesBankDeposit;
+  /** Balance top-ups by charging a stored payment method */
+  card_deposit: AccountCapabilitiesCardDeposit;
+  /** Issuing Whop cards; requires card application approval */
+  card_issuing: AccountCapabilitiesCardIssuing;
+  /** On-chain deposits to the account's crypto wallet */
+  crypto_deposit: AccountCapabilitiesCryptoDeposit;
+  /** On-chain payouts to a crypto wallet */
+  crypto_payout: AccountCapabilitiesCryptoPayout;
+  /** Instant payouts to an eligible payout destination */
+  instant_payout: AccountCapabilitiesInstantPayout;
+  /** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
+  run_ads: AccountCapabilitiesRunAds;
+  /** Standard payouts to an external payout destination */
+  standard_payout: AccountCapabilitiesStandardPayout;
+  /** Transfers to other accounts */
+  transfer: AccountCapabilitiesTransfer;
+}
+export const AccountCapabilities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accept_bank_payments: AccountCapabilitiesAcceptBankPayments,
+    accept_bnpl_payments: AccountCapabilitiesAcceptBnplPayments,
+    accept_card_payments: AccountCapabilitiesAcceptCardPayments,
+    bank_deposit: AccountCapabilitiesBankDeposit,
+    card_deposit: AccountCapabilitiesCardDeposit,
+    card_issuing: AccountCapabilitiesCardIssuing,
+    crypto_deposit: AccountCapabilitiesCryptoDeposit,
+    crypto_payout: AccountCapabilitiesCryptoPayout,
+    instant_payout: AccountCapabilitiesInstantPayout,
+    run_ads: AccountCapabilitiesRunAds,
+    standard_payout: AccountCapabilitiesStandardPayout,
+    transfer: AccountCapabilitiesTransfer,
+  }),
+).annotate({
+  identifier: "AccountCapabilities",
+}) as any as S.Schema<AccountCapabilities>;
+
+/** The recommendation; new values may be added, so handle unknown actions gracefully */
+export type AccountRecommendedActionAction =
+  | "theme_business"
+  | "create_product"
+  | "create_plan"
+  | "verify_identity"
+  | "connect_affiliate_program"
+  | "create_promotion"
+  | "migrate_from_stripe"
+  | "accept_first_payment"
+  | "launch_first_ad"
+  | "launch_draft_campaign"
+  | "increase_ad_budget"
+  | "refresh_ad_creatives"
+  | "fix_ad_billing"
+  | "exclude_customers_from_ads"
+  | "retarget_abandoned_checkouts"
+  | "fix_funnel_dropoff"
+  | "invite_team_member"
+  | "enable_tax_collection"
+  | "create_card"
+  | "apply_for_financing";
+export const AccountRecommendedActionAction = /*@__PURE__*/ S.String;
+
+export type AccountRecommendedActionBlockedCapabilitiesList = Array<string>;
+export const AccountRecommendedActionBlockedCapabilitiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AccountRecommendedActionBlockedCapabilitiesList>;
+
+/** Always optional — never blocking */
+export type AccountRecommendedActionStatus = "optional";
+export const AccountRecommendedActionStatus = /*@__PURE__*/ S.String;
+
+export interface AccountRecommendedAction {
+  /** The recommendation; new values may be added, so handle unknown actions gracefully */
+  action: AccountRecommendedActionAction;
+  blocked_capabilities: AccountRecommendedActionBlockedCapabilitiesList;
+  /** The URL the call-to-action links to */
+  cta: string;
+  /** Button label */
+  cta_label: string;
+  /** Supporting copy, or empty */
+  description: string;
+  /** Illustration icon URL, or `null` */
+  icon_url: string | null;
+  /** Estimated impact from 0-100, or `null` when not ranked */
+  impact_score: number | null;
+  /** Why this action was recommended, or `null` */
+  reasoning: string | null;
+  /** Always optional — never blocking */
+  status: AccountRecommendedActionStatus;
+  /** Headline for the recommendation */
+  title: string;
+}
+export const AccountRecommendedAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: AccountRecommendedActionAction,
+    blocked_capabilities: AccountRecommendedActionBlockedCapabilitiesList,
+    cta: S.String,
+    cta_label: S.String,
+    description: S.String,
+    icon_url: S.NullOr(S.String),
+    impact_score: S.NullOr(S.Number),
+    reasoning: S.NullOr(S.String),
+    status: AccountRecommendedActionStatus,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "AccountRecommendedAction",
+}) as any as S.Schema<AccountRecommendedAction>;
+
+/** Optional actions that unlock capabilities or grow the referred account. */
+export type GetPartnerBusinessResponseAccountRecommendedActionsList =
+  Array<AccountRecommendedAction>;
+export const GetPartnerBusinessResponseAccountRecommendedActionsList =
+  /*@__PURE__*/ S.Array(
+    AccountRecommendedAction,
+  ) as any as S.Schema<GetPartnerBusinessResponseAccountRecommendedActionsList>;
+
+/** What the holder must do; new values may be added, so handle unknown actions gracefully */
+export type AccountRequiredActionAction =
+  | "deposit_funds"
+  | "submit_information_request"
+  | "reauthorize_payout_methods"
+  | "update_payout_profile"
+  | "card_usage_review"
+  | "verify_identity"
+  | "sign_formation_documents"
+  | "connect_fulfillment_tracker"
+  | "setup_apple_pay_domains"
+  | "configure_tax_remitter"
+  | "add_vat_registration";
+export const AccountRequiredActionAction = /*@__PURE__*/ S.String;
+
+export type AccountRequiredActionBlockedCapabilitiesList = Array<string>;
+export const AccountRequiredActionBlockedCapabilitiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AccountRequiredActionBlockedCapabilitiesList>;
+
+/** required (act now) or pending (under review) */
+export type AccountRequiredActionStatus = "required" | "pending";
+export const AccountRequiredActionStatus = /*@__PURE__*/ S.String;
+
+export interface AccountRequiredAction {
+  /** What the holder must do; new values may be added, so handle unknown actions gracefully */
+  action: AccountRequiredActionAction;
+  blocked_capabilities: AccountRequiredActionBlockedCapabilitiesList;
+  /** The URL the call-to-action links to, or null when there is no button */
+  cta: string | null;
+  /** Button label, or empty when there is no button */
+  cta_label: string;
+  /** Supporting copy, or empty */
+  description: string;
+  /** The URL of the action's illustration icon, or null if it has none */
+  icon_url: string | null;
+  /** required (act now) or pending (under review) */
+  status: AccountRequiredActionStatus;
+  /** Headline for the action */
+  title: string;
+}
+export const AccountRequiredAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: AccountRequiredActionAction,
+    blocked_capabilities: AccountRequiredActionBlockedCapabilitiesList,
+    cta: S.NullOr(S.String),
+    cta_label: S.String,
+    description: S.String,
+    icon_url: S.NullOr(S.String),
+    status: AccountRequiredActionStatus,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "AccountRequiredAction",
+}) as any as S.Schema<AccountRequiredAction>;
+
+/** Actions the referred account owner must take to unblock capabilities. */
+export type GetPartnerBusinessResponseAccountRequiredActionsList =
+  Array<AccountRequiredAction>;
+export const GetPartnerBusinessResponseAccountRequiredActionsList =
+  /*@__PURE__*/ S.Array(
+    AccountRequiredAction,
+  ) as any as S.Schema<GetPartnerBusinessResponseAccountRequiredActionsList>;
+
+/** Referred account. */
+export interface GetPartnerBusinessResponseAccount {
+  capabilities: AccountCapabilities | null;
+  /** Referred account ID. */
+  id: string;
+  /** Referred account logo URL. */
+  logo_url: string | null;
+  /** Optional actions that unlock capabilities or grow the referred account. */
+  recommended_actions: GetPartnerBusinessResponseAccountRecommendedActionsList | null;
+  /** Actions the referred account owner must take to unblock capabilities. */
+  required_actions: GetPartnerBusinessResponseAccountRequiredActionsList | null;
+  /** Referred account route. */
+  route: string;
+  /** Referred account display name. */
+  title: string;
+}
+export const GetPartnerBusinessResponseAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capabilities: S.NullOr(AccountCapabilities),
+    id: S.String,
+    logo_url: S.NullOr(S.String),
+    recommended_actions: S.NullOr(
+      GetPartnerBusinessResponseAccountRecommendedActionsList,
+    ),
+    required_actions: S.NullOr(
+      GetPartnerBusinessResponseAccountRequiredActionsList,
+    ),
+    route: S.String,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "GetPartnerBusinessResponseAccount",
+}) as any as S.Schema<GetPartnerBusinessResponseAccount>;
+
+export interface GetPartnerBusinessResponseEarningsUsd {
+  /** Commission already paid out, in USD. */
+  completed: string;
+  /** Commission scheduled but not yet paid, in USD. */
+  pending: string;
+  /** Pending + completed commission, in USD. */
+  total: string;
+}
+export const GetPartnerBusinessResponseEarningsUsd = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      completed: S.String,
+      pending: S.String,
+      total: S.String,
+    }),
+).annotate({
+  identifier: "GetPartnerBusinessResponseEarningsUsd",
+}) as any as S.Schema<GetPartnerBusinessResponseEarningsUsd>;
+
+/** The user's profile picture. */
+export interface GetPartnerBusinessResponseFirstTierPartnerProfilePicture {
+  /** The user's profile picture URL. */
+  url: string;
+}
+export const GetPartnerBusinessResponseFirstTierPartnerProfilePicture =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      url: S.String,
+    }),
+  ).annotate({
+    identifier: "GetPartnerBusinessResponseFirstTierPartnerProfilePicture",
+  }) as any as S.Schema<GetPartnerBusinessResponseFirstTierPartnerProfilePicture>;
+
+/** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
+export interface GetPartnerBusinessResponseFirstTierPartner {
+  /** User ID, prefixed `user_`. */
+  id: string;
+  /** The user's display name. */
+  name: string | null;
+  /** The user's profile picture. */
+  profile_picture: GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+  /** The user's unique username. */
+  username: string;
+}
+export const GetPartnerBusinessResponseFirstTierPartner =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      name: S.NullOr(S.String),
+      profile_picture: GetPartnerBusinessResponseFirstTierPartnerProfilePicture,
+      username: S.String,
+    }),
+  ).annotate({
+    identifier: "GetPartnerBusinessResponseFirstTierPartner",
+  }) as any as S.Schema<GetPartnerBusinessResponseFirstTierPartner>;
+
+/** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
+export type GetPartnerBusinessResponseMyPartnerTier = "first" | "second";
+export const GetPartnerBusinessResponseMyPartnerTier = /*@__PURE__*/ S.String;
+
+export type GetPartnerBusinessResponseObject = "partner_business";
+export const GetPartnerBusinessResponseObject = /*@__PURE__*/ S.String;
+
+/** The user's profile picture. */
+export type GetPartnerBusinessResponseOwnerProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+export const GetPartnerBusinessResponseOwnerProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+
+/** The owner of the referred business. */
+export type GetPartnerBusinessResponseOwner =
+  GetPartnerBusinessResponseFirstTierPartner;
+export const GetPartnerBusinessResponseOwner =
+  GetPartnerBusinessResponseFirstTierPartner;
+
+/** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
+export interface GetPartnerBusinessResponsePayoutPercentages {
+  /** Share of the referred business's Whop Ads spend. */
+  ad_spend: number | null;
+  /** Share of Whop's profit from card interchange. */
+  card_interchange: number | null;
+  /** Share of Whop's profit from product sales. */
+  sales: number;
+  /** Share of Whop's profit from platform balance transfers. */
+  transfer: number | null;
+}
+export const GetPartnerBusinessResponsePayoutPercentages =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ad_spend: S.NullOr(S.Number),
+      card_interchange: S.NullOr(S.Number),
+      sales: S.Number,
+      transfer: S.NullOr(S.Number),
+    }),
+  ).annotate({
+    identifier: "GetPartnerBusinessResponsePayoutPercentages",
+  }) as any as S.Schema<GetPartnerBusinessResponsePayoutPercentages>;
+
+/** The user's profile picture. */
+export type GetPartnerBusinessResponseSecondTierPartnerProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+export const GetPartnerBusinessResponseSecondTierPartnerProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+
+/** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
+export type GetPartnerBusinessResponseSecondTierPartner =
+  GetPartnerBusinessResponseFirstTierPartner;
+export const GetPartnerBusinessResponseSecondTierPartner =
+  GetPartnerBusinessResponseFirstTierPartner;
+
+/** Current referral status. */
+export type GetPartnerBusinessResponseStatus = "active" | "removed";
+export const GetPartnerBusinessResponseStatus = /*@__PURE__*/ S.String;
+
+export interface GetPartnerBusinessResponseVolumeUsd {
+  /** Credited GMV (awaiting_settlement + settled); excludes canceled and reversed, in USD. */
+  attributed: string;
+  /** GMV awaiting settlement (commission not yet computed), in USD. */
+  awaiting_settlement: string;
+  /** GMV of pending + completed payments, in USD. */
+  settled: string;
+}
+export const GetPartnerBusinessResponseVolumeUsd = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributed: S.String,
+    awaiting_settlement: S.String,
+    settled: S.String,
+  }),
+).annotate({
+  identifier: "GetPartnerBusinessResponseVolumeUsd",
+}) as any as S.Schema<GetPartnerBusinessResponseVolumeUsd>;
+
+export interface GetPartnerBusinessResponse {
+  /** Referred account. */
+  account: GetPartnerBusinessResponseAccount | null;
+  /** When the partner business was created. */
+  created_at: string;
+  earnings_usd: GetPartnerBusinessResponseEarningsUsd;
+  /** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
+  first_tier_partner: GetPartnerBusinessResponseFirstTierPartner | null;
+  /** Partner business ID. */
+  id: string;
+  /** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
+  my_partner_tier: GetPartnerBusinessResponseMyPartnerTier;
+  object: GetPartnerBusinessResponseObject;
+  /** The owner of the referred business. */
+  owner: GetPartnerBusinessResponseFirstTierPartner | null;
+  /** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
+  payout_percentages: GetPartnerBusinessResponsePayoutPercentages;
+  /** When the referral expires. */
+  referral_expires_at: string | null;
+  /** When the referral became active. */
+  referral_started_at: string | null;
+  /** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
+  second_tier_partner: GetPartnerBusinessResponseFirstTierPartner | null;
+  /** Current referral status. */
+  status: GetPartnerBusinessResponseStatus;
+  volume_usd: GetPartnerBusinessResponseVolumeUsd;
+}
+export const GetPartnerBusinessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account: S.NullOr(GetPartnerBusinessResponseAccount),
+    created_at: S.String,
+    earnings_usd: GetPartnerBusinessResponseEarningsUsd,
+    first_tier_partner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
+    id: S.String,
+    my_partner_tier: GetPartnerBusinessResponseMyPartnerTier,
+    object: GetPartnerBusinessResponseObject,
+    owner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
+    payout_percentages: GetPartnerBusinessResponsePayoutPercentages,
+    referral_expires_at: S.NullOr(S.String),
+    referral_started_at: S.NullOr(S.String),
+    second_tier_partner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
+    status: GetPartnerBusinessResponseStatus,
+    volume_usd: GetPartnerBusinessResponseVolumeUsd,
+  }),
+).annotate({
+  identifier: "GetPartnerBusinessResponse",
+}) as any as S.Schema<GetPartnerBusinessResponse>;
+
+export type GetPartnerLeaderboardRequestPeriod =
+  | "day"
+  | "month"
+  | "year"
+  | "last_30_days"
+  | "all_time";
+export const GetPartnerLeaderboardRequestPeriod = /*@__PURE__*/ S.String;
+
+export interface GetPartnerLeaderboardRequest {
+  /** Time window for the rankings. `day`, `month`, and `year` count earnings since the start of the current calendar day, month, or year; `last_30_days` counts earnings over the trailing 30 days; `all_time` ranks lifetime earnings. */
+  period?: GetPartnerLeaderboardRequestPeriod | (string & {});
+}
+export const GetPartnerLeaderboardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    period: S.optional(GetPartnerLeaderboardRequestPeriod.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/partners/leaderboard", code: 200 })),
+).annotate({
+  identifier: "GetPartnerLeaderboardRequest",
+}) as any as S.Schema<GetPartnerLeaderboardRequest>;
+
+/** The user's profile picture. Present only on the caller's own entry. */
+export type GetPartnerLeaderboardResponseLeadersItemUserProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+export const GetPartnerLeaderboardResponseLeadersItemUserProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+
+/** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
+export interface GetPartnerLeaderboardResponseLeadersItemUser {
+  /** The city where the referrer is located, derived from their IP address. Null if location sharing is disabled. */
+  city: string | null;
+  /** The country where the referrer is located, derived from their IP address. Null if location sharing is disabled. */
+  country: string | null;
+  /** User ID, prefixed `user_`. Present only on the caller's own entry. */
+  id?: string;
+  /** The user's display name. Present only on the caller's own entry. */
+  name?: string | null;
+  /** The user's profile picture. Present only on the caller's own entry. */
+  profile_picture?: GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+  /** The user's unique username. Present only on the caller's own entry. */
+  username?: string;
+}
+export const GetPartnerLeaderboardResponseLeadersItemUser =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      city: S.NullOr(S.String),
+      country: S.NullOr(S.String),
+      id: S.optional(S.String),
+      name: S.optional(S.NullOr(S.String)),
+      profile_picture: S.optional(
+        GetPartnerBusinessResponseFirstTierPartnerProfilePicture,
+      ),
+      username: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetPartnerLeaderboardResponseLeadersItemUser",
+  }) as any as S.Schema<GetPartnerLeaderboardResponseLeadersItemUser>;
+
+export interface GetPartnerLeaderboardResponseLeadersItem {
+  /** When the referrer's earliest partner business became active. */
+  first_referral_started_at: string;
+  /** 1-based leaderboard position. */
+  rank: number;
+  /** The referrer's pending + completed earnings across all referred businesses, in USD. */
+  total_earnings_usd: string;
+  /** Credited GMV across all the referrer's referred businesses, in USD. */
+  total_volume_usd: string;
+  /** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
+  user: GetPartnerLeaderboardResponseLeadersItemUser | null;
+}
+export const GetPartnerLeaderboardResponseLeadersItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      first_referral_started_at: S.String,
+      rank: S.Number,
+      total_earnings_usd: S.String,
+      total_volume_usd: S.String,
+      user: S.NullOr(GetPartnerLeaderboardResponseLeadersItemUser),
+    }),
+).annotate({
+  identifier: "GetPartnerLeaderboardResponseLeadersItem",
+}) as any as S.Schema<GetPartnerLeaderboardResponseLeadersItem>;
+
+/** The top referrers by total earnings, best first. */
+export type GetPartnerLeaderboardResponseLeadersList =
+  Array<GetPartnerLeaderboardResponseLeadersItem>;
+export const GetPartnerLeaderboardResponseLeadersList = /*@__PURE__*/ S.Array(
+  GetPartnerLeaderboardResponseLeadersItem,
+) as any as S.Schema<GetPartnerLeaderboardResponseLeadersList>;
+
+/** The user's profile picture. Present only on the caller's own entry. */
+export type GetPartnerLeaderboardResponseMeUserProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+export const GetPartnerLeaderboardResponseMeUserProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
+
+/** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
+export type GetPartnerLeaderboardResponseMeUser =
+  GetPartnerLeaderboardResponseLeadersItemUser;
+export const GetPartnerLeaderboardResponseMeUser =
+  GetPartnerLeaderboardResponseLeadersItemUser;
+
+/** The caller's own standing; null when the caller has no referral earnings. */
+export type GetPartnerLeaderboardResponseMe =
+  GetPartnerLeaderboardResponseLeadersItem;
+export const GetPartnerLeaderboardResponseMe =
+  GetPartnerLeaderboardResponseLeadersItem;
+
+export interface GetPartnerLeaderboardResponse {
+  /** The top referrers by total earnings, best first. */
+  leaders: GetPartnerLeaderboardResponseLeadersList;
+  /** The caller's own standing; null when the caller has no referral earnings. */
+  me: GetPartnerLeaderboardResponseLeadersItem | null;
+}
+export const GetPartnerLeaderboardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    leaders: GetPartnerLeaderboardResponseLeadersList,
+    me: S.NullOr(GetPartnerLeaderboardResponseLeadersItem),
+  }),
+).annotate({
+  identifier: "GetPartnerLeaderboardResponse",
+}) as any as S.Schema<GetPartnerLeaderboardResponse>;
+
 export type ListPartnerBusinessEarningsRequestStatus =
   | "awaiting_settlement"
   | "pending"
@@ -537,63 +1143,22 @@ export type ListPartnerBusinessesResponseDataItemAccount =
 export const ListPartnerBusinessesResponseDataItemAccount =
   ListPartnerBusinessEarningsResponseDataItemAccount;
 
-export interface ListPartnerBusinessesResponseDataItemEarningsUsd {
-  /** Commission already paid out, in USD. */
-  completed: string;
-  /** Commission scheduled but not yet paid, in USD. */
-  pending: string;
-  /** Pending + completed commission, in USD. */
-  total: string;
-}
+export type ListPartnerBusinessesResponseDataItemEarningsUsd =
+  GetPartnerBusinessResponseEarningsUsd;
 export const ListPartnerBusinessesResponseDataItemEarningsUsd =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      completed: S.String,
-      pending: S.String,
-      total: S.String,
-    }),
-  ).annotate({
-    identifier: "ListPartnerBusinessesResponseDataItemEarningsUsd",
-  }) as any as S.Schema<ListPartnerBusinessesResponseDataItemEarningsUsd>;
+  GetPartnerBusinessResponseEarningsUsd;
 
 /** The user's profile picture. */
-export interface ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture {
-  /** The user's profile picture URL. */
-  url: string;
-}
+export type ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture =
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 export const ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      url: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture",
-  }) as any as S.Schema<ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture>;
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 
 /** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
-export interface ListPartnerBusinessesResponseDataItemFirstTierPartner {
-  /** User ID, prefixed `user_`. */
-  id: string;
-  /** The user's display name. */
-  name: string | null;
-  /** The user's profile picture. */
-  profile_picture: ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-  /** The user's unique username. */
-  username: string;
-}
+export type ListPartnerBusinessesResponseDataItemFirstTierPartner =
+  GetPartnerBusinessResponseFirstTierPartner;
 export const ListPartnerBusinessesResponseDataItemFirstTierPartner =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      name: S.NullOr(S.String),
-      profile_picture:
-        ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture,
-      username: S.String,
-    }),
-  ).annotate({
-    identifier: "ListPartnerBusinessesResponseDataItemFirstTierPartner",
-  }) as any as S.Schema<ListPartnerBusinessesResponseDataItemFirstTierPartner>;
+  GetPartnerBusinessResponseFirstTierPartner;
 
 /** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
 export type ListPartnerBusinessesResponseDataItemMyPartnerTier =
@@ -608,124 +1173,88 @@ export const ListPartnerBusinessesResponseDataItemObject =
 
 /** The user's profile picture. */
 export type ListPartnerBusinessesResponseDataItemOwnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 export const ListPartnerBusinessesResponseDataItemOwnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 
 /** The owner of the referred business. */
 export type ListPartnerBusinessesResponseDataItemOwner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
+  GetPartnerBusinessResponseFirstTierPartner;
 export const ListPartnerBusinessesResponseDataItemOwner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
+  GetPartnerBusinessResponseFirstTierPartner;
 
 /** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
-export interface ListPartnerBusinessesResponseDataItemPayoutPercentages {
-  /** Share of the referred business's Whop Ads spend. */
-  ad_spend: number | null;
-  /** Share of Whop's profit from card interchange. */
-  card_interchange: number | null;
-  /** Share of Whop's profit from product sales. */
-  sales: number;
-  /** Share of Whop's profit from platform balance transfers. */
-  transfer: number | null;
-}
+export type ListPartnerBusinessesResponseDataItemPayoutPercentages =
+  GetPartnerBusinessResponsePayoutPercentages;
 export const ListPartnerBusinessesResponseDataItemPayoutPercentages =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ad_spend: S.NullOr(S.Number),
-      card_interchange: S.NullOr(S.Number),
-      sales: S.Number,
-      transfer: S.NullOr(S.Number),
-    }),
-  ).annotate({
-    identifier: "ListPartnerBusinessesResponseDataItemPayoutPercentages",
-  }) as any as S.Schema<ListPartnerBusinessesResponseDataItemPayoutPercentages>;
+  GetPartnerBusinessResponsePayoutPercentages;
 
 /** The user's profile picture. */
 export type ListPartnerBusinessesResponseDataItemSecondTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 export const ListPartnerBusinessesResponseDataItemSecondTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
+  GetPartnerBusinessResponseFirstTierPartnerProfilePicture;
 
 /** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
 export type ListPartnerBusinessesResponseDataItemSecondTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
+  GetPartnerBusinessResponseFirstTierPartner;
 export const ListPartnerBusinessesResponseDataItemSecondTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
+  GetPartnerBusinessResponseFirstTierPartner;
 
 /** Current referral status. */
 export type ListPartnerBusinessesResponseDataItemStatus = "active" | "removed";
 export const ListPartnerBusinessesResponseDataItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface ListPartnerBusinessesResponseDataItemVolumeUsd {
-  /** Credited GMV (awaiting_settlement + settled); excludes canceled and reversed, in USD. */
-  attributed: string;
-  /** GMV awaiting settlement (commission not yet computed), in USD. */
-  awaiting_settlement: string;
-  /** GMV of pending + completed payments, in USD. */
-  settled: string;
-}
+export type ListPartnerBusinessesResponseDataItemVolumeUsd =
+  GetPartnerBusinessResponseVolumeUsd;
 export const ListPartnerBusinessesResponseDataItemVolumeUsd =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attributed: S.String,
-      awaiting_settlement: S.String,
-      settled: S.String,
-    }),
-  ).annotate({
-    identifier: "ListPartnerBusinessesResponseDataItemVolumeUsd",
-  }) as any as S.Schema<ListPartnerBusinessesResponseDataItemVolumeUsd>;
+  GetPartnerBusinessResponseVolumeUsd;
 
 export interface ListPartnerBusinessesResponseDataItem {
   /** Referred account. */
   account: ListPartnerBusinessEarningsResponseDataItemAccount | null;
   /** When the partner business was created. */
   created_at: string;
-  earnings_usd: ListPartnerBusinessesResponseDataItemEarningsUsd;
+  earnings_usd: GetPartnerBusinessResponseEarningsUsd;
   /** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
-  first_tier_partner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
+  first_tier_partner: GetPartnerBusinessResponseFirstTierPartner | null;
   /** Partner business ID. */
   id: string;
   /** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
   my_partner_tier: ListPartnerBusinessesResponseDataItemMyPartnerTier;
   object: ListPartnerBusinessesResponseDataItemObject;
   /** The owner of the referred business. */
-  owner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
+  owner: GetPartnerBusinessResponseFirstTierPartner | null;
   /** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
-  payout_percentages: ListPartnerBusinessesResponseDataItemPayoutPercentages;
+  payout_percentages: GetPartnerBusinessResponsePayoutPercentages;
   /** When the referral expires. */
   referral_expires_at: string | null;
   /** When the referral became active. */
   referral_started_at: string | null;
   /** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
-  second_tier_partner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
+  second_tier_partner: GetPartnerBusinessResponseFirstTierPartner | null;
   /** Current referral status. */
   status: ListPartnerBusinessesResponseDataItemStatus;
-  volume_usd: ListPartnerBusinessesResponseDataItemVolumeUsd;
+  volume_usd: GetPartnerBusinessResponseVolumeUsd;
 }
 export const ListPartnerBusinessesResponseDataItem = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       account: S.NullOr(ListPartnerBusinessEarningsResponseDataItemAccount),
       created_at: S.String,
-      earnings_usd: ListPartnerBusinessesResponseDataItemEarningsUsd,
-      first_tier_partner: S.NullOr(
-        ListPartnerBusinessesResponseDataItemFirstTierPartner,
-      ),
+      earnings_usd: GetPartnerBusinessResponseEarningsUsd,
+      first_tier_partner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
       id: S.String,
       my_partner_tier: ListPartnerBusinessesResponseDataItemMyPartnerTier,
       object: ListPartnerBusinessesResponseDataItemObject,
-      owner: S.NullOr(ListPartnerBusinessesResponseDataItemFirstTierPartner),
-      payout_percentages:
-        ListPartnerBusinessesResponseDataItemPayoutPercentages,
+      owner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
+      payout_percentages: GetPartnerBusinessResponsePayoutPercentages,
       referral_expires_at: S.NullOr(S.String),
       referral_started_at: S.NullOr(S.String),
-      second_tier_partner: S.NullOr(
-        ListPartnerBusinessesResponseDataItemFirstTierPartner,
-      ),
+      second_tier_partner: S.NullOr(GetPartnerBusinessResponseFirstTierPartner),
       status: ListPartnerBusinessesResponseDataItemStatus,
-      volume_usd: ListPartnerBusinessesResponseDataItemVolumeUsd,
+      volume_usd: GetPartnerBusinessResponseVolumeUsd,
     }),
 ).annotate({
   identifier: "ListPartnerBusinessesResponseDataItem",
@@ -859,550 +1388,6 @@ export const ListReferredUsersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListReferredUsersResponse",
 }) as any as S.Schema<ListReferredUsersResponse>;
 
-export interface RetrievePartnerBusinessRequest {
-  /** The partner business ID (a coma_ identifier). */
-  id: string;
-}
-export const RetrievePartnerBusinessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/partners/businesses/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrievePartnerBusinessRequest",
-}) as any as S.Schema<RetrievePartnerBusinessRequest>;
-
-/** Bank payins: debits, transfers, and local bank rails */
-export type AccountCapabilitiesAcceptBankPayments =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesAcceptBankPayments = /*@__PURE__*/ S.String;
-
-/** Buy-now-pay-later payins; requires approval */
-export type AccountCapabilitiesAcceptBnplPayments =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesAcceptBnplPayments = /*@__PURE__*/ S.String;
-
-/** Card payins, including Apple Pay and Google Pay */
-export type AccountCapabilitiesAcceptCardPayments =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesAcceptCardPayments = /*@__PURE__*/ S.String;
-
-/** Deposits by bank wire or ACH to the account's virtual bank account */
-export type AccountCapabilitiesBankDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesBankDeposit = /*@__PURE__*/ S.String;
-
-/** Balance top-ups by charging a stored payment method */
-export type AccountCapabilitiesCardDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardDeposit = /*@__PURE__*/ S.String;
-
-/** Issuing Whop cards; requires card application approval */
-export type AccountCapabilitiesCardIssuing = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardIssuing = /*@__PURE__*/ S.String;
-
-/** On-chain deposits to the account's crypto wallet */
-export type AccountCapabilitiesCryptoDeposit =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesCryptoDeposit = /*@__PURE__*/ S.String;
-
-/** On-chain payouts to a crypto wallet */
-export type AccountCapabilitiesCryptoPayout = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCryptoPayout = /*@__PURE__*/ S.String;
-
-/** Instant payouts to an eligible payout destination */
-export type AccountCapabilitiesInstantPayout =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesInstantPayout = /*@__PURE__*/ S.String;
-
-/** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
-export type AccountCapabilitiesRunAds = "active" | "inactive" | "pending";
-export const AccountCapabilitiesRunAds = /*@__PURE__*/ S.String;
-
-/** Standard payouts to an external payout destination */
-export type AccountCapabilitiesStandardPayout =
-  | "active"
-  | "inactive"
-  | "pending";
-export const AccountCapabilitiesStandardPayout = /*@__PURE__*/ S.String;
-
-/** Transfers to other accounts */
-export type AccountCapabilitiesTransfer = "active" | "inactive" | "pending";
-export const AccountCapabilitiesTransfer = /*@__PURE__*/ S.String;
-
-export interface AccountCapabilities {
-  /** Bank payins: debits, transfers, and local bank rails */
-  accept_bank_payments: AccountCapabilitiesAcceptBankPayments;
-  /** Buy-now-pay-later payins; requires approval */
-  accept_bnpl_payments: AccountCapabilitiesAcceptBnplPayments;
-  /** Card payins, including Apple Pay and Google Pay */
-  accept_card_payments: AccountCapabilitiesAcceptCardPayments;
-  /** Deposits by bank wire or ACH to the account's virtual bank account */
-  bank_deposit: AccountCapabilitiesBankDeposit;
-  /** Balance top-ups by charging a stored payment method */
-  card_deposit: AccountCapabilitiesCardDeposit;
-  /** Issuing Whop cards; requires card application approval */
-  card_issuing: AccountCapabilitiesCardIssuing;
-  /** On-chain deposits to the account's crypto wallet */
-  crypto_deposit: AccountCapabilitiesCryptoDeposit;
-  /** On-chain payouts to a crypto wallet */
-  crypto_payout: AccountCapabilitiesCryptoPayout;
-  /** Instant payouts to an eligible payout destination */
-  instant_payout: AccountCapabilitiesInstantPayout;
-  /** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
-  run_ads: AccountCapabilitiesRunAds;
-  /** Standard payouts to an external payout destination */
-  standard_payout: AccountCapabilitiesStandardPayout;
-  /** Transfers to other accounts */
-  transfer: AccountCapabilitiesTransfer;
-}
-export const AccountCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accept_bank_payments: AccountCapabilitiesAcceptBankPayments,
-    accept_bnpl_payments: AccountCapabilitiesAcceptBnplPayments,
-    accept_card_payments: AccountCapabilitiesAcceptCardPayments,
-    bank_deposit: AccountCapabilitiesBankDeposit,
-    card_deposit: AccountCapabilitiesCardDeposit,
-    card_issuing: AccountCapabilitiesCardIssuing,
-    crypto_deposit: AccountCapabilitiesCryptoDeposit,
-    crypto_payout: AccountCapabilitiesCryptoPayout,
-    instant_payout: AccountCapabilitiesInstantPayout,
-    run_ads: AccountCapabilitiesRunAds,
-    standard_payout: AccountCapabilitiesStandardPayout,
-    transfer: AccountCapabilitiesTransfer,
-  }),
-).annotate({
-  identifier: "AccountCapabilities",
-}) as any as S.Schema<AccountCapabilities>;
-
-/** The recommendation; new values may be added, so handle unknown actions gracefully */
-export type AccountRecommendedActionAction =
-  | "theme_business"
-  | "create_product"
-  | "create_plan"
-  | "verify_identity"
-  | "connect_affiliate_program"
-  | "create_promotion"
-  | "migrate_from_stripe"
-  | "accept_first_payment"
-  | "launch_first_ad"
-  | "launch_draft_campaign"
-  | "increase_ad_budget"
-  | "refresh_ad_creatives"
-  | "fix_ad_billing"
-  | "exclude_customers_from_ads"
-  | "retarget_abandoned_checkouts"
-  | "fix_funnel_dropoff"
-  | "invite_team_member"
-  | "enable_tax_collection"
-  | "create_card"
-  | "apply_for_financing";
-export const AccountRecommendedActionAction = /*@__PURE__*/ S.String;
-
-export type AccountRecommendedActionBlockedCapabilitiesList = Array<string>;
-export const AccountRecommendedActionBlockedCapabilitiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccountRecommendedActionBlockedCapabilitiesList>;
-
-/** Always optional — never blocking */
-export type AccountRecommendedActionStatus = "optional";
-export const AccountRecommendedActionStatus = /*@__PURE__*/ S.String;
-
-export interface AccountRecommendedAction {
-  /** The recommendation; new values may be added, so handle unknown actions gracefully */
-  action: AccountRecommendedActionAction;
-  blocked_capabilities: AccountRecommendedActionBlockedCapabilitiesList;
-  /** The URL the call-to-action links to */
-  cta: string;
-  /** Button label */
-  cta_label: string;
-  /** Supporting copy, or empty */
-  description: string;
-  /** Illustration icon URL, or `null` */
-  icon_url: string | null;
-  /** Estimated impact from 0-100, or `null` when not ranked */
-  impact_score: number | null;
-  /** Why this action was recommended, or `null` */
-  reasoning: string | null;
-  /** Always optional — never blocking */
-  status: AccountRecommendedActionStatus;
-  /** Headline for the recommendation */
-  title: string;
-}
-export const AccountRecommendedAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: AccountRecommendedActionAction,
-    blocked_capabilities: AccountRecommendedActionBlockedCapabilitiesList,
-    cta: S.String,
-    cta_label: S.String,
-    description: S.String,
-    icon_url: S.NullOr(S.String),
-    impact_score: S.NullOr(S.Number),
-    reasoning: S.NullOr(S.String),
-    status: AccountRecommendedActionStatus,
-    title: S.String,
-  }),
-).annotate({
-  identifier: "AccountRecommendedAction",
-}) as any as S.Schema<AccountRecommendedAction>;
-
-/** Optional actions that unlock capabilities or grow the referred account. */
-export type RetrievePartnerBusinessResponseAccountRecommendedActionsList =
-  Array<AccountRecommendedAction>;
-export const RetrievePartnerBusinessResponseAccountRecommendedActionsList =
-  /*@__PURE__*/ S.Array(
-    AccountRecommendedAction,
-  ) as any as S.Schema<RetrievePartnerBusinessResponseAccountRecommendedActionsList>;
-
-/** What the holder must do; new values may be added, so handle unknown actions gracefully */
-export type AccountRequiredActionAction =
-  | "deposit_funds"
-  | "submit_information_request"
-  | "reauthorize_payout_methods"
-  | "update_payout_profile"
-  | "card_usage_review"
-  | "verify_identity"
-  | "sign_formation_documents"
-  | "connect_fulfillment_tracker"
-  | "setup_apple_pay_domains"
-  | "configure_tax_remitter"
-  | "add_vat_registration";
-export const AccountRequiredActionAction = /*@__PURE__*/ S.String;
-
-export type AccountRequiredActionBlockedCapabilitiesList = Array<string>;
-export const AccountRequiredActionBlockedCapabilitiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccountRequiredActionBlockedCapabilitiesList>;
-
-/** required (act now) or pending (under review) */
-export type AccountRequiredActionStatus = "required" | "pending";
-export const AccountRequiredActionStatus = /*@__PURE__*/ S.String;
-
-export interface AccountRequiredAction {
-  /** What the holder must do; new values may be added, so handle unknown actions gracefully */
-  action: AccountRequiredActionAction;
-  blocked_capabilities: AccountRequiredActionBlockedCapabilitiesList;
-  /** The URL the call-to-action links to, or null when there is no button */
-  cta: string | null;
-  /** Button label, or empty when there is no button */
-  cta_label: string;
-  /** Supporting copy, or empty */
-  description: string;
-  /** The URL of the action's illustration icon, or null if it has none */
-  icon_url: string | null;
-  /** required (act now) or pending (under review) */
-  status: AccountRequiredActionStatus;
-  /** Headline for the action */
-  title: string;
-}
-export const AccountRequiredAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: AccountRequiredActionAction,
-    blocked_capabilities: AccountRequiredActionBlockedCapabilitiesList,
-    cta: S.NullOr(S.String),
-    cta_label: S.String,
-    description: S.String,
-    icon_url: S.NullOr(S.String),
-    status: AccountRequiredActionStatus,
-    title: S.String,
-  }),
-).annotate({
-  identifier: "AccountRequiredAction",
-}) as any as S.Schema<AccountRequiredAction>;
-
-/** Actions the referred account owner must take to unblock capabilities. */
-export type RetrievePartnerBusinessResponseAccountRequiredActionsList =
-  Array<AccountRequiredAction>;
-export const RetrievePartnerBusinessResponseAccountRequiredActionsList =
-  /*@__PURE__*/ S.Array(
-    AccountRequiredAction,
-  ) as any as S.Schema<RetrievePartnerBusinessResponseAccountRequiredActionsList>;
-
-/** Referred account. */
-export interface RetrievePartnerBusinessResponseAccount {
-  capabilities: AccountCapabilities | null;
-  /** Referred account ID. */
-  id: string;
-  /** Referred account logo URL. */
-  logo_url: string | null;
-  /** Optional actions that unlock capabilities or grow the referred account. */
-  recommended_actions: RetrievePartnerBusinessResponseAccountRecommendedActionsList | null;
-  /** Actions the referred account owner must take to unblock capabilities. */
-  required_actions: RetrievePartnerBusinessResponseAccountRequiredActionsList | null;
-  /** Referred account route. */
-  route: string;
-  /** Referred account display name. */
-  title: string;
-}
-export const RetrievePartnerBusinessResponseAccount = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      capabilities: S.NullOr(AccountCapabilities),
-      id: S.String,
-      logo_url: S.NullOr(S.String),
-      recommended_actions: S.NullOr(
-        RetrievePartnerBusinessResponseAccountRecommendedActionsList,
-      ),
-      required_actions: S.NullOr(
-        RetrievePartnerBusinessResponseAccountRequiredActionsList,
-      ),
-      route: S.String,
-      title: S.String,
-    }),
-).annotate({
-  identifier: "RetrievePartnerBusinessResponseAccount",
-}) as any as S.Schema<RetrievePartnerBusinessResponseAccount>;
-
-export type RetrievePartnerBusinessResponseEarningsUsd =
-  ListPartnerBusinessesResponseDataItemEarningsUsd;
-export const RetrievePartnerBusinessResponseEarningsUsd =
-  ListPartnerBusinessesResponseDataItemEarningsUsd;
-
-/** The user's profile picture. */
-export type RetrievePartnerBusinessResponseFirstTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-export const RetrievePartnerBusinessResponseFirstTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-
-/** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
-export type RetrievePartnerBusinessResponseFirstTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-export const RetrievePartnerBusinessResponseFirstTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-
-/** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
-export type RetrievePartnerBusinessResponseMyPartnerTier = "first" | "second";
-export const RetrievePartnerBusinessResponseMyPartnerTier =
-  /*@__PURE__*/ S.String;
-
-export type RetrievePartnerBusinessResponseObject = "partner_business";
-export const RetrievePartnerBusinessResponseObject = /*@__PURE__*/ S.String;
-
-/** The user's profile picture. */
-export type RetrievePartnerBusinessResponseOwnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-export const RetrievePartnerBusinessResponseOwnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-
-/** The owner of the referred business. */
-export type RetrievePartnerBusinessResponseOwner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-export const RetrievePartnerBusinessResponseOwner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-
-/** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
-export type RetrievePartnerBusinessResponsePayoutPercentages =
-  ListPartnerBusinessesResponseDataItemPayoutPercentages;
-export const RetrievePartnerBusinessResponsePayoutPercentages =
-  ListPartnerBusinessesResponseDataItemPayoutPercentages;
-
-/** The user's profile picture. */
-export type RetrievePartnerBusinessResponseSecondTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-export const RetrievePartnerBusinessResponseSecondTierPartnerProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-
-/** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
-export type RetrievePartnerBusinessResponseSecondTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-export const RetrievePartnerBusinessResponseSecondTierPartner =
-  ListPartnerBusinessesResponseDataItemFirstTierPartner;
-
-/** Current referral status. */
-export type RetrievePartnerBusinessResponseStatus = "active" | "removed";
-export const RetrievePartnerBusinessResponseStatus = /*@__PURE__*/ S.String;
-
-export type RetrievePartnerBusinessResponseVolumeUsd =
-  ListPartnerBusinessesResponseDataItemVolumeUsd;
-export const RetrievePartnerBusinessResponseVolumeUsd =
-  ListPartnerBusinessesResponseDataItemVolumeUsd;
-
-export interface RetrievePartnerBusinessResponse {
-  /** Referred account. */
-  account: RetrievePartnerBusinessResponseAccount | null;
-  /** When the partner business was created. */
-  created_at: string;
-  earnings_usd: ListPartnerBusinessesResponseDataItemEarningsUsd;
-  /** The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner. */
-  first_tier_partner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
-  /** Partner business ID. */
-  id: string;
-  /** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
-  my_partner_tier: RetrievePartnerBusinessResponseMyPartnerTier;
-  object: RetrievePartnerBusinessResponseObject;
-  /** The owner of the referred business. */
-  owner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
-  /** The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%). */
-  payout_percentages: ListPartnerBusinessesResponseDataItemPayoutPercentages;
-  /** When the referral expires. */
-  referral_expires_at: string | null;
-  /** When the referral became active. */
-  referral_started_at: string | null;
-  /** The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner. */
-  second_tier_partner: ListPartnerBusinessesResponseDataItemFirstTierPartner | null;
-  /** Current referral status. */
-  status: RetrievePartnerBusinessResponseStatus;
-  volume_usd: ListPartnerBusinessesResponseDataItemVolumeUsd;
-}
-export const RetrievePartnerBusinessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account: S.NullOr(RetrievePartnerBusinessResponseAccount),
-    created_at: S.String,
-    earnings_usd: ListPartnerBusinessesResponseDataItemEarningsUsd,
-    first_tier_partner: S.NullOr(
-      ListPartnerBusinessesResponseDataItemFirstTierPartner,
-    ),
-    id: S.String,
-    my_partner_tier: RetrievePartnerBusinessResponseMyPartnerTier,
-    object: RetrievePartnerBusinessResponseObject,
-    owner: S.NullOr(ListPartnerBusinessesResponseDataItemFirstTierPartner),
-    payout_percentages: ListPartnerBusinessesResponseDataItemPayoutPercentages,
-    referral_expires_at: S.NullOr(S.String),
-    referral_started_at: S.NullOr(S.String),
-    second_tier_partner: S.NullOr(
-      ListPartnerBusinessesResponseDataItemFirstTierPartner,
-    ),
-    status: RetrievePartnerBusinessResponseStatus,
-    volume_usd: ListPartnerBusinessesResponseDataItemVolumeUsd,
-  }),
-).annotate({
-  identifier: "RetrievePartnerBusinessResponse",
-}) as any as S.Schema<RetrievePartnerBusinessResponse>;
-
-export type RetrievePartnerLeaderboardRequestPeriod =
-  | "day"
-  | "month"
-  | "year"
-  | "last_30_days"
-  | "all_time";
-export const RetrievePartnerLeaderboardRequestPeriod = /*@__PURE__*/ S.String;
-
-export interface RetrievePartnerLeaderboardRequest {
-  /** Time window for the rankings. `day`, `month`, and `year` count earnings since the start of the current calendar day, month, or year; `last_30_days` counts earnings over the trailing 30 days; `all_time` ranks lifetime earnings. */
-  period?: RetrievePartnerLeaderboardRequestPeriod | (string & {});
-}
-export const RetrievePartnerLeaderboardRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    period: S.optional(RetrievePartnerLeaderboardRequestPeriod.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/partners/leaderboard", code: 200 })),
-).annotate({
-  identifier: "RetrievePartnerLeaderboardRequest",
-}) as any as S.Schema<RetrievePartnerLeaderboardRequest>;
-
-/** The user's profile picture. Present only on the caller's own entry. */
-export type RetrievePartnerLeaderboardResponseLeadersItemUserProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-export const RetrievePartnerLeaderboardResponseLeadersItemUserProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-
-/** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
-export interface RetrievePartnerLeaderboardResponseLeadersItemUser {
-  /** The city where the referrer is located, derived from their IP address. Null if location sharing is disabled. */
-  city: string | null;
-  /** The country where the referrer is located, derived from their IP address. Null if location sharing is disabled. */
-  country: string | null;
-  /** User ID, prefixed `user_`. Present only on the caller's own entry. */
-  id?: string;
-  /** The user's display name. Present only on the caller's own entry. */
-  name?: string | null;
-  /** The user's profile picture. Present only on the caller's own entry. */
-  profile_picture?: ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-  /** The user's unique username. Present only on the caller's own entry. */
-  username?: string;
-}
-export const RetrievePartnerLeaderboardResponseLeadersItemUser =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      city: S.NullOr(S.String),
-      country: S.NullOr(S.String),
-      id: S.optional(S.String),
-      name: S.optional(S.NullOr(S.String)),
-      profile_picture: S.optional(
-        ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture,
-      ),
-      username: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "RetrievePartnerLeaderboardResponseLeadersItemUser",
-  }) as any as S.Schema<RetrievePartnerLeaderboardResponseLeadersItemUser>;
-
-export interface RetrievePartnerLeaderboardResponseLeadersItem {
-  /** When the referrer's earliest partner business became active. */
-  first_referral_started_at: string;
-  /** 1-based leaderboard position. */
-  rank: number;
-  /** The referrer's pending + completed earnings across all referred businesses, in USD. */
-  total_earnings_usd: string;
-  /** Credited GMV across all the referrer's referred businesses, in USD. */
-  total_volume_usd: string;
-  /** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
-  user: RetrievePartnerLeaderboardResponseLeadersItemUser | null;
-}
-export const RetrievePartnerLeaderboardResponseLeadersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      first_referral_started_at: S.String,
-      rank: S.Number,
-      total_earnings_usd: S.String,
-      total_volume_usd: S.String,
-      user: S.NullOr(RetrievePartnerLeaderboardResponseLeadersItemUser),
-    }),
-  ).annotate({
-    identifier: "RetrievePartnerLeaderboardResponseLeadersItem",
-  }) as any as S.Schema<RetrievePartnerLeaderboardResponseLeadersItem>;
-
-/** The top referrers by total earnings, best first. */
-export type RetrievePartnerLeaderboardResponseLeadersList =
-  Array<RetrievePartnerLeaderboardResponseLeadersItem>;
-export const RetrievePartnerLeaderboardResponseLeadersList =
-  /*@__PURE__*/ S.Array(
-    RetrievePartnerLeaderboardResponseLeadersItem,
-  ) as any as S.Schema<RetrievePartnerLeaderboardResponseLeadersList>;
-
-/** The user's profile picture. Present only on the caller's own entry. */
-export type RetrievePartnerLeaderboardResponseMeUserProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-export const RetrievePartnerLeaderboardResponseMeUserProfilePicture =
-  ListPartnerBusinessesResponseDataItemFirstTierPartnerProfilePicture;
-
-/** The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only. */
-export type RetrievePartnerLeaderboardResponseMeUser =
-  RetrievePartnerLeaderboardResponseLeadersItemUser;
-export const RetrievePartnerLeaderboardResponseMeUser =
-  RetrievePartnerLeaderboardResponseLeadersItemUser;
-
-/** The caller's own standing; null when the caller has no referral earnings. */
-export type RetrievePartnerLeaderboardResponseMe =
-  RetrievePartnerLeaderboardResponseLeadersItem;
-export const RetrievePartnerLeaderboardResponseMe =
-  RetrievePartnerLeaderboardResponseLeadersItem;
-
-export interface RetrievePartnerLeaderboardResponse {
-  /** The top referrers by total earnings, best first. */
-  leaders: RetrievePartnerLeaderboardResponseLeadersList;
-  /** The caller's own standing; null when the caller has no referral earnings. */
-  me: RetrievePartnerLeaderboardResponseLeadersItem | null;
-}
-export const RetrievePartnerLeaderboardResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    leaders: RetrievePartnerLeaderboardResponseLeadersList,
-    me: S.NullOr(RetrievePartnerLeaderboardResponseLeadersItem),
-  }),
-).annotate({
-  identifier: "RetrievePartnerLeaderboardResponse",
-}) as any as S.Schema<RetrievePartnerLeaderboardResponse>;
-
 export type CreateReferralPartnerError = Forbidden | Conflict | WhopOpError;
 /** Enroll as a Whop partner Enrolls the calling user in the Whop partner program, making their partner businesses eligible for earnings. Idempotent — enrolling again keeps the original enrollment time. */
 export const createReferralPartner: API.OperationMethod<
@@ -1414,6 +1399,36 @@ export const createReferralPartner: API.OperationMethod<
   input: CreateReferralPartnerRequest,
   output: CreateReferralPartnerResponse,
   errors: [Forbidden, Conflict],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPartnerBusinessError = NotFound | WhopOpError;
+/** Retrieve a referred business Retrieves a single referred business and its referral terms. */
+export const getPartnerBusiness: API.OperationMethod<
+  GetPartnerBusinessRequest,
+  GetPartnerBusinessResponse,
+  GetPartnerBusinessError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPartnerBusinessRequest,
+  output: GetPartnerBusinessResponse,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPartnerLeaderboardError = BadRequest | WhopOpError;
+/** Retrieve the leaderboard Ranks referrers by partner business earnings — all-time by default, or over the current day, month, year, or trailing 30 days. Authentication is optional: authenticated callers also get their own standing, anonymous callers get the rankings alone. */
+export const getPartnerLeaderboard: API.OperationMethod<
+  GetPartnerLeaderboardRequest,
+  GetPartnerLeaderboardResponse,
+  GetPartnerLeaderboardError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPartnerLeaderboardRequest,
+  output: GetPartnerLeaderboardResponse,
+  errors: [BadRequest],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));
@@ -1498,33 +1513,3 @@ export const listReferredUsers: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePartnerBusinessError = NotFound | WhopOpError;
-/** Retrieve a referred business Retrieves a single referred business and its referral terms. */
-export const retrievePartnerBusiness: API.OperationMethod<
-  RetrievePartnerBusinessRequest,
-  RetrievePartnerBusinessResponse,
-  RetrievePartnerBusinessError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePartnerBusinessRequest,
-  output: RetrievePartnerBusinessResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePartnerLeaderboardError = BadRequest | WhopOpError;
-/** Retrieve the leaderboard Ranks referrers by partner business earnings — all-time by default, or over the current day, month, year, or trailing 30 days. Authentication is optional: authenticated callers also get their own standing, anonymous callers get the rankings alone. */
-export const retrievePartnerLeaderboard: API.OperationMethod<
-  RetrievePartnerLeaderboardRequest,
-  RetrievePartnerLeaderboardResponse,
-  RetrievePartnerLeaderboardError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePartnerLeaderboardRequest,
-  output: RetrievePartnerLeaderboardResponse,
-  errors: [BadRequest],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

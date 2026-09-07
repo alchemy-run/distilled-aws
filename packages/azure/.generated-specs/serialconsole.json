@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.serialconsole#SerialPortsConnect": {
+    "com.azure.serialconsole#ConnectSerialPort": {
       "type": "operation",
       "input": {
-        "target": "com.azure.serialconsole#SerialPortsConnectRequest"
+        "target": "com.azure.serialconsole#ConnectSerialPortRequest"
       },
       "output": {
         "target": "com.azure.serialconsole#SerialPortConnectResult"
@@ -51,7 +52,7 @@
         "smithy.api#documentation": "Returns a connection string to the serial port of the resource."
       }
     },
-    "com.azure.serialconsole#SerialPortsConnectRequest": {
+    "com.azure.serialconsole#ConnectSerialPortRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -948,31 +949,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.serialconsole#SerialPortsConnect"
+          "target": "com.azure.serialconsole#ConnectSerialPort"
         },
         {
           "target": "com.azure.serialconsole#CreateSerialPort"
         },
         {
-          "target": "com.azure.serialconsole#GetSerialPort"
-        },
-        {
-          "target": "com.azure.serialconsole#ListSerialPorts"
-        },
-        {
-          "target": "com.azure.serialconsole#ListSerialPortBySubscriptions"
+          "target": "com.azure.serialconsole#DisableConsole"
         },
         {
           "target": "com.azure.serialconsole#EnableConsole"
         },
         {
-          "target": "com.azure.serialconsole#DisableConsole"
-        },
-        {
           "target": "com.azure.serialconsole#GetConsoleStatus"
         },
         {
+          "target": "com.azure.serialconsole#GetSerialPort"
+        },
+        {
           "target": "com.azure.serialconsole#ListOperations"
+        },
+        {
+          "target": "com.azure.serialconsole#ListSerialPortBySubscriptions"
+        },
+        {
+          "target": "com.azure.serialconsole#ListSerialPorts"
         }
       ],
       "traits": {

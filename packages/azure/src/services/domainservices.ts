@@ -51,61 +51,61 @@ export const CreateOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOuContainerRequest>;
 
 /** Resource tags */
-export type OuContainerCreateResponseTagsMap = {
+export type CreateOuContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OuContainerCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OuContainerCreateResponseTagsMap>;
+) as any as S.Schema<CreateOuContainerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type OuContainerCreateResponseSystemDataCreatedByType =
+export type CreateOuContainerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerCreateResponseSystemDataCreatedByType =
+export const CreateOuContainerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type OuContainerCreateResponseSystemDataLastModifiedByType =
+export type CreateOuContainerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerCreateResponseSystemDataLastModifiedByType =
+export const CreateOuContainerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerCreateResponseSystemData {
+export interface CreateOuContainerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: OuContainerCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateOuContainerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateOuContainerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const OuContainerCreateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const CreateOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerCreateResponseSystemDataCreatedByType),
+    createdByType: S.optional(CreateOuContainerResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      OuContainerCreateResponseSystemDataLastModifiedByType,
+      CreateOuContainerResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OuContainerCreateResponseSystemData",
-}) as any as S.Schema<OuContainerCreateResponseSystemData>;
+  identifier: "CreateOuContainerResponseSystemData",
+}) as any as S.Schema<CreateOuContainerResponseSystemData>;
 
 /** Container Account Description */
 export interface ContainerAccount {
@@ -176,11 +176,11 @@ export interface CreateOuContainerResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: OuContainerCreateResponseTagsMap;
+  tags?: CreateOuContainerResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerCreateResponseSystemData;
+  systemData?: CreateOuContainerResponseSystemData;
   /** OuContainer properties */
   properties?: OuContainerProperties;
 }
@@ -190,9 +190,9 @@ export const CreateOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(OuContainerCreateResponseTagsMap),
+    tags: S.optional(CreateOuContainerResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(OuContainerCreateResponseSystemData),
+    systemData: S.optional(CreateOuContainerResponseSystemData),
     properties: S.optional(OuContainerProperties),
   }),
 ).annotate({
@@ -1052,61 +1052,61 @@ export const GetDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDomainServiceRequest>;
 
 /** Resource tags */
-export type DomainServicesGetResponseTagsMap = {
+export type GetDomainServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DomainServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDomainServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainServicesGetResponseTagsMap>;
+) as any as S.Schema<GetDomainServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type DomainServicesGetResponseSystemDataCreatedByType =
+export type GetDomainServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesGetResponseSystemDataCreatedByType =
+export const GetDomainServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type DomainServicesGetResponseSystemDataLastModifiedByType =
+export type GetDomainServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesGetResponseSystemDataLastModifiedByType =
+export const GetDomainServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface DomainServicesGetResponseSystemData {
+export interface GetDomainServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: DomainServicesGetResponseSystemDataCreatedByType;
+  createdByType?: GetDomainServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DomainServicesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetDomainServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const DomainServicesGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainServiceResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(DomainServicesGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetDomainServiceResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      DomainServicesGetResponseSystemDataLastModifiedByType,
+      GetDomainServiceResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DomainServicesGetResponseSystemData",
-}) as any as S.Schema<DomainServicesGetResponseSystemData>;
+  identifier: "GetDomainServiceResponseSystemData",
+}) as any as S.Schema<GetDomainServiceResponseSystemData>;
 
 export interface GetDomainServiceResponse {
   /** Resource Id */
@@ -1118,11 +1118,11 @@ export interface GetDomainServiceResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: DomainServicesGetResponseTagsMap;
+  tags?: GetDomainServiceResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DomainServicesGetResponseSystemData;
+  systemData?: GetDomainServiceResponseSystemData;
   /** Domain service properties */
   properties?: DomainServiceProperties;
 }
@@ -1132,9 +1132,9 @@ export const GetDomainServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(DomainServicesGetResponseTagsMap),
+    tags: S.optional(GetDomainServiceResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(DomainServicesGetResponseSystemData),
+    systemData: S.optional(GetDomainServiceResponseSystemData),
     properties: S.optional(DomainServiceProperties),
   }),
 ).annotate({
@@ -1170,61 +1170,61 @@ export const GetOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOuContainerRequest>;
 
 /** Resource tags */
-export type OuContainerGetResponseTagsMap = {
+export type GetOuContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OuContainerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OuContainerGetResponseTagsMap>;
+) as any as S.Schema<GetOuContainerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type OuContainerGetResponseSystemDataCreatedByType =
+export type GetOuContainerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerGetResponseSystemDataCreatedByType =
+export const GetOuContainerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type OuContainerGetResponseSystemDataLastModifiedByType =
+export type GetOuContainerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerGetResponseSystemDataLastModifiedByType =
+export const GetOuContainerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerGetResponseSystemData {
+export interface GetOuContainerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: OuContainerGetResponseSystemDataCreatedByType;
+  createdByType?: GetOuContainerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetOuContainerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const OuContainerGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetOuContainerResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      OuContainerGetResponseSystemDataLastModifiedByType,
+      GetOuContainerResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OuContainerGetResponseSystemData",
-}) as any as S.Schema<OuContainerGetResponseSystemData>;
+  identifier: "GetOuContainerResponseSystemData",
+}) as any as S.Schema<GetOuContainerResponseSystemData>;
 
 export interface GetOuContainerResponse {
   /** Resource Id */
@@ -1236,11 +1236,11 @@ export interface GetOuContainerResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: OuContainerGetResponseTagsMap;
+  tags?: GetOuContainerResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerGetResponseSystemData;
+  systemData?: GetOuContainerResponseSystemData;
   /** OuContainer properties */
   properties?: OuContainerProperties;
 }
@@ -1250,9 +1250,9 @@ export const GetOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(OuContainerGetResponseTagsMap),
+    tags: S.optional(GetOuContainerResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(OuContainerGetResponseSystemData),
+    systemData: S.optional(GetOuContainerResponseSystemData),
     properties: S.optional(OuContainerProperties),
   }),
 ).annotate({
@@ -1598,20 +1598,20 @@ export const OuContainerListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<OuContainerListResultValueList>;
 
 /** The response from the List OuContainer operation. */
-export interface ListOuContainerResult {
+export interface OuContainerListResult {
   /** The list of OuContainer. */
   value?: OuContainerListResultValueList;
   /** The continuation token for the next page of results. */
   nextLink?: string;
 }
-export const ListOuContainerResult = /*@__PURE__*/ S.suspend(() =>
+export const OuContainerListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(OuContainerListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListOuContainerResult",
-}) as any as S.Schema<ListOuContainerResult>;
+  identifier: "OuContainerListResult",
+}) as any as S.Schema<OuContainerListResult>;
 
 export interface ListOuContainerOperationsRequest {}
 export const ListOuContainerOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -1628,13 +1628,13 @@ export const ListOuContainerOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOuContainerOperationsRequest>;
 
 /** Resource tags */
-export type DomainServicesUpdateRequestTagsMap = {
+export type UpdateDomainServiceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DomainServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDomainServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDomainServiceRequestTagsMap>;
 
 export interface UpdateDomainServiceRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -1646,7 +1646,7 @@ export interface UpdateDomainServiceRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: DomainServicesUpdateRequestTagsMap;
+  tags?: UpdateDomainServiceRequestTagsMap;
   /** Resource etag */
   etag?: string;
   /** Domain service properties */
@@ -1658,7 +1658,7 @@ export const UpdateDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     domainServiceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(DomainServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateDomainServiceRequestTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(DomainServicePropertiesInput),
   }).pipe(
@@ -1674,64 +1674,64 @@ export const UpdateDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDomainServiceRequest>;
 
 /** Resource tags */
-export type DomainServicesUpdateResponseTagsMap = {
+export type UpdateDomainServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DomainServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDomainServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDomainServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type DomainServicesUpdateResponseSystemDataCreatedByType =
+export type UpdateDomainServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesUpdateResponseSystemDataCreatedByType =
+export const UpdateDomainServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type DomainServicesUpdateResponseSystemDataLastModifiedByType =
+export type UpdateDomainServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesUpdateResponseSystemDataLastModifiedByType =
+export const UpdateDomainServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface DomainServicesUpdateResponseSystemData {
+export interface UpdateDomainServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: DomainServicesUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateDomainServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DomainServicesUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateDomainServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const DomainServicesUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+export const UpdateDomainServiceResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        DomainServicesUpdateResponseSystemDataCreatedByType,
+        UpdateDomainServiceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        DomainServicesUpdateResponseSystemDataLastModifiedByType,
+        UpdateDomainServiceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "DomainServicesUpdateResponseSystemData",
-}) as any as S.Schema<DomainServicesUpdateResponseSystemData>;
+  identifier: "UpdateDomainServiceResponseSystemData",
+}) as any as S.Schema<UpdateDomainServiceResponseSystemData>;
 
 export interface UpdateDomainServiceResponse {
   /** Resource Id */
@@ -1743,11 +1743,11 @@ export interface UpdateDomainServiceResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: DomainServicesUpdateResponseTagsMap;
+  tags?: UpdateDomainServiceResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DomainServicesUpdateResponseSystemData;
+  systemData?: UpdateDomainServiceResponseSystemData;
   /** Domain service properties */
   properties?: DomainServiceProperties;
 }
@@ -1757,9 +1757,9 @@ export const UpdateDomainServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(DomainServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateDomainServiceResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(DomainServicesUpdateResponseSystemData),
+    systemData: S.optional(UpdateDomainServiceResponseSystemData),
     properties: S.optional(DomainServiceProperties),
   }),
 ).annotate({
@@ -1804,61 +1804,61 @@ export const UpdateOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOuContainerRequest>;
 
 /** Resource tags */
-export type OuContainerUpdateResponseTagsMap = {
+export type UpdateOuContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OuContainerUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OuContainerUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOuContainerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type OuContainerUpdateResponseSystemDataCreatedByType =
+export type UpdateOuContainerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerUpdateResponseSystemDataCreatedByType =
+export const UpdateOuContainerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type OuContainerUpdateResponseSystemDataLastModifiedByType =
+export type UpdateOuContainerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerUpdateResponseSystemDataLastModifiedByType =
+export const UpdateOuContainerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerUpdateResponseSystemData {
+export interface UpdateOuContainerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: OuContainerUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateOuContainerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateOuContainerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const OuContainerUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateOuContainerResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      OuContainerUpdateResponseSystemDataLastModifiedByType,
+      UpdateOuContainerResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OuContainerUpdateResponseSystemData",
-}) as any as S.Schema<OuContainerUpdateResponseSystemData>;
+  identifier: "UpdateOuContainerResponseSystemData",
+}) as any as S.Schema<UpdateOuContainerResponseSystemData>;
 
 export interface UpdateOuContainerResponse {
   /** Resource Id */
@@ -1870,11 +1870,11 @@ export interface UpdateOuContainerResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: OuContainerUpdateResponseTagsMap;
+  tags?: UpdateOuContainerResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerUpdateResponseSystemData;
+  systemData?: UpdateOuContainerResponseSystemData;
   /** OuContainer properties */
   properties?: OuContainerProperties;
 }
@@ -1884,9 +1884,9 @@ export const UpdateOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(OuContainerUpdateResponseTagsMap),
+    tags: S.optional(UpdateOuContainerResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(OuContainerUpdateResponseSystemData),
+    systemData: S.optional(UpdateOuContainerResponseSystemData),
     properties: S.optional(OuContainerProperties),
   }),
 ).annotate({
@@ -2032,12 +2032,12 @@ export type ListOuContainerError = AzureOpError;
 /** List of OuContainers in DomainService instance The List of OuContainers in DomainService instance. */
 export const ListOuContainer: API.OperationMethod<
   ListOuContainerRequest,
-  ListOuContainerResult,
+  OuContainerListResult,
   ListOuContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOuContainerRequest,
-  output: ListOuContainerResult,
+  output: OuContainerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

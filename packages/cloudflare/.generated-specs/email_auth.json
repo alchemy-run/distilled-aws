@@ -30,7 +30,8 @@
       "spfRecords": "spf_records",
       "totalLookups": "total_lookups",
       "zoneId": "zone_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItemIpsList": {
@@ -950,13 +951,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.email_auth#DmarcReportsEdit"
+          "target": "com.cloudflare.email_auth#GetDmarcReport"
         },
         {
-          "target": "com.cloudflare.email_auth#DmarcReportsGet"
+          "target": "com.cloudflare.email_auth#GetSpfInspect"
         },
         {
-          "target": "com.cloudflare.email_auth#SpfInspectGet"
+          "target": "com.cloudflare.email_auth#PatchDmarcReport"
         }
       ],
       "traits": {

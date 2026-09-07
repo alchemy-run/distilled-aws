@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.global_config#GetEdgeConfigsRequest": {
@@ -2768,58 +2769,58 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.global_config#GetEdgeConfigs"
-        },
-        {
           "target": "com.vercel.global_config#CreateEdgeConfig"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfig"
-        },
-        {
-          "target": "com.vercel.global_config#UpdateEdgeConfig"
-        },
-        {
-          "target": "com.vercel.global_config#DeleteEdgeConfig"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfigItems"
-        },
-        {
-          "target": "com.vercel.global_config#PatchEdgeConfigItems"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfigSchema"
-        },
-        {
-          "target": "com.vercel.global_config#PatchEdgeConfigSchema"
-        },
-        {
-          "target": "com.vercel.global_config#DeleteEdgeConfigSchema"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfigItem"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfigTokens"
-        },
-        {
-          "target": "com.vercel.global_config#DeleteEdgeConfigTokens"
-        },
-        {
-          "target": "com.vercel.global_config#GetEdgeConfigToken"
         },
         {
           "target": "com.vercel.global_config#CreateEdgeConfigToken"
         },
         {
+          "target": "com.vercel.global_config#DeleteEdgeConfig"
+        },
+        {
+          "target": "com.vercel.global_config#DeleteEdgeConfigSchema"
+        },
+        {
+          "target": "com.vercel.global_config#DeleteEdgeConfigTokens"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfig"
+        },
+        {
           "target": "com.vercel.global_config#GetEdgeConfigBackup"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigBackups"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigItem"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigItems"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigs"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigSchema"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigToken"
+        },
+        {
+          "target": "com.vercel.global_config#GetEdgeConfigTokens"
+        },
+        {
+          "target": "com.vercel.global_config#PatchEdgeConfigItems"
+        },
+        {
+          "target": "com.vercel.global_config#PatchEdgeConfigSchema"
         },
         {
           "target": "com.vercel.global_config#RestoreEdgeConfigBackup"
         },
         {
-          "target": "com.vercel.global_config#GetEdgeConfigBackups"
+          "target": "com.vercel.global_config#UpdateEdgeConfig"
         }
       ],
       "traits": {

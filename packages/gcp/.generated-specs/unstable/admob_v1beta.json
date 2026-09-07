@@ -4,175 +4,164 @@
     "service": "admob",
     "version": "v1beta",
     "title": "AdMob API",
-    "baseUrl": "https://admob.googleapis.com/"
+    "baseUrl": "https://admob.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.admob_v1beta#DateRange": {
+    "com.gcp.admob_v1beta#GenerateNetworkReportRequest": {
       "type": "structure",
       "members": {
-        "startDate": {
-          "target": "com.gcp.admob_v1beta#Admob_Date",
+        "reportSpec": {
+          "target": "com.gcp.admob_v1beta#NetworkReportSpec",
           "traits": {
-            "smithy.api#documentation": "Start date of the date range, inclusive. Must be less than or equal to the end date."
+            "smithy.api#documentation": "Network report specification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to generate an AdMob Network report."
+      }
+    },
+    "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLine": {
+      "type": "structure",
+      "members": {
+        "mediationGroupLine": {
+          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLine",
+          "traits": {
+            "smithy.api#documentation": "The mediation group line used by the experiment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mediation group line for the experiment. It will be used for serving during the run of the experiment."
+      }
+    },
+    "com.gcp.admob_v1beta#Admob_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
           }
         },
-        "endDate": {
-          "target": "com.gcp.admob_v1beta#Admob_Date",
+        "month": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "End date of the date range, inclusive. Must be greater than or equal to the start date."
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Specification of a single date range. Both dates are inclusive."
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
       }
     },
-    "com.gcp.admob_v1beta#StopMediationAbExperimentRequest": {
+    "com.gcp.admob_v1beta#MediationGroupTargeting": {
       "type": "structure",
       "members": {
-        "variantChoice": {
-          "target": "com.gcp.admob_v1beta#StopMediationAbExperimentRequestVariantChoiceEnum",
+        "format": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The choice for the winning variant."
+            "smithy.api#documentation": "Ad format targeted by this mediation group. Examples: \"BANNER\", \"NATIVE\"."
+          }
+        },
+        "adUnitIds": {
+          "target": "com.gcp.admob_v1beta#StringList_",
+          "traits": {
+            "smithy.api#documentation": "Ad units targeted by this mediation group. Example: \"ca-app-pub-1234/8790\"."
+          }
+        },
+        "targetedRegionCodes": {
+          "target": "com.gcp.admob_v1beta#StringList_",
+          "traits": {
+            "smithy.api#documentation": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group targets all available regions. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag."
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the platform of the app. Examples: \"IOS\", \"ANDROID\"."
+          }
+        },
+        "excludedRegionCodes": {
+          "target": "com.gcp.admob_v1beta#StringList_",
+          "traits": {
+            "smithy.api#documentation": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group does not exclude any region."
+          }
+        },
+        "idfaTargeting": {
+          "target": "com.gcp.admob_v1beta#MediationGroupTargetingIdfaTargetingEnum",
+          "traits": {
+            "smithy.api#documentation": "The parameter can be used to target ad requests based on the availability of the IDFA. If set to ALL, the mediation group applies to all ad requests (with or without IDFA). If set to AVAILABLE, the mediation group applies to ad requests with IDFA. If set to NOT_AVAILABLE, the mediation group applies to ad requests without IDFA. Doesn't need to be specified for an ANDROID device."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request to end the mediation A/B experiment and choose a winning variant."
+        "smithy.api#documentation": "Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location."
       }
     },
-    "com.gcp.admob_v1beta#StopMediationAbExperimentRequestVariantChoiceEnum": {
+    "com.gcp.admob_v1beta#StringList_": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.admob_v1beta#MediationGroupTargetingIdfaTargetingEnum": {
       "type": "enum",
       "members": {
-        "VARIANT_CHOICE_UNSPECIFIED": {
+        "IDFA_TARGETING_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "VARIANT_CHOICE_UNSPECIFIED"
+            "smithy.api#enumValue": "IDFA_TARGETING_UNSPECIFIED"
           }
         },
-        "VARIANT_CHOICE_A": {
+        "ALL": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "VARIANT_CHOICE_A"
+            "smithy.api#enumValue": "ALL"
           }
         },
-        "VARIANT_CHOICE_B": {
+        "AVAILABLE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "VARIANT_CHOICE_B"
+            "smithy.api#enumValue": "AVAILABLE"
+          }
+        },
+        "NOT_AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_AVAILABLE"
           }
         }
       }
     },
-    "com.gcp.admob_v1beta#MediationReportSpecSortCondition": {
+    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilter": {
       "type": "structure",
       "members": {
-        "metric": {
-          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionMetricEnum",
-          "traits": {
-            "smithy.api#documentation": "Sort by the specified metric."
-          }
-        },
-        "order": {
-          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionOrderEnum",
-          "traits": {
-            "smithy.api#documentation": "Sorting order of the dimension or metric."
-          }
-        },
         "dimension": {
-          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionDimensionEnum",
+          "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterDimensionEnum",
           "traits": {
-            "smithy.api#documentation": "Sort by the specified dimension."
+            "smithy.api#documentation": "Applies the filter criterion to the specified dimension."
+          }
+        },
+        "matchesAny": {
+          "target": "com.gcp.admob_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Matches a row if its value for the specified dimension is in one of the values specified in this condition."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Sorting direction to be applied on a dimension or a metric."
+        "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
       }
     },
-    "com.gcp.admob_v1beta#MediationReportSpecSortConditionMetricEnum": {
-      "type": "enum",
-      "members": {
-        "METRIC_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
-          }
-        },
-        "AD_REQUESTS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_REQUESTS"
-          }
-        },
-        "CLICKS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLICKS"
-          }
-        },
-        "ESTIMATED_EARNINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
-          }
-        },
-        "IMPRESSIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IMPRESSIONS"
-          }
-        },
-        "IMPRESSION_CTR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IMPRESSION_CTR"
-          }
-        },
-        "MATCHED_REQUESTS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCHED_REQUESTS"
-          }
-        },
-        "MATCH_RATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCH_RATE"
-          }
-        },
-        "OBSERVED_ECPM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OBSERVED_ECPM"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#MediationReportSpecSortConditionOrderEnum": {
-      "type": "enum",
-      "members": {
-        "SORT_ORDER_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SORT_ORDER_UNSPECIFIED"
-          }
-        },
-        "ASCENDING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ASCENDING"
-          }
-        },
-        "DESCENDING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DESCENDING"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#MediationReportSpecSortConditionDimensionEnum": {
+    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterDimensionEnum": {
       "type": "enum",
       "members": {
         "DIMENSION_UNSPECIFIED": {
@@ -273,293 +262,122 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#GenerateNetworkReportResponse": {
+    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilter": {
       "type": "structure",
       "members": {
-        "row": {
-          "target": "com.gcp.admob_v1beta#ReportRow",
+        "matchesAny": {
+          "target": "com.gcp.admob_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "Actual report data."
+            "smithy.api#documentation": "Matches a row if its value for the specified dimension is in one of the values specified in this condition."
           }
         },
-        "header": {
-          "target": "com.gcp.admob_v1beta#ReportHeader",
+        "dimension": {
+          "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterDimensionEnum",
           "traits": {
-            "smithy.api#documentation": "Report generation settings that describes the report contents, such as the report date range and localization settings."
-          }
-        },
-        "footer": {
-          "target": "com.gcp.admob_v1beta#ReportFooter",
-          "traits": {
-            "smithy.api#documentation": "Additional information about the generated report, such as warnings about the data."
+            "smithy.api#documentation": "Applies the filter criterion to the specified dimension."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ \"header\": { \"dateRange\": { \"startDate\": {\"year\": 2018, \"month\": 9, \"day\": 1}, \"endDate\": {\"year\": 2018, \"month\": 9, \"day\": 1} }, \"localizationSettings\": { \"currencyCode\": \"USD\", \"languageCode\": \"en-US\" } } }, { \"row\": { \"dimensionValues\": { \"DATE\": {\"value\": \"20180918\"}, \"APP\": { \"value\": \"ca-app-pub-8123415297019784~1001342552\", displayLabel: \"My app name!\" } }, \"metricValues\": { \"ESTIMATED_EARNINGS\": {\"microsValue\": 6500000} } } }, { \"footer\": {\"matchingRowCount\": 1} }]"
+        "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
       }
     },
-    "com.gcp.admob_v1beta#MediationAbExperiment": {
-      "type": "structure",
-      "members": {
-        "mediationGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The mediation group id this experiment belongs to. This can be used for filtering the experiments in the list experiments API."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for this experiment. The format is accounts/{publisher_id}/ mediationGroups/{mediation_group_id}/mediationAbExperiment/ {mediation_group_experiment_id}. For example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiment/12345"
-          }
-        },
-        "experimentId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Unique identifier for the mediation A/B experiment. It is an output only property."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the experiment was ended or target to end (in UTC)."
-          }
-        },
-        "treatmentMediationLines": {
-          "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList",
-          "traits": {
-            "smithy.api#documentation": "The experiment mediation lines created for the treatment. They will be used for serving when the experiment status is RUNNING."
-          }
-        },
-        "state": {
-          "target": "com.gcp.admob_v1beta#MediationAbExperimentStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the experiment. It is an output only field."
-          }
-        },
-        "controlMediationLines": {
-          "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The experiment mediation lines for control. They are inherited from the parent mediation group. It is an output only field."
-          }
-        },
-        "variantLeader": {
-          "target": "com.gcp.admob_v1beta#MediationAbExperimentVariantLeaderEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The variant leader for the experiment according to some key metrics."
-          }
-        },
-        "treatmentTrafficPercentage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The percentage of the mediation A/B experiment traffic that will be send to the treatment (variant B). The remainder is sent to the control (variant A). The percentage is expressed as an integer in the inclusive range of [1,99]. See https://support.google.com/admob/answer/9572326 for details."
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the experiment was started (in UTC)."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name for the mediation A/B experiment."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The mediation A/B experiment."
-      }
-    },
-    "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLine"
-      }
-    },
-    "com.gcp.admob_v1beta#MediationAbExperimentStateEnum": {
+    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterDimensionEnum": {
       "type": "enum",
       "members": {
-        "EXPERIMENT_STATE_UNSPECIFIED": {
+        "DIMENSION_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "EXPERIMENT_STATE_UNSPECIFIED"
+            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
           }
         },
-        "EXPIRED": {
+        "DATE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "EXPIRED"
+            "smithy.api#enumValue": "DATE"
           }
         },
-        "RUNNING": {
+        "MONTH": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "RUNNING"
+            "smithy.api#enumValue": "MONTH"
           }
         },
-        "ENDED": {
+        "WEEK": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ENDED"
+            "smithy.api#enumValue": "WEEK"
+          }
+        },
+        "AD_UNIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT"
+          }
+        },
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP"
+          }
+        },
+        "AD_TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_TYPE"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY"
+          }
+        },
+        "FORMAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORMAT"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM"
+          }
+        },
+        "MOBILE_OS_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_OS_VERSION"
+          }
+        },
+        "GMA_SDK_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMA_SDK_VERSION"
+          }
+        },
+        "APP_VERSION_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_VERSION_NAME"
+          }
+        },
+        "SERVING_RESTRICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVING_RESTRICTION"
           }
         }
-      }
-    },
-    "com.gcp.admob_v1beta#MediationAbExperimentVariantLeaderEnum": {
-      "type": "enum",
-      "members": {
-        "VARIANT_LEADER_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VARIANT_LEADER_UNSPECIFIED"
-          }
-        },
-        "CONTROL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTROL"
-          }
-        },
-        "TREATMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TREATMENT"
-          }
-        },
-        "INSUFFICIENT_DATA": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INSUFFICIENT_DATA"
-          }
-        },
-        "TOO_EARLY_TO_CALL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TOO_EARLY_TO_CALL"
-          }
-        },
-        "NO_VARIANT_LEADER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NO_VARIANT_LEADER"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRowDimensionValue": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Dimension value in the format specified in the report's spec Dimension enum."
-          }
-        },
-        "displayLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The localized string representation of the value. If unspecified, the display label should be derived from the value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Representation of a dimension value."
-      }
-    },
-    "com.gcp.admob_v1beta#GenerateMediationReportResponse": {
-      "type": "structure",
-      "members": {
-        "header": {
-          "target": "com.gcp.admob_v1beta#ReportHeader",
-          "traits": {
-            "smithy.api#documentation": "Report generation settings that describes the report contents, such as the report date range and localization settings."
-          }
-        },
-        "footer": {
-          "target": "com.gcp.admob_v1beta#ReportFooter",
-          "traits": {
-            "smithy.api#documentation": "Additional information about the generated report, such as warnings about the data."
-          }
-        },
-        "row": {
-          "target": "com.gcp.admob_v1beta#ReportRow",
-          "traits": {
-            "smithy.api#documentation": "Actual report data."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ \"header\": { \"date_range\": { \"start_date\": {\"year\": 2018, \"month\": 9, \"day\": 1}, \"end_date\": {\"year\": 2018, \"month\": 9, \"day\": 1} }, \"localization_settings\": { \"currency_code\": \"USD\", \"language_code\": \"en-US\" } } }, { \"row\": { \"dimension_values\": { \"DATE\": {\"value\": \"20180918\"}, \"APP\": { \"value\": \"ca-app-pub-8123415297019784~1001342552\", \"display_label\": \"My app name!\" } }, \"metric_values\": { \"ESTIMATED_EARNINGS\": {\"decimal_value\": \"1324746\"} } } }, { \"footer\": {\"matching_row_count\": 1} }]"
-      }
-    },
-    "com.gcp.admob_v1beta#AdapterAdapterConfigMetadata": {
-      "type": "structure",
-      "members": {
-        "adapterConfigMetadataLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the adapter configuration metadata."
-          }
-        },
-        "adapterConfigMetadataId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations)."
-          }
-        },
-        "isRequired": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this metadata is required for configuring the AdUnitMappings."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter."
-      }
-    },
-    "com.gcp.admob_v1beta#AdSource": {
-      "type": "structure",
-      "members": {
-        "adSourceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of this ad source."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Display name of this ad source."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name of this ad source. Format is: accounts/{publisher_id}/adSources/{ad_source_id}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Definition of a mediation ad source."
       }
     },
     "com.gcp.admob_v1beta#MediationReportSpec": {
       "type": "structure",
       "members": {
-        "timeZone": {
-          "target": "smithy.api#String",
+        "dimensionFilters": {
+          "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterList",
           "traits": {
-            "smithy.api#documentation": "A report time zone. Accepts an IANA TZ name values, such as \"America/Los_Angeles.\" If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The \"America/Los_Angeles\" is the only supported value at the moment."
-          }
-        },
-        "dateRange": {
-          "target": "com.gcp.admob_v1beta#DateRange",
-          "traits": {
-            "smithy.api#documentation": "The date range for which the report is generated."
+            "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
           }
         },
         "localizationSettings": {
@@ -580,10 +398,10 @@
             "smithy.api#documentation": "Describes the sorting of report rows. The order of the condition in the list defines its precedence; the earlier the condition, the higher its precedence. If no sort conditions are specified, the row ordering is undefined."
           }
         },
-        "dimensionFilters": {
-          "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterList",
+        "maxReportRows": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
+            "smithy.api#documentation": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error."
           }
         },
         "metrics": {
@@ -592,15 +410,27 @@
             "smithy.api#documentation": "List of metrics of the report. A report must specify at least one metric."
           }
         },
-        "maxReportRows": {
-          "target": "smithy.api#Integer",
+        "timeZone": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error."
+            "smithy.api#documentation": "A report time zone. Accepts an IANA TZ name values, such as \"America/Los_Angeles.\" If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The \"America/Los_Angeles\" is the only supported value at the moment."
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.admob_v1beta#DateRange",
+          "traits": {
+            "smithy.api#documentation": "The date range for which the report is generated."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the 'US' and 'CN' countries can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2021, \"month\": 9, \"day\": 1}, \"end_date\": {\"year\": 2021, \"month\": 9, \"day\": 30} }, \"dimensions\": [\"AD_SOURCE\", \"APP\", \"COUNTRY\"], \"metrics\": [\"OBSERVED_ECPM\"], \"dimension_filters\": [ { \"dimension\": \"COUNTRY\", \"matches_any\": {\"values\": [{\"value\": \"US\", \"value\": \"CN\"}]} } ], \"sort_conditions\": [ {\"dimension\":\"APP\", order: \"ASCENDING\"} ], \"localization_settings\": { \"currency_code\": \"USD\", \"language_code\": \"en-US\" } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE >= '2021-09-01' AND DATE <= '2021-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;"
+      }
+    },
+    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilter"
       }
     },
     "com.gcp.admob_v1beta#MediationReportSpecDimensionsItemEnum": {
@@ -716,12 +546,6 @@
         "target": "com.gcp.admob_v1beta#MediationReportSpecSortCondition"
       }
     },
-    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilter"
-      }
-    },
     "com.gcp.admob_v1beta#MediationReportSpecMetricsItemEnum": {
       "type": "enum",
       "members": {
@@ -787,87 +611,47 @@
         "target": "com.gcp.admob_v1beta#MediationReportSpecMetricsItemEnum"
       }
     },
-    "com.gcp.admob_v1beta#Adapter": {
+    "com.gcp.admob_v1beta#DateRange": {
       "type": "structure",
       "members": {
-        "title": {
-          "target": "smithy.api#String",
+        "startDate": {
+          "target": "com.gcp.admob_v1beta#Admob_Date",
           "traits": {
-            "smithy.api#documentation": "Output only. The display name of this adapter."
+            "smithy.api#documentation": "Start date of the date range, inclusive. Must be less than or equal to the end date."
           }
         },
-        "platform": {
-          "target": "smithy.api#String",
+        "endDate": {
+          "target": "com.gcp.admob_v1beta#Admob_Date",
           "traits": {
-            "smithy.api#documentation": "Output only. Mobile application platform supported by this adapter. Supported values are: IOS, ANDROID, WINDOWS_PHONE"
-          }
-        },
-        "adapterConfigMetadata": {
-          "target": "com.gcp.admob_v1beta#AdapterAdapterConfigMetadataList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Configuration metadata associated with this adapter."
-          }
-        },
-        "formats": {
-          "target": "com.gcp.admob_v1beta#StringList_",
-          "traits": {
-            "smithy.api#documentation": "Output only. Indicates the formats of the ad units supported by this adapter."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the adapter. Format is: accounts/{publisher_id}/adSources/{ad_source_id}/adapters/{adapter_id}."
-          }
-        },
-        "adapterId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. ID of this adapter. It is used to set [adapter_id](#AdUnitMapping.adapter_id)."
+            "smithy.api#documentation": "End date of the date range, inclusive. Must be greater than or equal to the start date."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK."
+        "smithy.api#documentation": "Specification of a single date range. Both dates are inclusive."
       }
     },
-    "com.gcp.admob_v1beta#AdapterAdapterConfigMetadataList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#AdapterAdapterConfigMetadata"
-      }
-    },
-    "com.gcp.admob_v1beta#StringList_": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+    "com.gcp.admob_v1beta#AppManualAppInfo": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store)."
       }
     },
     "com.gcp.admob_v1beta#App": {
       "type": "structure",
       "members": {
-        "linkedAppInfo": {
-          "target": "com.gcp.admob_v1beta#AppLinkedAppInfo",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The information for an app that is linked to an app store. This field is present if and only if the app is linked to an app store."
-          }
-        },
         "appId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The externally visible ID of the app which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789"
-          }
-        },
-        "appApprovalState": {
-          "target": "com.gcp.admob_v1beta#AppAppApprovalStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The approval state for the app. The field is read-only."
-          }
-        },
-        "platform": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Describes the platform of the app. Limited to \"IOS\" and \"ANDROID\"."
           }
         },
         "name": {
@@ -876,10 +660,28 @@
             "smithy.api#documentation": "Resource name for this app. Format is accounts/{publisher_id}/apps/{app_id_fragment} Example: accounts/pub-9876543210987654/apps/0123456789"
           }
         },
+        "linkedAppInfo": {
+          "target": "com.gcp.admob_v1beta#AppLinkedAppInfo",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The information for an app that is linked to an app store. This field is present if and only if the app is linked to an app store."
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the platform of the app. Limited to \"IOS\" and \"ANDROID\"."
+          }
+        },
         "manualAppInfo": {
           "target": "com.gcp.admob_v1beta#AppManualAppInfo",
           "traits": {
             "smithy.api#documentation": "The information for an app that is not linked to any app store. After an app is linked, this information is still retrivable. If no name is provided for the app upon creation, a placeholder name will be used."
+          }
+        },
+        "appApprovalState": {
+          "target": "com.gcp.admob_v1beta#AppAppApprovalStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The approval state for the app. The field is read-only."
           }
         }
       },
@@ -916,78 +718,756 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#StringList": {
+    "com.gcp.admob_v1beta#StopMediationAbExperimentRequest": {
       "type": "structure",
       "members": {
-        "values": {
-          "target": "com.gcp.admob_v1beta#StringList_",
+        "variantChoice": {
+          "target": "com.gcp.admob_v1beta#StopMediationAbExperimentRequestVariantChoiceEnum",
           "traits": {
-            "smithy.api#documentation": "The string values."
+            "smithy.api#documentation": "The choice for the winning variant."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "List of string values."
+        "smithy.api#documentation": "Request to end the mediation A/B experiment and choose a winning variant."
       }
     },
-    "com.gcp.admob_v1beta#ListAdaptersResponse": {
+    "com.gcp.admob_v1beta#StopMediationAbExperimentRequestVariantChoiceEnum": {
+      "type": "enum",
+      "members": {
+        "VARIANT_CHOICE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIANT_CHOICE_UNSPECIFIED"
+          }
+        },
+        "VARIANT_CHOICE_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIANT_CHOICE_A"
+          }
+        },
+        "VARIANT_CHOICE_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIANT_CHOICE_B"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsRequest": {
       "type": "structure",
       "members": {
-        "adapters": {
-          "target": "com.gcp.admob_v1beta#AdapterList",
+        "requests": {
+          "target": "com.gcp.admob_v1beta#CreateAdUnitMappingRequestList",
           "traits": {
-            "smithy.api#documentation": "The adapter."
+            "smithy.api#documentation": "Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a batch of ad unit mappings under the specific AdMob account."
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAdUnitMappingRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#CreateAdUnitMappingRequest"
+      }
+    },
+    "com.gcp.admob_v1beta#ReportRow": {
+      "type": "structure",
+      "members": {
+        "metricValues": {
+          "target": "com.gcp.admob_v1beta#ReportRowMetricValueMap",
+          "traits": {
+            "smithy.api#documentation": "Map of metric values in a row, with keys as enum name of the metrics. If a metric being requested has no value returned, the map will not include it."
+          }
+        },
+        "dimensionValues": {
+          "target": "com.gcp.admob_v1beta#ReportRowDimensionValueMap",
+          "traits": {
+            "smithy.api#documentation": "Map of dimension values in a row, with keys as enum name of the dimensions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A row of the returning report."
+      }
+    },
+    "com.gcp.admob_v1beta#ReportRowMetricValueMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.admob_v1beta#ReportRowMetricValue"
+      }
+    },
+    "com.gcp.admob_v1beta#ReportRowDimensionValueMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.admob_v1beta#ReportRowDimensionValue"
+      }
+    },
+    "com.gcp.admob_v1beta#ReportWarning": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.admob_v1beta#ReportWarningTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the warning."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the details of the warning message, in English."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Warnings associated with generation of the report."
+      }
+    },
+    "com.gcp.admob_v1beta#ReportWarningTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE"
+          }
+        },
+        "DATA_DELAYED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_DELAYED"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#ReportRowMetricValue": {
+      "type": "structure",
+      "members": {
+        "integerValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric integer value."
+          }
+        },
+        "microsValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Amount in micros. One million is equivalent to one unit. Currency value is in the unit (USD, EUR or other) specified by the request. For example, $6.50 whould be represented as 6500000 micros."
+          }
+        },
+        "doubleValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Double precision (approximate) decimal values. Rates are from 0 to 1."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a metric value."
+      }
+    },
+    "com.gcp.admob_v1beta#ReportFooter": {
+      "type": "structure",
+      "members": {
+        "warnings": {
+          "target": "com.gcp.admob_v1beta#ReportWarningList",
+          "traits": {
+            "smithy.api#documentation": "Warnings associated with generation of the report."
+          }
+        },
+        "matchingRowCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of rows that matched the request. Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups data available after report generation, for example, warnings and row counts. Always sent as the last message in the stream response."
+      }
+    },
+    "com.gcp.admob_v1beta#ReportWarningList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#ReportWarning"
+      }
+    },
+    "com.gcp.admob_v1beta#AdUnit": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters."
+          }
+        },
+        "adUnitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789"
+          }
+        },
+        "rewardSettings": {
+          "target": "com.gcp.admob_v1beta#AdUnitRewardSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings for a rewarded ad unit. This can be set or unset only when the ad_format is \"REWARDED\"."
+          }
+        },
+        "adFormat": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AdFormat of the ad unit. Possible values are as follows: \"APP_OPEN\" - App Open ad format. \"BANNER\" - Banner ad format. \"BANNER_INTERSTITIAL\" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. \"INTERSTITIAL\" - A full screen ad. Supported ad types are \"RICH_MEDIA\" and \"VIDEO\". \"NATIVE\" - Native ad format. \"REWARDED\" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are \"RICH_MEDIA\" (interactive) and video where video can not be excluded. \"REWARDED_INTERSTITIAL\" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467."
+          }
+        },
+        "adTypes": {
+          "target": "com.gcp.admob_v1beta#StringList_",
+          "traits": {
+            "smithy.api#documentation": "Ad media type supported by this ad unit. Possible values as follows: \"RICH_MEDIA\" - Text, image, and other non-video media. \"VIDEO\" - Video media."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an AdMob ad unit."
+      }
+    },
+    "com.gcp.admob_v1beta#ListAdUnitsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If not empty, indicates that there may be more ad units for the request; this value should be passed in a new `ListAdUnitsRequest`."
+          }
+        },
+        "adUnits": {
+          "target": "com.gcp.admob_v1beta#AdUnitList",
+          "traits": {
+            "smithy.api#documentation": "The resulting ad units for the requested account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the ad units list request."
+      }
+    },
+    "com.gcp.admob_v1beta#AdUnitList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#AdUnit"
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAdUnitMappingRequest": {
+      "type": "structure",
+      "members": {
+        "adUnitMapping": {
+          "target": "com.gcp.admob_v1beta#AdUnitMapping",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad unit mapping to create."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create an ad unit mapping under the specific AdMob account and ad unit."
+      }
+    },
+    "com.gcp.admob_v1beta#MediationAbExperiment": {
+      "type": "structure",
+      "members": {
+        "treatmentMediationLines": {
+          "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList",
+          "traits": {
+            "smithy.api#documentation": "The experiment mediation lines created for the treatment. They will be used for serving when the experiment status is RUNNING."
+          }
+        },
+        "variantLeader": {
+          "target": "com.gcp.admob_v1beta#MediationAbExperimentVariantLeaderEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The variant leader for the experiment according to some key metrics."
+          }
+        },
+        "treatmentTrafficPercentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The percentage of the mediation A/B experiment traffic that will be send to the treatment (variant B). The remainder is sent to the control (variant A). The percentage is expressed as an integer in the inclusive range of [1,99]. See https://support.google.com/admob/answer/9572326 for details."
+          }
+        },
+        "experimentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique identifier for the mediation A/B experiment. It is an output only property."
+          }
+        },
+        "state": {
+          "target": "com.gcp.admob_v1beta#MediationAbExperimentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the experiment. It is an output only field."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the experiment was ended or target to end (in UTC)."
+          }
+        },
+        "mediationGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The mediation group id this experiment belongs to. This can be used for filtering the experiments in the list experiments API."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name for the mediation A/B experiment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for this experiment. The format is accounts/{publisher_id}/ mediationGroups/{mediation_group_id}/mediationAbExperiment/ {mediation_group_experiment_id}. For example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiment/12345"
+          }
+        },
+        "controlMediationLines": {
+          "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The experiment mediation lines for control. They are inherited from the parent mediation group. It is an output only field."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the experiment was started (in UTC)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mediation A/B experiment."
+      }
+    },
+    "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLineList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLine"
+      }
+    },
+    "com.gcp.admob_v1beta#MediationAbExperimentVariantLeaderEnum": {
+      "type": "enum",
+      "members": {
+        "VARIANT_LEADER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIANT_LEADER_UNSPECIFIED"
+          }
+        },
+        "CONTROL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTROL"
+          }
+        },
+        "TREATMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TREATMENT"
+          }
+        },
+        "INSUFFICIENT_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSUFFICIENT_DATA"
+          }
+        },
+        "TOO_EARLY_TO_CALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EARLY_TO_CALL"
+          }
+        },
+        "NO_VARIANT_LEADER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_VARIANT_LEADER"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#MediationAbExperimentStateEnum": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPERIMENT_STATE_UNSPECIFIED"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPIRED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "ENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDED"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#ListAdUnitMappingsResponse": {
+      "type": "structure",
+      "members": {
+        "adUnitMappings": {
+          "target": "com.gcp.admob_v1beta#AdUnitMappingList",
+          "traits": {
+            "smithy.api#documentation": "The ad unit mappings from the specified account and ad unit."
           }
         },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response for the ListAdaptersRequest."
+        "smithy.api#documentation": "Response for the ListAdUnitMappingsRequest."
       }
     },
-    "com.gcp.admob_v1beta#AdapterList": {
+    "com.gcp.admob_v1beta#AdUnitMappingList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.admob_v1beta#Adapter"
+        "target": "com.gcp.admob_v1beta#AdUnitMapping"
       }
     },
-    "com.gcp.admob_v1beta#AdUnitRewardSettings": {
+    "com.gcp.admob_v1beta#Adapter": {
       "type": "structure",
       "members": {
-        "unitType": {
-          "target": "smithy.api#String",
+        "formats": {
+          "target": "com.gcp.admob_v1beta#StringList_",
           "traits": {
-            "smithy.api#documentation": "Reward item for this ad unit."
+            "smithy.api#documentation": "Output only. Indicates the formats of the ad units supported by this adapter."
           }
         },
-        "unitAmount": {
+        "title": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Reward amount for this ad unit."
+            "smithy.api#documentation": "Output only. The display name of this adapter."
+          }
+        },
+        "adapterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. ID of this adapter. It is used to set [adapter_id](#AdUnitMapping.adapter_id)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the adapter. Format is: accounts/{publisher_id}/adSources/{ad_source_id}/adapters/{adapter_id}."
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Mobile application platform supported by this adapter. Supported values are: IOS, ANDROID, WINDOWS_PHONE"
+          }
+        },
+        "adapterConfigMetadata": {
+          "target": "com.gcp.admob_v1beta#AdapterAdapterConfigMetadataList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Configuration metadata associated with this adapter."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Settings for a rewarded ad unit."
+        "smithy.api#documentation": "Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK."
       }
     },
-    "com.gcp.admob_v1beta#GenerateNetworkReportRequest": {
+    "com.gcp.admob_v1beta#AdapterAdapterConfigMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#AdapterAdapterConfigMetadata"
+      }
+    },
+    "com.gcp.admob_v1beta#LocalizationSettings": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency code of the earning related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion. Defaults to the account currency code if unspecified."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localization settings for reports, such as currency and language. It affects how metrics are calculated."
+      }
+    },
+    "com.gcp.admob_v1beta#AdSource": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of this ad source. Format is: accounts/{publisher_id}/adSources/{ad_source_id}"
+          }
+        },
+        "adSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of this ad source."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of this ad source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of a mediation ad source."
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateCampaignReportRequest": {
       "type": "structure",
       "members": {
         "reportSpec": {
-          "target": "com.gcp.admob_v1beta#NetworkReportSpec",
+          "target": "com.gcp.admob_v1beta#CampaignReportSpec",
           "traits": {
-            "smithy.api#documentation": "Network report specification."
+            "smithy.api#documentation": "Campaign report specification."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request to generate an AdMob Network report."
+        "smithy.api#documentation": "Request to generate campaign report."
+      }
+    },
+    "com.gcp.admob_v1beta#CampaignReportSpec": {
+      "type": "structure",
+      "members": {
+        "dateRange": {
+          "target": "com.gcp.admob_v1beta#DateRange",
+          "traits": {
+            "smithy.api#documentation": "The date range for which the report is generated. The max range is 30 days."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Language used for any localized text, such as certain applicable dimension values. The language tag is defined in the IETF BCP47. Defaults to 'en-US' if unspecified or invalid."
+          }
+        },
+        "dimensions": {
+          "target": "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "List of metrics of the report. A report must specify at least one metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The specification for generating a Campaign report. For example, the specification to get IMPRESSIONS and CLICKS sliced by CAMPAIGN_ID can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2021, \"month\": 12, \"day\": 1}, \"end_date\": {\"year\": 2021, \"month\": 12, \"day\": 30} }, \"dimensions\": [\"CAMPAIGN_ID\"], \"metrics\": [\"IMPRESSIONS\", \"CLICKS\"], }"
+      }
+    },
+    "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "DIMENSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATE"
+          }
+        },
+        "CAMPAIGN_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMPAIGN_ID"
+          }
+        },
+        "CAMPAIGN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMPAIGN_NAME"
+          }
+        },
+        "AD_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_ID"
+          }
+        },
+        "AD_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_NAME"
+          }
+        },
+        "PLACEMENT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLACEMENT_ID"
+          }
+        },
+        "PLACEMENT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLACEMENT_NAME"
+          }
+        },
+        "PLACEMENT_PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLACEMENT_PLATFORM"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY"
+          }
+        },
+        "FORMAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORMAT"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnum"
+      }
+    },
+    "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnum": {
+      "type": "enum",
+      "members": {
+        "METRIC_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
+          }
+        },
+        "IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS"
+          }
+        },
+        "CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS"
+          }
+        },
+        "CLICK_THROUGH_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICK_THROUGH_RATE"
+          }
+        },
+        "INSTALLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLS"
+          }
+        },
+        "ESTIMATED_COST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESTIMATED_COST"
+          }
+        },
+        "AVERAGE_CPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVERAGE_CPI"
+          }
+        },
+        "INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERACTIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnum"
       }
     },
     "com.gcp.admob_v1beta#GenerateMediationReportRequest": {
@@ -1004,30 +1484,258 @@
         "smithy.api#documentation": "Request to generate an AdMob Mediation report."
       }
     },
-    "com.gcp.admob_v1beta#ListAppsResponse": {
+    "com.gcp.admob_v1beta#ReportRowDimensionValue": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dimension value in the format specified in the report's spec Dimension enum."
+          }
+        },
+        "displayLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized string representation of the value. If unspecified, the display label should be derived from the value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a dimension value."
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateMediationReportResponse": {
+      "type": "structure",
+      "members": {
+        "footer": {
+          "target": "com.gcp.admob_v1beta#ReportFooter",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the generated report, such as warnings about the data."
+          }
+        },
+        "row": {
+          "target": "com.gcp.admob_v1beta#ReportRow",
+          "traits": {
+            "smithy.api#documentation": "Actual report data."
+          }
+        },
+        "header": {
+          "target": "com.gcp.admob_v1beta#ReportHeader",
+          "traits": {
+            "smithy.api#documentation": "Report generation settings that describes the report contents, such as the report date range and localization settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ \"header\": { \"date_range\": { \"start_date\": {\"year\": 2018, \"month\": 9, \"day\": 1}, \"end_date\": {\"year\": 2018, \"month\": 9, \"day\": 1} }, \"localization_settings\": { \"currency_code\": \"USD\", \"language_code\": \"en-US\" } } }, { \"row\": { \"dimension_values\": { \"DATE\": {\"value\": \"20180918\"}, \"APP\": { \"value\": \"ca-app-pub-8123415297019784~1001342552\", \"display_label\": \"My app name!\" } }, \"metric_values\": { \"ESTIMATED_EARNINGS\": {\"decimal_value\": \"1324746\"} } } }, { \"footer\": {\"matching_row_count\": 1} }]"
+      }
+    },
+    "com.gcp.admob_v1beta#ListMediationGroupsResponse": {
       "type": "structure",
       "members": {
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`."
+            "smithy.api#documentation": "If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`."
           }
         },
-        "apps": {
-          "target": "com.gcp.admob_v1beta#AppList",
+        "mediationGroups": {
+          "target": "com.gcp.admob_v1beta#MediationGroupList",
           "traits": {
-            "smithy.api#documentation": "The resulting apps for the requested account."
+            "smithy.api#documentation": "The resulting mediation groups for the requested account."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response for the apps list request."
+        "smithy.api#documentation": "Response for the mediation groups list request."
       }
     },
-    "com.gcp.admob_v1beta#AppList": {
+    "com.gcp.admob_v1beta#MediationGroupList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.admob_v1beta#App"
+        "target": "com.gcp.admob_v1beta#MediationGroup"
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateCampaignReportResponse": {
+      "type": "structure",
+      "members": {
+        "rows": {
+          "target": "com.gcp.admob_v1beta#ReportRowList",
+          "traits": {
+            "smithy.api#documentation": "The campaign report data from the specified publisher. At most 100000 rows will be returned from the API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Campaign Report API response."
+      }
+    },
+    "com.gcp.admob_v1beta#ReportRowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#ReportRow"
+      }
+    },
+    "com.gcp.admob_v1beta#ListAdSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "adSources": {
+          "target": "com.gcp.admob_v1beta#AdSourceList",
+          "traits": {
+            "smithy.api#documentation": "The ad sources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdSourcesRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the ListAdSourcesRequest."
+      }
+    },
+    "com.gcp.admob_v1beta#AdSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#AdSource"
+      }
+    },
+    "com.gcp.admob_v1beta#AdUnitMapping": {
+      "type": "structure",
+      "members": {
+        "adapterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of mediation ad source adapter used by this ad unit mapping. The adapter determines the information needed in the ad_network_settings."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The display name of this ad unit mapping instance."
+          }
+        },
+        "state": {
+          "target": "com.gcp.admob_v1beta#AdUnitMappingStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of this ad unit mapping."
+          }
+        },
+        "adUnitConfigurations": {
+          "target": "com.gcp.admob_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Settings for the specified ad unit to make an ad request to 3rd party ad network. Key-value pairs with values set by the user for the keys requested by the ad network. Please see https://support.google.com/admob/answer/3245073 for details on how to configure the network settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings to map an AdMob ad unit to a 3rd party ad unit."
+      }
+    },
+    "com.gcp.admob_v1beta#AdUnitMappingStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateNetworkReportResponse": {
+      "type": "structure",
+      "members": {
+        "row": {
+          "target": "com.gcp.admob_v1beta#ReportRow",
+          "traits": {
+            "smithy.api#documentation": "Actual report data."
+          }
+        },
+        "header": {
+          "target": "com.gcp.admob_v1beta#ReportHeader",
+          "traits": {
+            "smithy.api#documentation": "Report generation settings that describes the report contents, such as the report date range and localization settings."
+          }
+        },
+        "footer": {
+          "target": "com.gcp.admob_v1beta#ReportFooter",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the generated report, such as warnings about the data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ \"header\": { \"dateRange\": { \"startDate\": {\"year\": 2018, \"month\": 9, \"day\": 1}, \"endDate\": {\"year\": 2018, \"month\": 9, \"day\": 1} }, \"localizationSettings\": { \"currencyCode\": \"USD\", \"languageCode\": \"en-US\" } } }, { \"row\": { \"dimensionValues\": { \"DATE\": {\"value\": \"20180918\"}, \"APP\": { \"value\": \"ca-app-pub-8123415297019784~1001342552\", displayLabel: \"My app name!\" } }, \"metricValues\": { \"ESTIMATED_EARNINGS\": {\"microsValue\": 6500000} } } }, { \"footer\": {\"matchingRowCount\": 1} }]"
+      }
+    },
+    "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsResponse": {
+      "type": "structure",
+      "members": {
+        "adUnitMappings": {
+          "target": "com.gcp.admob_v1beta#AdUnitMappingList",
+          "traits": {
+            "smithy.api#documentation": "The Ad units mappings created under the requested account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing a batch of created ad unit mappings."
+      }
+    },
+    "com.gcp.admob_v1beta#PublisherAccount": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of this account. Format is accounts/{publisher_id}."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID by which this publisher account can be identified in the API requests (for example, pub-1234567890)."
+          }
+        },
+        "reportingTimeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time zone that is used in reports that are generated for this account. The value is a time-zone ID as specified by the CLDR project, for example, \"America/Los_Angeles\"."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency code of the earning-related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A publisher account contains information relevant to the use of this API, such as the time zone used for the reports."
       }
     },
     "com.gcp.admob_v1beta#NetworkReportSpec": {
@@ -1037,36 +1745,6 @@
           "target": "com.gcp.admob_v1beta#LocalizationSettings",
           "traits": {
             "smithy.api#documentation": "Localization settings of the report."
-          }
-        },
-        "timeZone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A report time zone. Accepts an IANA TZ name values, such as \"America/Los_Angeles.\" If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The \"America/Los_Angeles\" is the only supported value at the moment."
-          }
-        },
-        "dimensionFilters": {
-          "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterList",
-          "traits": {
-            "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
-          }
-        },
-        "sortConditions": {
-          "target": "com.gcp.admob_v1beta#NetworkReportSpecSortConditionList",
-          "traits": {
-            "smithy.api#documentation": "Describes the sorting of report rows. The order of the condition in the list defines its precedence; the earlier the condition, the higher its precedence. If no sort conditions are specified, the row ordering is undefined."
-          }
-        },
-        "metrics": {
-          "target": "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "List of metrics of the report. A report must specify at least one metric."
-          }
-        },
-        "dateRange": {
-          "target": "com.gcp.admob_v1beta#DateRange",
-          "traits": {
-            "smithy.api#documentation": "The date range for which the report is generated."
           }
         },
         "maxReportRows": {
@@ -1080,93 +1758,40 @@
           "traits": {
             "smithy.api#documentation": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account."
           }
+        },
+        "sortConditions": {
+          "target": "com.gcp.admob_v1beta#NetworkReportSpecSortConditionList",
+          "traits": {
+            "smithy.api#documentation": "Describes the sorting of report rows. The order of the condition in the list defines its precedence; the earlier the condition, the higher its precedence. If no sort conditions are specified, the row ordering is undefined."
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.admob_v1beta#DateRange",
+          "traits": {
+            "smithy.api#documentation": "The date range for which the report is generated."
+          }
+        },
+        "dimensionFilters": {
+          "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterList",
+          "traits": {
+            "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A report time zone. Accepts an IANA TZ name values, such as \"America/Los_Angeles.\" If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The \"America/Los_Angeles\" is the only supported value at the moment."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "List of metrics of the report. A report must specify at least one metric."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the 'US' and 'CN' countries can look like the following example: { 'date_range': { 'start_date': {'year': 2021, 'month': 9, 'day': 1}, 'end_date': {'year': 2021, 'month': 9, 'day': 30} }, 'dimensions': ['DATE', 'APP', 'COUNTRY'], 'metrics': ['CLICKS', 'ESTIMATED_EARNINGS'], 'dimension_filters': [ { 'dimension': 'COUNTRY', 'matches_any': {'values': [{'value': 'US', 'value': 'CN'}]} } ], 'sort_conditions': [ {'dimension':'APP', order: 'ASCENDING'}, {'metric':'CLICKS', order: 'DESCENDING'} ], 'localization_settings': { 'currency_code': 'USD', 'language_code': 'en-US' } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE >= '2021-09-01' AND DATE <= '2021-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;"
-      }
-    },
-    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilter"
-      }
-    },
-    "com.gcp.admob_v1beta#NetworkReportSpecSortConditionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#NetworkReportSpecSortCondition"
-      }
-    },
-    "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnum": {
-      "type": "enum",
-      "members": {
-        "METRIC_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
-          }
-        },
-        "AD_REQUESTS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_REQUESTS"
-          }
-        },
-        "CLICKS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLICKS"
-          }
-        },
-        "ESTIMATED_EARNINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
-          }
-        },
-        "IMPRESSIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IMPRESSIONS"
-          }
-        },
-        "IMPRESSION_CTR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IMPRESSION_CTR"
-          }
-        },
-        "IMPRESSION_RPM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IMPRESSION_RPM"
-          }
-        },
-        "MATCHED_REQUESTS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCHED_REQUESTS"
-          }
-        },
-        "MATCH_RATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCH_RATE"
-          }
-        },
-        "SHOW_RATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SHOW_RATE"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnum"
       }
     },
     "com.gcp.admob_v1beta#NetworkReportSpecDimensionsItemEnum": {
@@ -1264,200 +1889,19 @@
         "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionsItemEnum"
       }
     },
-    "com.gcp.admob_v1beta#ReportFooter": {
-      "type": "structure",
-      "members": {
-        "warnings": {
-          "target": "com.gcp.admob_v1beta#ReportWarningList",
-          "traits": {
-            "smithy.api#documentation": "Warnings associated with generation of the report."
-          }
-        },
-        "matchingRowCount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Total number of rows that matched the request. Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Groups data available after report generation, for example, warnings and row counts. Always sent as the last message in the stream response."
-      }
-    },
-    "com.gcp.admob_v1beta#ReportWarningList": {
+    "com.gcp.admob_v1beta#NetworkReportSpecSortConditionList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.admob_v1beta#ReportWarning"
+        "target": "com.gcp.admob_v1beta#NetworkReportSpecSortCondition"
       }
     },
-    "com.gcp.admob_v1beta#Admob_Date": {
-      "type": "structure",
-      "members": {
-        "day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
-          }
-        },
-        "month": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
-          }
-        },
-        "year": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilter"
       }
     },
-    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilter": {
-      "type": "structure",
-      "members": {
-        "matchesAny": {
-          "target": "com.gcp.admob_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Matches a row if its value for the specified dimension is in one of the values specified in this condition."
-          }
-        },
-        "dimension": {
-          "target": "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterDimensionEnum",
-          "traits": {
-            "smithy.api#documentation": "Applies the filter criterion to the specified dimension."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
-      }
-    },
-    "com.gcp.admob_v1beta#NetworkReportSpecDimensionFilterDimensionEnum": {
-      "type": "enum",
-      "members": {
-        "DIMENSION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
-          }
-        },
-        "DATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATE"
-          }
-        },
-        "MONTH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MONTH"
-          }
-        },
-        "WEEK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WEEK"
-          }
-        },
-        "AD_UNIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_UNIT"
-          }
-        },
-        "APP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APP"
-          }
-        },
-        "AD_TYPE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_TYPE"
-          }
-        },
-        "COUNTRY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COUNTRY"
-          }
-        },
-        "FORMAT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FORMAT"
-          }
-        },
-        "PLATFORM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLATFORM"
-          }
-        },
-        "MOBILE_OS_VERSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MOBILE_OS_VERSION"
-          }
-        },
-        "GMA_SDK_VERSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GMA_SDK_VERSION"
-          }
-        },
-        "APP_VERSION_NAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APP_VERSION_NAME"
-          }
-        },
-        "SERVING_RESTRICTION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVING_RESTRICTION"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#CampaignReportSpec": {
-      "type": "structure",
-      "members": {
-        "metrics": {
-          "target": "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "List of metrics of the report. A report must specify at least one metric."
-          }
-        },
-        "dimensions": {
-          "target": "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Language used for any localized text, such as certain applicable dimension values. The language tag is defined in the IETF BCP47. Defaults to 'en-US' if unspecified or invalid."
-          }
-        },
-        "dateRange": {
-          "target": "com.gcp.admob_v1beta#DateRange",
-          "traits": {
-            "smithy.api#documentation": "The date range for which the report is generated. The max range is 30 days."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The specification for generating a Campaign report. For example, the specification to get IMPRESSIONS and CLICKS sliced by CAMPAIGN_ID can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2021, \"month\": 12, \"day\": 1}, \"end_date\": {\"year\": 2021, \"month\": 12, \"day\": 30} }, \"dimensions\": [\"CAMPAIGN_ID\"], \"metrics\": [\"IMPRESSIONS\", \"CLICKS\"], }"
-      }
-    },
-    "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnum": {
+    "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnum": {
       "type": "enum",
       "members": {
         "METRIC_UNSPECIFIED": {
@@ -1466,10 +1910,10 @@
             "smithy.api#enumValue": "METRIC_UNSPECIFIED"
           }
         },
-        "IMPRESSIONS": {
+        "AD_REQUESTS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "IMPRESSIONS"
+            "smithy.api#enumValue": "AD_REQUESTS"
           }
         },
         "CLICKS": {
@@ -1478,362 +1922,130 @@
             "smithy.api#enumValue": "CLICKS"
           }
         },
-        "CLICK_THROUGH_RATE": {
+        "ESTIMATED_EARNINGS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CLICK_THROUGH_RATE"
+            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
           }
         },
-        "INSTALLS": {
+        "IMPRESSIONS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "INSTALLS"
+            "smithy.api#enumValue": "IMPRESSIONS"
           }
         },
-        "ESTIMATED_COST": {
+        "IMPRESSION_CTR": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ESTIMATED_COST"
+            "smithy.api#enumValue": "IMPRESSION_CTR"
           }
         },
-        "AVERAGE_CPI": {
+        "IMPRESSION_RPM": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "AVERAGE_CPI"
+            "smithy.api#enumValue": "IMPRESSION_RPM"
           }
         },
-        "INTERACTIONS": {
+        "MATCHED_REQUESTS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "INTERACTIONS"
+            "smithy.api#enumValue": "MATCHED_REQUESTS"
+          }
+        },
+        "MATCH_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCH_RATE"
+          }
+        },
+        "SHOW_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOW_RATE"
           }
         }
       }
     },
-    "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnumList": {
+    "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnumList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.admob_v1beta#CampaignReportSpecMetricsItemEnum"
+        "target": "com.gcp.admob_v1beta#NetworkReportSpecMetricsItemEnum"
       }
     },
-    "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnum": {
-      "type": "enum",
-      "members": {
-        "DIMENSION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
-          }
-        },
-        "DATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATE"
-          }
-        },
-        "CAMPAIGN_ID": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CAMPAIGN_ID"
-          }
-        },
-        "CAMPAIGN_NAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CAMPAIGN_NAME"
-          }
-        },
-        "AD_ID": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_ID"
-          }
-        },
-        "AD_NAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AD_NAME"
-          }
-        },
-        "PLACEMENT_ID": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLACEMENT_ID"
-          }
-        },
-        "PLACEMENT_NAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLACEMENT_NAME"
-          }
-        },
-        "PLACEMENT_PLATFORM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLACEMENT_PLATFORM"
-          }
-        },
-        "COUNTRY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COUNTRY"
-          }
-        },
-        "FORMAT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FORMAT"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#CampaignReportSpecDimensionsItemEnum"
-      }
-    },
-    "com.gcp.admob_v1beta#ListAdSourcesResponse": {
+    "com.gcp.admob_v1beta#MediationGroup": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
+        "mediationGroupId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdSourcesRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "The ID of the mediation group. Example: \"0123456789\". This is a read only property."
           }
         },
-        "adSources": {
-          "target": "com.gcp.admob_v1beta#AdSourceList",
+        "mediationAbExperimentState": {
+          "target": "com.gcp.admob_v1beta#MediationGroupMediationAbExperimentStateEnum",
           "traits": {
-            "smithy.api#documentation": "The ad sources."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the ListAdSourcesRequest."
-      }
-    },
-    "com.gcp.admob_v1beta#AdSourceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#AdSource"
-      }
-    },
-    "com.gcp.admob_v1beta#ListAdUnitMappingsResponse": {
-      "type": "structure",
-      "members": {
-        "adUnitMappings": {
-          "target": "com.gcp.admob_v1beta#AdUnitMappingList",
-          "traits": {
-            "smithy.api#documentation": "The ad unit mappings from the specified account and ad unit."
+            "smithy.api#documentation": "Output only. The state of the mediation a/b experiment that belongs to this mediation group."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "state": {
+          "target": "com.gcp.admob_v1beta#MediationGroupStateEnum",
           "traits": {
-            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the ListAdUnitMappingsRequest."
-      }
-    },
-    "com.gcp.admob_v1beta#AdUnitMappingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#AdUnitMapping"
-      }
-    },
-    "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsResponse": {
-      "type": "structure",
-      "members": {
-        "adUnitMappings": {
-          "target": "com.gcp.admob_v1beta#AdUnitMappingList",
-          "traits": {
-            "smithy.api#documentation": "The Ad units mappings created under the requested account."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response containing a batch of created ad unit mappings."
-      }
-    },
-    "com.gcp.admob_v1beta#GenerateCampaignReportRequest": {
-      "type": "structure",
-      "members": {
-        "reportSpec": {
-          "target": "com.gcp.admob_v1beta#CampaignReportSpec",
-          "traits": {
-            "smithy.api#documentation": "Campaign report specification."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to generate campaign report."
-      }
-    },
-    "com.gcp.admob_v1beta#ListMediationGroupsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`."
-          }
-        },
-        "mediationGroups": {
-          "target": "com.gcp.admob_v1beta#MediationGroupList",
-          "traits": {
-            "smithy.api#documentation": "The resulting mediation groups for the requested account."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the mediation groups list request."
-      }
-    },
-    "com.gcp.admob_v1beta#MediationGroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#MediationGroup"
-      }
-    },
-    "com.gcp.admob_v1beta#MediationGroupTargeting": {
-      "type": "structure",
-      "members": {
-        "targetedRegionCodes": {
-          "target": "com.gcp.admob_v1beta#StringList_",
-          "traits": {
-            "smithy.api#documentation": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group targets all available regions. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag."
-          }
-        },
-        "idfaTargeting": {
-          "target": "com.gcp.admob_v1beta#MediationGroupTargetingIdfaTargetingEnum",
-          "traits": {
-            "smithy.api#documentation": "The parameter can be used to target ad requests based on the availability of the IDFA. If set to ALL, the mediation group applies to all ad requests (with or without IDFA). If set to AVAILABLE, the mediation group applies to ad requests with IDFA. If set to NOT_AVAILABLE, the mediation group applies to ad requests without IDFA. Doesn't need to be specified for an ANDROID device."
-          }
-        },
-        "excludedRegionCodes": {
-          "target": "com.gcp.admob_v1beta#StringList_",
-          "traits": {
-            "smithy.api#documentation": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group does not exclude any region."
-          }
-        },
-        "format": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Ad format targeted by this mediation group. Examples: \"BANNER\", \"NATIVE\"."
-          }
-        },
-        "platform": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Describes the platform of the app. Examples: \"IOS\", \"ANDROID\"."
-          }
-        },
-        "adUnitIds": {
-          "target": "com.gcp.admob_v1beta#StringList_",
-          "traits": {
-            "smithy.api#documentation": "Ad units targeted by this mediation group. Example: \"ca-app-pub-1234/8790\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location."
-      }
-    },
-    "com.gcp.admob_v1beta#MediationGroupTargetingIdfaTargetingEnum": {
-      "type": "enum",
-      "members": {
-        "IDFA_TARGETING_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IDFA_TARGETING_UNSPECIFIED"
-          }
-        },
-        "ALL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ALL"
-          }
-        },
-        "AVAILABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AVAILABLE"
-          }
-        },
-        "NOT_AVAILABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_AVAILABLE"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#MediationAbExperimentExperimentMediationLine": {
-      "type": "structure",
-      "members": {
-        "mediationGroupLine": {
-          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLine",
-          "traits": {
-            "smithy.api#documentation": "The mediation group line used by the experiment."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The mediation group line for the experiment. It will be used for serving during the run of the experiment."
-      }
-    },
-    "com.gcp.admob_v1beta#AdUnitMapping": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The display name of this ad unit mapping instance."
+            "smithy.api#documentation": "The status of the mediation group. Only enabled mediation groups will be served."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321"
+            "smithy.api#documentation": "Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789"
           }
         },
-        "adUnitConfigurations": {
-          "target": "com.gcp.admob_v1beta#StringMap",
+        "targeting": {
+          "target": "com.gcp.admob_v1beta#MediationGroupTargeting",
           "traits": {
-            "smithy.api#documentation": "Settings for the specified ad unit to make an ad request to 3rd party ad network. Key-value pairs with values set by the user for the keys requested by the ad network. Please see https://support.google.com/admob/answer/3245073 for details on how to configure the network settings."
+            "smithy.api#documentation": "Set of criteria targeted by this mediation group, such as ad units and geo locations."
           }
         },
-        "state": {
-          "target": "com.gcp.admob_v1beta#AdUnitMappingStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The status of this ad unit mapping."
-          }
-        },
-        "adapterId": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The ID of mediation ad source adapter used by this ad unit mapping. The adapter determines the information needed in the ad_network_settings."
+            "smithy.api#documentation": "User provided name for the mediation group. The maximum length allowed is 120 characters."
+          }
+        },
+        "mediationGroupLines": {
+          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLineMap",
+          "traits": {
+            "smithy.api#documentation": "The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Settings to map an AdMob ad unit to a 3rd party ad unit."
+        "smithy.api#documentation": "Describes an AdMob Mediation group."
       }
     },
-    "com.gcp.admob_v1beta#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+    "com.gcp.admob_v1beta#MediationGroupMediationAbExperimentStateEnum": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPERIMENT_STATE_UNSPECIFIED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "NOT_RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RUNNING"
+          }
+        }
       }
     },
-    "com.gcp.admob_v1beta#AdUnitMappingStateEnum": {
+    "com.gcp.admob_v1beta#MediationGroupStateEnum": {
       "type": "enum",
       "members": {
         "STATE_UNSPECIFIED": {
@@ -1847,113 +2059,112 @@
           "traits": {
             "smithy.api#enumValue": "ENABLED"
           }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
         }
       }
     },
-    "com.gcp.admob_v1beta#ListPublisherAccountsResponse": {
+    "com.gcp.admob_v1beta#MediationGroupMediationGroupLineMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLine"
+      }
+    },
+    "com.gcp.admob_v1beta#AppLinkedAppInfo": {
       "type": "structure",
       "members": {
-        "account": {
-          "target": "com.gcp.admob_v1beta#PublisherAccountList",
+        "androidAppStores": {
+          "target": "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Publisher that the client credentials can access."
+            "smithy.api#documentation": "Optional. The app store information for published Android apps. This field is only used for apps on the Android platform and will be ignored if the PLATFORM is set to iOS. The default value is the Google Play App store. This field can be updated after app is created. If the app is not published, this field will not be included in the response."
           }
         },
-        "nextPageToken": {
+        "appStoreId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If not empty, indicates that there might be more accounts for the request; you must pass this value in a new `ListPublisherAccountsRequest`."
+            "smithy.api#documentation": "The app store ID of the app; present if and only if the app is linked to an app store. If the app is added to the Google Play store, it will be the application ID of the app. For example: \"com.example.myapp\". See https://developer.android.com/studio/build/application-id. If the app is added to the Apple App Store, it will be app store ID. For example \"105169111\". Note that setting the app store id is considered an irreversible action. Once an app is linked, it cannot be unlinked."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Display name of the app as it appears in the app store. This is an output-only field, and may be empty if the app cannot be found in the store."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response for the publisher account list request."
+        "smithy.api#documentation": "Information from the app store if the app is linked to an app store."
       }
     },
-    "com.gcp.admob_v1beta#PublisherAccountList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#PublisherAccount"
-      }
-    },
-    "com.gcp.admob_v1beta#ReportWarning": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Describes the details of the warning message, in English."
-          }
-        },
-        "type": {
-          "target": "com.gcp.admob_v1beta#ReportWarningTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Type of the warning."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Warnings associated with generation of the report."
-      }
-    },
-    "com.gcp.admob_v1beta#ReportWarningTypeEnum": {
+    "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnum": {
       "type": "enum",
       "members": {
-        "TYPE_UNSPECIFIED": {
+        "ANDROID_APP_STORE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+            "smithy.api#enumValue": "ANDROID_APP_STORE_UNSPECIFIED"
           }
         },
-        "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE": {
+        "GOOGLE_PLAY_APP_STORE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE"
+            "smithy.api#enumValue": "GOOGLE_PLAY_APP_STORE"
           }
         },
-        "DATA_DELAYED": {
+        "AMAZON_APP_STORE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "DATA_DELAYED"
+            "smithy.api#enumValue": "AMAZON_APP_STORE"
           }
         },
-        "OTHER": {
+        "OPPO_APP_STORE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "OTHER"
+            "smithy.api#enumValue": "OPPO_APP_STORE"
           }
         },
-        "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY": {
+        "SAMSUNG_APP_STORE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY"
+            "smithy.api#enumValue": "SAMSUNG_APP_STORE"
+          }
+        },
+        "VIVO_APP_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIVO_APP_STORE"
+          }
+        },
+        "XIAOMI_APP_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XIAOMI_APP_STORE"
           }
         }
       }
     },
-    "com.gcp.admob_v1beta#GenerateCampaignReportResponse": {
-      "type": "structure",
-      "members": {
-        "rows": {
-          "target": "com.gcp.admob_v1beta#ReportRowList",
-          "traits": {
-            "smithy.api#documentation": "The campaign report data from the specified publisher. At most 100000 rows will be returned from the API."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Campaign Report API response."
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRowList": {
+    "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnumList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.admob_v1beta#ReportRow"
+        "target": "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnum"
       }
     },
     "com.gcp.admob_v1beta#MediationGroupMediationGroupLine": {
       "type": "structure",
       "members": {
+        "state": {
+          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLineStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the mediation group line. Only enabled mediation group lines will be served."
+          }
+        },
         "cpmMicros": {
           "target": "smithy.api#String",
           "traits": {
@@ -1966,22 +2177,16 @@
             "smithy.api#documentation": "Indicates how the CPM for this mediation line is provided. Note that `MANUAL` and `LIVE` are the only fully-supported mode at the moment. Please use the AdMob UI (https://admob.google.com) if you wish to create or update to other cpm modes."
           }
         },
-        "adUnitMappings": {
-          "target": "com.gcp.admob_v1beta#StringMap",
-          "traits": {
-            "smithy.api#documentation": "References of the ad unit mappings for each ad unit associated with this mediation line. Key is the ad unit ID, value is resource name of the ad unit mapping. For mediation lines where the ad source id is the AdMob Network, ad unit mappings will be ignored."
-          }
-        },
         "experimentVariant": {
           "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLineExperimentVariantEnum",
           "traits": {
             "smithy.api#documentation": "Output only. The Mediation A/B experiment variant to which the mediation group line belongs to."
           }
         },
-        "displayName": {
+        "id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "User-provided label for this mediation line. The maximum length allowed is 255 characters."
+            "smithy.api#documentation": "The 16 digit ID for this mediation line e.g. 0123456789012345. When creating a new mediation group line, use a distinct negative integer as the ID place holder."
           }
         },
         "adSourceId": {
@@ -1990,21 +2195,50 @@
             "smithy.api#documentation": "The ID of the ad source this mediation line is associated with."
           }
         },
-        "state": {
-          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLineStateEnum",
+        "adUnitMappings": {
+          "target": "com.gcp.admob_v1beta#StringMap",
           "traits": {
-            "smithy.api#documentation": "The status of the mediation group line. Only enabled mediation group lines will be served."
+            "smithy.api#documentation": "References of the ad unit mappings for each ad unit associated with this mediation line. Key is the ad unit ID, value is resource name of the ad unit mapping. For mediation lines where the ad source id is the AdMob Network, ad unit mappings will be ignored."
           }
         },
-        "id": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The 16 digit ID for this mediation line e.g. 0123456789012345. When creating a new mediation group line, use a distinct negative integer as the ID place holder."
+            "smithy.api#documentation": "User-provided label for this mediation line. The maximum length allowed is 255 characters."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Settings for an ad network used by a mediation group."
+      }
+    },
+    "com.gcp.admob_v1beta#MediationGroupMediationGroupLineStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVED"
+          }
+        }
       }
     },
     "com.gcp.admob_v1beta#MediationGroupMediationGroupLineCpmModeEnum": {
@@ -2065,190 +2299,70 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#MediationGroupMediationGroupLineStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ENABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ENABLED"
-          }
-        },
-        "DISABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISABLED"
-          }
-        },
-        "REMOVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REMOVED"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#LocalizationSettings": {
+    "com.gcp.admob_v1beta#ListAdaptersResponse": {
       "type": "structure",
       "members": {
-        "currencyCode": {
-          "target": "smithy.api#String",
+        "adapters": {
+          "target": "com.gcp.admob_v1beta#AdapterList",
           "traits": {
-            "smithy.api#documentation": "Currency code of the earning related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion. Defaults to the account currency code if unspecified."
+            "smithy.api#documentation": "The adapter."
           }
         },
-        "languageCode": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified."
+            "smithy.api#documentation": "Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Localization settings for reports, such as currency and language. It affects how metrics are calculated."
+        "smithy.api#documentation": "Response for the ListAdaptersRequest."
       }
     },
-    "com.gcp.admob_v1beta#MediationGroup": {
+    "com.gcp.admob_v1beta#AdapterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#Adapter"
+      }
+    },
+    "com.gcp.admob_v1beta#StringList": {
       "type": "structure",
       "members": {
-        "displayName": {
-          "target": "smithy.api#String",
+        "values": {
+          "target": "com.gcp.admob_v1beta#StringList_",
           "traits": {
-            "smithy.api#documentation": "User provided name for the mediation group. The maximum length allowed is 120 characters."
-          }
-        },
-        "mediationGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the mediation group. Example: \"0123456789\". This is a read only property."
-          }
-        },
-        "mediationGroupLines": {
-          "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLineMap",
-          "traits": {
-            "smithy.api#documentation": "The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789"
-          }
-        },
-        "state": {
-          "target": "com.gcp.admob_v1beta#MediationGroupStateEnum",
-          "traits": {
-            "smithy.api#documentation": "The status of the mediation group. Only enabled mediation groups will be served."
-          }
-        },
-        "targeting": {
-          "target": "com.gcp.admob_v1beta#MediationGroupTargeting",
-          "traits": {
-            "smithy.api#documentation": "Set of criteria targeted by this mediation group, such as ad units and geo locations."
-          }
-        },
-        "mediationAbExperimentState": {
-          "target": "com.gcp.admob_v1beta#MediationGroupMediationAbExperimentStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the mediation a/b experiment that belongs to this mediation group."
+            "smithy.api#documentation": "The string values."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Describes an AdMob Mediation group."
+        "smithy.api#documentation": "List of string values."
       }
     },
-    "com.gcp.admob_v1beta#MediationGroupMediationGroupLineMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.admob_v1beta#MediationGroupMediationGroupLine"
-      }
-    },
-    "com.gcp.admob_v1beta#MediationGroupStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ENABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ENABLED"
-          }
-        },
-        "DISABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISABLED"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#MediationGroupMediationAbExperimentStateEnum": {
-      "type": "enum",
-      "members": {
-        "EXPERIMENT_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXPERIMENT_STATE_UNSPECIFIED"
-          }
-        },
-        "RUNNING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RUNNING"
-          }
-        },
-        "NOT_RUNNING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_RUNNING"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#PublisherAccount": {
+    "com.gcp.admob_v1beta#ListPublisherAccountsResponse": {
       "type": "structure",
       "members": {
-        "reportingTimeZone": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The time zone that is used in reports that are generated for this account. The value is a time-zone ID as specified by the CLDR project, for example, \"America/Los_Angeles\"."
+            "smithy.api#documentation": "If not empty, indicates that there might be more accounts for the request; you must pass this value in a new `ListPublisherAccountsRequest`."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
+        "account": {
+          "target": "com.gcp.admob_v1beta#PublisherAccountList",
           "traits": {
-            "smithy.api#documentation": "Resource name of this account. Format is accounts/{publisher_id}."
-          }
-        },
-        "currencyCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Currency code of the earning-related metrics, which is the 3-letter code defined in ISO 4217. The daily average rate is used for the currency conversion."
-          }
-        },
-        "publisherId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique ID by which this publisher account can be identified in the API requests (for example, pub-1234567890)."
+            "smithy.api#documentation": "Publisher that the client credentials can access."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A publisher account contains information relevant to the use of this API, such as the time zone used for the reports."
+        "smithy.api#documentation": "Response for the publisher account list request."
+      }
+    },
+    "com.gcp.admob_v1beta#PublisherAccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#PublisherAccount"
       }
     },
     "com.gcp.admob_v1beta#NetworkReportSpecSortCondition": {
@@ -2454,300 +2568,33 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#AppLinkedAppInfo": {
+    "com.gcp.admob_v1beta#MediationReportSpecSortCondition": {
       "type": "structure",
       "members": {
-        "androidAppStores": {
-          "target": "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The app store information for published Android apps. This field is only used for apps on the Android platform and will be ignored if the PLATFORM is set to iOS. The default value is the Google Play App store. This field can be updated after app is created. If the app is not published, this field will not be included in the response."
-          }
-        },
-        "appStoreId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The app store ID of the app; present if and only if the app is linked to an app store. If the app is added to the Google Play store, it will be the application ID of the app. For example: \"com.example.myapp\". See https://developer.android.com/studio/build/application-id. If the app is added to the Apple App Store, it will be app store ID. For example \"105169111\". Note that setting the app store id is considered an irreversible action. Once an app is linked, it cannot be unlinked."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Display name of the app as it appears in the app store. This is an output-only field, and may be empty if the app cannot be found in the store."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information from the app store if the app is linked to an app store."
-      }
-    },
-    "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnum": {
-      "type": "enum",
-      "members": {
-        "ANDROID_APP_STORE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANDROID_APP_STORE_UNSPECIFIED"
-          }
-        },
-        "GOOGLE_PLAY_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GOOGLE_PLAY_APP_STORE"
-          }
-        },
-        "AMAZON_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AMAZON_APP_STORE"
-          }
-        },
-        "OPPO_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OPPO_APP_STORE"
-          }
-        },
-        "SAMSUNG_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SAMSUNG_APP_STORE"
-          }
-        },
-        "VIVO_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIVO_APP_STORE"
-          }
-        },
-        "XIAOMI_APP_STORE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "XIAOMI_APP_STORE"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#AppLinkedAppInfoAndroidAppStoresItemEnum"
-      }
-    },
-    "com.gcp.admob_v1beta#AppManualAppInfo": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store)."
-      }
-    },
-    "com.gcp.admob_v1beta#CreateAdUnitMappingRequest": {
-      "type": "structure",
-      "members": {
-        "adUnitMapping": {
-          "target": "com.gcp.admob_v1beta#AdUnitMapping",
-          "traits": {
-            "smithy.api#documentation": "Required. The ad unit mapping to create."
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to create an ad unit mapping under the specific AdMob account and ad unit."
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRow": {
-      "type": "structure",
-      "members": {
-        "metricValues": {
-          "target": "com.gcp.admob_v1beta#ReportRowMetricValueMap",
-          "traits": {
-            "smithy.api#documentation": "Map of metric values in a row, with keys as enum name of the metrics. If a metric being requested has no value returned, the map will not include it."
-          }
-        },
-        "dimensionValues": {
-          "target": "com.gcp.admob_v1beta#ReportRowDimensionValueMap",
-          "traits": {
-            "smithy.api#documentation": "Map of dimension values in a row, with keys as enum name of the dimensions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A row of the returning report."
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRowMetricValueMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.admob_v1beta#ReportRowMetricValue"
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRowDimensionValueMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.admob_v1beta#ReportRowDimensionValue"
-      }
-    },
-    "com.gcp.admob_v1beta#ReportRowMetricValue": {
-      "type": "structure",
-      "members": {
-        "doubleValue": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Double precision (approximate) decimal values. Rates are from 0 to 1."
-          }
-        },
-        "microsValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Amount in micros. One million is equivalent to one unit. Currency value is in the unit (USD, EUR or other) specified by the request. For example, $6.50 whould be represented as 6500000 micros."
-          }
-        },
-        "integerValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Metric integer value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Representation of a metric value."
-      }
-    },
-    "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsRequest": {
-      "type": "structure",
-      "members": {
-        "requests": {
-          "target": "com.gcp.admob_v1beta#CreateAdUnitMappingRequestList",
-          "traits": {
-            "smithy.api#documentation": "Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to create a batch of ad unit mappings under the specific AdMob account."
-      }
-    },
-    "com.gcp.admob_v1beta#CreateAdUnitMappingRequestList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#CreateAdUnitMappingRequest"
-      }
-    },
-    "com.gcp.admob_v1beta#ListAdUnitsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If not empty, indicates that there may be more ad units for the request; this value should be passed in a new `ListAdUnitsRequest`."
-          }
-        },
-        "adUnits": {
-          "target": "com.gcp.admob_v1beta#AdUnitList",
-          "traits": {
-            "smithy.api#documentation": "The resulting ad units for the requested account."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the ad units list request."
-      }
-    },
-    "com.gcp.admob_v1beta#AdUnitList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admob_v1beta#AdUnit"
-      }
-    },
-    "com.gcp.admob_v1beta#AdUnit": {
-      "type": "structure",
-      "members": {
-        "adUnitId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789"
-          }
-        },
-        "rewardSettings": {
-          "target": "com.gcp.admob_v1beta#AdUnitRewardSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings for a rewarded ad unit. This can be set or unset only when the ad_format is \"REWARDED\"."
-          }
-        },
-        "adFormat": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "AdFormat of the ad unit. Possible values are as follows: \"APP_OPEN\" - App Open ad format. \"BANNER\" - Banner ad format. \"BANNER_INTERSTITIAL\" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. \"INTERSTITIAL\" - A full screen ad. Supported ad types are \"RICH_MEDIA\" and \"VIDEO\". \"NATIVE\" - Native ad format. \"REWARDED\" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are \"RICH_MEDIA\" (interactive) and video where video can not be excluded. \"REWARDED_INTERSTITIAL\" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467."
-          }
-        },
-        "appId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters."
-          }
-        },
-        "adTypes": {
-          "target": "com.gcp.admob_v1beta#StringList_",
-          "traits": {
-            "smithy.api#documentation": "Ad media type supported by this ad unit. Possible values as follows: \"RICH_MEDIA\" - Text, image, and other non-video media. \"VIDEO\" - Video media."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes an AdMob ad unit."
-      }
-    },
-    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilter": {
-      "type": "structure",
-      "members": {
-        "matchesAny": {
-          "target": "com.gcp.admob_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Matches a row if its value for the specified dimension is in one of the values specified in this condition."
-          }
-        },
         "dimension": {
-          "target": "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterDimensionEnum",
+          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionDimensionEnum",
           "traits": {
-            "smithy.api#documentation": "Applies the filter criterion to the specified dimension."
+            "smithy.api#documentation": "Sort by the specified dimension."
+          }
+        },
+        "metric": {
+          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionMetricEnum",
+          "traits": {
+            "smithy.api#documentation": "Sort by the specified metric."
+          }
+        },
+        "order": {
+          "target": "com.gcp.admob_v1beta#MediationReportSpecSortConditionOrderEnum",
+          "traits": {
+            "smithy.api#documentation": "Sorting order of the dimension or metric."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Describes which report rows to match based on their dimension values."
+        "smithy.api#documentation": "Sorting direction to be applied on a dimension or a metric."
       }
     },
-    "com.gcp.admob_v1beta#MediationReportSpecDimensionFilterDimensionEnum": {
+    "com.gcp.admob_v1beta#MediationReportSpecSortConditionDimensionEnum": {
       "type": "enum",
       "members": {
         "DIMENSION_UNSPECIFIED": {
@@ -2848,19 +2695,127 @@
         }
       }
     },
+    "com.gcp.admob_v1beta#MediationReportSpecSortConditionMetricEnum": {
+      "type": "enum",
+      "members": {
+        "METRIC_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
+          }
+        },
+        "AD_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS"
+          }
+        },
+        "CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS"
+          }
+        },
+        "ESTIMATED_EARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
+          }
+        },
+        "IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS"
+          }
+        },
+        "IMPRESSION_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSION_CTR"
+          }
+        },
+        "MATCHED_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_REQUESTS"
+          }
+        },
+        "MATCH_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCH_RATE"
+          }
+        },
+        "OBSERVED_ECPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBSERVED_ECPM"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#MediationReportSpecSortConditionOrderEnum": {
+      "type": "enum",
+      "members": {
+        "SORT_ORDER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SORT_ORDER_UNSPECIFIED"
+          }
+        },
+        "ASCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASCENDING"
+          }
+        },
+        "DESCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESCENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#AdapterAdapterConfigMetadata": {
+      "type": "structure",
+      "members": {
+        "adapterConfigMetadataLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the adapter configuration metadata."
+          }
+        },
+        "isRequired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this metadata is required for configuring the AdUnitMappings."
+          }
+        },
+        "adapterConfigMetadataId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter."
+      }
+    },
     "com.gcp.admob_v1beta#ReportHeader": {
       "type": "structure",
       "members": {
-        "dateRange": {
-          "target": "com.gcp.admob_v1beta#DateRange",
-          "traits": {
-            "smithy.api#documentation": "The date range for which the report is generated. This is identical to the range specified in the report request."
-          }
-        },
         "localizationSettings": {
           "target": "com.gcp.admob_v1beta#LocalizationSettings",
           "traits": {
             "smithy.api#documentation": "Localization settings of the report. This is identical to the settings in the report request."
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.admob_v1beta#DateRange",
+          "traits": {
+            "smithy.api#documentation": "The date range for which the report is generated. This is identical to the range specified in the report request."
           }
         },
         "reportingTimeZone": {
@@ -2872,6 +2827,52 @@
       },
       "traits": {
         "smithy.api#documentation": "Groups data helps to treat the generated report. Always sent as a first message in the stream response."
+      }
+    },
+    "com.gcp.admob_v1beta#AdUnitRewardSettings": {
+      "type": "structure",
+      "members": {
+        "unitAmount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reward amount for this ad unit."
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reward item for this ad unit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for a rewarded ad unit."
+      }
+    },
+    "com.gcp.admob_v1beta#ListAppsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`."
+          }
+        },
+        "apps": {
+          "target": "com.gcp.admob_v1beta#AppList",
+          "traits": {
+            "smithy.api#documentation": "The resulting apps for the requested account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the apps list request."
+      }
+    },
+    "com.gcp.admob_v1beta#AppList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admob_v1beta#App"
       }
     },
     "com.gcp.admob_v1beta#GetAccountsRequest": {
@@ -2984,19 +2985,74 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#CreateAccountsAppsRequest": {
+    "com.gcp.admob_v1beta#ListAccountsAdUnitsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the account to list ad units for. Example: accounts/pub-9876543210987654",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#ListAccountsAdUnits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#ListAccountsAdUnitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#ListAdUnitsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/adUnits"
+        },
+        "smithy.api#documentation": "List the ad units under the specified AdMob account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAccountsAdUnitsRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Resource name of the account for which the app is being created. Example: accounts/pub-9876543210987654",
+            "smithy.api#documentation": "Required. Resource name of the account to create the specified ad unit for. Example: accounts/pub-9876543210987654",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.admob_v1beta#App",
+          "target": "com.gcp.admob_v1beta#AdUnit",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3030,13 +3086,13 @@
         ]
       }
     },
-    "com.gcp.admob_v1beta#CreateAccountsApps": {
+    "com.gcp.admob_v1beta#CreateAccountsAdUnits": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.admob_v1beta#CreateAccountsAppsRequest"
+        "target": "com.gcp.admob_v1beta#CreateAccountsAdUnitsRequest"
       },
       "output": {
-        "target": "com.gcp.admob_v1beta#App"
+        "target": "com.gcp.admob_v1beta#AdUnit"
       },
       "errors": [
         {
@@ -3055,45 +3111,102 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1beta/{+parent}/apps"
+          "uri": "v1beta/{+parent}/adUnits"
         },
-        "smithy.api#documentation": "Creates an app under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        "smithy.api#documentation": "Creates an ad unit under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
       }
     },
-    "com.gcp.admob_v1beta#ListAccountsAppsRequest": {
+    "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappingsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Resource name of the account to list apps for. Example: accounts/pub-9876543210987654",
+            "smithy.api#documentation": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.admob_v1beta#AdUnitMapping",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#AdUnitMapping"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/adUnitMappings"
+        },
+        "smithy.api#documentation": "Create an ad unit mapping under the specific AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+      }
+    },
+    "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - \"DISPLAY_NAME\" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including \"DISPLAY_NAME\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Ad Unit Mapping 1\", \"Test Ad Unit Mapping 2\")",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data.",
+            "smithy.api#documentation": "A page token, received from a previous `ListAdUnitMappings` call. Provide this to retrieve the subsequent page.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent which owns this collection of ad unit mappings. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad unit mappings to return. If unspecified or 0, at most 10,000 ad unit mappings will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
     },
-    "com.gcp.admob_v1beta#ListAccountsApps": {
+    "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappings": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.admob_v1beta#ListAccountsAppsRequest"
+        "target": "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappingsRequest"
       },
       "output": {
-        "target": "com.gcp.admob_v1beta#ListAppsResponse"
+        "target": "com.gcp.admob_v1beta#ListAdUnitMappingsResponse"
       },
       "errors": [
         {
@@ -3106,63 +3219,13 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1beta/{+parent}/apps"
+          "uri": "v1beta/{+parent}/adUnitMappings"
         },
-        "smithy.api#documentation": "List the apps under the specified AdMob account.",
+        "smithy.api#documentation": "List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.admob_v1beta#GenerateAccountsCampaignReportRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.admob_v1beta#GenerateCampaignReportRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#GenerateAccountsCampaignReport": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#GenerateAccountsCampaignReportRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#GenerateCampaignReportResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+parent}/campaignReport:generate"
-        },
-        "smithy.api#documentation": "Generates Campaign Report based on provided specifications."
       }
     },
     "com.gcp.admob_v1beta#GenerateAccountsMediationReportRequest": {
@@ -3215,72 +3278,22 @@
         "smithy.api#documentation": "Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
       }
     },
-    "com.gcp.admob_v1beta#CreateBatchAccountAdUnitMappingRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The AdMob account which owns this collection of ad unit mappings. Format: accounts/{publisher_id} See https://support.google.com/admob/answer/2784578 for instructions on how to find your AdMob publisher ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#CreateBatchAccountAdUnitMapping": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#CreateBatchAccountAdUnitMappingRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+parent}/adUnitMappings:batchCreate"
-        },
-        "smithy.api#documentation": "Batch create the ad unit mappings under the specific AdMob account. The maximum allowed batch size is 100. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
-      }
-    },
     "com.gcp.admob_v1beta#ListAccountsAdSourcesRequest": {
       "type": "structure",
       "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad sources to return. If unspecified or 0, at most 10,000 ad sources will be returned. The maximum value is 20,000; values above 10,000 will be coerced to 20,000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent which owns this collection of ad sources. Format: accounts/{publisher_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of ad sources to return. If unspecified or 0, at most 10,000 ad sources will be returned. The maximum value is 20,000; values above 10,000 will be coerced to 20,000.",
-            "smithy.api#httpQuery": "pageSize"
           }
         },
         "pageToken": {
@@ -3375,74 +3388,19 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#ListAccountsAdUnitsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the account to list ad units for. Example: accounts/pub-9876543210987654",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#ListAccountsAdUnits": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#ListAccountsAdUnitsRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#ListAdUnitsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+parent}/adUnits"
-        },
-        "smithy.api#documentation": "List the ad units under the specified AdMob account.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#CreateAccountsAdUnitsRequest": {
+    "com.gcp.admob_v1beta#BatchCreateAccountsAdUnitMappingsRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Resource name of the account to create the specified ad unit for. Example: accounts/pub-9876543210987654",
+            "smithy.api#documentation": "Required. The AdMob account which owns this collection of ad unit mappings. Format: accounts/{publisher_id} See https://support.google.com/admob/answer/2784578 for instructions on how to find your AdMob publisher ID.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.admob_v1beta#AdUnit",
+          "target": "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3450,13 +3408,13 @@
         }
       }
     },
-    "com.gcp.admob_v1beta#CreateAccountsAdUnits": {
+    "com.gcp.admob_v1beta#BatchCreateAccountsAdUnitMappings": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.admob_v1beta#CreateAccountsAdUnitsRequest"
+        "target": "com.gcp.admob_v1beta#BatchCreateAccountsAdUnitMappingsRequest"
       },
       "output": {
-        "target": "com.gcp.admob_v1beta#AdUnit"
+        "target": "com.gcp.admob_v1beta#BatchCreateAdUnitMappingsResponse"
       },
       "errors": [
         {
@@ -3475,102 +3433,52 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1beta/{+parent}/adUnits"
+          "uri": "v1beta/{+parent}/adUnitMappings:batchCreate"
         },
-        "smithy.api#documentation": "Creates an ad unit under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+        "smithy.api#documentation": "Batch create the ad unit mappings under the specific AdMob account. The maximum allowed batch size is 100. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
       }
     },
-    "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappingsRequest": {
+    "com.gcp.admob_v1beta#ListAccountsMediationGroupsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.admob_v1beta#AdUnitMapping",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#CreateAccountsAdUnitsAdUnitMappingsRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#AdUnitMapping"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+parent}/adUnitMappings"
-        },
-        "smithy.api#documentation": "Create an ad unit mapping under the specific AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
-      }
-    },
-    "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappingsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent which owns this collection of ad unit mappings. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListAdUnitMappings` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of ad unit mappings to return. If unspecified or 0, at most 10,000 ad unit mappings will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - \"DISPLAY_NAME\" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including \"DISPLAY_NAME\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Ad Unit Mapping 1\", \"Test Ad Unit Mapping 2\")",
+            "smithy.api#documentation": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible fields to filter by are: - \"AD_SOURCE_IDS\" - \"AD_UNIT_IDS\" - \"APP_IDS\" - \"DISPLAY_NAME\" - \"FORMAT\" - \"MEDIATION_GROUP_ID\" - \"PLATFORM\" - \"STATE\" - \"TARGETED_REGION_CODES\" Possible filter functions are: - `IN`: Used to filter fields that represent a singleton including \"MEDIATION_GROUP_ID\", \"DISPLAY_NAME\", \"STATE\", \"PLATFORM\", and \"FORMAT\". - `CONTAINS_ANY`: Used to filter fields that represent a collection including \"AD_SOURCE_IDS\", \"AD_UNIT_IDS\", \"APP_IDS\", and \"TARGETED_REGION_CODES\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Group 1\", \"Test Group 2\") AND IN(PLATFORM, \"ANDROID\") AND CONTAINS_ANY(AD_SOURCE_IDS, \"5450213213286189855\")",
             "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of mediation groups to return. If unspecified or 0, at most 10,000 mediation groups will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value returned by the last `ListMediationGroupsResponse`; indicates that this is a continuation of a prior `ListMediationGroups` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the account to list mediation groups for. Example: accounts/pub-9876543210987654",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappings": {
+    "com.gcp.admob_v1beta#ListAccountsMediationGroups": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.admob_v1beta#ListAccountsAdUnitsAdUnitMappingsRequest"
+        "target": "com.gcp.admob_v1beta#ListAccountsMediationGroupsRequest"
       },
       "output": {
-        "target": "com.gcp.admob_v1beta#ListAdUnitMappingsResponse"
+        "target": "com.gcp.admob_v1beta#ListMediationGroupsResponse"
       },
       "errors": [
         {
@@ -3583,9 +3491,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1beta/{+parent}/adUnitMappings"
+          "uri": "v1beta/{+parent}/mediationGroups"
         },
-        "smithy.api#documentation": "List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+        "smithy.api#documentation": "List mediation groups under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
@@ -3642,84 +3550,22 @@
         "smithy.api#documentation": "Create a mediation group under the specific AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
       }
     },
-    "com.gcp.admob_v1beta#ListAccountsMediationGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the account to list mediation groups for. Example: accounts/pub-9876543210987654",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of mediation groups to return. If unspecified or 0, at most 10,000 mediation groups will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible fields to filter by are: - \"AD_SOURCE_IDS\" - \"AD_UNIT_IDS\" - \"APP_IDS\" - \"DISPLAY_NAME\" - \"FORMAT\" - \"MEDIATION_GROUP_ID\" - \"PLATFORM\" - \"STATE\" - \"TARGETED_REGION_CODES\" Possible filter functions are: - `IN`: Used to filter fields that represent a singleton including \"MEDIATION_GROUP_ID\", \"DISPLAY_NAME\", \"STATE\", \"PLATFORM\", and \"FORMAT\". - `CONTAINS_ANY`: Used to filter fields that represent a collection including \"AD_SOURCE_IDS\", \"AD_UNIT_IDS\", \"APP_IDS\", and \"TARGETED_REGION_CODES\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Group 1\", \"Test Group 2\") AND IN(PLATFORM, \"ANDROID\") AND CONTAINS_ANY(AD_SOURCE_IDS, \"5450213213286189855\")",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value returned by the last `ListMediationGroupsResponse`; indicates that this is a continuation of a prior `ListMediationGroups` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#ListAccountsMediationGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#ListAccountsMediationGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#ListMediationGroupsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+parent}/mediationGroups"
-        },
-        "smithy.api#documentation": "List mediation groups under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.admob_v1beta#PatchAccountsMediationGroupsRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List of mediation group fields to be updated. Updates to repeated fields such as items in a list will fully replace the existing value(s) with the new value(s). Updates to individual values in a map can be done by indexing by the key. The following field masks are supported for mediation group updates: - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"]\" clang-format off - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].ad_unit_mappings[\\\"{ad_unit_id}\\\"]\" clang-format on - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_micros\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_mode\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].state\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].display_name\" - \"targeting.ad_unit_ids\" To update a mediation group with a new mediation group line, use a distinct negative number for the \"mediation_group_line_id\". For Example: update_mask { paths: \"mediation_group_lines[\\\"123456789012345\\\"].cpm_micros\" }",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "List of mediation group fields to be updated. Updates to repeated fields such as items in a list will fully replace the existing value(s) with the new value(s). Updates to individual values in a map can be done by indexing by the key. The following field masks are supported for mediation group updates: - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"]\" clang-format off - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].ad_unit_mappings[\\\"{ad_unit_id}\\\"]\" clang-format on - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_micros\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_mode\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].state\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].display_name\" - \"targeting.ad_unit_ids\" To update a mediation group with a new mediation group line, use a distinct negative number for the \"mediation_group_line_id\". For Example: update_mask { paths: \"mediation_group_lines[\\\"123456789012345\\\"].cpm_micros\" }",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -3759,56 +3605,6 @@
           "uri": "v1beta/{+name}"
         },
         "smithy.api#documentation": "Update the specified mediation group under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
-      }
-    },
-    "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperimentsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the mediation group, the experiment for which to choose a variant for. Example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiments",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.admob_v1beta#StopMediationAbExperimentRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperiments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperimentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.admob_v1beta#MediationAbExperiment"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admob_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.admob_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:stop"
-        },
-        "smithy.api#documentation": "Stop the mediation A/B experiment and choose a variant. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
       }
     },
     "com.gcp.admob_v1beta#CreateAccountsMediationGroupsMediationAbExperimentsRequest": {
@@ -3861,6 +3657,106 @@
         "smithy.api#documentation": "Create an A/B testing experiment for a specified AdMob account and a mediation group. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
       }
     },
+    "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperimentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the mediation group, the experiment for which to choose a variant for. Example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiments",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.admob_v1beta#StopMediationAbExperimentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperiments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#StopAccountsMediationGroupsMediationAbExperimentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#MediationAbExperiment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:stop"
+        },
+        "smithy.api#documentation": "Stop the mediation A/B experiment and choose a variant. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateAccountsCampaignReportRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.admob_v1beta#GenerateCampaignReportRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#GenerateAccountsCampaignReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#GenerateAccountsCampaignReportRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#GenerateCampaignReportResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/campaignReport:generate"
+        },
+        "smithy.api#documentation": "Generates Campaign Report based on provided specifications."
+      }
+    },
     "com.gcp.admob_v1beta#GenerateAccountsNetworkReportRequest": {
       "type": "structure",
       "members": {
@@ -3909,6 +3805,111 @@
           "uri": "v1beta/{+parent}/networkReport:generate"
         },
         "smithy.api#documentation": "Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses."
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAccountsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the account for which the app is being created. Example: accounts/pub-9876543210987654",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.admob_v1beta#App",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#CreateAccountsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#CreateAccountsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#App"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/apps"
+        },
+        "smithy.api#documentation": "Creates an app under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access."
+      }
+    },
+    "com.gcp.admob_v1beta#ListAccountsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the account to list apps for. Example: accounts/pub-9876543210987654",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.admob_v1beta#ListAccountsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admob_v1beta#ListAccountsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admob_v1beta#ListAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admob_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.admob_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/apps"
+        },
+        "smithy.api#documentation": "List the apps under the specified AdMob account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     }
   }

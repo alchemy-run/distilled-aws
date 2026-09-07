@@ -47,7 +47,8 @@
       "validationErrors": "validation_errors",
       "validationRecords": "validation_records",
       "verificationErrors": "verification_errors"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_hostnames#CreateRequestCustomMetadataMap": {
@@ -5093,34 +5094,34 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.custom_hostnames#Create"
+          "target": "com.cloudflare.custom_hostnames#CreateCustomHostname"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#Delete"
+          "target": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#Edit"
+          "target": "com.cloudflare.custom_hostnames#DeleteCustomHostname"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#Get"
+          "target": "com.cloudflare.custom_hostnames#DeleteFallbackOrigin"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#List"
+          "target": "com.cloudflare.custom_hostnames#GetCustomHostname"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesDelete"
+          "target": "com.cloudflare.custom_hostnames#GetFallbackOrigin"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdate"
+          "target": "com.cloudflare.custom_hostnames#ListCustomHostnames"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginDelete"
+          "target": "com.cloudflare.custom_hostnames#PatchCustomHostname"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginGet"
+          "target": "com.cloudflare.custom_hostnames#PutCertificatePackCertificate"
         },
         {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginUpdate"
+          "target": "com.cloudflare.custom_hostnames#PutFallbackOrigin"
         }
       ],
       "traits": {

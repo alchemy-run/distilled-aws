@@ -60,11 +60,11 @@ export const CheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckNameAvailabilityResponse>;
 
 /** Resource tags. */
-export type LedgerCreateRequestTagsMap = { [key: string]: string | undefined };
-export const LedgerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateLedgerRequestTagsMap = { [key: string]: string | undefined };
+export const CreateLedgerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerCreateRequestTagsMap>;
+) as any as S.Schema<CreateLedgerRequestTagsMap>;
 
 /** Object representing RunningState for Confidential Ledger. */
 export type RunningState =
@@ -203,7 +203,7 @@ export interface CreateLedgerRequest {
   /** Name of the Confidential Ledger */
   ledgerName: string;
   /** Resource tags. */
-  tags?: LedgerCreateRequestTagsMap;
+  tags?: CreateLedgerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
@@ -214,7 +214,7 @@ export const CreateLedgerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ledgerName: S.String.pipe(T.Label()),
-    tags: S.optional(LedgerCreateRequestTagsMap),
+    tags: S.optional(CreateLedgerRequestTagsMap),
     location: S.String,
     properties: S.optional(LedgerPropertiesInput),
   }).pipe(
@@ -272,11 +272,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type LedgerCreateResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const CreateLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerCreateResponseTagsMap>;
+) as any as S.Schema<CreateLedgerResponseTagsMap>;
 
 /** Object representing ProvisioningState for Confidential Ledger. */
 export type ProvisioningState =
@@ -390,7 +390,7 @@ export interface CreateLedgerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LedgerCreateResponseTagsMap;
+  tags?: CreateLedgerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
@@ -402,7 +402,7 @@ export const CreateLedgerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LedgerCreateResponseTagsMap),
+    tags: S.optional(CreateLedgerResponseTagsMap),
     location: S.String,
     properties: S.optional(LedgerProperties),
   }),
@@ -442,6 +442,51 @@ export const DeleteLedgerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteLedgerResponse",
 }) as any as S.Schema<DeleteLedgerResponse>;
 
+export interface ExportLedgerFileRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Confidential Ledger */
+  ledgerName: string;
+  /** The region where the exported ledger files will eventually be restored to. */
+  restoreRegion?: string;
+  /** SAS URI used to access the Fileshare for exporting ledger files. */
+  uri: string;
+}
+export const ExportLedgerFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ledgerName: S.String.pipe(T.Label()),
+    restoreRegion: S.optional(S.String),
+    uri: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}/filesExport",
+      code: 200,
+      apiVersion: "2026-02-23",
+    }),
+  ),
+).annotate({
+  identifier: "ExportLedgerFileRequest",
+}) as any as S.Schema<ExportLedgerFileRequest>;
+
+/** Object representing the files export response of a Confidential Ledger Resource. */
+export interface ConfidentialLedgerFilesExportResponse {
+  /** Response body stating if the ledger files are being exported. */
+  message?: string;
+}
+export const ConfidentialLedgerFilesExportResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ConfidentialLedgerFilesExportResponse",
+}) as any as S.Schema<ConfidentialLedgerFilesExportResponse>;
+
 export interface GetLedgerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -468,11 +513,11 @@ export const GetLedgerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLedgerRequest>;
 
 /** Resource tags. */
-export type LedgerGetResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const GetLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerGetResponseTagsMap>;
+) as any as S.Schema<GetLedgerResponseTagsMap>;
 
 export interface GetLedgerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -484,7 +529,7 @@ export interface GetLedgerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LedgerGetResponseTagsMap;
+  tags?: GetLedgerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
@@ -496,58 +541,13 @@ export const GetLedgerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LedgerGetResponseTagsMap),
+    tags: S.optional(GetLedgerResponseTagsMap),
     location: S.String,
     properties: S.optional(LedgerProperties),
   }),
 ).annotate({
   identifier: "GetLedgerResponse",
 }) as any as S.Schema<GetLedgerResponse>;
-
-export interface LedgerFilesExportRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Confidential Ledger */
-  ledgerName: string;
-  /** The region where the exported ledger files will eventually be restored to. */
-  restoreRegion?: string;
-  /** SAS URI used to access the Fileshare for exporting ledger files. */
-  uri: string;
-}
-export const LedgerFilesExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ledgerName: S.String.pipe(T.Label()),
-    restoreRegion: S.optional(S.String),
-    uri: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}/filesExport",
-      code: 200,
-      apiVersion: "2026-02-23",
-    }),
-  ),
-).annotate({
-  identifier: "LedgerFilesExportRequest",
-}) as any as S.Schema<LedgerFilesExportRequest>;
-
-/** Object representing the files export response of a Confidential Ledger Resource. */
-export interface ConfidentialLedgerFilesExportResponse {
-  /** Response body stating if the ledger files are being exported. */
-  message?: string;
-}
-export const ConfidentialLedgerFilesExportResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ConfidentialLedgerFilesExportResponse",
-}) as any as S.Schema<ConfidentialLedgerFilesExportResponse>;
 
 export interface ListLedgerByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -735,11 +735,11 @@ export const ResourceProviderOperationList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourceProviderOperationList>;
 
 /** Resource tags. */
-export type LedgerUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const LedgerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateLedgerRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateLedgerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateLedgerRequestTagsMap>;
 
 export interface UpdateLedgerRequest {
   /** The ID of the target subscription. */
@@ -749,7 +749,7 @@ export interface UpdateLedgerRequest {
   /** Name of the Confidential Ledger */
   ledgerName: string;
   /** Resource tags. */
-  tags?: LedgerUpdateRequestTagsMap;
+  tags?: UpdateLedgerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
@@ -760,7 +760,7 @@ export const UpdateLedgerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ledgerName: S.String.pipe(T.Label()),
-    tags: S.optional(LedgerUpdateRequestTagsMap),
+    tags: S.optional(UpdateLedgerRequestTagsMap),
     location: S.String,
     properties: S.optional(LedgerPropertiesInput),
   }).pipe(
@@ -776,11 +776,11 @@ export const UpdateLedgerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLedgerRequest>;
 
 /** Resource tags. */
-export type LedgerUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateLedgerResponseTagsMap>;
 
 export interface UpdateLedgerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -792,7 +792,7 @@ export interface UpdateLedgerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LedgerUpdateResponseTagsMap;
+  tags?: UpdateLedgerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
@@ -804,7 +804,7 @@ export const UpdateLedgerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LedgerUpdateResponseTagsMap),
+    tags: S.optional(UpdateLedgerResponseTagsMap),
     location: S.String,
     properties: S.optional(LedgerProperties),
   }),
@@ -857,6 +857,21 @@ export const DeleteLedger: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExportLedgerFileError = AzureOpError;
+/** Copies the ledger files and the service certificate to a customer's storage account of choice. */
+export const ExportLedgerFile: API.OperationMethod<
+  ExportLedgerFileRequest,
+  ConfidentialLedgerFilesExportResponse,
+  ExportLedgerFileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportLedgerFileRequest,
+  output: ConfidentialLedgerFilesExportResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetLedgerError = AzureOpError;
 /** Retrieves the properties of a Confidential Ledger. */
 export const GetLedger: API.OperationMethod<
@@ -867,21 +882,6 @@ export const GetLedger: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetLedgerRequest,
   output: GetLedgerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LedgerFilesExportError = AzureOpError;
-/** Copies the ledger files and the service certificate to a customer's storage account of choice. */
-export const LedgerFilesExport: API.OperationMethod<
-  LedgerFilesExportRequest,
-  ConfidentialLedgerFilesExportResponse,
-  LedgerFilesExportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LedgerFilesExportRequest,
-  output: ConfidentialLedgerFilesExportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

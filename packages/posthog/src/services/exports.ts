@@ -112,41 +112,13 @@ export const ExportedAssetCreate = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportedAssetCreate",
 }) as any as S.Schema<ExportedAssetCreate>;
 
-export interface ExportsContentRetrieveRequest {
+export interface GetExportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this exported asset. */
   id: number;
 }
-export const ExportsContentRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/exports/{id}/content/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ExportsContentRetrieveRequest",
-}) as any as S.Schema<ExportsContentRetrieveRequest>;
-
-export interface ExportsContentRetrieveResponse {}
-export const ExportsContentRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExportsContentRetrieveResponse",
-}) as any as S.Schema<ExportsContentRetrieveResponse>;
-
-export interface ExportsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this exported asset. */
-  id: number;
-}
-export const ExportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -158,8 +130,8 @@ export const ExportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExportsRetrieveRequest",
-}) as any as S.Schema<ExportsRetrieveRequest>;
+  identifier: "GetExportRequest",
+}) as any as S.Schema<GetExportRequest>;
 
 /** * `image/png` - image/png * `application/pdf` - application/pdf * `text/csv` - text/csv * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet * `video/webm` - video/webm * `video/mp4` - video/mp4 * `image/gif` - image/gif * `application/json` - application/json * `application/x-ndjson` - application/x-ndjson */
 export type ExportedAssetExportFormatEnum =
@@ -205,6 +177,34 @@ export const ExportedAsset = /*@__PURE__*/ S.suspend(() =>
     user_access_level: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({ identifier: "ExportedAsset" }) as any as S.Schema<ExportedAsset>;
+
+export interface GetExportsContentRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this exported asset. */
+  id: number;
+}
+export const GetExportsContentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/exports/{id}/content/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetExportsContentRequest",
+}) as any as S.Schema<GetExportsContentRequest>;
+
+export interface GetExportsContentResponse {}
+export const GetExportsContentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetExportsContentResponse",
+}) as any as S.Schema<GetExportsContentResponse>;
 
 export interface ListExportsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -270,29 +270,29 @@ export const createExport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExportsContentRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const exportsContentRetrieve: API.OperationMethod<
-  ExportsContentRetrieveRequest,
-  ExportsContentRetrieveResponse,
-  ExportsContentRetrieveError,
+export type GetExportError = Forbidden | NotFound | PosthogOpError;
+export const getExport: API.OperationMethod<
+  GetExportRequest,
+  ExportedAsset,
+  GetExportError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExportsContentRetrieveRequest,
-  output: ExportsContentRetrieveResponse,
+  input: GetExportRequest,
+  output: ExportedAsset,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExportsRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const exportsRetrieve: API.OperationMethod<
-  ExportsRetrieveRequest,
-  ExportedAsset,
-  ExportsRetrieveError,
+export type GetExportsContentError = Forbidden | NotFound | PosthogOpError;
+export const getExportsContent: API.OperationMethod<
+  GetExportsContentRequest,
+  GetExportsContentResponse,
+  GetExportsContentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExportsRetrieveRequest,
-  output: ExportedAsset,
+  input: GetExportsContentRequest,
+  output: GetExportsContentResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

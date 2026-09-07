@@ -1875,6 +1875,1030 @@ export const FeesPaymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeesPaymentResponse",
 }) as any as S.Schema<FeesPaymentResponse>;
 
+export interface GetPaymentRequest {
+  /** The unique identifier of the payment. */
+  id: string;
+}
+export const GetPaymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/payments/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPaymentRequest",
+}) as any as S.Schema<GetPaymentRequest>;
+
+/** The application fee charged on this payment. */
+export type GetPaymentResponseApplicationFee =
+  CreatePaymentResponseApplicationFee;
+export const GetPaymentResponseApplicationFee =
+  CreatePaymentResponseApplicationFee;
+
+/** The address of the user who made the payment. */
+export type GetPaymentResponseBillingAddress =
+  CreatePaymentResponseBillingAddress;
+export const GetPaymentResponseBillingAddress =
+  CreatePaymentResponseBillingAddress;
+
+/** The company for the payment. */
+export type GetPaymentResponseCompany = CreatePaymentResponseCompany;
+export const GetPaymentResponseCompany = CreatePaymentResponseCompany;
+
+/** A dispute is a chargeback or payment challenge filed against a company, including evidence and response status. */
+export type GetPaymentResponseDisputesItem = CreatePaymentResponseDisputesItem;
+export const GetPaymentResponseDisputesItem = CreatePaymentResponseDisputesItem;
+
+/** The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission. */
+export type GetPaymentResponseDisputesList =
+  Array<CreatePaymentResponseDisputesItem>;
+export const GetPaymentResponseDisputesList = /*@__PURE__*/ S.Array(
+  CreatePaymentResponseDisputesItem,
+) as any as S.Schema<GetPaymentResponseDisputesList>;
+
+/** A payment transaction. */
+export type GetPaymentResponseFinancingTransactionsItem =
+  CreatePaymentResponseFinancingTransactionsItem;
+export const GetPaymentResponseFinancingTransactionsItem =
+  CreatePaymentResponseFinancingTransactionsItem;
+
+/** The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
+export type GetPaymentResponseFinancingTransactionsList =
+  Array<CreatePaymentResponseFinancingTransactionsItem>;
+export const GetPaymentResponseFinancingTransactionsList =
+  /*@__PURE__*/ S.Array(
+    CreatePaymentResponseFinancingTransactionsItem,
+  ) as any as S.Schema<GetPaymentResponseFinancingTransactionsList>;
+
+/** The member attached to this payment. */
+export type GetPaymentResponseMember = CreatePaymentResponseMember;
+export const GetPaymentResponseMember = CreatePaymentResponseMember;
+
+/** The membership attached to this payment. */
+export type GetPaymentResponseMembership = CreatePaymentResponseMembership;
+export const GetPaymentResponseMembership = CreatePaymentResponseMembership;
+
+/** The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made */
+export type GetPaymentResponseMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetPaymentResponseMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetPaymentResponseMetadataMap>;
+
+/** Card payments only: the card's network and last four. */
+export type GetPaymentResponsePaymentInstrumentCard =
+  CreatePaymentResponsePaymentInstrumentCard;
+export const GetPaymentResponsePaymentInstrumentCard =
+  CreatePaymentResponsePaymentInstrumentCard;
+
+/** The colorway for dark surfaces. */
+export type GetPaymentResponsePaymentInstrumentIconsCardDark =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+export const GetPaymentResponsePaymentInstrumentIconsCardDark =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+
+/** The colorway for light surfaces. */
+export type GetPaymentResponsePaymentInstrumentIconsCardLight =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+export const GetPaymentResponsePaymentInstrumentIconsCardLight =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type GetPaymentResponsePaymentInstrumentIconsCard =
+  CreatePaymentResponsePaymentInstrumentIconsCard;
+export const GetPaymentResponsePaymentInstrumentIconsCard =
+  CreatePaymentResponsePaymentInstrumentIconsCard;
+
+/** The colorway for dark surfaces. */
+export type GetPaymentResponsePaymentInstrumentIconsSquareDark =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+export const GetPaymentResponsePaymentInstrumentIconsSquareDark =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+
+/** The colorway for light surfaces. */
+export type GetPaymentResponsePaymentInstrumentIconsSquareLight =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+export const GetPaymentResponsePaymentInstrumentIconsSquareLight =
+  CreatePaymentResponsePaymentInstrumentIconsCardDark;
+
+/** The square tile (32x32). */
+export type GetPaymentResponsePaymentInstrumentIconsSquare =
+  CreatePaymentResponsePaymentInstrumentIconsCard;
+export const GetPaymentResponsePaymentInstrumentIconsSquare =
+  CreatePaymentResponsePaymentInstrumentIconsCard;
+
+/** The standard icon set: square and card shapes, each in light and dark colorways. */
+export type GetPaymentResponsePaymentInstrumentIcons =
+  CreatePaymentResponsePaymentInstrumentIcons;
+export const GetPaymentResponsePaymentInstrumentIcons =
+  CreatePaymentResponsePaymentInstrumentIcons;
+
+/** The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method. */
+export type GetPaymentResponsePaymentInstrument =
+  CreatePaymentResponsePaymentInstrument;
+export const GetPaymentResponsePaymentInstrument =
+  CreatePaymentResponsePaymentInstrument;
+
+/** The card data associated with the payment method, if its a debit or credit card. */
+export type GetPaymentResponsePaymentMethodCard =
+  CreatePaymentResponsePaymentMethodCard;
+export const GetPaymentResponsePaymentMethodCard =
+  CreatePaymentResponsePaymentMethodCard;
+
+/** The tokenized payment method reference used for this payment. Null if no token was used. */
+export type GetPaymentResponsePaymentMethod =
+  CreatePaymentResponsePaymentMethod;
+export const GetPaymentResponsePaymentMethod =
+  CreatePaymentResponsePaymentMethod;
+
+/** Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan. */
+export type GetPaymentResponsePlanMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetPaymentResponsePlanMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetPaymentResponsePlanMetadataMap>;
+
+/** The plan attached to this payment. */
+export interface GetPaymentResponsePlan {
+  /** The unique identifier for the plan. */
+  id: string;
+  /** A personal description or notes section for the business. */
+  internal_notes: string | null;
+  /** Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan. */
+  metadata: GetPaymentResponsePlanMetadataMap | null;
+}
+export const GetPaymentResponsePlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    internal_notes: S.NullOr(S.String),
+    metadata: S.NullOr(GetPaymentResponsePlanMetadataMap),
+  }),
+).annotate({
+  identifier: "GetPaymentResponsePlan",
+}) as any as S.Schema<GetPaymentResponsePlan>;
+
+/** Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value. */
+export type GetPaymentResponseProductMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetPaymentResponseProductMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetPaymentResponseProductMetadataMap>;
+
+/** The product this payment was made for */
+export interface GetPaymentResponseProduct {
+  /** The unique identifier for the product. */
+  id: string;
+  /** Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value. */
+  metadata: GetPaymentResponseProductMetadataMap | null;
+  /** URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/company/pickaxe-analytics. */
+  route: string;
+  /** The display name of the product shown to customers on the product page and in search results. */
+  title: string;
+}
+export const GetPaymentResponseProduct = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    metadata: S.NullOr(GetPaymentResponseProductMetadataMap),
+    route: S.String,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "GetPaymentResponseProduct",
+}) as any as S.Schema<GetPaymentResponseProduct>;
+
+/** The promo code used for this payment. */
+export type GetPaymentResponsePromoCode = CreatePaymentResponsePromoCode;
+export const GetPaymentResponsePromoCode = CreatePaymentResponsePromoCode;
+
+/** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
+export type GetPaymentResponseRefundsItem = CreatePaymentResponseRefundsItem;
+export const GetPaymentResponseRefundsItem = CreatePaymentResponseRefundsItem;
+
+/** The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent. */
+export type GetPaymentResponseRefundsList =
+  Array<CreatePaymentResponseRefundsItem>;
+export const GetPaymentResponseRefundsList = /*@__PURE__*/ S.Array(
+  CreatePaymentResponseRefundsItem,
+) as any as S.Schema<GetPaymentResponseRefundsList>;
+
+/** The list of actions currently available to the customer. */
+export type GetPaymentResponseResolutionsItemCustomerResponseActionsList =
+  Array<ResolutionCenterCaseCustomerResponses>;
+export const GetPaymentResponseResolutionsItemCustomerResponseActionsList =
+  /*@__PURE__*/ S.Array(
+    ResolutionCenterCaseCustomerResponses,
+  ) as any as S.Schema<GetPaymentResponseResolutionsItemCustomerResponseActionsList>;
+
+/** The list of actions currently available to the merchant. */
+export type GetPaymentResponseResolutionsItemMerchantResponseActionsList =
+  Array<ResolutionCenterCaseMerchantResponses>;
+export const GetPaymentResponseResolutionsItemMerchantResponseActionsList =
+  /*@__PURE__*/ S.Array(
+    ResolutionCenterCaseMerchantResponses,
+  ) as any as S.Schema<GetPaymentResponseResolutionsItemMerchantResponseActionsList>;
+
+/** The list of actions currently available to the Whop platform for moderating this resolution. */
+export type GetPaymentResponseResolutionsItemPlatformResponseActionsList =
+  Array<ResolutionCenterCasePlatformResponses>;
+export const GetPaymentResponseResolutionsItemPlatformResponseActionsList =
+  /*@__PURE__*/ S.Array(
+    ResolutionCenterCasePlatformResponses,
+  ) as any as S.Schema<GetPaymentResponseResolutionsItemPlatformResponseActionsList>;
+
+/** A resolution center case is a dispute or support case between a user and a company, tracking the issue, status, and outcome. */
+export interface GetPaymentResponseResolutionsItem {
+  /** Whether the customer has filed an appeal after the initial resolution decision. */
+  customer_appealed: boolean;
+  /** The list of actions currently available to the customer. */
+  customer_response_actions: GetPaymentResponseResolutionsItemCustomerResponseActionsList;
+  /** The deadline by which the next response is required. Null if no deadline is currently active. As a Unix timestamp. */
+  due_date: string | null;
+  /** The unique identifier for the resolution. */
+  id: string;
+  /** The category of the dispute. */
+  issue: ResolutionCenterCaseIssueTypes;
+  /** Whether the merchant has filed an appeal after the initial resolution decision. */
+  merchant_appealed: boolean;
+  /** The list of actions currently available to the merchant. */
+  merchant_response_actions: GetPaymentResponseResolutionsItemMerchantResponseActionsList;
+  /** The list of actions currently available to the Whop platform for moderating this resolution. */
+  platform_response_actions: GetPaymentResponseResolutionsItemPlatformResponseActionsList;
+  /** The current status of the resolution case, indicating which party needs to respond or if the case is closed. */
+  status: ResolutionCenterCaseStatuses;
+}
+export const GetPaymentResponseResolutionsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customer_appealed: S.Boolean,
+    customer_response_actions:
+      GetPaymentResponseResolutionsItemCustomerResponseActionsList,
+    due_date: S.NullOr(S.String),
+    id: S.String,
+    issue: ResolutionCenterCaseIssueTypes,
+    merchant_appealed: S.Boolean,
+    merchant_response_actions:
+      GetPaymentResponseResolutionsItemMerchantResponseActionsList,
+    platform_response_actions:
+      GetPaymentResponseResolutionsItemPlatformResponseActionsList,
+    status: ResolutionCenterCaseStatuses,
+  }),
+).annotate({
+  identifier: "GetPaymentResponseResolutionsItem",
+}) as any as S.Schema<GetPaymentResponseResolutionsItem>;
+
+/** The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission. */
+export type GetPaymentResponseResolutionsList =
+  Array<GetPaymentResponseResolutionsItem>;
+export const GetPaymentResponseResolutionsList = /*@__PURE__*/ S.Array(
+  GetPaymentResponseResolutionsItem,
+) as any as S.Schema<GetPaymentResponseResolutionsList>;
+
+/** A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment. */
+export type GetPaymentResponseRiskSignalsMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetPaymentResponseRiskSignalsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetPaymentResponseRiskSignalsMap>;
+
+/** The shipment attached to this payment. */
+export type GetPaymentResponseShipment = CreatePaymentResponseShipment;
+export const GetPaymentResponseShipment = CreatePaymentResponseShipment;
+
+/** The shipping address provided by the customer for physical goods. Null if no shipping address was collected. */
+export type GetPaymentResponseShippingAddress =
+  CreatePaymentResponseBillingAddress;
+export const GetPaymentResponseShippingAddress =
+  CreatePaymentResponseBillingAddress;
+
+/** The user that made this payment. */
+export type GetPaymentResponseUser = CreatePaymentResponseUser;
+export const GetPaymentResponseUser = CreatePaymentResponseUser;
+
+/** The issuer's address and card security code check results for this payment. Null when the processor returned none. */
+export type GetPaymentResponseVerificationChecks =
+  CreatePaymentResponseVerificationChecks;
+export const GetPaymentResponseVerificationChecks =
+  CreatePaymentResponseVerificationChecks;
+
+export interface GetPaymentResponse {
+  /** How much the payment is for after fees */
+  amount_after_fees: number;
+  /** The application fee charged on this payment. */
+  application_fee: CreatePaymentResponseApplicationFee | null;
+  /** Whether this payment was auto refunded or not */
+  auto_refunded: boolean;
+  /** The address of the user who made the payment. */
+  billing_address: CreatePaymentResponseBillingAddress | null;
+  /** The machine-readable reason this charge was created, such as initial subscription purchase, renewal cycle, or one-time payment. */
+  billing_reason: BillingReasons | null;
+  /** Card network reported by the processor (e.g., 'visa', 'mastercard', 'amex'). Present only when the payment method type is 'card'. */
+  card_brand: CardBrands | null;
+  /** The expiration month (1-12) of the card used for this payment. Falls back to the declined card on failed payments with no saved card. Null when the payment was not made with a card or the expiry is unavailable. */
+  card_exp_month: number | null;
+  /** The four-digit expiration year of the card used for this payment. Falls back to the declined card on failed payments with no saved card. Null when the payment was not made with a card or the expiry is unavailable. */
+  card_exp_year: number | null;
+  /** The last four digits of the card used to make this payment. Null if the payment was not made with a card. */
+  card_last4: string | null;
+  /** The ID of the checkout session/configuration that produced this payment, if any. Use this to map payments back to the checkout configuration that created them. */
+  checkout_configuration_id: string | null;
+  /** The company for the payment. */
+  company: CreatePaymentResponseCompany | null;
+  /** The datetime the payment was created. */
+  created_at: string;
+  /** The three-letter ISO currency code for this payment (e.g., 'usd', 'eur'). */
+  currency: Currencies;
+  /** Phone number the customer provided at checkout, or their verified phone number when your checkout requires phone verification. `null` when no phone number was collected. */
+  customer_phone: string | null;
+  /** The reason the payment was declined. Null if the payment did not fail. */
+  decline_code: PaymentDeclineCodes | null;
+  /** When an alert came in that this transaction will be disputed */
+  dispute_alerted_at: string | null;
+  /** The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission. */
+  disputes: GetPaymentResponseDisputesList | null;
+  /** If the payment failed, the reason for the failure. */
+  failure_message: string | null;
+  /** The number of financing installments for the payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
+  financing_installments_count: number | null;
+  /** The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
+  financing_transactions: GetPaymentResponseFinancingTransactionsList;
+  /** The unique identifier for the payment. */
+  id: string;
+  /** The time of the last payment attempt. */
+  last_payment_attempt: string | null;
+  /** The member attached to this payment. */
+  member: CreatePaymentResponseMember | null;
+  /** The membership attached to this payment. */
+  membership: CreatePaymentResponseMembership | null;
+  /** The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made */
+  metadata: GetPaymentResponseMetadataMap | null;
+  /** Whether this payment is holding funds until the order ships and has no tracking number yet. */
+  needs_tracking: boolean | null;
+  /** The time of the next schedule payment retry. */
+  next_payment_attempt: string | null;
+  /** The time at which this payment was successfully collected. Null if the payment has not yet succeeded. As a Unix timestamp. */
+  paid_at: string | null;
+  /** The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method. */
+  payment_instrument: CreatePaymentResponsePaymentInstrument | null;
+  /** The tokenized payment method reference used for this payment. Null if no token was used. */
+  payment_method: CreatePaymentResponsePaymentMethod | null;
+  /** The type of payment instrument used for this payment (e.g., card, Cash App, iDEAL, Klarna, crypto). Null when the processor does not supply a type. */
+  payment_method_type: PaymentMethodTypes | null;
+  /** The number of failed payment attempts for the payment. */
+  payments_failed: number | null;
+  /** The plan attached to this payment. */
+  plan: GetPaymentResponsePlan | null;
+  /** The product this payment was made for */
+  product: GetPaymentResponseProduct | null;
+  /** The promo code used for this payment. */
+  promo_code: CreatePaymentResponsePromoCode | null;
+  /** True only for payments that are `paid`, have not been fully refunded, and were processed by a payment processor that allows refunds. */
+  refundable: boolean;
+  /** The payment refund amount(if applicable). */
+  refunded_amount: number | null;
+  /** When the payment was refunded (if applicable). */
+  refunded_at: string | null;
+  /** The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent. */
+  refunds: GetPaymentResponseRefundsList;
+  /** The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission. */
+  resolutions: GetPaymentResponseResolutionsList | null;
+  /** True when the payment status is `open` and its membership is in one of the retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or when it is a failed initial billing-engine payment on a `drafted` membership with an unlimited-stock plan; otherwise false. Used to decide if Whop can attempt the charge again. */
+  retryable: boolean;
+  /** Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100 (highest risk). Null when the payment has not been scored or scoring has not yet completed. */
+  risk_score: number | null;
+  /** A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment. */
+  risk_signals: GetPaymentResponseRiskSignalsMap | null;
+  /** The total amount charged to the customer for this payment, including taxes and after any discounts. In the currency specified by the currency field. */
+  settlement_amount: number;
+  /** The three-letter ISO currency code for this payment (e.g., 'usd', 'eur'). */
+  settlement_currency: Currencies;
+  /** Deprecated. Always returns null. */
+  settlement_exchange_rate: number | null;
+  /** When this payment's funds post to the company's available balance, at midnight UTC. Known at payment time and never changes. The `ledger_account.funds_available` webhook carries the same `settlement_time_at` when that batch posts — match them to know these funds are now withdrawable. */
+  settlement_time_at: string | null;
+  /** The shipment attached to this payment. */
+  shipment: CreatePaymentResponseShipment | null;
+  /** The shipping address provided by the customer for physical goods. Null if no shipping address was collected. */
+  shipping_address: CreatePaymentResponseBillingAddress | null;
+  /** The current lifecycle state of this payment (e.g., 'draft', 'open', 'paid', 'void'). */
+  status: ReceiptStatus | null;
+  /** The friendly status of the payment. */
+  substatus: FriendlyReceiptStatus;
+  /** The subtotal to show to the creator (excluding buyer fees). */
+  subtotal: number | null;
+  /** The calculated amount of the sales/VAT tax (if applicable). */
+  tax_amount: number | null;
+  /** The type of tax inclusivity applied to the payment, for determining whether the tax is included in the final price, or paid on top. */
+  tax_behavior: ReceiptTaxBehaviors | null;
+  /** The amount of tax that has been refunded (if applicable). */
+  tax_refunded_amount: number | null;
+  /** Whether 3D Secure authentication was completed for this payment. */
+  three_ds_verified: boolean;
+  /** The total to show to the creator (excluding buyer fees). */
+  total: number | null;
+  /** The datetime the payment was last updated. */
+  updated_at: string;
+  /** The total in USD to show to the creator (excluding buyer fees). */
+  usd_total: number | null;
+  /** The user that made this payment. */
+  user: CreatePaymentResponseUser | null;
+  /** The issuer's address and card security code check results for this payment. Null when the processor returned none. */
+  verification_checks: CreatePaymentResponseVerificationChecks | null;
+  /** True when the payment is tied to a membership in `past_due`, the payment status is `open`, and the processor allows voiding payments; otherwise false. */
+  voidable: boolean;
+  /** The credential the buyer's surface presents to poll this payment and set its return URL. Returned when a payment created from a confirmation token is created or retrieved by a caller with the payment:charge permission. Null for payments created from a stored payment method or callers without payment:charge. It unlocks this payment and nothing else; treat it like a password for that one attempt. */
+  client_secret: string | Redacted.Redacted<string> | null;
+}
+export const GetPaymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount_after_fees: S.Number,
+    application_fee: S.NullOr(CreatePaymentResponseApplicationFee),
+    auto_refunded: S.Boolean,
+    billing_address: S.NullOr(CreatePaymentResponseBillingAddress),
+    billing_reason: S.NullOr(BillingReasons),
+    card_brand: S.NullOr(CardBrands),
+    card_exp_month: S.NullOr(S.Number),
+    card_exp_year: S.NullOr(S.Number),
+    card_last4: S.NullOr(S.String),
+    checkout_configuration_id: S.NullOr(S.String),
+    company: S.NullOr(CreatePaymentResponseCompany),
+    created_at: S.String,
+    currency: Currencies,
+    customer_phone: S.NullOr(S.String),
+    decline_code: S.NullOr(PaymentDeclineCodes),
+    dispute_alerted_at: S.NullOr(S.String),
+    disputes: S.NullOr(GetPaymentResponseDisputesList),
+    failure_message: S.NullOr(S.String),
+    financing_installments_count: S.NullOr(S.Number),
+    financing_transactions: GetPaymentResponseFinancingTransactionsList,
+    id: S.String,
+    last_payment_attempt: S.NullOr(S.String),
+    member: S.NullOr(CreatePaymentResponseMember),
+    membership: S.NullOr(CreatePaymentResponseMembership),
+    metadata: S.NullOr(GetPaymentResponseMetadataMap),
+    needs_tracking: S.NullOr(S.Boolean),
+    next_payment_attempt: S.NullOr(S.String),
+    paid_at: S.NullOr(S.String),
+    payment_instrument: S.NullOr(CreatePaymentResponsePaymentInstrument),
+    payment_method: S.NullOr(CreatePaymentResponsePaymentMethod),
+    payment_method_type: S.NullOr(PaymentMethodTypes),
+    payments_failed: S.NullOr(S.Number),
+    plan: S.NullOr(GetPaymentResponsePlan),
+    product: S.NullOr(GetPaymentResponseProduct),
+    promo_code: S.NullOr(CreatePaymentResponsePromoCode),
+    refundable: S.Boolean,
+    refunded_amount: S.NullOr(S.Number),
+    refunded_at: S.NullOr(S.String),
+    refunds: GetPaymentResponseRefundsList,
+    resolutions: S.NullOr(GetPaymentResponseResolutionsList),
+    retryable: S.Boolean,
+    risk_score: S.NullOr(S.Number),
+    risk_signals: S.NullOr(GetPaymentResponseRiskSignalsMap),
+    settlement_amount: S.Number,
+    settlement_currency: Currencies,
+    settlement_exchange_rate: S.NullOr(S.Number),
+    settlement_time_at: S.NullOr(S.String),
+    shipment: S.NullOr(CreatePaymentResponseShipment),
+    shipping_address: S.NullOr(CreatePaymentResponseBillingAddress),
+    status: S.NullOr(ReceiptStatus),
+    substatus: FriendlyReceiptStatus,
+    subtotal: S.NullOr(S.Number),
+    tax_amount: S.NullOr(S.Number),
+    tax_behavior: S.NullOr(ReceiptTaxBehaviors),
+    tax_refunded_amount: S.NullOr(S.Number),
+    three_ds_verified: S.Boolean,
+    total: S.NullOr(S.Number),
+    updated_at: S.String,
+    usd_total: S.NullOr(S.Number),
+    user: S.NullOr(CreatePaymentResponseUser),
+    verification_checks: S.NullOr(CreatePaymentResponseVerificationChecks),
+    voidable: S.Boolean,
+    client_secret: S.NullOr(S.String).pipe(T.SensitiveValue({})),
+  }),
+).annotate({
+  identifier: "GetPaymentResponse",
+}) as any as S.Schema<GetPaymentResponse>;
+
+export interface GetStatusPaymentRequest {
+  /** The unique identifier of the payment. */
+  payment_id: string;
+}
+export const GetStatusPaymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    payment_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/payments/{payment_id}/status", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetStatusPaymentRequest",
+}) as any as S.Schema<GetStatusPaymentRequest>;
+
+/** The reason the payment was declined. */
+export type PaymentLastPaymentErrorDeclineCode =
+  | "insufficient_funds"
+  | "lost_card"
+  | "stolen_card"
+  | "expired_card"
+  | "suspected_fraud"
+  | "invalid_card_number"
+  | "invalid_cvc"
+  | "invalid_cvc_or_expiration"
+  | "incorrect_pin"
+  | "authentication_required"
+  | "card_not_supported"
+  | "currency_not_supported"
+  | "duplicate_transaction"
+  | "generic_decline"
+  | "invalid_account"
+  | "invalid_amount"
+  | "processing_error"
+  | "restricted_card"
+  | "card_velocity_exceeded"
+  | "contact_issuer"
+  | "bank_declined"
+  | "regulatory_blocked"
+  | "transaction_not_permitted"
+  | "transaction_stopped"
+  | "card_type_not_supported"
+  | "issuer_not_found"
+  | "closed_account"
+  | "issuer_unavailable"
+  | "invalid_zip"
+  | "invalid_expiry_month"
+  | "invalid_expiry_year"
+  | "invalid_expiry"
+  | "invalid_transaction"
+  | "cannot_authorize"
+  | "pin_required"
+  | "pin_try_exceeded"
+  | "provider_declined"
+  | "high_risk"
+  | "test_mode_decline"
+  | "merchant_blacklist"
+  | "reenter_transaction"
+  | "invalid_pin"
+  | "pin_required_as"
+  | "withdrawal_count_limit_exceeded"
+  | "invalid_country"
+  | "issuer_error"
+  | "invalid_card_holder_name"
+  | "no_accounts"
+  | "transaction_cancelled"
+  | "three_d_secure_success"
+  | "three_d_secure_canceled"
+  | "three_d_secure_invalid_card_number"
+  | "three_d_secure_generic_error"
+  | "three_d_secure_timeout"
+  | "three_d_secure_failed"
+  | "three_d_secure_card_not_enrolled"
+  | "three_d_secure_fraud"
+  | "three_d_secure_too_many_attempts"
+  | "three_d_secure_rejected_by_bank"
+  | "three_d_secure_reported_lost_or_stolen"
+  | "blocked_by_cardholder"
+  | "test_mode_test_card"
+  | "try_again_later"
+  | "transaction_not_allowed"
+  | "bank_insufficient_funds"
+  | "bank_account_not_found"
+  | "bank_account_closed"
+  | "bank_account_frozen"
+  | "bank_invalid_routing_number"
+  | "bank_non_transaction_account"
+  | "bank_authorization_revoked"
+  | "bank_payment_stopped"
+  | "bank_not_authorized"
+  | "bank_account_holder_deceased"
+  | "bank_duplicate"
+  | "bank_amount_error"
+  | "bank_regulatory_blocked"
+  | "bank_details_invalid"
+  | "bank_processing_error"
+  | "bank_generic_decline"
+  | "sepa_invalid_iban"
+  | "sepa_no_mandate"
+  | "sepa_mandate_data_invalid"
+  | "sepa_disputed"
+  | "sepa_refused_by_customer"
+  | "sepa_generic_decline";
+export const PaymentLastPaymentErrorDeclineCode = /*@__PURE__*/ S.String;
+
+export interface PaymentLastPaymentError {
+  /** A machine-readable classification of the failure. */
+  code: string | null;
+  /** The reason the payment was declined. */
+  decline_code: PaymentLastPaymentErrorDeclineCode | null;
+  /** A human-readable explanation of the failure. */
+  message: string | null;
+}
+export const PaymentLastPaymentError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.NullOr(S.String),
+    decline_code: S.NullOr(PaymentLastPaymentErrorDeclineCode),
+    message: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PaymentLastPaymentError",
+}) as any as S.Schema<PaymentLastPaymentError>;
+
+export interface PaymentNextActionRedirectData {
+  /** The widest the provider's page lays out usefully, in CSS pixels — cap a frame or dialog presenting it at this width. `null` when the page fills whatever width it is given. */
+  frame_max_width: number | null;
+  /** The provider's page for this payment, as an absolute URL — take the buyer there. */
+  url: string;
+}
+export const PaymentNextActionRedirectData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    frame_max_width: S.NullOr(S.Number),
+    url: S.String,
+  }),
+).annotate({
+  identifier: "PaymentNextActionRedirectData",
+}) as any as S.Schema<PaymentNextActionRedirectData>;
+
+/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
+export type PaymentNextActionRedirectRenderItem = "inline" | "full_page";
+export const PaymentNextActionRedirectRenderItem = /*@__PURE__*/ S.String;
+
+export type PaymentNextActionRedirectRenderList =
+  Array<PaymentNextActionRedirectRenderItem>;
+export const PaymentNextActionRedirectRenderList = /*@__PURE__*/ S.Array(
+  PaymentNextActionRedirectRenderItem,
+) as any as S.Schema<PaymentNextActionRedirectRenderList>;
+
+/** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
+export type PaymentNextActionRedirectType = "redirect";
+export const PaymentNextActionRedirectType = /*@__PURE__*/ S.String;
+
+export interface PaymentNextActionRedirect {
+  /** Where to send the buyer. */
+  data: PaymentNextActionRedirectData;
+  render: PaymentNextActionRedirectRenderList;
+  /** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
+  type: PaymentNextActionRedirectType;
+}
+export const PaymentNextActionRedirect = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: PaymentNextActionRedirectData,
+    render: PaymentNextActionRedirectRenderList,
+    type: PaymentNextActionRedirectType,
+  }),
+).annotate({
+  identifier: "PaymentNextActionRedirect",
+}) as any as S.Schema<PaymentNextActionRedirect>;
+
+/** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
+export type PaymentVoucherInstructionsKind = "voucher";
+export const PaymentVoucherInstructionsKind = /*@__PURE__*/ S.String;
+
+export interface Money {
+  /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
+  amount: string;
+  /** Three-letter ISO 4217 currency code, lowercase. */
+  currency: string;
+  /** How many decimal places the amount CARRIES — the precision the charge itself runs at. */
+  decimals: number;
+  /** How many decimal places to SHOW. Usually equal to `decimals`, and deliberately not always: COP is charged in centavos but written in whole pesos, so it is `2` and `0`. Format the number in your own locale using this. */
+  display_decimals: number;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.String,
+    currency: S.String,
+    decimals: S.Number,
+    display_decimals: S.Number,
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+export interface PaymentVoucher {
+  /** Exactly what the buyer must pay, in the charged currency. */
+  amount?: Money;
+  /** The barcode's contents, when the voucher carries one — render it in the symbology named by `barcode_format`. */
+  barcode?: string;
+  /** The symbology `barcode` is encoded in, such as `CODE_128`. */
+  barcode_format?: string;
+  /** Who the payment is made out to. */
+  company_name?: string;
+  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
+  document_url?: string;
+  /** When the voucher stops being payable, as an ISO 8601 timestamp. */
+  expires_at?: string;
+  /** URL of that network's logo. */
+  provider_logo?: string;
+  /** The network the buyer pays at, such as OXXO. */
+  provider_name?: string;
+  /** The voucher's number — what the buyer reads out or types at the counter to pay. */
+  reference?: string;
+}
+export const PaymentVoucher = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.optional(Money),
+    barcode: S.optional(S.String),
+    barcode_format: S.optional(S.String),
+    company_name: S.optional(S.String),
+    document_url: S.optional(S.String),
+    expires_at: S.optional(S.String),
+    provider_logo: S.optional(S.String),
+    provider_name: S.optional(S.String),
+    reference: S.optional(S.String),
+  }),
+).annotate({ identifier: "PaymentVoucher" }) as any as S.Schema<PaymentVoucher>;
+
+export interface PaymentVoucherInstructions {
+  /** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
+  kind: PaymentVoucherInstructionsKind;
+  /** The voucher to show. */
+  voucher: PaymentVoucher;
+}
+export const PaymentVoucherInstructions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: PaymentVoucherInstructionsKind,
+    voucher: PaymentVoucher,
+  }),
+).annotate({
+  identifier: "PaymentVoucherInstructions",
+}) as any as S.Schema<PaymentVoucherInstructions>;
+
+/** Always `qr`: a code the buyer scans with their banking app. */
+export type PaymentQrInstructionsKind = "qr";
+export const PaymentQrInstructionsKind = /*@__PURE__*/ S.String;
+
+export interface PaymentQr {
+  /** Exactly what the buyer must pay, in the charged currency. */
+  amount?: Money;
+  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
+  document_url?: string;
+  /** When the code stops being payable, as an ISO 8601 timestamp. */
+  expires_at?: string;
+  /** An account key the buyer can pay to directly (Colombia's Bre-B llave), for apps that take a key instead of a scan. */
+  key?: string;
+  /** The QR code's contents, ready to render as a scannable image — `qr_format` says how it is encoded. */
+  qr_code?: string;
+  /** How `qr_code` is encoded. */
+  qr_format?: string;
+}
+export const PaymentQr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.optional(Money),
+    document_url: S.optional(S.String),
+    expires_at: S.optional(S.String),
+    key: S.optional(S.String),
+    qr_code: S.optional(S.String),
+    qr_format: S.optional(S.String),
+  }),
+).annotate({ identifier: "PaymentQr" }) as any as S.Schema<PaymentQr>;
+
+export interface PaymentQrInstructions {
+  /** Always `qr`: a code the buyer scans with their banking app. */
+  kind: PaymentQrInstructionsKind;
+  /** The code to show. */
+  qr: PaymentQr;
+}
+export const PaymentQrInstructions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: PaymentQrInstructionsKind,
+    qr: PaymentQr,
+  }),
+).annotate({
+  identifier: "PaymentQrInstructions",
+}) as any as S.Schema<PaymentQrInstructions>;
+
+export interface PaymentBankTransfer {
+  /** The account to send to, in the local scheme's format — `account_number_label` says what to call it. */
+  account_number?: string;
+  /** What to call `account_number` when showing it, in the local scheme's own terms — `CLABE` in Mexico, for example. */
+  account_number_label?: string;
+  /** Exactly what the buyer must send, in the charged currency. */
+  amount?: Money;
+  /** The kind of account receiving the transfer, such as a checking account, in the local system's own vocabulary. */
+  bank_account_type?: string;
+  /** The receiving bank's address. */
+  bank_address?: string;
+  /** The receiving branch, where the local system routes by branch. */
+  bank_branch?: string;
+  /** The receiving bank's code in the local clearing system. */
+  bank_code?: string;
+  /** The receiving bank's name. */
+  bank_name?: string;
+  /** The account holder's tax or identity document number, where the local system needs it to send. */
+  beneficiary_document?: string;
+  /** What kind of document `beneficiary_document` is, in the local system's own vocabulary. */
+  beneficiary_document_type?: string;
+  /** Who the account belongs to — the name the buyer's bank may ask them to confirm. */
+  beneficiary_name?: string;
+  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
+  document_url?: string;
+  /** When these details stop being payable, as an ISO 8601 timestamp. */
+  expires_at?: string;
+  /** The rail's own step-by-step payment text, when it supplies one. */
+  instructions?: string;
+  /** The reference the buyer must attach to the transfer so it can be matched to this payment. */
+  reference?: string;
+  /** The receiving bank's routing number for US transfers. */
+  routing_number?: string;
+  /** A second account number, where the rail publishes the same destination in more than one format. */
+  secondary_account_number?: string;
+  /** What to call `secondary_account_number` when showing it. */
+  secondary_account_number_label?: string;
+}
+export const PaymentBankTransfer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_number: S.optional(S.String),
+    account_number_label: S.optional(S.String),
+    amount: S.optional(Money),
+    bank_account_type: S.optional(S.String),
+    bank_address: S.optional(S.String),
+    bank_branch: S.optional(S.String),
+    bank_code: S.optional(S.String),
+    bank_name: S.optional(S.String),
+    beneficiary_document: S.optional(S.String),
+    beneficiary_document_type: S.optional(S.String),
+    beneficiary_name: S.optional(S.String),
+    document_url: S.optional(S.String),
+    expires_at: S.optional(S.String),
+    instructions: S.optional(S.String),
+    reference: S.optional(S.String),
+    routing_number: S.optional(S.String),
+    secondary_account_number: S.optional(S.String),
+    secondary_account_number_label: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PaymentBankTransfer",
+}) as any as S.Schema<PaymentBankTransfer>;
+
+/** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
+export type PaymentBankTransferInstructionsKind = "bank_transfer";
+export const PaymentBankTransferInstructionsKind = /*@__PURE__*/ S.String;
+
+export interface PaymentBankTransferInstructions {
+  /** The account details to show. */
+  bank_transfer: PaymentBankTransfer;
+  /** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
+  kind: PaymentBankTransferInstructionsKind;
+}
+export const PaymentBankTransferInstructions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bank_transfer: PaymentBankTransfer,
+    kind: PaymentBankTransferInstructionsKind,
+  }),
+).annotate({
+  identifier: "PaymentBankTransferInstructions",
+}) as any as S.Schema<PaymentBankTransferInstructions>;
+
+/** What to show the buyer so they can pay. `kind` picks the shape and the details sit under the key named for it, so switching on `kind` gives you exactly that kind's payload. Every detail field is optional — the rails behind these methods publish them unevenly — but a kind that arrives with `document_url` can always fall back to sending the buyer to that hosted copy of the instructions. */
+export type PaymentInstructions =
+  | PaymentVoucherInstructions
+  | PaymentQrInstructions
+  | PaymentBankTransferInstructions;
+export const PaymentInstructions =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentInstructions>;
+
+/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
+export type PaymentNextActionDisplayInstructionsRenderItem =
+  | "inline"
+  | "full_page";
+export const PaymentNextActionDisplayInstructionsRenderItem =
+  /*@__PURE__*/ S.String;
+
+export type PaymentNextActionDisplayInstructionsRenderList =
+  Array<PaymentNextActionDisplayInstructionsRenderItem>;
+export const PaymentNextActionDisplayInstructionsRenderList =
+  /*@__PURE__*/ S.Array(
+    PaymentNextActionDisplayInstructionsRenderItem,
+  ) as any as S.Schema<PaymentNextActionDisplayInstructionsRenderList>;
+
+/** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
+export type PaymentNextActionDisplayInstructionsType = "display_instructions";
+export const PaymentNextActionDisplayInstructionsType = /*@__PURE__*/ S.String;
+
+export interface PaymentNextActionDisplayInstructions {
+  /** The instructions. `kind` picks the shape, and the details sit under the key named for it: `voucher`, `qr`, or `bank_transfer`. */
+  data: PaymentInstructions;
+  render: PaymentNextActionDisplayInstructionsRenderList;
+  /** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
+  type: PaymentNextActionDisplayInstructionsType;
+}
+export const PaymentNextActionDisplayInstructions = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data: PaymentInstructions,
+      render: PaymentNextActionDisplayInstructionsRenderList,
+      type: PaymentNextActionDisplayInstructionsType,
+    }),
+).annotate({
+  identifier: "PaymentNextActionDisplayInstructions",
+}) as any as S.Schema<PaymentNextActionDisplayInstructions>;
+
+export interface PaymentNextActionAwaitConfirmationData {
+  /** When the confirmation window closes, as an ISO 8601 timestamp. A payment still unconfirmed by then will not succeed — watch `status` for the failed attempt. */
+  expires_at: string;
+}
+export const PaymentNextActionAwaitConfirmationData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      expires_at: S.String,
+    }),
+).annotate({
+  identifier: "PaymentNextActionAwaitConfirmationData",
+}) as any as S.Schema<PaymentNextActionAwaitConfirmationData>;
+
+/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
+export type PaymentNextActionAwaitConfirmationRenderItem =
+  | "inline"
+  | "full_page";
+export const PaymentNextActionAwaitConfirmationRenderItem =
+  /*@__PURE__*/ S.String;
+
+export type PaymentNextActionAwaitConfirmationRenderList =
+  Array<PaymentNextActionAwaitConfirmationRenderItem>;
+export const PaymentNextActionAwaitConfirmationRenderList =
+  /*@__PURE__*/ S.Array(
+    PaymentNextActionAwaitConfirmationRenderItem,
+  ) as any as S.Schema<PaymentNextActionAwaitConfirmationRenderList>;
+
+/** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
+export type PaymentNextActionAwaitConfirmationType = "await_confirmation";
+export const PaymentNextActionAwaitConfirmationType = /*@__PURE__*/ S.String;
+
+export interface PaymentNextActionAwaitConfirmation {
+  /** How long the wait can last. */
+  data: PaymentNextActionAwaitConfirmationData;
+  render: PaymentNextActionAwaitConfirmationRenderList;
+  /** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
+  type: PaymentNextActionAwaitConfirmationType;
+}
+export const PaymentNextActionAwaitConfirmation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: PaymentNextActionAwaitConfirmationData,
+    render: PaymentNextActionAwaitConfirmationRenderList,
+    type: PaymentNextActionAwaitConfirmationType,
+  }),
+).annotate({
+  identifier: "PaymentNextActionAwaitConfirmation",
+}) as any as S.Schema<PaymentNextActionAwaitConfirmation>;
+
+/** What the buyer must do to finish. `type` picks the shape and each type carries only its own `data`, so switching on `type` gives you exactly that step's payload. */
+export type PaymentNextAction =
+  | PaymentNextActionRedirect
+  | PaymentNextActionDisplayInstructions
+  | PaymentNextActionAwaitConfirmation;
+export const PaymentNextAction =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentNextAction>;
+
+export interface PaymentProcessingDetails {
+  /** When the payment is expected to settle, as an ISO 8601 timestamp. */
+  expected_by: string | null;
+}
+export const PaymentProcessingDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expected_by: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PaymentProcessingDetails",
+}) as any as S.Schema<PaymentProcessingDetails>;
+
+/** How far the payment has got. `requires_confirmation` — nothing attempted yet, or the last attempt failed and can be retried. `requires_action` — the buyer has a step outstanding; see `next_action`. `confirming` — the buyer has done their part and the processor is deciding. `processing` — the money is moving; see `processing_details`. `succeeded` — collected. `canceled` — voided or written off. */
+export type PaymentStatusStatus =
+  | "requires_confirmation"
+  | "requires_action"
+  | "confirming"
+  | "processing"
+  | "succeeded"
+  | "canceled";
+export const PaymentStatusStatus = /*@__PURE__*/ S.String;
+
+export interface PaymentStatus {
+  /** The payment this status describes, prefixed `pay_`. */
+  id: string;
+  /** Details of the most recent failed attempt, or `null` when the payment has not failed. */
+  last_payment_error: PaymentLastPaymentError | null;
+  /** What the buyer must do next while `status` is `requires_action`, otherwise `null`. `type` picks the shape and each variant carries only its own `data`, so switching on `type` gives you exactly that step's payload. */
+  next_action: PaymentNextAction | null;
+  /** Always `payment_status`. */
+  object: string;
+  /** Present while `status` is `processing` on a settlement rail, otherwise `null`. */
+  processing_details: PaymentProcessingDetails | null;
+  /** Where to send the buyer once the payment reaches a resting state, or `null` to leave them where they are. Editable until they return — see the return_url operation. */
+  return_url: string | null;
+  /** How far the payment has got. `requires_confirmation` — nothing attempted yet, or the last attempt failed and can be retried. `requires_action` — the buyer has a step outstanding; see `next_action`. `confirming` — the buyer has done their part and the processor is deciding. `processing` — the money is moving; see `processing_details`. `succeeded` — collected. `canceled` — voided or written off. */
+  status: PaymentStatusStatus;
+}
+export const PaymentStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    last_payment_error: S.NullOr(PaymentLastPaymentError),
+    next_action: S.NullOr(PaymentNextAction),
+    object: S.String,
+    processing_details: S.NullOr(PaymentProcessingDetails),
+    return_url: S.NullOr(S.String),
+    status: PaymentStatusStatus,
+  }),
+).annotate({ identifier: "PaymentStatus" }) as any as S.Schema<PaymentStatus>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -2807,1036 +3831,6 @@ export const Payment = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Payment" }) as any as S.Schema<Payment>;
 
-export interface RetrievePaymentRequest {
-  /** The unique identifier of the payment. */
-  id: string;
-}
-export const RetrievePaymentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/payments/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePaymentRequest",
-}) as any as S.Schema<RetrievePaymentRequest>;
-
-/** The application fee charged on this payment. */
-export type RetrievePaymentResponseApplicationFee =
-  CreatePaymentResponseApplicationFee;
-export const RetrievePaymentResponseApplicationFee =
-  CreatePaymentResponseApplicationFee;
-
-/** The address of the user who made the payment. */
-export type RetrievePaymentResponseBillingAddress =
-  CreatePaymentResponseBillingAddress;
-export const RetrievePaymentResponseBillingAddress =
-  CreatePaymentResponseBillingAddress;
-
-/** The company for the payment. */
-export type RetrievePaymentResponseCompany = CreatePaymentResponseCompany;
-export const RetrievePaymentResponseCompany = CreatePaymentResponseCompany;
-
-/** A dispute is a chargeback or payment challenge filed against a company, including evidence and response status. */
-export type RetrievePaymentResponseDisputesItem =
-  CreatePaymentResponseDisputesItem;
-export const RetrievePaymentResponseDisputesItem =
-  CreatePaymentResponseDisputesItem;
-
-/** The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission. */
-export type RetrievePaymentResponseDisputesList =
-  Array<CreatePaymentResponseDisputesItem>;
-export const RetrievePaymentResponseDisputesList = /*@__PURE__*/ S.Array(
-  CreatePaymentResponseDisputesItem,
-) as any as S.Schema<RetrievePaymentResponseDisputesList>;
-
-/** A payment transaction. */
-export type RetrievePaymentResponseFinancingTransactionsItem =
-  CreatePaymentResponseFinancingTransactionsItem;
-export const RetrievePaymentResponseFinancingTransactionsItem =
-  CreatePaymentResponseFinancingTransactionsItem;
-
-/** The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
-export type RetrievePaymentResponseFinancingTransactionsList =
-  Array<CreatePaymentResponseFinancingTransactionsItem>;
-export const RetrievePaymentResponseFinancingTransactionsList =
-  /*@__PURE__*/ S.Array(
-    CreatePaymentResponseFinancingTransactionsItem,
-  ) as any as S.Schema<RetrievePaymentResponseFinancingTransactionsList>;
-
-/** The member attached to this payment. */
-export type RetrievePaymentResponseMember = CreatePaymentResponseMember;
-export const RetrievePaymentResponseMember = CreatePaymentResponseMember;
-
-/** The membership attached to this payment. */
-export type RetrievePaymentResponseMembership = CreatePaymentResponseMembership;
-export const RetrievePaymentResponseMembership =
-  CreatePaymentResponseMembership;
-
-/** The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made */
-export type RetrievePaymentResponseMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const RetrievePaymentResponseMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RetrievePaymentResponseMetadataMap>;
-
-/** Card payments only: the card's network and last four. */
-export type RetrievePaymentResponsePaymentInstrumentCard =
-  CreatePaymentResponsePaymentInstrumentCard;
-export const RetrievePaymentResponsePaymentInstrumentCard =
-  CreatePaymentResponsePaymentInstrumentCard;
-
-/** The colorway for dark surfaces. */
-export type RetrievePaymentResponsePaymentInstrumentIconsCardDark =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-export const RetrievePaymentResponsePaymentInstrumentIconsCardDark =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-
-/** The colorway for light surfaces. */
-export type RetrievePaymentResponsePaymentInstrumentIconsCardLight =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-export const RetrievePaymentResponsePaymentInstrumentIconsCardLight =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type RetrievePaymentResponsePaymentInstrumentIconsCard =
-  CreatePaymentResponsePaymentInstrumentIconsCard;
-export const RetrievePaymentResponsePaymentInstrumentIconsCard =
-  CreatePaymentResponsePaymentInstrumentIconsCard;
-
-/** The colorway for dark surfaces. */
-export type RetrievePaymentResponsePaymentInstrumentIconsSquareDark =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-export const RetrievePaymentResponsePaymentInstrumentIconsSquareDark =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-
-/** The colorway for light surfaces. */
-export type RetrievePaymentResponsePaymentInstrumentIconsSquareLight =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-export const RetrievePaymentResponsePaymentInstrumentIconsSquareLight =
-  CreatePaymentResponsePaymentInstrumentIconsCardDark;
-
-/** The square tile (32x32). */
-export type RetrievePaymentResponsePaymentInstrumentIconsSquare =
-  CreatePaymentResponsePaymentInstrumentIconsCard;
-export const RetrievePaymentResponsePaymentInstrumentIconsSquare =
-  CreatePaymentResponsePaymentInstrumentIconsCard;
-
-/** The standard icon set: square and card shapes, each in light and dark colorways. */
-export type RetrievePaymentResponsePaymentInstrumentIcons =
-  CreatePaymentResponsePaymentInstrumentIcons;
-export const RetrievePaymentResponsePaymentInstrumentIcons =
-  CreatePaymentResponsePaymentInstrumentIcons;
-
-/** The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method. */
-export type RetrievePaymentResponsePaymentInstrument =
-  CreatePaymentResponsePaymentInstrument;
-export const RetrievePaymentResponsePaymentInstrument =
-  CreatePaymentResponsePaymentInstrument;
-
-/** The card data associated with the payment method, if its a debit or credit card. */
-export type RetrievePaymentResponsePaymentMethodCard =
-  CreatePaymentResponsePaymentMethodCard;
-export const RetrievePaymentResponsePaymentMethodCard =
-  CreatePaymentResponsePaymentMethodCard;
-
-/** The tokenized payment method reference used for this payment. Null if no token was used. */
-export type RetrievePaymentResponsePaymentMethod =
-  CreatePaymentResponsePaymentMethod;
-export const RetrievePaymentResponsePaymentMethod =
-  CreatePaymentResponsePaymentMethod;
-
-/** Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan. */
-export type RetrievePaymentResponsePlanMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const RetrievePaymentResponsePlanMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RetrievePaymentResponsePlanMetadataMap>;
-
-/** The plan attached to this payment. */
-export interface RetrievePaymentResponsePlan {
-  /** The unique identifier for the plan. */
-  id: string;
-  /** A personal description or notes section for the business. */
-  internal_notes: string | null;
-  /** Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan. */
-  metadata: RetrievePaymentResponsePlanMetadataMap | null;
-}
-export const RetrievePaymentResponsePlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    internal_notes: S.NullOr(S.String),
-    metadata: S.NullOr(RetrievePaymentResponsePlanMetadataMap),
-  }),
-).annotate({
-  identifier: "RetrievePaymentResponsePlan",
-}) as any as S.Schema<RetrievePaymentResponsePlan>;
-
-/** Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value. */
-export type RetrievePaymentResponseProductMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const RetrievePaymentResponseProductMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RetrievePaymentResponseProductMetadataMap>;
-
-/** The product this payment was made for */
-export interface RetrievePaymentResponseProduct {
-  /** The unique identifier for the product. */
-  id: string;
-  /** Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value. */
-  metadata: RetrievePaymentResponseProductMetadataMap | null;
-  /** URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/company/pickaxe-analytics. */
-  route: string;
-  /** The display name of the product shown to customers on the product page and in search results. */
-  title: string;
-}
-export const RetrievePaymentResponseProduct = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    metadata: S.NullOr(RetrievePaymentResponseProductMetadataMap),
-    route: S.String,
-    title: S.String,
-  }),
-).annotate({
-  identifier: "RetrievePaymentResponseProduct",
-}) as any as S.Schema<RetrievePaymentResponseProduct>;
-
-/** The promo code used for this payment. */
-export type RetrievePaymentResponsePromoCode = CreatePaymentResponsePromoCode;
-export const RetrievePaymentResponsePromoCode = CreatePaymentResponsePromoCode;
-
-/** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
-export type RetrievePaymentResponseRefundsItem =
-  CreatePaymentResponseRefundsItem;
-export const RetrievePaymentResponseRefundsItem =
-  CreatePaymentResponseRefundsItem;
-
-/** The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent. */
-export type RetrievePaymentResponseRefundsList =
-  Array<CreatePaymentResponseRefundsItem>;
-export const RetrievePaymentResponseRefundsList = /*@__PURE__*/ S.Array(
-  CreatePaymentResponseRefundsItem,
-) as any as S.Schema<RetrievePaymentResponseRefundsList>;
-
-/** The list of actions currently available to the customer. */
-export type RetrievePaymentResponseResolutionsItemCustomerResponseActionsList =
-  Array<ResolutionCenterCaseCustomerResponses>;
-export const RetrievePaymentResponseResolutionsItemCustomerResponseActionsList =
-  /*@__PURE__*/ S.Array(
-    ResolutionCenterCaseCustomerResponses,
-  ) as any as S.Schema<RetrievePaymentResponseResolutionsItemCustomerResponseActionsList>;
-
-/** The list of actions currently available to the merchant. */
-export type RetrievePaymentResponseResolutionsItemMerchantResponseActionsList =
-  Array<ResolutionCenterCaseMerchantResponses>;
-export const RetrievePaymentResponseResolutionsItemMerchantResponseActionsList =
-  /*@__PURE__*/ S.Array(
-    ResolutionCenterCaseMerchantResponses,
-  ) as any as S.Schema<RetrievePaymentResponseResolutionsItemMerchantResponseActionsList>;
-
-/** The list of actions currently available to the Whop platform for moderating this resolution. */
-export type RetrievePaymentResponseResolutionsItemPlatformResponseActionsList =
-  Array<ResolutionCenterCasePlatformResponses>;
-export const RetrievePaymentResponseResolutionsItemPlatformResponseActionsList =
-  /*@__PURE__*/ S.Array(
-    ResolutionCenterCasePlatformResponses,
-  ) as any as S.Schema<RetrievePaymentResponseResolutionsItemPlatformResponseActionsList>;
-
-/** A resolution center case is a dispute or support case between a user and a company, tracking the issue, status, and outcome. */
-export interface RetrievePaymentResponseResolutionsItem {
-  /** Whether the customer has filed an appeal after the initial resolution decision. */
-  customer_appealed: boolean;
-  /** The list of actions currently available to the customer. */
-  customer_response_actions: RetrievePaymentResponseResolutionsItemCustomerResponseActionsList;
-  /** The deadline by which the next response is required. Null if no deadline is currently active. As a Unix timestamp. */
-  due_date: string | null;
-  /** The unique identifier for the resolution. */
-  id: string;
-  /** The category of the dispute. */
-  issue: ResolutionCenterCaseIssueTypes;
-  /** Whether the merchant has filed an appeal after the initial resolution decision. */
-  merchant_appealed: boolean;
-  /** The list of actions currently available to the merchant. */
-  merchant_response_actions: RetrievePaymentResponseResolutionsItemMerchantResponseActionsList;
-  /** The list of actions currently available to the Whop platform for moderating this resolution. */
-  platform_response_actions: RetrievePaymentResponseResolutionsItemPlatformResponseActionsList;
-  /** The current status of the resolution case, indicating which party needs to respond or if the case is closed. */
-  status: ResolutionCenterCaseStatuses;
-}
-export const RetrievePaymentResponseResolutionsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      customer_appealed: S.Boolean,
-      customer_response_actions:
-        RetrievePaymentResponseResolutionsItemCustomerResponseActionsList,
-      due_date: S.NullOr(S.String),
-      id: S.String,
-      issue: ResolutionCenterCaseIssueTypes,
-      merchant_appealed: S.Boolean,
-      merchant_response_actions:
-        RetrievePaymentResponseResolutionsItemMerchantResponseActionsList,
-      platform_response_actions:
-        RetrievePaymentResponseResolutionsItemPlatformResponseActionsList,
-      status: ResolutionCenterCaseStatuses,
-    }),
-).annotate({
-  identifier: "RetrievePaymentResponseResolutionsItem",
-}) as any as S.Schema<RetrievePaymentResponseResolutionsItem>;
-
-/** The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission. */
-export type RetrievePaymentResponseResolutionsList =
-  Array<RetrievePaymentResponseResolutionsItem>;
-export const RetrievePaymentResponseResolutionsList = /*@__PURE__*/ S.Array(
-  RetrievePaymentResponseResolutionsItem,
-) as any as S.Schema<RetrievePaymentResponseResolutionsList>;
-
-/** A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment. */
-export type RetrievePaymentResponseRiskSignalsMap = {
-  [key: string]: unknown | undefined;
-};
-export const RetrievePaymentResponseRiskSignalsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RetrievePaymentResponseRiskSignalsMap>;
-
-/** The shipment attached to this payment. */
-export type RetrievePaymentResponseShipment = CreatePaymentResponseShipment;
-export const RetrievePaymentResponseShipment = CreatePaymentResponseShipment;
-
-/** The shipping address provided by the customer for physical goods. Null if no shipping address was collected. */
-export type RetrievePaymentResponseShippingAddress =
-  CreatePaymentResponseBillingAddress;
-export const RetrievePaymentResponseShippingAddress =
-  CreatePaymentResponseBillingAddress;
-
-/** The user that made this payment. */
-export type RetrievePaymentResponseUser = CreatePaymentResponseUser;
-export const RetrievePaymentResponseUser = CreatePaymentResponseUser;
-
-/** The issuer's address and card security code check results for this payment. Null when the processor returned none. */
-export type RetrievePaymentResponseVerificationChecks =
-  CreatePaymentResponseVerificationChecks;
-export const RetrievePaymentResponseVerificationChecks =
-  CreatePaymentResponseVerificationChecks;
-
-export interface RetrievePaymentResponse {
-  /** How much the payment is for after fees */
-  amount_after_fees: number;
-  /** The application fee charged on this payment. */
-  application_fee: CreatePaymentResponseApplicationFee | null;
-  /** Whether this payment was auto refunded or not */
-  auto_refunded: boolean;
-  /** The address of the user who made the payment. */
-  billing_address: CreatePaymentResponseBillingAddress | null;
-  /** The machine-readable reason this charge was created, such as initial subscription purchase, renewal cycle, or one-time payment. */
-  billing_reason: BillingReasons | null;
-  /** Card network reported by the processor (e.g., 'visa', 'mastercard', 'amex'). Present only when the payment method type is 'card'. */
-  card_brand: CardBrands | null;
-  /** The expiration month (1-12) of the card used for this payment. Falls back to the declined card on failed payments with no saved card. Null when the payment was not made with a card or the expiry is unavailable. */
-  card_exp_month: number | null;
-  /** The four-digit expiration year of the card used for this payment. Falls back to the declined card on failed payments with no saved card. Null when the payment was not made with a card or the expiry is unavailable. */
-  card_exp_year: number | null;
-  /** The last four digits of the card used to make this payment. Null if the payment was not made with a card. */
-  card_last4: string | null;
-  /** The ID of the checkout session/configuration that produced this payment, if any. Use this to map payments back to the checkout configuration that created them. */
-  checkout_configuration_id: string | null;
-  /** The company for the payment. */
-  company: CreatePaymentResponseCompany | null;
-  /** The datetime the payment was created. */
-  created_at: string;
-  /** The three-letter ISO currency code for this payment (e.g., 'usd', 'eur'). */
-  currency: Currencies;
-  /** Phone number the customer provided at checkout, or their verified phone number when your checkout requires phone verification. `null` when no phone number was collected. */
-  customer_phone: string | null;
-  /** The reason the payment was declined. Null if the payment did not fail. */
-  decline_code: PaymentDeclineCodes | null;
-  /** When an alert came in that this transaction will be disputed */
-  dispute_alerted_at: string | null;
-  /** The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission. */
-  disputes: RetrievePaymentResponseDisputesList | null;
-  /** If the payment failed, the reason for the failure. */
-  failure_message: string | null;
-  /** The number of financing installments for the payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
-  financing_installments_count: number | null;
-  /** The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.). */
-  financing_transactions: RetrievePaymentResponseFinancingTransactionsList;
-  /** The unique identifier for the payment. */
-  id: string;
-  /** The time of the last payment attempt. */
-  last_payment_attempt: string | null;
-  /** The member attached to this payment. */
-  member: CreatePaymentResponseMember | null;
-  /** The membership attached to this payment. */
-  membership: CreatePaymentResponseMembership | null;
-  /** The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made */
-  metadata: RetrievePaymentResponseMetadataMap | null;
-  /** Whether this payment is holding funds until the order ships and has no tracking number yet. */
-  needs_tracking: boolean | null;
-  /** The time of the next schedule payment retry. */
-  next_payment_attempt: string | null;
-  /** The time at which this payment was successfully collected. Null if the payment has not yet succeeded. As a Unix timestamp. */
-  paid_at: string | null;
-  /** The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method. */
-  payment_instrument: CreatePaymentResponsePaymentInstrument | null;
-  /** The tokenized payment method reference used for this payment. Null if no token was used. */
-  payment_method: CreatePaymentResponsePaymentMethod | null;
-  /** The type of payment instrument used for this payment (e.g., card, Cash App, iDEAL, Klarna, crypto). Null when the processor does not supply a type. */
-  payment_method_type: PaymentMethodTypes | null;
-  /** The number of failed payment attempts for the payment. */
-  payments_failed: number | null;
-  /** The plan attached to this payment. */
-  plan: RetrievePaymentResponsePlan | null;
-  /** The product this payment was made for */
-  product: RetrievePaymentResponseProduct | null;
-  /** The promo code used for this payment. */
-  promo_code: CreatePaymentResponsePromoCode | null;
-  /** True only for payments that are `paid`, have not been fully refunded, and were processed by a payment processor that allows refunds. */
-  refundable: boolean;
-  /** The payment refund amount(if applicable). */
-  refunded_amount: number | null;
-  /** When the payment was refunded (if applicable). */
-  refunded_at: string | null;
-  /** The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent. */
-  refunds: RetrievePaymentResponseRefundsList;
-  /** The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission. */
-  resolutions: RetrievePaymentResponseResolutionsList | null;
-  /** True when the payment status is `open` and its membership is in one of the retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or when it is a failed initial billing-engine payment on a `drafted` membership with an unlimited-stock plan; otherwise false. Used to decide if Whop can attempt the charge again. */
-  retryable: boolean;
-  /** Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100 (highest risk). Null when the payment has not been scored or scoring has not yet completed. */
-  risk_score: number | null;
-  /** A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment. */
-  risk_signals: RetrievePaymentResponseRiskSignalsMap | null;
-  /** The total amount charged to the customer for this payment, including taxes and after any discounts. In the currency specified by the currency field. */
-  settlement_amount: number;
-  /** The three-letter ISO currency code for this payment (e.g., 'usd', 'eur'). */
-  settlement_currency: Currencies;
-  /** Deprecated. Always returns null. */
-  settlement_exchange_rate: number | null;
-  /** When this payment's funds post to the company's available balance, at midnight UTC. Known at payment time and never changes. The `ledger_account.funds_available` webhook carries the same `settlement_time_at` when that batch posts — match them to know these funds are now withdrawable. */
-  settlement_time_at: string | null;
-  /** The shipment attached to this payment. */
-  shipment: CreatePaymentResponseShipment | null;
-  /** The shipping address provided by the customer for physical goods. Null if no shipping address was collected. */
-  shipping_address: CreatePaymentResponseBillingAddress | null;
-  /** The current lifecycle state of this payment (e.g., 'draft', 'open', 'paid', 'void'). */
-  status: ReceiptStatus | null;
-  /** The friendly status of the payment. */
-  substatus: FriendlyReceiptStatus;
-  /** The subtotal to show to the creator (excluding buyer fees). */
-  subtotal: number | null;
-  /** The calculated amount of the sales/VAT tax (if applicable). */
-  tax_amount: number | null;
-  /** The type of tax inclusivity applied to the payment, for determining whether the tax is included in the final price, or paid on top. */
-  tax_behavior: ReceiptTaxBehaviors | null;
-  /** The amount of tax that has been refunded (if applicable). */
-  tax_refunded_amount: number | null;
-  /** Whether 3D Secure authentication was completed for this payment. */
-  three_ds_verified: boolean;
-  /** The total to show to the creator (excluding buyer fees). */
-  total: number | null;
-  /** The datetime the payment was last updated. */
-  updated_at: string;
-  /** The total in USD to show to the creator (excluding buyer fees). */
-  usd_total: number | null;
-  /** The user that made this payment. */
-  user: CreatePaymentResponseUser | null;
-  /** The issuer's address and card security code check results for this payment. Null when the processor returned none. */
-  verification_checks: CreatePaymentResponseVerificationChecks | null;
-  /** True when the payment is tied to a membership in `past_due`, the payment status is `open`, and the processor allows voiding payments; otherwise false. */
-  voidable: boolean;
-  /** The credential the buyer's surface presents to poll this payment and set its return URL. Returned when a payment created from a confirmation token is created or retrieved by a caller with the payment:charge permission. Null for payments created from a stored payment method or callers without payment:charge. It unlocks this payment and nothing else; treat it like a password for that one attempt. */
-  client_secret: string | Redacted.Redacted<string> | null;
-}
-export const RetrievePaymentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount_after_fees: S.Number,
-    application_fee: S.NullOr(CreatePaymentResponseApplicationFee),
-    auto_refunded: S.Boolean,
-    billing_address: S.NullOr(CreatePaymentResponseBillingAddress),
-    billing_reason: S.NullOr(BillingReasons),
-    card_brand: S.NullOr(CardBrands),
-    card_exp_month: S.NullOr(S.Number),
-    card_exp_year: S.NullOr(S.Number),
-    card_last4: S.NullOr(S.String),
-    checkout_configuration_id: S.NullOr(S.String),
-    company: S.NullOr(CreatePaymentResponseCompany),
-    created_at: S.String,
-    currency: Currencies,
-    customer_phone: S.NullOr(S.String),
-    decline_code: S.NullOr(PaymentDeclineCodes),
-    dispute_alerted_at: S.NullOr(S.String),
-    disputes: S.NullOr(RetrievePaymentResponseDisputesList),
-    failure_message: S.NullOr(S.String),
-    financing_installments_count: S.NullOr(S.Number),
-    financing_transactions: RetrievePaymentResponseFinancingTransactionsList,
-    id: S.String,
-    last_payment_attempt: S.NullOr(S.String),
-    member: S.NullOr(CreatePaymentResponseMember),
-    membership: S.NullOr(CreatePaymentResponseMembership),
-    metadata: S.NullOr(RetrievePaymentResponseMetadataMap),
-    needs_tracking: S.NullOr(S.Boolean),
-    next_payment_attempt: S.NullOr(S.String),
-    paid_at: S.NullOr(S.String),
-    payment_instrument: S.NullOr(CreatePaymentResponsePaymentInstrument),
-    payment_method: S.NullOr(CreatePaymentResponsePaymentMethod),
-    payment_method_type: S.NullOr(PaymentMethodTypes),
-    payments_failed: S.NullOr(S.Number),
-    plan: S.NullOr(RetrievePaymentResponsePlan),
-    product: S.NullOr(RetrievePaymentResponseProduct),
-    promo_code: S.NullOr(CreatePaymentResponsePromoCode),
-    refundable: S.Boolean,
-    refunded_amount: S.NullOr(S.Number),
-    refunded_at: S.NullOr(S.String),
-    refunds: RetrievePaymentResponseRefundsList,
-    resolutions: S.NullOr(RetrievePaymentResponseResolutionsList),
-    retryable: S.Boolean,
-    risk_score: S.NullOr(S.Number),
-    risk_signals: S.NullOr(RetrievePaymentResponseRiskSignalsMap),
-    settlement_amount: S.Number,
-    settlement_currency: Currencies,
-    settlement_exchange_rate: S.NullOr(S.Number),
-    settlement_time_at: S.NullOr(S.String),
-    shipment: S.NullOr(CreatePaymentResponseShipment),
-    shipping_address: S.NullOr(CreatePaymentResponseBillingAddress),
-    status: S.NullOr(ReceiptStatus),
-    substatus: FriendlyReceiptStatus,
-    subtotal: S.NullOr(S.Number),
-    tax_amount: S.NullOr(S.Number),
-    tax_behavior: S.NullOr(ReceiptTaxBehaviors),
-    tax_refunded_amount: S.NullOr(S.Number),
-    three_ds_verified: S.Boolean,
-    total: S.NullOr(S.Number),
-    updated_at: S.String,
-    usd_total: S.NullOr(S.Number),
-    user: S.NullOr(CreatePaymentResponseUser),
-    verification_checks: S.NullOr(CreatePaymentResponseVerificationChecks),
-    voidable: S.Boolean,
-    client_secret: S.NullOr(S.String).pipe(T.SensitiveValue({})),
-  }),
-).annotate({
-  identifier: "RetrievePaymentResponse",
-}) as any as S.Schema<RetrievePaymentResponse>;
-
-export interface RetrieveStatusPaymentRequest {
-  /** The unique identifier of the payment. */
-  payment_id: string;
-}
-export const RetrieveStatusPaymentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payment_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/payments/{payment_id}/status", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveStatusPaymentRequest",
-}) as any as S.Schema<RetrieveStatusPaymentRequest>;
-
-/** The reason the payment was declined. */
-export type PaymentLastPaymentErrorDeclineCode =
-  | "insufficient_funds"
-  | "lost_card"
-  | "stolen_card"
-  | "expired_card"
-  | "suspected_fraud"
-  | "invalid_card_number"
-  | "invalid_cvc"
-  | "invalid_cvc_or_expiration"
-  | "incorrect_pin"
-  | "authentication_required"
-  | "card_not_supported"
-  | "currency_not_supported"
-  | "duplicate_transaction"
-  | "generic_decline"
-  | "invalid_account"
-  | "invalid_amount"
-  | "processing_error"
-  | "restricted_card"
-  | "card_velocity_exceeded"
-  | "contact_issuer"
-  | "bank_declined"
-  | "regulatory_blocked"
-  | "transaction_not_permitted"
-  | "transaction_stopped"
-  | "card_type_not_supported"
-  | "issuer_not_found"
-  | "closed_account"
-  | "issuer_unavailable"
-  | "invalid_zip"
-  | "invalid_expiry_month"
-  | "invalid_expiry_year"
-  | "invalid_expiry"
-  | "invalid_transaction"
-  | "cannot_authorize"
-  | "pin_required"
-  | "pin_try_exceeded"
-  | "provider_declined"
-  | "high_risk"
-  | "test_mode_decline"
-  | "merchant_blacklist"
-  | "reenter_transaction"
-  | "invalid_pin"
-  | "pin_required_as"
-  | "withdrawal_count_limit_exceeded"
-  | "invalid_country"
-  | "issuer_error"
-  | "invalid_card_holder_name"
-  | "no_accounts"
-  | "transaction_cancelled"
-  | "three_d_secure_success"
-  | "three_d_secure_canceled"
-  | "three_d_secure_invalid_card_number"
-  | "three_d_secure_generic_error"
-  | "three_d_secure_timeout"
-  | "three_d_secure_failed"
-  | "three_d_secure_card_not_enrolled"
-  | "three_d_secure_fraud"
-  | "three_d_secure_too_many_attempts"
-  | "three_d_secure_rejected_by_bank"
-  | "three_d_secure_reported_lost_or_stolen"
-  | "blocked_by_cardholder"
-  | "test_mode_test_card"
-  | "try_again_later"
-  | "transaction_not_allowed"
-  | "bank_insufficient_funds"
-  | "bank_account_not_found"
-  | "bank_account_closed"
-  | "bank_account_frozen"
-  | "bank_invalid_routing_number"
-  | "bank_non_transaction_account"
-  | "bank_authorization_revoked"
-  | "bank_payment_stopped"
-  | "bank_not_authorized"
-  | "bank_account_holder_deceased"
-  | "bank_duplicate"
-  | "bank_amount_error"
-  | "bank_regulatory_blocked"
-  | "bank_details_invalid"
-  | "bank_processing_error"
-  | "bank_generic_decline"
-  | "sepa_invalid_iban"
-  | "sepa_no_mandate"
-  | "sepa_mandate_data_invalid"
-  | "sepa_disputed"
-  | "sepa_refused_by_customer"
-  | "sepa_generic_decline";
-export const PaymentLastPaymentErrorDeclineCode = /*@__PURE__*/ S.String;
-
-export interface PaymentLastPaymentError {
-  /** A machine-readable classification of the failure. */
-  code: string | null;
-  /** The reason the payment was declined. */
-  decline_code: PaymentLastPaymentErrorDeclineCode | null;
-  /** A human-readable explanation of the failure. */
-  message: string | null;
-}
-export const PaymentLastPaymentError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.NullOr(S.String),
-    decline_code: S.NullOr(PaymentLastPaymentErrorDeclineCode),
-    message: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PaymentLastPaymentError",
-}) as any as S.Schema<PaymentLastPaymentError>;
-
-export interface PaymentNextActionRedirectData {
-  /** The widest the provider's page lays out usefully, in CSS pixels — cap a frame or dialog presenting it at this width. `null` when the page fills whatever width it is given. */
-  frame_max_width: number | null;
-  /** The provider's page for this payment, as an absolute URL — take the buyer there. */
-  url: string;
-}
-export const PaymentNextActionRedirectData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frame_max_width: S.NullOr(S.Number),
-    url: S.String,
-  }),
-).annotate({
-  identifier: "PaymentNextActionRedirectData",
-}) as any as S.Schema<PaymentNextActionRedirectData>;
-
-/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
-export type PaymentNextActionRedirectRenderItem = "inline" | "full_page";
-export const PaymentNextActionRedirectRenderItem = /*@__PURE__*/ S.String;
-
-export type PaymentNextActionRedirectRenderList =
-  Array<PaymentNextActionRedirectRenderItem>;
-export const PaymentNextActionRedirectRenderList = /*@__PURE__*/ S.Array(
-  PaymentNextActionRedirectRenderItem,
-) as any as S.Schema<PaymentNextActionRedirectRenderList>;
-
-/** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
-export type PaymentNextActionRedirectType = "redirect";
-export const PaymentNextActionRedirectType = /*@__PURE__*/ S.String;
-
-export interface PaymentNextActionRedirect {
-  /** Where to send the buyer. */
-  data: PaymentNextActionRedirectData;
-  render: PaymentNextActionRedirectRenderList;
-  /** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
-  type: PaymentNextActionRedirectType;
-}
-export const PaymentNextActionRedirect = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: PaymentNextActionRedirectData,
-    render: PaymentNextActionRedirectRenderList,
-    type: PaymentNextActionRedirectType,
-  }),
-).annotate({
-  identifier: "PaymentNextActionRedirect",
-}) as any as S.Schema<PaymentNextActionRedirect>;
-
-/** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
-export type PaymentVoucherInstructionsKind = "voucher";
-export const PaymentVoucherInstructionsKind = /*@__PURE__*/ S.String;
-
-export interface Money {
-  /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
-  amount: string;
-  /** Three-letter ISO 4217 currency code, lowercase. */
-  currency: string;
-  /** How many decimal places the amount CARRIES — the precision the charge itself runs at. */
-  decimals: number;
-  /** How many decimal places to SHOW. Usually equal to `decimals`, and deliberately not always: COP is charged in centavos but written in whole pesos, so it is `2` and `0`. Format the number in your own locale using this. */
-  display_decimals: number;
-}
-export const Money = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.String,
-    currency: S.String,
-    decimals: S.Number,
-    display_decimals: S.Number,
-  }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
-
-export interface PaymentVoucher {
-  /** Exactly what the buyer must pay, in the charged currency. */
-  amount?: Money;
-  /** The barcode's contents, when the voucher carries one — render it in the symbology named by `barcode_format`. */
-  barcode?: string;
-  /** The symbology `barcode` is encoded in, such as `CODE_128`. */
-  barcode_format?: string;
-  /** Who the payment is made out to. */
-  company_name?: string;
-  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
-  document_url?: string;
-  /** When the voucher stops being payable, as an ISO 8601 timestamp. */
-  expires_at?: string;
-  /** URL of that network's logo. */
-  provider_logo?: string;
-  /** The network the buyer pays at, such as OXXO. */
-  provider_name?: string;
-  /** The voucher's number — what the buyer reads out or types at the counter to pay. */
-  reference?: string;
-}
-export const PaymentVoucher = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.optional(Money),
-    barcode: S.optional(S.String),
-    barcode_format: S.optional(S.String),
-    company_name: S.optional(S.String),
-    document_url: S.optional(S.String),
-    expires_at: S.optional(S.String),
-    provider_logo: S.optional(S.String),
-    provider_name: S.optional(S.String),
-    reference: S.optional(S.String),
-  }),
-).annotate({ identifier: "PaymentVoucher" }) as any as S.Schema<PaymentVoucher>;
-
-export interface PaymentVoucherInstructions {
-  /** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
-  kind: PaymentVoucherInstructionsKind;
-  /** The voucher to show. */
-  voucher: PaymentVoucher;
-}
-export const PaymentVoucherInstructions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: PaymentVoucherInstructionsKind,
-    voucher: PaymentVoucher,
-  }),
-).annotate({
-  identifier: "PaymentVoucherInstructions",
-}) as any as S.Schema<PaymentVoucherInstructions>;
-
-/** Always `qr`: a code the buyer scans with their banking app. */
-export type PaymentQrInstructionsKind = "qr";
-export const PaymentQrInstructionsKind = /*@__PURE__*/ S.String;
-
-export interface PaymentQr {
-  /** Exactly what the buyer must pay, in the charged currency. */
-  amount?: Money;
-  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
-  document_url?: string;
-  /** When the code stops being payable, as an ISO 8601 timestamp. */
-  expires_at?: string;
-  /** An account key the buyer can pay to directly (Colombia's Bre-B llave), for apps that take a key instead of a scan. */
-  key?: string;
-  /** The QR code's contents, ready to render as a scannable image — `qr_format` says how it is encoded. */
-  qr_code?: string;
-  /** How `qr_code` is encoded. */
-  qr_format?: string;
-}
-export const PaymentQr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.optional(Money),
-    document_url: S.optional(S.String),
-    expires_at: S.optional(S.String),
-    key: S.optional(S.String),
-    qr_code: S.optional(S.String),
-    qr_format: S.optional(S.String),
-  }),
-).annotate({ identifier: "PaymentQr" }) as any as S.Schema<PaymentQr>;
-
-export interface PaymentQrInstructions {
-  /** Always `qr`: a code the buyer scans with their banking app. */
-  kind: PaymentQrInstructionsKind;
-  /** The code to show. */
-  qr: PaymentQr;
-}
-export const PaymentQrInstructions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: PaymentQrInstructionsKind,
-    qr: PaymentQr,
-  }),
-).annotate({
-  identifier: "PaymentQrInstructions",
-}) as any as S.Schema<PaymentQrInstructions>;
-
-export interface PaymentBankTransfer {
-  /** The account to send to, in the local scheme's format — `account_number_label` says what to call it. */
-  account_number?: string;
-  /** What to call `account_number` when showing it, in the local scheme's own terms — `CLABE` in Mexico, for example. */
-  account_number_label?: string;
-  /** Exactly what the buyer must send, in the charged currency. */
-  amount?: Money;
-  /** The kind of account receiving the transfer, such as a checking account, in the local system's own vocabulary. */
-  bank_account_type?: string;
-  /** The receiving bank's address. */
-  bank_address?: string;
-  /** The receiving branch, where the local system routes by branch. */
-  bank_branch?: string;
-  /** The receiving bank's code in the local clearing system. */
-  bank_code?: string;
-  /** The receiving bank's name. */
-  bank_name?: string;
-  /** The account holder's tax or identity document number, where the local system needs it to send. */
-  beneficiary_document?: string;
-  /** What kind of document `beneficiary_document` is, in the local system's own vocabulary. */
-  beneficiary_document_type?: string;
-  /** Who the account belongs to — the name the buyer's bank may ask them to confirm. */
-  beneficiary_name?: string;
-  /** A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here. */
-  document_url?: string;
-  /** When these details stop being payable, as an ISO 8601 timestamp. */
-  expires_at?: string;
-  /** The rail's own step-by-step payment text, when it supplies one. */
-  instructions?: string;
-  /** The reference the buyer must attach to the transfer so it can be matched to this payment. */
-  reference?: string;
-  /** The receiving bank's routing number for US transfers. */
-  routing_number?: string;
-  /** A second account number, where the rail publishes the same destination in more than one format. */
-  secondary_account_number?: string;
-  /** What to call `secondary_account_number` when showing it. */
-  secondary_account_number_label?: string;
-}
-export const PaymentBankTransfer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_number: S.optional(S.String),
-    account_number_label: S.optional(S.String),
-    amount: S.optional(Money),
-    bank_account_type: S.optional(S.String),
-    bank_address: S.optional(S.String),
-    bank_branch: S.optional(S.String),
-    bank_code: S.optional(S.String),
-    bank_name: S.optional(S.String),
-    beneficiary_document: S.optional(S.String),
-    beneficiary_document_type: S.optional(S.String),
-    beneficiary_name: S.optional(S.String),
-    document_url: S.optional(S.String),
-    expires_at: S.optional(S.String),
-    instructions: S.optional(S.String),
-    reference: S.optional(S.String),
-    routing_number: S.optional(S.String),
-    secondary_account_number: S.optional(S.String),
-    secondary_account_number_label: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PaymentBankTransfer",
-}) as any as S.Schema<PaymentBankTransfer>;
-
-/** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
-export type PaymentBankTransferInstructionsKind = "bank_transfer";
-export const PaymentBankTransferInstructionsKind = /*@__PURE__*/ S.String;
-
-export interface PaymentBankTransferInstructions {
-  /** The account details to show. */
-  bank_transfer: PaymentBankTransfer;
-  /** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
-  kind: PaymentBankTransferInstructionsKind;
-}
-export const PaymentBankTransferInstructions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bank_transfer: PaymentBankTransfer,
-    kind: PaymentBankTransferInstructionsKind,
-  }),
-).annotate({
-  identifier: "PaymentBankTransferInstructions",
-}) as any as S.Schema<PaymentBankTransferInstructions>;
-
-/** What to show the buyer so they can pay. `kind` picks the shape and the details sit under the key named for it, so switching on `kind` gives you exactly that kind's payload. Every detail field is optional — the rails behind these methods publish them unevenly — but a kind that arrives with `document_url` can always fall back to sending the buyer to that hosted copy of the instructions. */
-export type PaymentInstructions =
-  | PaymentVoucherInstructions
-  | PaymentQrInstructions
-  | PaymentBankTransferInstructions;
-export const PaymentInstructions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentInstructions>;
-
-/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
-export type PaymentNextActionDisplayInstructionsRenderItem =
-  | "inline"
-  | "full_page";
-export const PaymentNextActionDisplayInstructionsRenderItem =
-  /*@__PURE__*/ S.String;
-
-export type PaymentNextActionDisplayInstructionsRenderList =
-  Array<PaymentNextActionDisplayInstructionsRenderItem>;
-export const PaymentNextActionDisplayInstructionsRenderList =
-  /*@__PURE__*/ S.Array(
-    PaymentNextActionDisplayInstructionsRenderItem,
-  ) as any as S.Schema<PaymentNextActionDisplayInstructionsRenderList>;
-
-/** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
-export type PaymentNextActionDisplayInstructionsType = "display_instructions";
-export const PaymentNextActionDisplayInstructionsType = /*@__PURE__*/ S.String;
-
-export interface PaymentNextActionDisplayInstructions {
-  /** The instructions. `kind` picks the shape, and the details sit under the key named for it: `voucher`, `qr`, or `bank_transfer`. */
-  data: PaymentInstructions;
-  render: PaymentNextActionDisplayInstructionsRenderList;
-  /** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
-  type: PaymentNextActionDisplayInstructionsType;
-}
-export const PaymentNextActionDisplayInstructions = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: PaymentInstructions,
-      render: PaymentNextActionDisplayInstructionsRenderList,
-      type: PaymentNextActionDisplayInstructionsType,
-    }),
-).annotate({
-  identifier: "PaymentNextActionDisplayInstructions",
-}) as any as S.Schema<PaymentNextActionDisplayInstructions>;
-
-export interface PaymentNextActionAwaitConfirmationData {
-  /** When the confirmation window closes, as an ISO 8601 timestamp. A payment still unconfirmed by then will not succeed — watch `status` for the failed attempt. */
-  expires_at: string;
-}
-export const PaymentNextActionAwaitConfirmationData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      expires_at: S.String,
-    }),
-).annotate({
-  identifier: "PaymentNextActionAwaitConfirmationData",
-}) as any as S.Schema<PaymentNextActionAwaitConfirmationData>;
-
-/** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
-export type PaymentNextActionAwaitConfirmationRenderItem =
-  | "inline"
-  | "full_page";
-export const PaymentNextActionAwaitConfirmationRenderItem =
-  /*@__PURE__*/ S.String;
-
-export type PaymentNextActionAwaitConfirmationRenderList =
-  Array<PaymentNextActionAwaitConfirmationRenderItem>;
-export const PaymentNextActionAwaitConfirmationRenderList =
-  /*@__PURE__*/ S.Array(
-    PaymentNextActionAwaitConfirmationRenderItem,
-  ) as any as S.Schema<PaymentNextActionAwaitConfirmationRenderList>;
-
-/** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
-export type PaymentNextActionAwaitConfirmationType = "await_confirmation";
-export const PaymentNextActionAwaitConfirmationType = /*@__PURE__*/ S.String;
-
-export interface PaymentNextActionAwaitConfirmation {
-  /** How long the wait can last. */
-  data: PaymentNextActionAwaitConfirmationData;
-  render: PaymentNextActionAwaitConfirmationRenderList;
-  /** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
-  type: PaymentNextActionAwaitConfirmationType;
-}
-export const PaymentNextActionAwaitConfirmation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: PaymentNextActionAwaitConfirmationData,
-    render: PaymentNextActionAwaitConfirmationRenderList,
-    type: PaymentNextActionAwaitConfirmationType,
-  }),
-).annotate({
-  identifier: "PaymentNextActionAwaitConfirmation",
-}) as any as S.Schema<PaymentNextActionAwaitConfirmation>;
-
-/** What the buyer must do to finish. `type` picks the shape and each type carries only its own `data`, so switching on `type` gives you exactly that step's payload. */
-export type PaymentNextAction =
-  | PaymentNextActionRedirect
-  | PaymentNextActionDisplayInstructions
-  | PaymentNextActionAwaitConfirmation;
-export const PaymentNextAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentNextAction>;
-
-export interface PaymentProcessingDetails {
-  /** When the payment is expected to settle, as an ISO 8601 timestamp. */
-  expected_by: string | null;
-}
-export const PaymentProcessingDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expected_by: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PaymentProcessingDetails",
-}) as any as S.Schema<PaymentProcessingDetails>;
-
-/** How far the payment has got. `requires_confirmation` — nothing attempted yet, or the last attempt failed and can be retried. `requires_action` — the buyer has a step outstanding; see `next_action`. `confirming` — the buyer has done their part and the processor is deciding. `processing` — the money is moving; see `processing_details`. `succeeded` — collected. `canceled` — voided or written off. */
-export type PaymentStatusStatus =
-  | "requires_confirmation"
-  | "requires_action"
-  | "confirming"
-  | "processing"
-  | "succeeded"
-  | "canceled";
-export const PaymentStatusStatus = /*@__PURE__*/ S.String;
-
-export interface PaymentStatus {
-  /** The payment this status describes, prefixed `pay_`. */
-  id: string;
-  /** Details of the most recent failed attempt, or `null` when the payment has not failed. */
-  last_payment_error: PaymentLastPaymentError | null;
-  /** What the buyer must do next while `status` is `requires_action`, otherwise `null`. `type` picks the shape and each variant carries only its own `data`, so switching on `type` gives you exactly that step's payload. */
-  next_action: PaymentNextAction | null;
-  /** Always `payment_status`. */
-  object: string;
-  /** Present while `status` is `processing` on a settlement rail, otherwise `null`. */
-  processing_details: PaymentProcessingDetails | null;
-  /** Where to send the buyer once the payment reaches a resting state, or `null` to leave them where they are. Editable until they return — see the return_url operation. */
-  return_url: string | null;
-  /** How far the payment has got. `requires_confirmation` — nothing attempted yet, or the last attempt failed and can be retried. `requires_action` — the buyer has a step outstanding; see `next_action`. `confirming` — the buyer has done their part and the processor is deciding. `processing` — the money is moving; see `processing_details`. `succeeded` — collected. `canceled` — voided or written off. */
-  status: PaymentStatusStatus;
-}
-export const PaymentStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    last_payment_error: S.NullOr(PaymentLastPaymentError),
-    next_action: S.NullOr(PaymentNextAction),
-    object: S.String,
-    processing_details: S.NullOr(PaymentProcessingDetails),
-    return_url: S.NullOr(S.String),
-    status: PaymentStatusStatus,
-  }),
-).annotate({ identifier: "PaymentStatus" }) as any as S.Schema<PaymentStatus>;
-
 export interface RetryPaymentRequest {
   /** The unique identifier of the payment to retry. */
   id: string;
@@ -3934,6 +3928,41 @@ export const feesPayment: API.PaginatedOperationMethod<
   paginateRelay,
 ) as any;
 
+export type GetPaymentError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve payment [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payment. Required permissions: - `payment:basic:read` - `plan:basic:read` - `access_pass:basic:read` - `member:email:read` - `member:basic:read` - `member:phone:read` - `promo_code:basic:read` - `shipment:basic:read` - `payment:dispute:read` - `payment:resolution_center_case:read` */
+export const getPayment: API.OperationMethod<
+  GetPaymentRequest,
+  GetPaymentResponse,
+  GetPaymentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPaymentRequest,
+  output: GetPaymentResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStatusPaymentError = Forbidden | NotFound | WhopOpError;
+/** Retrieve payment status Retrieves how far a payment has got and what the buyer must do next, if anything. A payment is collected in the background, so poll this rather than reading the create response. Accepts either a secret key or the payment's own `client_secret`, so the surface collecting the payment can poll it directly. */
+export const getStatusPayment: API.OperationMethod<
+  GetStatusPaymentRequest,
+  PaymentStatus,
+  GetStatusPaymentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStatusPaymentRequest,
+  output: PaymentStatus,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPaymentError =
   | BadRequest
   | Forbidden
@@ -3982,41 +4011,6 @@ export const refundPayment: API.OperationMethod<
   input: RefundPaymentRequest,
   output: Payment,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePaymentError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve payment [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payment. Required permissions: - `payment:basic:read` - `plan:basic:read` - `access_pass:basic:read` - `member:email:read` - `member:basic:read` - `member:phone:read` - `promo_code:basic:read` - `shipment:basic:read` - `payment:dispute:read` - `payment:resolution_center_case:read` */
-export const retrievePayment: API.OperationMethod<
-  RetrievePaymentRequest,
-  RetrievePaymentResponse,
-  RetrievePaymentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePaymentRequest,
-  output: RetrievePaymentResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveStatusPaymentError = Forbidden | NotFound | WhopOpError;
-/** Retrieve payment status Retrieves how far a payment has got and what the buyer must do next, if anything. A payment is collected in the background, so poll this rather than reading the create response. Accepts either a secret key or the payment's own `client_secret`, so the surface collecting the payment can poll it directly. */
-export const retrieveStatusPayment: API.OperationMethod<
-  RetrieveStatusPaymentRequest,
-  PaymentStatus,
-  RetrieveStatusPaymentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveStatusPaymentRequest,
-  output: PaymentStatus,
-  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

@@ -243,13 +243,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type AzureLargeInstanceGetResponseTagsMap = {
+export type GetAzureLargeInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeInstanceGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAzureLargeInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureLargeInstanceGetResponseTagsMap>;
+) as any as S.Schema<GetAzureLargeInstanceResponseTagsMap>;
 
 /** Enum of the hardware options (vendor and/or their product name) for an Azure Large Instance */
 export type AzureLargeInstanceHardwareTypeNamesEnum =
@@ -480,7 +480,7 @@ export interface GetAzureLargeInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeInstanceGetResponseTagsMap;
+  tags?: GetAzureLargeInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -492,7 +492,7 @@ export const GetAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AzureLargeInstanceGetResponseTagsMap),
+    tags: S.optional(GetAzureLargeInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureLargeInstanceProperties),
   }),
@@ -526,14 +526,14 @@ export const GetAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAzureLargeStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureLargeStorageInstanceGetResponseTagsMap = {
+export type GetAzureLargeStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeStorageInstanceGetResponseTagsMap =
+export const GetAzureLargeStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceGetResponseTagsMap>;
+  ) as any as S.Schema<GetAzureLargeStorageInstanceResponseTagsMap>;
 
 /** An enum of possible operation states for an AzureLargeStorageInstances */
 export type ProvisioningState =
@@ -620,7 +620,7 @@ export interface GetAzureLargeStorageInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeStorageInstanceGetResponseTagsMap;
+  tags?: GetAzureLargeStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -633,7 +633,7 @@ export const GetAzureLargeStorageInstanceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AzureLargeStorageInstanceGetResponseTagsMap),
+      tags: S.optional(GetAzureLargeStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureLargeStorageInstanceProperties),
     }),
@@ -919,20 +919,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -972,12 +972,12 @@ export const RestartAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestartAzureLargeInstanceRequest>;
 
 /** The operations list. */
-export type AzureLargeInstanceRestartResponseOperationsList =
+export type RestartAzureLargeInstanceResponseOperationsList =
   Array<OperationStatusResult>;
-export const AzureLargeInstanceRestartResponseOperationsList =
+export const RestartAzureLargeInstanceResponseOperationsList =
   /*@__PURE__*/ S.Array(
     OperationStatusResult,
-  ) as any as S.Schema<AzureLargeInstanceRestartResponseOperationsList>;
+  ) as any as S.Schema<RestartAzureLargeInstanceResponseOperationsList>;
 
 export interface RestartAzureLargeInstanceResponse {
   /** Fully qualified ID for the async operation. */
@@ -995,7 +995,7 @@ export interface RestartAzureLargeInstanceResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: AzureLargeInstanceRestartResponseOperationsList;
+  operations?: RestartAzureLargeInstanceResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -1008,7 +1008,7 @@ export const RestartAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(AzureLargeInstanceRestartResponseOperationsList),
+    operations: S.optional(RestartAzureLargeInstanceResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -1041,12 +1041,12 @@ export const StartAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartAzureLargeInstanceRequest>;
 
 /** The operations list. */
-export type AzureLargeInstanceStartResponseOperationsList =
+export type StartAzureLargeInstanceResponseOperationsList =
   Array<OperationStatusResult>;
-export const AzureLargeInstanceStartResponseOperationsList =
+export const StartAzureLargeInstanceResponseOperationsList =
   /*@__PURE__*/ S.Array(
     OperationStatusResult,
-  ) as any as S.Schema<AzureLargeInstanceStartResponseOperationsList>;
+  ) as any as S.Schema<StartAzureLargeInstanceResponseOperationsList>;
 
 export interface StartAzureLargeInstanceResponse {
   /** Fully qualified ID for the async operation. */
@@ -1064,7 +1064,7 @@ export interface StartAzureLargeInstanceResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: AzureLargeInstanceStartResponseOperationsList;
+  operations?: StartAzureLargeInstanceResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -1077,7 +1077,7 @@ export const StartAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(AzureLargeInstanceStartResponseOperationsList),
+    operations: S.optional(StartAzureLargeInstanceResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -1085,13 +1085,13 @@ export const StartAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartAzureLargeInstanceResponse>;
 
 /** Resource tags. */
-export type AzureLargeInstanceUpdateRequestTagsMap = {
+export type UpdateAzureLargeInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeInstanceUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAzureLargeInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureLargeInstanceUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAzureLargeInstanceRequestTagsMap>;
 
 export interface UpdateAzureLargeInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1101,14 +1101,14 @@ export interface UpdateAzureLargeInstanceRequest {
   /** Name of the AzureLargeInstance. */
   azureLargeInstanceName: string;
   /** Resource tags. */
-  tags?: AzureLargeInstanceUpdateRequestTagsMap;
+  tags?: UpdateAzureLargeInstanceRequestTagsMap;
 }
 export const UpdateAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureLargeInstanceName: S.String.pipe(T.Label()),
-    tags: S.optional(AzureLargeInstanceUpdateRequestTagsMap),
+    tags: S.optional(UpdateAzureLargeInstanceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1122,13 +1122,13 @@ export const UpdateAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAzureLargeInstanceRequest>;
 
 /** Resource tags. */
-export type AzureLargeInstanceUpdateResponseTagsMap = {
+export type UpdateAzureLargeInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeInstanceUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAzureLargeInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureLargeInstanceUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAzureLargeInstanceResponseTagsMap>;
 
 export interface UpdateAzureLargeInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1140,7 +1140,7 @@ export interface UpdateAzureLargeInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeInstanceUpdateResponseTagsMap;
+  tags?: UpdateAzureLargeInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1152,7 +1152,7 @@ export const UpdateAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AzureLargeInstanceUpdateResponseTagsMap),
+    tags: S.optional(UpdateAzureLargeInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureLargeInstanceProperties),
   }),
@@ -1161,14 +1161,14 @@ export const UpdateAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAzureLargeInstanceResponse>;
 
 /** Resource tags. */
-export type AzureLargeStorageInstanceUpdateRequestTagsMap = {
+export type UpdateAzureLargeStorageInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeStorageInstanceUpdateRequestTagsMap =
+export const UpdateAzureLargeStorageInstanceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateAzureLargeStorageInstanceRequestTagsMap>;
 
 export interface UpdateAzureLargeStorageInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1178,7 +1178,7 @@ export interface UpdateAzureLargeStorageInstanceRequest {
   /** Name of the AzureLargeStorageInstance. */
   azureLargeStorageInstanceName: string;
   /** Resource tags. */
-  tags?: AzureLargeStorageInstanceUpdateRequestTagsMap;
+  tags?: UpdateAzureLargeStorageInstanceRequestTagsMap;
 }
 export const UpdateAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -1186,7 +1186,7 @@ export const UpdateAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       azureLargeStorageInstanceName: S.String.pipe(T.Label()),
-      tags: S.optional(AzureLargeStorageInstanceUpdateRequestTagsMap),
+      tags: S.optional(UpdateAzureLargeStorageInstanceRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -1200,14 +1200,14 @@ export const UpdateAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateAzureLargeStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureLargeStorageInstanceUpdateResponseTagsMap = {
+export type UpdateAzureLargeStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeStorageInstanceUpdateResponseTagsMap =
+export const UpdateAzureLargeStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateAzureLargeStorageInstanceResponseTagsMap>;
 
 export interface UpdateAzureLargeStorageInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1219,7 +1219,7 @@ export interface UpdateAzureLargeStorageInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeStorageInstanceUpdateResponseTagsMap;
+  tags?: UpdateAzureLargeStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1232,7 +1232,7 @@ export const UpdateAzureLargeStorageInstanceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AzureLargeStorageInstanceUpdateResponseTagsMap),
+      tags: S.optional(UpdateAzureLargeStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureLargeStorageInstanceProperties),
     }),

@@ -65,16 +65,68 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
-
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StringList>;
+
+/** A set of field paths on a document. Used to restrict a get or update operation on a document to a subset of its fields. This is different from standard field masks, as this is always scoped to a Document, and takes in account the dynamic nature of Value. */
+export interface DocumentMask {
+  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
+  fieldPaths?: StringList;
+}
+export const DocumentMask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fieldPaths: S.optional(StringList),
+  }),
+).annotate({ identifier: "DocumentMask" }) as any as S.Schema<DocumentMask>;
+
+/** Options for a transaction that can only be used to read documents. */
+export interface ReadOnly {
+  /** Reads documents at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+}
+export const ReadOnly = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "ReadOnly" }) as any as S.Schema<ReadOnly>;
+
+export type ReadWriteConcurrencyModeEnum =
+  | "CONCURRENCY_MODE_UNSPECIFIED"
+  | "OPTIMISTIC"
+  | "PESSIMISTIC";
+export const ReadWriteConcurrencyModeEnum = /*@__PURE__*/ S.String;
+
+/** Options for a transaction that can be used to read and write documents. */
+export interface ReadWrite {
+  /** An optional transaction to retry. */
+  retryTransaction?: string;
+  /** Optional. The concurrency control mode to use for this transaction. A database is able to use different concurrency modes for different transactions simultaneously. 3rd party auth requests are only allowed to create optimistic read-write transactions and must specify that here even if the database-level setting is already configured to optimistic. */
+  concurrencyMode?: ReadWriteConcurrencyModeEnum | (string & {});
+}
+export const ReadWrite = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retryTransaction: S.optional(S.String),
+    concurrencyMode: S.optional(ReadWriteConcurrencyModeEnum),
+  }),
+).annotate({ identifier: "ReadWrite" }) as any as S.Schema<ReadWrite>;
+
+/** Options for creating a new transaction. */
+export interface TransactionOptions {
+  /** The transaction can only be used for read operations. */
+  readOnly?: ReadOnly;
+  /** The transaction can be used for both read and write operations. */
+  readWrite?: ReadWrite;
+}
+export const TransactionOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readOnly: S.optional(ReadOnly),
+    readWrite: S.optional(ReadWrite),
+  }),
+).annotate({
+  identifier: "TransactionOptions",
+}) as any as S.Schema<TransactionOptions>;
 
 /** Options for a request. */
 export interface RequestOptions {
@@ -87,56 +139,108 @@ export const RequestOptions = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RequestOptions" }) as any as S.Schema<RequestOptions>;
 
-export type FieldTransformSetToServerValueEnum =
-  | "SERVER_VALUE_UNSPECIFIED"
-  | "REQUEST_TIME";
-export const FieldTransformSetToServerValueEnum = /*@__PURE__*/ S.String;
+/** The request for Firestore.BatchGetDocuments. */
+export interface BatchGetDocumentsRequest {
+  /** The fields to return. If not set, returns all fields. If a document has a field that is not present in this mask, that field will not be returned in the response. */
+  mask?: DocumentMask;
+  /** Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream. */
+  newTransaction?: TransactionOptions;
+  /** Reads documents in a transaction. */
+  transaction?: string;
+  /** Optional. The request options for this request. */
+  requestOptions?: RequestOptions;
+  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+  /** The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided. */
+  documents?: StringList;
+}
+export const BatchGetDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mask: S.optional(DocumentMask),
+    newTransaction: S.optional(TransactionOptions),
+    transaction: S.optional(S.String),
+    requestOptions: S.optional(RequestOptions),
+    readTime: S.optional(S.String),
+    documents: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "BatchGetDocumentsRequest",
+}) as any as S.Schema<BatchGetDocumentsRequest>;
 
-export type ValueMap = { [key: string]: Value | undefined };
-export const ValueMap = /*@__PURE__*/ S.Record(
-  S.String,
+export interface BatchGetProjectsDatabasesDocumentsRequest {
+  /** Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`. */
+  database: string;
+  /** Request body */
+  body?: BatchGetDocumentsRequest;
+}
+export const BatchGetProjectsDatabasesDocumentsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      database: S.String.pipe(T.Label()),
+      body: S.optional(BatchGetDocumentsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "v1/{+database}/documents:batchGet",
+        baseUrl: "https://firestore.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchGetProjectsDatabasesDocumentsRequest",
+  }) as any as S.Schema<BatchGetProjectsDatabasesDocumentsRequest>;
+
+export type ValueList = Array<Value>;
+export const ValueList = /*@__PURE__*/ S.Array(
   S.suspend(() => Value),
-) as any as S.Schema<ValueMap>;
+) as any as S.Schema<ValueList>;
 
-/** A map value. */
-export interface MapValue {
-  /** The map's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. */
-  fields?: ValueMap;
+/** Represents an unevaluated scalar expression. For example, the expression `like(user_name, "%alice%")` is represented as: ``` name: "like" args { field_reference: "user_name" } args { string_value: "%alice%" } ``` */
+export interface Firestore_Function {
+  /** Required. The name of the function to evaluate. **Requires:** * must be in snake case (lower case with underscore separator). */
+  name?: string;
+  /** Optional. Ordered list of arguments the given function expects. */
+  args?: ValueList;
+  /** Optional. Optional named arguments that certain functions may support. */
+  options?: ValueMap;
 }
-export const MapValue = /*@__PURE__*/ S.suspend(() =>
+export const Firestore_Function = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fields: S.optional(ValueMap),
+    name: S.optional(S.String),
+    args: S.optional(ValueList),
+    options: S.optional(S.suspend(() => ValueMap)),
   }),
-).annotate({ identifier: "MapValue" }) as any as S.Schema<MapValue>;
+).annotate({
+  identifier: "Firestore_Function",
+}) as any as S.Schema<Firestore_Function>;
 
-/** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
-export interface LatLng {
-  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
-  longitude?: number;
-  /** The latitude in degrees. It must be in the range [-90.0, +90.0]. */
-  latitude?: number;
+export type ValueNullValueEnum = "NULL_VALUE";
+export const ValueNullValueEnum = /*@__PURE__*/ S.String;
+
+/** An array value. */
+export interface ArrayValue {
+  /** Values in the array. */
+  values?: ValueList;
 }
-export const LatLng = /*@__PURE__*/ S.suspend(() =>
+export const ArrayValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    longitude: S.optional(S.Number),
-    latitude: S.optional(S.Number),
+    values: S.optional(ValueList),
   }),
-).annotate({ identifier: "LatLng" }) as any as S.Schema<LatLng>;
+).annotate({ identifier: "ArrayValue" }) as any as S.Schema<ArrayValue>;
 
 /** A single operation within a pipeline. A stage is made up of a unique name, and a list of arguments. The exact number of arguments & types is dependent on the stage type. To give an example, the stage `filter(state = "MD")` would be encoded as: ``` name: "filter" args { function_value { name: "eq" args { field_reference_value: "state" } args { string_value: "MD" } } } ``` See public documentation for the full list. */
 export interface Stage {
-  /** Optional. Ordered list of arguments the given stage expects. */
-  args?: ValueList;
   /** Optional. Optional named arguments that certain functions may support. */
   options?: ValueMap;
   /** Required. The name of the stage to evaluate. **Requires:** * must be in snake case (lower case with underscore separator). */
   name?: string;
+  /** Optional. Ordered list of arguments the given stage expects. */
+  args?: ValueList;
 }
 export const Stage = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    args: S.optional(S.suspend(() => ValueList)),
-    options: S.optional(ValueMap),
+    options: S.optional(S.suspend(() => ValueMap)),
     name: S.optional(S.String),
+    args: S.optional(ValueList),
   }),
 ).annotate({ identifier: "Stage" }) as any as S.Schema<Stage>;
 
@@ -156,123 +260,183 @@ export const Pipeline = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Pipeline" }) as any as S.Schema<Pipeline>;
 
-/** Represents an unevaluated scalar expression. For example, the expression `like(user_name, "%alice%")` is represented as: ``` name: "like" args { field_reference: "user_name" } args { string_value: "%alice%" } ``` */
-export interface Firestore_Function {
-  /** Optional. Ordered list of arguments the given function expects. */
-  args?: ValueList;
-  /** Optional. Optional named arguments that certain functions may support. */
-  options?: ValueMap;
-  /** Required. The name of the function to evaluate. **Requires:** * must be in snake case (lower case with underscore separator). */
-  name?: string;
+/** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
+export interface LatLng {
+  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
+  longitude?: number;
+  /** The latitude in degrees. It must be in the range [-90.0, +90.0]. */
+  latitude?: number;
 }
-export const Firestore_Function = /*@__PURE__*/ S.suspend(() =>
+export const LatLng = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    args: S.optional(S.suspend(() => ValueList)),
-    options: S.optional(ValueMap),
-    name: S.optional(S.String),
+    longitude: S.optional(S.Number),
+    latitude: S.optional(S.Number),
   }),
-).annotate({
-  identifier: "Firestore_Function",
-}) as any as S.Schema<Firestore_Function>;
+).annotate({ identifier: "LatLng" }) as any as S.Schema<LatLng>;
 
-export type ValueNullValueEnum = "NULL_VALUE";
-export const ValueNullValueEnum = /*@__PURE__*/ S.String;
+/** A map value. */
+export interface MapValue {
+  /** The map's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. */
+  fields?: ValueMap;
+}
+export const MapValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fields: S.optional(S.suspend(() => ValueMap)),
+  }),
+).annotate({ identifier: "MapValue" }) as any as S.Schema<MapValue>;
 
 /** A message that can hold any of the supported value types. */
 export interface Value {
-  /** A string value. In Standard edition databases: * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes of the UTF-8 representation are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits. */
-  stringValue?: string;
-  /** Value which references a field. This is considered relative (vs absolute) since it only refers to a field and not a field within a particular document. **Requires:** * Must follow field reference limitations. * Not allowed to be used when writing documents. */
-  fieldReferenceValue?: string;
-  /** A map value. */
-  mapValue?: MapValue;
   /** An integer value. */
   integerValue?: string;
-  /** A geo point value representing a point on the surface of Earth. */
-  geoPointValue?: LatLng;
-  /** Pointer to a variable defined elsewhere in a pipeline. Unlike `field_reference_value` which references a field within a document, this refers to a variable, defined in a separate namespace than the fields of a document. */
-  variableReferenceValue?: string;
-  /** A timestamp value. Precise only to microseconds. When stored, any additional precision is rounded down. */
-  timestampValue?: string;
-  /** A boolean value. */
-  booleanValue?: boolean;
-  /** A bytes value. In Standard edition databases: * The value must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits. */
-  bytesValue?: string;
-  /** A value that represents an unevaluated pipeline. **Requires:** * Not allowed to be used when writing documents. */
-  pipelineValue?: Pipeline;
   /** A value that represents an unevaluated expression. **Requires:** * Not allowed to be used when writing documents. */
   functionValue?: Firestore_Function;
-  /** An array value. In Standard edition databases, an array value cannot directly contain another array value, though it can contain a map which contains another array. In Enterprise edition databases, an array value can contain another array value. */
-  arrayValue?: ArrayValue;
   /** A null value. */
   nullValue?: ValueNullValueEnum | (string & {});
+  /** A timestamp value. Precise only to microseconds. When stored, any additional precision is rounded down. */
+  timestampValue?: string;
+  /** An array value. In Standard edition databases, an array value cannot directly contain another array value, though it can contain a map which contains another array. In Enterprise edition databases, an array value can contain another array value. */
+  arrayValue?: ArrayValue;
   /** A double value. */
   doubleValue?: number;
   /** A reference to a document. For example: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
   referenceValue?: string;
+  /** A boolean value. */
+  booleanValue?: boolean;
+  /** A value that represents an unevaluated pipeline. **Requires:** * Not allowed to be used when writing documents. */
+  pipelineValue?: Pipeline;
+  /** A string value. In Standard edition databases: * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes of the UTF-8 representation are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits. */
+  stringValue?: string;
+  /** Pointer to a variable defined elsewhere in a pipeline. Unlike `field_reference_value` which references a field within a document, this refers to a variable, defined in a separate namespace than the fields of a document. */
+  variableReferenceValue?: string;
+  /** A bytes value. In Standard edition databases: * The value must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits. */
+  bytesValue?: string;
+  /** Value which references a field. This is considered relative (vs absolute) since it only refers to a field and not a field within a particular document. **Requires:** * Must follow field reference limitations. * Not allowed to be used when writing documents. */
+  fieldReferenceValue?: string;
+  /** A geo point value representing a point on the surface of Earth. */
+  geoPointValue?: LatLng;
+  /** A map value. */
+  mapValue?: MapValue;
 }
 export const Value = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    stringValue: S.optional(S.String),
-    fieldReferenceValue: S.optional(S.String),
-    mapValue: S.optional(MapValue),
     integerValue: S.optional(S.String),
-    geoPointValue: S.optional(LatLng),
-    variableReferenceValue: S.optional(S.String),
-    timestampValue: S.optional(S.String),
-    booleanValue: S.optional(S.Boolean),
-    bytesValue: S.optional(S.String),
-    pipelineValue: S.optional(Pipeline),
     functionValue: S.optional(Firestore_Function),
-    arrayValue: S.optional(S.suspend(() => ArrayValue)),
     nullValue: S.optional(ValueNullValueEnum),
+    timestampValue: S.optional(S.String),
+    arrayValue: S.optional(ArrayValue),
     doubleValue: S.optional(S.Number),
     referenceValue: S.optional(S.String),
+    booleanValue: S.optional(S.Boolean),
+    pipelineValue: S.optional(Pipeline),
+    stringValue: S.optional(S.String),
+    variableReferenceValue: S.optional(S.String),
+    bytesValue: S.optional(S.String),
+    fieldReferenceValue: S.optional(S.String),
+    geoPointValue: S.optional(LatLng),
+    mapValue: S.optional(MapValue),
   }),
 ).annotate({ identifier: "Value" }) as any as S.Schema<Value>;
 
-export type ValueList = Array<Value>;
-export const ValueList = /*@__PURE__*/ S.Array(
+export type ValueMap = { [key: string]: Value | undefined };
+export const ValueMap = /*@__PURE__*/ S.Record(
+  S.String,
   Value,
-) as any as S.Schema<ValueList>;
+) as any as S.Schema<ValueMap>;
 
-/** An array value. */
-export interface ArrayValue {
-  /** Values in the array. */
-  values?: ValueList;
+/** A Firestore document. Must not exceed 1 MiB - 4 bytes. */
+export interface Document {
+  /** The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
+  name?: string;
+  /** Output only. The time at which the document was last changed. This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query. */
+  updateTime?: string;
+  /** Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query. */
+  createTime?: string;
+  /** The document's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The field names, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by a dot-delimited (`.`) string of segments. Each segment is either a simple field name (defined below) or a quoted field name. For example, the structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be represented by the field path `` foo.`x&y` ``. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. A quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&y` `` represents `x&y` and `` `bak\`tik` `` represents `` bak`tik ``. */
+  fields?: ValueMap;
 }
-export const ArrayValue = /*@__PURE__*/ S.suspend(() =>
+export const Document = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    values: S.optional(ValueList),
+    name: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    createTime: S.optional(S.String),
+    fields: S.optional(ValueMap),
   }),
-).annotate({ identifier: "ArrayValue" }) as any as S.Schema<ArrayValue>;
+).annotate({ identifier: "Document" }) as any as S.Schema<Document>;
+
+/** The streamed response for Firestore.BatchGetDocuments. */
+export interface BatchGetDocumentsResponse {
+  /** The time at which the document was read. This may be monotically increasing, in this case the previous documents in the result stream are guaranteed not to have changed between their read_time and this one. */
+  readTime?: string;
+  /** A document that was requested. */
+  found?: Document;
+  /** A document name that was requested but does not exist. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
+  missing?: string;
+  /** The transaction that was started as part of this request. Will only be set in the first response, and only if BatchGetDocumentsRequest.new_transaction was set in the request. */
+  transaction?: string;
+}
+export const BatchGetDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readTime: S.optional(S.String),
+    found: S.optional(Document),
+    missing: S.optional(S.String),
+    transaction: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchGetDocumentsResponse",
+}) as any as S.Schema<BatchGetDocumentsResponse>;
+
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StringMap>;
+
+/** A precondition on a document, used for conditional operations. */
+export interface Precondition {
+  /** When set to `true`, the target document must exist. When set to `false`, the target document must not exist. */
+  exists?: boolean;
+  /** When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned. */
+  updateTime?: string;
+}
+export const Precondition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    exists: S.optional(S.Boolean),
+    updateTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "Precondition" }) as any as S.Schema<Precondition>;
+
+export type FieldTransformSetToServerValueEnum =
+  | "SERVER_VALUE_UNSPECIFIED"
+  | "REQUEST_TIME";
+export const FieldTransformSetToServerValueEnum = /*@__PURE__*/ S.String;
 
 /** A transformation of a field of the document. */
 export interface FieldTransform {
-  /** Sets the field to the given server value. */
-  setToServerValue?: FieldTransformSetToServerValueEnum | (string & {});
+  /** The path of the field. See Document.fields for the field path syntax reference. */
+  fieldPath?: string;
+  /** Adds the given value to the field's current value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer. */
+  increment?: Value;
   /** Remove all of the given elements from the array in the field. If the field is not an array, or if the field does not yet exist, it is set to the empty array. Equivalent numbers of the different types (e.g. 3L and 3.0) are considered equal when deciding whether an element should be removed. NaN is equal to NaN, and Null is equal to Null. This will remove all equivalent values if there are duplicates. The corresponding transform_result will be the null value. */
   removeAllFromArray?: ArrayValue;
   /** Append the given elements in order if they are not already present in the current field value. If the field is not an array, or if the field does not yet exist, it is first set to the empty array. Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when checking if a value is missing. NaN is equal to NaN, and Null is equal to Null. If the input contains multiple equivalent values, only the first will be considered. The corresponding transform_result will be the null value. */
   appendMissingElements?: ArrayValue;
-  /** Sets the field to the minimum of its current value and the given value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the input value. If a minimum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN. */
-  minimum?: Value;
-  /** Adds the given value to the field's current value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer. */
-  increment?: Value;
   /** Sets the field to the maximum of its current value and the given value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If a maximum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the larger operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and zero input value is always the stored value. The maximum of any numeric value x and NaN is NaN. */
   maximum?: Value;
-  /** The path of the field. See Document.fields for the field path syntax reference. */
-  fieldPath?: string;
+  /** Sets the field to the minimum of its current value and the given value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the input value. If a minimum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN. */
+  minimum?: Value;
+  /** Sets the field to the given server value. */
+  setToServerValue?: FieldTransformSetToServerValueEnum | (string & {});
 }
 export const FieldTransform = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    setToServerValue: S.optional(FieldTransformSetToServerValueEnum),
+    fieldPath: S.optional(S.String),
+    increment: S.optional(Value),
     removeAllFromArray: S.optional(ArrayValue),
     appendMissingElements: S.optional(ArrayValue),
-    minimum: S.optional(Value),
-    increment: S.optional(Value),
     maximum: S.optional(Value),
-    fieldPath: S.optional(S.String),
+    minimum: S.optional(Value),
+    setToServerValue: S.optional(FieldTransformSetToServerValueEnum),
   }),
 ).annotate({ identifier: "FieldTransform" }) as any as S.Schema<FieldTransform>;
 
@@ -281,62 +445,17 @@ export const FieldTransformList = /*@__PURE__*/ S.Array(
   FieldTransform,
 ) as any as S.Schema<FieldTransformList>;
 
-/** A Firestore document. Must not exceed 1 MiB - 4 bytes. */
-export interface Document {
-  /** Output only. The time at which the document was last changed. This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query. */
-  updateTime?: string;
-  /** The document's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The field names, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by a dot-delimited (`.`) string of segments. Each segment is either a simple field name (defined below) or a quoted field name. For example, the structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be represented by the field path `` foo.`x&y` ``. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. A quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&y` `` represents `x&y` and `` `bak\`tik` `` represents `` bak`tik ``. */
-  fields?: ValueMap;
-  /** The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
-  name?: string;
-  /** Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query. */
-  createTime?: string;
-}
-export const Document = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    updateTime: S.optional(S.String),
-    fields: S.optional(ValueMap),
-    name: S.optional(S.String),
-    createTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "Document" }) as any as S.Schema<Document>;
-
-/** A precondition on a document, used for conditional operations. */
-export interface Precondition {
-  /** When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned. */
-  updateTime?: string;
-  /** When set to `true`, the target document must exist. When set to `false`, the target document must not exist. */
-  exists?: boolean;
-}
-export const Precondition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    updateTime: S.optional(S.String),
-    exists: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Precondition" }) as any as S.Schema<Precondition>;
-
-/** A set of field paths on a document. Used to restrict a get or update operation on a document to a subset of its fields. This is different from standard field masks, as this is always scoped to a Document, and takes in account the dynamic nature of Value. */
-export interface DocumentMask {
-  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
-  fieldPaths?: StringList;
-}
-export const DocumentMask = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fieldPaths: S.optional(StringList),
-  }),
-).annotate({ identifier: "DocumentMask" }) as any as S.Schema<DocumentMask>;
-
 /** A transformation of a document. */
 export interface DocumentTransform {
-  /** The list of transformations to apply to the fields of the document, in order. This must not be empty. */
-  fieldTransforms?: FieldTransformList;
   /** The name of the document to transform. */
   document?: string;
+  /** The list of transformations to apply to the fields of the document, in order. This must not be empty. */
+  fieldTransforms?: FieldTransformList;
 }
 export const DocumentTransform = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fieldTransforms: S.optional(FieldTransformList),
     document: S.optional(S.String),
+    fieldTransforms: S.optional(FieldTransformList),
   }),
 ).annotate({
   identifier: "DocumentTransform",
@@ -344,27 +463,27 @@ export const DocumentTransform = /*@__PURE__*/ S.suspend(() =>
 
 /** A write on a document. */
 export interface Write {
+  /** An optional precondition on the document. The write will fail if this is set and not met by the target document. */
+  currentDocument?: Precondition;
+  /** A document to write. */
+  update?: Document;
   /** A document name to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
   delete?: string;
   /** The transforms to perform after update. This field can be set only when the operation is `update`. If present, this write is equivalent to performing `update` and `transform` to the same document atomically and in order. */
   updateTransforms?: FieldTransformList;
-  /** A document to write. */
-  update?: Document;
-  /** An optional precondition on the document. The write will fail if this is set and not met by the target document. */
-  currentDocument?: Precondition;
-  /** The fields to update in this write. This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name. */
-  updateMask?: DocumentMask;
   /** Applies a transformation to a document. */
   transform?: DocumentTransform;
+  /** The fields to update in this write. This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name. */
+  updateMask?: DocumentMask;
 }
 export const Write = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    currentDocument: S.optional(Precondition),
+    update: S.optional(Document),
     delete: S.optional(S.String),
     updateTransforms: S.optional(FieldTransformList),
-    update: S.optional(Document),
-    currentDocument: S.optional(Precondition),
-    updateMask: S.optional(DocumentMask),
     transform: S.optional(DocumentTransform),
+    updateMask: S.optional(DocumentMask),
   }),
 ).annotate({ identifier: "Write" }) as any as S.Schema<Write>;
 
@@ -375,17 +494,17 @@ export const WriteList = /*@__PURE__*/ S.Array(
 
 /** The request for Firestore.BatchWrite. */
 export interface BatchWriteRequest {
-  /** Labels associated with this batch write. */
-  labels?: StringMap;
   /** Optional. The request options for this request. */
   requestOptions?: RequestOptions;
+  /** Labels associated with this batch write. */
+  labels?: StringMap;
   /** The writes to apply. Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request. */
   writes?: WriteList;
 }
 export const BatchWriteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labels: S.optional(StringMap),
     requestOptions: S.optional(RequestOptions),
+    labels: S.optional(StringMap),
     writes: S.optional(WriteList),
   }),
 ).annotate({
@@ -414,25 +533,6 @@ export const BatchWriteProjectsDatabasesDocumentsRequest =
     identifier: "BatchWriteProjectsDatabasesDocumentsRequest",
   }) as any as S.Schema<BatchWriteProjectsDatabasesDocumentsRequest>;
 
-/** The result of applying a write. */
-export interface WriteResult {
-  /** The results of applying each DocumentTransform.FieldTransform, in the same order. */
-  transformResults?: ValueList;
-  /** The last update time of the document after applying the write. Not set after a `delete`. If the write did not actually change the document, this will be the previous update_time. */
-  updateTime?: string;
-}
-export const WriteResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transformResults: S.optional(ValueList),
-    updateTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "WriteResult" }) as any as S.Schema<WriteResult>;
-
-export type WriteResultList = Array<WriteResult>;
-export const WriteResultList = /*@__PURE__*/ S.Array(
-  WriteResult,
-) as any as S.Schema<WriteResultList>;
-
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -446,17 +546,17 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    details: S.optional(DocumentMapList),
     message: S.optional(S.String),
+    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
@@ -466,80 +566,52 @@ export const StatusList = /*@__PURE__*/ S.Array(
   Status,
 ) as any as S.Schema<StatusList>;
 
+/** The result of applying a write. */
+export interface WriteResult {
+  /** The last update time of the document after applying the write. Not set after a `delete`. If the write did not actually change the document, this will be the previous update_time. */
+  updateTime?: string;
+  /** The results of applying each DocumentTransform.FieldTransform, in the same order. */
+  transformResults?: ValueList;
+}
+export const WriteResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    updateTime: S.optional(S.String),
+    transformResults: S.optional(ValueList),
+  }),
+).annotate({ identifier: "WriteResult" }) as any as S.Schema<WriteResult>;
+
+export type WriteResultList = Array<WriteResult>;
+export const WriteResultList = /*@__PURE__*/ S.Array(
+  WriteResult,
+) as any as S.Schema<WriteResultList>;
+
 /** The response from Firestore.BatchWrite. */
 export interface BatchWriteResponse {
-  /** The result of applying the writes. This i-th write result corresponds to the i-th write in the request. */
-  writeResults?: WriteResultList;
   /** The status of applying the writes. This i-th write status corresponds to the i-th write in the request. */
   status?: StatusList;
+  /** The result of applying the writes. This i-th write result corresponds to the i-th write in the request. */
+  writeResults?: WriteResultList;
 }
 export const BatchWriteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    writeResults: S.optional(WriteResultList),
     status: S.optional(StatusList),
+    writeResults: S.optional(WriteResultList),
   }),
 ).annotate({
   identifier: "BatchWriteResponse",
 }) as any as S.Schema<BatchWriteResponse>;
 
-export type ReadWriteConcurrencyModeEnum =
-  | "CONCURRENCY_MODE_UNSPECIFIED"
-  | "OPTIMISTIC"
-  | "PESSIMISTIC";
-export const ReadWriteConcurrencyModeEnum = /*@__PURE__*/ S.String;
-
-/** Options for a transaction that can be used to read and write documents. */
-export interface ReadWrite {
-  /** Optional. The concurrency control mode to use for this transaction. A database is able to use different concurrency modes for different transactions simultaneously. 3rd party auth requests are only allowed to create optimistic read-write transactions and must specify that here even if the database-level setting is already configured to optimistic. */
-  concurrencyMode?: ReadWriteConcurrencyModeEnum | (string & {});
-  /** An optional transaction to retry. */
-  retryTransaction?: string;
-}
-export const ReadWrite = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    concurrencyMode: S.optional(ReadWriteConcurrencyModeEnum),
-    retryTransaction: S.optional(S.String),
-  }),
-).annotate({ identifier: "ReadWrite" }) as any as S.Schema<ReadWrite>;
-
-/** Options for a transaction that can only be used to read documents. */
-export interface ReadOnly {
-  /** Reads documents at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-}
-export const ReadOnly = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    readTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "ReadOnly" }) as any as S.Schema<ReadOnly>;
-
-/** Options for creating a new transaction. */
-export interface TransactionOptions {
-  /** The transaction can be used for both read and write operations. */
-  readWrite?: ReadWrite;
-  /** The transaction can only be used for read operations. */
-  readOnly?: ReadOnly;
-}
-export const TransactionOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    readWrite: S.optional(ReadWrite),
-    readOnly: S.optional(ReadOnly),
-  }),
-).annotate({
-  identifier: "TransactionOptions",
-}) as any as S.Schema<TransactionOptions>;
-
 /** The request for Firestore.BeginTransaction. */
 export interface BeginTransactionRequest {
-  /** Optional. The request options for this request. */
-  requestOptions?: RequestOptions;
   /** The options for the transaction. Defaults to a read-write transaction. */
   options?: TransactionOptions;
+  /** Optional. The request options for this request. */
+  requestOptions?: RequestOptions;
 }
 export const BeginTransactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestOptions: S.optional(RequestOptions),
     options: S.optional(TransactionOptions),
+    requestOptions: S.optional(RequestOptions),
   }),
 ).annotate({
   identifier: "BeginTransactionRequest",
@@ -580,6 +652,72 @@ export const BeginTransactionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BeginTransactionResponse",
 }) as any as S.Schema<BeginTransactionResponse>;
 
+/** The request for FirestoreAdmin.BulkDeleteDocuments. When both collection_ids and namespace_ids are set, only documents satisfying both conditions will be deleted. Requests with namespace_ids and collection_ids both empty will be rejected. Please use FirestoreAdmin.DeleteDatabase instead. */
+export interface GoogleFirestoreAdminV1BulkDeleteDocumentsRequest {
+  /** Optional. Namespaces to delete. An empty list means all namespaces. This is the recommended usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to delete from them. Each namespace in this list must be unique. */
+  namespaceIds?: StringList;
+  /** Optional. IDs of the collection groups to delete. Unspecified means all collection groups. Each collection group in this list must be unique. */
+  collectionIds?: StringList;
+}
+export const GoogleFirestoreAdminV1BulkDeleteDocumentsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespaceIds: S.optional(StringList),
+      collectionIds: S.optional(StringList),
+    }),
+  ).annotate({
+    identifier: "GoogleFirestoreAdminV1BulkDeleteDocumentsRequest",
+  }) as any as S.Schema<GoogleFirestoreAdminV1BulkDeleteDocumentsRequest>;
+
+export interface BulkDeleteDocumentsProjectsDatabasesRequest {
+  /** Required. Database to operate. Should be of the form: `projects/{project_id}/databases/{database_id}`. */
+  name: string;
+  /** Request body */
+  body?: GoogleFirestoreAdminV1BulkDeleteDocumentsRequest;
+}
+export const BulkDeleteDocumentsProjectsDatabasesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      body: S.optional(
+        GoogleFirestoreAdminV1BulkDeleteDocumentsRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "v1/{+name}:bulkDeleteDocuments",
+        baseUrl: "https://firestore.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BulkDeleteDocumentsProjectsDatabasesRequest",
+  }) as any as S.Schema<BulkDeleteDocumentsProjectsDatabasesRequest>;
+
+/** This resource represents a long-running operation that is the result of a network API call. */
+export interface GoogleLongrunningOperation {
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: Status;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
+  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
+  metadata?: DocumentMap;
+}
+export const GoogleLongrunningOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    response: S.optional(DocumentMap),
+    error: S.optional(Status),
+    name: S.optional(S.String),
+    done: S.optional(S.Boolean),
+    metadata: S.optional(DocumentMap),
+  }),
+).annotate({
+  identifier: "GoogleLongrunningOperation",
+}) as any as S.Schema<GoogleLongrunningOperation>;
+
 /** The request message for Operations.CancelOperation. */
 export interface GoogleLongrunningCancelOperationRequest {}
 export const GoogleLongrunningCancelOperationRequest = /*@__PURE__*/ S.suspend(
@@ -618,31 +756,6 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
-/** A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour. */
-export interface GoogleFirestoreAdminV1PitrSnapshot {
-  /** Required. Snapshot time of the database. */
-  snapshotTime?: string;
-  /** Output only. Public UUID of the database the snapshot was associated with. */
-  databaseUid?: string;
-  /** Required. The name of the database that this was a snapshot of. Format: `projects/{project}/databases/{database}`. */
-  database?: string;
-}
-export const GoogleFirestoreAdminV1PitrSnapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    snapshotTime: S.optional(S.String),
-    databaseUid: S.optional(S.String),
-    database: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleFirestoreAdminV1PitrSnapshot",
-}) as any as S.Schema<GoogleFirestoreAdminV1PitrSnapshot>;
-
-/** The configuration options for using the same encryption method as the source. */
-export type GoogleFirestoreAdminV1SourceEncryptionOptions =
-  GoogleLongrunningCancelOperationRequest;
-export const GoogleFirestoreAdminV1SourceEncryptionOptions =
-  GoogleLongrunningCancelOperationRequest;
-
 /** The configuration options for using CMEK (Customer Managed Encryption Key) encryption. */
 export interface GoogleFirestoreAdminV1CustomerManagedEncryptionOptions {
   /** Required. Only keys in the same location as the database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`. */
@@ -663,47 +776,72 @@ export type GoogleFirestoreAdminV1GoogleDefaultEncryptionOptions =
 export const GoogleFirestoreAdminV1GoogleDefaultEncryptionOptions =
   GoogleLongrunningCancelOperationRequest;
 
+/** The configuration options for using the same encryption method as the source. */
+export type GoogleFirestoreAdminV1SourceEncryptionOptions =
+  GoogleLongrunningCancelOperationRequest;
+export const GoogleFirestoreAdminV1SourceEncryptionOptions =
+  GoogleLongrunningCancelOperationRequest;
+
 /** Encryption configuration for a new database being created from another source. The source could be a Backup or a PitrSnapshot. */
 export interface GoogleFirestoreAdminV1EncryptionConfig {
-  /** The database will use the same encryption configuration as the source. */
-  useSourceEncryption?: GoogleLongrunningCancelOperationRequest;
   /** Use Customer Managed Encryption Keys (CMEK) for encryption. */
   customerManagedEncryption?: GoogleFirestoreAdminV1CustomerManagedEncryptionOptions;
   /** Use Google default encryption. */
   googleDefaultEncryption?: GoogleLongrunningCancelOperationRequest;
+  /** The database will use the same encryption configuration as the source. */
+  useSourceEncryption?: GoogleLongrunningCancelOperationRequest;
 }
 export const GoogleFirestoreAdminV1EncryptionConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      useSourceEncryption: S.optional(GoogleLongrunningCancelOperationRequest),
       customerManagedEncryption: S.optional(
         GoogleFirestoreAdminV1CustomerManagedEncryptionOptions,
       ),
       googleDefaultEncryption: S.optional(
         GoogleLongrunningCancelOperationRequest,
       ),
+      useSourceEncryption: S.optional(GoogleLongrunningCancelOperationRequest),
     }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1EncryptionConfig",
 }) as any as S.Schema<GoogleFirestoreAdminV1EncryptionConfig>;
 
+/** A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour. */
+export interface GoogleFirestoreAdminV1PitrSnapshot {
+  /** Required. The name of the database that this was a snapshot of. Format: `projects/{project}/databases/{database}`. */
+  database?: string;
+  /** Output only. Public UUID of the database the snapshot was associated with. */
+  databaseUid?: string;
+  /** Required. Snapshot time of the database. */
+  snapshotTime?: string;
+}
+export const GoogleFirestoreAdminV1PitrSnapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    database: S.optional(S.String),
+    databaseUid: S.optional(S.String),
+    snapshotTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleFirestoreAdminV1PitrSnapshot",
+}) as any as S.Schema<GoogleFirestoreAdminV1PitrSnapshot>;
+
 /** The request message for FirestoreAdmin.CloneDatabase. */
 export interface GoogleFirestoreAdminV1CloneDatabaseRequest {
-  /** Required. Specification of the PITR data to clone from. The source database must exist. The cloned database will be created in the same location as the source database. */
-  pitrSnapshot?: GoogleFirestoreAdminV1PitrSnapshot;
-  /** Optional. Immutable. Tags to be bound to the cloned database. The tags should be provided in the format of `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`. */
-  tags?: StringMap;
   /** Optional. Encryption configuration for the cloned database. If this field is not specified, the cloned database will use the same encryption configuration as the source database, namely use_source_encryption. */
   encryptionConfig?: GoogleFirestoreAdminV1EncryptionConfig;
+  /** Optional. Immutable. Tags to be bound to the cloned database. The tags should be provided in the format of `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`. */
+  tags?: StringMap;
+  /** Required. Specification of the PITR data to clone from. The source database must exist. The cloned database will be created in the same location as the source database. */
+  pitrSnapshot?: GoogleFirestoreAdminV1PitrSnapshot;
   /** Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. "(default)" database ID is also valid if the database is Standard edition. */
   databaseId?: string;
 }
 export const GoogleFirestoreAdminV1CloneDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pitrSnapshot: S.optional(GoogleFirestoreAdminV1PitrSnapshot),
-      tags: S.optional(StringMap),
       encryptionConfig: S.optional(GoogleFirestoreAdminV1EncryptionConfig),
+      tags: S.optional(StringMap),
+      pitrSnapshot: S.optional(GoogleFirestoreAdminV1PitrSnapshot),
       databaseId: S.optional(S.String),
     }),
   ).annotate({
@@ -733,45 +871,20 @@ export const CloneProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CloneProjectsDatabasesRequest",
 }) as any as S.Schema<CloneProjectsDatabasesRequest>;
 
-/** This resource represents a long-running operation that is the result of a network API call. */
-export interface GoogleLongrunningOperation {
-  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
-  metadata?: DocumentMap;
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: Status;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
-}
-export const GoogleLongrunningOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(DocumentMap),
-    error: S.optional(Status),
-    name: S.optional(S.String),
-    done: S.optional(S.Boolean),
-    response: S.optional(DocumentMap),
-  }),
-).annotate({
-  identifier: "GoogleLongrunningOperation",
-}) as any as S.Schema<GoogleLongrunningOperation>;
-
 /** The request for Firestore.Commit. */
 export interface CommitRequest {
-  /** The writes to apply. Always executed atomically and in order. */
-  writes?: WriteList;
-  /** If set, applies all writes in this transaction, and commits it. */
-  transaction?: string;
   /** Optional. The request options for this request. */
   requestOptions?: RequestOptions;
+  /** If set, applies all writes in this transaction, and commits it. */
+  transaction?: string;
+  /** The writes to apply. Always executed atomically and in order. */
+  writes?: WriteList;
 }
 export const CommitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    writes: S.optional(WriteList),
-    transaction: S.optional(S.String),
     requestOptions: S.optional(RequestOptions),
+    transaction: S.optional(S.String),
+    writes: S.optional(WriteList),
   }),
 ).annotate({ identifier: "CommitRequest" }) as any as S.Schema<CommitRequest>;
 
@@ -799,27 +912,27 @@ export const CommitProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
 
 /** The response for Firestore.Commit. */
 export interface CommitResponse {
-  /** The result of applying the writes. This i-th write result corresponds to the i-th write in the request. */
-  writeResults?: WriteResultList;
   /** The time at which the commit occurred. Any read with an equal or greater `read_time` is guaranteed to see the effects of the commit. */
   commitTime?: string;
+  /** The result of applying the writes. This i-th write result corresponds to the i-th write in the request. */
+  writeResults?: WriteResultList;
 }
 export const CommitResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    writeResults: S.optional(WriteResultList),
     commitTime: S.optional(S.String),
+    writeResults: S.optional(WriteResultList),
   }),
 ).annotate({ identifier: "CommitResponse" }) as any as S.Schema<CommitResponse>;
 
 export interface CreateDocumentProjectsDatabasesDocumentsRequest {
-  /** Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`. */
-  collectionId: string;
-  /** The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service. */
-  documentId?: string;
   /** Required. The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}` */
   parent: string;
   /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
   "requestOptions.requestTags"?: StringList;
+  /** The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service. */
+  documentId?: string;
+  /** Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`. */
+  collectionId: string;
   /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
   "mask.fieldPaths"?: StringList;
   /** Request body */
@@ -828,10 +941,10 @@ export interface CreateDocumentProjectsDatabasesDocumentsRequest {
 export const CreateDocumentProjectsDatabasesDocumentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      collectionId: S.String.pipe(T.Label()),
-      documentId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
+      documentId: S.optional(S.String.pipe(T.Query())),
+      collectionId: S.String.pipe(T.Label()),
       "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
       body: S.optional(Document.pipe(T.HttpBody())),
     }).pipe(
@@ -844,13 +957,6 @@ export const CreateDocumentProjectsDatabasesDocumentsRequest =
   ).annotate({
     identifier: "CreateDocumentProjectsDatabasesDocumentsRequest",
   }) as any as S.Schema<CreateDocumentProjectsDatabasesDocumentsRequest>;
-
-export type GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
-  | "DATA_ACCESS_MODE_UNSPECIFIED"
-  | "DATA_ACCESS_MODE_ENABLED"
-  | "DATA_ACCESS_MODE_DISABLED";
-export const GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
-  /*@__PURE__*/ S.String;
 
 /** Information about a backup that was used to restore a database. */
 export interface GoogleFirestoreAdminV1BackupSource {
@@ -881,6 +987,27 @@ export const GoogleFirestoreAdminV1SourceInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleFirestoreAdminV1SourceInfo",
 }) as any as S.Schema<GoogleFirestoreAdminV1SourceInfo>;
 
+export type GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
+  | "REALTIME_UPDATES_MODE_UNSPECIFIED"
+  | "REALTIME_UPDATES_MODE_ENABLED"
+  | "REALTIME_UPDATES_MODE_DISABLED";
+export const GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
+  /*@__PURE__*/ S.String;
+
+export type GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
+  | "DATA_ACCESS_MODE_UNSPECIFIED"
+  | "DATA_ACCESS_MODE_ENABLED"
+  | "DATA_ACCESS_MODE_DISABLED";
+export const GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
+  /*@__PURE__*/ S.String;
+
+export type GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
+  | "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED"
+  | "ENABLED"
+  | "DISABLED";
+export const GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
+  /*@__PURE__*/ S.String;
+
 export type GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum =
   | "CONCURRENCY_MODE_UNSPECIFIED"
   | "OPTIMISTIC"
@@ -896,24 +1023,11 @@ export type GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum =
 export const GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum =
   /*@__PURE__*/ S.String;
 
-export type GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
-  | "REALTIME_UPDATES_MODE_UNSPECIFIED"
-  | "REALTIME_UPDATES_MODE_ENABLED"
-  | "REALTIME_UPDATES_MODE_DISABLED";
-export const GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
-  /*@__PURE__*/ S.String;
-
-export type GoogleFirestoreAdminV1DatabaseTypeEnum =
-  | "DATABASE_TYPE_UNSPECIFIED"
-  | "FIRESTORE_NATIVE"
-  | "DATASTORE_MODE";
-export const GoogleFirestoreAdminV1DatabaseTypeEnum = /*@__PURE__*/ S.String;
-
-export type GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
-  | "DELETE_PROTECTION_STATE_UNSPECIFIED"
-  | "DELETE_PROTECTION_DISABLED"
-  | "DELETE_PROTECTION_ENABLED";
-export const GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
+export type GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
+  | "DATA_ACCESS_MODE_UNSPECIFIED"
+  | "DATA_ACCESS_MODE_ENABLED"
+  | "DATA_ACCESS_MODE_DISABLED";
+export const GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
   /*@__PURE__*/ S.String;
 
 export type GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum =
@@ -923,19 +1037,11 @@ export type GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum =
 export const GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum =
   /*@__PURE__*/ S.String;
 
-export type GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
-  | "DATA_ACCESS_MODE_UNSPECIFIED"
-  | "DATA_ACCESS_MODE_ENABLED"
-  | "DATA_ACCESS_MODE_DISABLED";
-export const GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
-  /*@__PURE__*/ S.String;
-
-export type GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
-  | "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED"
-  | "ENABLED"
-  | "DISABLED";
-export const GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
-  /*@__PURE__*/ S.String;
+export type GoogleFirestoreAdminV1DatabaseTypeEnum =
+  | "DATABASE_TYPE_UNSPECIFIED"
+  | "FIRESTORE_NATIVE"
+  | "DATASTORE_MODE";
+export const GoogleFirestoreAdminV1DatabaseTypeEnum = /*@__PURE__*/ S.String;
 
 /** The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key. */
 export interface GoogleFirestoreAdminV1CmekConfig {
@@ -953,132 +1059,139 @@ export const GoogleFirestoreAdminV1CmekConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleFirestoreAdminV1CmekConfig",
 }) as any as S.Schema<GoogleFirestoreAdminV1CmekConfig>;
 
+export type GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
+  | "DELETE_PROTECTION_STATE_UNSPECIFIED"
+  | "DELETE_PROTECTION_DISABLED"
+  | "DELETE_PROTECTION_ENABLED";
+export const GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
+  /*@__PURE__*/ S.String;
+
 /** A Cloud Firestore Database. */
 export interface GoogleFirestoreAdminV1Database {
-  /** Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database. */
-  updateTime?: string;
+  /** Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" */
+  tags?: StringMap;
   /** Output only. The timestamp at which this database was created. Databases created before 2016 do not populate create_time. */
   createTime?: string;
-  /** Output only. The system-generated UUID4 for this Database. */
-  uid?: string;
-  /** Optional. The MongoDB compatible API data access mode to use for this database. If not set on write, the default value is DATA_ACCESS_MODE_ENABLED for Enterprise edition. The value is always DATA_ACCESS_MODE_DISABLED for Standard edition. */
-  mongodbCompatibleDataAccessMode?:
-    | GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum
-    | (string & {});
+  /** Output only. The timestamp at which this database was deleted. Only set if the database has been deleted. */
+  deleteTime?: string;
+  /** Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID ("~") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo). */
+  keyPrefix?: string;
+  /** The resource name of the Database. Format: `projects/{project}/databases/{database}` */
+  name?: string;
+  /** Output only. Background: Free tier is the ability of a Firestore database to use a small amount of resources every day without being charged. Once usage exceeds the free tier limit further usage is charged. Whether this database can make use of the free tier. Only one database per project can be eligible for the free tier. The first (or next) database that is created in a project without a free tier database will be marked as eligible for the free tier. Databases that are created while there is a free tier database will not be eligible for the free tier. */
+  freeTier?: boolean;
   /** This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
   etag?: string;
+  /** Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour. */
+  versionRetentionPeriod?: string;
   /** Output only. Information about the provenance of this database. */
   sourceInfo?: GoogleFirestoreAdminV1SourceInfo;
-  /** The default concurrency control mode to use for this database. If unspecified in a CreateDatabase request, this will default based on the database edition: Optimistic for Enterprise and Pessimistic for all other databases. While transactions can explicitly specify their own concurrency mode, this setting defines the default behavior when left unspecified. Important: This database-level setting is not respected for Firestore with MongoDB compatibility. All transactions through the MongoDB compatibility layer will use optimistic concurrency control, regardless of this setting. */
-  concurrencyMode?:
-    | GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum
-    | (string & {});
-  /** Output only. The database resource's prior database ID. This field is only populated for deleted databases. */
-  previousId?: string;
-  /** Whether to enable the PITR feature on this database. */
-  pointInTimeRecoveryEnablement?:
-    | GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum
-    | (string & {});
   /** Immutable. The default Realtime Updates mode to use for this database. */
   realtimeUpdatesMode?:
     | GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum
     | (string & {});
-  /** Required. The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose. */
-  type?: GoogleFirestoreAdminV1DatabaseTypeEnum | (string & {});
-  /** Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour. */
-  versionRetentionPeriod?: string;
-  /** Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID ("~") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo). */
-  keyPrefix?: string;
-  /** Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery. */
-  earliestVersionTime?: string;
-  /** Required. The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations. */
-  locationId?: string;
-  /** State of delete protection for the database. */
-  deleteProtectionState?:
-    | GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum
+  /** Optional. The MongoDB compatible API data access mode to use for this database. If not set on write, the default value is DATA_ACCESS_MODE_ENABLED for Enterprise edition. The value is always DATA_ACCESS_MODE_DISABLED for Standard edition. */
+  mongodbCompatibleDataAccessMode?:
+    | GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum
     | (string & {});
-  /** Immutable. The edition of the database. */
-  databaseEdition?:
-    | GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum
-    | (string & {});
-  /** The resource name of the Database. Format: `projects/{project}/databases/{database}` */
-  name?: string;
-  /** Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" */
-  tags?: StringMap;
-  /** Output only. The timestamp at which this database was deleted. Only set if the database has been deleted. */
-  deleteTime?: string;
-  /** Optional. The Firestore API data access mode to use for this database. If not set on write: - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise edition. - the default value is DATA_ACCESS_MODE_ENABLED for Standard edition. */
-  firestoreDataAccessMode?:
-    | GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum
-    | (string & {});
-  /** Output only. Background: Free tier is the ability of a Firestore database to use a small amount of resources every day without being charged. Once usage exceeds the free tier limit further usage is charged. Whether this database can make use of the free tier. Only one database per project can be eligible for the free tier. The first (or next) database that is created in a project without a free tier database will be marked as eligible for the free tier. Databases that are created while there is a free tier database will not be eligible for the free tier. */
-  freeTier?: boolean;
   /** The App Engine integration mode to use for this database. */
   appEngineIntegrationMode?:
     | GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum
     | (string & {});
+  /** Output only. The system-generated UUID4 for this Database. */
+  uid?: string;
+  /** Output only. The database resource's prior database ID. This field is only populated for deleted databases. */
+  previousId?: string;
+  /** The default concurrency control mode to use for this database. If unspecified in a CreateDatabase request, this will default based on the database edition: Optimistic for Enterprise and Pessimistic for all other databases. While transactions can explicitly specify their own concurrency mode, this setting defines the default behavior when left unspecified. Important: This database-level setting is not respected for Firestore with MongoDB compatibility. All transactions through the MongoDB compatibility layer will use optimistic concurrency control, regardless of this setting. */
+  concurrencyMode?:
+    | GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum
+    | (string & {});
+  /** Required. The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations. */
+  locationId?: string;
+  /** Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery. */
+  earliestVersionTime?: string;
+  /** Whether to enable the PITR feature on this database. */
+  pointInTimeRecoveryEnablement?:
+    | GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum
+    | (string & {});
+  /** Optional. The Firestore API data access mode to use for this database. If not set on write: - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise edition. - the default value is DATA_ACCESS_MODE_ENABLED for Standard edition. */
+  firestoreDataAccessMode?:
+    | GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum
+    | (string & {});
+  /** Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database. */
+  updateTime?: string;
+  /** Immutable. The edition of the database. */
+  databaseEdition?:
+    | GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum
+    | (string & {});
+  /** Required. The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose. */
+  type?: GoogleFirestoreAdminV1DatabaseTypeEnum | (string & {});
   /** Optional. Presence indicates CMEK is enabled for this database. */
   cmekConfig?: GoogleFirestoreAdminV1CmekConfig;
+  /** State of delete protection for the database. */
+  deleteProtectionState?:
+    | GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum
+    | (string & {});
 }
 export const GoogleFirestoreAdminV1Database = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateTime: S.optional(S.String),
+    tags: S.optional(StringMap),
     createTime: S.optional(S.String),
-    uid: S.optional(S.String),
-    mongodbCompatibleDataAccessMode: S.optional(
-      GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum,
-    ),
+    deleteTime: S.optional(S.String),
+    keyPrefix: S.optional(S.String),
+    name: S.optional(S.String),
+    freeTier: S.optional(S.Boolean),
     etag: S.optional(S.String),
+    versionRetentionPeriod: S.optional(S.String),
     sourceInfo: S.optional(GoogleFirestoreAdminV1SourceInfo),
-    concurrencyMode: S.optional(
-      GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum,
-    ),
-    previousId: S.optional(S.String),
-    pointInTimeRecoveryEnablement: S.optional(
-      GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum,
-    ),
     realtimeUpdatesMode: S.optional(
       GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum,
     ),
-    type: S.optional(GoogleFirestoreAdminV1DatabaseTypeEnum),
-    versionRetentionPeriod: S.optional(S.String),
-    keyPrefix: S.optional(S.String),
-    earliestVersionTime: S.optional(S.String),
-    locationId: S.optional(S.String),
-    deleteProtectionState: S.optional(
-      GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum,
+    mongodbCompatibleDataAccessMode: S.optional(
+      GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum,
     ),
-    databaseEdition: S.optional(
-      GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum,
-    ),
-    name: S.optional(S.String),
-    tags: S.optional(StringMap),
-    deleteTime: S.optional(S.String),
-    firestoreDataAccessMode: S.optional(
-      GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum,
-    ),
-    freeTier: S.optional(S.Boolean),
     appEngineIntegrationMode: S.optional(
       GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum,
     ),
+    uid: S.optional(S.String),
+    previousId: S.optional(S.String),
+    concurrencyMode: S.optional(
+      GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum,
+    ),
+    locationId: S.optional(S.String),
+    earliestVersionTime: S.optional(S.String),
+    pointInTimeRecoveryEnablement: S.optional(
+      GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum,
+    ),
+    firestoreDataAccessMode: S.optional(
+      GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum,
+    ),
+    updateTime: S.optional(S.String),
+    databaseEdition: S.optional(
+      GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum,
+    ),
+    type: S.optional(GoogleFirestoreAdminV1DatabaseTypeEnum),
     cmekConfig: S.optional(GoogleFirestoreAdminV1CmekConfig),
+    deleteProtectionState: S.optional(
+      GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum,
+    ),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1Database",
 }) as any as S.Schema<GoogleFirestoreAdminV1Database>;
 
 export interface CreateProjectsDatabasesRequest {
-  /** Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. "(default)" database ID is also valid if the database is Standard edition. */
-  databaseId?: string;
   /** Required. A parent name of the form `projects/{project_id}` */
   parent: string;
+  /** Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. "(default)" database ID is also valid if the database is Standard edition. */
+  databaseId?: string;
   /** Request body */
   body?: GoogleFirestoreAdminV1Database;
 }
 export const CreateProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    databaseId: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
+    databaseId: S.optional(S.String.pipe(T.Query())),
     body: S.optional(GoogleFirestoreAdminV1Database.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1127,26 +1240,26 @@ export const GoogleFirestoreAdminV1WeeklyRecurrence = /*@__PURE__*/ S.suspend(
 export interface GoogleFirestoreAdminV1BackupSchedule {
   /** At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days. The maximum supported retention period is 14 weeks. */
   retention?: string;
-  /** Output only. The timestamp at which this backup schedule was created and effective since. No backups will be created for this schedule before this time. */
-  createTime?: string;
-  /** Output only. The timestamp at which this backup schedule was most recently updated. When a backup schedule is first created, this is the same as create_time. */
-  updateTime?: string;
   /** For a schedule that runs daily. */
   dailyRecurrence?: GoogleLongrunningCancelOperationRequest;
-  /** Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}` */
-  name?: string;
   /** For a schedule that runs weekly on a specific day. */
   weeklyRecurrence?: GoogleFirestoreAdminV1WeeklyRecurrence;
+  /** Output only. The timestamp at which this backup schedule was most recently updated. When a backup schedule is first created, this is the same as create_time. */
+  updateTime?: string;
+  /** Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}` */
+  name?: string;
+  /** Output only. The timestamp at which this backup schedule was created and effective since. No backups will be created for this schedule before this time. */
+  createTime?: string;
 }
 export const GoogleFirestoreAdminV1BackupSchedule = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       retention: S.optional(S.String),
-      createTime: S.optional(S.String),
-      updateTime: S.optional(S.String),
       dailyRecurrence: S.optional(GoogleLongrunningCancelOperationRequest),
-      name: S.optional(S.String),
       weeklyRecurrence: S.optional(GoogleFirestoreAdminV1WeeklyRecurrence),
+      updateTime: S.optional(S.String),
+      name: S.optional(S.String),
+      createTime: S.optional(S.String),
     }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1BackupSchedule",
@@ -1174,12 +1287,6 @@ export const CreateProjectsDatabasesBackupSchedulesRequest =
     identifier: "CreateProjectsDatabasesBackupSchedulesRequest",
   }) as any as S.Schema<CreateProjectsDatabasesBackupSchedulesRequest>;
 
-/** The change stream is scoped to the entire database. All events in the database are visible to the Change Stream. One Database scope Change Stream is allowed per database. */
-export type GoogleFirestoreAdminV1DatabaseScope =
-  GoogleLongrunningCancelOperationRequest;
-export const GoogleFirestoreAdminV1DatabaseScope =
-  GoogleLongrunningCancelOperationRequest;
-
 /** The change stream is scoped to a collection group. Only events associated with the given collection group are visible to the Change Stream. Only a single change stream can be enabled per collection group. */
 export interface GoogleFirestoreAdminV1CollectionGroupScope {
   /** Required. The collection group name. */
@@ -1194,37 +1301,43 @@ export const GoogleFirestoreAdminV1CollectionGroupScope =
     identifier: "GoogleFirestoreAdminV1CollectionGroupScope",
   }) as any as S.Schema<GoogleFirestoreAdminV1CollectionGroupScope>;
 
+/** The change stream is scoped to the entire database. All events in the database are visible to the Change Stream. One Database scope Change Stream is allowed per database. */
+export type GoogleFirestoreAdminV1DatabaseScope =
+  GoogleLongrunningCancelOperationRequest;
+export const GoogleFirestoreAdminV1DatabaseScope =
+  GoogleLongrunningCancelOperationRequest;
+
 /** A Change Stream is a resource that allows users to receive change notifications from a Firestore database. */
 export interface GoogleFirestoreAdminV1ChangeStream {
-  /** Identifier. The external resource name of the change stream. Format `projects/{project}/databases/{database}/changeStreams/{change_stream}` */
-  name?: string;
-  /** Output only. The time the Change Stream started recording events. */
-  startTime?: string;
-  /** If set, the change stream is scoped to the entire database. */
-  databaseScope?: GoogleLongrunningCancelOperationRequest;
-  /** Optional. An etag used to determine which version of the configuration is being edited. */
-  etag?: string;
-  /** Output only. The time the Change Stream was created. */
-  createTime?: string;
   /** Required. The retention period of the change stream. This is the amount of time a change event is available on the change stream. Must be from 1 to 7 days, inclusive. The retention_period must be in day granularity, i.e. it must be a multiple of 24 hours. */
   retentionPeriod?: string;
   /** Output only. The time the Change Stream was last updated. */
   updateTime?: string;
+  /** Optional. An etag used to determine which version of the configuration is being edited. */
+  etag?: string;
+  /** Output only. The time the Change Stream started recording events. */
+  startTime?: string;
   /** If set, the change stream is scoped to a collection group. */
   collectionGroupScope?: GoogleFirestoreAdminV1CollectionGroupScope;
+  /** Identifier. The external resource name of the change stream. Format `projects/{project}/databases/{database}/changeStreams/{change_stream}` */
+  name?: string;
+  /** Output only. The time the Change Stream was created. */
+  createTime?: string;
+  /** If set, the change stream is scoped to the entire database. */
+  databaseScope?: GoogleLongrunningCancelOperationRequest;
 }
 export const GoogleFirestoreAdminV1ChangeStream = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    startTime: S.optional(S.String),
-    databaseScope: S.optional(GoogleLongrunningCancelOperationRequest),
-    etag: S.optional(S.String),
-    createTime: S.optional(S.String),
     retentionPeriod: S.optional(S.String),
     updateTime: S.optional(S.String),
+    etag: S.optional(S.String),
+    startTime: S.optional(S.String),
     collectionGroupScope: S.optional(
       GoogleFirestoreAdminV1CollectionGroupScope,
     ),
+    name: S.optional(S.String),
+    createTime: S.optional(S.String),
+    databaseScope: S.optional(GoogleLongrunningCancelOperationRequest),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1ChangeStream",
@@ -1255,37 +1368,42 @@ export const CreateProjectsDatabasesChangeStreamsRequest =
     identifier: "CreateProjectsDatabasesChangeStreamsRequest",
   }) as any as S.Schema<CreateProjectsDatabasesChangeStreamsRequest>;
 
-export type GoogleFirestoreAdminV1IndexQueryScopeEnum =
-  | "QUERY_SCOPE_UNSPECIFIED"
-  | "COLLECTION"
-  | "COLLECTION_GROUP"
-  | "COLLECTION_RECURSIVE";
-export const GoogleFirestoreAdminV1IndexQueryScopeEnum = /*@__PURE__*/ S.String;
-
 export type GoogleFirestoreAdminV1IndexApiScopeEnum =
   | "ANY_API"
   | "DATASTORE_MODE_API"
   | "MONGODB_COMPATIBLE_API";
 export const GoogleFirestoreAdminV1IndexApiScopeEnum = /*@__PURE__*/ S.String;
 
-export type GoogleFirestoreAdminV1IndexDensityEnum =
-  | "DENSITY_UNSPECIFIED"
-  | "SPARSE_ALL"
-  | "SPARSE_ANY"
-  | "DENSE";
-export const GoogleFirestoreAdminV1IndexDensityEnum = /*@__PURE__*/ S.String;
+/** Options for search indexes at the definition level. */
+export interface GoogleFirestoreAdminV1SearchIndexOptions {
+  /** Optional. The field in the document that specifies which language to use for that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if unspecified, the language is taken from the "language" field if it exists or from `text_language` if it does not. */
+  textLanguageOverrideFieldPath?: string;
+  /** Optional. The language to use for text search indexes. Used as the default language if not overridden at the document level by specifying the `text_language_override_field`. The language is specified as a BCP 47 language code. For indexes with MONGODB_COMPATIBLE_API ApiScope: If unspecified, the default language is English. For indexes with `ANY_API` ApiScope: If unspecified, the default behavior is autodetect. */
+  textLanguage?: string;
+}
+export const GoogleFirestoreAdminV1SearchIndexOptions = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      textLanguageOverrideFieldPath: S.optional(S.String),
+      textLanguage: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GoogleFirestoreAdminV1SearchIndexOptions",
+}) as any as S.Schema<GoogleFirestoreAdminV1SearchIndexOptions>;
 
-export type GoogleFirestoreAdminV1IndexFieldOrderEnum =
-  | "ORDER_UNSPECIFIED"
-  | "ASCENDING"
-  | "DESCENDING";
-export const GoogleFirestoreAdminV1IndexFieldOrderEnum = /*@__PURE__*/ S.String;
+export type GoogleFirestoreAdminV1IndexStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "READY"
+  | "NEEDS_REPAIR";
+export const GoogleFirestoreAdminV1IndexStateEnum = /*@__PURE__*/ S.String;
 
-export type GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
-  | "ARRAY_CONFIG_UNSPECIFIED"
-  | "CONTAINS";
-export const GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
-  /*@__PURE__*/ S.String;
+export type GoogleFirestoreAdminV1IndexQueryScopeEnum =
+  | "QUERY_SCOPE_UNSPECIFIED"
+  | "COLLECTION"
+  | "COLLECTION_GROUP"
+  | "COLLECTION_RECURSIVE";
+export const GoogleFirestoreAdminV1IndexQueryScopeEnum = /*@__PURE__*/ S.String;
 
 /** An index that stores vectors in a flat data structure, and supports exhaustive search. */
 export type GoogleFirestoreAdminV1FlatIndex =
@@ -1308,6 +1426,18 @@ export const GoogleFirestoreAdminV1VectorConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GoogleFirestoreAdminV1VectorConfig",
 }) as any as S.Schema<GoogleFirestoreAdminV1VectorConfig>;
+
+export type GoogleFirestoreAdminV1IndexFieldOrderEnum =
+  | "ORDER_UNSPECIFIED"
+  | "ASCENDING"
+  | "DESCENDING";
+export const GoogleFirestoreAdminV1IndexFieldOrderEnum = /*@__PURE__*/ S.String;
+
+export type GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
+  | "ARRAY_CONFIG_UNSPECIFIED"
+  | "CONTAINS";
+export const GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
+  /*@__PURE__*/ S.String;
 
 export type GoogleFirestoreAdminV1SearchTextIndexSpecIndexTypeEnum =
   | "TEXT_INDEX_TYPE_UNSPECIFIED"
@@ -1400,21 +1530,21 @@ export const GoogleFirestoreAdminV1SearchConfig = /*@__PURE__*/ S.suspend(() =>
 export interface GoogleFirestoreAdminV1IndexField {
   /** Can be __name__. For single field indexes, this must match the name of the field or may be omitted. */
   fieldPath?: string;
+  /** Indicates that this field supports nearest neighbor and distance operations on vector. */
+  vectorConfig?: GoogleFirestoreAdminV1VectorConfig;
   /** Indicates that this field supports ordering by the specified order or comparing using =, !=, <, <=, >, >=. */
   order?: GoogleFirestoreAdminV1IndexFieldOrderEnum | (string & {});
   /** Indicates that this field supports operations on `array_value`s. */
   arrayConfig?: GoogleFirestoreAdminV1IndexFieldArrayConfigEnum | (string & {});
-  /** Indicates that this field supports nearest neighbor and distance operations on vector. */
-  vectorConfig?: GoogleFirestoreAdminV1VectorConfig;
   /** Indicates that this field supports search operations. */
   searchConfig?: GoogleFirestoreAdminV1SearchConfig;
 }
 export const GoogleFirestoreAdminV1IndexField = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fieldPath: S.optional(S.String),
+    vectorConfig: S.optional(GoogleFirestoreAdminV1VectorConfig),
     order: S.optional(GoogleFirestoreAdminV1IndexFieldOrderEnum),
     arrayConfig: S.optional(GoogleFirestoreAdminV1IndexFieldArrayConfigEnum),
-    vectorConfig: S.optional(GoogleFirestoreAdminV1VectorConfig),
     searchConfig: S.optional(GoogleFirestoreAdminV1SearchConfig),
   }),
 ).annotate({
@@ -1427,65 +1557,48 @@ export const GoogleFirestoreAdminV1IndexFieldList = /*@__PURE__*/ S.Array(
   GoogleFirestoreAdminV1IndexField,
 ) as any as S.Schema<GoogleFirestoreAdminV1IndexFieldList>;
 
-export type GoogleFirestoreAdminV1IndexStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "READY"
-  | "NEEDS_REPAIR";
-export const GoogleFirestoreAdminV1IndexStateEnum = /*@__PURE__*/ S.String;
-
-/** Options for search indexes at the definition level. */
-export interface GoogleFirestoreAdminV1SearchIndexOptions {
-  /** Optional. The field in the document that specifies which language to use for that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if unspecified, the language is taken from the "language" field if it exists or from `text_language` if it does not. */
-  textLanguageOverrideFieldPath?: string;
-  /** Optional. The language to use for text search indexes. Used as the default language if not overridden at the document level by specifying the `text_language_override_field`. The language is specified as a BCP 47 language code. For indexes with MONGODB_COMPATIBLE_API ApiScope: If unspecified, the default language is English. For indexes with `ANY_API` ApiScope: If unspecified, the default behavior is autodetect. */
-  textLanguage?: string;
-}
-export const GoogleFirestoreAdminV1SearchIndexOptions = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      textLanguageOverrideFieldPath: S.optional(S.String),
-      textLanguage: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GoogleFirestoreAdminV1SearchIndexOptions",
-}) as any as S.Schema<GoogleFirestoreAdminV1SearchIndexOptions>;
+export type GoogleFirestoreAdminV1IndexDensityEnum =
+  | "DENSITY_UNSPECIFIED"
+  | "SPARSE_ALL"
+  | "SPARSE_ANY"
+  | "DENSE";
+export const GoogleFirestoreAdminV1IndexDensityEnum = /*@__PURE__*/ S.String;
 
 /** Cloud Firestore indexes enable simple and complex queries against documents in a database. In Standard edition databases, single-field indexes are managed using the google.firestore.admin.v1.Field resource, and composite indexes are managed using the google.firestore.admin.v1.Index resource. In Enterprise edition databases, both single-field and composite indexes are managed using the google.firestore.admin.v1.Index resource. */
 export interface GoogleFirestoreAdminV1Index {
+  /** The API scope supported by this index. */
+  apiScope?: GoogleFirestoreAdminV1IndexApiScopeEnum | (string & {});
+  /** Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope. */
+  multikey?: boolean;
+  /** A server-defined name for this index. Output only. When used in the google.firestore.admin.v1.Index resource, the value is of the form: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}` When used in the google.firestore.admin.v1.Field resource, the value is empty. */
+  name?: string;
+  /** Optional. Options for search indexes that are at the index definition level. This field is only currently supported for indexes with MONGODB_COMPATIBLE_API ApiScope. */
+  searchIndexOptions?: GoogleFirestoreAdminV1SearchIndexOptions;
+  /** Output only. The serving state of the index. */
+  state?: GoogleFirestoreAdminV1IndexStateEnum | (string & {});
+  /** Optional. The number of shards for the index. */
+  shardCount?: number;
   /** Optional. Whether it is an unique index. Unique index ensures all values for the indexed field(s) are unique across documents. */
   unique?: boolean;
   /** Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection ID. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection ID as this index. */
   queryScope?: GoogleFirestoreAdminV1IndexQueryScopeEnum | (string & {});
-  /** The API scope supported by this index. */
-  apiScope?: GoogleFirestoreAdminV1IndexApiScopeEnum | (string & {});
-  /** Immutable. The density configuration of the index. */
-  density?: GoogleFirestoreAdminV1IndexDensityEnum | (string & {});
-  /** Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope. */
-  multikey?: boolean;
-  /** Optional. The number of shards for the index. */
-  shardCount?: number;
-  /** A server-defined name for this index. Output only. When used in the google.firestore.admin.v1.Index resource, the value is of the form: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}` When used in the google.firestore.admin.v1.Field resource, the value is empty. */
-  name?: string;
   /** The fields supported by this index. At most 100 fields may be specified. In Standard edition databases only: - At least 2 fields must be specified. - The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in the index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). */
   fields?: GoogleFirestoreAdminV1IndexFieldList;
-  /** Output only. The serving state of the index. */
-  state?: GoogleFirestoreAdminV1IndexStateEnum | (string & {});
-  /** Optional. Options for search indexes that are at the index definition level. This field is only currently supported for indexes with MONGODB_COMPATIBLE_API ApiScope. */
-  searchIndexOptions?: GoogleFirestoreAdminV1SearchIndexOptions;
+  /** Immutable. The density configuration of the index. */
+  density?: GoogleFirestoreAdminV1IndexDensityEnum | (string & {});
 }
 export const GoogleFirestoreAdminV1Index = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    apiScope: S.optional(GoogleFirestoreAdminV1IndexApiScopeEnum),
+    multikey: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    searchIndexOptions: S.optional(GoogleFirestoreAdminV1SearchIndexOptions),
+    state: S.optional(GoogleFirestoreAdminV1IndexStateEnum),
+    shardCount: S.optional(S.Number),
     unique: S.optional(S.Boolean),
     queryScope: S.optional(GoogleFirestoreAdminV1IndexQueryScopeEnum),
-    apiScope: S.optional(GoogleFirestoreAdminV1IndexApiScopeEnum),
-    density: S.optional(GoogleFirestoreAdminV1IndexDensityEnum),
-    multikey: S.optional(S.Boolean),
-    shardCount: S.optional(S.Number),
-    name: S.optional(S.String),
     fields: S.optional(GoogleFirestoreAdminV1IndexFieldList),
-    state: S.optional(GoogleFirestoreAdminV1IndexStateEnum),
-    searchIndexOptions: S.optional(GoogleFirestoreAdminV1SearchIndexOptions),
+    density: S.optional(GoogleFirestoreAdminV1IndexDensityEnum),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1Index",
@@ -1535,45 +1648,45 @@ export const GoogleFirestoreAdminV1ResourceIdentity = /*@__PURE__*/ S.suspend(
 
 /** A Cloud Firestore User Creds. */
 export interface GoogleFirestoreAdminV1UserCreds {
+  /** Output only. The time the user creds were created. */
+  createTime?: string;
+  /** Output only. The time the user creds were last updated. */
+  updateTime?: string;
+  /** Output only. Whether the user creds are enabled or disabled. Defaults to ENABLED on creation. */
+  state?: GoogleFirestoreAdminV1UserCredsStateEnum | (string & {});
+  /** Resource Identity descriptor. */
+  resourceIdentity?: GoogleFirestoreAdminV1ResourceIdentity;
   /** Output only. The plaintext server-generated password for the user creds. Only populated in responses for CreateUserCreds and ResetUserPassword. */
   securePassword?: string;
   /** Identifier. The resource name of the UserCreds. Format: `projects/{project}/databases/{database}/userCreds/{user_creds}` */
   name?: string;
-  /** Output only. The time the user creds were created. */
-  createTime?: string;
-  /** Output only. Whether the user creds are enabled or disabled. Defaults to ENABLED on creation. */
-  state?: GoogleFirestoreAdminV1UserCredsStateEnum | (string & {});
-  /** Output only. The time the user creds were last updated. */
-  updateTime?: string;
-  /** Resource Identity descriptor. */
-  resourceIdentity?: GoogleFirestoreAdminV1ResourceIdentity;
 }
 export const GoogleFirestoreAdminV1UserCreds = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    createTime: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    state: S.optional(GoogleFirestoreAdminV1UserCredsStateEnum),
+    resourceIdentity: S.optional(GoogleFirestoreAdminV1ResourceIdentity),
     securePassword: S.optional(S.String),
     name: S.optional(S.String),
-    createTime: S.optional(S.String),
-    state: S.optional(GoogleFirestoreAdminV1UserCredsStateEnum),
-    updateTime: S.optional(S.String),
-    resourceIdentity: S.optional(GoogleFirestoreAdminV1ResourceIdentity),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1UserCreds",
 }) as any as S.Schema<GoogleFirestoreAdminV1UserCreds>;
 
 export interface CreateProjectsDatabasesUserCredsRequest {
-  /** Required. A parent name of the form `projects/{project_id}/databases/{database_id}` */
-  parent: string;
   /** Required. The ID to use for the user creds, which will become the final component of the user creds's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. */
   userCredsId?: string;
+  /** Required. A parent name of the form `projects/{project_id}/databases/{database_id}` */
+  parent: string;
   /** Request body */
   body?: GoogleFirestoreAdminV1UserCreds;
 }
 export const CreateProjectsDatabasesUserCredsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       userCredsId: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       body: S.optional(GoogleFirestoreAdminV1UserCreds.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1586,57 +1699,16 @@ export const CreateProjectsDatabasesUserCredsRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreateProjectsDatabasesUserCredsRequest",
 }) as any as S.Schema<CreateProjectsDatabasesUserCredsRequest>;
 
-/** The request for FirestoreAdmin.BulkDeleteDocuments. When both collection_ids and namespace_ids are set, only documents satisfying both conditions will be deleted. Requests with namespace_ids and collection_ids both empty will be rejected. Please use FirestoreAdmin.DeleteDatabase instead. */
-export interface GoogleFirestoreAdminV1BulkDeleteDocumentsRequest {
-  /** Optional. Namespaces to delete. An empty list means all namespaces. This is the recommended usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to delete from them. Each namespace in this list must be unique. */
-  namespaceIds?: StringList;
-  /** Optional. IDs of the collection groups to delete. Unspecified means all collection groups. Each collection group in this list must be unique. */
-  collectionIds?: StringList;
-}
-export const GoogleFirestoreAdminV1BulkDeleteDocumentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespaceIds: S.optional(StringList),
-      collectionIds: S.optional(StringList),
-    }),
-  ).annotate({
-    identifier: "GoogleFirestoreAdminV1BulkDeleteDocumentsRequest",
-  }) as any as S.Schema<GoogleFirestoreAdminV1BulkDeleteDocumentsRequest>;
-
-export interface DeleteBulkDocumentProjectDatabaseRequest {
-  /** Required. Database to operate. Should be of the form: `projects/{project_id}/databases/{database_id}`. */
-  name: string;
-  /** Request body */
-  body?: GoogleFirestoreAdminV1BulkDeleteDocumentsRequest;
-}
-export const DeleteBulkDocumentProjectDatabaseRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      body: S.optional(
-        GoogleFirestoreAdminV1BulkDeleteDocumentsRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "v1/{+name}:bulkDeleteDocuments",
-        baseUrl: "https://firestore.googleapis.com/",
-      }),
-    ),
-).annotate({
-  identifier: "DeleteBulkDocumentProjectDatabaseRequest",
-}) as any as S.Schema<DeleteBulkDocumentProjectDatabaseRequest>;
-
 export interface DeleteProjectsDatabasesRequest {
-  /** Required. A name of the form `projects/{project_id}/databases/{database_id}` */
-  name: string;
   /** The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned. */
   etag?: string;
+  /** Required. A name of the form `projects/{project_id}/databases/{database_id}` */
+  name: string;
 }
 export const DeleteProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     etag: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1709,22 +1781,22 @@ export const DeleteProjectsDatabasesCollectionGroupsIndexesRequest =
   }) as any as S.Schema<DeleteProjectsDatabasesCollectionGroupsIndexesRequest>;
 
 export interface DeleteProjectsDatabasesDocumentsRequest {
-  /** Required. The resource name of the Document to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
-  name: string;
-  /** When set to `true`, the target document must exist. When set to `false`, the target document must not exist. */
-  "currentDocument.exists"?: boolean;
   /** When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned. */
   "currentDocument.updateTime"?: string;
+  /** Required. The resource name of the Document to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
+  name: string;
   /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
   "requestOptions.requestTags"?: StringList;
+  /** When set to `true`, the target document must exist. When set to `false`, the target document must not exist. */
+  "currentDocument.exists"?: boolean;
 }
 export const DeleteProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
-      "currentDocument.exists": S.optional(S.Boolean.pipe(T.Query())),
       "currentDocument.updateTime": S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
+      "currentDocument.exists": S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1855,15 +1927,15 @@ export const EnableProjectsDatabasesUserCredsRequest = /*@__PURE__*/ S.suspend(
 
 /** A Firestore query represented as an ordered list of operations / stages. This is considered the top-level function which plans and executes a query. It is logically equivalent to `query(stages, options)`, but prevents the client from having to build a function wrapper. */
 export interface StructuredPipeline {
-  /** Required. The pipeline query to execute. */
-  pipeline?: Pipeline;
   /** Optional. Optional query-level arguments. */
   options?: ValueMap;
+  /** Required. The pipeline query to execute. */
+  pipeline?: Pipeline;
 }
 export const StructuredPipeline = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pipeline: S.optional(Pipeline),
     options: S.optional(ValueMap),
+    pipeline: S.optional(Pipeline),
   }),
 ).annotate({
   identifier: "StructuredPipeline",
@@ -1871,27 +1943,27 @@ export const StructuredPipeline = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for Firestore.ExecutePipeline. */
 export interface ExecutePipelineRequest {
+  /** Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction. */
+  newTransaction?: TransactionOptions;
+  /** Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in. */
+  transaction?: string;
+  /** Execute the pipeline in a snapshot transaction at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+  /** Optional. Automatically commits the transaction after the pipeline has been executed. Only permitted in combination with `transaction` or `new_transaction`. */
+  autoCommitTransaction?: boolean;
   /** Optional. The request options for this request. */
   requestOptions?: RequestOptions;
   /** A pipelined operation. */
   structuredPipeline?: StructuredPipeline;
-  /** Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in. */
-  transaction?: string;
-  /** Optional. Automatically commits the transaction after the pipeline has been executed. Only permitted in combination with `transaction` or `new_transaction`. */
-  autoCommitTransaction?: boolean;
-  /** Execute the pipeline in a snapshot transaction at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-  /** Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction. */
-  newTransaction?: TransactionOptions;
 }
 export const ExecutePipelineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    newTransaction: S.optional(TransactionOptions),
+    transaction: S.optional(S.String),
+    readTime: S.optional(S.String),
+    autoCommitTransaction: S.optional(S.Boolean),
     requestOptions: S.optional(RequestOptions),
     structuredPipeline: S.optional(StructuredPipeline),
-    transaction: S.optional(S.String),
-    autoCommitTransaction: S.optional(S.Boolean),
-    readTime: S.optional(S.String),
-    newTransaction: S.optional(TransactionOptions),
   }),
 ).annotate({
   identifier: "ExecutePipelineRequest",
@@ -1919,6 +1991,11 @@ export const ExecutePipelineProjectsDatabasesDocumentsRequest =
     identifier: "ExecutePipelineProjectsDatabasesDocumentsRequest",
   }) as any as S.Schema<ExecutePipelineProjectsDatabasesDocumentsRequest>;
 
+export type DocumentList = Array<Document>;
+export const DocumentList = /*@__PURE__*/ S.Array(
+  Document,
+) as any as S.Schema<DocumentList>;
+
 /** Pipeline explain stats. Depending on the explain options in the original request, this can contain the optimized plan and / or execution stats. */
 export interface ExplainStats {
   /** The format depends on the `output_format` options in the request. Currently there are two supported options: `TEXT` and `JSON`. Both supply a `google.protobuf.StringValue`. */
@@ -1930,28 +2007,23 @@ export const ExplainStats = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ExplainStats" }) as any as S.Schema<ExplainStats>;
 
-export type DocumentList = Array<Document>;
-export const DocumentList = /*@__PURE__*/ S.Array(
-  Document,
-) as any as S.Schema<DocumentList>;
-
 /** The response for Firestore.ExecutePipeline. */
 export interface ExecutePipelineResponse {
-  /** Query explain stats. This is present on the **last** response if the request configured explain to run in 'analyze' or 'explain' mode in the pipeline options. If the query does not return any results, a response with `explain_stats` and no `results` will still be sent. */
-  explainStats?: ExplainStats;
   /** The time at which the results are valid. This is a (not strictly) monotonically increasing value across multiple responses in the same stream. The API guarantees that all previously returned results are still valid at the latest `execution_time`. This allows the API consumer to treat the query if it ran at the latest `execution_time` returned. If the query returns no results, a response with `execution_time` and no `results` will be sent, and this represents the time at which the operation was run. */
   executionTime?: string;
   /** Newly created transaction identifier. This field is only specified as part of the first response from the server, alongside the `results` field when the original request specified ExecuteRequest.new_transaction. */
   transaction?: string;
   /** An ordered batch of results returned executing a pipeline. The batch size is variable, and can even be zero for when only a partial progress message is returned. The fields present in the returned documents are only those that were explicitly requested in the pipeline, this includes those like `__name__` and `__update_time__`. This is explicitly a divergence from `Firestore.RunQuery` / `Firestore.GetDocument` RPCs which always return such fields even when they are not specified in the `mask`. */
   results?: DocumentList;
+  /** Query explain stats. This is present on the **last** response if the request configured explain to run in 'analyze' or 'explain' mode in the pipeline options. If the query does not return any results, a response with `explain_stats` and no `results` will still be sent. */
+  explainStats?: ExplainStats;
 }
 export const ExecutePipelineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explainStats: S.optional(ExplainStats),
     executionTime: S.optional(S.String),
     transaction: S.optional(S.String),
     results: S.optional(DocumentList),
+    explainStats: S.optional(ExplainStats),
   }),
 ).annotate({
   identifier: "ExecutePipelineResponse",
@@ -1961,20 +2033,20 @@ export const ExecutePipelineResponse = /*@__PURE__*/ S.suspend(() =>
 export interface GoogleFirestoreAdminV1ExportDocumentsRequest {
   /** An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique. */
   namespaceIds?: StringList;
-  /** The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time. */
-  outputUriPrefix?: string;
-  /** IDs of the collection groups to export. Unspecified means all collection groups. Each collection group in this list must be unique. */
-  collectionIds?: StringList;
   /** The timestamp that corresponds to the version of the database to be exported. The timestamp must be in the past, rounded to the minute and not older than earliestVersionTime. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents. */
   snapshotTime?: string;
+  /** IDs of the collection groups to export. Unspecified means all collection groups. Each collection group in this list must be unique. */
+  collectionIds?: StringList;
+  /** The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time. */
+  outputUriPrefix?: string;
 }
 export const GoogleFirestoreAdminV1ExportDocumentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespaceIds: S.optional(StringList),
-      outputUriPrefix: S.optional(S.String),
-      collectionIds: S.optional(StringList),
       snapshotTime: S.optional(S.String),
+      collectionIds: S.optional(StringList),
+      outputUriPrefix: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GoogleFirestoreAdminV1ExportDocumentsRequest",
@@ -2003,78 +2075,6 @@ export const ExportDocumentsProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ExportDocumentsProjectsDatabasesRequest",
 }) as any as S.Schema<ExportDocumentsProjectsDatabasesRequest>;
-
-/** The request for Firestore.BatchGetDocuments. */
-export interface BatchGetDocumentsRequest {
-  /** Reads documents in a transaction. */
-  transaction?: string;
-  /** The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided. */
-  documents?: StringList;
-  /** Optional. The request options for this request. */
-  requestOptions?: RequestOptions;
-  /** The fields to return. If not set, returns all fields. If a document has a field that is not present in this mask, that field will not be returned in the response. */
-  mask?: DocumentMask;
-  /** Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream. */
-  newTransaction?: TransactionOptions;
-  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-}
-export const BatchGetDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transaction: S.optional(S.String),
-    documents: S.optional(StringList),
-    requestOptions: S.optional(RequestOptions),
-    mask: S.optional(DocumentMask),
-    newTransaction: S.optional(TransactionOptions),
-    readTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchGetDocumentsRequest",
-}) as any as S.Schema<BatchGetDocumentsRequest>;
-
-export interface GetBatchProjectDatabaseDocumentRequest {
-  /** Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`. */
-  database: string;
-  /** Request body */
-  body?: BatchGetDocumentsRequest;
-}
-export const GetBatchProjectDatabaseDocumentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      database: S.String.pipe(T.Label()),
-      body: S.optional(BatchGetDocumentsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "v1/{+database}/documents:batchGet",
-        baseUrl: "https://firestore.googleapis.com/",
-      }),
-    ),
-).annotate({
-  identifier: "GetBatchProjectDatabaseDocumentRequest",
-}) as any as S.Schema<GetBatchProjectDatabaseDocumentRequest>;
-
-/** The streamed response for Firestore.BatchGetDocuments. */
-export interface BatchGetDocumentsResponse {
-  /** The transaction that was started as part of this request. Will only be set in the first response, and only if BatchGetDocumentsRequest.new_transaction was set in the request. */
-  transaction?: string;
-  /** A document that was requested. */
-  found?: Document;
-  /** The time at which the document was read. This may be monotically increasing, in this case the previous documents in the result stream are guaranteed not to have changed between their read_time and this one. */
-  readTime?: string;
-  /** A document name that was requested but does not exist. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
-  missing?: string;
-}
-export const BatchGetDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transaction: S.optional(S.String),
-    found: S.optional(Document),
-    readTime: S.optional(S.String),
-    missing: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchGetDocumentsResponse",
-}) as any as S.Schema<BatchGetDocumentsResponse>;
 
 export interface GetProjectsDatabasesRequest {
   /** Required. A name of the form `projects/{project_id}/databases/{database_id}` */
@@ -2151,34 +2151,6 @@ export const GetProjectsDatabasesCollectionGroupsFieldsRequest =
     identifier: "GetProjectsDatabasesCollectionGroupsFieldsRequest",
   }) as any as S.Schema<GetProjectsDatabasesCollectionGroupsFieldsRequest>;
 
-export type GoogleFirestoreAdminV1IndexList =
-  Array<GoogleFirestoreAdminV1Index>;
-export const GoogleFirestoreAdminV1IndexList = /*@__PURE__*/ S.Array(
-  GoogleFirestoreAdminV1Index,
-) as any as S.Schema<GoogleFirestoreAdminV1IndexList>;
-
-/** The index configuration for this field. */
-export interface GoogleFirestoreAdminV1IndexConfig {
-  /** Output only. Specifies the resource name of the `Field` from which this field's index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false). */
-  ancestorField?: string;
-  /** Output only When true, the `Field`'s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`. */
-  reverting?: boolean;
-  /** Output only. When true, the `Field`'s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`'s index configuration is defined explicitly. */
-  usesAncestorConfig?: boolean;
-  /** The indexes supported for this field. */
-  indexes?: GoogleFirestoreAdminV1IndexList;
-}
-export const GoogleFirestoreAdminV1IndexConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ancestorField: S.optional(S.String),
-    reverting: S.optional(S.Boolean),
-    usesAncestorConfig: S.optional(S.Boolean),
-    indexes: S.optional(GoogleFirestoreAdminV1IndexList),
-  }),
-).annotate({
-  identifier: "GoogleFirestoreAdminV1IndexConfig",
-}) as any as S.Schema<GoogleFirestoreAdminV1IndexConfig>;
-
 export type GoogleFirestoreAdminV1TtlConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "CREATING"
@@ -2202,20 +2174,48 @@ export const GoogleFirestoreAdminV1TtlConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleFirestoreAdminV1TtlConfig",
 }) as any as S.Schema<GoogleFirestoreAdminV1TtlConfig>;
 
+export type GoogleFirestoreAdminV1IndexList =
+  Array<GoogleFirestoreAdminV1Index>;
+export const GoogleFirestoreAdminV1IndexList = /*@__PURE__*/ S.Array(
+  GoogleFirestoreAdminV1Index,
+) as any as S.Schema<GoogleFirestoreAdminV1IndexList>;
+
+/** The index configuration for this field. */
+export interface GoogleFirestoreAdminV1IndexConfig {
+  /** Output only When true, the `Field`'s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`. */
+  reverting?: boolean;
+  /** The indexes supported for this field. */
+  indexes?: GoogleFirestoreAdminV1IndexList;
+  /** Output only. When true, the `Field`'s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`'s index configuration is defined explicitly. */
+  usesAncestorConfig?: boolean;
+  /** Output only. Specifies the resource name of the `Field` from which this field's index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false). */
+  ancestorField?: string;
+}
+export const GoogleFirestoreAdminV1IndexConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reverting: S.optional(S.Boolean),
+    indexes: S.optional(GoogleFirestoreAdminV1IndexList),
+    usesAncestorConfig: S.optional(S.Boolean),
+    ancestorField: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleFirestoreAdminV1IndexConfig",
+}) as any as S.Schema<GoogleFirestoreAdminV1IndexConfig>;
+
 /** Represents a single field in the database. Fields are grouped by their "Collection Group", which represent all collections in the database with the same ID. */
 export interface GoogleFirestoreAdminV1Field {
-  /** The index configuration for this field. If unset, field indexing will revert to the configuration defined by the `ancestor_field`. To explicitly remove all indexes for this field, specify an index config with an empty list of indexes. */
-  indexConfig?: GoogleFirestoreAdminV1IndexConfig;
-  /** The TTL configuration for this `Field`. Setting or unsetting this will enable or disable the TTL for documents that have this `Field`. */
-  ttlConfig?: GoogleFirestoreAdminV1TtlConfig;
   /** Required. A field name of the form: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration. */
   name?: string;
+  /** The TTL configuration for this `Field`. Setting or unsetting this will enable or disable the TTL for documents that have this `Field`. */
+  ttlConfig?: GoogleFirestoreAdminV1TtlConfig;
+  /** The index configuration for this field. If unset, field indexing will revert to the configuration defined by the `ancestor_field`. To explicitly remove all indexes for this field, specify an index config with an empty list of indexes. */
+  indexConfig?: GoogleFirestoreAdminV1IndexConfig;
 }
 export const GoogleFirestoreAdminV1Field = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    indexConfig: S.optional(GoogleFirestoreAdminV1IndexConfig),
-    ttlConfig: S.optional(GoogleFirestoreAdminV1TtlConfig),
     name: S.optional(S.String),
+    ttlConfig: S.optional(GoogleFirestoreAdminV1TtlConfig),
+    indexConfig: S.optional(GoogleFirestoreAdminV1IndexConfig),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1Field",
@@ -2241,25 +2241,25 @@ export const GetProjectsDatabasesCollectionGroupsIndexesRequest =
   }) as any as S.Schema<GetProjectsDatabasesCollectionGroupsIndexesRequest>;
 
 export interface GetProjectsDatabasesDocumentsRequest {
-  /** Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-  /** Reads the document in a transaction. */
-  transaction?: string;
-  /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
-  "requestOptions.requestTags"?: StringList;
-  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
-  "mask.fieldPaths"?: StringList;
   /** Required. The resource name of the Document to get. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
   name: string;
+  /** Reads the document in a transaction. */
+  transaction?: string;
+  /** Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
+  "mask.fieldPaths"?: StringList;
+  /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
+  "requestOptions.requestTags"?: StringList;
 }
 export const GetProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      readTime: S.optional(S.String.pipe(T.Query())),
-      transaction: S.optional(S.String.pipe(T.Query())),
-      "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
-      "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      transaction: S.optional(S.String.pipe(T.Query())),
+      readTime: S.optional(S.String.pipe(T.Query())),
+      "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
+      "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2329,23 +2329,23 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A resource that represents a Google Cloud location. */
 export interface Location {
-  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
-  labels?: StringMap;
-  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
-  displayName?: string;
-  /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
-  name?: string;
   /** The canonical id for this location. For example: `"us-east1"`. */
   locationId?: string;
+  /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
+  name?: string;
+  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
+  displayName?: string;
+  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
+  labels?: StringMap;
   /** Service-specific metadata. For example the available capacity at the given location. */
   metadata?: DocumentMap;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labels: S.optional(StringMap),
-    displayName: S.optional(S.String),
-    name: S.optional(S.String),
     locationId: S.optional(S.String),
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    labels: S.optional(StringMap),
     metadata: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
@@ -2370,18 +2370,18 @@ export const GetProjectsLocationsBackupsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Backup specific statistics. */
 export interface GoogleFirestoreAdminV1Stats {
-  /** Output only. The total number of documents contained in the backup. */
-  documentCount?: string;
   /** Output only. The total number of index entries contained in the backup. */
   indexCount?: string;
   /** Output only. Summation of the size of all documents and index entries in the backup, measured in bytes. */
   sizeBytes?: string;
+  /** Output only. The total number of documents contained in the backup. */
+  documentCount?: string;
 }
 export const GoogleFirestoreAdminV1Stats = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    documentCount: S.optional(S.String),
     indexCount: S.optional(S.String),
     sizeBytes: S.optional(S.String),
+    documentCount: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1Stats",
@@ -2396,30 +2396,30 @@ export const GoogleFirestoreAdminV1BackupStateEnum = /*@__PURE__*/ S.String;
 
 /** A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time. */
 export interface GoogleFirestoreAdminV1Backup {
+  /** Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location. */
+  name?: string;
+  /** Output only. The backup contains an externally consistent copy of the database at this time. */
+  snapshotTime?: string;
   /** Output only. Statistics about the backup. This data only becomes available after the backup is fully materialized to secondary storage. This field will be empty till then. */
   stats?: GoogleFirestoreAdminV1Stats;
+  /** Output only. The current state of the backup. */
+  state?: GoogleFirestoreAdminV1BackupStateEnum;
   /** Output only. The system-generated UUID4 for the Firestore database that the backup is from. */
   databaseUid?: string;
   /** Output only. The timestamp at which this backup expires. */
   expireTime?: string;
   /** Output only. Name of the Firestore database that the backup is from. Format is `projects/{project}/databases/{database}`. */
   database?: string;
-  /** Output only. The backup contains an externally consistent copy of the database at this time. */
-  snapshotTime?: string;
-  /** Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location. */
-  name?: string;
-  /** Output only. The current state of the backup. */
-  state?: GoogleFirestoreAdminV1BackupStateEnum;
 }
 export const GoogleFirestoreAdminV1Backup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
+    snapshotTime: S.optional(S.String),
     stats: S.optional(GoogleFirestoreAdminV1Stats),
+    state: S.optional(GoogleFirestoreAdminV1BackupStateEnum),
     databaseUid: S.optional(S.String),
     expireTime: S.optional(S.String),
     database: S.optional(S.String),
-    snapshotTime: S.optional(S.String),
-    name: S.optional(S.String),
-    state: S.optional(GoogleFirestoreAdminV1BackupStateEnum),
   }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1Backup",
@@ -2427,18 +2427,18 @@ export const GoogleFirestoreAdminV1Backup = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for FirestoreAdmin.ImportDocuments. */
 export interface GoogleFirestoreAdminV1ImportDocumentsRequest {
-  /** IDs of the collection groups to import. Unspecified means all collection groups that were included in the export. Each collection group in this list must be unique. */
-  collectionIds?: StringList;
   /** Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix. */
   inputUriPrefix?: string;
+  /** IDs of the collection groups to import. Unspecified means all collection groups that were included in the export. Each collection group in this list must be unique. */
+  collectionIds?: StringList;
   /** An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique. */
   namespaceIds?: StringList;
 }
 export const GoogleFirestoreAdminV1ImportDocumentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      collectionIds: S.optional(StringList),
       inputUriPrefix: S.optional(S.String),
+      collectionIds: S.optional(StringList),
       namespaceIds: S.optional(StringList),
     }),
   ).annotate({
@@ -2471,21 +2471,21 @@ export const ImportDocumentsProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(
 
 /** The request for Firestore.ListCollectionIds. */
 export interface ListCollectionIdsRequest {
-  /** The maximum number of results to return. */
-  pageSize?: number;
   /** A page token. Must be a value from ListCollectionIdsResponse. */
   pageToken?: string;
-  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
   /** Optional. The request options for this request. */
   requestOptions?: RequestOptions;
+  /** The maximum number of results to return. */
+  pageSize?: number;
+  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
 }
 export const ListCollectionIdsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number),
     pageToken: S.optional(S.String),
-    readTime: S.optional(S.String),
     requestOptions: S.optional(RequestOptions),
+    pageSize: S.optional(S.Number),
+    readTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListCollectionIdsRequest",
@@ -2515,15 +2515,15 @@ export const ListCollectionIdsProjectsDatabasesDocumentsRequest =
 
 /** The response from Firestore.ListCollectionIds. */
 export interface ListCollectionIdsResponse {
-  /** A page token that may be used to continue the list. */
-  nextPageToken?: string;
   /** The collection ids. */
   collectionIds?: StringList;
+  /** A page token that may be used to continue the list. */
+  nextPageToken?: string;
 }
 export const ListCollectionIdsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     collectionIds: S.optional(StringList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListCollectionIdsResponse",
@@ -2532,24 +2532,24 @@ export const ListCollectionIdsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListDocumentsProjectsDatabasesDocumentsRequest {
   /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
   "mask.fieldPaths"?: StringList;
-  /** Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`. */
-  orderBy?: string;
-  /** Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom` */
-  parent: string;
-  /** If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`. */
-  showMissing?: boolean;
-  /** Perform the read as part of an already active transaction. */
-  transaction?: string;
   /** Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
   readTime?: string;
-  /** Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value. */
-  pageSize?: number;
   /** Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`. */
   collectionId: string;
-  /** Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`. */
-  recursive?: boolean;
   /** Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token. */
   pageToken?: string;
+  /** Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom` */
+  parent: string;
+  /** Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value. */
+  pageSize?: number;
+  /** Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`. */
+  recursive?: boolean;
+  /** If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`. */
+  showMissing?: boolean;
+  /** Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`. */
+  orderBy?: string;
+  /** Perform the read as part of an already active transaction. */
+  transaction?: string;
   /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
   "requestOptions.requestTags"?: StringList;
 }
@@ -2557,15 +2557,15 @@ export const ListDocumentsProjectsDatabasesDocumentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
-      showMissing: S.optional(S.Boolean.pipe(T.Query())),
-      transaction: S.optional(S.String.pipe(T.Query())),
       readTime: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       collectionId: S.String.pipe(T.Label()),
-      recursive: S.optional(S.Boolean.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      recursive: S.optional(S.Boolean.pipe(T.Query())),
+      showMissing: S.optional(S.Boolean.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      transaction: S.optional(S.String.pipe(T.Query())),
       "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -2618,30 +2618,68 @@ export const FieldReference = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "FieldReference" }) as any as S.Schema<FieldReference>;
 
-export type OrderDirectionEnum =
-  | "DIRECTION_UNSPECIFIED"
-  | "ASCENDING"
-  | "DESCENDING";
-export const OrderDirectionEnum = /*@__PURE__*/ S.String;
+export type FindNearestDistanceMeasureEnum =
+  | "DISTANCE_MEASURE_UNSPECIFIED"
+  | "EUCLIDEAN"
+  | "COSINE"
+  | "DOT_PRODUCT";
+export const FindNearestDistanceMeasureEnum = /*@__PURE__*/ S.String;
 
-/** An order on a field. */
-export interface Order {
-  /** The field to order by. */
-  field?: FieldReference;
-  /** The direction to order by. Defaults to `ASCENDING`. */
-  direction?: OrderDirectionEnum | (string & {});
+/** Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries. */
+export interface FindNearest {
+  /** Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned. */
+  vectorField?: FieldReference;
+  /** Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold` * For DOT_PRODUCT: `WHERE distance >= distance_threshold` */
+  distanceThreshold?: number;
+  /** Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000. */
+  limit?: number;
+  /** Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions. */
+  queryVector?: Value;
+  /** Required. The distance measure to use, required. */
+  distanceMeasure?: FindNearestDistanceMeasureEnum | (string & {});
+  /** Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to document field name limitations. */
+  distanceResultField?: string;
 }
-export const Order = /*@__PURE__*/ S.suspend(() =>
+export const FindNearest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    field: S.optional(FieldReference),
-    direction: S.optional(OrderDirectionEnum),
+    vectorField: S.optional(FieldReference),
+    distanceThreshold: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    queryVector: S.optional(Value),
+    distanceMeasure: S.optional(FindNearestDistanceMeasureEnum),
+    distanceResultField: S.optional(S.String),
   }),
-).annotate({ identifier: "Order" }) as any as S.Schema<Order>;
+).annotate({ identifier: "FindNearest" }) as any as S.Schema<FindNearest>;
 
-export type OrderList = Array<Order>;
-export const OrderList = /*@__PURE__*/ S.Array(
-  Order,
-) as any as S.Schema<OrderList>;
+/** A position in a query result set. */
+export interface Cursor {
+  /** The values that represent a position, in the order they appear in the order by clause of a query. Can contain fewer values than specified in the order by clause. */
+  values?: ValueList;
+  /** If the position is just before or just after the given values, relative to the sort order defined by the query. */
+  before?: boolean;
+}
+export const Cursor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(ValueList),
+    before: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Cursor" }) as any as S.Schema<Cursor>;
+
+export type FieldReferenceList = Array<FieldReference>;
+export const FieldReferenceList = /*@__PURE__*/ S.Array(
+  FieldReference,
+) as any as S.Schema<FieldReferenceList>;
+
+/** The projection of document's fields to return. */
+export interface Projection {
+  /** The fields to return. If empty, all fields are returned. To only return the name of the document, use `['__name__']`. */
+  fields?: FieldReferenceList;
+}
+export const Projection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fields: S.optional(FieldReferenceList),
+  }),
+).annotate({ identifier: "Projection" }) as any as S.Schema<Projection>;
 
 export type UnaryFilterOpEnum =
   | "OPERATOR_UNSPECIFIED"
@@ -2653,15 +2691,15 @@ export const UnaryFilterOpEnum = /*@__PURE__*/ S.String;
 
 /** A filter with a single operand. */
 export interface UnaryFilter {
-  /** The field to which to apply the operator. */
-  field?: FieldReference;
   /** The unary operator to apply. */
   op?: UnaryFilterOpEnum | (string & {});
+  /** The field to which to apply the operator. */
+  field?: FieldReference;
 }
 export const UnaryFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    field: S.optional(FieldReference),
     op: S.optional(UnaryFilterOpEnum),
+    field: S.optional(FieldReference),
   }),
 ).annotate({ identifier: "UnaryFilter" }) as any as S.Schema<UnaryFilter>;
 
@@ -2705,18 +2743,18 @@ export const FieldFilterOpEnum = /*@__PURE__*/ S.String;
 
 /** A filter on a specific field. */
 export interface FieldFilter {
-  /** The operator to filter by. */
-  op?: FieldFilterOpEnum | (string & {});
-  /** The value to compare to. */
-  value?: Value;
   /** The field to filter by. */
   field?: FieldReference;
+  /** The value to compare to. */
+  value?: Value;
+  /** The operator to filter by. */
+  op?: FieldFilterOpEnum | (string & {});
 }
 export const FieldFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    op: S.optional(FieldFilterOpEnum),
-    value: S.optional(Value),
     field: S.optional(FieldReference),
+    value: S.optional(Value),
+    op: S.optional(FieldFilterOpEnum),
   }),
 ).annotate({ identifier: "FieldFilter" }) as any as S.Schema<FieldFilter>;
 
@@ -2736,55 +2774,6 @@ export const Filter = /*@__PURE__*/ S.suspend(() =>
     fieldFilter: S.optional(FieldFilter),
   }),
 ).annotate({ identifier: "Filter" }) as any as S.Schema<Filter>;
-
-export type FieldReferenceList = Array<FieldReference>;
-export const FieldReferenceList = /*@__PURE__*/ S.Array(
-  FieldReference,
-) as any as S.Schema<FieldReferenceList>;
-
-/** The projection of document's fields to return. */
-export interface Projection {
-  /** The fields to return. If empty, all fields are returned. To only return the name of the document, use `['__name__']`. */
-  fields?: FieldReferenceList;
-}
-export const Projection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fields: S.optional(FieldReferenceList),
-  }),
-).annotate({ identifier: "Projection" }) as any as S.Schema<Projection>;
-
-export type FindNearestDistanceMeasureEnum =
-  | "DISTANCE_MEASURE_UNSPECIFIED"
-  | "EUCLIDEAN"
-  | "COSINE"
-  | "DOT_PRODUCT";
-export const FindNearestDistanceMeasureEnum = /*@__PURE__*/ S.String;
-
-/** Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries. */
-export interface FindNearest {
-  /** Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions. */
-  queryVector?: Value;
-  /** Required. The distance measure to use, required. */
-  distanceMeasure?: FindNearestDistanceMeasureEnum | (string & {});
-  /** Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned. */
-  vectorField?: FieldReference;
-  /** Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold` * For DOT_PRODUCT: `WHERE distance >= distance_threshold` */
-  distanceThreshold?: number;
-  /** Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to document field name limitations. */
-  distanceResultField?: string;
-  /** Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000. */
-  limit?: number;
-}
-export const FindNearest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queryVector: S.optional(Value),
-    distanceMeasure: S.optional(FindNearestDistanceMeasureEnum),
-    vectorField: S.optional(FieldReference),
-    distanceThreshold: S.optional(S.Number),
-    distanceResultField: S.optional(S.String),
-    limit: S.optional(S.Number),
-  }),
-).annotate({ identifier: "FindNearest" }) as any as S.Schema<FindNearest>;
 
 /** A selection of a collection, such as `messages as m1`. */
 export interface CollectionSelector {
@@ -2807,52 +2796,63 @@ export const CollectionSelectorList = /*@__PURE__*/ S.Array(
   CollectionSelector,
 ) as any as S.Schema<CollectionSelectorList>;
 
-/** A position in a query result set. */
-export interface Cursor {
-  /** The values that represent a position, in the order they appear in the order by clause of a query. Can contain fewer values than specified in the order by clause. */
-  values?: ValueList;
-  /** If the position is just before or just after the given values, relative to the sort order defined by the query. */
-  before?: boolean;
+export type OrderDirectionEnum =
+  | "DIRECTION_UNSPECIFIED"
+  | "ASCENDING"
+  | "DESCENDING";
+export const OrderDirectionEnum = /*@__PURE__*/ S.String;
+
+/** An order on a field. */
+export interface Order {
+  /** The field to order by. */
+  field?: FieldReference;
+  /** The direction to order by. Defaults to `ASCENDING`. */
+  direction?: OrderDirectionEnum | (string & {});
 }
-export const Cursor = /*@__PURE__*/ S.suspend(() =>
+export const Order = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    values: S.optional(ValueList),
-    before: S.optional(S.Boolean),
+    field: S.optional(FieldReference),
+    direction: S.optional(OrderDirectionEnum),
   }),
-).annotate({ identifier: "Cursor" }) as any as S.Schema<Cursor>;
+).annotate({ identifier: "Order" }) as any as S.Schema<Order>;
+
+export type OrderList = Array<Order>;
+export const OrderList = /*@__PURE__*/ S.Array(
+  Order,
+) as any as S.Schema<OrderList>;
 
 /** A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit 7. find_nearest */
 export interface StructuredQuery {
-  /** The maximum number of results to return. Applies after all other constraints. Requires: * The value must be greater than or equal to zero if specified. */
-  limit?: number;
-  /** The order to apply to the query results. Callers can provide a full ordering, a partial ordering, or no ordering at all. While Firestore will always respect the provided order, the behavior for queries without a full ordering is different per database edition: In Standard edition, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ > ... AND a > 1` becomes `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC` In Enterprise edition, Firestore does not guarantee a stable ordering. Instead it will pick the most efficient ordering based on the indexes available at the time of query execution. This will result in a different ordering for queries that are otherwise identical. To ensure a stable ordering, always include a unique field in the `order_by` clause, such as `__name__`. */
-  orderBy?: OrderList;
-  /** The number of documents to skip before returning the first result. This applies after the constraints specified by the `WHERE`, `START AT`, & `END AT` but before the `LIMIT` clause. Requires: * The value must be greater than or equal to zero if specified. */
-  offset?: number;
-  /** The filter to apply. */
-  where?: Filter;
-  /** Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned. */
-  select?: Projection;
   /** Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector. */
   findNearest?: FindNearest;
-  /** The collections to query. */
-  from?: CollectionSelectorList;
+  /** The number of documents to skip before returning the first result. This applies after the constraints specified by the `WHERE`, `START AT`, & `END AT` but before the `LIMIT` clause. Requires: * The value must be greater than or equal to zero if specified. */
+  offset?: number;
   /** A potential prefix of a position in the result set to start the query at. The ordering of the result set is based on the `ORDER BY` clause of the original query. ``` SELECT * FROM k WHERE a = 1 AND b > 2 ORDER BY b ASC, __name__ ASC; ``` This query's results are ordered by `(b ASC, __name__ ASC)`. Cursors can reference either the full ordering or a prefix of the location, though it cannot reference more fields than what are in the provided `ORDER BY`. Continuing off the example above, attaching the following start cursors will have varying impact: - `START BEFORE (2, /k/123)`: start the query right before `a = 1 AND b > 2 AND __name__ > /k/123`. - `START AFTER (10)`: start the query right after `a = 1 AND b > 10`. Unlike `OFFSET` which requires scanning over the first N results to skip, a start cursor allows the query to begin at a logical position. This position is not required to match an actual result, it will scan forward from this position to find the next document. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause. */
   startAt?: Cursor;
   /** A potential prefix of a position in the result set to end the query at. This is similar to `START_AT` but with it controlling the end position rather than the start position. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause. */
   endAt?: Cursor;
+  /** Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned. */
+  select?: Projection;
+  /** The filter to apply. */
+  where?: Filter;
+  /** The collections to query. */
+  from?: CollectionSelectorList;
+  /** The maximum number of results to return. Applies after all other constraints. Requires: * The value must be greater than or equal to zero if specified. */
+  limit?: number;
+  /** The order to apply to the query results. Callers can provide a full ordering, a partial ordering, or no ordering at all. While Firestore will always respect the provided order, the behavior for queries without a full ordering is different per database edition: In Standard edition, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ > ... AND a > 1` becomes `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC` In Enterprise edition, Firestore does not guarantee a stable ordering. Instead it will pick the most efficient ordering based on the indexes available at the time of query execution. This will result in a different ordering for queries that are otherwise identical. To ensure a stable ordering, always include a unique field in the `order_by` clause, such as `__name__`. */
+  orderBy?: OrderList;
 }
 export const StructuredQuery = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    limit: S.optional(S.Number),
-    orderBy: S.optional(OrderList),
-    offset: S.optional(S.Number),
-    where: S.optional(Filter),
-    select: S.optional(Projection),
     findNearest: S.optional(FindNearest),
-    from: S.optional(CollectionSelectorList),
+    offset: S.optional(S.Number),
     startAt: S.optional(Cursor),
     endAt: S.optional(Cursor),
+    select: S.optional(Projection),
+    where: S.optional(Filter),
+    from: S.optional(CollectionSelectorList),
+    limit: S.optional(S.Number),
+    orderBy: S.optional(OrderList),
   }),
 ).annotate({
   identifier: "StructuredQuery",
@@ -2860,44 +2860,44 @@ export const StructuredQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A target specified by a query. */
 export interface QueryTarget {
-  /** A structured query. */
-  structuredQuery?: StructuredQuery;
   /** The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom` */
   parent?: string;
+  /** A structured query. */
+  structuredQuery?: StructuredQuery;
 }
 export const QueryTarget = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    structuredQuery: S.optional(StructuredQuery),
     parent: S.optional(S.String),
+    structuredQuery: S.optional(StructuredQuery),
   }),
 ).annotate({ identifier: "QueryTarget" }) as any as S.Schema<QueryTarget>;
 
 /** A specification of a set of documents to listen to. */
 export interface Target {
-  /** A target specified by a set of document names. */
-  documents?: DocumentsTarget;
-  /** Start listening after a specific `read_time`. The client must know the state of matching documents at this time. */
-  readTime?: string;
-  /** If the target should be removed once it is current and consistent. */
-  once?: boolean;
-  /** A target specified by a query. */
-  query?: QueryTarget;
   /** The number of documents that last matched the query at the resume token or read time. This value is only relevant when a `resume_type` is provided. This value being present and greater than zero signals that the client wants `ExistenceFilter.unchanged_names` to be included in the response. */
   expectedCount?: number;
   /** A resume token from a prior TargetChange for an identical target. Using a resume token with a different target is unsupported and may fail. */
   resumeToken?: string;
+  /** A target specified by a set of document names. */
+  documents?: DocumentsTarget;
   /** The target ID that identifies the target on the stream. Must be a positive number and non-zero. If `target_id` is 0 (or unspecified), the server will assign an ID for this target and return that in a `TargetChange::ADD` event. Once a target with `target_id=0` is added, all subsequent targets must also have `target_id=0`. If an `AddTarget` request with `target_id != 0` is sent to the server after a target with `target_id=0` is added, the server will immediately send a response with a `TargetChange::Remove` event. Note that if the client sends multiple `AddTarget` requests without an ID, the order of IDs returned in `TargetChange.target_ids` are undefined. Therefore, clients should provide a target ID instead of relying on the server to assign one. If `target_id` is non-zero, there must not be an existing active target on this stream with the same ID. */
   targetId?: number;
+  /** A target specified by a query. */
+  query?: QueryTarget;
+  /** Start listening after a specific `read_time`. The client must know the state of matching documents at this time. */
+  readTime?: string;
+  /** If the target should be removed once it is current and consistent. */
+  once?: boolean;
 }
 export const Target = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    documents: S.optional(DocumentsTarget),
-    readTime: S.optional(S.String),
-    once: S.optional(S.Boolean),
-    query: S.optional(QueryTarget),
     expectedCount: S.optional(S.Number),
     resumeToken: S.optional(S.String),
+    documents: S.optional(DocumentsTarget),
     targetId: S.optional(S.Number),
+    query: S.optional(QueryTarget),
+    readTime: S.optional(S.String),
+    once: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Target" }) as any as S.Schema<Target>;
 
@@ -2905,18 +2905,18 @@ export const Target = /*@__PURE__*/ S.suspend(() =>
 export interface ListenRequest {
   /** The ID of a target to remove from this stream. */
   removeTarget?: number;
-  /** A target to add to this stream. */
-  addTarget?: Target;
   /** Optional. The request options for the request. */
   requestOptions?: RequestOptions;
+  /** A target to add to this stream. */
+  addTarget?: Target;
   /** Labels associated with this target change. */
   labels?: StringMap;
 }
 export const ListenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     removeTarget: S.optional(S.Number),
-    addTarget: S.optional(Target),
     requestOptions: S.optional(RequestOptions),
+    addTarget: S.optional(Target),
     labels: S.optional(StringMap),
   }),
 ).annotate({ identifier: "ListenRequest" }) as any as S.Schema<ListenRequest>;
@@ -2965,79 +2965,31 @@ export const DocumentRemove = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DocumentRemove" }) as any as S.Schema<DocumentRemove>;
 
-export type TargetChangeTargetChangeTypeEnum =
-  | "NO_CHANGE"
-  | "ADD"
-  | "REMOVE"
-  | "CURRENT"
-  | "RESET";
-export const TargetChangeTargetChangeTypeEnum = /*@__PURE__*/ S.String;
-
-/** Targets being watched have changed. */
-export interface TargetChange {
-  /** The target IDs of targets that have changed. If empty, the change applies to all targets. The order of the target IDs is not defined. */
-  targetIds?: IntegerList;
-  /** The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot). The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not). For a given stream, `read_time` is guaranteed to be monotonically increasing. */
-  readTime?: string;
-  /** The error that resulted in this change, if applicable. */
-  cause?: Status;
-  /** The type of change that occurred. */
-  targetChangeType?: TargetChangeTargetChangeTypeEnum;
-  /** A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty. Not set on every target change. */
-  resumeToken?: string;
-}
-export const TargetChange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetIds: S.optional(IntegerList),
-    readTime: S.optional(S.String),
-    cause: S.optional(Status),
-    targetChangeType: S.optional(TargetChangeTargetChangeTypeEnum),
-    resumeToken: S.optional(S.String),
-  }),
-).annotate({ identifier: "TargetChange" }) as any as S.Schema<TargetChange>;
-
-/** A Document has been deleted. May be the result of multiple writes, including updates, the last of which deleted the Document. Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected. */
-export interface DocumentDelete {
-  /** The read timestamp at which the delete was observed. Greater or equal to the `commit_time` of the delete. */
-  readTime?: string;
-  /** The resource name of the Document that was deleted. */
-  document?: string;
-  /** A set of target IDs for targets that previously matched this entity. */
-  removedTargetIds?: IntegerList;
-}
-export const DocumentDelete = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    readTime: S.optional(S.String),
-    document: S.optional(S.String),
-    removedTargetIds: S.optional(IntegerList),
-  }),
-).annotate({ identifier: "DocumentDelete" }) as any as S.Schema<DocumentDelete>;
-
 /** A sequence of bits, encoded in a byte array. Each byte in the `bitmap` byte array stores 8 bits of the sequence. The only exception is the last byte, which may store 8 _or fewer_ bits. The `padding` defines the number of bits of the last byte to be ignored as "padding". The values of these "padding" bits are unspecified and must be ignored. To retrieve the first bit, bit 0, calculate: `(bitmap[0] & 0x01) != 0`. To retrieve the second bit, bit 1, calculate: `(bitmap[0] & 0x02) != 0`. To retrieve the third bit, bit 2, calculate: `(bitmap[0] & 0x04) != 0`. To retrieve the fourth bit, bit 3, calculate: `(bitmap[0] & 0x08) != 0`. To retrieve bit n, calculate: `(bitmap[n / 8] & (0x01 << (n % 8))) != 0`. The "size" of a `BitSequence` (the number of bits it contains) is calculated by this formula: `(bitmap.length * 8) - padding`. */
 export interface BitSequence {
-  /** The number of bits of the last byte in `bitmap` to ignore as "padding". If the length of `bitmap` is zero, then this value must be `0`. Otherwise, this value must be between 0 and 7, inclusive. */
-  padding?: number;
   /** The bytes that encode the bit sequence. May have a length of zero. */
   bitmap?: string;
+  /** The number of bits of the last byte in `bitmap` to ignore as "padding". If the length of `bitmap` is zero, then this value must be `0`. Otherwise, this value must be between 0 and 7, inclusive. */
+  padding?: number;
 }
 export const BitSequence = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    padding: S.optional(S.Number),
     bitmap: S.optional(S.String),
+    padding: S.optional(S.Number),
   }),
 ).annotate({ identifier: "BitSequence" }) as any as S.Schema<BitSequence>;
 
 /** A bloom filter (https://en.wikipedia.org/wiki/Bloom_filter). The bloom filter hashes the entries with MD5 and treats the resulting 128-bit hash as 2 distinct 64-bit hash values, interpreted as unsigned integers using 2's complement encoding. These two hash values, named `h1` and `h2`, are then used to compute the `hash_count` hash values using the formula, starting at `i=0`: h(i) = h1 + (i * h2) These resulting values are then taken modulo the number of bits in the bloom filter to get the bits of the bloom filter to test for the given entry. */
 export interface BloomFilter {
-  /** The number of hashes used by the algorithm. */
-  hashCount?: number;
   /** The bloom filter data. */
   bits?: BitSequence;
+  /** The number of hashes used by the algorithm. */
+  hashCount?: number;
 }
 export const BloomFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hashCount: S.optional(S.Number),
     bits: S.optional(BitSequence),
+    hashCount: S.optional(S.Number),
   }),
 ).annotate({ identifier: "BloomFilter" }) as any as S.Schema<BloomFilter>;
 
@@ -3060,43 +3012,91 @@ export const ExistenceFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExistenceFilter",
 }) as any as S.Schema<ExistenceFilter>;
 
+/** A Document has been deleted. May be the result of multiple writes, including updates, the last of which deleted the Document. Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected. */
+export interface DocumentDelete {
+  /** A set of target IDs for targets that previously matched this entity. */
+  removedTargetIds?: IntegerList;
+  /** The resource name of the Document that was deleted. */
+  document?: string;
+  /** The read timestamp at which the delete was observed. Greater or equal to the `commit_time` of the delete. */
+  readTime?: string;
+}
+export const DocumentDelete = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    removedTargetIds: S.optional(IntegerList),
+    document: S.optional(S.String),
+    readTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "DocumentDelete" }) as any as S.Schema<DocumentDelete>;
+
 /** A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. */
 export interface DocumentChange {
+  /** A set of target IDs for targets that no longer match this document. */
+  removedTargetIds?: IntegerList;
   /** A set of target IDs of targets that match this document. */
   targetIds?: IntegerList;
   /** The new state of the Document. If `mask` is set, contains only fields that were updated or added. */
   document?: Document;
-  /** A set of target IDs for targets that no longer match this document. */
-  removedTargetIds?: IntegerList;
 }
 export const DocumentChange = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    removedTargetIds: S.optional(IntegerList),
     targetIds: S.optional(IntegerList),
     document: S.optional(Document),
-    removedTargetIds: S.optional(IntegerList),
   }),
 ).annotate({ identifier: "DocumentChange" }) as any as S.Schema<DocumentChange>;
+
+export type TargetChangeTargetChangeTypeEnum =
+  | "NO_CHANGE"
+  | "ADD"
+  | "REMOVE"
+  | "CURRENT"
+  | "RESET";
+export const TargetChangeTargetChangeTypeEnum = /*@__PURE__*/ S.String;
+
+/** Targets being watched have changed. */
+export interface TargetChange {
+  /** The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot). The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not). For a given stream, `read_time` is guaranteed to be monotonically increasing. */
+  readTime?: string;
+  /** The type of change that occurred. */
+  targetChangeType?: TargetChangeTargetChangeTypeEnum;
+  /** A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty. Not set on every target change. */
+  resumeToken?: string;
+  /** The error that resulted in this change, if applicable. */
+  cause?: Status;
+  /** The target IDs of targets that have changed. If empty, the change applies to all targets. The order of the target IDs is not defined. */
+  targetIds?: IntegerList;
+}
+export const TargetChange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readTime: S.optional(S.String),
+    targetChangeType: S.optional(TargetChangeTargetChangeTypeEnum),
+    resumeToken: S.optional(S.String),
+    cause: S.optional(Status),
+    targetIds: S.optional(IntegerList),
+  }),
+).annotate({ identifier: "TargetChange" }) as any as S.Schema<TargetChange>;
 
 /** The response for Firestore.Listen. */
 export interface ListenResponse {
   /** A Document has been removed from a target (because it is no longer relevant to that target). */
   documentRemove?: DocumentRemove;
-  /** Targets have changed. */
-  targetChange?: TargetChange;
-  /** A Document has been deleted. */
-  documentDelete?: DocumentDelete;
   /** A filter to apply to the set of documents previously returned for the given target. Returned when documents may have been removed from the given target, but the exact documents are unknown. */
   filter?: ExistenceFilter;
+  /** A Document has been deleted. */
+  documentDelete?: DocumentDelete;
   /** A Document has changed. */
   documentChange?: DocumentChange;
+  /** Targets have changed. */
+  targetChange?: TargetChange;
 }
 export const ListenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     documentRemove: S.optional(DocumentRemove),
-    targetChange: S.optional(TargetChange),
-    documentDelete: S.optional(DocumentDelete),
     filter: S.optional(ExistenceFilter),
+    documentDelete: S.optional(DocumentDelete),
     documentChange: S.optional(DocumentChange),
+    targetChange: S.optional(TargetChange),
   }),
 ).annotate({ identifier: "ListenResponse" }) as any as S.Schema<ListenResponse>;
 
@@ -3129,16 +3129,16 @@ export const GoogleFirestoreAdminV1DatabaseList = /*@__PURE__*/ S.Array(
 
 /** The list of databases for a project. */
 export interface GoogleFirestoreAdminV1ListDatabasesResponse {
-  /** The databases in the project. */
-  databases?: GoogleFirestoreAdminV1DatabaseList;
   /** In the event that data about individual databases cannot be listed they will be recorded here. An example entry might be: projects/some_project/locations/some_location This can happen if the Cloud Region that the Database resides in is currently unavailable. In this case we can't fetch all the details about the database. You may be able to get a more detailed error message (or possibly fetch the resource) by sending a 'Get' request for the resource or a 'List' request for the specific location. */
   unreachable?: StringList;
+  /** The databases in the project. */
+  databases?: GoogleFirestoreAdminV1DatabaseList;
 }
 export const GoogleFirestoreAdminV1ListDatabasesResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      databases: S.optional(GoogleFirestoreAdminV1DatabaseList),
       unreachable: S.optional(StringList),
+      databases: S.optional(GoogleFirestoreAdminV1DatabaseList),
     }),
   ).annotate({
     identifier: "GoogleFirestoreAdminV1ListDatabasesResponse",
@@ -3223,22 +3223,22 @@ export const GoogleFirestoreAdminV1ListChangeStreamsResponse =
   }) as any as S.Schema<GoogleFirestoreAdminV1ListChangeStreamsResponse>;
 
 export interface ListProjectsDatabasesCollectionGroupsFieldsRequest {
+  /** The number of results to return. */
+  pageSize?: number;
+  /** A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results. */
+  pageToken?: string;
   /** Required. A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}` */
   parent: string;
   /** The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` or `ttlConfig:*`. */
   filter?: string;
-  /** A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results. */
-  pageToken?: string;
-  /** The number of results to return. */
-  pageSize?: number;
 }
 export const ListProjectsDatabasesCollectionGroupsFieldsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3258,38 +3258,38 @@ export const GoogleFirestoreAdminV1FieldList = /*@__PURE__*/ S.Array(
 
 /** The response for FirestoreAdmin.ListFields. */
 export interface GoogleFirestoreAdminV1ListFieldsResponse {
-  /** The requested fields. */
-  fields?: GoogleFirestoreAdminV1FieldList;
   /** A page token that may be used to request another page of results. If blank, this is the last page. */
   nextPageToken?: string;
+  /** The requested fields. */
+  fields?: GoogleFirestoreAdminV1FieldList;
 }
 export const GoogleFirestoreAdminV1ListFieldsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      fields: S.optional(GoogleFirestoreAdminV1FieldList),
       nextPageToken: S.optional(S.String),
+      fields: S.optional(GoogleFirestoreAdminV1FieldList),
     }),
 ).annotate({
   identifier: "GoogleFirestoreAdminV1ListFieldsResponse",
 }) as any as S.Schema<GoogleFirestoreAdminV1ListFieldsResponse>;
 
 export interface ListProjectsDatabasesCollectionGroupsIndexesRequest {
-  /** The number of results to return. */
-  pageSize?: number;
-  /** A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results. */
-  pageToken?: string;
   /** Required. A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}` */
   parent: string;
+  /** A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results. */
+  pageToken?: string;
   /** The filter to apply to list results. */
   filter?: string;
+  /** The number of results to return. */
+  pageSize?: number;
 }
 export const ListProjectsDatabasesCollectionGroupsIndexesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3319,43 +3319,43 @@ export const GoogleFirestoreAdminV1ListIndexesResponse =
   }) as any as S.Schema<GoogleFirestoreAdminV1ListIndexesResponse>;
 
 export interface ListProjectsDatabasesDocumentsRequest {
-  /** Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value. */
-  pageSize?: number;
-  /** If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`. */
-  showMissing?: boolean;
-  /** Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`. */
-  collectionId: string;
-  /** Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-  /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
-  "requestOptions.requestTags"?: StringList;
-  /** Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`. */
-  recursive?: boolean;
-  /** Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token. */
-  pageToken?: string;
-  /** Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom` */
-  parent: string;
   /** Perform the read as part of an already active transaction. */
   transaction?: string;
-  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
-  "mask.fieldPaths"?: StringList;
+  /** Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom` */
+  parent: string;
+  /** If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`. */
+  showMissing?: boolean;
   /** Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`. */
   orderBy?: string;
+  /** Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded). */
+  "requestOptions.requestTags"?: StringList;
+  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
+  "mask.fieldPaths"?: StringList;
+  /** Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token. */
+  pageToken?: string;
+  /** Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value. */
+  pageSize?: number;
+  /** Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`. */
+  recursive?: boolean;
+  /** Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+  /** Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`. */
+  collectionId: string;
 }
 export const ListProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      showMissing: S.optional(S.Boolean.pipe(T.Query())),
-      collectionId: S.String.pipe(T.Label()),
-      readTime: S.optional(S.String.pipe(T.Query())),
-      "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
-      recursive: S.optional(S.Boolean.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       transaction: S.optional(S.String.pipe(T.Query())),
-      "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      showMissing: S.optional(S.Boolean.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
+      "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
+      "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      recursive: S.optional(S.Boolean.pipe(T.Query())),
+      readTime: S.optional(S.String.pipe(T.Query())),
+      collectionId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3368,25 +3368,25 @@ export const ListProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListProjectsDatabasesDocumentsRequest>;
 
 export interface ListProjectsDatabasesOperationsRequest {
+  /** The standard list page token. */
+  pageToken?: string;
   /** The name of the operation's parent resource. */
   name: string;
-  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
-  returnPartialSuccess?: boolean;
   /** The standard list page size. */
   pageSize?: number;
   /** The standard list filter. */
   filter?: string;
-  /** The standard list page token. */
-  pageToken?: string;
+  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
+  returnPartialSuccess?: boolean;
 }
 export const ListProjectsDatabasesOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      pageToken: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
-      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
+      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3463,24 +3463,24 @@ export const GoogleFirestoreAdminV1ListUserCredsResponse =
   }) as any as S.Schema<GoogleFirestoreAdminV1ListUserCredsResponse>;
 
 export interface ListProjectsLocationsRequest {
-  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
-  pageToken?: string;
-  /** The resource that owns the locations collection, if applicable. */
-  name: string;
-  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
-  extraLocationTypes?: StringList;
-  /** The maximum number of results to return. If not set, the service selects a default. */
-  pageSize?: number;
   /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
   filter?: string;
+  /** The maximum number of results to return. If not set, the service selects a default. */
+  pageSize?: number;
+  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
+  extraLocationTypes?: StringList;
+  /** The resource that owns the locations collection, if applicable. */
+  name: string;
+  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
-    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3542,16 +3542,16 @@ export const GoogleFirestoreAdminV1BackupList = /*@__PURE__*/ S.Array(
 
 /** The response for FirestoreAdmin.ListBackups. */
 export interface GoogleFirestoreAdminV1ListBackupsResponse {
-  /** List of all backups for the project. */
-  backups?: GoogleFirestoreAdminV1BackupList;
   /** List of locations that existing backups were not able to be fetched from. Instead of failing the entire requests when a single location is unreachable, this response returns a partial result set and list of locations unable to be reached here. The request can be retried against a single location to get a concrete error. */
   unreachable?: StringList;
+  /** List of all backups for the project. */
+  backups?: GoogleFirestoreAdminV1BackupList;
 }
 export const GoogleFirestoreAdminV1ListBackupsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      backups: S.optional(GoogleFirestoreAdminV1BackupList),
       unreachable: S.optional(StringList),
+      backups: S.optional(GoogleFirestoreAdminV1BackupList),
     }),
   ).annotate({
     identifier: "GoogleFirestoreAdminV1ListBackupsResponse",
@@ -3559,27 +3559,27 @@ export const GoogleFirestoreAdminV1ListBackupsResponse =
 
 /** The request for Firestore.PartitionQuery. */
 export interface PartitionQueryRequest {
-  /** A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported. */
-  structuredQuery?: StructuredQuery;
-  /** The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available. */
-  partitionCount?: string;
   /** The maximum number of partitions to return in this call, subject to `partition_count`. For example, if `partition_count` = 10 and `page_size` = 8, the first call to PartitionQuery will return up to 8 partitions and a `next_page_token` if more results exist. A second call to PartitionQuery will return up to 2 partitions, to complete the total of 10 specified in `partition_count`. */
   pageSize?: number;
+  /** The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available. */
+  partitionCount?: string;
   /** Optional. The request options for the request. */
   requestOptions?: RequestOptions;
-  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
   /** The `next_page_token` value returned from a previous call to PartitionQuery that may be used to get an additional set of results. There are no ordering guarantees between sets of results. Thus, using multiple sets of results will require merging the different result sets. For example, two subsequent calls using a page_token may return: * cursor B, cursor M, cursor Q * cursor A, cursor U, cursor W To obtain a complete result set ordered with respect to the results of the query supplied to PartitionQuery, the results sets should be merged: cursor A, cursor B, cursor M, cursor Q, cursor U, cursor W */
   pageToken?: string;
+  /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
+  /** A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported. */
+  structuredQuery?: StructuredQuery;
 }
 export const PartitionQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    structuredQuery: S.optional(StructuredQuery),
-    partitionCount: S.optional(S.String),
     pageSize: S.optional(S.Number),
+    partitionCount: S.optional(S.String),
     requestOptions: S.optional(RequestOptions),
-    readTime: S.optional(S.String),
     pageToken: S.optional(S.String),
+    readTime: S.optional(S.String),
+    structuredQuery: S.optional(StructuredQuery),
   }),
 ).annotate({
   identifier: "PartitionQueryRequest",
@@ -3614,32 +3614,32 @@ export const CursorList = /*@__PURE__*/ S.Array(
 
 /** The response for Firestore.PartitionQuery. */
 export interface PartitionQueryResponse {
-  /** Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned, or that the query is not yet supported for partitioning. */
-  partitions?: CursorList;
   /** A page token that may be used to request an additional set of results, up to the number specified by `partition_count` in the PartitionQuery request. If blank, there are no more results. */
   nextPageToken?: string;
+  /** Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned, or that the query is not yet supported for partitioning. */
+  partitions?: CursorList;
 }
 export const PartitionQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    partitions: S.optional(CursorList),
     nextPageToken: S.optional(S.String),
+    partitions: S.optional(CursorList),
   }),
 ).annotate({
   identifier: "PartitionQueryResponse",
 }) as any as S.Schema<PartitionQueryResponse>;
 
 export interface PatchProjectsDatabasesRequest {
-  /** The list of fields to be updated. */
-  updateMask?: string;
   /** The resource name of the Database. Format: `projects/{project}/databases/{database}` */
   name: string;
+  /** The list of fields to be updated. */
+  updateMask?: string;
   /** Request body */
   body?: GoogleFirestoreAdminV1Database;
 }
 export const PatchProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(GoogleFirestoreAdminV1Database.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3703,6 +3703,10 @@ export const PatchProjectsDatabasesCollectionGroupsFieldsRequest =
   }) as any as S.Schema<PatchProjectsDatabasesCollectionGroupsFieldsRequest>;
 
 export interface PatchProjectsDatabasesDocumentsRequest {
+  /** The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
+  name: string;
+  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
+  "updateMask.fieldPaths"?: StringList;
   /** When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned. */
   "currentDocument.updateTime"?: string;
   /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
@@ -3711,22 +3715,18 @@ export interface PatchProjectsDatabasesDocumentsRequest {
   "requestOptions.requestTags"?: StringList;
   /** When set to `true`, the target document must exist. When set to `false`, the target document must not exist. */
   "currentDocument.exists"?: boolean;
-  /** The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`. */
-  name: string;
-  /** The list of field paths in the mask. See Document.fields for a field path syntax reference. */
-  "updateMask.fieldPaths"?: StringList;
   /** Request body */
   body?: Document;
 }
 export const PatchProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      name: S.String.pipe(T.Label()),
+      "updateMask.fieldPaths": S.optional(StringList.pipe(T.Query())),
       "currentDocument.updateTime": S.optional(S.String.pipe(T.Query())),
       "mask.fieldPaths": S.optional(StringList.pipe(T.Query())),
       "requestOptions.requestTags": S.optional(StringList.pipe(T.Query())),
       "currentDocument.exists": S.optional(S.Boolean.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
-      "updateMask.fieldPaths": S.optional(StringList.pipe(T.Query())),
       body: S.optional(Document.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3773,20 +3773,20 @@ export const ResetPasswordProjectsDatabasesUserCredsRequest =
 export interface GoogleFirestoreAdminV1RestoreDatabaseRequest {
   /** Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. "(default)" database ID is also valid if the database is Standard edition. */
   databaseId?: string;
+  /** Optional. Encryption configuration for the restored database. If this field is not specified, the restored database will use the same encryption configuration as the backup, namely use_source_encryption. */
+  encryptionConfig?: GoogleFirestoreAdminV1EncryptionConfig;
   /** Optional. Immutable. Tags to be bound to the restored database. The tags should be provided in the format of `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`. */
   tags?: StringMap;
   /** Required. Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id}/locations/{location}/backups/{backup}` */
   backup?: string;
-  /** Optional. Encryption configuration for the restored database. If this field is not specified, the restored database will use the same encryption configuration as the backup, namely use_source_encryption. */
-  encryptionConfig?: GoogleFirestoreAdminV1EncryptionConfig;
 }
 export const GoogleFirestoreAdminV1RestoreDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       databaseId: S.optional(S.String),
+      encryptionConfig: S.optional(GoogleFirestoreAdminV1EncryptionConfig),
       tags: S.optional(StringMap),
       backup: S.optional(S.String),
-      encryptionConfig: S.optional(GoogleFirestoreAdminV1EncryptionConfig),
     }),
   ).annotate({
     identifier: "GoogleFirestoreAdminV1RestoreDatabaseRequest",
@@ -3817,15 +3817,15 @@ export const RestoreProjectsDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for Firestore.Rollback. */
 export interface RollbackRequest {
-  /** Optional. The request options for this request. */
-  requestOptions?: RequestOptions;
   /** Required. The transaction to roll back. */
   transaction?: string;
+  /** Optional. The request options for this request. */
+  requestOptions?: RequestOptions;
 }
 export const RollbackRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestOptions: S.optional(RequestOptions),
     transaction: S.optional(S.String),
+    requestOptions: S.optional(RequestOptions),
   }),
 ).annotate({
   identifier: "RollbackRequest",
@@ -3892,21 +3892,21 @@ export const Sum = Avg;
 
 /** Defines an aggregation that produces a single result. */
 export interface Aggregation {
-  /** Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations. */
-  alias?: string;
   /** Count aggregator. */
   count?: Count;
   /** Average aggregator. */
   avg?: Avg;
   /** Sum aggregator. */
   sum?: Avg;
+  /** Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations. */
+  alias?: string;
 }
 export const Aggregation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    alias: S.optional(S.String),
     count: S.optional(Count),
     avg: S.optional(Avg),
     sum: S.optional(Avg),
+    alias: S.optional(S.String),
   }),
 ).annotate({ identifier: "Aggregation" }) as any as S.Schema<Aggregation>;
 
@@ -3933,27 +3933,27 @@ export const StructuredAggregationQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for Firestore.RunAggregationQuery. */
 export interface RunAggregationQueryRequest {
-  /** Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned. */
-  explainOptions?: ExplainOptions;
-  /** Optional. The request options for the request. */
-  requestOptions?: RequestOptions;
-  /** Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
-  readTime?: string;
-  /** An aggregation query. */
-  structuredAggregationQuery?: StructuredAggregationQuery;
   /** Run the aggregation within an already active transaction. The value here is the opaque transaction ID to execute the query in. */
   transaction?: string;
   /** Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream. */
   newTransaction?: TransactionOptions;
+  /** Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned. */
+  explainOptions?: ExplainOptions;
+  /** An aggregation query. */
+  structuredAggregationQuery?: StructuredAggregationQuery;
+  /** Optional. The request options for the request. */
+  requestOptions?: RequestOptions;
+  /** Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
+  readTime?: string;
 }
 export const RunAggregationQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explainOptions: S.optional(ExplainOptions),
-    requestOptions: S.optional(RequestOptions),
-    readTime: S.optional(S.String),
-    structuredAggregationQuery: S.optional(StructuredAggregationQuery),
     transaction: S.optional(S.String),
     newTransaction: S.optional(TransactionOptions),
+    explainOptions: S.optional(ExplainOptions),
+    structuredAggregationQuery: S.optional(StructuredAggregationQuery),
+    requestOptions: S.optional(RequestOptions),
+    readTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RunAggregationQueryRequest",
@@ -3981,6 +3981,51 @@ export const RunAggregationQueryProjectsDatabasesDocumentsRequest =
     identifier: "RunAggregationQueryProjectsDatabasesDocumentsRequest",
   }) as any as S.Schema<RunAggregationQueryProjectsDatabasesDocumentsRequest>;
 
+/** Execution statistics for the query. */
+export interface ExecutionStats {
+  /** Debugging statistics from the execution of the query. Note that the debugging stats are subject to change as Firestore evolves. It could include: { "indexes_entries_scanned": "1000", "documents_scanned": "20", "billing_details" : { "documents_billable": "20", "index_entries_billable": "1000", "min_query_cost": "0" } } */
+  debugStats?: DocumentMap;
+  /** Total number of results returned, including documents, projections, aggregation results, keys. */
+  resultsReturned?: string;
+  /** Total billable read operations. */
+  readOperations?: string;
+  /** Total time to execute the query in the backend. */
+  executionDuration?: string;
+}
+export const ExecutionStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    debugStats: S.optional(DocumentMap),
+    resultsReturned: S.optional(S.String),
+    readOperations: S.optional(S.String),
+    executionDuration: S.optional(S.String),
+  }),
+).annotate({ identifier: "ExecutionStats" }) as any as S.Schema<ExecutionStats>;
+
+/** Planning phase information for the query. */
+export interface PlanSummary {
+  /** The indexes selected for the query. For example: [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"} ] */
+  indexesUsed?: DocumentMapList;
+}
+export const PlanSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    indexesUsed: S.optional(DocumentMapList),
+  }),
+).annotate({ identifier: "PlanSummary" }) as any as S.Schema<PlanSummary>;
+
+/** Explain metrics for the query. */
+export interface ExplainMetrics {
+  /** Aggregated stats from the execution of the query. Only present when ExplainOptions.analyze is set to true. */
+  executionStats?: ExecutionStats;
+  /** Planning phase information for the query. */
+  planSummary?: PlanSummary;
+}
+export const ExplainMetrics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    executionStats: S.optional(ExecutionStats),
+    planSummary: S.optional(PlanSummary),
+  }),
+).annotate({ identifier: "ExplainMetrics" }) as any as S.Schema<ExplainMetrics>;
+
 /** The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result. */
 export interface AggregationResult {
   /** The result of the aggregation functions, ex: `COUNT(*) AS total_docs`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query. */
@@ -3994,68 +4039,23 @@ export const AggregationResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AggregationResult",
 }) as any as S.Schema<AggregationResult>;
 
-/** Planning phase information for the query. */
-export interface PlanSummary {
-  /** The indexes selected for the query. For example: [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"} ] */
-  indexesUsed?: DocumentMapList;
-}
-export const PlanSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    indexesUsed: S.optional(DocumentMapList),
-  }),
-).annotate({ identifier: "PlanSummary" }) as any as S.Schema<PlanSummary>;
-
-/** Execution statistics for the query. */
-export interface ExecutionStats {
-  /** Total number of results returned, including documents, projections, aggregation results, keys. */
-  resultsReturned?: string;
-  /** Total billable read operations. */
-  readOperations?: string;
-  /** Total time to execute the query in the backend. */
-  executionDuration?: string;
-  /** Debugging statistics from the execution of the query. Note that the debugging stats are subject to change as Firestore evolves. It could include: { "indexes_entries_scanned": "1000", "documents_scanned": "20", "billing_details" : { "documents_billable": "20", "index_entries_billable": "1000", "min_query_cost": "0" } } */
-  debugStats?: DocumentMap;
-}
-export const ExecutionStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resultsReturned: S.optional(S.String),
-    readOperations: S.optional(S.String),
-    executionDuration: S.optional(S.String),
-    debugStats: S.optional(DocumentMap),
-  }),
-).annotate({ identifier: "ExecutionStats" }) as any as S.Schema<ExecutionStats>;
-
-/** Explain metrics for the query. */
-export interface ExplainMetrics {
-  /** Planning phase information for the query. */
-  planSummary?: PlanSummary;
-  /** Aggregated stats from the execution of the query. Only present when ExplainOptions.analyze is set to true. */
-  executionStats?: ExecutionStats;
-}
-export const ExplainMetrics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    planSummary: S.optional(PlanSummary),
-    executionStats: S.optional(ExecutionStats),
-  }),
-).annotate({ identifier: "ExplainMetrics" }) as any as S.Schema<ExplainMetrics>;
-
 /** The response for Firestore.RunAggregationQuery. */
 export interface RunAggregationQueryResponse {
-  /** A single aggregation result. Not present when reporting partial progress. */
-  result?: AggregationResult;
-  /** The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction. */
-  transaction?: string;
   /** The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run. */
   readTime?: string;
+  /** The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction. */
+  transaction?: string;
   /** Query explain metrics. This is only present when the RunAggregationQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream. */
   explainMetrics?: ExplainMetrics;
+  /** A single aggregation result. Not present when reporting partial progress. */
+  result?: AggregationResult;
 }
 export const RunAggregationQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(AggregationResult),
-    transaction: S.optional(S.String),
     readTime: S.optional(S.String),
+    transaction: S.optional(S.String),
     explainMetrics: S.optional(ExplainMetrics),
+    result: S.optional(AggregationResult),
   }),
 ).annotate({
   identifier: "RunAggregationQueryResponse",
@@ -4063,27 +4063,27 @@ export const RunAggregationQueryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for Firestore.RunQuery. */
 export interface RunQueryRequest {
-  /** Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned. */
-  explainOptions?: ExplainOptions;
+  /** Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream. */
+  newTransaction?: TransactionOptions;
+  /** Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in. */
+  transaction?: string;
   /** Optional. The request options for this request. */
   requestOptions?: RequestOptions;
   /** Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days. */
   readTime?: string;
-  /** Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in. */
-  transaction?: string;
-  /** Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream. */
-  newTransaction?: TransactionOptions;
   /** A structured query. */
   structuredQuery?: StructuredQuery;
+  /** Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned. */
+  explainOptions?: ExplainOptions;
 }
 export const RunQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explainOptions: S.optional(ExplainOptions),
+    newTransaction: S.optional(TransactionOptions),
+    transaction: S.optional(S.String),
     requestOptions: S.optional(RequestOptions),
     readTime: S.optional(S.String),
-    transaction: S.optional(S.String),
-    newTransaction: S.optional(TransactionOptions),
     structuredQuery: S.optional(StructuredQuery),
+    explainOptions: S.optional(ExplainOptions),
   }),
 ).annotate({
   identifier: "RunQueryRequest",
@@ -4113,26 +4113,26 @@ export const RunQueryProjectsDatabasesDocumentsRequest =
 
 /** The response for Firestore.RunQuery. */
 export interface RunQueryResponse {
-  /** Query explain metrics. This is only present when the RunQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream. */
-  explainMetrics?: ExplainMetrics;
   /** If present, Firestore has completely finished the request and no more documents will be returned. */
   done?: boolean;
+  /** A query result, not set when reporting partial progress. */
+  document?: Document;
   /** The transaction that was started as part of this request. Can only be set in the first response, and only if RunQueryRequest.new_transaction was set in the request. If set, no other fields will be set in this response. */
   transaction?: string;
   /** The number of results that have been skipped due to an offset between the last response and the current response. */
   skippedResults?: number;
-  /** A query result, not set when reporting partial progress. */
-  document?: Document;
+  /** Query explain metrics. This is only present when the RunQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream. */
+  explainMetrics?: ExplainMetrics;
   /** The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run. */
   readTime?: string;
 }
 export const RunQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explainMetrics: S.optional(ExplainMetrics),
     done: S.optional(S.Boolean),
+    document: S.optional(Document),
     transaction: S.optional(S.String),
     skippedResults: S.optional(S.Number),
-    document: S.optional(Document),
+    explainMetrics: S.optional(ExplainMetrics),
     readTime: S.optional(S.String),
   }),
 ).annotate({
@@ -4141,10 +4141,10 @@ export const RunQueryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for Firestore.Write. The first request creates a stream, or resumes an existing one from a token. When creating a new stream, the server replies with a response containing only an ID and a token, to use in the next request. When resuming a stream, the server first streams any responses later than the given token, then a response containing only an up-to-date token, to use in the next request. */
 export interface WriteRequest {
-  /** The writes to apply. Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests. */
-  writes?: WriteList;
   /** Optional. The request options for the request. */
   requestOptions?: RequestOptions;
+  /** The writes to apply. Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests. */
+  writes?: WriteList;
   /** The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created. */
   streamId?: string;
   /** Labels associated with this write request. */
@@ -4154,8 +4154,8 @@ export interface WriteRequest {
 }
 export const WriteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    writes: S.optional(WriteList),
     requestOptions: S.optional(RequestOptions),
+    writes: S.optional(WriteList),
     streamId: S.optional(S.String),
     labels: S.optional(StringMap),
     streamToken: S.optional(S.String),
@@ -4186,23 +4186,43 @@ export const WriteProjectsDatabasesDocumentsRequest = /*@__PURE__*/ S.suspend(
 
 /** The response for Firestore.Write. */
 export interface WriteResponse {
-  /** The ID of the stream. Only set on the first message, when a new stream was created. */
-  streamId?: string;
   /** A token that represents the position of this response in the stream. This can be used by a client to resume the stream at this point. This field is always set. */
   streamToken?: string;
   /** The time at which the commit occurred. Any read with an equal or greater `read_time` is guaranteed to see the effects of the write. */
   commitTime?: string;
   /** The result of applying the writes. This i-th write result corresponds to the i-th write in the request. */
   writeResults?: WriteResultList;
+  /** The ID of the stream. Only set on the first message, when a new stream was created. */
+  streamId?: string;
 }
 export const WriteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    streamId: S.optional(S.String),
     streamToken: S.optional(S.String),
     commitTime: S.optional(S.String),
     writeResults: S.optional(WriteResultList),
+    streamId: S.optional(S.String),
   }),
 ).annotate({ identifier: "WriteResponse" }) as any as S.Schema<WriteResponse>;
+
+export type BatchGetProjectsDatabasesDocumentsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Gets multiple documents. Documents returned by this method are not guaranteed to be returned in the same order that they were requested. */
+export const batchGetProjectsDatabasesDocuments: API.OperationMethod<
+  BatchGetProjectsDatabasesDocumentsRequest,
+  BatchGetDocumentsResponse,
+  BatchGetProjectsDatabasesDocumentsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetProjectsDatabasesDocumentsRequest,
+  output: BatchGetDocumentsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
 
 export type BatchWriteProjectsDatabasesDocumentsError =
   | NotFound
@@ -4239,6 +4259,26 @@ export const beginTransactionProjectsDatabasesDocuments: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BeginTransactionProjectsDatabasesDocumentsRequest,
   output: BeginTransactionResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteDocumentsProjectsDatabasesError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Bulk deletes a subset of documents from Google Cloud Firestore. Documents created or updated after the underlying system starts to process the request will not be deleted. The bulk delete occurs in the background and its progress can be monitored and managed via the Operation resource that is created. For more details on bulk delete behavior, refer to: https://cloud.google.com/firestore/docs/manage-data/bulk-delete */
+export const bulkDeleteDocumentsProjectsDatabases: API.OperationMethod<
+  BulkDeleteDocumentsProjectsDatabasesRequest,
+  GoogleLongrunningOperation,
+  BulkDeleteDocumentsProjectsDatabasesError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteDocumentsProjectsDatabasesRequest,
+  output: GoogleLongrunningOperation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -4419,26 +4459,6 @@ export const createProjectsDatabasesUserCreds: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateProjectsDatabasesUserCredsRequest,
   output: GoogleFirestoreAdminV1UserCreds,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkDocumentProjectDatabaseError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Bulk deletes a subset of documents from Google Cloud Firestore. Documents created or updated after the underlying system starts to process the request will not be deleted. The bulk delete occurs in the background and its progress can be monitored and managed via the Operation resource that is created. For more details on bulk delete behavior, refer to: https://cloud.google.com/firestore/docs/manage-data/bulk-delete */
-export const deleteBulkDocumentProjectDatabase: API.OperationMethod<
-  DeleteBulkDocumentProjectDatabaseRequest,
-  GoogleLongrunningOperation,
-  DeleteBulkDocumentProjectDatabaseError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkDocumentProjectDatabaseRequest,
-  output: GoogleLongrunningOperation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -4679,26 +4699,6 @@ export const exportDocumentsProjectsDatabases: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ExportDocumentsProjectsDatabasesRequest,
   output: GoogleLongrunningOperation,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchProjectDatabaseDocumentError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Gets multiple documents. Documents returned by this method are not guaranteed to be returned in the same order that they were requested. */
-export const getBatchProjectDatabaseDocument: API.OperationMethod<
-  GetBatchProjectDatabaseDocumentRequest,
-  BatchGetDocumentsResponse,
-  GetBatchProjectDatabaseDocumentError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchProjectDatabaseDocumentRequest,
-  output: BatchGetDocumentsResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,

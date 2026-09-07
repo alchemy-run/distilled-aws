@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.authorized_users#AuthorizedUserRoles": {
@@ -616,7 +617,7 @@
         "smithy.api#documentation": "Create authorized user\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nAdd a new authorized user to a company.\n\nRequired permissions:\n - `authorized_user:create`\n - `member:email:read`"
       }
     },
-    "com.whop.authorized_users#RetrieveAuthorizedUserRequest": {
+    "com.whop.authorized_users#GetAuthorizedUserRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -632,10 +633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.authorized_users#RetrieveAuthorizedUser": {
+    "com.whop.authorized_users#GetAuthorizedUser": {
       "type": "operation",
       "input": {
-        "target": "com.whop.authorized_users#RetrieveAuthorizedUserRequest"
+        "target": "com.whop.authorized_users#GetAuthorizedUserRequest"
       },
       "output": {
         "target": "com.whop.authorized_users#AuthorizedUser"
@@ -788,16 +789,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.authorized_users#ListAuthorizedUser"
-        },
-        {
           "target": "com.whop.authorized_users#CreateAuthorizedUser"
         },
         {
-          "target": "com.whop.authorized_users#RetrieveAuthorizedUser"
+          "target": "com.whop.authorized_users#DeleteAuthorizedUser"
         },
         {
-          "target": "com.whop.authorized_users#DeleteAuthorizedUser"
+          "target": "com.whop.authorized_users#GetAuthorizedUser"
+        },
+        {
+          "target": "com.whop.authorized_users#ListAuthorizedUser"
         }
       ],
       "traits": {

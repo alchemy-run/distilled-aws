@@ -4,9 +4,11 @@ import * as API from "@distilled.cloud/core/api";
 import * as T from "../traits.ts";
 import {
   CloudflareProtocol,
+  CloudflarePaginatedProtocol,
   type CloudflareOpError,
   type CloudflareOpContext,
 } from "../protocol.ts";
+import { cloudflarePaginate, ResultInfo } from "../pagination.ts";
 import { CloudflareError, CloudflareRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -202,6 +204,34 @@ export const GetInsightClassForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetInsightClassForAccountRequest",
 }) as any as S.Schema<GetInsightClassForAccountRequest>;
+
+export interface InsightsClassGetResultItem {
+  count?: number | null;
+  value?: string | null;
+}
+export const InsightsClassGetResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.NullOr(S.Number)),
+    value: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "InsightsClassGetResultItem",
+}) as any as S.Schema<InsightsClassGetResultItem>;
+
+export type InsightsClassGetResultList = Array<InsightsClassGetResultItem>;
+export const InsightsClassGetResultList = /*@__PURE__*/ S.Array(
+  InsightsClassGetResultItem,
+) as any as S.Schema<InsightsClassGetResultList>;
+
+export type GetInsightClassResponse = InsightsClassGetResultList;
+export const GetInsightClassResponse = /*@__PURE__*/ S.suspend(() =>
+  InsightsClassGetResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetInsightClassResponse",
+}) as any as S.Schema<GetInsightClassResponse>;
 
 export interface GetInsightClassForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -412,6 +442,24 @@ export const GetInsightSeverityForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInsightSeverityForAccountRequest",
 }) as any as S.Schema<GetInsightSeverityForAccountRequest>;
 
+export type InsightsSeverityGetResultItem = InsightsClassGetResultItem;
+export const InsightsSeverityGetResultItem = InsightsClassGetResultItem;
+
+export type InsightsSeverityGetResultList = Array<InsightsClassGetResultItem>;
+export const InsightsSeverityGetResultList = /*@__PURE__*/ S.Array(
+  InsightsClassGetResultItem,
+) as any as S.Schema<InsightsSeverityGetResultList>;
+
+export type GetInsightSeverityResponse = InsightsSeverityGetResultList;
+export const GetInsightSeverityResponse = /*@__PURE__*/ S.suspend(() =>
+  InsightsSeverityGetResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetInsightSeverityResponse",
+}) as any as S.Schema<GetInsightSeverityResponse>;
+
 export interface GetInsightSeverityForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -580,6 +628,24 @@ export const GetInsightTypeForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInsightTypeForAccountRequest",
 }) as any as S.Schema<GetInsightTypeForAccountRequest>;
 
+export type InsightsTypeGetResultItem = InsightsClassGetResultItem;
+export const InsightsTypeGetResultItem = InsightsClassGetResultItem;
+
+export type InsightsTypeGetResultList = Array<InsightsClassGetResultItem>;
+export const InsightsTypeGetResultList = /*@__PURE__*/ S.Array(
+  InsightsClassGetResultItem,
+) as any as S.Schema<InsightsTypeGetResultList>;
+
+export type GetInsightTypeResponse = InsightsTypeGetResultList;
+export const GetInsightTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  InsightsTypeGetResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetInsightTypeResponse",
+}) as any as S.Schema<GetInsightTypeResponse>;
+
 export interface GetInsightTypeForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -698,6 +764,81 @@ export const ListByInsightInsightAuditLogForAccountRequest =
     identifier: "ListByInsightInsightAuditLogForAccountRequest",
   }) as any as S.Schema<ListByInsightInsightAuditLogForAccountRequest>;
 
+export type InsightsAuditLogsListByInsightResultItemFieldChanged =
+  | "status"
+  | "user_classification";
+export const InsightsAuditLogsListByInsightResultItemFieldChanged =
+  /*@__PURE__*/ S.String;
+
+export interface InsightsAuditLogsListByInsightResultItem {
+  /** UUIDv7 identifier for the audit log entry, time-ordered. */
+  id?: string | null;
+  /** The timestamp when the change occurred. */
+  changedAt?: string | null;
+  /** The actor that made the change. 'system' for automated changes, or a user identifier. */
+  changedBy?: string | null;
+  /** The value of the field after the change. Null if the field was cleared. */
+  currentValue?: string | null;
+  /** The field that was changed. */
+  fieldChanged?: InsightsAuditLogsListByInsightResultItemFieldChanged | null;
+  /** The ID of the insight this audit log entry relates to. */
+  issueId?: string | null;
+  /** The value of the field before the change. Null if the field was not previously set. */
+  previousValue?: string | null;
+  /** Optional rationale provided for the change. */
+  rationale?: string | null;
+  /** The zone ID associated with the insight. Only present for zone-level insights. */
+  zoneId?: number | null;
+}
+export const InsightsAuditLogsListByInsightResultItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.NullOr(S.String)),
+      changedAt: S.optional(S.NullOr(S.String).pipe(T.Body("changed_at"))),
+      changedBy: S.optional(S.NullOr(S.String).pipe(T.Body("changed_by"))),
+      currentValue: S.optional(
+        S.NullOr(S.String).pipe(T.Body("current_value")),
+      ),
+      fieldChanged: S.optional(
+        S.NullOr(InsightsAuditLogsListByInsightResultItemFieldChanged).pipe(
+          T.Body("field_changed"),
+        ),
+      ),
+      issueId: S.optional(S.NullOr(S.String).pipe(T.Body("issue_id"))),
+      previousValue: S.optional(
+        S.NullOr(S.String).pipe(T.Body("previous_value")),
+      ),
+      rationale: S.optional(S.NullOr(S.String)),
+      zoneId: S.optional(S.NullOr(S.Number).pipe(T.Body("zone_id"))),
+    }),
+).annotate({
+  identifier: "InsightsAuditLogsListByInsightResultItem",
+}) as any as S.Schema<InsightsAuditLogsListByInsightResultItem>;
+
+export type InsightsAuditLogsListByInsightResultList =
+  Array<InsightsAuditLogsListByInsightResultItem>;
+export const InsightsAuditLogsListByInsightResultList = /*@__PURE__*/ S.Array(
+  InsightsAuditLogsListByInsightResultItem,
+) as any as S.Schema<InsightsAuditLogsListByInsightResultList>;
+
+export interface ListByInsightInsightAuditLogResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: InsightsAuditLogsListByInsightResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListByInsightInsightAuditLogResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      result: InsightsAuditLogsListByInsightResultList.pipe(
+        T.EnvelopePayload(),
+      ),
+      resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListByInsightInsightAuditLogResponse",
+}) as any as S.Schema<ListByInsightInsightAuditLogResponse>;
+
 export interface ListByInsightInsightAuditLogForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -801,6 +942,75 @@ export const ListInsightAuditLogsForAccountRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ListInsightAuditLogsForAccountRequest",
 }) as any as S.Schema<ListInsightAuditLogsForAccountRequest>;
+
+export type InsightsAuditLogsListResultItemFieldChanged =
+  | "status"
+  | "user_classification";
+export const InsightsAuditLogsListResultItemFieldChanged =
+  /*@__PURE__*/ S.String;
+
+export interface InsightsAuditLogsListResultItem {
+  /** UUIDv7 identifier for the audit log entry, time-ordered. */
+  id?: string | null;
+  /** The timestamp when the change occurred. */
+  changedAt?: string | null;
+  /** The actor that made the change. 'system' for automated changes, or a user identifier. */
+  changedBy?: string | null;
+  /** The value of the field after the change. Null if the field was cleared. */
+  currentValue?: string | null;
+  /** The field that was changed. */
+  fieldChanged?: InsightsAuditLogsListResultItemFieldChanged | null;
+  /** The ID of the insight this audit log entry relates to. */
+  issueId?: string | null;
+  /** The value of the field before the change. Null if the field was not previously set. */
+  previousValue?: string | null;
+  /** Optional rationale provided for the change. */
+  rationale?: string | null;
+  /** The zone ID associated with the insight. Only present for zone-level insights. */
+  zoneId?: number | null;
+}
+export const InsightsAuditLogsListResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    changedAt: S.optional(S.NullOr(S.String).pipe(T.Body("changed_at"))),
+    changedBy: S.optional(S.NullOr(S.String).pipe(T.Body("changed_by"))),
+    currentValue: S.optional(S.NullOr(S.String).pipe(T.Body("current_value"))),
+    fieldChanged: S.optional(
+      S.NullOr(InsightsAuditLogsListResultItemFieldChanged).pipe(
+        T.Body("field_changed"),
+      ),
+    ),
+    issueId: S.optional(S.NullOr(S.String).pipe(T.Body("issue_id"))),
+    previousValue: S.optional(
+      S.NullOr(S.String).pipe(T.Body("previous_value")),
+    ),
+    rationale: S.optional(S.NullOr(S.String)),
+    zoneId: S.optional(S.NullOr(S.Number).pipe(T.Body("zone_id"))),
+  }),
+).annotate({
+  identifier: "InsightsAuditLogsListResultItem",
+}) as any as S.Schema<InsightsAuditLogsListResultItem>;
+
+export type InsightsAuditLogsListResultList =
+  Array<InsightsAuditLogsListResultItem>;
+export const InsightsAuditLogsListResultList = /*@__PURE__*/ S.Array(
+  InsightsAuditLogsListResultItem,
+) as any as S.Schema<InsightsAuditLogsListResultList>;
+
+export interface ListInsightAuditLogsResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: InsightsAuditLogsListResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListInsightAuditLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: InsightsAuditLogsListResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListInsightAuditLogsResponse",
+}) as any as S.Schema<ListInsightAuditLogsResponse>;
 
 export interface ListInsightAuditLogsForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -956,6 +1166,125 @@ export const ListInsightsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListInsightsForAccountRequest",
 }) as any as S.Schema<ListInsightsForAccountRequest>;
+
+export type InsightsListResponseIssuesItemIssueType =
+  | "compliance_violation"
+  | "email_security"
+  | "exposed_infrastructure"
+  | "insecure_configuration"
+  | "weak_authentication"
+  | "configuration_suggestion";
+export const InsightsListResponseIssuesItemIssueType = /*@__PURE__*/ S.String;
+
+export interface InsightsListResponseIssuesItemPayload {
+  /** Describes the method used to detect insight. */
+  detectionMethod?: string | null;
+  zoneTag?: string | null;
+}
+export const InsightsListResponseIssuesItemPayload = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      detectionMethod: S.optional(
+        S.NullOr(S.String).pipe(T.Body("detection_method")),
+      ),
+      zoneTag: S.optional(S.NullOr(S.String).pipe(T.Body("zone_tag"))),
+    }),
+).annotate({
+  identifier: "InsightsListResponseIssuesItemPayload",
+}) as any as S.Schema<InsightsListResponseIssuesItemPayload>;
+
+export type InsightsListResponseIssuesItemSeverity =
+  | "Low"
+  | "Moderate"
+  | "Critical";
+export const InsightsListResponseIssuesItemSeverity = /*@__PURE__*/ S.String;
+
+export type InsightsListResponseIssuesItemStatus = "active" | "resolved";
+export const InsightsListResponseIssuesItemStatus = /*@__PURE__*/ S.String;
+
+export type InsightsListResponseIssuesItemUserClassification =
+  | "false_positive"
+  | "accept_risk"
+  | "other";
+export const InsightsListResponseIssuesItemUserClassification =
+  /*@__PURE__*/ S.String;
+
+export interface InsightsListResponseIssuesItem {
+  id?: string | null;
+  dismissed?: boolean | null;
+  /** Indicates whether the insight has a large payload that requires fetching via the context endpoint. */
+  hasExtendedContext?: boolean | null;
+  issueClass?: string | null;
+  issueType?: InsightsListResponseIssuesItemIssueType | null;
+  payload?: InsightsListResponseIssuesItemPayload | null;
+  resolveLink?: string | null;
+  resolveText?: string | null;
+  severity?: InsightsListResponseIssuesItemSeverity | null;
+  since?: string | null;
+  /** The current status of the insight. */
+  status?: InsightsListResponseIssuesItemStatus | null;
+  subject?: string | null;
+  timestamp?: string | null;
+  /** User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null. */
+  userClassification?: InsightsListResponseIssuesItemUserClassification | null;
+}
+export const InsightsListResponseIssuesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    dismissed: S.optional(S.NullOr(S.Boolean)),
+    hasExtendedContext: S.optional(
+      S.NullOr(S.Boolean).pipe(T.Body("has_extended_context")),
+    ),
+    issueClass: S.optional(S.NullOr(S.String).pipe(T.Body("issue_class"))),
+    issueType: S.optional(
+      S.NullOr(InsightsListResponseIssuesItemIssueType).pipe(
+        T.Body("issue_type"),
+      ),
+    ),
+    payload: S.optional(S.NullOr(InsightsListResponseIssuesItemPayload)),
+    resolveLink: S.optional(S.NullOr(S.String).pipe(T.Body("resolve_link"))),
+    resolveText: S.optional(S.NullOr(S.String).pipe(T.Body("resolve_text"))),
+    severity: S.optional(S.NullOr(InsightsListResponseIssuesItemSeverity)),
+    since: S.optional(S.NullOr(S.String)),
+    status: S.optional(S.NullOr(InsightsListResponseIssuesItemStatus)),
+    subject: S.optional(S.NullOr(S.String)),
+    timestamp: S.optional(S.NullOr(S.String)),
+    userClassification: S.optional(
+      S.NullOr(InsightsListResponseIssuesItemUserClassification).pipe(
+        T.Body("user_classification"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "InsightsListResponseIssuesItem",
+}) as any as S.Schema<InsightsListResponseIssuesItem>;
+
+export type InsightsListResponseIssuesList =
+  Array<InsightsListResponseIssuesItem>;
+export const InsightsListResponseIssuesList = /*@__PURE__*/ S.Array(
+  InsightsListResponseIssuesItem,
+) as any as S.Schema<InsightsListResponseIssuesList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListInsightsResponse {
+  /** Indicates the total number of results. */
+  count?: number | null;
+  issues?: InsightsListResponseIssuesList | null;
+  /** Specifies the current page within paginated list of results. */
+  page?: number | null;
+  /** Sets the number of results per page of results. */
+  perPage?: number | null;
+}
+export const ListInsightsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.NullOr(S.Number)),
+    issues: S.optional(S.NullOr(InsightsListResponseIssuesList)),
+    page: S.optional(S.NullOr(S.Number)),
+    perPage: S.optional(S.NullOr(S.Number).pipe(T.Body("per_page"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListInsightsResponse",
+}) as any as S.Schema<ListInsightsResponse>;
 
 export interface ListInsightsForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -1142,12 +1471,12 @@ export type GetInsightClassForAccountError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by classification class. */
 export const getInsightClassForAccount: API.OperationMethod<
   GetInsightClassForAccountRequest,
-  GetInsightClassForAccountResponse,
+  GetInsightClassResponse,
   GetInsightClassForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightClassForAccountRequest,
-  output: GetInsightClassForAccountResponse,
+  output: GetInsightClassResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1157,12 +1486,12 @@ export type GetInsightClassForZoneError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by classification class. */
 export const getInsightClassForZone: API.OperationMethod<
   GetInsightClassForZoneRequest,
-  GetInsightClassForZoneResponse,
+  GetInsightClassResponse,
   GetInsightClassForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightClassForZoneRequest,
-  output: GetInsightClassForZoneResponse,
+  output: GetInsightClassResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1187,12 +1516,12 @@ export type GetInsightSeverityForAccountError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by severity level (critical, high, medium, low). */
 export const getInsightSeverityForAccount: API.OperationMethod<
   GetInsightSeverityForAccountRequest,
-  GetInsightSeverityForAccountResponse,
+  GetInsightSeverityResponse,
   GetInsightSeverityForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightSeverityForAccountRequest,
-  output: GetInsightSeverityForAccountResponse,
+  output: GetInsightSeverityResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1202,12 +1531,12 @@ export type GetInsightSeverityForZoneError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by severity level (critical, high, medium, low). */
 export const getInsightSeverityForZone: API.OperationMethod<
   GetInsightSeverityForZoneRequest,
-  GetInsightSeverityForZoneResponse,
+  GetInsightSeverityResponse,
   GetInsightSeverityForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightSeverityForZoneRequest,
-  output: GetInsightSeverityForZoneResponse,
+  output: GetInsightSeverityResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1217,12 +1546,12 @@ export type GetInsightTypeForAccountError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by insight type. */
 export const getInsightTypeForAccount: API.OperationMethod<
   GetInsightTypeForAccountRequest,
-  GetInsightTypeForAccountResponse,
+  GetInsightTypeResponse,
   GetInsightTypeForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightTypeForAccountRequest,
-  output: GetInsightTypeForAccountResponse,
+  output: GetInsightTypeResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1232,12 +1561,12 @@ export type GetInsightTypeForZoneError = CloudflareOpError;
 /** Retrieves Security Center insight counts aggregated by insight type. */
 export const getInsightTypeForZone: API.OperationMethod<
   GetInsightTypeForZoneRequest,
-  GetInsightTypeForZoneResponse,
+  GetInsightTypeResponse,
   GetInsightTypeForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInsightTypeForZoneRequest,
-  output: GetInsightTypeForZoneResponse,
+  output: GetInsightTypeResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1245,74 +1574,118 @@ export const getInsightTypeForZone: API.OperationMethod<
 
 export type ListByInsightInsightAuditLogForAccountError = CloudflareOpError;
 /** Lists audit log entries for a specific Security Center insight, showing changes to its status and classification over time. */
-export const listByInsightInsightAuditLogForAccount: API.OperationMethod<
+export const listByInsightInsightAuditLogForAccount: API.PaginatedOperationMethod<
   ListByInsightInsightAuditLogForAccountRequest,
-  ListByInsightInsightAuditLogForAccountResponse,
+  ListByInsightInsightAuditLogResponse,
   ListByInsightInsightAuditLogForAccountError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListByInsightInsightAuditLogForAccountRequest,
-  output: ListByInsightInsightAuditLogForAccountResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  InsightsAuditLogsListByInsightResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListByInsightInsightAuditLogForAccountRequest,
+    output: ListByInsightInsightAuditLogResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "resultInfo.cursor",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListByInsightInsightAuditLogForZoneError = CloudflareOpError;
 /** Lists audit log entries for a specific Security Center insight, showing changes to its status and classification over time. */
-export const listByInsightInsightAuditLogForZone: API.OperationMethod<
+export const listByInsightInsightAuditLogForZone: API.PaginatedOperationMethod<
   ListByInsightInsightAuditLogForZoneRequest,
-  ListByInsightInsightAuditLogForZoneResponse,
+  ListByInsightInsightAuditLogResponse,
   ListByInsightInsightAuditLogForZoneError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListByInsightInsightAuditLogForZoneRequest,
-  output: ListByInsightInsightAuditLogForZoneResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  InsightsAuditLogsListByInsightResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListByInsightInsightAuditLogForZoneRequest,
+    output: ListByInsightInsightAuditLogResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "resultInfo.cursor",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListInsightAuditLogsForAccountError = CloudflareOpError;
 /** Lists audit log entries for all Security Center insights in the account or zone, showing changes to insight status and classification. */
-export const listInsightAuditLogsForAccount: API.OperationMethod<
+export const listInsightAuditLogsForAccount: API.PaginatedOperationMethod<
   ListInsightAuditLogsForAccountRequest,
-  ListInsightAuditLogsForAccountResponse,
+  ListInsightAuditLogsResponse,
   ListInsightAuditLogsForAccountError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInsightAuditLogsForAccountRequest,
-  output: ListInsightAuditLogsForAccountResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  InsightsAuditLogsListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListInsightAuditLogsForAccountRequest,
+    output: ListInsightAuditLogsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "resultInfo.cursor",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListInsightAuditLogsForZoneError = CloudflareOpError;
 /** Lists audit log entries for all Security Center insights in the account or zone, showing changes to insight status and classification. */
-export const listInsightAuditLogsForZone: API.OperationMethod<
+export const listInsightAuditLogsForZone: API.PaginatedOperationMethod<
   ListInsightAuditLogsForZoneRequest,
-  ListInsightAuditLogsForZoneResponse,
+  ListInsightAuditLogsResponse,
   ListInsightAuditLogsForZoneError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInsightAuditLogsForZoneRequest,
-  output: ListInsightAuditLogsForZoneResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  InsightsAuditLogsListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListInsightAuditLogsForZoneRequest,
+    output: ListInsightAuditLogsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "resultInfo.cursor",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListInsightsForAccountError = CloudflareOpError;
 /** Lists all Security Center insights for the account or zone, showing security findings and recommendations. */
 export const listInsightsForAccount: API.OperationMethod<
   ListInsightsForAccountRequest,
-  ListInsightsForAccountResponse,
+  ListInsightsResponse,
   ListInsightsForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListInsightsForAccountRequest,
-  output: ListInsightsForAccountResponse,
+  output: ListInsightsResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1322,12 +1695,12 @@ export type ListInsightsForZoneError = CloudflareOpError;
 /** Lists all Security Center insights for the account or zone, showing security findings and recommendations. */
 export const listInsightsForZone: API.OperationMethod<
   ListInsightsForZoneRequest,
-  ListInsightsForZoneResponse,
+  ListInsightsResponse,
   ListInsightsForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListInsightsForZoneRequest,
-  output: ListInsightsForZoneResponse,
+  output: ListInsightsResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

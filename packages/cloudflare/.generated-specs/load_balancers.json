@@ -81,7 +81,8 @@
       "virtualNetworkId": "virtual_network_id",
       "zeroDowntimeFailover": "zero_downtime_failover",
       "zoneName": "zone_name"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.load_balancers#CreateRequestDefaultPoolsList": {
@@ -9432,109 +9433,109 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.load_balancers#Create"
+          "target": "com.cloudflare.load_balancers#BulkPatchPools"
         },
         {
-          "target": "com.cloudflare.load_balancers#Delete"
+          "target": "com.cloudflare.load_balancers#CreateLoadBalancer"
         },
         {
-          "target": "com.cloudflare.load_balancers#Edit"
+          "target": "com.cloudflare.load_balancers#CreateMonitor"
         },
         {
-          "target": "com.cloudflare.load_balancers#Get"
+          "target": "com.cloudflare.load_balancers#CreateMonitorGroup"
         },
         {
-          "target": "com.cloudflare.load_balancers#List"
+          "target": "com.cloudflare.load_balancers#CreateMonitorPreview"
         },
         {
-          "target": "com.cloudflare.load_balancers#Update"
+          "target": "com.cloudflare.load_balancers#CreatePool"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsCreate"
+          "target": "com.cloudflare.load_balancers#CreatePoolHealth"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsDelete"
+          "target": "com.cloudflare.load_balancers#DeleteLoadBalancer"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsEdit"
+          "target": "com.cloudflare.load_balancers#DeleteMonitor"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsGet"
+          "target": "com.cloudflare.load_balancers#DeleteMonitorGroup"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsList"
+          "target": "com.cloudflare.load_balancers#DeletePool"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsUpdate"
+          "target": "com.cloudflare.load_balancers#GetLoadBalancer"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorGroupsReferencesGet"
+          "target": "com.cloudflare.load_balancers#GetMonitor"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsCreate"
+          "target": "com.cloudflare.load_balancers#GetMonitorGroup"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsDelete"
+          "target": "com.cloudflare.load_balancers#GetMonitorGroupReference"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsEdit"
+          "target": "com.cloudflare.load_balancers#GetMonitorReference"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsGet"
+          "target": "com.cloudflare.load_balancers#GetPool"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsList"
+          "target": "com.cloudflare.load_balancers#GetPoolHealth"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsUpdate"
+          "target": "com.cloudflare.load_balancers#GetPoolReference"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsPreviewsCreate"
+          "target": "com.cloudflare.load_balancers#GetPreview"
         },
         {
-          "target": "com.cloudflare.load_balancers#MonitorsReferencesGet"
+          "target": "com.cloudflare.load_balancers#GetRegion"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsBulkEdit"
+          "target": "com.cloudflare.load_balancers#ListLoadBalancers"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsCreate"
+          "target": "com.cloudflare.load_balancers#ListMonitorGroups"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsDelete"
+          "target": "com.cloudflare.load_balancers#ListMonitors"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsEdit"
+          "target": "com.cloudflare.load_balancers#ListPools"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsGet"
+          "target": "com.cloudflare.load_balancers#ListRegions"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsList"
+          "target": "com.cloudflare.load_balancers#ListSearches"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsUpdate"
+          "target": "com.cloudflare.load_balancers#PatchLoadBalancer"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsHealthCreate"
+          "target": "com.cloudflare.load_balancers#PatchMonitor"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsHealthGet"
+          "target": "com.cloudflare.load_balancers#PatchMonitorGroup"
         },
         {
-          "target": "com.cloudflare.load_balancers#PoolsReferencesGet"
+          "target": "com.cloudflare.load_balancers#PatchPool"
         },
         {
-          "target": "com.cloudflare.load_balancers#PreviewsGet"
+          "target": "com.cloudflare.load_balancers#UpdateLoadBalancer"
         },
         {
-          "target": "com.cloudflare.load_balancers#RegionsGet"
+          "target": "com.cloudflare.load_balancers#UpdateMonitor"
         },
         {
-          "target": "com.cloudflare.load_balancers#RegionsList"
+          "target": "com.cloudflare.load_balancers#UpdateMonitorGroup"
         },
         {
-          "target": "com.cloudflare.load_balancers#SearchesList"
+          "target": "com.cloudflare.load_balancers#UpdatePool"
         }
       ],
       "traits": {

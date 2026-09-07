@@ -254,17 +254,17 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type AccountsCheckNameAvailabilityResponseReason =
+export type CheckAccountNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const AccountsCheckNameAvailabilityResponseReason =
+export const CheckAccountNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckAccountNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: AccountsCheckNameAvailabilityResponseReason;
+  reason?: CheckAccountNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -272,7 +272,7 @@ export const CheckAccountNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(AccountsCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckAccountNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
 ).annotate({
@@ -337,11 +337,11 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -353,7 +353,7 @@ export interface GetAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -365,7 +365,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
   }),
@@ -373,12 +373,12 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAccountResponse",
 }) as any as S.Schema<GetAccountResponse>;
 
-export type AccountQuotasGetRequestQuotaName =
+export type GetAccountQuotasRequestQuotaName =
   | "ScalableExecution"
   | "Reporting";
-export const AccountQuotasGetRequestQuotaName = /*@__PURE__*/ S.String;
+export const GetAccountQuotasRequestQuotaName = /*@__PURE__*/ S.String;
 
-export interface GetAccountQuotaRequest {
+export interface GetAccountQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -386,14 +386,14 @@ export interface GetAccountQuotaRequest {
   /** Name of account. */
   accountName: string;
   /** The Playwright service account quota name. */
-  quotaName: AccountQuotasGetRequestQuotaName | (string & {});
+  quotaName: GetAccountQuotasRequestQuotaName | (string & {});
 }
-export const GetAccountQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    quotaName: AccountQuotasGetRequestQuotaName.pipe(T.Label()),
+    quotaName: GetAccountQuotasRequestQuotaName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -403,8 +403,8 @@ export const GetAccountQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAccountQuotaRequest",
-}) as any as S.Schema<GetAccountQuotaRequest>;
+  identifier: "GetAccountQuotasRequest",
+}) as any as S.Schema<GetAccountQuotasRequest>;
 
 /** The Playwright service account quota resource free-trial properties. */
 export interface AccountFreeTrialProperties {
@@ -447,7 +447,7 @@ export const AccountQuotaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountQuotaProperties",
 }) as any as S.Schema<AccountQuotaProperties>;
 
-export interface GetAccountQuotaResponse {
+export interface GetAccountQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -459,7 +459,7 @@ export interface GetAccountQuotaResponse {
   /** The resource-specific properties for this resource. */
   properties?: AccountQuotaProperties;
 }
-export const GetAccountQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -468,25 +468,25 @@ export const GetAccountQuotaResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AccountQuotaProperties),
   }),
 ).annotate({
-  identifier: "GetAccountQuotaResponse",
-}) as any as S.Schema<GetAccountQuotaResponse>;
+  identifier: "GetAccountQuotasResponse",
+}) as any as S.Schema<GetAccountQuotasResponse>;
 
-export type QuotasGetRequestQuotaName = "ScalableExecution" | "Reporting";
-export const QuotasGetRequestQuotaName = /*@__PURE__*/ S.String;
+export type GetQuotasRequestQuotaName = "ScalableExecution" | "Reporting";
+export const GetQuotasRequestQuotaName = /*@__PURE__*/ S.String;
 
-export interface GetQuotaRequest {
+export interface GetQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The location of quota in ARM Normalized format like eastus, southeastasia etc. */
   location: string;
   /** The quota name. */
-  quotaName: QuotasGetRequestQuotaName | (string & {});
+  quotaName: GetQuotasRequestQuotaName | (string & {});
 }
-export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
-    quotaName: QuotasGetRequestQuotaName.pipe(T.Label()),
+    quotaName: GetQuotasRequestQuotaName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -496,8 +496,8 @@ export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQuotaRequest",
-}) as any as S.Schema<GetQuotaRequest>;
+  identifier: "GetQuotasRequest",
+}) as any as S.Schema<GetQuotasRequest>;
 
 /** The free-trial state. */
 export type FreeTrialState =
@@ -550,7 +550,7 @@ export const QuotaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaProperties",
 }) as any as S.Schema<QuotaProperties>;
 
-export interface GetQuotaResponse {
+export interface GetQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -562,7 +562,7 @@ export interface GetQuotaResponse {
   /** The resource-specific properties for this resource. */
   properties?: QuotaProperties;
 }
-export const GetQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -571,8 +571,8 @@ export const GetQuotaResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(QuotaProperties),
   }),
 ).annotate({
-  identifier: "GetQuotaResponse",
-}) as any as S.Schema<GetQuotaResponse>;
+  identifier: "GetQuotasResponse",
+}) as any as S.Schema<GetQuotasResponse>;
 
 export interface ListAccountByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -673,7 +673,7 @@ export const ListAccountBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAccountBySubscriptionRequest",
 }) as any as S.Schema<ListAccountBySubscriptionRequest>;
 
-export interface ListAccountQuotaByAccountRequest {
+export interface ListAccountQuotasByAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -681,7 +681,7 @@ export interface ListAccountQuotaByAccountRequest {
   /** Name of account. */
   accountName: string;
 }
-export const ListAccountQuotaByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountQuotasByAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -695,8 +695,8 @@ export const ListAccountQuotaByAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAccountQuotaByAccountRequest",
-}) as any as S.Schema<ListAccountQuotaByAccountRequest>;
+  identifier: "ListAccountQuotasByAccountRequest",
+}) as any as S.Schema<ListAccountQuotasByAccountRequest>;
 
 /** A quota resource for a Playwright service account. */
 export interface AccountQuota {
@@ -811,33 +811,33 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export interface ListQuotaBySubscriptionRequest {
+export interface ListQuotasBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The location of quota in ARM Normalized format like eastus, southeastasia etc. */
   location: string;
 }
-export const ListQuotaBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListQuotasBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -850,8 +850,8 @@ export const ListQuotaBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListQuotaBySubscriptionRequest",
-}) as any as S.Schema<ListQuotaBySubscriptionRequest>;
+  identifier: "ListQuotasBySubscriptionRequest",
+}) as any as S.Schema<ListQuotasBySubscriptionRequest>;
 
 /** A subscription quota resource. */
 export interface Quota {
@@ -899,13 +899,11 @@ export const QuotaListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QuotaListResult>;
 
 /** Resource tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The enablement status of a feature. */
 export type EnablementStatus = "Enabled" | "Disabled";
@@ -941,7 +939,7 @@ export interface UpdateAccountRequest {
   /** Name of account. */
   accountName: string;
   /** Resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: AccountUpdateProperties;
 }
@@ -950,7 +948,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(AccountUpdateProperties),
   }).pipe(
     T.Http({
@@ -965,13 +963,13 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -983,7 +981,7 @@ export interface UpdateAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -995,7 +993,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
   }),
@@ -1063,31 +1061,31 @@ export const GetAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAccountQuotaError = AzureOpError;
+export type GetAccountQuotasError = AzureOpError;
 /** Get quota by name for an account. */
-export const GetAccountQuota: API.OperationMethod<
-  GetAccountQuotaRequest,
-  GetAccountQuotaResponse,
-  GetAccountQuotaError,
+export const GetAccountQuotas: API.OperationMethod<
+  GetAccountQuotasRequest,
+  GetAccountQuotasResponse,
+  GetAccountQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAccountQuotaRequest,
-  output: GetAccountQuotaResponse,
+  input: GetAccountQuotasRequest,
+  output: GetAccountQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetQuotaError = AzureOpError;
+export type GetQuotasError = AzureOpError;
 /** Get subscription quota by name. */
-export const GetQuota: API.OperationMethod<
-  GetQuotaRequest,
-  GetQuotaResponse,
-  GetQuotaError,
+export const GetQuotas: API.OperationMethod<
+  GetQuotasRequest,
+  GetQuotasResponse,
+  GetQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQuotaRequest,
-  output: GetQuotaResponse,
+  input: GetQuotasRequest,
+  output: GetQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1123,15 +1121,15 @@ export const ListAccountBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAccountQuotaByAccountError = AzureOpError;
+export type ListAccountQuotasByAccountError = AzureOpError;
 /** List quotas for a given account. */
-export const ListAccountQuotaByAccount: API.OperationMethod<
-  ListAccountQuotaByAccountRequest,
+export const ListAccountQuotasByAccount: API.OperationMethod<
+  ListAccountQuotasByAccountRequest,
   AccountQuotaListResult,
-  ListAccountQuotaByAccountError,
+  ListAccountQuotasByAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAccountQuotaByAccountRequest,
+  input: ListAccountQuotasByAccountRequest,
   output: AccountQuotaListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1153,15 +1151,15 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListQuotaBySubscriptionError = AzureOpError;
+export type ListQuotasBySubscriptionError = AzureOpError;
 /** List quotas for a given subscription Id. */
-export const ListQuotaBySubscription: API.OperationMethod<
-  ListQuotaBySubscriptionRequest,
+export const ListQuotasBySubscription: API.OperationMethod<
+  ListQuotasBySubscriptionRequest,
   QuotaListResult,
-  ListQuotaBySubscriptionError,
+  ListQuotasBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListQuotaBySubscriptionRequest,
+  input: ListQuotasBySubscriptionRequest,
   output: QuotaListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

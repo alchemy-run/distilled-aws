@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.billing#GetGithubBillingAiCreditUsageReportOrgRequest": {
@@ -3355,43 +3356,43 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.billing#GetGithubBillingAiCreditUsageReportOrg"
-        },
-        {
-          "target": "com.github.billing#GetAllBudgetsOrg"
-        },
-        {
           "target": "com.github.billing#CreateOrganizationBudget"
-        },
-        {
-          "target": "com.github.billing#GetBudgetOrg"
-        },
-        {
-          "target": "com.github.billing#UpdateBudgetOrg"
         },
         {
           "target": "com.github.billing#DeleteBudgetOrg"
         },
         {
-          "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrg"
+          "target": "com.github.billing#GetAllBudgetsOrg"
         },
         {
-          "target": "com.github.billing#GetGithubBillingUsageReportOrg"
+          "target": "com.github.billing#GetBudgetOrg"
         },
         {
-          "target": "com.github.billing#GetGithubBillingUsageSummaryReportOrg"
+          "target": "com.github.billing#GetGithubBillingAiCreditUsageReportOrg"
         },
         {
           "target": "com.github.billing#GetGithubBillingAiCreditUsageReportUser"
         },
         {
+          "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrg"
+        },
+        {
           "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportUser"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingUsageReportOrg"
         },
         {
           "target": "com.github.billing#GetGithubBillingUsageReportUser"
         },
         {
+          "target": "com.github.billing#GetGithubBillingUsageSummaryReportOrg"
+        },
+        {
           "target": "com.github.billing#GetGithubBillingUsageSummaryReportUser"
+        },
+        {
+          "target": "com.github.billing#UpdateBudgetOrg"
         }
       ],
       "traits": {

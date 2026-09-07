@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.product_tours#ListProductToursRequest": {
@@ -669,7 +670,7 @@
         "smithy.api#documentation": "Create, read, update, and manage product tours and their targeting."
       }
     },
-    "com.posthog.product_tours#ProductToursRetrieveRequest": {
+    "com.posthog.product_tours#GetProductTourRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -693,10 +694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.product_tours#ProductToursRetrieve": {
+    "com.posthog.product_tours#GetProductTour": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_tours#ProductToursRetrieveRequest"
+        "target": "com.posthog.product_tours#GetProductTourRequest"
       },
       "output": {
         "target": "com.posthog.product_tours#ProductTour"
@@ -797,7 +798,7 @@
         "smithy.api#documentation": "Create, read, update, and manage product tours and their targeting."
       }
     },
-    "com.posthog.product_tours#UpdateProductTourPartialRequest": {
+    "com.posthog.product_tours#UpdateProductToursPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -863,10 +864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.product_tours#UpdateProductTourPartial": {
+    "com.posthog.product_tours#UpdateProductToursPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_tours#UpdateProductTourPartialRequest"
+        "target": "com.posthog.product_tours#UpdateProductToursPartialRequest"
       },
       "output": {
         "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyOutput"
@@ -989,7 +990,7 @@
         "smithy.api#documentation": "Discard draft content."
       }
     },
-    "com.posthog.product_tours#UpdateProductTourDraftPartialRequest": {
+    "com.posthog.product_tours#UpdateProductToursDraftPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1055,10 +1056,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.product_tours#UpdateProductTourDraftPartial": {
+    "com.posthog.product_tours#UpdateProductToursDraftPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_tours#UpdateProductTourDraftPartialRequest"
+        "target": "com.posthog.product_tours#UpdateProductToursDraftPartialRequest"
       },
       "output": {
         "target": "com.posthog.product_tours#ProductTour"
@@ -1083,7 +1084,7 @@
         "smithy.api#documentation": "Save draft content (server-side merge). No side effects triggered."
       }
     },
-    "com.posthog.product_tours#ProductToursDraftStatusRetrieveRequest": {
+    "com.posthog.product_tours#GetProductToursDraftStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1119,10 +1120,10 @@
       },
       "traits": {}
     },
-    "com.posthog.product_tours#ProductToursDraftStatusRetrieve": {
+    "com.posthog.product_tours#GetProductToursDraftStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_tours#ProductToursDraftStatusRetrieveRequest"
+        "target": "com.posthog.product_tours#GetProductToursDraftStatusRequest"
       },
       "output": {
         "target": "com.posthog.product_tours#DraftStatusResponse"
@@ -1253,7 +1254,7 @@
         "smithy.api#documentation": "Generate tour step content using AI."
       }
     },
-    "com.posthog.product_tours#CreateProductTourPublishDraftRequest": {
+    "com.posthog.product_tours#ProductToursPublishDraftCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1319,10 +1320,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.product_tours#CreateProductTourPublishDraft": {
+    "com.posthog.product_tours#ProductToursPublishDraftCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_tours#CreateProductTourPublishDraftRequest"
+        "target": "com.posthog.product_tours#ProductToursPublishDraftCreateRequest"
       },
       "output": {
         "target": "com.posthog.product_tours#ProductTour"
@@ -1391,19 +1392,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.product_tours#ListProductTours"
-        },
-        {
           "target": "com.posthog.product_tours#CreateProductTour"
         },
         {
-          "target": "com.posthog.product_tours#ProductToursRetrieve"
+          "target": "com.posthog.product_tours#GetProductTour"
         },
         {
-          "target": "com.posthog.product_tours#UpdateProductTour"
+          "target": "com.posthog.product_tours#GetProductToursDraftStatus"
         },
         {
-          "target": "com.posthog.product_tours#UpdateProductTourPartial"
+          "target": "com.posthog.product_tours#ListProductTours"
         },
         {
           "target": "com.posthog.product_tours#ProductToursDestroy"
@@ -1412,16 +1410,19 @@
           "target": "com.posthog.product_tours#ProductToursDiscardDraftDestroy"
         },
         {
-          "target": "com.posthog.product_tours#UpdateProductTourDraftPartial"
-        },
-        {
-          "target": "com.posthog.product_tours#ProductToursDraftStatusRetrieve"
-        },
-        {
           "target": "com.posthog.product_tours#ProductToursGenerateCreate"
         },
         {
-          "target": "com.posthog.product_tours#CreateProductTourPublishDraft"
+          "target": "com.posthog.product_tours#ProductToursPublishDraftCreate"
+        },
+        {
+          "target": "com.posthog.product_tours#UpdateProductTour"
+        },
+        {
+          "target": "com.posthog.product_tours#UpdateProductToursDraftPartial"
+        },
+        {
+          "target": "com.posthog.product_tours#UpdateProductToursPartial"
         }
       ],
       "traits": {

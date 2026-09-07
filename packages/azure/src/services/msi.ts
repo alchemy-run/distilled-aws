@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeleteFederatedIdentityCredentialRequest {
+export interface DeleteFederatedIdentityCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22,8 +22,8 @@ export interface DeleteFederatedIdentityCredentialRequest {
   /** The name of the federated identity credential resource. */
   federatedIdentityCredentialResourceName: string;
 }
-export const DeleteFederatedIdentityCredentialRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteFederatedIdentityCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -37,15 +37,15 @@ export const DeleteFederatedIdentityCredentialRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-11-30",
       }),
     ),
-).annotate({
-  identifier: "DeleteFederatedIdentityCredentialRequest",
-}) as any as S.Schema<DeleteFederatedIdentityCredentialRequest>;
+  ).annotate({
+    identifier: "DeleteFederatedIdentityCredentialsRequest",
+  }) as any as S.Schema<DeleteFederatedIdentityCredentialsRequest>;
 
-export interface DeleteFederatedIdentityCredentialResponse {}
-export const DeleteFederatedIdentityCredentialResponse =
+export interface DeleteFederatedIdentityCredentialsResponse {}
+export const DeleteFederatedIdentityCredentialsResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteFederatedIdentityCredentialResponse",
-  }) as any as S.Schema<DeleteFederatedIdentityCredentialResponse>;
+    identifier: "DeleteFederatedIdentityCredentialsResponse",
+  }) as any as S.Schema<DeleteFederatedIdentityCredentialsResponse>;
 
 export interface DeleteUserAssignedIdentityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -205,7 +205,7 @@ export const FederatedIdentityCredentialsCreateOrUpdateResponse =
     identifier: "FederatedIdentityCredentialsCreateOrUpdateResponse",
   }) as any as S.Schema<FederatedIdentityCredentialsCreateOrUpdateResponse>;
 
-export interface GetFederatedIdentityCredentialRequest {
+export interface GetFederatedIdentityCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -215,7 +215,7 @@ export interface GetFederatedIdentityCredentialRequest {
   /** The name of the federated identity credential resource. */
   federatedIdentityCredentialResourceName: string;
 }
-export const GetFederatedIdentityCredentialRequest = /*@__PURE__*/ S.suspend(
+export const GetFederatedIdentityCredentialsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -231,10 +231,10 @@ export const GetFederatedIdentityCredentialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetFederatedIdentityCredentialRequest",
-}) as any as S.Schema<GetFederatedIdentityCredentialRequest>;
+  identifier: "GetFederatedIdentityCredentialsRequest",
+}) as any as S.Schema<GetFederatedIdentityCredentialsRequest>;
 
-export interface GetFederatedIdentityCredentialResponse {
+export interface GetFederatedIdentityCredentialsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -246,7 +246,7 @@ export interface GetFederatedIdentityCredentialResponse {
   /** The properties associated with the federated identity credential. */
   properties?: FederatedIdentityCredentialProperties;
 }
-export const GetFederatedIdentityCredentialResponse = /*@__PURE__*/ S.suspend(
+export const GetFederatedIdentityCredentialsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -256,8 +256,8 @@ export const GetFederatedIdentityCredentialResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(FederatedIdentityCredentialProperties),
     }),
 ).annotate({
-  identifier: "GetFederatedIdentityCredentialResponse",
-}) as any as S.Schema<GetFederatedIdentityCredentialResponse>;
+  identifier: "GetFederatedIdentityCredentialsResponse",
+}) as any as S.Schema<GetFederatedIdentityCredentialsResponse>;
 
 export interface GetSystemAssignedIdentityByScopeRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -301,14 +301,14 @@ export const SystemAssignedIdentityProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SystemAssignedIdentityProperties",
 }) as any as S.Schema<SystemAssignedIdentityProperties>;
 
-export type SystemAssignedIdentitiesGetByScopeResponseTagsMap = {
+export type GetSystemAssignedIdentityByScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SystemAssignedIdentitiesGetByScopeResponseTagsMap =
+export const GetSystemAssignedIdentityByScopeResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SystemAssignedIdentitiesGetByScopeResponseTagsMap>;
+  ) as any as S.Schema<GetSystemAssignedIdentityByScopeResponseTagsMap>;
 
 export interface GetSystemAssignedIdentityByScopeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -322,7 +322,7 @@ export interface GetSystemAssignedIdentityByScopeResponse {
   /** The properties associated with the identity. */
   properties?: SystemAssignedIdentityProperties;
   location: string;
-  tags?: SystemAssignedIdentitiesGetByScopeResponseTagsMap;
+  tags?: GetSystemAssignedIdentityByScopeResponseTagsMap;
 }
 export const GetSystemAssignedIdentityByScopeResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -333,7 +333,7 @@ export const GetSystemAssignedIdentityByScopeResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(SystemAssignedIdentityProperties),
       location: S.String,
-      tags: S.optional(SystemAssignedIdentitiesGetByScopeResponseTagsMap),
+      tags: S.optional(GetSystemAssignedIdentityByScopeResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetSystemAssignedIdentityByScopeResponse",
@@ -365,13 +365,13 @@ export const GetUserAssignedIdentityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserAssignedIdentityRequest>;
 
 /** Resource tags. */
-export type UserAssignedIdentitiesGetResponseTagsMap = {
+export type GetUserAssignedIdentityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UserAssignedIdentitiesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetUserAssignedIdentityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UserAssignedIdentitiesGetResponseTagsMap>;
+) as any as S.Schema<GetUserAssignedIdentityResponseTagsMap>;
 
 /** Enum to configure regional restrictions on identity assignment, as necessary. */
 export type IsolationScope = "None" | "Regional";
@@ -409,7 +409,7 @@ export interface GetUserAssignedIdentityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: UserAssignedIdentitiesGetResponseTagsMap;
+  tags?: GetUserAssignedIdentityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties associated with the identity. */
@@ -421,7 +421,7 @@ export const GetUserAssignedIdentityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(UserAssignedIdentitiesGetResponseTagsMap),
+    tags: S.optional(GetUserAssignedIdentityResponseTagsMap),
     location: S.String,
     properties: S.optional(UserAssignedIdentityProperties),
   }),
@@ -495,21 +495,21 @@ export const FederatedIdentityCredentialsListResultValueList =
   ) as any as S.Schema<FederatedIdentityCredentialsListResultValueList>;
 
 /** Values returned by the List operation for federated identity credentials. */
-export interface ListFederatedIdentityCredentialsResult {
+export interface FederatedIdentityCredentialsListResult {
   /** The FederatedIdentityCredential items on this page */
   value: FederatedIdentityCredentialsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListFederatedIdentityCredentialsResult = /*@__PURE__*/ S.suspend(
+export const FederatedIdentityCredentialsListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: FederatedIdentityCredentialsListResultValueList,
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListFederatedIdentityCredentialsResult",
-}) as any as S.Schema<ListFederatedIdentityCredentialsResult>;
+  identifier: "FederatedIdentityCredentialsListResult",
+}) as any as S.Schema<FederatedIdentityCredentialsListResult>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -685,14 +685,13 @@ export const ListUserAssignedIdentityBySubscriptionRequest =
   }) as any as S.Schema<ListUserAssignedIdentityBySubscriptionRequest>;
 
 /** Resource tags */
-export type UserAssignedIdentitiesUpdateRequestTagsMap = {
+export type UpdateUserAssignedIdentityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UserAssignedIdentitiesUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<UserAssignedIdentitiesUpdateRequestTagsMap>;
+export const UpdateUserAssignedIdentityRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateUserAssignedIdentityRequestTagsMap>;
 
 export interface UpdateUserAssignedIdentityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -704,7 +703,7 @@ export interface UpdateUserAssignedIdentityRequest {
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource tags */
-  tags?: UserAssignedIdentitiesUpdateRequestTagsMap;
+  tags?: UpdateUserAssignedIdentityRequestTagsMap;
   /** The properties associated with the identity. */
   properties?: UserAssignedIdentityProperties;
 }
@@ -714,7 +713,7 @@ export const UpdateUserAssignedIdentityRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(UserAssignedIdentitiesUpdateRequestTagsMap),
+    tags: S.optional(UpdateUserAssignedIdentityRequestTagsMap),
     properties: S.optional(UserAssignedIdentityProperties),
   }).pipe(
     T.Http({
@@ -729,14 +728,13 @@ export const UpdateUserAssignedIdentityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateUserAssignedIdentityRequest>;
 
 /** Resource tags. */
-export type UserAssignedIdentitiesUpdateResponseTagsMap = {
+export type UpdateUserAssignedIdentityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UserAssignedIdentitiesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<UserAssignedIdentitiesUpdateResponseTagsMap>;
+export const UpdateUserAssignedIdentityResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateUserAssignedIdentityResponseTagsMap>;
 
 export interface UpdateUserAssignedIdentityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -748,7 +746,7 @@ export interface UpdateUserAssignedIdentityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: UserAssignedIdentitiesUpdateResponseTagsMap;
+  tags?: UpdateUserAssignedIdentityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties associated with the identity. */
@@ -760,7 +758,7 @@ export const UpdateUserAssignedIdentityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(UserAssignedIdentitiesUpdateResponseTagsMap),
+    tags: S.optional(UpdateUserAssignedIdentityResponseTagsMap),
     location: S.String,
     properties: S.optional(UserAssignedIdentityProperties),
   }),
@@ -854,16 +852,16 @@ export const UserAssignedIdentitiesCreateOrUpdateResponse =
     identifier: "UserAssignedIdentitiesCreateOrUpdateResponse",
   }) as any as S.Schema<UserAssignedIdentitiesCreateOrUpdateResponse>;
 
-export type DeleteFederatedIdentityCredentialError = AzureOpError;
+export type DeleteFederatedIdentityCredentialsError = AzureOpError;
 /** Deletes the federated identity credential. */
-export const DeleteFederatedIdentityCredential: API.OperationMethod<
-  DeleteFederatedIdentityCredentialRequest,
-  DeleteFederatedIdentityCredentialResponse,
-  DeleteFederatedIdentityCredentialError,
+export const DeleteFederatedIdentityCredentials: API.OperationMethod<
+  DeleteFederatedIdentityCredentialsRequest,
+  DeleteFederatedIdentityCredentialsResponse,
+  DeleteFederatedIdentityCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteFederatedIdentityCredentialRequest,
-  output: DeleteFederatedIdentityCredentialResponse,
+  input: DeleteFederatedIdentityCredentialsRequest,
+  output: DeleteFederatedIdentityCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -899,16 +897,16 @@ export const FederatedIdentityCredentialsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetFederatedIdentityCredentialError = AzureOpError;
+export type GetFederatedIdentityCredentialsError = AzureOpError;
 /** Gets the federated identity credential. */
-export const GetFederatedIdentityCredential: API.OperationMethod<
-  GetFederatedIdentityCredentialRequest,
-  GetFederatedIdentityCredentialResponse,
-  GetFederatedIdentityCredentialError,
+export const GetFederatedIdentityCredentials: API.OperationMethod<
+  GetFederatedIdentityCredentialsRequest,
+  GetFederatedIdentityCredentialsResponse,
+  GetFederatedIdentityCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFederatedIdentityCredentialRequest,
-  output: GetFederatedIdentityCredentialResponse,
+  input: GetFederatedIdentityCredentialsRequest,
+  output: GetFederatedIdentityCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -948,12 +946,12 @@ export type ListFederatedIdentityCredentialsError = AzureOpError;
 /** Lists all the federated identity credentials under the specified user assigned identity. */
 export const ListFederatedIdentityCredentials: API.OperationMethod<
   ListFederatedIdentityCredentialsRequest,
-  ListFederatedIdentityCredentialsResult,
+  FederatedIdentityCredentialsListResult,
   ListFederatedIdentityCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFederatedIdentityCredentialsRequest,
-  output: ListFederatedIdentityCredentialsResult,
+  output: FederatedIdentityCredentialsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

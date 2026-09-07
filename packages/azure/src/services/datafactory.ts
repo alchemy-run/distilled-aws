@@ -13,99 +13,441 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-export type RunQueryFilterOperand =
-  | "PipelineName"
-  | "Status"
-  | "RunStart"
-  | "RunEnd"
-  | "ActivityName"
-  | "ActivityRunStart"
-  | "ActivityRunEnd"
-  | "ActivityType"
-  | "TriggerName"
-  | "TriggerRunTimestamp"
-  | "RunGroupId"
-  | "LatestOnly";
-export const RunQueryFilterOperand = /*@__PURE__*/ S.String;
+/** List of tags that can be used for describing the data flow. */
+export type DataFlowAnnotationsList = Array<unknown>;
+export const DataFlowAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<DataFlowAnnotationsList>;
 
-/** Operator to be used for filter. */
-export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn";
-export const RunQueryFilterOperator = /*@__PURE__*/ S.String;
-
-/** List of filter values. */
-export type RunQueryFilterValuesList = Array<string>;
-export const RunQueryFilterValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RunQueryFilterValuesList>;
-
-/** Query filter option for listing runs. */
-export interface RunQueryFilter {
-  /** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-  operand: RunQueryFilterOperand | (string & {});
-  /** Operator to be used for filter. */
-  operator: RunQueryFilterOperator | (string & {});
-  /** List of filter values. */
-  values: RunQueryFilterValuesList;
+/** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
+export interface DataFlowFolder {
+  /** The name of the folder that this data flow is in. */
+  name?: string;
 }
-export const RunQueryFilter = /*@__PURE__*/ S.suspend(() =>
+export const DataFlowFolder = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operand: RunQueryFilterOperand,
-    operator: RunQueryFilterOperator,
-    values: RunQueryFilterValuesList,
+    name: S.optional(S.String),
   }),
-).annotate({ identifier: "RunQueryFilter" }) as any as S.Schema<RunQueryFilter>;
+).annotate({ identifier: "DataFlowFolder" }) as any as S.Schema<DataFlowFolder>;
 
-/** List of filters. */
-export type ActivityRunsQueryByPipelineRunRequestFiltersList =
-  Array<RunQueryFilter>;
-export const ActivityRunsQueryByPipelineRunRequestFiltersList =
-  /*@__PURE__*/ S.Array(
-    RunQueryFilter,
-  ) as any as S.Schema<ActivityRunsQueryByPipelineRunRequestFiltersList>;
-
-/** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-export type RunQueryOrderByField =
-  | "RunStart"
-  | "RunEnd"
-  | "PipelineName"
-  | "Status"
-  | "ActivityName"
-  | "ActivityRunStart"
-  | "ActivityRunEnd"
-  | "TriggerName"
-  | "TriggerRunTimestamp";
-export const RunQueryOrderByField = /*@__PURE__*/ S.String;
-
-/** Sorting order of the parameter. */
-export type RunQueryOrder = "ASC" | "DESC";
-export const RunQueryOrder = /*@__PURE__*/ S.String;
-
-/** An object to provide order by options for listing runs. */
-export interface RunQueryOrderBy {
-  /** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-  orderBy: RunQueryOrderByField | (string & {});
-  /** Sorting order of the parameter. */
-  order: RunQueryOrder | (string & {});
+/** Azure Data Factory nested object which contains a flow with data movements and transformations. */
+export interface DataFlow {
+  /** Type of data flow. */
+  type: string;
+  /** The description of the data flow. */
+  description?: string;
+  /** List of tags that can be used for describing the data flow. */
+  annotations?: DataFlowAnnotationsList;
+  /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
+  folder?: DataFlowFolder;
 }
-export const RunQueryOrderBy = /*@__PURE__*/ S.suspend(() =>
+export const DataFlow = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    orderBy: RunQueryOrderByField,
-    order: RunQueryOrder,
+    type: S.String,
+    description: S.optional(S.String),
+    annotations: S.optional(DataFlowAnnotationsList),
+    folder: S.optional(DataFlowFolder),
+  }),
+).annotate({ identifier: "DataFlow" }) as any as S.Schema<DataFlow>;
+
+/** Data flow debug resource. */
+export interface DataFlowDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Data flow properties. */
+  properties: DataFlow;
+}
+export const DataFlowDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: DataFlow,
   }),
 ).annotate({
-  identifier: "RunQueryOrderBy",
-}) as any as S.Schema<RunQueryOrderBy>;
+  identifier: "DataFlowDebugResource",
+}) as any as S.Schema<DataFlowDebugResource>;
 
-/** List of OrderBy option. */
-export type ActivityRunsQueryByPipelineRunRequestOrderByList =
-  Array<RunQueryOrderBy>;
-export const ActivityRunsQueryByPipelineRunRequestOrderByList =
+/** List of Data flows */
+export type AddDataFlowDebugSessionDataFlowRequestDataFlowsList =
+  Array<DataFlowDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestDataFlowsList =
   /*@__PURE__*/ S.Array(
-    RunQueryOrderBy,
-  ) as any as S.Schema<ActivityRunsQueryByPipelineRunRequestOrderByList>;
+    DataFlowDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestDataFlowsList>;
 
-export interface ActivityRunsQueryByPipelineRunRequest {
+/** Linked service reference type. */
+export type Type = "LinkedServiceReference";
+export const Type = /*@__PURE__*/ S.String;
+
+/** Arguments for LinkedService. */
+export type LinkedServiceReferenceParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const LinkedServiceReferenceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<LinkedServiceReferenceParametersMap>;
+
+/** Linked service reference type. */
+export interface LinkedServiceReference {
+  /** Linked service reference type. */
+  type: Type | (string & {});
+  /** Reference LinkedService name. */
+  referenceName: string;
+  /** Arguments for LinkedService. */
+  parameters?: LinkedServiceReferenceParametersMap;
+}
+export const LinkedServiceReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: Type,
+    referenceName: S.String,
+    parameters: S.optional(LinkedServiceReferenceParametersMap),
+  }),
+).annotate({
+  identifier: "LinkedServiceReference",
+}) as any as S.Schema<LinkedServiceReference>;
+
+/** Parameter type. */
+export type ParameterType =
+  | "Object"
+  | "String"
+  | "Int"
+  | "Float"
+  | "Bool"
+  | "Array"
+  | "SecureString";
+export const ParameterType = /*@__PURE__*/ S.String;
+
+/** Definition of a single parameter for an entity. */
+export interface ParameterSpecification {
+  /** Parameter type. */
+  type: ParameterType | (string & {});
+  /** Default value of parameter. */
+  defaultValue?: unknown;
+}
+export const ParameterSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ParameterType,
+    defaultValue: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ParameterSpecification",
+}) as any as S.Schema<ParameterSpecification>;
+
+/** Parameters for dataset. */
+export type DatasetParametersMap = {
+  [key: string]: ParameterSpecification | undefined;
+};
+export const DatasetParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterSpecification,
+) as any as S.Schema<DatasetParametersMap>;
+
+/** List of tags that can be used for describing the Dataset. */
+export type DatasetAnnotationsList = Array<unknown>;
+export const DatasetAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<DatasetAnnotationsList>;
+
+/** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
+export interface DatasetFolder {
+  /** The name of the folder that this Dataset is in. */
+  name?: string;
+}
+export const DatasetFolder = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "DatasetFolder" }) as any as S.Schema<DatasetFolder>;
+
+/** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
+export interface Dataset {
+  /** Type of dataset. */
+  type: string;
+  /** Dataset description. */
+  description?: string;
+  /** Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. */
+  structure?: unknown;
+  /** Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement. */
+  schema?: unknown;
+  /** Linked service reference. */
+  linkedServiceName: LinkedServiceReference;
+  /** Parameters for dataset. */
+  parameters?: DatasetParametersMap;
+  /** List of tags that can be used for describing the Dataset. */
+  annotations?: DatasetAnnotationsList;
+  /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
+  folder?: DatasetFolder;
+}
+export const Dataset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    description: S.optional(S.String),
+    structure: S.optional(S.Unknown),
+    schema: S.optional(S.Unknown),
+    linkedServiceName: LinkedServiceReference,
+    parameters: S.optional(DatasetParametersMap),
+    annotations: S.optional(DatasetAnnotationsList),
+    folder: S.optional(DatasetFolder),
+  }),
+).annotate({ identifier: "Dataset" }) as any as S.Schema<Dataset>;
+
+/** Dataset debug resource. */
+export interface DatasetDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Dataset properties. */
+  properties: Dataset;
+}
+export const DatasetDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: Dataset,
+  }),
+).annotate({
+  identifier: "DatasetDebugResource",
+}) as any as S.Schema<DatasetDebugResource>;
+
+/** List of datasets. */
+export type AddDataFlowDebugSessionDataFlowRequestDatasetsList =
+  Array<DatasetDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestDatasetsList =
+  /*@__PURE__*/ S.Array(
+    DatasetDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestDatasetsList>;
+
+/** Type of integration runtime. */
+export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference";
+export const IntegrationRuntimeReferenceType = /*@__PURE__*/ S.String;
+
+/** Arguments for integration runtime. */
+export type IntegrationRuntimeReferenceParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const IntegrationRuntimeReferenceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<IntegrationRuntimeReferenceParametersMap>;
+
+/** Integration runtime reference type. */
+export interface IntegrationRuntimeReference {
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeReferenceType | (string & {});
+  /** Reference integration runtime name. */
+  referenceName: string;
+  /** Arguments for integration runtime. */
+  parameters?: IntegrationRuntimeReferenceParametersMap;
+}
+export const IntegrationRuntimeReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: IntegrationRuntimeReferenceType,
+    referenceName: S.String,
+    parameters: S.optional(IntegrationRuntimeReferenceParametersMap),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeReference",
+}) as any as S.Schema<IntegrationRuntimeReference>;
+
+/** Parameters for linked service. */
+export type LinkedServiceParametersMap = {
+  [key: string]: ParameterSpecification | undefined;
+};
+export const LinkedServiceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterSpecification,
+) as any as S.Schema<LinkedServiceParametersMap>;
+
+/** List of tags that can be used for describing the linked service. */
+export type LinkedServiceAnnotationsList = Array<unknown>;
+export const LinkedServiceAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<LinkedServiceAnnotationsList>;
+
+/** The nested object which contains the information and credential which can be used to connect with related store or compute resource. */
+export interface LinkedService {
+  /** Type of linked service. */
+  type: string;
+  /** Version of the linked service. */
+  version?: string;
+  /** The integration runtime reference. */
+  connectVia?: IntegrationRuntimeReference;
+  /** Linked service description. */
+  description?: string;
+  /** Parameters for linked service. */
+  parameters?: LinkedServiceParametersMap;
+  /** List of tags that can be used for describing the linked service. */
+  annotations?: LinkedServiceAnnotationsList;
+}
+export const LinkedService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    version: S.optional(S.String),
+    connectVia: S.optional(IntegrationRuntimeReference),
+    description: S.optional(S.String),
+    parameters: S.optional(LinkedServiceParametersMap),
+    annotations: S.optional(LinkedServiceAnnotationsList),
+  }),
+).annotate({ identifier: "LinkedService" }) as any as S.Schema<LinkedService>;
+
+/** Linked service debug resource. */
+export interface LinkedServiceDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Properties of linked service. */
+  properties: LinkedService;
+}
+export const LinkedServiceDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: LinkedService,
+  }),
+).annotate({
+  identifier: "LinkedServiceDebugResource",
+}) as any as S.Schema<LinkedServiceDebugResource>;
+
+/** List of linked services. */
+export type AddDataFlowDebugSessionDataFlowRequestLinkedServicesList =
+  Array<LinkedServiceDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestLinkedServicesList =
+  /*@__PURE__*/ S.Array(
+    LinkedServiceDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestLinkedServicesList>;
+
+/** Staging info for execute data flow activity. */
+export interface DataFlowStagingInfo {
+  /** Staging linked service reference. */
+  linkedService?: LinkedServiceReference;
+  /** Folder path for staging blob. Type: string (or Expression with resultType string) */
+  folderPath?: unknown;
+}
+export const DataFlowStagingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    linkedService: S.optional(LinkedServiceReference),
+    folderPath: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DataFlowStagingInfo",
+}) as any as S.Schema<DataFlowStagingInfo>;
+
+/** Definition of data flow source setting for debug. */
+export interface DataFlowSourceSetting {
+  /** The data flow source name. */
+  sourceName?: string;
+  /** Defines the row limit of data flow source in debug. */
+  rowLimit?: number;
+}
+export const DataFlowSourceSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceName: S.optional(S.String),
+    rowLimit: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "DataFlowSourceSetting",
+}) as any as S.Schema<DataFlowSourceSetting>;
+
+/** Source setting for data flow debug. */
+export type DataFlowDebugPackageDebugSettingsSourceSettingsList =
+  Array<DataFlowSourceSetting>;
+export const DataFlowDebugPackageDebugSettingsSourceSettingsList =
+  /*@__PURE__*/ S.Array(
+    DataFlowSourceSetting,
+  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsSourceSettingsList>;
+
+/** Data flow parameters. */
+export type DataFlowDebugPackageDebugSettingsParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const DataFlowDebugPackageDebugSettingsParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsParametersMap>;
+
+/** Data flow debug settings. */
+export interface DataFlowDebugPackageDebugSettings {
+  /** Source setting for data flow debug. */
+  sourceSettings?: DataFlowDebugPackageDebugSettingsSourceSettingsList;
+  /** Data flow parameters. */
+  parameters?: DataFlowDebugPackageDebugSettingsParametersMap;
+  /** Parameters for dataset. */
+  datasetParameters?: unknown;
+}
+export const DataFlowDebugPackageDebugSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceSettings: S.optional(
+      DataFlowDebugPackageDebugSettingsSourceSettingsList,
+    ),
+    parameters: S.optional(DataFlowDebugPackageDebugSettingsParametersMap),
+    datasetParameters: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DataFlowDebugPackageDebugSettings",
+}) as any as S.Schema<DataFlowDebugPackageDebugSettings>;
+
+export interface AddDataFlowDebugSessionDataFlowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+  /** Data flow instance. */
+  dataFlow?: DataFlowDebugResource;
+  /** List of Data flows */
+  dataFlows?: AddDataFlowDebugSessionDataFlowRequestDataFlowsList;
+  /** List of datasets. */
+  datasets?: AddDataFlowDebugSessionDataFlowRequestDatasetsList;
+  /** List of linked services. */
+  linkedServices?: AddDataFlowDebugSessionDataFlowRequestLinkedServicesList;
+  /** Staging info for debug session. */
+  staging?: DataFlowStagingInfo;
+  /** Data flow debug settings. */
+  debugSettings?: DataFlowDebugPackageDebugSettings;
+}
+export const AddDataFlowDebugSessionDataFlowRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      sessionId: S.optional(S.String),
+      dataFlow: S.optional(DataFlowDebugResource),
+      dataFlows: S.optional(
+        AddDataFlowDebugSessionDataFlowRequestDataFlowsList,
+      ),
+      datasets: S.optional(AddDataFlowDebugSessionDataFlowRequestDatasetsList),
+      linkedServices: S.optional(
+        AddDataFlowDebugSessionDataFlowRequestLinkedServicesList,
+      ),
+      staging: S.optional(DataFlowStagingInfo),
+      debugSettings: S.optional(DataFlowDebugPackageDebugSettings),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/addDataFlowToDebugSession",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "AddDataFlowDebugSessionDataFlowRequest",
+}) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequest>;
+
+/** Response body structure for starting data flow debug session. */
+export interface AddDataFlowToDebugSessionResponse {
+  /** The ID of data flow debug job version. */
+  jobVersion?: string;
+}
+export const AddDataFlowToDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddDataFlowToDebugSessionResponse",
+}) as any as S.Schema<AddDataFlowToDebugSessionResponse>;
+
+export interface CancelPipelineRunRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -113,109 +455,70 @@ export interface ActivityRunsQueryByPipelineRunRequest {
   factoryName: string;
   /** The pipeline run identifier. */
   runId: string;
-  /** The continuation token for getting the next page of results. Null for first page. */
-  continuationToken?: string;
-  /** The time at or after which the run event was updated in 'ISO 8601' format. */
-  lastUpdatedAfter: string;
-  /** The time at or before which the run event was updated in 'ISO 8601' format. */
-  lastUpdatedBefore: string;
-  /** List of filters. */
-  filters?: ActivityRunsQueryByPipelineRunRequestFiltersList;
-  /** List of OrderBy option. */
-  orderBy?: ActivityRunsQueryByPipelineRunRequestOrderByList;
+  /** If true, cancel all the Child pipelines that are triggered by the current pipeline. */
+  isRecursive?: boolean;
 }
-export const ActivityRunsQueryByPipelineRunRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      runId: S.String.pipe(T.Label()),
-      continuationToken: S.optional(S.String),
-      lastUpdatedAfter: S.String,
-      lastUpdatedBefore: S.String,
-      filters: S.optional(ActivityRunsQueryByPipelineRunRequestFiltersList),
-      orderBy: S.optional(ActivityRunsQueryByPipelineRunRequestOrderByList),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ActivityRunsQueryByPipelineRunRequest",
-}) as any as S.Schema<ActivityRunsQueryByPipelineRunRequest>;
-
-/** Information about an activity run in a pipeline. */
-export interface ActivityRun {
-  /** The name of the pipeline. */
-  pipelineName?: string;
-  /** The id of the pipeline run. */
-  pipelineRunId?: string;
-  /** The name of the activity. */
-  activityName?: string;
-  /** The type of the activity. */
-  activityType?: string;
-  /** The id of the activity run. */
-  activityRunId?: string;
-  /** The name of the compute linked service. */
-  linkedServiceName?: string;
-  /** The status of the activity run. */
-  status?: string;
-  /** The start time of the activity run in 'ISO 8601' format. */
-  activityRunStart?: string;
-  /** The end time of the activity run in 'ISO 8601' format. */
-  activityRunEnd?: string;
-  /** The duration of the activity run. */
-  durationInMs?: number;
-  /** The input for the activity. */
-  input?: unknown;
-  /** The output for the activity. */
-  output?: unknown;
-  /** The error if any from the activity run. */
-  error?: unknown;
-}
-export const ActivityRun = /*@__PURE__*/ S.suspend(() =>
+export const CancelPipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pipelineName: S.optional(S.String),
-    pipelineRunId: S.optional(S.String),
-    activityName: S.optional(S.String),
-    activityType: S.optional(S.String),
-    activityRunId: S.optional(S.String),
-    linkedServiceName: S.optional(S.String),
-    status: S.optional(S.String),
-    activityRunStart: S.optional(S.String),
-    activityRunEnd: S.optional(S.String),
-    durationInMs: S.optional(S.Number),
-    input: S.optional(S.Unknown),
-    output: S.optional(S.Unknown),
-    error: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "ActivityRun" }) as any as S.Schema<ActivityRun>;
-
-/** List of activity runs. */
-export type ActivityRunsQueryResponseValueList = Array<ActivityRun>;
-export const ActivityRunsQueryResponseValueList = /*@__PURE__*/ S.Array(
-  ActivityRun,
-) as any as S.Schema<ActivityRunsQueryResponseValueList>;
-
-/** A list activity runs. */
-export interface ActivityRunsQueryResponse {
-  /** List of activity runs. */
-  value: ActivityRunsQueryResponseValueList;
-  /** The continuation token for getting the next page of results, if any remaining results exist, null otherwise. */
-  continuationToken?: string;
-}
-export const ActivityRunsQueryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ActivityRunsQueryResponseValueList,
-    continuationToken: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+    isRecursive: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ActivityRunsQueryResponse",
-}) as any as S.Schema<ActivityRunsQueryResponse>;
+  identifier: "CancelPipelineRunRequest",
+}) as any as S.Schema<CancelPipelineRunRequest>;
+
+export interface CancelPipelineRunResponse {}
+export const CancelPipelineRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelPipelineRunResponse",
+}) as any as S.Schema<CancelPipelineRunResponse>;
+
+export interface CancelTriggerRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  factoryName: string;
+  triggerName: string;
+  /** The pipeline run identifier. */
+  runId: string;
+}
+export const CancelTriggerRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/cancel",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelTriggerRunRequest",
+}) as any as S.Schema<CancelTriggerRunRequest>;
+
+export interface CancelTriggerRunResponse {}
+export const CancelTriggerRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelTriggerRunResponse",
+}) as any as S.Schema<CancelTriggerRunResponse>;
 
 /** The folder that this CDC is in. If not specified, CDC will appear at the root level. */
 export interface ChangeDataCaptureFolder {
@@ -314,38 +617,6 @@ export const MapperSourceConnectionsInfoSourceEntitiesList =
   /*@__PURE__*/ S.Array(
     MapperTable,
   ) as any as S.Schema<MapperSourceConnectionsInfoSourceEntitiesList>;
-
-/** Linked service reference type. */
-export type Type = "LinkedServiceReference";
-export const Type = /*@__PURE__*/ S.String;
-
-/** Arguments for LinkedService. */
-export type LinkedServiceReferenceParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const LinkedServiceReferenceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<LinkedServiceReferenceParametersMap>;
-
-/** Linked service reference type. */
-export interface LinkedServiceReference {
-  /** Linked service reference type. */
-  type: Type | (string & {});
-  /** Reference LinkedService name. */
-  referenceName: string;
-  /** Arguments for LinkedService. */
-  parameters?: LinkedServiceReferenceParametersMap;
-}
-export const LinkedServiceReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: Type,
-    referenceName: S.String,
-    parameters: S.optional(LinkedServiceReferenceParametersMap),
-  }),
-).annotate({
-  identifier: "LinkedServiceReference",
-}) as any as S.Schema<LinkedServiceReference>;
 
 /** Type of connection via linked service or dataset. */
 export type ConnectionType = "linkedservicetype";
@@ -963,13 +1234,13 @@ export const IntegrationRuntimeStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntegrationRuntimeStatusResponse",
 }) as any as S.Schema<IntegrationRuntimeStatusResponse>;
 
-export type PipelinesCreateRunRequestBodyMap = {
+export type CreatePipelineRunRequestBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const PipelinesCreateRunRequestBodyMap = /*@__PURE__*/ S.Record(
+export const CreatePipelineRunRequestBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<PipelinesCreateRunRequestBodyMap>;
+) as any as S.Schema<CreatePipelineRunRequestBodyMap>;
 
 export interface CreatePipelineRunRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -988,7 +1259,7 @@ export interface CreatePipelineRunRequest {
   startActivityName?: string;
   /** In recovery mode, if set to true, the rerun will start from failed activities. The property will be used only if startActivityName is not specified. */
   startFromFailure?: boolean;
-  body?: PipelinesCreateRunRequestBodyMap;
+  body?: CreatePipelineRunRequestBodyMap;
 }
 export const CreatePipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1000,7 +1271,7 @@ export const CreatePipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
     isRecovery: S.optional(S.Boolean.pipe(T.Query())),
     startActivityName: S.optional(S.String.pipe(T.Query())),
     startFromFailure: S.optional(S.Boolean.pipe(T.Query())),
-    body: S.optional(PipelinesCreateRunRequestBodyMap.pipe(T.HttpBody())),
+    body: S.optional(CreatePipelineRunRequestBodyMap.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1108,494 +1379,6 @@ export const CredentialOperationsCreateOrUpdateResponse =
   ).annotate({
     identifier: "CredentialOperationsCreateOrUpdateResponse",
   }) as any as S.Schema<CredentialOperationsCreateOrUpdateResponse>;
-
-/** List of tags that can be used for describing the data flow. */
-export type DataFlowAnnotationsList = Array<unknown>;
-export const DataFlowAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DataFlowAnnotationsList>;
-
-/** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
-export interface DataFlowFolder {
-  /** The name of the folder that this data flow is in. */
-  name?: string;
-}
-export const DataFlowFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DataFlowFolder" }) as any as S.Schema<DataFlowFolder>;
-
-/** Azure Data Factory nested object which contains a flow with data movements and transformations. */
-export interface DataFlow {
-  /** Type of data flow. */
-  type: string;
-  /** The description of the data flow. */
-  description?: string;
-  /** List of tags that can be used for describing the data flow. */
-  annotations?: DataFlowAnnotationsList;
-  /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
-  folder?: DataFlowFolder;
-}
-export const DataFlow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    description: S.optional(S.String),
-    annotations: S.optional(DataFlowAnnotationsList),
-    folder: S.optional(DataFlowFolder),
-  }),
-).annotate({ identifier: "DataFlow" }) as any as S.Schema<DataFlow>;
-
-/** Data flow debug resource. */
-export interface DataFlowDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Data flow properties. */
-  properties: DataFlow;
-}
-export const DataFlowDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: DataFlow,
-  }),
-).annotate({
-  identifier: "DataFlowDebugResource",
-}) as any as S.Schema<DataFlowDebugResource>;
-
-/** List of Data flows */
-export type DataFlowDebugSessionAddDataFlowRequestDataFlowsList =
-  Array<DataFlowDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestDataFlowsList =
-  /*@__PURE__*/ S.Array(
-    DataFlowDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestDataFlowsList>;
-
-/** Parameter type. */
-export type ParameterType =
-  | "Object"
-  | "String"
-  | "Int"
-  | "Float"
-  | "Bool"
-  | "Array"
-  | "SecureString";
-export const ParameterType = /*@__PURE__*/ S.String;
-
-/** Definition of a single parameter for an entity. */
-export interface ParameterSpecification {
-  /** Parameter type. */
-  type: ParameterType | (string & {});
-  /** Default value of parameter. */
-  defaultValue?: unknown;
-}
-export const ParameterSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ParameterType,
-    defaultValue: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ParameterSpecification",
-}) as any as S.Schema<ParameterSpecification>;
-
-/** Parameters for dataset. */
-export type DatasetParametersMap = {
-  [key: string]: ParameterSpecification | undefined;
-};
-export const DatasetParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterSpecification,
-) as any as S.Schema<DatasetParametersMap>;
-
-/** List of tags that can be used for describing the Dataset. */
-export type DatasetAnnotationsList = Array<unknown>;
-export const DatasetAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DatasetAnnotationsList>;
-
-/** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
-export interface DatasetFolder {
-  /** The name of the folder that this Dataset is in. */
-  name?: string;
-}
-export const DatasetFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatasetFolder" }) as any as S.Schema<DatasetFolder>;
-
-/** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
-export interface Dataset {
-  /** Type of dataset. */
-  type: string;
-  /** Dataset description. */
-  description?: string;
-  /** Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. */
-  structure?: unknown;
-  /** Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement. */
-  schema?: unknown;
-  /** Linked service reference. */
-  linkedServiceName: LinkedServiceReference;
-  /** Parameters for dataset. */
-  parameters?: DatasetParametersMap;
-  /** List of tags that can be used for describing the Dataset. */
-  annotations?: DatasetAnnotationsList;
-  /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
-  folder?: DatasetFolder;
-}
-export const Dataset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    description: S.optional(S.String),
-    structure: S.optional(S.Unknown),
-    schema: S.optional(S.Unknown),
-    linkedServiceName: LinkedServiceReference,
-    parameters: S.optional(DatasetParametersMap),
-    annotations: S.optional(DatasetAnnotationsList),
-    folder: S.optional(DatasetFolder),
-  }),
-).annotate({ identifier: "Dataset" }) as any as S.Schema<Dataset>;
-
-/** Dataset debug resource. */
-export interface DatasetDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Dataset properties. */
-  properties: Dataset;
-}
-export const DatasetDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: Dataset,
-  }),
-).annotate({
-  identifier: "DatasetDebugResource",
-}) as any as S.Schema<DatasetDebugResource>;
-
-/** List of datasets. */
-export type DataFlowDebugSessionAddDataFlowRequestDatasetsList =
-  Array<DatasetDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestDatasetsList =
-  /*@__PURE__*/ S.Array(
-    DatasetDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestDatasetsList>;
-
-/** Type of integration runtime. */
-export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference";
-export const IntegrationRuntimeReferenceType = /*@__PURE__*/ S.String;
-
-/** Arguments for integration runtime. */
-export type IntegrationRuntimeReferenceParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const IntegrationRuntimeReferenceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<IntegrationRuntimeReferenceParametersMap>;
-
-/** Integration runtime reference type. */
-export interface IntegrationRuntimeReference {
-  /** Type of integration runtime. */
-  type: IntegrationRuntimeReferenceType | (string & {});
-  /** Reference integration runtime name. */
-  referenceName: string;
-  /** Arguments for integration runtime. */
-  parameters?: IntegrationRuntimeReferenceParametersMap;
-}
-export const IntegrationRuntimeReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: IntegrationRuntimeReferenceType,
-    referenceName: S.String,
-    parameters: S.optional(IntegrationRuntimeReferenceParametersMap),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeReference",
-}) as any as S.Schema<IntegrationRuntimeReference>;
-
-/** Parameters for linked service. */
-export type LinkedServiceParametersMap = {
-  [key: string]: ParameterSpecification | undefined;
-};
-export const LinkedServiceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterSpecification,
-) as any as S.Schema<LinkedServiceParametersMap>;
-
-/** List of tags that can be used for describing the linked service. */
-export type LinkedServiceAnnotationsList = Array<unknown>;
-export const LinkedServiceAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<LinkedServiceAnnotationsList>;
-
-/** The nested object which contains the information and credential which can be used to connect with related store or compute resource. */
-export interface LinkedService {
-  /** Type of linked service. */
-  type: string;
-  /** Version of the linked service. */
-  version?: string;
-  /** The integration runtime reference. */
-  connectVia?: IntegrationRuntimeReference;
-  /** Linked service description. */
-  description?: string;
-  /** Parameters for linked service. */
-  parameters?: LinkedServiceParametersMap;
-  /** List of tags that can be used for describing the linked service. */
-  annotations?: LinkedServiceAnnotationsList;
-}
-export const LinkedService = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    version: S.optional(S.String),
-    connectVia: S.optional(IntegrationRuntimeReference),
-    description: S.optional(S.String),
-    parameters: S.optional(LinkedServiceParametersMap),
-    annotations: S.optional(LinkedServiceAnnotationsList),
-  }),
-).annotate({ identifier: "LinkedService" }) as any as S.Schema<LinkedService>;
-
-/** Linked service debug resource. */
-export interface LinkedServiceDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Properties of linked service. */
-  properties: LinkedService;
-}
-export const LinkedServiceDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: LinkedService,
-  }),
-).annotate({
-  identifier: "LinkedServiceDebugResource",
-}) as any as S.Schema<LinkedServiceDebugResource>;
-
-/** List of linked services. */
-export type DataFlowDebugSessionAddDataFlowRequestLinkedServicesList =
-  Array<LinkedServiceDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestLinkedServicesList =
-  /*@__PURE__*/ S.Array(
-    LinkedServiceDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestLinkedServicesList>;
-
-/** Staging info for execute data flow activity. */
-export interface DataFlowStagingInfo {
-  /** Staging linked service reference. */
-  linkedService?: LinkedServiceReference;
-  /** Folder path for staging blob. Type: string (or Expression with resultType string) */
-  folderPath?: unknown;
-}
-export const DataFlowStagingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    linkedService: S.optional(LinkedServiceReference),
-    folderPath: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DataFlowStagingInfo",
-}) as any as S.Schema<DataFlowStagingInfo>;
-
-/** Definition of data flow source setting for debug. */
-export interface DataFlowSourceSetting {
-  /** The data flow source name. */
-  sourceName?: string;
-  /** Defines the row limit of data flow source in debug. */
-  rowLimit?: number;
-}
-export const DataFlowSourceSetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceName: S.optional(S.String),
-    rowLimit: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "DataFlowSourceSetting",
-}) as any as S.Schema<DataFlowSourceSetting>;
-
-/** Source setting for data flow debug. */
-export type DataFlowDebugPackageDebugSettingsSourceSettingsList =
-  Array<DataFlowSourceSetting>;
-export const DataFlowDebugPackageDebugSettingsSourceSettingsList =
-  /*@__PURE__*/ S.Array(
-    DataFlowSourceSetting,
-  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsSourceSettingsList>;
-
-/** Data flow parameters. */
-export type DataFlowDebugPackageDebugSettingsParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const DataFlowDebugPackageDebugSettingsParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsParametersMap>;
-
-/** Data flow debug settings. */
-export interface DataFlowDebugPackageDebugSettings {
-  /** Source setting for data flow debug. */
-  sourceSettings?: DataFlowDebugPackageDebugSettingsSourceSettingsList;
-  /** Data flow parameters. */
-  parameters?: DataFlowDebugPackageDebugSettingsParametersMap;
-  /** Parameters for dataset. */
-  datasetParameters?: unknown;
-}
-export const DataFlowDebugPackageDebugSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceSettings: S.optional(
-      DataFlowDebugPackageDebugSettingsSourceSettingsList,
-    ),
-    parameters: S.optional(DataFlowDebugPackageDebugSettingsParametersMap),
-    datasetParameters: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DataFlowDebugPackageDebugSettings",
-}) as any as S.Schema<DataFlowDebugPackageDebugSettings>;
-
-export interface DataFlowDebugSessionAddDataFlowRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-  /** Data flow instance. */
-  dataFlow?: DataFlowDebugResource;
-  /** List of Data flows */
-  dataFlows?: DataFlowDebugSessionAddDataFlowRequestDataFlowsList;
-  /** List of datasets. */
-  datasets?: DataFlowDebugSessionAddDataFlowRequestDatasetsList;
-  /** List of linked services. */
-  linkedServices?: DataFlowDebugSessionAddDataFlowRequestLinkedServicesList;
-  /** Staging info for debug session. */
-  staging?: DataFlowStagingInfo;
-  /** Data flow debug settings. */
-  debugSettings?: DataFlowDebugPackageDebugSettings;
-}
-export const DataFlowDebugSessionAddDataFlowRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      sessionId: S.optional(S.String),
-      dataFlow: S.optional(DataFlowDebugResource),
-      dataFlows: S.optional(
-        DataFlowDebugSessionAddDataFlowRequestDataFlowsList,
-      ),
-      datasets: S.optional(DataFlowDebugSessionAddDataFlowRequestDatasetsList),
-      linkedServices: S.optional(
-        DataFlowDebugSessionAddDataFlowRequestLinkedServicesList,
-      ),
-      staging: S.optional(DataFlowStagingInfo),
-      debugSettings: S.optional(DataFlowDebugPackageDebugSettings),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/addDataFlowToDebugSession",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DataFlowDebugSessionAddDataFlowRequest",
-}) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequest>;
-
-/** Response body structure for starting data flow debug session. */
-export interface AddDataFlowToDebugSessionResponse {
-  /** The ID of data flow debug job version. */
-  jobVersion?: string;
-}
-export const AddDataFlowToDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jobVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddDataFlowToDebugSessionResponse",
-}) as any as S.Schema<AddDataFlowToDebugSessionResponse>;
-
-/** The command type. */
-export type DataFlowDebugCommandType =
-  | "executePreviewQuery"
-  | "executeStatisticsQuery"
-  | "executeExpressionQuery";
-export const DataFlowDebugCommandType = /*@__PURE__*/ S.String;
-
-/** Array of column names. */
-export type DataFlowDebugCommandPayloadColumnsList = Array<string>;
-export const DataFlowDebugCommandPayloadColumnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DataFlowDebugCommandPayloadColumnsList>;
-
-/** Structure of command payload. */
-export interface DataFlowDebugCommandPayload {
-  /** The stream name which is used for preview. */
-  streamName: string;
-  /** Row limits for preview response. */
-  rowLimits?: number;
-  /** Array of column names. */
-  columns?: DataFlowDebugCommandPayloadColumnsList;
-  /** The expression which is used for preview. */
-  expression?: string;
-}
-export const DataFlowDebugCommandPayload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    streamName: S.String,
-    rowLimits: S.optional(S.Number),
-    columns: S.optional(DataFlowDebugCommandPayloadColumnsList),
-    expression: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowDebugCommandPayload",
-}) as any as S.Schema<DataFlowDebugCommandPayload>;
-
-export interface DataFlowDebugSessionExecuteCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-  /** The command type. */
-  command?: DataFlowDebugCommandType | (string & {});
-  /** The command payload object. */
-  commandPayload?: DataFlowDebugCommandPayload;
-}
-export const DataFlowDebugSessionExecuteCommandRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      sessionId: S.optional(S.String),
-      command: S.optional(DataFlowDebugCommandType),
-      commandPayload: S.optional(DataFlowDebugCommandPayload),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/executeDataFlowDebugCommand",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataFlowDebugSessionExecuteCommandRequest",
-  }) as any as S.Schema<DataFlowDebugSessionExecuteCommandRequest>;
-
-/** Response body structure of data flow result for data preview, statistics or expression preview. */
-export interface DataFlowDebugCommandResponse {
-  /** The run status of data preview, statistics or expression preview. */
-  status?: string;
-  /** The result data of data preview, statistics or expression preview. */
-  data?: string;
-}
-export const DataFlowDebugCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    data: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowDebugCommandResponse",
-}) as any as S.Schema<DataFlowDebugCommandResponse>;
 
 export interface DataFlowDebugSessionQueryByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2409,6 +2192,92 @@ export const EnableIntegrationRuntimeInteractiveQueryResponse =
     identifier: "EnableIntegrationRuntimeInteractiveQueryResponse",
   }) as any as S.Schema<EnableIntegrationRuntimeInteractiveQueryResponse>;
 
+/** The command type. */
+export type DataFlowDebugCommandType =
+  | "executePreviewQuery"
+  | "executeStatisticsQuery"
+  | "executeExpressionQuery";
+export const DataFlowDebugCommandType = /*@__PURE__*/ S.String;
+
+/** Array of column names. */
+export type DataFlowDebugCommandPayloadColumnsList = Array<string>;
+export const DataFlowDebugCommandPayloadColumnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DataFlowDebugCommandPayloadColumnsList>;
+
+/** Structure of command payload. */
+export interface DataFlowDebugCommandPayload {
+  /** The stream name which is used for preview. */
+  streamName: string;
+  /** Row limits for preview response. */
+  rowLimits?: number;
+  /** Array of column names. */
+  columns?: DataFlowDebugCommandPayloadColumnsList;
+  /** The expression which is used for preview. */
+  expression?: string;
+}
+export const DataFlowDebugCommandPayload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    streamName: S.String,
+    rowLimits: S.optional(S.Number),
+    columns: S.optional(DataFlowDebugCommandPayloadColumnsList),
+    expression: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowDebugCommandPayload",
+}) as any as S.Schema<DataFlowDebugCommandPayload>;
+
+export interface ExecuteDataFlowDebugSessionCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+  /** The command type. */
+  command?: DataFlowDebugCommandType | (string & {});
+  /** The command payload object. */
+  commandPayload?: DataFlowDebugCommandPayload;
+}
+export const ExecuteDataFlowDebugSessionCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      sessionId: S.optional(S.String),
+      command: S.optional(DataFlowDebugCommandType),
+      commandPayload: S.optional(DataFlowDebugCommandPayload),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/executeDataFlowDebugCommand",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExecuteDataFlowDebugSessionCommandRequest",
+  }) as any as S.Schema<ExecuteDataFlowDebugSessionCommandRequest>;
+
+/** Response body structure of data flow result for data preview, statistics or expression preview. */
+export interface DataFlowDebugCommandResponse {
+  /** The run status of data preview, statistics or expression preview. */
+  status?: string;
+  /** The result data of data preview, statistics or expression preview. */
+  data?: string;
+}
+export const DataFlowDebugCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    data: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowDebugCommandResponse",
+}) as any as S.Schema<DataFlowDebugCommandResponse>;
+
 /** The exposure control request. */
 export interface ExposureControlRequest {
   /** The feature name. */
@@ -3201,11 +3070,11 @@ export const GetFactoryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFactoryRequest>;
 
 /** The resource tags. */
-export type FactoriesGetResponseTagsMap = { [key: string]: string | undefined };
-export const FactoriesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFactoryResponseTagsMap = { [key: string]: string | undefined };
+export const GetFactoryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FactoriesGetResponseTagsMap>;
+) as any as S.Schema<GetFactoryResponseTagsMap>;
 
 export interface GetFactoryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3223,7 +3092,7 @@ export interface GetFactoryResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: FactoriesGetResponseTagsMap;
+  tags?: GetFactoryResponseTagsMap;
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
@@ -3236,7 +3105,7 @@ export const GetFactoryResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FactoryProperties),
     identity: S.optional(FactoryIdentity),
     location: S.optional(S.String),
-    tags: S.optional(FactoriesGetResponseTagsMap),
+    tags: S.optional(GetFactoryResponseTagsMap),
     eTag: S.optional(S.String),
   }),
 ).annotate({
@@ -3422,13 +3291,13 @@ export const GetGlobalParameterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGlobalParameterRequest>;
 
 /** Properties of the global parameter. */
-export type GlobalParametersGetResponsePropertiesMap = {
+export type GetGlobalParameterResponsePropertiesMap = {
   [key: string]: GlobalParameterSpecification | undefined;
 };
-export const GlobalParametersGetResponsePropertiesMap = /*@__PURE__*/ S.Record(
+export const GetGlobalParameterResponsePropertiesMap = /*@__PURE__*/ S.Record(
   S.String,
   GlobalParameterSpecification,
-) as any as S.Schema<GlobalParametersGetResponsePropertiesMap>;
+) as any as S.Schema<GetGlobalParameterResponsePropertiesMap>;
 
 export interface GetGlobalParameterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3440,7 +3309,7 @@ export interface GetGlobalParameterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the global parameter. */
-  properties: GlobalParametersGetResponsePropertiesMap;
+  properties: GetGlobalParameterResponsePropertiesMap;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
@@ -3450,7 +3319,7 @@ export const GetGlobalParameterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: GlobalParametersGetResponsePropertiesMap,
+    properties: GetGlobalParameterResponsePropertiesMap,
     etag: S.optional(S.String),
   }),
 ).annotate({
@@ -4981,57 +4850,6 @@ export const GlobalParametersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "GlobalParametersCreateOrUpdateResponse",
 }) as any as S.Schema<GlobalParametersCreateOrUpdateResponse>;
 
-export interface IntegrationRuntimeObjectMetadataRefreshRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimeObjectMetadataRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/refreshObjectMetadata",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimeObjectMetadataRefreshRequest",
-  }) as any as S.Schema<IntegrationRuntimeObjectMetadataRefreshRequest>;
-
-/** The status of the operation. */
-export interface SsisObjectMetadataStatusResponse {
-  /** The status of the operation. */
-  status?: string;
-  /** The operation name. */
-  name?: string;
-  /** The operation properties. */
-  properties?: string;
-  /** The operation error message. */
-  error?: string;
-}
-export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    name: S.optional(S.String),
-    properties: S.optional(S.String),
-    error: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SsisObjectMetadataStatusResponse",
-}) as any as S.Schema<SsisObjectMetadataStatusResponse>;
-
 export interface IntegrationRuntimesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5091,129 +4909,6 @@ export const IntegrationRuntimesCreateOrUpdateResponse =
   ).annotate({
     identifier: "IntegrationRuntimesCreateOrUpdateResponse",
   }) as any as S.Schema<IntegrationRuntimesCreateOrUpdateResponse>;
-
-/** The name of the authentication key to regenerate. */
-export type IntegrationRuntimeAuthKeyName = "authKey1" | "authKey2";
-export const IntegrationRuntimeAuthKeyName = /*@__PURE__*/ S.String;
-
-export interface IntegrationRuntimesRegenerateAuthKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-  /** The name of the authentication key to regenerate. */
-  keyName?: IntegrationRuntimeAuthKeyName | (string & {});
-}
-export const IntegrationRuntimesRegenerateAuthKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-      keyName: S.optional(IntegrationRuntimeAuthKeyName),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesRegenerateAuthKeyRequest",
-  }) as any as S.Schema<IntegrationRuntimesRegenerateAuthKeyRequest>;
-
-/** The integration runtime authentication keys. */
-export interface IntegrationRuntimeAuthKeys {
-  /** The primary integration runtime authentication key. */
-  authKey1?: string;
-  /** The secondary integration runtime authentication key. */
-  authKey2?: string;
-}
-export const IntegrationRuntimeAuthKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authKey1: S.optional(S.String),
-    authKey2: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeAuthKeys",
-}) as any as S.Schema<IntegrationRuntimeAuthKeys>;
-
-export interface IntegrationRuntimesRemoveLinksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesRemoveLinksRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/removeLinks",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationRuntimesRemoveLinksRequest",
-}) as any as S.Schema<IntegrationRuntimesRemoveLinksRequest>;
-
-export interface IntegrationRuntimesRemoveLinksResponse {}
-export const IntegrationRuntimesRemoveLinksResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "IntegrationRuntimesRemoveLinksResponse",
-}) as any as S.Schema<IntegrationRuntimesRemoveLinksResponse>;
-
-export interface IntegrationRuntimesSyncCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesSyncCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/syncCredentials",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesSyncCredentialsRequest",
-  }) as any as S.Schema<IntegrationRuntimesSyncCredentialsRequest>;
-
-export interface IntegrationRuntimesSyncCredentialsResponse {}
-export const IntegrationRuntimesSyncCredentialsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationRuntimesSyncCredentialsResponse",
-  }) as any as S.Schema<IntegrationRuntimesSyncCredentialsResponse>;
 
 export interface IntegrationRuntimesUpgradeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5831,6 +5526,22 @@ export const ListIntegrationRuntimeAuthKeysRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListIntegrationRuntimeAuthKeysRequest",
 }) as any as S.Schema<ListIntegrationRuntimeAuthKeysRequest>;
 
+/** The integration runtime authentication keys. */
+export interface IntegrationRuntimeAuthKeys {
+  /** The primary integration runtime authentication key. */
+  authKey1?: string;
+  /** The secondary integration runtime authentication key. */
+  authKey2?: string;
+}
+export const IntegrationRuntimeAuthKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authKey1: S.optional(S.String),
+    authKey2: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeAuthKeys",
+}) as any as S.Schema<IntegrationRuntimeAuthKeys>;
+
 export interface ListIntegrationRuntimeByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5908,7 +5619,7 @@ export const IntegrationRuntimeListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntegrationRuntimeListResponse",
 }) as any as S.Schema<IntegrationRuntimeListResponse>;
 
-export interface ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest {
+export interface ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5918,7 +5629,7 @@ export interface ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest
   /** The integration runtime name. */
   integrationRuntimeName: string;
 }
-export const ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest =
+export const ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5935,8 +5646,8 @@ export const ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest =
     ),
   ).annotate({
     identifier:
-      "ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest>;
+      "ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest>;
 
 /** The details of Azure-SSIS integration runtime outbound network dependency endpoint. */
 export interface IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails {
@@ -6892,42 +6603,48 @@ export const ManagedVirtualNetworksCreateOrUpdateResponse =
     identifier: "ManagedVirtualNetworksCreateOrUpdateResponse",
   }) as any as S.Schema<ManagedVirtualNetworksCreateOrUpdateResponse>;
 
-export interface PipelineRunsCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  factoryName: string;
-  /** The pipeline run identifier. */
-  runId: string;
-  /** If true, cancel all the Child pipelines that are triggered by the current pipeline. */
-  isRecursive?: boolean;
-}
-export const PipelineRunsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    runId: S.String.pipe(T.Label()),
-    isRecursive: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelineRunsCancelRequest",
-}) as any as S.Schema<PipelineRunsCancelRequest>;
+/** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+export type RunQueryFilterOperand =
+  | "PipelineName"
+  | "Status"
+  | "RunStart"
+  | "RunEnd"
+  | "ActivityName"
+  | "ActivityRunStart"
+  | "ActivityRunEnd"
+  | "ActivityType"
+  | "TriggerName"
+  | "TriggerRunTimestamp"
+  | "RunGroupId"
+  | "LatestOnly";
+export const RunQueryFilterOperand = /*@__PURE__*/ S.String;
 
-export interface PipelineRunsCancelResponse {}
-export const PipelineRunsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PipelineRunsCancelResponse",
-}) as any as S.Schema<PipelineRunsCancelResponse>;
+/** Operator to be used for filter. */
+export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn";
+export const RunQueryFilterOperator = /*@__PURE__*/ S.String;
+
+/** List of filter values. */
+export type RunQueryFilterValuesList = Array<string>;
+export const RunQueryFilterValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RunQueryFilterValuesList>;
+
+/** Query filter option for listing runs. */
+export interface RunQueryFilter {
+  /** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+  operand: RunQueryFilterOperand | (string & {});
+  /** Operator to be used for filter. */
+  operator: RunQueryFilterOperator | (string & {});
+  /** List of filter values. */
+  values: RunQueryFilterValuesList;
+}
+export const RunQueryFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operand: RunQueryFilterOperand,
+    operator: RunQueryFilterOperator,
+    values: RunQueryFilterValuesList,
+  }),
+).annotate({ identifier: "RunQueryFilter" }) as any as S.Schema<RunQueryFilter>;
 
 /** List of filters. */
 export type PipelineRunsQueryByFactoryRequestFiltersList =
@@ -6936,6 +6653,39 @@ export const PipelineRunsQueryByFactoryRequestFiltersList =
   /*@__PURE__*/ S.Array(
     RunQueryFilter,
   ) as any as S.Schema<PipelineRunsQueryByFactoryRequestFiltersList>;
+
+/** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+export type RunQueryOrderByField =
+  | "RunStart"
+  | "RunEnd"
+  | "PipelineName"
+  | "Status"
+  | "ActivityName"
+  | "ActivityRunStart"
+  | "ActivityRunEnd"
+  | "TriggerName"
+  | "TriggerRunTimestamp";
+export const RunQueryOrderByField = /*@__PURE__*/ S.String;
+
+/** Sorting order of the parameter. */
+export type RunQueryOrder = "ASC" | "DESC";
+export const RunQueryOrder = /*@__PURE__*/ S.String;
+
+/** An object to provide order by options for listing runs. */
+export interface RunQueryOrderBy {
+  /** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+  orderBy: RunQueryOrderByField | (string & {});
+  /** Sorting order of the parameter. */
+  order: RunQueryOrder | (string & {});
+}
+export const RunQueryOrderBy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orderBy: RunQueryOrderByField,
+    order: RunQueryOrder,
+  }),
+).annotate({
+  identifier: "RunQueryOrderBy",
+}) as any as S.Schema<RunQueryOrderBy>;
 
 /** List of OrderBy option. */
 export type PipelineRunsQueryByFactoryRequestOrderByList =
@@ -7155,6 +6905,257 @@ export const PrivateEndpointConnectionCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionCreateOrUpdateResponse>;
 
+export interface RefreshIntegrationRuntimeObjectMetadataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const RefreshIntegrationRuntimeObjectMetadataRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/refreshObjectMetadata",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshIntegrationRuntimeObjectMetadataRequest",
+  }) as any as S.Schema<RefreshIntegrationRuntimeObjectMetadataRequest>;
+
+/** The status of the operation. */
+export interface SsisObjectMetadataStatusResponse {
+  /** The status of the operation. */
+  status?: string;
+  /** The operation name. */
+  name?: string;
+  /** The operation properties. */
+  properties?: string;
+  /** The operation error message. */
+  error?: string;
+}
+export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    name: S.optional(S.String),
+    properties: S.optional(S.String),
+    error: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SsisObjectMetadataStatusResponse",
+}) as any as S.Schema<SsisObjectMetadataStatusResponse>;
+
+/** The name of the authentication key to regenerate. */
+export type IntegrationRuntimeAuthKeyName = "authKey1" | "authKey2";
+export const IntegrationRuntimeAuthKeyName = /*@__PURE__*/ S.String;
+
+export interface RegenerateIntegrationRuntimeAuthKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+  /** The name of the authentication key to regenerate. */
+  keyName?: IntegrationRuntimeAuthKeyName | (string & {});
+}
+export const RegenerateIntegrationRuntimeAuthKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+      keyName: S.optional(IntegrationRuntimeAuthKeyName),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateIntegrationRuntimeAuthKeyRequest",
+  }) as any as S.Schema<RegenerateIntegrationRuntimeAuthKeyRequest>;
+
+export interface RemoveIntegrationRuntimeLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const RemoveIntegrationRuntimeLinksRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/removeLinks",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "RemoveIntegrationRuntimeLinksRequest",
+}) as any as S.Schema<RemoveIntegrationRuntimeLinksRequest>;
+
+export interface RemoveIntegrationRuntimeLinksResponse {}
+export const RemoveIntegrationRuntimeLinksResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RemoveIntegrationRuntimeLinksResponse",
+}) as any as S.Schema<RemoveIntegrationRuntimeLinksResponse>;
+
+/** List of filters. */
+export type RunActivityRunsQueryByPipelineRequestFiltersList =
+  Array<RunQueryFilter>;
+export const RunActivityRunsQueryByPipelineRequestFiltersList =
+  /*@__PURE__*/ S.Array(
+    RunQueryFilter,
+  ) as any as S.Schema<RunActivityRunsQueryByPipelineRequestFiltersList>;
+
+/** List of OrderBy option. */
+export type RunActivityRunsQueryByPipelineRequestOrderByList =
+  Array<RunQueryOrderBy>;
+export const RunActivityRunsQueryByPipelineRequestOrderByList =
+  /*@__PURE__*/ S.Array(
+    RunQueryOrderBy,
+  ) as any as S.Schema<RunActivityRunsQueryByPipelineRequestOrderByList>;
+
+export interface RunActivityRunsQueryByPipelineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  factoryName: string;
+  /** The pipeline run identifier. */
+  runId: string;
+  /** The continuation token for getting the next page of results. Null for first page. */
+  continuationToken?: string;
+  /** The time at or after which the run event was updated in 'ISO 8601' format. */
+  lastUpdatedAfter: string;
+  /** The time at or before which the run event was updated in 'ISO 8601' format. */
+  lastUpdatedBefore: string;
+  /** List of filters. */
+  filters?: RunActivityRunsQueryByPipelineRequestFiltersList;
+  /** List of OrderBy option. */
+  orderBy?: RunActivityRunsQueryByPipelineRequestOrderByList;
+}
+export const RunActivityRunsQueryByPipelineRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      runId: S.String.pipe(T.Label()),
+      continuationToken: S.optional(S.String),
+      lastUpdatedAfter: S.String,
+      lastUpdatedBefore: S.String,
+      filters: S.optional(RunActivityRunsQueryByPipelineRequestFiltersList),
+      orderBy: S.optional(RunActivityRunsQueryByPipelineRequestOrderByList),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "RunActivityRunsQueryByPipelineRequest",
+}) as any as S.Schema<RunActivityRunsQueryByPipelineRequest>;
+
+/** Information about an activity run in a pipeline. */
+export interface ActivityRun {
+  /** The name of the pipeline. */
+  pipelineName?: string;
+  /** The id of the pipeline run. */
+  pipelineRunId?: string;
+  /** The name of the activity. */
+  activityName?: string;
+  /** The type of the activity. */
+  activityType?: string;
+  /** The id of the activity run. */
+  activityRunId?: string;
+  /** The name of the compute linked service. */
+  linkedServiceName?: string;
+  /** The status of the activity run. */
+  status?: string;
+  /** The start time of the activity run in 'ISO 8601' format. */
+  activityRunStart?: string;
+  /** The end time of the activity run in 'ISO 8601' format. */
+  activityRunEnd?: string;
+  /** The duration of the activity run. */
+  durationInMs?: number;
+  /** The input for the activity. */
+  input?: unknown;
+  /** The output for the activity. */
+  output?: unknown;
+  /** The error if any from the activity run. */
+  error?: unknown;
+}
+export const ActivityRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pipelineName: S.optional(S.String),
+    pipelineRunId: S.optional(S.String),
+    activityName: S.optional(S.String),
+    activityType: S.optional(S.String),
+    activityRunId: S.optional(S.String),
+    linkedServiceName: S.optional(S.String),
+    status: S.optional(S.String),
+    activityRunStart: S.optional(S.String),
+    activityRunEnd: S.optional(S.String),
+    durationInMs: S.optional(S.Number),
+    input: S.optional(S.Unknown),
+    output: S.optional(S.Unknown),
+    error: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "ActivityRun" }) as any as S.Schema<ActivityRun>;
+
+/** List of activity runs. */
+export type ActivityRunsQueryResponseValueList = Array<ActivityRun>;
+export const ActivityRunsQueryResponseValueList = /*@__PURE__*/ S.Array(
+  ActivityRun,
+) as any as S.Schema<ActivityRunsQueryResponseValueList>;
+
+/** A list activity runs. */
+export interface ActivityRunsQueryResponse {
+  /** List of activity runs. */
+  value: ActivityRunsQueryResponseValueList;
+  /** The continuation token for getting the next page of results, if any remaining results exist, null otherwise. */
+  continuationToken?: string;
+}
+export const ActivityRunsQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ActivityRunsQueryResponseValueList,
+    continuationToken: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivityRunsQueryResponse",
+}) as any as S.Schema<ActivityRunsQueryResponse>;
+
 export interface StartChangeDataCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7358,41 +7359,68 @@ export const StopTriggerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopTriggerResponse",
 }) as any as S.Schema<StopTriggerResponse>;
 
-export interface TriggerRunsCancelRequest {
+export interface SubscribeTriggerToEventsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
+  /** The factory name. */
   factoryName: string;
+  /** The trigger name. */
   triggerName: string;
-  /** The pipeline run identifier. */
-  runId: string;
 }
-export const TriggerRunsCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const SubscribeTriggerToEventsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
     triggerName: S.String.pipe(T.Label()),
-    runId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/cancel",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/subscribeToEvents",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggerRunsCancelRequest",
-}) as any as S.Schema<TriggerRunsCancelRequest>;
+  identifier: "SubscribeTriggerToEventsRequest",
+}) as any as S.Schema<SubscribeTriggerToEventsRequest>;
 
-export interface TriggerRunsCancelResponse {}
-export const TriggerRunsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface SyncIntegrationRuntimeCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const SyncIntegrationRuntimeCredentialsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/syncCredentials",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
 ).annotate({
-  identifier: "TriggerRunsCancelResponse",
-}) as any as S.Schema<TriggerRunsCancelResponse>;
+  identifier: "SyncIntegrationRuntimeCredentialsRequest",
+}) as any as S.Schema<SyncIntegrationRuntimeCredentialsRequest>;
+
+export interface SyncIntegrationRuntimeCredentialsResponse {}
+export const SyncIntegrationRuntimeCredentialsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "SyncIntegrationRuntimeCredentialsResponse",
+  }) as any as S.Schema<SyncIntegrationRuntimeCredentialsResponse>;
 
 /** List of filters. */
 export type TriggerRunsQueryByFactoryRequestFiltersList = Array<RunQueryFilter>;
@@ -7692,7 +7720,7 @@ export const TriggerQueryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggerQueryResponse",
 }) as any as S.Schema<TriggerQueryResponse>;
 
-export interface TriggersSubscribeToEventsRequest {
+export interface UnsubscribeTriggerFromEventsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7702,7 +7730,7 @@ export interface TriggersSubscribeToEventsRequest {
   /** The trigger name. */
   triggerName: string;
 }
-export const TriggersSubscribeToEventsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UnsubscribeTriggerFromEventsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7711,52 +7739,21 @@ export const TriggersSubscribeToEventsRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/subscribeToEvents",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/unsubscribeFromEvents",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersSubscribeToEventsRequest",
-}) as any as S.Schema<TriggersSubscribeToEventsRequest>;
-
-export interface TriggersUnsubscribeFromEventsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
-}
-export const TriggersUnsubscribeFromEventsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      triggerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/unsubscribeFromEvents",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "TriggersUnsubscribeFromEventsRequest",
-}) as any as S.Schema<TriggersUnsubscribeFromEventsRequest>;
+  identifier: "UnsubscribeTriggerFromEventsRequest",
+}) as any as S.Schema<UnsubscribeTriggerFromEventsRequest>;
 
 /** The resource tags. */
-export type FactoriesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FactoriesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFactoryRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFactoryRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FactoriesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFactoryRequestTagsMap>;
 
 /** Factory update resource properties. */
 export interface FactoryUpdateProperties {
@@ -7779,7 +7776,7 @@ export interface UpdateFactoryRequest {
   /** The factory name. */
   factoryName: string;
   /** The resource tags. */
-  tags?: FactoriesUpdateRequestTagsMap;
+  tags?: UpdateFactoryRequestTagsMap;
   /** Managed service identity of the factory. */
   identity?: FactoryIdentity;
   /** Properties of update the factory. */
@@ -7790,7 +7787,7 @@ export const UpdateFactoryRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    tags: S.optional(FactoriesUpdateRequestTagsMap),
+    tags: S.optional(UpdateFactoryRequestTagsMap),
     identity: S.optional(FactoryIdentity),
     properties: S.optional(FactoryUpdateProperties),
   }).pipe(
@@ -7806,13 +7803,13 @@ export const UpdateFactoryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFactoryRequest>;
 
 /** The resource tags. */
-export type FactoriesUpdateResponseTagsMap = {
+export type UpdateFactoryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FactoriesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFactoryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FactoriesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFactoryResponseTagsMap>;
 
 export interface UpdateFactoryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7830,7 +7827,7 @@ export interface UpdateFactoryResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: FactoriesUpdateResponseTagsMap;
+  tags?: UpdateFactoryResponseTagsMap;
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
@@ -7843,7 +7840,7 @@ export const UpdateFactoryResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FactoryProperties),
     identity: S.optional(FactoryIdentity),
     location: S.optional(S.String),
-    tags: S.optional(FactoriesUpdateResponseTagsMap),
+    tags: S.optional(UpdateFactoryResponseTagsMap),
     eTag: S.optional(S.String),
   }),
 ).annotate({
@@ -7947,16 +7944,46 @@ export const UpdateIntegrationRuntimeNodeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateIntegrationRuntimeNodeRequest",
 }) as any as S.Schema<UpdateIntegrationRuntimeNodeRequest>;
 
-export type ActivityRunsQueryByPipelineRunError = AzureOpError;
-/** Query activity runs based on input filter conditions. */
-export const ActivityRunsQueryByPipelineRun: API.OperationMethod<
-  ActivityRunsQueryByPipelineRunRequest,
-  ActivityRunsQueryResponse,
-  ActivityRunsQueryByPipelineRunError,
+export type AddDataFlowDebugSessionDataFlowError = AzureOpError;
+/** Add a data flow into debug session. */
+export const AddDataFlowDebugSessionDataFlow: API.OperationMethod<
+  AddDataFlowDebugSessionDataFlowRequest,
+  AddDataFlowToDebugSessionResponse,
+  AddDataFlowDebugSessionDataFlowError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ActivityRunsQueryByPipelineRunRequest,
-  output: ActivityRunsQueryResponse,
+  input: AddDataFlowDebugSessionDataFlowRequest,
+  output: AddDataFlowToDebugSessionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelPipelineRunError = AzureOpError;
+/** Cancel a pipeline run by its run ID. */
+export const CancelPipelineRun: API.OperationMethod<
+  CancelPipelineRunRequest,
+  CancelPipelineRunResponse,
+  CancelPipelineRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelPipelineRunRequest,
+  output: CancelPipelineRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelTriggerRunError = AzureOpError;
+/** Cancel a single trigger instance by runId. */
+export const CancelTriggerRun: API.OperationMethod<
+  CancelTriggerRunRequest,
+  CancelTriggerRunResponse,
+  CancelTriggerRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelTriggerRunRequest,
+  output: CancelTriggerRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8048,36 +8075,6 @@ export const CredentialOperationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CredentialOperationsCreateOrUpdateRequest,
   output: CredentialOperationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionAddDataFlowError = AzureOpError;
-/** Add a data flow into debug session. */
-export const DataFlowDebugSessionAddDataFlow: API.OperationMethod<
-  DataFlowDebugSessionAddDataFlowRequest,
-  AddDataFlowToDebugSessionResponse,
-  DataFlowDebugSessionAddDataFlowError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionAddDataFlowRequest,
-  output: AddDataFlowToDebugSessionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionExecuteCommandError = AzureOpError;
-/** Execute a data flow debug command. */
-export const DataFlowDebugSessionExecuteCommand: API.OperationMethod<
-  DataFlowDebugSessionExecuteCommandRequest,
-  DataFlowDebugCommandResponse,
-  DataFlowDebugSessionExecuteCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionExecuteCommandRequest,
-  output: DataFlowDebugCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8363,6 +8360,21 @@ export const EnableIntegrationRuntimeInteractiveQuery: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnableIntegrationRuntimeInteractiveQueryRequest,
   output: EnableIntegrationRuntimeInteractiveQueryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteDataFlowDebugSessionCommandError = AzureOpError;
+/** Execute a data flow debug command. */
+export const ExecuteDataFlowDebugSessionCommand: API.OperationMethod<
+  ExecuteDataFlowDebugSessionCommandRequest,
+  DataFlowDebugCommandResponse,
+  ExecuteDataFlowDebugSessionCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteDataFlowDebugSessionCommandRequest,
+  output: DataFlowDebugCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8818,21 +8830,6 @@ export const GlobalParametersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IntegrationRuntimeObjectMetadataRefreshError = AzureOpError;
-/** Refresh a SSIS integration runtime object metadata. */
-export const IntegrationRuntimeObjectMetadataRefresh: API.OperationMethod<
-  IntegrationRuntimeObjectMetadataRefreshRequest,
-  SsisObjectMetadataStatusResponse,
-  IntegrationRuntimeObjectMetadataRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeObjectMetadataRefreshRequest,
-  output: SsisObjectMetadataStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IntegrationRuntimesCreateOrUpdateError = AzureOpError;
 /** Creates or updates an integration runtime. */
 export const IntegrationRuntimesCreateOrUpdate: API.OperationMethod<
@@ -8843,51 +8840,6 @@ export const IntegrationRuntimesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IntegrationRuntimesCreateOrUpdateRequest,
   output: IntegrationRuntimesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesRegenerateAuthKeyError = AzureOpError;
-/** Regenerates the authentication key for an integration runtime. */
-export const IntegrationRuntimesRegenerateAuthKey: API.OperationMethod<
-  IntegrationRuntimesRegenerateAuthKeyRequest,
-  IntegrationRuntimeAuthKeys,
-  IntegrationRuntimesRegenerateAuthKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesRegenerateAuthKeyRequest,
-  output: IntegrationRuntimeAuthKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesRemoveLinksError = AzureOpError;
-/** Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime. */
-export const IntegrationRuntimesRemoveLinks: API.OperationMethod<
-  IntegrationRuntimesRemoveLinksRequest,
-  IntegrationRuntimesRemoveLinksResponse,
-  IntegrationRuntimesRemoveLinksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesRemoveLinksRequest,
-  output: IntegrationRuntimesRemoveLinksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesSyncCredentialsError = AzureOpError;
-/** Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly. */
-export const IntegrationRuntimesSyncCredentials: API.OperationMethod<
-  IntegrationRuntimesSyncCredentialsRequest,
-  IntegrationRuntimesSyncCredentialsResponse,
-  IntegrationRuntimesSyncCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesSyncCredentialsRequest,
-  output: IntegrationRuntimesSyncCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9058,16 +9010,16 @@ export const ListIntegrationRuntimeByFactory: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListIntegrationRuntimeOutboundNetworkDependencyEndpointsError =
+export type ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsError =
   AzureOpError;
 /** Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime. */
-export const ListIntegrationRuntimeOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest,
+export const ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest,
   IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
-  ListIntegrationRuntimeOutboundNetworkDependencyEndpointsError,
+  ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest,
+  input: ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest,
   output: IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -9209,21 +9161,6 @@ export const ManagedVirtualNetworksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PipelineRunsCancelError = AzureOpError;
-/** Cancel a pipeline run by its run ID. */
-export const PipelineRunsCancel: API.OperationMethod<
-  PipelineRunsCancelRequest,
-  PipelineRunsCancelResponse,
-  PipelineRunsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelineRunsCancelRequest,
-  output: PipelineRunsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PipelineRunsQueryByFactoryError = AzureOpError;
 /** Query pipeline runs in the factory based on input filter conditions. */
 export const PipelineRunsQueryByFactory: API.OperationMethod<
@@ -9264,6 +9201,66 @@ export const PrivateEndpointConnectionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateEndpointConnectionCreateOrUpdateRequest,
   output: PrivateEndpointConnectionCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshIntegrationRuntimeObjectMetadataError = AzureOpError;
+/** Refresh a SSIS integration runtime object metadata. */
+export const RefreshIntegrationRuntimeObjectMetadata: API.OperationMethod<
+  RefreshIntegrationRuntimeObjectMetadataRequest,
+  SsisObjectMetadataStatusResponse,
+  RefreshIntegrationRuntimeObjectMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshIntegrationRuntimeObjectMetadataRequest,
+  output: SsisObjectMetadataStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateIntegrationRuntimeAuthKeyError = AzureOpError;
+/** Regenerates the authentication key for an integration runtime. */
+export const RegenerateIntegrationRuntimeAuthKey: API.OperationMethod<
+  RegenerateIntegrationRuntimeAuthKeyRequest,
+  IntegrationRuntimeAuthKeys,
+  RegenerateIntegrationRuntimeAuthKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateIntegrationRuntimeAuthKeyRequest,
+  output: IntegrationRuntimeAuthKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveIntegrationRuntimeLinksError = AzureOpError;
+/** Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime. */
+export const RemoveIntegrationRuntimeLinks: API.OperationMethod<
+  RemoveIntegrationRuntimeLinksRequest,
+  RemoveIntegrationRuntimeLinksResponse,
+  RemoveIntegrationRuntimeLinksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveIntegrationRuntimeLinksRequest,
+  output: RemoveIntegrationRuntimeLinksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunActivityRunsQueryByPipelineError = AzureOpError;
+/** Query activity runs based on input filter conditions. */
+export const RunActivityRunsQueryByPipeline: API.OperationMethod<
+  RunActivityRunsQueryByPipelineRequest,
+  ActivityRunsQueryResponse,
+  RunActivityRunsQueryByPipelineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunActivityRunsQueryByPipelineRequest,
+  output: ActivityRunsQueryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9359,16 +9356,31 @@ export const StopTrigger: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggerRunsCancelError = AzureOpError;
-/** Cancel a single trigger instance by runId. */
-export const TriggerRunsCancel: API.OperationMethod<
-  TriggerRunsCancelRequest,
-  TriggerRunsCancelResponse,
-  TriggerRunsCancelError,
+export type SubscribeTriggerToEventsError = AzureOpError;
+/** Subscribe event trigger to events. */
+export const SubscribeTriggerToEvents: API.OperationMethod<
+  SubscribeTriggerToEventsRequest,
+  TriggerSubscriptionOperationStatus,
+  SubscribeTriggerToEventsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggerRunsCancelRequest,
-  output: TriggerRunsCancelResponse,
+  input: SubscribeTriggerToEventsRequest,
+  output: TriggerSubscriptionOperationStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncIntegrationRuntimeCredentialsError = AzureOpError;
+/** Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly. */
+export const SyncIntegrationRuntimeCredentials: API.OperationMethod<
+  SyncIntegrationRuntimeCredentialsRequest,
+  SyncIntegrationRuntimeCredentialsResponse,
+  SyncIntegrationRuntimeCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncIntegrationRuntimeCredentialsRequest,
+  output: SyncIntegrationRuntimeCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9434,30 +9446,15 @@ export const TriggersQueryByFactory: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggersSubscribeToEventsError = AzureOpError;
-/** Subscribe event trigger to events. */
-export const TriggersSubscribeToEvents: API.OperationMethod<
-  TriggersSubscribeToEventsRequest,
-  TriggerSubscriptionOperationStatus,
-  TriggersSubscribeToEventsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersSubscribeToEventsRequest,
-  output: TriggerSubscriptionOperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersUnsubscribeFromEventsError = AzureOpError;
+export type UnsubscribeTriggerFromEventsError = AzureOpError;
 /** Unsubscribe event trigger from events. */
-export const TriggersUnsubscribeFromEvents: API.OperationMethod<
-  TriggersUnsubscribeFromEventsRequest,
+export const UnsubscribeTriggerFromEvents: API.OperationMethod<
+  UnsubscribeTriggerFromEventsRequest,
   TriggerSubscriptionOperationStatus,
-  TriggersUnsubscribeFromEventsError,
+  UnsubscribeTriggerFromEventsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersUnsubscribeFromEventsRequest,
+  input: UnsubscribeTriggerFromEventsRequest,
   output: TriggerSubscriptionOperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

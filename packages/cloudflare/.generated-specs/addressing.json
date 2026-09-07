@@ -50,7 +50,8 @@
       "totalCount": "total_count",
       "totalPages": "total_pages",
       "verifiedAt": "verified_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.addressing#AddressMapsCreateRequestIpsList": {
@@ -892,118 +893,118 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.addressing#AddressMapsCreate"
+          "target": "com.cloudflare.addressing#CreateAddressMap"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsDelete"
+          "target": "com.cloudflare.addressing#CreateLoaDocument"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsEdit"
+          "target": "com.cloudflare.addressing#CreatePrefix"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsGet"
+          "target": "com.cloudflare.addressing#CreatePrefixBgpPrefix"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsList"
+          "target": "com.cloudflare.addressing#CreatePrefixDelegation"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsAccountsDelete"
+          "target": "com.cloudflare.addressing#CreatePrefixServiceBinding"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsAccountsUpdate"
+          "target": "com.cloudflare.addressing#CreateRegionalHostname"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsIpsDelete"
+          "target": "com.cloudflare.addressing#DeleteAddressMap"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsIpsUpdate"
+          "target": "com.cloudflare.addressing#DeleteAddressMapAccount"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsZonesDelete"
+          "target": "com.cloudflare.addressing#DeleteAddressMapIp"
         },
         {
-          "target": "com.cloudflare.addressing#AddressMapsZonesUpdate"
+          "target": "com.cloudflare.addressing#DeleteAddressMapZone"
         },
         {
-          "target": "com.cloudflare.addressing#LoaDocumentsCreate"
+          "target": "com.cloudflare.addressing#DeletePrefix"
         },
         {
-          "target": "com.cloudflare.addressing#LoaDocumentsGet"
+          "target": "com.cloudflare.addressing#DeletePrefixDelegation"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesCreate"
+          "target": "com.cloudflare.addressing#DeletePrefixServiceBinding"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesDelete"
+          "target": "com.cloudflare.addressing#DeleteRegionalHostname"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesEdit"
+          "target": "com.cloudflare.addressing#GetAddressMap"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesGet"
+          "target": "com.cloudflare.addressing#GetLoaDocument"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesList"
+          "target": "com.cloudflare.addressing#GetPrefix"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesAdvertisementStatusEdit"
+          "target": "com.cloudflare.addressing#GetPrefixAdvertisementStatus"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesAdvertisementStatusGet"
+          "target": "com.cloudflare.addressing#GetPrefixBgpPrefix"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesBgpPrefixesCreate"
+          "target": "com.cloudflare.addressing#GetPrefixServiceBinding"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesBgpPrefixesEdit"
+          "target": "com.cloudflare.addressing#GetRegionalHostname"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesBgpPrefixesGet"
+          "target": "com.cloudflare.addressing#ListAddressMaps"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesBgpPrefixesList"
+          "target": "com.cloudflare.addressing#ListPrefixBgpPrefixes"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesDelegationsCreate"
+          "target": "com.cloudflare.addressing#ListPrefixDelegations"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesDelegationsDelete"
+          "target": "com.cloudflare.addressing#ListPrefixes"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesDelegationsList"
+          "target": "com.cloudflare.addressing#ListPrefixServiceBindings"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesServiceBindingsCreate"
+          "target": "com.cloudflare.addressing#ListRegionalHostnameRegions"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesServiceBindingsDelete"
+          "target": "com.cloudflare.addressing#ListRegionalHostnames"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesServiceBindingsGet"
+          "target": "com.cloudflare.addressing#ListServices"
         },
         {
-          "target": "com.cloudflare.addressing#PrefixesServiceBindingsList"
+          "target": "com.cloudflare.addressing#PatchAddressMap"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesCreate"
+          "target": "com.cloudflare.addressing#PatchPrefix"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesDelete"
+          "target": "com.cloudflare.addressing#PatchPrefixAdvertisementStatus"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesEdit"
+          "target": "com.cloudflare.addressing#PatchPrefixBgpPrefix"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesGet"
+          "target": "com.cloudflare.addressing#PatchRegionalHostname"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesList"
+          "target": "com.cloudflare.addressing#PutAddressMapAccount"
         },
         {
-          "target": "com.cloudflare.addressing#RegionalHostnamesRegionsList"
+          "target": "com.cloudflare.addressing#PutAddressMapIp"
         },
         {
-          "target": "com.cloudflare.addressing#ServicesList"
+          "target": "com.cloudflare.addressing#PutAddressMapZone"
         }
       ],
       "traits": {

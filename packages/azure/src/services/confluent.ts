@@ -13,116 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Details of the user being invited */
-export interface AccessInvitedUserDetails {
-  /** UPN/Email of the user who is being invited */
-  invitedEmail?: string;
-  /** Auth type of the user */
-  auth_type?: string;
-}
-export const AccessInvitedUserDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invitedEmail: S.optional(S.String),
-    auth_type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccessInvitedUserDetails",
-}) as any as S.Schema<AccessInvitedUserDetails>;
-
-export interface AccessInviteUserRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Id of the organization */
-  organizationId?: string;
-  /** Email of the logged in user */
-  email?: string;
-  /** Upn of the logged in user */
-  upn?: string;
-  /** Details of the user who is being invited */
-  invitedUserDetails?: AccessInvitedUserDetails;
-}
-export const AccessInviteUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    organizationId: S.optional(S.String),
-    email: S.optional(S.String),
-    upn: S.optional(S.String),
-    invitedUserDetails: S.optional(AccessInvitedUserDetails),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createInvitation",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessInviteUserRequest",
-}) as any as S.Schema<AccessInviteUserRequest>;
-
-/** Metadata of the data record */
-export interface MetadataEntity {
-  /** Self lookup url */
-  self?: string;
-  /** Resource name of the record */
-  resource_name?: string;
-  /** Created Date Time */
-  created_at?: string;
-  /** Updated Date time */
-  updated_at?: string;
-  /** Deleted Date time */
-  deleted_at?: string;
-}
-export const MetadataEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    self: S.optional(S.String),
-    resource_name: S.optional(S.String),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-    deleted_at: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetadataEntity" }) as any as S.Schema<MetadataEntity>;
-
-/** Record of the invitation */
-export interface InvitationRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the invitation */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Email of the user */
-  email?: string;
-  /** Auth type of the user */
-  auth_type?: string;
-  /** Status of the invitation */
-  status?: string;
-  /** Accepted date time of the invitation */
-  accepted_at?: string;
-  /** Expiration date time of the invitation */
-  expires_at?: string;
-}
-export const InvitationRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    email: S.optional(S.String),
-    auth_type: S.optional(S.String),
-    status: S.optional(S.String),
-    accepted_at: S.optional(S.String),
-    expires_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InvitationRecord",
-}) as any as S.Schema<InvitationRecord>;
-
 /** Search filters for the request */
 export type AccessListRoleBindingNameListRequestSearchFiltersMap = {
   [key: string]: string | undefined;
@@ -684,6 +574,29 @@ export const CreateAccessRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAccessRoleBindingRequest",
 }) as any as S.Schema<CreateAccessRoleBindingRequest>;
 
+/** Metadata of the data record */
+export interface MetadataEntity {
+  /** Self lookup url */
+  self?: string;
+  /** Resource name of the record */
+  resource_name?: string;
+  /** Created Date Time */
+  created_at?: string;
+  /** Updated Date time */
+  updated_at?: string;
+  /** Deleted Date time */
+  deleted_at?: string;
+}
+export const MetadataEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    self: S.optional(S.String),
+    resource_name: S.optional(S.String),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+    deleted_at: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetadataEntity" }) as any as S.Schema<MetadataEntity>;
+
 /** Details on principal, role name and crn pattern of a role binding */
 export interface RoleBindingRecord {
   /** The type of the resource. */
@@ -845,13 +758,13 @@ export const ConfluentAgreementResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConfluentAgreementResource>;
 
 /** Resource tags. */
-export type OrganizationCreateRequestTagsMap = {
+export type CreateOrganizationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateOrganizationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationCreateRequestTagsMap>;
+) as any as S.Schema<CreateOrganizationRequestTagsMap>;
 
 /** Array of Private Offer Ids */
 export type OfferDetailInputPrivateOfferIdsList = Array<string>;
@@ -956,7 +869,7 @@ export interface CreateOrganizationRequest {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: OrganizationCreateRequestTagsMap;
+  tags?: CreateOrganizationRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
@@ -967,7 +880,7 @@ export const CreateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    tags: S.optional(OrganizationCreateRequestTagsMap),
+    tags: S.optional(CreateOrganizationRequestTagsMap),
     location: S.String,
     properties: OrganizationResourcePropertiesInput,
   }).pipe(
@@ -983,13 +896,13 @@ export const CreateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOrganizationRequest>;
 
 /** Resource tags. */
-export type OrganizationCreateResponseTagsMap = {
+export type CreateOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationCreateResponseTagsMap>;
+) as any as S.Schema<CreateOrganizationResponseTagsMap>;
 
 /** Provision states for confluent RP */
 export type ProvisionState =
@@ -1100,7 +1013,7 @@ export interface CreateOrganizationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OrganizationCreateResponseTagsMap;
+  tags?: CreateOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
@@ -1112,7 +1025,7 @@ export const CreateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationCreateResponseTagsMap),
+    tags: S.optional(CreateOrganizationResponseTagsMap),
     location: S.String,
     properties: OrganizationResourceProperties,
   }),
@@ -1120,7 +1033,7 @@ export const CreateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateOrganizationResponse",
 }) as any as S.Schema<CreateOrganizationResponse>;
 
-export interface CreateOrganizationApiKeyRequest {
+export interface CreateOrganizationAPIKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1136,7 +1049,7 @@ export interface CreateOrganizationApiKeyRequest {
   /** Description of the API Key */
   description?: string;
 }
-export const CreateOrganizationApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateOrganizationAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1154,8 +1067,8 @@ export const CreateOrganizationApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateOrganizationApiKeyRequest",
-}) as any as S.Schema<CreateOrganizationApiKeyRequest>;
+  identifier: "CreateOrganizationAPIKeyRequest",
+}) as any as S.Schema<CreateOrganizationAPIKeyRequest>;
 
 /** API Key Resource details which can be kafka cluster or schema registry cluster */
 export interface APIKeyResourceEntity {
@@ -1592,7 +1505,7 @@ export const DeleteOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteOrganizationResponse",
 }) as any as S.Schema<DeleteOrganizationResponse>;
 
-export interface DeleteOrganizationClusterApiKeyRequest {
+export interface DeleteOrganizationClusterAPIKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1602,7 +1515,7 @@ export interface DeleteOrganizationClusterApiKeyRequest {
   /** Confluent API Key id */
   apiKeyId: string;
 }
-export const DeleteOrganizationClusterApiKeyRequest = /*@__PURE__*/ S.suspend(
+export const DeleteOrganizationClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1618,15 +1531,15 @@ export const DeleteOrganizationClusterApiKeyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteOrganizationClusterApiKeyRequest",
-}) as any as S.Schema<DeleteOrganizationClusterApiKeyRequest>;
+  identifier: "DeleteOrganizationClusterAPIKeyRequest",
+}) as any as S.Schema<DeleteOrganizationClusterAPIKeyRequest>;
 
-export interface DeleteOrganizationClusterApiKeyResponse {}
-export const DeleteOrganizationClusterApiKeyResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteOrganizationClusterAPIKeyResponse {}
+export const DeleteOrganizationClusterAPIKeyResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteOrganizationClusterApiKeyResponse",
-}) as any as S.Schema<DeleteOrganizationClusterApiKeyResponse>;
+  identifier: "DeleteOrganizationClusterAPIKeyResponse",
+}) as any as S.Schema<DeleteOrganizationClusterAPIKeyResponse>;
 
 export interface DeleteTopicRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1843,13 +1756,13 @@ export const GetOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationRequest>;
 
 /** Resource tags. */
-export type OrganizationGetResponseTagsMap = {
+export type GetOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationGetResponseTagsMap>;
+) as any as S.Schema<GetOrganizationResponseTagsMap>;
 
 export interface GetOrganizationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1861,7 +1774,7 @@ export interface GetOrganizationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OrganizationGetResponseTagsMap;
+  tags?: GetOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
@@ -1873,7 +1786,7 @@ export const GetOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationGetResponseTagsMap),
+    tags: S.optional(GetOrganizationResponseTagsMap),
     location: S.String,
     properties: OrganizationResourceProperties,
   }),
@@ -1881,7 +1794,7 @@ export const GetOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOrganizationResponse",
 }) as any as S.Schema<GetOrganizationResponse>;
 
-export interface GetOrganizationClusterApiKeyRequest {
+export interface GetOrganizationClusterAPIKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1891,7 +1804,7 @@ export interface GetOrganizationClusterApiKeyRequest {
   /** Confluent API Key id */
   apiKeyId: string;
 }
-export const GetOrganizationClusterApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOrganizationClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1906,8 +1819,8 @@ export const GetOrganizationClusterApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetOrganizationClusterApiKeyRequest",
-}) as any as S.Schema<GetOrganizationClusterApiKeyRequest>;
+  identifier: "GetOrganizationClusterAPIKeyRequest",
+}) as any as S.Schema<GetOrganizationClusterAPIKeyRequest>;
 
 export interface GetOrganizationClusterByIdRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2197,14 +2110,101 @@ export const GetTopicResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTopicResponse",
 }) as any as S.Schema<GetTopicResponse>;
 
+/** Details of the user being invited */
+export interface AccessInvitedUserDetails {
+  /** UPN/Email of the user who is being invited */
+  invitedEmail?: string;
+  /** Auth type of the user */
+  auth_type?: string;
+}
+export const AccessInvitedUserDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invitedEmail: S.optional(S.String),
+    auth_type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccessInvitedUserDetails",
+}) as any as S.Schema<AccessInvitedUserDetails>;
+
+export interface InviteAccessUserRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Id of the organization */
+  organizationId?: string;
+  /** Email of the logged in user */
+  email?: string;
+  /** Upn of the logged in user */
+  upn?: string;
+  /** Details of the user who is being invited */
+  invitedUserDetails?: AccessInvitedUserDetails;
+}
+export const InviteAccessUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    organizationId: S.optional(S.String),
+    email: S.optional(S.String),
+    upn: S.optional(S.String),
+    invitedUserDetails: S.optional(AccessInvitedUserDetails),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createInvitation",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "InviteAccessUserRequest",
+}) as any as S.Schema<InviteAccessUserRequest>;
+
+/** Record of the invitation */
+export interface InvitationRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the invitation */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Email of the user */
+  email?: string;
+  /** Auth type of the user */
+  auth_type?: string;
+  /** Status of the invitation */
+  status?: string;
+  /** Accepted date time of the invitation */
+  accepted_at?: string;
+  /** Expiration date time of the invitation */
+  expires_at?: string;
+}
+export const InvitationRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    email: S.optional(S.String),
+    auth_type: S.optional(S.String),
+    status: S.optional(S.String),
+    accepted_at: S.optional(S.String),
+    expires_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InvitationRecord",
+}) as any as S.Schema<InvitationRecord>;
+
 /** Search filters for the request */
-export type AccessListClustersRequestSearchFiltersMap = {
+export type ListAccessClustersRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListClustersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
+export const ListAccessClustersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessListClustersRequestSearchFiltersMap>;
+) as any as S.Schema<ListAccessClustersRequestSearchFiltersMap>;
 
 export interface ListAccessClustersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2214,14 +2214,14 @@ export interface ListAccessClustersRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListClustersRequestSearchFiltersMap;
+  searchFilters?: ListAccessClustersRequestSearchFiltersMap;
 }
 export const ListAccessClustersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListClustersRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessClustersRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2377,14 +2377,14 @@ export const AccessListClusterSuccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccessListClusterSuccessResponse>;
 
 /** Search filters for the request */
-export type AccessListEnvironmentsRequestSearchFiltersMap = {
+export type ListAccessEnvironmentsRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListEnvironmentsRequestSearchFiltersMap =
+export const ListAccessEnvironmentsRequestSearchFiltersMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AccessListEnvironmentsRequestSearchFiltersMap>;
+  ) as any as S.Schema<ListAccessEnvironmentsRequestSearchFiltersMap>;
 
 export interface ListAccessEnvironmentsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2394,14 +2394,14 @@ export interface ListAccessEnvironmentsRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListEnvironmentsRequestSearchFiltersMap;
+  searchFilters?: ListAccessEnvironmentsRequestSearchFiltersMap;
 }
 export const ListAccessEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListEnvironmentsRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessEnvironmentsRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2465,14 +2465,14 @@ export const AccessListEnvironmentsSuccessResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AccessListEnvironmentsSuccessResponse>;
 
 /** Search filters for the request */
-export type AccessListInvitationsRequestSearchFiltersMap = {
+export type ListAccessInvitationsRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListInvitationsRequestSearchFiltersMap =
+export const ListAccessInvitationsRequestSearchFiltersMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AccessListInvitationsRequestSearchFiltersMap>;
+  ) as any as S.Schema<ListAccessInvitationsRequestSearchFiltersMap>;
 
 export interface ListAccessInvitationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2482,14 +2482,14 @@ export interface ListAccessInvitationsRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListInvitationsRequestSearchFiltersMap;
+  searchFilters?: ListAccessInvitationsRequestSearchFiltersMap;
 }
 export const ListAccessInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListInvitationsRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessInvitationsRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2531,14 +2531,14 @@ export const AccessListInvitationsSuccessResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AccessListInvitationsSuccessResponse>;
 
 /** Search filters for the request */
-export type AccessListRoleBindingsRequestSearchFiltersMap = {
+export type ListAccessRoleBindingsRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListRoleBindingsRequestSearchFiltersMap =
+export const ListAccessRoleBindingsRequestSearchFiltersMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AccessListRoleBindingsRequestSearchFiltersMap>;
+  ) as any as S.Schema<ListAccessRoleBindingsRequestSearchFiltersMap>;
 
 export interface ListAccessRoleBindingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2548,14 +2548,14 @@ export interface ListAccessRoleBindingsRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListRoleBindingsRequestSearchFiltersMap;
+  searchFilters?: ListAccessRoleBindingsRequestSearchFiltersMap;
 }
 export const ListAccessRoleBindingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListRoleBindingsRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessRoleBindingsRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2597,14 +2597,14 @@ export const AccessListRoleBindingsSuccessResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AccessListRoleBindingsSuccessResponse>;
 
 /** Search filters for the request */
-export type AccessListServiceAccountsRequestSearchFiltersMap = {
+export type ListAccessServiceAccountsRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListServiceAccountsRequestSearchFiltersMap =
+export const ListAccessServiceAccountsRequestSearchFiltersMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AccessListServiceAccountsRequestSearchFiltersMap>;
+  ) as any as S.Schema<ListAccessServiceAccountsRequestSearchFiltersMap>;
 
 export interface ListAccessServiceAccountsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2614,14 +2614,14 @@ export interface ListAccessServiceAccountsRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListServiceAccountsRequestSearchFiltersMap;
+  searchFilters?: ListAccessServiceAccountsRequestSearchFiltersMap;
 }
 export const ListAccessServiceAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListServiceAccountsRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessServiceAccountsRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2688,13 +2688,13 @@ export const AccessListServiceAccountsSuccessResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AccessListServiceAccountsSuccessResponse>;
 
 /** Search filters for the request */
-export type AccessListUsersRequestSearchFiltersMap = {
+export type ListAccessUsersRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const AccessListUsersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
+export const ListAccessUsersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessListUsersRequestSearchFiltersMap>;
+) as any as S.Schema<ListAccessUsersRequestSearchFiltersMap>;
 
 export interface ListAccessUsersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2704,14 +2704,14 @@ export interface ListAccessUsersRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: AccessListUsersRequestSearchFiltersMap;
+  searchFilters?: ListAccessUsersRequestSearchFiltersMap;
 }
 export const ListAccessUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListUsersRequestSearchFiltersMap),
+    searchFilters: S.optional(ListAccessUsersRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -3250,14 +3250,14 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationListResult>;
 
 /** Search filters for the request */
-export type OrganizationListRegionsRequestSearchFiltersMap = {
+export type ListOrganizationRegionsRequestSearchFiltersMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationListRegionsRequestSearchFiltersMap =
+export const ListOrganizationRegionsRequestSearchFiltersMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<OrganizationListRegionsRequestSearchFiltersMap>;
+  ) as any as S.Schema<ListOrganizationRegionsRequestSearchFiltersMap>;
 
 export interface ListOrganizationRegionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3267,14 +3267,14 @@ export interface ListOrganizationRegionsRequest {
   /** Organization resource name */
   organizationName: string;
   /** Search filters for the request */
-  searchFilters?: OrganizationListRegionsRequestSearchFiltersMap;
+  searchFilters?: ListOrganizationRegionsRequestSearchFiltersMap;
 }
 export const ListOrganizationRegionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(OrganizationListRegionsRequestSearchFiltersMap),
+    searchFilters: S.optional(ListOrganizationRegionsRequestSearchFiltersMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -3507,13 +3507,13 @@ export const ListTopicsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTopicsSuccessResponse>;
 
 /** ARM resource tags */
-export type OrganizationUpdateRequestTagsMap = {
+export type UpdateOrganizationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOrganizationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateOrganizationRequestTagsMap>;
 
 export interface UpdateOrganizationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3523,14 +3523,14 @@ export interface UpdateOrganizationRequest {
   /** Organization resource name */
   organizationName: string;
   /** ARM resource tags */
-  tags?: OrganizationUpdateRequestTagsMap;
+  tags?: UpdateOrganizationRequestTagsMap;
 }
 export const UpdateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    tags: S.optional(OrganizationUpdateRequestTagsMap),
+    tags: S.optional(UpdateOrganizationRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3544,13 +3544,13 @@ export const UpdateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOrganizationRequest>;
 
 /** Resource tags. */
-export type OrganizationUpdateResponseTagsMap = {
+export type UpdateOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOrganizationResponseTagsMap>;
 
 export interface UpdateOrganizationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3562,7 +3562,7 @@ export interface UpdateOrganizationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OrganizationUpdateResponseTagsMap;
+  tags?: UpdateOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
@@ -3574,7 +3574,7 @@ export const UpdateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationUpdateResponseTagsMap),
+    tags: S.optional(UpdateOrganizationResponseTagsMap),
     location: S.String,
     properties: OrganizationResourceProperties,
   }),
@@ -3583,16 +3583,16 @@ export const UpdateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOrganizationResponse>;
 
 /** Resource tags. */
-export type ValidationsValidateOrganizationRequestTagsMap = {
+export type ValidateValidationOrganizationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationRequestTagsMap =
+export const ValidateValidationOrganizationRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationRequestTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationRequestTagsMap>;
 
-export interface ValidationsValidateOrganizationRequest {
+export interface ValidateValidationOrganizationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3600,19 +3600,19 @@ export interface ValidationsValidateOrganizationRequest {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationRequestTagsMap;
+  tags?: ValidateValidationOrganizationRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourcePropertiesInput;
 }
-export const ValidationsValidateOrganizationRequest = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       organizationName: S.String.pipe(T.Label()),
-      tags: S.optional(ValidationsValidateOrganizationRequestTagsMap),
+      tags: S.optional(ValidateValidationOrganizationRequestTagsMap),
       location: S.String,
       properties: OrganizationResourcePropertiesInput,
     }).pipe(
@@ -3624,20 +3624,20 @@ export const ValidationsValidateOrganizationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationRequest",
-}) as any as S.Schema<ValidationsValidateOrganizationRequest>;
+  identifier: "ValidateValidationOrganizationRequest",
+}) as any as S.Schema<ValidateValidationOrganizationRequest>;
 
 /** Resource tags. */
-export type ValidationsValidateOrganizationResponseTagsMap = {
+export type ValidateValidationOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationResponseTagsMap =
+export const ValidateValidationOrganizationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationResponseTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationResponseTagsMap>;
 
-export interface ValidationsValidateOrganizationResponse {
+export interface ValidateValidationOrganizationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3647,38 +3647,38 @@ export interface ValidationsValidateOrganizationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationResponseTagsMap;
+  tags?: ValidateValidationOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourceProperties;
 }
-export const ValidationsValidateOrganizationResponse = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ValidationsValidateOrganizationResponseTagsMap),
+      tags: S.optional(ValidateValidationOrganizationResponseTagsMap),
       location: S.String,
       properties: OrganizationResourceProperties,
     }),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationResponse",
-}) as any as S.Schema<ValidationsValidateOrganizationResponse>;
+  identifier: "ValidateValidationOrganizationResponse",
+}) as any as S.Schema<ValidateValidationOrganizationResponse>;
 
 /** Resource tags. */
-export type ValidationsValidateOrganizationV2RequestTagsMap = {
+export type ValidateValidationOrganizationV2RequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationV2RequestTagsMap =
+export const ValidateValidationOrganizationV2RequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationV2RequestTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationV2RequestTagsMap>;
 
-export interface ValidationsValidateOrganizationV2Request {
+export interface ValidateValidationOrganizationV2Request {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3686,19 +3686,19 @@ export interface ValidationsValidateOrganizationV2Request {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationV2RequestTagsMap;
+  tags?: ValidateValidationOrganizationV2RequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourcePropertiesInput;
 }
-export const ValidationsValidateOrganizationV2Request = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationV2Request = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       organizationName: S.String.pipe(T.Label()),
-      tags: S.optional(ValidationsValidateOrganizationV2RequestTagsMap),
+      tags: S.optional(ValidateValidationOrganizationV2RequestTagsMap),
       location: S.String,
       properties: OrganizationResourcePropertiesInput,
     }).pipe(
@@ -3710,8 +3710,8 @@ export const ValidationsValidateOrganizationV2Request = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationV2Request",
-}) as any as S.Schema<ValidationsValidateOrganizationV2Request>;
+  identifier: "ValidateValidationOrganizationV2Request",
+}) as any as S.Schema<ValidateValidationOrganizationV2Request>;
 
 /** Info from the response */
 export type ValidationResponseInfoMap = { [key: string]: string | undefined };
@@ -3732,21 +3732,6 @@ export const ValidationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ValidationResponse",
 }) as any as S.Schema<ValidationResponse>;
-
-export type AccessInviteUserError = AzureOpError;
-/** Invite user to the organization */
-export const AccessInviteUser: API.OperationMethod<
-  AccessInviteUserRequest,
-  InvitationRecord,
-  AccessInviteUserError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessInviteUserRequest,
-  output: InvitationRecord,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type AccessListRoleBindingNameListError = AzureOpError;
 /** Organization role bindings */
@@ -3838,15 +3823,15 @@ export const CreateOrganization: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateOrganizationApiKeyError = AzureOpError;
+export type CreateOrganizationAPIKeyError = AzureOpError;
 /** Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment */
-export const CreateOrganizationApiKey: API.OperationMethod<
-  CreateOrganizationApiKeyRequest,
+export const CreateOrganizationAPIKey: API.OperationMethod<
+  CreateOrganizationAPIKeyRequest,
   APIKeyRecord,
-  CreateOrganizationApiKeyError,
+  CreateOrganizationAPIKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateOrganizationApiKeyRequest,
+  input: CreateOrganizationAPIKeyRequest,
   output: APIKeyRecord,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3943,16 +3928,16 @@ export const DeleteOrganization: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteOrganizationClusterApiKeyError = AzureOpError;
+export type DeleteOrganizationClusterAPIKeyError = AzureOpError;
 /** Deletes API key of a kafka or schema registry cluster */
-export const DeleteOrganizationClusterApiKey: API.OperationMethod<
-  DeleteOrganizationClusterApiKeyRequest,
-  DeleteOrganizationClusterApiKeyResponse,
-  DeleteOrganizationClusterApiKeyError,
+export const DeleteOrganizationClusterAPIKey: API.OperationMethod<
+  DeleteOrganizationClusterAPIKeyRequest,
+  DeleteOrganizationClusterAPIKeyResponse,
+  DeleteOrganizationClusterAPIKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOrganizationClusterApiKeyRequest,
-  output: DeleteOrganizationClusterApiKeyResponse,
+  input: DeleteOrganizationClusterAPIKeyRequest,
+  output: DeleteOrganizationClusterAPIKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4018,15 +4003,15 @@ export const GetOrganization: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOrganizationClusterApiKeyError = AzureOpError;
+export type GetOrganizationClusterAPIKeyError = AzureOpError;
 /** Get API key details of a kafka or schema registry cluster */
-export const GetOrganizationClusterApiKey: API.OperationMethod<
-  GetOrganizationClusterApiKeyRequest,
+export const GetOrganizationClusterAPIKey: API.OperationMethod<
+  GetOrganizationClusterAPIKeyRequest,
   APIKeyRecord,
-  GetOrganizationClusterApiKeyError,
+  GetOrganizationClusterAPIKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOrganizationClusterApiKeyRequest,
+  input: GetOrganizationClusterAPIKeyRequest,
   output: APIKeyRecord,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4088,6 +4073,21 @@ export const GetTopic: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetTopicRequest,
   output: GetTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InviteAccessUserError = AzureOpError;
+/** Invite user to the organization */
+export const InviteAccessUser: API.OperationMethod<
+  InviteAccessUserRequest,
+  InvitationRecord,
+  InviteAccessUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InviteAccessUserRequest,
+  output: InvitationRecord,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4348,30 +4348,30 @@ export const UpdateOrganization: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ValidationsValidateOrganizationError = AzureOpError;
+export type ValidateValidationOrganizationError = AzureOpError;
 /** Organization Validate proxy resource Organization Validate proxy resource */
-export const ValidationsValidateOrganization: API.OperationMethod<
-  ValidationsValidateOrganizationRequest,
-  ValidationsValidateOrganizationResponse,
-  ValidationsValidateOrganizationError,
+export const ValidateValidationOrganization: API.OperationMethod<
+  ValidateValidationOrganizationRequest,
+  ValidateValidationOrganizationResponse,
+  ValidateValidationOrganizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidationsValidateOrganizationRequest,
-  output: ValidationsValidateOrganizationResponse,
+  input: ValidateValidationOrganizationRequest,
+  output: ValidateValidationOrganizationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ValidationsValidateOrganizationV2Error = AzureOpError;
+export type ValidateValidationOrganizationV2Error = AzureOpError;
 /** Organization Validate proxy resource Organization Validate proxy resource */
-export const ValidationsValidateOrganizationV2: API.OperationMethod<
-  ValidationsValidateOrganizationV2Request,
+export const ValidateValidationOrganizationV2: API.OperationMethod<
+  ValidateValidationOrganizationV2Request,
   ValidationResponse,
-  ValidationsValidateOrganizationV2Error,
+  ValidateValidationOrganizationV2Error,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidationsValidateOrganizationV2Request,
+  input: ValidateValidationOrganizationV2Request,
   output: ValidationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

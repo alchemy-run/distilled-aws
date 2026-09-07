@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.saved#ListSavedRequest": {
@@ -129,8 +130,7 @@
         "data_url": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot (defaults to 'url').",
-            "com.distilled.openapi#nullable": {}
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot (defaults to 'url')."
           }
         },
         "target_widths": {
@@ -140,19 +140,19 @@
           }
         },
         "type": {
-          "target": "com.posthog.saved#HeatmapType",
+          "target": "com.posthog.saved#SavedHeatmapTypeEnum",
           "traits": {
             "smithy.api#documentation": "Render mode: 'screenshot', 'iframe', or 'recording'.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
           }
         },
         "source": {
-          "target": "com.posthog.saved#HeatmapScreenshotResponseSourceEnum",
+          "target": "com.posthog.saved#SavedHeatmapSourceEnum",
           "traits": {
             "smithy.api#documentation": "How the screenshot was captured: 'server' (rendered headlessly via Browserless) or 'toolbar' (captured client-side from the on-page toolbar, e.g. for pages behind a login).\n\n* `server` - Server\n* `toolbar` - Toolbar"
           }
         },
         "status": {
-          "target": "com.posthog.saved#HeatmapScreenshotResponseStatusEnum",
+          "target": "com.posthog.saved#SavedHeatmapStatusEnum",
           "traits": {
             "smithy.api#documentation": "Screenshot generation status: 'processing', 'completed', or 'failed'.\n\n* `processing` - Processing\n* `completed` - Completed\n* `failed` - Failed"
           }
@@ -221,7 +221,7 @@
         "smithy.api#documentation": "Viewport widths (CSS pixels) the screenshot is rendered at."
       }
     },
-    "com.posthog.saved#HeatmapType": {
+    "com.posthog.saved#SavedHeatmapTypeEnum": {
       "type": "enum",
       "members": {
         "SCREENSHOT": {
@@ -247,7 +247,7 @@
         "smithy.api#documentation": "* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
       }
     },
-    "com.posthog.saved#HeatmapScreenshotResponseSourceEnum": {
+    "com.posthog.saved#SavedHeatmapSourceEnum": {
       "type": "enum",
       "members": {
         "SERVER": {
@@ -267,7 +267,7 @@
         "smithy.api#documentation": "* `server` - Server\n* `toolbar` - Toolbar"
       }
     },
-    "com.posthog.saved#HeatmapScreenshotResponseStatusEnum": {
+    "com.posthog.saved#SavedHeatmapStatusEnum": {
       "type": "enum",
       "members": {
         "PROCESSING": {
@@ -470,7 +470,7 @@
       },
       "traits": {}
     },
-    "com.posthog.saved#SavedListResponseBodyList": {
+    "com.posthog.saved#ListSavedResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.saved#SavedHeatmapListResponse"
@@ -481,7 +481,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.saved#SavedListResponseBodyList",
+          "target": "com.posthog.saved#ListSavedResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -520,7 +520,7 @@
         "smithy.api#documentation": "List saved heatmaps for the project. A saved heatmap pins a page URL and a set of viewport widths, and (for type 'screenshot') renders the page so heatmap data can be overlaid on it."
       }
     },
-    "com.posthog.saved#SavedCreateRequestWidthsList": {
+    "com.posthog.saved#CreateSavedRequestWidthsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -557,18 +557,17 @@
         "data_url": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted.",
-            "com.distilled.openapi#nullable": {}
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted."
           }
         },
         "widths": {
-          "target": "com.posthog.saved#SavedCreateRequestWidthsList",
+          "target": "com.posthog.saved#CreateSavedRequestWidthsList",
           "traits": {
             "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
           }
         },
         "type": {
-          "target": "com.posthog.saved#HeatmapType",
+          "target": "com.posthog.saved#SavedHeatmapTypeEnum",
           "traits": {
             "smithy.api#documentation": "Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
           }
@@ -618,7 +617,7 @@
         "smithy.api#documentation": "Create a saved heatmap for a page URL. For type 'screenshot' (the default) this enqueues a headless render of the page at each target width; poll the saved heatmap or its content endpoint until status is 'completed'. Provide 'widths' to control which viewport widths are rendered."
       }
     },
-    "com.posthog.saved#SavedRetrieveRequest": {
+    "com.posthog.saved#GetSavedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -641,10 +640,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.saved#SavedRetrieve": {
+    "com.posthog.saved#GetSaved": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.saved#SavedRetrieveRequest"
+        "target": "com.posthog.saved#GetSavedRequest"
       },
       "output": {
         "target": "com.posthog.saved#HeatmapScreenshotResponse"
@@ -666,7 +665,7 @@
         "smithy.api#documentation": "Get a single saved heatmap by its short_id, including per-width render status."
       }
     },
-    "com.posthog.saved#SavedPartialUpdateRequestWidthsList": {
+    "com.posthog.saved#UpdateSavedPartialRequestWidthsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -709,18 +708,17 @@
         "data_url": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted.",
-            "com.distilled.openapi#nullable": {}
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted."
           }
         },
         "widths": {
-          "target": "com.posthog.saved#SavedPartialUpdateRequestWidthsList",
+          "target": "com.posthog.saved#UpdateSavedPartialRequestWidthsList",
           "traits": {
             "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
           }
         },
         "type": {
-          "target": "com.posthog.saved#HeatmapType",
+          "target": "com.posthog.saved#SavedHeatmapTypeEnum",
           "traits": {
             "smithy.api#documentation": "Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
           }
@@ -818,7 +816,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.saved#CreateSavedRegenerateRequest": {
+    "com.posthog.saved#SavedRegenerateCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -841,10 +839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.saved#CreateSavedRegenerate": {
+    "com.posthog.saved#SavedRegenerateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.saved#CreateSavedRegenerateRequest"
+        "target": "com.posthog.saved#SavedRegenerateCreateRequest"
       },
       "output": {
         "target": "com.posthog.saved#HeatmapScreenshotResponse"
@@ -869,7 +867,7 @@
         "smithy.api#documentation": "Re-run screenshot generation for a saved heatmap of type 'screenshot'. Clears existing renders and re-renders at every target width; status returns to 'processing'."
       }
     },
-    "com.posthog.saved#SavedCaptureCreateRequestImagesList": {
+    "com.posthog.saved#CreateSavedCaptureRequestImagesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -878,7 +876,7 @@
         "smithy.api#documentation": "One screenshot per viewport width, parallel to 'widths' (same length, same order). Lets a single toolbar capture cover the same viewport widths the server renders. At most 16 widths."
       }
     },
-    "com.posthog.saved#SavedCaptureCreateRequestWidthsList": {
+    "com.posthog.saved#CreateSavedCaptureRequestWidthsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -901,7 +899,8 @@
         "image": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Single screenshot of the page, captured client-side by the toolbar (JPEG or PNG). Max 20MB. Pair with 'width'. Use 'images'/'widths' instead to save several viewport widths on one heatmap."
+            "smithy.api#documentation": "Single screenshot of the page, captured client-side by the toolbar (JPEG or PNG). Max 20MB. Pair with 'width'. Use 'images'/'widths' instead to save several viewport widths on one heatmap.",
+            "com.distilled.openapi#nullable": {}
           }
         },
         "width": {
@@ -911,13 +910,13 @@
           }
         },
         "images": {
-          "target": "com.posthog.saved#SavedCaptureCreateRequestImagesList",
+          "target": "com.posthog.saved#CreateSavedCaptureRequestImagesList",
           "traits": {
             "smithy.api#documentation": "One screenshot per viewport width, parallel to 'widths' (same length, same order). Lets a single toolbar capture cover the same viewport widths the server renders. At most 16 widths."
           }
         },
         "widths": {
-          "target": "com.posthog.saved#SavedCaptureCreateRequestWidthsList",
+          "target": "com.posthog.saved#CreateSavedCaptureRequestWidthsList",
           "traits": {
             "smithy.api#documentation": "Viewport widths (CSS pixels) the 'images' were captured at, parallel to 'images'."
           }
@@ -1172,22 +1171,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.saved#ListSaved"
-        },
-        {
           "target": "com.posthog.saved#CreateSaved"
-        },
-        {
-          "target": "com.posthog.saved#SavedRetrieve"
-        },
-        {
-          "target": "com.posthog.saved#UpdateSavedPartial"
-        },
-        {
-          "target": "com.posthog.saved#SavedDestroy"
-        },
-        {
-          "target": "com.posthog.saved#CreateSavedRegenerate"
         },
         {
           "target": "com.posthog.saved#CreateSavedCapture"
@@ -1197,6 +1181,21 @@
         },
         {
           "target": "com.posthog.saved#CreateSavedPrewarm"
+        },
+        {
+          "target": "com.posthog.saved#GetSaved"
+        },
+        {
+          "target": "com.posthog.saved#ListSaved"
+        },
+        {
+          "target": "com.posthog.saved#SavedDestroy"
+        },
+        {
+          "target": "com.posthog.saved#SavedRegenerateCreate"
+        },
+        {
+          "target": "com.posthog.saved#UpdateSavedPartial"
         }
       ],
       "traits": {

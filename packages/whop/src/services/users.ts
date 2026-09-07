@@ -306,6 +306,517 @@ export const DeletePasskeyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePasskeyResponse",
 }) as any as S.Schema<DeletePasskeyResponse>;
 
+export type GetUserRequestInterval = "hour" | "day" | "week" | "month";
+export const GetUserRequestInterval = /*@__PURE__*/ S.String;
+
+export interface GetUserRequest {
+  /** User ID (prefixed `user_`), username, or `me` for the authenticated user. */
+  id: string;
+  /** When set, returns the user's account-specific profile overrides for this account. */
+  account_id?: string;
+  /** Also compute your balance history (opt-in; runs a heavier query). Only applies when the id is `me`; ignored for callers without balance-read scope. */
+  include_balance_history?: boolean;
+  /** Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days ago. Only used with `include_balance_history`. */
+  from?: string;
+  /** Balance-history window end, ISO 8601 date or datetime. Defaults to now. Only used with `include_balance_history`. */
+  to?: string;
+  /** Balance-history point granularity. Defaults to `day`. Only used with `include_balance_history`. */
+  interval?: GetUserRequestInterval | (string & {});
+  /** IANA time zone the balance-history points are bucketed in. Defaults to `UTC`. Only used with `include_balance_history`. */
+  time_zone?: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    include_balance_history: S.optional(S.Boolean.pipe(T.Query())),
+    from: S.optional(S.String.pipe(T.Query())),
+    to: S.optional(S.String.pipe(T.Query())),
+    interval: S.optional(GetUserRequestInterval.pipe(T.Query())),
+    time_zone: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/users/{id}", code: 200 })),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+export interface UserBalanceBusiness {
+  /** The account's total balance in USD. */
+  balance_usd: string;
+  /** The account ID, which looks like biz_*************. */
+  id: string;
+  /** The account's logo URL. */
+  logo_url: string | null;
+  /** The account's display name. */
+  name: string | null;
+}
+export const UserBalanceBusiness = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    balance_usd: S.String,
+    id: S.String,
+    logo_url: S.NullOr(S.String),
+    name: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "UserBalanceBusiness",
+}) as any as S.Schema<UserBalanceBusiness>;
+
+export type UserBalanceBusinessesList = Array<UserBalanceBusiness>;
+export const UserBalanceBusinessesList = /*@__PURE__*/ S.Array(
+  UserBalanceBusiness,
+) as any as S.Schema<UserBalanceBusinessesList>;
+
+export interface UserBalanceCash {
+  /** Available balance in the native currency. */
+  balance: number;
+  /** Available balance converted to USD. */
+  balance_usd: number;
+  /** Lowercase ISO currency code, such as `usd` or `eur`. */
+  currency: string;
+  /** Balance moving to the user's own wallet or card, converted to USD. */
+  in_transit_balance_usd: number;
+  /** Pending balance converted to USD. */
+  pending_balance_usd: number;
+  /** USD price per native currency unit, or `null` when no exchange rate is available. */
+  price_usd: number | null;
+  /** Reserved balance converted to USD. */
+  reserve_balance_usd: number;
+  /** Withdrawable amount in the native currency. */
+  total_withdrawable_balance: number;
+}
+export const UserBalanceCash = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    balance: S.Number,
+    balance_usd: S.Number,
+    currency: S.String,
+    in_transit_balance_usd: S.Number,
+    pending_balance_usd: S.Number,
+    price_usd: S.NullOr(S.Number),
+    reserve_balance_usd: S.Number,
+    total_withdrawable_balance: S.Number,
+  }),
+).annotate({
+  identifier: "UserBalanceCash",
+}) as any as S.Schema<UserBalanceCash>;
+
+export type UserBalanceCashList = Array<UserBalanceCash>;
+export const UserBalanceCashList = /*@__PURE__*/ S.Array(
+  UserBalanceCash,
+) as any as S.Schema<UserBalanceCashList>;
+
+export interface AccountBalanceSettlement {
+  /** Amount expected that day, in native units, as a decimal string. */
+  amount: string;
+  /** The day this money is expected to finish settling, as an ISO 8601 date. */
+  date: string;
+}
+export const AccountBalanceSettlement = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.String,
+    date: S.String,
+  }),
+).annotate({
+  identifier: "AccountBalanceSettlement",
+}) as any as S.Schema<AccountBalanceSettlement>;
+
+export type AccountBalanceBreakdownPendingSettlementsList =
+  Array<AccountBalanceSettlement>;
+export const AccountBalanceBreakdownPendingSettlementsList =
+  /*@__PURE__*/ S.Array(
+    AccountBalanceSettlement,
+  ) as any as S.Schema<AccountBalanceBreakdownPendingSettlementsList>;
+
+export interface AccountBalanceBreakdown {
+  /** Amount you can spend, send, or withdraw now, in native units, as a decimal string. */
+  available: string;
+  /** Amount moving between the account's own destinations, such as a treasury sweep to its crypto wallet or a card top-up. In native units, as a decimal string. */
+  in_transit: string;
+  /** Amount from recent payments still settling, in native units, as a decimal string. */
+  pending: string;
+  pending_settlements: AccountBalanceBreakdownPendingSettlementsList;
+  /** Amount held back, in native units, as a decimal string. Retrieve the account's reserves for why it is held and when it unlocks. */
+  reserve: string;
+}
+export const AccountBalanceBreakdown = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    available: S.String,
+    in_transit: S.String,
+    pending: S.String,
+    pending_settlements: AccountBalanceBreakdownPendingSettlementsList,
+    reserve: S.String,
+  }),
+).annotate({
+  identifier: "AccountBalanceBreakdown",
+}) as any as S.Schema<AccountBalanceBreakdown>;
+
+export interface UserBalanceToken {
+  /** Amount held in native token units, as a decimal string. */
+  balance: string;
+  /** Balance split into available, pending, in-transit, and reserve amounts, as native-unit decimal strings. Transfers between the user's own wallet and card are reported in `in_transit` until they arrive. */
+  breakdown: AccountBalanceBreakdown;
+  /** Token icon URL. */
+  icon_url: string | null;
+  /** The token's display name. */
+  name: string | null;
+  /** USD price per token, or `null` when unknown. */
+  price_usd: number | null;
+  /** Token display symbol, such as `USDT`, `XAUT`, or `cbBTC`. */
+  symbol: string;
+  /** Holding USD value. */
+  value_usd: number;
+}
+export const UserBalanceToken = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    balance: S.String,
+    breakdown: AccountBalanceBreakdown,
+    icon_url: S.NullOr(S.String),
+    name: S.NullOr(S.String),
+    price_usd: S.NullOr(S.Number),
+    symbol: S.String,
+    value_usd: S.Number,
+  }),
+).annotate({
+  identifier: "UserBalanceToken",
+}) as any as S.Schema<UserBalanceToken>;
+
+export type UserBalanceCryptoList = Array<UserBalanceToken>;
+export const UserBalanceCryptoList = /*@__PURE__*/ S.Array(
+  UserBalanceToken,
+) as any as S.Schema<UserBalanceCryptoList>;
+
+export interface UserBalance {
+  businesses: UserBalanceBusinessesList;
+  /** Combined USD balance across every account the user owns. */
+  businesses_total_usd: string;
+  cash: UserBalanceCashList;
+  /** Fiat cash in USD, including pending, in-transit, and reserve. */
+  cash_usd: string;
+  crypto: UserBalanceCryptoList;
+  /** Crypto holdings in USD. */
+  crypto_usd: string;
+  /** Fiat pending and in-transit balances, plus in-flight treasury deposits, in USD. */
+  pending_usd: string;
+  /** The user's personal balance in USD: cash (available + pending + in-transit + reserve) + crypto + in-flight treasury deposits. Excludes account balances (see businesses_total_usd). */
+  total_usd: string;
+  /** Balance-to-wallet USDT0 payouts still in flight, in USD. */
+  treasury_pending_usd: string;
+}
+export const UserBalance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    businesses: UserBalanceBusinessesList,
+    businesses_total_usd: S.String,
+    cash: UserBalanceCashList,
+    cash_usd: S.String,
+    crypto: UserBalanceCryptoList,
+    crypto_usd: S.String,
+    pending_usd: S.String,
+    total_usd: S.String,
+    treasury_pending_usd: S.String,
+  }),
+).annotate({ identifier: "UserBalance" }) as any as S.Schema<UserBalance>;
+
+export interface UserBalanceHistoryPoint {
+  /** Point timestamp, in Unix seconds. */
+  t: number;
+  /** Cumulative wallet balance at this point, in USD. */
+  v: number;
+}
+export const UserBalanceHistoryPoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    t: S.Number,
+    v: S.Number,
+  }),
+).annotate({
+  identifier: "UserBalanceHistoryPoint",
+}) as any as S.Schema<UserBalanceHistoryPoint>;
+
+export type UserBalanceHistoryDataList = Array<UserBalanceHistoryPoint>;
+export const UserBalanceHistoryDataList = /*@__PURE__*/ S.Array(
+  UserBalanceHistoryPoint,
+) as any as S.Schema<UserBalanceHistoryDataList>;
+
+export interface UserBalanceHistory {
+  data: UserBalanceHistoryDataList;
+  /** Value of the most recent point, in USD. */
+  last: number;
+  /** Maximum value across the window, in USD. */
+  max: number;
+  /** Minimum value across the window, in USD. */
+  min: number;
+}
+export const UserBalanceHistory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: UserBalanceHistoryDataList,
+    last: S.Number,
+    max: S.Number,
+    min: S.Number,
+  }),
+).annotate({
+  identifier: "UserBalanceHistory",
+}) as any as S.Schema<UserBalanceHistory>;
+
+export interface UserBanner {
+  /** Profile banner image URL. */
+  url: string;
+}
+export const UserBanner = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+  }),
+).annotate({ identifier: "UserBanner" }) as any as S.Schema<UserBanner>;
+
+export interface UserEarningsAmount {
+  /** Gross income in USD over the last 24 hours. */
+  last_24_hours: string;
+  /** Gross income in USD over the last 30 days. */
+  last_30_days: string;
+  /** Gross income in USD over the last 7 days. */
+  last_7_days: string;
+  /** All-time gross income in USD. */
+  lifetime: string;
+}
+export const UserEarningsAmount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    last_24_hours: S.String,
+    last_30_days: S.String,
+    last_7_days: S.String,
+    lifetime: S.String,
+  }),
+).annotate({
+  identifier: "UserEarningsAmount",
+}) as any as S.Schema<UserEarningsAmount>;
+
+export interface UserEarnings {
+  /** The first time the user earned gross income, as an ISO 8601 timestamp. */
+  first_earned_at: string | null;
+  /** Gross income from accounts the user owns or is owner-authorized on. */
+  owned_accounts: UserEarningsAmount;
+  /** Gross income from the user's personal wallet. */
+  personal: UserEarningsAmount;
+  /** Gross income from the user's personal wallet plus accounts they own or are owner-authorized on. */
+  total: UserEarningsAmount;
+}
+export const UserEarnings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    first_earned_at: S.NullOr(S.String),
+    owned_accounts: UserEarningsAmount,
+    personal: UserEarningsAmount,
+    total: UserEarningsAmount,
+  }),
+).annotate({ identifier: "UserEarnings" }) as any as S.Schema<UserEarnings>;
+
+export interface UserProfilePicture {
+  /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
+  url: string;
+}
+export const UserProfilePicture = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+  }),
+).annotate({
+  identifier: "UserProfilePicture",
+}) as any as S.Schema<UserProfilePicture>;
+
+/** The platform the parent social account exists on. */
+export type SocialAccountParentPlatform =
+  | "x"
+  | "instagram"
+  | "youtube"
+  | "tiktok"
+  | "facebook"
+  | "discord"
+  | "telegram";
+export const SocialAccountParentPlatform = /*@__PURE__*/ S.String;
+
+export interface SocialAccountParent {
+  /** The platform-specific ID for the parent social account. */
+  external_id: string | null;
+  /** Social account ID, prefixed `sacc_`. */
+  id: string;
+  /** The display name of the parent social account on the platform. */
+  name: string | null;
+  /** The platform the parent social account exists on. */
+  platform: SocialAccountParentPlatform;
+  /** The URL where the profile picture of the parent social account can be accessed. */
+  profile_picture_url: string | null;
+  /** The username of the parent social account on the platform. */
+  username: string | null;
+  /** Whether the parent social account is verified on the platform. */
+  verified: boolean;
+}
+export const SocialAccountParent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    external_id: S.NullOr(S.String),
+    id: S.String,
+    name: S.NullOr(S.String),
+    platform: SocialAccountParentPlatform,
+    profile_picture_url: S.NullOr(S.String),
+    username: S.NullOr(S.String),
+    verified: S.Boolean,
+  }),
+).annotate({
+  identifier: "SocialAccountParent",
+}) as any as S.Schema<SocialAccountParent>;
+
+/** The platform the social account exists on. */
+export type SocialAccountPlatform =
+  | "x"
+  | "instagram"
+  | "youtube"
+  | "tiktok"
+  | "facebook"
+  | "discord"
+  | "telegram";
+export const SocialAccountPlatform = /*@__PURE__*/ S.String;
+
+export type SocialAccountScopesList = Array<string>;
+export const SocialAccountScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SocialAccountScopesList>;
+
+export interface SocialAccount {
+  /** Why this social account currently can't be used for advertising — a failed share or a Meta-side restriction. Null when the account is healthy. */
+  error: string | null;
+  /** The platform-specific ID for this social account. */
+  external_id: string | null;
+  /** Unique identifier for the social account. */
+  id: string;
+  /** The display name of the social account on the platform. */
+  name: string | null;
+  /** The social account this one belongs to on the platform, such as the Facebook page that owns an Instagram account. Null when the social account stands on its own. */
+  parent_social_account: SocialAccountParent | null;
+  /** The platform the social account exists on. */
+  platform: SocialAccountPlatform;
+  /** The URL where the profile picture of the social account can be accessed. */
+  profile_picture_url: string | null;
+  scopes: SocialAccountScopesList;
+  /** The URL where the social account can be accessed on the platform. Null while a Whop-owned page is still being provisioned. */
+  url: string | null;
+  /** The username of the social account on the platform. Null while a Whop-owned page is still being provisioned. */
+  username: string | null;
+  /** Whether the social account is verified on the platform. */
+  verified: boolean;
+}
+export const SocialAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.NullOr(S.String),
+    external_id: S.NullOr(S.String),
+    id: S.String,
+    name: S.NullOr(S.String),
+    parent_social_account: S.NullOr(SocialAccountParent),
+    platform: SocialAccountPlatform,
+    profile_picture_url: S.NullOr(S.String),
+    scopes: SocialAccountScopesList,
+    url: S.NullOr(S.String),
+    username: S.NullOr(S.String),
+    verified: S.Boolean,
+  }),
+).annotate({ identifier: "SocialAccount" }) as any as S.Schema<SocialAccount>;
+
+export type UserSocialAccountsList = Array<SocialAccount>;
+export const UserSocialAccountsList = /*@__PURE__*/ S.Array(
+  SocialAccount,
+) as any as S.Schema<UserSocialAccountsList>;
+
+export interface UserStaffAccess {
+  /** Whether the user holds the admin staff role with a valid second factor. */
+  admin: boolean;
+  /** Whether the user can open Whop-internal investigation tooling right now: a qualifying staff role plus their investigation toggle switched on. */
+  investigation_access: boolean;
+  /** Whether the user holds the manager staff role with a valid second factor. */
+  manager: boolean;
+  /** Whether the user holds the support staff role with a valid second factor. */
+  support: boolean;
+}
+export const UserStaffAccess = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    admin: S.Boolean,
+    investigation_access: S.Boolean,
+    manager: S.Boolean,
+    support: S.Boolean,
+  }),
+).annotate({
+  identifier: "UserStaffAccess",
+}) as any as S.Schema<UserStaffAccess>;
+
+export interface User {
+  /** The user's balance: personal cash + crypto + in-flight treasury deposits, plus account balances for accounts they own. Computed only on the self view (retrieved with the reserved id `me`) for callers with balance-read scope; `null` otherwise. */
+  balance: UserBalance | null;
+  /** The user's cumulative wallet balance over time (USD `{ t, v }` points plus last/min/max), for the balance chart. Opt in with `include_balance_history=true` when retrieving yourself with the reserved id `me`; populated only for callers with balance-read scope and `null` otherwise. A user with no wallet activity returns an empty series. */
+  balance_history: UserBalanceHistory | null;
+  /** The user's profile banner wrapper. `null` when the user has no banner. */
+  banner: UserBanner | null;
+  /** The user's biography */
+  bio: string | null;
+  /** When the user was created, as an ISO 8601 timestamp */
+  created_at: string;
+  /** The user's gross USD income over time. Populated only on single-user self reads for callers with balance-read scope; `null` otherwise. */
+  earnings_usd: UserEarnings | null;
+  /** The user's email address. Populated only on the self view (retrieved with the reserved id `me`) for callers with email-read scope; `null` otherwise, or while the account has no confirmed email yet. */
+  email: string | null;
+  /** User ID, prefixed `user_`. */
+  id: string;
+  /** The user's display name */
+  name: string | null;
+  /** Avatar wrapper; its `url` is always present, using a generated placeholder when the user set no picture. */
+  profile_picture: UserProfilePicture;
+  social_accounts: UserSocialAccountsList;
+  /** Whop staff access flags. Populated only on the self view (retrieved with the reserved id `me`) for callers with staff-read scope; `null` there for every user who is not Whop staff, and always `null` elsewhere. */
+  staff: UserStaffAccess | null;
+  /** The user's unique username */
+  username: string;
+  /** Identity verification status for the user's `individual` (KYC) and `business` (KYB) profiles. Each is `null` until created, otherwise a `status` of `not_started`, `pending`, `approved`, or `rejected`. */
+  verification: unknown;
+  /** When the user became an enrolled Whop Partner, as an ISO 8601 timestamp. `null` if never enrolled. */
+  whop_partner_enabled_at: string | null;
+}
+export const User = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    balance: S.NullOr(UserBalance),
+    balance_history: S.NullOr(UserBalanceHistory),
+    banner: S.NullOr(UserBanner),
+    bio: S.NullOr(S.String),
+    created_at: S.String,
+    earnings_usd: S.NullOr(UserEarnings),
+    email: S.NullOr(S.String),
+    id: S.String,
+    name: S.NullOr(S.String),
+    profile_picture: UserProfilePicture,
+    social_accounts: UserSocialAccountsList,
+    staff: S.NullOr(UserStaffAccess),
+    username: S.String,
+    verification: S.Unknown,
+    whop_partner_enabled_at: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "User" }) as any as S.Schema<User>;
+
+export interface GetUserPreferencesRequest {}
+export const GetUserPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/users/me/preferences", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetUserPreferencesRequest",
+}) as any as S.Schema<GetUserPreferencesRequest>;
+
+export interface UserPreferences {
+  /** Whether the user has dismissed the first-time bounty worker onboarding. Set to `false` to show it again. */
+  bounty_worker_onboarding_dismissed: boolean;
+  /** Whether investigation mode is enabled for the user. Only meaningful for staff users with investigation access. */
+  investigation_enabled: boolean;
+  /** Whether the user has accepted Whop's terms and policies. `false` until recorded via `PATCH` with `terms_accepted: true`. */
+  terms_accepted: boolean;
+  /** When the user most recently accepted Whop's terms and policies, as an ISO 8601 timestamp. `null` until accepted. */
+  terms_accepted_at: string | null;
+}
+export const UserPreferences = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bounty_worker_onboarding_dismissed: S.Boolean,
+    investigation_enabled: S.Boolean,
+    terms_accepted: S.Boolean,
+    terms_accepted_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "UserPreferences",
+}) as any as S.Schema<UserPreferences>;
+
 export type ListOauthGrantsRequestOrder = "created_at";
 export const ListOauthGrantsRequestOrder = /*@__PURE__*/ S.String;
 
@@ -779,456 +1290,6 @@ export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsersRequest",
 }) as any as S.Schema<ListUsersRequest>;
 
-export interface UserBalanceBusiness {
-  /** The account's total balance in USD. */
-  balance_usd: string;
-  /** The account ID, which looks like biz_*************. */
-  id: string;
-  /** The account's logo URL. */
-  logo_url: string | null;
-  /** The account's display name. */
-  name: string | null;
-}
-export const UserBalanceBusiness = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    balance_usd: S.String,
-    id: S.String,
-    logo_url: S.NullOr(S.String),
-    name: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "UserBalanceBusiness",
-}) as any as S.Schema<UserBalanceBusiness>;
-
-export type UserBalanceBusinessesList = Array<UserBalanceBusiness>;
-export const UserBalanceBusinessesList = /*@__PURE__*/ S.Array(
-  UserBalanceBusiness,
-) as any as S.Schema<UserBalanceBusinessesList>;
-
-export interface UserBalanceCash {
-  /** Available balance in the native currency. */
-  balance: number;
-  /** Available balance converted to USD. */
-  balance_usd: number;
-  /** Lowercase ISO currency code, such as `usd` or `eur`. */
-  currency: string;
-  /** Balance moving to the user's own wallet or card, converted to USD. */
-  in_transit_balance_usd: number;
-  /** Pending balance converted to USD. */
-  pending_balance_usd: number;
-  /** USD price per native currency unit, or `null` when no exchange rate is available. */
-  price_usd: number | null;
-  /** Reserved balance converted to USD. */
-  reserve_balance_usd: number;
-  /** Withdrawable amount in the native currency. */
-  total_withdrawable_balance: number;
-}
-export const UserBalanceCash = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    balance: S.Number,
-    balance_usd: S.Number,
-    currency: S.String,
-    in_transit_balance_usd: S.Number,
-    pending_balance_usd: S.Number,
-    price_usd: S.NullOr(S.Number),
-    reserve_balance_usd: S.Number,
-    total_withdrawable_balance: S.Number,
-  }),
-).annotate({
-  identifier: "UserBalanceCash",
-}) as any as S.Schema<UserBalanceCash>;
-
-export type UserBalanceCashList = Array<UserBalanceCash>;
-export const UserBalanceCashList = /*@__PURE__*/ S.Array(
-  UserBalanceCash,
-) as any as S.Schema<UserBalanceCashList>;
-
-export interface AccountBalanceSettlement {
-  /** Amount expected that day, in native units, as a decimal string. */
-  amount: string;
-  /** The day this money is expected to finish settling, as an ISO 8601 date. */
-  date: string;
-}
-export const AccountBalanceSettlement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.String,
-    date: S.String,
-  }),
-).annotate({
-  identifier: "AccountBalanceSettlement",
-}) as any as S.Schema<AccountBalanceSettlement>;
-
-export type AccountBalanceBreakdownPendingSettlementsList =
-  Array<AccountBalanceSettlement>;
-export const AccountBalanceBreakdownPendingSettlementsList =
-  /*@__PURE__*/ S.Array(
-    AccountBalanceSettlement,
-  ) as any as S.Schema<AccountBalanceBreakdownPendingSettlementsList>;
-
-export interface AccountBalanceBreakdown {
-  /** Amount you can spend, send, or withdraw now, in native units, as a decimal string. */
-  available: string;
-  /** Amount moving between the account's own destinations, such as a treasury sweep to its crypto wallet or a card top-up. In native units, as a decimal string. */
-  in_transit: string;
-  /** Amount from recent payments still settling, in native units, as a decimal string. */
-  pending: string;
-  pending_settlements: AccountBalanceBreakdownPendingSettlementsList;
-  /** Amount held back, in native units, as a decimal string. Retrieve the account's reserves for why it is held and when it unlocks. */
-  reserve: string;
-}
-export const AccountBalanceBreakdown = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    available: S.String,
-    in_transit: S.String,
-    pending: S.String,
-    pending_settlements: AccountBalanceBreakdownPendingSettlementsList,
-    reserve: S.String,
-  }),
-).annotate({
-  identifier: "AccountBalanceBreakdown",
-}) as any as S.Schema<AccountBalanceBreakdown>;
-
-export interface UserBalanceToken {
-  /** Amount held in native token units, as a decimal string. */
-  balance: string;
-  /** Balance split into available, pending, in-transit, and reserve amounts, as native-unit decimal strings. Transfers between the user's own wallet and card are reported in `in_transit` until they arrive. */
-  breakdown: AccountBalanceBreakdown;
-  /** Token icon URL. */
-  icon_url: string | null;
-  /** The token's display name. */
-  name: string | null;
-  /** USD price per token, or `null` when unknown. */
-  price_usd: number | null;
-  /** Token display symbol, such as `USDT`, `XAUT`, or `cbBTC`. */
-  symbol: string;
-  /** Holding USD value. */
-  value_usd: number;
-}
-export const UserBalanceToken = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    balance: S.String,
-    breakdown: AccountBalanceBreakdown,
-    icon_url: S.NullOr(S.String),
-    name: S.NullOr(S.String),
-    price_usd: S.NullOr(S.Number),
-    symbol: S.String,
-    value_usd: S.Number,
-  }),
-).annotate({
-  identifier: "UserBalanceToken",
-}) as any as S.Schema<UserBalanceToken>;
-
-export type UserBalanceCryptoList = Array<UserBalanceToken>;
-export const UserBalanceCryptoList = /*@__PURE__*/ S.Array(
-  UserBalanceToken,
-) as any as S.Schema<UserBalanceCryptoList>;
-
-export interface UserBalance {
-  businesses: UserBalanceBusinessesList;
-  /** Combined USD balance across every account the user owns. */
-  businesses_total_usd: string;
-  cash: UserBalanceCashList;
-  /** Fiat cash in USD, including pending, in-transit, and reserve. */
-  cash_usd: string;
-  crypto: UserBalanceCryptoList;
-  /** Crypto holdings in USD. */
-  crypto_usd: string;
-  /** Fiat pending and in-transit balances, plus in-flight treasury deposits, in USD. */
-  pending_usd: string;
-  /** The user's personal balance in USD: cash (available + pending + in-transit + reserve) + crypto + in-flight treasury deposits. Excludes account balances (see businesses_total_usd). */
-  total_usd: string;
-  /** Balance-to-wallet USDT0 payouts still in flight, in USD. */
-  treasury_pending_usd: string;
-}
-export const UserBalance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    businesses: UserBalanceBusinessesList,
-    businesses_total_usd: S.String,
-    cash: UserBalanceCashList,
-    cash_usd: S.String,
-    crypto: UserBalanceCryptoList,
-    crypto_usd: S.String,
-    pending_usd: S.String,
-    total_usd: S.String,
-    treasury_pending_usd: S.String,
-  }),
-).annotate({ identifier: "UserBalance" }) as any as S.Schema<UserBalance>;
-
-export interface UserBalanceHistoryPoint {
-  /** Point timestamp, in Unix seconds. */
-  t: number;
-  /** Cumulative wallet balance at this point, in USD. */
-  v: number;
-}
-export const UserBalanceHistoryPoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    t: S.Number,
-    v: S.Number,
-  }),
-).annotate({
-  identifier: "UserBalanceHistoryPoint",
-}) as any as S.Schema<UserBalanceHistoryPoint>;
-
-export type UserBalanceHistoryDataList = Array<UserBalanceHistoryPoint>;
-export const UserBalanceHistoryDataList = /*@__PURE__*/ S.Array(
-  UserBalanceHistoryPoint,
-) as any as S.Schema<UserBalanceHistoryDataList>;
-
-export interface UserBalanceHistory {
-  data: UserBalanceHistoryDataList;
-  /** Value of the most recent point, in USD. */
-  last: number;
-  /** Maximum value across the window, in USD. */
-  max: number;
-  /** Minimum value across the window, in USD. */
-  min: number;
-}
-export const UserBalanceHistory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: UserBalanceHistoryDataList,
-    last: S.Number,
-    max: S.Number,
-    min: S.Number,
-  }),
-).annotate({
-  identifier: "UserBalanceHistory",
-}) as any as S.Schema<UserBalanceHistory>;
-
-export interface UserBanner {
-  /** Profile banner image URL. */
-  url: string;
-}
-export const UserBanner = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-  }),
-).annotate({ identifier: "UserBanner" }) as any as S.Schema<UserBanner>;
-
-export interface UserEarningsAmount {
-  /** Gross income in USD over the last 24 hours. */
-  last_24_hours: string;
-  /** Gross income in USD over the last 30 days. */
-  last_30_days: string;
-  /** Gross income in USD over the last 7 days. */
-  last_7_days: string;
-  /** All-time gross income in USD. */
-  lifetime: string;
-}
-export const UserEarningsAmount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    last_24_hours: S.String,
-    last_30_days: S.String,
-    last_7_days: S.String,
-    lifetime: S.String,
-  }),
-).annotate({
-  identifier: "UserEarningsAmount",
-}) as any as S.Schema<UserEarningsAmount>;
-
-export interface UserEarnings {
-  /** The first time the user earned gross income, as an ISO 8601 timestamp. */
-  first_earned_at: string | null;
-  /** Gross income from accounts the user owns or is owner-authorized on. */
-  owned_accounts: UserEarningsAmount;
-  /** Gross income from the user's personal wallet. */
-  personal: UserEarningsAmount;
-  /** Gross income from the user's personal wallet plus accounts they own or are owner-authorized on. */
-  total: UserEarningsAmount;
-}
-export const UserEarnings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    first_earned_at: S.NullOr(S.String),
-    owned_accounts: UserEarningsAmount,
-    personal: UserEarningsAmount,
-    total: UserEarningsAmount,
-  }),
-).annotate({ identifier: "UserEarnings" }) as any as S.Schema<UserEarnings>;
-
-export interface UserProfilePicture {
-  /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
-  url: string;
-}
-export const UserProfilePicture = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-  }),
-).annotate({
-  identifier: "UserProfilePicture",
-}) as any as S.Schema<UserProfilePicture>;
-
-/** The platform the parent social account exists on. */
-export type SocialAccountParentPlatform =
-  | "x"
-  | "instagram"
-  | "youtube"
-  | "tiktok"
-  | "facebook"
-  | "discord"
-  | "telegram";
-export const SocialAccountParentPlatform = /*@__PURE__*/ S.String;
-
-export interface SocialAccountParent {
-  /** The platform-specific ID for the parent social account. */
-  external_id: string | null;
-  /** Social account ID, prefixed `sacc_`. */
-  id: string;
-  /** The display name of the parent social account on the platform. */
-  name: string | null;
-  /** The platform the parent social account exists on. */
-  platform: SocialAccountParentPlatform;
-  /** The URL where the profile picture of the parent social account can be accessed. */
-  profile_picture_url: string | null;
-  /** The username of the parent social account on the platform. */
-  username: string | null;
-  /** Whether the parent social account is verified on the platform. */
-  verified: boolean;
-}
-export const SocialAccountParent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    external_id: S.NullOr(S.String),
-    id: S.String,
-    name: S.NullOr(S.String),
-    platform: SocialAccountParentPlatform,
-    profile_picture_url: S.NullOr(S.String),
-    username: S.NullOr(S.String),
-    verified: S.Boolean,
-  }),
-).annotate({
-  identifier: "SocialAccountParent",
-}) as any as S.Schema<SocialAccountParent>;
-
-/** The platform the social account exists on. */
-export type SocialAccountPlatform =
-  | "x"
-  | "instagram"
-  | "youtube"
-  | "tiktok"
-  | "facebook"
-  | "discord"
-  | "telegram";
-export const SocialAccountPlatform = /*@__PURE__*/ S.String;
-
-export type SocialAccountScopesList = Array<string>;
-export const SocialAccountScopesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SocialAccountScopesList>;
-
-export interface SocialAccount {
-  /** Why this social account currently can't be used for advertising — a failed share or a Meta-side restriction. Null when the account is healthy. */
-  error: string | null;
-  /** The platform-specific ID for this social account. */
-  external_id: string | null;
-  /** Unique identifier for the social account. */
-  id: string;
-  /** The display name of the social account on the platform. */
-  name: string | null;
-  /** The social account this one belongs to on the platform, such as the Facebook page that owns an Instagram account. Null when the social account stands on its own. */
-  parent_social_account: SocialAccountParent | null;
-  /** The platform the social account exists on. */
-  platform: SocialAccountPlatform;
-  /** The URL where the profile picture of the social account can be accessed. */
-  profile_picture_url: string | null;
-  scopes: SocialAccountScopesList;
-  /** The URL where the social account can be accessed on the platform. Null while a Whop-owned page is still being provisioned. */
-  url: string | null;
-  /** The username of the social account on the platform. Null while a Whop-owned page is still being provisioned. */
-  username: string | null;
-  /** Whether the social account is verified on the platform. */
-  verified: boolean;
-}
-export const SocialAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.NullOr(S.String),
-    external_id: S.NullOr(S.String),
-    id: S.String,
-    name: S.NullOr(S.String),
-    parent_social_account: S.NullOr(SocialAccountParent),
-    platform: SocialAccountPlatform,
-    profile_picture_url: S.NullOr(S.String),
-    scopes: SocialAccountScopesList,
-    url: S.NullOr(S.String),
-    username: S.NullOr(S.String),
-    verified: S.Boolean,
-  }),
-).annotate({ identifier: "SocialAccount" }) as any as S.Schema<SocialAccount>;
-
-export type UserSocialAccountsList = Array<SocialAccount>;
-export const UserSocialAccountsList = /*@__PURE__*/ S.Array(
-  SocialAccount,
-) as any as S.Schema<UserSocialAccountsList>;
-
-export interface UserStaffAccess {
-  /** Whether the user holds the admin staff role with a valid second factor. */
-  admin: boolean;
-  /** Whether the user can open Whop-internal investigation tooling right now: a qualifying staff role plus their investigation toggle switched on. */
-  investigation_access: boolean;
-  /** Whether the user holds the manager staff role with a valid second factor. */
-  manager: boolean;
-  /** Whether the user holds the support staff role with a valid second factor. */
-  support: boolean;
-}
-export const UserStaffAccess = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    admin: S.Boolean,
-    investigation_access: S.Boolean,
-    manager: S.Boolean,
-    support: S.Boolean,
-  }),
-).annotate({
-  identifier: "UserStaffAccess",
-}) as any as S.Schema<UserStaffAccess>;
-
-export interface User {
-  /** The user's balance: personal cash + crypto + in-flight treasury deposits, plus account balances for accounts they own. Computed only on the self view (retrieved with the reserved id `me`) for callers with balance-read scope; `null` otherwise. */
-  balance: UserBalance | null;
-  /** The user's cumulative wallet balance over time (USD `{ t, v }` points plus last/min/max), for the balance chart. Opt in with `include_balance_history=true` when retrieving yourself with the reserved id `me`; populated only for callers with balance-read scope and `null` otherwise. A user with no wallet activity returns an empty series. */
-  balance_history: UserBalanceHistory | null;
-  /** The user's profile banner wrapper. `null` when the user has no banner. */
-  banner: UserBanner | null;
-  /** The user's biography */
-  bio: string | null;
-  /** When the user was created, as an ISO 8601 timestamp */
-  created_at: string;
-  /** The user's gross USD income over time. Populated only on single-user self reads for callers with balance-read scope; `null` otherwise. */
-  earnings_usd: UserEarnings | null;
-  /** The user's email address. Populated only on the self view (retrieved with the reserved id `me`) for callers with email-read scope; `null` otherwise, or while the account has no confirmed email yet. */
-  email: string | null;
-  /** User ID, prefixed `user_`. */
-  id: string;
-  /** The user's display name */
-  name: string | null;
-  /** Avatar wrapper; its `url` is always present, using a generated placeholder when the user set no picture. */
-  profile_picture: UserProfilePicture;
-  social_accounts: UserSocialAccountsList;
-  /** Whop staff access flags. Populated only on the self view (retrieved with the reserved id `me`) for callers with staff-read scope; `null` there for every user who is not Whop staff, and always `null` elsewhere. */
-  staff: UserStaffAccess | null;
-  /** The user's unique username */
-  username: string;
-  /** Identity verification status for the user's `individual` (KYC) and `business` (KYB) profiles. Each is `null` until created, otherwise a `status` of `not_started`, `pending`, `approved`, or `rejected`. */
-  verification: unknown;
-  /** When the user became an enrolled Whop Partner, as an ISO 8601 timestamp. `null` if never enrolled. */
-  whop_partner_enabled_at: string | null;
-}
-export const User = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    balance: S.NullOr(UserBalance),
-    balance_history: S.NullOr(UserBalanceHistory),
-    banner: S.NullOr(UserBanner),
-    bio: S.NullOr(S.String),
-    created_at: S.String,
-    earnings_usd: S.NullOr(UserEarnings),
-    email: S.NullOr(S.String),
-    id: S.String,
-    name: S.NullOr(S.String),
-    profile_picture: UserProfilePicture,
-    social_accounts: UserSocialAccountsList,
-    staff: S.NullOr(UserStaffAccess),
-    username: S.String,
-    verification: S.Unknown,
-    whop_partner_enabled_at: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "User" }) as any as S.Schema<User>;
-
 export type ListUsersResponseDataList = Array<User>;
 export const ListUsersResponseDataList = /*@__PURE__*/ S.Array(
   User,
@@ -1249,69 +1310,6 @@ export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListUsersResponse",
 }) as any as S.Schema<ListUsersResponse>;
-
-export type RetrieveUserRequestInterval = "hour" | "day" | "week" | "month";
-export const RetrieveUserRequestInterval = /*@__PURE__*/ S.String;
-
-export interface RetrieveUserRequest {
-  /** User ID (prefixed `user_`), username, or `me` for the authenticated user. */
-  id: string;
-  /** When set, returns the user's account-specific profile overrides for this account. */
-  account_id?: string;
-  /** Also compute your balance history (opt-in; runs a heavier query). Only applies when the id is `me`; ignored for callers without balance-read scope. */
-  include_balance_history?: boolean;
-  /** Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days ago. Only used with `include_balance_history`. */
-  from?: string;
-  /** Balance-history window end, ISO 8601 date or datetime. Defaults to now. Only used with `include_balance_history`. */
-  to?: string;
-  /** Balance-history point granularity. Defaults to `day`. Only used with `include_balance_history`. */
-  interval?: RetrieveUserRequestInterval | (string & {});
-  /** IANA time zone the balance-history points are bucketed in. Defaults to `UTC`. Only used with `include_balance_history`. */
-  time_zone?: string;
-}
-export const RetrieveUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    include_balance_history: S.optional(S.Boolean.pipe(T.Query())),
-    from: S.optional(S.String.pipe(T.Query())),
-    to: S.optional(S.String.pipe(T.Query())),
-    interval: S.optional(RetrieveUserRequestInterval.pipe(T.Query())),
-    time_zone: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/users/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveUserRequest",
-}) as any as S.Schema<RetrieveUserRequest>;
-
-export interface RetrieveUserPreferencesRequest {}
-export const RetrieveUserPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/users/me/preferences", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveUserPreferencesRequest",
-}) as any as S.Schema<RetrieveUserPreferencesRequest>;
-
-export interface UserPreferences {
-  /** Whether the user has dismissed the first-time bounty worker onboarding. Set to `false` to show it again. */
-  bounty_worker_onboarding_dismissed: boolean;
-  /** Whether investigation mode is enabled for the user. Only meaningful for staff users with investigation access. */
-  investigation_enabled: boolean;
-  /** Whether the user has accepted Whop's terms and policies. `false` until recorded via `PATCH` with `terms_accepted: true`. */
-  terms_accepted: boolean;
-  /** When the user most recently accepted Whop's terms and policies, as an ISO 8601 timestamp. `null` until accepted. */
-  terms_accepted_at: string | null;
-}
-export const UserPreferences = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bounty_worker_onboarding_dismissed: S.Boolean,
-    investigation_enabled: S.Boolean,
-    terms_accepted: S.Boolean,
-    terms_accepted_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "UserPreferences",
-}) as any as S.Schema<UserPreferences>;
 
 /** What the user is notified about in this scope. `mentions` is only valid for an experience level. `null` clears the preference. */
 export type SetUserNotificationPreferencesRequestPreferencesItemLevel =
@@ -1608,6 +1606,36 @@ export const deletePasskey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUserError = NotFound | WhopOpError;
+/** Retrieve User Retrieves a user by `user_` tag or username, or the authenticated user with the reserved id `me`. Profiles include linked social accounts — reading your own profile returns every linked account, other profiles only what is public on Whop (the primary Discord and the X account). The self-only fields are populated only when the id is `me`: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance` and `earnings_usd` (balance-read scope), and the opt-in `balance_history`. They are always `null` when addressing a user by tag or username. */
+export const getUser: API.OperationMethod<
+  GetUserRequest,
+  User,
+  GetUserError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: User,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserPreferencesError = WhopOpError;
+/** Retrieve Retrieves the authenticated user's settings document. Addressed only as `me` — the document always belongs to the session user. */
+export const getUserPreferences: API.OperationMethod<
+  GetUserPreferencesRequest,
+  UserPreferences,
+  GetUserPreferencesError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserPreferencesRequest,
+  output: UserPreferences,
+  errors: [],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListOauthGrantsError = BadRequest | Forbidden | WhopOpError;
 /** List OAuth Grants Lists the authenticated user's own OAuth grants — one per app they have authorized, per account they authorized it for. The list is always the caller's own; there is no parameter for reading another user's grants. Requires a user session: an API key or an OAuth token is refused, so an app can never enumerate the other apps a user has authorized. */
 export const listOauthGrants: API.PaginatedOperationMethod<
@@ -1757,36 +1785,6 @@ export const listUsers: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveUserError = NotFound | WhopOpError;
-/** Retrieve User Retrieves a user by `user_` tag or username, or the authenticated user with the reserved id `me`. Profiles include linked social accounts — reading your own profile returns every linked account, other profiles only what is public on Whop (the primary Discord and the X account). The self-only fields are populated only when the id is `me`: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance` and `earnings_usd` (balance-read scope), and the opt-in `balance_history`. They are always `null` when addressing a user by tag or username. */
-export const retrieveUser: API.OperationMethod<
-  RetrieveUserRequest,
-  User,
-  RetrieveUserError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveUserRequest,
-  output: User,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveUserPreferencesError = WhopOpError;
-/** Retrieve Retrieves the authenticated user's settings document. Addressed only as `me` — the document always belongs to the session user. */
-export const retrieveUserPreferences: API.OperationMethod<
-  RetrieveUserPreferencesRequest,
-  UserPreferences,
-  RetrieveUserPreferencesError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveUserPreferencesRequest,
-  output: UserPreferences,
-  errors: [],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type SetUserNotificationPreferencesError =
   | BadRequest

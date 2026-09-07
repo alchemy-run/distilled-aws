@@ -6048,149 +6048,6 @@ export const GetOrgAnalyticsAnalyticResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOrgAnalyticsAnalyticResponse",
 }) as any as S.Schema<GetOrgAnalyticsAnalyticResponse>;
 
-export interface GetOrgLivestreamAnalyticRequest {
-  /** The account identifier tag. */
-  accountId: string;
-  /** The app identifier tag. */
-  appId: string;
-  /** end date in YYYY-MM-DD format */
-  endDate?: string;
-  /** start date in YYYY-MM-DD format */
-  startDate?: string;
-}
-export const GetOrgLivestreamAnalyticRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    appId: S.String.pipe(T.Label("app_id")),
-    endDate: S.optional(S.String.pipe(T.Query("end_date"))),
-    startDate: S.optional(S.String.pipe(T.Query("start_date"))),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GetOrgLivestreamAnalyticRequest",
-}) as any as S.Schema<GetOrgLivestreamAnalyticRequest>;
-
-export type LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem =
-  AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem;
-export const LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem =
-  AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem;
-
-export type LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList =
-  Array<AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem>;
-export const LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList =
-  /*@__PURE__*/ S.Array(
-    AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem,
-  ) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList>;
-
-export interface LivestreamsGetOrgAnalyticsResponseDataRecordingStats {
-  /** Day wise recording stats */
-  dayStats?: LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList | null;
-  /** Total number of recordings during the range specified */
-  recordingCount?: number | null;
-  /** Total recording minutes during the range specified */
-  recordingMinutesConsumed?: number | null;
-}
-export const LivestreamsGetOrgAnalyticsResponseDataRecordingStats =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      dayStats: S.optional(
-        S.NullOr(
-          LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList,
-        ).pipe(T.Body("day_stats")),
-      ),
-      recordingCount: S.optional(
-        S.NullOr(S.Number).pipe(T.Body("recording_count")),
-      ),
-      recordingMinutesConsumed: S.optional(
-        S.NullOr(S.Number).pipe(T.Body("recording_minutes_consumed")),
-      ),
-    }),
-  ).annotate({
-    identifier: "LivestreamsGetOrgAnalyticsResponseDataRecordingStats",
-  }) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataRecordingStats>;
-
-export type LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem =
-  AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem;
-export const LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem =
-  AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem;
-
-export type LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList =
-  Array<AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem>;
-export const LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList =
-  /*@__PURE__*/ S.Array(
-    AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem,
-  ) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList>;
-
-export interface LivestreamsGetOrgAnalyticsResponseDataSessionStats {
-  /** Day wise session stats */
-  dayStats?: LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList | null;
-  /** Total number of sessions during the range specified */
-  sessionsCount?: number | null;
-  /** Total session minutes during the range specified */
-  sessionsMinutesConsumed?: number | null;
-}
-export const LivestreamsGetOrgAnalyticsResponseDataSessionStats =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      dayStats: S.optional(
-        S.NullOr(
-          LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList,
-        ).pipe(T.Body("day_stats")),
-      ),
-      sessionsCount: S.optional(
-        S.NullOr(S.Number).pipe(T.Body("sessions_count")),
-      ),
-      sessionsMinutesConsumed: S.optional(
-        S.NullOr(S.Number).pipe(T.Body("sessions_minutes_consumed")),
-      ),
-    }),
-  ).annotate({
-    identifier: "LivestreamsGetOrgAnalyticsResponseDataSessionStats",
-  }) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataSessionStats>;
-
-export interface LivestreamsGetOrgAnalyticsResponseData {
-  /** Recording statistics of an App during the range specified */
-  recordingStats?: LivestreamsGetOrgAnalyticsResponseDataRecordingStats | null;
-  /** Session statistics of an App during the range specified */
-  sessionStats?: LivestreamsGetOrgAnalyticsResponseDataSessionStats | null;
-}
-export const LivestreamsGetOrgAnalyticsResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      recordingStats: S.optional(
-        S.NullOr(LivestreamsGetOrgAnalyticsResponseDataRecordingStats).pipe(
-          T.Body("recording_stats"),
-        ),
-      ),
-      sessionStats: S.optional(
-        S.NullOr(LivestreamsGetOrgAnalyticsResponseDataSessionStats).pipe(
-          T.Body("session_stats"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "LivestreamsGetOrgAnalyticsResponseData",
-}) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseData>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface GetOrgLivestreamAnalyticResponse {
-  data?: LivestreamsGetOrgAnalyticsResponseData | null;
-}
-export const GetOrgLivestreamAnalyticResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.optional(S.NullOr(LivestreamsGetOrgAnalyticsResponseData)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GetOrgLivestreamAnalyticResponse",
-}) as any as S.Schema<GetOrgLivestreamAnalyticResponse>;
-
 export type SessionsGetParticipantDataFromPeerIdRequestFilters =
   | "device_info"
   | "ip_information"
@@ -10466,6 +10323,149 @@ export const KickParticipantsActiveSessionResponse = /*@__PURE__*/ S.suspend(
   identifier: "KickParticipantsActiveSessionResponse",
 }) as any as S.Schema<KickParticipantsActiveSessionResponse>;
 
+export interface LivestreamsGetOrgAnalyticsRequest {
+  /** The account identifier tag. */
+  accountId: string;
+  /** The app identifier tag. */
+  appId: string;
+  /** end date in YYYY-MM-DD format */
+  endDate?: string;
+  /** start date in YYYY-MM-DD format */
+  startDate?: string;
+}
+export const LivestreamsGetOrgAnalyticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    appId: S.String.pipe(T.Label("app_id")),
+    endDate: S.optional(S.String.pipe(T.Query("end_date"))),
+    startDate: S.optional(S.String.pipe(T.Query("start_date"))),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "LivestreamsGetOrgAnalyticsRequest",
+}) as any as S.Schema<LivestreamsGetOrgAnalyticsRequest>;
+
+export type LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem =
+  AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem;
+export const LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem =
+  AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem;
+
+export type LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList =
+  Array<AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem>;
+export const LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList =
+  /*@__PURE__*/ S.Array(
+    AnalyticsGetOrgAnalyticsResponseDataRecordingStatsDayStatsItem,
+  ) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList>;
+
+export interface LivestreamsGetOrgAnalyticsResponseDataRecordingStats {
+  /** Day wise recording stats */
+  dayStats?: LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList | null;
+  /** Total number of recordings during the range specified */
+  recordingCount?: number | null;
+  /** Total recording minutes during the range specified */
+  recordingMinutesConsumed?: number | null;
+}
+export const LivestreamsGetOrgAnalyticsResponseDataRecordingStats =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dayStats: S.optional(
+        S.NullOr(
+          LivestreamsGetOrgAnalyticsResponseDataRecordingStatsDayStatsList,
+        ).pipe(T.Body("day_stats")),
+      ),
+      recordingCount: S.optional(
+        S.NullOr(S.Number).pipe(T.Body("recording_count")),
+      ),
+      recordingMinutesConsumed: S.optional(
+        S.NullOr(S.Number).pipe(T.Body("recording_minutes_consumed")),
+      ),
+    }),
+  ).annotate({
+    identifier: "LivestreamsGetOrgAnalyticsResponseDataRecordingStats",
+  }) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataRecordingStats>;
+
+export type LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem =
+  AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem;
+export const LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem =
+  AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem;
+
+export type LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList =
+  Array<AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem>;
+export const LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList =
+  /*@__PURE__*/ S.Array(
+    AnalyticsGetOrgAnalyticsResponseDataSessionStatsDayStatsItem,
+  ) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList>;
+
+export interface LivestreamsGetOrgAnalyticsResponseDataSessionStats {
+  /** Day wise session stats */
+  dayStats?: LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList | null;
+  /** Total number of sessions during the range specified */
+  sessionsCount?: number | null;
+  /** Total session minutes during the range specified */
+  sessionsMinutesConsumed?: number | null;
+}
+export const LivestreamsGetOrgAnalyticsResponseDataSessionStats =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dayStats: S.optional(
+        S.NullOr(
+          LivestreamsGetOrgAnalyticsResponseDataSessionStatsDayStatsList,
+        ).pipe(T.Body("day_stats")),
+      ),
+      sessionsCount: S.optional(
+        S.NullOr(S.Number).pipe(T.Body("sessions_count")),
+      ),
+      sessionsMinutesConsumed: S.optional(
+        S.NullOr(S.Number).pipe(T.Body("sessions_minutes_consumed")),
+      ),
+    }),
+  ).annotate({
+    identifier: "LivestreamsGetOrgAnalyticsResponseDataSessionStats",
+  }) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseDataSessionStats>;
+
+export interface LivestreamsGetOrgAnalyticsResponseData {
+  /** Recording statistics of an App during the range specified */
+  recordingStats?: LivestreamsGetOrgAnalyticsResponseDataRecordingStats | null;
+  /** Session statistics of an App during the range specified */
+  sessionStats?: LivestreamsGetOrgAnalyticsResponseDataSessionStats | null;
+}
+export const LivestreamsGetOrgAnalyticsResponseData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      recordingStats: S.optional(
+        S.NullOr(LivestreamsGetOrgAnalyticsResponseDataRecordingStats).pipe(
+          T.Body("recording_stats"),
+        ),
+      ),
+      sessionStats: S.optional(
+        S.NullOr(LivestreamsGetOrgAnalyticsResponseDataSessionStats).pipe(
+          T.Body("session_stats"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "LivestreamsGetOrgAnalyticsResponseData",
+}) as any as S.Schema<LivestreamsGetOrgAnalyticsResponseData>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface LivestreamsGetOrgAnalyticsResponse {
+  data?: LivestreamsGetOrgAnalyticsResponseData | null;
+}
+export const LivestreamsGetOrgAnalyticsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(S.NullOr(LivestreamsGetOrgAnalyticsResponseData)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "LivestreamsGetOrgAnalyticsResponse",
+}) as any as S.Schema<LivestreamsGetOrgAnalyticsResponse>;
+
 export type PresetsUpdateRequestConfigLivestreamViewerQualitiesList =
   Array<number>;
 export const PresetsUpdateRequestConfigLivestreamViewerQualitiesList =
@@ -11587,6 +11587,316 @@ export const PatchPresetResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PatchPresetResponse",
 }) as any as S.Schema<PatchPresetResponse>;
+
+export type RecordingsPauseResumeStopRecordingRequestAction =
+  | "stop"
+  | "pause"
+  | "resume";
+export const RecordingsPauseResumeStopRecordingRequestAction =
+  /*@__PURE__*/ S.String;
+
+export interface PauseResumeStopRecordingRecordingRequest {
+  /** The account identifier tag. */
+  accountId: string;
+  appId: string;
+  recordingId: string;
+  action: RecordingsPauseResumeStopRecordingRequestAction | (string & {});
+}
+export const PauseResumeStopRecordingRecordingRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+      appId: S.String.pipe(T.Label("app_id")),
+      recordingId: S.String.pipe(T.Label("recording_id")),
+      action: RecordingsPauseResumeStopRecordingRequestAction,
+    })
+      .pipe(
+        T.Http({
+          method: "PUT",
+          uri: "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PauseResumeStopRecordingRecordingRequest",
+}) as any as S.Schema<PauseResumeStopRecordingRecordingRequest>;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStatus =
+  | "INVOKED"
+  | "RECORDING"
+  | "UPLOADING"
+  | "UPLOADED"
+  | "ERRORED"
+  | "PAUSED";
+export const RecordingsPauseResumeStopRecordingResponseDataStatus =
+  /*@__PURE__*/ S.String;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType =
+  | "ORGANIZATION"
+  | "USER";
+export const RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType =
+  /*@__PURE__*/ S.String;
+
+export interface RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller {
+  /** Name of the user who started the recording. */
+  name?: string | null;
+  /** The type can be an App or a user. If the type is `user`, then only the `user_Id` and `name` are returned. */
+  type?: RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType | null;
+  /** The user ID of the person who started the recording. */
+  userId?: string | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      type: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType,
+        ),
+      ),
+      userId: S.optional(S.NullOr(S.String).pipe(T.Body("user_Id"))),
+    }),
+  ).annotate({
+    identifier:
+      "RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller>;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStartReasonReason =
+  | "API_CALL"
+  | "RECORD_ON_START";
+export const RecordingsPauseResumeStopRecordingResponseDataStartReasonReason =
+  /*@__PURE__*/ S.String;
+
+export interface RecordingsPauseResumeStopRecordingResponseDataStartReason {
+  caller?: RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller | null;
+  /** Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. */
+  reason?: RecordingsPauseResumeStopRecordingResponseDataStartReasonReason | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseDataStartReason =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      caller: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller,
+        ),
+      ),
+      reason: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStartReasonReason,
+        ),
+      ),
+    }),
+  ).annotate({
+    identifier: "RecordingsPauseResumeStopRecordingResponseDataStartReason",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStartReason>;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType =
+  | "ORGANIZATION"
+  | "USER";
+export const RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType =
+  /*@__PURE__*/ S.String;
+
+export interface RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller {
+  /** Name of the user who stopped the recording. */
+  name?: string | null;
+  /** The type can be an App or a user. If the type is `user`, then only the `user_Id` and `name` are returned. */
+  type?: RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType | null;
+  /** The user ID of the person who stopped the recording. */
+  userId?: string | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      type: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType,
+        ),
+      ),
+      userId: S.optional(S.NullOr(S.String).pipe(T.Body("user_Id"))),
+    }),
+  ).annotate({
+    identifier:
+      "RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller>;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStopReasonReason =
+  | "API_CALL"
+  | "INTERNAL_ERROR"
+  | "ALL_PEERS_LEFT";
+export const RecordingsPauseResumeStopRecordingResponseDataStopReasonReason =
+  /*@__PURE__*/ S.String;
+
+export interface RecordingsPauseResumeStopRecordingResponseDataStopReason {
+  caller?: RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller | null;
+  /** Specifies the reason why the recording stopped. */
+  reason?: RecordingsPauseResumeStopRecordingResponseDataStopReasonReason | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseDataStopReason =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      caller: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller,
+        ),
+      ),
+      reason: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStopReasonReason,
+        ),
+      ),
+    }),
+  ).annotate({
+    identifier: "RecordingsPauseResumeStopRecordingResponseDataStopReason",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStopReason>;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStorageConfigType =
+  | "aws"
+  | "azure"
+  | "digitalocean"
+  | "gcs"
+  | "sftp";
+export const RecordingsPauseResumeStopRecordingResponseDataStorageConfigType =
+  /*@__PURE__*/ S.String;
+
+export type RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod =
+  | "KEY"
+  | "PASSWORD";
+export const RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod =
+  /*@__PURE__*/ S.String;
+
+export interface RecordingsPauseResumeStopRecordingResponseDataStorageConfig {
+  /** Type of storage media. */
+  type: RecordingsPauseResumeStopRecordingResponseDataStorageConfigType;
+  /** Access key of the storage medium. Access key is not required for the `gcs` storage media type. */
+  accessKey?: string | null;
+  /** Authentication method used for "sftp" type storage medium */
+  authMethod?: RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod | null;
+  /** Name of the storage medium's bucket. */
+  bucket?: string | null;
+  /** SSH destination server host for SFTP type storage medium */
+  host?: string | null;
+  /** SSH destination server password for SFTP type storage medium when auth_method is "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh private key. */
+  password?: string | null;
+  /** Path relative to the bucket root at which the recording will be placed. */
+  path?: string | null;
+  /** SSH destination server port for SFTP type storage medium */
+  port?: number | null;
+  /** Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is "KEY" */
+  privateKey?: string | null;
+  /** Region of the storage medium. */
+  region?: string | null;
+  /** Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable. */
+  secret?: string | null;
+  /** SSH destination server username for SFTP type storage medium */
+  username?: string | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseDataStorageConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: RecordingsPauseResumeStopRecordingResponseDataStorageConfigType,
+      accessKey: S.optional(S.NullOr(S.String).pipe(T.Body("access_key"))),
+      authMethod: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod,
+        ).pipe(T.Body("auth_method")),
+      ),
+      bucket: S.optional(S.NullOr(S.String)),
+      host: S.optional(S.NullOr(S.String)),
+      password: S.optional(S.NullOr(S.String)),
+      path: S.optional(S.NullOr(S.String)),
+      port: S.optional(S.NullOr(S.Number)),
+      privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
+      region: S.optional(S.NullOr(S.String)),
+      secret: S.optional(S.NullOr(S.String)),
+      username: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "RecordingsPauseResumeStopRecordingResponseDataStorageConfig",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStorageConfig>;
+
+export interface RecordingsPauseResumeStopRecordingResponseData {
+  /** ID of the recording */
+  id: string;
+  /** If the audio_config is passed, the URL for downloading the audio recording is returned. */
+  audioDownloadUrl: string;
+  /** URL where the recording can be downloaded. */
+  downloadUrl: string;
+  /** Timestamp when the download URL expires. */
+  downloadUrlExpiry: string;
+  /** File size of the recording, in bytes. */
+  fileSize: number;
+  /** Timestamp when this recording was invoked. */
+  invokedTime: string;
+  /** File name of the recording. */
+  outputFileName: string;
+  /** ID of the meeting session this recording is for. */
+  sessionId: string;
+  /** Timestamp when this recording actually started after being invoked. Usually a few seconds after `invoked_time`. */
+  startedTime: string;
+  /** Current status of the recording. */
+  status: RecordingsPauseResumeStopRecordingResponseDataStatus;
+  /** Timestamp when this recording was stopped. Optional; is present only when the recording has actually been stopped. */
+  stoppedTime: string;
+  /** Total recording time in seconds. */
+  recordingDuration?: number | null;
+  startReason?: RecordingsPauseResumeStopRecordingResponseDataStartReason | null;
+  stopReason?: RecordingsPauseResumeStopRecordingResponseDataStopReason | null;
+  storageConfig?: RecordingsPauseResumeStopRecordingResponseDataStorageConfig | null;
+}
+export const RecordingsPauseResumeStopRecordingResponseData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      audioDownloadUrl: S.String.pipe(T.Body("audio_download_url")),
+      downloadUrl: S.String.pipe(T.Body("download_url")),
+      downloadUrlExpiry: S.String.pipe(T.Body("download_url_expiry")),
+      fileSize: S.Number.pipe(T.Body("file_size")),
+      invokedTime: S.String.pipe(T.Body("invoked_time")),
+      outputFileName: S.String.pipe(T.Body("output_file_name")),
+      sessionId: S.String.pipe(T.Body("session_id")),
+      startedTime: S.String.pipe(T.Body("started_time")),
+      status: RecordingsPauseResumeStopRecordingResponseDataStatus,
+      stoppedTime: S.String.pipe(T.Body("stopped_time")),
+      recordingDuration: S.optional(
+        S.NullOr(S.Number).pipe(T.Body("recording_duration")),
+      ),
+      startReason: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStartReason,
+        ).pipe(T.Body("start_reason")),
+      ),
+      stopReason: S.optional(
+        S.NullOr(RecordingsPauseResumeStopRecordingResponseDataStopReason).pipe(
+          T.Body("stop_reason"),
+        ),
+      ),
+      storageConfig: S.optional(
+        S.NullOr(
+          RecordingsPauseResumeStopRecordingResponseDataStorageConfig,
+        ).pipe(T.Body("storage_config")),
+      ),
+    }),
+  ).annotate({
+    identifier: "RecordingsPauseResumeStopRecordingResponseData",
+  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseData>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface PauseResumeStopRecordingRecordingResponse {
+  /** Data returned by the operation */
+  data?: RecordingsPauseResumeStopRecordingResponseData | null;
+}
+export const PauseResumeStopRecordingRecordingResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: S.optional(
+        S.NullOr(RecordingsPauseResumeStopRecordingResponseData),
+      ),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "PauseResumeStopRecordingRecordingResponse",
+  }) as any as S.Schema<PauseResumeStopRecordingRecordingResponse>;
 
 export interface PostAppRequest {
   /** The account identifier tag. */
@@ -13514,316 +13824,6 @@ export const StopLivestreamingAMeetingLivestreamResponse =
     identifier: "StopLivestreamingAMeetingLivestreamResponse",
   }) as any as S.Schema<StopLivestreamingAMeetingLivestreamResponse>;
 
-export type RecordingsPauseResumeStopRecordingRequestAction =
-  | "stop"
-  | "pause"
-  | "resume";
-export const RecordingsPauseResumeStopRecordingRequestAction =
-  /*@__PURE__*/ S.String;
-
-export interface StopPauseResumeRecordingRecordingRequest {
-  /** The account identifier tag. */
-  accountId: string;
-  appId: string;
-  recordingId: string;
-  action: RecordingsPauseResumeStopRecordingRequestAction | (string & {});
-}
-export const StopPauseResumeRecordingRecordingRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-      appId: S.String.pipe(T.Label("app_id")),
-      recordingId: S.String.pipe(T.Label("recording_id")),
-      action: RecordingsPauseResumeStopRecordingRequestAction,
-    })
-      .pipe(
-        T.Http({
-          method: "PUT",
-          uri: "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "StopPauseResumeRecordingRecordingRequest",
-}) as any as S.Schema<StopPauseResumeRecordingRecordingRequest>;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStatus =
-  | "INVOKED"
-  | "RECORDING"
-  | "UPLOADING"
-  | "UPLOADED"
-  | "ERRORED"
-  | "PAUSED";
-export const RecordingsPauseResumeStopRecordingResponseDataStatus =
-  /*@__PURE__*/ S.String;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType =
-  | "ORGANIZATION"
-  | "USER";
-export const RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType =
-  /*@__PURE__*/ S.String;
-
-export interface RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller {
-  /** Name of the user who started the recording. */
-  name?: string | null;
-  /** The type can be an App or a user. If the type is `user`, then only the `user_Id` and `name` are returned. */
-  type?: RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType | null;
-  /** The user ID of the person who started the recording. */
-  userId?: string | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      type: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStartReasonCallerType,
-        ),
-      ),
-      userId: S.optional(S.NullOr(S.String).pipe(T.Body("user_Id"))),
-    }),
-  ).annotate({
-    identifier:
-      "RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller>;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStartReasonReason =
-  | "API_CALL"
-  | "RECORD_ON_START";
-export const RecordingsPauseResumeStopRecordingResponseDataStartReasonReason =
-  /*@__PURE__*/ S.String;
-
-export interface RecordingsPauseResumeStopRecordingResponseDataStartReason {
-  caller?: RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller | null;
-  /** Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. */
-  reason?: RecordingsPauseResumeStopRecordingResponseDataStartReasonReason | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseDataStartReason =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      caller: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStartReasonCaller,
-        ),
-      ),
-      reason: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStartReasonReason,
-        ),
-      ),
-    }),
-  ).annotate({
-    identifier: "RecordingsPauseResumeStopRecordingResponseDataStartReason",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStartReason>;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType =
-  | "ORGANIZATION"
-  | "USER";
-export const RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType =
-  /*@__PURE__*/ S.String;
-
-export interface RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller {
-  /** Name of the user who stopped the recording. */
-  name?: string | null;
-  /** The type can be an App or a user. If the type is `user`, then only the `user_Id` and `name` are returned. */
-  type?: RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType | null;
-  /** The user ID of the person who stopped the recording. */
-  userId?: string | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      type: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStopReasonCallerType,
-        ),
-      ),
-      userId: S.optional(S.NullOr(S.String).pipe(T.Body("user_Id"))),
-    }),
-  ).annotate({
-    identifier:
-      "RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller>;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStopReasonReason =
-  | "API_CALL"
-  | "INTERNAL_ERROR"
-  | "ALL_PEERS_LEFT";
-export const RecordingsPauseResumeStopRecordingResponseDataStopReasonReason =
-  /*@__PURE__*/ S.String;
-
-export interface RecordingsPauseResumeStopRecordingResponseDataStopReason {
-  caller?: RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller | null;
-  /** Specifies the reason why the recording stopped. */
-  reason?: RecordingsPauseResumeStopRecordingResponseDataStopReasonReason | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseDataStopReason =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      caller: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStopReasonCaller,
-        ),
-      ),
-      reason: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStopReasonReason,
-        ),
-      ),
-    }),
-  ).annotate({
-    identifier: "RecordingsPauseResumeStopRecordingResponseDataStopReason",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStopReason>;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStorageConfigType =
-  | "aws"
-  | "azure"
-  | "digitalocean"
-  | "gcs"
-  | "sftp";
-export const RecordingsPauseResumeStopRecordingResponseDataStorageConfigType =
-  /*@__PURE__*/ S.String;
-
-export type RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod =
-  | "KEY"
-  | "PASSWORD";
-export const RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod =
-  /*@__PURE__*/ S.String;
-
-export interface RecordingsPauseResumeStopRecordingResponseDataStorageConfig {
-  /** Type of storage media. */
-  type: RecordingsPauseResumeStopRecordingResponseDataStorageConfigType;
-  /** Access key of the storage medium. Access key is not required for the `gcs` storage media type. */
-  accessKey?: string | null;
-  /** Authentication method used for "sftp" type storage medium */
-  authMethod?: RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod | null;
-  /** Name of the storage medium's bucket. */
-  bucket?: string | null;
-  /** SSH destination server host for SFTP type storage medium */
-  host?: string | null;
-  /** SSH destination server password for SFTP type storage medium when auth_method is "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh private key. */
-  password?: string | null;
-  /** Path relative to the bucket root at which the recording will be placed. */
-  path?: string | null;
-  /** SSH destination server port for SFTP type storage medium */
-  port?: number | null;
-  /** Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is "KEY" */
-  privateKey?: string | null;
-  /** Region of the storage medium. */
-  region?: string | null;
-  /** Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable. */
-  secret?: string | null;
-  /** SSH destination server username for SFTP type storage medium */
-  username?: string | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseDataStorageConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: RecordingsPauseResumeStopRecordingResponseDataStorageConfigType,
-      accessKey: S.optional(S.NullOr(S.String).pipe(T.Body("access_key"))),
-      authMethod: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStorageConfigAuthMethod,
-        ).pipe(T.Body("auth_method")),
-      ),
-      bucket: S.optional(S.NullOr(S.String)),
-      host: S.optional(S.NullOr(S.String)),
-      password: S.optional(S.NullOr(S.String)),
-      path: S.optional(S.NullOr(S.String)),
-      port: S.optional(S.NullOr(S.Number)),
-      privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
-      region: S.optional(S.NullOr(S.String)),
-      secret: S.optional(S.NullOr(S.String)),
-      username: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "RecordingsPauseResumeStopRecordingResponseDataStorageConfig",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseDataStorageConfig>;
-
-export interface RecordingsPauseResumeStopRecordingResponseData {
-  /** ID of the recording */
-  id: string;
-  /** If the audio_config is passed, the URL for downloading the audio recording is returned. */
-  audioDownloadUrl: string;
-  /** URL where the recording can be downloaded. */
-  downloadUrl: string;
-  /** Timestamp when the download URL expires. */
-  downloadUrlExpiry: string;
-  /** File size of the recording, in bytes. */
-  fileSize: number;
-  /** Timestamp when this recording was invoked. */
-  invokedTime: string;
-  /** File name of the recording. */
-  outputFileName: string;
-  /** ID of the meeting session this recording is for. */
-  sessionId: string;
-  /** Timestamp when this recording actually started after being invoked. Usually a few seconds after `invoked_time`. */
-  startedTime: string;
-  /** Current status of the recording. */
-  status: RecordingsPauseResumeStopRecordingResponseDataStatus;
-  /** Timestamp when this recording was stopped. Optional; is present only when the recording has actually been stopped. */
-  stoppedTime: string;
-  /** Total recording time in seconds. */
-  recordingDuration?: number | null;
-  startReason?: RecordingsPauseResumeStopRecordingResponseDataStartReason | null;
-  stopReason?: RecordingsPauseResumeStopRecordingResponseDataStopReason | null;
-  storageConfig?: RecordingsPauseResumeStopRecordingResponseDataStorageConfig | null;
-}
-export const RecordingsPauseResumeStopRecordingResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      audioDownloadUrl: S.String.pipe(T.Body("audio_download_url")),
-      downloadUrl: S.String.pipe(T.Body("download_url")),
-      downloadUrlExpiry: S.String.pipe(T.Body("download_url_expiry")),
-      fileSize: S.Number.pipe(T.Body("file_size")),
-      invokedTime: S.String.pipe(T.Body("invoked_time")),
-      outputFileName: S.String.pipe(T.Body("output_file_name")),
-      sessionId: S.String.pipe(T.Body("session_id")),
-      startedTime: S.String.pipe(T.Body("started_time")),
-      status: RecordingsPauseResumeStopRecordingResponseDataStatus,
-      stoppedTime: S.String.pipe(T.Body("stopped_time")),
-      recordingDuration: S.optional(
-        S.NullOr(S.Number).pipe(T.Body("recording_duration")),
-      ),
-      startReason: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStartReason,
-        ).pipe(T.Body("start_reason")),
-      ),
-      stopReason: S.optional(
-        S.NullOr(RecordingsPauseResumeStopRecordingResponseDataStopReason).pipe(
-          T.Body("stop_reason"),
-        ),
-      ),
-      storageConfig: S.optional(
-        S.NullOr(
-          RecordingsPauseResumeStopRecordingResponseDataStorageConfig,
-        ).pipe(T.Body("storage_config")),
-      ),
-    }),
-  ).annotate({
-    identifier: "RecordingsPauseResumeStopRecordingResponseData",
-  }) as any as S.Schema<RecordingsPauseResumeStopRecordingResponseData>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface StopPauseResumeRecordingRecordingResponse {
-  /** Data returned by the operation */
-  data?: RecordingsPauseResumeStopRecordingResponseData | null;
-}
-export const StopPauseResumeRecordingRecordingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: S.optional(
-        S.NullOr(RecordingsPauseResumeStopRecordingResponseData),
-      ),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "StopPauseResumeRecordingRecordingResponse",
-  }) as any as S.Schema<StopPauseResumeRecordingRecordingResponse>;
-
 export type MeetingsUpdateMeetingByIdRequestAiConfigSummarizationSummaryType =
   | "general"
   | "team_meeting"
@@ -15150,21 +15150,6 @@ export const getOrgAnalyticsAnalytic: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOrgLivestreamAnalyticError = CloudflareOpError;
-/** Returns day-wise session and recording analytics data of an App for the specified time range start_date to end_date. If start_date and end_date are not provided, the default time range is set from 30 days ago to the current date. */
-export const getOrgLivestreamAnalytic: API.OperationMethod<
-  GetOrgLivestreamAnalyticRequest,
-  GetOrgLivestreamAnalyticResponse,
-  GetOrgLivestreamAnalyticError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOrgLivestreamAnalyticRequest,
-  output: GetOrgLivestreamAnalyticResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetParticipantDataFromPeerIdSessionError = CloudflareOpError;
 /** Returns participant details for the given peer ID along with call statistics. */
 export const getParticipantDataFromPeerIdSession: API.OperationMethod<
@@ -15414,6 +15399,21 @@ export const kickParticipantsActiveSession: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type LivestreamsGetOrgAnalyticsError = CloudflareOpError;
+/** Returns day-wise session and recording analytics data of an App for the specified time range start_date to end_date. If start_date and end_date are not provided, the default time range is set from 30 days ago to the current date. */
+export const livestreamsGetOrgAnalytics: API.OperationMethod<
+  LivestreamsGetOrgAnalyticsRequest,
+  LivestreamsGetOrgAnalyticsResponse,
+  LivestreamsGetOrgAnalyticsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LivestreamsGetOrgAnalyticsRequest,
+  output: LivestreamsGetOrgAnalyticsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PatchPresetError =
   | RealtimeKitPresetNotFound
   | Forbidden
@@ -15433,6 +15433,21 @@ export const patchPreset: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PauseResumeStopRecordingRecordingError = CloudflareOpError;
+/** Pause/Resume/Stop a given recording ID. */
+export const pauseResumeStopRecordingRecording: API.OperationMethod<
+  PauseResumeStopRecordingRecordingRequest,
+  PauseResumeStopRecordingRecordingResponse,
+  PauseResumeStopRecordingRecordingError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PauseResumeStopRecordingRecordingRequest,
+  output: PauseResumeStopRecordingRecordingResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -15560,21 +15575,6 @@ export const stopLivestreamingAMeetingLivestream: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StopLivestreamingAMeetingLivestreamRequest,
   output: StopLivestreamingAMeetingLivestreamResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StopPauseResumeRecordingRecordingError = CloudflareOpError;
-/** Pause/Resume/Stop a given recording ID. */
-export const stopPauseResumeRecordingRecording: API.OperationMethod<
-  StopPauseResumeRecordingRecordingRequest,
-  StopPauseResumeRecordingRecordingResponse,
-  StopPauseResumeRecordingRecordingError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StopPauseResumeRecordingRecordingRequest,
-  output: StopPauseResumeRecordingRecordingResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

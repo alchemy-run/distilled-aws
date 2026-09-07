@@ -122,15 +122,15 @@ export const TenantPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TenantPropertiesInput>;
 
 /** Specifies the tags of the resource. */
-export type PowerBIResourcesCreateRequestTagsMap = {
+export type CreatePowerBIResourceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PowerBIResourcesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreatePowerBIResourceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PowerBIResourcesCreateRequestTagsMap>;
+) as any as S.Schema<CreatePowerBIResourceRequestTagsMap>;
 
-export interface CreatePowerBiResourceRequest {
+export interface CreatePowerBIResourceRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -142,16 +142,16 @@ export interface CreatePowerBiResourceRequest {
   /** Specifies the properties of the resource. */
   properties?: TenantPropertiesInput;
   /** Specifies the tags of the resource. */
-  tags?: PowerBIResourcesCreateRequestTagsMap;
+  tags?: CreatePowerBIResourceRequestTagsMap;
 }
-export const CreatePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePowerBIResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureResourceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
     properties: S.optional(TenantPropertiesInput),
-    tags: S.optional(PowerBIResourcesCreateRequestTagsMap),
+    tags: S.optional(CreatePowerBIResourceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -161,8 +161,8 @@ export const CreatePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreatePowerBiResourceRequest",
-}) as any as S.Schema<CreatePowerBiResourceRequest>;
+  identifier: "CreatePowerBIResourceRequest",
+}) as any as S.Schema<CreatePowerBIResourceRequest>;
 
 /** The type of identity that created the resource. */
 export type TenantResourceSystemDataCreatedByType =
@@ -373,7 +373,7 @@ export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreatePrivateEndpointConnectionRequest",
 }) as any as S.Schema<CreatePrivateEndpointConnectionRequest>;
 
-export interface DeletePowerBiResourceRequest {
+export interface DeletePowerBIResourceRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -381,7 +381,7 @@ export interface DeletePowerBiResourceRequest {
   /** The name of the Azure resource. */
   azureResourceName: string;
 }
-export const DeletePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeletePowerBIResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -395,15 +395,15 @@ export const DeletePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeletePowerBiResourceRequest",
-}) as any as S.Schema<DeletePowerBiResourceRequest>;
+  identifier: "DeletePowerBIResourceRequest",
+}) as any as S.Schema<DeletePowerBIResourceRequest>;
 
-export interface DeletePowerBiResourceResponse {}
-export const DeletePowerBiResourceResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeletePowerBIResourceResponse {}
+export const DeletePowerBIResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeletePowerBiResourceResponse",
-}) as any as S.Schema<DeletePowerBiResourceResponse>;
+  identifier: "DeletePowerBIResourceResponse",
+}) as any as S.Schema<DeletePowerBIResourceResponse>;
 
 export interface DeletePrivateEndpointConnectionRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
@@ -764,27 +764,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export interface ListPowerBiResourceByResourceNameRequest {
+export interface ListPowerBIResourceByResourceNameRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -792,7 +792,7 @@ export interface ListPowerBiResourceByResourceNameRequest {
   /** The name of the Azure resource. */
   azureResourceName: string;
 }
-export const ListPowerBiResourceByResourceNameRequest = /*@__PURE__*/ S.suspend(
+export const ListPowerBIResourceByResourceNameRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -807,26 +807,24 @@ export const ListPowerBiResourceByResourceNameRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListPowerBiResourceByResourceNameRequest",
-}) as any as S.Schema<ListPowerBiResourceByResourceNameRequest>;
+  identifier: "ListPowerBIResourceByResourceNameRequest",
+}) as any as S.Schema<ListPowerBIResourceByResourceNameRequest>;
 
-export type PowerBIResourcesListByResourceNameResponseBodyList =
+export type ListPowerBIResourceByResourceNameResponseBodyList =
   Array<TenantResource>;
-export const PowerBIResourcesListByResourceNameResponseBodyList =
+export const ListPowerBIResourceByResourceNameResponseBodyList =
   /*@__PURE__*/ S.Array(
     TenantResource,
-  ) as any as S.Schema<PowerBIResourcesListByResourceNameResponseBodyList>;
+  ) as any as S.Schema<ListPowerBIResourceByResourceNameResponseBodyList>;
 
-export type ListPowerBiResourceByResourceNameResponse =
-  PowerBIResourcesListByResourceNameResponseBodyList;
-export const ListPowerBiResourceByResourceNameResponse =
+export type ListPowerBIResourceByResourceNameResponse =
+  ListPowerBIResourceByResourceNameResponseBodyList;
+export const ListPowerBIResourceByResourceNameResponse =
   /*@__PURE__*/ S.suspend(() =>
-    PowerBIResourcesListByResourceNameResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
+    ListPowerBIResourceByResourceNameResponseBodyList.pipe(T.RawResponseRoot()),
   ).annotate({
-    identifier: "ListPowerBiResourceByResourceNameResponse",
-  }) as any as S.Schema<ListPowerBiResourceByResourceNameResponse>;
+    identifier: "ListPowerBIResourceByResourceNameResponse",
+  }) as any as S.Schema<ListPowerBIResourceByResourceNameResponse>;
 
 export interface ListPrivateEndpointConnectionByResourceRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
@@ -950,29 +948,29 @@ export const ListPrivateLinkServiceByResourceGroupRequest =
     identifier: "ListPrivateLinkServiceByResourceGroupRequest",
   }) as any as S.Schema<ListPrivateLinkServiceByResourceGroupRequest>;
 
-export type PrivateLinkServicesListByResourceGroupResponseBodyList =
+export type ListPrivateLinkServiceByResourceGroupResponseBodyList =
   Array<TenantResource>;
-export const PrivateLinkServicesListByResourceGroupResponseBodyList =
+export const ListPrivateLinkServiceByResourceGroupResponseBodyList =
   /*@__PURE__*/ S.Array(
     TenantResource,
-  ) as any as S.Schema<PrivateLinkServicesListByResourceGroupResponseBodyList>;
+  ) as any as S.Schema<ListPrivateLinkServiceByResourceGroupResponseBodyList>;
 
 export type ListPrivateLinkServiceByResourceGroupResponse =
-  PrivateLinkServicesListByResourceGroupResponseBodyList;
+  ListPrivateLinkServiceByResourceGroupResponseBodyList;
 export const ListPrivateLinkServiceByResourceGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
-    PrivateLinkServicesListByResourceGroupResponseBodyList.pipe(
+    ListPrivateLinkServiceByResourceGroupResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
     identifier: "ListPrivateLinkServiceByResourceGroupResponse",
   }) as any as S.Schema<ListPrivateLinkServiceByResourceGroupResponse>;
 
-export interface ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest {
+export interface ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest =
+export const ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -985,37 +983,37 @@ export const ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest>;
+    identifier: "ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest>;
 
-export type PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList =
+export type ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList =
   Array<TenantResource>;
-export const PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList =
+export const ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList =
   /*@__PURE__*/ S.Array(
     TenantResource,
-  ) as any as S.Schema<PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList>;
+  ) as any as S.Schema<ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList>;
 
-export type ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse =
-  PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList;
-export const ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse =
+export type ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse =
+  ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList;
+export const ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse =
   /*@__PURE__*/ S.suspend(() =>
-    PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList.pipe(
+    ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse",
-  }) as any as S.Schema<ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse>;
+    identifier: "ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse",
+  }) as any as S.Schema<ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse>;
 
 /** Specifies the tags of the resource. */
-export type PowerBIResourcesUpdateRequestTagsMap = {
+export type UpdatePowerBIResourceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PowerBIResourcesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePowerBIResourceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PowerBIResourcesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePowerBIResourceRequestTagsMap>;
 
-export interface UpdatePowerBiResourceRequest {
+export interface UpdatePowerBIResourceRequest {
   /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -1027,16 +1025,16 @@ export interface UpdatePowerBiResourceRequest {
   /** Specifies the properties of the resource. */
   properties?: TenantPropertiesInput;
   /** Specifies the tags of the resource. */
-  tags?: PowerBIResourcesUpdateRequestTagsMap;
+  tags?: UpdatePowerBIResourceRequestTagsMap;
 }
-export const UpdatePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePowerBIResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureResourceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
     properties: S.optional(TenantPropertiesInput),
-    tags: S.optional(PowerBIResourcesUpdateRequestTagsMap),
+    tags: S.optional(UpdatePowerBIResourceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1046,18 +1044,18 @@ export const UpdatePowerBiResourceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdatePowerBiResourceRequest",
-}) as any as S.Schema<UpdatePowerBiResourceRequest>;
+  identifier: "UpdatePowerBIResourceRequest",
+}) as any as S.Schema<UpdatePowerBIResourceRequest>;
 
-export type CreatePowerBiResourceError = AzureOpError;
+export type CreatePowerBIResourceError = AzureOpError;
 /** Creates or updates a Private Link Service Resource for Power BI. */
-export const CreatePowerBiResource: API.OperationMethod<
-  CreatePowerBiResourceRequest,
+export const CreatePowerBIResource: API.OperationMethod<
+  CreatePowerBIResourceRequest,
   TenantResource,
-  CreatePowerBiResourceError,
+  CreatePowerBIResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreatePowerBiResourceRequest,
+  input: CreatePowerBIResourceRequest,
   output: TenantResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1079,16 +1077,16 @@ export const CreatePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletePowerBiResourceError = AzureOpError;
+export type DeletePowerBIResourceError = AzureOpError;
 /** Deletes a Private Link Service Resource for Power BI. */
-export const DeletePowerBiResource: API.OperationMethod<
-  DeletePowerBiResourceRequest,
-  DeletePowerBiResourceResponse,
-  DeletePowerBiResourceError,
+export const DeletePowerBIResource: API.OperationMethod<
+  DeletePowerBIResourceRequest,
+  DeletePowerBIResourceResponse,
+  DeletePowerBIResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePowerBiResourceRequest,
-  output: DeletePowerBiResourceResponse,
+  input: DeletePowerBIResourceRequest,
+  output: DeletePowerBIResourceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1169,16 +1167,16 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPowerBiResourceByResourceNameError = AzureOpError;
+export type ListPowerBIResourceByResourceNameError = AzureOpError;
 /** Gets all the private link resources for the given Azure resource. */
-export const ListPowerBiResourceByResourceName: API.OperationMethod<
-  ListPowerBiResourceByResourceNameRequest,
-  ListPowerBiResourceByResourceNameResponse,
-  ListPowerBiResourceByResourceNameError,
+export const ListPowerBIResourceByResourceName: API.OperationMethod<
+  ListPowerBIResourceByResourceNameRequest,
+  ListPowerBIResourceByResourceNameResponse,
+  ListPowerBIResourceByResourceNameError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPowerBiResourceByResourceNameRequest,
-  output: ListPowerBiResourceByResourceNameResponse,
+  input: ListPowerBIResourceByResourceNameRequest,
+  output: ListPowerBIResourceByResourceNameResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1229,31 +1227,31 @@ export const ListPrivateLinkServiceByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForPowerBiBySubscriptionIdError =
+export type ListPrivateLinkServicesForPowerBIBySubscriptionIdError =
   AzureOpError;
 /** Gets all the private link resources for the given subscription id. */
-export const ListPrivateLinkServiceForPowerBiBySubscriptionId: API.OperationMethod<
-  ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest,
-  ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse,
-  ListPrivateLinkServiceForPowerBiBySubscriptionIdError,
+export const ListPrivateLinkServicesForPowerBIBySubscriptionId: API.OperationMethod<
+  ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest,
+  ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse,
+  ListPrivateLinkServicesForPowerBIBySubscriptionIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForPowerBiBySubscriptionIdRequest,
-  output: ListPrivateLinkServiceForPowerBiBySubscriptionIdResponse,
+  input: ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest,
+  output: ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePowerBiResourceError = AzureOpError;
+export type UpdatePowerBIResourceError = AzureOpError;
 /** Creates or updates a Private Link Service Resource for Power BI. */
-export const UpdatePowerBiResource: API.OperationMethod<
-  UpdatePowerBiResourceRequest,
+export const UpdatePowerBIResource: API.OperationMethod<
+  UpdatePowerBIResourceRequest,
   TenantResource,
-  UpdatePowerBiResourceError,
+  UpdatePowerBIResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePowerBiResourceRequest,
+  input: UpdatePowerBIResourceRequest,
   output: TenantResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.healthcareapis#GetOperationResult": {
@@ -150,7 +151,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.healthcareapis#OperationsList": {
+    "com.azure.healthcareapis#ListOperations2": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -570,7 +571,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemData",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -580,7 +581,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemData": {
+    "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -590,7 +591,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -608,7 +609,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -624,7 +625,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -656,7 +657,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateLinkResourcesGetResponseSystemDataCreatedByType": {
+    "com.azure.healthcareapis#GetWorkspacePrivateLinkResourceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1462,7 +1463,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemData",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1472,7 +1473,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemData": {
+    "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1482,7 +1483,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1500,7 +1501,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1516,7 +1517,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1548,7 +1549,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsGetResponseSystemDataCreatedByType": {
+    "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnectionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1922,7 +1923,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateResponseTagsMap",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1958,13 +1959,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateResponseIdentity",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
         },
         "kind": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateResponseKind",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the service."
           }
@@ -2735,7 +2736,7 @@
         "smithy.api#documentation": "The provisioning state."
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateResponseKind": {
+    "com.azure.healthcareapis#UpdateFhirServiceResponseKind": {
       "type": "enum",
       "members": {
         "FHIR_STU3": {
@@ -2755,11 +2756,11 @@
         "smithy.api#documentation": "The kind of the service."
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateResponseIdentity": {
+    "com.azure.healthcareapis#UpdateFhirServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateResponseIdentityType",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -2817,7 +2818,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateResponseIdentityType": {
+    "com.azure.healthcareapis#UpdateFhirServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -2849,7 +2850,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateResponseTagsMap": {
+    "com.azure.healthcareapis#UpdateFhirServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2897,13 +2898,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateRequestTagsMap",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateRequestIdentity",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -2913,11 +2914,11 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateRequestIdentity": {
+    "com.azure.healthcareapis#UpdateFhirServiceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#FhirServicesUpdateRequestIdentityType",
+          "target": "com.azure.healthcareapis#UpdateFhirServiceRequestIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -2950,7 +2951,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateRequestIdentityType": {
+    "com.azure.healthcareapis#UpdateFhirServiceRequestIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -2982,7 +2983,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#FhirServicesUpdateRequestTagsMap": {
+    "com.azure.healthcareapis#UpdateFhirServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3412,7 +3413,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#FhirServicesGetResponseTagsMap",
+          "target": "com.azure.healthcareapis#GetFhirServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3448,13 +3449,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#FhirServicesGetResponseIdentity",
+          "target": "com.azure.healthcareapis#GetFhirServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
         },
         "kind": {
-          "target": "com.azure.healthcareapis#FhirServicesGetResponseKind",
+          "target": "com.azure.healthcareapis#GetFhirServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the service."
           }
@@ -3476,7 +3477,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#FhirServicesGetResponseKind": {
+    "com.azure.healthcareapis#GetFhirServiceResponseKind": {
       "type": "enum",
       "members": {
         "FHIR_STU3": {
@@ -3496,11 +3497,11 @@
         "smithy.api#documentation": "The kind of the service."
       }
     },
-    "com.azure.healthcareapis#FhirServicesGetResponseIdentity": {
+    "com.azure.healthcareapis#GetFhirServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#FhirServicesGetResponseIdentityType",
+          "target": "com.azure.healthcareapis#GetFhirServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -3526,7 +3527,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#FhirServicesGetResponseIdentityType": {
+    "com.azure.healthcareapis#GetFhirServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -3558,7 +3559,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#FhirServicesGetResponseTagsMap": {
+    "com.azure.healthcareapis#GetFhirServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4493,7 +4494,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateResponseTagsMap",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4529,7 +4530,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateResponseIdentity",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -4603,11 +4604,11 @@
         "smithy.api#documentation": "Event Hub ingestion endpoint configuration"
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateResponseIdentity": {
+    "com.azure.healthcareapis#UpdateIotConnectorResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateResponseIdentityType",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -4633,7 +4634,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateResponseIdentityType": {
+    "com.azure.healthcareapis#UpdateIotConnectorResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -4665,7 +4666,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateResponseTagsMap": {
+    "com.azure.healthcareapis#UpdateIotConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4713,13 +4714,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateRequestTagsMap",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateRequestIdentity",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -4729,11 +4730,11 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateRequestIdentity": {
+    "com.azure.healthcareapis#UpdateIotConnectorRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#IotConnectorsUpdateRequestIdentityType",
+          "target": "com.azure.healthcareapis#UpdateIotConnectorRequestIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -4747,7 +4748,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateRequestIdentityType": {
+    "com.azure.healthcareapis#UpdateIotConnectorRequestIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -4779,7 +4780,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsUpdateRequestTagsMap": {
+    "com.azure.healthcareapis#UpdateIotConnectorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5121,7 +5122,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#IotConnectorsGetResponseTagsMap",
+          "target": "com.azure.healthcareapis#GetIotConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5157,7 +5158,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#IotConnectorsGetResponseIdentity",
+          "target": "com.azure.healthcareapis#GetIotConnectorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -5179,11 +5180,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#IotConnectorsGetResponseIdentity": {
+    "com.azure.healthcareapis#GetIotConnectorResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#IotConnectorsGetResponseIdentityType",
+          "target": "com.azure.healthcareapis#GetIotConnectorResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -5209,7 +5210,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsGetResponseIdentityType": {
+    "com.azure.healthcareapis#GetIotConnectorResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -5241,7 +5242,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#IotConnectorsGetResponseTagsMap": {
+    "com.azure.healthcareapis#GetIotConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5591,7 +5592,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateResponseTagsMap",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5627,7 +5628,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateResponseIdentity",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -5872,11 +5873,11 @@
         "smithy.api#documentation": "The audiences for the service"
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateResponseIdentity": {
+    "com.azure.healthcareapis#UpdateDicomServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateResponseIdentityType",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -5902,7 +5903,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateResponseIdentityType": {
+    "com.azure.healthcareapis#UpdateDicomServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -5934,7 +5935,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateResponseTagsMap": {
+    "com.azure.healthcareapis#UpdateDicomServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5982,13 +5983,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateRequestTagsMap",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateRequestIdentity",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -5998,11 +5999,11 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateRequestIdentity": {
+    "com.azure.healthcareapis#UpdateDicomServiceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#DicomServicesUpdateRequestIdentityType",
+          "target": "com.azure.healthcareapis#UpdateDicomServiceRequestIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -6016,7 +6017,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateRequestIdentityType": {
+    "com.azure.healthcareapis#UpdateDicomServiceRequestIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -6048,7 +6049,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#DicomServicesUpdateRequestTagsMap": {
+    "com.azure.healthcareapis#UpdateDicomServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6415,7 +6416,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#DicomServicesGetResponseTagsMap",
+          "target": "com.azure.healthcareapis#GetDicomServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6451,7 +6452,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#DicomServicesGetResponseIdentity",
+          "target": "com.azure.healthcareapis#GetDicomServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -6473,11 +6474,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#DicomServicesGetResponseIdentity": {
+    "com.azure.healthcareapis#GetDicomServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.healthcareapis#DicomServicesGetResponseIdentityType",
+          "target": "com.azure.healthcareapis#GetDicomServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed.",
             "smithy.api#required": {}
@@ -6503,7 +6504,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#DicomServicesGetResponseIdentityType": {
+    "com.azure.healthcareapis#GetDicomServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -6535,7 +6536,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#DicomServicesGetResponseTagsMap": {
+    "com.azure.healthcareapis#GetDicomServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6877,7 +6878,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.healthcareapis#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6913,7 +6914,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.healthcareapis#WorkspacesUpdateResponseProperties",
+          "target": "com.azure.healthcareapis#UpdateWorkspaceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Workspaces resource specific properties."
           }
@@ -6929,7 +6930,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#WorkspacesUpdateResponseProperties": {
+    "com.azure.healthcareapis#UpdateWorkspaceResponseProperties": {
       "type": "structure",
       "members": {
         "provisioningState": {
@@ -6939,7 +6940,7 @@
           }
         },
         "privateEndpointConnections": {
-          "target": "com.azure.healthcareapis#WorkspacesUpdateResponsePropertiesPrivateEndpointConnectionsList",
+          "target": "com.azure.healthcareapis#UpdateWorkspaceResponsePropertiesPrivateEndpointConnectionsList",
           "traits": {
             "smithy.api#documentation": "The list of private endpoint connections that are set up for this resource."
           }
@@ -6955,16 +6956,16 @@
         "smithy.api#documentation": "Workspaces resource specific properties."
       }
     },
-    "com.azure.healthcareapis#WorkspacesUpdateResponsePropertiesPrivateEndpointConnectionsList": {
+    "com.azure.healthcareapis#UpdateWorkspaceResponsePropertiesPrivateEndpointConnectionsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.healthcareapis#WorkspacesUpdateResponsePropertiesPrivateEndpointConnectionsItem"
+        "target": "com.azure.healthcareapis#UpdateWorkspaceResponsePropertiesPrivateEndpointConnectionsItem"
       },
       "traits": {
         "smithy.api#documentation": "The list of private endpoint connections that are set up for this resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacesUpdateResponsePropertiesPrivateEndpointConnectionsItem": {
+    "com.azure.healthcareapis#UpdateWorkspaceResponsePropertiesPrivateEndpointConnectionsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -6996,7 +6997,7 @@
         "smithy.api#documentation": "The Private Endpoint Connection resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.healthcareapis#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7036,7 +7037,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.healthcareapis#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7046,7 +7047,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.healthcareapis#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.healthcareapis#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7310,7 +7311,7 @@
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.healthcareapis#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.healthcareapis#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7346,7 +7347,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.healthcareapis#WorkspacesGetResponseProperties",
+          "target": "com.azure.healthcareapis#GetWorkspaceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Workspaces resource specific properties."
           }
@@ -7362,7 +7363,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#WorkspacesGetResponseProperties": {
+    "com.azure.healthcareapis#GetWorkspaceResponseProperties": {
       "type": "structure",
       "members": {
         "provisioningState": {
@@ -7372,7 +7373,7 @@
           }
         },
         "privateEndpointConnections": {
-          "target": "com.azure.healthcareapis#WorkspacesGetResponsePropertiesPrivateEndpointConnectionsList",
+          "target": "com.azure.healthcareapis#GetWorkspaceResponsePropertiesPrivateEndpointConnectionsList",
           "traits": {
             "smithy.api#documentation": "The list of private endpoint connections that are set up for this resource."
           }
@@ -7388,16 +7389,16 @@
         "smithy.api#documentation": "Workspaces resource specific properties."
       }
     },
-    "com.azure.healthcareapis#WorkspacesGetResponsePropertiesPrivateEndpointConnectionsList": {
+    "com.azure.healthcareapis#GetWorkspaceResponsePropertiesPrivateEndpointConnectionsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.healthcareapis#WorkspacesGetResponsePropertiesPrivateEndpointConnectionsItem"
+        "target": "com.azure.healthcareapis#GetWorkspaceResponsePropertiesPrivateEndpointConnectionsItem"
       },
       "traits": {
         "smithy.api#documentation": "The list of private endpoint connections that are set up for this resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacesGetResponsePropertiesPrivateEndpointConnectionsItem": {
+    "com.azure.healthcareapis#GetWorkspaceResponsePropertiesPrivateEndpointConnectionsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -7429,7 +7430,7 @@
         "smithy.api#documentation": "The Private Endpoint Connection resource."
       }
     },
-    "com.azure.healthcareapis#WorkspacesGetResponseTagsMap": {
+    "com.azure.healthcareapis#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7762,7 +7763,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemData",
+          "target": "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -7772,7 +7773,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemData": {
+    "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -7782,7 +7783,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -7800,7 +7801,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -7816,7 +7817,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -7848,7 +7849,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.healthcareapis#PrivateLinkResourcesGetResponseSystemDataCreatedByType": {
+    "com.azure.healthcareapis#GetPrivateLinkResourceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8288,7 +8289,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemData",
+          "target": "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -8298,7 +8299,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemData": {
+    "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -8308,7 +8309,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -8326,7 +8327,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -8342,7 +8343,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8374,7 +8375,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.healthcareapis#PrivateEndpointConnectionsGetResponseSystemDataCreatedByType": {
+    "com.azure.healthcareapis#GetPrivateEndpointConnectionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -9293,7 +9294,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.healthcareapis#ServicesUpdateResponseKind",
+          "target": "com.azure.healthcareapis#UpdateServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the service.",
             "smithy.api#required": {}
@@ -9307,7 +9308,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.healthcareapis#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -9319,7 +9320,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#ServicesUpdateResponseIdentity",
+          "target": "com.azure.healthcareapis#UpdateServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -9341,7 +9342,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#ServicesUpdateResponseIdentity": {
+    "com.azure.healthcareapis#UpdateServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -9357,7 +9358,7 @@
           }
         },
         "type": {
-          "target": "com.azure.healthcareapis#ServicesUpdateResponseIdentityType",
+          "target": "com.azure.healthcareapis#UpdateServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
           }
@@ -9367,7 +9368,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#ServicesUpdateResponseIdentityType": {
+    "com.azure.healthcareapis#UpdateServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -9387,7 +9388,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#ServicesUpdateResponseTagsMap": {
+    "com.azure.healthcareapis#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9399,7 +9400,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.healthcareapis#ServicesUpdateResponseKind": {
+    "com.azure.healthcareapis#UpdateServiceResponseKind": {
       "type": "enum",
       "members": {
         "FHIR": {
@@ -9453,7 +9454,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.healthcareapis#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Instance tags"
           }
@@ -9503,7 +9504,7 @@
         "smithy.api#documentation": "Control permission for data plane traffic coming from public networks while private endpoint is enabled."
       }
     },
-    "com.azure.healthcareapis#ServicesUpdateRequestTagsMap": {
+    "com.azure.healthcareapis#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9976,7 +9977,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.healthcareapis#ServicesGetResponseKind",
+          "target": "com.azure.healthcareapis#GetServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the service.",
             "smithy.api#required": {}
@@ -9990,7 +9991,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.healthcareapis#ServicesGetResponseTagsMap",
+          "target": "com.azure.healthcareapis#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -10002,7 +10003,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.healthcareapis#ServicesGetResponseIdentity",
+          "target": "com.azure.healthcareapis#GetServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
           }
@@ -10024,7 +10025,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.healthcareapis#ServicesGetResponseIdentity": {
+    "com.azure.healthcareapis#GetServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10040,7 +10041,7 @@
           }
         },
         "type": {
-          "target": "com.azure.healthcareapis#ServicesGetResponseIdentityType",
+          "target": "com.azure.healthcareapis#GetServiceResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
           }
@@ -10050,7 +10051,7 @@
         "smithy.api#documentation": "Setting indicating whether the service has a managed identity associated with it."
       }
     },
-    "com.azure.healthcareapis#ServicesGetResponseIdentityType": {
+    "com.azure.healthcareapis#GetServiceResponseIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -10070,7 +10071,7 @@
         "smithy.api#documentation": "Type of identity being specified, currently SystemAssigned and None are allowed."
       }
     },
-    "com.azure.healthcareapis#ServicesGetResponseTagsMap": {
+    "com.azure.healthcareapis#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10082,7 +10083,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.healthcareapis#ServicesGetResponseKind": {
+    "com.azure.healthcareapis#GetServiceResponseKind": {
       "type": "enum",
       "members": {
         "FHIR": {
@@ -10145,124 +10146,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.healthcareapis#GetOperationResult"
-        },
-        {
-          "target": "com.azure.healthcareapis#OperationsList"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResource"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListWorkspacePrivateLinkResourceByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListWorkspacePrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteFhirService"
-        },
-        {
-          "target": "com.azure.healthcareapis#UpdateFhirService"
-        },
-        {
-          "target": "com.azure.healthcareapis#FhirServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetFhirService"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListFhirServiceByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteIotConnectorFhirDestination"
-        },
-        {
-          "target": "com.azure.healthcareapis#IotConnectorFhirDestinationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetIotConnectorFhirDestination"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListFhirDestinationByIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#UpdateIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#IotConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListIotConnectorByWorkspace"
+          "target": "com.azure.healthcareapis#CheckServiceNameAvailability"
         },
         {
           "target": "com.azure.healthcareapis#DeleteDicomService"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateDicomService"
+          "target": "com.azure.healthcareapis#DeleteFhirService"
         },
         {
-          "target": "com.azure.healthcareapis#DicomServicesCreateOrUpdate"
+          "target": "com.azure.healthcareapis#DeleteIotConnector"
         },
         {
-          "target": "com.azure.healthcareapis#GetDicomService"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListDicomServiceByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#UpdateWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#WorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListPrivateLinkResourceByService"
+          "target": "com.azure.healthcareapis#DeleteIotConnectorFhirDestination"
         },
         {
           "target": "com.azure.healthcareapis#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.healthcareapis#PrivateEndpointConnectionsCreateOrUpdate"
+          "target": "com.azure.healthcareapis#DeleteService"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.healthcareapis#DicomServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#FhirServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetDicomService"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetFhirService"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetIotConnectorFhirDestination"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetOperationResult"
         },
         {
           "target": "com.azure.healthcareapis#GetPrivateEndpointConnection"
         },
         {
+          "target": "com.azure.healthcareapis#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetService"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResource"
+        },
+        {
+          "target": "com.azure.healthcareapis#IotConnectorFhirDestinationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#IotConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListDicomServiceByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListFhirDestinationByIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListFhirServiceByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListIotConnectorByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListOperations2"
+        },
+        {
           "target": "com.azure.healthcareapis#ListPrivateEndpointConnectionByService"
         },
         {
-          "target": "com.azure.healthcareapis#CheckServiceNameAvailability"
+          "target": "com.azure.healthcareapis#ListPrivateLinkResourceByService"
         },
         {
           "target": "com.azure.healthcareapis#ListServiceByResourceGroup"
@@ -10271,16 +10245,43 @@
           "target": "com.azure.healthcareapis#ListServices"
         },
         {
-          "target": "com.azure.healthcareapis#DeleteService"
+          "target": "com.azure.healthcareapis#ListWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateService"
+          "target": "com.azure.healthcareapis#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListWorkspacePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListWorkspacePrivateLinkResourceByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
           "target": "com.azure.healthcareapis#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.healthcareapis#GetService"
+          "target": "com.azure.healthcareapis#UpdateDicomService"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateFhirService"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateService"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#WorkspacesCreateOrUpdate"
         }
       ],
       "traits": {

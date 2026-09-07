@@ -20,7 +20,8 @@
       "hasConflict": "has_conflict",
       "managedRequestHeaders": "managed_request_headers",
       "managedResponseHeaders": "managed_response_headers"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItemConflictsWithList": {
@@ -290,13 +291,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.managed_transforms#Delete"
+          "target": "com.cloudflare.managed_transforms#DeleteManagedTransform"
         },
         {
-          "target": "com.cloudflare.managed_transforms#Edit"
+          "target": "com.cloudflare.managed_transforms#ListManagedTransforms"
         },
         {
-          "target": "com.cloudflare.managed_transforms#List"
+          "target": "com.cloudflare.managed_transforms#PatchManagedTransform"
         }
       ],
       "traits": {

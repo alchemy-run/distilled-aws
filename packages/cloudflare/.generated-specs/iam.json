@@ -48,7 +48,8 @@
       "updatedAt": "updated_at",
       "updatedOn": "updated_on",
       "useFedrampLanguage": "use_fedramp_language"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.iam#OauthClientsCreateRequestGrantTypesItem": {
@@ -2921,97 +2922,97 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.iam#OauthClientsCreate"
+          "target": "com.cloudflare.iam#BeginVerificationSso"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsDelete"
+          "target": "com.cloudflare.iam#CreateOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsDeleteRotatedSecret"
+          "target": "com.cloudflare.iam#CreateResourceGroup"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsGet"
+          "target": "com.cloudflare.iam#CreateSso"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsList"
+          "target": "com.cloudflare.iam#CreateUserGroup"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsRotateSecret"
+          "target": "com.cloudflare.iam#CreateUserGroupMember"
         },
         {
-          "target": "com.cloudflare.iam#OauthClientsUpdate"
+          "target": "com.cloudflare.iam#DeleteOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#OauthScopesList"
+          "target": "com.cloudflare.iam#DeleteResourceGroup"
         },
         {
-          "target": "com.cloudflare.iam#PermissionGroupsGet"
+          "target": "com.cloudflare.iam#DeleteRotatedSecretOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#PermissionGroupsList"
+          "target": "com.cloudflare.iam#DeleteSso"
         },
         {
-          "target": "com.cloudflare.iam#ResourceGroupsCreate"
+          "target": "com.cloudflare.iam#DeleteUserGroup"
         },
         {
-          "target": "com.cloudflare.iam#ResourceGroupsDelete"
+          "target": "com.cloudflare.iam#DeleteUserGroupMember"
         },
         {
-          "target": "com.cloudflare.iam#ResourceGroupsGet"
+          "target": "com.cloudflare.iam#GetOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#ResourceGroupsList"
+          "target": "com.cloudflare.iam#GetPermissionGroup"
         },
         {
-          "target": "com.cloudflare.iam#ResourceGroupsUpdate"
+          "target": "com.cloudflare.iam#GetResourceGroup"
         },
         {
-          "target": "com.cloudflare.iam#SsoBeginVerification"
+          "target": "com.cloudflare.iam#GetSso"
         },
         {
-          "target": "com.cloudflare.iam#SsoCreate"
+          "target": "com.cloudflare.iam#GetUserGroup"
         },
         {
-          "target": "com.cloudflare.iam#SsoDelete"
+          "target": "com.cloudflare.iam#GetUserGroupMember"
         },
         {
-          "target": "com.cloudflare.iam#SsoGet"
+          "target": "com.cloudflare.iam#ListOauthClients"
         },
         {
-          "target": "com.cloudflare.iam#SsoList"
+          "target": "com.cloudflare.iam#ListOauthScopes"
         },
         {
-          "target": "com.cloudflare.iam#SsoUpdate"
+          "target": "com.cloudflare.iam#ListPermissionGroups"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsCreate"
+          "target": "com.cloudflare.iam#ListResourceGroups"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsDelete"
+          "target": "com.cloudflare.iam#ListSsos"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsGet"
+          "target": "com.cloudflare.iam#ListUserGroupMembers"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsList"
+          "target": "com.cloudflare.iam#ListUserGroups"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsUpdate"
+          "target": "com.cloudflare.iam#PatchOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsMembersCreate"
+          "target": "com.cloudflare.iam#PatchSso"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsMembersDelete"
+          "target": "com.cloudflare.iam#RotateSecretOauthClient"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsMembersGet"
+          "target": "com.cloudflare.iam#UpdateResourceGroup"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsMembersList"
+          "target": "com.cloudflare.iam#UpdateUserGroup"
         },
         {
-          "target": "com.cloudflare.iam#UserGroupsMembersUpdate"
+          "target": "com.cloudflare.iam#UpdateUserGroupMember"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.payment_methods#Direction": {
@@ -3087,7 +3088,7 @@
         }
       }
     },
-    "com.whop.payment_methods#RetrievePaymentMethodRequest": {
+    "com.whop.payment_methods#GetPaymentMethodRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4886,7 +4887,7 @@
         "smithy.api#documentation": "A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits."
       }
     },
-    "com.whop.payment_methods#RetrievePaymentMethodResponse": {
+    "com.whop.payment_methods#GetPaymentMethodResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4901,13 +4902,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.payment_methods#RetrievePaymentMethod": {
+    "com.whop.payment_methods#GetPaymentMethod": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payment_methods#RetrievePaymentMethodRequest"
+        "target": "com.whop.payment_methods#GetPaymentMethodRequest"
       },
       "output": {
-        "target": "com.whop.payment_methods#RetrievePaymentMethodResponse"
+        "target": "com.whop.payment_methods#GetPaymentMethodResponse"
       },
       "errors": [
         {
@@ -5063,13 +5064,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payment_methods#ListPaymentMethod"
-        },
-        {
-          "target": "com.whop.payment_methods#RetrievePaymentMethod"
-        },
-        {
           "target": "com.whop.payment_methods#DeletePaymentMethod"
+        },
+        {
+          "target": "com.whop.payment_methods#GetPaymentMethod"
+        },
+        {
+          "target": "com.whop.payment_methods#ListPaymentMethod"
         }
       ],
       "traits": {

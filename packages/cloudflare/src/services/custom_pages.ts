@@ -4,9 +4,11 @@ import * as API from "@distilled.cloud/core/api";
 import * as T from "../traits.ts";
 import {
   CloudflareProtocol,
+  CloudflarePaginatedProtocol,
   type CloudflareOpError,
   type CloudflareOpContext,
 } from "../protocol.ts";
+import { cloudflarePaginate, ResultInfo } from "../pagination.ts";
 import { CloudflareError, CloudflareRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -53,6 +55,30 @@ export const CreateAssetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateAssetForAccountRequest",
 }) as any as S.Schema<CreateAssetForAccountRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateAssetResponse {
+  /** A short description of the custom asset. */
+  description?: string | null;
+  lastUpdated?: string | null;
+  /** The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_). */
+  name?: string | null;
+  /** The size of the asset content in bytes. */
+  sizeBytes?: number | null;
+  /** The URL where the asset content is fetched from. */
+  url?: string | null;
+}
+export const CreateAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
+    name: S.optional(S.NullOr(S.String)),
+    sizeBytes: S.optional(S.NullOr(S.Number).pipe(T.Body("size_bytes"))),
+    url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateAssetResponse",
+}) as any as S.Schema<CreateAssetResponse>;
 
 export interface CreateAssetForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -166,6 +192,30 @@ export const GetAssetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAssetForAccountRequest",
 }) as any as S.Schema<GetAssetForAccountRequest>;
 
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetAssetResponse {
+  /** A short description of the custom asset. */
+  description?: string | null;
+  lastUpdated?: string | null;
+  /** The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_). */
+  name?: string | null;
+  /** The size of the asset content in bytes. */
+  sizeBytes?: number | null;
+  /** The URL where the asset content is fetched from. */
+  url?: string | null;
+}
+export const GetAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
+    name: S.optional(S.NullOr(S.String)),
+    sizeBytes: S.optional(S.NullOr(S.Number).pipe(T.Body("size_bytes"))),
+    url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetAssetResponse",
+}) as any as S.Schema<GetAssetResponse>;
+
 export interface GetAssetForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -225,6 +275,46 @@ export const GetCustomPageForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCustomPageForAccountRequest",
 }) as any as S.Schema<GetCustomPageForAccountRequest>;
 
+export type GetResponseRequiredTokensList = Array<string>;
+export const GetResponseRequiredTokensList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseRequiredTokensList>;
+
+export type GetResponseState = "default" | "customized";
+export const GetResponseState = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetCustomPageResponse {
+  id?: string | null;
+  createdOn?: string | null;
+  description?: string | null;
+  modifiedOn?: string | null;
+  previewTarget?: string | null;
+  requiredTokens?: GetResponseRequiredTokensList | null;
+  /** The custom page state. */
+  state?: GetResponseState | null;
+  /** The URL associated with the custom page. */
+  url?: string | null;
+}
+export const GetCustomPageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    createdOn: S.optional(S.NullOr(S.String).pipe(T.Body("created_on"))),
+    description: S.optional(S.NullOr(S.String)),
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    previewTarget: S.optional(
+      S.NullOr(S.String).pipe(T.Body("preview_target")),
+    ),
+    requiredTokens: S.optional(
+      S.NullOr(GetResponseRequiredTokensList).pipe(T.Body("required_tokens")),
+    ),
+    state: S.optional(S.NullOr(GetResponseState)),
+    url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCustomPageResponse",
+}) as any as S.Schema<GetCustomPageResponse>;
+
 export interface GetCustomPageForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -272,6 +362,49 @@ export const ListAssetsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssetsForAccountRequest",
 }) as any as S.Schema<ListAssetsForAccountRequest>;
 
+export interface AssetsListResultItem {
+  /** A short description of the custom asset. */
+  description?: string | null;
+  lastUpdated?: string | null;
+  /** The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_). */
+  name?: string | null;
+  /** The size of the asset content in bytes. */
+  sizeBytes?: number | null;
+  /** The URL where the asset content is fetched from. */
+  url?: string | null;
+}
+export const AssetsListResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
+    name: S.optional(S.NullOr(S.String)),
+    sizeBytes: S.optional(S.NullOr(S.Number).pipe(T.Body("size_bytes"))),
+    url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "AssetsListResultItem",
+}) as any as S.Schema<AssetsListResultItem>;
+
+export type AssetsListResultList = Array<AssetsListResultItem>;
+export const AssetsListResultList = /*@__PURE__*/ S.Array(
+  AssetsListResultItem,
+) as any as S.Schema<AssetsListResultList>;
+
+export interface ListAssetsResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: AssetsListResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListAssetsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: AssetsListResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListAssetsResponse",
+}) as any as S.Schema<ListAssetsResponse>;
+
 export interface ListAssetsForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -315,6 +448,65 @@ export const ListCustomPagesForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListCustomPagesForAccountRequest",
 }) as any as S.Schema<ListCustomPagesForAccountRequest>;
+
+export type ListResultItemRequiredTokensList = Array<string>;
+export const ListResultItemRequiredTokensList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListResultItemRequiredTokensList>;
+
+export type ListResultItemState = "default" | "customized";
+export const ListResultItemState = /*@__PURE__*/ S.String;
+
+export interface ListResultItem {
+  id?: string | null;
+  createdOn?: string | null;
+  description?: string | null;
+  modifiedOn?: string | null;
+  previewTarget?: string | null;
+  requiredTokens?: ListResultItemRequiredTokensList | null;
+  /** The custom page state. */
+  state?: ListResultItemState | null;
+  /** The URL associated with the custom page. */
+  url?: string | null;
+}
+export const ListResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    createdOn: S.optional(S.NullOr(S.String).pipe(T.Body("created_on"))),
+    description: S.optional(S.NullOr(S.String)),
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    previewTarget: S.optional(
+      S.NullOr(S.String).pipe(T.Body("preview_target")),
+    ),
+    requiredTokens: S.optional(
+      S.NullOr(ListResultItemRequiredTokensList).pipe(
+        T.Body("required_tokens"),
+      ),
+    ),
+    state: S.optional(S.NullOr(ListResultItemState)),
+    url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "ListResultItem" }) as any as S.Schema<ListResultItem>;
+
+export type ListResultList = Array<ListResultItem>;
+export const ListResultList = /*@__PURE__*/ S.Array(
+  ListResultItem,
+) as any as S.Schema<ListResultList>;
+
+export interface ListCustomPagesResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListCustomPagesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCustomPagesResponse",
+}) as any as S.Schema<ListCustomPagesResponse>;
 
 export interface ListCustomPagesForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -381,6 +573,48 @@ export const PutCustomPageForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutCustomPageForAccountRequest",
 }) as any as S.Schema<PutCustomPageForAccountRequest>;
 
+export type UpdateResponseRequiredTokensList = Array<string>;
+export const UpdateResponseRequiredTokensList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateResponseRequiredTokensList>;
+
+export type UpdateResponseState = "default" | "customized";
+export const UpdateResponseState = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface PutCustomPageResponse {
+  id?: string | null;
+  createdOn?: string | null;
+  description?: string | null;
+  modifiedOn?: string | null;
+  previewTarget?: string | null;
+  requiredTokens?: UpdateResponseRequiredTokensList | null;
+  /** The custom page state. */
+  state?: UpdateResponseState | null;
+  /** The URL associated with the custom page. */
+  url?: string | null;
+}
+export const PutCustomPageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    createdOn: S.optional(S.NullOr(S.String).pipe(T.Body("created_on"))),
+    description: S.optional(S.NullOr(S.String)),
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    previewTarget: S.optional(
+      S.NullOr(S.String).pipe(T.Body("preview_target")),
+    ),
+    requiredTokens: S.optional(
+      S.NullOr(UpdateResponseRequiredTokensList).pipe(
+        T.Body("required_tokens"),
+      ),
+    ),
+    state: S.optional(S.NullOr(UpdateResponseState)),
+    url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PutCustomPageResponse",
+}) as any as S.Schema<PutCustomPageResponse>;
+
 export interface PutCustomPageForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -439,6 +673,30 @@ export const UpdateAssetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAssetForAccountRequest",
 }) as any as S.Schema<UpdateAssetForAccountRequest>;
 
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface UpdateAssetResponse {
+  /** A short description of the custom asset. */
+  description?: string | null;
+  lastUpdated?: string | null;
+  /** The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_). */
+  name?: string | null;
+  /** The size of the asset content in bytes. */
+  sizeBytes?: number | null;
+  /** The URL where the asset content is fetched from. */
+  url?: string | null;
+}
+export const UpdateAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
+    name: S.optional(S.NullOr(S.String)),
+    sizeBytes: S.optional(S.NullOr(S.Number).pipe(T.Body("size_bytes"))),
+    url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateAssetResponse",
+}) as any as S.Schema<UpdateAssetResponse>;
+
 export interface UpdateAssetForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -472,12 +730,12 @@ export type CreateAssetForAccountError = CloudflareOpError;
 /** Creates a new custom asset. */
 export const createAssetForAccount: API.OperationMethod<
   CreateAssetForAccountRequest,
-  CreateAssetForAccountResponse,
+  CreateAssetResponse,
   CreateAssetForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateAssetForAccountRequest,
-  output: CreateAssetForAccountResponse,
+  output: CreateAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -487,12 +745,12 @@ export type CreateAssetForZoneError = CloudflareOpError;
 /** Creates a new custom asset. */
 export const createAssetForZone: API.OperationMethod<
   CreateAssetForZoneRequest,
-  CreateAssetForZoneResponse,
+  CreateAssetResponse,
   CreateAssetForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateAssetForZoneRequest,
-  output: CreateAssetForZoneResponse,
+  output: CreateAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -532,12 +790,12 @@ export type GetAssetForAccountError = CloudflareOpError;
 /** Fetches the details of a custom asset. */
 export const getAssetForAccount: API.OperationMethod<
   GetAssetForAccountRequest,
-  GetAssetForAccountResponse,
+  GetAssetResponse,
   GetAssetForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetAssetForAccountRequest,
-  output: GetAssetForAccountResponse,
+  output: GetAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -547,12 +805,12 @@ export type GetAssetForZoneError = CloudflareOpError;
 /** Fetches the details of a custom asset. */
 export const getAssetForZone: API.OperationMethod<
   GetAssetForZoneRequest,
-  GetAssetForZoneResponse,
+  GetAssetResponse,
   GetAssetForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetAssetForZoneRequest,
-  output: GetAssetForZoneResponse,
+  output: GetAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -562,12 +820,12 @@ export type GetCustomPageForAccountError = CloudflareOpError;
 /** Fetches the details of a custom page. */
 export const getCustomPageForAccount: API.OperationMethod<
   GetCustomPageForAccountRequest,
-  GetCustomPageForAccountResponse,
+  GetCustomPageResponse,
   GetCustomPageForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCustomPageForAccountRequest,
-  output: GetCustomPageForAccountResponse,
+  output: GetCustomPageResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -577,12 +835,12 @@ export type GetCustomPageForZoneError = CloudflareOpError;
 /** Fetches the details of a custom page. */
 export const getCustomPageForZone: API.OperationMethod<
   GetCustomPageForZoneRequest,
-  GetCustomPageForZoneResponse,
+  GetCustomPageResponse,
   GetCustomPageForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCustomPageForZoneRequest,
-  output: GetCustomPageForZoneResponse,
+  output: GetCustomPageResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -590,74 +848,106 @@ export const getCustomPageForZone: API.OperationMethod<
 
 export type ListAssetsForAccountError = CloudflareOpError;
 /** Fetches all the custom assets. */
-export const listAssetsForAccount: API.OperationMethod<
+export const listAssetsForAccount: API.PaginatedOperationMethod<
   ListAssetsForAccountRequest,
-  ListAssetsForAccountResponse,
+  ListAssetsResponse,
   ListAssetsForAccountError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListAssetsForAccountRequest,
-  output: ListAssetsForAccountResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  AssetsListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListAssetsForAccountRequest,
+    output: ListAssetsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "page",
+      inputToken: "page",
+      outputToken: "resultInfo.page",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListAssetsForZoneError = CloudflareOpError;
 /** Fetches all the custom assets. */
-export const listAssetsForZone: API.OperationMethod<
+export const listAssetsForZone: API.PaginatedOperationMethod<
   ListAssetsForZoneRequest,
-  ListAssetsForZoneResponse,
+  ListAssetsResponse,
   ListAssetsForZoneError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListAssetsForZoneRequest,
-  output: ListAssetsForZoneResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  AssetsListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListAssetsForZoneRequest,
+    output: ListAssetsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "page",
+      inputToken: "page",
+      outputToken: "resultInfo.page",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListCustomPagesForAccountError = CloudflareOpError;
 /** Fetches all the custom pages. */
-export const listCustomPagesForAccount: API.OperationMethod<
+export const listCustomPagesForAccount: API.PaginatedOperationMethod<
   ListCustomPagesForAccountRequest,
-  ListCustomPagesForAccountResponse,
+  ListCustomPagesResponse,
   ListCustomPagesForAccountError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCustomPagesForAccountRequest,
-  output: ListCustomPagesForAccountResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  ListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListCustomPagesForAccountRequest,
+    output: ListCustomPagesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListCustomPagesForZoneError = CloudflareOpError;
 /** Fetches all the custom pages. */
-export const listCustomPagesForZone: API.OperationMethod<
+export const listCustomPagesForZone: API.PaginatedOperationMethod<
   ListCustomPagesForZoneRequest,
-  ListCustomPagesForZoneResponse,
+  ListCustomPagesResponse,
   ListCustomPagesForZoneError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCustomPagesForZoneRequest,
-  output: ListCustomPagesForZoneResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  ListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListCustomPagesForZoneRequest,
+    output: ListCustomPagesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type PutCustomPageForAccountError = CloudflareOpError;
 /** Updates the configuration of an existing custom page. */
 export const putCustomPageForAccount: API.OperationMethod<
   PutCustomPageForAccountRequest,
-  PutCustomPageForAccountResponse,
+  PutCustomPageResponse,
   PutCustomPageForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: PutCustomPageForAccountRequest,
-  output: PutCustomPageForAccountResponse,
+  output: PutCustomPageResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -667,12 +957,12 @@ export type PutCustomPageForZoneError = CloudflareOpError;
 /** Updates the configuration of an existing custom page. */
 export const putCustomPageForZone: API.OperationMethod<
   PutCustomPageForZoneRequest,
-  PutCustomPageForZoneResponse,
+  PutCustomPageResponse,
   PutCustomPageForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: PutCustomPageForZoneRequest,
-  output: PutCustomPageForZoneResponse,
+  output: PutCustomPageResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -682,12 +972,12 @@ export type UpdateAssetForAccountError = CloudflareOpError;
 /** Updates the configuration of an existing custom asset. */
 export const updateAssetForAccount: API.OperationMethod<
   UpdateAssetForAccountRequest,
-  UpdateAssetForAccountResponse,
+  UpdateAssetResponse,
   UpdateAssetForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateAssetForAccountRequest,
-  output: UpdateAssetForAccountResponse,
+  output: UpdateAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -697,12 +987,12 @@ export type UpdateAssetForZoneError = CloudflareOpError;
 /** Updates the configuration of an existing custom asset. */
 export const updateAssetForZone: API.OperationMethod<
   UpdateAssetForZoneRequest,
-  UpdateAssetForZoneResponse,
+  UpdateAssetResponse,
   UpdateAssetForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateAssetForZoneRequest,
-  output: UpdateAssetForZoneResponse,
+  output: UpdateAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

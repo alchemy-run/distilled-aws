@@ -21,6 +21,15 @@ export class BadRequest
     [{ status: 400 }],
   ) {}
 
+export class Conflict
+  extends /*@__PURE__*/ T.applyErrorMatchers(
+    /*@__PURE__*/ S.TaggedError<Conflict>()("Conflict", {
+      code: S.Number,
+      message: S.String,
+    }).pipe(C.withConflictError),
+    [{ status: 409 }],
+  ) {}
+
 export class Forbidden
   extends /*@__PURE__*/ T.applyErrorMatchers(
     /*@__PURE__*/ S.TaggedError<Forbidden>()("Forbidden", {
@@ -461,17 +470,17 @@ export const FeatureFlagFiltersSchema = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FeatureFlagFiltersSchema>;
 
 /** Organizational tags for this feature flag. */
-export type FeatureFlagsCreateRequestTagsList = Array<string>;
-export const FeatureFlagsCreateRequestTagsList = /*@__PURE__*/ S.Array(
+export type CreateFeatureFlagRequestTagsList = Array<string>;
+export const CreateFeatureFlagRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeatureFlagsCreateRequestTagsList>;
+) as any as S.Schema<CreateFeatureFlagRequestTagsList>;
 
 /** Evaluation contexts that control where this flag evaluates at runtime. */
-export type FeatureFlagsCreateRequestEvaluationContextsList = Array<string>;
-export const FeatureFlagsCreateRequestEvaluationContextsList =
+export type CreateFeatureFlagRequestEvaluationContextsList = Array<string>;
+export const CreateFeatureFlagRequestEvaluationContextsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FeatureFlagsCreateRequestEvaluationContextsList>;
+  ) as any as S.Schema<CreateFeatureFlagRequestEvaluationContextsList>;
 
 /** * `server` - Server * `client` - Client * `all` - All */
 export type EvaluationRuntimeEnum = "server" | "client" | "all";
@@ -495,9 +504,9 @@ export interface CreateFeatureFlagRequest {
   /** Whether the flag is archived. Archived flags are hidden from the flag list by default and must be disabled (`active: false`). */
   archived?: boolean;
   /** Organizational tags for this feature flag. */
-  tags?: FeatureFlagsCreateRequestTagsList;
+  tags?: CreateFeatureFlagRequestTagsList;
   /** Evaluation contexts that control where this flag evaluates at runtime. */
-  evaluation_contexts?: FeatureFlagsCreateRequestEvaluationContextsList;
+  evaluation_contexts?: CreateFeatureFlagRequestEvaluationContextsList;
   /** Whether this flag is a remote configuration flag that delivers a payload rather than gating a feature. */
   is_remote_configuration?: boolean | null;
   /** Whether to persist a user's flag value across the anonymous-to-identified transition (the 'persist across authentication steps' option). Incompatible with device_id bucketing. */
@@ -515,9 +524,9 @@ export const CreateFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
     filters: S.optional(FeatureFlagFiltersSchema),
     active: S.optional(S.Boolean),
     archived: S.optional(S.Boolean),
-    tags: S.optional(FeatureFlagsCreateRequestTagsList),
+    tags: S.optional(CreateFeatureFlagRequestTagsList),
     evaluation_contexts: S.optional(
-      FeatureFlagsCreateRequestEvaluationContextsList,
+      CreateFeatureFlagRequestEvaluationContextsList,
     ),
     is_remote_configuration: S.optional(S.NullOr(S.Boolean)),
     ensure_experience_continuity: S.optional(S.NullOr(S.Boolean)),
@@ -749,13 +758,13 @@ export const FeatureFlagOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureFlagOutput",
 }) as any as S.Schema<FeatureFlagOutput>;
 
-export interface CreateFeatureFlagDashboardRequest {
+export interface CreateFeatureFlagsDashboardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
   id: number;
 }
-export const CreateFeatureFlagDashboardRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFeatureFlagsDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -767,23 +776,23 @@ export const CreateFeatureFlagDashboardRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateFeatureFlagDashboardRequest",
-}) as any as S.Schema<CreateFeatureFlagDashboardRequest>;
+  identifier: "CreateFeatureFlagsDashboardRequest",
+}) as any as S.Schema<CreateFeatureFlagsDashboardRequest>;
 
-export interface CreateFeatureFlagDashboardResponse {}
-export const CreateFeatureFlagDashboardResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateFeatureFlagsDashboardResponse {}
+export const CreateFeatureFlagsDashboardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CreateFeatureFlagDashboardResponse",
-}) as any as S.Schema<CreateFeatureFlagDashboardResponse>;
+  identifier: "CreateFeatureFlagsDashboardResponse",
+}) as any as S.Schema<CreateFeatureFlagsDashboardResponse>;
 
-export interface CreateFeatureFlagEnrichUsageDashboardRequest {
+export interface CreateFeatureFlagsEnrichUsageDashboardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
   id: number;
 }
-export const CreateFeatureFlagEnrichUsageDashboardRequest =
+export const CreateFeatureFlagsEnrichUsageDashboardRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -796,16 +805,16 @@ export const CreateFeatureFlagEnrichUsageDashboardRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateFeatureFlagEnrichUsageDashboardRequest",
-  }) as any as S.Schema<CreateFeatureFlagEnrichUsageDashboardRequest>;
+    identifier: "CreateFeatureFlagsEnrichUsageDashboardRequest",
+  }) as any as S.Schema<CreateFeatureFlagsEnrichUsageDashboardRequest>;
 
-export interface CreateFeatureFlagEnrichUsageDashboardResponse {}
-export const CreateFeatureFlagEnrichUsageDashboardResponse =
+export interface CreateFeatureFlagsEnrichUsageDashboardResponse {}
+export const CreateFeatureFlagsEnrichUsageDashboardResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateFeatureFlagEnrichUsageDashboardResponse",
-  }) as any as S.Schema<CreateFeatureFlagEnrichUsageDashboardResponse>;
+    identifier: "CreateFeatureFlagsEnrichUsageDashboardResponse",
+  }) as any as S.Schema<CreateFeatureFlagsEnrichUsageDashboardResponse>;
 
-export interface CreateFeatureFlagTestEvaluationRequest {
+export interface CreateFeatureFlagsTestEvaluationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
@@ -819,7 +828,7 @@ export interface CreateFeatureFlagTestEvaluationRequest {
   /** Groups for feature flag evaluation (JSON object, defaults to empty dict) */
   groups?: unknown;
 }
-export const CreateFeatureFlagTestEvaluationRequest = /*@__PURE__*/ S.suspend(
+export const CreateFeatureFlagsTestEvaluationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -836,8 +845,8 @@ export const CreateFeatureFlagTestEvaluationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateFeatureFlagTestEvaluationRequest",
-}) as any as S.Schema<CreateFeatureFlagTestEvaluationRequest>;
+  identifier: "CreateFeatureFlagsTestEvaluationRequest",
+}) as any as S.Schema<CreateFeatureFlagsTestEvaluationRequest>;
 
 /** Person properties at the time of evaluation (for historical evaluations) */
 export type FeatureFlagTestEvaluationResponsePersonPropertiesMap = {
@@ -965,29 +974,29 @@ export const FeatureFlagTestEvaluationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FeatureFlagTestEvaluationResponse>;
 
 /** The release condition to evaluate */
-export type FeatureFlagsUserBlastRadiusCreateRequestConditionMap = {
+export type CreateFeatureFlagsUserBlastRadiusRequestConditionMap = {
   [key: string]: unknown | undefined;
 };
-export const FeatureFlagsUserBlastRadiusCreateRequestConditionMap =
+export const CreateFeatureFlagsUserBlastRadiusRequestConditionMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<FeatureFlagsUserBlastRadiusCreateRequestConditionMap>;
+  ) as any as S.Schema<CreateFeatureFlagsUserBlastRadiusRequestConditionMap>;
 
-export interface CreateFeatureFlagUserBlastRadiusRequest {
+export interface CreateFeatureFlagsUserBlastRadiusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The release condition to evaluate */
-  condition?: FeatureFlagsUserBlastRadiusCreateRequestConditionMap;
+  condition?: CreateFeatureFlagsUserBlastRadiusRequestConditionMap;
   /** Group type index for group-based flags (null for person-based flags) */
   group_type_index?: number | null;
 }
-export const CreateFeatureFlagUserBlastRadiusRequest = /*@__PURE__*/ S.suspend(
+export const CreateFeatureFlagsUserBlastRadiusRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       condition: S.optional(
-        FeatureFlagsUserBlastRadiusCreateRequestConditionMap,
+        CreateFeatureFlagsUserBlastRadiusRequestConditionMap,
       ),
       group_type_index: S.optional(S.NullOr(S.Number)),
     }).pipe(
@@ -998,8 +1007,8 @@ export const CreateFeatureFlagUserBlastRadiusRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateFeatureFlagUserBlastRadiusRequest",
-}) as any as S.Schema<CreateFeatureFlagUserBlastRadiusRequest>;
+  identifier: "CreateFeatureFlagsUserBlastRadiusRequest",
+}) as any as S.Schema<CreateFeatureFlagsUserBlastRadiusRequest>;
 
 export interface UserBlastRadiusResponse {
   /** Number of entities matching the condition (users or groups depending on group_type_index) */
@@ -1016,181 +1025,26 @@ export const UserBlastRadiusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserBlastRadiusResponse",
 }) as any as S.Schema<UserBlastRadiusResponse>;
 
-export interface FeatureFlagsActivityRetrieveRequest {
+export interface FeatureFlagsArchiveCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
   id: number;
-  /** Number of items per page */
-  limit?: number;
-  /** Page number */
-  page?: number;
 }
-export const FeatureFlagsActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const FeatureFlagsArchiveCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/feature_flags/{id}/activity/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/archive/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "FeatureFlagsActivityRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsActivityRetrieveRequest>;
-
-export interface Change {
-  type?: string;
-  action?: string;
-  field?: string;
-  before?: unknown;
-  after?: unknown;
-}
-export const Change = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    action: S.optional(S.String),
-    field: S.optional(S.String),
-    before: S.optional(S.Unknown),
-    after: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Change" }) as any as S.Schema<Change>;
-
-export type DetailChangesList = Array<Change>;
-export const DetailChangesList = /*@__PURE__*/ S.Array(
-  Change,
-) as any as S.Schema<DetailChangesList>;
-
-export interface Merge {
-  type?: string;
-  source?: unknown;
-  target?: unknown;
-}
-export const Merge = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    source: S.optional(S.Unknown),
-    target: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Merge" }) as any as S.Schema<Merge>;
-
-export interface Trigger {
-  job_type?: string;
-  job_id?: string;
-  payload?: unknown;
-}
-export const Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    job_type: S.optional(S.String),
-    job_id: S.optional(S.String),
-    payload: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
-
-export interface Detail {
-  id?: string;
-  changes?: DetailChangesList;
-  merge?: Merge;
-  trigger?: Trigger;
-  name?: string;
-  short_id?: string;
-  type?: string;
-}
-export const Detail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    changes: S.optional(DetailChangesList),
-    merge: S.optional(Merge),
-    trigger: S.optional(Trigger),
-    name: S.optional(S.String),
-    short_id: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({ identifier: "Detail" }) as any as S.Schema<Detail>;
-
-export interface ActivityLogEntry {
-  id?: string;
-  user?: unknown | null;
-  activity?: string;
-  scope?: string;
-  item_id?: string;
-  detail?: Detail;
-  created_at?: string;
-  /** Whether the activity was performed by the system rather than a user. */
-  is_system?: boolean;
-  /** Whether the acting user was being impersonated by PostHog staff. */
-  was_impersonated?: boolean;
-  /** API client that triggered the activity, from the x-posthog-client request header (e.g. 'mcp'). Null for requests that did not send the header. */
-  client?: string | null;
-}
-export const ActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    user: S.optional(S.NullOr(S.Unknown)),
-    activity: S.optional(S.String),
-    scope: S.optional(S.String),
-    item_id: S.optional(S.String),
-    detail: S.optional(Detail),
-    created_at: S.optional(S.String),
-    is_system: S.optional(S.Boolean),
-    was_impersonated: S.optional(S.Boolean),
-    client: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ActivityLogEntry",
-}) as any as S.Schema<ActivityLogEntry>;
-
-export type ActivityLogPaginatedResponseResultsList = Array<ActivityLogEntry>;
-export const ActivityLogPaginatedResponseResultsList = /*@__PURE__*/ S.Array(
-  ActivityLogEntry,
-) as any as S.Schema<ActivityLogPaginatedResponseResultsList>;
-
-/** Response shape for paginated activity log endpoints. */
-export interface ActivityLogPaginatedResponse {
-  results?: ActivityLogPaginatedResponseResultsList;
-  next?: string | null;
-  previous?: string | null;
-  total_count?: number;
-}
-export const ActivityLogPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: S.optional(ActivityLogPaginatedResponseResultsList),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    total_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ActivityLogPaginatedResponse",
-}) as any as S.Schema<ActivityLogPaginatedResponse>;
-
-export interface FeatureFlagsAllActivityRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of items per page */
-  limit?: number;
-  /** Page number */
-  page?: number;
-}
-export const FeatureFlagsAllActivityRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      page: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/feature_flags/activity/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "FeatureFlagsAllActivityRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsAllActivityRetrieveRequest>;
+  identifier: "FeatureFlagsArchiveCreateRequest",
+}) as any as S.Schema<FeatureFlagsArchiveCreateRequest>;
 
 /** * `true` - true * `false` - false * `STALE` - STALE */
 export type ActiveEnum = "true" | "false" | "STALE";
@@ -1681,32 +1535,288 @@ export const FeatureFlagsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureFlagsDestroyResponse",
 }) as any as S.Schema<FeatureFlagsDestroyResponse>;
 
-export type FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList =
-  Array<string>;
-export const FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList =
+export interface FeatureFlagsDisableCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+}
+export const FeatureFlagsDisableCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/disable/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "FeatureFlagsDisableCreateRequest",
+}) as any as S.Schema<FeatureFlagsDisableCreateRequest>;
+
+export interface FeatureFlagsEnableCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+}
+export const FeatureFlagsEnableCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/enable/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "FeatureFlagsEnableCreateRequest",
+}) as any as S.Schema<FeatureFlagsEnableCreateRequest>;
+
+export interface FeatureFlagsUnarchiveCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+}
+export const FeatureFlagsUnarchiveCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/unarchive/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "FeatureFlagsUnarchiveCreateRequest",
+}) as any as S.Schema<FeatureFlagsUnarchiveCreateRequest>;
+
+export interface GetFeatureFlagRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+}
+export const GetFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFeatureFlagRequest",
+}) as any as S.Schema<GetFeatureFlagRequest>;
+
+export interface GetFeatureFlagsActivityRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+  /** Number of items per page */
+  limit?: number;
+  /** Page number */
+  page?: number;
+}
+export const GetFeatureFlagsActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/activity/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFeatureFlagsActivityRequest",
+}) as any as S.Schema<GetFeatureFlagsActivityRequest>;
+
+export interface Change {
+  type?: string;
+  action?: string;
+  field?: string;
+  before?: unknown;
+  after?: unknown;
+}
+export const Change = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    action: S.optional(S.String),
+    field: S.optional(S.String),
+    before: S.optional(S.Unknown),
+    after: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Change" }) as any as S.Schema<Change>;
+
+export type DetailChangesList = Array<Change>;
+export const DetailChangesList = /*@__PURE__*/ S.Array(
+  Change,
+) as any as S.Schema<DetailChangesList>;
+
+export interface Merge {
+  type?: string;
+  source?: unknown;
+  target?: unknown;
+}
+export const Merge = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    source: S.optional(S.Unknown),
+    target: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Merge" }) as any as S.Schema<Merge>;
+
+export interface Trigger {
+  job_type?: string;
+  job_id?: string;
+  payload?: unknown;
+}
+export const Trigger = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_type: S.optional(S.String),
+    job_id: S.optional(S.String),
+    payload: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
+
+export interface Detail {
+  id?: string;
+  changes?: DetailChangesList;
+  merge?: Merge;
+  trigger?: Trigger;
+  name?: string;
+  short_id?: string;
+  type?: string;
+}
+export const Detail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    changes: S.optional(DetailChangesList),
+    merge: S.optional(Merge),
+    trigger: S.optional(Trigger),
+    name: S.optional(S.String),
+    short_id: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "Detail" }) as any as S.Schema<Detail>;
+
+export interface ActivityLogEntry {
+  id?: string;
+  user?: unknown | null;
+  activity?: string;
+  scope?: string;
+  item_id?: string;
+  detail?: Detail;
+  created_at?: string;
+  /** Whether the activity was performed by the system rather than a user. */
+  is_system?: boolean;
+  /** Whether the acting user was being impersonated by PostHog staff. */
+  was_impersonated?: boolean;
+  /** API client that triggered the activity, from the x-posthog-client request header (e.g. 'mcp'). Null for requests that did not send the header. */
+  client?: string | null;
+}
+export const ActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    user: S.optional(S.NullOr(S.Unknown)),
+    activity: S.optional(S.String),
+    scope: S.optional(S.String),
+    item_id: S.optional(S.String),
+    detail: S.optional(Detail),
+    created_at: S.optional(S.String),
+    is_system: S.optional(S.Boolean),
+    was_impersonated: S.optional(S.Boolean),
+    client: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ActivityLogEntry",
+}) as any as S.Schema<ActivityLogEntry>;
+
+export type ActivityLogPaginatedResponseResultsList = Array<ActivityLogEntry>;
+export const ActivityLogPaginatedResponseResultsList = /*@__PURE__*/ S.Array(
+  ActivityLogEntry,
+) as any as S.Schema<ActivityLogPaginatedResponseResultsList>;
+
+/** Response shape for paginated activity log endpoints. */
+export interface ActivityLogPaginatedResponse {
+  results?: ActivityLogPaginatedResponseResultsList;
+  next?: string | null;
+  previous?: string | null;
+  total_count?: number;
+}
+export const ActivityLogPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: S.optional(ActivityLogPaginatedResponseResultsList),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    total_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ActivityLogPaginatedResponse",
+}) as any as S.Schema<ActivityLogPaginatedResponse>;
+
+export interface GetFeatureFlagsAllActivityRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of items per page */
+  limit?: number;
+  /** Page number */
+  page?: number;
+}
+export const GetFeatureFlagsAllActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/feature_flags/activity/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFeatureFlagsAllActivityRequest",
+}) as any as S.Schema<GetFeatureFlagsAllActivityRequest>;
+
+export type GetFeatureFlagsEvaluationReasonRequestFlagKeysList = Array<string>;
+export const GetFeatureFlagsEvaluationReasonRequestFlagKeysList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList>;
+  ) as any as S.Schema<GetFeatureFlagsEvaluationReasonRequestFlagKeysList>;
 
-export interface FeatureFlagsEvaluationReasonsRetrieveRequest {
+export interface GetFeatureFlagsEvaluationReasonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** User distinct ID */
   distinct_id: string;
   /** Optional list of flag keys to scope the response to. When omitted, evaluation reasons are returned for every flag in the project, which can be a very large payload on projects with many flags. Pass the specific flag(s) you are debugging to keep the response small. Accepts either repeated query params (flag_keys=a&flag_keys=b) or a JSON array string (flag_keys=["a","b"]). */
-  flag_keys?: FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList;
+  flag_keys?: GetFeatureFlagsEvaluationReasonRequestFlagKeysList;
   /** Groups for feature flag evaluation (JSON object string) */
   groups?: string;
 }
-export const FeatureFlagsEvaluationReasonsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureFlagsEvaluationReasonRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       distinct_id: S.String.pipe(T.Query()),
       flag_keys: S.optional(
-        FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList.pipe(
-          T.Query(),
-        ),
+        GetFeatureFlagsEvaluationReasonRequestFlagKeysList.pipe(T.Query()),
       ),
       groups: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -1716,61 +1826,60 @@ export const FeatureFlagsEvaluationReasonsRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "FeatureFlagsEvaluationReasonsRetrieveRequest",
-  }) as any as S.Schema<FeatureFlagsEvaluationReasonsRetrieveRequest>;
+).annotate({
+  identifier: "GetFeatureFlagsEvaluationReasonRequest",
+}) as any as S.Schema<GetFeatureFlagsEvaluationReasonRequest>;
 
-export interface FeatureFlagsEvaluationReasonsRetrieveResponse {}
-export const FeatureFlagsEvaluationReasonsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "FeatureFlagsEvaluationReasonsRetrieveResponse",
-  }) as any as S.Schema<FeatureFlagsEvaluationReasonsRetrieveResponse>;
+export interface GetFeatureFlagsEvaluationReasonResponse {}
+export const GetFeatureFlagsEvaluationReasonResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetFeatureFlagsEvaluationReasonResponse",
+}) as any as S.Schema<GetFeatureFlagsEvaluationReasonResponse>;
 
-export interface FeatureFlagsMatchingIdsRetrieveRequest {
+export interface GetFeatureFlagsMatchingIdsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const FeatureFlagsMatchingIdsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/feature_flags/matching_ids/",
-        code: 200,
-      }),
-    ),
+export const GetFeatureFlagsMatchingIdsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/feature_flags/matching_ids/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "FeatureFlagsMatchingIdsRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsMatchingIdsRetrieveRequest>;
+  identifier: "GetFeatureFlagsMatchingIdsRequest",
+}) as any as S.Schema<GetFeatureFlagsMatchingIdsRequest>;
 
-export interface FeatureFlagsMatchingIdsRetrieveResponse {}
-export const FeatureFlagsMatchingIdsRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface GetFeatureFlagsMatchingIdsResponse {}
+export const GetFeatureFlagsMatchingIdsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "FeatureFlagsMatchingIdsRetrieveResponse",
-}) as any as S.Schema<FeatureFlagsMatchingIdsRetrieveResponse>;
+  identifier: "GetFeatureFlagsMatchingIdsResponse",
+}) as any as S.Schema<GetFeatureFlagsMatchingIdsResponse>;
 
-export type FeatureFlagsMyFlagsRetrieveRequestFlagKeysList = Array<string>;
-export const FeatureFlagsMyFlagsRetrieveRequestFlagKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FeatureFlagsMyFlagsRetrieveRequestFlagKeysList>;
+export type GetFeatureFlagsMyFlagRequestFlagKeysList = Array<string>;
+export const GetFeatureFlagsMyFlagRequestFlagKeysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetFeatureFlagsMyFlagRequestFlagKeysList>;
 
-export interface FeatureFlagsMyFlagsRetrieveRequest {
+export interface GetFeatureFlagsMyFlagRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Optional list of flag keys to scope the response to. When omitted, every flag in the project is returned with its evaluated value, which can be a very large payload on projects with many flags. Pass the specific flag(s) you want to check to keep the response small. Accepts either repeated query params (flag_keys=a&flag_keys=b) or a JSON array string (flag_keys=["a","b"]). */
-  flag_keys?: FeatureFlagsMyFlagsRetrieveRequestFlagKeysList;
+  flag_keys?: GetFeatureFlagsMyFlagRequestFlagKeysList;
   /** Groups for feature flag evaluation (JSON object string) */
   groups?: string;
 }
-export const FeatureFlagsMyFlagsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureFlagsMyFlagRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     flag_keys: S.optional(
-      FeatureFlagsMyFlagsRetrieveRequestFlagKeysList.pipe(T.Query()),
+      GetFeatureFlagsMyFlagRequestFlagKeysList.pipe(T.Query()),
     ),
     groups: S.optional(S.String.pipe(T.Query())),
   }).pipe(
@@ -1781,8 +1890,8 @@ export const FeatureFlagsMyFlagsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeatureFlagsMyFlagsRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsMyFlagsRetrieveRequest>;
+  identifier: "GetFeatureFlagsMyFlagRequest",
+}) as any as S.Schema<GetFeatureFlagsMyFlagRequest>;
 
 export type MinimalFeatureFlagFiltersMap = {
   [key: string]: unknown | undefined;
@@ -1863,78 +1972,54 @@ export const MyFlagsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MyFlagsResponse",
 }) as any as S.Schema<MyFlagsResponse>;
 
-export type FeatureFlagsMyFlagsRetrieveResponseBodyList =
-  Array<MyFlagsResponse>;
-export const FeatureFlagsMyFlagsRetrieveResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    MyFlagsResponse,
-  ) as any as S.Schema<FeatureFlagsMyFlagsRetrieveResponseBodyList>;
+export type GetFeatureFlagsMyFlagResponseBodyList = Array<MyFlagsResponse>;
+export const GetFeatureFlagsMyFlagResponseBodyList = /*@__PURE__*/ S.Array(
+  MyFlagsResponse,
+) as any as S.Schema<GetFeatureFlagsMyFlagResponseBodyList>;
 
-export type FeatureFlagsMyFlagsRetrieveResponse =
-  FeatureFlagsMyFlagsRetrieveResponseBodyList;
-export const FeatureFlagsMyFlagsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  FeatureFlagsMyFlagsRetrieveResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetFeatureFlagsMyFlagResponse =
+  GetFeatureFlagsMyFlagResponseBodyList;
+export const GetFeatureFlagsMyFlagResponse = /*@__PURE__*/ S.suspend(() =>
+  GetFeatureFlagsMyFlagResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "FeatureFlagsMyFlagsRetrieveResponse",
-}) as any as S.Schema<FeatureFlagsMyFlagsRetrieveResponse>;
+  identifier: "GetFeatureFlagsMyFlagResponse",
+}) as any as S.Schema<GetFeatureFlagsMyFlagResponse>;
 
-export interface FeatureFlagsRemoteConfigRetrieveRequest {
+export interface GetFeatureFlagsRemoteConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
   id: number;
 }
-export const FeatureFlagsRemoteConfigRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/feature_flags/{id}/remote_config/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "FeatureFlagsRemoteConfigRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsRemoteConfigRetrieveRequest>;
-
-export interface FeatureFlagsRemoteConfigRetrieveResponse {}
-export const FeatureFlagsRemoteConfigRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "FeatureFlagsRemoteConfigRetrieveResponse",
-}) as any as S.Schema<FeatureFlagsRemoteConfigRetrieveResponse>;
-
-export interface FeatureFlagsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this feature flag. */
-  id: number;
-}
-export const FeatureFlagsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureFlagsRemoteConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/feature_flags/{id}/",
+      uri: "/api/projects/{project_id}/feature_flags/{id}/remote_config/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "FeatureFlagsRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsRetrieveRequest>;
+  identifier: "GetFeatureFlagsRemoteConfigRequest",
+}) as any as S.Schema<GetFeatureFlagsRemoteConfigRequest>;
 
-export interface FeatureFlagsStatusRetrieveRequest {
+export interface GetFeatureFlagsRemoteConfigResponse {}
+export const GetFeatureFlagsRemoteConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetFeatureFlagsRemoteConfigResponse",
+}) as any as S.Schema<GetFeatureFlagsRemoteConfigResponse>;
+
+export interface GetFeatureFlagsStatusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
   id: number;
 }
-export const FeatureFlagsStatusRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureFlagsStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -1946,15 +2031,15 @@ export const FeatureFlagsStatusRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeatureFlagsStatusRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsStatusRetrieveRequest>;
+  identifier: "GetFeatureFlagsStatusRequest",
+}) as any as S.Schema<GetFeatureFlagsStatusRequest>;
 
 export interface FeatureFlagRolloutSummary {
   /** True if the flag is effectively rolled out to everyone, independent of recent evaluation. For boolean flags this means at least one release condition targets 100% with no property filters (or there are no release conditions); for multivariate flags it means a single variant is served to 100% via a fully rolled out release condition. This is the signal for 'fully rolled out' / GA — unlike `status`, which only reflects recent evaluation. */
   effectively_full_rollout: boolean;
-  /** True if any release condition has property filters, i.e. the flag is conditionally targeted rather than a blanket rollout. When true, `max_rollout_percentage` is a percentage within the targeted segment, not of the whole user base. */
+  /** True if any release condition has property filters, i.e. the flag is conditionally targeted rather than a blanket rollout. This says nothing about which condition produced `max_rollout_percentage`: the two fields are computed independently over the whole condition list. */
   has_targeting_conditions: boolean;
-  /** Highest rollout percentage (0-100) across the flag's release conditions, treating a missing percentage as 100. Null when the flag has no release conditions. Interpret together with `has_targeting_conditions`. */
+  /** Highest rollout percentage (0-100) across the flag's release conditions, treating a missing percentage as 100. Null when the flag has no release conditions. The maximum can come from an untargeted condition even when `has_targeting_conditions` is true, so it cannot be attributed to a targeted condition or read as a share of a targeted segment. */
   max_rollout_percentage: number | null;
   /** True if the flag serves multiple variants (has a multivariate variant set). */
   is_multivariate: boolean;
@@ -1975,6 +2060,8 @@ export interface FeatureFlagStatusResponse {
   status?: string;
   /** Human-readable explanation of the status */
   reason?: string;
+  /** True when `reason` already describes the flag's rollout, which happens when the status was reached from the configuration rather than from evaluation data. A caller that narrates the rollout separately should stay quiet rather than repeat it. */
+  reason_states_rollout?: boolean;
   /** Summary of the flag's rollout configuration, for determining whether it is fully rolled out. */
   rollout?: FeatureFlagRolloutSummary;
 }
@@ -1982,13 +2069,14 @@ export const FeatureFlagStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(S.String),
     reason: S.optional(S.String),
+    reason_states_rollout: S.optional(S.Boolean),
     rollout: S.optional(FeatureFlagRolloutSummary),
   }),
 ).annotate({
   identifier: "FeatureFlagStatusResponse",
 }) as any as S.Schema<FeatureFlagStatusResponse>;
 
-export interface FeatureFlagsVersionsRetrieveRequest {
+export interface GetFeatureFlagsVersionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
@@ -1996,7 +2084,7 @@ export interface FeatureFlagsVersionsRetrieveRequest {
   /** The version number to reconstruct. */
   version_number: number;
 }
-export const FeatureFlagsVersionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureFlagsVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -2009,8 +2097,8 @@ export const FeatureFlagsVersionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeatureFlagsVersionsRetrieveRequest",
-}) as any as S.Schema<FeatureFlagsVersionsRetrieveRequest>;
+  identifier: "GetFeatureFlagsVersionRequest",
+}) as any as S.Schema<GetFeatureFlagsVersionRequest>;
 
 export type FeatureFlagVersionResponseFiltersMap = {
   [key: string]: unknown | undefined;
@@ -2091,108 +2179,54 @@ export const FeatureFlagVersionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureFlagVersionResponse",
 }) as any as S.Schema<FeatureFlagVersionResponse>;
 
-export interface ListFeatureFlagDependentFlagsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this feature flag. */
-  id: number;
-}
-export const ListFeatureFlagDependentFlagsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/feature_flags/{id}/dependent_flags/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ListFeatureFlagDependentFlagsRequest",
-}) as any as S.Schema<ListFeatureFlagDependentFlagsRequest>;
+export type ListFeatureFlagsRequestActive = "STALE" | "false" | "true";
+export const ListFeatureFlagsRequestActive = /*@__PURE__*/ S.String;
 
-export interface DependentFlag {
-  /** Feature flag ID */
-  id?: number;
-  /** Feature flag key */
-  key?: string;
-  /** Feature flag name */
-  name?: string;
-}
-export const DependentFlag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    key: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DependentFlag" }) as any as S.Schema<DependentFlag>;
+export type ListFeatureFlagsRequestArchived = "false" | "true";
+export const ListFeatureFlagsRequestArchived = /*@__PURE__*/ S.String;
 
-export type FeatureFlagsDependentFlagsListResponseBodyList =
-  Array<DependentFlag>;
-export const FeatureFlagsDependentFlagsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DependentFlag,
-  ) as any as S.Schema<FeatureFlagsDependentFlagsListResponseBodyList>;
-
-export type ListFeatureFlagDependentFlagsResponse =
-  FeatureFlagsDependentFlagsListResponseBodyList;
-export const ListFeatureFlagDependentFlagsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    FeatureFlagsDependentFlagsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListFeatureFlagDependentFlagsResponse",
-}) as any as S.Schema<ListFeatureFlagDependentFlagsResponse>;
-
-export type FeatureFlagsListRequestActive = "STALE" | "false" | "true";
-export const FeatureFlagsListRequestActive = /*@__PURE__*/ S.String;
-
-export type FeatureFlagsListRequestArchived = "false" | "true";
-export const FeatureFlagsListRequestArchived = /*@__PURE__*/ S.String;
-
-export type FeatureFlagsListRequestEligibleForExperiment = "true";
-export const FeatureFlagsListRequestEligibleForExperiment =
+export type ListFeatureFlagsRequestEligibleForExperiment = "true";
+export const ListFeatureFlagsRequestEligibleForExperiment =
   /*@__PURE__*/ S.String;
 
-export type FeatureFlagsListRequestEvaluationRuntime =
+export type ListFeatureFlagsRequestEvaluationRuntime =
   | "all"
   | "client"
   | "server";
-export const FeatureFlagsListRequestEvaluationRuntime = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestEvaluationRuntime = /*@__PURE__*/ S.String;
 
-export type FeatureFlagsListRequestHasEvaluationContexts = "false" | "true";
-export const FeatureFlagsListRequestHasEvaluationContexts =
+export type ListFeatureFlagsRequestHasEvaluationContexts = "false" | "true";
+export const ListFeatureFlagsRequestHasEvaluationContexts =
   /*@__PURE__*/ S.String;
 
-export type FeatureFlagsListRequestType =
+export type ListFeatureFlagsRequestType =
   | "boolean"
   | "experiment"
   | "multivariant"
   | "remote_config";
-export const FeatureFlagsListRequestType = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestType = /*@__PURE__*/ S.String;
 
 export interface ListFeatureFlagsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  active?: FeatureFlagsListRequestActive | (string & {});
+  active?: ListFeatureFlagsRequestActive | (string & {});
   /** Filter by archived state. When omitted, archived flags are excluded. */
-  archived?: FeatureFlagsListRequestArchived | (string & {});
+  archived?: ListFeatureFlagsRequestArchived | (string & {});
   /** Filter by the user(s) who created the feature flag. Accepts a single user ID, or a JSON-encoded / comma-separated list of user IDs to match any of them. */
   created_by_id?: string;
   /** When 'true', only return flags that can back an experiment: multivariate with 2-20 variants. Any other value is ignored. */
   eligible_for_experiment?:
-    | FeatureFlagsListRequestEligibleForExperiment
+    | ListFeatureFlagsRequestEligibleForExperiment
     | (string & {});
   /** Filter feature flags by their evaluation runtime. */
-  evaluation_runtime?: FeatureFlagsListRequestEvaluationRuntime | (string & {});
+  evaluation_runtime?: ListFeatureFlagsRequestEvaluationRuntime | (string & {});
   /** JSON-encoded list of feature flag keys to exclude from the results. */
   excluded_properties?: string;
   /** JSON-encoded list of tag names to exclude. Flags carrying any of these tags are filtered out. */
   excluded_tags?: string;
   /** Filter feature flags by presence of evaluation contexts. 'true' returns only flags with at least one evaluation context, 'false' returns only flags without. */
   has_evaluation_contexts?:
-    | FeatureFlagsListRequestHasEvaluationContexts
+    | ListFeatureFlagsRequestHasEvaluationContexts
     | (string & {});
   /** Filter by exact feature flag key match. Case insensitive. */
   key?: string;
@@ -2204,31 +2238,31 @@ export interface ListFeatureFlagsRequest {
   search?: string;
   /** JSON-encoded list of tag names to filter feature flags by. */
   tags?: string;
-  type?: FeatureFlagsListRequestType | (string & {});
+  type?: ListFeatureFlagsRequestType | (string & {});
 }
 export const ListFeatureFlagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    active: S.optional(FeatureFlagsListRequestActive.pipe(T.Query())),
-    archived: S.optional(FeatureFlagsListRequestArchived.pipe(T.Query())),
+    active: S.optional(ListFeatureFlagsRequestActive.pipe(T.Query())),
+    archived: S.optional(ListFeatureFlagsRequestArchived.pipe(T.Query())),
     created_by_id: S.optional(S.String.pipe(T.Query())),
     eligible_for_experiment: S.optional(
-      FeatureFlagsListRequestEligibleForExperiment.pipe(T.Query()),
+      ListFeatureFlagsRequestEligibleForExperiment.pipe(T.Query()),
     ),
     evaluation_runtime: S.optional(
-      FeatureFlagsListRequestEvaluationRuntime.pipe(T.Query()),
+      ListFeatureFlagsRequestEvaluationRuntime.pipe(T.Query()),
     ),
     excluded_properties: S.optional(S.String.pipe(T.Query())),
     excluded_tags: S.optional(S.String.pipe(T.Query())),
     has_evaluation_contexts: S.optional(
-      FeatureFlagsListRequestHasEvaluationContexts.pipe(T.Query()),
+      ListFeatureFlagsRequestHasEvaluationContexts.pipe(T.Query()),
     ),
     key: S.optional(S.String.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
     search: S.optional(S.String.pipe(T.Query())),
     tags: S.optional(S.String.pipe(T.Query())),
-    type: S.optional(FeatureFlagsListRequestType.pipe(T.Query())),
+    type: S.optional(ListFeatureFlagsRequestType.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2263,44 +2297,98 @@ export const PaginatedFeatureFlagListOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedFeatureFlagListOutput",
 }) as any as S.Schema<PaginatedFeatureFlagListOutput>;
 
-export type FeatureFlagsUpdateRequestFiltersMap = {
+export interface ListFeatureFlagsDependentFlagsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this feature flag. */
+  id: number;
+}
+export const ListFeatureFlagsDependentFlagsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/feature_flags/{id}/dependent_flags/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListFeatureFlagsDependentFlagsRequest",
+}) as any as S.Schema<ListFeatureFlagsDependentFlagsRequest>;
+
+export interface DependentFlag {
+  /** Feature flag ID */
+  id?: number;
+  /** Feature flag key */
+  key?: string;
+  /** Feature flag name */
+  name?: string;
+}
+export const DependentFlag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    key: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "DependentFlag" }) as any as S.Schema<DependentFlag>;
+
+export type ListFeatureFlagsDependentFlagsResponseBodyList =
+  Array<DependentFlag>;
+export const ListFeatureFlagsDependentFlagsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DependentFlag,
+  ) as any as S.Schema<ListFeatureFlagsDependentFlagsResponseBodyList>;
+
+export type ListFeatureFlagsDependentFlagsResponse =
+  ListFeatureFlagsDependentFlagsResponseBodyList;
+export const ListFeatureFlagsDependentFlagsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListFeatureFlagsDependentFlagsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListFeatureFlagsDependentFlagsResponse",
+}) as any as S.Schema<ListFeatureFlagsDependentFlagsResponse>;
+
+export type UpdateFeatureFlagRequestFiltersMap = {
   [key: string]: unknown | undefined;
 };
-export const FeatureFlagsUpdateRequestFiltersMap = /*@__PURE__*/ S.Record(
+export const UpdateFeatureFlagRequestFiltersMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<FeatureFlagsUpdateRequestFiltersMap>;
+) as any as S.Schema<UpdateFeatureFlagRequestFiltersMap>;
 
-export type FeatureFlagsUpdateRequestTagsList = Array<unknown>;
-export const FeatureFlagsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdateFeatureFlagRequestTagsList = Array<unknown>;
+export const UpdateFeatureFlagRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<FeatureFlagsUpdateRequestTagsList>;
+) as any as S.Schema<UpdateFeatureFlagRequestTagsList>;
 
-export type FeatureFlagsUpdateRequestEvaluationContextsList = Array<unknown>;
-export const FeatureFlagsUpdateRequestEvaluationContextsList =
+export type UpdateFeatureFlagRequestEvaluationContextsList = Array<unknown>;
+export const UpdateFeatureFlagRequestEvaluationContextsList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<FeatureFlagsUpdateRequestEvaluationContextsList>;
+  ) as any as S.Schema<UpdateFeatureFlagRequestEvaluationContextsList>;
 
-export type FeatureFlagsUpdateRequestAnalyticsDashboardsList = Array<number>;
-export const FeatureFlagsUpdateRequestAnalyticsDashboardsList =
+export type UpdateFeatureFlagRequestAnalyticsDashboardsList = Array<number>;
+export const UpdateFeatureFlagRequestAnalyticsDashboardsList =
   /*@__PURE__*/ S.Array(
     S.Number,
-  ) as any as S.Schema<FeatureFlagsUpdateRequestAnalyticsDashboardsList>;
+  ) as any as S.Schema<UpdateFeatureFlagRequestAnalyticsDashboardsList>;
 
 /** Specifies where this feature flag should be evaluated * `server` - Server * `client` - Client * `all` - All */
-export type FeatureFlagsUpdateRequestEvaluationRuntime =
+export type UpdateFeatureFlagRequestEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
-export const FeatureFlagsUpdateRequestEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagsUpdateRequestEvaluationRuntime>;
+export const UpdateFeatureFlagRequestEvaluationRuntime =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureFlagRequestEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
-export type FeatureFlagsUpdateRequestBucketingIdentifier =
+export type UpdateFeatureFlagRequestBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
-export const FeatureFlagsUpdateRequestBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagsUpdateRequestBucketingIdentifier>;
+export const UpdateFeatureFlagRequestBucketingIdentifier =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureFlagRequestBucketingIdentifier>;
 
 export interface UpdateFeatureFlagRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2310,7 +2398,7 @@ export interface UpdateFeatureFlagRequest {
   /** contains the description for the flag (field name `name` is kept for backwards-compatibility) */
   name?: string;
   key?: string;
-  filters?: FeatureFlagsUpdateRequestFiltersMap;
+  filters?: UpdateFeatureFlagRequestFiltersMap;
   deleted?: boolean;
   active?: boolean;
   /** Whether the flag is archived. Archived flags are hidden from the flag list by default and must be disabled (`active: false`). */
@@ -2318,18 +2406,18 @@ export interface UpdateFeatureFlagRequest {
   created_at?: string;
   version?: number;
   ensure_experience_continuity?: boolean | null;
-  tags?: FeatureFlagsUpdateRequestTagsList;
-  evaluation_contexts?: FeatureFlagsUpdateRequestEvaluationContextsList;
-  analytics_dashboards?: FeatureFlagsUpdateRequestAnalyticsDashboardsList;
+  tags?: UpdateFeatureFlagRequestTagsList;
+  evaluation_contexts?: UpdateFeatureFlagRequestEvaluationContextsList;
+  analytics_dashboards?: UpdateFeatureFlagRequestAnalyticsDashboardsList;
   has_enriched_analytics?: boolean | null;
   /** Indicates the origin product of the feature flag. Choices: 'feature_flags', 'experiments', 'surveys', 'early_access_features', 'web_experiments', 'product_tours'. * `feature_flags` - feature_flags * `experiments` - experiments * `surveys` - surveys * `early_access_features` - early_access_features * `web_experiments` - web_experiments * `product_tours` - product_tours */
   creation_context?: FeatureFlagCreationContextEnum | (string & {});
   is_remote_configuration?: boolean | null;
   has_encrypted_payloads?: boolean | null;
   /** Specifies where this feature flag should be evaluated * `server` - Server * `client` - Client * `all` - All */
-  evaluation_runtime?: FeatureFlagsUpdateRequestEvaluationRuntime | null;
+  evaluation_runtime?: UpdateFeatureFlagRequestEvaluationRuntime | null;
   /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
-  bucketing_identifier?: FeatureFlagsUpdateRequestBucketingIdentifier | null;
+  bucketing_identifier?: UpdateFeatureFlagRequestBucketingIdentifier | null;
   /** Last time this feature flag was called (from $feature_flag_called events) */
   last_called_at?: string | null;
   _create_in_folder?: string;
@@ -2340,29 +2428,29 @@ export const UpdateFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
     id: S.Number.pipe(T.Label()),
     name: S.optional(S.String),
     key: S.optional(S.String),
-    filters: S.optional(FeatureFlagsUpdateRequestFiltersMap),
+    filters: S.optional(UpdateFeatureFlagRequestFiltersMap),
     deleted: S.optional(S.Boolean),
     active: S.optional(S.Boolean),
     archived: S.optional(S.Boolean),
     created_at: S.optional(S.String),
     version: S.optional(S.Number),
     ensure_experience_continuity: S.optional(S.NullOr(S.Boolean)),
-    tags: S.optional(FeatureFlagsUpdateRequestTagsList),
+    tags: S.optional(UpdateFeatureFlagRequestTagsList),
     evaluation_contexts: S.optional(
-      FeatureFlagsUpdateRequestEvaluationContextsList,
+      UpdateFeatureFlagRequestEvaluationContextsList,
     ),
     analytics_dashboards: S.optional(
-      FeatureFlagsUpdateRequestAnalyticsDashboardsList,
+      UpdateFeatureFlagRequestAnalyticsDashboardsList,
     ),
     has_enriched_analytics: S.optional(S.NullOr(S.Boolean)),
     creation_context: S.optional(FeatureFlagCreationContextEnum),
     is_remote_configuration: S.optional(S.NullOr(S.Boolean)),
     has_encrypted_payloads: S.optional(S.NullOr(S.Boolean)),
     evaluation_runtime: S.optional(
-      S.NullOr(FeatureFlagsUpdateRequestEvaluationRuntime),
+      S.NullOr(UpdateFeatureFlagRequestEvaluationRuntime),
     ),
     bucketing_identifier: S.optional(
-      S.NullOr(FeatureFlagsUpdateRequestBucketingIdentifier),
+      S.NullOr(UpdateFeatureFlagRequestBucketingIdentifier),
     ),
     last_called_at: S.optional(S.NullOr(S.String)),
     _create_in_folder: S.optional(S.String),
@@ -2378,20 +2466,20 @@ export const UpdateFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFeatureFlagRequest>;
 
 /** Organizational tags for this feature flag. */
-export type FeatureFlagsPartialUpdateRequestTagsList = Array<string>;
-export const FeatureFlagsPartialUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdateFeatureFlagsPartialRequestTagsList = Array<string>;
+export const UpdateFeatureFlagsPartialRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeatureFlagsPartialUpdateRequestTagsList>;
+) as any as S.Schema<UpdateFeatureFlagsPartialRequestTagsList>;
 
 /** Evaluation contexts that control where this flag evaluates at runtime. */
-export type FeatureFlagsPartialUpdateRequestEvaluationContextsList =
+export type UpdateFeatureFlagsPartialRequestEvaluationContextsList =
   Array<string>;
-export const FeatureFlagsPartialUpdateRequestEvaluationContextsList =
+export const UpdateFeatureFlagsPartialRequestEvaluationContextsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FeatureFlagsPartialUpdateRequestEvaluationContextsList>;
+  ) as any as S.Schema<UpdateFeatureFlagsPartialRequestEvaluationContextsList>;
 
-export interface UpdateFeatureFlagPartialRequest {
+export interface UpdateFeatureFlagsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this feature flag. */
@@ -2407,9 +2495,9 @@ export interface UpdateFeatureFlagPartialRequest {
   /** Whether the flag is archived. Archived flags are hidden from the flag list by default and must be disabled (`active: false`). */
   archived?: boolean;
   /** Organizational tags for this feature flag. */
-  tags?: FeatureFlagsPartialUpdateRequestTagsList;
+  tags?: UpdateFeatureFlagsPartialRequestTagsList;
   /** Evaluation contexts that control where this flag evaluates at runtime. */
-  evaluation_contexts?: FeatureFlagsPartialUpdateRequestEvaluationContextsList;
+  evaluation_contexts?: UpdateFeatureFlagsPartialRequestEvaluationContextsList;
   /** Whether this flag is a remote configuration flag that delivers a payload rather than gating a feature. */
   is_remote_configuration?: boolean | null;
   /** Whether to persist a user's flag value across the anonymous-to-identified transition (the 'persist across authentication steps' option). Incompatible with device_id bucketing. */
@@ -2419,7 +2507,7 @@ export interface UpdateFeatureFlagPartialRequest {
   /** Identifier used to bucket users into rollout percentages and variants: 'distinct_id' (user ID, the default) or 'device_id'. Using 'device_id' is incompatible with ensure_experience_continuity=True. * `distinct_id` - User ID (default) * `device_id` - Device ID */
   bucketing_identifier?: BucketingIdentifierEnum | (string & {}) | null;
 }
-export const UpdateFeatureFlagPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFeatureFlagsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -2428,9 +2516,9 @@ export const UpdateFeatureFlagPartialRequest = /*@__PURE__*/ S.suspend(() =>
     filters: S.optional(FeatureFlagFiltersSchema),
     active: S.optional(S.Boolean),
     archived: S.optional(S.Boolean),
-    tags: S.optional(FeatureFlagsPartialUpdateRequestTagsList),
+    tags: S.optional(UpdateFeatureFlagsPartialRequestTagsList),
     evaluation_contexts: S.optional(
-      FeatureFlagsPartialUpdateRequestEvaluationContextsList,
+      UpdateFeatureFlagsPartialRequestEvaluationContextsList,
     ),
     is_remote_configuration: S.optional(S.NullOr(S.Boolean)),
     ensure_experience_continuity: S.optional(S.NullOr(S.Boolean)),
@@ -2444,8 +2532,8 @@ export const UpdateFeatureFlagPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateFeatureFlagPartialRequest",
-}) as any as S.Schema<UpdateFeatureFlagPartialRequest>;
+  identifier: "UpdateFeatureFlagsPartialRequest",
+}) as any as S.Schema<UpdateFeatureFlagsPartialRequest>;
 
 export type CreateFeatureFlagError =
   | BadRequest
@@ -2466,115 +2554,95 @@ export const createFeatureFlag: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateFeatureFlagDashboardError =
+export type CreateFeatureFlagsDashboardError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const createFeatureFlagDashboard: API.OperationMethod<
-  CreateFeatureFlagDashboardRequest,
-  CreateFeatureFlagDashboardResponse,
-  CreateFeatureFlagDashboardError,
+export const createFeatureFlagsDashboard: API.OperationMethod<
+  CreateFeatureFlagsDashboardRequest,
+  CreateFeatureFlagsDashboardResponse,
+  CreateFeatureFlagsDashboardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFeatureFlagDashboardRequest,
-  output: CreateFeatureFlagDashboardResponse,
+  input: CreateFeatureFlagsDashboardRequest,
+  output: CreateFeatureFlagsDashboardResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateFeatureFlagEnrichUsageDashboardError =
+export type CreateFeatureFlagsEnrichUsageDashboardError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const createFeatureFlagEnrichUsageDashboard: API.OperationMethod<
-  CreateFeatureFlagEnrichUsageDashboardRequest,
-  CreateFeatureFlagEnrichUsageDashboardResponse,
-  CreateFeatureFlagEnrichUsageDashboardError,
+export const createFeatureFlagsEnrichUsageDashboard: API.OperationMethod<
+  CreateFeatureFlagsEnrichUsageDashboardRequest,
+  CreateFeatureFlagsEnrichUsageDashboardResponse,
+  CreateFeatureFlagsEnrichUsageDashboardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFeatureFlagEnrichUsageDashboardRequest,
-  output: CreateFeatureFlagEnrichUsageDashboardResponse,
+  input: CreateFeatureFlagsEnrichUsageDashboardRequest,
+  output: CreateFeatureFlagsEnrichUsageDashboardResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateFeatureFlagTestEvaluationError =
+export type CreateFeatureFlagsTestEvaluationError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Test feature flag evaluation against a specific user at an optional point in time. This endpoint allows testing how a feature flag would evaluate for a specific user, optionally at a historical timestamp. When a timestamp is provided, both the flag conditions and person properties are evaluated as they existed at that time. */
-export const createFeatureFlagTestEvaluation: API.OperationMethod<
-  CreateFeatureFlagTestEvaluationRequest,
+export const createFeatureFlagsTestEvaluation: API.OperationMethod<
+  CreateFeatureFlagsTestEvaluationRequest,
   FeatureFlagTestEvaluationResponse,
-  CreateFeatureFlagTestEvaluationError,
+  CreateFeatureFlagsTestEvaluationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFeatureFlagTestEvaluationRequest,
+  input: CreateFeatureFlagsTestEvaluationRequest,
   output: FeatureFlagTestEvaluationResponse,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateFeatureFlagUserBlastRadiusError =
+export type CreateFeatureFlagsUserBlastRadiusError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const createFeatureFlagUserBlastRadius: API.OperationMethod<
-  CreateFeatureFlagUserBlastRadiusRequest,
+export const createFeatureFlagsUserBlastRadius: API.OperationMethod<
+  CreateFeatureFlagsUserBlastRadiusRequest,
   UserBlastRadiusResponse,
-  CreateFeatureFlagUserBlastRadiusError,
+  CreateFeatureFlagsUserBlastRadiusError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFeatureFlagUserBlastRadiusRequest,
+  input: CreateFeatureFlagsUserBlastRadiusRequest,
   output: UserBlastRadiusResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureFlagsActivityRetrieveError =
+export type FeatureFlagsArchiveCreateError =
   | BadRequest
-  | Forbidden
-  | NotFound
+  | Conflict
   | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsActivityRetrieve: API.OperationMethod<
-  FeatureFlagsActivityRetrieveRequest,
-  ActivityLogPaginatedResponse,
-  FeatureFlagsActivityRetrieveError,
+/** Archive a feature flag, hiding it from the default flag list. Sets `archived` to true. An archived flag must be disabled, so an enabled flag also gets `active` set to false in the same write. Targeting, variants and payloads are left as they are, and linked experiment and survey history is preserved. Archiving an enabled flag is refused when other active flags depend on it. An already-archived flag is returned unchanged. */
+export const featureFlagsArchiveCreate: API.OperationMethod<
+  FeatureFlagsArchiveCreateRequest,
+  FeatureFlagOutput,
+  FeatureFlagsArchiveCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsActivityRetrieveRequest,
-  output: ActivityLogPaginatedResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureFlagsAllActivityRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsAllActivityRetrieve: API.OperationMethod<
-  FeatureFlagsAllActivityRetrieveRequest,
-  ActivityLogPaginatedResponse,
-  FeatureFlagsAllActivityRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsAllActivityRetrieveRequest,
-  output: ActivityLogPaginatedResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  input: FeatureFlagsArchiveCreateRequest,
+  output: FeatureFlagOutput,
+  errors: [BadRequest, Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -2670,147 +2738,215 @@ export const featureFlagsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FeatureFlagsEvaluationReasonsRetrieveError =
+export type FeatureFlagsDisableCreateError =
   | BadRequest
-  | Forbidden
-  | NotFound
+  | Conflict
   | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsEvaluationReasonsRetrieve: API.OperationMethod<
-  FeatureFlagsEvaluationReasonsRetrieveRequest,
-  FeatureFlagsEvaluationReasonsRetrieveResponse,
-  FeatureFlagsEvaluationReasonsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsEvaluationReasonsRetrieveRequest,
-  output: FeatureFlagsEvaluationReasonsRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureFlagsMatchingIdsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get IDs of all feature flags matching the current filters. Uses the same filtering logic as the list endpoint. Returns only IDs that the user has permission to edit. */
-export const featureFlagsMatchingIdsRetrieve: API.OperationMethod<
-  FeatureFlagsMatchingIdsRetrieveRequest,
-  FeatureFlagsMatchingIdsRetrieveResponse,
-  FeatureFlagsMatchingIdsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsMatchingIdsRetrieveRequest,
-  output: FeatureFlagsMatchingIdsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureFlagsMyFlagsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsMyFlagsRetrieve: API.OperationMethod<
-  FeatureFlagsMyFlagsRetrieveRequest,
-  FeatureFlagsMyFlagsRetrieveResponse,
-  FeatureFlagsMyFlagsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsMyFlagsRetrieveRequest,
-  output: FeatureFlagsMyFlagsRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureFlagsRemoteConfigRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsRemoteConfigRetrieve: API.OperationMethod<
-  FeatureFlagsRemoteConfigRetrieveRequest,
-  FeatureFlagsRemoteConfigRetrieveResponse,
-  FeatureFlagsRemoteConfigRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsRemoteConfigRetrieveRequest,
-  output: FeatureFlagsRemoteConfigRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureFlagsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsRetrieve: API.OperationMethod<
-  FeatureFlagsRetrieveRequest,
+/** Disable a feature flag. Sets `active` to false and changes nothing else. Targeting, variants, payloads, tags and archived state are left as they are. Refused when other active flags depend on this one. An already-disabled flag is returned unchanged. A disabled flag stops evaluating for every consumer, including a linked experiment or a session replay setting. Read the full definition first to report that impact. */
+export const featureFlagsDisableCreate: API.OperationMethod<
+  FeatureFlagsDisableCreateRequest,
   FeatureFlagOutput,
-  FeatureFlagsRetrieveError,
+  FeatureFlagsDisableCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsRetrieveRequest,
+  input: FeatureFlagsDisableCreateRequest,
+  output: FeatureFlagOutput,
+  errors: [BadRequest, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FeatureFlagsEnableCreateError =
+  | BadRequest
+  | Conflict
+  | PosthogOpError;
+/** Enable a feature flag. Sets `active` to true and changes nothing else. Targeting, variants, payloads, tags and archived state are left as they are. An archived flag is refused: unarchive it first. A flag whose own flag dependencies are disabled is also refused. An already-enabled flag is returned unchanged. */
+export const featureFlagsEnableCreate: API.OperationMethod<
+  FeatureFlagsEnableCreateRequest,
+  FeatureFlagOutput,
+  FeatureFlagsEnableCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FeatureFlagsEnableCreateRequest,
+  output: FeatureFlagOutput,
+  errors: [BadRequest, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FeatureFlagsUnarchiveCreateError = PosthogOpError;
+/** Restore an archived feature flag to the default flag list. Sets `archived` to false and changes nothing else. The flag stays disabled; enable it with a separate call. An already-unarchived flag is returned unchanged. */
+export const featureFlagsUnarchiveCreate: API.OperationMethod<
+  FeatureFlagsUnarchiveCreateRequest,
+  FeatureFlagOutput,
+  FeatureFlagsUnarchiveCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FeatureFlagsUnarchiveCreateRequest,
+  output: FeatureFlagOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagError = Forbidden | NotFound | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlag: API.OperationMethod<
+  GetFeatureFlagRequest,
+  FeatureFlagOutput,
+  GetFeatureFlagError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagRequest,
   output: FeatureFlagOutput,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureFlagsStatusRetrieveError =
+export type GetFeatureFlagsActivityError =
+  | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsStatusRetrieve: API.OperationMethod<
-  FeatureFlagsStatusRetrieveRequest,
-  FeatureFlagStatusResponse,
-  FeatureFlagsStatusRetrieveError,
+export const getFeatureFlagsActivity: API.OperationMethod<
+  GetFeatureFlagsActivityRequest,
+  ActivityLogPaginatedResponse,
+  GetFeatureFlagsActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsStatusRetrieveRequest,
+  input: GetFeatureFlagsActivityRequest,
+  output: ActivityLogPaginatedResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsAllActivityError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlagsAllActivity: API.OperationMethod<
+  GetFeatureFlagsAllActivityRequest,
+  ActivityLogPaginatedResponse,
+  GetFeatureFlagsAllActivityError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsAllActivityRequest,
+  output: ActivityLogPaginatedResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsEvaluationReasonError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlagsEvaluationReason: API.OperationMethod<
+  GetFeatureFlagsEvaluationReasonRequest,
+  GetFeatureFlagsEvaluationReasonResponse,
+  GetFeatureFlagsEvaluationReasonError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsEvaluationReasonRequest,
+  output: GetFeatureFlagsEvaluationReasonResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsMatchingIdsError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get IDs of all feature flags matching the current filters. Uses the same filtering logic as the list endpoint. Returns only IDs that the user has permission to edit. */
+export const getFeatureFlagsMatchingIds: API.OperationMethod<
+  GetFeatureFlagsMatchingIdsRequest,
+  GetFeatureFlagsMatchingIdsResponse,
+  GetFeatureFlagsMatchingIdsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsMatchingIdsRequest,
+  output: GetFeatureFlagsMatchingIdsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsMyFlagError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlagsMyFlag: API.OperationMethod<
+  GetFeatureFlagsMyFlagRequest,
+  GetFeatureFlagsMyFlagResponse,
+  GetFeatureFlagsMyFlagError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsMyFlagRequest,
+  output: GetFeatureFlagsMyFlagResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsRemoteConfigError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlagsRemoteConfig: API.OperationMethod<
+  GetFeatureFlagsRemoteConfigRequest,
+  GetFeatureFlagsRemoteConfigResponse,
+  GetFeatureFlagsRemoteConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsRemoteConfigRequest,
+  output: GetFeatureFlagsRemoteConfigResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureFlagsStatusError = Forbidden | NotFound | PosthogOpError;
+/** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
+export const getFeatureFlagsStatus: API.OperationMethod<
+  GetFeatureFlagsStatusRequest,
+  FeatureFlagStatusResponse,
+  GetFeatureFlagsStatusError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureFlagsStatusRequest,
   output: FeatureFlagStatusResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureFlagsVersionsRetrieveError =
+export type GetFeatureFlagsVersionError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const featureFlagsVersionsRetrieve: API.OperationMethod<
-  FeatureFlagsVersionsRetrieveRequest,
+export const getFeatureFlagsVersion: API.OperationMethod<
+  GetFeatureFlagsVersionRequest,
   FeatureFlagVersionResponse,
-  FeatureFlagsVersionsRetrieveError,
+  GetFeatureFlagsVersionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureFlagsVersionsRetrieveRequest,
+  input: GetFeatureFlagsVersionRequest,
   output: FeatureFlagVersionResponse,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListFeatureFlagDependentFlagsError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get other active flags that depend on this flag. */
-export const listFeatureFlagDependentFlags: API.OperationMethod<
-  ListFeatureFlagDependentFlagsRequest,
-  ListFeatureFlagDependentFlagsResponse,
-  ListFeatureFlagDependentFlagsError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListFeatureFlagDependentFlagsRequest,
-  output: ListFeatureFlagDependentFlagsResponse,
-  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -2834,6 +2970,24 @@ export const listFeatureFlags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListFeatureFlagsDependentFlagsError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get other active flags that depend on this flag. */
+export const listFeatureFlagsDependentFlags: API.OperationMethod<
+  ListFeatureFlagsDependentFlagsRequest,
+  ListFeatureFlagsDependentFlagsResponse,
+  ListFeatureFlagsDependentFlagsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeatureFlagsDependentFlagsRequest,
+  output: ListFeatureFlagsDependentFlagsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateFeatureFlagError =
   | BadRequest
   | Forbidden
@@ -2853,19 +3007,19 @@ export const updateFeatureFlag: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateFeatureFlagPartialError =
+export type UpdateFeatureFlagsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags. If you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user. */
-export const updateFeatureFlagPartial: API.OperationMethod<
-  UpdateFeatureFlagPartialRequest,
+export const updateFeatureFlagsPartial: API.OperationMethod<
+  UpdateFeatureFlagsPartialRequest,
   FeatureFlagOutput,
-  UpdateFeatureFlagPartialError,
+  UpdateFeatureFlagsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateFeatureFlagPartialRequest,
+  input: UpdateFeatureFlagsPartialRequest,
   output: FeatureFlagOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

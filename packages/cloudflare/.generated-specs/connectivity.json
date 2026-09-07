@@ -31,7 +31,8 @@
       "totalCount": "total_count",
       "tunnelId": "tunnel_id",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.connectivity#DirectoryServicesCreateRequestHostInfraIPv4HostNetwork": {
@@ -2446,19 +2447,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.connectivity#DirectoryServicesCreate"
+          "target": "com.cloudflare.connectivity#CreateDirectoryService"
         },
         {
-          "target": "com.cloudflare.connectivity#DirectoryServicesDelete"
+          "target": "com.cloudflare.connectivity#DeleteDirectoryService"
         },
         {
-          "target": "com.cloudflare.connectivity#DirectoryServicesGet"
+          "target": "com.cloudflare.connectivity#GetDirectoryService"
         },
         {
-          "target": "com.cloudflare.connectivity#DirectoryServicesList"
+          "target": "com.cloudflare.connectivity#ListDirectoryServices"
         },
         {
-          "target": "com.cloudflare.connectivity#DirectoryServicesUpdate"
+          "target": "com.cloudflare.connectivity#UpdateDirectoryService"
         }
       ],
       "traits": {

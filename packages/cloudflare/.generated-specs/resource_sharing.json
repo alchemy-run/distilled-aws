@@ -34,7 +34,8 @@
       "resultInfo": "result_info",
       "targetType": "target_type",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.resource_sharing#CreateRequestRecipientsItem": {
@@ -2195,46 +2196,46 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.resource_sharing#Create"
+          "target": "com.cloudflare.resource_sharing#CreateRecipient"
         },
         {
-          "target": "com.cloudflare.resource_sharing#Delete"
+          "target": "com.cloudflare.resource_sharing#CreateResource"
         },
         {
-          "target": "com.cloudflare.resource_sharing#Get"
+          "target": "com.cloudflare.resource_sharing#CreateResourceSharing"
         },
         {
-          "target": "com.cloudflare.resource_sharing#List"
+          "target": "com.cloudflare.resource_sharing#DeleteRecipient"
         },
         {
-          "target": "com.cloudflare.resource_sharing#Update"
+          "target": "com.cloudflare.resource_sharing#DeleteResource"
         },
         {
-          "target": "com.cloudflare.resource_sharing#RecipientsCreate"
+          "target": "com.cloudflare.resource_sharing#DeleteResourceSharing"
         },
         {
-          "target": "com.cloudflare.resource_sharing#RecipientsDelete"
+          "target": "com.cloudflare.resource_sharing#GetRecipient"
         },
         {
-          "target": "com.cloudflare.resource_sharing#RecipientsGet"
+          "target": "com.cloudflare.resource_sharing#GetResource"
         },
         {
-          "target": "com.cloudflare.resource_sharing#RecipientsList"
+          "target": "com.cloudflare.resource_sharing#GetResourceSharing"
         },
         {
-          "target": "com.cloudflare.resource_sharing#ResourcesCreate"
+          "target": "com.cloudflare.resource_sharing#ListRecipients"
         },
         {
-          "target": "com.cloudflare.resource_sharing#ResourcesDelete"
+          "target": "com.cloudflare.resource_sharing#ListResources"
         },
         {
-          "target": "com.cloudflare.resource_sharing#ResourcesGet"
+          "target": "com.cloudflare.resource_sharing#ListResourceSharings"
         },
         {
-          "target": "com.cloudflare.resource_sharing#ResourcesList"
+          "target": "com.cloudflare.resource_sharing#UpdateResource"
         },
         {
-          "target": "com.cloudflare.resource_sharing#ResourcesUpdate"
+          "target": "com.cloudflare.resource_sharing#UpdateResourceSharing"
         }
       ],
       "traits": {

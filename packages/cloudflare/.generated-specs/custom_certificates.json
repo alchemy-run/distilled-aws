@@ -32,7 +32,8 @@
       "uploadedOn": "uploaded_on",
       "vnetId": "vnet_id",
       "zoneId": "zone_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_certificates#CreateRequestBundleMethod": {
@@ -1523,22 +1524,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.custom_certificates#Create"
+          "target": "com.cloudflare.custom_certificates#CreateCustomCertificate"
         },
         {
-          "target": "com.cloudflare.custom_certificates#Delete"
+          "target": "com.cloudflare.custom_certificates#DeleteCustomCertificate"
         },
         {
-          "target": "com.cloudflare.custom_certificates#Edit"
+          "target": "com.cloudflare.custom_certificates#GetCustomCertificate"
         },
         {
-          "target": "com.cloudflare.custom_certificates#Get"
+          "target": "com.cloudflare.custom_certificates#ListCustomCertificates"
         },
         {
-          "target": "com.cloudflare.custom_certificates#List"
+          "target": "com.cloudflare.custom_certificates#PatchCustomCertificate"
         },
         {
-          "target": "com.cloudflare.custom_certificates#PrioritizeUpdate"
+          "target": "com.cloudflare.custom_certificates#PutPrioritize"
         }
       ],
       "traits": {

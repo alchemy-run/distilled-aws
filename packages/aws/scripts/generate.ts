@@ -9,18 +9,19 @@
  * Output: src/services/<sdkId>.ts  +  services/index.ts
  *
  * This runs the SHARED generator CLI (`@distilled.cloud/core/codegen/cli`).
- * convert.ts turns the spec-mirror Smithy + patches/ into `.generated-specs`.
- * generate copies partition data and compiles those models (430 services —
- * one bad one shouldn't hide the other 429; the run still fails at the end).
+ * convert.ts turns the spec-mirror Smithy + patches/ into `.generated-specs`
+ * and copies partition data; generate only compiles those models (430
+ * services — one bad one shouldn't hide the other 429; the run still fails
+ * at the end).
  *
- * The AWS provider spec — shape/error/operation emission, service consts,
- * spec-patch application — lives in `./spec.ts`.
+ * The AWS provider spec — shape/error/operation emission, service consts —
+ * lives in `./spec.ts`. Patch application (`applyAwsSpecPatches`) runs in
+ * convert; `patches/{sdkId}.json` is loaded here only for
+ * `errorCategories`.
  *
  * Flags: `--resource <sdkId>` generates a single service (e.g. `s3`).
  */
-import { Console, Effect, Schema as S } from "effect";
-import * as FileSystem from "effect/FileSystem";
-import * as Path from "effect/Path";
+import { Schema as S } from "effect";
 import { runGeneratorCli } from "@distilled.cloud/core/codegen/cli";
 import { lintAndFormatGenerated } from "@distilled.cloud/core/codegen/format";
 import { loadServiceSpecPatch } from "./spec-schema.ts";
@@ -48,30 +49,6 @@ runGeneratorCli({
   smithyDir: ".generated-specs",
   manualSpecsDir: "manual-specs",
   patchesDir: false,
-
-  // Copy the endpoint rules engine's partition data (region → partition)
-  // out of the smithy submodule. Runtime data the resolver reads, not
-  // generated code — it just has nowhere better to be produced.
-  prepare: ({ root }) =>
-    Effect.gen(function* () {
-      const fs = yield* FileSystem.FileSystem;
-      const p = yield* Path.Path;
-      const src = p.join(root, "specs/spec-mirror-aws/specs/partitions.json");
-      if (
-        !(yield* fs
-          .exists(src)
-          .pipe(Effect.catchCause(() => Effect.succeed(false))))
-      ) {
-        yield* Console.log(
-          "⚠️  partitions.json not found (smithy submodule not initialized)",
-        );
-        return;
-      }
-      const dest = p.join(root, "src", "rules-engine");
-      yield* fs.makeDirectory(dest, { recursive: true });
-      yield* fs.copyFile(src, p.join(dest, "partitions.json"));
-      yield* Console.log("✅ partitions.json");
-    }).pipe(Effect.catchCause(() => Effect.void)),
 
   // Modules are named after the service's PUBLIC sdkId, not the directory
   // Amazon files it under: `amazon-s3` → `s3.ts`, so callers write

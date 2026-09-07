@@ -102,12 +102,6 @@ export const NetworkEgressIpAddressesList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<NetworkEgressIpAddressesList>;
 
-/** The BYOIP egress (NAT gateway) IP addresses pre-allocated for this network from the region's egress IPAM pool. Present in regions that have an egress pool. Customers can allowlist these addresses before egress is switched over to them, since they are reserved ahead of the switch. */
-export type NetworkReservedEgressIpAddressesList = Array<string>;
-export const NetworkReservedEgressIpAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkReservedEgressIpAddressesList>;
-
 /** Metadata about any AWS Route53 Hosted Zones associated with the Network. */
 export interface NetworkHostedZones {
   /** The number of AWS Route53 Hosted Zones associated with the Network. */
@@ -164,10 +158,6 @@ export interface Network {
   /** The date at which the Network was created, represented as a UNIX timestamp since EPOCH. */
   createdAt: number;
   egressIpAddresses?: NetworkEgressIpAddressesList;
-  /** The BYOIP egress (NAT gateway) IP addresses pre-allocated for this network from the region's egress IPAM pool. Present in regions that have an egress pool. Customers can allowlist these addresses before egress is switched over to them, since they are reserved ahead of the switch. */
-  reservedEgressIpAddresses?: NetworkReservedEgressIpAddressesList;
-  /** The single contiguous CIDR block from which all egress (NAT gateway) IP addresses are allocated. Present only for networks created with the egress CIDR block feature enabled. Customers can allowlist this range instead of individual egress IPs so it keeps working when AZs are added. */
-  egressCidrBlock?: string;
   /** Metadata about any AWS Route53 Hosted Zones associated with the Network. */
   hostedZones?: NetworkHostedZones;
   /** The unique identifier of the Network. */
@@ -195,8 +185,6 @@ export const Network = /*@__PURE__*/ S.suspend(() =>
     cidr: S.String,
     createdAt: S.Number,
     egressIpAddresses: S.optional(NetworkEgressIpAddressesList),
-    reservedEgressIpAddresses: S.optional(NetworkReservedEgressIpAddressesList),
-    egressCidrBlock: S.optional(S.String),
     hostedZones: S.optional(NetworkHostedZones),
     id: S.String,
     name: S.String,
@@ -208,6 +196,114 @@ export const Network = /*@__PURE__*/ S.suspend(() =>
     vpcId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Network" }) as any as S.Schema<Network>;
+
+export interface CreatePrivateLinkEndpointRequest {
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** The project ID to create the PrivateLink endpoint for. */
+  projectId: string;
+  /** The name of the PrivateLink endpoint, used as its label in the Vercel dashboard. */
+  name: string;
+  /** The Vercel region to provision the endpoint in. Advanced Networking must be enabled for the project in that region. The endpoint service itself may live in another AWS region. */
+  vercelRegion: string;
+  /** The name of the AWS VPC endpoint service to connect to. Its AWS region is read from the name; when that region differs from the one behind `vercelRegion`, the service must allow cross-region access. */
+  awsServiceName: string;
+  /** Whether to resolve the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. Defaults to `false`, in which case the endpoint is reachable through the DNS names in `awsDnsEntries`. */
+  enablePrivateDns?: boolean;
+}
+export const CreatePrivateLinkEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+    projectId: S.String,
+    name: S.String,
+    vercelRegion: S.String,
+    awsServiceName: S.String,
+    enablePrivateDns: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/networking/privatelink/endpoints",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreatePrivateLinkEndpointRequest",
+}) as any as S.Schema<CreatePrivateLinkEndpointRequest>;
+
+/** The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled. */
+export type PrivateLinkEndpointAwsDnsEntriesList = Array<string>;
+export const PrivateLinkEndpointAwsDnsEntriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PrivateLinkEndpointAwsDnsEntriesList>;
+
+/** The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint. */
+export type PrivateLinkEndpointPrivateDnsNamesList = Array<string>;
+export const PrivateLinkEndpointPrivateDnsNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PrivateLinkEndpointPrivateDnsNamesList>;
+
+/** The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted. */
+export type PrivateLinkEndpointStatus =
+  | "available"
+  | "creating"
+  | "deleting"
+  | "failed"
+  | "pending-acceptance"
+  | "provisioning"
+  | "rejected";
+export const PrivateLinkEndpointStatus = /*@__PURE__*/ S.String;
+
+/** A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet. */
+export interface PrivateLinkEndpoint {
+  /** The unique identifier of the PrivateLink endpoint. */
+  endpointId: string;
+  /** The name of the PrivateLink endpoint, shown in the Vercel dashboard. */
+  name: string;
+  /** The identifier of the team that owns the PrivateLink endpoint. */
+  teamId: string;
+  /** The identifier of the project the PrivateLink endpoint belongs to. */
+  projectId: string;
+  /** The Vercel region the endpoint is provisioned in. */
+  vercelRegion: string;
+  /** The AWS VPC endpoint service the endpoint connects to. */
+  awsServiceName: string;
+  /** The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint. */
+  vpcEndpointId?: string;
+  /** The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled. */
+  awsDnsEntries?: PrivateLinkEndpointAwsDnsEntriesList;
+  /** The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint. */
+  privateDnsNames?: PrivateLinkEndpointPrivateDnsNamesList;
+  /** The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted. */
+  status: PrivateLinkEndpointStatus;
+  /** A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason. */
+  statusMessage?: string;
+  /** Timestamp in milliseconds since the UNIX epoch for when the endpoint was created. */
+  createdAt: number;
+  /** Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated. */
+  updatedAt: number;
+}
+export const PrivateLinkEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointId: S.String,
+    name: S.String,
+    teamId: S.String,
+    projectId: S.String,
+    vercelRegion: S.String,
+    awsServiceName: S.String,
+    vpcEndpointId: S.optional(S.String),
+    awsDnsEntries: S.optional(PrivateLinkEndpointAwsDnsEntriesList),
+    privateDnsNames: S.optional(PrivateLinkEndpointPrivateDnsNamesList),
+    status: PrivateLinkEndpointStatus,
+    statusMessage: S.optional(S.String),
+    createdAt: S.Number,
+    updatedAt: S.Number,
+  }),
+).annotate({
+  identifier: "PrivateLinkEndpoint",
+}) as any as S.Schema<PrivateLinkEndpoint>;
 
 export interface DeleteNetworkRequest {
   /** The ID of the network to delete */
@@ -239,6 +335,40 @@ export const DeleteNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteNetworkResponse",
 }) as any as S.Schema<DeleteNetworkResponse>;
+
+export interface DeletePrivateLinkEndpointRequest {
+  /** The unique identifier of the PrivateLink endpoint. */
+  endpointId: string;
+  /** The project ID the PrivateLink endpoint belongs to. */
+  projectId: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+}
+export const DeletePrivateLinkEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointId: S.String.pipe(T.Label()),
+    projectId: S.String.pipe(T.Query()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/networking/privatelink/endpoints/{endpointId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeletePrivateLinkEndpointRequest",
+}) as any as S.Schema<DeletePrivateLinkEndpointRequest>;
+
+export type DeletePrivateLinkEndpointResponse = unknown;
+export const DeletePrivateLinkEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeletePrivateLinkEndpointResponse",
+}) as any as S.Schema<DeletePrivateLinkEndpointResponse>;
 
 export interface ListNetworksRequest {
   /** Whether to include Hosted Zones in the response */
@@ -279,6 +409,44 @@ export const ListNetworksResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListNetworksResponse",
 }) as any as S.Schema<ListNetworksResponse>;
 
+export interface ListPrivateLinkEndpointsRequest {
+  /** The project ID to list PrivateLink endpoints for. */
+  projectId: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+}
+export const ListPrivateLinkEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Query()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/networking/privatelink/endpoints",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkEndpointsRequest",
+}) as any as S.Schema<ListPrivateLinkEndpointsRequest>;
+
+export type ListPrivateLinkEndpointsResponseBodyList =
+  Array<PrivateLinkEndpoint>;
+export const ListPrivateLinkEndpointsResponseBodyList = /*@__PURE__*/ S.Array(
+  PrivateLinkEndpoint,
+) as any as S.Schema<ListPrivateLinkEndpointsResponseBodyList>;
+
+export type ListPrivateLinkEndpointsResponse =
+  ListPrivateLinkEndpointsResponseBodyList;
+export const ListPrivateLinkEndpointsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListPrivateLinkEndpointsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListPrivateLinkEndpointsResponse",
+}) as any as S.Schema<ListPrivateLinkEndpointsResponse>;
+
 export interface ReadNetworkRequest {
   /** The unique identifier of the Secure Compute network */
   networkId: string;
@@ -302,6 +470,33 @@ export const ReadNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReadNetworkRequest",
 }) as any as S.Schema<ReadNetworkRequest>;
+
+export interface ReadPrivateLinkEndpointRequest {
+  /** The unique identifier of the PrivateLink endpoint. */
+  endpointId: string;
+  /** The project ID the PrivateLink endpoint belongs to. */
+  projectId: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+}
+export const ReadPrivateLinkEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointId: S.String.pipe(T.Label()),
+    projectId: S.String.pipe(T.Query()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/networking/privatelink/endpoints/{endpointId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ReadPrivateLinkEndpointRequest",
+}) as any as S.Schema<ReadPrivateLinkEndpointRequest>;
 
 export interface UpdateNetworkRequest {
   /** The unique identifier of the Secure Compute network */
@@ -329,6 +524,39 @@ export const UpdateNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateNetworkRequest",
 }) as any as S.Schema<UpdateNetworkRequest>;
+
+export interface UpdatePrivateLinkEndpointRequest {
+  /** The unique identifier of the PrivateLink endpoint. */
+  endpointId: string;
+  /** The project ID the PrivateLink endpoint belongs to. */
+  projectId: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** A new name for the PrivateLink endpoint. When omitted, the current name is kept. */
+  name?: string;
+  /** When `true`, resolves the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. When `false`, clears them. When omitted, the current setting is kept. At least one of `name` or `enablePrivateDns` must be provided. */
+  enablePrivateDns?: boolean;
+}
+export const UpdatePrivateLinkEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointId: S.String.pipe(T.Label()),
+    projectId: S.String.pipe(T.Query()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+    name: S.optional(S.String),
+    enablePrivateDns: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/networking/privatelink/endpoints/{endpointId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePrivateLinkEndpointRequest",
+}) as any as S.Schema<UpdatePrivateLinkEndpointRequest>;
 
 export type UpdateStaticIpsRequestRegionsList = Array<string>;
 export const UpdateStaticIpsRequestRegionsList = /*@__PURE__*/ S.Array(
@@ -452,6 +680,26 @@ export const createNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreatePrivateLinkEndpointError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | VercelOpError;
+/** Create a PrivateLink endpoint Creates a PrivateLink endpoint for a project. */
+export const createPrivateLinkEndpoint: API.OperationMethod<
+  CreatePrivateLinkEndpointRequest,
+  PrivateLinkEndpoint,
+  CreatePrivateLinkEndpointError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePrivateLinkEndpointRequest,
+  output: PrivateLinkEndpoint,
+  errors: [BadRequest, Forbidden, NotFound, Conflict],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteNetworkError =
   | BadRequest
   | PaymentRequired
@@ -472,6 +720,26 @@ export const deleteNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeletePrivateLinkEndpointError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | VercelOpError;
+/** Delete a PrivateLink endpoint Deletes a PrivateLink endpoint. */
+export const deletePrivateLinkEndpoint: API.OperationMethod<
+  DeletePrivateLinkEndpointRequest,
+  DeletePrivateLinkEndpointResponse,
+  DeletePrivateLinkEndpointError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateLinkEndpointRequest,
+  output: DeletePrivateLinkEndpointResponse,
+  errors: [BadRequest, Forbidden, NotFound, Conflict],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListNetworksError = BadRequest | Forbidden | VercelOpError;
 /** List Secure Compute networks Allows to list Secure Compute networks. */
 export const listNetworks: API.OperationMethod<
@@ -483,6 +751,25 @@ export const listNetworks: API.OperationMethod<
   input: ListNetworksRequest,
   output: ListNetworksResponse,
   errors: [BadRequest, Forbidden],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkEndpointsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | VercelOpError;
+/** List PrivateLink endpoints Lists all PrivateLink endpoints for a project. */
+export const listPrivateLinkEndpoints: API.OperationMethod<
+  ListPrivateLinkEndpointsRequest,
+  ListPrivateLinkEndpointsResponse,
+  ListPrivateLinkEndpointsError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkEndpointsRequest,
+  output: ListPrivateLinkEndpointsResponse,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -502,6 +789,25 @@ export const readNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ReadPrivateLinkEndpointError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | VercelOpError;
+/** Read a PrivateLink endpoint Reads a single PrivateLink endpoint. */
+export const readPrivateLinkEndpoint: API.OperationMethod<
+  ReadPrivateLinkEndpointRequest,
+  PrivateLinkEndpoint,
+  ReadPrivateLinkEndpointError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadPrivateLinkEndpointRequest,
+  output: PrivateLinkEndpoint,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateNetworkError = BadRequest | Forbidden | VercelOpError;
 /** Update a Secure Compute network Allows to update a Secure Compute network. */
 export const updateNetwork: API.OperationMethod<
@@ -513,6 +819,26 @@ export const updateNetwork: API.OperationMethod<
   input: UpdateNetworkRequest,
   output: Network,
   errors: [BadRequest, Forbidden],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePrivateLinkEndpointError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | VercelOpError;
+/** Update a PrivateLink endpoint Updates a PrivateLink endpoint (name, privateDns). */
+export const updatePrivateLinkEndpoint: API.OperationMethod<
+  UpdatePrivateLinkEndpointRequest,
+  PrivateLinkEndpoint,
+  UpdatePrivateLinkEndpointError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePrivateLinkEndpointRequest,
+  output: PrivateLinkEndpoint,
+  errors: [BadRequest, Forbidden, NotFound, Conflict],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));

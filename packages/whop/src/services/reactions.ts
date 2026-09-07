@@ -125,6 +125,18 @@ export const DeleteReactionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteReactionResponse",
 }) as any as S.Schema<DeleteReactionResponse>;
 
+export interface GetReactionRequest {
+  /** The unique identifier of the reaction to retrieve. */
+  id: string;
+}
+export const GetReactionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/reactions/{id}", code: 200 })),
+).annotate({
+  identifier: "GetReactionRequest",
+}) as any as S.Schema<GetReactionRequest>;
+
 export interface ListReactionRequest {
   after?: string;
   before?: string;
@@ -211,18 +223,6 @@ export const ListReactionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListReactionResponse",
 }) as any as S.Schema<ListReactionResponse>;
 
-export interface RetrieveReactionRequest {
-  /** The unique identifier of the reaction to retrieve. */
-  id: string;
-}
-export const RetrieveReactionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/reactions/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveReactionRequest",
-}) as any as S.Schema<RetrieveReactionRequest>;
-
 export type CreateReactionError =
   | BadRequest
   | Forbidden
@@ -263,6 +263,26 @@ export const deleteReaction: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetReactionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve reaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing reaction. Required permissions (one of): - `chat:read` - `dms:read` - `forum:read` - `livestream:chat:read` - `support_chat:read` */
+export const getReaction: API.OperationMethod<
+  GetReactionRequest,
+  Reaction,
+  GetReactionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReactionRequest,
+  output: Reaction,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListReactionError =
   | BadRequest
   | Forbidden
@@ -294,23 +314,3 @@ export const listReaction: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveReactionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve reaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing reaction. Required permissions (one of): - `chat:read` - `dms:read` - `forum:read` - `livestream:chat:read` - `support_chat:read` */
-export const retrieveReaction: API.OperationMethod<
-  RetrieveReactionRequest,
-  Reaction,
-  RetrieveReactionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveReactionRequest,
-  output: Reaction,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

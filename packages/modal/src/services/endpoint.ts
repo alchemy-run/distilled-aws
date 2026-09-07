@@ -190,11 +190,11 @@ export const CreateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEndpointResponse",
 }) as any as S.Schema<CreateEndpointResponse>;
 
-export interface GetEndpointByNameRequest {
+export interface EndpointGetByNameRequest {
   name?: string;
   environmentName?: string;
 }
-export const GetEndpointByNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const EndpointGetByNameRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     environmentName: S.optional(S.String),
@@ -206,26 +206,26 @@ export const GetEndpointByNameRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetEndpointByNameRequest",
-}) as any as S.Schema<GetEndpointByNameRequest>;
+  identifier: "EndpointGetByNameRequest",
+}) as any as S.Schema<EndpointGetByNameRequest>;
 
-export interface GetEndpointByNameResponse {
+export interface EndpointGetByNameResponse {
   endpointId?: string;
   environmentName?: string;
 }
-export const GetEndpointByNameResponse = /*@__PURE__*/ S.suspend(() =>
+export const EndpointGetByNameResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     endpointId: S.optional(S.String),
     environmentName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetEndpointByNameResponse",
-}) as any as S.Schema<GetEndpointByNameResponse>;
+  identifier: "EndpointGetByNameResponse",
+}) as any as S.Schema<EndpointGetByNameResponse>;
 
-export interface GetEndpointLifecycleRequest {
+export interface EndpointGetLifecycleRequest {
   endpointId?: string;
 }
-export const GetEndpointLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
+export const EndpointGetLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     endpointId: S.optional(S.String),
   }).pipe(
@@ -236,8 +236,8 @@ export const GetEndpointLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetEndpointLifecycleRequest",
-}) as any as S.Schema<GetEndpointLifecycleRequest>;
+  identifier: "EndpointGetLifecycleRequest",
+}) as any as S.Schema<EndpointGetLifecycleRequest>;
 
 export type EndpointLifecycleStatus =
   | "ENDPOINT_LIFECYCLE_STATUS_UNSPECIFIED"
@@ -269,16 +269,16 @@ export const EndpointLifecycle = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointLifecycle",
 }) as any as S.Schema<EndpointLifecycle>;
 
-export interface GetEndpointLifecycleResponse {
+export interface EndpointGetLifecycleResponse {
   lifecycle?: EndpointLifecycle;
 }
-export const GetEndpointLifecycleResponse = /*@__PURE__*/ S.suspend(() =>
+export const EndpointGetLifecycleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     lifecycle: S.optional(EndpointLifecycle),
   }),
 ).annotate({
-  identifier: "GetEndpointLifecycleResponse",
-}) as any as S.Schema<GetEndpointLifecycleResponse>;
+  identifier: "EndpointGetLifecycleResponse",
+}) as any as S.Schema<EndpointGetLifecycleResponse>;
 
 export interface ListPagination {
   maxObjects?: number;
@@ -458,29 +458,29 @@ export const createEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetEndpointByNameError = ModalOpError;
-export const getEndpointByName: API.OperationMethod<
-  GetEndpointByNameRequest,
-  GetEndpointByNameResponse,
-  GetEndpointByNameError,
+export type EndpointGetByNameError = ModalOpError;
+export const endpointGetByName: API.OperationMethod<
+  EndpointGetByNameRequest,
+  EndpointGetByNameResponse,
+  EndpointGetByNameError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEndpointByNameRequest,
-  output: GetEndpointByNameResponse,
+  input: EndpointGetByNameRequest,
+  output: EndpointGetByNameResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEndpointLifecycleError = ModalOpError;
-export const getEndpointLifecycle: API.OperationMethod<
-  GetEndpointLifecycleRequest,
-  GetEndpointLifecycleResponse,
-  GetEndpointLifecycleError,
+export type EndpointGetLifecycleError = ModalOpError;
+export const endpointGetLifecycle: API.OperationMethod<
+  EndpointGetLifecycleRequest,
+  EndpointGetLifecycleResponse,
+  EndpointGetLifecycleError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEndpointLifecycleRequest,
-  output: GetEndpointLifecycleResponse,
+  input: EndpointGetLifecycleRequest,
+  output: EndpointGetLifecycleResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

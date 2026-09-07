@@ -48,237 +48,26 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-/** * `review` - review * `review_only` - review_only * `resolve_only` - resolve_only */
-export type ReviewTriggerRequestRunModeEnum =
-  | "review"
-  | "review_only"
-  | "resolve_only";
-export const ReviewTriggerRequestRunModeEnum = /*@__PURE__*/ S.String;
-
-export interface CreateReviewHogReviewTriggerRequest {
+export interface GetReviewHogReviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** GitHub pull request URL to review, e.g. 'https://github.com/PostHog/posthog.com/pull/123'. The repository must be accessible to the project's GitHub App installation. */
-  pr_url: string;
-  /** What to run on the pull request. 'review' (default) reviews it and, when the requesting user's resolve_comments setting is on, chains the resolution stage; 'review_only' reviews without resolving regardless of that setting; 'resolve_only' skips the review and only runs the resolution stage on the PR's existing unresolved review threads. * `review` - review * `review_only` - review_only * `resolve_only` - resolve_only */
-  run_mode?: ReviewTriggerRequestRunModeEnum | (string & {});
+  /** A UUID string identifying this review report. */
+  id: string;
 }
-export const CreateReviewHogReviewTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReviewHogReviewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    pr_url: S.String,
-    run_mode: S.optional(ReviewTriggerRequestRunModeEnum),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/review_hog/reviews/trigger/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateReviewHogReviewTriggerRequest",
-}) as any as S.Schema<CreateReviewHogReviewTriggerRequest>;
-
-export interface ReviewTriggerResponse {
-  /** Temporal workflow id for the started review run; empty when no run was started. */
-  workflow_id: string;
-  /** Run lifecycle marker: 'started' when the review was queued, 'already_reviewed' when the pull request's current commit already has a published review (no new run starts). */
-  status: string;
-}
-export const ReviewTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workflow_id: S.String,
-    status: S.String,
-  }),
-).annotate({
-  identifier: "ReviewTriggerResponse",
-}) as any as S.Schema<ReviewTriggerResponse>;
-
-export interface ListReviewHogBlindSpotsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ListReviewHogBlindSpotsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/blind_spots/",
+      uri: "/api/projects/{project_id}/review_hog/reviews/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListReviewHogBlindSpotsRequest",
-}) as any as S.Schema<ListReviewHogBlindSpotsRequest>;
-
-export interface ReviewBlindSpotsConfig {
-  /** Name of the `review-hog-blind-spots-*` skill this row represents (the sweep's identity). */
-  skill_name: string;
-  /** Whether this blind-spots skill runs the sweep on the requesting user's PR reviews on this project. */
-  active: boolean;
-  /** The blind-spots skill's description, for display in the config UI. */
-  description: string;
-  /** The blind-spots skill's SKILL.md body, for the read-only skill viewer. */
-  body: string;
-}
-export const ReviewBlindSpotsConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill_name: S.String,
-    active: S.Boolean,
-    description: S.String,
-    body: S.String,
-  }),
-).annotate({
-  identifier: "ReviewBlindSpotsConfig",
-}) as any as S.Schema<ReviewBlindSpotsConfig>;
-
-export type ReviewHogBlindSpotsListResponseBodyList =
-  Array<ReviewBlindSpotsConfig>;
-export const ReviewHogBlindSpotsListResponseBodyList = /*@__PURE__*/ S.Array(
-  ReviewBlindSpotsConfig,
-) as any as S.Schema<ReviewHogBlindSpotsListResponseBodyList>;
-
-export type ListReviewHogBlindSpotsResponse =
-  ReviewHogBlindSpotsListResponseBodyList;
-export const ListReviewHogBlindSpotsResponse = /*@__PURE__*/ S.suspend(() =>
-  ReviewHogBlindSpotsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListReviewHogBlindSpotsResponse",
-}) as any as S.Schema<ListReviewHogBlindSpotsResponse>;
-
-export interface ListReviewHogPerspectivesRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ListReviewHogPerspectivesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/perspectives/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListReviewHogPerspectivesRequest",
-}) as any as S.Schema<ListReviewHogPerspectivesRequest>;
-
-export interface ReviewPerspectiveConfig {
-  /** Name of the `review-hog-perspective-*` skill this row toggles (the perspective's identity). */
-  skill_name: string;
-  /** Whether this perspective runs on the acting user's PR reviews on this project. */
-  enabled: boolean;
-  /** The perspective skill's description, for display in the config UI. */
-  description: string;
-  /** The perspective skill's SKILL.md body, for the read-only skill viewer. */
-  body: string;
-}
-export const ReviewPerspectiveConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill_name: S.String,
-    enabled: S.Boolean,
-    description: S.String,
-    body: S.String,
-  }),
-).annotate({
-  identifier: "ReviewPerspectiveConfig",
-}) as any as S.Schema<ReviewPerspectiveConfig>;
-
-export type ReviewHogPerspectivesListResponseBodyList =
-  Array<ReviewPerspectiveConfig>;
-export const ReviewHogPerspectivesListResponseBodyList = /*@__PURE__*/ S.Array(
-  ReviewPerspectiveConfig,
-) as any as S.Schema<ReviewHogPerspectivesListResponseBodyList>;
-
-export type ListReviewHogPerspectivesResponse =
-  ReviewHogPerspectivesListResponseBodyList;
-export const ListReviewHogPerspectivesResponse = /*@__PURE__*/ S.suspend(() =>
-  ReviewHogPerspectivesListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListReviewHogPerspectivesResponse",
-}) as any as S.Schema<ListReviewHogPerspectivesResponse>;
-
-export interface ListReviewHogResolutionRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ListReviewHogResolutionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/resolution/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListReviewHogResolutionRequest",
-}) as any as S.Schema<ListReviewHogResolutionRequest>;
-
-export interface ReviewResolutionConfig {
-  /** Name of the `review-hog-resolution-*` skill this row represents (the criteria's identity). */
-  skill_name: string;
-  /** Whether these criteria drive the resolution stage on the requesting user's PRs on this project. */
-  active: boolean;
-  /** The resolution skill's description, for display in the config UI. */
-  description: string;
-  /** The resolution skill's SKILL.md body, for the read-only skill viewer. */
-  body: string;
-}
-export const ReviewResolutionConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill_name: S.String,
-    active: S.Boolean,
-    description: S.String,
-    body: S.String,
-  }),
-).annotate({
-  identifier: "ReviewResolutionConfig",
-}) as any as S.Schema<ReviewResolutionConfig>;
-
-export type ReviewHogResolutionListResponseBodyList =
-  Array<ReviewResolutionConfig>;
-export const ReviewHogResolutionListResponseBodyList = /*@__PURE__*/ S.Array(
-  ReviewResolutionConfig,
-) as any as S.Schema<ReviewHogResolutionListResponseBodyList>;
-
-export type ListReviewHogResolutionResponse =
-  ReviewHogResolutionListResponseBodyList;
-export const ListReviewHogResolutionResponse = /*@__PURE__*/ S.suspend(() =>
-  ReviewHogResolutionListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListReviewHogResolutionResponse",
-}) as any as S.Schema<ListReviewHogResolutionResponse>;
-
-export type ReviewHogReviewsListRequestScope = "mine" | "everyone";
-export const ReviewHogReviewsListRequestScope = /*@__PURE__*/ S.String;
-
-export interface ListReviewHogReviewsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Maximum rows to return. The list grows this instead of paging by offset — in-progress rows reorder the list between refreshes, so offset pages would shift under the reader. */
-  limit?: number;
-  /** Whose reviews to list: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project. * `mine` - mine * `everyone` - everyone */
-  scope?: ReviewHogReviewsListRequestScope | (string & {});
-}
-export const ListReviewHogReviewsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    scope: S.optional(ReviewHogReviewsListRequestScope.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/reviews/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListReviewHogReviewsRequest",
-}) as any as S.Schema<ListReviewHogReviewsRequest>;
+  identifier: "GetReviewHogReviewRequest",
+}) as any as S.Schema<GetReviewHogReviewRequest>;
 
 /** * `fetching` - fetching * `chunking` - chunking * `selecting` - selecting * `reviewing` - reviewing * `deduplicating` - deduplicating * `validating` - validating * `finalizing` - finalizing */
 export type ReviewStageEnum =
@@ -334,261 +123,6 @@ export const ReviewResolutionStatus = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReviewResolutionStatus",
 }) as any as S.Schema<ReviewResolutionStatus>;
-
-export interface ReviewRecentReview {
-  /** The review report's id, for fetching the review's detail. */
-  id: string;
-  /** The reviewed repository, as `owner/repo`. */
-  repository: string;
-  /** The reviewed pull request's number; null for a branch target with no PR yet. */
-  pr_number: number | null;
-  /** The pull request's title, from the latest reviewed snapshot; null if unknown. */
-  pr_title: string | null;
-  /** The pull request author's GitHub login; null if unknown. */
-  pr_author: string | null;
-  /** Lines added by the PR; null if unknown. */
-  additions: number | null;
-  /** Lines deleted by the PR; null if unknown. */
-  deletions: number | null;
-  /** Files the PR changes; null if unknown. */
-  changed_files: number | null;
-  /** The pull request's head branch. */
-  head_branch: string;
-  /** Where to see the review on GitHub: the pull request when its URL is known, otherwise the head branch. */
-  github_url: string;
-  /** How many review turns have completed on this report. */
-  run_count: number;
-  /** When the latest review turn completed; null while the first is in flight. */
-  last_run_at: string | null;
-  /** Whether a review has been published back to GitHub. */
-  published: boolean;
-  /** Whether a run is on this report right now: a review turn or a resolution run (activity within the last 30 minutes). */
-  in_progress: boolean;
-  /** The in-flight review turn's stage and counters; null unless a review turn is running (a resolving report carries `resolution` instead). */
-  progress: ReviewProgress | null;
-  /** The report's latest resolution run (settling the PR's review threads): live progress while it runs, or where it stopped when it died partway. Null when there is none, it completed, or a newer review turn superseded it. */
-  resolution: ReviewResolutionStatus | null;
-  /** The latest turn's valid findings at must_fix effective priority. */
-  must_fix_count: number;
-  /** The latest turn's valid findings at should_fix effective priority. */
-  should_fix_count: number;
-  /** The latest turn's valid findings at consider effective priority. */
-  consider_count: number;
-  /** All findings the latest turn raised after dedupe, before validation. */
-  candidate_count: number;
-  /** The latest turn's findings the validator dismissed as not worth publishing. */
-  dismissed_count: number;
-  /** Meaningful files the latest turn actually read, after skipping generated/lock/snapshot files; null if unknown. */
-  files_reviewed: number | null;
-  /** Reviewable chunks the latest turn split the PR into; null if unknown. */
-  chunk_count: number | null;
-  /** Review perspectives that read each chunk in the latest turn; null if unknown. */
-  perspective_count: number | null;
-  /** Raw issues the perspectives raised in the latest turn, before dedupe; null if unknown. */
-  perspective_issue_count: number | null;
-  /** Raw issues the blind-spot sweep added in the latest turn, before dedupe; null if unknown. */
-  blind_spot_issue_count: number | null;
-}
-export const ReviewRecentReview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    repository: S.String,
-    pr_number: S.NullOr(S.Number),
-    pr_title: S.NullOr(S.String),
-    pr_author: S.NullOr(S.String),
-    additions: S.NullOr(S.Number),
-    deletions: S.NullOr(S.Number),
-    changed_files: S.NullOr(S.Number),
-    head_branch: S.String,
-    github_url: S.String,
-    run_count: S.Number,
-    last_run_at: S.NullOr(S.String),
-    published: S.Boolean,
-    in_progress: S.Boolean,
-    progress: S.NullOr(ReviewProgress),
-    resolution: S.NullOr(ReviewResolutionStatus),
-    must_fix_count: S.Number,
-    should_fix_count: S.Number,
-    consider_count: S.Number,
-    candidate_count: S.Number,
-    dismissed_count: S.Number,
-    files_reviewed: S.NullOr(S.Number),
-    chunk_count: S.NullOr(S.Number),
-    perspective_count: S.NullOr(S.Number),
-    perspective_issue_count: S.NullOr(S.Number),
-    blind_spot_issue_count: S.NullOr(S.Number),
-  }),
-).annotate({
-  identifier: "ReviewRecentReview",
-}) as any as S.Schema<ReviewRecentReview>;
-
-/** The scoped reviews: in-progress runs first, then completed newest first. */
-export type ReviewRecentReviewsPageResultsList = Array<ReviewRecentReview>;
-export const ReviewRecentReviewsPageResultsList = /*@__PURE__*/ S.Array(
-  ReviewRecentReview,
-) as any as S.Schema<ReviewRecentReviewsPageResultsList>;
-
-export interface ReviewRecentReviewsPage {
-  /** The scoped reviews: in-progress runs first, then completed newest first. */
-  results: ReviewRecentReviewsPageResultsList;
-  /** Whether reviews exist beyond this page — drives the list's "Show more" button. */
-  has_more: boolean;
-}
-export const ReviewRecentReviewsPage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: ReviewRecentReviewsPageResultsList,
-    has_more: S.Boolean,
-  }),
-).annotate({
-  identifier: "ReviewRecentReviewsPage",
-}) as any as S.Schema<ReviewRecentReviewsPage>;
-
-export interface ListReviewHogValidatorsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ListReviewHogValidatorsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/validators/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListReviewHogValidatorsRequest",
-}) as any as S.Schema<ListReviewHogValidatorsRequest>;
-
-export interface ReviewValidatorConfig {
-  /** Name of the `review-hog-validation-*` skill this row represents (the validator's identity). */
-  skill_name: string;
-  /** Whether this validator is the one that validates the requesting user's PR reviews on this project. */
-  active: boolean;
-  /** The validator skill's description, for display in the config UI. */
-  description: string;
-  /** The validator skill's SKILL.md body, for the read-only skill viewer. */
-  body: string;
-}
-export const ReviewValidatorConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill_name: S.String,
-    active: S.Boolean,
-    description: S.String,
-    body: S.String,
-  }),
-).annotate({
-  identifier: "ReviewValidatorConfig",
-}) as any as S.Schema<ReviewValidatorConfig>;
-
-export type ReviewHogValidatorsListResponseBodyList =
-  Array<ReviewValidatorConfig>;
-export const ReviewHogValidatorsListResponseBodyList = /*@__PURE__*/ S.Array(
-  ReviewValidatorConfig,
-) as any as S.Schema<ReviewHogValidatorsListResponseBodyList>;
-
-export type ListReviewHogValidatorsResponse =
-  ReviewHogValidatorsListResponseBodyList;
-export const ListReviewHogValidatorsResponse = /*@__PURE__*/ S.suspend(() =>
-  ReviewHogValidatorsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListReviewHogValidatorsResponse",
-}) as any as S.Schema<ListReviewHogValidatorsResponse>;
-
-export type ReviewHogReviewsPerspectiveStatsRetrieveRequestScope =
-  | "mine"
-  | "everyone";
-export const ReviewHogReviewsPerspectiveStatsRetrieveRequestScope =
-  /*@__PURE__*/ S.String;
-
-export interface ReviewHogReviewsPerspectiveStatsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Whose reviews to aggregate: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project. * `mine` - mine * `everyone` - everyone */
-  scope?: ReviewHogReviewsPerspectiveStatsRetrieveRequestScope | (string & {});
-}
-export const ReviewHogReviewsPerspectiveStatsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      scope: S.optional(
-        ReviewHogReviewsPerspectiveStatsRetrieveRequestScope.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/review_hog/reviews/perspective_stats/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ReviewHogReviewsPerspectiveStatsRetrieveRequest",
-  }) as any as S.Schema<ReviewHogReviewsPerspectiveStatsRetrieveRequest>;
-
-export interface ReviewPerspectiveStatItem {
-  /** The review skill (perspective or blind-spot sweep) that raised the findings. */
-  skill_name: string;
-  /** Findings this skill raised across the aggregated reviews (post-dedupe candidates). */
-  raised: number;
-  /** Of those, findings the validator kept. */
-  kept: number;
-  /** Of those, findings the validator dismissed. */
-  dismissed: number;
-}
-export const ReviewPerspectiveStatItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill_name: S.String,
-    raised: S.Number,
-    kept: S.Number,
-    dismissed: S.Number,
-  }),
-).annotate({
-  identifier: "ReviewPerspectiveStatItem",
-}) as any as S.Schema<ReviewPerspectiveStatItem>;
-
-/** Per-skill effectiveness across those reviews, most kept findings first. */
-export type ReviewPerspectiveStatsPerspectivesList =
-  Array<ReviewPerspectiveStatItem>;
-export const ReviewPerspectiveStatsPerspectivesList = /*@__PURE__*/ S.Array(
-  ReviewPerspectiveStatItem,
-) as any as S.Schema<ReviewPerspectiveStatsPerspectivesList>;
-
-export interface ReviewPerspectiveStats {
-  /** How many recent completed reviews the stats aggregate over. */
-  report_count: number;
-  /** Per-skill effectiveness across those reviews, most kept findings first. */
-  perspectives: ReviewPerspectiveStatsPerspectivesList;
-}
-export const ReviewPerspectiveStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    report_count: S.Number,
-    perspectives: ReviewPerspectiveStatsPerspectivesList,
-  }),
-).annotate({
-  identifier: "ReviewPerspectiveStats",
-}) as any as S.Schema<ReviewPerspectiveStats>;
-
-export interface ReviewHogReviewsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this review report. */
-  id: string;
-}
-export const ReviewHogReviewsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/review_hog/reviews/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReviewHogReviewsRetrieveRequest",
-}) as any as S.Schema<ReviewHogReviewsRetrieveRequest>;
 
 /** Every enabled perspective the selector chose from, in pass order. */
 export type ReviewPerspectiveSelectionRosterList = Array<string>;
@@ -852,14 +386,481 @@ export const ReviewDetail = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ReviewDetail" }) as any as S.Schema<ReviewDetail>;
 
-export interface UpdateReviewHogBlindSpotPartialRequest {
+export type GetReviewHogReviewsPerspectiveStatRequestScope =
+  | "mine"
+  | "everyone";
+export const GetReviewHogReviewsPerspectiveStatRequestScope =
+  /*@__PURE__*/ S.String;
+
+export interface GetReviewHogReviewsPerspectiveStatRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Whose reviews to aggregate: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project. * `mine` - mine * `everyone` - everyone */
+  scope?: GetReviewHogReviewsPerspectiveStatRequestScope | (string & {});
+}
+export const GetReviewHogReviewsPerspectiveStatRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      scope: S.optional(
+        GetReviewHogReviewsPerspectiveStatRequestScope.pipe(T.Query()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/review_hog/reviews/perspective_stats/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetReviewHogReviewsPerspectiveStatRequest",
+  }) as any as S.Schema<GetReviewHogReviewsPerspectiveStatRequest>;
+
+export interface ReviewPerspectiveStatItem {
+  /** The review skill (perspective or blind-spot sweep) that raised the findings. */
+  skill_name: string;
+  /** Findings this skill raised across the aggregated reviews (post-dedupe candidates). */
+  raised: number;
+  /** Of those, findings the validator kept. */
+  kept: number;
+  /** Of those, findings the validator dismissed. */
+  dismissed: number;
+}
+export const ReviewPerspectiveStatItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    raised: S.Number,
+    kept: S.Number,
+    dismissed: S.Number,
+  }),
+).annotate({
+  identifier: "ReviewPerspectiveStatItem",
+}) as any as S.Schema<ReviewPerspectiveStatItem>;
+
+/** Per-skill effectiveness across those reviews, most kept findings first. */
+export type ReviewPerspectiveStatsPerspectivesList =
+  Array<ReviewPerspectiveStatItem>;
+export const ReviewPerspectiveStatsPerspectivesList = /*@__PURE__*/ S.Array(
+  ReviewPerspectiveStatItem,
+) as any as S.Schema<ReviewPerspectiveStatsPerspectivesList>;
+
+export interface ReviewPerspectiveStats {
+  /** How many recent completed reviews the stats aggregate over. */
+  report_count: number;
+  /** Per-skill effectiveness across those reviews, most kept findings first. */
+  perspectives: ReviewPerspectiveStatsPerspectivesList;
+}
+export const ReviewPerspectiveStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    report_count: S.Number,
+    perspectives: ReviewPerspectiveStatsPerspectivesList,
+  }),
+).annotate({
+  identifier: "ReviewPerspectiveStats",
+}) as any as S.Schema<ReviewPerspectiveStats>;
+
+export interface ListReviewHogBlindSpotsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListReviewHogBlindSpotsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/review_hog/blind_spots/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListReviewHogBlindSpotsRequest",
+}) as any as S.Schema<ListReviewHogBlindSpotsRequest>;
+
+export interface ReviewBlindSpotsConfig {
+  /** Name of the `review-hog-blind-spots-*` skill this row represents (the sweep's identity). */
+  skill_name: string;
+  /** Whether this blind-spots skill runs the sweep on the requesting user's PR reviews on this project. */
+  active: boolean;
+  /** The blind-spots skill's description, for display in the config UI. */
+  description: string;
+  /** The blind-spots skill's SKILL.md body, for the read-only skill viewer. */
+  body: string;
+}
+export const ReviewBlindSpotsConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    active: S.Boolean,
+    description: S.String,
+    body: S.String,
+  }),
+).annotate({
+  identifier: "ReviewBlindSpotsConfig",
+}) as any as S.Schema<ReviewBlindSpotsConfig>;
+
+export type ListReviewHogBlindSpotsResponseBodyList =
+  Array<ReviewBlindSpotsConfig>;
+export const ListReviewHogBlindSpotsResponseBodyList = /*@__PURE__*/ S.Array(
+  ReviewBlindSpotsConfig,
+) as any as S.Schema<ListReviewHogBlindSpotsResponseBodyList>;
+
+export type ListReviewHogBlindSpotsResponse =
+  ListReviewHogBlindSpotsResponseBodyList;
+export const ListReviewHogBlindSpotsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListReviewHogBlindSpotsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListReviewHogBlindSpotsResponse",
+}) as any as S.Schema<ListReviewHogBlindSpotsResponse>;
+
+export interface ListReviewHogPerspectivesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListReviewHogPerspectivesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/review_hog/perspectives/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListReviewHogPerspectivesRequest",
+}) as any as S.Schema<ListReviewHogPerspectivesRequest>;
+
+export interface ReviewPerspectiveConfig {
+  /** Name of the `review-hog-perspective-*` skill this row toggles (the perspective's identity). */
+  skill_name: string;
+  /** Whether this perspective runs on the acting user's PR reviews on this project. */
+  enabled: boolean;
+  /** The perspective skill's description, for display in the config UI. */
+  description: string;
+  /** The perspective skill's SKILL.md body, for the read-only skill viewer. */
+  body: string;
+}
+export const ReviewPerspectiveConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    enabled: S.Boolean,
+    description: S.String,
+    body: S.String,
+  }),
+).annotate({
+  identifier: "ReviewPerspectiveConfig",
+}) as any as S.Schema<ReviewPerspectiveConfig>;
+
+export type ListReviewHogPerspectivesResponseBodyList =
+  Array<ReviewPerspectiveConfig>;
+export const ListReviewHogPerspectivesResponseBodyList = /*@__PURE__*/ S.Array(
+  ReviewPerspectiveConfig,
+) as any as S.Schema<ListReviewHogPerspectivesResponseBodyList>;
+
+export type ListReviewHogPerspectivesResponse =
+  ListReviewHogPerspectivesResponseBodyList;
+export const ListReviewHogPerspectivesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListReviewHogPerspectivesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListReviewHogPerspectivesResponse",
+}) as any as S.Schema<ListReviewHogPerspectivesResponse>;
+
+export interface ListReviewHogResolutionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListReviewHogResolutionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/review_hog/resolution/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListReviewHogResolutionRequest",
+}) as any as S.Schema<ListReviewHogResolutionRequest>;
+
+export interface ReviewResolutionConfig {
+  /** Name of the `review-hog-resolution-*` skill this row represents (the criteria's identity). */
+  skill_name: string;
+  /** Whether these criteria drive the resolution stage on the requesting user's PRs on this project. */
+  active: boolean;
+  /** The resolution skill's description, for display in the config UI. */
+  description: string;
+  /** The resolution skill's SKILL.md body, for the read-only skill viewer. */
+  body: string;
+}
+export const ReviewResolutionConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    active: S.Boolean,
+    description: S.String,
+    body: S.String,
+  }),
+).annotate({
+  identifier: "ReviewResolutionConfig",
+}) as any as S.Schema<ReviewResolutionConfig>;
+
+export type ListReviewHogResolutionResponseBodyList =
+  Array<ReviewResolutionConfig>;
+export const ListReviewHogResolutionResponseBodyList = /*@__PURE__*/ S.Array(
+  ReviewResolutionConfig,
+) as any as S.Schema<ListReviewHogResolutionResponseBodyList>;
+
+export type ListReviewHogResolutionResponse =
+  ListReviewHogResolutionResponseBodyList;
+export const ListReviewHogResolutionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListReviewHogResolutionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListReviewHogResolutionResponse",
+}) as any as S.Schema<ListReviewHogResolutionResponse>;
+
+export type ListReviewHogReviewsRequestScope = "mine" | "everyone";
+export const ListReviewHogReviewsRequestScope = /*@__PURE__*/ S.String;
+
+export interface ListReviewHogReviewsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Maximum rows to return. The list grows this instead of paging by offset — in-progress rows reorder the list between refreshes, so offset pages would shift under the reader. */
+  limit?: number;
+  /** Whose reviews to list: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project. * `mine` - mine * `everyone` - everyone */
+  scope?: ListReviewHogReviewsRequestScope | (string & {});
+}
+export const ListReviewHogReviewsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    scope: S.optional(ListReviewHogReviewsRequestScope.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/review_hog/reviews/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListReviewHogReviewsRequest",
+}) as any as S.Schema<ListReviewHogReviewsRequest>;
+
+export interface ReviewRecentReview {
+  /** The review report's id, for fetching the review's detail. */
+  id: string;
+  /** The reviewed repository, as `owner/repo`. */
+  repository: string;
+  /** The reviewed pull request's number; null for a branch target with no PR yet. */
+  pr_number: number | null;
+  /** The pull request's title, from the latest reviewed snapshot; null if unknown. */
+  pr_title: string | null;
+  /** The pull request author's GitHub login; null if unknown. */
+  pr_author: string | null;
+  /** Lines added by the PR; null if unknown. */
+  additions: number | null;
+  /** Lines deleted by the PR; null if unknown. */
+  deletions: number | null;
+  /** Files the PR changes; null if unknown. */
+  changed_files: number | null;
+  /** The pull request's head branch. */
+  head_branch: string;
+  /** Where to see the review on GitHub: the pull request when its URL is known, otherwise the head branch. */
+  github_url: string;
+  /** How many review turns have completed on this report. */
+  run_count: number;
+  /** When the latest review turn completed; null while the first is in flight. */
+  last_run_at: string | null;
+  /** Whether a review has been published back to GitHub. */
+  published: boolean;
+  /** Whether a run is on this report right now: a review turn or a resolution run (activity within the last 30 minutes). */
+  in_progress: boolean;
+  /** The in-flight review turn's stage and counters; null unless a review turn is running (a resolving report carries `resolution` instead). */
+  progress: ReviewProgress | null;
+  /** The report's latest resolution run (settling the PR's review threads): live progress while it runs, or where it stopped when it died partway. Null when there is none, it completed, or a newer review turn superseded it. */
+  resolution: ReviewResolutionStatus | null;
+  /** The latest turn's valid findings at must_fix effective priority. */
+  must_fix_count: number;
+  /** The latest turn's valid findings at should_fix effective priority. */
+  should_fix_count: number;
+  /** The latest turn's valid findings at consider effective priority. */
+  consider_count: number;
+  /** All findings the latest turn raised after dedupe, before validation. */
+  candidate_count: number;
+  /** The latest turn's findings the validator dismissed as not worth publishing. */
+  dismissed_count: number;
+  /** Meaningful files the latest turn actually read, after skipping generated/lock/snapshot files; null if unknown. */
+  files_reviewed: number | null;
+  /** Reviewable chunks the latest turn split the PR into; null if unknown. */
+  chunk_count: number | null;
+  /** Review perspectives that read each chunk in the latest turn; null if unknown. */
+  perspective_count: number | null;
+  /** Raw issues the perspectives raised in the latest turn, before dedupe; null if unknown. */
+  perspective_issue_count: number | null;
+  /** Raw issues the blind-spot sweep added in the latest turn, before dedupe; null if unknown. */
+  blind_spot_issue_count: number | null;
+}
+export const ReviewRecentReview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    repository: S.String,
+    pr_number: S.NullOr(S.Number),
+    pr_title: S.NullOr(S.String),
+    pr_author: S.NullOr(S.String),
+    additions: S.NullOr(S.Number),
+    deletions: S.NullOr(S.Number),
+    changed_files: S.NullOr(S.Number),
+    head_branch: S.String,
+    github_url: S.String,
+    run_count: S.Number,
+    last_run_at: S.NullOr(S.String),
+    published: S.Boolean,
+    in_progress: S.Boolean,
+    progress: S.NullOr(ReviewProgress),
+    resolution: S.NullOr(ReviewResolutionStatus),
+    must_fix_count: S.Number,
+    should_fix_count: S.Number,
+    consider_count: S.Number,
+    candidate_count: S.Number,
+    dismissed_count: S.Number,
+    files_reviewed: S.NullOr(S.Number),
+    chunk_count: S.NullOr(S.Number),
+    perspective_count: S.NullOr(S.Number),
+    perspective_issue_count: S.NullOr(S.Number),
+    blind_spot_issue_count: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "ReviewRecentReview",
+}) as any as S.Schema<ReviewRecentReview>;
+
+/** The scoped reviews: in-progress runs first, then completed newest first. */
+export type ReviewRecentReviewsPageResultsList = Array<ReviewRecentReview>;
+export const ReviewRecentReviewsPageResultsList = /*@__PURE__*/ S.Array(
+  ReviewRecentReview,
+) as any as S.Schema<ReviewRecentReviewsPageResultsList>;
+
+export interface ReviewRecentReviewsPage {
+  /** The scoped reviews: in-progress runs first, then completed newest first. */
+  results: ReviewRecentReviewsPageResultsList;
+  /** Whether reviews exist beyond this page — drives the list's "Show more" button. */
+  has_more: boolean;
+}
+export const ReviewRecentReviewsPage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: ReviewRecentReviewsPageResultsList,
+    has_more: S.Boolean,
+  }),
+).annotate({
+  identifier: "ReviewRecentReviewsPage",
+}) as any as S.Schema<ReviewRecentReviewsPage>;
+
+export interface ListReviewHogValidatorsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListReviewHogValidatorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/review_hog/validators/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListReviewHogValidatorsRequest",
+}) as any as S.Schema<ListReviewHogValidatorsRequest>;
+
+export interface ReviewValidatorConfig {
+  /** Name of the `review-hog-validation-*` skill this row represents (the validator's identity). */
+  skill_name: string;
+  /** Whether this validator is the one that validates the requesting user's PR reviews on this project. */
+  active: boolean;
+  /** The validator skill's description, for display in the config UI. */
+  description: string;
+  /** The validator skill's SKILL.md body, for the read-only skill viewer. */
+  body: string;
+}
+export const ReviewValidatorConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    active: S.Boolean,
+    description: S.String,
+    body: S.String,
+  }),
+).annotate({
+  identifier: "ReviewValidatorConfig",
+}) as any as S.Schema<ReviewValidatorConfig>;
+
+export type ListReviewHogValidatorsResponseBodyList =
+  Array<ReviewValidatorConfig>;
+export const ListReviewHogValidatorsResponseBodyList = /*@__PURE__*/ S.Array(
+  ReviewValidatorConfig,
+) as any as S.Schema<ListReviewHogValidatorsResponseBodyList>;
+
+export type ListReviewHogValidatorsResponse =
+  ListReviewHogValidatorsResponseBodyList;
+export const ListReviewHogValidatorsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListReviewHogValidatorsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListReviewHogValidatorsResponse",
+}) as any as S.Schema<ListReviewHogValidatorsResponse>;
+
+/** * `review` - review * `review_only` - review_only * `resolve_only` - resolve_only */
+export type ReviewTriggerRequestRunModeEnum =
+  | "review"
+  | "review_only"
+  | "resolve_only";
+export const ReviewTriggerRequestRunModeEnum = /*@__PURE__*/ S.String;
+
+export interface ReviewHogReviewsTriggerCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** GitHub pull request URL to review, e.g. 'https://github.com/PostHog/posthog.com/pull/123'. The repository must be accessible to the project's GitHub App installation. */
+  pr_url: string;
+  /** What to run on the pull request. 'review' (default) reviews it and, when the requesting user's resolve_comments setting is on, chains the resolution stage; 'review_only' reviews without resolving regardless of that setting; 'resolve_only' skips the review and only runs the resolution stage on the PR's existing unresolved review threads. * `review` - review * `review_only` - review_only * `resolve_only` - resolve_only */
+  run_mode?: ReviewTriggerRequestRunModeEnum | (string & {});
+}
+export const ReviewHogReviewsTriggerCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      pr_url: S.String,
+      run_mode: S.optional(ReviewTriggerRequestRunModeEnum),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/review_hog/reviews/trigger/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReviewHogReviewsTriggerCreateRequest",
+}) as any as S.Schema<ReviewHogReviewsTriggerCreateRequest>;
+
+export interface ReviewTriggerResponse {
+  /** Temporal workflow id for the started review run; empty when no run was started. */
+  workflow_id: string;
+  /** Run lifecycle marker: 'started' when the review was queued, 'already_reviewed' when the pull request's current commit already has a published review (no new run starts), 'joined_running_review' when a review was already in flight (no new run starts; a report in a cheaper tier is lifted to human strength for the rest of that review and every later one). */
+  status: string;
+}
+export const ReviewTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workflow_id: S.String,
+    status: S.String,
+  }),
+).annotate({
+  identifier: "ReviewTriggerResponse",
+}) as any as S.Schema<ReviewTriggerResponse>;
+
+export interface UpdateReviewHogBlindSpotsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   skill_name: string;
   /** Set true to make this the single blind-spots skill that runs on the user's PR reviews. Only true is accepted — the blind-spot check is single-active, so you switch by selecting a different skill, not by deactivating the current one. */
   active?: boolean;
 }
-export const UpdateReviewHogBlindSpotPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateReviewHogBlindSpotsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -873,18 +874,18 @@ export const UpdateReviewHogBlindSpotPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateReviewHogBlindSpotPartialRequest",
-}) as any as S.Schema<UpdateReviewHogBlindSpotPartialRequest>;
+  identifier: "UpdateReviewHogBlindSpotsPartialRequest",
+}) as any as S.Schema<UpdateReviewHogBlindSpotsPartialRequest>;
 
-export interface UpdateReviewHogPerspectivePartialRequest {
+export interface UpdateReviewHogPerspectivesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   skill_name: string;
   /** Set true to run this perspective on the user's PR reviews, false to stop running it. */
   enabled?: boolean;
 }
-export const UpdateReviewHogPerspectivePartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateReviewHogPerspectivesPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       skill_name: S.String.pipe(T.Label()),
@@ -896,9 +897,9 @@ export const UpdateReviewHogPerspectivePartialRequest = /*@__PURE__*/ S.suspend(
         code: 200,
       }),
     ),
-).annotate({
-  identifier: "UpdateReviewHogPerspectivePartialRequest",
-}) as any as S.Schema<UpdateReviewHogPerspectivePartialRequest>;
+  ).annotate({
+    identifier: "UpdateReviewHogPerspectivesPartialRequest",
+  }) as any as S.Schema<UpdateReviewHogPerspectivesPartialRequest>;
 
 export interface UpdateReviewHogResolutionPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -924,14 +925,14 @@ export const UpdateReviewHogResolutionPartialRequest = /*@__PURE__*/ S.suspend(
   identifier: "UpdateReviewHogResolutionPartialRequest",
 }) as any as S.Schema<UpdateReviewHogResolutionPartialRequest>;
 
-export interface UpdateReviewHogValidatorPartialRequest {
+export interface UpdateReviewHogValidatorsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   skill_name: string;
   /** Set true to make this the single validator that runs on the user's PR reviews. Only true is accepted — validators are single-active, so you switch by selecting a different one, not by deactivating the current one. */
   active?: boolean;
 }
-export const UpdateReviewHogValidatorPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateReviewHogValidatorsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -945,24 +946,35 @@ export const UpdateReviewHogValidatorPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateReviewHogValidatorPartialRequest",
-}) as any as S.Schema<UpdateReviewHogValidatorPartialRequest>;
+  identifier: "UpdateReviewHogValidatorsPartialRequest",
+}) as any as S.Schema<UpdateReviewHogValidatorsPartialRequest>;
 
-export type CreateReviewHogReviewTriggerError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | PosthogOpError;
-/** Start a review of a pull request Start a ReviewHog review of any pull request the project's GitHub App installation can access, and publish it back to the PR. The requesting user is the review's acting user: their enabled perspectives, blind-spot check, validator, urgency threshold, and resolution criteria drive the run, and it appears under their recent reviews. `run_mode` picks the variant: a review (which chains the resolution stage per the user's resolve_comments setting), a review without resolving, or resolution only. Nonexistent, closed, and fork PRs are rejected synchronously; a PR whose current commit already has a published review returns 'already_reviewed' without starting a run (resolve_only skips that check — settling threads on a reviewed head is its whole point), and triggering a PR whose run is currently in flight joins that run. Otherwise non-blocking: returns the Temporal workflow id immediately while the run executes in the worker. */
-export const createReviewHogReviewTrigger: API.OperationMethod<
-  CreateReviewHogReviewTriggerRequest,
-  ReviewTriggerResponse,
-  CreateReviewHogReviewTriggerError,
+export type GetReviewHogReviewError = NotFound | PosthogOpError;
+/** Retrieve one review's detail One completed ReviewHog review on this project, with the latest turn's validated findings, the findings the validator dismissed (and why), and the review body published to GitHub. Project-wide, so reviews listed under `scope=everyone` can be opened too. */
+export const getReviewHogReview: API.OperationMethod<
+  GetReviewHogReviewRequest,
+  ReviewDetail,
+  GetReviewHogReviewError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateReviewHogReviewTriggerRequest,
-  output: ReviewTriggerResponse,
-  errors: [BadRequest, Forbidden, Conflict],
+  input: GetReviewHogReviewRequest,
+  output: ReviewDetail,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetReviewHogReviewsPerspectiveStatError = PosthogOpError;
+/** Perspective effectiveness stats How many findings each review skill (perspective or blind-spot sweep) raised across the recent completed reviews in scope — the requesting user's by default, every review on this project with `scope=everyone` — and how many of those the validator kept vs dismissed. */
+export const getReviewHogReviewsPerspectiveStat: API.OperationMethod<
+  GetReviewHogReviewsPerspectiveStatRequest,
+  ReviewPerspectiveStats,
+  GetReviewHogReviewsPerspectiveStatError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReviewHogReviewsPerspectiveStatRequest,
+  output: ReviewPerspectiveStats,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -1042,66 +1054,55 @@ export const listReviewHogValidators: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReviewHogReviewsPerspectiveStatsRetrieveError = PosthogOpError;
-/** Perspective effectiveness stats How many findings each review skill (perspective or blind-spot sweep) raised across the recent completed reviews in scope — the requesting user's by default, every review on this project with `scope=everyone` — and how many of those the validator kept vs dismissed. */
-export const reviewHogReviewsPerspectiveStatsRetrieve: API.OperationMethod<
-  ReviewHogReviewsPerspectiveStatsRetrieveRequest,
-  ReviewPerspectiveStats,
-  ReviewHogReviewsPerspectiveStatsRetrieveError,
+export type ReviewHogReviewsTriggerCreateError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | PosthogOpError;
+/** Start a review of a pull request Start a ReviewHog review of any pull request the project's GitHub App installation can access, and publish it back to the PR. The requesting user is the review's acting user: their enabled perspectives, blind-spot check, validator, urgency threshold, and resolution criteria drive the run, and it appears under their recent reviews. `run_mode` picks the variant: a review (which chains the resolution stage per the user's resolve_comments setting), a review without resolving, or resolution only. Nonexistent, closed, and fork PRs are rejected synchronously; a PR whose current commit already has a published review returns 'already_reviewed' without starting a run (resolve_only skips that check — settling threads on a reviewed head is its whole point), and triggering a PR whose run is currently in flight joins that run. Otherwise non-blocking: returns the Temporal workflow id immediately while the run executes in the worker. */
+export const reviewHogReviewsTriggerCreate: API.OperationMethod<
+  ReviewHogReviewsTriggerCreateRequest,
+  ReviewTriggerResponse,
+  ReviewHogReviewsTriggerCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReviewHogReviewsPerspectiveStatsRetrieveRequest,
-  output: ReviewPerspectiveStats,
-  errors: [],
+  input: ReviewHogReviewsTriggerCreateRequest,
+  output: ReviewTriggerResponse,
+  errors: [BadRequest, Forbidden, Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReviewHogReviewsRetrieveError = NotFound | PosthogOpError;
-/** Retrieve one review's detail One completed ReviewHog review on this project, with the latest turn's validated findings, the findings the validator dismissed (and why), and the review body published to GitHub. Project-wide, so reviews listed under `scope=everyone` can be opened too. */
-export const reviewHogReviewsRetrieve: API.OperationMethod<
-  ReviewHogReviewsRetrieveRequest,
-  ReviewDetail,
-  ReviewHogReviewsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReviewHogReviewsRetrieveRequest,
-  output: ReviewDetail,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateReviewHogBlindSpotPartialError =
+export type UpdateReviewHogBlindSpotsPartialError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Select the active blind-spots skill Make a `review-hog-blind-spots-*` skill the single sweep that runs on the requesting user's PR reviews, switching the user's other blind-spots skills off in the same call. Only skills visible to the user — the canonical plus the customs they authored — can be selected; anything else 404s. Upserts the per-user config row, so selecting a freshly authored custom skill works in one call. */
-export const updateReviewHogBlindSpotPartial: API.OperationMethod<
-  UpdateReviewHogBlindSpotPartialRequest,
+export const updateReviewHogBlindSpotsPartial: API.OperationMethod<
+  UpdateReviewHogBlindSpotsPartialRequest,
   ReviewBlindSpotsConfig,
-  UpdateReviewHogBlindSpotPartialError,
+  UpdateReviewHogBlindSpotsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateReviewHogBlindSpotPartialRequest,
+  input: UpdateReviewHogBlindSpotsPartialRequest,
   output: ReviewBlindSpotsConfig,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateReviewHogPerspectivePartialError =
+export type UpdateReviewHogPerspectivesPartialError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Enable or disable a review perspective Toggle whether a `review-hog-perspective-*` skill runs on the requesting user's PR reviews. Only skills visible to the user — the canonicals plus the customs they authored — can be toggled; anything else 404s. Upserts the per-user config row, so enabling a freshly authored custom perspective works in one call. Rejected if it would leave the user with no enabled perspective. */
-export const updateReviewHogPerspectivePartial: API.OperationMethod<
-  UpdateReviewHogPerspectivePartialRequest,
+export const updateReviewHogPerspectivesPartial: API.OperationMethod<
+  UpdateReviewHogPerspectivesPartialRequest,
   ReviewPerspectiveConfig,
-  UpdateReviewHogPerspectivePartialError,
+  UpdateReviewHogPerspectivesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateReviewHogPerspectivePartialRequest,
+  input: UpdateReviewHogPerspectivesPartialRequest,
   output: ReviewPerspectiveConfig,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
@@ -1126,18 +1127,18 @@ export const updateReviewHogResolutionPartial: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateReviewHogValidatorPartialError =
+export type UpdateReviewHogValidatorsPartialError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Select the active review validator Make a `review-hog-validation-*` skill the single validator that runs on the requesting user's PR reviews, switching the user's other validators off in the same call. Only skills visible to the user — the canonical plus the customs they authored — can be selected; anything else 404s. Upserts the per-user config row, so selecting a freshly authored custom validator works in one call. */
-export const updateReviewHogValidatorPartial: API.OperationMethod<
-  UpdateReviewHogValidatorPartialRequest,
+export const updateReviewHogValidatorsPartial: API.OperationMethod<
+  UpdateReviewHogValidatorsPartialRequest,
   ReviewValidatorConfig,
-  UpdateReviewHogValidatorPartialError,
+  UpdateReviewHogValidatorsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateReviewHogValidatorPartialRequest,
+  input: UpdateReviewHogValidatorsPartialRequest,
   output: ReviewValidatorConfig,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,

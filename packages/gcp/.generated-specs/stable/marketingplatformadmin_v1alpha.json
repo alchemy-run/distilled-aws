@@ -4,9 +4,68 @@
     "service": "marketingplatformadmin",
     "version": "v1alpha",
     "title": "Google Marketing Platform Admin API",
-    "baseUrl": "https://marketingplatformadmin.googleapis.com/"
+    "baseUrl": "https://marketingplatformadmin.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.marketingplatformadmin_v1alpha#BillInfo": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+          "traits": {
+            "smithy.api#documentation": "The total amount of the bill."
+          }
+        },
+        "priceProtectionCredit": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of the price protection credit, this is only available for eligible customers."
+          }
+        },
+        "eventFee": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of the event fee."
+          }
+        },
+        "baseFee": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of the monthly base fee."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the bill amount."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ListAnalyticsAccountLinksResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "analyticsAccountLinks": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLinkList",
+          "traits": {
+            "smithy.api#documentation": "Analytics account links in this organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListAnalyticsAccountLinks RPC."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLink"
+      }
+    },
     "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageResponse": {
       "type": "structure",
       "members": {
@@ -47,20 +106,56 @@
         "smithy.api#documentation": "Request message for ReportPropertyUsage RPC."
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelResponse": {
+    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequest": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "serviceLevel": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequestServiceLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The service level to set for this property."
+          }
+        },
+        "analyticsProperty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Analytics property to change the ServiceLevel setting. This field is the name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id}"
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "Response message for SetPropertyServiceLevel RPC."
+        "smithy.api#documentation": "Request message for SetPropertyServiceLevel RPC."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequestServiceLevelEnum": {
+      "type": "enum",
+      "members": {
+        "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "ANALYTICS_SERVICE_LEVEL_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_STANDARD"
+          }
+        },
+        "ANALYTICS_SERVICE_LEVEL_360": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_360"
+          }
+        }
       }
     },
     "com.gcp.marketingplatformadmin_v1alpha#PropertyUsage": {
       "type": "structure",
       "members": {
-        "totalEventCount": {
+        "accountId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Total event count that the property received during the requested month."
+            "smithy.api#documentation": "The ID of the property's parent account."
           }
         },
         "propertyType": {
@@ -75,16 +170,16 @@
             "smithy.api#documentation": "The display name of the property."
           }
         },
-        "property": {
+        "billableEventCount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id}"
+            "smithy.api#documentation": "The number of events for which the property is billed in the requested month."
           }
         },
-        "accountId": {
+        "totalEventCount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The ID of the property's parent account."
+            "smithy.api#documentation": "Total event count that the property received during the requested month."
           }
         },
         "serviceLevel": {
@@ -93,10 +188,10 @@
             "smithy.api#documentation": "The service level of the property."
           }
         },
-        "billableEventCount": {
+        "property": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The number of events for which the property is billed in the requested month."
+            "smithy.api#documentation": "The name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id}"
           }
         }
       },
@@ -156,154 +251,13 @@
         }
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#ClientData": {
-      "type": "structure",
-      "members": {
-        "endDate": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Marketingplatformadmin_Date",
-          "traits": {
-            "smithy.api#documentation": "The end date of the contract between the sales org and the end client."
-          }
-        },
-        "organization": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Organization",
-          "traits": {
-            "smithy.api#documentation": "The end client that has/had contract with the requested sales org."
-          }
-        },
-        "startDate": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Marketingplatformadmin_Date",
-          "traits": {
-            "smithy.api#documentation": "The start date of the contract between the sales org and the end client."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the client data."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#Money": {
-      "type": "structure",
-      "members": {
-        "units": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
-          }
-        },
-        "nanos": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
-          }
-        },
-        "currencyCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents an amount of money with its currency type."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequest": {
-      "type": "structure",
-      "members": {
-        "serviceLevel": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequestServiceLevelEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The service level to set for this property."
-          }
-        },
-        "analyticsProperty": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The Analytics property to change the ServiceLevel setting. This field is the name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for SetPropertyServiceLevel RPC."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequestServiceLevelEnum": {
-      "type": "enum",
-      "members": {
-        "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED"
-          }
-        },
-        "ANALYTICS_SERVICE_LEVEL_STANDARD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_STANDARD"
-          }
-        },
-        "ANALYTICS_SERVICE_LEVEL_360": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANALYTICS_SERVICE_LEVEL_360"
-          }
-        }
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#ListAnalyticsAccountLinksResponse": {
-      "type": "structure",
-      "members": {
-        "analyticsAccountLinks": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLinkList",
-          "traits": {
-            "smithy.api#documentation": "Analytics account links in this organization."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListAnalyticsAccountLinks RPC."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLink"
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#Organization": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the GMP organization. Format: organizations/{org_id}"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The human-readable name for the organization."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource message representing a Google Marketing Platform organization."
-      }
-    },
     "com.gcp.marketingplatformadmin_v1alpha#Marketingplatformadmin_Date": {
       "type": "structure",
       "members": {
-        "month": {
+        "year": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
           }
         },
         "day": {
@@ -312,10 +266,10 @@
             "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
           }
         },
-        "year": {
+        "month": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
           }
         }
       },
@@ -349,63 +303,57 @@
         "target": "com.gcp.marketingplatformadmin_v1alpha#Organization"
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsResponse": {
-      "type": "structure",
-      "members": {
-        "clientData": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#ClientDataList",
-          "traits": {
-            "smithy.api#documentation": "The clients managed by the sales org."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for FindSalesPartnerManagedClients RPC."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#ClientDataList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#ClientData"
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#Empty": {
+    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelResponse": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "Response message for SetPropertyServiceLevel RPC."
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#BillInfo": {
+    "com.gcp.marketingplatformadmin_v1alpha#Organization": {
       "type": "structure",
       "members": {
-        "baseFee": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The amount of the monthly base fee."
+            "smithy.api#documentation": "Identifier. The resource name of the GMP organization. Format: organizations/{org_id}"
           }
         },
-        "eventFee": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The amount of the event fee."
-          }
-        },
-        "total": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
-          "traits": {
-            "smithy.api#documentation": "The total amount of the bill."
-          }
-        },
-        "priceProtectionCredit": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Money",
-          "traits": {
-            "smithy.api#documentation": "The amount of the price protection credit, this is only available for eligible customers."
+            "smithy.api#documentation": "The human-readable name for the organization."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains the bill amount."
+        "smithy.api#documentation": "A resource message representing a Google Marketing Platform organization."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#Money": {
+      "type": "structure",
+      "members": {
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an amount of money with its currency type."
       }
     },
     "com.gcp.marketingplatformadmin_v1alpha#AnalyticsAccountLink": {
@@ -463,6 +411,59 @@
         }
       }
     },
+    "com.gcp.marketingplatformadmin_v1alpha#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsResponse": {
+      "type": "structure",
+      "members": {
+        "clientData": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#ClientDataList",
+          "traits": {
+            "smithy.api#documentation": "The clients managed by the sales org."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for FindSalesPartnerManagedClients RPC."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ClientDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#ClientData"
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ClientData": {
+      "type": "structure",
+      "members": {
+        "startDate": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Marketingplatformadmin_Date",
+          "traits": {
+            "smithy.api#documentation": "The start date of the contract between the sales org and the end client."
+          }
+        },
+        "organization": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Organization",
+          "traits": {
+            "smithy.api#documentation": "The end client that has/had contract with the requested sales org."
+          }
+        },
+        "endDate": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Marketingplatformadmin_Date",
+          "traits": {
+            "smithy.api#documentation": "The end date of the contract between the sales org and the end client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the client data."
+      }
+    },
     "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsRequest": {
       "type": "structure",
       "members": {
@@ -477,19 +478,19 @@
         "smithy.api#documentation": "Request message for FindSalesPartnerManagedClients RPC."
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageOrganizationsRequest": {
+    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizationsRequest": {
       "type": "structure",
       "members": {
         "organization": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Specifies the organization whose property usage will be listed. Format: organizations/{org_id}",
+            "smithy.api#documentation": "Required. The name of the sales partner organization. Format: organizations/{org_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageRequest",
+          "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -547,6 +548,103 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+organization}:findSalesPartnerManagedClients"
+        },
+        "smithy.api#documentation": "Returns a list of clients managed by the sales partner organization. User needs to be an OrgAdmin/BillingAdmin on the sales partner organization in order to view the end clients."
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous ListOrganizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrganizations` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ListOrganizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/organizations"
+        },
+        "smithy.api#documentation": "Returns a list of organizations that the user has access to.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageOrganizationsRequest": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the organization whose property usage will be listed. Format: organizations/{org_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.marketingplatformadmin_v1alpha#ReportPropertyUsageOrganizations": {
@@ -614,103 +712,6 @@
           "uri": "v1alpha/{+name}"
         },
         "smithy.api#documentation": "Looks up a single organization."
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous ListOrganizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrganizations` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#ListOrganizations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1alpha/organizations"
-        },
-        "smithy.api#documentation": "Returns a list of organizations that the user has access to.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizationsRequest": {
-      "type": "structure",
-      "members": {
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the sales partner organization. Format: organizations/{org_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsOrganizationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#FindSalesPartnerManagedClientsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#BadRequest"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1alpha/{+organization}:findSalesPartnerManagedClients"
-        },
-        "smithy.api#documentation": "Returns a list of clients managed by the sales partner organization. User needs to be an OrgAdmin/BillingAdmin on the sales partner organization in order to view the end clients."
       }
     },
     "com.gcp.marketingplatformadmin_v1alpha#DeleteOrganizationsAnalyticsAccountLinksRequest": {
@@ -806,56 +807,6 @@
         "smithy.api#documentation": "Creates the link between the Analytics account and the Google Marketing Platform organization. User needs to be an org user, and admin on the Analytics account to create the link. If the account is already linked to an organization, user needs to unlink the account from the current organization, then try link again."
       }
     },
-    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinksRequest": {
-      "type": "structure",
-      "members": {
-        "analyticsAccountLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent AnalyticsAccountLink scope where this property is in. Format: organizations/{org_id}/analyticsAccountLinks/{analytics_account_link_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#BadRequest"
-        },
-        {
-          "target": "com.gcp.marketingplatformadmin_v1alpha#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1alpha/{+analyticsAccountLink}:setPropertyServiceLevel"
-        },
-        "smithy.api#documentation": "Updates the service level for an Analytics property."
-      }
-    },
     "com.gcp.marketingplatformadmin_v1alpha#ListOrganizationsAnalyticsAccountLinksRequest": {
       "type": "structure",
       "members": {
@@ -909,6 +860,56 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinksRequest": {
+      "type": "structure",
+      "members": {
+        "analyticsAccountLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent AnalyticsAccountLink scope where this property is in. Format: organizations/{org_id}/analyticsAccountLinks/{analytics_account_link_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelOrganizationsAnalyticsAccountLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.marketingplatformadmin_v1alpha#SetPropertyServiceLevelResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.marketingplatformadmin_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+analyticsAccountLink}:setPropertyServiceLevel"
+        },
+        "smithy.api#documentation": "Updates the service level for an Analytics property."
       }
     }
   }

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.volume#VolumeCommitRequest": {
+    "com.modal.volume#CommitVolumeRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -37,7 +38,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#VolumeCommitResponse": {
+    "com.modal.volume#CommitVolumeResponse": {
       "type": "structure",
       "members": {
         "skipReload": {
@@ -48,13 +49,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#VolumeCommit": {
+    "com.modal.volume#CommitVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeCommitRequest"
+        "target": "com.modal.volume#CommitVolumeRequest"
       },
       "output": {
-        "target": "com.modal.volume#VolumeCommitResponse"
+        "target": "com.modal.volume#CommitVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -176,7 +177,7 @@
         }
       }
     },
-    "com.modal.volume#GetVolumeByIdRequest": {
+    "com.modal.volume#VolumeGetByIdRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -244,7 +245,7 @@
         }
       }
     },
-    "com.modal.volume#GetVolumeByIdResponse": {
+    "com.modal.volume#VolumeGetByIdResponse": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -258,13 +259,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#GetVolumeById": {
+    "com.modal.volume#VolumeGetById": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#GetVolumeByIdRequest"
+        "target": "com.modal.volume#VolumeGetByIdRequest"
       },
       "output": {
-        "target": "com.modal.volume#GetVolumeByIdResponse"
+        "target": "com.modal.volume#VolumeGetByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -274,7 +275,7 @@
         }
       }
     },
-    "com.modal.volume#GetVolumeFileRequest": {
+    "com.modal.volume#VolumeGetFileRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -294,7 +295,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#GetVolumeFileResponse": {
+    "com.modal.volume#VolumeGetFileResponse": {
       "type": "structure",
       "members": {
         "data": {
@@ -323,13 +324,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#GetVolumeFile": {
+    "com.modal.volume#VolumeGetFile": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#GetVolumeFileRequest"
+        "target": "com.modal.volume#VolumeGetFileRequest"
       },
       "output": {
-        "target": "com.modal.volume#GetVolumeFileResponse"
+        "target": "com.modal.volume#VolumeGetFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -339,7 +340,7 @@
         }
       }
     },
-    "com.modal.volume#GetVolumeFile2Request": {
+    "com.modal.volume#VolumeGetFile2Request": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -359,7 +360,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#GetVolumeFile2Response": {
+    "com.modal.volume#VolumeGetFile2Response": {
       "type": "structure",
       "members": {
         "getUrls": {
@@ -385,13 +386,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#GetVolumeFile2": {
+    "com.modal.volume#VolumeGetFile2": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#GetVolumeFile2Request"
+        "target": "com.modal.volume#VolumeGetFile2Request"
       },
       "output": {
-        "target": "com.modal.volume#GetVolumeFile2Response"
+        "target": "com.modal.volume#VolumeGetFile2Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -947,7 +948,7 @@
         }
       }
     },
-    "com.modal.volume#VolumeRenameRequest": {
+    "com.modal.volume#RenameVolumeRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -961,10 +962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#VolumeRename": {
+    "com.modal.volume#RenameVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeRenameRequest"
+        "target": "com.modal.volume#RenameVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -982,7 +983,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.volume#VolumeCommit"
+          "target": "com.modal.volume#CommitVolume"
+        },
+        {
+          "target": "com.modal.volume#DeleteVolume"
+        },
+        {
+          "target": "com.modal.volume#ListVolume"
+        },
+        {
+          "target": "com.modal.volume#RenameVolume"
         },
         {
           "target": "com.modal.volume#VolumeCopyFiles"
@@ -991,25 +1001,19 @@
           "target": "com.modal.volume#VolumeCopyFiles2"
         },
         {
-          "target": "com.modal.volume#DeleteVolume"
+          "target": "com.modal.volume#VolumeGetById"
         },
         {
-          "target": "com.modal.volume#GetVolumeById"
+          "target": "com.modal.volume#VolumeGetFile"
         },
         {
-          "target": "com.modal.volume#GetVolumeFile"
-        },
-        {
-          "target": "com.modal.volume#GetVolumeFile2"
+          "target": "com.modal.volume#VolumeGetFile2"
         },
         {
           "target": "com.modal.volume#VolumeGetOrCreate"
         },
         {
           "target": "com.modal.volume#VolumeHeartbeat"
-        },
-        {
-          "target": "com.modal.volume#ListVolume"
         },
         {
           "target": "com.modal.volume#VolumePutFiles"
@@ -1025,9 +1029,6 @@
         },
         {
           "target": "com.modal.volume#VolumeRemoveFile2"
-        },
-        {
-          "target": "com.modal.volume#VolumeRename"
         }
       ],
       "traits": {

@@ -698,27 +698,28 @@ export const GetDenyAssignmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDenyAssignmentByIdRequest",
 }) as any as S.Schema<GetDenyAssignmentByIdRequest>;
 
-export interface GetProviderOperationMetadataRequest {
+export interface GetProviderOperationsMetadataRequest {
   /** The namespace of the resource provider. */
   resourceProviderNamespace: string;
   /** Specifies whether to expand the values. */
   _expand?: string;
 }
-export const GetProviderOperationMetadataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Authorization/providerOperations/{resourceProviderNamespace}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
+export const GetProviderOperationsMetadataRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      resourceProviderNamespace: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Authorization/providerOperations/{resourceProviderNamespace}",
+        code: 200,
+        apiVersion: "2022-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GetProviderOperationMetadataRequest",
-}) as any as S.Schema<GetProviderOperationMetadataRequest>;
+  identifier: "GetProviderOperationsMetadataRequest",
+}) as any as S.Schema<GetProviderOperationsMetadataRequest>;
 
 /** Operation */
 export interface ProviderOperation {
@@ -772,22 +773,22 @@ export const ResourceType = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ResourceType" }) as any as S.Schema<ResourceType>;
 
 /** The provider resource types */
-export type ProviderOperationsMetadataGetResponseResourceTypesList =
+export type GetProviderOperationsMetadataResponseResourceTypesList =
   Array<ResourceType>;
-export const ProviderOperationsMetadataGetResponseResourceTypesList =
+export const GetProviderOperationsMetadataResponseResourceTypesList =
   /*@__PURE__*/ S.Array(
     ResourceType,
-  ) as any as S.Schema<ProviderOperationsMetadataGetResponseResourceTypesList>;
+  ) as any as S.Schema<GetProviderOperationsMetadataResponseResourceTypesList>;
 
 /** The provider operations. */
-export type ProviderOperationsMetadataGetResponseOperationsList =
+export type GetProviderOperationsMetadataResponseOperationsList =
   Array<ProviderOperation>;
-export const ProviderOperationsMetadataGetResponseOperationsList =
+export const GetProviderOperationsMetadataResponseOperationsList =
   /*@__PURE__*/ S.Array(
     ProviderOperation,
-  ) as any as S.Schema<ProviderOperationsMetadataGetResponseOperationsList>;
+  ) as any as S.Schema<GetProviderOperationsMetadataResponseOperationsList>;
 
-export interface GetProviderOperationMetadataResponse {
+export interface GetProviderOperationsMetadataResponse {
   /** The provider ID. */
   id?: string;
   /** The provider name. */
@@ -797,11 +798,11 @@ export interface GetProviderOperationMetadataResponse {
   /** The provider display name. */
   displayName?: string;
   /** The provider resource types */
-  resourceTypes?: ProviderOperationsMetadataGetResponseResourceTypesList;
+  resourceTypes?: GetProviderOperationsMetadataResponseResourceTypesList;
   /** The provider operations. */
-  operations?: ProviderOperationsMetadataGetResponseOperationsList;
+  operations?: GetProviderOperationsMetadataResponseOperationsList;
 }
-export const GetProviderOperationMetadataResponse = /*@__PURE__*/ S.suspend(
+export const GetProviderOperationsMetadataResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -809,15 +810,15 @@ export const GetProviderOperationMetadataResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       displayName: S.optional(S.String),
       resourceTypes: S.optional(
-        ProviderOperationsMetadataGetResponseResourceTypesList,
+        GetProviderOperationsMetadataResponseResourceTypesList,
       ),
       operations: S.optional(
-        ProviderOperationsMetadataGetResponseOperationsList,
+        GetProviderOperationsMetadataResponseOperationsList,
       ),
     }),
 ).annotate({
-  identifier: "GetProviderOperationMetadataResponse",
-}) as any as S.Schema<GetProviderOperationMetadataResponse>;
+  identifier: "GetProviderOperationsMetadataResponse",
+}) as any as S.Schema<GetProviderOperationsMetadataResponse>;
 
 export interface GetRoleAssignmentRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -1066,7 +1067,7 @@ export const ListDenyAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDenyAssignmentsRequest",
 }) as any as S.Schema<ListDenyAssignmentsRequest>;
 
-export interface ListPermissionForResourceRequest {
+export interface ListPermissionsForResourceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1080,7 +1081,7 @@ export interface ListPermissionForResourceRequest {
   /** The name of the resource to get the permissions for. */
   resourceName: string;
 }
-export const ListPermissionForResourceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPermissionsForResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1097,8 +1098,8 @@ export const ListPermissionForResourceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListPermissionForResourceRequest",
-}) as any as S.Schema<ListPermissionForResourceRequest>;
+  identifier: "ListPermissionsForResourceRequest",
+}) as any as S.Schema<ListPermissionsForResourceRequest>;
 
 /** An array of permissions. */
 export type PermissionGetResultValueList = Array<Permission>;
@@ -1122,13 +1123,13 @@ export const PermissionGetResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PermissionGetResult",
 }) as any as S.Schema<PermissionGetResult>;
 
-export interface ListPermissionForResourceGroupRequest {
+export interface ListPermissionsForResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListPermissionForResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListPermissionsForResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1142,14 +1143,14 @@ export const ListPermissionForResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListPermissionForResourceGroupRequest",
-}) as any as S.Schema<ListPermissionForResourceGroupRequest>;
+  identifier: "ListPermissionsForResourceGroupRequest",
+}) as any as S.Schema<ListPermissionsForResourceGroupRequest>;
 
-export interface ListProviderOperationMetadataRequest {
+export interface ListProviderOperationsMetadataRequest {
   /** Specifies whether to expand the values. */
   _expand?: string;
 }
-export const ListProviderOperationMetadataRequest = /*@__PURE__*/ S.suspend(
+export const ListProviderOperationsMetadataRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       _expand: S.optional(S.String.pipe(T.Query("$expand"))),
@@ -1162,8 +1163,8 @@ export const ListProviderOperationMetadataRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListProviderOperationMetadataRequest",
-}) as any as S.Schema<ListProviderOperationMetadataRequest>;
+  identifier: "ListProviderOperationsMetadataRequest",
+}) as any as S.Schema<ListProviderOperationsMetadataRequest>;
 
 /** The provider resource types */
 export type ProviderOperationsMetadataResourceTypesList = Array<ResourceType>;
@@ -1215,20 +1216,21 @@ export const ProviderOperationsMetadataListResultValueList =
   ) as any as S.Schema<ProviderOperationsMetadataListResultValueList>;
 
 /** The response of a ProviderOperationsMetadata list operation. */
-export interface ListProviderOperationMetadataResult {
+export interface ProviderOperationsMetadataListResult {
   /** The ProviderOperationsMetadata items on this page */
   value: ProviderOperationsMetadataListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListProviderOperationMetadataResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProviderOperationsMetadataListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
+export const ProviderOperationsMetadataListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: ProviderOperationsMetadataListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "ListProviderOperationMetadataResult",
-}) as any as S.Schema<ListProviderOperationMetadataResult>;
+  identifier: "ProviderOperationsMetadataListResult",
+}) as any as S.Schema<ProviderOperationsMetadataListResult>;
 
 export interface ListRoleAssignmentForResourceRequest {
   /** The ID of the target subscription. */
@@ -1612,16 +1614,16 @@ export const GetDenyAssignmentById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProviderOperationMetadataError = AzureOpError;
+export type GetProviderOperationsMetadataError = AzureOpError;
 /** Gets provider operations metadata for the specified resource provider. */
-export const GetProviderOperationMetadata: API.OperationMethod<
-  GetProviderOperationMetadataRequest,
-  GetProviderOperationMetadataResponse,
-  GetProviderOperationMetadataError,
+export const GetProviderOperationsMetadata: API.OperationMethod<
+  GetProviderOperationsMetadataRequest,
+  GetProviderOperationsMetadataResponse,
+  GetProviderOperationsMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProviderOperationMetadataRequest,
-  output: GetProviderOperationMetadataResponse,
+  input: GetProviderOperationsMetadataRequest,
+  output: GetProviderOperationsMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1732,46 +1734,46 @@ export const ListDenyAssignments: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPermissionForResourceError = AzureOpError;
+export type ListPermissionsForResourceError = AzureOpError;
 /** Gets all permissions the caller has for a resource. */
-export const ListPermissionForResource: API.OperationMethod<
-  ListPermissionForResourceRequest,
+export const ListPermissionsForResource: API.OperationMethod<
+  ListPermissionsForResourceRequest,
   PermissionGetResult,
-  ListPermissionForResourceError,
+  ListPermissionsForResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPermissionForResourceRequest,
+  input: ListPermissionsForResourceRequest,
   output: PermissionGetResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPermissionForResourceGroupError = AzureOpError;
+export type ListPermissionsForResourceGroupError = AzureOpError;
 /** Gets all permissions the caller has for a resource group. */
-export const ListPermissionForResourceGroup: API.OperationMethod<
-  ListPermissionForResourceGroupRequest,
+export const ListPermissionsForResourceGroup: API.OperationMethod<
+  ListPermissionsForResourceGroupRequest,
   PermissionGetResult,
-  ListPermissionForResourceGroupError,
+  ListPermissionsForResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPermissionForResourceGroupRequest,
+  input: ListPermissionsForResourceGroupRequest,
   output: PermissionGetResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListProviderOperationMetadataError = AzureOpError;
+export type ListProviderOperationsMetadataError = AzureOpError;
 /** Gets provider operations metadata for all resource providers. */
-export const ListProviderOperationMetadata: API.OperationMethod<
-  ListProviderOperationMetadataRequest,
-  ListProviderOperationMetadataResult,
-  ListProviderOperationMetadataError,
+export const ListProviderOperationsMetadata: API.OperationMethod<
+  ListProviderOperationsMetadataRequest,
+  ProviderOperationsMetadataListResult,
+  ListProviderOperationsMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListProviderOperationMetadataRequest,
-  output: ListProviderOperationMetadataResult,
+  input: ListProviderOperationsMetadataRequest,
+  output: ProviderOperationsMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

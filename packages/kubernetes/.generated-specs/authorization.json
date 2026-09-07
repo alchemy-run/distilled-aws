@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.authorization#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.authorization#GetAuthorizationApiGroup": {
+    "com.kubernetes.authorization#GetAuthorizationAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.authorization#GetAuthorizationV1ApiResources": {
+    "com.kubernetes.authorization#GetAuthorizationV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1621,12 +1622,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.authorization#GetAuthorizationApiGroup"
-        },
-        {
-          "target": "com.kubernetes.authorization#GetAuthorizationV1ApiResources"
-        },
-        {
           "target": "com.kubernetes.authorization#CreateAuthorizationV1NamespacedLocalSubjectAccessReview"
         },
         {
@@ -1637,6 +1632,12 @@
         },
         {
           "target": "com.kubernetes.authorization#CreateAuthorizationV1SubjectAccessReview"
+        },
+        {
+          "target": "com.kubernetes.authorization#GetAuthorizationAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.authorization#GetAuthorizationV1APIResources"
         }
       ],
       "traits": {

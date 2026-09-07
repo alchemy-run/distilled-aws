@@ -22,7 +22,8 @@
       "resultInfo": "result_info",
       "workerId": "worker_id",
       "zoneId": "zone_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.resource_tagging#ListRequestTagList": {
@@ -9648,31 +9649,31 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.resource_tagging#List"
+          "target": "com.cloudflare.resource_tagging#DeleteAccountTag"
         },
         {
-          "target": "com.cloudflare.resource_tagging#AccountTagsDelete"
+          "target": "com.cloudflare.resource_tagging#DeleteZoneTag"
         },
         {
-          "target": "com.cloudflare.resource_tagging#AccountTagsGet"
+          "target": "com.cloudflare.resource_tagging#GetAccountTag"
         },
         {
-          "target": "com.cloudflare.resource_tagging#AccountTagsUpdate"
+          "target": "com.cloudflare.resource_tagging#GetZoneTag"
         },
         {
-          "target": "com.cloudflare.resource_tagging#KeysList"
+          "target": "com.cloudflare.resource_tagging#ListKeys"
         },
         {
-          "target": "com.cloudflare.resource_tagging#ValuesList"
+          "target": "com.cloudflare.resource_tagging#ListResourceTaggings"
         },
         {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsDelete"
+          "target": "com.cloudflare.resource_tagging#ListValues"
         },
         {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsGet"
+          "target": "com.cloudflare.resource_tagging#PutAccountTag"
         },
         {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdate"
+          "target": "com.cloudflare.resource_tagging#PutZoneTag"
         }
       ],
       "traits": {

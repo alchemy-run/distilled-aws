@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.users#ListUsersRequest": {
@@ -4132,10 +4133,10 @@
           "target": "smithy.api#String"
         },
         "membership_level": {
-          "target": "com.posthog.users#EffectiveMembershipLevelEnum"
+          "target": "com.posthog.users#OrganizationMembershipLevelEnum"
         },
         "plugins_access_level": {
-          "target": "com.posthog.users#PluginsAccessLevelEnum"
+          "target": "com.posthog.users#OrganizationPluginsAccessLevelEnum"
         },
         "teams": {
           "target": "com.posthog.users#OrganizationTeamsList"
@@ -4289,7 +4290,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#EffectiveMembershipLevelEnum": {
+    "com.posthog.users#OrganizationMembershipLevelEnum": {
       "type": "intEnum",
       "members": {
         "_1": {
@@ -4311,9 +4312,11 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "* `1` - member\n* `8` - administrator\n* `15` - owner"
+      }
     },
-    "com.posthog.users#PluginsAccessLevelEnum": {
+    "com.posthog.users#OrganizationPluginsAccessLevelEnum": {
       "type": "intEnum",
       "members": {
         "_0": {
@@ -4396,7 +4399,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#DefaultExperimentStatsMethodEnum": {
+    "com.posthog.users#OrganizationDefaultExperimentStatsMethodEnum": {
       "type": "enum",
       "members": {
         "BAYESIAN": {
@@ -4419,8 +4422,8 @@
     "com.posthog.users#OrganizationDefaultExperimentStatsMethod": {
       "type": "union",
       "members": {
-        "DefaultExperimentStatsMethodEnum": {
-          "target": "com.posthog.users#DefaultExperimentStatsMethodEnum"
+        "OrganizationDefaultExperimentStatsMethodEnum": {
+          "target": "com.posthog.users#OrganizationDefaultExperimentStatsMethodEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.users#BlankEnum"
@@ -4449,7 +4452,7 @@
           }
         },
         "membership_level": {
-          "target": "com.posthog.users#EffectiveMembershipLevelEnum"
+          "target": "com.posthog.users#OrganizationMembershipLevelEnum"
         },
         "members_can_use_personal_api_keys": {
           "target": "smithy.api#Boolean"
@@ -4749,7 +4752,7 @@
         }
       }
     },
-    "com.posthog.users#SignalUserAutonomyRetrieveRequest": {
+    "com.posthog.users#GetUsersSignalAutonomyRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -4796,7 +4799,7 @@
         "slack_notification_min_priority": {
           "target": "com.posthog.users#SignalUserAutonomyConfigSlackNotificationMinPriority",
           "traits": {
-            "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority (and reports without a priority judgment).\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4",
+            "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority. When set, reports without a priority judgment do not notify.\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -4891,13 +4894,13 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority (and reports without a priority judgment).\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4"
+        "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority. When set, reports without a priority judgment do not notify.\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4"
       }
     },
-    "com.posthog.users#SignalUserAutonomyRetrieve": {
+    "com.posthog.users#GetUsersSignalAutonomy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#SignalUserAutonomyRetrieveRequest"
+        "target": "com.posthog.users#GetUsersSignalAutonomyRequest"
       },
       "output": {
         "target": "com.posthog.users#SignalUserAutonomyConfig"
@@ -4919,7 +4922,7 @@
         "smithy.api#documentation": "Per-user signal autonomy config (singleton keyed by user).\n\nGET    /api/users/<id>/signal_autonomy/ → current config (or 404)\nPOST   /api/users/<id>/signal_autonomy/ → create or update\nDELETE /api/users/<id>/signal_autonomy/ → remove (opt out)"
       }
     },
-    "com.posthog.users#UsersSignalAutonomyCreateRequestAutostartPriority": {
+    "com.posthog.users#CreateUsersSignalAutonomyRequestAutostartPriority": {
       "type": "union",
       "members": {
         "AutonomyPriorityEnum": {
@@ -4931,7 +4934,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersSignalAutonomyCreateRequestSlackNotificationMinPriority": {
+    "com.posthog.users#CreateUsersSignalAutonomyRequestSlackNotificationMinPriority": {
       "type": "union",
       "members": {
         "AutonomyPriorityEnum": {
@@ -4942,10 +4945,10 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority (and reports without a priority judgment).\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4"
+        "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority. When set, reports without a priority judgment do not notify.\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4"
       }
     },
-    "com.posthog.users#UsersSignalAutonomyCreateRequest": {
+    "com.posthog.users#CreateUsersSignalAutonomyRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -4956,7 +4959,7 @@
           }
         },
         "autostart_priority": {
-          "target": "com.posthog.users#UsersSignalAutonomyCreateRequestAutostartPriority",
+          "target": "com.posthog.users#CreateUsersSignalAutonomyRequestAutostartPriority",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -4969,9 +4972,9 @@
           }
         },
         "slack_notification_min_priority": {
-          "target": "com.posthog.users#UsersSignalAutonomyCreateRequestSlackNotificationMinPriority",
+          "target": "com.posthog.users#CreateUsersSignalAutonomyRequestSlackNotificationMinPriority",
           "traits": {
-            "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority (and reports without a priority judgment).\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4",
+            "smithy.api#documentation": "Minimum report priority that triggers a Slack notification. P0 is highest. Null means notify on every priority. When set, reports without a priority judgment do not notify.\n\n* `P0` - P0\n* `P1` - P1\n* `P2` - P2\n* `P3` - P3\n* `P4` - P4",
             "com.distilled.openapi#nullable": {}
           }
         }
@@ -4980,10 +4983,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersSignalAutonomyCreate": {
+    "com.posthog.users#CreateUsersSignalAutonomy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersSignalAutonomyCreateRequest"
+        "target": "com.posthog.users#CreateUsersSignalAutonomyRequest"
       },
       "output": {
         "target": "com.posthog.users#SignalUserAutonomyConfig"
@@ -5048,7 +5051,7 @@
         "smithy.api#documentation": "Per-user signal autonomy config (singleton keyed by user).\n\nGET    /api/users/<id>/signal_autonomy/ → current config (or 404)\nPOST   /api/users/<id>/signal_autonomy/ → create or update\nDELETE /api/users/<id>/signal_autonomy/ → remove (opt out)"
       }
     },
-    "com.posthog.users#UsersRetrieveRequest": {
+    "com.posthog.users#GetUserRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5063,10 +5066,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersRetrieve": {
+    "com.posthog.users#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersRetrieveRequest"
+        "target": "com.posthog.users#GetUserRequest"
       },
       "output": {
         "target": "com.posthog.users#UserOutput"
@@ -5088,7 +5091,7 @@
         "smithy.api#documentation": "Retrieve a user's profile and settings. Pass `@me` as the UUID to fetch the authenticated user; non-staff callers may only access their own account."
       }
     },
-    "com.posthog.users#UsersUpdateRequestNotificationSettingsMap": {
+    "com.posthog.users#UpdateUserRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5100,7 +5103,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersUpdateRequestToolbarMode": {
+    "com.posthog.users#UpdateUserRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -5112,7 +5115,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersUpdateRequestThemeMode": {
+    "com.posthog.users#UpdateUserRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -5124,7 +5127,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersUpdateRequestShortcutPosition": {
+    "com.posthog.users#UpdateUserRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -5156,7 +5159,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersUpdateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#UpdateUserRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -5175,7 +5178,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersUpdateRequestToolbarMode",
+          "target": "com.posthog.users#UpdateUserRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5212,7 +5215,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersUpdateRequestThemeMode",
+          "target": "com.posthog.users#UpdateUserRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5227,7 +5230,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersUpdateRequestShortcutPosition",
+          "target": "com.posthog.users#UpdateUserRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5287,7 +5290,7 @@
         "smithy.api#documentation": "Replace the authenticated user's profile and settings. Pass `@me` as the UUID to update the authenticated user. Prefer the PATCH endpoint for partial updates — PUT requires every writable field to be provided."
       }
     },
-    "com.posthog.users#UsersPartialUpdateRequestNotificationSettingsMap": {
+    "com.posthog.users#UpdateUsersPartialRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5299,7 +5302,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersPartialUpdateRequestToolbarMode": {
+    "com.posthog.users#UpdateUsersPartialRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -5311,7 +5314,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersPartialUpdateRequestThemeMode": {
+    "com.posthog.users#UpdateUsersPartialRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -5323,7 +5326,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersPartialUpdateRequestShortcutPosition": {
+    "com.posthog.users#UpdateUsersPartialRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -5335,7 +5338,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UpdateUserPartialRequest": {
+    "com.posthog.users#UpdateUsersPartialRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5355,7 +5358,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersPartialUpdateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#UpdateUsersPartialRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -5374,7 +5377,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersPartialUpdateRequestToolbarMode",
+          "target": "com.posthog.users#UpdateUsersPartialRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5411,7 +5414,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersPartialUpdateRequestThemeMode",
+          "target": "com.posthog.users#UpdateUsersPartialRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5426,7 +5429,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersPartialUpdateRequestShortcutPosition",
+          "target": "com.posthog.users#UpdateUsersPartialRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5458,10 +5461,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UpdateUserPartial": {
+    "com.posthog.users#UpdateUsersPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UpdateUserPartialRequest"
+        "target": "com.posthog.users#UpdateUsersPartialRequest"
       },
       "output": {
         "target": "com.posthog.users#UserOutput"
@@ -5525,7 +5528,7 @@
         }
       }
     },
-    "com.posthog.users#CreateUserCredentialReviewCompleteRequest": {
+    "com.posthog.users#CreateUsersCredentialsReviewCompleteRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5540,10 +5543,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserCredentialReviewComplete": {
+    "com.posthog.users#CreateUsersCredentialsReviewComplete": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserCredentialReviewCompleteRequest"
+        "target": "com.posthog.users#CreateUsersCredentialsReviewCompleteRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5557,7 +5560,7 @@
         "smithy.api#documentation": "Mark the user as having reviewed their existing credentials. Idempotent. Flips `requires_credential_review` to False so the post-login interstitial isn't shown again. Does not modify any credentials; the user revokes individual Personal API Keys and passkeys via their existing endpoints from the same screen."
       }
     },
-    "com.posthog.users#UsersGithubLoginRetrieveRequest": {
+    "com.posthog.users#GetUsersGithubLoginRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5586,10 +5589,10 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersGithubLoginRetrieve": {
+    "com.posthog.users#GetUsersGithubLogin": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersGithubLoginRetrieveRequest"
+        "target": "com.posthog.users#GetUsersGithubLoginRequest"
       },
       "output": {
         "target": "com.posthog.users#UserGithubLogin"
@@ -5610,7 +5613,7 @@
         }
       }
     },
-    "com.posthog.users#UsersHedgehogConfigRetrieveRequest": {
+    "com.posthog.users#GetUsersHedgehogConfigRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5625,10 +5628,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersHedgehogConfigRetrieve": {
+    "com.posthog.users#GetUsersHedgehogConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersHedgehogConfigRetrieveRequest"
+        "target": "com.posthog.users#GetUsersHedgehogConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5649,7 +5652,7 @@
         }
       }
     },
-    "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestNotificationSettingsMap": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5661,7 +5664,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestToolbarMode": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -5673,7 +5676,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestThemeMode": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -5685,7 +5688,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestShortcutPosition": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -5697,7 +5700,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UpdateUserHedgehogConfigPartialRequest": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartialRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5717,7 +5720,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -5736,7 +5739,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestToolbarMode",
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5773,7 +5776,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestThemeMode",
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5788,7 +5791,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersHedgehogConfigPartialUpdateRequestShortcutPosition",
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartialRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5820,10 +5823,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UpdateUserHedgehogConfigPartial": {
+    "com.posthog.users#UpdateUsersHedgehogConfigPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UpdateUserHedgehogConfigPartialRequest"
+        "target": "com.posthog.users#UpdateUsersHedgehogConfigPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5847,7 +5850,7 @@
         }
       }
     },
-    "com.posthog.users#UsersIntegrationsListRequestKind": {
+    "com.posthog.users#ListUsersIntegrationsRequestKind": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -5865,7 +5868,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#ListUserIntegrationsRequest": {
+    "com.posthog.users#ListUsersIntegrationsRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5876,7 +5879,7 @@
           }
         },
         "kind": {
-          "target": "com.posthog.users#UsersIntegrationsListRequestKind",
+          "target": "com.posthog.users#ListUsersIntegrationsRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#documentation": "Integration kind to list. Defaults to `github` for back-compat with mobile and the Code SDK, which call this endpoint without a query param and expect GitHub-shaped items."
@@ -6076,10 +6079,10 @@
       },
       "traits": {}
     },
-    "com.posthog.users#ListUserIntegrations": {
+    "com.posthog.users#ListUsersIntegrations": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#ListUserIntegrationsRequest"
+        "target": "com.posthog.users#ListUsersIntegrationsRequest"
       },
       "output": {
         "target": "com.posthog.users#PaginatedUserGitHubIntegrationListResponseList"
@@ -6132,7 +6135,7 @@
         "smithy.api#documentation": "Disconnect a personal GitHub integration\n\nRemove a specific GitHub installation by its installation_id."
       }
     },
-    "com.posthog.users#UsersIntegrationsGithubBranchesRetrieveRequest": {
+    "com.posthog.users#GetUsersIntegrationsGithubBranchRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6217,10 +6220,10 @@
         "smithy.api#documentation": "List of branch names"
       }
     },
-    "com.posthog.users#UsersIntegrationsGithubBranchesRetrieve": {
+    "com.posthog.users#GetUsersIntegrationsGithubBranch": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersIntegrationsGithubBranchesRetrieveRequest"
+        "target": "com.posthog.users#GetUsersIntegrationsGithubBranchRequest"
       },
       "output": {
         "target": "com.posthog.users#GitHubBranchesResponse"
@@ -6234,7 +6237,7 @@
         "smithy.api#documentation": "List branches for a personal GitHub installation repository\n\nList branches for a repository accessible to a personal GitHub installation."
       }
     },
-    "com.posthog.users#UsersIntegrationsGithubReposRetrieveRequest": {
+    "com.posthog.users#GetUsersIntegrationsGithubReposRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6365,10 +6368,10 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersIntegrationsGithubReposRetrieve": {
+    "com.posthog.users#GetUsersIntegrationsGithubRepos": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersIntegrationsGithubReposRetrieveRequest"
+        "target": "com.posthog.users#GetUsersIntegrationsGithubReposRequest"
       },
       "output": {
         "target": "com.posthog.users#GitHubReposResponse"
@@ -6382,7 +6385,7 @@
         "smithy.api#documentation": "List repositories for a personal GitHub installation\n\nList repositories accessible to a specific GitHub installation (paginated, cached)."
       }
     },
-    "com.posthog.users#CreateUserIntegrationGithubReposRefreshRequest": {
+    "com.posthog.users#UsersIntegrationsGithubReposRefreshCreateRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6431,10 +6434,10 @@
         "smithy.api#documentation": "The refreshed repository cache."
       }
     },
-    "com.posthog.users#CreateUserIntegrationGithubReposRefresh": {
+    "com.posthog.users#UsersIntegrationsGithubReposRefreshCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserIntegrationGithubReposRefreshRequest"
+        "target": "com.posthog.users#UsersIntegrationsGithubReposRefreshCreateRequest"
       },
       "output": {
         "target": "com.posthog.users#GitHubReposRefreshResponse"
@@ -6501,7 +6504,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.users#GitHubInstallRequestItemStatusEnum",
+          "target": "com.posthog.users#GitHubInstallRequestStatusEnum",
           "traits": {
             "smithy.api#documentation": "`pending` while waiting on an org owner's approval, `approved` once the installation webhook confirms it, `unidentified` when the requesting GitHub account could not be resolved. Approval can't be detected for an unidentified request, so the user has to start the connect flow again.\n\n* `pending` - Pending\n* `approved` - Approved\n* `unidentified` - Unidentified",
             "smithy.api#required": {}
@@ -6545,7 +6548,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#GitHubInstallRequestItemStatusEnum": {
+    "com.posthog.users#GitHubInstallRequestStatusEnum": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -6597,7 +6600,7 @@
         "smithy.api#documentation": "List the user's GitHub install-approval requests\n\nReturn the requesting user's GitHub App install-approval requests, newest first.\n\nThis is the durable server-side \"awaiting org owner approval\" state (see\n``posthog.models.user_integration.GitHubInstallRequest``), distinct from the in-flight\nconnect spinner, which never touches this table."
       }
     },
-    "com.posthog.users#UsersIntegrationsGithubInstallRequestsDestroyRequest": {
+    "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroyRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6619,10 +6622,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersIntegrationsGithubInstallRequestsDestroy": {
+    "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersIntegrationsGithubInstallRequestsDestroyRequest"
+        "target": "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6636,7 +6639,7 @@
         "smithy.api#documentation": "Dismiss a GitHub install-approval request\n\nDelete one of the requesting user's install-approval requests, whatever its status.\n\nUser-facing bookkeeping only: a later connect attempt records a fresh row."
       }
     },
-    "com.posthog.users#CreateUserIntegrationGithubPrepareCallbackRequest": {
+    "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallbackRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6658,10 +6661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserIntegrationGithubPrepareCallback": {
+    "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallback": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserIntegrationGithubPrepareCallbackRequest"
+        "target": "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallbackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6779,7 +6782,7 @@
         "smithy.api#documentation": "Unlink a Slack identity\n\nRemove a Slack identity link by Slack user id. Idempotent and\nflag-agnostic — users must always be able to unlink even after the\nfeature flag is turned off."
       }
     },
-    "com.posthog.users#UsersIntegrationsSlackLinkableWorkspacesRetrieveRequest": {
+    "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspaceRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -6857,10 +6860,10 @@
         "smithy.api#documentation": "Slack workspaces the user could link to but hasn't yet."
       }
     },
-    "com.posthog.users#UsersIntegrationsSlackLinkableWorkspacesRetrieve": {
+    "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersIntegrationsSlackLinkableWorkspacesRetrieveRequest"
+        "target": "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspaceRequest"
       },
       "output": {
         "target": "com.posthog.users#UserSlackLinkableWorkspaceListResponse"
@@ -6933,7 +6936,7 @@
         "smithy.api#documentation": "Start Slack identity link from settings\n\nMint a Sign-in-with-Slack invite URL initiated from settings, without\nSlack-DM context. The returned URL takes the user through PostHog login\n(already satisfied here), then to Slack OAuth, then back to our callback\nwhich writes the ``UserIntegration`` row.\n\nWithout body params, falls back to the user's ``current_team`` and that\nteam's first Slack ``Integration`` — works when there's exactly one\nlinkable workspace. With ``team_id`` + ``slack_team_id``, links against\nthe exact pair (what the frontend uses when a picker is shown).\n\nRefuses if the target team has no matching Slack workspace, if the\nfeature flag is off for the workspace, or if the user is already linked\nto it."
       }
     },
-    "com.posthog.users#ListUserLoginSessionsRequest": {
+    "com.posthog.users#ListUsersLoginSessionsRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7018,18 +7021,18 @@
         "smithy.api#documentation": "A cookie-auth login session shown on the user's 'Web sessions' screen."
       }
     },
-    "com.posthog.users#UsersLoginSessionsListResponseBodyList": {
+    "com.posthog.users#ListUsersLoginSessionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.users#UserAuthSession"
       },
       "traits": {}
     },
-    "com.posthog.users#ListUserLoginSessionsResponse": {
+    "com.posthog.users#ListUsersLoginSessionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.users#UsersLoginSessionsListResponseBodyList",
+          "target": "com.posthog.users#ListUsersLoginSessionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7040,13 +7043,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.users#ListUserLoginSessions": {
+    "com.posthog.users#ListUsersLoginSessions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#ListUserLoginSessionsRequest"
+        "target": "com.posthog.users#ListUsersLoginSessionsRequest"
       },
       "output": {
-        "target": "com.posthog.users#ListUserLoginSessionsResponse"
+        "target": "com.posthog.users#ListUsersLoginSessionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7057,7 +7060,7 @@
         "smithy.api#documentation": "List the cookie-auth login sessions for the current user. Self-only — never another user."
       }
     },
-    "com.posthog.users#UsersLoginSessionsDestroyRequest": {
+    "com.posthog.users#LoginUserSessionsDestroyRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7079,10 +7082,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersLoginSessionsDestroy": {
+    "com.posthog.users#LoginUserSessionsDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersLoginSessionsDestroyRequest"
+        "target": "com.posthog.users#LoginUserSessionsDestroyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7096,7 +7099,7 @@
         "smithy.api#documentation": "Revoke a single login session belonging to the current user. Self-only.\n\nRequires recent auth (TimeSensitiveActionPermission) so a stolen cookie can't weaponize\nrevocation, and is blocked while impersonating via ImpersonationBlockedPathsMiddleware."
       }
     },
-    "com.posthog.users#CreateUserLoginSessionRevokeOtherRequest": {
+    "com.posthog.users#UsersLoginSessionsRevokeOthersCreateRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7124,10 +7127,10 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserLoginSessionRevokeOther": {
+    "com.posthog.users#UsersLoginSessionsRevokeOthersCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserLoginSessionRevokeOtherRequest"
+        "target": "com.posthog.users#UsersLoginSessionsRevokeOthersCreateRequest"
       },
       "output": {
         "target": "com.posthog.users#RevokeOtherSessionsResponse"
@@ -7161,7 +7164,7 @@
         "smithy.api#documentation": "* `later` - Later\n* `other` - Other"
       }
     },
-    "com.posthog.users#CreateUserOnboardingSkipRequest": {
+    "com.posthog.users#CreateUsersOnboardingSkipRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7189,10 +7192,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserOnboardingSkip": {
+    "com.posthog.users#CreateUsersOnboardingSkip": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserOnboardingSkipRequest"
+        "target": "com.posthog.users#CreateUsersOnboardingSkipRequest"
       },
       "output": {
         "target": "com.posthog.users#UserOutput"
@@ -7206,7 +7209,76 @@
         "smithy.api#documentation": "Mark the current user as having exited onboarding with a non-delegated reason.\nIdempotent: the skip timestamp is only set on the first successful call.\n\nCallers wanting to delegate setup to a teammate must use the dedicated\n/organizations/{id}/invites/delegate/ endpoint, which atomically creates the\ninvite and sets reason=\"delegated\". This endpoint rejects that reason so state\ncan't be faked without a real invite."
       }
     },
-    "com.posthog.users#PushTokenPlatformEnum": {
+    "com.posthog.users#UpdateUsersProductIntroSeenPartialRequest": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "product_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which key in `has_seen_product_intro_for` to set. Any string is accepted: besides the product keys, the map holds keys composed per team and keys for surfaces that are not products."
+          }
+        },
+        "seen": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the intro counts as seen. Send false to show it again."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.users#UpdateUsersProductIntroSeenPartialResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Boolean"
+      },
+      "traits": {}
+    },
+    "com.posthog.users#UpdateUsersProductIntroSeenPartialResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.users#UpdateUsersProductIntroSeenPartialResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.users#UpdateUsersProductIntroSeenPartial": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.users#UpdateUsersProductIntroSeenPartialRequest"
+      },
+      "output": {
+        "target": "com.posthog.users#UpdateUsersProductIntroSeenPartialResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/users/{uuid}/product_intro_seen/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record that this user has seen one product intro.\n\nSeparate from the `has_seen_product_intro_for` field on the main user PATCH, which requires a\nrecently authenticated session. Dismissing an intro must not depend on that: a re-auth prompt\nwould cover the intro it interrupts, and the dismissal would never persist. Nothing reachable\nhere changes an account, an organization, or a profile.\n\nMerging server-side also keeps two intros dismissed from separate tabs from dropping each\nother's key, which a read-modify-write of the whole map cannot avoid."
+      }
+    },
+    "com.posthog.users#UserPushTokenPlatformEnum": {
       "type": "enum",
       "members": {
         "IOS": {
@@ -7232,7 +7304,7 @@
         "smithy.api#documentation": "* `ios` - iOS\n* `android` - Android\n* `web` - Web"
       }
     },
-    "com.posthog.users#CreateUserPushTokenRequest": {
+    "com.posthog.users#CreateUsersPushTokenRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7250,7 +7322,7 @@
           }
         },
         "platform": {
-          "target": "com.posthog.users#PushTokenPlatformEnum",
+          "target": "com.posthog.users#UserPushTokenPlatformEnum",
           "traits": {
             "smithy.api#documentation": "Device platform the token was issued for. One of `ios`, `android`, or `web`.\n\n* `ios` - iOS\n* `android` - Android\n* `web` - Web",
             "smithy.api#required": {}
@@ -7272,7 +7344,7 @@
           }
         },
         "platform": {
-          "target": "com.posthog.users#PushTokenPlatformEnum",
+          "target": "com.posthog.users#UserPushTokenPlatformEnum",
           "traits": {
             "smithy.api#documentation": "Device platform the token was issued for.\n\n* `ios` - iOS\n* `android` - Android\n* `web` - Web",
             "smithy.api#required": {}
@@ -7295,10 +7367,10 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserPushToken": {
+    "com.posthog.users#CreateUsersPushToken": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserPushTokenRequest"
+        "target": "com.posthog.users#CreateUsersPushTokenRequest"
       },
       "output": {
         "target": "com.posthog.users#UserPushTokenItem"
@@ -7312,7 +7384,7 @@
         "smithy.api#documentation": "Register a push notification token\n\nIdempotent upsert: if the (user, token) pair already exists, `platform` and `last_seen_at` are refreshed. Otherwise a new row is created."
       }
     },
-    "com.posthog.users#CreateUserPushTokenUnregisterRequest": {
+    "com.posthog.users#UsersPushTokensUnregisterCreateRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7334,10 +7406,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserPushTokenUnregister": {
+    "com.posthog.users#UsersPushTokensUnregisterCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserPushTokenUnregisterRequest"
+        "target": "com.posthog.users#UsersPushTokensUnregisterCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7351,7 +7423,7 @@
         "smithy.api#documentation": "Unregister a push notification token\n\nDelete the row matching `(user, token)`. Returns 204 even if no row matches so the mobile client can call this unconditionally when the user opts out."
       }
     },
-    "com.posthog.users#UsersScenePersonalisationCreateRequestNotificationSettingsMap": {
+    "com.posthog.users#CreateUsersScenePersonalisationRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7363,7 +7435,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersScenePersonalisationCreateRequestToolbarMode": {
+    "com.posthog.users#CreateUsersScenePersonalisationRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -7375,7 +7447,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersScenePersonalisationCreateRequestThemeMode": {
+    "com.posthog.users#CreateUsersScenePersonalisationRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -7387,7 +7459,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersScenePersonalisationCreateRequestShortcutPosition": {
+    "com.posthog.users#CreateUsersScenePersonalisationRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -7399,7 +7471,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserScenePersonalisationRequest": {
+    "com.posthog.users#CreateUsersScenePersonalisationRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7419,7 +7491,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersScenePersonalisationCreateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#CreateUsersScenePersonalisationRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -7438,7 +7510,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersScenePersonalisationCreateRequestToolbarMode",
+          "target": "com.posthog.users#CreateUsersScenePersonalisationRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7475,7 +7547,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersScenePersonalisationCreateRequestThemeMode",
+          "target": "com.posthog.users#CreateUsersScenePersonalisationRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7490,7 +7562,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersScenePersonalisationCreateRequestShortcutPosition",
+          "target": "com.posthog.users#CreateUsersScenePersonalisationRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7522,10 +7594,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserScenePersonalisation": {
+    "com.posthog.users#CreateUsersScenePersonalisation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserScenePersonalisationRequest"
+        "target": "com.posthog.users#CreateUsersScenePersonalisationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7549,7 +7621,7 @@
         }
       }
     },
-    "com.posthog.users#UsersStart2faSetupRetrieveRequest": {
+    "com.posthog.users#GetUsersStart2faSetupRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7564,10 +7636,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersStart2faSetupRetrieve": {
+    "com.posthog.users#GetUsersStart2faSetup": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersStart2faSetupRetrieveRequest"
+        "target": "com.posthog.users#GetUsersStart2faSetupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7588,7 +7660,7 @@
         }
       }
     },
-    "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestNotificationSettingsMap": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7600,7 +7672,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestToolbarMode": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -7612,7 +7684,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestThemeMode": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -7624,7 +7696,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestShortcutPosition": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -7636,7 +7708,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserTwoFactorBackupCodeRequest": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCodeRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7656,7 +7728,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -7675,7 +7747,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestToolbarMode",
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7712,7 +7784,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestThemeMode",
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7727,7 +7799,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersTwoFactorBackupCodesCreateRequestShortcutPosition",
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCodeRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -7759,10 +7831,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserTwoFactorBackupCode": {
+    "com.posthog.users#CreateUsersTwoFactorBackupCode": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserTwoFactorBackupCodeRequest"
+        "target": "com.posthog.users#CreateUsersTwoFactorBackupCodeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7986,7 +8058,7 @@
         "smithy.api#documentation": "Disable 2FA and remove all related devices"
       }
     },
-    "com.posthog.users#StartUserTwoFactorSetupRetrieveRequest": {
+    "com.posthog.users#UsersTwoFactorStartSetupRetrieveRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8001,10 +8073,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#StartUserTwoFactorSetupRetrieve": {
+    "com.posthog.users#UsersTwoFactorStartSetupRetrieve": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#StartUserTwoFactorSetupRetrieveRequest"
+        "target": "com.posthog.users#UsersTwoFactorStartSetupRetrieveRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8025,7 +8097,7 @@
         }
       }
     },
-    "com.posthog.users#UsersTwoFactorStatusRetrieveRequest": {
+    "com.posthog.users#GetUsersTwoFactorStatusRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8040,10 +8112,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersTwoFactorStatusRetrieve": {
+    "com.posthog.users#GetUsersTwoFactorStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersTwoFactorStatusRetrieveRequest"
+        "target": "com.posthog.users#GetUsersTwoFactorStatusRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8113,7 +8185,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserTwoFactorValidateRequest": {
+    "com.posthog.users#UsersTwoFactorValidateCreateRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8236,10 +8308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserTwoFactorValidate": {
+    "com.posthog.users#UsersTwoFactorValidateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserTwoFactorValidateRequest"
+        "target": "com.posthog.users#UsersTwoFactorValidateCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8263,7 +8335,7 @@
         }
       }
     },
-    "com.posthog.users#UsersValidate2faCreateRequestNotificationSettingsMap": {
+    "com.posthog.users#CreateUsersValidate2faRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8275,7 +8347,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersValidate2faCreateRequestToolbarMode": {
+    "com.posthog.users#CreateUsersValidate2faRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -8287,7 +8359,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersValidate2faCreateRequestThemeMode": {
+    "com.posthog.users#CreateUsersValidate2faRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -8299,7 +8371,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersValidate2faCreateRequestShortcutPosition": {
+    "com.posthog.users#CreateUsersValidate2faRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -8311,7 +8383,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#CreateUserValidate2faRequest": {
+    "com.posthog.users#CreateUsersValidate2faRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8331,7 +8403,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersValidate2faCreateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#CreateUsersValidate2faRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -8350,7 +8422,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersValidate2faCreateRequestToolbarMode",
+          "target": "com.posthog.users#CreateUsersValidate2faRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8387,7 +8459,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersValidate2faCreateRequestThemeMode",
+          "target": "com.posthog.users#CreateUsersValidate2faRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8402,7 +8474,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersValidate2faCreateRequestShortcutPosition",
+          "target": "com.posthog.users#CreateUsersValidate2faRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8434,10 +8506,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#CreateUserValidate2fa": {
+    "com.posthog.users#CreateUsersValidate2fa": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#CreateUserValidate2faRequest"
+        "target": "com.posthog.users#CreateUsersValidate2faRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8649,7 +8721,7 @@
         }
       }
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreateRequestNotificationSettingsMap": {
+    "com.posthog.users#CreateUsersRequestEmailVerificationRequestNotificationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8661,7 +8733,7 @@
         "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
       }
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreateRequestToolbarMode": {
+    "com.posthog.users#CreateUsersRequestEmailVerificationRequestToolbarMode": {
       "type": "union",
       "members": {
         "ToolbarModeEnum": {
@@ -8673,7 +8745,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreateRequestThemeMode": {
+    "com.posthog.users#CreateUsersRequestEmailVerificationRequestThemeMode": {
       "type": "union",
       "members": {
         "ThemeModeEnum": {
@@ -8685,7 +8757,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreateRequestShortcutPosition": {
+    "com.posthog.users#CreateUsersRequestEmailVerificationRequestShortcutPosition": {
       "type": "union",
       "members": {
         "ShortcutPositionEnum": {
@@ -8697,7 +8769,7 @@
       },
       "traits": {}
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreateRequest": {
+    "com.posthog.users#CreateUsersRequestEmailVerificationRequest": {
       "type": "structure",
       "members": {
         "first_name": {
@@ -8710,7 +8782,7 @@
           "target": "smithy.api#String"
         },
         "notification_settings": {
-          "target": "com.posthog.users#UsersRequestEmailVerificationCreateRequestNotificationSettingsMap",
+          "target": "com.posthog.users#CreateUsersRequestEmailVerificationRequestNotificationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Map of notification preferences. Keys include `plugin_disabled`, `all_weekly_report_disabled`, `project_weekly_digest_disabled`, `error_tracking_weekly_digest_project_enabled`, `web_analytics_weekly_digest_project_enabled`, `organization_member_join_email_disabled`, `data_pipeline_error_threshold` (number between 0.0 and 1.0), and other per-topic switches. Values are either booleans, or (for per-project/per-resource keys) a map of IDs to booleans. Only the keys you send are updated — other preferences stay as-is."
           }
@@ -8729,7 +8801,7 @@
           }
         },
         "toolbar_mode": {
-          "target": "com.posthog.users#UsersRequestEmailVerificationCreateRequestToolbarMode",
+          "target": "com.posthog.users#CreateUsersRequestEmailVerificationRequestToolbarMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8766,7 +8838,7 @@
           "target": "smithy.api#Document"
         },
         "theme_mode": {
-          "target": "com.posthog.users#UsersRequestEmailVerificationCreateRequestThemeMode",
+          "target": "com.posthog.users#CreateUsersRequestEmailVerificationRequestThemeMode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8781,7 +8853,7 @@
           }
         },
         "shortcut_position": {
-          "target": "com.posthog.users#UsersRequestEmailVerificationCreateRequestShortcutPosition",
+          "target": "com.posthog.users#CreateUsersRequestEmailVerificationRequestShortcutPosition",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8813,10 +8885,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.users#UsersRequestEmailVerificationCreate": {
+    "com.posthog.users#CreateUsersRequestEmailVerification": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.users#UsersRequestEmailVerificationCreateRequest"
+        "target": "com.posthog.users#CreateUsersRequestEmailVerificationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8847,16 +8919,11 @@
             "smithy.api#required": {}
           }
         },
-        "token": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Verification token from the emailed link. Required unless a code is provided."
-          }
-        },
         "code": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The 6-digit verification code emailed at signup. Whitespace, invisible characters, and grouping hyphens are removed and compatibility digits are folded to ASCII before checking."
+            "smithy.api#documentation": "The 6-digit verification code from the email. Whitespace, invisible characters, and grouping hyphens are removed and compatibility digits are folded to ASCII before checking.",
+            "smithy.api#required": {}
           }
         }
       },
@@ -8932,64 +8999,103 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.users#CreateUsersCredentialsReviewComplete"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallback"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersOnboardingSkip"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersPushToken"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersRequestEmailVerification"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersScenePersonalisation"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersSignalAutonomy"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCode"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersValidate2fa"
+        },
+        {
+          "target": "com.posthog.users#GetUser"
+        },
+        {
+          "target": "com.posthog.users#GetUsersGithubLogin"
+        },
+        {
+          "target": "com.posthog.users#GetUsersHedgehogConfig"
+        },
+        {
+          "target": "com.posthog.users#GetUsersIntegrationsGithubBranch"
+        },
+        {
+          "target": "com.posthog.users#GetUsersIntegrationsGithubRepos"
+        },
+        {
+          "target": "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspace"
+        },
+        {
+          "target": "com.posthog.users#GetUsersSignalAutonomy"
+        },
+        {
+          "target": "com.posthog.users#GetUsersStart2faSetup"
+        },
+        {
+          "target": "com.posthog.users#GetUsersTwoFactorStatus"
+        },
+        {
+          "target": "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroy"
+        },
+        {
           "target": "com.posthog.users#ListUsers"
         },
         {
-          "target": "com.posthog.users#SignalUserAutonomyRetrieve"
+          "target": "com.posthog.users#ListUsersIntegrations"
         },
         {
-          "target": "com.posthog.users#UsersSignalAutonomyCreate"
+          "target": "com.posthog.users#ListUsersLoginSessions"
+        },
+        {
+          "target": "com.posthog.users#LoginUserSessionsDestroy"
         },
         {
           "target": "com.posthog.users#SignalUserAutonomyDestroy"
         },
         {
-          "target": "com.posthog.users#UsersRetrieve"
-        },
-        {
           "target": "com.posthog.users#UpdateUser"
         },
         {
-          "target": "com.posthog.users#UpdateUserPartial"
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartial"
+        },
+        {
+          "target": "com.posthog.users#UpdateUsersPartial"
+        },
+        {
+          "target": "com.posthog.users#UpdateUsersProductIntroSeenPartial"
+        },
+        {
+          "target": "com.posthog.users#UsersCancelEmailChangeRequestPartialUpdate"
         },
         {
           "target": "com.posthog.users#UsersDestroy"
         },
         {
-          "target": "com.posthog.users#CreateUserCredentialReviewComplete"
-        },
-        {
-          "target": "com.posthog.users#UsersGithubLoginRetrieve"
-        },
-        {
-          "target": "com.posthog.users#UsersHedgehogConfigRetrieve"
-        },
-        {
-          "target": "com.posthog.users#UpdateUserHedgehogConfigPartial"
-        },
-        {
-          "target": "com.posthog.users#ListUserIntegrations"
-        },
-        {
           "target": "com.posthog.users#UsersIntegrationsGithubDestroy"
-        },
-        {
-          "target": "com.posthog.users#UsersIntegrationsGithubBranchesRetrieve"
-        },
-        {
-          "target": "com.posthog.users#UsersIntegrationsGithubReposRetrieve"
-        },
-        {
-          "target": "com.posthog.users#CreateUserIntegrationGithubReposRefresh"
         },
         {
           "target": "com.posthog.users#UsersIntegrationsGithubInstallRequestsRetrieve"
         },
         {
-          "target": "com.posthog.users#UsersIntegrationsGithubInstallRequestsDestroy"
-        },
-        {
-          "target": "com.posthog.users#CreateUserIntegrationGithubPrepareCallback"
+          "target": "com.posthog.users#UsersIntegrationsGithubReposRefreshCreate"
         },
         {
           "target": "com.posthog.users#UsersIntegrationsGithubStartCreate"
@@ -8998,58 +9104,22 @@
           "target": "com.posthog.users#UsersIntegrationsSlackDestroy"
         },
         {
-          "target": "com.posthog.users#UsersIntegrationsSlackLinkableWorkspacesRetrieve"
-        },
-        {
           "target": "com.posthog.users#UsersIntegrationsSlackStartCreate"
         },
         {
-          "target": "com.posthog.users#ListUserLoginSessions"
+          "target": "com.posthog.users#UsersLoginSessionsRevokeOthersCreate"
         },
         {
-          "target": "com.posthog.users#UsersLoginSessionsDestroy"
-        },
-        {
-          "target": "com.posthog.users#CreateUserLoginSessionRevokeOther"
-        },
-        {
-          "target": "com.posthog.users#CreateUserOnboardingSkip"
-        },
-        {
-          "target": "com.posthog.users#CreateUserPushToken"
-        },
-        {
-          "target": "com.posthog.users#CreateUserPushTokenUnregister"
-        },
-        {
-          "target": "com.posthog.users#CreateUserScenePersonalisation"
-        },
-        {
-          "target": "com.posthog.users#UsersStart2faSetupRetrieve"
-        },
-        {
-          "target": "com.posthog.users#CreateUserTwoFactorBackupCode"
+          "target": "com.posthog.users#UsersPushTokensUnregisterCreate"
         },
         {
           "target": "com.posthog.users#UsersTwoFactorDisableCreate"
         },
         {
-          "target": "com.posthog.users#StartUserTwoFactorSetupRetrieve"
+          "target": "com.posthog.users#UsersTwoFactorStartSetupRetrieve"
         },
         {
-          "target": "com.posthog.users#UsersTwoFactorStatusRetrieve"
-        },
-        {
-          "target": "com.posthog.users#CreateUserTwoFactorValidate"
-        },
-        {
-          "target": "com.posthog.users#CreateUserValidate2fa"
-        },
-        {
-          "target": "com.posthog.users#UsersCancelEmailChangeRequestPartialUpdate"
-        },
-        {
-          "target": "com.posthog.users#UsersRequestEmailVerificationCreate"
+          "target": "com.posthog.users#UsersTwoFactorValidateCreate"
         },
         {
           "target": "com.posthog.users#UsersVerifyEmailCreate"

@@ -1580,20 +1580,20 @@ export const CustomizationPoliciesListResponseValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomizationPoliciesListResponseValueList>;
 
 /** List of customization polices response model */
-export interface ListCustomizationPoliciesResponse {
+export interface CustomizationPoliciesListResponse {
   /** Link for next list of the Customization policy */
   nextLink?: string;
   /** List of the customization policies */
   value?: CustomizationPoliciesListResponseValueList;
 }
-export const ListCustomizationPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
+export const CustomizationPoliciesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(CustomizationPoliciesListResponseValueList),
   }),
 ).annotate({
-  identifier: "ListCustomizationPoliciesResponse",
-}) as any as S.Schema<ListCustomizationPoliciesResponse>;
+  identifier: "CustomizationPoliciesListResponse",
+}) as any as S.Schema<CustomizationPoliciesListResponse>;
 
 export interface ListDedicatedCloudNodeByResourceGroupRequest {
   /** The subscription ID. */
@@ -2004,20 +2004,20 @@ export const ResourcePoolsListResponseValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ResourcePoolsListResponseValueList>;
 
 /** List of resource pools response model */
-export interface ListResourcePoolsResponse {
+export interface ResourcePoolsListResponse {
   /** Link for next list of ResourcePoolsList */
   nextLink?: string;
   /** Results of the Resource pools list */
   value?: ResourcePoolsListResponseValueList;
 }
-export const ListResourcePoolsResponse = /*@__PURE__*/ S.suspend(() =>
+export const ResourcePoolsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(ResourcePoolsListResponseValueList),
   }),
 ).annotate({
-  identifier: "ListResourcePoolsResponse",
-}) as any as S.Schema<ListResourcePoolsResponse>;
+  identifier: "ResourcePoolsListResponse",
+}) as any as S.Schema<ResourcePoolsListResponse>;
 
 export interface ListSkusAvailabilityRequest {
   /** The subscription ID. */
@@ -2408,12 +2408,12 @@ export const StartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartVirtualMachineResponse",
 }) as any as S.Schema<StartVirtualMachineResponse>;
 
-export type VirtualMachinesStopRequestMode =
+export type StopVirtualMachineRequestMode =
   | "reboot"
   | "suspend"
   | "shutdown"
   | "poweroff";
-export const VirtualMachinesStopRequestMode = /*@__PURE__*/ S.String;
+export const StopVirtualMachineRequestMode = /*@__PURE__*/ S.String;
 
 export interface StopVirtualMachineRequest {
   /** The subscription ID. */
@@ -2423,14 +2423,14 @@ export interface StopVirtualMachineRequest {
   /** virtual machine name */
   virtualMachineName: string;
   /** query stop mode parameter (reboot, shutdown, etc...) */
-  mode?: VirtualMachinesStopRequestMode | (string & {});
+  mode?: StopVirtualMachineRequestMode | (string & {});
 }
 export const StopVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualMachineName: S.String.pipe(T.Label()),
-    mode: S.optional(VirtualMachinesStopRequestMode.pipe(T.Query())),
+    mode: S.optional(StopVirtualMachineRequestMode.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2970,12 +2970,12 @@ export type ListCustomizationPoliciesError = AzureOpError;
 /** Implements get of customization policies list Returns list of customization policies in region for private cloud */
 export const ListCustomizationPolicies: API.OperationMethod<
   ListCustomizationPoliciesRequest,
-  ListCustomizationPoliciesResponse,
+  CustomizationPoliciesListResponse,
   ListCustomizationPoliciesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListCustomizationPoliciesRequest,
-  output: ListCustomizationPoliciesResponse,
+  output: CustomizationPoliciesListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3075,12 +3075,12 @@ export type ListResourcePoolsError = AzureOpError;
 /** Implements get of resource pools list Returns list of resource pools in region for private cloud */
 export const ListResourcePools: API.OperationMethod<
   ListResourcePoolsRequest,
-  ListResourcePoolsResponse,
+  ResourcePoolsListResponse,
   ListResourcePoolsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListResourcePoolsRequest,
-  output: ListResourcePoolsResponse,
+  output: ResourcePoolsListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

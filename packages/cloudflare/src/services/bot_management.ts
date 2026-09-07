@@ -42,22 +42,22 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
-export interface FeedbackCreateRequestRequestsByAttribute {
+export interface CreateFeedbackRequestRequestsByAttribute {
   metric: string;
   requests: number;
 }
-export const FeedbackCreateRequestRequestsByAttribute = /*@__PURE__*/ S.suspend(
+export const CreateFeedbackRequestRequestsByAttribute = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       metric: S.String,
       requests: S.Number,
     }),
 ).annotate({
-  identifier: "FeedbackCreateRequestRequestsByAttribute",
-}) as any as S.Schema<FeedbackCreateRequestRequestsByAttribute>;
+  identifier: "CreateFeedbackRequestRequestsByAttribute",
+}) as any as S.Schema<CreateFeedbackRequestRequestsByAttribute>;
 
-export type FeedbackCreateRequestType = "false_positive" | "false_negative";
-export const FeedbackCreateRequestType = /*@__PURE__*/ S.String;
+export type CreateFeedbackRequestType = "false_positive" | "false_negative";
+export const CreateFeedbackRequestType = /*@__PURE__*/ S.String;
 
 export interface CreateFeedbackRequest {
   /** Identifier. */
@@ -69,13 +69,13 @@ export interface CreateFeedbackRequest {
   lastRequestSeenAt: string;
   requests: number;
   /** Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents. */
-  requestsByAttribute: FeedbackCreateRequestRequestsByAttribute;
+  requestsByAttribute: CreateFeedbackRequestRequestsByAttribute;
   /** Map of bot scores (1-99) to request counts. Sum must equal `requests`. */
   requestsByScore: unknown;
   /** Map of score source to request counts. Sum must equal `requests`. */
   requestsByScoreSrc: unknown;
   /** Type of feedback report. */
-  type: FeedbackCreateRequestType | (string & {});
+  type: CreateFeedbackRequestType | (string & {});
   subtype?: string;
 }
 export const CreateFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
@@ -86,12 +86,12 @@ export const CreateFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
     firstRequestSeenAt: S.String.pipe(T.Body("first_request_seen_at")),
     lastRequestSeenAt: S.String.pipe(T.Body("last_request_seen_at")),
     requests: S.Number,
-    requestsByAttribute: FeedbackCreateRequestRequestsByAttribute.pipe(
+    requestsByAttribute: CreateFeedbackRequestRequestsByAttribute.pipe(
       T.Body("requests_by_attribute"),
     ),
     requestsByScore: S.Unknown.pipe(T.Body("requests_by_score")),
     requestsByScoreSrc: S.Unknown.pipe(T.Body("requests_by_score_src")),
-    type: FeedbackCreateRequestType,
+    type: CreateFeedbackRequestType,
     subtype: S.optional(S.String),
   })
     .pipe(
@@ -770,13 +770,13 @@ export const ListFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListFeedbackRequest",
 }) as any as S.Schema<ListFeedbackRequest>;
 
-export type FeedbackListResponseRequestsByAttribute =
-  FeedbackCreateRequestRequestsByAttribute;
-export const FeedbackListResponseRequestsByAttribute =
-  FeedbackCreateRequestRequestsByAttribute;
+export type ListFeedbackResponseRequestsByAttribute =
+  CreateFeedbackRequestRequestsByAttribute;
+export const ListFeedbackResponseRequestsByAttribute =
+  CreateFeedbackRequestRequestsByAttribute;
 
-export type FeedbackListResponseType = "false_positive" | "false_negative";
-export const FeedbackListResponseType = /*@__PURE__*/ S.String;
+export type ListFeedbackResponseType = "false_positive" | "false_negative";
+export const ListFeedbackResponseType = /*@__PURE__*/ S.String;
 
 /** Raw response payload (operation does not use the standard v4 result envelope). */
 export interface ListFeedbackResponse {
@@ -787,13 +787,13 @@ export interface ListFeedbackResponse {
   lastRequestSeenAt: string;
   requests: number;
   /** Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents. */
-  requestsByAttribute: FeedbackCreateRequestRequestsByAttribute;
+  requestsByAttribute: CreateFeedbackRequestRequestsByAttribute;
   /** Map of bot scores (1-99) to request counts. Sum must equal `requests`. */
   requestsByScore: unknown;
   /** Map of score source to request counts. Sum must equal `requests`. */
   requestsByScoreSrc: unknown;
   /** Type of feedback report. */
-  type: FeedbackListResponseType;
+  type: ListFeedbackResponseType;
   createdAt?: string | null;
   subtype?: string | null;
 }
@@ -804,12 +804,12 @@ export const ListFeedbackResponse = /*@__PURE__*/ S.suspend(() =>
     firstRequestSeenAt: S.String.pipe(T.Body("first_request_seen_at")),
     lastRequestSeenAt: S.String.pipe(T.Body("last_request_seen_at")),
     requests: S.Number,
-    requestsByAttribute: FeedbackCreateRequestRequestsByAttribute.pipe(
+    requestsByAttribute: CreateFeedbackRequestRequestsByAttribute.pipe(
       T.Body("requests_by_attribute"),
     ),
     requestsByScore: S.Unknown.pipe(T.Body("requests_by_score")),
     requestsByScoreSrc: S.Unknown.pipe(T.Body("requests_by_score_src")),
-    type: FeedbackListResponseType,
+    type: ListFeedbackResponseType,
     createdAt: S.optional(S.NullOr(S.String).pipe(T.Body("created_at"))),
     subtype: S.optional(S.NullOr(S.String)),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),

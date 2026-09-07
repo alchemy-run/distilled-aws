@@ -4,7 +4,8 @@
     "service": "networkservices",
     "version": "v1",
     "title": "Network Services API",
-    "baseUrl": "https://networkservices.googleapis.com/"
+    "baseUrl": "https://networkservices.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.networkservices_v1#ListOperationsResponse": {

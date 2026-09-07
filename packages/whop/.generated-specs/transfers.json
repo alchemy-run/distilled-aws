@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.transfers#ListTransferRequestOrder": {
@@ -1455,7 +1456,7 @@
         }
       }
     },
-    "com.whop.transfers#RetrieveTransferRequest": {
+    "com.whop.transfers#GetTransferRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1471,7 +1472,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseCreatedByUser": {
+    "com.whop.transfers#GetTransferResponseCreatedByUser": {
       "type": "structure",
       "members": {
         "id": {
@@ -1500,7 +1501,7 @@
         "smithy.api#documentation": "The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseDestinationCase0Typename": {
+    "com.whop.transfers#GetTransferResponseDestinationCase0Typename": {
       "type": "enum",
       "members": {
         "COMPANY": {
@@ -1512,7 +1513,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseDestinationCase0": {
+    "com.whop.transfers#GetTransferResponseDestinationCase0": {
       "type": "structure",
       "members": {
         "id": {
@@ -1537,7 +1538,7 @@
           }
         },
         "typename": {
-          "target": "com.whop.transfers#RetrieveTransferResponseDestinationCase0Typename",
+          "target": "com.whop.transfers#GetTransferResponseDestinationCase0Typename",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1545,7 +1546,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseDestinationCase1Typename": {
+    "com.whop.transfers#GetTransferResponseDestinationCase1Typename": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1557,7 +1558,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseDestinationCase1": {
+    "com.whop.transfers#GetTransferResponseDestinationCase1": {
       "type": "structure",
       "members": {
         "id": {
@@ -1575,7 +1576,7 @@
           }
         },
         "typename": {
-          "target": "com.whop.transfers#RetrieveTransferResponseDestinationCase1Typename",
+          "target": "com.whop.transfers#GetTransferResponseDestinationCase1Typename",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1589,21 +1590,21 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseDestination": {
+    "com.whop.transfers#GetTransferResponseDestination": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.whop.transfers#RetrieveTransferResponseDestinationCase0"
+          "target": "com.whop.transfers#GetTransferResponseDestinationCase0"
         },
         "Case1": {
-          "target": "com.whop.transfers#RetrieveTransferResponseDestinationCase1"
+          "target": "com.whop.transfers#GetTransferResponseDestinationCase1"
         }
       },
       "traits": {
         "smithy.api#documentation": "Account or user receiving funds."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseMetadataMap": {
+    "com.whop.transfers#GetTransferResponseMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1615,7 +1616,7 @@
         "smithy.api#documentation": "Custom metadata attached to the transfer."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseObject": {
+    "com.whop.transfers#GetTransferResponseObject": {
       "type": "enum",
       "members": {
         "TRANSFER": {
@@ -1629,7 +1630,7 @@
         "smithy.api#documentation": "The object type. Discriminates the create response from a send or a claim link."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseOriginCase0Typename": {
+    "com.whop.transfers#GetTransferResponseOriginCase0Typename": {
       "type": "enum",
       "members": {
         "COMPANY": {
@@ -1641,7 +1642,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseOriginCase0": {
+    "com.whop.transfers#GetTransferResponseOriginCase0": {
       "type": "structure",
       "members": {
         "id": {
@@ -1666,7 +1667,7 @@
           }
         },
         "typename": {
-          "target": "com.whop.transfers#RetrieveTransferResponseOriginCase0Typename",
+          "target": "com.whop.transfers#GetTransferResponseOriginCase0Typename",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1674,7 +1675,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseOriginCase1Typename": {
+    "com.whop.transfers#GetTransferResponseOriginCase1Typename": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1686,7 +1687,7 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseOriginCase1": {
+    "com.whop.transfers#GetTransferResponseOriginCase1": {
       "type": "structure",
       "members": {
         "id": {
@@ -1704,7 +1705,7 @@
           }
         },
         "typename": {
-          "target": "com.whop.transfers#RetrieveTransferResponseOriginCase1Typename",
+          "target": "com.whop.transfers#GetTransferResponseOriginCase1Typename",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1718,21 +1719,21 @@
       },
       "traits": {}
     },
-    "com.whop.transfers#RetrieveTransferResponseOrigin": {
+    "com.whop.transfers#GetTransferResponseOrigin": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.whop.transfers#RetrieveTransferResponseOriginCase0"
+          "target": "com.whop.transfers#GetTransferResponseOriginCase0"
         },
         "Case1": {
-          "target": "com.whop.transfers#RetrieveTransferResponseOriginCase1"
+          "target": "com.whop.transfers#GetTransferResponseOriginCase1"
         }
       },
       "traits": {
         "smithy.api#documentation": "Account or user sending funds."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponseStatus": {
+    "com.whop.transfers#GetTransferResponseStatus": {
       "type": "enum",
       "members": {
         "PROCESSING": {
@@ -1758,7 +1759,7 @@
         "smithy.api#documentation": "Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`."
       }
     },
-    "com.whop.transfers#RetrieveTransferResponse": {
+    "com.whop.transfers#GetTransferResponse": {
       "type": "structure",
       "members": {
         "amount": {
@@ -1776,7 +1777,7 @@
           }
         },
         "created_by_user": {
-          "target": "com.whop.transfers#RetrieveTransferResponseCreatedByUser",
+          "target": "com.whop.transfers#GetTransferResponseCreatedByUser",
           "traits": {
             "smithy.api#documentation": "The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable.",
             "smithy.api#required": {},
@@ -1791,7 +1792,7 @@
           }
         },
         "destination": {
-          "target": "com.whop.transfers#RetrieveTransferResponseDestination",
+          "target": "com.whop.transfers#GetTransferResponseDestination",
           "traits": {
             "smithy.api#documentation": "Account or user receiving funds.",
             "smithy.api#required": {}
@@ -1840,7 +1841,7 @@
           }
         },
         "metadata": {
-          "target": "com.whop.transfers#RetrieveTransferResponseMetadataMap",
+          "target": "com.whop.transfers#GetTransferResponseMetadataMap",
           "traits": {
             "smithy.api#documentation": "Custom metadata attached to the transfer.",
             "com.distilled.openapi#nullable": {}
@@ -1854,14 +1855,14 @@
           }
         },
         "object": {
-          "target": "com.whop.transfers#RetrieveTransferResponseObject",
+          "target": "com.whop.transfers#GetTransferResponseObject",
           "traits": {
             "smithy.api#documentation": "The object type. Discriminates the create response from a send or a claim link.",
             "smithy.api#required": {}
           }
         },
         "origin": {
-          "target": "com.whop.transfers#RetrieveTransferResponseOrigin",
+          "target": "com.whop.transfers#GetTransferResponseOrigin",
           "traits": {
             "smithy.api#documentation": "Account or user sending funds.",
             "smithy.api#required": {}
@@ -1875,7 +1876,7 @@
           }
         },
         "status": {
-          "target": "com.whop.transfers#RetrieveTransferResponseStatus",
+          "target": "com.whop.transfers#GetTransferResponseStatus",
           "traits": {
             "smithy.api#documentation": "Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`.",
             "smithy.api#required": {}
@@ -1886,13 +1887,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.transfers#RetrieveTransfer": {
+    "com.whop.transfers#GetTransfer": {
       "type": "operation",
       "input": {
-        "target": "com.whop.transfers#RetrieveTransferRequest"
+        "target": "com.whop.transfers#GetTransferRequest"
       },
       "output": {
-        "target": "com.whop.transfers#RetrieveTransferResponse"
+        "target": "com.whop.transfers#GetTransferResponse"
       },
       "errors": [
         {
@@ -1965,16 +1966,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.transfers#ListTransfer"
-        },
-        {
           "target": "com.whop.transfers#CreateTransfer"
         },
         {
-          "target": "com.whop.transfers#ListTransferRecipients"
+          "target": "com.whop.transfers#GetTransfer"
         },
         {
-          "target": "com.whop.transfers#RetrieveTransfer"
+          "target": "com.whop.transfers#ListTransfer"
+        },
+        {
+          "target": "com.whop.transfers#ListTransferRecipients"
         }
       ],
       "traits": {

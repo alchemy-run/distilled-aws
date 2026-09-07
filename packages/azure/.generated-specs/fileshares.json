@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.fileshares#GetPrivateLinkResource": {
@@ -1357,7 +1358,7 @@
         "target": "com.azure.fileshares#ListFileShareSnapshotRequest"
       },
       "output": {
-        "target": "com.azure.fileshares#ListFileShareSnapshotResult"
+        "target": "com.azure.fileshares#FileShareSnapshotListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1370,7 +1371,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.fileshares#ListFileShareSnapshotResult": {
+    "com.azure.fileshares#FileShareSnapshotListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -1568,7 +1569,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fileshares#FileSharesUpdateResponseTagsMap",
+          "target": "com.azure.fileshares#UpdateFileShareResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1991,7 +1992,7 @@
         "smithy.api#documentation": "Media Tier enum."
       }
     },
-    "com.azure.fileshares#FileSharesUpdateResponseTagsMap": {
+    "com.azure.fileshares#UpdateFileShareResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2031,7 +2032,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fileshares#FileSharesUpdateRequestTagsMap",
+          "target": "com.azure.fileshares#UpdateFileShareRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2091,7 +2092,7 @@
         "smithy.api#documentation": "The updatable properties of the FileShare."
       }
     },
-    "com.azure.fileshares#FileSharesUpdateRequestTagsMap": {
+    "com.azure.fileshares#UpdateFileShareRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2363,7 +2364,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fileshares#FileSharesGetResponseTagsMap",
+          "target": "com.azure.fileshares#GetFileShareResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2386,7 +2387,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fileshares#FileSharesGetResponseTagsMap": {
+    "com.azure.fileshares#GetFileShareResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2772,10 +2773,10 @@
         "smithy.api#documentation": "File share provisioning parameters recommendation API input structure."
       }
     },
-    "com.azure.fileshares#GetFileShareLimit": {
+    "com.azure.fileshares#GetFileShareLimits": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fileshares#GetFileShareLimitRequest"
+        "target": "com.azure.fileshares#GetFileShareLimitsRequest"
       },
       "output": {
         "target": "com.azure.fileshares#FileShareLimitsResponse"
@@ -2956,7 +2957,7 @@
         "smithy.api#documentation": "File share-related limits in the specified subscription/location."
       }
     },
-    "com.azure.fileshares#GetFileShareLimitRequest": {
+    "com.azure.fileshares#GetFileShareLimitsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3009,7 +3010,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.fileshares#FileSharesCheckNameAvailabilityResponseReason",
+          "target": "com.azure.fileshares#CheckFileShareNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -3025,7 +3026,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fileshares#FileSharesCheckNameAvailabilityResponseReason": {
+    "com.azure.fileshares#CheckFileShareNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -3139,7 +3140,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.fileshares#OperationsListResponseValueList",
+          "target": "com.azure.fileshares#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3155,7 +3156,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fileshares#OperationsListResponseValueList": {
+    "com.azure.fileshares#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.fileshares#Operation"
@@ -3279,70 +3280,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fileshares#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.fileshares#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.fileshares#DeletePrivateEndpointConnection"
+          "target": "com.azure.fileshares#CheckFileShareNameAvailability"
         },
         {
           "target": "com.azure.fileshares#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.fileshares#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.fileshares#ListPrivateEndpointConnectionByFileShare"
+          "target": "com.azure.fileshares#DeleteFileShare"
         },
         {
           "target": "com.azure.fileshares#DeleteFileShareSnapshot"
         },
         {
-          "target": "com.azure.fileshares#UpdateFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#FileShareSnapshotCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#ListFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#DeleteFileShare"
-        },
-        {
-          "target": "com.azure.fileshares#UpdateFileShare"
+          "target": "com.azure.fileshares#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.fileshares#FileSharesCreateOrUpdate"
         },
         {
+          "target": "com.azure.fileshares#FileShareSnapshotCreateOrUpdate"
+        },
+        {
           "target": "com.azure.fileshares#GetFileShare"
         },
         {
-          "target": "com.azure.fileshares#ListFileShareByParent"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareUsageData"
+          "target": "com.azure.fileshares#GetFileShareLimits"
         },
         {
           "target": "com.azure.fileshares#GetFileShareProvisioningRecommendation"
         },
         {
-          "target": "com.azure.fileshares#GetFileShareLimit"
+          "target": "com.azure.fileshares#GetFileShareSnapshot"
         },
         {
-          "target": "com.azure.fileshares#CheckFileShareNameAvailability"
+          "target": "com.azure.fileshares#GetFileShareUsageData"
+        },
+        {
+          "target": "com.azure.fileshares#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.fileshares#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.fileshares#ListFileShareByParent"
         },
         {
           "target": "com.azure.fileshares#ListFileShareBySubscription"
         },
         {
+          "target": "com.azure.fileshares#ListFileShareSnapshot"
+        },
+        {
           "target": "com.azure.fileshares#ListOperations"
+        },
+        {
+          "target": "com.azure.fileshares#ListPrivateEndpointConnectionByFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.fileshares#UpdateFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#UpdateFileShareSnapshot"
         }
       ],
       "traits": {

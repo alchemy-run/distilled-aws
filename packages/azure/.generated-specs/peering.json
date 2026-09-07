@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.peering#ListRpUnbilledPrefixes": {
@@ -131,13 +132,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#RegisteredPrefixesValidate": {
+    "com.azure.peering#ValidateRegisteredPrefix": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#RegisteredPrefixesValidateRequest"
+        "target": "com.azure.peering#ValidateRegisteredPrefixRequest"
       },
       "output": {
-        "target": "com.azure.peering#RegisteredPrefixesValidateResponse"
+        "target": "com.azure.peering#ValidateRegisteredPrefixResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -150,7 +151,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.peering#RegisteredPrefixesValidateResponse": {
+    "com.azure.peering#ValidateRegisteredPrefixResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -422,7 +423,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.peering#RegisteredPrefixesValidateRequest": {
+    "com.azure.peering#ValidateRegisteredPrefixRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -462,10 +463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#DeleteRegisteredPrefixe": {
+    "com.azure.peering#DeleteRegisteredPrefix": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#DeleteRegisteredPrefixeRequest"
+        "target": "com.azure.peering#DeleteRegisteredPrefixRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -481,7 +482,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.peering#DeleteRegisteredPrefixeRequest": {
+    "com.azure.peering#DeleteRegisteredPrefixRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -638,13 +639,13 @@
         "smithy.api#documentation": "The properties that define a registered prefix."
       }
     },
-    "com.azure.peering#GetRegisteredPrefixe": {
+    "com.azure.peering#GetRegisteredPrefix": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#GetRegisteredPrefixeRequest"
+        "target": "com.azure.peering#GetRegisteredPrefixRequest"
       },
       "output": {
-        "target": "com.azure.peering#GetRegisteredPrefixeResponse"
+        "target": "com.azure.peering#GetRegisteredPrefixResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -657,7 +658,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.peering#GetRegisteredPrefixeResponse": {
+    "com.azure.peering#GetRegisteredPrefixResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -695,7 +696,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.peering#GetRegisteredPrefixeRequest": {
+    "com.azure.peering#GetRegisteredPrefixRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -735,10 +736,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#ListRegisteredPrefixeByPeering": {
+    "com.azure.peering#ListRegisteredPrefixByPeering": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#ListRegisteredPrefixeByPeeringRequest"
+        "target": "com.azure.peering#ListRegisteredPrefixByPeeringRequest"
       },
       "output": {
         "target": "com.azure.peering#PeeringRegisteredPrefixListResult"
@@ -822,7 +823,7 @@
         "smithy.api#documentation": "The customer's prefix that is registered by the peering service provider."
       }
     },
-    "com.azure.peering#ListRegisteredPrefixeByPeeringRequest": {
+    "com.azure.peering#ListRegisteredPrefixByPeeringRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1536,7 +1537,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringsUpdateResponseTagsMap",
+          "target": "com.azure.peering#UpdatePeeringResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2373,7 +2374,7 @@
         "smithy.api#documentation": "The field indicating if Microsoft provides session ip addresses."
       }
     },
-    "com.azure.peering#PeeringsUpdateResponseTagsMap": {
+    "com.azure.peering#UpdatePeeringResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2413,7 +2414,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringsUpdateRequestTagsMap",
+          "target": "com.azure.peering#UpdatePeeringRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags, a dictionary of descriptors arm object"
           }
@@ -2423,7 +2424,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#PeeringsUpdateRequestTagsMap": {
+    "com.azure.peering#UpdatePeeringRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2856,7 +2857,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringsGetResponseTagsMap",
+          "target": "com.azure.peering#GetPeeringResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2893,7 +2894,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.peering#PeeringsGetResponseTagsMap": {
+    "com.azure.peering#GetPeeringResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3087,10 +3088,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#DeletePrefixe": {
+    "com.azure.peering#DeletePrefix": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#DeletePrefixeRequest"
+        "target": "com.azure.peering#DeletePrefixRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3106,7 +3107,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.peering#DeletePrefixeRequest": {
+    "com.azure.peering#DeletePrefixRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3392,13 +3393,13 @@
         "smithy.api#documentation": "The peering service prefix properties class."
       }
     },
-    "com.azure.peering#GetPrefixe": {
+    "com.azure.peering#GetPrefix": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#GetPrefixeRequest"
+        "target": "com.azure.peering#GetPrefixRequest"
       },
       "output": {
-        "target": "com.azure.peering#GetPrefixeResponse"
+        "target": "com.azure.peering#GetPrefixResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3411,7 +3412,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.peering#GetPrefixeResponse": {
+    "com.azure.peering#GetPrefixResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3449,7 +3450,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.peering#GetPrefixeRequest": {
+    "com.azure.peering#GetPrefixRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3496,10 +3497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#ListPrefixeByPeeringService": {
+    "com.azure.peering#ListPrefixByPeeringService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#ListPrefixeByPeeringServiceRequest"
+        "target": "com.azure.peering#ListPrefixByPeeringServiceRequest"
       },
       "output": {
         "target": "com.azure.peering#PeeringServicePrefixListResult"
@@ -3583,7 +3584,7 @@
         "smithy.api#documentation": "The peering service prefix class."
       }
     },
-    "com.azure.peering#ListPrefixeByPeeringServiceRequest": {
+    "com.azure.peering#ListPrefixByPeeringServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4189,7 +4190,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringServicesUpdateResponseTagsMap",
+          "target": "com.azure.peering#UpdatePeeringServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4311,7 +4312,7 @@
         "smithy.api#documentation": "The list of connected agents."
       }
     },
-    "com.azure.peering#PeeringServicesUpdateResponseTagsMap": {
+    "com.azure.peering#UpdatePeeringServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4351,7 +4352,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringServicesUpdateRequestTagsMap",
+          "target": "com.azure.peering#UpdatePeeringServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags, a dictionary of descriptors arm object"
           }
@@ -4361,7 +4362,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#PeeringServicesUpdateRequestTagsMap": {
+    "com.azure.peering#UpdatePeeringServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4622,7 +4623,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.peering#PeeringServicesGetResponseTagsMap",
+          "target": "com.azure.peering#GetPeeringServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4651,7 +4652,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.peering#PeeringServicesGetResponseTagsMap": {
+    "com.azure.peering#GetPeeringServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5584,7 +5585,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.peering#PeeringLocationsListRequestKind",
+          "target": "com.azure.peering#ListPeeringLocationsRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#required": {},
@@ -5592,7 +5593,7 @@
           }
         },
         "directPeeringType": {
-          "target": "com.azure.peering#PeeringLocationsListRequestDirectPeeringType",
+          "target": "com.azure.peering#ListPeeringLocationsRequestDirectPeeringType",
           "traits": {
             "smithy.api#httpQuery": "directPeeringType",
             "smithy.api#documentation": "The type of direct peering."
@@ -5603,7 +5604,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#PeeringLocationsListRequestDirectPeeringType": {
+    "com.azure.peering#ListPeeringLocationsRequestDirectPeeringType": {
       "type": "enum",
       "members": {
         "EDGE": {
@@ -5663,7 +5664,7 @@
       },
       "traits": {}
     },
-    "com.azure.peering#PeeringLocationsListRequestKind": {
+    "com.azure.peering#ListPeeringLocationsRequestKind": {
       "type": "enum",
       "members": {
         "DIRECT": {
@@ -6179,10 +6180,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#LookingGlassInvoke": {
+    "com.azure.peering#InvokeLookingGlass": {
       "type": "operation",
       "input": {
-        "target": "com.azure.peering#LookingGlassInvokeRequest"
+        "target": "com.azure.peering#InvokeLookingGlassRequest"
       },
       "output": {
         "target": "com.azure.peering#LookingGlassOutput"
@@ -6244,7 +6245,7 @@
         "smithy.api#documentation": "Invoked command"
       }
     },
-    "com.azure.peering#LookingGlassInvokeRequest": {
+    "com.azure.peering#InvokeLookingGlassRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6256,7 +6257,7 @@
           }
         },
         "command": {
-          "target": "com.azure.peering#LookingGlassInvokeRequestCommand",
+          "target": "com.azure.peering#InvokeLookingGlassRequestCommand",
           "traits": {
             "smithy.api#httpQuery": "command",
             "smithy.api#required": {},
@@ -6264,7 +6265,7 @@
           }
         },
         "sourceType": {
-          "target": "com.azure.peering#LookingGlassInvokeRequestSourceType",
+          "target": "com.azure.peering#InvokeLookingGlassRequestSourceType",
           "traits": {
             "smithy.api#httpQuery": "sourceType",
             "smithy.api#required": {},
@@ -6292,7 +6293,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#LookingGlassInvokeRequestSourceType": {
+    "com.azure.peering#InvokeLookingGlassRequestSourceType": {
       "type": "enum",
       "members": {
         "EDGESITE": {
@@ -6310,7 +6311,7 @@
       },
       "traits": {}
     },
-    "com.azure.peering#LookingGlassInvokeRequestCommand": {
+    "com.azure.peering#InvokeLookingGlassRequestCommand": {
       "type": "enum",
       "members": {
         "TRACEROUTE": {
@@ -6373,7 +6374,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.peering#LegacyPeeringsListRequestKind",
+          "target": "com.azure.peering#ListLegacyPeeringsRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#required": {},
@@ -6388,7 +6389,7 @@
           }
         },
         "directPeeringType": {
-          "target": "com.azure.peering#LegacyPeeringsListRequestDirectPeeringType",
+          "target": "com.azure.peering#ListLegacyPeeringsRequestDirectPeeringType",
           "traits": {
             "smithy.api#httpQuery": "directPeeringType",
             "smithy.api#documentation": "The direct peering type."
@@ -6399,7 +6400,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.peering#LegacyPeeringsListRequestDirectPeeringType": {
+    "com.azure.peering#ListLegacyPeeringsRequestDirectPeeringType": {
       "type": "enum",
       "members": {
         "EDGE": {
@@ -6459,7 +6460,7 @@
       },
       "traits": {}
     },
-    "com.azure.peering#LegacyPeeringsListRequestKind": {
+    "com.azure.peering#ListLegacyPeeringsRequestKind": {
       "type": "enum",
       "members": {
         "DIRECT": {
@@ -6985,139 +6986,139 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.peering#ListRpUnbilledPrefixes"
-        },
-        {
-          "target": "com.azure.peering#RegisteredPrefixesValidate"
-        },
-        {
-          "target": "com.azure.peering#DeleteRegisteredPrefixe"
-        },
-        {
-          "target": "com.azure.peering#RegisteredPrefixesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#GetRegisteredPrefixe"
-        },
-        {
-          "target": "com.azure.peering#ListRegisteredPrefixeByPeering"
-        },
-        {
-          "target": "com.azure.peering#DeleteRegisteredAsn"
-        },
-        {
-          "target": "com.azure.peering#RegisteredAsnsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#GetRegisteredAsn"
-        },
-        {
-          "target": "com.azure.peering#ListRegisteredAsnByPeering"
-        },
-        {
-          "target": "com.azure.peering#ListReceivedRouteByPeering"
-        },
-        {
-          "target": "com.azure.peering#DeletePeering"
-        },
-        {
-          "target": "com.azure.peering#UpdatePeering"
-        },
-        {
-          "target": "com.azure.peering#PeeringsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#GetPeering"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringByResourceGroup"
-        },
-        {
-          "target": "com.azure.peering#DeletePrefixe"
-        },
-        {
-          "target": "com.azure.peering#PrefixesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#GetPrefixe"
-        },
-        {
-          "target": "com.azure.peering#ListPrefixeByPeeringService"
-        },
-        {
-          "target": "com.azure.peering#DeleteConnectionMonitorTest"
+          "target": "com.azure.peering#CheckServiceProviderAvailability"
         },
         {
           "target": "com.azure.peering#ConnectionMonitorTestsCreateOrUpdate"
         },
         {
-          "target": "com.azure.peering#GetConnectionMonitorTest"
-        },
-        {
-          "target": "com.azure.peering#ListConnectionMonitorTestByPeeringService"
-        },
-        {
-          "target": "com.azure.peering#DeletePeeringService"
-        },
-        {
-          "target": "com.azure.peering#UpdatePeeringService"
-        },
-        {
-          "target": "com.azure.peering#PeeringServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#GetPeeringService"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringBySubscription"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceBySubscription"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceProviders"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceLocations"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceCountries"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringLocations"
+          "target": "com.azure.peering#DeleteConnectionMonitorTest"
         },
         {
           "target": "com.azure.peering#DeletePeerAsn"
         },
         {
-          "target": "com.azure.peering#PeerAsnsCreateOrUpdate"
+          "target": "com.azure.peering#DeletePeering"
+        },
+        {
+          "target": "com.azure.peering#DeletePeeringService"
+        },
+        {
+          "target": "com.azure.peering#DeletePrefix"
+        },
+        {
+          "target": "com.azure.peering#DeleteRegisteredAsn"
+        },
+        {
+          "target": "com.azure.peering#DeleteRegisteredPrefix"
+        },
+        {
+          "target": "com.azure.peering#GetConnectionMonitorTest"
         },
         {
           "target": "com.azure.peering#GetPeerAsn"
         },
         {
-          "target": "com.azure.peering#ListPeerAsnBySubscription"
+          "target": "com.azure.peering#GetPeering"
         },
         {
-          "target": "com.azure.peering#LookingGlassInvoke"
+          "target": "com.azure.peering#GetPeeringService"
         },
         {
-          "target": "com.azure.peering#ListLegacyPeerings"
+          "target": "com.azure.peering#GetPrefix"
         },
         {
-          "target": "com.azure.peering#PeeringServicesInitializeConnectionMonitor"
+          "target": "com.azure.peering#GetRegisteredAsn"
         },
         {
-          "target": "com.azure.peering#CheckServiceProviderAvailability"
+          "target": "com.azure.peering#GetRegisteredPrefix"
+        },
+        {
+          "target": "com.azure.peering#InvokeLookingGlass"
         },
         {
           "target": "com.azure.peering#ListCdnPeeringPrefixes"
         },
         {
+          "target": "com.azure.peering#ListConnectionMonitorTestByPeeringService"
+        },
+        {
+          "target": "com.azure.peering#ListLegacyPeerings"
+        },
+        {
           "target": "com.azure.peering#ListOperations"
+        },
+        {
+          "target": "com.azure.peering#ListPeerAsnBySubscription"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringByResourceGroup"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringBySubscription"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringLocations"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceBySubscription"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceCountries"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceLocations"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceProviders"
+        },
+        {
+          "target": "com.azure.peering#ListPrefixByPeeringService"
+        },
+        {
+          "target": "com.azure.peering#ListReceivedRouteByPeering"
+        },
+        {
+          "target": "com.azure.peering#ListRegisteredAsnByPeering"
+        },
+        {
+          "target": "com.azure.peering#ListRegisteredPrefixByPeering"
+        },
+        {
+          "target": "com.azure.peering#ListRpUnbilledPrefixes"
+        },
+        {
+          "target": "com.azure.peering#PeerAsnsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#PeeringsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#PeeringServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#PeeringServicesInitializeConnectionMonitor"
+        },
+        {
+          "target": "com.azure.peering#PrefixesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#RegisteredAsnsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#RegisteredPrefixesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#UpdatePeering"
+        },
+        {
+          "target": "com.azure.peering#UpdatePeeringService"
+        },
+        {
+          "target": "com.azure.peering#ValidateRegisteredPrefix"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.agentic_provisioning#GetHealth": {
@@ -2387,22 +2388,22 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.agentic_provisioning#GetHealth"
-        },
-        {
-          "target": "com.huggingface.agentic_provisioning#GetServices"
-        },
-        {
           "target": "com.huggingface.agentic_provisioning#CreateAccountRequest"
         },
         {
-          "target": "com.huggingface.agentic_provisioning#ProvisionResource"
+          "target": "com.huggingface.agentic_provisioning#CreateDeepLink"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#GetHealth"
         },
         {
           "target": "com.huggingface.agentic_provisioning#GetResourceById"
         },
         {
-          "target": "com.huggingface.agentic_provisioning#UpdateResourceService"
+          "target": "com.huggingface.agentic_provisioning#GetServices"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResource"
         },
         {
           "target": "com.huggingface.agentic_provisioning#RemoveResource"
@@ -2411,7 +2412,7 @@
           "target": "com.huggingface.agentic_provisioning#RotateResourceCredentials"
         },
         {
-          "target": "com.huggingface.agentic_provisioning#CreateDeepLink"
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceService"
         }
       ],
       "traits": {

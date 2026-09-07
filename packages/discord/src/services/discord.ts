@@ -650,107 +650,54 @@ export const BulkBanUsersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BulkBanUsersResponse",
 }) as any as S.Schema<BulkBanUsersResponse>;
 
-export interface ConsumeEntitlementRequest {
-  application_id: string;
-  entitlement_id: string;
+export type BulkDeleteMessagesRequestMessagesList = Array<string>;
+export const BulkDeleteMessagesRequestMessagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkDeleteMessagesRequestMessagesList>;
+
+export interface BulkDeleteMessagesRequest {
+  channel_id: string;
+  messages: BulkDeleteMessagesRequestMessagesList;
 }
-export const ConsumeEntitlementRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkDeleteMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    application_id: S.String.pipe(T.Label()),
-    entitlement_id: S.String.pipe(T.Label()),
+    channel_id: S.String.pipe(T.Label()),
+    messages: BulkDeleteMessagesRequestMessagesList,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/applications/{application_id}/entitlements/{entitlement_id}/consume",
+      uri: "/channels/{channel_id}/messages/bulk-delete",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ConsumeEntitlementRequest",
-}) as any as S.Schema<ConsumeEntitlementRequest>;
+  identifier: "BulkDeleteMessagesRequest",
+}) as any as S.Schema<BulkDeleteMessagesRequest>;
 
-export interface ConsumeEntitlementResponse {}
-export const ConsumeEntitlementResponse = /*@__PURE__*/ S.suspend(() =>
+export interface BulkDeleteMessagesResponse {}
+export const BulkDeleteMessagesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ConsumeEntitlementResponse",
-}) as any as S.Schema<ConsumeEntitlementResponse>;
+  identifier: "BulkDeleteMessagesResponse",
+}) as any as S.Schema<BulkDeleteMessagesResponse>;
 
-export type CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList =
-  Array<string>;
-export const CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList>;
-
-export interface CountGuildScheduledEventUsersRequest {
-  guild_id: string;
-  guild_scheduled_event_id: string;
-  guild_scheduled_event_exception_ids?: CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList;
-}
-export const CountGuildScheduledEventUsersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      guild_id: S.String.pipe(T.Label()),
-      guild_scheduled_event_id: S.String.pipe(T.Label()),
-      guild_scheduled_event_exception_ids: S.optional(
-        CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList.pipe(
-          T.Query(),
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}/users/counts",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CountGuildScheduledEventUsersRequest",
-}) as any as S.Schema<CountGuildScheduledEventUsersRequest>;
-
-/** Map of exception IDs to user counts for each exception */
-export type ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap =
-  { [key: string]: number | undefined };
-export const ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap>;
-
-export interface ScheduledEventUserCountResponse {
-  /** The number of users subscribed to the scheduled event */
-  guild_scheduled_event_count: number;
-  /** Map of exception IDs to user counts for each exception */
-  guild_scheduled_event_exception_counts: ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap;
-}
-export const ScheduledEventUserCountResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    guild_scheduled_event_count: S.Number,
-    guild_scheduled_event_exception_counts:
-      ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap,
-  }),
-).annotate({
-  identifier: "ScheduledEventUserCountResponse",
-}) as any as S.Schema<ScheduledEventUserCountResponse>;
-
-export type CreateApplicationCommandRequestNameLocalizationsMap = {
+export type ApplicationCommandUpdateRequestNameLocalizationsMap = {
   [key: string]: string | undefined;
 };
-export const CreateApplicationCommandRequestNameLocalizationsMap =
+export const ApplicationCommandUpdateRequestNameLocalizationsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CreateApplicationCommandRequestNameLocalizationsMap>;
+  ) as any as S.Schema<ApplicationCommandUpdateRequestNameLocalizationsMap>;
 
-export type CreateApplicationCommandRequestDescriptionLocalizationsMap = {
+export type ApplicationCommandUpdateRequestDescriptionLocalizationsMap = {
   [key: string]: string | undefined;
 };
-export const CreateApplicationCommandRequestDescriptionLocalizationsMap =
+export const ApplicationCommandUpdateRequestDescriptionLocalizationsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CreateApplicationCommandRequestDescriptionLocalizationsMap>;
+  ) as any as S.Schema<ApplicationCommandUpdateRequestDescriptionLocalizationsMap>;
 
 export type ApplicationCommandOptionType =
   | 1
@@ -1510,7 +1457,7 @@ export const ApplicationCommandSubcommandGroupOption = /*@__PURE__*/ S.suspend(
   identifier: "ApplicationCommandSubcommandGroupOption",
 }) as any as S.Schema<ApplicationCommandSubcommandGroupOption>;
 
-export type CreateApplicationCommandRequestOptionsItem =
+export type ApplicationCommandUpdateRequestOptionsItem =
   | ApplicationCommandAttachmentOption
   | ApplicationCommandBooleanOption
   | ApplicationCommandChannelOption
@@ -1522,7 +1469,7 @@ export type CreateApplicationCommandRequestOptionsItem =
   | ApplicationCommandSubcommandGroupOption
   | ApplicationCommandSubcommandOption
   | ApplicationCommandUserOption;
-export const CreateApplicationCommandRequestOptionsItem =
+export const ApplicationCommandUpdateRequestOptionsItem =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([
       [
@@ -1632,33 +1579,33 @@ export const CreateApplicationCommandRequestOptionsItem =
     ]),
   );
 
-export type CreateApplicationCommandRequestOptionsList =
-  Array<CreateApplicationCommandRequestOptionsItem>;
-export const CreateApplicationCommandRequestOptionsList = /*@__PURE__*/ S.Array(
-  CreateApplicationCommandRequestOptionsItem,
-) as any as S.Schema<CreateApplicationCommandRequestOptionsList>;
+export type ApplicationCommandUpdateRequestOptionsList =
+  Array<ApplicationCommandUpdateRequestOptionsItem>;
+export const ApplicationCommandUpdateRequestOptionsList = /*@__PURE__*/ S.Array(
+  ApplicationCommandUpdateRequestOptionsItem,
+) as any as S.Schema<ApplicationCommandUpdateRequestOptionsList>;
 
 export type InteractionContextType = 0 | 1 | 2;
 export const InteractionContextType = /*@__PURE__*/ S.Number;
 
-export type CreateApplicationCommandRequestContextsList = Array<
+export type ApplicationCommandUpdateRequestContextsList = Array<
   InteractionContextType | (number & {})
 >;
-export const CreateApplicationCommandRequestContextsList =
+export const ApplicationCommandUpdateRequestContextsList =
   /*@__PURE__*/ S.Array(
     InteractionContextType,
-  ) as any as S.Schema<CreateApplicationCommandRequestContextsList>;
+  ) as any as S.Schema<ApplicationCommandUpdateRequestContextsList>;
 
 export type ApplicationIntegrationType = 0 | 1;
 export const ApplicationIntegrationType = /*@__PURE__*/ S.Number;
 
-export type CreateApplicationCommandRequestIntegrationTypesList = Array<
+export type ApplicationCommandUpdateRequestIntegrationTypesList = Array<
   ApplicationIntegrationType | (number & {})
 >;
-export const CreateApplicationCommandRequestIntegrationTypesList =
+export const ApplicationCommandUpdateRequestIntegrationTypesList =
   /*@__PURE__*/ S.Array(
     ApplicationIntegrationType,
-  ) as any as S.Schema<CreateApplicationCommandRequestIntegrationTypesList>;
+  ) as any as S.Schema<ApplicationCommandUpdateRequestIntegrationTypesList>;
 
 export type ApplicationCommandHandler = 1 | 2;
 export const ApplicationCommandHandler = /*@__PURE__*/ S.Number;
@@ -1666,51 +1613,72 @@ export const ApplicationCommandHandler = /*@__PURE__*/ S.Number;
 export type ApplicationCommandType = 1 | 2 | 3 | 4;
 export const ApplicationCommandType = /*@__PURE__*/ S.Number;
 
-export interface CreateApplicationCommandRequest {
-  application_id: string;
+export interface ApplicationCommandUpdateRequest {
   name: string;
-  name_localizations?: CreateApplicationCommandRequestNameLocalizationsMap | null;
+  name_localizations?: ApplicationCommandUpdateRequestNameLocalizationsMap | null;
   description?: string | null;
-  description_localizations?: CreateApplicationCommandRequestDescriptionLocalizationsMap | null;
-  options?: CreateApplicationCommandRequestOptionsList | null;
+  description_localizations?: ApplicationCommandUpdateRequestDescriptionLocalizationsMap | null;
+  options?: ApplicationCommandUpdateRequestOptionsList | null;
   default_member_permissions?: number | null;
   dm_permission?: boolean | null;
-  contexts?: CreateApplicationCommandRequestContextsList | null;
-  integration_types?: CreateApplicationCommandRequestIntegrationTypesList | null;
+  contexts?: ApplicationCommandUpdateRequestContextsList | null;
+  integration_types?: ApplicationCommandUpdateRequestIntegrationTypesList | null;
   /** Determines whether the interaction is handled by the app's interactions handler or by Discord */
   handler?: ApplicationCommandHandler | (number & {}) | null;
   type?: ApplicationCommandType | (number & {}) | null;
+  id?: string | null;
 }
-export const CreateApplicationCommandRequest = /*@__PURE__*/ S.suspend(() =>
+export const ApplicationCommandUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    application_id: S.String.pipe(T.Label()),
     name: S.String,
     name_localizations: S.optional(
-      S.NullOr(CreateApplicationCommandRequestNameLocalizationsMap),
+      S.NullOr(ApplicationCommandUpdateRequestNameLocalizationsMap),
     ),
     description: S.optional(S.NullOr(S.String)),
     description_localizations: S.optional(
-      S.NullOr(CreateApplicationCommandRequestDescriptionLocalizationsMap),
+      S.NullOr(ApplicationCommandUpdateRequestDescriptionLocalizationsMap),
     ),
-    options: S.optional(S.NullOr(CreateApplicationCommandRequestOptionsList)),
+    options: S.optional(S.NullOr(ApplicationCommandUpdateRequestOptionsList)),
     default_member_permissions: S.optional(S.NullOr(S.Number)),
     dm_permission: S.optional(S.NullOr(S.Boolean)),
-    contexts: S.optional(S.NullOr(CreateApplicationCommandRequestContextsList)),
+    contexts: S.optional(S.NullOr(ApplicationCommandUpdateRequestContextsList)),
     integration_types: S.optional(
-      S.NullOr(CreateApplicationCommandRequestIntegrationTypesList),
+      S.NullOr(ApplicationCommandUpdateRequestIntegrationTypesList),
     ),
     handler: S.optional(S.NullOr(ApplicationCommandHandler)),
     type: S.optional(S.NullOr(ApplicationCommandType)),
+    id: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ApplicationCommandUpdateRequest",
+}) as any as S.Schema<ApplicationCommandUpdateRequest>;
+
+export type BulkSetApplicationCommandsRequestBodyList =
+  Array<ApplicationCommandUpdateRequest>;
+export const BulkSetApplicationCommandsRequestBodyList = /*@__PURE__*/ S.Array(
+  ApplicationCommandUpdateRequest,
+) as any as S.Schema<BulkSetApplicationCommandsRequestBodyList>;
+
+export interface BulkSetApplicationCommandsRequest {
+  application_id: string;
+  body: BulkSetApplicationCommandsRequestBodyList | null;
+}
+export const BulkSetApplicationCommandsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    application_id: S.String.pipe(T.Label()),
+    body: S.NullOr(BulkSetApplicationCommandsRequestBodyList).pipe(
+      T.HttpBody(),
+    ),
   }).pipe(
     T.Http({
-      method: "POST",
+      method: "PUT",
       uri: "/applications/{application_id}/commands",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateApplicationCommandRequest",
-}) as any as S.Schema<CreateApplicationCommandRequest>;
+  identifier: "BulkSetApplicationCommandsRequest",
+}) as any as S.Schema<BulkSetApplicationCommandsRequest>;
 
 export type ApplicationCommandResponseNameLocalizationsMap = {
   [key: string]: string | undefined;
@@ -2793,6 +2761,590 @@ export const ApplicationCommandResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ApplicationCommandResponse",
 }) as any as S.Schema<ApplicationCommandResponse>;
+
+export type BulkSetApplicationCommandsResponseBodyList =
+  Array<ApplicationCommandResponse>;
+export const BulkSetApplicationCommandsResponseBodyList = /*@__PURE__*/ S.Array(
+  ApplicationCommandResponse,
+) as any as S.Schema<BulkSetApplicationCommandsResponseBodyList>;
+
+export type BulkSetApplicationCommandsResponse =
+  BulkSetApplicationCommandsResponseBodyList;
+export const BulkSetApplicationCommandsResponse = /*@__PURE__*/ S.suspend(() =>
+  BulkSetApplicationCommandsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "BulkSetApplicationCommandsResponse",
+}) as any as S.Schema<BulkSetApplicationCommandsResponse>;
+
+export type BulkSetGuildApplicationCommandsRequestBodyList =
+  Array<ApplicationCommandUpdateRequest>;
+export const BulkSetGuildApplicationCommandsRequestBodyList =
+  /*@__PURE__*/ S.Array(
+    ApplicationCommandUpdateRequest,
+  ) as any as S.Schema<BulkSetGuildApplicationCommandsRequestBodyList>;
+
+export interface BulkSetGuildApplicationCommandsRequest {
+  application_id: string;
+  guild_id: string;
+  body: BulkSetGuildApplicationCommandsRequestBodyList | null;
+}
+export const BulkSetGuildApplicationCommandsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      application_id: S.String.pipe(T.Label()),
+      guild_id: S.String.pipe(T.Label()),
+      body: S.NullOr(BulkSetGuildApplicationCommandsRequestBodyList).pipe(
+        T.HttpBody(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/applications/{application_id}/guilds/{guild_id}/commands",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "BulkSetGuildApplicationCommandsRequest",
+}) as any as S.Schema<BulkSetGuildApplicationCommandsRequest>;
+
+export type BulkSetGuildApplicationCommandsResponseBodyList =
+  Array<ApplicationCommandResponse>;
+export const BulkSetGuildApplicationCommandsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    ApplicationCommandResponse,
+  ) as any as S.Schema<BulkSetGuildApplicationCommandsResponseBodyList>;
+
+export type BulkSetGuildApplicationCommandsResponse =
+  BulkSetGuildApplicationCommandsResponseBodyList;
+export const BulkSetGuildApplicationCommandsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    BulkSetGuildApplicationCommandsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "BulkSetGuildApplicationCommandsResponse",
+}) as any as S.Schema<BulkSetGuildApplicationCommandsResponse>;
+
+export interface BulkUpdateGuildChannelsRequestBodyItem {
+  id?: string | null;
+  position?: number | null;
+  parent_id?: string | null;
+  lock_permissions?: boolean | null;
+}
+export const BulkUpdateGuildChannelsRequestBodyItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.NullOr(S.String)),
+      position: S.optional(S.NullOr(S.Number)),
+      parent_id: S.optional(S.NullOr(S.String)),
+      lock_permissions: S.optional(S.NullOr(S.Boolean)),
+    }),
+).annotate({
+  identifier: "BulkUpdateGuildChannelsRequestBodyItem",
+}) as any as S.Schema<BulkUpdateGuildChannelsRequestBodyItem>;
+
+export type BulkUpdateGuildChannelsRequestBodyList =
+  Array<BulkUpdateGuildChannelsRequestBodyItem>;
+export const BulkUpdateGuildChannelsRequestBodyList = /*@__PURE__*/ S.Array(
+  BulkUpdateGuildChannelsRequestBodyItem,
+) as any as S.Schema<BulkUpdateGuildChannelsRequestBodyList>;
+
+export interface BulkUpdateGuildChannelsRequest {
+  guild_id: string;
+  body: BulkUpdateGuildChannelsRequestBodyList;
+}
+export const BulkUpdateGuildChannelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    guild_id: S.String.pipe(T.Label()),
+    body: BulkUpdateGuildChannelsRequestBodyList.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/guilds/{guild_id}/channels", code: 200 }),
+  ),
+).annotate({
+  identifier: "BulkUpdateGuildChannelsRequest",
+}) as any as S.Schema<BulkUpdateGuildChannelsRequest>;
+
+export interface BulkUpdateGuildChannelsResponse {}
+export const BulkUpdateGuildChannelsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BulkUpdateGuildChannelsResponse",
+}) as any as S.Schema<BulkUpdateGuildChannelsResponse>;
+
+export interface UpdateRolePositionsRequest {
+  id?: string | null;
+  position?: number | null;
+}
+export const UpdateRolePositionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    position: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "UpdateRolePositionsRequest",
+}) as any as S.Schema<UpdateRolePositionsRequest>;
+
+export type BulkUpdateGuildRolesRequestBodyList =
+  Array<UpdateRolePositionsRequest>;
+export const BulkUpdateGuildRolesRequestBodyList = /*@__PURE__*/ S.Array(
+  UpdateRolePositionsRequest,
+) as any as S.Schema<BulkUpdateGuildRolesRequestBodyList>;
+
+export interface BulkUpdateGuildRolesRequest {
+  guild_id: string;
+  body: BulkUpdateGuildRolesRequestBodyList;
+}
+export const BulkUpdateGuildRolesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    guild_id: S.String.pipe(T.Label()),
+    body: BulkUpdateGuildRolesRequestBodyList.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/guilds/{guild_id}/roles", code: 200 }),
+  ),
+).annotate({
+  identifier: "BulkUpdateGuildRolesRequest",
+}) as any as S.Schema<BulkUpdateGuildRolesRequest>;
+
+export interface GuildRoleColorsResponse {
+  primary_color: number;
+  secondary_color: number | null;
+  tertiary_color: number | null;
+}
+export const GuildRoleColorsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primary_color: S.Number,
+    secondary_color: S.NullOr(S.Number),
+    tertiary_color: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "GuildRoleColorsResponse",
+}) as any as S.Schema<GuildRoleColorsResponse>;
+
+export interface GuildRoleTagsResponse {
+  premium_subscriber?: unknown | null;
+  bot_id?: string;
+  integration_id?: string;
+  subscription_listing_id?: string;
+  available_for_purchase?: unknown | null;
+  guild_connections?: unknown | null;
+}
+export const GuildRoleTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    premium_subscriber: S.optional(S.NullOr(S.Unknown)),
+    bot_id: S.optional(S.String),
+    integration_id: S.optional(S.String),
+    subscription_listing_id: S.optional(S.String),
+    available_for_purchase: S.optional(S.NullOr(S.Unknown)),
+    guild_connections: S.optional(S.NullOr(S.Unknown)),
+  }),
+).annotate({
+  identifier: "GuildRoleTagsResponse",
+}) as any as S.Schema<GuildRoleTagsResponse>;
+
+export interface GuildRoleResponse {
+  id: string;
+  name: string;
+  permissions: string;
+  position: number;
+  color: number;
+  colors: GuildRoleColorsResponse;
+  hoist: boolean;
+  managed: boolean;
+  mentionable: boolean;
+  icon: string | null;
+  unicode_emoji: string | null;
+  tags?: GuildRoleTagsResponse;
+  flags: number;
+}
+export const GuildRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    permissions: S.String,
+    position: S.Number,
+    color: S.Number,
+    colors: GuildRoleColorsResponse,
+    hoist: S.Boolean,
+    managed: S.Boolean,
+    mentionable: S.Boolean,
+    icon: S.NullOr(S.String),
+    unicode_emoji: S.NullOr(S.String),
+    tags: S.optional(GuildRoleTagsResponse),
+    flags: S.Number,
+  }),
+).annotate({
+  identifier: "GuildRoleResponse",
+}) as any as S.Schema<GuildRoleResponse>;
+
+export type BulkUpdateGuildRolesResponseBodyList = Array<GuildRoleResponse>;
+export const BulkUpdateGuildRolesResponseBodyList = /*@__PURE__*/ S.Array(
+  GuildRoleResponse,
+) as any as S.Schema<BulkUpdateGuildRolesResponseBodyList>;
+
+export type BulkUpdateGuildRolesResponse = BulkUpdateGuildRolesResponseBodyList;
+export const BulkUpdateGuildRolesResponse = /*@__PURE__*/ S.suspend(() =>
+  BulkUpdateGuildRolesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "BulkUpdateGuildRolesResponse",
+}) as any as S.Schema<BulkUpdateGuildRolesResponse>;
+
+export type BulkLobbyMemberRequestMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const BulkLobbyMemberRequestMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BulkLobbyMemberRequestMetadataMap>;
+
+export type BulkLobbyMemberRequestFlags = 1;
+export const BulkLobbyMemberRequestFlags = /*@__PURE__*/ S.Number;
+
+export interface BulkLobbyMemberRequest {
+  id: string;
+  metadata?: BulkLobbyMemberRequestMetadataMap | null;
+  flags?: BulkLobbyMemberRequestFlags | (number & {}) | null;
+  additional_name?: string | null;
+  remove_member?: boolean | null;
+}
+export const BulkLobbyMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    metadata: S.optional(S.NullOr(BulkLobbyMemberRequestMetadataMap)),
+    flags: S.optional(S.NullOr(BulkLobbyMemberRequestFlags)),
+    additional_name: S.optional(S.NullOr(S.String)),
+    remove_member: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "BulkLobbyMemberRequest",
+}) as any as S.Schema<BulkLobbyMemberRequest>;
+
+export type BulkUpdateLobbyMembersRequestBodyList =
+  Array<BulkLobbyMemberRequest>;
+export const BulkUpdateLobbyMembersRequestBodyList = /*@__PURE__*/ S.Array(
+  BulkLobbyMemberRequest,
+) as any as S.Schema<BulkUpdateLobbyMembersRequestBodyList>;
+
+export interface BulkUpdateLobbyMembersRequest {
+  lobby_id: string;
+  body: BulkUpdateLobbyMembersRequestBodyList | null;
+}
+export const BulkUpdateLobbyMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lobby_id: S.String.pipe(T.Label()),
+    body: S.NullOr(BulkUpdateLobbyMembersRequestBodyList).pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/lobbies/{lobby_id}/members/bulk",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkUpdateLobbyMembersRequest",
+}) as any as S.Schema<BulkUpdateLobbyMembersRequest>;
+
+export type BulkUpdateLobbyMembersResponseBodyList = Array<LobbyMemberResponse>;
+export const BulkUpdateLobbyMembersResponseBodyList = /*@__PURE__*/ S.Array(
+  LobbyMemberResponse,
+) as any as S.Schema<BulkUpdateLobbyMembersResponseBodyList>;
+
+export type BulkUpdateLobbyMembersResponse =
+  BulkUpdateLobbyMembersResponseBodyList;
+export const BulkUpdateLobbyMembersResponse = /*@__PURE__*/ S.suspend(() =>
+  BulkUpdateLobbyMembersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "BulkUpdateLobbyMembersResponse",
+}) as any as S.Schema<BulkUpdateLobbyMembersResponse>;
+
+export interface ConsumeEntitlementRequest {
+  application_id: string;
+  entitlement_id: string;
+}
+export const ConsumeEntitlementRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    application_id: S.String.pipe(T.Label()),
+    entitlement_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/applications/{application_id}/entitlements/{entitlement_id}/consume",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConsumeEntitlementRequest",
+}) as any as S.Schema<ConsumeEntitlementRequest>;
+
+export interface ConsumeEntitlementResponse {}
+export const ConsumeEntitlementResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ConsumeEntitlementResponse",
+}) as any as S.Schema<ConsumeEntitlementResponse>;
+
+export type CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList =
+  Array<string>;
+export const CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList>;
+
+export interface CountGuildScheduledEventUsersRequest {
+  guild_id: string;
+  guild_scheduled_event_id: string;
+  guild_scheduled_event_exception_ids?: CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList;
+}
+export const CountGuildScheduledEventUsersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      guild_id: S.String.pipe(T.Label()),
+      guild_scheduled_event_id: S.String.pipe(T.Label()),
+      guild_scheduled_event_exception_ids: S.optional(
+        CountGuildScheduledEventUsersRequestGuildScheduledEventExceptionIdsList.pipe(
+          T.Query(),
+        ),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}/users/counts",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CountGuildScheduledEventUsersRequest",
+}) as any as S.Schema<CountGuildScheduledEventUsersRequest>;
+
+/** Map of exception IDs to user counts for each exception */
+export type ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap =
+  { [key: string]: number | undefined };
+export const ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap>;
+
+export interface ScheduledEventUserCountResponse {
+  /** The number of users subscribed to the scheduled event */
+  guild_scheduled_event_count: number;
+  /** Map of exception IDs to user counts for each exception */
+  guild_scheduled_event_exception_counts: ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap;
+}
+export const ScheduledEventUserCountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    guild_scheduled_event_count: S.Number,
+    guild_scheduled_event_exception_counts:
+      ScheduledEventUserCountResponseGuildScheduledEventExceptionCountsMap,
+  }),
+).annotate({
+  identifier: "ScheduledEventUserCountResponse",
+}) as any as S.Schema<ScheduledEventUserCountResponse>;
+
+export type CreateApplicationCommandRequestNameLocalizationsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateApplicationCommandRequestNameLocalizationsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateApplicationCommandRequestNameLocalizationsMap>;
+
+export type CreateApplicationCommandRequestDescriptionLocalizationsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateApplicationCommandRequestDescriptionLocalizationsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateApplicationCommandRequestDescriptionLocalizationsMap>;
+
+export type CreateApplicationCommandRequestOptionsItem =
+  | ApplicationCommandAttachmentOption
+  | ApplicationCommandBooleanOption
+  | ApplicationCommandChannelOption
+  | ApplicationCommandIntegerOption
+  | ApplicationCommandMentionableOption
+  | ApplicationCommandNumberOption
+  | ApplicationCommandRoleOption
+  | ApplicationCommandStringOption
+  | ApplicationCommandSubcommandGroupOption
+  | ApplicationCommandSubcommandOption
+  | ApplicationCommandUserOption;
+export const CreateApplicationCommandRequestOptionsItem =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "file_types",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "channel_types",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "autocomplete",
+        "choices",
+        "min_value",
+        "max_value",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "autocomplete",
+        "choices",
+        "min_value",
+        "max_value",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "autocomplete",
+        "min_length",
+        "max_length",
+        "choices",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "options",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+        "options",
+      ],
+      [
+        "type",
+        "name",
+        "name_localizations",
+        "description",
+        "description_localizations",
+        "required",
+      ],
+    ]),
+  );
+
+export type CreateApplicationCommandRequestOptionsList =
+  Array<CreateApplicationCommandRequestOptionsItem>;
+export const CreateApplicationCommandRequestOptionsList = /*@__PURE__*/ S.Array(
+  CreateApplicationCommandRequestOptionsItem,
+) as any as S.Schema<CreateApplicationCommandRequestOptionsList>;
+
+export type CreateApplicationCommandRequestContextsList = Array<
+  InteractionContextType | (number & {})
+>;
+export const CreateApplicationCommandRequestContextsList =
+  /*@__PURE__*/ S.Array(
+    InteractionContextType,
+  ) as any as S.Schema<CreateApplicationCommandRequestContextsList>;
+
+export type CreateApplicationCommandRequestIntegrationTypesList = Array<
+  ApplicationIntegrationType | (number & {})
+>;
+export const CreateApplicationCommandRequestIntegrationTypesList =
+  /*@__PURE__*/ S.Array(
+    ApplicationIntegrationType,
+  ) as any as S.Schema<CreateApplicationCommandRequestIntegrationTypesList>;
+
+export interface CreateApplicationCommandRequest {
+  application_id: string;
+  name: string;
+  name_localizations?: CreateApplicationCommandRequestNameLocalizationsMap | null;
+  description?: string | null;
+  description_localizations?: CreateApplicationCommandRequestDescriptionLocalizationsMap | null;
+  options?: CreateApplicationCommandRequestOptionsList | null;
+  default_member_permissions?: number | null;
+  dm_permission?: boolean | null;
+  contexts?: CreateApplicationCommandRequestContextsList | null;
+  integration_types?: CreateApplicationCommandRequestIntegrationTypesList | null;
+  /** Determines whether the interaction is handled by the app's interactions handler or by Discord */
+  handler?: ApplicationCommandHandler | (number & {}) | null;
+  type?: ApplicationCommandType | (number & {}) | null;
+}
+export const CreateApplicationCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    application_id: S.String.pipe(T.Label()),
+    name: S.String,
+    name_localizations: S.optional(
+      S.NullOr(CreateApplicationCommandRequestNameLocalizationsMap),
+    ),
+    description: S.optional(S.NullOr(S.String)),
+    description_localizations: S.optional(
+      S.NullOr(CreateApplicationCommandRequestDescriptionLocalizationsMap),
+    ),
+    options: S.optional(S.NullOr(CreateApplicationCommandRequestOptionsList)),
+    default_member_permissions: S.optional(S.NullOr(S.Number)),
+    dm_permission: S.optional(S.NullOr(S.Boolean)),
+    contexts: S.optional(S.NullOr(CreateApplicationCommandRequestContextsList)),
+    integration_types: S.optional(
+      S.NullOr(CreateApplicationCommandRequestIntegrationTypesList),
+    ),
+    handler: S.optional(S.NullOr(ApplicationCommandHandler)),
+    type: S.optional(S.NullOr(ApplicationCommandType)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/applications/{application_id}/commands",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateApplicationCommandRequest",
+}) as any as S.Schema<CreateApplicationCommandRequest>;
 
 export interface CreateApplicationEmojiRequest {
   application_id: string;
@@ -4360,8 +4912,11 @@ export interface InviteApplicationResponse {
   type: ApplicationTypes | null;
   cover_image?: string;
   primary_sku_id?: string;
+  flags: number;
+  flags_new: string;
   bot?: UserResponse;
   slug?: string;
+  vibegrations_project_id?: string;
   guild_id?: string;
   rpc_origins?: InviteApplicationResponseRpcOriginsList;
   bot_public?: boolean;
@@ -4372,8 +4927,6 @@ export interface InviteApplicationResponse {
   install_params?: ApplicationOAuth2InstallParamsResponse;
   integration_types_config?: InviteApplicationResponseIntegrationTypesConfigMap;
   verify_key: string;
-  flags: number;
-  flags_new: string;
   max_participants?: number | null;
   tags?: InviteApplicationResponseTagsList;
 }
@@ -4386,8 +4939,11 @@ export const InviteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.NullOr(ApplicationTypes),
     cover_image: S.optional(S.String),
     primary_sku_id: S.optional(S.String),
+    flags: S.Number,
+    flags_new: S.String,
     bot: S.optional(UserResponse),
     slug: S.optional(S.String),
+    vibegrations_project_id: S.optional(S.String),
     guild_id: S.optional(S.String),
     rpc_origins: S.optional(InviteApplicationResponseRpcOriginsList),
     bot_public: S.optional(S.Boolean),
@@ -4400,8 +4956,6 @@ export const InviteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
       InviteApplicationResponseIntegrationTypesConfigMap,
     ),
     verify_key: S.String,
-    flags: S.Number,
-    flags_new: S.String,
     max_participants: S.optional(S.NullOr(S.Number)),
     tags: S.optional(InviteApplicationResponseTagsList),
   }),
@@ -4664,21 +5218,6 @@ export const GuildLivelinessResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GuildLivelinessResponse",
 }) as any as S.Schema<GuildLivelinessResponse>;
-
-export interface GuildRoleColorsResponse {
-  primary_color: number;
-  secondary_color: number | null;
-  tertiary_color: number | null;
-}
-export const GuildRoleColorsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primary_color: S.Number,
-    secondary_color: S.NullOr(S.Number),
-    tertiary_color: S.NullOr(S.Number),
-  }),
-).annotate({
-  identifier: "GuildRoleColorsResponse",
-}) as any as S.Schema<GuildRoleColorsResponse>;
 
 export interface InviteGuildRoleResponse {
   id: string;
@@ -5552,62 +6091,6 @@ export const CreateGuildRoleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateGuildRoleRequest",
 }) as any as S.Schema<CreateGuildRoleRequest>;
-
-export interface GuildRoleTagsResponse {
-  premium_subscriber?: unknown | null;
-  bot_id?: string;
-  integration_id?: string;
-  subscription_listing_id?: string;
-  available_for_purchase?: unknown | null;
-  guild_connections?: unknown | null;
-}
-export const GuildRoleTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    premium_subscriber: S.optional(S.NullOr(S.Unknown)),
-    bot_id: S.optional(S.String),
-    integration_id: S.optional(S.String),
-    subscription_listing_id: S.optional(S.String),
-    available_for_purchase: S.optional(S.NullOr(S.Unknown)),
-    guild_connections: S.optional(S.NullOr(S.Unknown)),
-  }),
-).annotate({
-  identifier: "GuildRoleTagsResponse",
-}) as any as S.Schema<GuildRoleTagsResponse>;
-
-export interface GuildRoleResponse {
-  id: string;
-  name: string;
-  permissions: string;
-  position: number;
-  color: number;
-  colors: GuildRoleColorsResponse;
-  hoist: boolean;
-  managed: boolean;
-  mentionable: boolean;
-  icon: string | null;
-  unicode_emoji: string | null;
-  tags?: GuildRoleTagsResponse;
-  flags: number;
-}
-export const GuildRoleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    permissions: S.String,
-    position: S.Number,
-    color: S.Number,
-    colors: GuildRoleColorsResponse,
-    hoist: S.Boolean,
-    managed: S.Boolean,
-    mentionable: S.Boolean,
-    icon: S.NullOr(S.String),
-    unicode_emoji: S.NullOr(S.String),
-    tags: S.optional(GuildRoleTagsResponse),
-    flags: S.Number,
-  }),
-).annotate({
-  identifier: "GuildRoleResponse",
-}) as any as S.Schema<GuildRoleResponse>;
 
 /** Set of specific days within a week for the event to recur on */
 export type RecurrenceRuleByWeekdayList = Array<
@@ -8458,8 +8941,11 @@ export interface ApplicationResponse {
   type: ApplicationTypes | null;
   cover_image?: string;
   primary_sku_id?: string;
+  flags: number;
+  flags_new: string;
   bot?: UserResponse;
   slug?: string;
+  vibegrations_project_id?: string;
   guild_id?: string;
   rpc_origins?: ApplicationResponseRpcOriginsList;
   bot_public?: boolean;
@@ -8470,8 +8956,6 @@ export interface ApplicationResponse {
   install_params?: ApplicationOAuth2InstallParamsResponse;
   integration_types_config?: ApplicationResponseIntegrationTypesConfigMap;
   verify_key: string;
-  flags: number;
-  flags_new: string;
   max_participants?: number | null;
   tags?: ApplicationResponseTagsList;
 }
@@ -8484,8 +8968,11 @@ export const ApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.NullOr(ApplicationTypes),
     cover_image: S.optional(S.String),
     primary_sku_id: S.optional(S.String),
+    flags: S.Number,
+    flags_new: S.String,
     bot: S.optional(UserResponse),
     slug: S.optional(S.String),
+    vibegrations_project_id: S.optional(S.String),
     guild_id: S.optional(S.String),
     rpc_origins: S.optional(ApplicationResponseRpcOriginsList),
     bot_public: S.optional(S.Boolean),
@@ -8498,8 +8985,6 @@ export const ApplicationResponse = /*@__PURE__*/ S.suspend(() =>
       ApplicationResponseIntegrationTypesConfigMap,
     ),
     verify_key: S.String,
-    flags: S.Number,
-    flags_new: S.String,
     max_participants: S.optional(S.NullOr(S.Number)),
     tags: S.optional(ApplicationResponseTagsList),
   }),
@@ -9476,6 +9961,8 @@ export interface BasicApplicationResponseWithBot {
   type: ApplicationTypes | null;
   cover_image?: string;
   primary_sku_id?: string;
+  flags: number;
+  flags_new: string;
   bot?: UserResponse;
 }
 export const BasicApplicationResponseWithBot = /*@__PURE__*/ S.suspend(() =>
@@ -9487,6 +9974,8 @@ export const BasicApplicationResponseWithBot = /*@__PURE__*/ S.suspend(() =>
     type: S.NullOr(ApplicationTypes),
     cover_image: S.optional(S.String),
     primary_sku_id: S.optional(S.String),
+    flags: S.Number,
+    flags_new: S.String,
     bot: S.optional(UserResponse),
   }),
 ).annotate({
@@ -11751,37 +12240,6 @@ export const DeleteAutoModerationRuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAutoModerationRuleResponse",
 }) as any as S.Schema<DeleteAutoModerationRuleResponse>;
 
-export type BulkDeleteMessagesRequestMessagesList = Array<string>;
-export const BulkDeleteMessagesRequestMessagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkDeleteMessagesRequestMessagesList>;
-
-export interface DeleteBulkMessageRequest {
-  channel_id: string;
-  messages: BulkDeleteMessagesRequestMessagesList;
-}
-export const DeleteBulkMessageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channel_id: S.String.pipe(T.Label()),
-    messages: BulkDeleteMessagesRequestMessagesList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/channels/{channel_id}/messages/bulk-delete",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DeleteBulkMessageRequest",
-}) as any as S.Schema<DeleteBulkMessageRequest>;
-
-export interface DeleteBulkMessageResponse {}
-export const DeleteBulkMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteBulkMessageResponse",
-}) as any as S.Schema<DeleteBulkMessageResponse>;
-
 export interface DeleteChannelRequest {
   channel_id: string;
 }
@@ -13583,8 +14041,11 @@ export interface PrivateApplicationResponse {
   type: ApplicationTypes | null;
   cover_image?: string;
   primary_sku_id?: string;
+  flags: number;
+  flags_new: string;
   bot?: UserResponse;
   slug?: string;
+  vibegrations_project_id?: string;
   guild_id?: string;
   rpc_origins?: PrivateApplicationResponseRpcOriginsList;
   bot_public?: boolean;
@@ -13595,8 +14056,6 @@ export interface PrivateApplicationResponse {
   install_params?: ApplicationOAuth2InstallParamsResponse;
   integration_types_config?: PrivateApplicationResponseIntegrationTypesConfigMap;
   verify_key: string;
-  flags: number;
-  flags_new: string;
   max_participants?: number | null;
   tags?: PrivateApplicationResponseTagsList;
   redirect_uris: PrivateApplicationResponseRedirectUrisList;
@@ -13622,8 +14081,11 @@ export const PrivateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.NullOr(ApplicationTypes),
     cover_image: S.optional(S.String),
     primary_sku_id: S.optional(S.String),
+    flags: S.Number,
+    flags_new: S.String,
     bot: S.optional(UserResponse),
     slug: S.optional(S.String),
+    vibegrations_project_id: S.optional(S.String),
     guild_id: S.optional(S.String),
     rpc_origins: S.optional(PrivateApplicationResponseRpcOriginsList),
     bot_public: S.optional(S.Boolean),
@@ -13636,8 +14098,6 @@ export const PrivateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
       PrivateApplicationResponseIntegrationTypesConfigMap,
     ),
     verify_key: S.String,
-    flags: S.Number,
-    flags_new: S.String,
     max_participants: S.optional(S.NullOr(S.Number)),
     tags: S.optional(PrivateApplicationResponseTagsList),
     redirect_uris: PrivateApplicationResponseRedirectUrisList,
@@ -16634,476 +17094,6 @@ export const GuildRoleMemberCountsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GuildRoleMemberCountsResponse",
 }) as any as S.Schema<GuildRoleMemberCountsResponse>;
 
-export type SortingMode = "relevance" | "timestamp";
-export const SortingMode = /*@__PURE__*/ S.String;
-
-export type SortingOrder = "asc" | "desc";
-export const SortingOrder = /*@__PURE__*/ S.String;
-
-export type GuildSearchRequestAuthorIdList = Array<string>;
-export const GuildSearchRequestAuthorIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestAuthorIdList>;
-
-export type AuthorType =
-  | "user"
-  | "bot"
-  | "webhook"
-  | "-user"
-  | "-bot"
-  | "-webhook";
-export const AuthorType = /*@__PURE__*/ S.String;
-
-export type GuildSearchRequestAuthorTypeList = Array<
-  AuthorType | (string & {})
->;
-export const GuildSearchRequestAuthorTypeList = /*@__PURE__*/ S.Array(
-  AuthorType,
-) as any as S.Schema<GuildSearchRequestAuthorTypeList>;
-
-export type GuildSearchRequestMentionsList = Array<string>;
-export const GuildSearchRequestMentionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestMentionsList>;
-
-export type GuildSearchRequestMentionsRoleIdList = Array<string>;
-export const GuildSearchRequestMentionsRoleIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestMentionsRoleIdList>;
-
-export type GuildSearchRequestRepliedToUserIdList = Array<string>;
-export const GuildSearchRequestRepliedToUserIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestRepliedToUserIdList>;
-
-export type GuildSearchRequestRepliedToMessageIdList = Array<string>;
-export const GuildSearchRequestRepliedToMessageIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestRepliedToMessageIdList>;
-
-export type HasOption =
-  | "link"
-  | "embed"
-  | "file"
-  | "image"
-  | "video"
-  | "sound"
-  | "sticker"
-  | "poll"
-  | "snapshot"
-  | "-link"
-  | "-embed"
-  | "-file"
-  | "-image"
-  | "-video"
-  | "-sound"
-  | "-sticker"
-  | "-poll"
-  | "-snapshot";
-export const HasOption = /*@__PURE__*/ S.String;
-
-export type GuildSearchRequestHasList = Array<HasOption | (string & {})>;
-export const GuildSearchRequestHasList = /*@__PURE__*/ S.Array(
-  HasOption,
-) as any as S.Schema<GuildSearchRequestHasList>;
-
-export type GuildSearchRequestLinkHostnameList = Array<string>;
-export const GuildSearchRequestLinkHostnameList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestLinkHostnameList>;
-
-export type GuildSearchRequestEmbedProviderList = Array<string>;
-export const GuildSearchRequestEmbedProviderList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestEmbedProviderList>;
-
-export type SearchableEmbedType =
-  | "image"
-  | "video"
-  | "gif"
-  | "sound"
-  | "article";
-export const SearchableEmbedType = /*@__PURE__*/ S.String;
-
-export type GuildSearchRequestEmbedTypeList = Array<
-  SearchableEmbedType | (string & {})
->;
-export const GuildSearchRequestEmbedTypeList = /*@__PURE__*/ S.Array(
-  SearchableEmbedType,
-) as any as S.Schema<GuildSearchRequestEmbedTypeList>;
-
-export type GuildSearchRequestAttachmentExtensionList = Array<string>;
-export const GuildSearchRequestAttachmentExtensionList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestAttachmentExtensionList>;
-
-export type GuildSearchRequestAttachmentFilenameList = Array<string>;
-export const GuildSearchRequestAttachmentFilenameList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestAttachmentFilenameList>;
-
-export type GuildSearchRequestChannelIdList = Array<string>;
-export const GuildSearchRequestChannelIdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuildSearchRequestChannelIdList>;
-
-export interface GuildSearchRequest {
-  guild_id: string;
-  sort_by?: SortingMode | (string & {});
-  sort_order?: SortingOrder | (string & {});
-  content?: string;
-  slop?: number;
-  author_id?: GuildSearchRequestAuthorIdList;
-  author_type?: GuildSearchRequestAuthorTypeList;
-  mentions?: GuildSearchRequestMentionsList;
-  mentions_role_id?: GuildSearchRequestMentionsRoleIdList;
-  replied_to_user_id?: GuildSearchRequestRepliedToUserIdList;
-  replied_to_message_id?: GuildSearchRequestRepliedToMessageIdList;
-  mention_everyone?: boolean;
-  min_id?: string;
-  max_id?: string;
-  limit?: number;
-  offset?: number;
-  has?: GuildSearchRequestHasList;
-  link_hostname?: GuildSearchRequestLinkHostnameList;
-  embed_provider?: GuildSearchRequestEmbedProviderList;
-  embed_type?: GuildSearchRequestEmbedTypeList;
-  attachment_extension?: GuildSearchRequestAttachmentExtensionList;
-  attachment_filename?: GuildSearchRequestAttachmentFilenameList;
-  pinned?: boolean;
-  include_nsfw?: boolean;
-  channel_id?: GuildSearchRequestChannelIdList;
-}
-export const GuildSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    guild_id: S.String.pipe(T.Label()),
-    sort_by: S.optional(SortingMode.pipe(T.Query())),
-    sort_order: S.optional(SortingOrder.pipe(T.Query())),
-    content: S.optional(S.String.pipe(T.Query())),
-    slop: S.optional(S.Number.pipe(T.Query())),
-    author_id: S.optional(GuildSearchRequestAuthorIdList.pipe(T.Query())),
-    author_type: S.optional(GuildSearchRequestAuthorTypeList.pipe(T.Query())),
-    mentions: S.optional(GuildSearchRequestMentionsList.pipe(T.Query())),
-    mentions_role_id: S.optional(
-      GuildSearchRequestMentionsRoleIdList.pipe(T.Query()),
-    ),
-    replied_to_user_id: S.optional(
-      GuildSearchRequestRepliedToUserIdList.pipe(T.Query()),
-    ),
-    replied_to_message_id: S.optional(
-      GuildSearchRequestRepliedToMessageIdList.pipe(T.Query()),
-    ),
-    mention_everyone: S.optional(S.Boolean.pipe(T.Query())),
-    min_id: S.optional(S.String.pipe(T.Query())),
-    max_id: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    has: S.optional(GuildSearchRequestHasList.pipe(T.Query())),
-    link_hostname: S.optional(
-      GuildSearchRequestLinkHostnameList.pipe(T.Query()),
-    ),
-    embed_provider: S.optional(
-      GuildSearchRequestEmbedProviderList.pipe(T.Query()),
-    ),
-    embed_type: S.optional(GuildSearchRequestEmbedTypeList.pipe(T.Query())),
-    attachment_extension: S.optional(
-      GuildSearchRequestAttachmentExtensionList.pipe(T.Query()),
-    ),
-    attachment_filename: S.optional(
-      GuildSearchRequestAttachmentFilenameList.pipe(T.Query()),
-    ),
-    pinned: S.optional(S.Boolean.pipe(T.Query())),
-    include_nsfw: S.optional(S.Boolean.pipe(T.Query())),
-    channel_id: S.optional(GuildSearchRequestChannelIdList.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/guilds/{guild_id}/messages/search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GuildSearchRequest",
-}) as any as S.Schema<GuildSearchRequest>;
-
-export type SearchMessageResponseMentionsList = Array<UserResponse>;
-export const SearchMessageResponseMentionsList = /*@__PURE__*/ S.Array(
-  UserResponse,
-) as any as S.Schema<SearchMessageResponseMentionsList>;
-
-export type SearchMessageResponseMentionRolesList = Array<string>;
-export const SearchMessageResponseMentionRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SearchMessageResponseMentionRolesList>;
-
-export type SearchMessageResponseAttachmentsList =
-  Array<MessageAttachmentResponse>;
-export const SearchMessageResponseAttachmentsList = /*@__PURE__*/ S.Array(
-  MessageAttachmentResponse,
-) as any as S.Schema<SearchMessageResponseAttachmentsList>;
-
-export type SearchMessageResponseEmbedsList = Array<MessageEmbedResponse>;
-export const SearchMessageResponseEmbedsList = /*@__PURE__*/ S.Array(
-  MessageEmbedResponse,
-) as any as S.Schema<SearchMessageResponseEmbedsList>;
-
-export type SearchMessageResponseComponentsItem =
-  | ActionRowComponentResponse
-  | ContainerComponentResponse
-  | FileComponentResponse
-  | MediaGalleryComponentResponse
-  | SectionComponentResponse
-  | SeparatorComponentResponse
-  | TextDisplayComponentResponse;
-export const SearchMessageResponseComponentsItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["type", "id", "components"],
-    ["type", "id", "accent_color", "components", "spoiler"],
-    ["type", "id", "file", "name", "size", "spoiler"],
-    ["type", "id", "items"],
-    ["type", "id", "components", "accessory"],
-    ["type", "id", "spacing", "divider"],
-    ["type", "id", "content"],
-  ]),
-);
-
-export type SearchMessageResponseComponentsList =
-  Array<SearchMessageResponseComponentsItem>;
-export const SearchMessageResponseComponentsList = /*@__PURE__*/ S.Array(
-  SearchMessageResponseComponentsItem,
-) as any as S.Schema<SearchMessageResponseComponentsList>;
-
-export type SearchMessageResponseStickersItem =
-  | GuildStickerResponse
-  | StandardStickerResponse;
-export const SearchMessageResponseStickersItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "name",
-      "tags",
-      "type",
-      "format_type",
-      "description",
-      "available",
-      "guild_id",
-      "user",
-    ],
-    [
-      "id",
-      "name",
-      "tags",
-      "type",
-      "format_type",
-      "description",
-      "pack_id",
-      "sort_value",
-    ],
-  ]),
-);
-
-export type SearchMessageResponseStickersList =
-  Array<SearchMessageResponseStickersItem>;
-export const SearchMessageResponseStickersList = /*@__PURE__*/ S.Array(
-  SearchMessageResponseStickersItem,
-) as any as S.Schema<SearchMessageResponseStickersList>;
-
-export type SearchMessageResponseStickerItemsList =
-  Array<MessageStickerItemResponse>;
-export const SearchMessageResponseStickerItemsList = /*@__PURE__*/ S.Array(
-  MessageStickerItemResponse,
-) as any as S.Schema<SearchMessageResponseStickerItemsList>;
-
-export type SearchMessageResponseNonce = number | string;
-export const SearchMessageResponseNonce = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], []]),
-);
-
-export type SearchMessageResponseMentionChannelsList =
-  Array<MessageMentionChannelResponse>;
-export const SearchMessageResponseMentionChannelsList = /*@__PURE__*/ S.Array(
-  MessageMentionChannelResponse,
-) as any as S.Schema<SearchMessageResponseMentionChannelsList>;
-
-export type SearchMessageResponseInteractionMetadata =
-  | ApplicationCommandInteractionMetadataResponse
-  | MessageComponentInteractionMetadataResponse
-  | ModalSubmitInteractionMetadataResponse;
-export const SearchMessageResponseInteractionMetadata =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      [
-        "id",
-        "type",
-        "user",
-        "authorizing_integration_owners",
-        "original_response_message_id",
-        "target_user",
-        "target_message_id",
-      ],
-      [
-        "id",
-        "type",
-        "user",
-        "authorizing_integration_owners",
-        "original_response_message_id",
-        "interacted_message_id",
-      ],
-      [
-        "id",
-        "type",
-        "user",
-        "authorizing_integration_owners",
-        "original_response_message_id",
-        "triggering_interaction_metadata",
-      ],
-    ]),
-  );
-
-export type SearchMessageResponseMessageSnapshotsList =
-  Array<MessageSnapshotResponse>;
-export const SearchMessageResponseMessageSnapshotsList = /*@__PURE__*/ S.Array(
-  MessageSnapshotResponse,
-) as any as S.Schema<SearchMessageResponseMessageSnapshotsList>;
-
-export type SearchMessageResponseReactionsList = Array<MessageReactionResponse>;
-export const SearchMessageResponseReactionsList = /*@__PURE__*/ S.Array(
-  MessageReactionResponse,
-) as any as S.Schema<SearchMessageResponseReactionsList>;
-
-export interface SearchMessageResponse {
-  type: MessageType;
-  content: string;
-  mentions: SearchMessageResponseMentionsList;
-  mention_roles: SearchMessageResponseMentionRolesList;
-  attachments: SearchMessageResponseAttachmentsList;
-  embeds: SearchMessageResponseEmbedsList;
-  timestamp: string;
-  edited_timestamp: string | null;
-  flags: number;
-  components: SearchMessageResponseComponentsList;
-  stickers?: SearchMessageResponseStickersList;
-  sticker_items?: SearchMessageResponseStickerItemsList;
-  id: string;
-  channel_id: string;
-  author: UserResponse;
-  pinned: boolean;
-  mention_everyone: boolean;
-  tts: boolean;
-  call?: MessageCallResponse;
-  activity?: MessageActivityResponse;
-  application?: BasicApplicationResponseWithBot;
-  application_id?: string;
-  interaction?: MessageInteractionResponse;
-  nonce?: SearchMessageResponseNonce;
-  webhook_id?: string;
-  message_reference?: MessageReferenceResponse;
-  thread?: ThreadResponse;
-  mention_channels?: SearchMessageResponseMentionChannelsList;
-  role_subscription_data?: MessageRoleSubscriptionDataResponse;
-  purchase_notification?: PurchaseNotificationResponse;
-  position?: number;
-  resolved?: ResolvedObjectsResponse;
-  poll?: PollResponse;
-  shared_client_theme?: CustomClientThemeResponse;
-  interaction_metadata?: SearchMessageResponseInteractionMetadata;
-  message_snapshots?: SearchMessageResponseMessageSnapshotsList;
-  lobby_member?: MessageLobbyMemberResponse;
-  reactions?: SearchMessageResponseReactionsList;
-  referenced_message?: BasicMessageResponse | null;
-  hit: boolean;
-  restriction_count?: number;
-}
-export const SearchMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: MessageType,
-    content: S.String,
-    mentions: SearchMessageResponseMentionsList,
-    mention_roles: SearchMessageResponseMentionRolesList,
-    attachments: SearchMessageResponseAttachmentsList,
-    embeds: SearchMessageResponseEmbedsList,
-    timestamp: S.String,
-    edited_timestamp: S.NullOr(S.String),
-    flags: S.Number,
-    components: SearchMessageResponseComponentsList,
-    stickers: S.optional(SearchMessageResponseStickersList),
-    sticker_items: S.optional(SearchMessageResponseStickerItemsList),
-    id: S.String,
-    channel_id: S.String,
-    author: UserResponse,
-    pinned: S.Boolean,
-    mention_everyone: S.Boolean,
-    tts: S.Boolean,
-    call: S.optional(MessageCallResponse),
-    activity: S.optional(MessageActivityResponse),
-    application: S.optional(BasicApplicationResponseWithBot),
-    application_id: S.optional(S.String),
-    interaction: S.optional(MessageInteractionResponse),
-    nonce: S.optional(SearchMessageResponseNonce),
-    webhook_id: S.optional(S.String),
-    message_reference: S.optional(MessageReferenceResponse),
-    thread: S.optional(ThreadResponse),
-    mention_channels: S.optional(SearchMessageResponseMentionChannelsList),
-    role_subscription_data: S.optional(MessageRoleSubscriptionDataResponse),
-    purchase_notification: S.optional(PurchaseNotificationResponse),
-    position: S.optional(S.Number),
-    resolved: S.optional(ResolvedObjectsResponse),
-    poll: S.optional(PollResponse),
-    shared_client_theme: S.optional(CustomClientThemeResponse),
-    interaction_metadata: S.optional(SearchMessageResponseInteractionMetadata),
-    message_snapshots: S.optional(SearchMessageResponseMessageSnapshotsList),
-    lobby_member: S.optional(MessageLobbyMemberResponse),
-    reactions: S.optional(SearchMessageResponseReactionsList),
-    referenced_message: S.optional(S.NullOr(BasicMessageResponse)),
-    hit: S.Boolean,
-    restriction_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SearchMessageResponse",
-}) as any as S.Schema<SearchMessageResponse>;
-
-export type GuildSearchResponseMessagesItemList = Array<SearchMessageResponse>;
-export const GuildSearchResponseMessagesItemList = /*@__PURE__*/ S.Array(
-  SearchMessageResponse,
-) as any as S.Schema<GuildSearchResponseMessagesItemList>;
-
-export type GuildSearchResponseMessagesList =
-  Array<GuildSearchResponseMessagesItemList>;
-export const GuildSearchResponseMessagesList = /*@__PURE__*/ S.Array(
-  GuildSearchResponseMessagesItemList,
-) as any as S.Schema<GuildSearchResponseMessagesList>;
-
-export type GuildSearchResponseThreadsList = Array<ThreadResponse>;
-export const GuildSearchResponseThreadsList = /*@__PURE__*/ S.Array(
-  ThreadResponse,
-) as any as S.Schema<GuildSearchResponseThreadsList>;
-
-export type GuildSearchResponseMembersList = Array<ThreadMemberResponse>;
-export const GuildSearchResponseMembersList = /*@__PURE__*/ S.Array(
-  ThreadMemberResponse,
-) as any as S.Schema<GuildSearchResponseMembersList>;
-
-export interface GuildSearchResponse {
-  messages: GuildSearchResponseMessagesList;
-  doing_deep_historical_index: boolean;
-  total_results: number;
-  threads?: GuildSearchResponseThreadsList | null;
-  members?: GuildSearchResponseMembersList | null;
-  documents_indexed?: number | null;
-}
-export const GuildSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    messages: GuildSearchResponseMessagesList,
-    doing_deep_historical_index: S.Boolean,
-    total_results: S.Number,
-    threads: S.optional(S.NullOr(GuildSearchResponseThreadsList)),
-    members: S.optional(S.NullOr(GuildSearchResponseMembersList)),
-    documents_indexed: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "GuildSearchResponse",
-}) as any as S.Schema<GuildSearchResponse>;
-
 export interface InviteResolveRequest {
   code: string;
   with_counts?: boolean;
@@ -17190,83 +17180,30 @@ export const InviteResolveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "InviteResolveResponse",
 }) as any as S.Schema<InviteResolveResponse>;
 
-export interface InviteRevokeRequest {
-  code: string;
+export interface JoinActionGuildRequestRequest {
+  guild_id: string;
+  request_id: string;
+  /** Whether to approve or reject the join request */
+  action?: GuildJoinRequestApplicationStatus | (string & {});
+  /** Reason for rejection. Only used when action is REJECTED */
+  rejection_reason?: string | null;
 }
-export const InviteRevokeRequest = /*@__PURE__*/ S.suspend(() =>
+export const JoinActionGuildRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    code: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/invites/{code}", code: 200 })),
+    guild_id: S.String.pipe(T.Label()),
+    request_id: S.String.pipe(T.Label()),
+    action: S.optional(GuildJoinRequestApplicationStatus),
+    rejection_reason: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/guilds/{guild_id}/requests/{request_id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "InviteRevokeRequest",
-}) as any as S.Schema<InviteRevokeRequest>;
-
-export type InviteRevokeResponseBody =
-  | FriendInviteResponse
-  | GroupDMInviteResponse
-  | GuildInviteResponse;
-export const InviteRevokeResponseBody = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "type",
-      "code",
-      "inviter",
-      "max_age",
-      "created_at",
-      "expires_at",
-      "friends_count",
-      "channel",
-      "is_contact",
-      "uses",
-      "max_uses",
-      "flags",
-    ],
-    [
-      "type",
-      "code",
-      "inviter",
-      "max_age",
-      "created_at",
-      "expires_at",
-      "channel",
-      "approximate_member_count",
-    ],
-    [
-      "type",
-      "code",
-      "inviter",
-      "max_age",
-      "created_at",
-      "expires_at",
-      "is_contact",
-      "flags",
-      "guild",
-      "guild_id",
-      "channel",
-      "target_type",
-      "target_user",
-      "target_application",
-      "guild_scheduled_event",
-      "target_channel_id",
-      "target_message_id",
-      "liveliness",
-      "uses",
-      "max_uses",
-      "temporary",
-      "approximate_member_count",
-      "approximate_presence_count",
-      "is_nickname_changeable",
-      "roles",
-    ],
-  ]),
-);
-
-export type InviteRevokeResponse = InviteRevokeResponseBody;
-export const InviteRevokeResponse = /*@__PURE__*/ S.suspend(() =>
-  InviteRevokeResponseBody.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "InviteRevokeResponse",
-}) as any as S.Schema<InviteRevokeResponse>;
+  identifier: "JoinActionGuildRequestRequest",
+}) as any as S.Schema<JoinActionGuildRequestRequest>;
 
 export interface JoinThreadRequest {
   channel_id: string;
@@ -17710,14 +17647,14 @@ export const ListDeprecatedPinsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDeprecatedPinsRequest",
 }) as any as S.Schema<ListDeprecatedPinsRequest>;
 
-export type DeprecatedListPinsResponseBodyList = Array<MessageResponse>;
-export const DeprecatedListPinsResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListDeprecatedPinsResponseBodyList = Array<MessageResponse>;
+export const ListDeprecatedPinsResponseBodyList = /*@__PURE__*/ S.Array(
   MessageResponse,
-) as any as S.Schema<DeprecatedListPinsResponseBodyList>;
+) as any as S.Schema<ListDeprecatedPinsResponseBodyList>;
 
-export type ListDeprecatedPinsResponse = DeprecatedListPinsResponseBodyList;
+export type ListDeprecatedPinsResponse = ListDeprecatedPinsResponseBodyList;
 export const ListDeprecatedPinsResponse = /*@__PURE__*/ S.suspend(() =>
-  DeprecatedListPinsResponseBodyList.pipe(T.RawResponseRoot()),
+  ListDeprecatedPinsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListDeprecatedPinsResponse",
 }) as any as S.Schema<ListDeprecatedPinsResponse>;
@@ -19826,30 +19763,553 @@ export const GuildOnboardingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GuildOnboardingResponse",
 }) as any as S.Schema<GuildOnboardingResponse>;
 
-export interface RequestActionGuildJoinRequest {
-  guild_id: string;
-  request_id: string;
-  /** Whether to approve or reject the join request */
-  action?: GuildJoinRequestApplicationStatus | (string & {});
-  /** Reason for rejection. Only used when action is REJECTED */
-  rejection_reason?: string | null;
+export interface RevokeInviteRequest {
+  code: string;
 }
-export const RequestActionGuildJoinRequest = /*@__PURE__*/ S.suspend(() =>
+export const RevokeInviteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/invites/{code}", code: 200 })),
+).annotate({
+  identifier: "RevokeInviteRequest",
+}) as any as S.Schema<RevokeInviteRequest>;
+
+export type RevokeInviteResponseBody =
+  | FriendInviteResponse
+  | GroupDMInviteResponse
+  | GuildInviteResponse;
+export const RevokeInviteResponseBody = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "type",
+      "code",
+      "inviter",
+      "max_age",
+      "created_at",
+      "expires_at",
+      "friends_count",
+      "channel",
+      "is_contact",
+      "uses",
+      "max_uses",
+      "flags",
+    ],
+    [
+      "type",
+      "code",
+      "inviter",
+      "max_age",
+      "created_at",
+      "expires_at",
+      "channel",
+      "approximate_member_count",
+    ],
+    [
+      "type",
+      "code",
+      "inviter",
+      "max_age",
+      "created_at",
+      "expires_at",
+      "is_contact",
+      "flags",
+      "guild",
+      "guild_id",
+      "channel",
+      "target_type",
+      "target_user",
+      "target_application",
+      "guild_scheduled_event",
+      "target_channel_id",
+      "target_message_id",
+      "liveliness",
+      "uses",
+      "max_uses",
+      "temporary",
+      "approximate_member_count",
+      "approximate_presence_count",
+      "is_nickname_changeable",
+      "roles",
+    ],
+  ]),
+);
+
+export type RevokeInviteResponse = RevokeInviteResponseBody;
+export const RevokeInviteResponse = /*@__PURE__*/ S.suspend(() =>
+  RevokeInviteResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RevokeInviteResponse",
+}) as any as S.Schema<RevokeInviteResponse>;
+
+export type SortingMode = "relevance" | "timestamp";
+export const SortingMode = /*@__PURE__*/ S.String;
+
+export type SortingOrder = "asc" | "desc";
+export const SortingOrder = /*@__PURE__*/ S.String;
+
+export type SearchGuildRequestAuthorIdList = Array<string>;
+export const SearchGuildRequestAuthorIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestAuthorIdList>;
+
+export type AuthorType =
+  | "user"
+  | "bot"
+  | "webhook"
+  | "-user"
+  | "-bot"
+  | "-webhook";
+export const AuthorType = /*@__PURE__*/ S.String;
+
+export type SearchGuildRequestAuthorTypeList = Array<
+  AuthorType | (string & {})
+>;
+export const SearchGuildRequestAuthorTypeList = /*@__PURE__*/ S.Array(
+  AuthorType,
+) as any as S.Schema<SearchGuildRequestAuthorTypeList>;
+
+export type SearchGuildRequestMentionsList = Array<string>;
+export const SearchGuildRequestMentionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestMentionsList>;
+
+export type SearchGuildRequestMentionsRoleIdList = Array<string>;
+export const SearchGuildRequestMentionsRoleIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestMentionsRoleIdList>;
+
+export type SearchGuildRequestRepliedToUserIdList = Array<string>;
+export const SearchGuildRequestRepliedToUserIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestRepliedToUserIdList>;
+
+export type SearchGuildRequestRepliedToMessageIdList = Array<string>;
+export const SearchGuildRequestRepliedToMessageIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestRepliedToMessageIdList>;
+
+export type HasOption =
+  | "link"
+  | "embed"
+  | "file"
+  | "image"
+  | "video"
+  | "sound"
+  | "sticker"
+  | "poll"
+  | "snapshot"
+  | "-link"
+  | "-embed"
+  | "-file"
+  | "-image"
+  | "-video"
+  | "-sound"
+  | "-sticker"
+  | "-poll"
+  | "-snapshot";
+export const HasOption = /*@__PURE__*/ S.String;
+
+export type SearchGuildRequestHasList = Array<HasOption | (string & {})>;
+export const SearchGuildRequestHasList = /*@__PURE__*/ S.Array(
+  HasOption,
+) as any as S.Schema<SearchGuildRequestHasList>;
+
+export type SearchGuildRequestLinkHostnameList = Array<string>;
+export const SearchGuildRequestLinkHostnameList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestLinkHostnameList>;
+
+export type SearchGuildRequestEmbedProviderList = Array<string>;
+export const SearchGuildRequestEmbedProviderList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestEmbedProviderList>;
+
+export type SearchableEmbedType =
+  | "image"
+  | "video"
+  | "gif"
+  | "sound"
+  | "article";
+export const SearchableEmbedType = /*@__PURE__*/ S.String;
+
+export type SearchGuildRequestEmbedTypeList = Array<
+  SearchableEmbedType | (string & {})
+>;
+export const SearchGuildRequestEmbedTypeList = /*@__PURE__*/ S.Array(
+  SearchableEmbedType,
+) as any as S.Schema<SearchGuildRequestEmbedTypeList>;
+
+export type SearchGuildRequestAttachmentExtensionList = Array<string>;
+export const SearchGuildRequestAttachmentExtensionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestAttachmentExtensionList>;
+
+export type SearchGuildRequestAttachmentFilenameList = Array<string>;
+export const SearchGuildRequestAttachmentFilenameList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestAttachmentFilenameList>;
+
+export type SearchGuildRequestChannelIdList = Array<string>;
+export const SearchGuildRequestChannelIdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchGuildRequestChannelIdList>;
+
+export interface SearchGuildRequest {
+  guild_id: string;
+  sort_by?: SortingMode | (string & {});
+  sort_order?: SortingOrder | (string & {});
+  content?: string;
+  slop?: number;
+  author_id?: SearchGuildRequestAuthorIdList;
+  author_type?: SearchGuildRequestAuthorTypeList;
+  mentions?: SearchGuildRequestMentionsList;
+  mentions_role_id?: SearchGuildRequestMentionsRoleIdList;
+  replied_to_user_id?: SearchGuildRequestRepliedToUserIdList;
+  replied_to_message_id?: SearchGuildRequestRepliedToMessageIdList;
+  mention_everyone?: boolean;
+  min_id?: string;
+  max_id?: string;
+  limit?: number;
+  offset?: number;
+  has?: SearchGuildRequestHasList;
+  link_hostname?: SearchGuildRequestLinkHostnameList;
+  embed_provider?: SearchGuildRequestEmbedProviderList;
+  embed_type?: SearchGuildRequestEmbedTypeList;
+  attachment_extension?: SearchGuildRequestAttachmentExtensionList;
+  attachment_filename?: SearchGuildRequestAttachmentFilenameList;
+  pinned?: boolean;
+  include_nsfw?: boolean;
+  channel_id?: SearchGuildRequestChannelIdList;
+}
+export const SearchGuildRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     guild_id: S.String.pipe(T.Label()),
-    request_id: S.String.pipe(T.Label()),
-    action: S.optional(GuildJoinRequestApplicationStatus),
-    rejection_reason: S.optional(S.NullOr(S.String)),
+    sort_by: S.optional(SortingMode.pipe(T.Query())),
+    sort_order: S.optional(SortingOrder.pipe(T.Query())),
+    content: S.optional(S.String.pipe(T.Query())),
+    slop: S.optional(S.Number.pipe(T.Query())),
+    author_id: S.optional(SearchGuildRequestAuthorIdList.pipe(T.Query())),
+    author_type: S.optional(SearchGuildRequestAuthorTypeList.pipe(T.Query())),
+    mentions: S.optional(SearchGuildRequestMentionsList.pipe(T.Query())),
+    mentions_role_id: S.optional(
+      SearchGuildRequestMentionsRoleIdList.pipe(T.Query()),
+    ),
+    replied_to_user_id: S.optional(
+      SearchGuildRequestRepliedToUserIdList.pipe(T.Query()),
+    ),
+    replied_to_message_id: S.optional(
+      SearchGuildRequestRepliedToMessageIdList.pipe(T.Query()),
+    ),
+    mention_everyone: S.optional(S.Boolean.pipe(T.Query())),
+    min_id: S.optional(S.String.pipe(T.Query())),
+    max_id: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    has: S.optional(SearchGuildRequestHasList.pipe(T.Query())),
+    link_hostname: S.optional(
+      SearchGuildRequestLinkHostnameList.pipe(T.Query()),
+    ),
+    embed_provider: S.optional(
+      SearchGuildRequestEmbedProviderList.pipe(T.Query()),
+    ),
+    embed_type: S.optional(SearchGuildRequestEmbedTypeList.pipe(T.Query())),
+    attachment_extension: S.optional(
+      SearchGuildRequestAttachmentExtensionList.pipe(T.Query()),
+    ),
+    attachment_filename: S.optional(
+      SearchGuildRequestAttachmentFilenameList.pipe(T.Query()),
+    ),
+    pinned: S.optional(S.Boolean.pipe(T.Query())),
+    include_nsfw: S.optional(S.Boolean.pipe(T.Query())),
+    channel_id: S.optional(SearchGuildRequestChannelIdList.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/guilds/{guild_id}/requests/{request_id}",
+      method: "GET",
+      uri: "/guilds/{guild_id}/messages/search",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "RequestActionGuildJoinRequest",
-}) as any as S.Schema<RequestActionGuildJoinRequest>;
+  identifier: "SearchGuildRequest",
+}) as any as S.Schema<SearchGuildRequest>;
+
+export type SearchMessageResponseMentionsList = Array<UserResponse>;
+export const SearchMessageResponseMentionsList = /*@__PURE__*/ S.Array(
+  UserResponse,
+) as any as S.Schema<SearchMessageResponseMentionsList>;
+
+export type SearchMessageResponseMentionRolesList = Array<string>;
+export const SearchMessageResponseMentionRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchMessageResponseMentionRolesList>;
+
+export type SearchMessageResponseAttachmentsList =
+  Array<MessageAttachmentResponse>;
+export const SearchMessageResponseAttachmentsList = /*@__PURE__*/ S.Array(
+  MessageAttachmentResponse,
+) as any as S.Schema<SearchMessageResponseAttachmentsList>;
+
+export type SearchMessageResponseEmbedsList = Array<MessageEmbedResponse>;
+export const SearchMessageResponseEmbedsList = /*@__PURE__*/ S.Array(
+  MessageEmbedResponse,
+) as any as S.Schema<SearchMessageResponseEmbedsList>;
+
+export type SearchMessageResponseComponentsItem =
+  | ActionRowComponentResponse
+  | ContainerComponentResponse
+  | FileComponentResponse
+  | MediaGalleryComponentResponse
+  | SectionComponentResponse
+  | SeparatorComponentResponse
+  | TextDisplayComponentResponse;
+export const SearchMessageResponseComponentsItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["type", "id", "components"],
+    ["type", "id", "accent_color", "components", "spoiler"],
+    ["type", "id", "file", "name", "size", "spoiler"],
+    ["type", "id", "items"],
+    ["type", "id", "components", "accessory"],
+    ["type", "id", "spacing", "divider"],
+    ["type", "id", "content"],
+  ]),
+);
+
+export type SearchMessageResponseComponentsList =
+  Array<SearchMessageResponseComponentsItem>;
+export const SearchMessageResponseComponentsList = /*@__PURE__*/ S.Array(
+  SearchMessageResponseComponentsItem,
+) as any as S.Schema<SearchMessageResponseComponentsList>;
+
+export type SearchMessageResponseStickersItem =
+  | GuildStickerResponse
+  | StandardStickerResponse;
+export const SearchMessageResponseStickersItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "name",
+      "tags",
+      "type",
+      "format_type",
+      "description",
+      "available",
+      "guild_id",
+      "user",
+    ],
+    [
+      "id",
+      "name",
+      "tags",
+      "type",
+      "format_type",
+      "description",
+      "pack_id",
+      "sort_value",
+    ],
+  ]),
+);
+
+export type SearchMessageResponseStickersList =
+  Array<SearchMessageResponseStickersItem>;
+export const SearchMessageResponseStickersList = /*@__PURE__*/ S.Array(
+  SearchMessageResponseStickersItem,
+) as any as S.Schema<SearchMessageResponseStickersList>;
+
+export type SearchMessageResponseStickerItemsList =
+  Array<MessageStickerItemResponse>;
+export const SearchMessageResponseStickerItemsList = /*@__PURE__*/ S.Array(
+  MessageStickerItemResponse,
+) as any as S.Schema<SearchMessageResponseStickerItemsList>;
+
+export type SearchMessageResponseNonce = number | string;
+export const SearchMessageResponseNonce = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], []]),
+);
+
+export type SearchMessageResponseMentionChannelsList =
+  Array<MessageMentionChannelResponse>;
+export const SearchMessageResponseMentionChannelsList = /*@__PURE__*/ S.Array(
+  MessageMentionChannelResponse,
+) as any as S.Schema<SearchMessageResponseMentionChannelsList>;
+
+export type SearchMessageResponseInteractionMetadata =
+  | ApplicationCommandInteractionMetadataResponse
+  | MessageComponentInteractionMetadataResponse
+  | ModalSubmitInteractionMetadataResponse;
+export const SearchMessageResponseInteractionMetadata =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      [
+        "id",
+        "type",
+        "user",
+        "authorizing_integration_owners",
+        "original_response_message_id",
+        "target_user",
+        "target_message_id",
+      ],
+      [
+        "id",
+        "type",
+        "user",
+        "authorizing_integration_owners",
+        "original_response_message_id",
+        "interacted_message_id",
+      ],
+      [
+        "id",
+        "type",
+        "user",
+        "authorizing_integration_owners",
+        "original_response_message_id",
+        "triggering_interaction_metadata",
+      ],
+    ]),
+  );
+
+export type SearchMessageResponseMessageSnapshotsList =
+  Array<MessageSnapshotResponse>;
+export const SearchMessageResponseMessageSnapshotsList = /*@__PURE__*/ S.Array(
+  MessageSnapshotResponse,
+) as any as S.Schema<SearchMessageResponseMessageSnapshotsList>;
+
+export type SearchMessageResponseReactionsList = Array<MessageReactionResponse>;
+export const SearchMessageResponseReactionsList = /*@__PURE__*/ S.Array(
+  MessageReactionResponse,
+) as any as S.Schema<SearchMessageResponseReactionsList>;
+
+export interface SearchMessageResponse {
+  type: MessageType;
+  content: string;
+  mentions: SearchMessageResponseMentionsList;
+  mention_roles: SearchMessageResponseMentionRolesList;
+  attachments: SearchMessageResponseAttachmentsList;
+  embeds: SearchMessageResponseEmbedsList;
+  timestamp: string;
+  edited_timestamp: string | null;
+  flags: number;
+  components: SearchMessageResponseComponentsList;
+  stickers?: SearchMessageResponseStickersList;
+  sticker_items?: SearchMessageResponseStickerItemsList;
+  id: string;
+  channel_id: string;
+  author: UserResponse;
+  pinned: boolean;
+  mention_everyone: boolean;
+  tts: boolean;
+  call?: MessageCallResponse;
+  activity?: MessageActivityResponse;
+  application?: BasicApplicationResponseWithBot;
+  application_id?: string;
+  interaction?: MessageInteractionResponse;
+  nonce?: SearchMessageResponseNonce;
+  webhook_id?: string;
+  message_reference?: MessageReferenceResponse;
+  thread?: ThreadResponse;
+  mention_channels?: SearchMessageResponseMentionChannelsList;
+  role_subscription_data?: MessageRoleSubscriptionDataResponse;
+  purchase_notification?: PurchaseNotificationResponse;
+  position?: number;
+  resolved?: ResolvedObjectsResponse;
+  poll?: PollResponse;
+  shared_client_theme?: CustomClientThemeResponse;
+  interaction_metadata?: SearchMessageResponseInteractionMetadata;
+  message_snapshots?: SearchMessageResponseMessageSnapshotsList;
+  lobby_member?: MessageLobbyMemberResponse;
+  reactions?: SearchMessageResponseReactionsList;
+  referenced_message?: BasicMessageResponse | null;
+  hit: boolean;
+  restriction_count?: number;
+}
+export const SearchMessageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: MessageType,
+    content: S.String,
+    mentions: SearchMessageResponseMentionsList,
+    mention_roles: SearchMessageResponseMentionRolesList,
+    attachments: SearchMessageResponseAttachmentsList,
+    embeds: SearchMessageResponseEmbedsList,
+    timestamp: S.String,
+    edited_timestamp: S.NullOr(S.String),
+    flags: S.Number,
+    components: SearchMessageResponseComponentsList,
+    stickers: S.optional(SearchMessageResponseStickersList),
+    sticker_items: S.optional(SearchMessageResponseStickerItemsList),
+    id: S.String,
+    channel_id: S.String,
+    author: UserResponse,
+    pinned: S.Boolean,
+    mention_everyone: S.Boolean,
+    tts: S.Boolean,
+    call: S.optional(MessageCallResponse),
+    activity: S.optional(MessageActivityResponse),
+    application: S.optional(BasicApplicationResponseWithBot),
+    application_id: S.optional(S.String),
+    interaction: S.optional(MessageInteractionResponse),
+    nonce: S.optional(SearchMessageResponseNonce),
+    webhook_id: S.optional(S.String),
+    message_reference: S.optional(MessageReferenceResponse),
+    thread: S.optional(ThreadResponse),
+    mention_channels: S.optional(SearchMessageResponseMentionChannelsList),
+    role_subscription_data: S.optional(MessageRoleSubscriptionDataResponse),
+    purchase_notification: S.optional(PurchaseNotificationResponse),
+    position: S.optional(S.Number),
+    resolved: S.optional(ResolvedObjectsResponse),
+    poll: S.optional(PollResponse),
+    shared_client_theme: S.optional(CustomClientThemeResponse),
+    interaction_metadata: S.optional(SearchMessageResponseInteractionMetadata),
+    message_snapshots: S.optional(SearchMessageResponseMessageSnapshotsList),
+    lobby_member: S.optional(MessageLobbyMemberResponse),
+    reactions: S.optional(SearchMessageResponseReactionsList),
+    referenced_message: S.optional(S.NullOr(BasicMessageResponse)),
+    hit: S.Boolean,
+    restriction_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SearchMessageResponse",
+}) as any as S.Schema<SearchMessageResponse>;
+
+export type GuildSearchResponseMessagesItemList = Array<SearchMessageResponse>;
+export const GuildSearchResponseMessagesItemList = /*@__PURE__*/ S.Array(
+  SearchMessageResponse,
+) as any as S.Schema<GuildSearchResponseMessagesItemList>;
+
+export type GuildSearchResponseMessagesList =
+  Array<GuildSearchResponseMessagesItemList>;
+export const GuildSearchResponseMessagesList = /*@__PURE__*/ S.Array(
+  GuildSearchResponseMessagesItemList,
+) as any as S.Schema<GuildSearchResponseMessagesList>;
+
+export type GuildSearchResponseThreadsList = Array<ThreadResponse>;
+export const GuildSearchResponseThreadsList = /*@__PURE__*/ S.Array(
+  ThreadResponse,
+) as any as S.Schema<GuildSearchResponseThreadsList>;
+
+export type GuildSearchResponseMembersList = Array<ThreadMemberResponse>;
+export const GuildSearchResponseMembersList = /*@__PURE__*/ S.Array(
+  ThreadMemberResponse,
+) as any as S.Schema<GuildSearchResponseMembersList>;
+
+export interface GuildSearchResponse {
+  messages: GuildSearchResponseMessagesList;
+  doing_deep_historical_index: boolean;
+  total_results: number;
+  threads?: GuildSearchResponseThreadsList | null;
+  members?: GuildSearchResponseMembersList | null;
+  documents_indexed?: number | null;
+}
+export const GuildSearchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    messages: GuildSearchResponseMessagesList,
+    doing_deep_historical_index: S.Boolean,
+    total_results: S.Number,
+    threads: S.optional(S.NullOr(GuildSearchResponseThreadsList)),
+    members: S.optional(S.NullOr(GuildSearchResponseMembersList)),
+    documents_indexed: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "GuildSearchResponse",
+}) as any as S.Schema<GuildSearchResponse>;
 
 export interface SearchGuildMembersRequest {
   guild_id: string;
@@ -19884,6 +20344,96 @@ export const SearchGuildMembersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchGuildMembersResponse",
 }) as any as S.Schema<SearchGuildMembersResponse>;
 
+export type SearchThreadRequestTagCase1List = Array<string>;
+export const SearchThreadRequestTagCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchThreadRequestTagCase1List>;
+
+export type SearchThreadRequestTag = string | SearchThreadRequestTagCase1List;
+export const SearchThreadRequestTag = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], []]),
+);
+
+export type ThreadSortingMode =
+  | "relevance"
+  | "creation_time"
+  | "last_message_time"
+  | "archive_time";
+export const ThreadSortingMode = /*@__PURE__*/ S.String;
+
+export interface SearchThreadRequest {
+  channel_id: string;
+  name?: string;
+  slop?: number;
+  min_id?: string;
+  max_id?: string;
+  tag?: SearchThreadRequestTag;
+  tag_setting?: ThreadSearchTagSetting | (string & {});
+  archived?: boolean;
+  sort_by?: ThreadSortingMode | (string & {});
+  sort_order?: SortingOrder | (string & {});
+  limit?: number;
+  offset?: number;
+}
+export const SearchThreadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    channel_id: S.String.pipe(T.Label()),
+    name: S.optional(S.String.pipe(T.Query())),
+    slop: S.optional(S.Number.pipe(T.Query())),
+    min_id: S.optional(S.String.pipe(T.Query())),
+    max_id: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(SearchThreadRequestTag.pipe(T.Query())),
+    tag_setting: S.optional(ThreadSearchTagSetting.pipe(T.Query())),
+    archived: S.optional(S.Boolean.pipe(T.Query())),
+    sort_by: S.optional(ThreadSortingMode.pipe(T.Query())),
+    sort_order: S.optional(SortingOrder.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/channels/{channel_id}/threads/search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchThreadRequest",
+}) as any as S.Schema<SearchThreadRequest>;
+
+export type ThreadSearchResponseThreadsList = Array<ThreadResponse>;
+export const ThreadSearchResponseThreadsList = /*@__PURE__*/ S.Array(
+  ThreadResponse,
+) as any as S.Schema<ThreadSearchResponseThreadsList>;
+
+export type ThreadSearchResponseMembersList = Array<ThreadMemberResponse>;
+export const ThreadSearchResponseMembersList = /*@__PURE__*/ S.Array(
+  ThreadMemberResponse,
+) as any as S.Schema<ThreadSearchResponseMembersList>;
+
+export type ThreadSearchResponseFirstMessagesList = Array<MessageResponse>;
+export const ThreadSearchResponseFirstMessagesList = /*@__PURE__*/ S.Array(
+  MessageResponse,
+) as any as S.Schema<ThreadSearchResponseFirstMessagesList>;
+
+export interface ThreadSearchResponse {
+  threads: ThreadSearchResponseThreadsList;
+  members: ThreadSearchResponseMembersList;
+  has_more: boolean;
+  first_messages?: ThreadSearchResponseFirstMessagesList;
+  total_results: number;
+}
+export const ThreadSearchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    threads: ThreadSearchResponseThreadsList,
+    members: ThreadSearchResponseMembersList,
+    has_more: S.Boolean,
+    first_messages: S.optional(ThreadSearchResponseFirstMessagesList),
+    total_results: S.Number,
+  }),
+).annotate({
+  identifier: "ThreadSearchResponse",
+}) as any as S.Schema<ThreadSearchResponse>;
+
 export interface SendSoundboardSoundRequest {
   channel_id: string;
   sound_id: string;
@@ -19911,296 +20461,6 @@ export const SendSoundboardSoundResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SendSoundboardSoundResponse",
 }) as any as S.Schema<SendSoundboardSoundResponse>;
-
-export type ApplicationCommandUpdateRequestNameLocalizationsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationCommandUpdateRequestNameLocalizationsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApplicationCommandUpdateRequestNameLocalizationsMap>;
-
-export type ApplicationCommandUpdateRequestDescriptionLocalizationsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationCommandUpdateRequestDescriptionLocalizationsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApplicationCommandUpdateRequestDescriptionLocalizationsMap>;
-
-export type ApplicationCommandUpdateRequestOptionsItem =
-  | ApplicationCommandAttachmentOption
-  | ApplicationCommandBooleanOption
-  | ApplicationCommandChannelOption
-  | ApplicationCommandIntegerOption
-  | ApplicationCommandMentionableOption
-  | ApplicationCommandNumberOption
-  | ApplicationCommandRoleOption
-  | ApplicationCommandStringOption
-  | ApplicationCommandSubcommandGroupOption
-  | ApplicationCommandSubcommandOption
-  | ApplicationCommandUserOption;
-export const ApplicationCommandUpdateRequestOptionsItem =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "file_types",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "channel_types",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "autocomplete",
-        "choices",
-        "min_value",
-        "max_value",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "autocomplete",
-        "choices",
-        "min_value",
-        "max_value",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "autocomplete",
-        "min_length",
-        "max_length",
-        "choices",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "options",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-        "options",
-      ],
-      [
-        "type",
-        "name",
-        "name_localizations",
-        "description",
-        "description_localizations",
-        "required",
-      ],
-    ]),
-  );
-
-export type ApplicationCommandUpdateRequestOptionsList =
-  Array<ApplicationCommandUpdateRequestOptionsItem>;
-export const ApplicationCommandUpdateRequestOptionsList = /*@__PURE__*/ S.Array(
-  ApplicationCommandUpdateRequestOptionsItem,
-) as any as S.Schema<ApplicationCommandUpdateRequestOptionsList>;
-
-export type ApplicationCommandUpdateRequestContextsList = Array<
-  InteractionContextType | (number & {})
->;
-export const ApplicationCommandUpdateRequestContextsList =
-  /*@__PURE__*/ S.Array(
-    InteractionContextType,
-  ) as any as S.Schema<ApplicationCommandUpdateRequestContextsList>;
-
-export type ApplicationCommandUpdateRequestIntegrationTypesList = Array<
-  ApplicationIntegrationType | (number & {})
->;
-export const ApplicationCommandUpdateRequestIntegrationTypesList =
-  /*@__PURE__*/ S.Array(
-    ApplicationIntegrationType,
-  ) as any as S.Schema<ApplicationCommandUpdateRequestIntegrationTypesList>;
-
-export interface ApplicationCommandUpdateRequest {
-  name: string;
-  name_localizations?: ApplicationCommandUpdateRequestNameLocalizationsMap | null;
-  description?: string | null;
-  description_localizations?: ApplicationCommandUpdateRequestDescriptionLocalizationsMap | null;
-  options?: ApplicationCommandUpdateRequestOptionsList | null;
-  default_member_permissions?: number | null;
-  dm_permission?: boolean | null;
-  contexts?: ApplicationCommandUpdateRequestContextsList | null;
-  integration_types?: ApplicationCommandUpdateRequestIntegrationTypesList | null;
-  /** Determines whether the interaction is handled by the app's interactions handler or by Discord */
-  handler?: ApplicationCommandHandler | (number & {}) | null;
-  type?: ApplicationCommandType | (number & {}) | null;
-  id?: string | null;
-}
-export const ApplicationCommandUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    name_localizations: S.optional(
-      S.NullOr(ApplicationCommandUpdateRequestNameLocalizationsMap),
-    ),
-    description: S.optional(S.NullOr(S.String)),
-    description_localizations: S.optional(
-      S.NullOr(ApplicationCommandUpdateRequestDescriptionLocalizationsMap),
-    ),
-    options: S.optional(S.NullOr(ApplicationCommandUpdateRequestOptionsList)),
-    default_member_permissions: S.optional(S.NullOr(S.Number)),
-    dm_permission: S.optional(S.NullOr(S.Boolean)),
-    contexts: S.optional(S.NullOr(ApplicationCommandUpdateRequestContextsList)),
-    integration_types: S.optional(
-      S.NullOr(ApplicationCommandUpdateRequestIntegrationTypesList),
-    ),
-    handler: S.optional(S.NullOr(ApplicationCommandHandler)),
-    type: S.optional(S.NullOr(ApplicationCommandType)),
-    id: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ApplicationCommandUpdateRequest",
-}) as any as S.Schema<ApplicationCommandUpdateRequest>;
-
-export type BulkSetApplicationCommandsRequestBodyList =
-  Array<ApplicationCommandUpdateRequest>;
-export const BulkSetApplicationCommandsRequestBodyList = /*@__PURE__*/ S.Array(
-  ApplicationCommandUpdateRequest,
-) as any as S.Schema<BulkSetApplicationCommandsRequestBodyList>;
-
-export interface SetBulkApplicationCommandRequest {
-  application_id: string;
-  body: BulkSetApplicationCommandsRequestBodyList | null;
-}
-export const SetBulkApplicationCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    application_id: S.String.pipe(T.Label()),
-    body: S.NullOr(BulkSetApplicationCommandsRequestBodyList).pipe(
-      T.HttpBody(),
-    ),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/applications/{application_id}/commands",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SetBulkApplicationCommandRequest",
-}) as any as S.Schema<SetBulkApplicationCommandRequest>;
-
-export type BulkSetApplicationCommandsResponseBodyList =
-  Array<ApplicationCommandResponse>;
-export const BulkSetApplicationCommandsResponseBodyList = /*@__PURE__*/ S.Array(
-  ApplicationCommandResponse,
-) as any as S.Schema<BulkSetApplicationCommandsResponseBodyList>;
-
-export type SetBulkApplicationCommandResponse =
-  BulkSetApplicationCommandsResponseBodyList;
-export const SetBulkApplicationCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  BulkSetApplicationCommandsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SetBulkApplicationCommandResponse",
-}) as any as S.Schema<SetBulkApplicationCommandResponse>;
-
-export type BulkSetGuildApplicationCommandsRequestBodyList =
-  Array<ApplicationCommandUpdateRequest>;
-export const BulkSetGuildApplicationCommandsRequestBodyList =
-  /*@__PURE__*/ S.Array(
-    ApplicationCommandUpdateRequest,
-  ) as any as S.Schema<BulkSetGuildApplicationCommandsRequestBodyList>;
-
-export interface SetBulkGuildApplicationCommandRequest {
-  application_id: string;
-  guild_id: string;
-  body: BulkSetGuildApplicationCommandsRequestBodyList | null;
-}
-export const SetBulkGuildApplicationCommandRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      application_id: S.String.pipe(T.Label()),
-      guild_id: S.String.pipe(T.Label()),
-      body: S.NullOr(BulkSetGuildApplicationCommandsRequestBodyList).pipe(
-        T.HttpBody(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/applications/{application_id}/guilds/{guild_id}/commands",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetBulkGuildApplicationCommandRequest",
-}) as any as S.Schema<SetBulkGuildApplicationCommandRequest>;
-
-export type BulkSetGuildApplicationCommandsResponseBodyList =
-  Array<ApplicationCommandResponse>;
-export const BulkSetGuildApplicationCommandsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    ApplicationCommandResponse,
-  ) as any as S.Schema<BulkSetGuildApplicationCommandsResponseBodyList>;
-
-export type SetBulkGuildApplicationCommandResponse =
-  BulkSetGuildApplicationCommandsResponseBodyList;
-export const SetBulkGuildApplicationCommandResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    BulkSetGuildApplicationCommandsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SetBulkGuildApplicationCommandResponse",
-}) as any as S.Schema<SetBulkGuildApplicationCommandResponse>;
 
 export interface SetChannelPermissionOverwriteRequest {
   channel_id: string;
@@ -20301,96 +20561,6 @@ export const SyncGuildTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SyncGuildTemplateRequest",
 }) as any as S.Schema<SyncGuildTemplateRequest>;
-
-export type ThreadSearchRequestTagCase1List = Array<string>;
-export const ThreadSearchRequestTagCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ThreadSearchRequestTagCase1List>;
-
-export type ThreadSearchRequestTag = string | ThreadSearchRequestTagCase1List;
-export const ThreadSearchRequestTag = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], []]),
-);
-
-export type ThreadSortingMode =
-  | "relevance"
-  | "creation_time"
-  | "last_message_time"
-  | "archive_time";
-export const ThreadSortingMode = /*@__PURE__*/ S.String;
-
-export interface ThreadSearchRequest {
-  channel_id: string;
-  name?: string;
-  slop?: number;
-  min_id?: string;
-  max_id?: string;
-  tag?: ThreadSearchRequestTag;
-  tag_setting?: ThreadSearchTagSetting | (string & {});
-  archived?: boolean;
-  sort_by?: ThreadSortingMode | (string & {});
-  sort_order?: SortingOrder | (string & {});
-  limit?: number;
-  offset?: number;
-}
-export const ThreadSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channel_id: S.String.pipe(T.Label()),
-    name: S.optional(S.String.pipe(T.Query())),
-    slop: S.optional(S.Number.pipe(T.Query())),
-    min_id: S.optional(S.String.pipe(T.Query())),
-    max_id: S.optional(S.String.pipe(T.Query())),
-    tag: S.optional(ThreadSearchRequestTag.pipe(T.Query())),
-    tag_setting: S.optional(ThreadSearchTagSetting.pipe(T.Query())),
-    archived: S.optional(S.Boolean.pipe(T.Query())),
-    sort_by: S.optional(ThreadSortingMode.pipe(T.Query())),
-    sort_order: S.optional(SortingOrder.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/channels/{channel_id}/threads/search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ThreadSearchRequest",
-}) as any as S.Schema<ThreadSearchRequest>;
-
-export type ThreadSearchResponseThreadsList = Array<ThreadResponse>;
-export const ThreadSearchResponseThreadsList = /*@__PURE__*/ S.Array(
-  ThreadResponse,
-) as any as S.Schema<ThreadSearchResponseThreadsList>;
-
-export type ThreadSearchResponseMembersList = Array<ThreadMemberResponse>;
-export const ThreadSearchResponseMembersList = /*@__PURE__*/ S.Array(
-  ThreadMemberResponse,
-) as any as S.Schema<ThreadSearchResponseMembersList>;
-
-export type ThreadSearchResponseFirstMessagesList = Array<MessageResponse>;
-export const ThreadSearchResponseFirstMessagesList = /*@__PURE__*/ S.Array(
-  MessageResponse,
-) as any as S.Schema<ThreadSearchResponseFirstMessagesList>;
-
-export interface ThreadSearchResponse {
-  threads: ThreadSearchResponseThreadsList;
-  members: ThreadSearchResponseMembersList;
-  has_more: boolean;
-  first_messages?: ThreadSearchResponseFirstMessagesList;
-  total_results: number;
-}
-export const ThreadSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    threads: ThreadSearchResponseThreadsList,
-    members: ThreadSearchResponseMembersList,
-    has_more: S.Boolean,
-    first_messages: S.optional(ThreadSearchResponseFirstMessagesList),
-    total_results: S.Number,
-  }),
-).annotate({
-  identifier: "ThreadSearchResponse",
-}) as any as S.Schema<ThreadSearchResponse>;
 
 export interface TriggerTypingIndicatorRequest {
   channel_id: string;
@@ -21416,166 +21586,6 @@ export const UpdateAutoModerationRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateAutoModerationRuleResponse",
 }) as any as S.Schema<UpdateAutoModerationRuleResponse>;
-
-export interface BulkUpdateGuildChannelsRequestBodyItem {
-  id?: string | null;
-  position?: number | null;
-  parent_id?: string | null;
-  lock_permissions?: boolean | null;
-}
-export const BulkUpdateGuildChannelsRequestBodyItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.NullOr(S.String)),
-      position: S.optional(S.NullOr(S.Number)),
-      parent_id: S.optional(S.NullOr(S.String)),
-      lock_permissions: S.optional(S.NullOr(S.Boolean)),
-    }),
-).annotate({
-  identifier: "BulkUpdateGuildChannelsRequestBodyItem",
-}) as any as S.Schema<BulkUpdateGuildChannelsRequestBodyItem>;
-
-export type BulkUpdateGuildChannelsRequestBodyList =
-  Array<BulkUpdateGuildChannelsRequestBodyItem>;
-export const BulkUpdateGuildChannelsRequestBodyList = /*@__PURE__*/ S.Array(
-  BulkUpdateGuildChannelsRequestBodyItem,
-) as any as S.Schema<BulkUpdateGuildChannelsRequestBodyList>;
-
-export interface UpdateBulkGuildChannelRequest {
-  guild_id: string;
-  body: BulkUpdateGuildChannelsRequestBodyList;
-}
-export const UpdateBulkGuildChannelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    guild_id: S.String.pipe(T.Label()),
-    body: BulkUpdateGuildChannelsRequestBodyList.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/guilds/{guild_id}/channels", code: 200 }),
-  ),
-).annotate({
-  identifier: "UpdateBulkGuildChannelRequest",
-}) as any as S.Schema<UpdateBulkGuildChannelRequest>;
-
-export interface UpdateBulkGuildChannelResponse {}
-export const UpdateBulkGuildChannelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateBulkGuildChannelResponse",
-}) as any as S.Schema<UpdateBulkGuildChannelResponse>;
-
-export interface UpdateRolePositionsRequest {
-  id?: string | null;
-  position?: number | null;
-}
-export const UpdateRolePositionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    position: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "UpdateRolePositionsRequest",
-}) as any as S.Schema<UpdateRolePositionsRequest>;
-
-export type BulkUpdateGuildRolesRequestBodyList =
-  Array<UpdateRolePositionsRequest>;
-export const BulkUpdateGuildRolesRequestBodyList = /*@__PURE__*/ S.Array(
-  UpdateRolePositionsRequest,
-) as any as S.Schema<BulkUpdateGuildRolesRequestBodyList>;
-
-export interface UpdateBulkGuildRoleRequest {
-  guild_id: string;
-  body: BulkUpdateGuildRolesRequestBodyList;
-}
-export const UpdateBulkGuildRoleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    guild_id: S.String.pipe(T.Label()),
-    body: BulkUpdateGuildRolesRequestBodyList.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/guilds/{guild_id}/roles", code: 200 }),
-  ),
-).annotate({
-  identifier: "UpdateBulkGuildRoleRequest",
-}) as any as S.Schema<UpdateBulkGuildRoleRequest>;
-
-export type BulkUpdateGuildRolesResponseBodyList = Array<GuildRoleResponse>;
-export const BulkUpdateGuildRolesResponseBodyList = /*@__PURE__*/ S.Array(
-  GuildRoleResponse,
-) as any as S.Schema<BulkUpdateGuildRolesResponseBodyList>;
-
-export type UpdateBulkGuildRoleResponse = BulkUpdateGuildRolesResponseBodyList;
-export const UpdateBulkGuildRoleResponse = /*@__PURE__*/ S.suspend(() =>
-  BulkUpdateGuildRolesResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "UpdateBulkGuildRoleResponse",
-}) as any as S.Schema<UpdateBulkGuildRoleResponse>;
-
-export type BulkLobbyMemberRequestMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const BulkLobbyMemberRequestMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BulkLobbyMemberRequestMetadataMap>;
-
-export type BulkLobbyMemberRequestFlags = 1;
-export const BulkLobbyMemberRequestFlags = /*@__PURE__*/ S.Number;
-
-export interface BulkLobbyMemberRequest {
-  id: string;
-  metadata?: BulkLobbyMemberRequestMetadataMap | null;
-  flags?: BulkLobbyMemberRequestFlags | (number & {}) | null;
-  additional_name?: string | null;
-  remove_member?: boolean | null;
-}
-export const BulkLobbyMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    metadata: S.optional(S.NullOr(BulkLobbyMemberRequestMetadataMap)),
-    flags: S.optional(S.NullOr(BulkLobbyMemberRequestFlags)),
-    additional_name: S.optional(S.NullOr(S.String)),
-    remove_member: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "BulkLobbyMemberRequest",
-}) as any as S.Schema<BulkLobbyMemberRequest>;
-
-export type BulkUpdateLobbyMembersRequestBodyList =
-  Array<BulkLobbyMemberRequest>;
-export const BulkUpdateLobbyMembersRequestBodyList = /*@__PURE__*/ S.Array(
-  BulkLobbyMemberRequest,
-) as any as S.Schema<BulkUpdateLobbyMembersRequestBodyList>;
-
-export interface UpdateBulkLobbyMemberRequest {
-  lobby_id: string;
-  body: BulkUpdateLobbyMembersRequestBodyList | null;
-}
-export const UpdateBulkLobbyMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lobby_id: S.String.pipe(T.Label()),
-    body: S.NullOr(BulkUpdateLobbyMembersRequestBodyList).pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/lobbies/{lobby_id}/members/bulk",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UpdateBulkLobbyMemberRequest",
-}) as any as S.Schema<UpdateBulkLobbyMemberRequest>;
-
-export type BulkUpdateLobbyMembersResponseBodyList = Array<LobbyMemberResponse>;
-export const BulkUpdateLobbyMembersResponseBodyList = /*@__PURE__*/ S.Array(
-  LobbyMemberResponse,
-) as any as S.Schema<BulkUpdateLobbyMembersResponseBodyList>;
-
-export type UpdateBulkLobbyMemberResponse =
-  BulkUpdateLobbyMembersResponseBodyList;
-export const UpdateBulkLobbyMemberResponse = /*@__PURE__*/ S.suspend(() =>
-  BulkUpdateLobbyMembersResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "UpdateBulkLobbyMemberResponse",
-}) as any as S.Schema<UpdateBulkLobbyMemberResponse>;
 
 export interface UpdateDMRequestPartial {
   name?: string | null;
@@ -23758,6 +23768,90 @@ export const bulkBanUsersFromGuild: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type BulkDeleteMessagesError = DiscordOpError;
+export const bulkDeleteMessages: API.OperationMethod<
+  BulkDeleteMessagesRequest,
+  BulkDeleteMessagesResponse,
+  BulkDeleteMessagesError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteMessagesRequest,
+  output: BulkDeleteMessagesResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkSetApplicationCommandsError = DiscordOpError;
+export const bulkSetApplicationCommands: API.OperationMethod<
+  BulkSetApplicationCommandsRequest,
+  BulkSetApplicationCommandsResponse,
+  BulkSetApplicationCommandsError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkSetApplicationCommandsRequest,
+  output: BulkSetApplicationCommandsResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkSetGuildApplicationCommandsError = DiscordOpError;
+export const bulkSetGuildApplicationCommands: API.OperationMethod<
+  BulkSetGuildApplicationCommandsRequest,
+  BulkSetGuildApplicationCommandsResponse,
+  BulkSetGuildApplicationCommandsError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkSetGuildApplicationCommandsRequest,
+  output: BulkSetGuildApplicationCommandsResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkUpdateGuildChannelsError = DiscordOpError;
+export const bulkUpdateGuildChannels: API.OperationMethod<
+  BulkUpdateGuildChannelsRequest,
+  BulkUpdateGuildChannelsResponse,
+  BulkUpdateGuildChannelsError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkUpdateGuildChannelsRequest,
+  output: BulkUpdateGuildChannelsResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkUpdateGuildRolesError = DiscordOpError;
+export const bulkUpdateGuildRoles: API.OperationMethod<
+  BulkUpdateGuildRolesRequest,
+  BulkUpdateGuildRolesResponse,
+  BulkUpdateGuildRolesError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkUpdateGuildRolesRequest,
+  output: BulkUpdateGuildRolesResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkUpdateLobbyMembersError = DiscordOpError;
+export const bulkUpdateLobbyMembers: API.OperationMethod<
+  BulkUpdateLobbyMembersRequest,
+  BulkUpdateLobbyMembersResponse,
+  BulkUpdateLobbyMembersError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkUpdateLobbyMembersRequest,
+  output: BulkUpdateLobbyMembersResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ConsumeEntitlementError = DiscordOpError;
 export const consumeEntitlement: API.OperationMethod<
   ConsumeEntitlementRequest,
@@ -24273,20 +24367,6 @@ export const deleteAutoModerationRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteAutoModerationRuleRequest,
   output: DeleteAutoModerationRuleResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkMessageError = DiscordOpError;
-export const deleteBulkMessage: API.OperationMethod<
-  DeleteBulkMessageRequest,
-  DeleteBulkMessageResponse,
-  DeleteBulkMessageError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkMessageRequest,
-  output: DeleteBulkMessageResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,
@@ -25657,20 +25737,6 @@ export const guildRoleMemberCounts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GuildSearchError = DiscordOpError;
-export const guildSearch: API.OperationMethod<
-  GuildSearchRequest,
-  GuildSearchResponse,
-  GuildSearchError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GuildSearchRequest,
-  output: GuildSearchResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InviteResolveError = DiscordOpError;
 export const inviteResolve: API.OperationMethod<
   InviteResolveRequest,
@@ -25685,15 +25751,16 @@ export const inviteResolve: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InviteRevokeError = DiscordOpError;
-export const inviteRevoke: API.OperationMethod<
-  InviteRevokeRequest,
-  InviteRevokeResponse,
-  InviteRevokeError,
+export type JoinActionGuildRequestError = DiscordOpError;
+/** Approve or reject guild join request */
+export const joinActionGuildRequest: API.OperationMethod<
+  JoinActionGuildRequestRequest,
+  GuildJoinRequestResponse,
+  JoinActionGuildRequestError,
   DiscordOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InviteRevokeRequest,
-  output: InviteRevokeResponse,
+  input: JoinActionGuildRequestRequest,
+  output: GuildJoinRequestResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,
@@ -26316,16 +26383,29 @@ export const putGuildsOnboarding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RequestActionGuildJoinError = DiscordOpError;
-/** Approve or reject guild join request */
-export const requestActionGuildJoin: API.OperationMethod<
-  RequestActionGuildJoinRequest,
-  GuildJoinRequestResponse,
-  RequestActionGuildJoinError,
+export type RevokeInviteError = DiscordOpError;
+export const revokeInvite: API.OperationMethod<
+  RevokeInviteRequest,
+  RevokeInviteResponse,
+  RevokeInviteError,
   DiscordOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RequestActionGuildJoinRequest,
-  output: GuildJoinRequestResponse,
+  input: RevokeInviteRequest,
+  output: RevokeInviteResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchGuildError = DiscordOpError;
+export const searchGuild: API.OperationMethod<
+  SearchGuildRequest,
+  GuildSearchResponse,
+  SearchGuildError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchGuildRequest,
+  output: GuildSearchResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,
@@ -26345,6 +26425,20 @@ export const searchGuildMembers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type SearchThreadError = DiscordOpError;
+export const searchThread: API.OperationMethod<
+  SearchThreadRequest,
+  ThreadSearchResponse,
+  SearchThreadError,
+  DiscordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchThreadRequest,
+  output: ThreadSearchResponse,
+  errors: [UnknownDiscordError],
+  protocol: DiscordProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SendSoundboardSoundError = DiscordOpError;
 export const sendSoundboardSound: API.OperationMethod<
   SendSoundboardSoundRequest,
@@ -26354,34 +26448,6 @@ export const sendSoundboardSound: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SendSoundboardSoundRequest,
   output: SendSoundboardSoundResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetBulkApplicationCommandError = DiscordOpError;
-export const setBulkApplicationCommand: API.OperationMethod<
-  SetBulkApplicationCommandRequest,
-  SetBulkApplicationCommandResponse,
-  SetBulkApplicationCommandError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetBulkApplicationCommandRequest,
-  output: SetBulkApplicationCommandResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetBulkGuildApplicationCommandError = DiscordOpError;
-export const setBulkGuildApplicationCommand: API.OperationMethod<
-  SetBulkGuildApplicationCommandRequest,
-  SetBulkGuildApplicationCommandResponse,
-  SetBulkGuildApplicationCommandError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetBulkGuildApplicationCommandRequest,
-  output: SetBulkGuildApplicationCommandResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,
@@ -26424,20 +26490,6 @@ export const syncGuildTemplate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SyncGuildTemplateRequest,
   output: GuildTemplateResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreadSearchError = DiscordOpError;
-export const threadSearch: API.OperationMethod<
-  ThreadSearchRequest,
-  ThreadSearchResponse,
-  ThreadSearchError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreadSearchRequest,
-  output: ThreadSearchResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,
@@ -26550,48 +26602,6 @@ export const updateAutoModerationRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateAutoModerationRuleRequest,
   output: UpdateAutoModerationRuleResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBulkGuildChannelError = DiscordOpError;
-export const updateBulkGuildChannel: API.OperationMethod<
-  UpdateBulkGuildChannelRequest,
-  UpdateBulkGuildChannelResponse,
-  UpdateBulkGuildChannelError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBulkGuildChannelRequest,
-  output: UpdateBulkGuildChannelResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBulkGuildRoleError = DiscordOpError;
-export const updateBulkGuildRole: API.OperationMethod<
-  UpdateBulkGuildRoleRequest,
-  UpdateBulkGuildRoleResponse,
-  UpdateBulkGuildRoleError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBulkGuildRoleRequest,
-  output: UpdateBulkGuildRoleResponse,
-  errors: [UnknownDiscordError],
-  protocol: DiscordProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBulkLobbyMemberError = DiscordOpError;
-export const updateBulkLobbyMember: API.OperationMethod<
-  UpdateBulkLobbyMemberRequest,
-  UpdateBulkLobbyMemberResponse,
-  UpdateBulkLobbyMemberError,
-  DiscordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBulkLobbyMemberRequest,
-  output: UpdateBulkLobbyMemberResponse,
   errors: [UnknownDiscordError],
   protocol: DiscordProtocol,
   retry: Retry.Retry,

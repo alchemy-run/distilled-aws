@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.web_analytics#WebAnalyticsFetchLlmsTxtRequest": {
+    "com.posthog.web_analytics#FetchWebAnalyticsLlmsTxtRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -60,10 +61,10 @@
       },
       "traits": {}
     },
-    "com.posthog.web_analytics#WebAnalyticsFetchLlmsTxt": {
+    "com.posthog.web_analytics#FetchWebAnalyticsLlmsTxt": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics#WebAnalyticsFetchLlmsTxtRequest"
+        "target": "com.posthog.web_analytics#FetchWebAnalyticsLlmsTxtRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics#LlmsTxtFetchResponse"
@@ -706,7 +707,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.web_analytics#WebAnalyticsFetchLlmsTxt"
+          "target": "com.posthog.web_analytics#FetchWebAnalyticsLlmsTxt"
         },
         {
           "target": "com.posthog.web_analytics#WebAnalyticsRecap"

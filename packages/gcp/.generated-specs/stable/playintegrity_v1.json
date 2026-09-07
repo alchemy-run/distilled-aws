@@ -4,732 +4,10 @@
     "service": "playintegrity",
     "version": "v1",
     "title": "Google Play Integrity API",
-    "baseUrl": "https://playintegrity.googleapis.com/"
+    "baseUrl": "https://playintegrity.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.playintegrity_v1#PcTestingDetails": {
-      "type": "structure",
-      "members": {
-        "isTestingResponse": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates that the information contained in this payload is a testing response that is statically overridden for a tester."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains additional information generated for testing responses."
-      }
-    },
-    "com.gcp.playintegrity_v1#AccountActivity": {
-      "type": "structure",
-      "members": {
-        "activityLevel": {
-          "target": "com.gcp.playintegrity_v1#AccountActivityActivityLevelEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Indicates the activity level of the account."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "(Restricted Access) Contains a signal helping apps differentiating between likely genuine and likely non-genuine user traffic."
-      }
-    },
-    "com.gcp.playintegrity_v1#AccountActivityActivityLevelEnum": {
-      "type": "enum",
-      "members": {
-        "ACTIVITY_LEVEL_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVITY_LEVEL_UNSPECIFIED"
-          }
-        },
-        "UNEVALUATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNEVALUATED"
-          }
-        },
-        "UNUSUAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNUSUAL"
-          }
-        },
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "TYPICAL_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPICAL_BASIC"
-          }
-        },
-        "TYPICAL_STRONG": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPICAL_STRONG"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#PcRequestDetails": {
-      "type": "structure",
-      "members": {
-        "requestPackageName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity."
-          }
-        },
-        "requestHash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request hash that was provided in the request."
-          }
-        },
-        "requestTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Timestamp, of the integrity application request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the integrity request information."
-      }
-    },
-    "com.gcp.playintegrity_v1#DecodePcIntegrityTokenResponse": {
-      "type": "structure",
-      "members": {
-        "tokenPayloadExternal": {
-          "target": "com.gcp.playintegrity_v1#PcTokenPayloadExternal",
-          "traits": {
-            "smithy.api#documentation": "Plain token payload generated from the decoded integrity token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response containing the decoded PC integrity payload."
-      }
-    },
-    "com.gcp.playintegrity_v1#AccountDetails": {
-      "type": "structure",
-      "members": {
-        "accountActivity": {
-          "target": "com.gcp.playintegrity_v1#AccountActivity",
-          "traits": {
-            "smithy.api#documentation": "(Restricted Access) Details about the account activity for the user in the scope."
-          }
-        },
-        "appLicensingVerdict": {
-          "target": "com.gcp.playintegrity_v1#AccountDetailsAppLicensingVerdictEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the licensing status of the user for the app in the scope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the account information such as the licensing status for the user in the scope."
-      }
-    },
-    "com.gcp.playintegrity_v1#AccountDetailsAppLicensingVerdictEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "LICENSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LICENSED"
-          }
-        },
-        "UNLICENSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNLICENSED"
-          }
-        },
-        "UNEVALUATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNEVALUATED"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceIntegrity": {
-      "type": "structure",
-      "members": {
-        "legacyDeviceRecognitionVerdict": {
-          "target": "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Contains legacy details about the integrity of the device the app is running on. Only for devices with Android version T or higher and only for apps opted in to the new verdicts. Only available during the transition period to the new verdicts system and will be removed afterwards."
-          }
-        },
-        "deviceRecognitionVerdict": {
-          "target": "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Details about the integrity of the device the app is running on."
-          }
-        },
-        "deviceAttributes": {
-          "target": "com.gcp.playintegrity_v1#DeviceAttributes",
-          "traits": {
-            "smithy.api#documentation": "Attributes of the device where the integrity token was generated."
-          }
-        },
-        "deviceRecall": {
-          "target": "com.gcp.playintegrity_v1#DeviceRecall",
-          "traits": {
-            "smithy.api#documentation": "Details about the device recall bits set by the developer."
-          }
-        },
-        "recentDeviceActivity": {
-          "target": "com.gcp.playintegrity_v1#RecentDeviceActivity",
-          "traits": {
-            "smithy.api#documentation": "Details about the device activity of the device the app is running on."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the device attestation information."
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "MEETS_BASIC_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_BASIC_INTEGRITY"
-          }
-        },
-        "MEETS_DEVICE_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_DEVICE_INTEGRITY"
-          }
-        },
-        "MEETS_STRONG_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_STRONG_INTEGRITY"
-          }
-        },
-        "MEETS_VIRTUAL_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_VIRTUAL_INTEGRITY"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum"
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "MEETS_BASIC_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_BASIC_INTEGRITY"
-          }
-        },
-        "MEETS_DEVICE_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_DEVICE_INTEGRITY"
-          }
-        },
-        "MEETS_STRONG_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_STRONG_INTEGRITY"
-          }
-        },
-        "MEETS_VIRTUAL_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_VIRTUAL_INTEGRITY"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnum"
-      }
-    },
-    "com.gcp.playintegrity_v1#TestingDetails": {
-      "type": "structure",
-      "members": {
-        "isTestingResponse": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Indicates that the information contained in this payload is a testing response that is statically overridden for a tester."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains additional information generated for testing responses."
-      }
-    },
-    "com.gcp.playintegrity_v1#WriteDates": {
-      "type": "structure",
-      "members": {
-        "yyyymmSecond": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the second bit. Note that this value won't be set if the second bit is false."
-          }
-        },
-        "yyyymmFirst": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the first bit. Note that this value won't be set if the first bit is false."
-          }
-        },
-        "yyyymmThird": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the third bit. Note that this value won't be set if the third bit is false."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the recall bits write dates."
-      }
-    },
-    "com.gcp.playintegrity_v1#TokenPayloadExternal": {
-      "type": "structure",
-      "members": {
-        "testingDetails": {
-          "target": "com.gcp.playintegrity_v1#TestingDetails",
-          "traits": {
-            "smithy.api#documentation": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
-          }
-        },
-        "accountDetails": {
-          "target": "com.gcp.playintegrity_v1#AccountDetails",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the Play Store account."
-          }
-        },
-        "requestDetails": {
-          "target": "com.gcp.playintegrity_v1#RequestDetails",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the integrity request."
-          }
-        },
-        "environmentDetails": {
-          "target": "com.gcp.playintegrity_v1#EnvironmentDetails",
-          "traits": {
-            "smithy.api#documentation": "Details of the environment Play Integrity API runs in."
-          }
-        },
-        "appIntegrity": {
-          "target": "com.gcp.playintegrity_v1#AppIntegrity",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the application integrity."
-          }
-        },
-        "deviceIntegrity": {
-          "target": "com.gcp.playintegrity_v1#DeviceIntegrity",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the device integrity."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains basic app information and integrity signals like device attestation and licensing details."
-      }
-    },
-    "com.gcp.playintegrity_v1#DecodeIntegrityTokenRequest": {
-      "type": "structure",
-      "members": {
-        "integrityToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Encoded integrity token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to decode the integrity token."
-      }
-    },
-    "com.gcp.playintegrity_v1#RecentDeviceActivity": {
-      "type": "structure",
-      "members": {
-        "deviceActivityLevel": {
-          "target": "com.gcp.playintegrity_v1#RecentDeviceActivityDeviceActivityLevelEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Indicates the activity level of the device."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming."
-      }
-    },
-    "com.gcp.playintegrity_v1#RecentDeviceActivityDeviceActivityLevelEnum": {
-      "type": "enum",
-      "members": {
-        "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED"
-          }
-        },
-        "UNEVALUATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNEVALUATED"
-          }
-        },
-        "LEVEL_1": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LEVEL_1"
-          }
-        },
-        "LEVEL_2": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LEVEL_2"
-          }
-        },
-        "LEVEL_3": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LEVEL_3"
-          }
-        },
-        "LEVEL_4": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LEVEL_4"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#PcTokenPayloadExternal": {
-      "type": "structure",
-      "members": {
-        "requestDetails": {
-          "target": "com.gcp.playintegrity_v1#PcRequestDetails",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the integrity request."
-          }
-        },
-        "accountDetails": {
-          "target": "com.gcp.playintegrity_v1#PcAccountDetails",
-          "traits": {
-            "smithy.api#documentation": "Details about the account information such as the licensing status."
-          }
-        },
-        "testingDetails": {
-          "target": "com.gcp.playintegrity_v1#PcTestingDetails",
-          "traits": {
-            "smithy.api#documentation": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
-          }
-        },
-        "deviceIntegrity": {
-          "target": "com.gcp.playintegrity_v1#PcDeviceIntegrity",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the device integrity."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains PC device attestation details."
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceRecall": {
-      "type": "structure",
-      "members": {
-        "values": {
-          "target": "com.gcp.playintegrity_v1#Values",
-          "traits": {
-            "smithy.api#documentation": "Required. Contains the recall bits values."
-          }
-        },
-        "writeDates": {
-          "target": "com.gcp.playintegrity_v1#WriteDates",
-          "traits": {
-            "smithy.api#documentation": "Required. Contains the recall bits write dates."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the recall bits per device set by the developer."
-      }
-    },
-    "com.gcp.playintegrity_v1#RequestDetails": {
-      "type": "structure",
-      "members": {
-        "requestHash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request hash that was provided in the request."
-          }
-        },
-        "nonce": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Nonce that was provided in the request (which is base64 web-safe no-wrap)."
-          }
-        },
-        "timestampMillis": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Timestamp, in milliseconds, of the integrity application request."
-          }
-        },
-        "requestPackageName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity. For details on application integrity, check application_integrity."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the integrity request information."
-      }
-    },
-    "com.gcp.playintegrity_v1#Values": {
-      "type": "structure",
-      "members": {
-        "bitFirst": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. First recall bit value."
-          }
-        },
-        "bitThird": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Third recall bit value."
-          }
-        },
-        "bitSecond": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Second recall bit value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the recall bits values."
-      }
-    },
-    "com.gcp.playintegrity_v1#DecodeIntegrityTokenResponse": {
-      "type": "structure",
-      "members": {
-        "tokenPayloadExternal": {
-          "target": "com.gcp.playintegrity_v1#TokenPayloadExternal",
-          "traits": {
-            "smithy.api#documentation": "Plain token payload generated from the decoded integrity token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response containing the decoded integrity payload."
-      }
-    },
-    "com.gcp.playintegrity_v1#DeviceAttributes": {
-      "type": "structure",
-      "members": {
-        "sdkVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Android SDK version of the device, as defined in the public Android documentation: https://developer.android.com/reference/android/os/Build.VERSION_CODES. It won't be set if a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains information about the device for which the integrity token was generated, e.g. Android SDK version."
-      }
-    },
-    "com.gcp.playintegrity_v1#WriteDeviceRecallResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response for the Write Device Recall action. Currently empty."
-      }
-    },
-    "com.gcp.playintegrity_v1#AppIntegrity": {
-      "type": "structure",
-      "members": {
-        "packageName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Package name of the application under attestation. Set iff app_recognition_verdict != UNEVALUATED."
-          }
-        },
-        "versionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Version code of the application. Set iff app_recognition_verdict != UNEVALUATED."
-          }
-        },
-        "certificateSha256Digest": {
-          "target": "com.gcp.playintegrity_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The SHA256 hash of the requesting app's signing certificates (base64 web-safe encoded). Set iff app_recognition_verdict != UNEVALUATED."
-          }
-        },
-        "appRecognitionVerdict": {
-          "target": "com.gcp.playintegrity_v1#AppIntegrityAppRecognitionVerdictEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the app recognition verdict"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the application integrity information."
-      }
-    },
-    "com.gcp.playintegrity_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.playintegrity_v1#AppIntegrityAppRecognitionVerdictEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "PLAY_RECOGNIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAY_RECOGNIZED"
-          }
-        },
-        "UNRECOGNIZED_VERSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNRECOGNIZED_VERSION"
-          }
-        },
-        "UNEVALUATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNEVALUATED"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#PcAccountDetails": {
-      "type": "structure",
-      "members": {
-        "appLicensingVerdict": {
-          "target": "com.gcp.playintegrity_v1#PcAccountDetailsAppLicensingVerdictEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Details about the licensing status of the user for the app in the scope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the account information such as the licensing status for the user in the scope."
-      }
-    },
-    "com.gcp.playintegrity_v1#PcAccountDetailsAppLicensingVerdictEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "LICENSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LICENSED"
-          }
-        },
-        "UNLICENSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNLICENSED"
-          }
-        },
-        "UNEVALUATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNEVALUATED"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#PcDeviceIntegrity": {
-      "type": "structure",
-      "members": {
-        "deviceRecognitionVerdict": {
-          "target": "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Details about the integrity of the device the app is running on."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the device attestation information."
-      }
-    },
-    "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnum": {
-      "type": "enum",
-      "members": {
-        "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED"
-          }
-        },
-        "MEETS_PC_INTEGRITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEETS_PC_INTEGRITY"
-          }
-        }
-      }
-    },
-    "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnum"
-      }
-    },
     "com.gcp.playintegrity_v1#AppAccessRiskVerdict": {
       "type": "structure",
       "members": {
@@ -809,6 +87,174 @@
         "target": "com.gcp.playintegrity_v1#AppAccessRiskVerdictAppsDetectedItemEnum"
       }
     },
+    "com.gcp.playintegrity_v1#PcTokenPayloadExternal": {
+      "type": "structure",
+      "members": {
+        "deviceIntegrity": {
+          "target": "com.gcp.playintegrity_v1#PcDeviceIntegrity",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the device integrity."
+          }
+        },
+        "accountDetails": {
+          "target": "com.gcp.playintegrity_v1#PcAccountDetails",
+          "traits": {
+            "smithy.api#documentation": "Details about the account information such as the licensing status."
+          }
+        },
+        "testingDetails": {
+          "target": "com.gcp.playintegrity_v1#PcTestingDetails",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
+          }
+        },
+        "requestDetails": {
+          "target": "com.gcp.playintegrity_v1#PcRequestDetails",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the integrity request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains PC device attestation details."
+      }
+    },
+    "com.gcp.playintegrity_v1#WriteDeviceRecallResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for the Write Device Recall action. Currently empty."
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceRecall": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.playintegrity_v1#Values",
+          "traits": {
+            "smithy.api#documentation": "Required. Contains the recall bits values."
+          }
+        },
+        "writeDates": {
+          "target": "com.gcp.playintegrity_v1#WriteDates",
+          "traits": {
+            "smithy.api#documentation": "Required. Contains the recall bits write dates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the recall bits per device set by the developer."
+      }
+    },
+    "com.gcp.playintegrity_v1#WriteDates": {
+      "type": "structure",
+      "members": {
+        "yyyymmFirst": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the first bit. Note that this value won't be set if the first bit is false."
+          }
+        },
+        "yyyymmSecond": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the second bit. Note that this value won't be set if the second bit is false."
+          }
+        },
+        "yyyymmThird": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Write time in YYYYMM format (in UTC, e.g. 202402) for the third bit. Note that this value won't be set if the third bit is false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the recall bits write dates."
+      }
+    },
+    "com.gcp.playintegrity_v1#Values": {
+      "type": "structure",
+      "members": {
+        "bitSecond": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Second recall bit value."
+          }
+        },
+        "bitFirst": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. First recall bit value."
+          }
+        },
+        "bitThird": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Third recall bit value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the recall bits values."
+      }
+    },
+    "com.gcp.playintegrity_v1#PcAccountDetails": {
+      "type": "structure",
+      "members": {
+        "appLicensingVerdict": {
+          "target": "com.gcp.playintegrity_v1#PcAccountDetailsAppLicensingVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the licensing status of the user for the app in the scope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the account information such as the licensing status for the user in the scope."
+      }
+    },
+    "com.gcp.playintegrity_v1#PcAccountDetailsAppLicensingVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "LICENSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LICENSED"
+          }
+        },
+        "UNLICENSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLICENSED"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#DecodeIntegrityTokenResponse": {
+      "type": "structure",
+      "members": {
+        "tokenPayloadExternal": {
+          "target": "com.gcp.playintegrity_v1#TokenPayloadExternal",
+          "traits": {
+            "smithy.api#documentation": "Plain token payload generated from the decoded integrity token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the decoded integrity payload."
+      }
+    },
     "com.gcp.playintegrity_v1#DecodePcIntegrityTokenRequest": {
       "type": "structure",
       "members": {
@@ -821,6 +267,64 @@
       },
       "traits": {
         "smithy.api#documentation": "Request to decode the PC integrity token."
+      }
+    },
+    "com.gcp.playintegrity_v1#TestingDetails": {
+      "type": "structure",
+      "members": {
+        "isTestingResponse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Indicates that the information contained in this payload is a testing response that is statically overridden for a tester."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains additional information generated for testing responses."
+      }
+    },
+    "com.gcp.playintegrity_v1#TokenPayloadExternal": {
+      "type": "structure",
+      "members": {
+        "accountDetails": {
+          "target": "com.gcp.playintegrity_v1#AccountDetails",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the Play Store account."
+          }
+        },
+        "environmentDetails": {
+          "target": "com.gcp.playintegrity_v1#EnvironmentDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the environment Play Integrity API runs in."
+          }
+        },
+        "requestDetails": {
+          "target": "com.gcp.playintegrity_v1#RequestDetails",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the integrity request."
+          }
+        },
+        "appIntegrity": {
+          "target": "com.gcp.playintegrity_v1#AppIntegrity",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the application integrity."
+          }
+        },
+        "testingDetails": {
+          "target": "com.gcp.playintegrity_v1#TestingDetails",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
+          }
+        },
+        "deviceIntegrity": {
+          "target": "com.gcp.playintegrity_v1#DeviceIntegrity",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the device integrity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains basic app information and integrity signals like device attestation and licensing details."
       }
     },
     "com.gcp.playintegrity_v1#WriteDeviceRecallRequest": {
@@ -841,6 +345,98 @@
       },
       "traits": {
         "smithy.api#documentation": "Request to write device recall bits."
+      }
+    },
+    "com.gcp.playintegrity_v1#AccountActivity": {
+      "type": "structure",
+      "members": {
+        "activityLevel": {
+          "target": "com.gcp.playintegrity_v1#AccountActivityActivityLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Indicates the activity level of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Restricted Access) Contains a signal helping apps differentiating between likely genuine and likely non-genuine user traffic."
+      }
+    },
+    "com.gcp.playintegrity_v1#AccountActivityActivityLevelEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVITY_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVITY_LEVEL_UNSPECIFIED"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        },
+        "UNUSUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNUSUAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "TYPICAL_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPICAL_BASIC"
+          }
+        },
+        "TYPICAL_STRONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPICAL_STRONG"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#PcDeviceIntegrity": {
+      "type": "structure",
+      "members": {
+        "deviceRecognitionVerdict": {
+          "target": "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Details about the integrity of the device the app is running on."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the device attestation information."
+      }
+    },
+    "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED"
+          }
+        },
+        "MEETS_PC_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_PC_INTEGRITY"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.playintegrity_v1#PcDeviceIntegrityDeviceRecognitionVerdictItemEnum"
       }
     },
     "com.gcp.playintegrity_v1#EnvironmentDetails": {
@@ -910,19 +506,424 @@
         }
       }
     },
-    "com.gcp.playintegrity_v1#WriteDeviceRecallRequest_": {
+    "com.gcp.playintegrity_v1#RecentDeviceActivity": {
+      "type": "structure",
+      "members": {
+        "deviceActivityLevel": {
+          "target": "com.gcp.playintegrity_v1#RecentDeviceActivityDeviceActivityLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Indicates the activity level of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming."
+      }
+    },
+    "com.gcp.playintegrity_v1#RecentDeviceActivityDeviceActivityLevelEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        },
+        "LEVEL_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_1"
+          }
+        },
+        "LEVEL_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_2"
+          }
+        },
+        "LEVEL_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_3"
+          }
+        },
+        "LEVEL_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_4"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceAttributes": {
+      "type": "structure",
+      "members": {
+        "sdkVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Android SDK version of the device, as defined in the public Android documentation: https://developer.android.com/reference/android/os/Build.VERSION_CODES. It won't be set if a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about the device for which the integrity token was generated, e.g. Android SDK version."
+      }
+    },
+    "com.gcp.playintegrity_v1#DecodeIntegrityTokenRequest": {
+      "type": "structure",
+      "members": {
+        "integrityToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded integrity token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to decode the integrity token."
+      }
+    },
+    "com.gcp.playintegrity_v1#AppIntegrity": {
+      "type": "structure",
+      "members": {
+        "appRecognitionVerdict": {
+          "target": "com.gcp.playintegrity_v1#AppIntegrityAppRecognitionVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the app recognition verdict"
+          }
+        },
+        "certificateSha256Digest": {
+          "target": "com.gcp.playintegrity_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The SHA256 hash of the requesting app's signing certificates (base64 web-safe encoded). Set iff app_recognition_verdict != UNEVALUATED."
+          }
+        },
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Package name of the application under attestation. Set iff app_recognition_verdict != UNEVALUATED."
+          }
+        },
+        "versionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version code of the application. Set iff app_recognition_verdict != UNEVALUATED."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the application integrity information."
+      }
+    },
+    "com.gcp.playintegrity_v1#AppIntegrityAppRecognitionVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "PLAY_RECOGNIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_RECOGNIZED"
+          }
+        },
+        "UNRECOGNIZED_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRECOGNIZED_VERSION"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.playintegrity_v1#AccountDetails": {
+      "type": "structure",
+      "members": {
+        "appLicensingVerdict": {
+          "target": "com.gcp.playintegrity_v1#AccountDetailsAppLicensingVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Details about the licensing status of the user for the app in the scope."
+          }
+        },
+        "accountActivity": {
+          "target": "com.gcp.playintegrity_v1#AccountActivity",
+          "traits": {
+            "smithy.api#documentation": "(Restricted Access) Details about the account activity for the user in the scope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the account information such as the licensing status for the user in the scope."
+      }
+    },
+    "com.gcp.playintegrity_v1#AccountDetailsAppLicensingVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "LICENSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LICENSED"
+          }
+        },
+        "UNLICENSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLICENSED"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#PcRequestDetails": {
+      "type": "structure",
+      "members": {
+        "requestTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Timestamp, of the integrity application request."
+          }
+        },
+        "requestHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request hash that was provided in the request."
+          }
+        },
+        "requestPackageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the integrity request information."
+      }
+    },
+    "com.gcp.playintegrity_v1#RequestDetails": {
+      "type": "structure",
+      "members": {
+        "nonce": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Nonce that was provided in the request (which is base64 web-safe no-wrap)."
+          }
+        },
+        "requestHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request hash that was provided in the request."
+          }
+        },
+        "requestPackageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity. For details on application integrity, check application_integrity."
+          }
+        },
+        "timestampMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Timestamp, in milliseconds, of the integrity application request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the integrity request information."
+      }
+    },
+    "com.gcp.playintegrity_v1#PcTestingDetails": {
+      "type": "structure",
+      "members": {
+        "isTestingResponse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the information contained in this payload is a testing response that is statically overridden for a tester."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains additional information generated for testing responses."
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceIntegrity": {
+      "type": "structure",
+      "members": {
+        "deviceAttributes": {
+          "target": "com.gcp.playintegrity_v1#DeviceAttributes",
+          "traits": {
+            "smithy.api#documentation": "Attributes of the device where the integrity token was generated."
+          }
+        },
+        "deviceRecall": {
+          "target": "com.gcp.playintegrity_v1#DeviceRecall",
+          "traits": {
+            "smithy.api#documentation": "Details about the device recall bits set by the developer."
+          }
+        },
+        "recentDeviceActivity": {
+          "target": "com.gcp.playintegrity_v1#RecentDeviceActivity",
+          "traits": {
+            "smithy.api#documentation": "Details about the device activity of the device the app is running on."
+          }
+        },
+        "deviceRecognitionVerdict": {
+          "target": "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Details about the integrity of the device the app is running on."
+          }
+        },
+        "legacyDeviceRecognitionVerdict": {
+          "target": "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Contains legacy details about the integrity of the device the app is running on. Only for devices with Android version T or higher and only for apps opted in to the new verdicts. Only available during the transition period to the new verdicts system and will be removed afterwards."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the device attestation information."
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "MEETS_BASIC_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_BASIC_INTEGRITY"
+          }
+        },
+        "MEETS_DEVICE_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_DEVICE_INTEGRITY"
+          }
+        },
+        "MEETS_STRONG_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_STRONG_INTEGRITY"
+          }
+        },
+        "MEETS_VIRTUAL_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_VIRTUAL_INTEGRITY"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.playintegrity_v1#DeviceIntegrityDeviceRecognitionVerdictItemEnum"
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "MEETS_BASIC_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_BASIC_INTEGRITY"
+          }
+        },
+        "MEETS_DEVICE_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_DEVICE_INTEGRITY"
+          }
+        },
+        "MEETS_STRONG_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_STRONG_INTEGRITY"
+          }
+        },
+        "MEETS_VIRTUAL_INTEGRITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETS_VIRTUAL_INTEGRITY"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.playintegrity_v1#DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum"
+      }
+    },
+    "com.gcp.playintegrity_v1#DecodePcIntegrityTokenResponse": {
+      "type": "structure",
+      "members": {
+        "tokenPayloadExternal": {
+          "target": "com.gcp.playintegrity_v1#PcTokenPayloadExternal",
+          "traits": {
+            "smithy.api#documentation": "Plain token payload generated from the decoded integrity token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the decoded PC integrity payload."
+      }
+    },
+    "com.gcp.playintegrity_v1#DecodeIntegrityTokenV1Request": {
       "type": "structure",
       "members": {
         "packageName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Package name of the app the attached integrity token belongs to.",
+            "smithy.api#documentation": " Package name of the app the attached integrity token belongs to.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.playintegrity_v1#WriteDeviceRecallRequest",
+          "target": "com.gcp.playintegrity_v1#DecodeIntegrityTokenRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -980,56 +981,6 @@
             "status": 409
           }
         ]
-      }
-    },
-    "com.gcp.playintegrity_v1#WriteDeviceRecall": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.playintegrity_v1#WriteDeviceRecallRequest_"
-      },
-      "output": {
-        "target": "com.gcp.playintegrity_v1#WriteDeviceRecallResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.playintegrity_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.playintegrity_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.playintegrity_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.playintegrity_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+packageName}/deviceRecall:write"
-        },
-        "smithy.api#documentation": "Writes recall bits for the device where Play Integrity API token is obtained. The endpoint is available to select Play partners in an early access program (EAP)."
-      }
-    },
-    "com.gcp.playintegrity_v1#DecodeIntegrityTokenV1Request": {
-      "type": "structure",
-      "members": {
-        "packageName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": " Package name of the app the attached integrity token belongs to.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.playintegrity_v1#DecodeIntegrityTokenRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
       }
     },
     "com.gcp.playintegrity_v1#DecodeIntegrityTokenV1": {
@@ -1110,6 +1061,56 @@
           "uri": "v1/{+packageName}:decodePcIntegrityToken"
         },
         "smithy.api#documentation": "Decodes the PC integrity token and returns the PC token payload."
+      }
+    },
+    "com.gcp.playintegrity_v1#WriteDeviceRecallRequest_": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Package name of the app the attached integrity token belongs to.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.playintegrity_v1#WriteDeviceRecallRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.playintegrity_v1#WriteDeviceRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.playintegrity_v1#WriteDeviceRecallRequest_"
+      },
+      "output": {
+        "target": "com.gcp.playintegrity_v1#WriteDeviceRecallResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.playintegrity_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.playintegrity_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.playintegrity_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.playintegrity_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+packageName}/deviceRecall:write"
+        },
+        "smithy.api#documentation": "Writes recall bits for the device where Play Integrity API token is obtained. The endpoint is available to select Play partners in an early access program (EAP)."
       }
     }
   }

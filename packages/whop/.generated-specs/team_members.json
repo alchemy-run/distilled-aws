@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.team_members#ListTeamMembersRequestStatus": {
@@ -664,7 +665,7 @@
         "smithy.api#documentation": "Create Team Member\n\nAdds a member to an account's team with a system role. Identify them by exactly one of `user_id` or `email`. If the person has not yet accepted — or the email does not belong to a Whop account yet — an invitation is sent instead and the response is `202` with `{ \"object\": \"team_member_invite\", \"invitation_sent\": true }`. If they already have a pending invite, the request fails with a `400`. Custom roles cannot be granted via the API. Granting the `workforce` role is also allowed with the `bounty:create` scope."
       }
     },
-    "com.whop.team_members#RetrieveTeamMemberRequest": {
+    "com.whop.team_members#GetTeamMemberRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -680,10 +681,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.team_members#RetrieveTeamMember": {
+    "com.whop.team_members#GetTeamMember": {
       "type": "operation",
       "input": {
-        "target": "com.whop.team_members#RetrieveTeamMemberRequest"
+        "target": "com.whop.team_members#GetTeamMemberRequest"
       },
       "output": {
         "target": "com.whop.team_members#TeamMember"
@@ -909,19 +910,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.team_members#ListTeamMembers"
-        },
-        {
           "target": "com.whop.team_members#CreateTeamMember"
         },
         {
-          "target": "com.whop.team_members#RetrieveTeamMember"
+          "target": "com.whop.team_members#DeleteTeamMember"
+        },
+        {
+          "target": "com.whop.team_members#GetTeamMember"
+        },
+        {
+          "target": "com.whop.team_members#ListTeamMembers"
         },
         {
           "target": "com.whop.team_members#UpdateTeamMember"
-        },
-        {
-          "target": "com.whop.team_members#DeleteTeamMember"
         }
       ],
       "traits": {

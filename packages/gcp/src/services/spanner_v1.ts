@@ -106,18 +106,18 @@ export const StringMap = /*@__PURE__*/ S.Record(
 
 /** Message sent by the client to the adapter. */
 export interface AdaptMessageRequest {
-  /** Optional. Opaque request state passed by the client to the server. */
-  attachments?: StringMap;
   /** Required. Identifier for the underlying wire protocol. */
   protocol?: string;
   /** Optional. Uninterpreted bytes from the underlying wire protocol. */
   payload?: string;
+  /** Optional. Opaque request state passed by the client to the server. */
+  attachments?: StringMap;
 }
 export const AdaptMessageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    attachments: S.optional(StringMap),
     protocol: S.optional(S.String),
     payload: S.optional(S.String),
+    attachments: S.optional(StringMap),
   }),
 ).annotate({
   identifier: "AdaptMessageRequest",
@@ -147,17 +147,17 @@ export const AdaptMessageProjectsInstancesDatabasesSessionsRequest =
 
 /** Message sent by the adapter to the client. */
 export interface AdaptMessageResponse {
-  /** Optional. Uninterpreted bytes from the underlying wire protocol. */
-  payload?: string;
   /** Optional. Opaque state updates to be applied by the client. */
   stateUpdates?: StringMap;
+  /** Optional. Uninterpreted bytes from the underlying wire protocol. */
+  payload?: string;
   /** Optional. Indicates whether this is the last AdaptMessageResponse in the stream. This field may be optionally set by the server. Clients should not rely on this field being set in all cases. */
   last?: boolean;
 }
 export const AdaptMessageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    payload: S.optional(S.String),
     stateUpdates: S.optional(StringMap),
+    payload: S.optional(S.String),
     last: S.optional(S.Boolean),
   }),
 ).annotate({
@@ -185,10 +185,10 @@ export const KeyList = /*@__PURE__*/ S.Array(Key) as any as S.Schema<KeyList>;
 
 /** The split points of a table or an index. */
 export interface SplitPoints {
-  /** Required. The list of split keys. In essence, the split boundaries. */
-  keys?: KeyList;
   /** The table to split. */
   table?: string;
+  /** Required. The list of split keys. In essence, the split boundaries. */
+  keys?: KeyList;
   /** Optional. The expiration timestamp of the split points. A timestamp in the past means immediate expiration. The maximum value can be 30 days in the future. Defaults to 10 days in the future if not specified. */
   expireTime?: string;
   /** The index to split. If specified, the `table` field must refer to the index's base table. */
@@ -196,8 +196,8 @@ export interface SplitPoints {
 }
 export const SplitPoints = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    keys: S.optional(KeyList),
     table: S.optional(S.String),
+    keys: S.optional(KeyList),
     expireTime: S.optional(S.String),
     index: S.optional(S.String),
   }),
@@ -254,49 +254,192 @@ export const AddSplitPointsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddSplitPointsResponse",
 }) as any as S.Schema<AddSplitPointsResponse>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
+/** A session in the Cloud Spanner API. */
+export interface Session {
+  /** Output only. The name of the session. This is always system-assigned. */
+  name?: string;
+  /** The database role which created this session. */
+  creatorRole?: string;
+  /** Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent operations including any combination of read-only and read-write transactions. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions. */
+  multiplexed?: boolean;
+  /** Output only. The timestamp when the session is created. */
+  createTime?: string;
+  /** Output only. The approximate timestamp when the session is last used. It's typically earlier than the actual last use time. */
+  approximateLastUseTime?: string;
+  /** The labels for the session. * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. * No more than 64 labels can be associated with a given session. See https://goo.gl/xmQnxf for more information on and examples of labels. */
+  labels?: StringMap;
+}
+export const Session = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    creatorRole: S.optional(S.String),
+    multiplexed: S.optional(S.Boolean),
+    createTime: S.optional(S.String),
+    approximateLastUseTime: S.optional(S.String),
+    labels: S.optional(StringMap),
+  }),
+).annotate({ identifier: "Session" }) as any as S.Schema<Session>;
+
+/** The request for BatchCreateSessions. */
+export interface BatchCreateSessionsRequest {
+  /** Parameters to apply to each created session. */
+  sessionTemplate?: Session;
+  /** Required. The number of sessions to be created in this batch call. At least one session is created. The API can return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to `BatchCreateSessions` (adjusting session_count as necessary). */
+  sessionCount?: number;
+}
+export const BatchCreateSessionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sessionTemplate: S.optional(Session),
+    sessionCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "BatchCreateSessionsRequest",
+}) as any as S.Schema<BatchCreateSessionsRequest>;
+
+export interface BatchCreateProjectsInstancesDatabasesSessionsRequest {
+  /** Required. The database in which the new sessions are created. */
+  database: string;
+  /** Request body */
+  body?: BatchCreateSessionsRequest;
+}
+export const BatchCreateProjectsInstancesDatabasesSessionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      database: S.String.pipe(T.Label()),
+      body: S.optional(BatchCreateSessionsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "v1/{+database}/sessions:batchCreate",
+        baseUrl: "https://spanner.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchCreateProjectsInstancesDatabasesSessionsRequest",
+  }) as any as S.Schema<BatchCreateProjectsInstancesDatabasesSessionsRequest>;
+
+export type SessionList = Array<Session>;
+export const SessionList = /*@__PURE__*/ S.Array(
+  Session,
+) as any as S.Schema<SessionList>;
+
+/** The response for BatchCreateSessions. */
+export interface BatchCreateSessionsResponse {
+  /** The freshly created sessions. */
+  session?: SessionList;
+}
+export const BatchCreateSessionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    session: S.optional(SessionList),
+  }),
+).annotate({
+  identifier: "BatchCreateSessionsResponse",
+}) as any as S.Schema<BatchCreateSessionsResponse>;
+
+export type RequestOptionsPriorityEnum =
+  | "PRIORITY_UNSPECIFIED"
+  | "PRIORITY_LOW"
+  | "PRIORITY_MEDIUM"
+  | "PRIORITY_HIGH";
+export const RequestOptionsPriorityEnum = /*@__PURE__*/ S.String;
+
+export type DocumentMap = { [key: string]: unknown | undefined };
+export const DocumentMap = /*@__PURE__*/ S.Record(
   S.String,
-) as any as S.Schema<StringList>;
+  S.Unknown,
+) as any as S.Schema<DocumentMap>;
+
+/** Container for various pieces of client-owned context attached to a request. */
+export interface ClientContext {
+  /** Optional. Map of parameter name to value for this request. These values will be returned by any SECURE_CONTEXT() calls invoked by this request (e.g., by queries against Parameterized Secure Views). */
+  secureContext?: DocumentMap;
+}
+export const ClientContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secureContext: S.optional(DocumentMap),
+  }),
+).annotate({ identifier: "ClientContext" }) as any as S.Schema<ClientContext>;
+
+/** Common request options for various APIs. */
+export interface RequestOptions {
+  /** Priority for the request. */
+  priority?: RequestOptionsPriorityEnum | (string & {});
+  /** A per-request tag which can be applied to queries or reads, used for statistics collection. Both `request_tag` and `transaction_tag` can be specified for a read or query that belongs to a transaction. This field is ignored for requests where it's not applicable (for example, `CommitRequest`). Legal characters for `request_tag` values are all printable characters (ASCII 32 - 126) and the length of a request_tag is limited to 50 characters. Values that exceed this limit are truncated. Any leading underscore (_) characters are removed from the string. */
+  requestTag?: string;
+  /** A tag used for statistics collection about this transaction. Both `request_tag` and `transaction_tag` can be specified for a read or query that belongs to a transaction. To enable tagging on a transaction, `transaction_tag` must be set to the same value for all requests belonging to the same transaction, including BeginTransaction. If this request doesn't belong to any transaction, `transaction_tag` is ignored. Legal characters for `transaction_tag` values are all printable characters (ASCII 32 - 126) and the length of a `transaction_tag` is limited to 50 characters. Values that exceed this limit are truncated. Any leading underscore (_) characters are removed from the string. */
+  transactionTag?: string;
+  /** Optional. Optional context that may be needed for some requests. */
+  clientContext?: ClientContext;
+}
+export const RequestOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    priority: S.optional(RequestOptionsPriorityEnum),
+    requestTag: S.optional(S.String),
+    transactionTag: S.optional(S.String),
+    clientContext: S.optional(ClientContext),
+  }),
+).annotate({ identifier: "RequestOptions" }) as any as S.Schema<RequestOptions>;
 
 export type DocumentListList = Array<DocumentList>;
 export const DocumentListList = /*@__PURE__*/ S.Array(
   DocumentList,
 ) as any as S.Schema<DocumentListList>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
 /** Arguments to insert, update, insert_or_update, and replace operations. */
 export interface Write {
+  /** The values to be written. `values` can contain more than one list of values. If it does, then multiple rows are written, one for each entry in `values`. Each list in `values` must have exactly as many entries as there are entries in columns above. Sending multiple lists is equivalent to sending multiple `Mutation`s, each containing one `values` entry and repeating table and columns. Individual values in each list are encoded as described here. */
+  values?: DocumentListList;
   /** Required. The table whose rows will be written. */
   table?: string;
   /** The names of the columns in table to be written. The list of columns must contain enough columns to allow Cloud Spanner to derive values for all primary key columns in the row(s) to be modified. */
   columns?: StringList;
-  /** The values to be written. `values` can contain more than one list of values. If it does, then multiple rows are written, one for each entry in `values`. Each list in `values` must have exactly as many entries as there are entries in columns above. Sending multiple lists is equivalent to sending multiple `Mutation`s, each containing one `values` entry and repeating table and columns. Individual values in each list are encoded as described here. */
-  values?: DocumentListList;
 }
 export const Write = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    values: S.optional(DocumentListList),
     table: S.optional(S.String),
     columns: S.optional(StringList),
-    values: S.optional(DocumentListList),
   }),
 ).annotate({ identifier: "Write" }) as any as S.Schema<Write>;
 
+/** Arguments to ack operations. */
+export interface Ack {
+  /** Required. The queue where the message to be acked is stored. */
+  queue?: string;
+  /** By default, an attempt to ack a message that does not exist will fail with a `NOT_FOUND` error. With `ignore_not_found` set to true, the ack will succeed even if the message does not exist. This is useful for unconditionally acking a message, even if it is missing or has already been acked. */
+  ignoreNotFound?: boolean;
+  /** Required. The primary key of the message to be acked. */
+  key?: DocumentList;
+}
+export const Ack = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    queue: S.optional(S.String),
+    ignoreNotFound: S.optional(S.Boolean),
+    key: S.optional(DocumentList),
+  }),
+).annotate({ identifier: "Ack" }) as any as S.Schema<Ack>;
+
 /** KeyRange represents a range of rows in a table or index. A range has a start key and an end key. These keys can be open or closed, indicating if the range includes rows with that key. Keys are represented by lists, where the ith value in the list corresponds to the ith component of the table or index primary key. Individual values are encoded as described here. For example, consider the following table definition: CREATE TABLE UserEvents ( UserName STRING(MAX), EventDate STRING(10) ) PRIMARY KEY(UserName, EventDate); The following keys name rows in this table: "Bob", "2014-09-23" Since the `UserEvents` table's `PRIMARY KEY` clause names two columns, each `UserEvents` key has two elements; the first is the `UserName`, and the second is the `EventDate`. Key ranges with multiple components are interpreted lexicographically by component using the table or index key's declared sort order. For example, the following range returns all events for user `"Bob"` that occurred in the year 2015: "start_closed": ["Bob", "2015-01-01"] "end_closed": ["Bob", "2015-12-31"] Start and end keys can omit trailing key components. This affects the inclusion and exclusion of rows that exactly match the provided key components: if the key is closed, then rows that exactly match the provided components are included; if the key is open, then rows that exactly match are not included. For example, the following range includes all events for `"Bob"` that occurred during and after the year 2000: "start_closed": ["Bob", "2000-01-01"] "end_closed": ["Bob"] The next example retrieves all events for `"Bob"`: "start_closed": ["Bob"] "end_closed": ["Bob"] To retrieve events before the year 2000: "start_closed": ["Bob"] "end_open": ["Bob", "2000-01-01"] The following range includes all rows in the table: "start_closed": [] "end_closed": [] This range returns all users whose `UserName` begins with any character from A to C: "start_closed": ["A"] "end_open": ["D"] This range returns all users whose `UserName` begins with B: "start_closed": ["B"] "end_open": ["C"] Key ranges honor column sort order. For example, suppose a table is defined as follows: CREATE TABLE DescendingSortedTable { Key INT64, ... ) PRIMARY KEY(Key DESC); The following range retrieves all rows with key values between 1 and 100 inclusive: "start_closed": ["100"] "end_closed": ["1"] Note that 100 is passed as the start, and 1 is passed as the end, because `Key` is a descending column in the schema. */
 export interface KeyRange {
-  /** If the end is closed, then the range includes all rows whose first `len(end_closed)` key columns exactly match `end_closed`. */
-  endClosed?: DocumentList;
   /** If the start is closed, then the range includes all rows whose first `len(start_closed)` key columns exactly match `start_closed`. */
   startClosed?: DocumentList;
   /** If the start is open, then the range excludes rows whose first `len(start_open)` key columns exactly match `start_open`. */
   startOpen?: DocumentList;
+  /** If the end is closed, then the range includes all rows whose first `len(end_closed)` key columns exactly match `end_closed`. */
+  endClosed?: DocumentList;
   /** If the end is open, then the range excludes rows whose first `len(end_open)` key columns exactly match `end_open`. */
   endOpen?: DocumentList;
 }
 export const KeyRange = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endClosed: S.optional(DocumentList),
     startClosed: S.optional(DocumentList),
     startOpen: S.optional(DocumentList),
+    endClosed: S.optional(DocumentList),
     endOpen: S.optional(DocumentList),
   }),
 ).annotate({ identifier: "KeyRange" }) as any as S.Schema<KeyRange>;
@@ -308,17 +451,17 @@ export const KeyRangeList = /*@__PURE__*/ S.Array(
 
 /** `KeySet` defines a collection of Cloud Spanner keys and/or key ranges. All the keys are expected to be in the same table or index. The keys need not be sorted in any particular way. If the same key is specified multiple times in the set (for example if two ranges, two keys, or a key and a range overlap), Cloud Spanner behaves as if the key were only specified once. */
 export interface KeySet {
-  /** A list of key ranges. See KeyRange for more information about key range specifications. */
-  ranges?: KeyRangeList;
   /** A list of specific keys. Entries in `keys` should have exactly as many elements as there are columns in the primary or index key with which this `KeySet` is used. Individual key values are encoded as described here. */
   keys?: DocumentListList;
+  /** A list of key ranges. See KeyRange for more information about key range specifications. */
+  ranges?: KeyRangeList;
   /** For convenience `all` can be set to `true` to indicate that this `KeySet` matches all keys in the table or index. Note that any keys specified in `keys` or `ranges` are only yielded once. */
   all?: boolean;
 }
 export const KeySet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ranges: S.optional(KeyRangeList),
     keys: S.optional(DocumentListList),
+    ranges: S.optional(KeyRangeList),
     all: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "KeySet" }) as any as S.Schema<KeySet>;
@@ -339,67 +482,50 @@ export const Delete = /*@__PURE__*/ S.suspend(() =>
 
 /** Arguments to send operations. */
 export interface Send {
-  /** The time at which Spanner will begin attempting to deliver the message. If `deliver_time` is not set, Spanner will deliver the message immediately. If `deliver_time` is in the past, Spanner will replace it with a value closer to the current time. */
-  deliverTime?: string;
-  /** Required. The queue to which the message will be sent. */
-  queue?: string;
   /** Required. The primary key of the message to be sent. */
   key?: DocumentList;
   /** The payload of the message. */
   payload?: unknown;
+  /** Required. The queue to which the message will be sent. */
+  queue?: string;
+  /** The time at which Spanner will begin attempting to deliver the message. If `deliver_time` is not set, Spanner will deliver the message immediately. If `deliver_time` is in the past, Spanner will replace it with a value closer to the current time. */
+  deliverTime?: string;
 }
 export const Send = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    deliverTime: S.optional(S.String),
-    queue: S.optional(S.String),
     key: S.optional(DocumentList),
     payload: S.optional(S.Unknown),
+    queue: S.optional(S.String),
+    deliverTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Send" }) as any as S.Schema<Send>;
 
-/** Arguments to ack operations. */
-export interface Ack {
-  /** Required. The queue where the message to be acked is stored. */
-  queue?: string;
-  /** Required. The primary key of the message to be acked. */
-  key?: DocumentList;
-  /** By default, an attempt to ack a message that does not exist will fail with a `NOT_FOUND` error. With `ignore_not_found` set to true, the ack will succeed even if the message does not exist. This is useful for unconditionally acking a message, even if it is missing or has already been acked. */
-  ignoreNotFound?: boolean;
-}
-export const Ack = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queue: S.optional(S.String),
-    key: S.optional(DocumentList),
-    ignoreNotFound: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Ack" }) as any as S.Schema<Ack>;
-
 /** A modification to one or more Cloud Spanner rows. Mutations can be applied to a Cloud Spanner database by sending them in a Commit call. */
 export interface Mutation {
+  /** Like insert, except that if the row already exists, then its column values are overwritten with the ones provided. Any column values not explicitly written are preserved. When using insert_or_update, just as when using insert, all `NOT NULL` columns in the table must be given a value. This holds true even when the row already exists and will therefore actually be updated. */
+  insertOrUpdate?: Write;
+  /** Insert new rows in a table. If any of the rows already exist, the write or transaction fails with error `ALREADY_EXISTS`. */
+  insert?: Write;
+  /** Update existing rows in a table. If any of the rows does not already exist, the transaction fails with error `NOT_FOUND`. */
+  update?: Write;
+  /** Ack a message from a queue. */
+  ack?: Ack;
   /** Like insert, except that if the row already exists, it is deleted, and the column values provided are inserted instead. Unlike insert_or_update, this means any values not explicitly written become `NULL`. In an interleaved table, if you create the child table with the `ON DELETE CASCADE` annotation, then replacing a parent row also deletes the child rows. Otherwise, you must delete the child rows before you replace the parent row. */
   replace?: Write;
   /** Delete rows from a table. Succeeds whether or not the named rows were present. */
   delete?: Delete;
-  /** Update existing rows in a table. If any of the rows does not already exist, the transaction fails with error `NOT_FOUND`. */
-  update?: Write;
-  /** Insert new rows in a table. If any of the rows already exist, the write or transaction fails with error `ALREADY_EXISTS`. */
-  insert?: Write;
   /** Send a message to a queue. */
   send?: Send;
-  /** Ack a message from a queue. */
-  ack?: Ack;
-  /** Like insert, except that if the row already exists, then its column values are overwritten with the ones provided. Any column values not explicitly written are preserved. When using insert_or_update, just as when using insert, all `NOT NULL` columns in the table must be given a value. This holds true even when the row already exists and will therefore actually be updated. */
-  insertOrUpdate?: Write;
 }
 export const Mutation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    insertOrUpdate: S.optional(Write),
+    insert: S.optional(Write),
+    update: S.optional(Write),
+    ack: S.optional(Ack),
     replace: S.optional(Write),
     delete: S.optional(Delete),
-    update: S.optional(Write),
-    insert: S.optional(Write),
     send: S.optional(Send),
-    ack: S.optional(Ack),
-    insertOrUpdate: S.optional(Write),
   }),
 ).annotate({ identifier: "Mutation" }) as any as S.Schema<Mutation>;
 
@@ -424,64 +550,20 @@ export const MutationGroupList = /*@__PURE__*/ S.Array(
   MutationGroup,
 ) as any as S.Schema<MutationGroupList>;
 
-export type DocumentMap = { [key: string]: unknown | undefined };
-export const DocumentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DocumentMap>;
-
-/** Container for various pieces of client-owned context attached to a request. */
-export interface ClientContext {
-  /** Optional. Map of parameter name to value for this request. These values will be returned by any SECURE_CONTEXT() calls invoked by this request (e.g., by queries against Parameterized Secure Views). */
-  secureContext?: DocumentMap;
-}
-export const ClientContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secureContext: S.optional(DocumentMap),
-  }),
-).annotate({ identifier: "ClientContext" }) as any as S.Schema<ClientContext>;
-
-export type RequestOptionsPriorityEnum =
-  | "PRIORITY_UNSPECIFIED"
-  | "PRIORITY_LOW"
-  | "PRIORITY_MEDIUM"
-  | "PRIORITY_HIGH";
-export const RequestOptionsPriorityEnum = /*@__PURE__*/ S.String;
-
-/** Common request options for various APIs. */
-export interface RequestOptions {
-  /** A per-request tag which can be applied to queries or reads, used for statistics collection. Both `request_tag` and `transaction_tag` can be specified for a read or query that belongs to a transaction. This field is ignored for requests where it's not applicable (for example, `CommitRequest`). Legal characters for `request_tag` values are all printable characters (ASCII 32 - 126) and the length of a request_tag is limited to 50 characters. Values that exceed this limit are truncated. Any leading underscore (_) characters are removed from the string. */
-  requestTag?: string;
-  /** A tag used for statistics collection about this transaction. Both `request_tag` and `transaction_tag` can be specified for a read or query that belongs to a transaction. To enable tagging on a transaction, `transaction_tag` must be set to the same value for all requests belonging to the same transaction, including BeginTransaction. If this request doesn't belong to any transaction, `transaction_tag` is ignored. Legal characters for `transaction_tag` values are all printable characters (ASCII 32 - 126) and the length of a `transaction_tag` is limited to 50 characters. Values that exceed this limit are truncated. Any leading underscore (_) characters are removed from the string. */
-  transactionTag?: string;
-  /** Optional. Optional context that may be needed for some requests. */
-  clientContext?: ClientContext;
-  /** Priority for the request. */
-  priority?: RequestOptionsPriorityEnum | (string & {});
-}
-export const RequestOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requestTag: S.optional(S.String),
-    transactionTag: S.optional(S.String),
-    clientContext: S.optional(ClientContext),
-    priority: S.optional(RequestOptionsPriorityEnum),
-  }),
-).annotate({ identifier: "RequestOptions" }) as any as S.Schema<RequestOptions>;
-
 /** The request for BatchWrite. */
 export interface BatchWriteRequest {
+  /** Common options for this request. */
+  requestOptions?: RequestOptions;
   /** Optional. If you don't set the `exclude_txn_from_change_streams` option or if it's set to `false`, then any change streams monitoring columns modified by transactions will capture the updates made within that transaction. */
   excludeTxnFromChangeStreams?: boolean;
   /** Required. The groups of mutations to be applied. */
   mutationGroups?: MutationGroupList;
-  /** Common options for this request. */
-  requestOptions?: RequestOptions;
 }
 export const BatchWriteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    requestOptions: S.optional(RequestOptions),
     excludeTxnFromChangeStreams: S.optional(S.Boolean),
     mutationGroups: S.optional(MutationGroupList),
-    requestOptions: S.optional(RequestOptions),
   }),
 ).annotate({
   identifier: "BatchWriteRequest",
@@ -521,18 +603,18 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
     message: S.optional(S.String),
+    details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
@@ -540,20 +622,26 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 export interface BatchWriteResponse {
   /** The mutation groups applied in this batch. The values index into the `mutation_groups` field in the corresponding `BatchWriteRequest`. */
   indexes?: IntegerList;
-  /** The commit timestamp of the transaction that applied this batch. Present if status is OK and the mutation groups were applied, absent otherwise. For mutation groups with conditions, a status=OK and missing commit_timestamp means that the mutation groups were not applied due to the condition not being satisfied after evaluation. */
-  commitTimestamp?: string;
   /** An `OK` status indicates success. Any other status indicates a failure. */
   status?: Status;
+  /** The commit timestamp of the transaction that applied this batch. Present if status is OK and the mutation groups were applied, absent otherwise. For mutation groups with conditions, a status=OK and missing commit_timestamp means that the mutation groups were not applied due to the condition not being satisfied after evaluation. */
+  commitTimestamp?: string;
 }
 export const BatchWriteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     indexes: S.optional(IntegerList),
-    commitTimestamp: S.optional(S.String),
     status: S.optional(Status),
+    commitTimestamp: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BatchWriteResponse",
 }) as any as S.Schema<BatchWriteResponse>;
+
+export type TransactionOptionsIsolationLevelEnum =
+  | "ISOLATION_LEVEL_UNSPECIFIED"
+  | "SERIALIZABLE"
+  | "REPEATABLE_READ";
+export const TransactionOptionsIsolationLevelEnum = /*@__PURE__*/ S.String;
 
 /** Message type to initiate a Partitioned DML transaction. */
 export interface PartitionedDml {}
@@ -561,11 +649,31 @@ export const PartitionedDml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({ identifier: "PartitionedDml" }) as any as S.Schema<PartitionedDml>;
 
-export type TransactionOptionsIsolationLevelEnum =
-  | "ISOLATION_LEVEL_UNSPECIFIED"
-  | "SERIALIZABLE"
-  | "REPEATABLE_READ";
-export const TransactionOptionsIsolationLevelEnum = /*@__PURE__*/ S.String;
+/** Message type to initiate a read-only transaction. */
+export interface ReadOnly {
+  /** If true, the Cloud Spanner-selected read timestamp is included in the Transaction message that describes the transaction. */
+  returnReadTimestamp?: boolean;
+  /** Executes all reads at a timestamp that is `exact_staleness` old. The timestamp is chosen soon after the read is started. Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client's local clock is substantially skewed from Cloud Spanner commit timestamps. Useful for reading at nearby replicas without the distributed timestamp negotiation overhead of `max_staleness`. */
+  exactStaleness?: string;
+  /** Read at a timestamp where all previously committed transactions are visible. */
+  strong?: boolean;
+  /** Read data at a timestamp >= `NOW - max_staleness` seconds. Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client's local clock is substantially skewed from Cloud Spanner commit timestamps. Useful for reading the freshest data available at a nearby replica, while bounding the possible staleness if the local replica has fallen behind. Note that this option can only be used in single-use transactions. */
+  maxStaleness?: string;
+  /** Executes all reads at the given timestamp. Unlike other modes, reads at a specific timestamp are repeatable; the same read at the same timestamp always returns the same data. If the timestamp is in the future, the read is blocked until the specified timestamp, modulo the read's deadline. Useful for large scale consistent reads such as mapreduces, or for coordinating many reads against a consistent snapshot of the data. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
+  readTimestamp?: string;
+  /** Executes all reads at a timestamp >= `min_read_timestamp`. This is useful for requesting fresher data than some previous read, or data that is fresh enough to observe the effects of some previously committed transaction whose timestamp is known. Note that this option can only be used in single-use transactions. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
+  minReadTimestamp?: string;
+}
+export const ReadOnly = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    returnReadTimestamp: S.optional(S.Boolean),
+    exactStaleness: S.optional(S.String),
+    strong: S.optional(S.Boolean),
+    maxStaleness: S.optional(S.String),
+    readTimestamp: S.optional(S.String),
+    minReadTimestamp: S.optional(S.String),
+  }),
+).annotate({ identifier: "ReadOnly" }) as any as S.Schema<ReadOnly>;
 
 export type ReadWriteReadLockModeEnum =
   | "READ_LOCK_MODE_UNSPECIFIED"
@@ -575,64 +683,38 @@ export const ReadWriteReadLockModeEnum = /*@__PURE__*/ S.String;
 
 /** Message type to initiate a read-write transaction. Currently this transaction type has no options. */
 export interface ReadWrite {
-  /** Optional. Clients should pass the transaction ID of the previous transaction attempt that was aborted if this transaction is being executed on a multiplexed session. */
-  multiplexedSessionPreviousTransactionId?: string;
   /** The read lock mode for the transaction. */
   readLockMode?: ReadWriteReadLockModeEnum | (string & {});
+  /** Optional. Clients should pass the transaction ID of the previous transaction attempt that was aborted if this transaction is being executed on a multiplexed session. */
+  multiplexedSessionPreviousTransactionId?: string;
 }
 export const ReadWrite = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    multiplexedSessionPreviousTransactionId: S.optional(S.String),
     readLockMode: S.optional(ReadWriteReadLockModeEnum),
+    multiplexedSessionPreviousTransactionId: S.optional(S.String),
   }),
 ).annotate({ identifier: "ReadWrite" }) as any as S.Schema<ReadWrite>;
 
-/** Message type to initiate a read-only transaction. */
-export interface ReadOnly {
-  /** Executes all reads at a timestamp that is `exact_staleness` old. The timestamp is chosen soon after the read is started. Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client's local clock is substantially skewed from Cloud Spanner commit timestamps. Useful for reading at nearby replicas without the distributed timestamp negotiation overhead of `max_staleness`. */
-  exactStaleness?: string;
-  /** Executes all reads at the given timestamp. Unlike other modes, reads at a specific timestamp are repeatable; the same read at the same timestamp always returns the same data. If the timestamp is in the future, the read is blocked until the specified timestamp, modulo the read's deadline. Useful for large scale consistent reads such as mapreduces, or for coordinating many reads against a consistent snapshot of the data. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
-  readTimestamp?: string;
-  /** Read data at a timestamp >= `NOW - max_staleness` seconds. Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client's local clock is substantially skewed from Cloud Spanner commit timestamps. Useful for reading the freshest data available at a nearby replica, while bounding the possible staleness if the local replica has fallen behind. Note that this option can only be used in single-use transactions. */
-  maxStaleness?: string;
-  /** Executes all reads at a timestamp >= `min_read_timestamp`. This is useful for requesting fresher data than some previous read, or data that is fresh enough to observe the effects of some previously committed transaction whose timestamp is known. Note that this option can only be used in single-use transactions. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
-  minReadTimestamp?: string;
-  /** If true, the Cloud Spanner-selected read timestamp is included in the Transaction message that describes the transaction. */
-  returnReadTimestamp?: boolean;
-  /** Read at a timestamp where all previously committed transactions are visible. */
-  strong?: boolean;
-}
-export const ReadOnly = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    exactStaleness: S.optional(S.String),
-    readTimestamp: S.optional(S.String),
-    maxStaleness: S.optional(S.String),
-    minReadTimestamp: S.optional(S.String),
-    returnReadTimestamp: S.optional(S.Boolean),
-    strong: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "ReadOnly" }) as any as S.Schema<ReadOnly>;
-
 /** Options to use for transactions. */
 export interface TransactionOptions {
-  /** Partitioned DML transaction. Authorization to begin a Partitioned DML transaction requires `spanner.databases.beginPartitionedDmlTransaction` permission on the `session` resource. */
-  partitionedDml?: PartitionedDml;
-  /** When `exclude_txn_from_change_streams` is set to `true`, it prevents read or write transactions from being tracked in change streams. * If the DDL option `allow_txn_exclusion` is set to `true`, then the updates made within this transaction aren't recorded in the change stream. * If you don't set the DDL option `allow_txn_exclusion` or if it's set to `false`, then the updates made within this transaction are recorded in the change stream. When `exclude_txn_from_change_streams` is set to `false` or not set, modifications from this transaction are recorded in all change streams that are tracking columns modified by these transactions. The `exclude_txn_from_change_streams` option can only be specified for read-write or partitioned DML transactions, otherwise the API returns an `INVALID_ARGUMENT` error. */
-  excludeTxnFromChangeStreams?: boolean;
   /** Isolation level for the transaction. */
   isolationLevel?: TransactionOptionsIsolationLevelEnum | (string & {});
-  /** Transaction may write. Authorization to begin a read-write transaction requires `spanner.databases.beginOrRollbackReadWriteTransaction` permission on the `session` resource. */
-  readWrite?: ReadWrite;
+  /** Partitioned DML transaction. Authorization to begin a Partitioned DML transaction requires `spanner.databases.beginPartitionedDmlTransaction` permission on the `session` resource. */
+  partitionedDml?: PartitionedDml;
   /** Transaction does not write. Authorization to begin a read-only transaction requires `spanner.databases.beginReadOnlyTransaction` permission on the `session` resource. */
   readOnly?: ReadOnly;
+  /** Transaction may write. Authorization to begin a read-write transaction requires `spanner.databases.beginOrRollbackReadWriteTransaction` permission on the `session` resource. */
+  readWrite?: ReadWrite;
+  /** When `exclude_txn_from_change_streams` is set to `true`, it prevents read or write transactions from being tracked in change streams. * If the DDL option `allow_txn_exclusion` is set to `true`, then the updates made within this transaction aren't recorded in the change stream. * If you don't set the DDL option `allow_txn_exclusion` or if it's set to `false`, then the updates made within this transaction are recorded in the change stream. When `exclude_txn_from_change_streams` is set to `false` or not set, modifications from this transaction are recorded in all change streams that are tracking columns modified by these transactions. The `exclude_txn_from_change_streams` option can only be specified for read-write or partitioned DML transactions, otherwise the API returns an `INVALID_ARGUMENT` error. */
+  excludeTxnFromChangeStreams?: boolean;
 }
 export const TransactionOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    partitionedDml: S.optional(PartitionedDml),
-    excludeTxnFromChangeStreams: S.optional(S.Boolean),
     isolationLevel: S.optional(TransactionOptionsIsolationLevelEnum),
-    readWrite: S.optional(ReadWrite),
+    partitionedDml: S.optional(PartitionedDml),
     readOnly: S.optional(ReadOnly),
+    readWrite: S.optional(ReadWrite),
+    excludeTxnFromChangeStreams: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "TransactionOptions",
@@ -640,18 +722,18 @@ export const TransactionOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for BeginTransaction. */
 export interface BeginTransactionRequest {
-  /** Required. Options for the new transaction. */
-  options?: TransactionOptions;
   /** Common options for this request. Priority is ignored for this request. Setting the priority in this `request_options` struct doesn't do anything. To set the priority for a transaction, set it on the reads and writes that are part of this transaction instead. */
   requestOptions?: RequestOptions;
   /** Optional. Required for read-write transactions on a multiplexed session that commit mutations but don't perform any reads or queries. You must randomly select one of the mutations from the mutation set and send it as a part of this request. */
   mutationKey?: Mutation;
+  /** Required. Options for the new transaction. */
+  options?: TransactionOptions;
 }
 export const BeginTransactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    options: S.optional(TransactionOptions),
     requestOptions: S.optional(RequestOptions),
     mutationKey: S.optional(Mutation),
+    options: S.optional(TransactionOptions),
   }),
 ).annotate({
   identifier: "BeginTransactionRequest",
@@ -697,18 +779,18 @@ export const MultiplexedSessionPrecommitToken = /*@__PURE__*/ S.suspend(() =>
 
 /** A transaction. */
 export interface Transaction {
-  /** For snapshot read-only transactions, the read timestamp chosen for the transaction. Not returned by default: see TransactionOptions.ReadOnly.return_read_timestamp. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
-  readTimestamp?: string;
-  /** `id` may be used to identify the transaction in subsequent Read, ExecuteSql, Commit, or Rollback calls. Single-use read-only transactions do not have IDs, because single-use transactions do not support multiple requests. */
-  id?: string;
   /** A precommit token is included in the response of a BeginTransaction request if the read-write transaction is on a multiplexed session and a mutation_key was specified in the BeginTransaction. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction. */
   precommitToken?: MultiplexedSessionPrecommitToken;
+  /** `id` may be used to identify the transaction in subsequent Read, ExecuteSql, Commit, or Rollback calls. Single-use read-only transactions do not have IDs, because single-use transactions do not support multiple requests. */
+  id?: string;
+  /** For snapshot read-only transactions, the read timestamp chosen for the transaction. Not returned by default: see TransactionOptions.ReadOnly.return_read_timestamp. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`. */
+  readTimestamp?: string;
 }
 export const Transaction = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    readTimestamp: S.optional(S.String),
-    id: S.optional(S.String),
     precommitToken: S.optional(MultiplexedSessionPrecommitToken),
+    id: S.optional(S.String),
+    readTimestamp: S.optional(S.String),
   }),
 ).annotate({ identifier: "Transaction" }) as any as S.Schema<Transaction>;
 
@@ -865,17 +947,17 @@ export const QuorumType = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for ChangeQuorum. */
 export interface ChangeQuorumRequest {
-  /** Required. Name of the database in which to apply `ChangeQuorum`. Values are of the form `projects//instances//databases/`. */
-  name?: string;
   /** Required. The type of this quorum. */
   quorumType?: QuorumType;
+  /** Required. Name of the database in which to apply `ChangeQuorum`. Values are of the form `projects//instances//databases/`. */
+  name?: string;
   /** Optional. The etag is the hash of the `QuorumInfo`. The `ChangeQuorum` operation is only performed if the etag matches that of the `QuorumInfo` in the current database resource. Otherwise the API returns an `ABORTED` error. The etag is used for optimistic concurrency control as a way to help prevent simultaneous change quorum requests that could create a race condition. */
   etag?: string;
 }
 export const ChangeQuorumRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     quorumType: S.optional(QuorumType),
+    name: S.optional(S.String),
     etag: S.optional(S.String),
   }),
 ).annotate({
@@ -906,53 +988,53 @@ export const ChangequorumProjectsInstancesDatabasesRequest =
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
-  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
-  metadata?: DocumentMap;
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: Status;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
+  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
+  metadata?: DocumentMap;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: Status;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    done: S.optional(S.Boolean),
-    metadata: S.optional(DocumentMap),
-    error: S.optional(Status),
-    name: S.optional(S.String),
     response: S.optional(DocumentMap),
+    metadata: S.optional(DocumentMap),
+    name: S.optional(S.String),
+    done: S.optional(S.Boolean),
+    error: S.optional(Status),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** The request for Commit. */
 export interface CommitRequest {
-  /** Optional. The amount of latency this request is configured to incur in order to improve throughput. If this field isn't set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a commit delay value between 0 and 500 ms. */
-  maxCommitDelay?: string;
-  /** Execute mutations in a temporary transaction. Note that unlike commit of a previously-started transaction, commit with a temporary transaction is non-idempotent. That is, if the `CommitRequest` is sent to Cloud Spanner more than once (for instance, due to retries in the application, or in the transport library), it's possible that the mutations are executed more than once. If this is undesirable, use BeginTransaction and Commit instead. */
-  singleUseTransaction?: TransactionOptions;
-  /** Optional. If the read-write transaction was executed on a multiplexed session, then you must include the precommit token with the highest sequence number received in this transaction attempt. Failing to do so results in a `FailedPrecondition` error. */
-  precommitToken?: MultiplexedSessionPrecommitToken;
-  /** Commit a previously-started transaction. */
-  transactionId?: string;
   /** If `true`, then statistics related to the transaction is included in the CommitResponse. Default value is `false`. */
   returnCommitStats?: boolean;
+  /** Commit a previously-started transaction. */
+  transactionId?: string;
+  /** Optional. If the read-write transaction was executed on a multiplexed session, then you must include the precommit token with the highest sequence number received in this transaction attempt. Failing to do so results in a `FailedPrecondition` error. */
+  precommitToken?: MultiplexedSessionPrecommitToken;
   /** The mutations to be executed when this transaction commits. All mutations are applied atomically, in the order they appear in this list. */
   mutations?: MutationList;
   /** Common options for this request. */
   requestOptions?: RequestOptions;
+  /** Execute mutations in a temporary transaction. Note that unlike commit of a previously-started transaction, commit with a temporary transaction is non-idempotent. That is, if the `CommitRequest` is sent to Cloud Spanner more than once (for instance, due to retries in the application, or in the transport library), it's possible that the mutations are executed more than once. If this is undesirable, use BeginTransaction and Commit instead. */
+  singleUseTransaction?: TransactionOptions;
+  /** Optional. The amount of latency this request is configured to incur in order to improve throughput. If this field isn't set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a commit delay value between 0 and 500 ms. */
+  maxCommitDelay?: string;
 }
 export const CommitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxCommitDelay: S.optional(S.String),
-    singleUseTransaction: S.optional(TransactionOptions),
-    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
-    transactionId: S.optional(S.String),
     returnCommitStats: S.optional(S.Boolean),
+    transactionId: S.optional(S.String),
+    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
     mutations: S.optional(MutationList),
     requestOptions: S.optional(RequestOptions),
+    singleUseTransaction: S.optional(TransactionOptions),
+    maxCommitDelay: S.optional(S.String),
   }),
 ).annotate({ identifier: "CommitRequest" }) as any as S.Schema<CommitRequest>;
 
@@ -1007,10 +1089,10 @@ export interface CommitResponse {
   precommitToken?: MultiplexedSessionPrecommitToken;
   /** If `TransactionOptions.isolation_level` is set to `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the timestamp at which all reads in the transaction ran. This timestamp is never returned. */
   snapshotTimestamp?: string;
-  /** The isolation level used for the read-write transaction. */
-  isolationLevel?: CommitResponseIsolationLevelEnum;
   /** The Cloud Spanner timestamp at which the transaction committed. */
   commitTimestamp?: string;
+  /** The isolation level used for the read-write transaction. */
+  isolationLevel?: CommitResponseIsolationLevelEnum;
   /** The statistics about this `Commit`. Not returned by default. For more information, see CommitRequest.return_commit_stats. */
   commitStats?: CommitStats;
   /** The read lock mode used for the read-write transaction. */
@@ -1020,8 +1102,8 @@ export const CommitResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     precommitToken: S.optional(MultiplexedSessionPrecommitToken),
     snapshotTimestamp: S.optional(S.String),
-    isolationLevel: S.optional(CommitResponseIsolationLevelEnum),
     commitTimestamp: S.optional(S.String),
+    isolationLevel: S.optional(CommitResponseIsolationLevelEnum),
     commitStats: S.optional(CommitStats),
     readLockMode: S.optional(CommitResponseReadLockModeEnum),
   }),
@@ -1037,18 +1119,18 @@ export const CopyBackupEncryptionConfigEncryptionTypeEnum =
 
 /** Encryption configuration for the copied backup. */
 export interface CopyBackupEncryptionConfig {
+  /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. */
+  kmsKeyName?: string;
   /** Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. KMS keys specified can be in any order. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
   kmsKeyNames?: StringList;
   /** Required. The encryption type of the backup. */
   encryptionType?: CopyBackupEncryptionConfigEncryptionTypeEnum | (string & {});
-  /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. */
-  kmsKeyName?: string;
 }
 export const CopyBackupEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    kmsKeyName: S.optional(S.String),
     kmsKeyNames: S.optional(StringList),
     encryptionType: S.optional(CopyBackupEncryptionConfigEncryptionTypeEnum),
-    kmsKeyName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CopyBackupEncryptionConfig",
@@ -1058,19 +1140,19 @@ export const CopyBackupEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
 export interface CopyBackupRequest {
   /** Required. The expiration time of the backup in microsecond granularity. The expiration time must be at least 6 hours and at most 366 days from the `create_time` of the source backup. Once the `expire_time` has passed, the backup is eligible to be automatically deleted by Cloud Spanner to free the resources used by the backup. */
   expireTime?: string;
-  /** Optional. The encryption configuration used to encrypt the backup. If this field is not specified, the backup will use the same encryption configuration as the source backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`. */
-  encryptionConfig?: CopyBackupEncryptionConfig;
   /** Required. The id of the backup copy. The `backup_id` appended to `parent` forms the full backup_uri of the form `projects/{project}/instances/{instance}/backups/{backup}`. */
   backupId?: string;
   /** Required. The source backup to be copied. The source backup needs to be in READY state for it to be copied. Once CopyBackup is in progress, the source backup cannot be deleted or cleaned up on expiration until CopyBackup is finished. Values are of the form: `projects/{project}/instances/{instance}/backups/{backup}`. */
   sourceBackup?: string;
+  /** Optional. The encryption configuration used to encrypt the backup. If this field is not specified, the backup will use the same encryption configuration as the source backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`. */
+  encryptionConfig?: CopyBackupEncryptionConfig;
 }
 export const CopyBackupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expireTime: S.optional(S.String),
-    encryptionConfig: S.optional(CopyBackupEncryptionConfig),
     backupId: S.optional(S.String),
     sourceBackup: S.optional(S.String),
+    encryptionConfig: S.optional(CopyBackupEncryptionConfig),
   }),
 ).annotate({
   identifier: "CopyBackupRequest",
@@ -1097,87 +1179,18 @@ export const CopyProjectsInstancesBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CopyProjectsInstancesBackupsRequest",
 }) as any as S.Schema<CopyProjectsInstancesBackupsRequest>;
 
-/** A session in the Cloud Spanner API. */
-export interface Session {
-  /** Output only. The approximate timestamp when the session is last used. It's typically earlier than the actual last use time. */
-  approximateLastUseTime?: string;
-  /** Output only. The timestamp when the session is created. */
-  createTime?: string;
-  /** The database role which created this session. */
-  creatorRole?: string;
-  /** Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent operations including any combination of read-only and read-write transactions. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions. */
-  multiplexed?: boolean;
-  /** Output only. The name of the session. This is always system-assigned. */
-  name?: string;
-  /** The labels for the session. * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. * No more than 64 labels can be associated with a given session. See https://goo.gl/xmQnxf for more information on and examples of labels. */
-  labels?: StringMap;
-}
-export const Session = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    approximateLastUseTime: S.optional(S.String),
-    createTime: S.optional(S.String),
-    creatorRole: S.optional(S.String),
-    multiplexed: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    labels: S.optional(StringMap),
-  }),
-).annotate({ identifier: "Session" }) as any as S.Schema<Session>;
+export type InstanceConfigStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "READY";
+export const InstanceConfigStateEnum = /*@__PURE__*/ S.String;
 
-/** The request for BatchCreateSessions. */
-export interface BatchCreateSessionsRequest {
-  /** Parameters to apply to each created session. */
-  sessionTemplate?: Session;
-  /** Required. The number of sessions to be created in this batch call. At least one session is created. The API can return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to `BatchCreateSessions` (adjusting session_count as necessary). */
-  sessionCount?: number;
-}
-export const BatchCreateSessionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sessionTemplate: S.optional(Session),
-    sessionCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "BatchCreateSessionsRequest",
-}) as any as S.Schema<BatchCreateSessionsRequest>;
-
-export interface CreateBatchProjectInstanceDatabaseSessionRequest {
-  /** Required. The database in which the new sessions are created. */
-  database: string;
-  /** Request body */
-  body?: BatchCreateSessionsRequest;
-}
-export const CreateBatchProjectInstanceDatabaseSessionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      database: S.String.pipe(T.Label()),
-      body: S.optional(BatchCreateSessionsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "v1/{+database}/sessions:batchCreate",
-        baseUrl: "https://spanner.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateBatchProjectInstanceDatabaseSessionRequest",
-  }) as any as S.Schema<CreateBatchProjectInstanceDatabaseSessionRequest>;
-
-export type SessionList = Array<Session>;
-export const SessionList = /*@__PURE__*/ S.Array(
-  Session,
-) as any as S.Schema<SessionList>;
-
-/** The response for BatchCreateSessions. */
-export interface BatchCreateSessionsResponse {
-  /** The freshly created sessions. */
-  session?: SessionList;
-}
-export const BatchCreateSessionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    session: S.optional(SessionList),
-  }),
-).annotate({
-  identifier: "BatchCreateSessionsResponse",
-}) as any as S.Schema<BatchCreateSessionsResponse>;
+export type InstanceConfigQuorumTypeEnum =
+  | "QUORUM_TYPE_UNSPECIFIED"
+  | "REGION"
+  | "DUAL_REGION"
+  | "MULTI_REGION";
+export const InstanceConfigQuorumTypeEnum = /*@__PURE__*/ S.String;
 
 export type ReplicaInfoTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -1207,25 +1220,6 @@ export const ReplicaInfoList = /*@__PURE__*/ S.Array(
   ReplicaInfo,
 ) as any as S.Schema<ReplicaInfoList>;
 
-export type InstanceConfigConfigTypeEnum =
-  | "TYPE_UNSPECIFIED"
-  | "GOOGLE_MANAGED"
-  | "USER_MANAGED";
-export const InstanceConfigConfigTypeEnum = /*@__PURE__*/ S.String;
-
-export type InstanceConfigQuorumTypeEnum =
-  | "QUORUM_TYPE_UNSPECIFIED"
-  | "REGION"
-  | "DUAL_REGION"
-  | "MULTI_REGION";
-export const InstanceConfigQuorumTypeEnum = /*@__PURE__*/ S.String;
-
-export type InstanceConfigStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "READY";
-export const InstanceConfigStateEnum = /*@__PURE__*/ S.String;
-
 export type InstanceConfigFreeInstanceAvailabilityEnum =
   | "FREE_INSTANCE_AVAILABILITY_UNSPECIFIED"
   | "AVAILABLE"
@@ -1235,57 +1229,63 @@ export type InstanceConfigFreeInstanceAvailabilityEnum =
 export const InstanceConfigFreeInstanceAvailabilityEnum =
   /*@__PURE__*/ S.String;
 
+export type InstanceConfigConfigTypeEnum =
+  | "TYPE_UNSPECIFIED"
+  | "GOOGLE_MANAGED"
+  | "USER_MANAGED";
+export const InstanceConfigConfigTypeEnum = /*@__PURE__*/ S.String;
+
 /** A possible configuration for a Cloud Spanner instance. Configurations define the geographic placement of nodes and their replication. */
 export interface InstanceConfig {
-  /** Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration. */
-  baseConfig?: string;
-  /** Output only. The available optional replicas to choose from for user-managed configurations. Populated for Google-managed configurations. */
-  optionalReplicas?: ReplicaInfoList;
-  /** The geographic placement of nodes in this instance configuration and their replication properties. To create user-managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`. */
-  replicas?: ReplicaInfoList;
   /** Allowed values of the "default_leader" schema option for databases in instances that use this instance configuration. */
   leaderOptions?: StringList;
-  /** etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance configuration from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance configuration updates in order to avoid race conditions: An etag is returned in the response which contains instance configurations, and systems are expected to put that etag in the request to update instance configuration to ensure that their change is applied to the same version of the instance configuration. If no etag is provided in the call to update the instance configuration, then the existing instance configuration is overwritten blindly. */
-  etag?: string;
-  /** Output only. Whether this instance configuration is a Google-managed or user-managed configuration. */
-  configType?: InstanceConfigConfigTypeEnum | (string & {});
-  /** Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. Cloud Labels can be used to filter collections of resources. They can be used to control how resource metrics are aggregated. And they can be used as arguments to policy management rules (e.g. route, firewall, load balancing, etc.). * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `a-z{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `[a-z0-9_-]{0,63}`. * No more than 64 labels can be associated with a given resource. See https://goo.gl/xmQnxf for more information on and examples of labels. If you plan to use labels in your own code, please note that additional characters may be allowed in the future. Therefore, you are advised to use an internal label representation, such as JSON, which doesn't rely upon specific characters being disallowed. For example, representing labels as the string: name + "_" + value would prove problematic if we were to allow "_" in a future release. */
-  labels?: StringMap;
-  /** Output only. The `QuorumType` of the instance configuration. */
-  quorumType?: InstanceConfigQuorumTypeEnum | (string & {});
-  /** Output only. The storage limit in bytes per processing unit. */
-  storageLimitPerProcessingUnit?: string;
   /** Output only. The current instance configuration state. Applicable only for `USER_MANAGED` configurations. */
   state?: InstanceConfigStateEnum | (string & {});
-  /** A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`. */
-  name?: string;
+  /** The name of this instance configuration as it appears in UIs. */
+  displayName?: string;
+  /** etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance configuration from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance configuration updates in order to avoid race conditions: An etag is returned in the response which contains instance configurations, and systems are expected to put that etag in the request to update instance configuration to ensure that their change is applied to the same version of the instance configuration. If no etag is provided in the call to update the instance configuration, then the existing instance configuration is overwritten blindly. */
+  etag?: string;
   /** Output only. If true, the instance configuration is being created or updated. If false, there are no ongoing operations for the instance configuration. */
   reconciling?: boolean;
+  /** Output only. The storage limit in bytes per processing unit. */
+  storageLimitPerProcessingUnit?: string;
+  /** Output only. The `QuorumType` of the instance configuration. */
+  quorumType?: InstanceConfigQuorumTypeEnum | (string & {});
+  /** Output only. The available optional replicas to choose from for user-managed configurations. Populated for Google-managed configurations. */
+  optionalReplicas?: ReplicaInfoList;
   /** Output only. Describes whether free instances are available to be created in this instance configuration. */
   freeInstanceAvailability?:
     | InstanceConfigFreeInstanceAvailabilityEnum
     | (string & {});
-  /** The name of this instance configuration as it appears in UIs. */
-  displayName?: string;
+  /** A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`. */
+  name?: string;
+  /** Output only. Whether this instance configuration is a Google-managed or user-managed configuration. */
+  configType?: InstanceConfigConfigTypeEnum | (string & {});
+  /** Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration. */
+  baseConfig?: string;
+  /** Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. Cloud Labels can be used to filter collections of resources. They can be used to control how resource metrics are aggregated. And they can be used as arguments to policy management rules (e.g. route, firewall, load balancing, etc.). * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `a-z{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `[a-z0-9_-]{0,63}`. * No more than 64 labels can be associated with a given resource. See https://goo.gl/xmQnxf for more information on and examples of labels. If you plan to use labels in your own code, please note that additional characters may be allowed in the future. Therefore, you are advised to use an internal label representation, such as JSON, which doesn't rely upon specific characters being disallowed. For example, representing labels as the string: name + "_" + value would prove problematic if we were to allow "_" in a future release. */
+  labels?: StringMap;
+  /** The geographic placement of nodes in this instance configuration and their replication properties. To create user-managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`. */
+  replicas?: ReplicaInfoList;
 }
 export const InstanceConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    baseConfig: S.optional(S.String),
-    optionalReplicas: S.optional(ReplicaInfoList),
-    replicas: S.optional(ReplicaInfoList),
     leaderOptions: S.optional(StringList),
-    etag: S.optional(S.String),
-    configType: S.optional(InstanceConfigConfigTypeEnum),
-    labels: S.optional(StringMap),
-    quorumType: S.optional(InstanceConfigQuorumTypeEnum),
-    storageLimitPerProcessingUnit: S.optional(S.String),
     state: S.optional(InstanceConfigStateEnum),
-    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    etag: S.optional(S.String),
     reconciling: S.optional(S.Boolean),
+    storageLimitPerProcessingUnit: S.optional(S.String),
+    quorumType: S.optional(InstanceConfigQuorumTypeEnum),
+    optionalReplicas: S.optional(ReplicaInfoList),
     freeInstanceAvailability: S.optional(
       InstanceConfigFreeInstanceAvailabilityEnum,
     ),
-    displayName: S.optional(S.String),
+    name: S.optional(S.String),
+    configType: S.optional(InstanceConfigConfigTypeEnum),
+    baseConfig: S.optional(S.String),
+    labels: S.optional(StringMap),
+    replicas: S.optional(ReplicaInfoList),
   }),
 ).annotate({ identifier: "InstanceConfig" }) as any as S.Schema<InstanceConfig>;
 
@@ -1293,16 +1293,16 @@ export const InstanceConfig = /*@__PURE__*/ S.suspend(() =>
 export interface CreateInstanceConfigRequest {
   /** Required. The `InstanceConfig` proto of the configuration to create. `instance_config.name` must be `/instanceConfigs/`. `instance_config.base_config` must be a Google-managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3. */
   instanceConfig?: InstanceConfig;
-  /** Required. The ID of the instance configuration to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google-managed configurations. */
-  instanceConfigId?: string;
   /** An option to validate, but not actually execute, a request, and provide the same response. */
   validateOnly?: boolean;
+  /** Required. The ID of the instance configuration to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google-managed configurations. */
+  instanceConfigId?: string;
 }
 export const CreateInstanceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     instanceConfig: S.optional(InstanceConfig),
-    instanceConfigId: S.optional(S.String),
     validateOnly: S.optional(S.Boolean),
+    instanceConfigId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreateInstanceConfigRequest",
@@ -1330,6 +1330,9 @@ export const CreateProjectsInstanceConfigsRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreateProjectsInstanceConfigsRequest",
 }) as any as S.Schema<CreateProjectsInstanceConfigsRequest>;
 
+export type InstanceStateEnum = "STATE_UNSPECIFIED" | "CREATING" | "READY";
+export const InstanceStateEnum = /*@__PURE__*/ S.String;
+
 export type FreeInstanceMetadataExpireBehaviorEnum =
   | "EXPIRE_BEHAVIOR_UNSPECIFIED"
   | "FREE_TO_PROVISIONED"
@@ -1340,42 +1343,32 @@ export const FreeInstanceMetadataExpireBehaviorEnum = /*@__PURE__*/ S.String;
 export interface FreeInstanceMetadata {
   /** Output only. Timestamp after which the instance will either be upgraded or scheduled for deletion after a grace period. ExpireBehavior is used to choose between upgrading or scheduling the free instance for deletion. This timestamp is set during the creation of a free instance. */
   expireTime?: string;
-  /** Output only. If present, the timestamp at which the free instance was upgraded to a provisioned instance. */
-  upgradeTime?: string;
   /** Specifies the expiration behavior of a free instance. The default of ExpireBehavior is `REMOVE_AFTER_GRACE_PERIOD`. This can be modified during or after creation, and before expiration. */
   expireBehavior?: FreeInstanceMetadataExpireBehaviorEnum | (string & {});
+  /** Output only. If present, the timestamp at which the free instance was upgraded to a provisioned instance. */
+  upgradeTime?: string;
 }
 export const FreeInstanceMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expireTime: S.optional(S.String),
-    upgradeTime: S.optional(S.String),
     expireBehavior: S.optional(FreeInstanceMetadataExpireBehaviorEnum),
+    upgradeTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "FreeInstanceMetadata",
 }) as any as S.Schema<FreeInstanceMetadata>;
 
-/** The autoscaling limits for the instance. Users can define the minimum and maximum compute capacity allocated to the instance, and the autoscaler will only scale within that range. Users can either use nodes or processing units to specify the limits, but should use the same unit to set both the min_limit and max_limit. */
-export interface AutoscalingLimits {
-  /** Minimum number of processing units allocated to the instance. If set, this number should be multiples of 1000. */
-  minProcessingUnits?: number;
-  /** Minimum number of nodes allocated to the instance. If set, this number should be greater than or equal to 1. */
-  minNodes?: number;
-  /** Maximum number of nodes allocated to the instance. If set, this number should be greater than or equal to min_nodes. */
-  maxNodes?: number;
-  /** Maximum number of processing units allocated to the instance. If set, this number should be multiples of 1000 and be greater than or equal to min_processing_units. */
-  maxProcessingUnits?: number;
-}
-export const AutoscalingLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minProcessingUnits: S.optional(S.Number),
-    minNodes: S.optional(S.Number),
-    maxNodes: S.optional(S.Number),
-    maxProcessingUnits: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AutoscalingLimits",
-}) as any as S.Schema<AutoscalingLimits>;
+export type InstanceInstanceTypeEnum =
+  | "INSTANCE_TYPE_UNSPECIFIED"
+  | "PROVISIONED"
+  | "FREE_INSTANCE";
+export const InstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
+
+export type InstanceDefaultBackupScheduleTypeEnum =
+  | "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED"
+  | "NONE"
+  | "AUTOMATIC";
+export const InstanceDefaultBackupScheduleTypeEnum = /*@__PURE__*/ S.String;
 
 /** ReplicaSelection identifies replicas with common properties. */
 export interface InstanceReplicaSelection {
@@ -1390,26 +1383,98 @@ export const InstanceReplicaSelection = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstanceReplicaSelection",
 }) as any as S.Schema<InstanceReplicaSelection>;
 
+/** ReplicaComputeCapacity describes the amount of server resources that are allocated to each replica identified by the replica selection. */
+export interface ReplicaComputeCapacity {
+  /** Required. Identifies replicas by specified properties. All replicas in the selection have the same amount of compute capacity. */
+  replicaSelection?: InstanceReplicaSelection;
+  /** The number of nodes allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`. */
+  nodeCount?: number;
+  /** The number of processing units allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`. */
+  processingUnits?: number;
+}
+export const ReplicaComputeCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    replicaSelection: S.optional(InstanceReplicaSelection),
+    nodeCount: S.optional(S.Number),
+    processingUnits: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReplicaComputeCapacity",
+}) as any as S.Schema<ReplicaComputeCapacity>;
+
+export type ReplicaComputeCapacityList = Array<ReplicaComputeCapacity>;
+export const ReplicaComputeCapacityList = /*@__PURE__*/ S.Array(
+  ReplicaComputeCapacity,
+) as any as S.Schema<ReplicaComputeCapacityList>;
+
+export type InstanceEditionEnum =
+  | "EDITION_UNSPECIFIED"
+  | "STANDARD"
+  | "ENTERPRISE"
+  | "ENTERPRISE_PLUS";
+export const InstanceEditionEnum = /*@__PURE__*/ S.String;
+
+/** The autoscaling limits for the instance. Users can define the minimum and maximum compute capacity allocated to the instance, and the autoscaler will only scale within that range. Users can either use nodes or processing units to specify the limits, but should use the same unit to set both the min_limit and max_limit. */
+export interface AutoscalingLimits {
+  /** Minimum number of nodes allocated to the instance. If set, this number should be greater than or equal to 1. */
+  minNodes?: number;
+  /** Minimum number of processing units allocated to the instance. If set, this number should be multiples of 1000. */
+  minProcessingUnits?: number;
+  /** Maximum number of nodes allocated to the instance. If set, this number should be greater than or equal to min_nodes. */
+  maxNodes?: number;
+  /** Maximum number of processing units allocated to the instance. If set, this number should be multiples of 1000 and be greater than or equal to min_processing_units. */
+  maxProcessingUnits?: number;
+}
+export const AutoscalingLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minNodes: S.optional(S.Number),
+    minProcessingUnits: S.optional(S.Number),
+    maxNodes: S.optional(S.Number),
+    maxProcessingUnits: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AutoscalingLimits",
+}) as any as S.Schema<AutoscalingLimits>;
+
+/** The autoscaling targets for an instance. */
+export interface AutoscalingTargets {
+  /** Optional. The target total CPU utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on total CPU utilization. If both `high_priority_cpu_utilization_percent` and `total_cpu_utilization_percent` are specified, the autoscaler provisions the larger of the two required compute capacities to satisfy both targets. */
+  totalCpuUtilizationPercent?: number;
+  /** Optional. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on high priority CPU utilization. */
+  highPriorityCpuUtilizationPercent?: number;
+  /** Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 99] inclusive. */
+  storageUtilizationPercent?: number;
+}
+export const AutoscalingTargets = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalCpuUtilizationPercent: S.optional(S.Number),
+    highPriorityCpuUtilizationPercent: S.optional(S.Number),
+    storageUtilizationPercent: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AutoscalingTargets",
+}) as any as S.Schema<AutoscalingTargets>;
+
 /** Overrides the top-level autoscaling configuration for the replicas identified by `replica_selection`. All fields in this message are optional. Any unspecified fields will use the corresponding values from the top-level autoscaling configuration. */
 export interface AutoscalingConfigOverrides {
   /** Optional. If specified, overrides the min/max limit in the top-level autoscaling configuration for the selected replicas. */
   autoscalingLimits?: AutoscalingLimits;
-  /** Optional. If true, disables high priority CPU autoscaling for the selected replicas and ignores high_priority_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_high_priority_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_high_priority_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the high_priority_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported. */
-  disableHighPriorityCpuAutoscaling?: boolean;
   /** Optional. If true, disables total CPU autoscaling for the selected replicas and ignores total_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_total_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_total_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the total_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported. */
   disableTotalCpuAutoscaling?: boolean;
-  /** Optional. If specified, overrides the autoscaling target high_priority_cpu_utilization_percent in the top-level autoscaling configuration for the selected replicas. */
-  autoscalingTargetHighPriorityCpuUtilizationPercent?: number;
+  /** Optional. If true, disables high priority CPU autoscaling for the selected replicas and ignores high_priority_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_high_priority_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_high_priority_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the high_priority_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported. */
+  disableHighPriorityCpuAutoscaling?: boolean;
   /** Optional. If specified, overrides the autoscaling target `total_cpu_utilization_percent` in the top-level autoscaling configuration for the selected replicas. */
   autoscalingTargetTotalCpuUtilizationPercent?: number;
+  /** Optional. If specified, overrides the autoscaling target high_priority_cpu_utilization_percent in the top-level autoscaling configuration for the selected replicas. */
+  autoscalingTargetHighPriorityCpuUtilizationPercent?: number;
 }
 export const AutoscalingConfigOverrides = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     autoscalingLimits: S.optional(AutoscalingLimits),
-    disableHighPriorityCpuAutoscaling: S.optional(S.Boolean),
     disableTotalCpuAutoscaling: S.optional(S.Boolean),
-    autoscalingTargetHighPriorityCpuUtilizationPercent: S.optional(S.Number),
+    disableHighPriorityCpuAutoscaling: S.optional(S.Boolean),
     autoscalingTargetTotalCpuUtilizationPercent: S.optional(S.Number),
+    autoscalingTargetHighPriorityCpuUtilizationPercent: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "AutoscalingConfigOverrides",
@@ -1437,147 +1502,82 @@ export const AsymmetricAutoscalingOptionList = /*@__PURE__*/ S.Array(
   AsymmetricAutoscalingOption,
 ) as any as S.Schema<AsymmetricAutoscalingOptionList>;
 
-/** The autoscaling targets for an instance. */
-export interface AutoscalingTargets {
-  /** Optional. The target total CPU utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on total CPU utilization. If both `high_priority_cpu_utilization_percent` and `total_cpu_utilization_percent` are specified, the autoscaler provisions the larger of the two required compute capacities to satisfy both targets. */
-  totalCpuUtilizationPercent?: number;
-  /** Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 99] inclusive. */
-  storageUtilizationPercent?: number;
-  /** Optional. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on high priority CPU utilization. */
-  highPriorityCpuUtilizationPercent?: number;
-}
-export const AutoscalingTargets = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalCpuUtilizationPercent: S.optional(S.Number),
-    storageUtilizationPercent: S.optional(S.Number),
-    highPriorityCpuUtilizationPercent: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AutoscalingTargets",
-}) as any as S.Schema<AutoscalingTargets>;
-
 /** Autoscaling configuration for an instance. */
 export interface AutoscalingConfig {
   /** Required. Autoscaling limits for an instance. */
   autoscalingLimits?: AutoscalingLimits;
-  /** Optional. Optional asymmetric autoscaling options. Replicas matching the replica selection criteria will be autoscaled independently from other replicas. The autoscaler will scale the replicas based on the utilization of replicas identified by the replica selection. Replica selections should not overlap with each other. Other replicas (those do not match any replica selection) will be autoscaled together and will have the same compute capacity allocated to them. */
-  asymmetricAutoscalingOptions?: AsymmetricAutoscalingOptionList;
   /** Required. The autoscaling targets for an instance. */
   autoscalingTargets?: AutoscalingTargets;
+  /** Optional. Optional asymmetric autoscaling options. Replicas matching the replica selection criteria will be autoscaled independently from other replicas. The autoscaler will scale the replicas based on the utilization of replicas identified by the replica selection. Replica selections should not overlap with each other. Other replicas (those do not match any replica selection) will be autoscaled together and will have the same compute capacity allocated to them. */
+  asymmetricAutoscalingOptions?: AsymmetricAutoscalingOptionList;
 }
 export const AutoscalingConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     autoscalingLimits: S.optional(AutoscalingLimits),
-    asymmetricAutoscalingOptions: S.optional(AsymmetricAutoscalingOptionList),
     autoscalingTargets: S.optional(AutoscalingTargets),
+    asymmetricAutoscalingOptions: S.optional(AsymmetricAutoscalingOptionList),
   }),
 ).annotate({
   identifier: "AutoscalingConfig",
 }) as any as S.Schema<AutoscalingConfig>;
 
-export type InstanceEditionEnum =
-  | "EDITION_UNSPECIFIED"
-  | "STANDARD"
-  | "ENTERPRISE"
-  | "ENTERPRISE_PLUS";
-export const InstanceEditionEnum = /*@__PURE__*/ S.String;
-
-export type InstanceInstanceTypeEnum =
-  | "INSTANCE_TYPE_UNSPECIFIED"
-  | "PROVISIONED"
-  | "FREE_INSTANCE";
-export const InstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
-
-export type InstanceStateEnum = "STATE_UNSPECIFIED" | "CREATING" | "READY";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
-
-export type InstanceDefaultBackupScheduleTypeEnum =
-  | "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED"
-  | "NONE"
-  | "AUTOMATIC";
-export const InstanceDefaultBackupScheduleTypeEnum = /*@__PURE__*/ S.String;
-
-/** ReplicaComputeCapacity describes the amount of server resources that are allocated to each replica identified by the replica selection. */
-export interface ReplicaComputeCapacity {
-  /** The number of processing units allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`. */
-  processingUnits?: number;
-  /** Required. Identifies replicas by specified properties. All replicas in the selection have the same amount of compute capacity. */
-  replicaSelection?: InstanceReplicaSelection;
-  /** The number of nodes allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`. */
-  nodeCount?: number;
-}
-export const ReplicaComputeCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    processingUnits: S.optional(S.Number),
-    replicaSelection: S.optional(InstanceReplicaSelection),
-    nodeCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReplicaComputeCapacity",
-}) as any as S.Schema<ReplicaComputeCapacity>;
-
-export type ReplicaComputeCapacityList = Array<ReplicaComputeCapacity>;
-export const ReplicaComputeCapacityList = /*@__PURE__*/ S.Array(
-  ReplicaComputeCapacity,
-) as any as S.Schema<ReplicaComputeCapacityList>;
-
 /** An isolated set of Cloud Spanner resources on which databases can be hosted. */
 export interface Instance {
-  /** Free instance metadata. Only populated for free instances. */
-  freeInstanceMetadata?: FreeInstanceMetadata;
-  /** The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying processing units per replica (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `processing_units` set here is the maximum processing units across all replicas. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity). */
-  processingUnits?: number;
-  /** Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, node_count and processing_units are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance. */
-  autoscalingConfig?: AutoscalingConfig;
-  /** Optional. The `Edition` of the current instance. */
-  edition?: InstanceEditionEnum | (string & {});
-  /** The `InstanceType` of the current instance. */
-  instanceType?: InstanceInstanceTypeEnum | (string & {});
-  /** Output only. The time at which the instance was created. */
-  createTime?: string;
   /** Output only. The current instance state. For CreateInstance, the state must be either omitted or set to `CREATING`. For UpdateInstance, the state must be either omitted or set to `READY`. */
   state?: InstanceStateEnum | (string & {});
-  /** Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects//instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. */
-  name?: string;
+  /** Deprecated. This field is not populated. */
+  endpointUris?: StringList;
+  /** Free instance metadata. Only populated for free instances. */
+  freeInstanceMetadata?: FreeInstanceMetadata;
   /** Required. The descriptive name for this instance as it appears in UIs. Must be unique per project and between 4 and 30 characters in length. */
   displayName?: string;
-  /** The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the `node_count` field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY` field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying node count across replicas (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `node_count` set here is the maximum node count across all replicas. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity). */
-  nodeCount?: number;
+  /** The `InstanceType` of the current instance. */
+  instanceType?: InstanceInstanceTypeEnum | (string & {});
+  /** Output only. The time at which the instance was most recently updated. */
+  updateTime?: string;
   /** Optional. Controls the default backup schedule behavior for new databases within the instance. By default, a backup schedule is created automatically when a new database is created in a new instance. Note that the `AUTOMATIC` value isn't permitted for free instances, as backups and backup schedules aren't supported for free instances. In the `GetInstance` or `ListInstances` response, if the value of `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't create a default backup schedule for new databases in the instance. */
   defaultBackupScheduleType?:
     | InstanceDefaultBackupScheduleTypeEnum
     | (string & {});
-  /** Required. The name of the instance's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs. */
-  config?: string;
   /** Output only. Lists the compute capacity per ReplicaSelection. A replica selection identifies a set of replicas with common properties. Replicas identified by a ReplicaSelection are scaled with the same compute capacity. */
   replicaComputeCapacity?: ReplicaComputeCapacityList;
-  /** Deprecated. This field is not populated. */
-  endpointUris?: StringList;
+  /** The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying processing units per replica (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `processing_units` set here is the maximum processing units across all replicas. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity). */
+  processingUnits?: number;
+  /** Output only. The time at which the instance was created. */
+  createTime?: string;
+  /** Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects//instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. */
+  name?: string;
   /** Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. Cloud Labels can be used to filter collections of resources. They can be used to control how resource metrics are aggregated. And they can be used as arguments to policy management rules (e.g. route, firewall, load balancing, etc.). * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `a-z{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `[a-z0-9_-]{0,63}`. * No more than 64 labels can be associated with a given resource. See https://goo.gl/xmQnxf for more information on and examples of labels. If you plan to use labels in your own code, please note that additional characters may be allowed in the future. And so you are advised to use an internal label representation, such as JSON, which doesn't rely upon specific characters being disallowed. For example, representing labels as the string: name + "_" + value would prove problematic if we were to allow "_" in a future release. */
   labels?: StringMap;
-  /** Output only. The time at which the instance was most recently updated. */
-  updateTime?: string;
+  /** Optional. The `Edition` of the current instance. */
+  edition?: InstanceEditionEnum | (string & {});
+  /** Required. The name of the instance's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs. */
+  config?: string;
+  /** The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the `node_count` field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY` field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying node count across replicas (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `node_count` set here is the maximum node count across all replicas. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity). */
+  nodeCount?: number;
+  /** Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, node_count and processing_units are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance. */
+  autoscalingConfig?: AutoscalingConfig;
 }
 export const Instance = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    freeInstanceMetadata: S.optional(FreeInstanceMetadata),
-    processingUnits: S.optional(S.Number),
-    autoscalingConfig: S.optional(AutoscalingConfig),
-    edition: S.optional(InstanceEditionEnum),
-    instanceType: S.optional(InstanceInstanceTypeEnum),
-    createTime: S.optional(S.String),
     state: S.optional(InstanceStateEnum),
-    name: S.optional(S.String),
+    endpointUris: S.optional(StringList),
+    freeInstanceMetadata: S.optional(FreeInstanceMetadata),
     displayName: S.optional(S.String),
-    nodeCount: S.optional(S.Number),
+    instanceType: S.optional(InstanceInstanceTypeEnum),
+    updateTime: S.optional(S.String),
     defaultBackupScheduleType: S.optional(
       InstanceDefaultBackupScheduleTypeEnum,
     ),
-    config: S.optional(S.String),
     replicaComputeCapacity: S.optional(ReplicaComputeCapacityList),
-    endpointUris: S.optional(StringList),
+    processingUnits: S.optional(S.Number),
+    createTime: S.optional(S.String),
+    name: S.optional(S.String),
     labels: S.optional(StringMap),
-    updateTime: S.optional(S.String),
+    edition: S.optional(InstanceEditionEnum),
+    config: S.optional(S.String),
+    nodeCount: S.optional(S.Number),
+    autoscalingConfig: S.optional(AutoscalingConfig),
   }),
 ).annotate({ identifier: "Instance" }) as any as S.Schema<Instance>;
 
@@ -1626,6 +1626,13 @@ export type CreateProjectsInstancesBackupsEncryptionConfig_encryptionTypeEnum =
 export const CreateProjectsInstancesBackupsEncryptionConfig_encryptionTypeEnum =
   /*@__PURE__*/ S.String;
 
+export type BackupMinimumRestorableEditionEnum =
+  | "EDITION_UNSPECIFIED"
+  | "STANDARD"
+  | "ENTERPRISE"
+  | "ENTERPRISE_PLUS";
+export const BackupMinimumRestorableEditionEnum = /*@__PURE__*/ S.String;
+
 export type EncryptionInfoEncryptionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "GOOGLE_DEFAULT_ENCRYPTION"
@@ -1649,6 +1656,12 @@ export const EncryptionInfo = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EncryptionInfo" }) as any as S.Schema<EncryptionInfo>;
 
+export type BackupDatabaseDialectEnum =
+  | "DATABASE_DIALECT_UNSPECIFIED"
+  | "GOOGLE_STANDARD_SQL"
+  | "POSTGRESQL";
+export const BackupDatabaseDialectEnum = /*@__PURE__*/ S.String;
+
 export type EncryptionInfoList = Array<EncryptionInfo>;
 export const EncryptionInfoList = /*@__PURE__*/ S.Array(
   EncryptionInfo,
@@ -1656,19 +1669,6 @@ export const EncryptionInfoList = /*@__PURE__*/ S.Array(
 
 export type BackupStateEnum = "STATE_UNSPECIFIED" | "CREATING" | "READY";
 export const BackupStateEnum = /*@__PURE__*/ S.String;
-
-export type BackupMinimumRestorableEditionEnum =
-  | "EDITION_UNSPECIFIED"
-  | "STANDARD"
-  | "ENTERPRISE"
-  | "ENTERPRISE_PLUS";
-export const BackupMinimumRestorableEditionEnum = /*@__PURE__*/ S.String;
-
-export type BackupDatabaseDialectEnum =
-  | "DATABASE_DIALECT_UNSPECIFIED"
-  | "GOOGLE_STANDARD_SQL"
-  | "POSTGRESQL";
-export const BackupDatabaseDialectEnum = /*@__PURE__*/ S.String;
 
 /** Instance partition information for the backup. */
 export interface BackupInstancePartition {
@@ -1690,100 +1690,100 @@ export const BackupInstancePartitionList = /*@__PURE__*/ S.Array(
 
 /** A backup of a Cloud Spanner database. */
 export interface Backup {
-  /** Output only. Data deleted at a time older than this is guaranteed not to be retained in order to support this backup. For a backup in an incremental backup chain, this is the version time of the oldest backup that exists or ever existed in the chain. For all other backups, this is the version time of the backup. This field can be used to understand what data is being retained by the backup system. */
-  oldestVersionTime?: string;
-  /** Output only. The names of the restored databases that reference the backup. The database names are of the form `projects/{project}/instances/{instance}/databases/{database}`. Referencing databases may exist in different instances. The existence of any referencing database prevents the backup from being deleted. When a restored database from the backup enters the `READY` state, the reference to the backup is removed. */
-  referencingDatabases?: StringList;
-  /** Output only. The encryption information for the backup. */
-  encryptionInfo?: EncryptionInfo;
-  /** Output only. The encryption information for the backup, whether it is protected by one or more KMS keys. The information includes all Cloud KMS key versions used to encrypt the backup. The `encryption_status` field inside of each `EncryptionInfo` is not populated. At least one of the key versions must be available for the backup to be restored. If a key version is revoked in the middle of a restore, the restore behavior is undefined. */
-  encryptionInformation?: EncryptionInfoList;
-  /** Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}`. */
-  name?: string;
-  /** Output only. For a backup in an incremental backup chain, this is the storage space needed to keep the data that has changed since the previous backup. For all other backups, this is always the size of the backup. This value may change if backups on the same chain get deleted or expired. This field can be used to calculate the total storage space used by a set of backups. For example, the total space used by all backups of a database can be computed by summing up this field. */
-  exclusiveSizeBytes?: string;
-  /** The backup will contain an externally consistent copy of the database at the timestamp specified by `version_time`. If `version_time` is not specified, the system will set `version_time` to the `create_time` of the backup. */
-  versionTime?: string;
-  /** Output only. The number of bytes that will be freed by deleting this backup. This value will be zero if, for example, this backup is part of an incremental backup chain and younger backups in the chain require that we keep its data. For backups not in an incremental backup chain, this is always the size of the backup. This value may change if backups on the same chain get created, deleted or expired. */
-  freeableSizeBytes?: string;
-  /** Output only. The names of the destination backups being created by copying this source backup. The backup names are of the form `projects/{project}/instances/{instance}/backups/{backup}`. Referencing backups may exist in different instances. The existence of any referencing backup prevents the backup from being deleted. When the copy operation is done (either successfully completed or cancelled or the destination backup is deleted), the reference to the backup is removed. */
-  referencingBackups?: StringList;
-  /** Output only. The time the CreateBackup request is received. If the request does not specify `version_time`, the `version_time` of the backup will be equivalent to the `create_time`. */
-  createTime?: string;
-  /** Output only. The current state of the backup. */
-  state?: BackupStateEnum | (string & {});
   /** Output only. Size of the backup in bytes. For a backup in an incremental backup chain, this is the sum of the `exclusive_size_bytes` of itself and all older backups in the chain. */
   sizeBytes?: string;
   /** Output only. The minimum edition required to successfully restore the backup. Populated only if the edition is Enterprise or Enterprise Plus. */
   minimumRestorableEdition?: BackupMinimumRestorableEditionEnum | (string & {});
+  /** Output only. The encryption information for the backup. */
+  encryptionInfo?: EncryptionInfo;
+  /** Output only. The database dialect information for the backup. */
+  databaseDialect?: BackupDatabaseDialectEnum | (string & {});
   /** Output only. List of backup schedule URIs that are associated with creating this backup. This is only applicable for scheduled backups, and is empty for on-demand backups. To optimize for storage, whenever possible, multiple schedules are collapsed together to create one backup. In such cases, this field captures the list of all backup schedule URIs that are associated with creating this backup. If collapsing is not done, then this field captures the single backup schedule URI associated with creating this backup. */
   backupSchedules?: StringList;
   /** Required for the CreateBackup operation. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 366 days from the time the CreateBackup request is processed. Once the `expire_time` has passed, the backup is eligible to be automatically deleted by Cloud Spanner to free the resources used by the backup. */
   expireTime?: string;
-  /** Output only. The database dialect information for the backup. */
-  databaseDialect?: BackupDatabaseDialectEnum | (string & {});
+  /** Output only. The number of bytes that will be freed by deleting this backup. This value will be zero if, for example, this backup is part of an incremental backup chain and younger backups in the chain require that we keep its data. For backups not in an incremental backup chain, this is always the size of the backup. This value may change if backups on the same chain get created, deleted or expired. */
+  freeableSizeBytes?: string;
+  /** Output only. The encryption information for the backup, whether it is protected by one or more KMS keys. The information includes all Cloud KMS key versions used to encrypt the backup. The `encryption_status` field inside of each `EncryptionInfo` is not populated. At least one of the key versions must be available for the backup to be restored. If a key version is revoked in the middle of a restore, the restore behavior is undefined. */
+  encryptionInformation?: EncryptionInfoList;
+  /** Output only. The current state of the backup. */
+  state?: BackupStateEnum | (string & {});
   /** Output only. Populated only for backups in an incremental backup chain. Backups share the same chain id if and only if they belong to the same incremental backup chain. Use this field to determine which backups are part of the same incremental backup chain. The ordering of backups in the chain can be determined by ordering the backup `version_time`. */
   incrementalBackupChainId?: string;
-  /** Output only. The instance partition storing the backup. This is the same as the list of the instance partitions that the database recorded at the backup's `version_time`. */
-  instancePartitions?: BackupInstancePartitionList;
-  /** Required for the CreateBackup operation. Name of the database from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/databases/{database}`. */
-  database?: string;
   /** Output only. The max allowed expiration time of the backup, with microseconds granularity. A backup's expiration time can be configured in multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or copying an existing backup, the expiration time specified must be less than `Backup.max_expire_time`. */
   maxExpireTime?: string;
+  /** The backup will contain an externally consistent copy of the database at the timestamp specified by `version_time`. If `version_time` is not specified, the system will set `version_time` to the `create_time` of the backup. */
+  versionTime?: string;
+  /** Output only. The names of the destination backups being created by copying this source backup. The backup names are of the form `projects/{project}/instances/{instance}/backups/{backup}`. Referencing backups may exist in different instances. The existence of any referencing backup prevents the backup from being deleted. When the copy operation is done (either successfully completed or cancelled or the destination backup is deleted), the reference to the backup is removed. */
+  referencingBackups?: StringList;
+  /** Required for the CreateBackup operation. Name of the database from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/databases/{database}`. */
+  database?: string;
+  /** Output only. For a backup in an incremental backup chain, this is the storage space needed to keep the data that has changed since the previous backup. For all other backups, this is always the size of the backup. This value may change if backups on the same chain get deleted or expired. This field can be used to calculate the total storage space used by a set of backups. For example, the total space used by all backups of a database can be computed by summing up this field. */
+  exclusiveSizeBytes?: string;
+  /** Output only. The instance partition storing the backup. This is the same as the list of the instance partitions that the database recorded at the backup's `version_time`. */
+  instancePartitions?: BackupInstancePartitionList;
+  /** Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}`. */
+  name?: string;
+  /** Output only. The time the CreateBackup request is received. If the request does not specify `version_time`, the `version_time` of the backup will be equivalent to the `create_time`. */
+  createTime?: string;
+  /** Output only. The names of the restored databases that reference the backup. The database names are of the form `projects/{project}/instances/{instance}/databases/{database}`. Referencing databases may exist in different instances. The existence of any referencing database prevents the backup from being deleted. When a restored database from the backup enters the `READY` state, the reference to the backup is removed. */
+  referencingDatabases?: StringList;
+  /** Output only. Data deleted at a time older than this is guaranteed not to be retained in order to support this backup. For a backup in an incremental backup chain, this is the version time of the oldest backup that exists or ever existed in the chain. For all other backups, this is the version time of the backup. This field can be used to understand what data is being retained by the backup system. */
+  oldestVersionTime?: string;
 }
 export const Backup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    oldestVersionTime: S.optional(S.String),
-    referencingDatabases: S.optional(StringList),
-    encryptionInfo: S.optional(EncryptionInfo),
-    encryptionInformation: S.optional(EncryptionInfoList),
-    name: S.optional(S.String),
-    exclusiveSizeBytes: S.optional(S.String),
-    versionTime: S.optional(S.String),
-    freeableSizeBytes: S.optional(S.String),
-    referencingBackups: S.optional(StringList),
-    createTime: S.optional(S.String),
-    state: S.optional(BackupStateEnum),
     sizeBytes: S.optional(S.String),
     minimumRestorableEdition: S.optional(BackupMinimumRestorableEditionEnum),
+    encryptionInfo: S.optional(EncryptionInfo),
+    databaseDialect: S.optional(BackupDatabaseDialectEnum),
     backupSchedules: S.optional(StringList),
     expireTime: S.optional(S.String),
-    databaseDialect: S.optional(BackupDatabaseDialectEnum),
+    freeableSizeBytes: S.optional(S.String),
+    encryptionInformation: S.optional(EncryptionInfoList),
+    state: S.optional(BackupStateEnum),
     incrementalBackupChainId: S.optional(S.String),
-    instancePartitions: S.optional(BackupInstancePartitionList),
-    database: S.optional(S.String),
     maxExpireTime: S.optional(S.String),
+    versionTime: S.optional(S.String),
+    referencingBackups: S.optional(StringList),
+    database: S.optional(S.String),
+    exclusiveSizeBytes: S.optional(S.String),
+    instancePartitions: S.optional(BackupInstancePartitionList),
+    name: S.optional(S.String),
+    createTime: S.optional(S.String),
+    referencingDatabases: S.optional(StringList),
+    oldestVersionTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Backup" }) as any as S.Schema<Backup>;
 
 export interface CreateProjectsInstancesBackupsRequest {
+  /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. */
+  "encryptionConfig.kmsKeyName"?: string;
+  /** Required. The name of the instance in which the backup is created. This must be the same instance that contains the database the backup is created from. The backup will be stored in the locations specified in the instance configuration of this instance. Values are of the form `projects/{project}/instances/{instance}`. */
+  parent: string;
   /** Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
   "encryptionConfig.kmsKeyNames"?: StringList;
   /** Required. The id of the backup to be created. The `backup_id` appended to `parent` forms the full backup name of the form `projects/{project}/instances/{instance}/backups/{backup_id}`. */
   backupId?: string;
-  /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. */
-  "encryptionConfig.kmsKeyName"?: string;
   /** Required. The encryption type of the backup. */
   "encryptionConfig.encryptionType"?:
     | CreateProjectsInstancesBackupsEncryptionConfig_encryptionTypeEnum
     | (string & {});
-  /** Required. The name of the instance in which the backup is created. This must be the same instance that contains the database the backup is created from. The backup will be stored in the locations specified in the instance configuration of this instance. Values are of the form `projects/{project}/instances/{instance}`. */
-  parent: string;
   /** Request body */
   body?: Backup;
 }
 export const CreateProjectsInstancesBackupsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      "encryptionConfig.kmsKeyName": S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       "encryptionConfig.kmsKeyNames": S.optional(StringList.pipe(T.Query())),
       backupId: S.optional(S.String.pipe(T.Query())),
-      "encryptionConfig.kmsKeyName": S.optional(S.String.pipe(T.Query())),
       "encryptionConfig.encryptionType": S.optional(
         CreateProjectsInstancesBackupsEncryptionConfig_encryptionTypeEnum.pipe(
           T.Query(),
         ),
       ),
-      parent: S.String.pipe(T.Label()),
       body: S.optional(Backup.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1820,23 +1820,23 @@ export const CreateDatabaseRequestDatabaseDialectEnum = /*@__PURE__*/ S.String;
 
 /** The request for CreateDatabase. */
 export interface CreateDatabaseRequest {
-  /** Optional. A list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created. */
-  extraStatements?: StringList;
   /** Optional. The encryption configuration for the database. If this field is not specified, Cloud Spanner will encrypt/decrypt all data at rest using Google default encryption. */
   encryptionConfig?: EncryptionConfig;
-  /** Required. A `CREATE DATABASE` statement, which specifies the ID of the new database. The database ID must conform to the regular expression `a-z*[a-z0-9]` and be between 2 and 30 characters in length. If the database ID is a reserved word or if it contains a hyphen, the database ID must be enclosed in backticks (`` ` ``). */
-  createStatement?: string;
+  /** Optional. A list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created. */
+  extraStatements?: StringList;
   /** Optional. The dialect of the Cloud Spanner Database. */
   databaseDialect?: CreateDatabaseRequestDatabaseDialectEnum | (string & {});
+  /** Required. A `CREATE DATABASE` statement, which specifies the ID of the new database. The database ID must conform to the regular expression `a-z*[a-z0-9]` and be between 2 and 30 characters in length. If the database ID is a reserved word or if it contains a hyphen, the database ID must be enclosed in backticks (`` ` ``). */
+  createStatement?: string;
   /** Optional. Proto descriptors used by `CREATE/ALTER PROTO BUNDLE` statements in 'extra_statements'. Contains a protobuf-serialized [`google.protobuf.FileDescriptorSet`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) descriptor set. To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description). */
   protoDescriptors?: string;
 }
 export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    extraStatements: S.optional(StringList),
     encryptionConfig: S.optional(EncryptionConfig),
-    createStatement: S.optional(S.String),
+    extraStatements: S.optional(StringList),
     databaseDialect: S.optional(CreateDatabaseRequestDatabaseDialectEnum),
+    createStatement: S.optional(S.String),
     protoDescriptors: S.optional(S.String),
   }),
 ).annotate({
@@ -1875,39 +1875,47 @@ export const CreateBackupEncryptionConfigEncryptionTypeEnum =
 
 /** Encryption configuration for the backup to create. */
 export interface CreateBackupEncryptionConfig {
-  /** Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
-  kmsKeyNames?: StringList;
   /** Required. The encryption type of the backup. */
   encryptionType?:
     | CreateBackupEncryptionConfigEncryptionTypeEnum
     | (string & {});
+  /** Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
+  kmsKeyNames?: StringList;
   /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{kms_key_name}`. */
   kmsKeyName?: string;
 }
 export const CreateBackupEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kmsKeyNames: S.optional(StringList),
     encryptionType: S.optional(CreateBackupEncryptionConfigEncryptionTypeEnum),
+    kmsKeyNames: S.optional(StringList),
     kmsKeyName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreateBackupEncryptionConfig",
 }) as any as S.Schema<CreateBackupEncryptionConfig>;
 
+/** The specification for incremental backup chains. An incremental backup stores the delta of changes between a previous backup and the database contents at a given version time. An incremental backup chain consists of a full backup and zero or more successive incremental backups. The first backup created for an incremental backup chain is always a full backup. */
+export type IncrementalBackupSpec = PartitionedDml;
+export const IncrementalBackupSpec = PartitionedDml;
+
+/** The specification for full backups. A full backup stores the entire contents of the database at a given version time. */
+export type FullBackupSpec = PartitionedDml;
+export const FullBackupSpec = PartitionedDml;
+
 /** CrontabSpec can be used to specify the version time and frequency at which the backup is created. */
 export interface CrontabSpec {
-  /** Output only. The time zone of the times in `CrontabSpec.text`. Currently, only UTC is supported. */
-  timeZone?: string;
   /** Output only. Scheduled backups contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner might not initiate the creation of the scheduled backups at that version time. Spanner initiates the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`. */
   creationWindow?: string;
   /** Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 *\/4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC. */
   text?: string;
+  /** Output only. The time zone of the times in `CrontabSpec.text`. Currently, only UTC is supported. */
+  timeZone?: string;
 }
 export const CrontabSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    timeZone: S.optional(S.String),
     creationWindow: S.optional(S.String),
     text: S.optional(S.String),
+    timeZone: S.optional(S.String),
   }),
 ).annotate({ identifier: "CrontabSpec" }) as any as S.Schema<CrontabSpec>;
 
@@ -1924,56 +1932,48 @@ export const BackupScheduleSpec = /*@__PURE__*/ S.suspend(() =>
   identifier: "BackupScheduleSpec",
 }) as any as S.Schema<BackupScheduleSpec>;
 
-/** The specification for full backups. A full backup stores the entire contents of the database at a given version time. */
-export type FullBackupSpec = PartitionedDml;
-export const FullBackupSpec = PartitionedDml;
-
-/** The specification for incremental backup chains. An incremental backup stores the delta of changes between a previous backup and the database contents at a given version time. An incremental backup chain consists of a full backup and zero or more successive incremental backups. The first backup created for an incremental backup chain is always a full backup. */
-export type IncrementalBackupSpec = PartitionedDml;
-export const IncrementalBackupSpec = PartitionedDml;
-
 /** BackupSchedule expresses the automated backup creation specification for a Spanner database. */
 export interface BackupSchedule {
-  /** Identifier. Output only for the CreateBackupSchedule operation. Required for the UpdateBackupSchedule operation. A globally unique identifier for the backup schedule which cannot be changed. Values are of the form `projects//instances//databases//backupSchedules/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. */
-  name?: string;
-  /** Output only. The timestamp at which the schedule was last updated. If the schedule has never been updated, this field contains the timestamp when the schedule was first created. */
-  updateTime?: string;
   /** Optional. The encryption configuration that is used to encrypt the backup. If this field is not specified, the backup uses the same encryption configuration as the database. */
   encryptionConfig?: CreateBackupEncryptionConfig;
-  /** Optional. The schedule specification based on which the backup creations are triggered. */
-  spec?: BackupScheduleSpec;
-  /** The schedule creates only full backups. */
-  fullBackupSpec?: PartitionedDml;
-  /** Optional. The retention duration of a backup that must be at least 6 hours and at most 366 days. The backup is eligible to be automatically deleted once the retention period has elapsed. */
-  retentionDuration?: string;
   /** The schedule creates incremental backup chains. */
   incrementalBackupSpec?: PartitionedDml;
+  /** The schedule creates only full backups. */
+  fullBackupSpec?: PartitionedDml;
+  /** Output only. The timestamp at which the schedule was last updated. If the schedule has never been updated, this field contains the timestamp when the schedule was first created. */
+  updateTime?: string;
+  /** Optional. The schedule specification based on which the backup creations are triggered. */
+  spec?: BackupScheduleSpec;
+  /** Optional. The retention duration of a backup that must be at least 6 hours and at most 366 days. The backup is eligible to be automatically deleted once the retention period has elapsed. */
+  retentionDuration?: string;
+  /** Identifier. Output only for the CreateBackupSchedule operation. Required for the UpdateBackupSchedule operation. A globally unique identifier for the backup schedule which cannot be changed. Values are of the form `projects//instances//databases//backupSchedules/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. */
+  name?: string;
 }
 export const BackupSchedule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    updateTime: S.optional(S.String),
     encryptionConfig: S.optional(CreateBackupEncryptionConfig),
-    spec: S.optional(BackupScheduleSpec),
-    fullBackupSpec: S.optional(PartitionedDml),
-    retentionDuration: S.optional(S.String),
     incrementalBackupSpec: S.optional(PartitionedDml),
+    fullBackupSpec: S.optional(PartitionedDml),
+    updateTime: S.optional(S.String),
+    spec: S.optional(BackupScheduleSpec),
+    retentionDuration: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "BackupSchedule" }) as any as S.Schema<BackupSchedule>;
 
 export interface CreateProjectsInstancesDatabasesBackupSchedulesRequest {
-  /** Required. The Id to use for the backup schedule. The `backup_schedule_id` appended to `parent` forms the full backup schedule name of the form `projects//instances//databases//backupSchedules/`. */
-  backupScheduleId?: string;
   /** Required. The name of the database that this backup schedule applies to. */
   parent: string;
+  /** Required. The Id to use for the backup schedule. The `backup_schedule_id` appended to `parent` forms the full backup schedule name of the form `projects//instances//databases//backupSchedules/`. */
+  backupScheduleId?: string;
   /** Request body */
   body?: BackupSchedule;
 }
 export const CreateProjectsInstancesDatabasesBackupSchedulesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      backupScheduleId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      backupScheduleId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(BackupSchedule.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2029,45 +2029,45 @@ export const InstancePartitionStateEnum = /*@__PURE__*/ S.String;
 
 /** An isolated set of Cloud Spanner resources that databases can define placements on. */
 export interface InstancePartition {
-  /** Output only. The time at which the instance partition was most recently updated. */
-  updateTime?: string;
   /** Required. The name of the instance partition's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs. */
   config?: string;
-  /** Output only. The names of the databases that reference this instance partition. Referencing databases should share the parent instance. The existence of any referencing database prevents the instance partition from being deleted. */
-  referencingDatabases?: StringList;
-  /** The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. If autoscaling is enabled, processing_units is treated as an OUTPUT_ONLY field and reflects the current number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state. */
-  processingUnits?: number;
-  /** Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, fields in compute_capacity are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance partition. */
-  autoscalingConfig?: AutoscalingConfig;
   /** Used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance partition from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance partition updates in order to avoid race conditions: An etag is returned in the response which contains instance partitions, and systems are expected to put that etag in the request to update instance partitions to ensure that their change will be applied to the same version of the instance partition. If no etag is provided in the call to update instance partition, then the existing instance partition is overwritten blindly. */
   etag?: string;
-  /** Required. The descriptive name for this instance partition as it appears in UIs. Must be unique per project and between 4 and 30 characters in length. */
-  displayName?: string;
-  /** The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`. */
-  nodeCount?: number;
-  /** Required. A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. An instance partition's name cannot be changed after the instance partition is created. */
-  name?: string;
-  /** Output only. The current instance partition state. */
-  state?: InstancePartitionStateEnum | (string & {});
-  /** Output only. The time at which the instance partition was created. */
-  createTime?: string;
+  /** Output only. The time at which the instance partition was most recently updated. */
+  updateTime?: string;
   /** Output only. Deprecated: This field is not populated. Output only. The names of the backups that reference this instance partition. Referencing backups should share the parent instance. The existence of any referencing backup prevents the instance partition from being deleted. */
   referencingBackups?: StringList;
+  /** The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`. */
+  nodeCount?: number;
+  /** Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, fields in compute_capacity are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance partition. */
+  autoscalingConfig?: AutoscalingConfig;
+  /** Required. A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. An instance partition's name cannot be changed after the instance partition is created. */
+  name?: string;
+  /** The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. If autoscaling is enabled, processing_units is treated as an OUTPUT_ONLY field and reflects the current number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state. */
+  processingUnits?: number;
+  /** Output only. The time at which the instance partition was created. */
+  createTime?: string;
+  /** Output only. The current instance partition state. */
+  state?: InstancePartitionStateEnum | (string & {});
+  /** Required. The descriptive name for this instance partition as it appears in UIs. Must be unique per project and between 4 and 30 characters in length. */
+  displayName?: string;
+  /** Output only. The names of the databases that reference this instance partition. Referencing databases should share the parent instance. The existence of any referencing database prevents the instance partition from being deleted. */
+  referencingDatabases?: StringList;
 }
 export const InstancePartition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateTime: S.optional(S.String),
     config: S.optional(S.String),
-    referencingDatabases: S.optional(StringList),
-    processingUnits: S.optional(S.Number),
-    autoscalingConfig: S.optional(AutoscalingConfig),
     etag: S.optional(S.String),
-    displayName: S.optional(S.String),
-    nodeCount: S.optional(S.Number),
-    name: S.optional(S.String),
-    state: S.optional(InstancePartitionStateEnum),
-    createTime: S.optional(S.String),
+    updateTime: S.optional(S.String),
     referencingBackups: S.optional(StringList),
+    nodeCount: S.optional(S.Number),
+    autoscalingConfig: S.optional(AutoscalingConfig),
+    name: S.optional(S.String),
+    processingUnits: S.optional(S.Number),
+    createTime: S.optional(S.String),
+    state: S.optional(InstancePartitionStateEnum),
+    displayName: S.optional(S.String),
+    referencingDatabases: S.optional(StringList),
   }),
 ).annotate({
   identifier: "InstancePartition",
@@ -2075,15 +2075,15 @@ export const InstancePartition = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for CreateInstancePartition. */
 export interface CreateInstancePartitionRequest {
-  /** Required. The ID of the instance partition to create. Valid identifiers are of the form `a-z*[a-z0-9]` and must be between 2 and 64 characters in length. */
-  instancePartitionId?: string;
   /** Required. The instance partition to create. The instance_partition.name may be omitted, but if specified must be `/instancePartitions/`. */
   instancePartition?: InstancePartition;
+  /** Required. The ID of the instance partition to create. Valid identifiers are of the form `a-z*[a-z0-9]` and must be between 2 and 64 characters in length. */
+  instancePartitionId?: string;
 }
 export const CreateInstancePartitionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    instancePartitionId: S.optional(S.String),
     instancePartition: S.optional(InstancePartition),
+    instancePartitionId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreateInstancePartitionRequest",
@@ -2112,19 +2112,19 @@ export const CreateProjectsInstancesInstancePartitionsRequest =
   }) as any as S.Schema<CreateProjectsInstancesInstancePartitionsRequest>;
 
 export interface DeleteProjectsInstanceConfigsRequest {
+  /** An option to validate, but not actually execute, a request, and provide the same response. */
+  validateOnly?: boolean;
   /** Required. The name of the instance configuration to be deleted. Values are of the form `projects//instanceConfigs/` */
   name: string;
   /** Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance configuration from overwriting each other. If not empty, the API only deletes the instance configuration when the etag provided matches the current status of the requested instance configuration. Otherwise, deletes the instance configuration without checking the current status of the requested instance configuration. */
   etag?: string;
-  /** An option to validate, but not actually execute, a request, and provide the same response. */
-  validateOnly?: boolean;
 }
 export const DeleteProjectsInstanceConfigsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       etag: S.optional(S.String.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -2366,6 +2366,25 @@ export const DropDatabaseProjectsInstancesDatabasesRequest =
     identifier: "DropDatabaseProjectsInstancesDatabasesRequest",
   }) as any as S.Schema<DropDatabaseProjectsInstancesDatabasesRequest>;
 
+/** This message is used to select the transaction in which a Read or ExecuteSql call runs. See TransactionOptions for more information about transactions. */
+export interface TransactionSelector {
+  /** Execute the read or SQL query in a previously-started transaction. */
+  id?: string;
+  /** Begin a new transaction and execute this read or SQL query in it. The transaction ID of the new transaction is returned in ResultSetMetadata.transaction, which is a Transaction. */
+  begin?: TransactionOptions;
+  /** Execute the read or SQL query in a temporary transaction. This is the most efficient way to execute a transaction that consists of a single SQL query. */
+  singleUse?: TransactionOptions;
+}
+export const TransactionSelector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    begin: S.optional(TransactionOptions),
+    singleUse: S.optional(TransactionOptions),
+  }),
+).annotate({
+  identifier: "TransactionSelector",
+}) as any as S.Schema<TransactionSelector>;
+
 /** Message representing a single field of a struct. */
 export interface Field {
   /** The name of the field. For reads, this is the column name. For SQL queries, it is the column alias (e.g., `"Word"` in the query `"SELECT 'hello' AS Word"`), or the column name (e.g., `"ColName"` in the query `"SELECT ColName FROM Table"`). Some columns might have an empty name (e.g., `"SELECT UPPER(ColName)"`). Note that a query result can contain multiple fields with the same name. */
@@ -2396,13 +2415,6 @@ export const StructType = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "StructType" }) as any as S.Schema<StructType>;
 
-export type TypeTypeAnnotationEnum =
-  | "TYPE_ANNOTATION_CODE_UNSPECIFIED"
-  | "PG_NUMERIC"
-  | "PG_JSONB"
-  | "PG_OID";
-export const TypeTypeAnnotationEnum = /*@__PURE__*/ S.String;
-
 export type TypeCodeEnum =
   | "TYPE_CODE_UNSPECIFIED"
   | "BOOL"
@@ -2423,26 +2435,33 @@ export type TypeCodeEnum =
   | "UUID";
 export const TypeCodeEnum = /*@__PURE__*/ S.String;
 
+export type TypeTypeAnnotationEnum =
+  | "TYPE_ANNOTATION_CODE_UNSPECIFIED"
+  | "PG_NUMERIC"
+  | "PG_JSONB"
+  | "PG_OID";
+export const TypeTypeAnnotationEnum = /*@__PURE__*/ S.String;
+
 /** `Type` indicates the type of a Cloud Spanner value, as might be stored in a table cell or returned from an SQL query. */
 export interface Type {
   /** If code == STRUCT, then `struct_type` provides type information for the struct's fields. */
   structType?: StructType;
-  /** The TypeAnnotationCode that disambiguates SQL type that Spanner will use to represent values of this type during query processing. This is necessary for some type codes because a single TypeCode can be mapped to different SQL types depending on the SQL dialect. type_annotation typically is not needed to process the content of a value (it doesn't affect serialization) and clients can ignore it on the read path. */
-  typeAnnotation?: TypeTypeAnnotationEnum | (string & {});
-  /** If code == PROTO or code == ENUM, then `proto_type_fqn` is the fully qualified name of the proto type representing the proto/enum definition. */
-  protoTypeFqn?: string;
-  /** If code == ARRAY, then `array_element_type` is the type of the array elements. */
-  arrayElementType?: Type;
   /** Required. The TypeCode for this type. */
   code?: TypeCodeEnum | (string & {});
+  /** The TypeAnnotationCode that disambiguates SQL type that Spanner will use to represent values of this type during query processing. This is necessary for some type codes because a single TypeCode can be mapped to different SQL types depending on the SQL dialect. type_annotation typically is not needed to process the content of a value (it doesn't affect serialization) and clients can ignore it on the read path. */
+  typeAnnotation?: TypeTypeAnnotationEnum | (string & {});
+  /** If code == ARRAY, then `array_element_type` is the type of the array elements. */
+  arrayElementType?: Type;
+  /** If code == PROTO or code == ENUM, then `proto_type_fqn` is the fully qualified name of the proto type representing the proto/enum definition. */
+  protoTypeFqn?: string;
 }
 export const Type = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     structType: S.optional(StructType),
-    typeAnnotation: S.optional(TypeTypeAnnotationEnum),
-    protoTypeFqn: S.optional(S.String),
-    arrayElementType: S.optional(Type),
     code: S.optional(TypeCodeEnum),
+    typeAnnotation: S.optional(TypeTypeAnnotationEnum),
+    arrayElementType: S.optional(Type),
+    protoTypeFqn: S.optional(S.String),
   }),
 ).annotate({ identifier: "Type" }) as any as S.Schema<Type>;
 
@@ -2474,45 +2493,26 @@ export const StatementList = /*@__PURE__*/ S.Array(
   Statement,
 ) as any as S.Schema<StatementList>;
 
-/** This message is used to select the transaction in which a Read or ExecuteSql call runs. See TransactionOptions for more information about transactions. */
-export interface TransactionSelector {
-  /** Execute the read or SQL query in a temporary transaction. This is the most efficient way to execute a transaction that consists of a single SQL query. */
-  singleUse?: TransactionOptions;
-  /** Execute the read or SQL query in a previously-started transaction. */
-  id?: string;
-  /** Begin a new transaction and execute this read or SQL query in it. The transaction ID of the new transaction is returned in ResultSetMetadata.transaction, which is a Transaction. */
-  begin?: TransactionOptions;
-}
-export const TransactionSelector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    singleUse: S.optional(TransactionOptions),
-    id: S.optional(S.String),
-    begin: S.optional(TransactionOptions),
-  }),
-).annotate({
-  identifier: "TransactionSelector",
-}) as any as S.Schema<TransactionSelector>;
-
 /** The request for ExecuteBatchDml. */
 export interface ExecuteBatchDmlRequest {
-  /** Common options for this request. */
-  requestOptions?: RequestOptions;
-  /** Optional. If set to `true`, this request marks the end of the transaction. After these statements execute, you must commit or abort the transaction. Attempts to execute any other requests against this transaction (including reads and queries) are rejected. Setting this option might cause some error reporting to be deferred until commit time (for example, validation of unique constraints). Given this, successful execution of statements shouldn't be assumed until a subsequent `Commit` call completes successfully. */
-  lastStatements?: boolean;
-  /** Required. The list of statements to execute in this batch. Statements are executed serially, such that the effects of statement `i` are visible to statement `i+1`. Each statement must be a DML statement. Execution stops at the first failed statement; the remaining statements are not executed. Callers must provide at least one statement. */
-  statements?: StatementList;
   /** Required. A per-transaction sequence number used to identify this request. This field makes each request idempotent such that if the request is received multiple times, at most one succeeds. The sequence number must be monotonically increasing within the transaction. If a request arrives for the first time with an out-of-order sequence number, the transaction might be aborted. Replays of previously handled requests yield the same response as the first execution. */
   seqno?: string;
+  /** Optional. If set to `true`, this request marks the end of the transaction. After these statements execute, you must commit or abort the transaction. Attempts to execute any other requests against this transaction (including reads and queries) are rejected. Setting this option might cause some error reporting to be deferred until commit time (for example, validation of unique constraints). Given this, successful execution of statements shouldn't be assumed until a subsequent `Commit` call completes successfully. */
+  lastStatements?: boolean;
+  /** Common options for this request. */
+  requestOptions?: RequestOptions;
   /** Required. The transaction to use. Must be a read-write transaction. To protect against replays, single-use transactions are not supported. The caller must either supply an existing transaction ID or begin a new transaction. */
   transaction?: TransactionSelector;
+  /** Required. The list of statements to execute in this batch. Statements are executed serially, such that the effects of statement `i` are visible to statement `i+1`. Each statement must be a DML statement. Execution stops at the first failed statement; the remaining statements are not executed. Callers must provide at least one statement. */
+  statements?: StatementList;
 }
 export const ExecuteBatchDmlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestOptions: S.optional(RequestOptions),
-    lastStatements: S.optional(S.Boolean),
-    statements: S.optional(StatementList),
     seqno: S.optional(S.String),
+    lastStatements: S.optional(S.Boolean),
+    requestOptions: S.optional(RequestOptions),
     transaction: S.optional(TransactionSelector),
+    statements: S.optional(StatementList),
   }),
 ).annotate({
   identifier: "ExecuteBatchDmlRequest",
@@ -2542,18 +2542,18 @@ export const ExecuteBatchDmlProjectsInstancesDatabasesSessionsRequest =
 
 /** Metadata about a ResultSet or PartialResultSet. */
 export interface ResultSetMetadata {
+  /** If the read or SQL query began a transaction as a side-effect, the information about the new transaction is yielded here. */
+  transaction?: Transaction;
   /** Indicates the field names and types for the rows in the result set. For example, a SQL query like `"SELECT UserId, UserName FROM Users"` could return a `row_type` value like: "fields": [ { "name": "UserId", "type": { "code": "INT64" } }, { "name": "UserName", "type": { "code": "STRING" } }, ] */
   rowType?: StructType;
   /** A SQL query can be parameterized. In PLAN mode, these parameters can be undeclared. This indicates the field names and types for those undeclared parameters in the SQL query. For example, a SQL query like `"SELECT * FROM Users where UserId = @userId and UserName = @userName "` could return a `undeclared_parameters` value like: "fields": [ { "name": "UserId", "type": { "code": "INT64" } }, { "name": "UserName", "type": { "code": "STRING" } }, ] */
   undeclaredParameters?: StructType;
-  /** If the read or SQL query began a transaction as a side-effect, the information about the new transaction is yielded here. */
-  transaction?: Transaction;
 }
 export const ResultSetMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    transaction: S.optional(Transaction),
     rowType: S.optional(StructType),
     undeclaredParameters: S.optional(StructType),
-    transaction: S.optional(Transaction),
   }),
 ).annotate({
   identifier: "ResultSetMetadata",
@@ -2581,9 +2581,6 @@ export const ChildLinkList = /*@__PURE__*/ S.Array(
   ChildLink,
 ) as any as S.Schema<ChildLinkList>;
 
-export type PlanNodeKindEnum = "KIND_UNSPECIFIED" | "RELATIONAL" | "SCALAR";
-export const PlanNodeKindEnum = /*@__PURE__*/ S.String;
-
 export type IntegerMap = { [key: string]: number | undefined };
 export const IntegerMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -2592,46 +2589,49 @@ export const IntegerMap = /*@__PURE__*/ S.Record(
 
 /** Condensed representation of a node and its subtree. Only present for `SCALAR` PlanNode(s). */
 export interface ShortRepresentation {
-  /** A mapping of (subquery variable name) -> (subquery node id) for cases where the `description` string of this node references a `SCALAR` subquery contained in the expression subtree rooted at this node. The referenced `SCALAR` subquery may not necessarily be a direct child of this node. */
-  subqueries?: IntegerMap;
   /** A string representation of the expression subtree rooted at this node. */
   description?: string;
+  /** A mapping of (subquery variable name) -> (subquery node id) for cases where the `description` string of this node references a `SCALAR` subquery contained in the expression subtree rooted at this node. The referenced `SCALAR` subquery may not necessarily be a direct child of this node. */
+  subqueries?: IntegerMap;
 }
 export const ShortRepresentation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subqueries: S.optional(IntegerMap),
     description: S.optional(S.String),
+    subqueries: S.optional(IntegerMap),
   }),
 ).annotate({
   identifier: "ShortRepresentation",
 }) as any as S.Schema<ShortRepresentation>;
 
+export type PlanNodeKindEnum = "KIND_UNSPECIFIED" | "RELATIONAL" | "SCALAR";
+export const PlanNodeKindEnum = /*@__PURE__*/ S.String;
+
 /** Node information for nodes appearing in a QueryPlan.plan_nodes. */
 export interface PlanNode {
   /** List of child node `index`es and their relationship to this parent. */
   childLinks?: ChildLinkList;
-  /** Attributes relevant to the node contained in a group of key-value pairs. For example, a Parameter Reference node could have the following information in its metadata: { "parameter_reference": "param1", "parameter_type": "array" } */
-  metadata?: DocumentMap;
-  /** Used to determine the type of node. May be needed for visualizing different kinds of nodes differently. For example, If the node is a SCALAR node, it will have a condensed representation which can be used to directly embed a description of the node in its parent. */
-  kind?: PlanNodeKindEnum;
-  /** The display name for the node. */
-  displayName?: string;
-  /** The execution statistics associated with the node, contained in a group of key-value pairs. Only present if the plan was returned as a result of a profile query. For example, number of executions, number of rows/time per execution etc. */
-  executionStats?: DocumentMap;
   /** The `PlanNode`'s index in node list. */
   index?: number;
+  /** Attributes relevant to the node contained in a group of key-value pairs. For example, a Parameter Reference node could have the following information in its metadata: { "parameter_reference": "param1", "parameter_type": "array" } */
+  metadata?: DocumentMap;
+  /** The display name for the node. */
+  displayName?: string;
   /** Condensed representation for SCALAR nodes. */
   shortRepresentation?: ShortRepresentation;
+  /** Used to determine the type of node. May be needed for visualizing different kinds of nodes differently. For example, If the node is a SCALAR node, it will have a condensed representation which can be used to directly embed a description of the node in its parent. */
+  kind?: PlanNodeKindEnum;
+  /** The execution statistics associated with the node, contained in a group of key-value pairs. Only present if the plan was returned as a result of a profile query. For example, number of executions, number of rows/time per execution etc. */
+  executionStats?: DocumentMap;
 }
 export const PlanNode = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     childLinks: S.optional(ChildLinkList),
-    metadata: S.optional(DocumentMap),
-    kind: S.optional(PlanNodeKindEnum),
-    displayName: S.optional(S.String),
-    executionStats: S.optional(DocumentMap),
     index: S.optional(S.Number),
+    metadata: S.optional(DocumentMap),
+    displayName: S.optional(S.String),
     shortRepresentation: S.optional(ShortRepresentation),
+    kind: S.optional(PlanNodeKindEnum),
+    executionStats: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "PlanNode" }) as any as S.Schema<PlanNode>;
 
@@ -2688,41 +2688,41 @@ export const QueryPlan = /*@__PURE__*/ S.suspend(() =>
 
 /** Additional statistics about a ResultSet or PartialResultSet. */
 export interface ResultSetStats {
-  /** QueryPlan for the query associated with this result. */
-  queryPlan?: QueryPlan;
-  /** Standard DML returns an exact count of rows that were modified. */
-  rowCountExact?: string;
-  /** Aggregated statistics from the execution of the query. Only present when the query is profiled. For example, a query could return the statistics as follows: { "rows_returned": "3", "elapsed_time": "1.22 secs", "cpu_time": "1.19 secs" } */
-  queryStats?: DocumentMap;
   /** Partitioned DML doesn't offer exactly-once semantics, so it returns a lower bound of the rows modified. */
   rowCountLowerBound?: string;
+  /** QueryPlan for the query associated with this result. */
+  queryPlan?: QueryPlan;
+  /** Aggregated statistics from the execution of the query. Only present when the query is profiled. For example, a query could return the statistics as follows: { "rows_returned": "3", "elapsed_time": "1.22 secs", "cpu_time": "1.19 secs" } */
+  queryStats?: DocumentMap;
+  /** Standard DML returns an exact count of rows that were modified. */
+  rowCountExact?: string;
 }
 export const ResultSetStats = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    queryPlan: S.optional(QueryPlan),
-    rowCountExact: S.optional(S.String),
-    queryStats: S.optional(DocumentMap),
     rowCountLowerBound: S.optional(S.String),
+    queryPlan: S.optional(QueryPlan),
+    queryStats: S.optional(DocumentMap),
+    rowCountExact: S.optional(S.String),
   }),
 ).annotate({ identifier: "ResultSetStats" }) as any as S.Schema<ResultSetStats>;
 
 /** Results from Read or ExecuteSql. */
 export interface ResultSet {
-  /** Each element in `rows` is a row whose format is defined by metadata.row_type. The ith element in each row matches the ith field in metadata.row_type. Elements are encoded based on type as described here. */
-  rows?: DocumentListList;
-  /** Optional. A precommit token is included if the read-write transaction is on a multiplexed session. Pass the precommit token with the highest sequence number from this transaction attempt to the Commit request for this transaction. */
-  precommitToken?: MultiplexedSessionPrecommitToken;
   /** Metadata about the result set, such as row type information. */
   metadata?: ResultSetMetadata;
+  /** Each element in `rows` is a row whose format is defined by metadata.row_type. The ith element in each row matches the ith field in metadata.row_type. Elements are encoded based on type as described here. */
+  rows?: DocumentListList;
   /** Query plan and execution statistics for the SQL statement that produced this result set. These can be requested by setting ExecuteSqlRequest.query_mode. DML statements always produce stats containing the number of rows modified, unless executed using the ExecuteSqlRequest.QueryMode.PLAN ExecuteSqlRequest.query_mode. Other fields might or might not be populated, based on the ExecuteSqlRequest.query_mode. */
   stats?: ResultSetStats;
+  /** Optional. A precommit token is included if the read-write transaction is on a multiplexed session. Pass the precommit token with the highest sequence number from this transaction attempt to the Commit request for this transaction. */
+  precommitToken?: MultiplexedSessionPrecommitToken;
 }
 export const ResultSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rows: S.optional(DocumentListList),
-    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
     metadata: S.optional(ResultSetMetadata),
+    rows: S.optional(DocumentListList),
     stats: S.optional(ResultSetStats),
+    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
   }),
 ).annotate({ identifier: "ResultSet" }) as any as S.Schema<ResultSet>;
 
@@ -2733,30 +2733,22 @@ export const ResultSetList = /*@__PURE__*/ S.Array(
 
 /** The response for ExecuteBatchDml. Contains a list of ResultSet messages, one for each DML statement that has successfully executed, in the same order as the statements in the request. If a statement fails, the status in the response body identifies the cause of the failure. To check for DML statements that failed, use the following approach: 1. Check the status in the response message. The google.rpc.Code enum value `OK` indicates that all statements were executed successfully. 2. If the status was not `OK`, check the number of result sets in the response. If the response contains `N` ResultSet messages, then statement `N+1` in the request failed. Example 1: * Request: 5 DML statements, all executed successfully. * Response: 5 ResultSet messages, with the status `OK`. Example 2: * Request: 5 DML statements. The third statement has a syntax error. * Response: 2 ResultSet messages, and a syntax error (`INVALID_ARGUMENT`) status. The number of ResultSet messages indicates that the third statement failed, and the fourth and fifth statements were not executed. */
 export interface ExecuteBatchDmlResponse {
+  /** Optional. A precommit token is included if the read-write transaction is on a multiplexed session. Pass the precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction. */
+  precommitToken?: MultiplexedSessionPrecommitToken;
   /** One ResultSet for each statement in the request that ran successfully, in the same order as the statements in the request. Each ResultSet does not contain any rows. The ResultSetStats in each ResultSet contain the number of rows modified by the statement. Only the first ResultSet in the response contains valid ResultSetMetadata. */
   resultSets?: ResultSetList;
   /** If all DML statements are executed successfully, the status is `OK`. Otherwise, the error status of the first failed statement. */
   status?: Status;
-  /** Optional. A precommit token is included if the read-write transaction is on a multiplexed session. Pass the precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction. */
-  precommitToken?: MultiplexedSessionPrecommitToken;
 }
 export const ExecuteBatchDmlResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
     resultSets: S.optional(ResultSetList),
     status: S.optional(Status),
-    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
   }),
 ).annotate({
   identifier: "ExecuteBatchDmlResponse",
 }) as any as S.Schema<ExecuteBatchDmlResponse>;
-
-export type ExecuteSqlRequestQueryModeEnum =
-  | "NORMAL"
-  | "PLAN"
-  | "PROFILE"
-  | "WITH_STATS"
-  | "WITH_PLAN_AND_STATS";
-export const ExecuteSqlRequestQueryModeEnum = /*@__PURE__*/ S.String;
 
 export type ReplicaSelectionTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -2830,6 +2822,14 @@ export const DirectedReadOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "DirectedReadOptions",
 }) as any as S.Schema<DirectedReadOptions>;
 
+export type ExecuteSqlRequestQueryModeEnum =
+  | "NORMAL"
+  | "PLAN"
+  | "PROFILE"
+  | "WITH_STATS"
+  | "WITH_PLAN_AND_STATS";
+export const ExecuteSqlRequestQueryModeEnum = /*@__PURE__*/ S.String;
+
 /** Query optimizer configuration. */
 export interface QueryOptions {
   /** An option to control the selection of optimizer version. This parameter allows individual queries to pick different query optimizer versions. Specifying `latest` as a value instructs Cloud Spanner to use the latest supported query optimizer version. If not specified, Cloud Spanner uses the optimizer version set at the database level options. Any other positive integer (from the list of supported optimizer versions) overrides the default optimizer version for query execution. The list of supported optimizer versions can be queried from `SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS`. Executing a SQL statement with an invalid optimizer version fails with an `INVALID_ARGUMENT` error. See https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer for more information on managing the query optimizer. The `optimizer_version` statement hint has precedence over this setting. */
@@ -2848,46 +2848,46 @@ export const QueryOptions = /*@__PURE__*/ S.suspend(() =>
 export interface ExecuteSqlRequest {
   /** It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, you can use `param_types` to specify the exact SQL type for some or all of the SQL statement parameters. See the definition of Type for more information about SQL types. */
   paramTypes?: TypeMap;
-  /** If this is for a partitioned query and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request doesn't set `partition_token`, the API returns an `INVALID_ARGUMENT` error. */
-  dataBoostEnabled?: boolean;
-  /** Optional. If set to `true`, this statement marks the end of the transaction. After this statement executes, you must commit or abort the transaction. Attempts to execute any other requests against this transaction (including reads and queries) are rejected. For DML statements, setting this option might cause some error reporting to be deferred until commit time (for example, validation of unique constraints). Given this, successful execution of a DML statement shouldn't be assumed until a subsequent `Commit` call completes successfully. */
-  lastStatement?: boolean;
   /** Required. The SQL string. */
   sql?: string;
   /** Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names must conform to the naming requirements of identifiers as specified at https://cloud.google.com/spanner/docs/lexical#identifiers. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id > @msg_id AND id < @msg_id + 100"` It's an error to execute a SQL statement with unbound parameters. */
   params?: DocumentMap;
-  /** Used to control the amount of debugging information returned in ResultSetStats. If partition_token is set, query_mode can only be set to QueryMode.NORMAL. */
-  queryMode?: ExecuteSqlRequestQueryModeEnum | (string & {});
-  /** The transaction to use. For queries, if none is provided, the default is a temporary read-only transaction with strong concurrency. Standard DML statements require a read-write transaction. To protect against replays, single-use transactions are not supported. The caller must either supply an existing transaction ID or begin a new transaction. Partitioned DML requires an existing Partitioned DML transaction ID. */
-  transaction?: TransactionSelector;
-  /** If this request is resuming a previously interrupted SQL statement execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL statement execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token. */
-  resumeToken?: string;
-  /** If present, results are restricted to the specified partition previously created using `PartitionQuery`. There must be an exact match for the values of fields common to this message and the `PartitionQueryRequest` message used to create this `partition_token`. */
-  partitionToken?: string;
   /** Directed read options for this request. */
   directedReadOptions?: DirectedReadOptions;
+  /** The transaction to use. For queries, if none is provided, the default is a temporary read-only transaction with strong concurrency. Standard DML statements require a read-write transaction. To protect against replays, single-use transactions are not supported. The caller must either supply an existing transaction ID or begin a new transaction. Partitioned DML requires an existing Partitioned DML transaction ID. */
+  transaction?: TransactionSelector;
+  /** Used to control the amount of debugging information returned in ResultSetStats. If partition_token is set, query_mode can only be set to QueryMode.NORMAL. */
+  queryMode?: ExecuteSqlRequestQueryModeEnum | (string & {});
   /** A per-transaction sequence number used to identify this request. This field makes each request idempotent such that if the request is received multiple times, at most one succeeds. The sequence number must be monotonically increasing within the transaction. If a request arrives for the first time with an out-of-order sequence number, the transaction can be aborted. Replays of previously handled requests yield the same response as the first execution. Required for DML statements. Ignored for queries. */
   seqno?: string;
+  /** If this is for a partitioned query and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request doesn't set `partition_token`, the API returns an `INVALID_ARGUMENT` error. */
+  dataBoostEnabled?: boolean;
   /** Query optimizer configuration to use for the given query. */
   queryOptions?: QueryOptions;
+  /** If present, results are restricted to the specified partition previously created using `PartitionQuery`. There must be an exact match for the values of fields common to this message and the `PartitionQueryRequest` message used to create this `partition_token`. */
+  partitionToken?: string;
+  /** Optional. If set to `true`, this statement marks the end of the transaction. After this statement executes, you must commit or abort the transaction. Attempts to execute any other requests against this transaction (including reads and queries) are rejected. For DML statements, setting this option might cause some error reporting to be deferred until commit time (for example, validation of unique constraints). Given this, successful execution of a DML statement shouldn't be assumed until a subsequent `Commit` call completes successfully. */
+  lastStatement?: boolean;
   /** Common options for this request. */
   requestOptions?: RequestOptions;
+  /** If this request is resuming a previously interrupted SQL statement execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL statement execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token. */
+  resumeToken?: string;
 }
 export const ExecuteSqlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     paramTypes: S.optional(TypeMap),
-    dataBoostEnabled: S.optional(S.Boolean),
-    lastStatement: S.optional(S.Boolean),
     sql: S.optional(S.String),
     params: S.optional(DocumentMap),
-    queryMode: S.optional(ExecuteSqlRequestQueryModeEnum),
-    transaction: S.optional(TransactionSelector),
-    resumeToken: S.optional(S.String),
-    partitionToken: S.optional(S.String),
     directedReadOptions: S.optional(DirectedReadOptions),
+    transaction: S.optional(TransactionSelector),
+    queryMode: S.optional(ExecuteSqlRequestQueryModeEnum),
     seqno: S.optional(S.String),
+    dataBoostEnabled: S.optional(S.Boolean),
     queryOptions: S.optional(QueryOptions),
+    partitionToken: S.optional(S.String),
+    lastStatement: S.optional(S.Boolean),
     requestOptions: S.optional(RequestOptions),
+    resumeToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ExecuteSqlRequest",
@@ -2939,30 +2939,30 @@ export const ExecuteStreamingSqlProjectsInstancesDatabasesSessionsRequest =
 
 /** Partial results from a streaming read or SQL query. Streaming reads and SQL queries better tolerate large result sets, large rows, and large values, but are a little trickier to consume. */
 export interface PartialResultSet {
-  /** Optional. Indicates whether this is the last `PartialResultSet` in the stream. The server might optionally set this field. Clients shouldn't rely on this field being set in all cases. */
-  last?: boolean;
-  /** If true, then the final value in values is chunked, and must be combined with more values from subsequent `PartialResultSet`s to obtain a complete field value. */
-  chunkedValue?: boolean;
-  /** Optional. A precommit token is included if the read-write transaction has multiplexed sessions enabled. Pass the precommit token with the highest sequence number from this transaction attempt to the Commit request for this transaction. */
-  precommitToken?: MultiplexedSessionPrecommitToken;
   /** Metadata about the result set, such as row type information. Only present in the first response. */
   metadata?: ResultSetMetadata;
-  /** A streamed result set consists of a stream of values, which might be split into many `PartialResultSet` messages to accommodate large rows and/or large values. Every N complete values defines a row, where N is equal to the number of entries in metadata.row_type.fields. Most values are encoded based on type as described here. It's possible that the last value in values is "chunked", meaning that the rest of the value is sent in subsequent `PartialResultSet`(s). This is denoted by the chunked_value field. Two or more chunked values can be merged to form a complete value as follows: * `bool/number/null`: can't be chunked * `string`: concatenate the strings * `list`: concatenate the lists. If the last element in a list is a `string`, `list`, or `object`, merge it with the first element in the next list by applying these rules recursively. * `object`: concatenate the (field name, field value) pairs. If a field name is duplicated, then apply these rules recursively to merge the field values. Some examples of merging: Strings are concatenated. "foo", "bar" => "foobar" Lists of non-strings are concatenated. [2, 3], [4] => [2, 3, 4] Lists are concatenated, but the last and first elements are merged because they are strings. ["a", "b"], ["c", "d"] => ["a", "bc", "d"] Lists are concatenated, but the last and first elements are merged because they are lists. Recursively, the last and first elements of the inner lists are merged because they are strings. ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"] Non-overlapping object fields are combined. {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"} Overlapping object fields are merged. {"a": "1"}, {"a": "2"} => {"a": "12"} Examples of merging objects containing lists of strings. {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]} For a more complete example, suppose a streaming SQL query is yielding a result set whose rows contain a single string field. The following `PartialResultSet`s might be yielded: { "metadata": { ... } "values": ["Hello", "W"] "chunked_value": true "resume_token": "Af65..." } { "values": ["orl"] "chunked_value": true } { "values": ["d"] "resume_token": "Zx1B..." } This sequence of `PartialResultSet`s encodes two rows, one containing the field value `"Hello"`, and a second containing the field value `"World" = "W" + "orl" + "d"`. Not all `PartialResultSet`s contain a `resume_token`. Execution can only be resumed from a previously yielded `resume_token`. For the above sequence of `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."` yields results from the `PartialResultSet` with value "orl". */
-  values?: DocumentList;
   /** Streaming calls might be interrupted for a variety of reasons, such as TCP connection loss. If this occurs, the stream of results can be resumed by re-sending the original request and including `resume_token`. Note that executing any other transaction in the same session invalidates the token. */
   resumeToken?: string;
   /** Query plan and execution statistics for the statement that produced this streaming result set. These can be requested by setting ExecuteSqlRequest.query_mode and are sent only once with the last response in the stream. This field is also present in the last response for DML statements. */
   stats?: ResultSetStats;
+  /** Optional. A precommit token is included if the read-write transaction has multiplexed sessions enabled. Pass the precommit token with the highest sequence number from this transaction attempt to the Commit request for this transaction. */
+  precommitToken?: MultiplexedSessionPrecommitToken;
+  /** Optional. Indicates whether this is the last `PartialResultSet` in the stream. The server might optionally set this field. Clients shouldn't rely on this field being set in all cases. */
+  last?: boolean;
+  /** A streamed result set consists of a stream of values, which might be split into many `PartialResultSet` messages to accommodate large rows and/or large values. Every N complete values defines a row, where N is equal to the number of entries in metadata.row_type.fields. Most values are encoded based on type as described here. It's possible that the last value in values is "chunked", meaning that the rest of the value is sent in subsequent `PartialResultSet`(s). This is denoted by the chunked_value field. Two or more chunked values can be merged to form a complete value as follows: * `bool/number/null`: can't be chunked * `string`: concatenate the strings * `list`: concatenate the lists. If the last element in a list is a `string`, `list`, or `object`, merge it with the first element in the next list by applying these rules recursively. * `object`: concatenate the (field name, field value) pairs. If a field name is duplicated, then apply these rules recursively to merge the field values. Some examples of merging: Strings are concatenated. "foo", "bar" => "foobar" Lists of non-strings are concatenated. [2, 3], [4] => [2, 3, 4] Lists are concatenated, but the last and first elements are merged because they are strings. ["a", "b"], ["c", "d"] => ["a", "bc", "d"] Lists are concatenated, but the last and first elements are merged because they are lists. Recursively, the last and first elements of the inner lists are merged because they are strings. ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"] Non-overlapping object fields are combined. {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"} Overlapping object fields are merged. {"a": "1"}, {"a": "2"} => {"a": "12"} Examples of merging objects containing lists of strings. {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]} For a more complete example, suppose a streaming SQL query is yielding a result set whose rows contain a single string field. The following `PartialResultSet`s might be yielded: { "metadata": { ... } "values": ["Hello", "W"] "chunked_value": true "resume_token": "Af65..." } { "values": ["orl"] "chunked_value": true } { "values": ["d"] "resume_token": "Zx1B..." } This sequence of `PartialResultSet`s encodes two rows, one containing the field value `"Hello"`, and a second containing the field value `"World" = "W" + "orl" + "d"`. Not all `PartialResultSet`s contain a `resume_token`. Execution can only be resumed from a previously yielded `resume_token`. For the above sequence of `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."` yields results from the `PartialResultSet` with value "orl". */
+  values?: DocumentList;
+  /** If true, then the final value in values is chunked, and must be combined with more values from subsequent `PartialResultSet`s to obtain a complete field value. */
+  chunkedValue?: boolean;
 }
 export const PartialResultSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    last: S.optional(S.Boolean),
-    chunkedValue: S.optional(S.Boolean),
-    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
     metadata: S.optional(ResultSetMetadata),
-    values: S.optional(DocumentList),
     resumeToken: S.optional(S.String),
     stats: S.optional(ResultSetStats),
+    precommitToken: S.optional(MultiplexedSessionPrecommitToken),
+    last: S.optional(S.Boolean),
+    values: S.optional(DocumentList),
+    chunkedValue: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "PartialResultSet",
@@ -3053,37 +3053,37 @@ export const GetIamPolicyProjectsInstancesRequest = /*@__PURE__*/ S.suspend(
 
 /** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
 export interface Expr {
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
   /** Textual representation of an expression in Common Expression Language syntax. */
   expression?: string;
   /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
   title?: string;
   /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
   description?: string;
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
 }
 export const Expr = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(S.String),
     expression: S.optional(S.String),
     title: S.optional(S.String),
     description: S.optional(S.String),
-    location: S.optional(S.String),
   }),
 ).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
 
 /** Associates `members`, or principals, with a `role`. */
 export interface Binding {
-  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
-  members?: StringList;
   /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
   role?: string;
+  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
+  members?: StringList;
   /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   condition?: Expr;
 }
 export const Binding = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    members: S.optional(StringList),
     role: S.optional(S.String),
+    members: S.optional(StringList),
     condition: S.optional(Expr),
   }),
 ).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
@@ -3309,6 +3309,56 @@ export const GetProjectsInstancesDatabasesRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetProjectsInstancesDatabasesRequest",
 }) as any as S.Schema<GetProjectsInstancesDatabasesRequest>;
 
+export type DatabaseStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "READY"
+  | "READY_OPTIMIZING";
+export const DatabaseStateEnum = /*@__PURE__*/ S.String;
+
+/** Information about a backup. */
+export interface BackupInfo {
+  /** Name of the backup. */
+  backup?: string;
+  /** The backup contains an externally consistent copy of `source_database` at the timestamp specified by `version_time`. If the CreateBackup request did not specify `version_time`, the `version_time` of the backup is equivalent to the `create_time`. */
+  versionTime?: string;
+  /** Name of the database the backup was created from. */
+  sourceDatabase?: string;
+  /** The time the CreateBackup request was received. */
+  createTime?: string;
+}
+export const BackupInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backup: S.optional(S.String),
+    versionTime: S.optional(S.String),
+    sourceDatabase: S.optional(S.String),
+    createTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "BackupInfo" }) as any as S.Schema<BackupInfo>;
+
+export type RestoreInfoSourceTypeEnum = "TYPE_UNSPECIFIED" | "BACKUP";
+export const RestoreInfoSourceTypeEnum = /*@__PURE__*/ S.String;
+
+/** Information about the database restore. */
+export interface RestoreInfo {
+  /** Information about the backup used to restore the database. The backup may no longer exist. */
+  backupInfo?: BackupInfo;
+  /** The type of the restore source. */
+  sourceType?: RestoreInfoSourceTypeEnum | (string & {});
+}
+export const RestoreInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupInfo: S.optional(BackupInfo),
+    sourceType: S.optional(RestoreInfoSourceTypeEnum),
+  }),
+).annotate({ identifier: "RestoreInfo" }) as any as S.Schema<RestoreInfo>;
+
+export type DatabaseDatabaseDialectEnum =
+  | "DATABASE_DIALECT_UNSPECIFIED"
+  | "GOOGLE_STANDARD_SQL"
+  | "POSTGRESQL";
+export const DatabaseDatabaseDialectEnum = /*@__PURE__*/ S.String;
+
 export type QuorumInfoInitiatorEnum =
   | "INITIATOR_UNSPECIFIED"
   | "GOOGLE"
@@ -3317,118 +3367,68 @@ export const QuorumInfoInitiatorEnum = /*@__PURE__*/ S.String;
 
 /** Information about the dual-region quorum. */
 export interface QuorumInfo {
-  /** Output only. Whether this `ChangeQuorum` is Google or User initiated. */
-  initiator?: QuorumInfoInitiatorEnum | (string & {});
-  /** Output only. The type of this quorum. See QuorumType for more information about quorum type specifications. */
-  quorumType?: QuorumType;
-  /** Output only. The timestamp when the request was triggered. */
-  startTime?: string;
   /** Output only. The etag is used for optimistic concurrency control as a way to help prevent simultaneous `ChangeQuorum` requests that might create a race condition. */
   etag?: string;
+  /** Output only. The type of this quorum. See QuorumType for more information about quorum type specifications. */
+  quorumType?: QuorumType;
+  /** Output only. Whether this `ChangeQuorum` is Google or User initiated. */
+  initiator?: QuorumInfoInitiatorEnum | (string & {});
+  /** Output only. The timestamp when the request was triggered. */
+  startTime?: string;
 }
 export const QuorumInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    initiator: S.optional(QuorumInfoInitiatorEnum),
-    quorumType: S.optional(QuorumType),
-    startTime: S.optional(S.String),
     etag: S.optional(S.String),
+    quorumType: S.optional(QuorumType),
+    initiator: S.optional(QuorumInfoInitiatorEnum),
+    startTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "QuorumInfo" }) as any as S.Schema<QuorumInfo>;
 
-export type RestoreInfoSourceTypeEnum = "TYPE_UNSPECIFIED" | "BACKUP";
-export const RestoreInfoSourceTypeEnum = /*@__PURE__*/ S.String;
-
-/** Information about a backup. */
-export interface BackupInfo {
-  /** The time the CreateBackup request was received. */
-  createTime?: string;
-  /** Name of the backup. */
-  backup?: string;
-  /** The backup contains an externally consistent copy of `source_database` at the timestamp specified by `version_time`. If the CreateBackup request did not specify `version_time`, the `version_time` of the backup is equivalent to the `create_time`. */
-  versionTime?: string;
-  /** Name of the database the backup was created from. */
-  sourceDatabase?: string;
-}
-export const BackupInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createTime: S.optional(S.String),
-    backup: S.optional(S.String),
-    versionTime: S.optional(S.String),
-    sourceDatabase: S.optional(S.String),
-  }),
-).annotate({ identifier: "BackupInfo" }) as any as S.Schema<BackupInfo>;
-
-/** Information about the database restore. */
-export interface RestoreInfo {
-  /** The type of the restore source. */
-  sourceType?: RestoreInfoSourceTypeEnum | (string & {});
-  /** Information about the backup used to restore the database. The backup may no longer exist. */
-  backupInfo?: BackupInfo;
-}
-export const RestoreInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceType: S.optional(RestoreInfoSourceTypeEnum),
-    backupInfo: S.optional(BackupInfo),
-  }),
-).annotate({ identifier: "RestoreInfo" }) as any as S.Schema<RestoreInfo>;
-
-export type DatabaseStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "READY"
-  | "READY_OPTIMIZING";
-export const DatabaseStateEnum = /*@__PURE__*/ S.String;
-
-export type DatabaseDatabaseDialectEnum =
-  | "DATABASE_DIALECT_UNSPECIFIED"
-  | "GOOGLE_STANDARD_SQL"
-  | "POSTGRESQL";
-export const DatabaseDatabaseDialectEnum = /*@__PURE__*/ S.String;
-
 /** A Cloud Spanner database. */
 export interface Database {
-  /** Output only. Applicable only for databases that use dual-region instance configurations. Contains information about the quorum. */
-  quorumInfo?: QuorumInfo;
-  /** Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as all Cloud KMS key versions that are in use. The `encryption_status` field inside of each `EncryptionInfo` is not populated. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field. */
-  encryptionInfo?: EncryptionInfoList;
-  /** Output only. Applicable only for restored databases. Contains information about the restore source. */
-  restoreInfo?: RestoreInfo;
-  /** Output only. For databases that are using customer managed encryption, this field contains the encryption configuration for the database. For databases that are using Google default or other types of encryption, this field is empty. */
-  encryptionConfig?: EncryptionConfig;
   /** Output only. If exists, the time at which the database creation started. */
   createTime?: string;
-  /** Output only. The current database state. */
-  state?: DatabaseStateEnum | (string & {});
-  /** Output only. If true, the database is being updated. If false, there are no ongoing update operations for the database. */
-  reconciling?: boolean;
   /** Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database. */
   name?: string;
+  /** Output only. For databases that are using customer managed encryption, this field contains the encryption configuration for the database. For databases that are using Google default or other types of encryption, this field is empty. */
+  encryptionConfig?: EncryptionConfig;
+  /** Output only. If true, the database is being updated. If false, there are no ongoing update operations for the database. */
+  reconciling?: boolean;
   /** Optional. Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion). */
   enableDropProtection?: boolean;
-  /** Output only. The period in which Cloud Spanner retains all versions of data for the database. This is the same as the value of version_retention_period database option set using UpdateDatabaseDdl. Defaults to 1 hour, if not set. */
-  versionRetentionPeriod?: string;
+  /** Output only. The current database state. */
+  state?: DatabaseStateEnum | (string & {});
+  /** Output only. Applicable only for restored databases. Contains information about the restore source. */
+  restoreInfo?: RestoreInfo;
   /** Output only. Earliest timestamp at which older versions of the data can be read. This value is continuously updated by Cloud Spanner and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery. */
   earliestVersionTime?: string;
-  /** Output only. The read-write region which contains the database's leader replicas. This is the same as the value of default_leader database option set using DatabaseAdmin.CreateDatabase or DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty. */
-  defaultLeader?: string;
+  /** Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as all Cloud KMS key versions that are in use. The `encryption_status` field inside of each `EncryptionInfo` is not populated. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field. */
+  encryptionInfo?: EncryptionInfoList;
   /** Output only. The dialect of the Cloud Spanner Database. */
   databaseDialect?: DatabaseDatabaseDialectEnum | (string & {});
+  /** Output only. The period in which Cloud Spanner retains all versions of data for the database. This is the same as the value of version_retention_period database option set using UpdateDatabaseDdl. Defaults to 1 hour, if not set. */
+  versionRetentionPeriod?: string;
+  /** Output only. Applicable only for databases that use dual-region instance configurations. Contains information about the quorum. */
+  quorumInfo?: QuorumInfo;
+  /** Output only. The read-write region which contains the database's leader replicas. This is the same as the value of default_leader database option set using DatabaseAdmin.CreateDatabase or DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty. */
+  defaultLeader?: string;
 }
 export const Database = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    quorumInfo: S.optional(QuorumInfo),
-    encryptionInfo: S.optional(EncryptionInfoList),
-    restoreInfo: S.optional(RestoreInfo),
-    encryptionConfig: S.optional(EncryptionConfig),
     createTime: S.optional(S.String),
-    state: S.optional(DatabaseStateEnum),
-    reconciling: S.optional(S.Boolean),
     name: S.optional(S.String),
+    encryptionConfig: S.optional(EncryptionConfig),
+    reconciling: S.optional(S.Boolean),
     enableDropProtection: S.optional(S.Boolean),
-    versionRetentionPeriod: S.optional(S.String),
+    state: S.optional(DatabaseStateEnum),
+    restoreInfo: S.optional(RestoreInfo),
     earliestVersionTime: S.optional(S.String),
-    defaultLeader: S.optional(S.String),
+    encryptionInfo: S.optional(EncryptionInfoList),
     databaseDialect: S.optional(DatabaseDatabaseDialectEnum),
+    versionRetentionPeriod: S.optional(S.String),
+    quorumInfo: S.optional(QuorumInfo),
+    defaultLeader: S.optional(S.String),
   }),
 ).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
 
@@ -3554,24 +3554,24 @@ export const GetScansProjectsInstancesDatabasesViewEnum =
   /*@__PURE__*/ S.String;
 
 export interface GetScansProjectsInstancesDatabasesRequest {
-  /** The upper bound for the time range to retrieve Scan data for. */
-  endTime?: string;
   /** Required. The unique name of the scan containing the requested information, specific to the Database service implementing this interface. */
   name: string;
-  /** These fields restrict the Database-specific information returned in the `Scan.data` field. If a `View` is provided that does not include the `Scan.data` field, these are ignored. This range of time must be entirely contained within the defined time range of the targeted scan. The lower bound for the time range to retrieve Scan data for. */
-  startTime?: string;
   /** Specifies which parts of the Scan should be returned in the response. Note, if left unspecified, the FULL view is assumed. */
   view?: GetScansProjectsInstancesDatabasesViewEnum | (string & {});
+  /** These fields restrict the Database-specific information returned in the `Scan.data` field. If a `View` is provided that does not include the `Scan.data` field, these are ignored. This range of time must be entirely contained within the defined time range of the targeted scan. The lower bound for the time range to retrieve Scan data for. */
+  startTime?: string;
+  /** The upper bound for the time range to retrieve Scan data for. */
+  endTime?: string;
 }
 export const GetScansProjectsInstancesDatabasesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      endTime: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
-      startTime: S.optional(S.String.pipe(T.Query())),
       view: S.optional(
         GetScansProjectsInstancesDatabasesViewEnum.pipe(T.Query()),
       ),
+      startTime: S.optional(S.String.pipe(T.Query())),
+      endTime: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3583,32 +3583,83 @@ export const GetScansProjectsInstancesDatabasesRequest =
     identifier: "GetScansProjectsInstancesDatabasesRequest",
   }) as any as S.Schema<GetScansProjectsInstancesDatabasesRequest>;
 
-export type VisualizationDataKeyUnitEnum =
-  | "KEY_UNIT_UNSPECIFIED"
-  | "KEY"
-  | "CHUNK";
-export const VisualizationDataKeyUnitEnum = /*@__PURE__*/ S.String;
+/** A message representing a user-facing string whose value may need to be translated before being displayed. */
+export interface LocalizedString {
+  /** The canonical English version of this message. If no token is provided or the front-end has no message associated with the token, this text will be displayed as-is. */
+  message?: string;
+  /** A map of arguments used when creating the localized message. Keys represent parameter names which may be used by the localized version when substituting dynamic values. */
+  args?: StringMap;
+  /** The token identifying the message, e.g. 'METRIC_READ_CPU'. This should be unique within the service. */
+  token?: string;
+}
+export const LocalizedString = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    args: S.optional(StringMap),
+    token: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LocalizedString",
+}) as any as S.Schema<LocalizedString>;
+
+export type DiagnosticMessageSeverityEnum =
+  | "SEVERITY_UNSPECIFIED"
+  | "INFO"
+  | "WARNING"
+  | "ERROR"
+  | "FATAL";
+export const DiagnosticMessageSeverityEnum = /*@__PURE__*/ S.String;
+
+/** A message representing the key visualizer diagnostic messages. */
+export interface DiagnosticMessage {
+  /** Whether this message is specific only for the current metric. By default Diagnostics are shown for all metrics, regardless which metric is the currently selected metric in the UI. However occasionally a metric will generate so many messages that the resulting visual clutter becomes overwhelming. In this case setting this to true, will show the diagnostic messages for that metric only if it is the currently selected metric. */
+  metricSpecific?: boolean;
+  /** The metric. */
+  metric?: LocalizedString;
+  /** Information about this diagnostic information. */
+  info?: LocalizedString;
+  /** The short message. */
+  shortMessage?: LocalizedString;
+  /** The severity of the diagnostic message. */
+  severity?: DiagnosticMessageSeverityEnum;
+}
+export const DiagnosticMessage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metricSpecific: S.optional(S.Boolean),
+    metric: S.optional(LocalizedString),
+    info: S.optional(LocalizedString),
+    shortMessage: S.optional(LocalizedString),
+    severity: S.optional(DiagnosticMessageSeverityEnum),
+  }),
+).annotate({
+  identifier: "DiagnosticMessage",
+}) as any as S.Schema<DiagnosticMessage>;
+
+export type DiagnosticMessageList = Array<DiagnosticMessage>;
+export const DiagnosticMessageList = /*@__PURE__*/ S.Array(
+  DiagnosticMessage,
+) as any as S.Schema<DiagnosticMessageList>;
 
 /** A message representing a key prefix node in the key prefix hierarchy. for eg. Bigtable keyspaces are lexicographically ordered mappings of keys to values. Keys often have a shared prefix structure where users use the keys to organize data. Eg ///employee In this case Keysight will possibly use one node for a company and reuse it for all employees that fall under the company. Doing so improves legibility in the UI. */
 export interface PrefixNode {
-  /** The index of the end key bucket of the range that this node spans. */
-  endIndex?: number;
-  /** The depth in the prefix hierarchy. */
-  depth?: number;
-  /** The string represented by the prefix node. */
-  word?: string;
   /** Whether this corresponds to a data_source name. */
   dataSourceNode?: boolean;
+  /** The depth in the prefix hierarchy. */
+  depth?: number;
+  /** The index of the end key bucket of the range that this node spans. */
+  endIndex?: number;
   /** The index of the start key bucket of the range that this node spans. */
   startIndex?: number;
+  /** The string represented by the prefix node. */
+  word?: string;
 }
 export const PrefixNode = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endIndex: S.optional(S.Number),
-    depth: S.optional(S.Number),
-    word: S.optional(S.String),
     dataSourceNode: S.optional(S.Boolean),
+    depth: S.optional(S.Number),
+    endIndex: S.optional(S.Number),
     startIndex: S.optional(S.Number),
+    word: S.optional(S.String),
   }),
 ).annotate({ identifier: "PrefixNode" }) as any as S.Schema<PrefixNode>;
 
@@ -3617,27 +3668,11 @@ export const PrefixNodeList = /*@__PURE__*/ S.Array(
   PrefixNode,
 ) as any as S.Schema<PrefixNodeList>;
 
-/** A message representing a user-facing string whose value may need to be translated before being displayed. */
-export interface LocalizedString {
-  /** The canonical English version of this message. If no token is provided or the front-end has no message associated with the token, this text will be displayed as-is. */
-  message?: string;
-  /** The token identifying the message, e.g. 'METRIC_READ_CPU'. This should be unique within the service. */
-  token?: string;
-  /** A map of arguments used when creating the localized message. Keys represent parameter names which may be used by the localized version when substituting dynamic values. */
-  args?: StringMap;
-}
-export const LocalizedString = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    token: S.optional(S.String),
-    args: S.optional(StringMap),
-  }),
-).annotate({
-  identifier: "LocalizedString",
-}) as any as S.Schema<LocalizedString>;
-
-export type MetricAggregationEnum = "AGGREGATION_UNSPECIFIED" | "MAX" | "SUM";
-export const MetricAggregationEnum = /*@__PURE__*/ S.String;
+export type VisualizationDataKeyUnitEnum =
+  | "KEY_UNIT_UNSPECIFIED"
+  | "KEY"
+  | "CHUNK";
+export const VisualizationDataKeyUnitEnum = /*@__PURE__*/ S.String;
 
 export type ContextValueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -3651,19 +3686,19 @@ export const ContextValueSeverityEnum = /*@__PURE__*/ S.String;
 export interface ContextValue {
   /** The label for the context value. e.g. "latency". */
   label?: LocalizedString;
+  /** The unit of the context value. */
+  unit?: string;
   /** The severity of this context. */
   severity?: ContextValueSeverityEnum;
   /** The value for the context. */
   value?: number;
-  /** The unit of the context value. */
-  unit?: string;
 }
 export const ContextValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     label: S.optional(LocalizedString),
+    unit: S.optional(S.String),
     severity: S.optional(ContextValueSeverityEnum),
     value: S.optional(S.Number),
-    unit: S.optional(S.String),
   }),
 ).annotate({ identifier: "ContextValue" }) as any as S.Schema<ContextValue>;
 
@@ -3674,36 +3709,36 @@ export const ContextValueList = /*@__PURE__*/ S.Array(
 
 /** A message representing information for a key range (possibly one key). */
 export interface KeyRangeInfo {
+  /** The index of the end key in indexed_keys. */
+  endKeyIndex?: number;
+  /** The list of context values for this key range. */
+  contextValues?: ContextValueList;
+  /** The time offset. This is the time since the start of the time interval. */
+  timeOffset?: string;
+  /** The value of the metric. */
+  value?: number;
+  /** The index of the start key in indexed_keys. */
+  startKeyIndex?: number;
   /** The name of the metric. e.g. "latency". */
   metric?: LocalizedString;
   /** Information about this key range, for all metrics. */
   info?: LocalizedString;
-  /** The value of the metric. */
-  value?: number;
-  /** The index of the end key in indexed_keys. */
-  endKeyIndex?: number;
-  /** The index of the start key in indexed_keys. */
-  startKeyIndex?: number;
-  /** The time offset. This is the time since the start of the time interval. */
-  timeOffset?: string;
-  /** The number of keys this range covers. */
-  keysCount?: string;
   /** The unit of the metric. This is an unstructured field and will be mapped as is to the user. */
   unit?: LocalizedString;
-  /** The list of context values for this key range. */
-  contextValues?: ContextValueList;
+  /** The number of keys this range covers. */
+  keysCount?: string;
 }
 export const KeyRangeInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    endKeyIndex: S.optional(S.Number),
+    contextValues: S.optional(ContextValueList),
+    timeOffset: S.optional(S.String),
+    value: S.optional(S.Number),
+    startKeyIndex: S.optional(S.Number),
     metric: S.optional(LocalizedString),
     info: S.optional(LocalizedString),
-    value: S.optional(S.Number),
-    endKeyIndex: S.optional(S.Number),
-    startKeyIndex: S.optional(S.Number),
-    timeOffset: S.optional(S.String),
-    keysCount: S.optional(S.String),
     unit: S.optional(LocalizedString),
-    contextValues: S.optional(ContextValueList),
+    keysCount: S.optional(S.String),
   }),
 ).annotate({ identifier: "KeyRangeInfo" }) as any as S.Schema<KeyRangeInfo>;
 
@@ -3753,6 +3788,23 @@ export const IndexedKeyRangeInfosMap = /*@__PURE__*/ S.Record(
   IndexedKeyRangeInfos,
 ) as any as S.Schema<IndexedKeyRangeInfosMap>;
 
+/** A message representing a derived metric. */
+export interface DerivedMetric {
+  /** The name of the numerator metric. e.g. "latency". */
+  numerator?: LocalizedString;
+  /** The name of the denominator metric. e.g. "rows". */
+  denominator?: LocalizedString;
+}
+export const DerivedMetric = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    numerator: S.optional(LocalizedString),
+    denominator: S.optional(LocalizedString),
+  }),
+).annotate({ identifier: "DerivedMetric" }) as any as S.Schema<DerivedMetric>;
+
+export type MetricAggregationEnum = "AGGREGATION_UNSPECIFIED" | "MAX" | "SUM";
+export const MetricAggregationEnum = /*@__PURE__*/ S.String;
+
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
   S.Number,
@@ -3787,20 +3839,6 @@ export const MetricMatrix = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "MetricMatrix" }) as any as S.Schema<MetricMatrix>;
 
-/** A message representing a derived metric. */
-export interface DerivedMetric {
-  /** The name of the numerator metric. e.g. "latency". */
-  numerator?: LocalizedString;
-  /** The name of the denominator metric. e.g. "rows". */
-  denominator?: LocalizedString;
-}
-export const DerivedMetric = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numerator: S.optional(LocalizedString),
-    denominator: S.optional(LocalizedString),
-  }),
-).annotate({ identifier: "DerivedMetric" }) as any as S.Schema<DerivedMetric>;
-
 /** A message representing a (sparse) collection of hot keys for specific key buckets. */
 export interface IndexedHotKey {
   /** A (sparse) mapping from key bucket index to the index of the specific hot row key for that key bucket. The index of the hot row key can be translated to the actual row key via the ScanData.VisualizationData.indexed_keys repeated field. */
@@ -3820,45 +3858,45 @@ export const IndexedHotKeyMap = /*@__PURE__*/ S.Record(
 
 /** A message representing the actual monitoring data, values for each key bucket over time, of a metric. */
 export interface Metric {
-  /** The category of the metric, e.g. "Activity", "Alerts", "Reads", etc. */
-  category?: LocalizedString;
-  /** The aggregation function used to aggregate each key bucket */
-  aggregation?: MetricAggregationEnum;
-  /** The displayed label of the metric. */
-  displayLabel?: LocalizedString;
-  /** The unit of the metric. */
-  unit?: LocalizedString;
-  /** The (sparse) mapping from time interval index to an IndexedKeyRangeInfos message, representing those time intervals for which there are informational messages concerning key ranges. */
-  indexedKeyRangeInfos?: IndexedKeyRangeInfosMap;
-  /** The data for the metric as a matrix. */
-  matrix?: MetricMatrix;
   /** Information about the metric. */
   info?: LocalizedString;
+  /** The unit of the metric. */
+  unit?: LocalizedString;
   /** The value that is considered hot for the metric. On a per metric basis hotness signals high utilization and something that might potentially be a cause for concern by the end user. hot_value is used to calibrate and scale visual color scales. */
   hotValue?: number;
+  /** The (sparse) mapping from time interval index to an IndexedKeyRangeInfos message, representing those time intervals for which there are informational messages concerning key ranges. */
+  indexedKeyRangeInfos?: IndexedKeyRangeInfosMap;
   /** Whether the metric is visible to the end user. */
   visible?: boolean;
+  /** The displayed label of the metric. */
+  displayLabel?: LocalizedString;
+  /** The category of the metric, e.g. "Activity", "Alerts", "Reads", etc. */
+  category?: LocalizedString;
   /** The references to numerator and denominator metrics for a derived metric. */
   derived?: DerivedMetric;
-  /** The (sparse) mapping from time index to an IndexedHotKey message, representing those time intervals for which there are hot keys. */
-  indexedHotKeys?: IndexedHotKeyMap;
+  /** The aggregation function used to aggregate each key bucket */
+  aggregation?: MetricAggregationEnum;
   /** Whether the metric has any non-zero data. */
   hasNonzeroData?: boolean;
+  /** The data for the metric as a matrix. */
+  matrix?: MetricMatrix;
+  /** The (sparse) mapping from time index to an IndexedHotKey message, representing those time intervals for which there are hot keys. */
+  indexedHotKeys?: IndexedHotKeyMap;
 }
 export const Metric = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    category: S.optional(LocalizedString),
-    aggregation: S.optional(MetricAggregationEnum),
-    displayLabel: S.optional(LocalizedString),
-    unit: S.optional(LocalizedString),
-    indexedKeyRangeInfos: S.optional(IndexedKeyRangeInfosMap),
-    matrix: S.optional(MetricMatrix),
     info: S.optional(LocalizedString),
+    unit: S.optional(LocalizedString),
     hotValue: S.optional(S.Number),
+    indexedKeyRangeInfos: S.optional(IndexedKeyRangeInfosMap),
     visible: S.optional(S.Boolean),
+    displayLabel: S.optional(LocalizedString),
+    category: S.optional(LocalizedString),
     derived: S.optional(DerivedMetric),
-    indexedHotKeys: S.optional(IndexedHotKeyMap),
+    aggregation: S.optional(MetricAggregationEnum),
     hasNonzeroData: S.optional(S.Boolean),
+    matrix: S.optional(MetricMatrix),
+    indexedHotKeys: S.optional(IndexedHotKeyMap),
   }),
 ).annotate({ identifier: "Metric" }) as any as S.Schema<Metric>;
 
@@ -3867,78 +3905,40 @@ export const MetricList = /*@__PURE__*/ S.Array(
   Metric,
 ) as any as S.Schema<MetricList>;
 
-export type DiagnosticMessageSeverityEnum =
-  | "SEVERITY_UNSPECIFIED"
-  | "INFO"
-  | "WARNING"
-  | "ERROR"
-  | "FATAL";
-export const DiagnosticMessageSeverityEnum = /*@__PURE__*/ S.String;
-
-/** A message representing the key visualizer diagnostic messages. */
-export interface DiagnosticMessage {
-  /** Whether this message is specific only for the current metric. By default Diagnostics are shown for all metrics, regardless which metric is the currently selected metric in the UI. However occasionally a metric will generate so many messages that the resulting visual clutter becomes overwhelming. In this case setting this to true, will show the diagnostic messages for that metric only if it is the currently selected metric. */
-  metricSpecific?: boolean;
-  /** The short message. */
-  shortMessage?: LocalizedString;
-  /** The severity of the diagnostic message. */
-  severity?: DiagnosticMessageSeverityEnum;
-  /** The metric. */
-  metric?: LocalizedString;
-  /** Information about this diagnostic information. */
-  info?: LocalizedString;
-}
-export const DiagnosticMessage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricSpecific: S.optional(S.Boolean),
-    shortMessage: S.optional(LocalizedString),
-    severity: S.optional(DiagnosticMessageSeverityEnum),
-    metric: S.optional(LocalizedString),
-    info: S.optional(LocalizedString),
-  }),
-).annotate({
-  identifier: "DiagnosticMessage",
-}) as any as S.Schema<DiagnosticMessage>;
-
-export type DiagnosticMessageList = Array<DiagnosticMessage>;
-export const DiagnosticMessageList = /*@__PURE__*/ S.Array(
-  DiagnosticMessage,
-) as any as S.Schema<DiagnosticMessageList>;
-
 export interface VisualizationData {
-  /** We discretize the entire keyspace into buckets. Assuming each bucket has an inclusive keyrange and covers keys from k(i) ... k(n). In this case k(n) would be an end key for a given range. end_key_string is the collection of all such end keys */
-  endKeyStrings?: StringList;
-  /** The token delimiting a datasource name from the rest of a key in a data_source. */
-  dataSourceSeparatorToken?: string;
-  /** Keys of key ranges that contribute significantly to a given metric Can be thought of as heavy hitters. */
-  indexedKeys?: StringList;
-  /** Whether this scan contains PII. */
-  hasPii?: boolean;
-  /** The unit for the key: e.g. 'key' or 'chunk'. */
-  keyUnit?: VisualizationDataKeyUnitEnum;
+  /** The list of messages (info, alerts, ...) */
+  diagnosticMessages?: DiagnosticMessageList;
   /** The token signifying the end of a data_source. */
   dataSourceEndToken?: string;
   /** The list of extracted key prefix nodes used in the key prefix hierarchy. */
   prefixNodes?: PrefixNodeList;
+  /** Keys of key ranges that contribute significantly to a given metric Can be thought of as heavy hitters. */
+  indexedKeys?: StringList;
+  /** The unit for the key: e.g. 'key' or 'chunk'. */
+  keyUnit?: VisualizationDataKeyUnitEnum;
+  /** The token delimiting a datasource name from the rest of a key in a data_source. */
+  dataSourceSeparatorToken?: string;
   /** The token delimiting the key prefixes. */
   keySeparator?: string;
+  /** We discretize the entire keyspace into buckets. Assuming each bucket has an inclusive keyrange and covers keys from k(i) ... k(n). In this case k(n) would be an end key for a given range. end_key_string is the collection of all such end keys */
+  endKeyStrings?: StringList;
   /** The list of data objects for each metric. */
   metrics?: MetricList;
-  /** The list of messages (info, alerts, ...) */
-  diagnosticMessages?: DiagnosticMessageList;
+  /** Whether this scan contains PII. */
+  hasPii?: boolean;
 }
 export const VisualizationData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endKeyStrings: S.optional(StringList),
-    dataSourceSeparatorToken: S.optional(S.String),
-    indexedKeys: S.optional(StringList),
-    hasPii: S.optional(S.Boolean),
-    keyUnit: S.optional(VisualizationDataKeyUnitEnum),
+    diagnosticMessages: S.optional(DiagnosticMessageList),
     dataSourceEndToken: S.optional(S.String),
     prefixNodes: S.optional(PrefixNodeList),
+    indexedKeys: S.optional(StringList),
+    keyUnit: S.optional(VisualizationDataKeyUnitEnum),
+    dataSourceSeparatorToken: S.optional(S.String),
     keySeparator: S.optional(S.String),
+    endKeyStrings: S.optional(StringList),
     metrics: S.optional(MetricList),
-    diagnosticMessages: S.optional(DiagnosticMessageList),
+    hasPii: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "VisualizationData",
@@ -3963,44 +3963,44 @@ export const ScanData = /*@__PURE__*/ S.suspend(() =>
 
 /** Scan is a structure which describes Cloud Key Visualizer scan information. */
 export interface Scan {
-  /** The upper bound for when the scan is defined. */
-  endTime?: string;
-  /** Additional information provided by the implementer. */
-  details?: DocumentMap;
   /** The unique name of the scan, specific to the Database service implementing this interface. */
   name?: string;
   /** A range of time (inclusive) for when the scan is defined. The lower bound for when the scan is defined. */
   startTime?: string;
+  /** Additional information provided by the implementer. */
+  details?: DocumentMap;
   /** Output only. Cloud Key Visualizer scan data. Note, this field is not available to the ListScans method. */
   scanData?: ScanData;
+  /** The upper bound for when the scan is defined. */
+  endTime?: string;
 }
 export const Scan = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endTime: S.optional(S.String),
-    details: S.optional(DocumentMap),
     name: S.optional(S.String),
     startTime: S.optional(S.String),
+    details: S.optional(DocumentMap),
     scanData: S.optional(ScanData),
+    endTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Scan" }) as any as S.Schema<Scan>;
 
 export interface ListProjectsInstanceConfigOperationsRequest {
   /** Required. The project of the instance configuration operations. Values are of the form `projects/`. */
   parent: string;
-  /** An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \ `(metadata.instance_config.name:custom-config) AND` \ `(metadata.progress.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance configuration name contains "custom-config". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error. */
-  filter?: string;
   /** Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
   /** If non-empty, `page_token` should contain a next_page_token from a previous ListInstanceConfigOperationsResponse to the same `parent` and with the same `filter`. */
   pageToken?: string;
+  /** An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \ `(metadata.instance_config.name:custom-config) AND` \ `(metadata.progress.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance configuration name contains "custom-config". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error. */
+  filter?: string;
 }
 export const ListProjectsInstanceConfigOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4019,16 +4019,16 @@ export const OperationList = /*@__PURE__*/ S.Array(
 
 /** The response for ListInstanceConfigOperations. */
 export interface ListInstanceConfigOperationsResponse {
-  /** The list of matching instance configuration long-running operations. Each operation's name will be prefixed by the name of the instance configuration. The operation's metadata field type `metadata.type_url` describes the type of the metadata. */
-  operations?: OperationList;
   /** `next_page_token` can be sent in a subsequent ListInstanceConfigOperations call to fetch more of the matching metadata. */
   nextPageToken?: string;
+  /** The list of matching instance configuration long-running operations. Each operation's name will be prefixed by the name of the instance configuration. The operation's metadata field type `metadata.type_url` describes the type of the metadata. */
+  operations?: OperationList;
 }
 export const ListInstanceConfigOperationsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      operations: S.optional(OperationList),
       nextPageToken: S.optional(S.String),
+      operations: S.optional(OperationList),
     }),
 ).annotate({
   identifier: "ListInstanceConfigOperationsResponse",
@@ -4080,25 +4080,25 @@ export const ListInstanceConfigsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInstanceConfigsResponse>;
 
 export interface ListProjectsInstanceConfigsOperationsRequest {
-  /** The standard list filter. */
-  filter?: string;
-  /** The name of the operation's parent resource. */
-  name: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
   /** The standard list page token. */
   pageToken?: string;
   /** The standard list page size. */
   pageSize?: number;
+  /** The standard list filter. */
+  filter?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListProjectsInstanceConfigsOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      filter: S.optional(S.String.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4112,18 +4112,18 @@ export const ListProjectsInstanceConfigsOperationsRequest =
 
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
-  /** The standard List next-page token. */
-  nextPageToken?: string;
-  /** A list of operations that matches the specified filter in the request. */
-  operations?: OperationList;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
+  /** A list of operations that matches the specified filter in the request. */
+  operations?: OperationList;
+  /** The standard List next-page token. */
+  nextPageToken?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
-    operations: S.optional(OperationList),
     unreachable: S.optional(StringList),
+    operations: S.optional(OperationList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
@@ -4134,21 +4134,21 @@ export interface ListProjectsInstanceConfigsSsdCachesOperationsRequest {
   filter?: string;
   /** The name of the operation's parent resource. */
   name: string;
-  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
-  returnPartialSuccess?: boolean;
   /** The standard list page token. */
   pageToken?: string;
   /** The standard list page size. */
   pageSize?: number;
+  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
+  returnPartialSuccess?: boolean;
 }
 export const ListProjectsInstanceConfigsSsdCachesOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       filter: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
-      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4161,24 +4161,24 @@ export const ListProjectsInstanceConfigsSsdCachesOperationsRequest =
   }) as any as S.Schema<ListProjectsInstanceConfigsSsdCachesOperationsRequest>;
 
 export interface ListProjectsInstancesRequest {
-  /** Deadline used while retrieving metadata for instances. Instances whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancesResponse. */
-  instanceDeadline?: string;
   /** Required. The name of the project for which a list of instances is requested. Values are of the form `projects/`. */
   parent: string;
-  /** Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
-  pageSize?: number;
-  /** If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse. */
-  pageToken?: string;
   /** An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `display_name` * `labels.key` where key is the name of a label Some examples of using filters are: * `name:*` --> The instance has a name. * `name:Howl` --> The instance's name contains the string "howl". * `name:HOWL` --> Equivalent to above. * `NAME:howl` --> Equivalent to above. * `labels.env:*` --> The instance has the label "env". * `labels.env:dev` --> The instance has the label "env" and the value of the label contains the string "dev". * `name:howl labels.env:dev` --> The instance's name contains "howl" and it has the label "env" with its value containing "dev". */
   filter?: string;
+  /** Deadline used while retrieving metadata for instances. Instances whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancesResponse. */
+  instanceDeadline?: string;
+  /** If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse. */
+  pageToken?: string;
+  /** Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
+  pageSize?: number;
 }
 export const ListProjectsInstancesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    instanceDeadline: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
+    instanceDeadline: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4215,10 +4215,10 @@ export const ListInstancesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInstancesResponse>;
 
 export interface ListProjectsInstancesBackupOperationsRequest {
-  /** Required. The instance of the backup operations. Values are of the form `projects/{project}/instances/{instance}`. */
-  parent: string;
   /** An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `metadata.database:prod` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The source database name of backup contains the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata) AND` \ `(metadata.source_backup:test) AND` \ `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CopyBackupMetadata. * The source backup name contains the string "test". * The operation started before 2022-01-18T14:50:00Z. * The operation resulted in an error. * `((metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.database:test_db)) OR` \ `((metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata) AND` \ `(metadata.source_backup:test_bkp)) AND` \ `(error:*)` - Returns operations where: * The operation's metadata matches either of criteria: * The operation's metadata type is CreateBackupMetadata AND the source database name of the backup contains the string "test_db" * The operation's metadata type is CopyBackupMetadata AND the source backup name contains the string "test_bkp" * The operation resulted in an error. */
   filter?: string;
+  /** Required. The instance of the backup operations. Values are of the form `projects/{project}/instances/{instance}`. */
+  parent: string;
   /** Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
   /** If non-empty, `page_token` should contain a next_page_token from a previous ListBackupOperationsResponse to the same `parent` and with the same `filter`. */
@@ -4227,8 +4227,8 @@ export interface ListProjectsInstancesBackupOperationsRequest {
 export const ListProjectsInstancesBackupOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -4244,15 +4244,15 @@ export const ListProjectsInstancesBackupOperationsRequest =
 
 /** The response for ListBackupOperations. */
 export interface ListBackupOperationsResponse {
-  /** The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation. */
-  operations?: OperationList;
   /** `next_page_token` can be sent in a subsequent ListBackupOperations call to fetch more of the matching metadata. */
   nextPageToken?: string;
+  /** The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation. */
+  operations?: OperationList;
 }
 export const ListBackupOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operations: S.optional(OperationList),
     nextPageToken: S.optional(S.String),
+    operations: S.optional(OperationList),
   }),
 ).annotate({
   identifier: "ListBackupOperationsResponse",
@@ -4261,19 +4261,19 @@ export const ListBackupOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListProjectsInstancesBackupsRequest {
   /** Required. The instance to list backups from. Values are of the form `projects/{project}/instances/{instance}`. */
   parent: string;
-  /** An expression that filters the list of returned backups. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Backup are eligible for filtering: * `name` * `database` * `state` * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` * `backup_schedules` You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `name:Howl` - The backup's name contains the string "howl". * `database:prod` - The database's name contains the string "prod". * `state:CREATING` - The backup is pending creation. * `state:READY` - The backup is fully created and ready for use. * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")` - The backup name contains the string "howl" and `create_time` of the backup is before 2018-03-28T14:50:00Z. * `expire_time < \"2018-03-28T14:50:00Z\"` - The backup `expire_time` is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` - The backup's size is greater than 10GB * `backup_schedules:daily` - The backup is created from a schedule with "daily" in its name. */
-  filter?: string;
   /** Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
   /** If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`. */
   pageToken?: string;
+  /** An expression that filters the list of returned backups. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Backup are eligible for filtering: * `name` * `database` * `state` * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` * `backup_schedules` You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `name:Howl` - The backup's name contains the string "howl". * `database:prod` - The database's name contains the string "prod". * `state:CREATING` - The backup is pending creation. * `state:READY` - The backup is fully created and ready for use. * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")` - The backup name contains the string "howl" and `create_time` of the backup is before 2018-03-28T14:50:00Z. * `expire_time < \"2018-03-28T14:50:00Z\"` - The backup `expire_time` is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` - The backup's size is greater than 10GB * `backup_schedules:daily` - The backup is created from a schedule with "daily" in its name. */
+  filter?: string;
 }
 export const ListProjectsInstancesBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     parent: S.String.pipe(T.Label()),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4307,24 +4307,24 @@ export const ListBackupsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBackupsResponse>;
 
 export interface ListProjectsInstancesBackupsOperationsRequest {
+  /** The name of the operation's parent resource. */
+  name: string;
+  /** The standard list filter. */
+  filter?: string;
   /** The standard list page size. */
   pageSize?: number;
   /** The standard list page token. */
   pageToken?: string;
-  /** The standard list filter. */
-  filter?: string;
-  /** The name of the operation's parent resource. */
-  name: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
 }
 export const ListProjectsInstancesBackupsOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      name: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -4338,21 +4338,21 @@ export const ListProjectsInstancesBackupsOperationsRequest =
   }) as any as S.Schema<ListProjectsInstancesBackupsOperationsRequest>;
 
 export interface ListProjectsInstancesDatabaseOperationsRequest {
+  /** An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for RestoreDatabaseMetadata is `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \ `(metadata.source_type:BACKUP) AND` \ `(metadata.backup_info.backup:backup_howl) AND` \ `(metadata.name:restored_howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is RestoreDatabaseMetadata. * The database is restored from a backup. * The backup name contains "backup_howl". * The restored database's name contains "restored_howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error. */
+  filter?: string;
   /** If non-empty, `page_token` should contain a next_page_token from a previous ListDatabaseOperationsResponse to the same `parent` and with the same `filter`. */
   pageToken?: string;
   /** Required. The instance of the database operations. Values are of the form `projects//instances/`. */
   parent: string;
-  /** An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for RestoreDatabaseMetadata is `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \ `(metadata.source_type:BACKUP) AND` \ `(metadata.backup_info.backup:backup_howl) AND` \ `(metadata.name:restored_howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is RestoreDatabaseMetadata. * The database is restored from a backup. * The backup name contains "backup_howl". * The restored database's name contains "restored_howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error. */
-  filter?: string;
   /** Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
 }
 export const ListProjectsInstancesDatabaseOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      filter: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -4382,19 +4382,19 @@ export const ListDatabaseOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDatabaseOperationsResponse>;
 
 export interface ListProjectsInstancesDatabasesRequest {
+  /** If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse. */
+  pageToken?: string;
   /** Required. The instance whose databases should be listed. Values are of the form `projects//instances/`. */
   parent: string;
   /** Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
-  /** If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse. */
-  pageToken?: string;
 }
 export const ListProjectsInstancesDatabasesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4428,19 +4428,19 @@ export const ListDatabasesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDatabasesResponse>;
 
 export interface ListProjectsInstancesDatabasesBackupSchedulesRequest {
-  /** Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListBackupSchedulesResponse to the same `parent`. */
-  pageToken?: string;
   /** Required. Database is the parent resource whose backup schedules should be listed. Values are of the form projects//instances//databases/ */
   parent: string;
   /** Optional. Number of backup schedules to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
+  /** Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListBackupSchedulesResponse to the same `parent`. */
+  pageToken?: string;
 }
 export const ListProjectsInstancesDatabasesBackupSchedulesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4474,19 +4474,19 @@ export const ListBackupSchedulesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBackupSchedulesResponse>;
 
 export interface ListProjectsInstancesDatabasesDatabaseRolesRequest {
+  /** If non-empty, `page_token` should contain a next_page_token from a previous ListDatabaseRolesResponse. */
+  pageToken?: string;
   /** Required. The database whose roles should be listed. Values are of the form `projects//instances//databases/`. */
   parent: string;
   /** Number of database roles to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
-  /** If non-empty, `page_token` should contain a next_page_token from a previous ListDatabaseRolesResponse. */
-  pageToken?: string;
 }
 export const ListProjectsInstancesDatabasesDatabaseRolesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4531,25 +4531,25 @@ export const ListDatabaseRolesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDatabaseRolesResponse>;
 
 export interface ListProjectsInstancesDatabasesOperationsRequest {
-  /** The name of the operation's parent resource. */
-  name: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
-  /** The standard list filter. */
-  filter?: string;
   /** The standard list page token. */
   pageToken?: string;
   /** The standard list page size. */
   pageSize?: number;
+  /** The standard list filter. */
+  filter?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListProjectsInstancesDatabasesOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4562,22 +4562,22 @@ export const ListProjectsInstancesDatabasesOperationsRequest =
   }) as any as S.Schema<ListProjectsInstancesDatabasesOperationsRequest>;
 
 export interface ListProjectsInstancesDatabasesSessionsRequest {
-  /** If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse. */
-  pageToken?: string;
   /** Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
   pageSize?: number;
-  /** An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `labels.key` where key is the name of a label Some examples of using filters are: * `labels.env:*` --> The session has the label "env". * `labels.env:dev` --> The session has the label "env" and the value of the label contains the string "dev". */
-  filter?: string;
+  /** If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse. */
+  pageToken?: string;
   /** Required. The database in which to list sessions. */
   database: string;
+  /** An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `labels.key` where key is the name of a label Some examples of using filters are: * `labels.env:*` --> The session has the label "env". * `labels.env:dev` --> The session has the label "env" and the value of the label contains the string "dev". */
+  filter?: string;
 }
 export const ListProjectsInstancesDatabasesSessionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       database: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4606,25 +4606,25 @@ export const ListSessionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSessionsResponse>;
 
 export interface ListProjectsInstancesInstancePartitionOperationsRequest {
+  /** Required. The parent instance of the instance partition operations. Values are of the form `projects//instances/`. */
+  parent: string;
+  /** Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListInstancePartitionOperationsResponse to the same `parent` and with the same `filter`. */
+  pageToken?: string;
+  /** Optional. Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
+  pageSize?: number;
   /** Optional. An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstancePartitionMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata) AND` \ `(metadata.instance_partition.name:custom-instance-partition) AND` \ `(metadata.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstancePartitionMetadata. * The instance partition name contains "custom-instance-partition". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error. */
   filter?: string;
   /** Optional. Deadline used while retrieving metadata for instance partition operations. Instance partitions whose operation metadata cannot be retrieved within this deadline will be added to unreachable_instance_partitions in ListInstancePartitionOperationsResponse. */
   instancePartitionDeadline?: string;
-  /** Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListInstancePartitionOperationsResponse to the same `parent` and with the same `filter`. */
-  pageToken?: string;
-  /** Required. The parent instance of the instance partition operations. Values are of the form `projects//instances/`. */
-  parent: string;
-  /** Optional. Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size. */
-  pageSize?: number;
 }
 export const ListProjectsInstancesInstancePartitionOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      parent: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
       instancePartitionDeadline: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4638,18 +4638,18 @@ export const ListProjectsInstancesInstancePartitionOperationsRequest =
 
 /** The response for ListInstancePartitionOperations. */
 export interface ListInstancePartitionOperationsResponse {
-  /** `next_page_token` can be sent in a subsequent ListInstancePartitionOperations call to fetch more of the matching metadata. */
-  nextPageToken?: string;
   /** The list of matching instance partition long-running operations. Each operation's name will be prefixed by the instance partition's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata. */
   operations?: OperationList;
+  /** `next_page_token` can be sent in a subsequent ListInstancePartitionOperations call to fetch more of the matching metadata. */
+  nextPageToken?: string;
   /** The list of unreachable instance partitions. It includes the names of instance partitions whose operation metadata could not be retrieved within instance_partition_deadline. */
   unreachableInstancePartitions?: StringList;
 }
 export const ListInstancePartitionOperationsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      nextPageToken: S.optional(S.String),
       operations: S.optional(OperationList),
+      nextPageToken: S.optional(S.String),
       unreachableInstancePartitions: S.optional(StringList),
     }),
 ).annotate({
@@ -4693,40 +4693,40 @@ export const InstancePartitionList = /*@__PURE__*/ S.Array(
 export interface ListInstancePartitionsResponse {
   /** The list of requested instancePartitions. */
   instancePartitions?: InstancePartitionList;
-  /** The list of unreachable instances or instance partitions. It includes the names of instances or instance partitions whose metadata could not be retrieved within instance_partition_deadline. */
-  unreachable?: StringList;
   /** `next_page_token` can be sent in a subsequent ListInstancePartitions call to fetch more of the matching instance partitions. */
   nextPageToken?: string;
+  /** The list of unreachable instances or instance partitions. It includes the names of instances or instance partitions whose metadata could not be retrieved within instance_partition_deadline. */
+  unreachable?: StringList;
 }
 export const ListInstancePartitionsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     instancePartitions: S.optional(InstancePartitionList),
-    unreachable: S.optional(StringList),
     nextPageToken: S.optional(S.String),
+    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListInstancePartitionsResponse",
 }) as any as S.Schema<ListInstancePartitionsResponse>;
 
 export interface ListProjectsInstancesInstancePartitionsOperationsRequest {
-  /** The standard list page size. */
-  pageSize?: number;
-  /** The standard list page token. */
-  pageToken?: string;
   /** The standard list filter. */
   filter?: string;
   /** The name of the operation's parent resource. */
   name: string;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** The standard list page size. */
+  pageSize?: number;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
 }
 export const ListProjectsInstancesInstancePartitionsOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -4740,25 +4740,25 @@ export const ListProjectsInstancesInstancePartitionsOperationsRequest =
   }) as any as S.Schema<ListProjectsInstancesInstancePartitionsOperationsRequest>;
 
 export interface ListProjectsInstancesOperationsRequest {
-  /** The standard list filter. */
-  filter?: string;
   /** The name of the operation's parent resource. */
   name: string;
-  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
-  returnPartialSuccess?: boolean;
-  /** The standard list page token. */
-  pageToken?: string;
+  /** The standard list filter. */
+  filter?: string;
   /** The standard list page size. */
   pageSize?: number;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
+  returnPartialSuccess?: boolean;
 }
 export const ListProjectsInstancesOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      filter: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
-      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4774,24 +4774,24 @@ export type ListScansViewEnum = "VIEW_UNSPECIFIED" | "SUMMARY" | "FULL";
 export const ListScansViewEnum = /*@__PURE__*/ S.String;
 
 export interface ListScansRequest {
+  /** The maximum number of items to return. */
+  pageSize?: number;
+  /** The next_page_token value returned from a previous List request, if any. */
+  pageToken?: string;
   /** Specifies which parts of the Scan should be returned in the response. Note, only the SUMMARY view (the default) is currently supported for ListScans. */
   view?: ListScansViewEnum | (string & {});
   /** A filter expression to restrict the results based on information present in the available Scan collection. The filter applies to all fields within the Scan message except for `data`. */
   filter?: string;
-  /** The next_page_token value returned from a previous List request, if any. */
-  pageToken?: string;
   /** Required. The unique name of the parent resource, specific to the Database service implementing this interface. */
   parent: string;
-  /** The maximum number of items to return. */
-  pageSize?: number;
 }
 export const ListScansRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     view: S.optional(ListScansViewEnum.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4826,15 +4826,15 @@ export const ListScansResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Encryption configuration for a Cloud Spanner database. */
 export interface InstanceEncryptionConfig {
-  /** Optional. Specifies the KMS configuration for one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
-  kmsKeyNames?: StringList;
   /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. */
   kmsKeyName?: string;
+  /** Optional. Specifies the KMS configuration for one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
+  kmsKeyNames?: StringList;
 }
 export const InstanceEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kmsKeyNames: S.optional(StringList),
     kmsKeyName: S.optional(S.String),
+    kmsKeyNames: S.optional(StringList),
   }),
 ).annotate({
   identifier: "InstanceEncryptionConfig",
@@ -4842,15 +4842,15 @@ export const InstanceEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The configuration for each database in the target instance configuration. */
 export interface DatabaseMoveConfig {
-  /** Required. The unique identifier of the database resource in the Instance. For example, if the database uri is `projects/foo/instances/bar/databases/baz`, then the id to supply here is baz. */
-  databaseId?: string;
   /** Optional. Encryption configuration to be used for the database in the target configuration. The encryption configuration must be specified for every database which currently uses CMEK encryption. If a database currently uses Google-managed encryption and a target encryption configuration is not specified, then the database defaults to Google-managed encryption. If a database currently uses Google-managed encryption and a target CMEK encryption is specified, the request is rejected. If a database currently uses CMEK encryption, then a target encryption configuration must be specified. You can't move a CMEK database to a Google-managed encryption database using the MoveInstance API. */
   encryptionConfig?: InstanceEncryptionConfig;
+  /** Required. The unique identifier of the database resource in the Instance. For example, if the database uri is `projects/foo/instances/bar/databases/baz`, then the id to supply here is baz. */
+  databaseId?: string;
 }
 export const DatabaseMoveConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    databaseId: S.optional(S.String),
     encryptionConfig: S.optional(InstanceEncryptionConfig),
+    databaseId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DatabaseMoveConfig",
@@ -4863,15 +4863,15 @@ export const DatabaseMoveConfigList = /*@__PURE__*/ S.Array(
 
 /** The request for MoveInstance. */
 export interface MoveInstanceRequest {
-  /** Optional. The configuration for each database in the target instance configuration. */
-  targetDatabaseMoveConfigs?: DatabaseMoveConfigList;
   /** Required. The target instance configuration where to move the instance. Values are of the form `projects//instanceConfigs/`. */
   targetConfig?: string;
+  /** Optional. The configuration for each database in the target instance configuration. */
+  targetDatabaseMoveConfigs?: DatabaseMoveConfigList;
 }
 export const MoveInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    targetDatabaseMoveConfigs: S.optional(DatabaseMoveConfigList),
     targetConfig: S.optional(S.String),
+    targetDatabaseMoveConfigs: S.optional(DatabaseMoveConfigList),
   }),
 ).annotate({
   identifier: "MoveInstanceRequest",
@@ -4900,15 +4900,15 @@ export const MoveProjectsInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Options for a `PartitionQueryRequest` and `PartitionReadRequest`. */
 export interface PartitionOptions {
-  /** **Note:** This hint is currently ignored by `PartitionQuery` and `PartitionRead` requests. The desired maximum number of partitions to return. For example, this might be set to the number of workers available. The default for this option is currently 10,000. The maximum value is currently 200,000. This is only a hint. The actual number of partitions returned can be smaller or larger than this maximum count request. */
-  maxPartitions?: string;
   /** **Note:** This hint is currently ignored by `PartitionQuery` and `PartitionRead` requests. The desired data size for each partition generated. The default for this option is currently 1 GiB. This is only a hint. The actual size of each partition can be smaller or larger than this size request. */
   partitionSizeBytes?: string;
+  /** **Note:** This hint is currently ignored by `PartitionQuery` and `PartitionRead` requests. The desired maximum number of partitions to return. For example, this might be set to the number of workers available. The default for this option is currently 10,000. The maximum value is currently 200,000. This is only a hint. The actual number of partitions returned can be smaller or larger than this maximum count request. */
+  maxPartitions?: string;
 }
 export const PartitionOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxPartitions: S.optional(S.String),
     partitionSizeBytes: S.optional(S.String),
+    maxPartitions: S.optional(S.String),
   }),
 ).annotate({
   identifier: "PartitionOptions",
@@ -4916,24 +4916,24 @@ export const PartitionOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for PartitionQuery */
 export interface PartitionQueryRequest {
-  /** Required. The query request to generate partitions for. The request fails if the query isn't root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as `INSERT`, `UPDATE`, or `DELETE`. Use `ExecuteStreamingSql` with a `PartitionedDml` transaction for large, partition-friendly DML operations. */
-  sql?: string;
-  /** Additional options that affect how many partitions are created. */
-  partitionOptions?: PartitionOptions;
-  /** Read-only snapshot transactions are supported, read and write and single-use transactions are not. */
-  transaction?: TransactionSelector;
-  /** Optional. Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id > @msg_id AND id < @msg_id + 100"` It's an error to execute a SQL statement with unbound parameters. */
-  params?: DocumentMap;
   /** Optional. It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types. */
   paramTypes?: TypeMap;
+  /** Read-only snapshot transactions are supported, read and write and single-use transactions are not. */
+  transaction?: TransactionSelector;
+  /** Required. The query request to generate partitions for. The request fails if the query isn't root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as `INSERT`, `UPDATE`, or `DELETE`. Use `ExecuteStreamingSql` with a `PartitionedDml` transaction for large, partition-friendly DML operations. */
+  sql?: string;
+  /** Optional. Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id > @msg_id AND id < @msg_id + 100"` It's an error to execute a SQL statement with unbound parameters. */
+  params?: DocumentMap;
+  /** Additional options that affect how many partitions are created. */
+  partitionOptions?: PartitionOptions;
 }
 export const PartitionQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sql: S.optional(S.String),
-    partitionOptions: S.optional(PartitionOptions),
-    transaction: S.optional(TransactionSelector),
-    params: S.optional(DocumentMap),
     paramTypes: S.optional(TypeMap),
+    transaction: S.optional(TransactionSelector),
+    sql: S.optional(S.String),
+    params: S.optional(DocumentMap),
+    partitionOptions: S.optional(PartitionOptions),
   }),
 ).annotate({
   identifier: "PartitionQueryRequest",
@@ -4979,15 +4979,15 @@ export const PartitionList = /*@__PURE__*/ S.Array(
 
 /** The response for PartitionQuery or PartitionRead */
 export interface PartitionResponse {
-  /** Transaction created by this request. */
-  transaction?: Transaction;
   /** Partitions created by this request. */
   partitions?: PartitionList;
+  /** Transaction created by this request. */
+  transaction?: Transaction;
 }
 export const PartitionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    transaction: S.optional(Transaction),
     partitions: S.optional(PartitionList),
+    transaction: S.optional(Transaction),
   }),
 ).annotate({
   identifier: "PartitionResponse",
@@ -4995,27 +4995,27 @@ export const PartitionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for PartitionRead */
 export interface PartitionReadRequest {
+  /** Required. The name of the table in the database to be read. */
+  table?: string;
   /** Read only snapshot transactions are supported, read/write and single use transactions are not. */
   transaction?: TransactionSelector;
   /** If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information. */
   index?: string;
-  /** Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index. It isn't an error for the `key_set` to name rows that don't exist in the database. Read yields nothing for nonexistent rows. */
-  keySet?: KeySet;
-  /** Required. The name of the table in the database to be read. */
-  table?: string;
-  /** The columns of table to be returned for each row matching this request. */
-  columns?: StringList;
   /** Additional options that affect how many partitions are created. */
   partitionOptions?: PartitionOptions;
+  /** The columns of table to be returned for each row matching this request. */
+  columns?: StringList;
+  /** Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index. It isn't an error for the `key_set` to name rows that don't exist in the database. Read yields nothing for nonexistent rows. */
+  keySet?: KeySet;
 }
 export const PartitionReadRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    table: S.optional(S.String),
     transaction: S.optional(TransactionSelector),
     index: S.optional(S.String),
-    keySet: S.optional(KeySet),
-    table: S.optional(S.String),
-    columns: S.optional(StringList),
     partitionOptions: S.optional(PartitionOptions),
+    columns: S.optional(StringList),
+    keySet: S.optional(KeySet),
   }),
 ).annotate({
   identifier: "PartitionReadRequest",
@@ -5045,18 +5045,18 @@ export const PartitionReadProjectsInstancesDatabasesSessionsRequest =
 
 /** The request for UpdateInstanceConfig. */
 export interface UpdateInstanceConfigRequest {
+  /** Required. A mask specifying which fields in InstanceConfig should be updated. The field mask must always be specified; this prevents any future fields in InstanceConfig from being erased accidentally by clients that do not know about them. Only display_name and labels can be updated. */
+  updateMask?: string;
   /** An option to validate, but not actually execute, a request, and provide the same response. */
   validateOnly?: boolean;
   /** Required. The user instance configuration to update, which must always include the instance configuration name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used. */
   instanceConfig?: InstanceConfig;
-  /** Required. A mask specifying which fields in InstanceConfig should be updated. The field mask must always be specified; this prevents any future fields in InstanceConfig from being erased accidentally by clients that do not know about them. Only display_name and labels can be updated. */
-  updateMask?: string;
 }
 export const UpdateInstanceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    updateMask: S.optional(S.String),
     validateOnly: S.optional(S.Boolean),
     instanceConfig: S.optional(InstanceConfig),
-    updateMask: S.optional(S.String),
   }),
 ).annotate({
   identifier: "UpdateInstanceConfigRequest",
@@ -5247,48 +5247,48 @@ export const ReadRequestOrderByEnum = /*@__PURE__*/ S.String;
 
 /** The request for Read and StreamingRead. */
 export interface ReadRequest {
-  /** If this is for a partitioned read and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request doesn't set `partition_token`, the API returns an `INVALID_ARGUMENT` error. */
-  dataBoostEnabled?: boolean;
-  /** Required. The name of the table in the database to be read. */
-  table?: string;
-  /** If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information. */
-  index?: string;
-  /** Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index. If the partition_token field is empty, rows are yielded in table primary key order (if index is empty) or index key order (if index is non-empty). If the partition_token field isn't empty, rows are yielded in an unspecified order. It isn't an error for the `key_set` to name rows that don't exist in the database. Read yields nothing for nonexistent rows. */
-  keySet?: KeySet;
-  /** If greater than zero, only the first `limit` rows are yielded. If `limit` is zero, the default is no limit. A limit can't be specified if `partition_token` is set. */
-  limit?: string;
-  /** Optional. Lock Hint for the request, it can only be used with read-write transactions. */
-  lockHint?: ReadRequestLockHintEnum | (string & {});
-  /** Common options for this request. */
-  requestOptions?: RequestOptions;
-  /** If present, results are restricted to the specified partition previously created using `PartitionRead`. There must be an exact match for the values of fields common to this message and the PartitionReadRequest message used to create this partition_token. */
-  partitionToken?: string;
-  /** The transaction to use. If none is provided, the default is a temporary read-only transaction with strong concurrency. */
-  transaction?: TransactionSelector;
-  /** If this request is resuming a previously interrupted read, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new read to resume where the last read left off. The rest of the request parameters must exactly match the request that yielded this token. */
-  resumeToken?: string;
-  /** Optional. Order for the returned rows. By default, Spanner returns result rows in primary key order except for PartitionRead requests. For applications that don't require rows to be returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval, resulting in lower latencies in certain cases (for example, bulk point lookups). */
-  orderBy?: ReadRequestOrderByEnum | (string & {});
   /** Required. The columns of table to be returned for each row matching this request. */
   columns?: StringList;
+  /** If greater than zero, only the first `limit` rows are yielded. If `limit` is zero, the default is no limit. A limit can't be specified if `partition_token` is set. */
+  limit?: string;
+  /** If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information. */
+  index?: string;
   /** Directed read options for this request. */
   directedReadOptions?: DirectedReadOptions;
+  /** Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index. If the partition_token field is empty, rows are yielded in table primary key order (if index is empty) or index key order (if index is non-empty). If the partition_token field isn't empty, rows are yielded in an unspecified order. It isn't an error for the `key_set` to name rows that don't exist in the database. Read yields nothing for nonexistent rows. */
+  keySet?: KeySet;
+  /** Required. The name of the table in the database to be read. */
+  table?: string;
+  /** The transaction to use. If none is provided, the default is a temporary read-only transaction with strong concurrency. */
+  transaction?: TransactionSelector;
+  /** If this is for a partitioned read and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request doesn't set `partition_token`, the API returns an `INVALID_ARGUMENT` error. */
+  dataBoostEnabled?: boolean;
+  /** Optional. Lock Hint for the request, it can only be used with read-write transactions. */
+  lockHint?: ReadRequestLockHintEnum | (string & {});
+  /** Optional. Order for the returned rows. By default, Spanner returns result rows in primary key order except for PartitionRead requests. For applications that don't require rows to be returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval, resulting in lower latencies in certain cases (for example, bulk point lookups). */
+  orderBy?: ReadRequestOrderByEnum | (string & {});
+  /** If present, results are restricted to the specified partition previously created using `PartitionRead`. There must be an exact match for the values of fields common to this message and the PartitionReadRequest message used to create this partition_token. */
+  partitionToken?: string;
+  /** Common options for this request. */
+  requestOptions?: RequestOptions;
+  /** If this request is resuming a previously interrupted read, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new read to resume where the last read left off. The rest of the request parameters must exactly match the request that yielded this token. */
+  resumeToken?: string;
 }
 export const ReadRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dataBoostEnabled: S.optional(S.Boolean),
-    table: S.optional(S.String),
-    index: S.optional(S.String),
-    keySet: S.optional(KeySet),
-    limit: S.optional(S.String),
-    lockHint: S.optional(ReadRequestLockHintEnum),
-    requestOptions: S.optional(RequestOptions),
-    partitionToken: S.optional(S.String),
-    transaction: S.optional(TransactionSelector),
-    resumeToken: S.optional(S.String),
-    orderBy: S.optional(ReadRequestOrderByEnum),
     columns: S.optional(StringList),
+    limit: S.optional(S.String),
+    index: S.optional(S.String),
     directedReadOptions: S.optional(DirectedReadOptions),
+    keySet: S.optional(KeySet),
+    table: S.optional(S.String),
+    transaction: S.optional(TransactionSelector),
+    dataBoostEnabled: S.optional(S.Boolean),
+    lockHint: S.optional(ReadRequestLockHintEnum),
+    orderBy: S.optional(ReadRequestOrderByEnum),
+    partitionToken: S.optional(S.String),
+    requestOptions: S.optional(RequestOptions),
+    resumeToken: S.optional(S.String),
   }),
 ).annotate({ identifier: "ReadRequest" }) as any as S.Schema<ReadRequest>;
 
@@ -5324,10 +5324,10 @@ export const RestoreDatabaseEncryptionConfigEncryptionTypeEnum =
 
 /** Encryption configuration for the restored database. */
 export interface RestoreDatabaseEncryptionConfig {
-  /** Optional. Specifies the KMS configuration for one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
-  kmsKeyNames?: StringList;
   /** Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`. */
   kmsKeyName?: string;
+  /** Optional. Specifies the KMS configuration for one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations. */
+  kmsKeyNames?: StringList;
   /** Required. The encryption type of the restored database. */
   encryptionType?:
     | RestoreDatabaseEncryptionConfigEncryptionTypeEnum
@@ -5335,8 +5335,8 @@ export interface RestoreDatabaseEncryptionConfig {
 }
 export const RestoreDatabaseEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kmsKeyNames: S.optional(StringList),
     kmsKeyName: S.optional(S.String),
+    kmsKeyNames: S.optional(StringList),
     encryptionType: S.optional(
       RestoreDatabaseEncryptionConfigEncryptionTypeEnum,
     ),
@@ -5347,18 +5347,18 @@ export const RestoreDatabaseEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The request for RestoreDatabase. */
 export interface RestoreDatabaseRequest {
-  /** Optional. An encryption configuration describing the encryption type and key resources in Cloud KMS used to encrypt/decrypt the database to restore to. If this field is not specified, the restored database will use the same encryption configuration as the backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`. */
-  encryptionConfig?: RestoreDatabaseEncryptionConfig;
   /** Required. The id of the database to create and restore to. This database must not already exist. The `database_id` appended to `parent` forms the full database name of the form `projects//instances//databases/`. */
   databaseId?: string;
   /** Name of the backup from which to restore. Values are of the form `projects//instances//backups/`. */
   backup?: string;
+  /** Optional. An encryption configuration describing the encryption type and key resources in Cloud KMS used to encrypt/decrypt the database to restore to. If this field is not specified, the restored database will use the same encryption configuration as the backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`. */
+  encryptionConfig?: RestoreDatabaseEncryptionConfig;
 }
 export const RestoreDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    encryptionConfig: S.optional(RestoreDatabaseEncryptionConfig),
     databaseId: S.optional(S.String),
     backup: S.optional(S.String),
+    encryptionConfig: S.optional(RestoreDatabaseEncryptionConfig),
   }),
 ).annotate({
   identifier: "RestoreDatabaseRequest",
@@ -5684,18 +5684,18 @@ export const TestIamPermissionsProjectsInstancesDatabasesDatabaseRolesRequest =
 
 /** Enqueues the given DDL statements to be applied, in order but not necessarily all at once, to the database schema at some point (or points) in the future. The server checks that the statements are executable (syntactically valid, name tables that exist, etc.) before enqueueing them, but they may still fail upon later execution (for example, if a statement from another batch of statements is applied first and it conflicts in some way, or if there is some data-related problem like a `NULL` value in a column to which `NOT NULL` would be added). If a statement fails, all subsequent statements in the batch are automatically cancelled. Each batch of statements is assigned a name which can be used with the Operations API to monitor progress. See the operation_id field for more details. */
 export interface UpdateDatabaseDdlRequest {
-  /** If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the `name` of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`. */
-  operationId?: string;
   /** Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description). */
   protoDescriptors?: string;
   /** Required. DDL statements to be applied to the database. */
   statements?: StringList;
+  /** If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the `name` of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`. */
+  operationId?: string;
 }
 export const UpdateDatabaseDdlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operationId: S.optional(S.String),
     protoDescriptors: S.optional(S.String),
     statements: S.optional(StringList),
+    operationId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "UpdateDatabaseDdlRequest",
@@ -5778,6 +5778,26 @@ export const addSplitPointsProjectsInstancesDatabases: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AddSplitPointsProjectsInstancesDatabasesRequest,
   output: AddSplitPointsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchCreateProjectsInstancesDatabasesSessionsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Creates multiple new sessions. This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management. */
+export const batchCreateProjectsInstancesDatabasesSessions: API.OperationMethod<
+  BatchCreateProjectsInstancesDatabasesSessionsRequest,
+  BatchCreateSessionsResponse,
+  BatchCreateProjectsInstancesDatabasesSessionsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchCreateProjectsInstancesDatabasesSessionsRequest,
+  output: BatchCreateSessionsResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -5998,26 +6018,6 @@ export const copyProjectsInstancesBackups: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CopyProjectsInstancesBackupsRequest,
   output: Operation,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateBatchProjectInstanceDatabaseSessionError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Creates multiple new sessions. This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management. */
-export const createBatchProjectInstanceDatabaseSession: API.OperationMethod<
-  CreateBatchProjectInstanceDatabaseSessionRequest,
-  BatchCreateSessionsResponse,
-  CreateBatchProjectInstanceDatabaseSessionError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateBatchProjectInstanceDatabaseSessionRequest,
-  output: BatchCreateSessionsResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,

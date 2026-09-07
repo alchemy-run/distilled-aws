@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.docs#DocsSearchRequest": {
+    "com.posthog.docs#SearchDocRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -53,10 +54,10 @@
       },
       "traits": {}
     },
-    "com.posthog.docs#DocsSearch": {
+    "com.posthog.docs#SearchDoc": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.docs#DocsSearchRequest"
+        "target": "com.posthog.docs#SearchDocRequest"
       },
       "output": {
         "target": "com.posthog.docs#DocsSearchResponse"
@@ -75,7 +76,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.docs#DocsSearch"
+          "target": "com.posthog.docs#SearchDoc"
         }
       ],
       "traits": {

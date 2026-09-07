@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.leads#ListLeadRequestProductIdsList": {
@@ -587,7 +588,7 @@
         "smithy.api#documentation": "Create lead\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nRecord a new lead for a company, capturing a potential customer's interest in a specific product.\n\nRequired permissions:\n - `lead:manage`\n - `member:email:read`\n - `access_pass:basic:read`\n - `member:basic:read`"
       }
     },
-    "com.whop.leads#RetrieveLeadRequest": {
+    "com.whop.leads#GetLeadRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -603,10 +604,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.leads#RetrieveLead": {
+    "com.whop.leads#GetLead": {
       "type": "operation",
       "input": {
-        "target": "com.whop.leads#RetrieveLeadRequest"
+        "target": "com.whop.leads#GetLeadRequest"
       },
       "output": {
         "target": "com.whop.leads#Lead"
@@ -764,13 +765,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.leads#ListLead"
-        },
-        {
           "target": "com.whop.leads#CreateLead"
         },
         {
-          "target": "com.whop.leads#RetrieveLead"
+          "target": "com.whop.leads#GetLead"
+        },
+        {
+          "target": "com.whop.leads#ListLead"
         },
         {
           "target": "com.whop.leads#UpdateLead"

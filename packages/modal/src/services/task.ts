@@ -12,174 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface GetTaskCommandRouterAccessRequest {
-  taskId?: string;
-}
-export const GetTaskCommandRouterAccessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/TaskGetCommandRouterAccess",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetTaskCommandRouterAccessRequest",
-}) as any as S.Schema<GetTaskCommandRouterAccessRequest>;
-
-export interface GetTaskCommandRouterAccessResponse {
-  jwt?: string;
-  url?: string;
-}
-export const GetTaskCommandRouterAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jwt: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetTaskCommandRouterAccessResponse",
-}) as any as S.Schema<GetTaskCommandRouterAccessResponse>;
-
-export interface GetTaskInfoRequest {
-  taskId?: string;
-}
-export const GetTaskInfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/TaskGetInfo",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetTaskInfoRequest",
-}) as any as S.Schema<GetTaskInfoRequest>;
-
-/** Used for both tasks and function outputs */
-export type GenericResultGenericStatus =
-  | "GENERIC_STATUS_UNSPECIFIED"
-  | "GENERIC_STATUS_SUCCESS"
-  | "GENERIC_STATUS_FAILURE"
-  | "GENERIC_STATUS_TERMINATED"
-  | "GENERIC_STATUS_TIMEOUT"
-  | "GENERIC_STATUS_INIT_FAILURE"
-  | "GENERIC_STATUS_INTERNAL_FAILURE"
-  | "GENERIC_STATUS_IDLE_TIMEOUT"
-  | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
-
-/** sub-type for generic types like lists */
-export interface GenericResult {
-  status?: GenericResultGenericStatus | (string & {});
-  /** Status of the task or function output. */
-  exception?: string;
-  /** Exception message for failures, if available. */
-  exitcode?: number;
-  /** Status code of the container entrypoint or builder process if it terminates unexpectedly. */
-  traceback?: string;
-  /** String value of the Python traceback. */
-  serializedTb?: string;
-  /** Pickled traceback object. */
-  tbLineCache?: string;
-  /** Pickled line cache for traceback object. */
-  data?: string;
-  /** Inline data of the result. */
-  dataBlobId?: string;
-  /** Blob ID for large data. */
-  propagationReason?: string;
-}
-export const GenericResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(GenericResultGenericStatus),
-    exception: S.optional(S.String),
-    exitcode: S.optional(S.Number),
-    traceback: S.optional(S.String),
-    serializedTb: S.optional(S.String),
-    tbLineCache: S.optional(S.String),
-    data: S.optional(S.String),
-    dataBlobId: S.optional(S.String),
-    propagationReason: S.optional(S.String),
-  }),
-).annotate({ identifier: "GenericResult" }) as any as S.Schema<GenericResult>;
-
-/** ENOSPC: No space left on device */
-export type TaskSnapshotBehavior =
-  | "TASK_SNAPSHOT_BEHAVIOR_UNSPECIFIED"
-  | "TASK_SNAPSHOT_BEHAVIOR_SNAPSHOT"
-  | "TASK_SNAPSHOT_BEHAVIOR_RESTORE"
-  | "TASK_SNAPSHOT_BEHAVIOR_NONE";
-export const TaskSnapshotBehavior = /*@__PURE__*/ S.String;
-
-export type GPUType =
-  | "GPU_TYPE_UNSPECIFIED"
-  | "GPU_TYPE_T4"
-  | "GPU_TYPE_A100"
-  | "GPU_TYPE_A10G"
-  | "GPU_TYPE_ANY"
-  | "GPU_TYPE_A100_80GB"
-  | "GPU_TYPE_L4"
-  | "GPU_TYPE_H100"
-  | "GPU_TYPE_L40S"
-  | "GPU_TYPE_H200";
-export const GPUType = /*@__PURE__*/ S.String;
-
-export interface GPUConfig {
-  type?: GPUType;
-  /** Deprecated, at some point */
-  count?: number;
-  gpuType?: string;
-}
-export const GPUConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(GPUType),
-    count: S.optional(S.Number),
-    gpuType: S.optional(S.String),
-  }),
-).annotate({ identifier: "GPUConfig" }) as any as S.Schema<GPUConfig>;
-
-export interface TaskInfo {
-  id?: string;
-  startedAt?: number;
-  /** For Function containers, this corresponds to the "ready" time, after startup phase */
-  finishedAt?: number;
-  result?: GenericResult;
-  enqueuedAt?: number;
-  gpuType?: string;
-  sandboxId?: string;
-  snapshotBehavior?: TaskSnapshotBehavior;
-  gpuConfig?: GPUConfig;
-}
-export const TaskInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    startedAt: S.optional(S.Number),
-    finishedAt: S.optional(S.Number),
-    result: S.optional(GenericResult),
-    enqueuedAt: S.optional(S.Number),
-    gpuType: S.optional(S.String),
-    sandboxId: S.optional(S.String),
-    snapshotBehavior: S.optional(TaskSnapshotBehavior),
-    gpuConfig: S.optional(GPUConfig),
-  }),
-).annotate({ identifier: "TaskInfo" }) as any as S.Schema<TaskInfo>;
-
-export interface GetTaskInfoResponse {
-  appId?: string;
-  info?: TaskInfo;
-}
-export const GetTaskInfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.String),
-    info: S.optional(TaskInfo),
-  }),
-).annotate({
-  identifier: "GetTaskInfoResponse",
-}) as any as S.Schema<GetTaskInfoResponse>;
-
 export interface ListTaskRequest {
   environmentName?: string;
   appId?: string;
@@ -306,6 +138,174 @@ export const TaskCurrentInputsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskCurrentInputsResponse",
 }) as any as S.Schema<TaskCurrentInputsResponse>;
 
+export interface TaskGetCommandRouterAccessRequest {
+  taskId?: string;
+}
+export const TaskGetCommandRouterAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/TaskGetCommandRouterAccess",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskGetCommandRouterAccessRequest",
+}) as any as S.Schema<TaskGetCommandRouterAccessRequest>;
+
+export interface TaskGetCommandRouterAccessResponse {
+  jwt?: string;
+  url?: string;
+}
+export const TaskGetCommandRouterAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jwt: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskGetCommandRouterAccessResponse",
+}) as any as S.Schema<TaskGetCommandRouterAccessResponse>;
+
+export interface TaskGetInfoRequest {
+  taskId?: string;
+}
+export const TaskGetInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/TaskGetInfo",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskGetInfoRequest",
+}) as any as S.Schema<TaskGetInfoRequest>;
+
+/** Used for both tasks and function outputs */
+export type GenericResultGenericStatus =
+  | "GENERIC_STATUS_UNSPECIFIED"
+  | "GENERIC_STATUS_SUCCESS"
+  | "GENERIC_STATUS_FAILURE"
+  | "GENERIC_STATUS_TERMINATED"
+  | "GENERIC_STATUS_TIMEOUT"
+  | "GENERIC_STATUS_INIT_FAILURE"
+  | "GENERIC_STATUS_INTERNAL_FAILURE"
+  | "GENERIC_STATUS_IDLE_TIMEOUT"
+  | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
+export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+
+/** sub-type for generic types like lists */
+export interface GenericResult {
+  status?: GenericResultGenericStatus | (string & {});
+  /** Status of the task or function output. */
+  exception?: string;
+  /** Exception message for failures, if available. */
+  exitcode?: number;
+  /** Status code of the container entrypoint or builder process if it terminates unexpectedly. */
+  traceback?: string;
+  /** String value of the Python traceback. */
+  serializedTb?: string;
+  /** Pickled traceback object. */
+  tbLineCache?: string;
+  /** Pickled line cache for traceback object. */
+  data?: string;
+  /** Inline data of the result. */
+  dataBlobId?: string;
+  /** Blob ID for large data. */
+  propagationReason?: string;
+}
+export const GenericResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(GenericResultGenericStatus),
+    exception: S.optional(S.String),
+    exitcode: S.optional(S.Number),
+    traceback: S.optional(S.String),
+    serializedTb: S.optional(S.String),
+    tbLineCache: S.optional(S.String),
+    data: S.optional(S.String),
+    dataBlobId: S.optional(S.String),
+    propagationReason: S.optional(S.String),
+  }),
+).annotate({ identifier: "GenericResult" }) as any as S.Schema<GenericResult>;
+
+/** ENOSPC: No space left on device */
+export type TaskSnapshotBehavior =
+  | "TASK_SNAPSHOT_BEHAVIOR_UNSPECIFIED"
+  | "TASK_SNAPSHOT_BEHAVIOR_SNAPSHOT"
+  | "TASK_SNAPSHOT_BEHAVIOR_RESTORE"
+  | "TASK_SNAPSHOT_BEHAVIOR_NONE";
+export const TaskSnapshotBehavior = /*@__PURE__*/ S.String;
+
+export type GPUType =
+  | "GPU_TYPE_UNSPECIFIED"
+  | "GPU_TYPE_T4"
+  | "GPU_TYPE_A100"
+  | "GPU_TYPE_A10G"
+  | "GPU_TYPE_ANY"
+  | "GPU_TYPE_A100_80GB"
+  | "GPU_TYPE_L4"
+  | "GPU_TYPE_H100"
+  | "GPU_TYPE_L40S"
+  | "GPU_TYPE_H200";
+export const GPUType = /*@__PURE__*/ S.String;
+
+export interface GPUConfig {
+  type?: GPUType;
+  /** Deprecated, at some point */
+  count?: number;
+  gpuType?: string;
+}
+export const GPUConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(GPUType),
+    count: S.optional(S.Number),
+    gpuType: S.optional(S.String),
+  }),
+).annotate({ identifier: "GPUConfig" }) as any as S.Schema<GPUConfig>;
+
+export interface TaskInfo {
+  id?: string;
+  startedAt?: number;
+  /** For Function containers, this corresponds to the "ready" time, after startup phase */
+  finishedAt?: number;
+  result?: GenericResult;
+  enqueuedAt?: number;
+  gpuType?: string;
+  sandboxId?: string;
+  snapshotBehavior?: TaskSnapshotBehavior;
+  gpuConfig?: GPUConfig;
+}
+export const TaskInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    startedAt: S.optional(S.Number),
+    finishedAt: S.optional(S.Number),
+    result: S.optional(GenericResult),
+    enqueuedAt: S.optional(S.Number),
+    gpuType: S.optional(S.String),
+    sandboxId: S.optional(S.String),
+    snapshotBehavior: S.optional(TaskSnapshotBehavior),
+    gpuConfig: S.optional(GPUConfig),
+  }),
+).annotate({ identifier: "TaskInfo" }) as any as S.Schema<TaskInfo>;
+
+export interface TaskGetInfoResponse {
+  appId?: string;
+  info?: TaskInfo;
+}
+export const TaskGetInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.String),
+    info: S.optional(TaskInfo),
+  }),
+).annotate({
+  identifier: "TaskGetInfoResponse",
+}) as any as S.Schema<TaskGetInfoResponse>;
+
 export interface TaskResultRequest {
   result?: GenericResult;
 }
@@ -329,34 +329,6 @@ export const TaskResultResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TaskResultResponse",
 }) as any as S.Schema<TaskResultResponse>;
-
-export type GetTaskCommandRouterAccessError = ModalOpError;
-export const getTaskCommandRouterAccess: API.OperationMethod<
-  GetTaskCommandRouterAccessRequest,
-  GetTaskCommandRouterAccessResponse,
-  GetTaskCommandRouterAccessError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetTaskCommandRouterAccessRequest,
-  output: GetTaskCommandRouterAccessResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetTaskInfoError = ModalOpError;
-export const getTaskInfo: API.OperationMethod<
-  GetTaskInfoRequest,
-  GetTaskInfoResponse,
-  GetTaskInfoError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetTaskInfoRequest,
-  output: GetTaskInfoResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
 
 export type ListTaskError = ModalOpError;
 export const listTask: API.OperationMethod<
@@ -396,6 +368,34 @@ export const taskCurrentInputs: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TaskCurrentInputsRequest,
   output: TaskCurrentInputsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskGetCommandRouterAccessError = ModalOpError;
+export const taskGetCommandRouterAccess: API.OperationMethod<
+  TaskGetCommandRouterAccessRequest,
+  TaskGetCommandRouterAccessResponse,
+  TaskGetCommandRouterAccessError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskGetCommandRouterAccessRequest,
+  output: TaskGetCommandRouterAccessResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskGetInfoError = ModalOpError;
+export const taskGetInfo: API.OperationMethod<
+  TaskGetInfoRequest,
+  TaskGetInfoResponse,
+  TaskGetInfoError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskGetInfoRequest,
+  output: TaskGetInfoResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

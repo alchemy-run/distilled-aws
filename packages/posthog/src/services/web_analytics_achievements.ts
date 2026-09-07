@@ -11,41 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface UpdateWebAnalyticAchievementPreferenceRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** When true, the requesting user has hidden the Web analytics achievements gamification UI and suppressed achievement-unlocked notifications for this project. Scoped per (project, user). */
-  achievements_opt_out: boolean;
-}
-export const UpdateWebAnalyticAchievementPreferenceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      achievements_opt_out: S.Boolean,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/web_analytics_achievements/preferences/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateWebAnalyticAchievementPreferenceRequest",
-  }) as any as S.Schema<UpdateWebAnalyticAchievementPreferenceRequest>;
-
-export interface WebAnalyticsUserPreferences {
-  /** When true, the requesting user has hidden the Web analytics achievements gamification UI and suppressed achievement-unlocked notifications for this project. Scoped per (project, user). */
-  achievements_opt_out: boolean;
-}
-export const WebAnalyticsUserPreferences = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    achievements_opt_out: S.Boolean,
-  }),
-).annotate({
-  identifier: "WebAnalyticsUserPreferences",
-}) as any as S.Schema<WebAnalyticsUserPreferences>;
-
-export interface WebAnalyticsAchievementsAcknowledgeCelebrationRequest {
+export interface AcknowledgeWebAnalyticsAchievementCelebrationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Track of the celebration being acknowledged. */
@@ -53,7 +19,7 @@ export interface WebAnalyticsAchievementsAcknowledgeCelebrationRequest {
   /** Stage number being acknowledged, 1-5. */
   stage: number;
 }
-export const WebAnalyticsAchievementsAcknowledgeCelebrationRequest =
+export const AcknowledgeWebAnalyticsAchievementCelebrationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -67,8 +33,8 @@ export const WebAnalyticsAchievementsAcknowledgeCelebrationRequest =
       }),
     ),
   ).annotate({
-    identifier: "WebAnalyticsAchievementsAcknowledgeCelebrationRequest",
-  }) as any as S.Schema<WebAnalyticsAchievementsAcknowledgeCelebrationRequest>;
+    identifier: "AcknowledgeWebAnalyticsAchievementCelebrationRequest",
+  }) as any as S.Schema<AcknowledgeWebAnalyticsAchievementCelebrationRequest>;
 
 export interface AcknowledgeCelebrationResponse {
   /** True if a matching pending celebration was cleared (idempotent). */
@@ -81,6 +47,40 @@ export const AcknowledgeCelebrationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AcknowledgeCelebrationResponse",
 }) as any as S.Schema<AcknowledgeCelebrationResponse>;
+
+export interface UpdateWebAnalyticsAchievementPreferencesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** When true, the requesting user has hidden the Web analytics achievements gamification UI and suppressed achievement-unlocked notifications for this project. Scoped per (project, user). */
+  achievements_opt_out: boolean;
+}
+export const UpdateWebAnalyticsAchievementPreferencesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      achievements_opt_out: S.Boolean,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/web_analytics_achievements/preferences/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateWebAnalyticsAchievementPreferencesRequest",
+  }) as any as S.Schema<UpdateWebAnalyticsAchievementPreferencesRequest>;
+
+export interface WebAnalyticsUserPreferences {
+  /** When true, the requesting user has hidden the Web analytics achievements gamification UI and suppressed achievement-unlocked notifications for this project. Scoped per (project, user). */
+  achievements_opt_out: boolean;
+}
+export const WebAnalyticsUserPreferences = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    achievements_opt_out: S.Boolean,
+  }),
+).annotate({
+  identifier: "WebAnalyticsUserPreferences",
+}) as any as S.Schema<WebAnalyticsUserPreferences>;
 
 export interface WebAnalyticsAchievementsOverviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -345,32 +345,31 @@ export const RecordVisitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecordVisitResponse",
 }) as any as S.Schema<RecordVisitResponse>;
 
-export type UpdateWebAnalyticAchievementPreferenceError = PosthogOpError;
-/** Update Web analytics achievements preferences Sets the requesting user's per-project Web analytics achievements preferences. */
-export const updateWebAnalyticAchievementPreference: API.OperationMethod<
-  UpdateWebAnalyticAchievementPreferenceRequest,
-  WebAnalyticsUserPreferences,
-  UpdateWebAnalyticAchievementPreferenceError,
+export type AcknowledgeWebAnalyticsAchievementCelebrationError = PosthogOpError;
+/** Acknowledge an achievement celebration Clears a pending celebration for the given track and stage once the client has shown it, so it isn't celebrated again. Idempotent. */
+export const acknowledgeWebAnalyticsAchievementCelebration: API.OperationMethod<
+  AcknowledgeWebAnalyticsAchievementCelebrationRequest,
+  AcknowledgeCelebrationResponse,
+  AcknowledgeWebAnalyticsAchievementCelebrationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWebAnalyticAchievementPreferenceRequest,
-  output: WebAnalyticsUserPreferences,
+  input: AcknowledgeWebAnalyticsAchievementCelebrationRequest,
+  output: AcknowledgeCelebrationResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebAnalyticsAchievementsAcknowledgeCelebrationError =
-  PosthogOpError;
-/** Acknowledge an achievement celebration Clears a pending celebration for the given track and stage once the client has shown it, so it isn't celebrated again. Idempotent. */
-export const webAnalyticsAchievementsAcknowledgeCelebration: API.OperationMethod<
-  WebAnalyticsAchievementsAcknowledgeCelebrationRequest,
-  AcknowledgeCelebrationResponse,
-  WebAnalyticsAchievementsAcknowledgeCelebrationError,
+export type UpdateWebAnalyticsAchievementPreferencesError = PosthogOpError;
+/** Update Web analytics achievements preferences Sets the requesting user's per-project Web analytics achievements preferences. */
+export const updateWebAnalyticsAchievementPreferences: API.OperationMethod<
+  UpdateWebAnalyticsAchievementPreferencesRequest,
+  WebAnalyticsUserPreferences,
+  UpdateWebAnalyticsAchievementPreferencesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebAnalyticsAchievementsAcknowledgeCelebrationRequest,
-  output: AcknowledgeCelebrationResponse,
+  input: UpdateWebAnalyticsAchievementPreferencesRequest,
+  output: WebAnalyticsUserPreferences,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

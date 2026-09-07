@@ -369,6 +369,18 @@ export const DeleteCourseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCourseResponse",
 }) as any as S.Schema<DeleteCourseResponse>;
 
+export interface GetCourseRequest {
+  /** The unique identifier of the course to retrieve. */
+  id: string;
+}
+export const GetCourseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/courses/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCourseRequest",
+}) as any as S.Schema<GetCourseRequest>;
+
 export interface ListCourseRequest {
   after?: string;
   before?: string;
@@ -516,18 +528,6 @@ export const ListCourseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCourseResponse",
 }) as any as S.Schema<ListCourseResponse>;
 
-export interface RetrieveCourseRequest {
-  /** The unique identifier of the course to retrieve. */
-  id: string;
-}
-export const RetrieveCourseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/courses/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCourseRequest",
-}) as any as S.Schema<RetrieveCourseRequest>;
-
 /** Input for updating a lesson while updating a course */
 export interface UpdateCourseRequestChaptersItemLessonsItem {
   /** The ID of the chapter this lesson belongs to (for moving between chapters) */
@@ -673,6 +673,26 @@ export const deleteCourse: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCourseError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve course [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course. Required permissions: - `courses:read` */
+export const getCourse: API.OperationMethod<
+  GetCourseRequest,
+  Course,
+  GetCourseError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCourseRequest,
+  output: Course,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListCourseError =
   | BadRequest
   | Forbidden
@@ -704,26 +724,6 @@ export const listCourse: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCourseError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve course [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course. Required permissions: - `courses:read` */
-export const retrieveCourse: API.OperationMethod<
-  RetrieveCourseRequest,
-  Course,
-  RetrieveCourseError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCourseRequest,
-  output: Course,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateCourseError =
   | BadRequest

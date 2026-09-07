@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.apiregistration#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.apiregistration#GetApiregistrationApiGroup": {
+    "com.kubernetes.apiregistration#GetApiregistrationAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.apiregistration#GetApiregistrationV1ApiResources": {
+    "com.kubernetes.apiregistration#GetApiregistrationV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -302,7 +303,7 @@
         "smithy.api#documentation": "get available resources"
       }
     },
-    "com.kubernetes.apiregistration#ListApiregistrationV1ApiServiceRequest": {
+    "com.kubernetes.apiregistration#ListApiregistrationV1APIServiceRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -915,10 +916,10 @@
         "smithy.api#documentation": "ShardInfo describes the shard selector that was applied to produce a list response. Its presence on a list response indicates the list is a filtered subset."
       }
     },
-    "com.kubernetes.apiregistration#ListApiregistrationV1ApiService": {
+    "com.kubernetes.apiregistration#ListApiregistrationV1APIService": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#ListApiregistrationV1ApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#ListApiregistrationV1APIServiceRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList"
@@ -932,7 +933,7 @@
         "smithy.api#documentation": "list or watch objects of kind APIService"
       }
     },
-    "com.kubernetes.apiregistration#CreateApiregistrationV1ApiServiceRequest": {
+    "com.kubernetes.apiregistration#CreateApiregistrationV1APIServiceRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -998,10 +999,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apiregistration#CreateApiregistrationV1ApiService": {
+    "com.kubernetes.apiregistration#CreateApiregistrationV1APIService": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#CreateApiregistrationV1ApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#CreateApiregistrationV1APIServiceRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sKubeAggregatorPkgApisApiregistrationV1APIService"
@@ -1052,7 +1053,7 @@
         "smithy.api#documentation": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out."
       }
     },
-    "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionApiServiceRequest": {
+    "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIServiceRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -1318,10 +1319,10 @@
         "smithy.api#documentation": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes."
       }
     },
-    "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionApiService": {
+    "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIService": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIServiceRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sApimachineryPkgApisMetaV1Status"
@@ -1482,7 +1483,7 @@
         "smithy.api#documentation": "replace the specified APIService"
       }
     },
-    "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceRequest": {
+    "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1533,10 +1534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apiregistration#PatchApiregistrationV1ApiService": {
+    "com.kubernetes.apiregistration#PatchApiregistrationV1APIService": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sKubeAggregatorPkgApisApiregistrationV1APIService"
@@ -1570,7 +1571,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.apiregistration#DeleteApiregistrationV1ApiServiceRequest": {
+    "com.kubernetes.apiregistration#DeleteApiregistrationV1APIServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1646,10 +1647,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apiregistration#DeleteApiregistrationV1ApiService": {
+    "com.kubernetes.apiregistration#DeleteApiregistrationV1APIService": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1ApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1APIServiceRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sApimachineryPkgApisMetaV1Status"
@@ -1818,7 +1819,7 @@
         "smithy.api#documentation": "replace status of the specified APIService"
       }
     },
-    "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceStatusRequest": {
+    "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatusRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1869,10 +1870,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceStatus": {
+    "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceStatusRequest"
+        "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sKubeAggregatorPkgApisApiregistrationV1APIService"
@@ -1897,7 +1898,7 @@
         "smithy.api#documentation": "partially update status of the specified APIService"
       }
     },
-    "com.kubernetes.apiregistration#ListWatchApiregistrationV1ApiServiceRequest": {
+    "com.kubernetes.apiregistration#WatchApiregistrationV1APIServiceListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -2010,10 +2011,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.apiregistration#ListWatchApiregistrationV1ApiService": {
+    "com.kubernetes.apiregistration#WatchApiregistrationV1APIServiceList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apiregistration#ListWatchApiregistrationV1ApiServiceRequest"
+        "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIServiceListRequest"
       },
       "output": {
         "target": "com.kubernetes.apiregistration#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2188,46 +2189,46 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.apiregistration#GetApiregistrationApiGroup"
+          "target": "com.kubernetes.apiregistration#CreateApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#GetApiregistrationV1ApiResources"
+          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#ListApiregistrationV1ApiService"
+          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#CreateApiregistrationV1ApiService"
+          "target": "com.kubernetes.apiregistration#GetApiregistrationAPIGroup"
         },
         {
-          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionApiService"
+          "target": "com.kubernetes.apiregistration#GetApiregistrationV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#ListApiregistrationV1APIService"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIService"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatus"
         },
         {
           "target": "com.kubernetes.apiregistration#ReadApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIService"
-        },
-        {
-          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1ApiService"
-        },
-        {
-          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1ApiService"
-        },
-        {
           "target": "com.kubernetes.apiregistration#ReadApiregistrationV1APIServiceStatus"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIService"
         },
         {
           "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIServiceStatus"
         },
         {
-          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1ApiServiceStatus"
-        },
-        {
-          "target": "com.kubernetes.apiregistration#ListWatchApiregistrationV1ApiService"
-        },
-        {
           "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIService"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIServiceList"
         }
       ],
       "traits": {

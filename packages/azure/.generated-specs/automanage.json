@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.automanage#ListHciReportByConfigurationProfileAssignments": {
+    "com.azure.automanage#ListHCIReportByConfigurationProfileAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#ListHciReportByConfigurationProfileAssignmentsRequest"
+        "target": "com.azure.automanage#ListHCIReportByConfigurationProfileAssignmentsRequest"
       },
       "output": {
         "target": "com.azure.automanage#ReportList"
@@ -508,7 +509,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.automanage#ListHciReportByConfigurationProfileAssignmentsRequest": {
+    "com.azure.automanage#ListHCIReportByConfigurationProfileAssignmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -548,13 +549,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#GetHciReport": {
+    "com.azure.automanage#GetHCIReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetHciReportRequest"
+        "target": "com.azure.automanage#GetHCIReportRequest"
       },
       "output": {
-        "target": "com.azure.automanage#GetHciReportResponse"
+        "target": "com.azure.automanage#GetHCIReportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -567,7 +568,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetHciReportResponse": {
+    "com.azure.automanage#GetHCIReportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -595,7 +596,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#HCIReportsGetResponseSystemData",
+          "target": "com.azure.automanage#GetHCIReportResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -605,7 +606,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#HCIReportsGetResponseSystemData": {
+    "com.azure.automanage#GetHCIReportResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -615,7 +616,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#HCIReportsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetHCIReportResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -633,7 +634,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#HCIReportsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetHCIReportResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -649,7 +650,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#HCIReportsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetHCIReportResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -681,7 +682,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#HCIReportsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetHCIReportResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -713,7 +714,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#GetHciReportRequest": {
+    "com.azure.automanage#GetHCIReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1013,10 +1014,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileHciAssignment": {
+    "com.azure.automanage#DeleteConfigurationProfileHCIAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#DeleteConfigurationProfileHciAssignmentRequest"
+        "target": "com.azure.automanage#DeleteConfigurationProfileHCIAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1032,7 +1033,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileHciAssignmentRequest": {
+    "com.azure.automanage#DeleteConfigurationProfileHCIAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1303,13 +1304,13 @@
         "smithy.api#documentation": "Automanage configuration profile assignment properties."
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHciAssignment": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetConfigurationProfileHciAssignmentRequest"
+        "target": "com.azure.automanage#GetConfigurationProfileHCIAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.automanage#GetConfigurationProfileHciAssignmentResponse"
+        "target": "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1322,7 +1323,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHciAssignmentResponse": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1356,7 +1357,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemData",
+          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1366,7 +1367,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemData": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1376,7 +1377,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1394,7 +1395,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1410,7 +1411,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1442,7 +1443,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1474,7 +1475,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHciAssignmentRequest": {
+    "com.azure.automanage#GetConfigurationProfileHCIAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1514,10 +1515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#ListHcrpReportByConfigurationProfileAssignments": {
+    "com.azure.automanage#ListHCRPReportByConfigurationProfileAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#ListHcrpReportByConfigurationProfileAssignmentsRequest"
+        "target": "com.azure.automanage#ListHCRPReportByConfigurationProfileAssignmentsRequest"
       },
       "output": {
         "target": "com.azure.automanage#ReportList"
@@ -1533,7 +1534,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#ListHcrpReportByConfigurationProfileAssignmentsRequest": {
+    "com.azure.automanage#ListHCRPReportByConfigurationProfileAssignmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1573,13 +1574,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#GetHcrpReport": {
+    "com.azure.automanage#GetHCRPReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetHcrpReportRequest"
+        "target": "com.azure.automanage#GetHCRPReportRequest"
       },
       "output": {
-        "target": "com.azure.automanage#GetHcrpReportResponse"
+        "target": "com.azure.automanage#GetHCRPReportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1592,7 +1593,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetHcrpReportResponse": {
+    "com.azure.automanage#GetHCRPReportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1620,7 +1621,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#HCRPReportsGetResponseSystemData",
+          "target": "com.azure.automanage#GetHCRPReportResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1630,7 +1631,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#HCRPReportsGetResponseSystemData": {
+    "com.azure.automanage#GetHCRPReportResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1640,7 +1641,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#HCRPReportsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetHCRPReportResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1658,7 +1659,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#HCRPReportsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetHCRPReportResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1674,7 +1675,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#HCRPReportsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetHCRPReportResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1706,7 +1707,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#HCRPReportsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetHCRPReportResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1738,7 +1739,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#GetHcrpReportRequest": {
+    "com.azure.automanage#GetHCRPReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1837,10 +1838,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileHcrpAssignment": {
+    "com.azure.automanage#DeleteConfigurationProfileHCRPAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#DeleteConfigurationProfileHcrpAssignmentRequest"
+        "target": "com.azure.automanage#DeleteConfigurationProfileHCRPAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1856,7 +1857,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileHcrpAssignmentRequest": {
+    "com.azure.automanage#DeleteConfigurationProfileHCRPAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2113,13 +2114,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHcrpAssignment": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetConfigurationProfileHcrpAssignmentRequest"
+        "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.automanage#GetConfigurationProfileHcrpAssignmentResponse"
+        "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2132,7 +2133,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHcrpAssignmentResponse": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2166,7 +2167,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemData",
+          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2176,7 +2177,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemData": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2186,7 +2187,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2204,7 +2205,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2220,7 +2221,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2252,7 +2253,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2284,7 +2285,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#GetConfigurationProfileHcrpAssignmentRequest": {
+    "com.azure.automanage#GetConfigurationProfileHCRPAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2371,7 +2372,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ServicePrincipalsGetResponseSystemData",
+          "target": "com.azure.automanage#GetServicePrincipalResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2381,7 +2382,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ServicePrincipalsGetResponseSystemData": {
+    "com.azure.automanage#GetServicePrincipalResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2391,7 +2392,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ServicePrincipalsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetServicePrincipalResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2409,7 +2410,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ServicePrincipalsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetServicePrincipalResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2425,7 +2426,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ServicePrincipalsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetServicePrincipalResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2457,7 +2458,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ServicePrincipalsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetServicePrincipalResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2835,7 +2836,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ReportsGetResponseSystemData",
+          "target": "com.azure.automanage#GetReportResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2845,7 +2846,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ReportsGetResponseSystemData": {
+    "com.azure.automanage#GetReportResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2855,7 +2856,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ReportsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetReportResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2873,7 +2874,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ReportsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetReportResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2889,7 +2890,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ReportsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetReportResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2921,7 +2922,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ReportsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetReportResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3024,7 +3025,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.automanage#OperationsListResponseValueList",
+          "target": "com.azure.automanage#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3040,7 +3041,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#OperationsListResponseValueList": {
+    "com.azure.automanage#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.automanage#Operation"
@@ -3617,7 +3618,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemData",
+          "target": "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3627,7 +3628,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemData": {
+    "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3637,7 +3638,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3655,7 +3656,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3671,7 +3672,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3703,7 +3704,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetConfigurationProfileAssignmentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3775,10 +3776,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#ListConfigurationProfileVersionChildResources": {
+    "com.azure.automanage#ListConfigurationProfilesVersionChildResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#ListConfigurationProfileVersionChildResourcesRequest"
+        "target": "com.azure.automanage#ListConfigurationProfilesVersionChildResourcesRequest"
       },
       "output": {
         "target": "com.azure.automanage#ConfigurationProfileList"
@@ -4002,7 +4003,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.automanage#ListConfigurationProfileVersionChildResourcesRequest": {
+    "com.azure.automanage#ListConfigurationProfilesVersionChildResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4034,10 +4035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileVersion": {
+    "com.azure.automanage#DeleteConfigurationProfilesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#DeleteConfigurationProfileVersionRequest"
+        "target": "com.azure.automanage#DeleteConfigurationProfilesVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4053,7 +4054,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#DeleteConfigurationProfileVersionRequest": {
+    "com.azure.automanage#DeleteConfigurationProfilesVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4354,13 +4355,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.automanage#GetConfigurationProfileVersion": {
+    "com.azure.automanage#GetConfigurationProfilesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetConfigurationProfileVersionRequest"
+        "target": "com.azure.automanage#GetConfigurationProfilesVersionRequest"
       },
       "output": {
-        "target": "com.azure.automanage#GetConfigurationProfileVersionResponse"
+        "target": "com.azure.automanage#GetConfigurationProfilesVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4373,7 +4374,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetConfigurationProfileVersionResponse": {
+    "com.azure.automanage#GetConfigurationProfilesVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4395,7 +4396,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsGetResponseTagsMap",
+          "target": "com.azure.automanage#GetConfigurationProfilesVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4414,7 +4415,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemData",
+          "target": "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4424,7 +4425,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemData": {
+    "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4434,7 +4435,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4452,7 +4453,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4468,7 +4469,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4500,7 +4501,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetConfigurationProfilesVersionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4532,7 +4533,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesVersionsGetResponseTagsMap": {
+    "com.azure.automanage#GetConfigurationProfilesVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4544,7 +4545,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.automanage#GetConfigurationProfileVersionRequest": {
+    "com.azure.automanage#GetConfigurationProfilesVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4754,7 +4755,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automanage#ConfigurationProfilesUpdateResponseTagsMap",
+          "target": "com.azure.automanage#UpdateConfigurationProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4773,7 +4774,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemData",
+          "target": "com.azure.automanage#UpdateConfigurationProfileResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4783,7 +4784,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemData": {
+    "com.azure.automanage#UpdateConfigurationProfileResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4793,7 +4794,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#UpdateConfigurationProfileResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4811,7 +4812,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#UpdateConfigurationProfileResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4827,7 +4828,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#UpdateConfigurationProfileResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4859,7 +4860,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesUpdateResponseSystemDataCreatedByType": {
+    "com.azure.automanage#UpdateConfigurationProfileResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4891,7 +4892,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesUpdateResponseTagsMap": {
+    "com.azure.automanage#UpdateConfigurationProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4931,7 +4932,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automanage#ConfigurationProfilesUpdateRequestTagsMap",
+          "target": "com.azure.automanage#UpdateConfigurationProfileRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4947,7 +4948,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfilesUpdateRequestTagsMap": {
+    "com.azure.automanage#UpdateConfigurationProfileRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5253,7 +5254,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automanage#ConfigurationProfilesGetResponseTagsMap",
+          "target": "com.azure.automanage#GetConfigurationProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5272,7 +5273,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.automanage#ConfigurationProfilesGetResponseSystemData",
+          "target": "com.azure.automanage#GetConfigurationProfileResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5282,7 +5283,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automanage#ConfigurationProfilesGetResponseSystemData": {
+    "com.azure.automanage#GetConfigurationProfileResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5292,7 +5293,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5310,7 +5311,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.automanage#ConfigurationProfilesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.automanage#GetConfigurationProfileResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5326,7 +5327,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.automanage#GetConfigurationProfileResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5358,7 +5359,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesGetResponseSystemDataCreatedByType": {
+    "com.azure.automanage#GetConfigurationProfileResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5390,7 +5391,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#ConfigurationProfilesGetResponseTagsMap": {
+    "com.azure.automanage#GetConfigurationProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5434,10 +5435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#ListBestPracticeVersionByTenant": {
+    "com.azure.automanage#ListBestPracticesVersionByTenant": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#ListBestPracticeVersionByTenantRequest"
+        "target": "com.azure.automanage#ListBestPracticesVersionByTenantRequest"
       },
       "output": {
         "target": "com.azure.automanage#BestPracticeList"
@@ -5622,7 +5623,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.automanage#ListBestPracticeVersionByTenantRequest": {
+    "com.azure.automanage#ListBestPracticesVersionByTenantRequest": {
       "type": "structure",
       "members": {
         "bestPracticeName": {
@@ -5638,10 +5639,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automanage#GetBestPracticeVersion": {
+    "com.azure.automanage#GetBestPracticesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automanage#GetBestPracticeVersionRequest"
+        "target": "com.azure.automanage#GetBestPracticesVersionRequest"
       },
       "output": {
         "target": "com.azure.automanage#BestPractice"
@@ -5657,7 +5658,7 @@
         "com.distilled.openapi#apiVersion": "2022-05-04"
       }
     },
-    "com.azure.automanage#GetBestPracticeVersionRequest": {
+    "com.azure.automanage#GetBestPracticesVersionRequest": {
       "type": "structure",
       "members": {
         "bestPracticeName": {
@@ -5740,115 +5741,115 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.automanage#ListHciReportByConfigurationProfileAssignments"
-        },
-        {
-          "target": "com.azure.automanage#GetHciReport"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByClusterName"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileHciAssignment"
+          "target": "com.azure.automanage#ConfigurationProfileAssignmentsCreateOrUpdate"
         },
         {
           "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.automanage#GetConfigurationProfileHciAssignment"
-        },
-        {
-          "target": "com.azure.automanage#ListHcrpReportByConfigurationProfileAssignments"
-        },
-        {
-          "target": "com.azure.automanage#GetHcrpReport"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByMachineName"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileHcrpAssignment"
-        },
-        {
           "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileHcrpAssignment"
-        },
-        {
-          "target": "com.azure.automanage#GetServicePrincipal"
-        },
-        {
-          "target": "com.azure.automanage#ListServicePrincipalBySubscription"
-        },
-        {
-          "target": "com.azure.automanage#ListReportByConfigurationProfileAssignments"
-        },
-        {
-          "target": "com.azure.automanage#GetReport"
-        },
-        {
-          "target": "com.azure.automanage#ListOperations"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentBySubscription"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignments"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByVirtualMachines"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileAssignment"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfileAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileAssignment"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileVersionChildResources"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileVersion"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileVersion"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileBySubscription"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfile"
-        },
-        {
-          "target": "com.azure.automanage#UpdateConfigurationProfile"
         },
         {
           "target": "com.azure.automanage#ConfigurationProfilesCreateOrUpdate"
         },
         {
+          "target": "com.azure.automanage#ConfigurationProfilesVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfile"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfileAssignment"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfileHCIAssignment"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfileHCRPAssignment"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfilesVersion"
+        },
+        {
+          "target": "com.azure.automanage#GetBestPractice"
+        },
+        {
+          "target": "com.azure.automanage#GetBestPracticesVersion"
+        },
+        {
           "target": "com.azure.automanage#GetConfigurationProfile"
         },
         {
-          "target": "com.azure.automanage#ListBestPracticeVersionByTenant"
+          "target": "com.azure.automanage#GetConfigurationProfileAssignment"
         },
         {
-          "target": "com.azure.automanage#GetBestPracticeVersion"
+          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignment"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignment"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfilesVersion"
+        },
+        {
+          "target": "com.azure.automanage#GetHCIReport"
+        },
+        {
+          "target": "com.azure.automanage#GetHCRPReport"
+        },
+        {
+          "target": "com.azure.automanage#GetReport"
+        },
+        {
+          "target": "com.azure.automanage#GetServicePrincipal"
         },
         {
           "target": "com.azure.automanage#ListBestPracticeByTenant"
         },
         {
-          "target": "com.azure.automanage#GetBestPractice"
+          "target": "com.azure.automanage#ListBestPracticesVersionByTenant"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByClusterName"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByMachineName"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentBySubscription"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByVirtualMachines"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileBySubscription"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfilesVersionChildResources"
+        },
+        {
+          "target": "com.azure.automanage#ListHCIReportByConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#ListHCRPReportByConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#ListOperations"
+        },
+        {
+          "target": "com.azure.automanage#ListReportByConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#ListServicePrincipalBySubscription"
+        },
+        {
+          "target": "com.azure.automanage#UpdateConfigurationProfile"
         }
       ],
       "traits": {

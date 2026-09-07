@@ -44,7 +44,8 @@
         "alias": "listZoneCertificates",
         "target": "listOriginTlsClientAuths"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.origin_tls_client_auth#ListResultItem": {
@@ -801,7 +802,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultItem": {
+    "com.cloudflare.origin_tls_client_auth#ListZoneCertificatesResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -830,17 +831,17 @@
         }
       }
     },
-    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultList": {
+    "com.cloudflare.origin_tls_client_auth#ListZoneCertificatesResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultItem"
+        "target": "com.cloudflare.origin_tls_client_auth#ListZoneCertificatesResultItem"
       }
     },
     "com.cloudflare.origin_tls_client_auth#ListZoneCertificatesResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultList",
+          "target": "com.cloudflare.origin_tls_client_auth#ListZoneCertificatesResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -883,52 +884,52 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.origin_tls_client_auth#Create"
+          "target": "com.cloudflare.origin_tls_client_auth#CreateHostnameCertificate"
         },
         {
-          "target": "com.cloudflare.origin_tls_client_auth#Delete"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#Get"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#List"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreate"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDelete"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGet"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesList"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnamesGet"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdate"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#SettingsGet"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#SettingsUpdate"
+          "target": "com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuth"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#CreateZoneCertificate"
         },
         {
+          "target": "com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#DeleteOriginTlsClientAuth"
+        },
+        {
           "target": "com.cloudflare.origin_tls_client_auth#DeleteZoneCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#GetHostname"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#GetHostnameCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuth"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#GetSetting"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#GetZoneCertificate"
         },
         {
+          "target": "com.cloudflare.origin_tls_client_auth#ListHostnameCertificates"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ListOriginTlsClientAuths"
+        },
+        {
           "target": "com.cloudflare.origin_tls_client_auth#ListZoneCertificates"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#PutHostname"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#PutSetting"
         }
       ],
       "traits": {

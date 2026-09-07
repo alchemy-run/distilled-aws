@@ -288,11 +288,11 @@ export const MarketplaceRegistrationDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "MarketplaceRegistrationDefinition",
 }) as any as S.Schema<MarketplaceRegistrationDefinition>;
 
-export interface GetMarketplaceRegistrationDefinitionWithoutScopeRequest {
+export interface GetMarketplaceRegistrationDefinitionsWithoutScopeRequest {
   /** The Azure Marketplace identifier. Expected formats: {publisher}.{product[-preview]}.{planName}.{version} or {publisher}.{product[-preview]}.{planName} or {publisher}.{product[-preview]} or {publisher}). */
   marketplaceIdentifier: string;
 }
-export const GetMarketplaceRegistrationDefinitionWithoutScopeRequest =
+export const GetMarketplaceRegistrationDefinitionsWithoutScopeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       marketplaceIdentifier: S.String.pipe(T.Label()),
@@ -305,8 +305,8 @@ export const GetMarketplaceRegistrationDefinitionWithoutScopeRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMarketplaceRegistrationDefinitionWithoutScopeRequest",
-  }) as any as S.Schema<GetMarketplaceRegistrationDefinitionWithoutScopeRequest>;
+    identifier: "GetMarketplaceRegistrationDefinitionsWithoutScopeRequest",
+  }) as any as S.Schema<GetMarketplaceRegistrationDefinitionsWithoutScopeRequest>;
 
 export interface GetRegistrationAssignmentRequest {
   /** The scope of the resource. */
@@ -831,11 +831,11 @@ export const MarketplaceRegistrationDefinitionList = /*@__PURE__*/ S.suspend(
   identifier: "MarketplaceRegistrationDefinitionList",
 }) as any as S.Schema<MarketplaceRegistrationDefinitionList>;
 
-export interface ListMarketplaceRegistrationDefinitionWithoutScopeRequest {
+export interface ListMarketplaceRegistrationDefinitionsWithoutScopeRequest {
   /** The filter query parameter to filter managed services resources by. */
   _filter?: string;
 }
-export const ListMarketplaceRegistrationDefinitionWithoutScopeRequest =
+export const ListMarketplaceRegistrationDefinitionsWithoutScopeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -848,8 +848,8 @@ export const ListMarketplaceRegistrationDefinitionWithoutScopeRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMarketplaceRegistrationDefinitionWithoutScopeRequest",
-  }) as any as S.Schema<ListMarketplaceRegistrationDefinitionWithoutScopeRequest>;
+    identifier: "ListMarketplaceRegistrationDefinitionsWithoutScopeRequest",
+  }) as any as S.Schema<ListMarketplaceRegistrationDefinitionsWithoutScopeRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -918,11 +918,11 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
-export interface ListOperationWithScopeRequest {
+export interface ListOperationsWithScopeRequest {
   /** The scope of the resource. */
   scope: string;
 }
-export const ListOperationWithScopeRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsWithScopeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
   }).pipe(
@@ -934,8 +934,8 @@ export const ListOperationWithScopeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListOperationWithScopeRequest",
-}) as any as S.Schema<ListOperationWithScopeRequest>;
+  identifier: "ListOperationsWithScopeRequest",
+}) as any as S.Schema<ListOperationsWithScopeRequest>;
 
 export interface ListRegistrationAssignmentsRequest {
   /** The scope of the resource. */
@@ -1188,16 +1188,16 @@ export const GetMarketplaceRegistrationDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMarketplaceRegistrationDefinitionWithoutScopeError =
+export type GetMarketplaceRegistrationDefinitionsWithoutScopeError =
   AzureOpError;
 /** Get the marketplace registration definition for the marketplace identifier. */
-export const GetMarketplaceRegistrationDefinitionWithoutScope: API.OperationMethod<
-  GetMarketplaceRegistrationDefinitionWithoutScopeRequest,
+export const GetMarketplaceRegistrationDefinitionsWithoutScope: API.OperationMethod<
+  GetMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   MarketplaceRegistrationDefinition,
-  GetMarketplaceRegistrationDefinitionWithoutScopeError,
+  GetMarketplaceRegistrationDefinitionsWithoutScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMarketplaceRegistrationDefinitionWithoutScopeRequest,
+  input: GetMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   output: MarketplaceRegistrationDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1249,16 +1249,16 @@ export const ListMarketplaceRegistrationDefinitions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListMarketplaceRegistrationDefinitionWithoutScopeError =
+export type ListMarketplaceRegistrationDefinitionsWithoutScopeError =
   AzureOpError;
 /** Gets a list of the marketplace registration definitions for the marketplace identifier. */
-export const ListMarketplaceRegistrationDefinitionWithoutScope: API.OperationMethod<
-  ListMarketplaceRegistrationDefinitionWithoutScopeRequest,
+export const ListMarketplaceRegistrationDefinitionsWithoutScope: API.OperationMethod<
+  ListMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   MarketplaceRegistrationDefinitionList,
-  ListMarketplaceRegistrationDefinitionWithoutScopeError,
+  ListMarketplaceRegistrationDefinitionsWithoutScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMarketplaceRegistrationDefinitionWithoutScopeRequest,
+  input: ListMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   output: MarketplaceRegistrationDefinitionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1280,15 +1280,15 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListOperationWithScopeError = AzureOpError;
+export type ListOperationsWithScopeError = AzureOpError;
 /** Gets a list of the operations with the scope. */
-export const ListOperationWithScope: API.OperationMethod<
-  ListOperationWithScopeRequest,
+export const ListOperationsWithScope: API.OperationMethod<
+  ListOperationsWithScopeRequest,
   OperationList,
-  ListOperationWithScopeError,
+  ListOperationsWithScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOperationWithScopeRequest,
+  input: ListOperationsWithScopeRequest,
   output: OperationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

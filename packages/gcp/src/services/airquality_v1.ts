@@ -65,14 +65,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type LookupCurrentConditionsRequestUaqiColorPaletteEnum =
-  | "COLOR_PALETTE_UNSPECIFIED"
-  | "RED_GREEN"
-  | "INDIGO_PERSIAN_DARK"
-  | "INDIGO_PERSIAN_LIGHT";
-export const LookupCurrentConditionsRequestUaqiColorPaletteEnum =
-  /*@__PURE__*/ S.String;
-
 export type LookupCurrentConditionsRequestExtraComputationsItemEnum =
   | "EXTRA_COMPUTATION_UNSPECIFIED"
   | "LOCAL_AQI"
@@ -93,15 +85,15 @@ export const LookupCurrentConditionsRequestExtraComputationsItemEnumList =
 
 /** Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. */
 export interface CustomLocalAqi {
-  /** The AQI to associate the country/region with. Value should be a [valid index](/maps/documentation/air-quality/laqis) code. */
-  aqi?: string;
   /** The country/region requiring the custom AQI. Value should be provided using [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. */
   regionCode?: string;
+  /** The AQI to associate the country/region with. Value should be a [valid index](/maps/documentation/air-quality/laqis) code. */
+  aqi?: string;
 }
 export const CustomLocalAqi = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    aqi: S.optional(S.String),
     regionCode: S.optional(S.String),
+    aqi: S.optional(S.String),
   }),
 ).annotate({ identifier: "CustomLocalAqi" }) as any as S.Schema<CustomLocalAqi>;
 
@@ -112,47 +104,55 @@ export const CustomLocalAqiList = /*@__PURE__*/ S.Array(
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
-  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
-  longitude?: number;
   /** The latitude in degrees. It must be in the range [-90.0, +90.0]. */
   latitude?: number;
+  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
+  longitude?: number;
 }
 export const LatLng = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    longitude: S.optional(S.Number),
     latitude: S.optional(S.Number),
+    longitude: S.optional(S.Number),
   }),
 ).annotate({ identifier: "LatLng" }) as any as S.Schema<LatLng>;
 
+export type LookupCurrentConditionsRequestUaqiColorPaletteEnum =
+  | "COLOR_PALETTE_UNSPECIFIED"
+  | "RED_GREEN"
+  | "INDIGO_PERSIAN_DARK"
+  | "INDIGO_PERSIAN_LIGHT";
+export const LookupCurrentConditionsRequestUaqiColorPaletteEnum =
+  /*@__PURE__*/ S.String;
+
 /** The request definition of the air quality current conditions. */
 export interface LookupCurrentConditionsRequest {
-  /** Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled. */
-  uaqiColorPalette?:
-    | LookupCurrentConditionsRequestUaqiColorPaletteEnum
-    | (string & {});
+  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true. */
+  universalAqi?: boolean;
   /** Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response. */
   extraComputations?: LookupCurrentConditionsRequestExtraComputationsItemEnumList;
   /** Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada. */
   customLocalAqis?: CustomLocalAqiList;
-  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en. */
-  languageCode?: string;
-  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true. */
-  universalAqi?: boolean;
   /** Required. The longitude and latitude from which the API looks for air quality current conditions data. */
   location?: LatLng;
+  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en. */
+  languageCode?: string;
+  /** Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled. */
+  uaqiColorPalette?:
+    | LookupCurrentConditionsRequestUaqiColorPaletteEnum
+    | (string & {});
 }
 export const LookupCurrentConditionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    uaqiColorPalette: S.optional(
-      LookupCurrentConditionsRequestUaqiColorPaletteEnum,
-    ),
+    universalAqi: S.optional(S.Boolean),
     extraComputations: S.optional(
       LookupCurrentConditionsRequestExtraComputationsItemEnumList,
     ),
     customLocalAqis: S.optional(CustomLocalAqiList),
-    languageCode: S.optional(S.String),
-    universalAqi: S.optional(S.Boolean),
     location: S.optional(LatLng),
+    languageCode: S.optional(S.String),
+    uaqiColorPalette: S.optional(
+      LookupCurrentConditionsRequestUaqiColorPaletteEnum,
+    ),
   }),
 ).annotate({
   identifier: "LookupCurrentConditionsRequest",
@@ -176,62 +176,6 @@ export const LookupCurrentConditionsRequest_ = /*@__PURE__*/ S.suspend(() =>
   identifier: "LookupCurrentConditionsRequest_",
 }) as any as S.Schema<LookupCurrentConditionsRequest_>;
 
-/** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
-export interface Color {
-  /** The amount of green in the color as a value in the interval [0, 1]. */
-  green?: number;
-  /** The amount of blue in the color as a value in the interval [0, 1]. */
-  blue?: number;
-  /** The amount of red in the color as a value in the interval [0, 1]. */
-  red?: number;
-  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
-  alpha?: number;
-}
-export const Color = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    green: S.optional(S.Number),
-    blue: S.optional(S.Number),
-    red: S.optional(S.Number),
-    alpha: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
-
-/** The basic object for representing different air quality metrics. When brought together, these metrics provide a snapshot about the current air quality conditions. There are multiple indexes in the world serving different purposes and groups interested in measuring different aspects of air quality. */
-export interface AirQualityIndex {
-  /** The color used to represent the AQI numeric score. */
-  color?: Color;
-  /** The chemical symbol of the dominant pollutant. For example: "CO". */
-  dominantPollutant?: string;
-  /** A human readable representation of the index name. Example: "AQI (US)" */
-  displayName?: string;
-  /** The index's numeric score. Examples: 10, 100. The value is not normalized and should only be interpreted in the context of its related air-quality index. For non-numeric indexes, this field will not be returned. Note: This field should be used for calculations, graph display, etc. For displaying the index score, you should use the AQI display field. */
-  aqi?: number;
-  /** Textual classification of the index numeric score interpretation. For example: "Excellent air quality". */
-  category?: string;
-  /** The index's code. This field represents the index for programming purposes by using snake case instead of spaces. Examples: "uaqi", "fra_atmo". */
-  code?: string;
-  /** Textual representation of the index numeric score, that may include prefix or suffix symbols, which usually represents the worst index score. Example: >100 or 10+. Note: This field should be used when you want to display the index score. For non-numeric indexes, this field is empty. */
-  aqiDisplay?: string;
-}
-export const AirQualityIndex = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    color: S.optional(Color),
-    dominantPollutant: S.optional(S.String),
-    displayName: S.optional(S.String),
-    aqi: S.optional(S.Number),
-    category: S.optional(S.String),
-    code: S.optional(S.String),
-    aqiDisplay: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AirQualityIndex",
-}) as any as S.Schema<AirQualityIndex>;
-
-export type AirQualityIndexList = Array<AirQualityIndex>;
-export const AirQualityIndexList = /*@__PURE__*/ S.Array(
-  AirQualityIndex,
-) as any as S.Schema<AirQualityIndexList>;
-
 /** The emission sources and health effects of a given pollutant. */
 export interface AdditionalInfo {
   /** Text representing the pollutant's main emission sources. */
@@ -254,38 +198,38 @@ export const ConcentrationUnitsEnum = /*@__PURE__*/ S.String;
 
 /** The concentration of a given pollutant in the air. */
 export interface Concentration {
-  /** Value of the pollutant concentration. */
-  value?: number;
   /** Units for measuring this pollutant concentration. */
   units?: ConcentrationUnitsEnum;
+  /** Value of the pollutant concentration. */
+  value?: number;
 }
 export const Concentration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(S.Number),
     units: S.optional(ConcentrationUnitsEnum),
+    value: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Concentration" }) as any as S.Schema<Concentration>;
 
 /** Data regarding an air quality pollutant. */
 export interface Pollutant {
-  /** The pollutant's code name (for example, "so2"). For a list of supported pollutant codes, see [Reported pollutants](/maps/documentation/air-quality/pollutants#reported_pollutants). */
-  code?: string;
-  /** The pollutant's display name. For example: "NOx". */
-  displayName?: string;
-  /** The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: "Sulfur Dioxide". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/. */
-  fullName?: string;
   /** Additional information about the pollutant. */
   additionalInfo?: AdditionalInfo;
+  /** The pollutant's code name (for example, "so2"). For a list of supported pollutant codes, see [Reported pollutants](/maps/documentation/air-quality/pollutants#reported_pollutants). */
+  code?: string;
   /** The pollutant's concentration level measured by one of the standard air pollutation measure units. */
   concentration?: Concentration;
+  /** The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: "Sulfur Dioxide". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/. */
+  fullName?: string;
+  /** The pollutant's display name. For example: "NOx". */
+  displayName?: string;
 }
 export const Pollutant = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    code: S.optional(S.String),
-    displayName: S.optional(S.String),
-    fullName: S.optional(S.String),
     additionalInfo: S.optional(AdditionalInfo),
+    code: S.optional(S.String),
     concentration: S.optional(Concentration),
+    fullName: S.optional(S.String),
+    displayName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Pollutant" }) as any as S.Schema<Pollutant>;
 
@@ -296,58 +240,121 @@ export const PollutantList = /*@__PURE__*/ S.Array(
 
 /** Health recommendations for different population groups in a free text format. The recommendations are derived from their associated air quality conditions. */
 export interface HealthRecommendations {
-  /** Sports and other strenuous outdoor activities. */
-  athletes?: string;
-  /** Younger populations including children, toddlers, and babies. */
-  children?: string;
-  /** Retirees and people older than the general population. */
-  elderly?: string;
-  /** Heart and circulatory system diseases. */
-  heartDiseasePopulation?: string;
   /** No specific sensitivities. */
   generalPopulation?: string;
-  /** Women at all stages of pregnancy. */
-  pregnantWomen?: string;
+  /** Heart and circulatory system diseases. */
+  heartDiseasePopulation?: string;
   /** Respiratory related problems and asthma suffers. */
   lungDiseasePopulation?: string;
+  /** Younger populations including children, toddlers, and babies. */
+  children?: string;
+  /** Women at all stages of pregnancy. */
+  pregnantWomen?: string;
+  /** Retirees and people older than the general population. */
+  elderly?: string;
+  /** Sports and other strenuous outdoor activities. */
+  athletes?: string;
 }
 export const HealthRecommendations = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    athletes: S.optional(S.String),
-    children: S.optional(S.String),
-    elderly: S.optional(S.String),
-    heartDiseasePopulation: S.optional(S.String),
     generalPopulation: S.optional(S.String),
-    pregnantWomen: S.optional(S.String),
+    heartDiseasePopulation: S.optional(S.String),
     lungDiseasePopulation: S.optional(S.String),
+    children: S.optional(S.String),
+    pregnantWomen: S.optional(S.String),
+    elderly: S.optional(S.String),
+    athletes: S.optional(S.String),
   }),
 ).annotate({
   identifier: "HealthRecommendations",
 }) as any as S.Schema<HealthRecommendations>;
 
+/** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
+export interface Color {
+  /** The amount of green in the color as a value in the interval [0, 1]. */
+  green?: number;
+  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
+  alpha?: number;
+  /** The amount of red in the color as a value in the interval [0, 1]. */
+  red?: number;
+  /** The amount of blue in the color as a value in the interval [0, 1]. */
+  blue?: number;
+}
+export const Color = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    green: S.optional(S.Number),
+    alpha: S.optional(S.Number),
+    red: S.optional(S.Number),
+    blue: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
+
+/** The basic object for representing different air quality metrics. When brought together, these metrics provide a snapshot about the current air quality conditions. There are multiple indexes in the world serving different purposes and groups interested in measuring different aspects of air quality. */
+export interface AirQualityIndex {
+  /** The color used to represent the AQI numeric score. */
+  color?: Color;
+  /** A human readable representation of the index name. Example: "AQI (US)" */
+  displayName?: string;
+  /** The chemical symbol of the dominant pollutant. For example: "CO". */
+  dominantPollutant?: string;
+  /** The index's code. This field represents the index for programming purposes by using snake case instead of spaces. Examples: "uaqi", "fra_atmo". */
+  code?: string;
+  /** Textual classification of the index numeric score interpretation. For example: "Excellent air quality". */
+  category?: string;
+  /** The index's numeric score. Examples: 10, 100. The value is not normalized and should only be interpreted in the context of its related air-quality index. For non-numeric indexes, this field will not be returned. Note: This field should be used for calculations, graph display, etc. For displaying the index score, you should use the AQI display field. */
+  aqi?: number;
+  /** Textual representation of the index numeric score, that may include prefix or suffix symbols, which usually represents the worst index score. Example: >100 or 10+. Note: This field should be used when you want to display the index score. For non-numeric indexes, this field is empty. */
+  aqiDisplay?: string;
+}
+export const AirQualityIndex = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    color: S.optional(Color),
+    displayName: S.optional(S.String),
+    dominantPollutant: S.optional(S.String),
+    code: S.optional(S.String),
+    category: S.optional(S.String),
+    aqi: S.optional(S.Number),
+    aqiDisplay: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AirQualityIndex",
+}) as any as S.Schema<AirQualityIndex>;
+
+export type AirQualityIndexList = Array<AirQualityIndex>;
+export const AirQualityIndexList = /*@__PURE__*/ S.Array(
+  AirQualityIndex,
+) as any as S.Schema<AirQualityIndexList>;
+
 export interface LookupCurrentConditionsResponse {
-  /** Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the universalAqi boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified. */
-  indexes?: AirQualityIndexList;
+  /** A rounded down timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. For example: "2014-10-02T15:00:00Z". */
+  dateTime?: string;
+  /** The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory. */
+  regionCode?: string;
   /** A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION. */
   pollutants?: PollutantList;
   /** Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population. */
   healthRecommendations?: HealthRecommendations;
-  /** The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory. */
-  regionCode?: string;
-  /** A rounded down timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. For example: "2014-10-02T15:00:00Z". */
-  dateTime?: string;
+  /** Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the universalAqi boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified. */
+  indexes?: AirQualityIndexList;
 }
 export const LookupCurrentConditionsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    indexes: S.optional(AirQualityIndexList),
+    dateTime: S.optional(S.String),
+    regionCode: S.optional(S.String),
     pollutants: S.optional(PollutantList),
     healthRecommendations: S.optional(HealthRecommendations),
-    regionCode: S.optional(S.String),
-    dateTime: S.optional(S.String),
+    indexes: S.optional(AirQualityIndexList),
   }),
 ).annotate({
   identifier: "LookupCurrentConditionsResponse",
 }) as any as S.Schema<LookupCurrentConditionsResponse>;
+
+export type LookupForecastRequestUaqiColorPaletteEnum =
+  | "COLOR_PALETTE_UNSPECIFIED"
+  | "RED_GREEN"
+  | "INDIGO_PERSIAN_DARK"
+  | "INDIGO_PERSIAN_LIGHT";
+export const LookupForecastRequestUaqiColorPaletteEnum = /*@__PURE__*/ S.String;
 
 export type LookupForecastRequestExtraComputationsItemEnum =
   | "EXTRA_COMPUTATION_UNSPECIFIED"
@@ -381,50 +388,43 @@ export const Interval = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Interval" }) as any as S.Schema<Interval>;
 
-export type LookupForecastRequestUaqiColorPaletteEnum =
-  | "COLOR_PALETTE_UNSPECIFIED"
-  | "RED_GREEN"
-  | "INDIGO_PERSIAN_DARK"
-  | "INDIGO_PERSIAN_LIGHT";
-export const LookupForecastRequestUaqiColorPaletteEnum = /*@__PURE__*/ S.String;
-
 /** The request object of the air quality forecast API. */
 export interface LookupForecastRequest {
-  /** Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response. */
-  extraComputations?: LookupForecastRequestExtraComputationsItemEnumList;
-  /** Optional. The maximum number of hourly info records to return per page (default = 24). */
-  pageSize?: number;
-  /** Indicates the start and end period for which to get the forecast data. The timestamp is rounded to the previous exact hour. */
-  period?: Interval;
-  /** Optional. A page token received from a previous forecast call. It is used to retrieve the subsequent page. */
-  pageToken?: string;
-  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard (default = 'en'). */
-  languageCode?: string;
-  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response (default = true). */
-  universalAqi?: boolean;
-  /** A timestamp for which to return the data for a specific point in time. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the date_time parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z. */
-  dateTime?: string;
-  /** Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada. */
-  customLocalAqis?: CustomLocalAqiList;
   /** Required. The latitude and longitude for which the API looks for air quality data. */
   location?: LatLng;
   /** Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled. */
   uaqiColorPalette?: LookupForecastRequestUaqiColorPaletteEnum | (string & {});
+  /** Optional. The maximum number of hourly info records to return per page (default = 24). */
+  pageSize?: number;
+  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response (default = true). */
+  universalAqi?: boolean;
+  /** Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response. */
+  extraComputations?: LookupForecastRequestExtraComputationsItemEnumList;
+  /** Indicates the start and end period for which to get the forecast data. The timestamp is rounded to the previous exact hour. */
+  period?: Interval;
+  /** Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada. */
+  customLocalAqis?: CustomLocalAqiList;
+  /** Optional. A page token received from a previous forecast call. It is used to retrieve the subsequent page. */
+  pageToken?: string;
+  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard (default = 'en'). */
+  languageCode?: string;
+  /** A timestamp for which to return the data for a specific point in time. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the date_time parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z. */
+  dateTime?: string;
 }
 export const LookupForecastRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    location: S.optional(LatLng),
+    uaqiColorPalette: S.optional(LookupForecastRequestUaqiColorPaletteEnum),
+    pageSize: S.optional(S.Number),
+    universalAqi: S.optional(S.Boolean),
     extraComputations: S.optional(
       LookupForecastRequestExtraComputationsItemEnumList,
     ),
-    pageSize: S.optional(S.Number),
     period: S.optional(Interval),
+    customLocalAqis: S.optional(CustomLocalAqiList),
     pageToken: S.optional(S.String),
     languageCode: S.optional(S.String),
-    universalAqi: S.optional(S.Boolean),
     dateTime: S.optional(S.String),
-    customLocalAqis: S.optional(CustomLocalAqiList),
-    location: S.optional(LatLng),
-    uaqiColorPalette: S.optional(LookupForecastRequestUaqiColorPaletteEnum),
   }),
 ).annotate({
   identifier: "LookupForecastRequest",
@@ -450,21 +450,21 @@ export const LookupForecastRequest_ = /*@__PURE__*/ S.suspend(() =>
 
 /** Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of forecast there will be 48 elements of hourly forecasts. */
 export interface HourlyForecast {
-  /** Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population. */
-  healthRecommendations?: HealthRecommendations;
   /** Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the `universal_aqi` boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified. */
   indexes?: AirQualityIndexList;
   /** A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION. */
   pollutants?: PollutantList;
   /** A rounded down timestamp indicating the time (hour) the data refers to in RFC3339 UTC "Zulu" format. For example: "2014-10-02T15:00:00Z". */
   dateTime?: string;
+  /** Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population. */
+  healthRecommendations?: HealthRecommendations;
 }
 export const HourlyForecast = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    healthRecommendations: S.optional(HealthRecommendations),
     indexes: S.optional(AirQualityIndexList),
     pollutants: S.optional(PollutantList),
     dateTime: S.optional(S.String),
+    healthRecommendations: S.optional(HealthRecommendations),
   }),
 ).annotate({ identifier: "HourlyForecast" }) as any as S.Schema<HourlyForecast>;
 
@@ -475,17 +475,17 @@ export const HourlyForecastList = /*@__PURE__*/ S.Array(
 
 /** The response object of the air quality forecast API. */
 export interface LookupForecastResponse {
-  /** Optional. The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory. */
-  regionCode?: string;
   /** Optional. Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of forecast there will be 48 elements of hourly forecasts. */
   hourlyForecasts?: HourlyForecastList;
+  /** Optional. The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory. */
+  regionCode?: string;
   /** Optional. The token to retrieve the next page. */
   nextPageToken?: string;
 }
 export const LookupForecastResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    regionCode: S.optional(S.String),
     hourlyForecasts: S.optional(HourlyForecastList),
+    regionCode: S.optional(S.String),
     nextPageToken: S.optional(S.String),
   }),
 ).annotate({
@@ -508,10 +508,10 @@ export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
 export interface LookupHeatmapTileMapTypesHeatmapTilesRequest {
   /** Required. Defines the east-west point in the requested tile. */
   x: number;
-  /** Required. Defines the north-south point in the requested tile. */
-  y: number;
   /** Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. Zoom level 0 is the entire world in a single tile. Zoom level 1 is the entire world in 4 tiles. Zoom level 2 is the entire world in 16 tiles. Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16 */
   zoom: number;
+  /** Required. Defines the north-south point in the requested tile. */
+  y: number;
   /** Required. The type of the air quality heatmap. Defines the pollutant that the map will graphically represent. Allowed values: - UAQI_RED_GREEN (UAQI, red-green palette) - UAQI_INDIGO_PERSIAN (UAQI, indigo-persian palette) - PM25_INDIGO_PERSIAN - GBR_DEFRA - DEU_UBA - CAN_EC - FRA_ATMO - US_AQI */
   mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum | (string & {});
 }
@@ -519,8 +519,8 @@ export const LookupHeatmapTileMapTypesHeatmapTilesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       x: S.Number.pipe(T.Label()),
-      y: S.Number.pipe(T.Label()),
       zoom: S.Number.pipe(T.Label()),
+      y: S.Number.pipe(T.Label()),
       mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -546,18 +546,18 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged. */
 export interface HttpBody {
+  /** The HTTP Content-Type header value specifying the content type of the body. */
+  contentType?: string;
   /** Application specific response metadata. Must be set in the first response for streaming APIs. */
   extensions?: DocumentMapList;
   /** The HTTP request/response body as raw binary. */
   data?: string;
-  /** The HTTP Content-Type header value specifying the content type of the body. */
-  contentType?: string;
 }
 export const HttpBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    contentType: S.optional(S.String),
     extensions: S.optional(DocumentMapList),
     data: S.optional(S.String),
-    contentType: S.optional(S.String),
   }),
 ).annotate({ identifier: "HttpBody" }) as any as S.Schema<HttpBody>;
 
@@ -590,39 +590,39 @@ export const LookupHistoryRequestExtraComputationsItemEnumList =
 export interface LookupHistoryRequest {
   /** Number from 1 to 720 that indicates the hours range for the request. For example: A value of 48 will yield data from the last 48 hours. */
   hours?: number;
-  /** Optional. The maximum number of hourly info records to return per page. The default is 72 and the max value is 168 (7 days of data). */
-  pageSize?: number;
-  /** Optional. A page token received from a previous history call. It is used to retrieve the subsequent page. Note that when providing a value for this parameter all other parameters provided must match the call that provided the page token (the previous call). */
-  pageToken?: string;
-  /** Indicates the start and end period for which to get the historical data. The timestamp is rounded to the previous exact hour. */
-  period?: Interval;
-  /** Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled. */
-  uaqiColorPalette?: LookupHistoryRequestUaqiColorPaletteEnum | (string & {});
-  /** A timestamp for which to return historical data. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the dateTime parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z". */
-  dateTime?: string;
-  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en. */
-  languageCode?: string;
-  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true. */
-  universalAqi?: boolean;
   /** Required. The latitude and longitude for which the API looks for air quality history data. */
   location?: LatLng;
+  /** Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled. */
+  uaqiColorPalette?: LookupHistoryRequestUaqiColorPaletteEnum | (string & {});
+  /** Optional. A page token received from a previous history call. It is used to retrieve the subsequent page. Note that when providing a value for this parameter all other parameters provided must match the call that provided the page token (the previous call). */
+  pageToken?: string;
+  /** Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true. */
+  universalAqi?: boolean;
+  /** Optional. The maximum number of hourly info records to return per page. The default is 72 and the max value is 168 (7 days of data). */
+  pageSize?: number;
+  /** Indicates the start and end period for which to get the historical data. The timestamp is rounded to the previous exact hour. */
+  period?: Interval;
+  /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en. */
+  languageCode?: string;
   /** Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada. */
   customLocalAqis?: CustomLocalAqiList;
+  /** A timestamp for which to return historical data. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the dateTime parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z". */
+  dateTime?: string;
   /** Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response. */
   extraComputations?: LookupHistoryRequestExtraComputationsItemEnumList;
 }
 export const LookupHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     hours: S.optional(S.Number),
-    pageSize: S.optional(S.Number),
-    pageToken: S.optional(S.String),
-    period: S.optional(Interval),
-    uaqiColorPalette: S.optional(LookupHistoryRequestUaqiColorPaletteEnum),
-    dateTime: S.optional(S.String),
-    languageCode: S.optional(S.String),
-    universalAqi: S.optional(S.Boolean),
     location: S.optional(LatLng),
+    uaqiColorPalette: S.optional(LookupHistoryRequestUaqiColorPaletteEnum),
+    pageToken: S.optional(S.String),
+    universalAqi: S.optional(S.Boolean),
+    pageSize: S.optional(S.Number),
+    period: S.optional(Interval),
+    languageCode: S.optional(S.String),
     customLocalAqis: S.optional(CustomLocalAqiList),
+    dateTime: S.optional(S.String),
     extraComputations: S.optional(
       LookupHistoryRequestExtraComputationsItemEnumList,
     ),
@@ -651,21 +651,21 @@ export const LookupHistoryRequest_ = /*@__PURE__*/ S.suspend(() =>
 
 /** Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of history there will be 48 elements of hourly info. */
 export interface HourInfo {
-  /** Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population. */
-  healthRecommendations?: HealthRecommendations;
-  /** A rounded down timestamp indicating the time the data refers to in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. For example: "2014-10-02T15:00:00Z". */
-  dateTime?: string;
-  /** A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION. */
-  pollutants?: PollutantList;
   /** Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the universalAqi boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified. */
   indexes?: AirQualityIndexList;
+  /** Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population. */
+  healthRecommendations?: HealthRecommendations;
+  /** A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION. */
+  pollutants?: PollutantList;
+  /** A rounded down timestamp indicating the time the data refers to in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. For example: "2014-10-02T15:00:00Z". */
+  dateTime?: string;
 }
 export const HourInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    healthRecommendations: S.optional(HealthRecommendations),
-    dateTime: S.optional(S.String),
-    pollutants: S.optional(PollutantList),
     indexes: S.optional(AirQualityIndexList),
+    healthRecommendations: S.optional(HealthRecommendations),
+    pollutants: S.optional(PollutantList),
+    dateTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "HourInfo" }) as any as S.Schema<HourInfo>;
 

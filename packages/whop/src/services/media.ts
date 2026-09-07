@@ -204,17 +204,17 @@ export const MediaAsset = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "MediaAsset" }) as any as S.Schema<MediaAsset>;
 
-export interface RetrieveMediaAssetRequest {
+export interface GetMediaAssetRequest {
   /** Media asset ID, prefixed `media_`. */
   id: string;
 }
-export const RetrieveMediaAssetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMediaAssetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/media/{id}", code: 200 })),
 ).annotate({
-  identifier: "RetrieveMediaAssetRequest",
-}) as any as S.Schema<RetrieveMediaAssetRequest>;
+  identifier: "GetMediaAssetRequest",
+}) as any as S.Schema<GetMediaAssetRequest>;
 
 export type GenerateMediaAssetError =
   | BadRequest
@@ -236,15 +236,15 @@ export const generateMediaAsset: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RetrieveMediaAssetError = NotFound | WhopOpError;
+export type GetMediaAssetError = NotFound | WhopOpError;
 /** Retrieve Media Asset Retrieves a media asset by ID. Poll this while the asset is `processing`. */
-export const retrieveMediaAsset: API.OperationMethod<
-  RetrieveMediaAssetRequest,
+export const getMediaAsset: API.OperationMethod<
+  GetMediaAssetRequest,
   MediaAsset,
-  RetrieveMediaAssetError,
+  GetMediaAssetError,
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMediaAssetRequest,
+  input: GetMediaAssetRequest,
   output: MediaAsset,
   errors: [NotFound],
   protocol: WhopProtocol,

@@ -337,6 +337,96 @@ export const BulkInvestigateMoveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BulkInvestigateMoveResponse",
 }) as any as S.Schema<BulkInvestigateMoveResponse>;
 
+export type InvestigateReleaseBulkRequestBodyList = Array<string>;
+export const InvestigateReleaseBulkRequestBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<InvestigateReleaseBulkRequestBodyList>;
+
+export interface BulkInvestigateReleaseRequest {
+  /** Identifier. */
+  accountId: string;
+  body: InvestigateReleaseBulkRequestBodyList;
+}
+export const BulkInvestigateReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    body: InvestigateReleaseBulkRequestBodyList.pipe(T.HttpBody()),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/email-security/investigate/release",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkInvestigateReleaseRequest",
+}) as any as S.Schema<BulkInvestigateReleaseRequest>;
+
+export type InvestigateReleaseBulkResultItemDeliveredList = Array<string>;
+export const InvestigateReleaseBulkResultItemDeliveredList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<InvestigateReleaseBulkResultItemDeliveredList>;
+
+export type InvestigateReleaseBulkResultItemFailedList = Array<string>;
+export const InvestigateReleaseBulkResultItemFailedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<InvestigateReleaseBulkResultItemFailedList>;
+
+export type InvestigateReleaseBulkResultItemUndeliveredList = Array<string>;
+export const InvestigateReleaseBulkResultItemUndeliveredList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<InvestigateReleaseBulkResultItemUndeliveredList>;
+
+export interface InvestigateReleaseBulkResultItem {
+  /** Unique identifier for a message retrieved from investigation */
+  id: string;
+  delivered?: InvestigateReleaseBulkResultItemDeliveredList | null;
+  failed?: InvestigateReleaseBulkResultItemFailedList | null;
+  /** Deprecated, use `id` instead. End of life: November 1, 2026. */
+  postfixId?: string | null;
+  undelivered?: InvestigateReleaseBulkResultItemUndeliveredList | null;
+}
+export const InvestigateReleaseBulkResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    delivered: S.optional(
+      S.NullOr(InvestigateReleaseBulkResultItemDeliveredList),
+    ),
+    failed: S.optional(S.NullOr(InvestigateReleaseBulkResultItemFailedList)),
+    postfixId: S.optional(S.NullOr(S.String).pipe(T.Body("postfix_id"))),
+    undelivered: S.optional(
+      S.NullOr(InvestigateReleaseBulkResultItemUndeliveredList),
+    ),
+  }),
+).annotate({
+  identifier: "InvestigateReleaseBulkResultItem",
+}) as any as S.Schema<InvestigateReleaseBulkResultItem>;
+
+export type InvestigateReleaseBulkResultList =
+  Array<InvestigateReleaseBulkResultItem>;
+export const InvestigateReleaseBulkResultList = /*@__PURE__*/ S.Array(
+  InvestigateReleaseBulkResultItem,
+) as any as S.Schema<InvestigateReleaseBulkResultList>;
+
+export interface BulkInvestigateReleaseResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: InvestigateReleaseBulkResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkInvestigateReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: InvestigateReleaseBulkResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkInvestigateReleaseResponse",
+}) as any as S.Schema<BulkInvestigateReleaseResponse>;
+
 export type InvestigateBulkCreateRequestAction = "MOVE" | "RELEASE";
 export const InvestigateBulkCreateRequestAction = /*@__PURE__*/ S.String;
 
@@ -7081,96 +7171,6 @@ export const PatchSettingUrlIgnorePatternResponse = /*@__PURE__*/ S.suspend(
   identifier: "PatchSettingUrlIgnorePatternResponse",
 }) as any as S.Schema<PatchSettingUrlIgnorePatternResponse>;
 
-export type InvestigateReleaseBulkRequestBodyList = Array<string>;
-export const InvestigateReleaseBulkRequestBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<InvestigateReleaseBulkRequestBodyList>;
-
-export interface ReleaseBulkInvestigateRequest {
-  /** Identifier. */
-  accountId: string;
-  body: InvestigateReleaseBulkRequestBodyList;
-}
-export const ReleaseBulkInvestigateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    body: InvestigateReleaseBulkRequestBodyList.pipe(T.HttpBody()),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/email-security/investigate/release",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ReleaseBulkInvestigateRequest",
-}) as any as S.Schema<ReleaseBulkInvestigateRequest>;
-
-export type InvestigateReleaseBulkResultItemDeliveredList = Array<string>;
-export const InvestigateReleaseBulkResultItemDeliveredList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<InvestigateReleaseBulkResultItemDeliveredList>;
-
-export type InvestigateReleaseBulkResultItemFailedList = Array<string>;
-export const InvestigateReleaseBulkResultItemFailedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<InvestigateReleaseBulkResultItemFailedList>;
-
-export type InvestigateReleaseBulkResultItemUndeliveredList = Array<string>;
-export const InvestigateReleaseBulkResultItemUndeliveredList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<InvestigateReleaseBulkResultItemUndeliveredList>;
-
-export interface InvestigateReleaseBulkResultItem {
-  /** Unique identifier for a message retrieved from investigation */
-  id: string;
-  delivered?: InvestigateReleaseBulkResultItemDeliveredList | null;
-  failed?: InvestigateReleaseBulkResultItemFailedList | null;
-  /** Deprecated, use `id` instead. End of life: November 1, 2026. */
-  postfixId?: string | null;
-  undelivered?: InvestigateReleaseBulkResultItemUndeliveredList | null;
-}
-export const InvestigateReleaseBulkResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    delivered: S.optional(
-      S.NullOr(InvestigateReleaseBulkResultItemDeliveredList),
-    ),
-    failed: S.optional(S.NullOr(InvestigateReleaseBulkResultItemFailedList)),
-    postfixId: S.optional(S.NullOr(S.String).pipe(T.Body("postfix_id"))),
-    undelivered: S.optional(
-      S.NullOr(InvestigateReleaseBulkResultItemUndeliveredList),
-    ),
-  }),
-).annotate({
-  identifier: "InvestigateReleaseBulkResultItem",
-}) as any as S.Schema<InvestigateReleaseBulkResultItem>;
-
-export type InvestigateReleaseBulkResultList =
-  Array<InvestigateReleaseBulkResultItem>;
-export const InvestigateReleaseBulkResultList = /*@__PURE__*/ S.Array(
-  InvestigateReleaseBulkResultItem,
-) as any as S.Schema<InvestigateReleaseBulkResultList>;
-
-export interface ReleaseBulkInvestigateResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: InvestigateReleaseBulkResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const ReleaseBulkInvestigateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: InvestigateReleaseBulkResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ReleaseBulkInvestigateResponse",
-}) as any as S.Schema<ReleaseBulkInvestigateResponse>;
-
 export type BulkInvestigateMoveError = CloudflareOpError;
 /** Moves multiple messages to a specified mailbox folder (Inbox, JunkEmail, DeletedItems, RecoverableItemsDeletions, or RecoverableItemsPurges). Requires active integration. */
 export const bulkInvestigateMove: API.PaginatedOperationMethod<
@@ -7183,6 +7183,26 @@ export const bulkInvestigateMove: API.PaginatedOperationMethod<
   () => ({
     input: BulkInvestigateMoveRequest,
     output: BulkInvestigateMoveResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkInvestigateReleaseError = CloudflareOpError;
+/** Releases one or more quarantined messages, delivering them to the intended recipients. Use when a message was incorrectly quarantined. Returns delivery status for each recipient. */
+export const bulkInvestigateRelease: API.PaginatedOperationMethod<
+  BulkInvestigateReleaseRequest,
+  BulkInvestigateReleaseResponse,
+  BulkInvestigateReleaseError,
+  CloudflareOpContext,
+  InvestigateReleaseBulkResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkInvestigateReleaseRequest,
+    output: BulkInvestigateReleaseResponse,
     errors: [CloudflareRateLimited, CloudflareError],
     protocol: CloudflarePaginatedProtocol,
     retry: Retry.Retry,
@@ -8308,23 +8328,3 @@ export const patchSettingUrlIgnorePattern: API.OperationMethod<
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
-
-export type ReleaseBulkInvestigateError = CloudflareOpError;
-/** Releases one or more quarantined messages, delivering them to the intended recipients. Use when a message was incorrectly quarantined. Returns delivery status for each recipient. */
-export const releaseBulkInvestigate: API.PaginatedOperationMethod<
-  ReleaseBulkInvestigateRequest,
-  ReleaseBulkInvestigateResponse,
-  ReleaseBulkInvestigateError,
-  CloudflareOpContext,
-  InvestigateReleaseBulkResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: ReleaseBulkInvestigateRequest,
-    output: ReleaseBulkInvestigateResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;

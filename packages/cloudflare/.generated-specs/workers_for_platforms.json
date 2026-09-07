@@ -83,7 +83,8 @@
       "versionId": "version_id",
       "versionTags": "version_tags",
       "workflowName": "workflow_name"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.workers_for_platforms#DispatchNamespacesListResultItem": {
@@ -10657,67 +10658,67 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesCreate"
+          "target": "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecrets"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesDelete"
+          "target": "com.cloudflare.workers_for_platforms#CreateDispatchNamespace"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesGet"
+          "target": "com.cloudflare.workers_for_platforms#CreateDispatchNamespaceScriptAssetUpload"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesList"
+          "target": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespace"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsDelete"
+          "target": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScript"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsGet"
+          "target": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsUpdate"
+          "target": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTag"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsAssetUploadCreate"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespace"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsBindingsGet"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScript"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentGet"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBinding"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentUpdate"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptContent"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSecretsBulkUpdate"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSecretsDelete"
+          "target": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptSetting"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSecretsGet"
+          "target": "com.cloudflare.workers_for_platforms#ListDispatchNamespaces"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSecretsList"
+          "target": "com.cloudflare.workers_for_platforms#ListDispatchNamespaceScriptSecrets"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSecretsUpdate"
+          "target": "com.cloudflare.workers_for_platforms#ListDispatchNamespaceScriptTags"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSettingsEdit"
+          "target": "com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSetting"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSettingsGet"
+          "target": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScript"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsDelete"
+          "target": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContent"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsList"
+          "target": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsUpdate"
+          "target": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptTag"
         }
       ],
       "traits": {
@@ -10992,13 +10993,13 @@
         ]
       }
     },
-    "com.cloudflare.workers_for_platforms#UpdateBulkDispatchNamespaceScriptSecret": {
+    "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_for_platforms#UpdateBulkDispatchNamespaceScriptSecretRequest"
+        "target": "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecretsRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_for_platforms#UpdateBulkDispatchNamespaceScriptSecretResponse"
+        "target": "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecretsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11009,7 +11010,7 @@
         "smithy.api#documentation": "Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged."
       }
     },
-    "com.cloudflare.workers_for_platforms#UpdateBulkDispatchNamespaceScriptSecretRequest": {
+    "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecretsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -11053,7 +11054,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_for_platforms#UpdateBulkDispatchNamespaceScriptSecretResponse": {
+    "com.cloudflare.workers_for_platforms#BulkUpdateDispatchNamespaceScriptSecretsResponse": {
       "type": "structure",
       "members": {
         "result": {

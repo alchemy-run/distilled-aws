@@ -13,6 +13,53 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface ConnectSerialPortRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The resource provider namespace of the parent resource. */
+  resourceProviderNamespace: string;
+  /** The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets' */
+  parentResourceType: string;
+  /** The name of the parent resource. */
+  parentResource: string;
+  /** The name of the serial port to connect to. */
+  serialPort: string;
+}
+export const ConnectSerialPortRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResource: S.String.pipe(T.Label()),
+    serialPort: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts/{serialPort}/connect",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ConnectSerialPortRequest",
+}) as any as S.Schema<ConnectSerialPortRequest>;
+
+/** Returns a connection string to the serial port of the resource. */
+export interface SerialPortConnectResult {
+  /** Connection string to the serial port of the resource. */
+  connectionString?: string | Redacted.Redacted<string>;
+}
+export const SerialPortConnectResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "SerialPortConnectResult",
+}) as any as S.Schema<SerialPortConnectResult>;
+
 /** Specifies whether the port is enabled for a serial console connection. */
 export type SerialPortState = "enabled" | "disabled";
 export const SerialPortState = /*@__PURE__*/ S.String;
@@ -483,52 +530,20 @@ export const ListSerialPortsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSerialPortsRequest",
 }) as any as S.Schema<ListSerialPortsRequest>;
 
-export interface SerialPortsConnectRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The resource provider namespace of the parent resource. */
-  resourceProviderNamespace: string;
-  /** The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets' */
-  parentResourceType: string;
-  /** The name of the parent resource. */
-  parentResource: string;
-  /** The name of the serial port to connect to. */
-  serialPort: string;
-}
-export const SerialPortsConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResource: S.String.pipe(T.Label()),
-    serialPort: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts/{serialPort}/connect",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "SerialPortsConnectRequest",
-}) as any as S.Schema<SerialPortsConnectRequest>;
-
-/** Returns a connection string to the serial port of the resource. */
-export interface SerialPortConnectResult {
-  /** Connection string to the serial port of the resource. */
-  connectionString?: string | Redacted.Redacted<string>;
-}
-export const SerialPortConnectResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "SerialPortConnectResult",
-}) as any as S.Schema<SerialPortConnectResult>;
+export type ConnectSerialPortError = AzureOpError;
+/** Connect to serial port of the target resource */
+export const ConnectSerialPort: API.OperationMethod<
+  ConnectSerialPortRequest,
+  SerialPortConnectResult,
+  ConnectSerialPortError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConnectSerialPortRequest,
+  output: SerialPortConnectResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CreateSerialPortError = AzureOpError;
 /** Creates or updates a serial port */
@@ -645,21 +660,6 @@ export const ListSerialPorts: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListSerialPortsRequest,
   output: SerialPortListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SerialPortsConnectError = AzureOpError;
-/** Connect to serial port of the target resource */
-export const SerialPortsConnect: API.OperationMethod<
-  SerialPortsConnectRequest,
-  SerialPortConnectResult,
-  SerialPortsConnectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SerialPortsConnectRequest,
-  output: SerialPortConnectResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

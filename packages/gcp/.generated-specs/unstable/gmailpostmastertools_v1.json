@@ -4,22 +4,23 @@
     "service": "gmailpostmastertools",
     "version": "v1",
     "title": "Gmail Postmaster Tools API",
-    "baseUrl": "https://gmailpostmastertools.googleapis.com/"
+    "baseUrl": "https://gmailpostmastertools.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.gmailpostmastertools_v1#ListTrafficStatsResponse": {
       "type": "structure",
       "members": {
-        "trafficStats": {
-          "target": "com.gcp.gmailpostmastertools_v1#TrafficStatsList",
-          "traits": {
-            "smithy.api#documentation": "The list of TrafficStats."
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "trafficStats": {
+          "target": "com.gcp.gmailpostmastertools_v1#TrafficStatsList",
+          "traits": {
+            "smithy.api#documentation": "The list of TrafficStats."
           }
         }
       },
@@ -33,25 +34,39 @@
         "target": "com.gcp.gmailpostmastertools_v1#TrafficStats"
       }
     },
+    "com.gcp.gmailpostmastertools_v1#FeedbackLoop": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Feedback loop identifier that uniquely identifies individual campaigns."
+          }
+        },
+        "spamRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of user marked spam messages with the identifier vs the total number of inboxed messages with that identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Feedback loop](https://support.google.com/mail/answer/6254652) identifier information."
+      }
+    },
     "com.gcp.gmailpostmastertools_v1#TrafficStats": {
       "type": "structure",
       "members": {
-        "dkimSuccessRatio": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The ratio of mail that successfully authenticated with DKIM vs. all mail that attempted to authenticate with [DKIM](http://www.dkim.org/). Spoofed mail is excluded."
-          }
-        },
         "spammyFeedbackLoops": {
           "target": "com.gcp.gmailpostmastertools_v1#FeedbackLoopList",
           "traits": {
             "smithy.api#documentation": "Spammy [Feedback loop identifiers] (https://support.google.com/mail/answer/6254652) with their individual spam rates. This metric only pertains to traffic that is authenticated by [DKIM](http://www.dkim.org/)."
           }
         },
-        "userReportedSpamRatioUpperBound": {
-          "target": "smithy.api#Double",
+        "deliveryErrors": {
+          "target": "com.gcp.gmailpostmastertools_v1#DeliveryErrorList",
           "traits": {
-            "smithy.api#documentation": "The upper bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this upper bound and the corresponding lower bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
+            "smithy.api#documentation": "Delivery errors for the domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
           }
         },
         "userReportedSpamRatioLowerBound": {
@@ -66,28 +81,16 @@
             "smithy.api#documentation": "The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807"
           }
         },
-        "dmarcSuccessRatio": {
+        "dkimSuccessRatio": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The ratio of mail that passed [DMARC](https://dmarc.org/) alignment checks vs all mail received from the domain that successfully authenticated with either of [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+            "smithy.api#documentation": "The ratio of mail that successfully authenticated with DKIM vs. all mail that attempted to authenticate with [DKIM](http://www.dkim.org/). Spoofed mail is excluded."
           }
         },
-        "inboundEncryptionRatio": {
-          "target": "smithy.api#Double",
+        "domainReputation": {
+          "target": "com.gcp.gmailpostmastertools_v1#TrafficStatsDomainReputationEnum",
           "traits": {
-            "smithy.api#documentation": "The ratio of incoming mail (to Gmail), that passed secure transport (TLS) vs all mail received from that domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
-          }
-        },
-        "deliveryErrors": {
-          "target": "com.gcp.gmailpostmastertools_v1#DeliveryErrorList",
-          "traits": {
-            "smithy.api#documentation": "Delivery errors for the domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
-          }
-        },
-        "outboundEncryptionRatio": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The ratio of outgoing mail (from Gmail) that was accepted over secure transport (TLS)."
+            "smithy.api#documentation": "Reputation of the domain."
           }
         },
         "ipReputations": {
@@ -96,10 +99,28 @@
             "smithy.api#documentation": "Reputation information pertaining to the IP addresses of the email servers for the domain. There is exactly one entry for each reputation category except REPUTATION_CATEGORY_UNSPECIFIED."
           }
         },
+        "outboundEncryptionRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of outgoing mail (from Gmail) that was accepted over secure transport (TLS)."
+          }
+        },
+        "dmarcSuccessRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of mail that passed [DMARC](https://dmarc.org/) alignment checks vs all mail received from the domain that successfully authenticated with either of [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+          }
+        },
         "spfSuccessRatio": {
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "The ratio of mail that successfully authenticated with SPF vs. all mail that attempted to authenticate with [SPF](http://www.openspf.org/). Spoofed mail is excluded."
+          }
+        },
+        "inboundEncryptionRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of incoming mail (to Gmail), that passed secure transport (TLS) vs all mail received from that domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
           }
         },
         "userReportedSpamRatio": {
@@ -108,10 +129,10 @@
             "smithy.api#documentation": "The ratio of user-report spam vs. email that was sent to the inbox. This is potentially inexact -- users may want to refer to the description of the interval fields userReportedSpamRatioLowerBound and userReportedSpamRatioUpperBound for more explicit accuracy guarantees. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
           }
         },
-        "domainReputation": {
-          "target": "com.gcp.gmailpostmastertools_v1#TrafficStatsDomainReputationEnum",
+        "userReportedSpamRatioUpperBound": {
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Reputation of the domain."
+            "smithy.api#documentation": "The upper bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this upper bound and the corresponding lower bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
           }
         }
       },
@@ -129,12 +150,6 @@
       "type": "list",
       "member": {
         "target": "com.gcp.gmailpostmastertools_v1#DeliveryError"
-      }
-    },
-    "com.gcp.gmailpostmastertools_v1#IpReputationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.gmailpostmastertools_v1#IpReputation"
       }
     },
     "com.gcp.gmailpostmastertools_v1#TrafficStatsDomainReputationEnum": {
@@ -172,24 +187,10 @@
         }
       }
     },
-    "com.gcp.gmailpostmastertools_v1#FeedbackLoop": {
-      "type": "structure",
-      "members": {
-        "spamRatio": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The ratio of user marked spam messages with the identifier vs the total number of inboxed messages with that identifier."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Feedback loop identifier that uniquely identifies individual campaigns."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "[Feedback loop](https://support.google.com/mail/answer/6254652) identifier information."
+    "com.gcp.gmailpostmastertools_v1#IpReputationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.gmailpostmastertools_v1#IpReputation"
       }
     },
     "com.gcp.gmailpostmastertools_v1#ListDomainsResponse": {
@@ -221,12 +222,6 @@
     "com.gcp.gmailpostmastertools_v1#DeliveryError": {
       "type": "structure",
       "members": {
-        "errorType": {
-          "target": "com.gcp.gmailpostmastertools_v1#DeliveryErrorErrorTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The type of delivery error."
-          }
-        },
         "errorRatio": {
           "target": "smithy.api#Double",
           "traits": {
@@ -238,10 +233,39 @@
           "traits": {
             "smithy.api#documentation": "The class of delivery error."
           }
+        },
+        "errorType": {
+          "target": "com.gcp.gmailpostmastertools_v1#DeliveryErrorErrorTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of delivery error."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Metric on a particular delivery error type."
+      }
+    },
+    "com.gcp.gmailpostmastertools_v1#DeliveryErrorErrorClassEnum": {
+      "type": "enum",
+      "members": {
+        "DELIVERY_ERROR_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_ERROR_CLASS_UNSPECIFIED"
+          }
+        },
+        "PERMANENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMANENT_ERROR"
+          }
+        },
+        "TEMPORARY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEMPORARY_ERROR"
+          }
+        }
       }
     },
     "com.gcp.gmailpostmastertools_v1#DeliveryErrorErrorTypeEnum": {
@@ -315,91 +339,13 @@
         }
       }
     },
-    "com.gcp.gmailpostmastertools_v1#DeliveryErrorErrorClassEnum": {
-      "type": "enum",
-      "members": {
-        "DELIVERY_ERROR_CLASS_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELIVERY_ERROR_CLASS_UNSPECIFIED"
-          }
-        },
-        "PERMANENT_ERROR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERMANENT_ERROR"
-          }
-        },
-        "TEMPORARY_ERROR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TEMPORARY_ERROR"
-          }
-        }
-      }
-    },
-    "com.gcp.gmailpostmastertools_v1#Domain": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp when the user registered this domain. Assigned by the server."
-          }
-        },
-        "permission": {
-          "target": "com.gcp.gmailpostmastertools_v1#DomainPermissionEnum",
-          "traits": {
-            "smithy.api#documentation": "User’s permission for this domain. Assigned by the server."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A registered domain resource in the Postmaster API."
-      }
-    },
-    "com.gcp.gmailpostmastertools_v1#DomainPermissionEnum": {
-      "type": "enum",
-      "members": {
-        "PERMISSION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
-          }
-        },
-        "OWNER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OWNER"
-          }
-        },
-        "READER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "READER"
-          }
-        },
-        "NONE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NONE"
-          }
-        }
-      }
-    },
     "com.gcp.gmailpostmastertools_v1#IpReputation": {
       "type": "structure",
       "members": {
-        "reputation": {
-          "target": "com.gcp.gmailpostmastertools_v1#IpReputationReputationEnum",
+        "ipCount": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The reputation category this IP reputation represents."
+            "smithy.api#documentation": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
           }
         },
         "sampleIps": {
@@ -408,15 +354,21 @@
             "smithy.api#documentation": "A sample of IPs in this reputation category."
           }
         },
-        "ipCount": {
-          "target": "smithy.api#String",
+        "reputation": {
+          "target": "com.gcp.gmailpostmastertools_v1#IpReputationReputationEnum",
           "traits": {
-            "smithy.api#documentation": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+            "smithy.api#documentation": "The reputation category this IP reputation represents."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "IP Reputation information for a set of IPs in a specific reputation category."
+      }
+    },
+    "com.gcp.gmailpostmastertools_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.gmailpostmastertools_v1#IpReputationReputationEnum": {
@@ -454,10 +406,59 @@
         }
       }
     },
-    "com.gcp.gmailpostmastertools_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+    "com.gcp.gmailpostmastertools_v1#Domain": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com)."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the user registered this domain. Assigned by the server."
+          }
+        },
+        "permission": {
+          "target": "com.gcp.gmailpostmastertools_v1#DomainPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "User’s permission for this domain. Assigned by the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A registered domain resource in the Postmaster API."
+      }
+    },
+    "com.gcp.gmailpostmastertools_v1#DomainPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        }
       }
     },
     "com.gcp.gmailpostmastertools_v1#GetDomainsRequest": {
@@ -526,18 +527,18 @@
     "com.gcp.gmailpostmastertools_v1#ListDomainsRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Requested page size. Server may return fewer domains than requested. If unspecified, server will pick an appropriate default.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -573,11 +574,11 @@
     "com.gcp.gmailpostmastertools_v1#ListDomainsTrafficStatsRequest": {
       "type": "structure",
       "members": {
-        "endDate.day": {
+        "startDate.day": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "endDate.day"
+            "smithy.api#httpQuery": "startDate.day"
           }
         },
         "endDate.year": {
@@ -587,11 +588,11 @@
             "smithy.api#httpQuery": "endDate.year"
           }
         },
-        "startDate.month": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-            "smithy.api#httpQuery": "startDate.month"
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "startDate.year": {
@@ -601,18 +602,11 @@
             "smithy.api#httpQuery": "startDate.year"
           }
         },
-        "startDate.day": {
+        "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "startDate.day"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "parent": {
@@ -623,18 +617,25 @@
             "smithy.api#required": {}
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "endDate.month": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
             "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
           }
         }
       }

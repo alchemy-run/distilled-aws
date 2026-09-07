@@ -4,70 +4,464 @@
     "service": "authorizedbuyersmarketplace",
     "version": "v1beta",
     "title": "Authorized Buyers Marketplace API",
-    "baseUrl": "https://authorizedbuyersmarketplace.googleapis.com/"
+    "baseUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratedPackagesResponse": {
+      "type": "structure",
+      "members": {
+        "curatedPackages": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageList",
+          "traits": {
+            "smithy.api#documentation": "The list of curated packages."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token to retrieve the next page of results. Pass this value in the ListCuratedPackagesRequest.pageToken field in the subsequent call to `ListCuratedPackages` method to retrieve the next page of results. If empty, then there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListCuratedPackages."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The unique resource name for the curated package. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the curated package, provided by the curator."
+          }
+        },
+        "floorPriceCpm": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method."
+          }
+        },
+        "accessSettings": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AccessControlSettings",
+          "traits": {
+            "smithy.api#documentation": "Required. Settings for controlling access to the curated package. Access to this curated package is limited to the allowlisted media planners and the creator. Buyers and bidders can not be allowlisted for or have direct access to this resource."
+          }
+        },
+        "targeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargeting",
+          "traits": {
+            "smithy.api#documentation": "Optional. Targeting criteria for the curated package."
+          }
+        },
+        "millipercentOfMediaFee": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000."
+          }
+        },
+        "curationFeeVisibility": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageCurationFeeVisibilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total curation fee)."
+          }
+        },
+        "feeCpm": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CPM fee charged by the curator to buyers using this curated package. Can be used to filter the response of the curatedPackages.list method."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp when the curated package was last updated. Can be used to filter the response of the curatedPackages.list method."
+          }
+        },
+        "state": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the curated package. Can be used to filter the response of the curatedPackages.list method."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display name assigned to the curated package by the curator. Can be used to filter the response of the curatedPackages.list method."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp when the curated package was created. Can be used to filter the response of the curatedPackages.list method."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a curated package of inventory created and managed by a Curator."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageCurationFeeVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "CURATION_FEE_VISIBILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CURATION_FEE_VISIBILITY_UNSPECIFIED"
+          }
+        },
+        "DISCLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCLOSED"
+          }
+        },
+        "NON_DISCLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_DISCLOSED"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateDataSegmentRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for deactivating a data segment"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListMediaPlannersResponse": {
+      "type": "structure",
+      "members": {
+        "mediaPlanners": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlannerList",
+          "traits": {
+            "smithy.api#documentation": "List of media planners."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token which can be passed to a subsequent call to the `ListMediaPlanners` method to retrieve the next page of results in ListMediaPlannersRequest.pageToken."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A response containing media planner account information."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlannerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlanner"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratedPackageRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for DeactivateCuratedPackage."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargeting": {
+      "type": "structure",
+      "members": {
+        "plcmtTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlcmtTargeting",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted video plcmt types. If unset, inventory will be targeted regardless of video plcmt type."
+          }
+        },
+        "minimumPredictedCompletionRatePercentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted minimum predicted completion rate percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% completion rate. An unset value indicates inventory will be targeted regardless of predicted completion rate."
+          }
+        },
+        "includedPositionTypes": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted video ad position types. If empty, inventory will be targeted regardless of video ad position type."
+          }
+        },
+        "includedContentDeliveryMethod": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedContentDeliveryMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted video delivery method. If unset, inventory will be targeted regardless of video delivery method."
+          }
+        },
+        "includedMimeTypes": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted video mime types using the IANA published MIME type strings (https://www.iana.org/assignments/media-types/media-types.xhtml). If empty, inventory will be targeted regardless of video mime type."
+          }
+        },
+        "includedPlayerSizeTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlayerSizeTargeting",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted video player size. If unset, inventory will be targeted regardless of video player size."
+          }
+        },
+        "includedMaximumAdDurationTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted maximum video ad duration. If unset, inventory will be targeted regardless of maximum video ad duration."
+          }
+        },
+        "includedPlaybackMethods": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted video playback methods. If empty, inventory will be targeted regardless of video playback method."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Video specific targeting criteria."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "POSITION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSITION_TYPE_UNSPECIFIED"
+          }
+        },
+        "POSITION_TYPE_MIDROLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSITION_TYPE_MIDROLL"
+          }
+        },
+        "POSITION_TYPE_POSTROLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSITION_TYPE_POSTROLL"
+          }
+        },
+        "POSITION_TYPE_PREROLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSITION_TYPE_PREROLL"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedContentDeliveryMethodEnum": {
+      "type": "enum",
+      "members": {
+        "CONTENT_DELIVERY_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_UNSPECIFIED"
+          }
+        },
+        "CONTENT_DELIVERY_METHOD_STREAMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_STREAMING"
+          }
+        },
+        "CONTENT_DELIVERY_METHOD_PROGRESSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_PROGRESSIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "VIDEO_MIME_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_UNSPECIFIED"
+          }
+        },
+        "VIDEO_MIME_TYPE_THREEGPP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_THREEGPP"
+          }
+        },
+        "VIDEO_MIME_TYPE_APPLICATION_MPEGURL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_MPEGURL"
+          }
+        },
+        "VIDEO_MIME_TYPE_MP4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_MP4"
+          }
+        },
+        "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH"
+          }
+        },
+        "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT"
+          }
+        },
+        "VIDEO_MIME_TYPE_WEBM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_MIME_TYPE_WEBM"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum": {
+      "type": "enum",
+      "members": {
+        "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_THIRTY_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_THIRTY_SECONDS"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_SIXTY_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_SIXTY_SECONDS"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS"
+          }
+        },
+        "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnum": {
+      "type": "enum",
+      "members": {
+        "PLAYBACK_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAYBACK_METHOD_UNSPECIFIED"
+          }
+        },
+        "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON"
+          }
+        },
+        "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF"
+          }
+        },
+        "PLAYBACK_METHOD_CLICK_TO_PLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAYBACK_METHOD_CLICK_TO_PLAY"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnum"
+      }
+    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargeting": {
       "type": "structure",
       "members": {
+        "minimumPredictedViewabilityPercentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted minimum predicted viewability percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% viewability. An unset value indicates inventory will be targeted regardless of predicted viewability."
+          }
+        },
         "placementTargeting": {
           "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePlacementTargeting",
           "traits": {
             "smithy.api#documentation": "Optional. Placement targeting information, for example, URL, mobile applications."
-          }
-        },
-        "includedEnvironment": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedEnvironmentEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The environment to target. If unspecified, all environments are targeted."
-          }
-        },
-        "includedAcceleratedMobilePageType": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAcceleratedMobilePageTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted accelerated mobile page type. If unset, inventory will be targeted regardless of AMP status."
-          }
-        },
-        "includedCreativeFormat": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedCreativeFormatEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The creative format to target. If unset, all creative markup types are targeted."
-          }
-        },
-        "publisherTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted publishers. If unset, inventory will be targeted regardless of publisher. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details."
-          }
-        },
-        "languageTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
-          "traits": {
-            "smithy.api#documentation": "Optional. The languages to target. If unset, inventory will be targeted regardless of language. See https://developers.google.com/google-ads/api/data/codes-formats#languages for the list of supported language codes."
-          }
-        },
-        "verticalTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CriteriaTargeting",
-          "traits": {
-            "smithy.api#documentation": "Optional. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals. If unset, inventory will be targeted regardless of vertical."
-          }
-        },
-        "includedDeviceTypes": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedDeviceTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of included device types to target. If empty, all device types are targeted."
-          }
-        },
-        "includedRewardedType": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRewardedTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted rewarded type. If unset, inventory will be targeted regardless of rewarded type."
-          }
-        },
-        "publisherProvidedSignalsTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePublisherProvidedSignalsTargeting",
-          "traits": {
-            "smithy.api#documentation": "Optional. The publisher provided signals to target. If unset, inventory will be targeted regardless of publisher provided signals."
           }
         },
         "minimumPredictedClickThroughRatePercentageMillis": {
@@ -76,10 +470,28 @@
             "smithy.api#documentation": "Optional. The targeted minimum predicted click through rate, ranging in values [10, 10000] (0.01% - 10%). A value of 50 means that the configuration will only match adslots for which we predict at least 0.05% click through rate. An unset value indicates inventory will be targeted regardless of predicted click through rate."
           }
         },
-        "minimumPredictedViewabilityPercentage": {
-          "target": "smithy.api#String",
+        "includedCreativeFormat": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedCreativeFormatEnum",
           "traits": {
-            "smithy.api#documentation": "Optional. The targeted minimum predicted viewability percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% viewability. An unset value indicates inventory will be targeted regardless of predicted viewability."
+            "smithy.api#documentation": "Optional. The creative format to target. If unset, all creative markup types are targeted."
+          }
+        },
+        "includedEnvironment": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedEnvironmentEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The environment to target. If unspecified, all environments are targeted."
+          }
+        },
+        "includedOpenMeasurementTypes": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted open measurement types. If empty, inventory will be targeted regardless of Open Measurement support."
+          }
+        },
+        "verticalTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CriteriaTargeting",
+          "traits": {
+            "smithy.api#documentation": "Optional. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals. If unset, inventory will be targeted regardless of vertical."
           }
         },
         "includedNativeInventoryTypes": {
@@ -88,22 +500,10 @@
             "smithy.api#documentation": "Optional. The targeted native inventory types. If empty, inventory will be targeted regardless of native inventory type."
           }
         },
-        "includedDataSegments": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+        "videoTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargeting",
           "traits": {
-            "smithy.api#documentation": "Optional. The active data segments to be targeted. If unset, inventory will be targeted regardless of data segments. Format: `curators/{account_id}/dataSegments/{data_segment_id}`"
-          }
-        },
-        "includedAdSizes": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AdSizeList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of ad sizes to target. If unset, inventory will be targeted regardless of ad size. Curated packages supports `PIXEL` and `INTERSTITIAL` ad sizes."
-          }
-        },
-        "includedAuthorizedSellerStatuses": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The included list of targeted authorized seller statuses. If empty, inventory will be targeted regardless of seller status."
+            "smithy.api#documentation": "Optional. Video specific targeting criteria."
           }
         },
         "includedRestrictedCategories": {
@@ -112,10 +512,22 @@
             "smithy.api#documentation": "Optional. The list of targeted restricted categories. If empty, inventory will be targeted regardless of restricted categories."
           }
         },
-        "videoTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargeting",
+        "includedAdSizes": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AdSizeList",
           "traits": {
-            "smithy.api#documentation": "Optional. Video specific targeting criteria."
+            "smithy.api#documentation": "Optional. The list of ad sizes to target. If unset, inventory will be targeted regardless of ad size. Curated packages supports `PIXEL` and `INTERSTITIAL` ad sizes."
+          }
+        },
+        "publisherTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted publishers. If unset, inventory will be targeted regardless of publisher. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details."
+          }
+        },
+        "includedAcceleratedMobilePageType": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAcceleratedMobilePageTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted accelerated mobile page type. If unset, inventory will be targeted regardless of AMP status."
           }
         },
         "geoTargeting": {
@@ -124,15 +536,74 @@
             "smithy.api#documentation": "Optional. The geo criteria IDs to be included or excluded as defined in https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv. If unset, inventory will be targeted regardless of geo."
           }
         },
-        "includedOpenMeasurementTypes": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnumList",
+        "languageTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
           "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted open measurement types. If empty, inventory will be targeted regardless of Open Measurement support."
+            "smithy.api#documentation": "Optional. The languages to target. If unset, inventory will be targeted regardless of language. See https://developers.google.com/google-ads/api/data/codes-formats#languages for the list of supported language codes."
+          }
+        },
+        "publisherProvidedSignalsTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePublisherProvidedSignalsTargeting",
+          "traits": {
+            "smithy.api#documentation": "Optional. The publisher provided signals to target. If unset, inventory will be targeted regardless of publisher provided signals."
+          }
+        },
+        "includedAuthorizedSellerStatuses": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The included list of targeted authorized seller statuses. If empty, inventory will be targeted regardless of seller status."
+          }
+        },
+        "includedRewardedType": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRewardedTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The targeted rewarded type. If unset, inventory will be targeted regardless of rewarded type."
+          }
+        },
+        "includedDataSegments": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The active data segments to be targeted. If unset, inventory will be targeted regardless of data segments. Format: `curators/{account_id}/dataSegments/{data_segment_id}`"
+          }
+        },
+        "includedDeviceTypes": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedDeviceTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of included device types to target. If empty, all device types are targeted."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Targeting criteria for curated and auction packages."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedCreativeFormatEnum": {
+      "type": "enum",
+      "members": {
+        "CREATIVE_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_FORMAT_UNSPECIFIED"
+          }
+        },
+        "CREATIVE_FORMAT_DISPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_FORMAT_DISPLAY"
+          }
+        },
+        "CREATIVE_FORMAT_VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_FORMAT_VIDEO"
+          }
+        },
+        "CREATIVE_FORMAT_AUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_FORMAT_AUDIO"
+          }
+        }
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedEnvironmentEnum": {
@@ -156,6 +627,93 @@
             "smithy.api#enumValue": "ENVIRONMENT_APP"
           }
         }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "OPEN_MEASUREMENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN_MEASUREMENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "OPEN_MEASUREMENT_TYPE_OMID_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN_MEASUREMENT_TYPE_OMID_V1"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "NATIVE_INVENTORY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_UNSPECIFIED"
+          }
+        },
+        "NATIVE_INVENTORY_TYPE_NATIVE_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_NATIVE_ONLY"
+          }
+        },
+        "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTED_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTED_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "RESTRICTED_CATEGORY_ALCOHOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTED_CATEGORY_ALCOHOL"
+          }
+        },
+        "RESTRICTED_CATEGORY_GAMBLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTED_CATEGORY_GAMBLING"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#AdSizeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AdSize"
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAcceleratedMobilePageTypeEnum": {
@@ -187,33 +745,62 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedCreativeFormatEnum": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnum": {
       "type": "enum",
       "members": {
-        "CREATIVE_FORMAT_UNSPECIFIED": {
+        "AUTHORIZED_SELLER_STATUS_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CREATIVE_FORMAT_UNSPECIFIED"
+            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_UNSPECIFIED"
           }
         },
-        "CREATIVE_FORMAT_DISPLAY": {
+        "AUTHORIZED_SELLER_STATUS_DIRECT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CREATIVE_FORMAT_DISPLAY"
+            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_DIRECT"
           }
         },
-        "CREATIVE_FORMAT_VIDEO": {
+        "AUTHORIZED_SELLER_STATUS_RESELLER": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CREATIVE_FORMAT_VIDEO"
-          }
-        },
-        "CREATIVE_FORMAT_AUDIO": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CREATIVE_FORMAT_AUDIO"
+            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_RESELLER"
           }
         }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnum"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRewardedTypeEnum": {
+      "type": "enum",
+      "members": {
+        "REWARDED_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REWARDED_TYPE_UNSPECIFIED"
+          }
+        },
+        "REWARDED_TYPE_NON_REWARDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REWARDED_TYPE_NON_REWARDED"
+          }
+        },
+        "REWARDED_TYPE_REWARDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REWARDED_TYPE_REWARDED"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedDeviceTypesItemEnum": {
@@ -257,163 +844,30 @@
         "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedDeviceTypesItemEnum"
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRewardedTypeEnum": {
-      "type": "enum",
-      "members": {
-        "REWARDED_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REWARDED_TYPE_UNSPECIFIED"
-          }
-        },
-        "REWARDED_TYPE_NON_REWARDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REWARDED_TYPE_NON_REWARDED"
-          }
-        },
-        "REWARDED_TYPE_REWARDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REWARDED_TYPE_REWARDED"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "NATIVE_INVENTORY_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_UNSPECIFIED"
-          }
-        },
-        "NATIVE_INVENTORY_TYPE_NATIVE_ONLY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_NATIVE_ONLY"
-          }
-        },
-        "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedNativeInventoryTypesItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#AdSizeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AdSize"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnum": {
-      "type": "enum",
-      "members": {
-        "AUTHORIZED_SELLER_STATUS_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_UNSPECIFIED"
-          }
-        },
-        "AUTHORIZED_SELLER_STATUS_DIRECT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_DIRECT"
-          }
-        },
-        "AUTHORIZED_SELLER_STATUS_RESELLER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTHORIZED_SELLER_STATUS_RESELLER"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedAuthorizedSellerStatusesItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnum": {
-      "type": "enum",
-      "members": {
-        "RESTRICTED_CATEGORY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESTRICTED_CATEGORY_UNSPECIFIED"
-          }
-        },
-        "RESTRICTED_CATEGORY_ALCOHOL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESTRICTED_CATEGORY_ALCOHOL"
-          }
-        },
-        "RESTRICTED_CATEGORY_GAMBLING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESTRICTED_CATEGORY_GAMBLING"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedRestrictedCategoriesItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "OPEN_MEASUREMENT_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OPEN_MEASUREMENT_TYPE_UNSPECIFIED"
-          }
-        },
-        "OPEN_MEASUREMENT_TYPE_OMID_V1": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OPEN_MEASUREMENT_TYPE_OMID_V1"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargetingIncludedOpenMeasurementTypesItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratedPackageRequest": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePlacementTargeting": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "mobileAppTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted or excluded mobile application IDs that publishers own. Currently, only Android and Apple apps are supported. Android App ID, for example, com.google.android.apps.maps, can be found in Google Play Store URL. iOS App ID (which is a number) can be found at the end of iTunes store URL. First party mobile applications is either included or excluded."
+          }
+        },
+        "uriTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted or excluded URLs. The domains should have the http/https stripped (for example, google.com), and can contain a max of 5 paths per url."
+          }
+        },
+        "includedMobileAppCategoryTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted mobile app categories."
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "Request message for DeactivateCuratedPackage."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateDataSegmentRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for activating a data segment"
+        "smithy.api#documentation": "Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed."
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#AdSize": {
@@ -425,16 +879,16 @@
             "smithy.api#documentation": "The height of the ad slot in pixels. This field will be present only when size type is `PIXEL`."
           }
         },
-        "width": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The width of the ad slot in pixels. This field will be present only when size type is `PIXEL`."
-          }
-        },
         "type": {
           "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AdSizeTypeEnum",
           "traits": {
             "smithy.api#documentation": "The type of the ad slot size."
+          }
+        },
+        "width": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The width of the ad slot in pixels. This field will be present only when size type is `PIXEL`."
           }
         }
       },
@@ -477,19 +931,71 @@
         }
       }
     },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#CriteriaTargeting": {
+      "type": "structure",
+      "members": {
+        "excludedCriteriaIds": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of numeric IDs to be excluded."
+          }
+        },
+        "targetedCriteriaIds": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of numeric IDs to be included."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Generic targeting used for targeting dimensions that contains a list of included and excluded numeric IDs. This cannot be filtered using list filter syntax."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlanner": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method."
+          }
+        },
+        "ancestorNames": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method."
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Account ID of the media planner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a media planner account."
+      }
+    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePublisherProvidedSignalsTargeting": {
       "type": "structure",
       "members": {
-        "videoAndAudioSignalsTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted and excluded video and audio signals IDs. These are additional signals supported by publisher provided signals."
-          }
-        },
         "audienceTargeting": {
           "target": "com.gcp.authorizedbuyersmarketplace_v1beta#TaxonomyTargeting",
           "traits": {
             "smithy.api#documentation": "Optional. The list of targeted or excluded audience IDs. Based off of IAB Audience Taxonomy version 1.1 (https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Audience%20Taxonomies/Audience%20Taxonomy%201.1.tsv)"
+          }
+        },
+        "videoAndAudioSignalsTargeting": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of targeted and excluded video and audio signals IDs. These are additional signals supported by publisher provided signals."
           }
         },
         "contentTargeting": {
@@ -503,56 +1009,30 @@
         "smithy.api#documentation": "Represents targeting about publisher provided signals. Different publisher provided signals types will be logically OR'ed."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackagePlacementTargeting": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListDataSegmentsResponse": {
       "type": "structure",
       "members": {
-        "mobileAppTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
+        "dataSegments": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegmentList",
           "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted or excluded mobile application IDs that publishers own. Currently, only Android and Apple apps are supported. Android App ID, for example, com.google.android.apps.maps, can be found in Google Play Store URL. iOS App ID (which is a number) can be found at the end of iTunes store URL. First party mobile applications is either included or excluded."
+            "smithy.api#documentation": "The list of data segments."
           }
         },
-        "includedMobileAppCategoryTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted mobile app categories."
-          }
-        },
-        "uriTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted or excluded URLs. The domains should have the http/https stripped (for example, google.com), and can contain a max of 5 paths per url."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListMediaPlannersResponse": {
-      "type": "structure",
-      "members": {
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A token which can be passed to a subsequent call to the `ListMediaPlanners` method to retrieve the next page of results in ListMediaPlannersRequest.pageToken."
-          }
-        },
-        "mediaPlanners": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlannerList",
-          "traits": {
-            "smithy.api#documentation": "List of media planners."
+            "smithy.api#documentation": "Continuation token for fetching the next page of results. Pass this value in the ListDataSegmentsRequest.pageToken field in the subsequent call to the `ListDataSegments` method to retrieve the next page of results."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A response containing media planner account information."
+        "smithy.api#documentation": "Response message for listing data segments."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlannerList": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegmentList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlanner"
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlcmtTargeting": {
@@ -639,64 +1119,13 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListDataSegmentsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Continuation token for fetching the next page of results. Pass this value in the ListDataSegmentsRequest.pageToken field in the subsequent call to the `ListDataSegments` method to retrieve the next page of results."
-          }
-        },
-        "dataSegments": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegmentList",
-          "traits": {
-            "smithy.api#documentation": "The list of data segments."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for listing data segments."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegmentList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateDataSegmentRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for deactivating a data segment"
-      }
-    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment": {
       "type": "structure",
       "members": {
-        "cpmFee": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
-          "traits": {
-            "smithy.api#documentation": "Optional. A fixed fee charged per thousand impressions. Once set, the currency code cannot be changed."
-          }
-        },
-        "userListId": {
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The ID of the User List wrapped by this Data Segment. Curators with a linked Data Partner account can create a data segment that wraps a user list owned by the linked Data Partner account. User lists can be uploaded and managed using the [Data Manager API](https://developers.google.com/data-manager/api/data-partners/audiences). Linking a user list to a data segment lets you define a segment of inventory that is based on an audience you create."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`"
-          }
-        },
-        "millipercentOfMediaFee": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000."
+            "smithy.api#documentation": "Output only. Time the data segment was created."
           }
         },
         "updateTime": {
@@ -705,16 +1134,34 @@
             "smithy.api#documentation": "Output only. Time the data segment was last updated."
           }
         },
-        "createTime": {
+        "cpmFee": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "Optional. A fixed fee charged per thousand impressions. Once set, the currency code cannot be changed."
+          }
+        },
+        "millipercentOfMediaFee": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Time the data segment was created."
+            "smithy.api#documentation": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`"
           }
         },
         "state": {
           "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegmentStateEnum",
           "traits": {
             "smithy.api#documentation": "Output only. The state of the data segment."
+          }
+        },
+        "userListId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The ID of the User List wrapped by this Data Segment. Curators with a linked Data Partner account can create a data segment that wraps a user list owned by the linked Data Partner account. User lists can be uploaded and managed using the [Data Manager API](https://developers.google.com/data-manager/api/data-partners/audiences). Linking a user list to a data segment lets you define a segment of inventory that is based on an audience you create."
           }
         }
       },
@@ -751,132 +1198,6 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage": {
-      "type": "structure",
-      "members": {
-        "floorPriceCpm": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
-          "traits": {
-            "smithy.api#documentation": "Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method."
-          }
-        },
-        "feeCpm": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Money",
-          "traits": {
-            "smithy.api#documentation": "Optional. The CPM fee charged by the curator to buyers using this curated package. Can be used to filter the response of the curatedPackages.list method."
-          }
-        },
-        "accessSettings": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#AccessControlSettings",
-          "traits": {
-            "smithy.api#documentation": "Required. Settings for controlling access to the curated package. Access to this curated package is limited to the allowlisted media planners and the creator. Buyers and bidders can not be allowlisted for or have direct access to this resource."
-          }
-        },
-        "curationFeeVisibility": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageCurationFeeVisibilityEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total curation fee)."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The timestamp when the curated package was created. Can be used to filter the response of the curatedPackages.list method."
-          }
-        },
-        "state": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the curated package. Can be used to filter the response of the curatedPackages.list method."
-          }
-        },
-        "millipercentOfMediaFee": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A description of the curated package, provided by the curator."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The display name assigned to the curated package by the curator. Can be used to filter the response of the curatedPackages.list method."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The unique resource name for the curated package. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`"
-          }
-        },
-        "targeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageTargeting",
-          "traits": {
-            "smithy.api#documentation": "Optional. Targeting criteria for the curated package."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The timestamp when the curated package was last updated. Can be used to filter the response of the curatedPackages.list method."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a curated package of inventory created and managed by a Curator."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageCurationFeeVisibilityEnum": {
-      "type": "enum",
-      "members": {
-        "CURATION_FEE_VISIBILITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CURATION_FEE_VISIBILITY_UNSPECIFIED"
-          }
-        },
-        "DISCLOSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISCLOSED"
-          }
-        },
-        "NON_DISCLOSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NON_DISCLOSED"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "INACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INACTIVE"
-          }
-        }
-      }
-    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratedPackageRequest": {
       "type": "structure",
       "members": {},
@@ -884,288 +1205,45 @@
         "smithy.api#documentation": "Request message for ActivateCuratedPackage."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#TaxonomyTargeting": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#Money": {
       "type": "structure",
       "members": {
-        "targetedTaxonomyIds": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
+        "nanos": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted content taxonomy IDs."
+            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
           }
         },
-        "excludedTaxonomyIds": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of excluded content taxonomy IDs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines targeting criteria for handling the IAB audience and content Taxonomy ID space."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargeting": {
-      "type": "structure",
-      "members": {
-        "minimumPredictedCompletionRatePercentage": {
+        "currencyCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The targeted minimum predicted completion rate percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% completion rate. An unset value indicates inventory will be targeted regardless of predicted completion rate."
+            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
           }
         },
-        "plcmtTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlcmtTargeting",
+        "units": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The targeted video plcmt types. If unset, inventory will be targeted regardless of video plcmt type."
-          }
-        },
-        "includedMimeTypes": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted video mime types using the IANA published MIME type strings (https://www.iana.org/assignments/media-types/media-types.xhtml). If empty, inventory will be targeted regardless of video mime type."
-          }
-        },
-        "includedPlaybackMethods": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of targeted video playback methods. If empty, inventory will be targeted regardless of video playback method."
-          }
-        },
-        "includedPlayerSizeTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlayerSizeTargeting",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted video player size. If unset, inventory will be targeted regardless of video player size."
-          }
-        },
-        "includedContentDeliveryMethod": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedContentDeliveryMethodEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted video delivery method. If unset, inventory will be targeted regardless of video delivery method."
-          }
-        },
-        "includedMaximumAdDurationTargeting": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted maximum video ad duration. If unset, inventory will be targeted regardless of maximum video ad duration."
-          }
-        },
-        "includedPositionTypes": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The targeted video ad position types. If empty, inventory will be targeted regardless of video ad position type."
+            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Video specific targeting criteria."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "VIDEO_MIME_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_UNSPECIFIED"
-          }
-        },
-        "VIDEO_MIME_TYPE_THREEGPP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_THREEGPP"
-          }
-        },
-        "VIDEO_MIME_TYPE_APPLICATION_MPEGURL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_MPEGURL"
-          }
-        },
-        "VIDEO_MIME_TYPE_MP4": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_MP4"
-          }
-        },
-        "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH"
-          }
-        },
-        "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT"
-          }
-        },
-        "VIDEO_MIME_TYPE_WEBM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_MIME_TYPE_WEBM"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMimeTypesItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnum": {
-      "type": "enum",
-      "members": {
-        "PLAYBACK_METHOD_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAYBACK_METHOD_UNSPECIFIED"
-          }
-        },
-        "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON"
-          }
-        },
-        "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF"
-          }
-        },
-        "PLAYBACK_METHOD_CLICK_TO_PLAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAYBACK_METHOD_CLICK_TO_PLAY"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPlaybackMethodsItemEnum"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedContentDeliveryMethodEnum": {
-      "type": "enum",
-      "members": {
-        "CONTENT_DELIVERY_METHOD_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_UNSPECIFIED"
-          }
-        },
-        "CONTENT_DELIVERY_METHOD_STREAMING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_STREAMING"
-          }
-        },
-        "CONTENT_DELIVERY_METHOD_PROGRESSIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTENT_DELIVERY_METHOD_PROGRESSIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum": {
-      "type": "enum",
-      "members": {
-        "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_THIRTY_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_THIRTY_SECONDS"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_SIXTY_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_SIXTY_SECONDS"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS"
-          }
-        },
-        "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "POSITION_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POSITION_TYPE_UNSPECIFIED"
-          }
-        },
-        "POSITION_TYPE_MIDROLL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POSITION_TYPE_MIDROLL"
-          }
-        },
-        "POSITION_TYPE_POSTROLL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POSITION_TYPE_POSTROLL"
-          }
-        },
-        "POSITION_TYPE_PREROLL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POSITION_TYPE_PREROLL"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PackageVideoTargetingIncludedPositionTypesItemEnum"
+        "smithy.api#documentation": "Represents an amount of money with its currency type."
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimension": {
       "type": "structure",
       "members": {
-        "selectionType": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimensionSelectionTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. How the items in this list should be targeted."
-          }
-        },
         "values": {
           "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
           "traits": {
             "smithy.api#documentation": "Required. The values specified."
+          }
+        },
+        "selectionType": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringTargetingDimensionSelectionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. How the items in this list should be targeted."
           }
         }
       },
@@ -1196,72 +1274,6 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#CriteriaTargeting": {
-      "type": "structure",
-      "members": {
-        "targetedCriteriaIds": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of numeric IDs to be included."
-          }
-        },
-        "excludedCriteriaIds": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of numeric IDs to be excluded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Generic targeting used for targeting dimensions that contains a list of included and excluded numeric IDs. This cannot be filtered using list filter syntax."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#AccessControlSettings": {
-      "type": "structure",
-      "members": {
-        "allowlistedMediaPlanners": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. Immutable. The list of media planners that are explicitly granted access to the curated package. Eligible media planners can be found in the mediaPlanners.list method. Only a single media planner may be allowlisted at this time. Format: `mediaPlanners/{mediaPlannerAccountId}`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Settings for controlling access to a curated package."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#MediaPlanner": {
-      "type": "structure",
-      "members": {
-        "ancestorNames": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method."
-          }
-        },
-        "accountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Account ID of the media planner."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a media planner account."
-      }
-    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#VideoPlayerSizeTargeting": {
       "type": "structure",
       "members": {
@@ -1282,81 +1294,56 @@
         "smithy.api#documentation": "Represents the size of the video player that can be targeted. Both width and height are required to be set to non-zero values."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratedPackagesResponse": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateDataSegmentRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for activating a data segment"
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#TaxonomyTargeting": {
       "type": "structure",
       "members": {
-        "curatedPackages": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageList",
+        "excludedTaxonomyIds": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "The list of curated packages."
+            "smithy.api#documentation": "Optional. The list of excluded content taxonomy IDs."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "targetedTaxonomyIds": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "A token to retrieve the next page of results. Pass this value in the ListCuratedPackagesRequest.pageToken field in the subsequent call to `ListCuratedPackages` method to retrieve the next page of results. If empty, then there are no more results."
+            "smithy.api#documentation": "Optional. The list of targeted content taxonomy IDs."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for ListCuratedPackages."
+        "smithy.api#documentation": "Defines targeting criteria for handling the IAB audience and content Taxonomy ID space."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackageList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage"
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#Money": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#AccessControlSettings": {
       "type": "structure",
       "members": {
-        "currencyCode": {
-          "target": "smithy.api#String",
+        "allowlistedMediaPlanners": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
-          }
-        },
-        "nanos": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
-          }
-        },
-        "units": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+            "smithy.api#documentation": "Required. Immutable. The list of media planners that are explicitly granted access to the curated package. Eligible media planners can be found in the mediaPlanners.list method. Only a single media planner may be allowlisted at this time. Format: `mediaPlanners/{mediaPlannerAccountId}`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents an amount of money with its currency type."
+        "smithy.api#documentation": "Settings for controlling access to a curated package."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsDataSegmentsRequest": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegmentsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Name of the parent curator that can access the data segment. v1alpha format: `buyers/{accountId}` v1beta format: `curators/{accountId}`",
+            "smithy.api#documentation": "Required. Name of data segment to get. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The page token as returned. ListDataSegmentsResponse.nextPageToken",
-            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -1385,6 +1372,133 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a data segment given its name."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of data segment to activate. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateDataSegmentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:activate"
+        },
+        "smithy.api#documentation": "Activates a data segment."
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsDataSegmentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the parent curator that can access the data segment. v1alpha format: `buyers/{accountId}` v1beta format: `curators/{accountId}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token as returned. ListDataSegmentsResponse.nextPageToken",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsDataSegments": {
@@ -1435,32 +1549,6 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsDataSegments": {
       "type": "operation",
       "input": {
@@ -1491,19 +1579,26 @@
         "smithy.api#documentation": "Deactivates a data segment."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegmentsRequest": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegmentsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Name of data segment to activate. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
+            "smithy.api#documentation": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path \"*\" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "body": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateDataSegmentRequest",
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1511,10 +1606,10 @@
         }
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegments": {
+    "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegments": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsDataSegmentsRequest"
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegmentsRequest"
       },
       "output": {
         "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
@@ -1535,10 +1630,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:activate"
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
         },
-        "smithy.api#documentation": "Activates a data segment."
+        "smithy.api#documentation": "Updates a data segment."
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#CreateCuratorsDataSegmentsRequest": {
@@ -1589,150 +1684,6 @@
           "uri": "v1beta/{+parent}/dataSegments"
         },
         "smithy.api#documentation": "Creates a data segment owned by the listed curator. The data segment will be created in the `ACTIVE` state, meaning it will be immediately available for buyers to use in preferred deals, private auction deals, and auction packages."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegmentsRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path \"*\" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsDataSegmentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Updates a data segment."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegmentsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of data segment to get. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsDataSegmentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DataSegment"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets a data segment given its name."
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackagesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the curated package to deactivate. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratedPackageRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackages": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackagesRequest"
-      },
-      "output": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:deactivate"
-        },
-        "smithy.api#documentation": "Deactivates an existing curated package."
       }
     },
     "com.gcp.authorizedbuyersmarketplace_v1beta#ActivateCuratorsCuratedPackagesRequest": {
@@ -1835,6 +1786,68 @@
         "smithy.api#documentation": "Creates a new curated package."
       }
     },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackagesRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * displayName * createTime * updateTime * state * feeCpm.currencyCode * feeCpm.units * feeCpm.nanos * floorPriceCpm.currencyCode * floorPriceCpm.units * floorPriceCpm.nanos",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent curator account which owns this collection of curated packages. Format: `curators/{accountId}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListCuratedPackages` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackages": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackagesRequest"
+      },
+      "output": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratedPackagesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/curatedPackages"
+        },
+        "smithy.api#documentation": "Lists curated packages owned by the specified curator.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#PatchCuratorsCuratedPackagesRequest": {
       "type": "structure",
       "members": {
@@ -1892,6 +1905,56 @@
         "smithy.api#documentation": "Updates an existing curated package."
       }
     },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackagesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the curated package to deactivate. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratedPackageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackages": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#DeactivateCuratorsCuratedPackagesRequest"
+      },
+      "output": {
+        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#CuratedPackage"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:deactivate"
+        },
+        "smithy.api#documentation": "Deactivates an existing curated package."
+      }
+    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#GetCuratorsCuratedPackagesRequest": {
       "type": "structure",
       "members": {
@@ -1929,71 +1992,16 @@
         "smithy.api#documentation": "Gets a curated package given its resource name."
       }
     },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackagesRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * displayName * createTime * updateTime * state * feeCpm.currencyCode * feeCpm.units * feeCpm.nanos * floorPriceCpm.currencyCode * floorPriceCpm.units * floorPriceCpm.nanos",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListCuratedPackages` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent curator account which owns this collection of curated packages. Format: `curators/{accountId}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackages": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratorsCuratedPackagesRequest"
-      },
-      "output": {
-        "target": "com.gcp.authorizedbuyersmarketplace_v1beta#ListCuratedPackagesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.authorizedbuyersmarketplace_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+parent}/curatedPackages"
-        },
-        "smithy.api#documentation": "Lists curated packages owned by the specified curator.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.authorizedbuyersmarketplace_v1beta#ListMediaPlannersRequest": {
       "type": "structure",
       "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
@@ -2006,13 +2014,6 @@
           "traits": {
             "smithy.api#documentation": "Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }

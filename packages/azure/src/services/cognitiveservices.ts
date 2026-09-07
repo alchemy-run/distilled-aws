@@ -293,51 +293,125 @@ export const AccountCapabilityHostsCreateOrUpdateResponse =
     identifier: "AccountCapabilityHostsCreateOrUpdateResponse",
   }) as any as S.Schema<AccountCapabilityHostsCreateOrUpdateResponse>;
 
-/** key name to generate (Key1|Key2) */
-export type KeyName = "Key1" | "Key2";
-export const KeyName = /*@__PURE__*/ S.String;
+/** RAI Custom Blocklist Item properties. */
+export interface RaiBlocklistItemProperties {
+  /** Pattern to match against. */
+  pattern?: string;
+  /** If the pattern is a regex pattern. */
+  isRegex?: boolean;
+}
+export const RaiBlocklistItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pattern: S.optional(S.String),
+    isRegex: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RaiBlocklistItemProperties",
+}) as any as S.Schema<RaiBlocklistItemProperties>;
 
-export interface AccountsRegenerateKeyRequest {
+/** The Cognitive Services RaiBlocklist Item request body. */
+export interface RaiBlocklistItemBulkRequest {
+  name?: string;
+  /** Properties of Cognitive Services RaiBlocklist Item. */
+  properties?: RaiBlocklistItemProperties;
+}
+export const RaiBlocklistItemBulkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: S.optional(RaiBlocklistItemProperties),
+  }),
+).annotate({
+  identifier: "RaiBlocklistItemBulkRequest",
+}) as any as S.Schema<RaiBlocklistItemBulkRequest>;
+
+/** The list of Cognitive Services RaiBlocklist Items for batch add. */
+export type RaiBlocklistItemsBulkAddRequest =
+  Array<RaiBlocklistItemBulkRequest>;
+export const RaiBlocklistItemsBulkAddRequest = /*@__PURE__*/ S.Array(
+  RaiBlocklistItemBulkRequest,
+) as any as S.Schema<RaiBlocklistItemsBulkAddRequest>;
+
+export interface AddRaiBlocklistItemBatchRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** key name to generate (Key1|Key2) */
-  keyName: KeyName | (string & {});
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  body: RaiBlocklistItemsBulkAddRequest;
 }
-export const AccountsRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddRaiBlocklistItemBatchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    keyName: KeyName,
+    raiBlocklistName: S.String.pipe(T.Label()),
+    body: RaiBlocklistItemsBulkAddRequest.pipe(T.HttpBody()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/regenerateKey",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/addRaiBlocklistItems",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsRegenerateKeyRequest",
-}) as any as S.Schema<AccountsRegenerateKeyRequest>;
+  identifier: "AddRaiBlocklistItemBatchRequest",
+}) as any as S.Schema<AddRaiBlocklistItemBatchRequest>;
 
-/** The access keys for the cognitive services account. */
-export interface ApiKeys {
-  /** Gets the value of key 1. */
-  key1?: string;
-  /** Gets the value of key 2. */
-  key2?: string;
+/** RAI Custom Blocklist properties. */
+export interface RaiBlocklistProperties {
+  /** Description of the block list. */
+  description?: string;
 }
-export const ApiKeys = /*@__PURE__*/ S.suspend(() =>
+export const RaiBlocklistProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    key1: S.optional(S.String),
-    key2: S.optional(S.String),
+    description: S.optional(S.String),
   }),
-).annotate({ identifier: "ApiKeys" }) as any as S.Schema<ApiKeys>;
+).annotate({
+  identifier: "RaiBlocklistProperties",
+}) as any as S.Schema<RaiBlocklistProperties>;
+
+/** Resource tags. */
+export type AddRaiBlocklistItemBatchResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AddRaiBlocklistItemBatchResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AddRaiBlocklistItemBatchResponseTagsMap>;
+
+export interface AddRaiBlocklistItemBatchResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiBlocklist. */
+  properties?: RaiBlocklistProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: AddRaiBlocklistItemBatchResponseTagsMap;
+}
+export const AddRaiBlocklistItemBatchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiBlocklistProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(AddRaiBlocklistItemBatchResponseTagsMap),
+  }),
+).annotate({
+  identifier: "AddRaiBlocklistItemBatchResponse",
+}) as any as S.Schema<AddRaiBlocklistItemBatchResponse>;
 
 /** Tag dictionary. Tags can be added, removed, and updated. */
 export type AgenticApplicationPropertiesInputTagsMap = {
@@ -2046,13 +2120,11 @@ export const AccountPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountPropertiesInput>;
 
 /** Resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** The identity type. */
 export type ResourceIdentityType =
@@ -2103,7 +2175,7 @@ export interface CreateAccountRequest {
   /** Properties of Cognitive Services account. */
   properties?: AccountPropertiesInput;
   /** Resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The kind (type) of cognitive service account. */
@@ -2119,7 +2191,7 @@ export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     location: S.optional(S.String),
     kind: S.optional(S.String),
     sku: S.optional(Sku),
@@ -2575,13 +2647,13 @@ export const AccountProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountProperties>;
 
 /** Resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** User-assigned managed identity. */
 export interface UserAssignedIdentity {
@@ -2640,7 +2712,7 @@ export interface CreateAccountResponse {
   /** Properties of Cognitive Services account. */
   properties?: AccountProperties;
   /** Resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -2659,7 +2731,7 @@ export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -3019,13 +3091,11 @@ export const ProjectPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectPropertiesInput>;
 
 /** Resource tags. */
-export type ProjectsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const CreateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsCreateRequestTagsMap>;
+) as any as S.Schema<CreateProjectRequestTagsMap>;
 
 export interface CreateProjectRequest {
   /** The ID of the target subscription. */
@@ -3039,7 +3109,7 @@ export interface CreateProjectRequest {
   /** Properties of Cognitive Services project. */
   properties?: ProjectPropertiesInput;
   /** Resource tags. */
-  tags?: ProjectsCreateRequestTagsMap;
+  tags?: CreateProjectRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Identity for the resource. */
@@ -3052,7 +3122,7 @@ export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     projectName: S.String.pipe(T.Label()),
     properties: S.optional(ProjectPropertiesInput),
-    tags: S.optional(ProjectsCreateRequestTagsMap),
+    tags: S.optional(CreateProjectRequestTagsMap),
     location: S.optional(S.String),
     identity: S.optional(IdentityInput),
   }).pipe(
@@ -3102,13 +3172,13 @@ export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectProperties>;
 
 /** Resource tags. */
-export type ProjectsCreateResponseTagsMap = {
+export type CreateProjectResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsCreateResponseTagsMap>;
+) as any as S.Schema<CreateProjectResponseTagsMap>;
 
 export interface CreateProjectResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3122,7 +3192,7 @@ export interface CreateProjectResponse {
   /** Properties of Cognitive Services project. */
   properties?: ProjectProperties;
   /** Resource tags. */
-  tags?: ProjectsCreateResponseTagsMap;
+  tags?: CreateProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -3137,7 +3207,7 @@ export const CreateProjectResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsCreateResponseTagsMap),
+    tags: S.optional(CreateProjectResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     identity: S.optional(Identity),
@@ -3591,41 +3661,6 @@ export const DeleteCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCommitmentPlanPlanResponse",
 }) as any as S.Schema<DeleteCommitmentPlanPlanResponse>;
 
-export interface DeletedAccountsPurgeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const DeletedAccountsPurgeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedAccountsPurgeRequest",
-}) as any as S.Schema<DeletedAccountsPurgeRequest>;
-
-export interface DeletedAccountsPurgeResponse {}
-export const DeletedAccountsPurgeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeletedAccountsPurgeResponse",
-}) as any as S.Schema<DeletedAccountsPurgeResponse>;
-
 export interface DeleteDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -3696,7 +3731,7 @@ export const DeleteEncryptionScopeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteEncryptionScopeResponse",
 }) as any as S.Schema<DeleteEncryptionScopeResponse>;
 
-export interface DeleteManagedNetworkSettingRequest {
+export interface DeleteManagedNetworkSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3706,7 +3741,7 @@ export interface DeleteManagedNetworkSettingRequest {
   /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
   managedNetworkName: string;
 }
-export const DeleteManagedNetworkSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3721,15 +3756,15 @@ export const DeleteManagedNetworkSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteManagedNetworkSettingRequest",
-}) as any as S.Schema<DeleteManagedNetworkSettingRequest>;
+  identifier: "DeleteManagedNetworkSettingsRequest",
+}) as any as S.Schema<DeleteManagedNetworkSettingsRequest>;
 
-export interface DeleteManagedNetworkSettingResponse {}
-export const DeleteManagedNetworkSettingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface DeleteManagedNetworkSettingsResponse {}
+export const DeleteManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteManagedNetworkSettingResponse",
-}) as any as S.Schema<DeleteManagedNetworkSettingResponse>;
+  identifier: "DeleteManagedNetworkSettingsResponse",
+}) as any as S.Schema<DeleteManagedNetworkSettingsResponse>;
 
 export interface DeleteOutboundRuleRequest {
   /** The ID of the target subscription. */
@@ -4506,146 +4541,6 @@ export const DeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentsCreateOrUpdateResponse",
 }) as any as S.Schema<DeploymentsCreateOrUpdateResponse>;
 
-export interface DeploymentsPauseRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const DeploymentsPauseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/pause",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsPauseRequest",
-}) as any as S.Schema<DeploymentsPauseRequest>;
-
-/** Resource tags. */
-export type DeploymentsPauseResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsPauseResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsPauseResponseTagsMap>;
-
-export interface DeploymentsPauseResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsPauseResponseTagsMap;
-}
-export const DeploymentsPauseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsPauseResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DeploymentsPauseResponse",
-}) as any as S.Schema<DeploymentsPauseResponse>;
-
-export interface DeploymentsResumeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const DeploymentsResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/resume",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsResumeRequest",
-}) as any as S.Schema<DeploymentsResumeRequest>;
-
-/** Resource tags. */
-export type DeploymentsResumeResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsResumeResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsResumeResponseTagsMap>;
-
-export interface DeploymentsResumeResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsResumeResponseTagsMap;
-}
-export const DeploymentsResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsResumeResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DeploymentsResumeResponse",
-}) as any as S.Schema<DeploymentsResumeResponse>;
-
 export interface DisableAgentApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -4902,11 +4797,11 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -4920,7 +4815,7 @@ export interface GetAccountResponse {
   /** Properties of Cognitive Services account. */
   properties?: AccountProperties;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -4939,7 +4834,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -5196,13 +5091,13 @@ export const GetCommitmentPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommitmentPlanRequest>;
 
 /** Resource tags. */
-export type CommitmentPlansGetResponseTagsMap = {
+export type GetCommitmentPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommitmentPlansGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCommitmentPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommitmentPlansGetResponseTagsMap>;
+) as any as S.Schema<GetCommitmentPlanResponseTagsMap>;
 
 export interface GetCommitmentPlanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5216,7 +5111,7 @@ export interface GetCommitmentPlanResponse {
   /** Properties of Cognitive Services account commitment plan. */
   properties?: CommitmentPlanProperties;
   /** Resource tags. */
-  tags?: CommitmentPlansGetResponseTagsMap;
+  tags?: GetCommitmentPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -5233,7 +5128,7 @@ export const GetCommitmentPlanResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansGetResponseTagsMap),
+    tags: S.optional(GetCommitmentPlanResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -5272,14 +5167,14 @@ export const GetCommitmentPlanAssociationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommitmentPlanAssociationRequest>;
 
 /** Resource tags. */
-export type CommitmentPlansGetAssociationResponseTagsMap = {
+export type GetCommitmentPlanAssociationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommitmentPlansGetAssociationResponseTagsMap =
+export const GetCommitmentPlanAssociationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CommitmentPlansGetAssociationResponseTagsMap>;
+  ) as any as S.Schema<GetCommitmentPlanAssociationResponseTagsMap>;
 
 export interface GetCommitmentPlanAssociationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5295,7 +5190,7 @@ export interface GetCommitmentPlanAssociationResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: CommitmentPlansGetAssociationResponseTagsMap;
+  tags?: GetCommitmentPlanAssociationResponseTagsMap;
 }
 export const GetCommitmentPlanAssociationResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -5306,7 +5201,7 @@ export const GetCommitmentPlanAssociationResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(CommitmentPlanAccountAssociationProperties),
       etag: S.optional(S.String),
-      tags: S.optional(CommitmentPlansGetAssociationResponseTagsMap),
+      tags: S.optional(GetCommitmentPlanAssociationResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetCommitmentPlanAssociationResponse",
@@ -5338,13 +5233,13 @@ export const GetCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommitmentPlanPlanRequest>;
 
 /** Resource tags. */
-export type CommitmentPlansGetPlanResponseTagsMap = {
+export type GetCommitmentPlanPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommitmentPlansGetPlanResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCommitmentPlanPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommitmentPlansGetPlanResponseTagsMap>;
+) as any as S.Schema<GetCommitmentPlanPlanResponseTagsMap>;
 
 export interface GetCommitmentPlanPlanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5358,7 +5253,7 @@ export interface GetCommitmentPlanPlanResponse {
   /** Properties of Cognitive Services account commitment plan. */
   properties?: CommitmentPlanProperties;
   /** Resource tags. */
-  tags?: CommitmentPlansGetPlanResponseTagsMap;
+  tags?: GetCommitmentPlanPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -5375,7 +5270,7 @@ export const GetCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansGetPlanResponseTagsMap),
+    tags: S.optional(GetCommitmentPlanPlanResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -5385,7 +5280,7 @@ export const GetCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCommitmentPlanPlanResponse",
 }) as any as S.Schema<GetCommitmentPlanPlanResponse>;
 
-export interface GetDefenderForAiSettingRequest {
+export interface GetDefenderForAISettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5395,7 +5290,7 @@ export interface GetDefenderForAiSettingRequest {
   /** The name of the defender for AI setting. */
   defenderForAISettingName: string;
 }
-export const GetDefenderForAiSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5410,19 +5305,19 @@ export const GetDefenderForAiSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetDefenderForAiSettingRequest",
-}) as any as S.Schema<GetDefenderForAiSettingRequest>;
+  identifier: "GetDefenderForAISettingsRequest",
+}) as any as S.Schema<GetDefenderForAISettingsRequest>;
 
 /** Resource tags. */
-export type DefenderForAISettingsGetResponseTagsMap = {
+export type GetDefenderForAISettingsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DefenderForAISettingsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDefenderForAISettingsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DefenderForAISettingsGetResponseTagsMap>;
+) as any as S.Schema<GetDefenderForAISettingsResponseTagsMap>;
 
-export interface GetDefenderForAiSettingResponse {
+export interface GetDefenderForAISettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -5436,9 +5331,9 @@ export interface GetDefenderForAiSettingResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: DefenderForAISettingsGetResponseTagsMap;
+  tags?: GetDefenderForAISettingsResponseTagsMap;
 }
-export const GetDefenderForAiSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDefenderForAISettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5446,11 +5341,11 @@ export const GetDefenderForAiSettingResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DefenderForAISettingProperties),
     etag: S.optional(S.String),
-    tags: S.optional(DefenderForAISettingsGetResponseTagsMap),
+    tags: S.optional(GetDefenderForAISettingsResponseTagsMap),
   }),
 ).annotate({
-  identifier: "GetDefenderForAiSettingResponse",
-}) as any as S.Schema<GetDefenderForAiSettingResponse>;
+  identifier: "GetDefenderForAISettingsResponse",
+}) as any as S.Schema<GetDefenderForAISettingsResponse>;
 
 export interface GetDeletedAccountRequest {
   /** The ID of the target subscription. */
@@ -5481,13 +5376,13 @@ export const GetDeletedAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeletedAccountRequest>;
 
 /** Resource tags. */
-export type DeletedAccountsGetResponseTagsMap = {
+export type GetDeletedAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeletedAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDeletedAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeletedAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetDeletedAccountResponseTagsMap>;
 
 export interface GetDeletedAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5501,7 +5396,7 @@ export interface GetDeletedAccountResponse {
   /** Properties of Cognitive Services account. */
   properties?: AccountProperties;
   /** Resource tags. */
-  tags?: DeletedAccountsGetResponseTagsMap;
+  tags?: GetDeletedAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -5520,7 +5415,7 @@ export const GetDeletedAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AccountProperties),
-    tags: S.optional(DeletedAccountsGetResponseTagsMap),
+    tags: S.optional(GetDeletedAccountResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -5560,13 +5455,13 @@ export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentRequest>;
 
 /** Resource tags. */
-export type DeploymentsGetResponseTagsMap = {
+export type GetDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetDeploymentResponseTagsMap>;
 
 export interface GetDeploymentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5584,7 +5479,7 @@ export interface GetDeploymentResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: DeploymentsGetResponseTagsMap;
+  tags?: GetDeploymentResponseTagsMap;
 }
 export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5595,7 +5490,7 @@ export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeploymentProperties),
     sku: S.optional(Sku),
     etag: S.optional(S.String),
-    tags: S.optional(DeploymentsGetResponseTagsMap),
+    tags: S.optional(GetDeploymentResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDeploymentResponse",
@@ -5630,13 +5525,13 @@ export const GetEncryptionScopeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEncryptionScopeRequest>;
 
 /** Resource tags. */
-export type EncryptionScopesGetResponseTagsMap = {
+export type GetEncryptionScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EncryptionScopesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEncryptionScopeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EncryptionScopesGetResponseTagsMap>;
+) as any as S.Schema<GetEncryptionScopeResponseTagsMap>;
 
 export interface GetEncryptionScopeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5652,7 +5547,7 @@ export interface GetEncryptionScopeResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: EncryptionScopesGetResponseTagsMap;
+  tags?: GetEncryptionScopeResponseTagsMap;
 }
 export const GetEncryptionScopeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5662,13 +5557,13 @@ export const GetEncryptionScopeResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(EncryptionScopeProperties),
     etag: S.optional(S.String),
-    tags: S.optional(EncryptionScopesGetResponseTagsMap),
+    tags: S.optional(GetEncryptionScopeResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetEncryptionScopeResponse",
 }) as any as S.Schema<GetEncryptionScopeResponse>;
 
-export interface GetManagedNetworkSettingRequest {
+export interface GetManagedNetworkSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5678,7 +5573,7 @@ export interface GetManagedNetworkSettingRequest {
   /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
   managedNetworkName: string;
 }
-export const GetManagedNetworkSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5693,8 +5588,8 @@ export const GetManagedNetworkSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetManagedNetworkSettingRequest",
-}) as any as S.Schema<GetManagedNetworkSettingRequest>;
+  identifier: "GetManagedNetworkSettingsRequest",
+}) as any as S.Schema<GetManagedNetworkSettingsRequest>;
 
 /** Isolation mode for the managed network of a cognitive services account. */
 export type IsolationMode =
@@ -5855,7 +5750,7 @@ export const ManagedNetworkSettingsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedNetworkSettingsProperties",
 }) as any as S.Schema<ManagedNetworkSettingsProperties>;
 
-export interface GetManagedNetworkSettingResponse {
+export interface GetManagedNetworkSettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -5867,7 +5762,7 @@ export interface GetManagedNetworkSettingResponse {
   /** The properties of the managed network settings of a cognitive services account. */
   properties?: ManagedNetworkSettingsProperties;
 }
-export const GetManagedNetworkSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5876,8 +5771,8 @@ export const GetManagedNetworkSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ManagedNetworkSettingsProperties),
   }),
 ).annotate({
-  identifier: "GetManagedNetworkSettingResponse",
-}) as any as S.Schema<GetManagedNetworkSettingResponse>;
+  identifier: "GetManagedNetworkSettingsResponse",
+}) as any as S.Schema<GetManagedNetworkSettingsResponse>;
 
 export interface GetNetworkSecurityPerimeterConfigurationRequest {
   /** The ID of the target subscription. */
@@ -6350,11 +6245,11 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProjectsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetProjectResponseTagsMap = { [key: string]: string | undefined };
+export const GetProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsGetResponseTagsMap>;
+) as any as S.Schema<GetProjectResponseTagsMap>;
 
 export interface GetProjectResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6368,7 +6263,7 @@ export interface GetProjectResponse {
   /** Properties of Cognitive Services project. */
   properties?: ProjectProperties;
   /** Resource tags. */
-  tags?: ProjectsGetResponseTagsMap;
+  tags?: GetProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -6383,7 +6278,7 @@ export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsGetResponseTagsMap),
+    tags: S.optional(GetProjectResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     identity: S.optional(Identity),
@@ -6694,27 +6589,14 @@ export const GetRaiBlocklistRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRaiBlocklistRequest",
 }) as any as S.Schema<GetRaiBlocklistRequest>;
 
-/** RAI Custom Blocklist properties. */
-export interface RaiBlocklistProperties {
-  /** Description of the block list. */
-  description?: string;
-}
-export const RaiBlocklistProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RaiBlocklistProperties",
-}) as any as S.Schema<RaiBlocklistProperties>;
-
 /** Resource tags. */
-export type RaiBlocklistsGetResponseTagsMap = {
+export type GetRaiBlocklistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiBlocklistsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiBlocklistResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiBlocklistsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiBlocklistResponseTagsMap>;
 
 export interface GetRaiBlocklistResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6730,7 +6612,7 @@ export interface GetRaiBlocklistResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiBlocklistsGetResponseTagsMap;
+  tags?: GetRaiBlocklistResponseTagsMap;
 }
 export const GetRaiBlocklistResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6740,7 +6622,7 @@ export const GetRaiBlocklistResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiBlocklistProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistsGetResponseTagsMap),
+    tags: S.optional(GetRaiBlocklistResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRaiBlocklistResponse",
@@ -6777,30 +6659,14 @@ export const GetRaiBlocklistItemRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRaiBlocklistItemRequest",
 }) as any as S.Schema<GetRaiBlocklistItemRequest>;
 
-/** RAI Custom Blocklist Item properties. */
-export interface RaiBlocklistItemProperties {
-  /** Pattern to match against. */
-  pattern?: string;
-  /** If the pattern is a regex pattern. */
-  isRegex?: boolean;
-}
-export const RaiBlocklistItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pattern: S.optional(S.String),
-    isRegex: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItemProperties",
-}) as any as S.Schema<RaiBlocklistItemProperties>;
-
 /** Resource tags. */
-export type RaiBlocklistItemsGetResponseTagsMap = {
+export type GetRaiBlocklistItemResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiBlocklistItemsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiBlocklistItemResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiBlocklistItemsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiBlocklistItemResponseTagsMap>;
 
 export interface GetRaiBlocklistItemResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6816,7 +6682,7 @@ export interface GetRaiBlocklistItemResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiBlocklistItemsGetResponseTagsMap;
+  tags?: GetRaiBlocklistItemResponseTagsMap;
 }
 export const GetRaiBlocklistItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6826,7 +6692,7 @@ export const GetRaiBlocklistItemResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiBlocklistItemProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistItemsGetResponseTagsMap),
+    tags: S.optional(GetRaiBlocklistItemResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRaiBlocklistItemResponse",
@@ -6971,14 +6837,14 @@ export const RaiExternalSafetyProviderSchemaProperties =
   }) as any as S.Schema<RaiExternalSafetyProviderSchemaProperties>;
 
 /** Resource tags. */
-export type RaiExternalSafetyProviderGetResponseTagsMap = {
+export type GetRaiExternalSafetyProviderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiExternalSafetyProviderGetResponseTagsMap =
+export const GetRaiExternalSafetyProviderResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<RaiExternalSafetyProviderGetResponseTagsMap>;
+  ) as any as S.Schema<GetRaiExternalSafetyProviderResponseTagsMap>;
 
 export interface GetRaiExternalSafetyProviderResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6994,7 +6860,7 @@ export interface GetRaiExternalSafetyProviderResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiExternalSafetyProviderGetResponseTagsMap;
+  tags?: GetRaiExternalSafetyProviderResponseTagsMap;
 }
 export const GetRaiExternalSafetyProviderResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -7005,7 +6871,7 @@ export const GetRaiExternalSafetyProviderResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
       etag: S.optional(S.String),
-      tags: S.optional(RaiExternalSafetyProviderGetResponseTagsMap),
+      tags: S.optional(GetRaiExternalSafetyProviderResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetRaiExternalSafetyProviderResponse",
@@ -7180,13 +7046,11 @@ export const RaiPolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RaiPolicyProperties>;
 
 /** Resource tags. */
-export type RaiPoliciesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRaiPolicyResponseTagsMap = { [key: string]: string | undefined };
+export const GetRaiPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiPoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetRaiPolicyResponseTagsMap>;
 
 export interface GetRaiPolicyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7202,7 +7066,7 @@ export interface GetRaiPolicyResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiPoliciesGetResponseTagsMap;
+  tags?: GetRaiPolicyResponseTagsMap;
 }
 export const GetRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7212,7 +7076,7 @@ export const GetRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiPolicyProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiPoliciesGetResponseTagsMap),
+    tags: S.optional(GetRaiPolicyResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRaiPolicyResponse",
@@ -7322,13 +7186,13 @@ export const RaiToolLabelProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RaiToolLabelProperties>;
 
 /** Resource tags. */
-export type RaiToolLabelsGetResponseTagsMap = {
+export type GetRaiToolLabelResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiToolLabelsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiToolLabelResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiToolLabelsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiToolLabelResponseTagsMap>;
 
 export interface GetRaiToolLabelResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7344,7 +7208,7 @@ export interface GetRaiToolLabelResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiToolLabelsGetResponseTagsMap;
+  tags?: GetRaiToolLabelResponseTagsMap;
 }
 export const GetRaiToolLabelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7354,7 +7218,7 @@ export const GetRaiToolLabelResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiToolLabelProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiToolLabelsGetResponseTagsMap),
+    tags: S.optional(GetRaiToolLabelResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRaiToolLabelResponse",
@@ -7423,11 +7287,11 @@ export const RaiTopicProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RaiTopicProperties>;
 
 /** Resource tags. */
-export type RaiTopicsGetResponseTagsMap = { [key: string]: string | undefined };
-export const RaiTopicsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRaiTopicResponseTagsMap = { [key: string]: string | undefined };
+export const GetRaiTopicResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiTopicsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiTopicResponseTagsMap>;
 
 export interface GetRaiTopicResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7443,7 +7307,7 @@ export interface GetRaiTopicResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiTopicsGetResponseTagsMap;
+  tags?: GetRaiTopicResponseTagsMap;
 }
 export const GetRaiTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7453,7 +7317,7 @@ export const GetRaiTopicResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiTopicProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiTopicsGetResponseTagsMap),
+    tags: S.optional(GetRaiTopicResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRaiTopicResponse",
@@ -7482,13 +7346,13 @@ export const GetSubscriptionRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSubscriptionRaiPolicyRequest>;
 
 /** Resource tags. */
-export type SubscriptionRaiPolicyGetResponseTagsMap = {
+export type GetSubscriptionRaiPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SubscriptionRaiPolicyGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSubscriptionRaiPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SubscriptionRaiPolicyGetResponseTagsMap>;
+) as any as S.Schema<GetSubscriptionRaiPolicyResponseTagsMap>;
 
 export interface GetSubscriptionRaiPolicyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7504,7 +7368,7 @@ export interface GetSubscriptionRaiPolicyResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: SubscriptionRaiPolicyGetResponseTagsMap;
+  tags?: GetSubscriptionRaiPolicyResponseTagsMap;
 }
 export const GetSubscriptionRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7514,7 +7378,7 @@ export const GetSubscriptionRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiPolicyProperties),
     etag: S.optional(S.String),
-    tags: S.optional(SubscriptionRaiPolicyGetResponseTagsMap),
+    tags: S.optional(GetSubscriptionRaiPolicyResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetSubscriptionRaiPolicyResponse",
@@ -7791,6 +7655,20 @@ export const ListAccountKeysRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListAccountKeysRequest",
 }) as any as S.Schema<ListAccountKeysRequest>;
+
+/** The access keys for the cognitive services account. */
+export interface ApiKeys {
+  /** Gets the value of key 1. */
+  key1?: string;
+  /** Gets the value of key 2. */
+  key2?: string;
+}
+export const ApiKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key1: S.optional(S.String),
+    key2: S.optional(S.String),
+  }),
+).annotate({ identifier: "ApiKeys" }) as any as S.Schema<ApiKeys>;
 
 export interface ListAccountModelsRequest {
   /** The ID of the target subscription. */
@@ -8380,10 +8258,10 @@ export const AgentReferenceResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
   identifier: "AgentReferenceResourceArmPaginatedResult",
 }) as any as S.Schema<AgentReferenceResourceArmPaginatedResult>;
 
-export type AgentApplicationsListRequestNamesList = Array<string>;
-export const AgentApplicationsListRequestNamesList = /*@__PURE__*/ S.Array(
+export type ListAgentApplicationsRequestNamesList = Array<string>;
+export const ListAgentApplicationsRequestNamesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AgentApplicationsListRequestNamesList>;
+) as any as S.Schema<ListAgentApplicationsRequestNamesList>;
 
 export interface ListAgentApplicationsRequest {
   /** The ID of the target subscription. */
@@ -8401,7 +8279,7 @@ export interface ListAgentApplicationsRequest {
   /** Continuation token for pagination. */
   _skipToken?: string;
   /** Names of agent applications to retrieve. */
-  names?: AgentApplicationsListRequestNamesList;
+  names?: ListAgentApplicationsRequestNamesList;
   /** Search text for filtering agent applications. */
   searchText?: string;
   /** Field to order by. */
@@ -8418,7 +8296,7 @@ export const ListAgentApplicationsRequest = /*@__PURE__*/ S.suspend(() =>
     count: S.optional(S.Number.pipe(T.Query())),
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
     _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    names: S.optional(AgentApplicationsListRequestNamesList.pipe(T.Query())),
+    names: S.optional(ListAgentApplicationsRequestNamesList.pipe(T.Query())),
     searchText: S.optional(S.String.pipe(T.Query())),
     orderBy: S.optional(S.String.pipe(T.Query())),
     orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
@@ -8484,10 +8362,10 @@ export const AgentApplicationResourceArmPaginatedResult =
     identifier: "AgentApplicationResourceArmPaginatedResult",
   }) as any as S.Schema<AgentApplicationResourceArmPaginatedResult>;
 
-export type AgentDeploymentsListRequestNamesList = Array<string>;
-export const AgentDeploymentsListRequestNamesList = /*@__PURE__*/ S.Array(
+export type ListAgentDeploymentsRequestNamesList = Array<string>;
+export const ListAgentDeploymentsRequestNamesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AgentDeploymentsListRequestNamesList>;
+) as any as S.Schema<ListAgentDeploymentsRequestNamesList>;
 
 export interface ListAgentDeploymentsRequest {
   /** The ID of the target subscription. */
@@ -8505,7 +8383,7 @@ export interface ListAgentDeploymentsRequest {
   /** Continuation token for pagination. */
   _skipToken?: string;
   /** Names of agent deployments to retrieve. */
-  names?: AgentDeploymentsListRequestNamesList;
+  names?: ListAgentDeploymentsRequestNamesList;
   /** Field to order by. */
   orderBy?: string;
   /** Whether to order in ascending order. */
@@ -8520,7 +8398,7 @@ export const ListAgentDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
     appName: S.String.pipe(T.Label()),
     count: S.optional(S.Number.pipe(T.Query())),
     _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    names: S.optional(AgentDeploymentsListRequestNamesList.pipe(T.Query())),
+    names: S.optional(ListAgentDeploymentsRequestNamesList.pipe(T.Query())),
     orderBy: S.optional(S.String.pipe(T.Query())),
     orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
@@ -8676,13 +8554,13 @@ export const CommitmentPlanAccountAssociationListResult =
     identifier: "CommitmentPlanAccountAssociationListResult",
   }) as any as S.Schema<CommitmentPlanAccountAssociationListResult>;
 
-export interface ListCommitmentPlanPlanByResourceGroupRequest {
+export interface ListCommitmentPlanPlansByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListCommitmentPlanPlanByResourceGroupRequest =
+export const ListCommitmentPlanPlansByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8696,8 +8574,8 @@ export const ListCommitmentPlanPlanByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListCommitmentPlanPlanByResourceGroupRequest",
-  }) as any as S.Schema<ListCommitmentPlanPlanByResourceGroupRequest>;
+    identifier: "ListCommitmentPlanPlansByResourceGroupRequest",
+  }) as any as S.Schema<ListCommitmentPlanPlansByResourceGroupRequest>;
 
 /** Resource tags. */
 export type CommitmentPlanTagsMap = { [key: string]: string | undefined };
@@ -8766,11 +8644,11 @@ export const CommitmentPlanListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CommitmentPlanListResult",
 }) as any as S.Schema<CommitmentPlanListResult>;
 
-export interface ListCommitmentPlanPlanBySubscriptionRequest {
+export interface ListCommitmentPlanPlansBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListCommitmentPlanPlanBySubscriptionRequest =
+export const ListCommitmentPlanPlansBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8783,8 +8661,8 @@ export const ListCommitmentPlanPlanBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListCommitmentPlanPlanBySubscriptionRequest",
-  }) as any as S.Schema<ListCommitmentPlanPlanBySubscriptionRequest>;
+    identifier: "ListCommitmentPlanPlansBySubscriptionRequest",
+  }) as any as S.Schema<ListCommitmentPlanPlansBySubscriptionRequest>;
 
 export interface ListCommitmentPlansRequest {
   /** The ID of the target subscription. */
@@ -8901,7 +8779,7 @@ export const CommitmentTierListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CommitmentTierListResult",
 }) as any as S.Schema<CommitmentTierListResult>;
 
-export interface ListDefenderForAiSettingsRequest {
+export interface ListDefenderForAISettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8909,7 +8787,7 @@ export interface ListDefenderForAiSettingsRequest {
   /** The name of Cognitive Services account. */
   accountName: string;
 }
-export const ListDefenderForAiSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8923,8 +8801,8 @@ export const ListDefenderForAiSettingsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListDefenderForAiSettingsRequest",
-}) as any as S.Schema<ListDefenderForAiSettingsRequest>;
+  identifier: "ListDefenderForAISettingsRequest",
+}) as any as S.Schema<ListDefenderForAISettingsRequest>;
 
 /** Resource tags. */
 export type DefenderForAISettingTagsMap = { [key: string]: string | undefined };
@@ -9663,20 +9541,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -9743,20 +9621,20 @@ export const OutboundRuleListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<OutboundRuleListResultValueList>;
 
 /** List of outbound rules for the managed network of a cognitive services account. */
-export interface ListOutboundRuleResult {
+export interface OutboundRuleListResult {
   /** The link to the next page constructed using the continuationToken. If null, there are no additional pages. */
   nextLink?: string;
   /** The list of cognitive services accounts. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
   value?: OutboundRuleListResultValueList;
 }
-export const ListOutboundRuleResult = /*@__PURE__*/ S.suspend(() =>
+export const OutboundRuleListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(OutboundRuleListResultValueList),
   }),
 ).annotate({
-  identifier: "ListOutboundRuleResult",
-}) as any as S.Schema<ListOutboundRuleResult>;
+  identifier: "OutboundRuleListResult",
+}) as any as S.Schema<OutboundRuleListResult>;
 
 export interface ListPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. */
@@ -10923,159 +10801,6 @@ export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsagesRequest",
 }) as any as S.Schema<ListUsagesRequest>;
 
-export interface ManagedNetworkProvisionsProvisionManagedNetworkRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-}
-export const ManagedNetworkProvisionsProvisionManagedNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      managedNetworkName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/provision",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedNetworkProvisionsProvisionManagedNetworkRequest",
-  }) as any as S.Schema<ManagedNetworkProvisionsProvisionManagedNetworkRequest>;
-
-/** Outbound Rule for the managed network of a cognitive services account. */
-export interface OutboundRuleInput {
-  /** Category of a managed network Outbound Rule of a cognitive services account. */
-  category?: RuleCategory | (string & {});
-  /** Type of a managed network Outbound Rule of a cognitive services account. */
-  status?: RuleStatus | (string & {});
-  /** Type of a managed network Outbound Rule of a cognitive services account. */
-  type: RuleType | (string & {});
-}
-export const OutboundRuleInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(RuleCategory),
-    status: S.optional(RuleStatus),
-    type: RuleType,
-  }),
-).annotate({
-  identifier: "OutboundRuleInput",
-}) as any as S.Schema<OutboundRuleInput>;
-
-/** Dictionary of <OutboundRule> */
-export type ManagedNetworkSettingsExInputOutboundRulesMap = {
-  [key: string]: OutboundRuleInput | undefined;
-};
-export const ManagedNetworkSettingsExInputOutboundRulesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    OutboundRuleInput,
-  ) as any as S.Schema<ManagedNetworkSettingsExInputOutboundRulesMap>;
-
-export interface ManagedNetworkSettingsExInput {
-  /** Isolation mode for the managed network of a cognitive services account. */
-  isolationMode?: IsolationMode | (string & {});
-  /** Dictionary of <OutboundRule> */
-  outboundRules?: ManagedNetworkSettingsExInputOutboundRulesMap | null;
-  /** Status of the Provisioning for the managed network of a cognitive services account. */
-  status?: ManagedNetworkProvisionStatus;
-  /** Firewall Sku used for FQDN Rules */
-  firewallSku?: FirewallSku | (string & {});
-  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
-  managedNetworkKind?: ManagedNetworkKind | (string & {});
-}
-export const ManagedNetworkSettingsExInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isolationMode: S.optional(IsolationMode),
-    outboundRules: S.optional(
-      S.NullOr(ManagedNetworkSettingsExInputOutboundRulesMap),
-    ),
-    status: S.optional(ManagedNetworkProvisionStatus),
-    firewallSku: S.optional(FirewallSku),
-    managedNetworkKind: S.optional(ManagedNetworkKind),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsExInput",
-}) as any as S.Schema<ManagedNetworkSettingsExInput>;
-
-/** The properties of the managed network settings of a cognitive services account. */
-export interface ManagedNetworkSettingsPropertiesInput {
-  /** Managed Network settings for a cognitive services account. */
-  managedNetwork?: ManagedNetworkSettingsExInput;
-}
-export const ManagedNetworkSettingsPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managedNetwork: S.optional(ManagedNetworkSettingsExInput),
-    }),
-).annotate({
-  identifier: "ManagedNetworkSettingsPropertiesInput",
-}) as any as S.Schema<ManagedNetworkSettingsPropertiesInput>;
-
-export interface ManagedNetworkSettingsPutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsPropertiesInput;
-}
-export const ManagedNetworkSettingsPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNetworkSettingsPutRequest",
-}) as any as S.Schema<ManagedNetworkSettingsPutRequest>;
-
-export interface ManagedNetworkSettingsPutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsProperties;
-}
-export const ManagedNetworkSettingsPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedNetworkSettingsProperties),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsPutResponse",
-}) as any as S.Schema<ManagedNetworkSettingsPutResponse>;
-
 export interface NetworkSecurityPerimeterConfigurationsReconcileRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -11129,6 +10854,25 @@ export const NetworkSecurityPerimeterConfigurationsReconcileResponse =
   ).annotate({
     identifier: "NetworkSecurityPerimeterConfigurationsReconcileResponse",
   }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileResponse>;
+
+/** Outbound Rule for the managed network of a cognitive services account. */
+export interface OutboundRuleInput {
+  /** Category of a managed network Outbound Rule of a cognitive services account. */
+  category?: RuleCategory | (string & {});
+  /** Type of a managed network Outbound Rule of a cognitive services account. */
+  status?: RuleStatus | (string & {});
+  /** Type of a managed network Outbound Rule of a cognitive services account. */
+  type: RuleType | (string & {});
+}
+export const OutboundRuleInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(RuleCategory),
+    status: S.optional(RuleStatus),
+    type: RuleType,
+  }),
+).annotate({
+  identifier: "OutboundRuleInput",
+}) as any as S.Schema<OutboundRuleInput>;
 
 export interface OutboundRuleCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -11189,6 +10933,181 @@ export const OutboundRuleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OutboundRuleCreateOrUpdateResponse>;
 
 /** Dictionary of <OutboundRule> */
+export type ManagedNetworkSettingsExInputOutboundRulesMap = {
+  [key: string]: OutboundRuleInput | undefined;
+};
+export const ManagedNetworkSettingsExInputOutboundRulesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    OutboundRuleInput,
+  ) as any as S.Schema<ManagedNetworkSettingsExInputOutboundRulesMap>;
+
+export interface ManagedNetworkSettingsExInput {
+  /** Isolation mode for the managed network of a cognitive services account. */
+  isolationMode?: IsolationMode | (string & {});
+  /** Dictionary of <OutboundRule> */
+  outboundRules?: ManagedNetworkSettingsExInputOutboundRulesMap | null;
+  /** Status of the Provisioning for the managed network of a cognitive services account. */
+  status?: ManagedNetworkProvisionStatus;
+  /** Firewall Sku used for FQDN Rules */
+  firewallSku?: FirewallSku | (string & {});
+  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
+  managedNetworkKind?: ManagedNetworkKind | (string & {});
+}
+export const ManagedNetworkSettingsExInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isolationMode: S.optional(IsolationMode),
+    outboundRules: S.optional(
+      S.NullOr(ManagedNetworkSettingsExInputOutboundRulesMap),
+    ),
+    status: S.optional(ManagedNetworkProvisionStatus),
+    firewallSku: S.optional(FirewallSku),
+    managedNetworkKind: S.optional(ManagedNetworkKind),
+  }),
+).annotate({
+  identifier: "ManagedNetworkSettingsExInput",
+}) as any as S.Schema<ManagedNetworkSettingsExInput>;
+
+/** The properties of the managed network settings of a cognitive services account. */
+export interface ManagedNetworkSettingsPropertiesInput {
+  /** Managed Network settings for a cognitive services account. */
+  managedNetwork?: ManagedNetworkSettingsExInput;
+}
+export const ManagedNetworkSettingsPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managedNetwork: S.optional(ManagedNetworkSettingsExInput),
+    }),
+).annotate({
+  identifier: "ManagedNetworkSettingsPropertiesInput",
+}) as any as S.Schema<ManagedNetworkSettingsPropertiesInput>;
+
+export interface PatchManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsPropertiesInput;
+}
+export const PatchManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PatchManagedNetworkSettingsRequest",
+}) as any as S.Schema<PatchManagedNetworkSettingsRequest>;
+
+export interface PatchManagedNetworkSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsProperties;
+}
+export const PatchManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedNetworkSettingsProperties),
+  }),
+).annotate({
+  identifier: "PatchManagedNetworkSettingsResponse",
+}) as any as S.Schema<PatchManagedNetworkSettingsResponse>;
+
+export interface PauseDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const PauseDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/pause",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PauseDeploymentRequest",
+}) as any as S.Schema<PauseDeploymentRequest>;
+
+/** Resource tags. */
+export type PauseDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PauseDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PauseDeploymentResponseTagsMap>;
+
+export interface PauseDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: PauseDeploymentResponseTagsMap;
+}
+export const PauseDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(PauseDeploymentResponseTagsMap),
+  }),
+).annotate({
+  identifier: "PauseDeploymentResponse",
+}) as any as S.Schema<PauseDeploymentResponse>;
+
+/** Dictionary of <OutboundRule> */
 export type ManagedNetworkSettingsInputOutboundRulesMap = {
   [key: string]: OutboundRuleInput | undefined;
 };
@@ -11225,7 +11144,7 @@ export const ManagedNetworkSettingsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedNetworkSettingsInput",
 }) as any as S.Schema<ManagedNetworkSettingsInput>;
 
-export interface OutboundRulesPostRequest {
+export interface PostOutboundRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11237,7 +11156,7 @@ export interface OutboundRulesPostRequest {
   /** Managed Network settings for a cognitive services account. */
   properties?: ManagedNetworkSettingsInput;
 }
-export const OutboundRulesPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostOutboundRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -11253,63 +11172,8 @@ export const OutboundRulesPostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OutboundRulesPostRequest",
-}) as any as S.Schema<OutboundRulesPostRequest>;
-
-export interface PatchManagedNetworkSettingRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsPropertiesInput;
-}
-export const PatchManagedNetworkSettingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "PatchManagedNetworkSettingRequest",
-}) as any as S.Schema<PatchManagedNetworkSettingRequest>;
-
-export interface PatchManagedNetworkSettingResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsProperties;
-}
-export const PatchManagedNetworkSettingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedNetworkSettingsProperties),
-  }),
-).annotate({
-  identifier: "PatchManagedNetworkSettingResponse",
-}) as any as S.Schema<PatchManagedNetworkSettingResponse>;
+  identifier: "PostOutboundRuleRequest",
+}) as any as S.Schema<PostOutboundRuleRequest>;
 
 /** The Private Endpoint resource. */
 export type PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
@@ -11561,6 +11425,125 @@ export const ProjectCapabilityHostsCreateOrUpdateResponse =
     identifier: "ProjectCapabilityHostsCreateOrUpdateResponse",
   }) as any as S.Schema<ProjectCapabilityHostsCreateOrUpdateResponse>;
 
+export interface ProvisionManagedNetworkProvisionManagedNetworkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+}
+export const ProvisionManagedNetworkProvisionManagedNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      managedNetworkName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/provision",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProvisionManagedNetworkProvisionManagedNetworkRequest",
+  }) as any as S.Schema<ProvisionManagedNetworkProvisionManagedNetworkRequest>;
+
+export interface PurgeDeletedAccountRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const PurgeDeletedAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeDeletedAccountRequest",
+}) as any as S.Schema<PurgeDeletedAccountRequest>;
+
+export interface PurgeDeletedAccountResponse {}
+export const PurgeDeletedAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeDeletedAccountResponse",
+}) as any as S.Schema<PurgeDeletedAccountResponse>;
+
+export interface PutManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsPropertiesInput;
+}
+export const PutManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutManagedNetworkSettingsRequest",
+}) as any as S.Schema<PutManagedNetworkSettingsRequest>;
+
+export interface PutManagedNetworkSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsProperties;
+}
+export const PutManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedNetworkSettingsProperties),
+  }),
+).annotate({
+  identifier: "PutManagedNetworkSettingsResponse",
+}) as any as S.Schema<PutManagedNetworkSettingsResponse>;
+
 /** Properties of Quota Tier resource'. */
 export interface QuotaTierPropertiesInput {
   /** Gets the tier upgrade policy for the subscription. */
@@ -11622,97 +11605,6 @@ export const QuotaTiersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "QuotaTiersCreateOrUpdateResponse",
 }) as any as S.Schema<QuotaTiersCreateOrUpdateResponse>;
-
-/** The Cognitive Services RaiBlocklist Item request body. */
-export interface RaiBlocklistItemBulkRequest {
-  name?: string;
-  /** Properties of Cognitive Services RaiBlocklist Item. */
-  properties?: RaiBlocklistItemProperties;
-}
-export const RaiBlocklistItemBulkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: S.optional(RaiBlocklistItemProperties),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItemBulkRequest",
-}) as any as S.Schema<RaiBlocklistItemBulkRequest>;
-
-/** The list of Cognitive Services RaiBlocklist Items for batch add. */
-export type RaiBlocklistItemsBulkAddRequest =
-  Array<RaiBlocklistItemBulkRequest>;
-export const RaiBlocklistItemsBulkAddRequest = /*@__PURE__*/ S.Array(
-  RaiBlocklistItemBulkRequest,
-) as any as S.Schema<RaiBlocklistItemsBulkAddRequest>;
-
-export interface RaiBlocklistItemsBatchAddRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-  body: RaiBlocklistItemsBulkAddRequest;
-}
-export const RaiBlocklistItemsBatchAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-    body: RaiBlocklistItemsBulkAddRequest.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/addRaiBlocklistItems",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistItemsBatchAddRequest",
-}) as any as S.Schema<RaiBlocklistItemsBatchAddRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistItemsBatchAddResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistItemsBatchAddResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiBlocklistItemsBatchAddResponseTagsMap>;
-
-export interface RaiBlocklistItemsBatchAddResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist. */
-  properties?: RaiBlocklistProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistItemsBatchAddResponseTagsMap;
-}
-export const RaiBlocklistItemsBatchAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiBlocklistProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistItemsBatchAddResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItemsBatchAddResponse",
-}) as any as S.Schema<RaiBlocklistItemsBatchAddResponse>;
 
 /** Resource tags. */
 export type RaiBlocklistItemsCreateOrUpdateRequestTagsMap = {
@@ -12232,6 +12124,108 @@ export const RaiTopicsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RaiTopicsCreateOrUpdateResponse",
 }) as any as S.Schema<RaiTopicsCreateOrUpdateResponse>;
 
+/** key name to generate (Key1|Key2) */
+export type KeyName = "Key1" | "Key2";
+export const KeyName = /*@__PURE__*/ S.String;
+
+export interface RegenerateAccountKeyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** key name to generate (Key1|Key2) */
+  keyName: KeyName | (string & {});
+}
+export const RegenerateAccountKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    keyName: KeyName,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/regenerateKey",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateAccountKeyRequest",
+}) as any as S.Schema<RegenerateAccountKeyRequest>;
+
+export interface ResumeDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const ResumeDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/resume",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeDeploymentRequest",
+}) as any as S.Schema<ResumeDeploymentRequest>;
+
+/** Resource tags. */
+export type ResumeDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResumeDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResumeDeploymentResponseTagsMap>;
+
+export interface ResumeDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: ResumeDeploymentResponseTagsMap;
+}
+export const ResumeDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(ResumeDeploymentResponseTagsMap),
+  }),
+).annotate({
+  identifier: "ResumeDeploymentResponse",
+}) as any as S.Schema<ResumeDeploymentResponse>;
+
 export interface StartAgentDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -12470,13 +12464,11 @@ export const TestRaiExternalSafetyProviderCreateOrUpdateResponse =
   }) as any as S.Schema<TestRaiExternalSafetyProviderCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 export interface UpdateAccountRequest {
   /** The ID of the target subscription. */
@@ -12488,7 +12480,7 @@ export interface UpdateAccountRequest {
   /** Properties of Cognitive Services account. */
   properties?: AccountPropertiesInput;
   /** Resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The kind (type) of cognitive service account. */
@@ -12504,7 +12496,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     location: S.optional(S.String),
     kind: S.optional(S.String),
     sku: S.optional(Sku),
@@ -12522,13 +12514,13 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -12542,7 +12534,7 @@ export interface UpdateAccountResponse {
   /** Properties of Cognitive Services account. */
   properties?: AccountProperties;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -12561,7 +12553,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -12628,13 +12620,13 @@ export const UpdateAccountConnectionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountConnectionResponse>;
 
 /** Resource tags. */
-export type CommitmentPlansUpdatePlanRequestTagsMap = {
+export type UpdateCommitmentPlanPlanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommitmentPlansUpdatePlanRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommitmentPlanPlanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommitmentPlansUpdatePlanRequestTagsMap>;
+) as any as S.Schema<UpdateCommitmentPlanPlanRequestTagsMap>;
 
 export interface UpdateCommitmentPlanPlanRequest {
   /** The ID of the target subscription. */
@@ -12644,7 +12636,7 @@ export interface UpdateCommitmentPlanPlanRequest {
   /** The name of the commitmentPlan associated with the Cognitive Services Account */
   commitmentPlanName: string;
   /** Resource tags. */
-  tags?: CommitmentPlansUpdatePlanRequestTagsMap;
+  tags?: UpdateCommitmentPlanPlanRequestTagsMap;
   /** The resource model definition representing SKU */
   sku?: Sku;
 }
@@ -12653,7 +12645,7 @@ export const UpdateCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     commitmentPlanName: S.String.pipe(T.Label()),
-    tags: S.optional(CommitmentPlansUpdatePlanRequestTagsMap),
+    tags: S.optional(UpdateCommitmentPlanPlanRequestTagsMap),
     sku: S.optional(Sku),
   }).pipe(
     T.Http({
@@ -12668,13 +12660,13 @@ export const UpdateCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCommitmentPlanPlanRequest>;
 
 /** Resource tags. */
-export type CommitmentPlansUpdatePlanResponseTagsMap = {
+export type UpdateCommitmentPlanPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommitmentPlansUpdatePlanResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommitmentPlanPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommitmentPlansUpdatePlanResponseTagsMap>;
+) as any as S.Schema<UpdateCommitmentPlanPlanResponseTagsMap>;
 
 export interface UpdateCommitmentPlanPlanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -12688,7 +12680,7 @@ export interface UpdateCommitmentPlanPlanResponse {
   /** Properties of Cognitive Services account commitment plan. */
   properties?: CommitmentPlanProperties;
   /** Resource tags. */
-  tags?: CommitmentPlansUpdatePlanResponseTagsMap;
+  tags?: UpdateCommitmentPlanPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -12705,7 +12697,7 @@ export const UpdateCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansUpdatePlanResponseTagsMap),
+    tags: S.optional(UpdateCommitmentPlanPlanResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -12716,15 +12708,15 @@ export const UpdateCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCommitmentPlanPlanResponse>;
 
 /** Resource tags. */
-export type DefenderForAISettingsUpdateRequestTagsMap = {
+export type UpdateDefenderForAISettingsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DefenderForAISettingsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDefenderForAISettingsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DefenderForAISettingsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDefenderForAISettingsRequestTagsMap>;
 
-export interface UpdateDefenderForAiSettingRequest {
+export interface UpdateDefenderForAISettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12736,16 +12728,16 @@ export interface UpdateDefenderForAiSettingRequest {
   /** The Defender for AI resource properties. */
   properties?: DefenderForAISettingProperties;
   /** Resource tags. */
-  tags?: DefenderForAISettingsUpdateRequestTagsMap;
+  tags?: UpdateDefenderForAISettingsRequestTagsMap;
 }
-export const UpdateDefenderForAiSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     defenderForAISettingName: S.String.pipe(T.Label()),
     properties: S.optional(DefenderForAISettingProperties),
-    tags: S.optional(DefenderForAISettingsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDefenderForAISettingsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12755,20 +12747,20 @@ export const UpdateDefenderForAiSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateDefenderForAiSettingRequest",
-}) as any as S.Schema<UpdateDefenderForAiSettingRequest>;
+  identifier: "UpdateDefenderForAISettingsRequest",
+}) as any as S.Schema<UpdateDefenderForAISettingsRequest>;
 
 /** Resource tags. */
-export type DefenderForAISettingsUpdateResponseTagsMap = {
+export type UpdateDefenderForAISettingsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DefenderForAISettingsUpdateResponseTagsMap =
+export const UpdateDefenderForAISettingsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DefenderForAISettingsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateDefenderForAISettingsResponseTagsMap>;
 
-export interface UpdateDefenderForAiSettingResponse {
+export interface UpdateDefenderForAISettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -12782,9 +12774,9 @@ export interface UpdateDefenderForAiSettingResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: DefenderForAISettingsUpdateResponseTagsMap;
+  tags?: UpdateDefenderForAISettingsResponseTagsMap;
 }
-export const UpdateDefenderForAiSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDefenderForAISettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12792,20 +12784,20 @@ export const UpdateDefenderForAiSettingResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DefenderForAISettingProperties),
     etag: S.optional(S.String),
-    tags: S.optional(DefenderForAISettingsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDefenderForAISettingsResponseTagsMap),
   }),
 ).annotate({
-  identifier: "UpdateDefenderForAiSettingResponse",
-}) as any as S.Schema<UpdateDefenderForAiSettingResponse>;
+  identifier: "UpdateDefenderForAISettingsResponse",
+}) as any as S.Schema<UpdateDefenderForAISettingsResponse>;
 
 /** Resource tags. */
-export type DeploymentsUpdateRequestTagsMap = {
+export type UpdateDeploymentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDeploymentRequestTagsMap>;
 
 export interface UpdateDeploymentRequest {
   /** The ID of the target subscription. */
@@ -12817,7 +12809,7 @@ export interface UpdateDeploymentRequest {
   /** The name of the deployment associated with the Cognitive Services Account */
   deploymentName: string;
   /** Resource tags. */
-  tags?: DeploymentsUpdateRequestTagsMap;
+  tags?: UpdateDeploymentRequestTagsMap;
   /** The resource model definition representing SKU */
   sku?: Sku;
 }
@@ -12827,7 +12819,7 @@ export const UpdateDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     deploymentName: S.String.pipe(T.Label()),
-    tags: S.optional(DeploymentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDeploymentRequestTagsMap),
     sku: S.optional(Sku),
   }).pipe(
     T.Http({
@@ -12842,13 +12834,13 @@ export const UpdateDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDeploymentRequest>;
 
 /** Resource tags. */
-export type DeploymentsUpdateResponseTagsMap = {
+export type UpdateDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDeploymentResponseTagsMap>;
 
 export interface UpdateDeploymentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -12866,7 +12858,7 @@ export interface UpdateDeploymentResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: DeploymentsUpdateResponseTagsMap;
+  tags?: UpdateDeploymentResponseTagsMap;
 }
 export const UpdateDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12877,20 +12869,18 @@ export const UpdateDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeploymentProperties),
     sku: S.optional(Sku),
     etag: S.optional(S.String),
-    tags: S.optional(DeploymentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDeploymentResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateDeploymentResponse",
 }) as any as S.Schema<UpdateDeploymentResponse>;
 
 /** Resource tags. */
-export type ProjectsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateProjectRequestTagsMap>;
 
 export interface UpdateProjectRequest {
   /** The ID of the target subscription. */
@@ -12904,7 +12894,7 @@ export interface UpdateProjectRequest {
   /** Properties of Cognitive Services project. */
   properties?: ProjectPropertiesInput;
   /** Resource tags. */
-  tags?: ProjectsUpdateRequestTagsMap;
+  tags?: UpdateProjectRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Identity for the resource. */
@@ -12917,7 +12907,7 @@ export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     projectName: S.String.pipe(T.Label()),
     properties: S.optional(ProjectPropertiesInput),
-    tags: S.optional(ProjectsUpdateRequestTagsMap),
+    tags: S.optional(UpdateProjectRequestTagsMap),
     location: S.optional(S.String),
     identity: S.optional(IdentityInput),
   }).pipe(
@@ -12933,13 +12923,13 @@ export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsUpdateResponseTagsMap = {
+export type UpdateProjectResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateProjectResponseTagsMap>;
 
 export interface UpdateProjectResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -12953,7 +12943,7 @@ export interface UpdateProjectResponse {
   /** Properties of Cognitive Services project. */
   properties?: ProjectProperties;
   /** Resource tags. */
-  tags?: ProjectsUpdateResponseTagsMap;
+  tags?: UpdateProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -12968,7 +12958,7 @@ export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsUpdateResponseTagsMap),
+    tags: S.optional(UpdateProjectResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     identity: S.optional(Identity),
@@ -13099,16 +13089,16 @@ export const AccountCapabilityHostsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsRegenerateKeyError = AzureOpError;
-/** Regenerates the specified account key for the specified Cognitive Services account. */
-export const AccountsRegenerateKey: API.OperationMethod<
-  AccountsRegenerateKeyRequest,
-  ApiKeys,
-  AccountsRegenerateKeyError,
+export type AddRaiBlocklistItemBatchError = AzureOpError;
+/** Batch operation to add blocklist items. */
+export const AddRaiBlocklistItemBatch: API.OperationMethod<
+  AddRaiBlocklistItemBatchRequest,
+  AddRaiBlocklistItemBatchResponse,
+  AddRaiBlocklistItemBatchError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRegenerateKeyRequest,
-  output: ApiKeys,
+  input: AddRaiBlocklistItemBatchRequest,
+  output: AddRaiBlocklistItemBatchResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13429,21 +13419,6 @@ export const DeleteCommitmentPlanPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletedAccountsPurgeError = AzureOpError;
-/** Deletes a Cognitive Services account from the resource group. */
-export const DeletedAccountsPurge: API.OperationMethod<
-  DeletedAccountsPurgeRequest,
-  DeletedAccountsPurgeResponse,
-  DeletedAccountsPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedAccountsPurgeRequest,
-  output: DeletedAccountsPurgeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteDeploymentError = AzureOpError;
 /** Deletes the specified deployment associated with the Cognitive Services account. */
 export const DeleteDeployment: API.OperationMethod<
@@ -13474,16 +13449,16 @@ export const DeleteEncryptionScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteManagedNetworkSettingError = AzureOpError;
+export type DeleteManagedNetworkSettingsError = AzureOpError;
 /** Delete API for managed network settings of a cognitive services account. Delete API for managed network settings of a cognitive services account. */
-export const DeleteManagedNetworkSetting: API.OperationMethod<
-  DeleteManagedNetworkSettingRequest,
-  DeleteManagedNetworkSettingResponse,
-  DeleteManagedNetworkSettingError,
+export const DeleteManagedNetworkSettings: API.OperationMethod<
+  DeleteManagedNetworkSettingsRequest,
+  DeleteManagedNetworkSettingsResponse,
+  DeleteManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteManagedNetworkSettingRequest,
-  output: DeleteManagedNetworkSettingResponse,
+  input: DeleteManagedNetworkSettingsRequest,
+  output: DeleteManagedNetworkSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13699,36 +13674,6 @@ export const DeploymentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeploymentsPauseError = AzureOpError;
-/** Pause a deployment Pauses inferencing on a deployment by setting the deploymentState to 'Paused' (see #/definitions/DeploymentProperties/properties/deploymentState). Only Standard, DataZoneStandard, and GlobalStandard SKUs support this operation. Inference requests to the paused deployment endpoint will receive HTTP 423 (Locked). This operation is idempotent. */
-export const DeploymentsPause: API.OperationMethod<
-  DeploymentsPauseRequest,
-  DeploymentsPauseResponse,
-  DeploymentsPauseError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsPauseRequest,
-  output: DeploymentsPauseResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsResumeError = AzureOpError;
-/** Resume a deployment Resumes inferencing on a previously paused deployment by setting the deploymentState to 'Running' (see #/definitions/DeploymentProperties/properties/deploymentState). This operation is idempotent and can be safely called on already running deployments. */
-export const DeploymentsResume: API.OperationMethod<
-  DeploymentsResumeRequest,
-  DeploymentsResumeResponse,
-  DeploymentsResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsResumeRequest,
-  output: DeploymentsResumeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DisableAgentApplicationError = AzureOpError;
 /** Disables an Agent Application. Disables an Agent Application. */
 export const DisableAgentApplication: API.OperationMethod<
@@ -13894,16 +13839,16 @@ export const GetCommitmentPlanPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDefenderForAiSettingError = AzureOpError;
+export type GetDefenderForAISettingsError = AzureOpError;
 /** Gets the specified Defender for AI setting by name. */
-export const GetDefenderForAiSetting: API.OperationMethod<
-  GetDefenderForAiSettingRequest,
-  GetDefenderForAiSettingResponse,
-  GetDefenderForAiSettingError,
+export const GetDefenderForAISettings: API.OperationMethod<
+  GetDefenderForAISettingsRequest,
+  GetDefenderForAISettingsResponse,
+  GetDefenderForAISettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDefenderForAiSettingRequest,
-  output: GetDefenderForAiSettingResponse,
+  input: GetDefenderForAISettingsRequest,
+  output: GetDefenderForAISettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13954,16 +13899,16 @@ export const GetEncryptionScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedNetworkSettingError = AzureOpError;
+export type GetManagedNetworkSettingsError = AzureOpError;
 /** Get API for managed network settings of a cognitive services account. Get API for managed network settings of a cognitive services account. */
-export const GetManagedNetworkSetting: API.OperationMethod<
-  GetManagedNetworkSettingRequest,
-  GetManagedNetworkSettingResponse,
-  GetManagedNetworkSettingError,
+export const GetManagedNetworkSettings: API.OperationMethod<
+  GetManagedNetworkSettingsRequest,
+  GetManagedNetworkSettingsResponse,
+  GetManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedNetworkSettingRequest,
-  output: GetManagedNetworkSettingResponse,
+  input: GetManagedNetworkSettingsRequest,
+  output: GetManagedNetworkSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14374,30 +14319,30 @@ export const ListCommitmentPlanAssociations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListCommitmentPlanPlanByResourceGroupError = AzureOpError;
+export type ListCommitmentPlanPlansByResourceGroupError = AzureOpError;
 /** Returns all the resources of a particular type belonging to a resource group */
-export const ListCommitmentPlanPlanByResourceGroup: API.OperationMethod<
-  ListCommitmentPlanPlanByResourceGroupRequest,
+export const ListCommitmentPlanPlansByResourceGroup: API.OperationMethod<
+  ListCommitmentPlanPlansByResourceGroupRequest,
   CommitmentPlanListResult,
-  ListCommitmentPlanPlanByResourceGroupError,
+  ListCommitmentPlanPlansByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCommitmentPlanPlanByResourceGroupRequest,
+  input: ListCommitmentPlanPlansByResourceGroupRequest,
   output: CommitmentPlanListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListCommitmentPlanPlanBySubscriptionError = AzureOpError;
+export type ListCommitmentPlanPlansBySubscriptionError = AzureOpError;
 /** Returns all the resources of a particular type belonging to a subscription. */
-export const ListCommitmentPlanPlanBySubscription: API.OperationMethod<
-  ListCommitmentPlanPlanBySubscriptionRequest,
+export const ListCommitmentPlanPlansBySubscription: API.OperationMethod<
+  ListCommitmentPlanPlansBySubscriptionRequest,
   CommitmentPlanListResult,
-  ListCommitmentPlanPlanBySubscriptionError,
+  ListCommitmentPlanPlansBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCommitmentPlanPlanBySubscriptionRequest,
+  input: ListCommitmentPlanPlansBySubscriptionRequest,
   output: CommitmentPlanListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14434,15 +14379,15 @@ export const ListCommitmentTiers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDefenderForAiSettingsError = AzureOpError;
+export type ListDefenderForAISettingsError = AzureOpError;
 /** Lists the Defender for AI settings. */
-export const ListDefenderForAiSettings: API.OperationMethod<
-  ListDefenderForAiSettingsRequest,
+export const ListDefenderForAISettings: API.OperationMethod<
+  ListDefenderForAISettingsRequest,
   DefenderForAISettingResult,
-  ListDefenderForAiSettingsError,
+  ListDefenderForAISettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDefenderForAiSettingsRequest,
+  input: ListDefenderForAISettingsRequest,
   output: DefenderForAISettingResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14603,12 +14548,12 @@ export type ListOutboundRuleError = AzureOpError;
 /** The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. */
 export const ListOutboundRule: API.OperationMethod<
   ListOutboundRuleRequest,
-  ListOutboundRuleResult,
+  OutboundRuleListResult,
   ListOutboundRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOutboundRuleRequest,
-  output: ListOutboundRuleResult,
+  output: OutboundRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14839,36 +14784,6 @@ export const ListUsages: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedNetworkProvisionsProvisionManagedNetworkError = AzureOpError;
-/** Provisions the managed network of a cognitive services account. Provisions the managed network of a cognitive services account. */
-export const ManagedNetworkProvisionsProvisionManagedNetwork: API.OperationMethod<
-  ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  ManagedNetworkProvisionStatus,
-  ManagedNetworkProvisionsProvisionManagedNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  output: ManagedNetworkProvisionStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkSettingsPutError = AzureOpError;
-/** PUT API for managed network settings of a cognitive services account. PUT API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsPut: API.OperationMethod<
-  ManagedNetworkSettingsPutRequest,
-  ManagedNetworkSettingsPutResponse,
-  ManagedNetworkSettingsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsPutRequest,
-  output: ManagedNetworkSettingsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkSecurityPerimeterConfigurationsReconcileError = AzureOpError;
 /** Reconcile the NSP configuration for an account. */
 export const NetworkSecurityPerimeterConfigurationsReconcile: API.OperationMethod<
@@ -14899,31 +14814,46 @@ export const OutboundRuleCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OutboundRulesPostError = AzureOpError;
-/** The POST API for updating the outbound rules of the managed network associated with the cognitive services account. The POST API for updating the outbound rules of the managed network associated with the cognitive services account. */
-export const OutboundRulesPost: API.OperationMethod<
-  OutboundRulesPostRequest,
-  ListOutboundRuleResult,
-  OutboundRulesPostError,
+export type PatchManagedNetworkSettingsError = AzureOpError;
+/** Patch API for managed network settings of a cognitive services account. Patch API for managed network settings of a cognitive services account. */
+export const PatchManagedNetworkSettings: API.OperationMethod<
+  PatchManagedNetworkSettingsRequest,
+  PatchManagedNetworkSettingsResponse,
+  PatchManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundRulesPostRequest,
-  output: ListOutboundRuleResult,
+  input: PatchManagedNetworkSettingsRequest,
+  output: PatchManagedNetworkSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PatchManagedNetworkSettingError = AzureOpError;
-/** Patch API for managed network settings of a cognitive services account. Patch API for managed network settings of a cognitive services account. */
-export const PatchManagedNetworkSetting: API.OperationMethod<
-  PatchManagedNetworkSettingRequest,
-  PatchManagedNetworkSettingResponse,
-  PatchManagedNetworkSettingError,
+export type PauseDeploymentError = AzureOpError;
+/** Pause a deployment Pauses inferencing on a deployment by setting the deploymentState to 'Paused' (see #/definitions/DeploymentProperties/properties/deploymentState). Only Standard, DataZoneStandard, and GlobalStandard SKUs support this operation. Inference requests to the paused deployment endpoint will receive HTTP 423 (Locked). This operation is idempotent. */
+export const PauseDeployment: API.OperationMethod<
+  PauseDeploymentRequest,
+  PauseDeploymentResponse,
+  PauseDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchManagedNetworkSettingRequest,
-  output: PatchManagedNetworkSettingResponse,
+  input: PauseDeploymentRequest,
+  output: PauseDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostOutboundRuleError = AzureOpError;
+/** The POST API for updating the outbound rules of the managed network associated with the cognitive services account. The POST API for updating the outbound rules of the managed network associated with the cognitive services account. */
+export const PostOutboundRule: API.OperationMethod<
+  PostOutboundRuleRequest,
+  OutboundRuleListResult,
+  PostOutboundRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostOutboundRuleRequest,
+  output: OutboundRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14959,6 +14889,51 @@ export const ProjectCapabilityHostsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ProvisionManagedNetworkProvisionManagedNetworkError = AzureOpError;
+/** Provisions the managed network of a cognitive services account. Provisions the managed network of a cognitive services account. */
+export const ProvisionManagedNetworkProvisionManagedNetwork: API.OperationMethod<
+  ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  ManagedNetworkProvisionStatus,
+  ProvisionManagedNetworkProvisionManagedNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  output: ManagedNetworkProvisionStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeDeletedAccountError = AzureOpError;
+/** Deletes a Cognitive Services account from the resource group. */
+export const PurgeDeletedAccount: API.OperationMethod<
+  PurgeDeletedAccountRequest,
+  PurgeDeletedAccountResponse,
+  PurgeDeletedAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeDeletedAccountRequest,
+  output: PurgeDeletedAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutManagedNetworkSettingsError = AzureOpError;
+/** PUT API for managed network settings of a cognitive services account. PUT API for managed network settings of a cognitive services account. */
+export const PutManagedNetworkSettings: API.OperationMethod<
+  PutManagedNetworkSettingsRequest,
+  PutManagedNetworkSettingsResponse,
+  PutManagedNetworkSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutManagedNetworkSettingsRequest,
+  output: PutManagedNetworkSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type QuotaTiersCreateOrUpdateError = AzureOpError;
 /** Updates the Quota Tier resource for a subscription. Update the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information. */
 export const QuotaTiersCreateOrUpdate: API.OperationMethod<
@@ -14969,21 +14944,6 @@ export const QuotaTiersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: QuotaTiersCreateOrUpdateRequest,
   output: QuotaTiersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsBatchAddError = AzureOpError;
-/** Batch operation to add blocklist items. */
-export const RaiBlocklistItemsBatchAdd: API.OperationMethod<
-  RaiBlocklistItemsBatchAddRequest,
-  RaiBlocklistItemsBatchAddResponse,
-  RaiBlocklistItemsBatchAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsBatchAddRequest,
-  output: RaiBlocklistItemsBatchAddResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15074,6 +15034,36 @@ export const RaiTopicsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RaiTopicsCreateOrUpdateRequest,
   output: RaiTopicsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateAccountKeyError = AzureOpError;
+/** Regenerates the specified account key for the specified Cognitive Services account. */
+export const RegenerateAccountKey: API.OperationMethod<
+  RegenerateAccountKeyRequest,
+  ApiKeys,
+  RegenerateAccountKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateAccountKeyRequest,
+  output: ApiKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeDeploymentError = AzureOpError;
+/** Resume a deployment Resumes inferencing on a previously paused deployment by setting the deploymentState to 'Running' (see #/definitions/DeploymentProperties/properties/deploymentState). This operation is idempotent and can be safely called on already running deployments. */
+export const ResumeDeployment: API.OperationMethod<
+  ResumeDeploymentRequest,
+  ResumeDeploymentResponse,
+  ResumeDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeDeploymentRequest,
+  output: ResumeDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15184,16 +15174,16 @@ export const UpdateCommitmentPlanPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateDefenderForAiSettingError = AzureOpError;
+export type UpdateDefenderForAISettingsError = AzureOpError;
 /** Updates the specified Defender for AI setting. */
-export const UpdateDefenderForAiSetting: API.OperationMethod<
-  UpdateDefenderForAiSettingRequest,
-  UpdateDefenderForAiSettingResponse,
-  UpdateDefenderForAiSettingError,
+export const UpdateDefenderForAISettings: API.OperationMethod<
+  UpdateDefenderForAISettingsRequest,
+  UpdateDefenderForAISettingsResponse,
+  UpdateDefenderForAISettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDefenderForAiSettingRequest,
-  output: UpdateDefenderForAiSettingResponse,
+  input: UpdateDefenderForAISettingsRequest,
+  output: UpdateDefenderForAISettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

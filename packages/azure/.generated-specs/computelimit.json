@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.computelimit#GetVmFamily": {
@@ -1106,10 +1107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SetSharedLimitCapMemberCapOverride": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverrides": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverrideRequest"
+        "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequest"
       },
       "output": {
         "target": "com.azure.computelimit#SetMemberCapOverridesResult"
@@ -1171,7 +1172,7 @@
         "smithy.api#documentation": "Per-member cap override. Pairs a member subscription with its cap value."
       }
     },
-    "com.azure.computelimit#SetSharedLimitCapMemberCapOverrideRequest": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1199,7 +1200,7 @@
           }
         },
         "memberCapOverrides": {
-          "target": "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList",
+          "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList",
           "traits": {
             "smithy.api#documentation": "The full set of per-member cap overrides to persist for this resource.\nThis call replaces the existing set entirely; supply an empty array\n(`[]`) to clear all overrides.",
             "smithy.api#required": {}
@@ -1210,7 +1211,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#MemberCap"
@@ -2460,7 +2461,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.computelimit#FeaturesEnableResponseOperationsList",
+          "target": "com.azure.computelimit#EnableFeatureResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2552,7 +2553,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.computelimit#FeaturesEnableResponseOperationsList": {
+    "com.azure.computelimit#EnableFeatureResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#OperationStatusResult"
@@ -2737,7 +2738,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.computelimit#FeaturesDisableResponseOperationsList",
+          "target": "com.azure.computelimit#DisableFeatureResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2753,7 +2754,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#FeaturesDisableResponseOperationsList": {
+    "com.azure.computelimit#DisableFeatureResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#OperationStatusResult"
@@ -3057,7 +3058,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.computelimit#OperationsListResponseValueList",
+          "target": "com.azure.computelimit#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3073,7 +3074,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#OperationsListResponseValueList": {
+    "com.azure.computelimit#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#Operation"
@@ -3197,88 +3198,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.computelimit#GetVmFamily"
-        },
-        {
-          "target": "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteTrustedHostSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#CreateTrustedHostSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#GetTrustedHostSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteSharedLimit"
+          "target": "com.azure.computelimit#CreateGuestSubscription"
         },
         {
           "target": "com.azure.computelimit#CreateSharedLimit"
         },
         {
-          "target": "com.azure.computelimit#GetSharedLimit"
-        },
-        {
-          "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverride"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteMemberCapOverride"
-        },
-        {
-          "target": "com.azure.computelimit#MemberCapOverridesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.computelimit#GetMemberCapOverride"
-        },
-        {
-          "target": "com.azure.computelimit#ListMemberCapOverrideByParent"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteSharedLimitCap"
-        },
-        {
-          "target": "com.azure.computelimit#SharedLimitCapsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.computelimit#GetSharedLimitCap"
-        },
-        {
-          "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#CreateTrustedHostSubscription"
         },
         {
           "target": "com.azure.computelimit#DeleteGuestSubscription"
         },
         {
-          "target": "com.azure.computelimit#CreateGuestSubscription"
+          "target": "com.azure.computelimit#DeleteMemberCapOverride"
         },
         {
-          "target": "com.azure.computelimit#GetGuestSubscription"
+          "target": "com.azure.computelimit#DeleteSharedLimit"
         },
         {
-          "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#DeleteSharedLimitCap"
         },
         {
-          "target": "com.azure.computelimit#EnableFeature"
+          "target": "com.azure.computelimit#DeleteTrustedHostSubscription"
         },
         {
           "target": "com.azure.computelimit#DisableFeature"
         },
         {
+          "target": "com.azure.computelimit#EnableFeature"
+        },
+        {
           "target": "com.azure.computelimit#GetFeature"
+        },
+        {
+          "target": "com.azure.computelimit#GetGuestSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#GetMemberCapOverride"
+        },
+        {
+          "target": "com.azure.computelimit#GetSharedLimit"
+        },
+        {
+          "target": "com.azure.computelimit#GetSharedLimitCap"
+        },
+        {
+          "target": "com.azure.computelimit#GetTrustedHostSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#GetVmFamily"
         },
         {
           "target": "com.azure.computelimit#ListFeatureBySubscriptionLocationResource"
         },
         {
+          "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#ListMemberCapOverrideByParent"
+        },
+        {
           "target": "com.azure.computelimit#ListOperations"
+        },
+        {
+          "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#MemberCapOverridesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverrides"
+        },
+        {
+          "target": "com.azure.computelimit#SharedLimitCapsCreateOrUpdate"
         }
       ],
       "traits": {

@@ -39,12 +39,12 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface HogFunctionTemplatesRetrieveRequest {
+export interface GetHogFunctionTemplateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   template_id: string;
 }
-export const HogFunctionTemplatesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHogFunctionTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     template_id: S.String.pipe(T.Label()),
@@ -56,8 +56,8 @@ export const HogFunctionTemplatesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "HogFunctionTemplatesRetrieveRequest",
-}) as any as S.Schema<HogFunctionTemplatesRetrieveRequest>;
+  identifier: "GetHogFunctionTemplateRequest",
+}) as any as S.Schema<GetHogFunctionTemplateRequest>;
 
 export interface HogFunctionMappingTemplate {
   /** Name of this mapping template. */
@@ -234,17 +234,14 @@ export const ListPublicHogFunctionTemplatesRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListPublicHogFunctionTemplatesRequest",
 }) as any as S.Schema<ListPublicHogFunctionTemplatesRequest>;
 
-export type HogFunctionTemplatesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const hogFunctionTemplatesRetrieve: API.OperationMethod<
-  HogFunctionTemplatesRetrieveRequest,
+export type GetHogFunctionTemplateError = Forbidden | NotFound | PosthogOpError;
+export const getHogFunctionTemplate: API.OperationMethod<
+  GetHogFunctionTemplateRequest,
   HogFunctionTemplate,
-  HogFunctionTemplatesRetrieveError,
+  GetHogFunctionTemplateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HogFunctionTemplatesRetrieveRequest,
+  input: GetHogFunctionTemplateRequest,
   output: HogFunctionTemplate,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,

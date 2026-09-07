@@ -25,7 +25,8 @@
       "userAgent": "User-Agent",
       "v8Version": "V8-Version",
       "webKitVersion": "WebKit-Version"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.browser_rendering#ContentCreateRequestAddScriptTagItem": {
@@ -6597,79 +6598,79 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.browser_rendering#ContentCreate"
+          "target": "com.cloudflare.browser_rendering#ActivateDevtoolBrowserTarget"
         },
         {
-          "target": "com.cloudflare.browser_rendering#CrawlCreate"
+          "target": "com.cloudflare.browser_rendering#CloseDevtoolBrowserTarget"
         },
         {
-          "target": "com.cloudflare.browser_rendering#CrawlDelete"
+          "target": "com.cloudflare.browser_rendering#ConnectDevtoolBrowser"
         },
         {
-          "target": "com.cloudflare.browser_rendering#CrawlGet"
+          "target": "com.cloudflare.browser_rendering#CreateContent"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserConnect"
+          "target": "com.cloudflare.browser_rendering#CreateCrawl"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserCreate"
+          "target": "com.cloudflare.browser_rendering#CreateDevtoolBrowser"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserDelete"
+          "target": "com.cloudflare.browser_rendering#CreateDevtoolBrowserTarget"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserLaunch"
+          "target": "com.cloudflare.browser_rendering#CreateJson"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserProtocol"
+          "target": "com.cloudflare.browser_rendering#CreateLink"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserVersion"
+          "target": "com.cloudflare.browser_rendering#CreateMarkdown"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserPageGet"
+          "target": "com.cloudflare.browser_rendering#CreatePdf"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserTargetsActivate"
+          "target": "com.cloudflare.browser_rendering#CreateScrape"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserTargetsClose"
+          "target": "com.cloudflare.browser_rendering#CreateScreenshot"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserTargetsCreate"
+          "target": "com.cloudflare.browser_rendering#CreateSnapshot"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserTargetsGet"
+          "target": "com.cloudflare.browser_rendering#DeleteCrawl"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsBrowserTargetsList"
+          "target": "com.cloudflare.browser_rendering#DeleteDevtoolBrowser"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsSessionGet"
+          "target": "com.cloudflare.browser_rendering#GetCrawl"
         },
         {
-          "target": "com.cloudflare.browser_rendering#DevtoolsSessionList"
+          "target": "com.cloudflare.browser_rendering#GetDevtoolBrowserPage"
         },
         {
-          "target": "com.cloudflare.browser_rendering#JsonCreate"
+          "target": "com.cloudflare.browser_rendering#GetDevtoolBrowserTarget"
         },
         {
-          "target": "com.cloudflare.browser_rendering#LinksCreate"
+          "target": "com.cloudflare.browser_rendering#GetDevtoolSession"
         },
         {
-          "target": "com.cloudflare.browser_rendering#MarkdownCreate"
+          "target": "com.cloudflare.browser_rendering#LaunchDevtoolBrowser"
         },
         {
-          "target": "com.cloudflare.browser_rendering#PdfCreate"
+          "target": "com.cloudflare.browser_rendering#ListDevtoolBrowserTargets"
         },
         {
-          "target": "com.cloudflare.browser_rendering#ScrapeCreate"
+          "target": "com.cloudflare.browser_rendering#ListDevtoolSessions"
         },
         {
-          "target": "com.cloudflare.browser_rendering#ScreenshotCreate"
+          "target": "com.cloudflare.browser_rendering#ProtocolDevtoolBrowser"
         },
         {
-          "target": "com.cloudflare.browser_rendering#SnapshotCreate"
+          "target": "com.cloudflare.browser_rendering#VersionDevtoolBrowser"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.chaos#StartExperiment": {
@@ -769,10 +770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsCancel": {
+    "com.azure.chaos#CancelExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsCancelRequest"
+        "target": "com.azure.chaos#CancelExperimentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -788,7 +789,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsCancelRequest": {
+    "com.azure.chaos#CancelExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -918,7 +919,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsUpdateResponseTagsMap",
+          "target": "com.azure.chaos#UpdateExperimentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -931,7 +932,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsUpdateResponseIdentity",
+          "target": "com.azure.chaos#UpdateExperimentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1225,7 +1226,7 @@
         "smithy.api#documentation": "Current provisioning state for a given Azure Chaos resource."
       }
     },
-    "com.azure.chaos#ExperimentsUpdateResponseIdentity": {
+    "com.azure.chaos#UpdateExperimentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1318,7 +1319,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.chaos#ExperimentsUpdateResponseTagsMap": {
+    "com.azure.chaos#UpdateExperimentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1358,13 +1359,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsUpdateRequestTagsMap",
+          "target": "com.azure.chaos#UpdateExperimentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsUpdateRequestIdentity",
+          "target": "com.azure.chaos#UpdateExperimentRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1374,7 +1375,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsUpdateRequestIdentity": {
+    "com.azure.chaos#UpdateExperimentRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -1410,7 +1411,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.chaos#ExperimentsUpdateRequestTagsMap": {
+    "com.azure.chaos#UpdateExperimentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1714,7 +1715,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsGetResponseTagsMap",
+          "target": "com.azure.chaos#GetExperimentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1727,7 +1728,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsGetResponseIdentity",
+          "target": "com.azure.chaos#GetExperimentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1744,7 +1745,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#ExperimentsGetResponseIdentity": {
+    "com.azure.chaos#GetExperimentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1773,7 +1774,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.chaos#ExperimentsGetResponseTagsMap": {
+    "com.azure.chaos#GetExperimentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2808,7 +2809,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.chaos#TargetsGetResponsePropertiesMap",
+          "target": "com.azure.chaos#GetTargetResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "The properties of the target resource.",
             "smithy.api#required": {}
@@ -2825,7 +2826,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#TargetsGetResponsePropertiesMap": {
+    "com.azure.chaos#GetTargetResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3708,7 +3709,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.chaos#OperationStatusesGetResponseOperationsList",
+          "target": "com.azure.chaos#GetOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -3800,7 +3801,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.chaos#OperationStatusesGetResponseOperationsList": {
+    "com.azure.chaos#GetOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.chaos#OperationStatusResult"
@@ -3985,7 +3986,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.chaos#OperationsListAllResponseValueList",
+          "target": "com.azure.chaos#ListOperationAllResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4001,7 +4002,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#OperationsListAllResponseValueList": {
+    "com.azure.chaos#ListOperationAllResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.chaos#Operation"
@@ -4125,79 +4126,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.chaos#StartExperiment"
-        },
-        {
-          "target": "com.azure.chaos#ExperimentsExecutionDetails"
-        },
-        {
-          "target": "com.azure.chaos#GetExperimentExecution"
-        },
-        {
-          "target": "com.azure.chaos#ListExperimentAllExecutions"
-        },
-        {
-          "target": "com.azure.chaos#ExperimentsCancel"
-        },
-        {
-          "target": "com.azure.chaos#DeleteExperiment"
-        },
-        {
-          "target": "com.azure.chaos#UpdateExperiment"
-        },
-        {
-          "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.chaos#GetExperiment"
-        },
-        {
-          "target": "com.azure.chaos#ListExperiments"
-        },
-        {
-          "target": "com.azure.chaos#DeleteCapability"
+          "target": "com.azure.chaos#CancelExperiment"
         },
         {
           "target": "com.azure.chaos#CapabilitiesCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#GetCapability"
+          "target": "com.azure.chaos#DeleteCapability"
         },
         {
-          "target": "com.azure.chaos#ListCapabilities"
+          "target": "com.azure.chaos#DeleteExperiment"
         },
         {
           "target": "com.azure.chaos#DeleteTarget"
         },
         {
-          "target": "com.azure.chaos#TargetsCreateOrUpdate"
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#GetTarget"
+          "target": "com.azure.chaos#ExperimentsExecutionDetails"
         },
         {
-          "target": "com.azure.chaos#ListTargets"
+          "target": "com.azure.chaos#GetCapability"
         },
         {
           "target": "com.azure.chaos#GetCapabilityType"
         },
         {
-          "target": "com.azure.chaos#ListCapabilityTypes"
+          "target": "com.azure.chaos#GetExperiment"
         },
         {
-          "target": "com.azure.chaos#GetTargetType"
-        },
-        {
-          "target": "com.azure.chaos#ListTargetTypes"
+          "target": "com.azure.chaos#GetExperimentExecution"
         },
         {
           "target": "com.azure.chaos#GetOperationStatus"
         },
         {
+          "target": "com.azure.chaos#GetTarget"
+        },
+        {
+          "target": "com.azure.chaos#GetTargetType"
+        },
+        {
+          "target": "com.azure.chaos#ListCapabilities"
+        },
+        {
+          "target": "com.azure.chaos#ListCapabilityTypes"
+        },
+        {
           "target": "com.azure.chaos#ListExperimentAll"
         },
         {
+          "target": "com.azure.chaos#ListExperimentAllExecutions"
+        },
+        {
+          "target": "com.azure.chaos#ListExperiments"
+        },
+        {
           "target": "com.azure.chaos#ListOperationAll"
+        },
+        {
+          "target": "com.azure.chaos#ListTargets"
+        },
+        {
+          "target": "com.azure.chaos#ListTargetTypes"
+        },
+        {
+          "target": "com.azure.chaos#StartExperiment"
+        },
+        {
+          "target": "com.azure.chaos#TargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.chaos#UpdateExperiment"
         }
       ],
       "traits": {

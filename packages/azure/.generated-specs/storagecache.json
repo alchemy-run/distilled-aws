@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.storagecache#CachesUpgradeFirmware": {
@@ -127,10 +128,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StorageTargetResume": {
+    "com.azure.storagecache#ResumeStorageTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StorageTargetResumeRequest"
+        "target": "com.azure.storagecache#ResumeStorageTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -146,7 +147,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StorageTargetResumeRequest": {
+    "com.azure.storagecache#ResumeStorageTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -186,10 +187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#RestoreStorageTargetDefault": {
+    "com.azure.storagecache#RestoreStorageTargetDefaults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#RestoreStorageTargetDefaultRequest"
+        "target": "com.azure.storagecache#RestoreStorageTargetDefaultsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -205,7 +206,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#RestoreStorageTargetDefaultRequest": {
+    "com.azure.storagecache#RestoreStorageTargetDefaultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -245,10 +246,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StorageTargetInvalidate": {
+    "com.azure.storagecache#InvalidateStorageTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StorageTargetInvalidateRequest"
+        "target": "com.azure.storagecache#InvalidateStorageTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -264,7 +265,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StorageTargetInvalidateRequest": {
+    "com.azure.storagecache#InvalidateStorageTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -304,10 +305,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StorageTargetFlush": {
+    "com.azure.storagecache#FlushStorageTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StorageTargetFlushRequest"
+        "target": "com.azure.storagecache#FlushStorageTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -323,7 +324,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StorageTargetFlushRequest": {
+    "com.azure.storagecache#FlushStorageTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -363,10 +364,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StorageTargetsDnsRefresh": {
+    "com.azure.storagecache#RefreshStorageTargetsDns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StorageTargetsDnsRefreshRequest"
+        "target": "com.azure.storagecache#RefreshStorageTargetsDnsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -382,7 +383,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StorageTargetsDnsRefreshRequest": {
+    "com.azure.storagecache#RefreshStorageTargetsDnsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1308,10 +1309,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StopCachePrimingJob": {
+    "com.azure.storagecache#StopCachPrimingJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StopCachePrimingJobRequest"
+        "target": "com.azure.storagecache#StopCachPrimingJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1327,7 +1328,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StopCachePrimingJobRequest": {
+    "com.azure.storagecache#StopCachPrimingJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1366,10 +1367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StopCache": {
+    "com.azure.storagecache#StopCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StopCacheRequest"
+        "target": "com.azure.storagecache#StopCachRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1385,7 +1386,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StopCacheRequest": {
+    "com.azure.storagecache#StopCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1417,10 +1418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StartCachePrimingJob": {
+    "com.azure.storagecache#StartCachPrimingJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StartCachePrimingJobRequest"
+        "target": "com.azure.storagecache#StartCachPrimingJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1436,7 +1437,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StartCachePrimingJobRequest": {
+    "com.azure.storagecache#StartCachPrimingJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1482,10 +1483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#StartCache": {
+    "com.azure.storagecache#StartCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#StartCacheRequest"
+        "target": "com.azure.storagecache#StartCachRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1501,7 +1502,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#StartCacheRequest": {
+    "com.azure.storagecache#StartCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1617,10 +1618,10 @@
         "smithy.api#documentation": "Storage Target space allocation properties."
       }
     },
-    "com.azure.storagecache#CachesResumePrimingJob": {
+    "com.azure.storagecache#ResumeCachPrimingJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#CachesResumePrimingJobRequest"
+        "target": "com.azure.storagecache#ResumeCachPrimingJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1636,7 +1637,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#CachesResumePrimingJobRequest": {
+    "com.azure.storagecache#ResumeCachPrimingJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1675,10 +1676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#CachesPausePrimingJob": {
+    "com.azure.storagecache#PauseCachPrimingJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#CachesPausePrimingJobRequest"
+        "target": "com.azure.storagecache#PauseCachPrimingJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1694,7 +1695,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#CachesPausePrimingJobRequest": {
+    "com.azure.storagecache#PauseCachPrimingJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1733,10 +1734,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#CachesFlush": {
+    "com.azure.storagecache#FlushCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#CachesFlushRequest"
+        "target": "com.azure.storagecache#FlushCachRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1752,7 +1753,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#CachesFlushRequest": {
+    "com.azure.storagecache#FlushCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1835,10 +1836,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#DeleteCache": {
+    "com.azure.storagecache#DeleteCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#DeleteCacheRequest"
+        "target": "com.azure.storagecache#DeleteCachRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1854,7 +1855,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#DeleteCacheRequest": {
+    "com.azure.storagecache#DeleteCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1886,13 +1887,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#UpdateCache": {
+    "com.azure.storagecache#UpdateCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#UpdateCacheRequest"
+        "target": "com.azure.storagecache#UpdateCachRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#UpdateCacheResponse"
+        "target": "com.azure.storagecache#UpdateCachResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1905,7 +1906,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#UpdateCacheResponse": {
+    "com.azure.storagecache#UpdateCachResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1939,7 +1940,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#CachesUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateCachResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2077,7 +2078,7 @@
         "smithy.api#documentation": "The type of identity used for the cache"
       }
     },
-    "com.azure.storagecache#CachesUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateCachResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3071,7 +3072,7 @@
         "smithy.api#documentation": "List of cache health states. Down is when the cluster is not responding.  Degraded is when its functioning but has some alerts. Transitioning when it is creating or deleting. Unknown will be returned in old api versions when a new value is added in future versions. WaitingForKey is when the create is waiting for the system assigned identity to be given access to the encryption key in the encryption settings."
       }
     },
-    "com.azure.storagecache#UpdateCacheRequest": {
+    "com.azure.storagecache#UpdateCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3105,7 +3106,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#CachesUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateCachRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3172,7 +3173,7 @@
         "smithy.api#documentation": "User-assigned identity properties."
       }
     },
-    "com.azure.storagecache#CachesUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateCachRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3494,13 +3495,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagecache#GetCache": {
+    "com.azure.storagecache#GetCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#GetCacheRequest"
+        "target": "com.azure.storagecache#GetCachRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#GetCacheResponse"
+        "target": "com.azure.storagecache#GetCachResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3513,7 +3514,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#GetCacheResponse": {
+    "com.azure.storagecache#GetCachResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3547,7 +3548,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#CachesGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetCachResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3575,7 +3576,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#CachesGetResponseTagsMap": {
+    "com.azure.storagecache#GetCachResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3587,7 +3588,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagecache#GetCacheRequest": {
+    "com.azure.storagecache#GetCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3619,13 +3620,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#ListCacheByResourceGroup": {
+    "com.azure.storagecache#ListCachByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#ListCacheByResourceGroupRequest"
+        "target": "com.azure.storagecache#ListCachByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#ListCachesResult"
+        "target": "com.azure.storagecache#CachesListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -3638,7 +3639,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#ListCachesResult": {
+    "com.azure.storagecache#CachesListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -3741,7 +3742,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagecache#ListCacheByResourceGroupRequest": {
+    "com.azure.storagecache#ListCachByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4506,7 +4507,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ImportJobsUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateImportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4826,7 +4827,7 @@
         "smithy.api#documentation": "ARM provisioning state."
       }
     },
-    "com.azure.storagecache#ImportJobsUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateImportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4874,7 +4875,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ImportJobsUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateImportJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4921,7 +4922,7 @@
         "smithy.api#documentation": "The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'."
       }
     },
-    "com.azure.storagecache#ImportJobsUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateImportJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5226,7 +5227,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ImportJobsGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetImportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5249,7 +5250,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#ImportJobsGetResponseTagsMap": {
+    "com.azure.storagecache#GetImportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5550,7 +5551,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ExpansionJobsUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateExpansionJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5737,7 +5738,7 @@
         "smithy.api#documentation": "ARM provisioning state, see https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property"
       }
     },
-    "com.azure.storagecache#ExpansionJobsUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateExpansionJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5785,7 +5786,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ExpansionJobsUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateExpansionJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5795,7 +5796,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#ExpansionJobsUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateExpansionJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6027,7 +6028,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#ExpansionJobsGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetExpansionJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6050,7 +6051,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#ExpansionJobsGetResponseTagsMap": {
+    "com.azure.storagecache#GetExpansionJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6402,7 +6403,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoImportJobsUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateAutoImportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6826,7 +6827,7 @@
         "smithy.api#documentation": "ARM provisioning state."
       }
     },
-    "com.azure.storagecache#AutoImportJobsUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateAutoImportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6874,7 +6875,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoImportJobsUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateAutoImportJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6921,7 +6922,7 @@
         "smithy.api#documentation": "The administrative status of the auto import job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto import job. By default it is set to 'Enable'."
       }
     },
-    "com.azure.storagecache#AutoImportJobsUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateAutoImportJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7232,7 +7233,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoImportJobsGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetAutoImportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7255,7 +7256,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#AutoImportJobsGetResponseTagsMap": {
+    "com.azure.storagecache#GetAutoImportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7556,7 +7557,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoExportJobsUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateAutoExportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7820,7 +7821,7 @@
         "smithy.api#documentation": "ARM provisioning state."
       }
     },
-    "com.azure.storagecache#AutoExportJobsUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateAutoExportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7868,7 +7869,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoExportJobsUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateAutoExportJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7915,7 +7916,7 @@
         "smithy.api#documentation": "The administrative status of the auto export job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto export job. By default it is set to 'Enable'."
       }
     },
-    "com.azure.storagecache#AutoExportJobsUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateAutoExportJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8176,7 +8177,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AutoExportJobsGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetAutoExportJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8199,7 +8200,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#AutoExportJobsGetResponseTagsMap": {
+    "com.azure.storagecache#GetAutoExportJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8394,10 +8395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#AmlFilesystemsArchive": {
+    "com.azure.storagecache#ArchiveAmlFilesystem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#AmlFilesystemsArchiveRequest"
+        "target": "com.azure.storagecache#ArchiveAmlFilesystemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8413,7 +8414,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#AmlFilesystemsArchiveRequest": {
+    "com.azure.storagecache#ArchiveAmlFilesystemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8549,7 +8550,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AmlFilesystemsUpdateResponseTagsMap",
+          "target": "com.azure.storagecache#UpdateAmlFilesystemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8580,7 +8581,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storagecache#AmlFilesystemsUpdateResponseZonesList",
+          "target": "com.azure.storagecache#UpdateAmlFilesystemResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -8590,7 +8591,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#AmlFilesystemsUpdateResponseZonesList": {
+    "com.azure.storagecache#UpdateAmlFilesystemResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9272,7 +9273,7 @@
         "smithy.api#documentation": "List of AML file system health states."
       }
     },
-    "com.azure.storagecache#AmlFilesystemsUpdateResponseTagsMap": {
+    "com.azure.storagecache#UpdateAmlFilesystemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9312,7 +9313,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AmlFilesystemsUpdateRequestTagsMap",
+          "target": "com.azure.storagecache#UpdateAmlFilesystemRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9406,7 +9407,7 @@
         "smithy.api#documentation": "Start time of a 30-minute weekly maintenance window."
       }
     },
-    "com.azure.storagecache#AmlFilesystemsUpdateRequestTagsMap": {
+    "com.azure.storagecache#UpdateAmlFilesystemRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9757,7 +9758,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagecache#AmlFilesystemsGetResponseTagsMap",
+          "target": "com.azure.storagecache#GetAmlFilesystemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9788,7 +9789,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storagecache#AmlFilesystemsGetResponseZonesList",
+          "target": "com.azure.storagecache#GetAmlFilesystemResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -9798,7 +9799,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagecache#AmlFilesystemsGetResponseZonesList": {
+    "com.azure.storagecache#GetAmlFilesystemResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9807,7 +9808,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.storagecache#AmlFilesystemsGetResponseTagsMap": {
+    "com.azure.storagecache#GetAmlFilesystemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9857,7 +9858,7 @@
         "target": "com.azure.storagecache#ListAmlFilesystemByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#ListAmlFilesystemsResult"
+        "target": "com.azure.storagecache#AmlFilesystemsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -9870,7 +9871,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#ListAmlFilesystemsResult": {
+    "com.azure.storagecache#AmlFilesystemsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -10636,10 +10637,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#GetRequiredAmlFsSubnetsSize": {
+    "com.azure.storagecache#GetRequiredAmlFSSubnetsSize": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#GetRequiredAmlFsSubnetsSizeRequest"
+        "target": "com.azure.storagecache#GetRequiredAmlFSSubnetsSizeRequest"
       },
       "output": {
         "target": "com.azure.storagecache#RequiredAmlFilesystemSubnetsSize"
@@ -10669,7 +10670,7 @@
         "smithy.api#documentation": "Information about the number of available IP addresses that are required for the AML file system."
       }
     },
-    "com.azure.storagecache#GetRequiredAmlFsSubnetsSizeRequest": {
+    "com.azure.storagecache#GetRequiredAmlFSSubnetsSizeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10697,10 +10698,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagecache#CheckAmlFsSubnets": {
+    "com.azure.storagecache#CheckAmlFSSubnets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagecache#CheckAmlFsSubnetsRequest"
+        "target": "com.azure.storagecache#CheckAmlFSSubnetsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10716,7 +10717,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.storagecache#CheckAmlFsSubnetsRequest": {
+    "com.azure.storagecache#CheckAmlFSSubnetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10762,7 +10763,7 @@
         "target": "com.azure.storagecache#ListCachesRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#ListCachesResult"
+        "target": "com.azure.storagecache#CachesListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -10797,7 +10798,7 @@
         "target": "com.azure.storagecache#ListAmlFilesystemsRequest"
       },
       "output": {
-        "target": "com.azure.storagecache#ListAmlFilesystemsResult"
+        "target": "com.azure.storagecache#AmlFilesystemsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -11177,199 +11178,199 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagecache#CachesUpgradeFirmware"
-        },
-        {
-          "target": "com.azure.storagecache#SuspendStorageTarget"
-        },
-        {
-          "target": "com.azure.storagecache#StorageTargetResume"
-        },
-        {
-          "target": "com.azure.storagecache#RestoreStorageTargetDefault"
-        },
-        {
-          "target": "com.azure.storagecache#StorageTargetInvalidate"
-        },
-        {
-          "target": "com.azure.storagecache#StorageTargetFlush"
-        },
-        {
-          "target": "com.azure.storagecache#StorageTargetsDnsRefresh"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteStorageTarget"
-        },
-        {
-          "target": "com.azure.storagecache#StorageTargetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetStorageTarget"
-        },
-        {
-          "target": "com.azure.storagecache#ListStorageTargetByCache"
-        },
-        {
-          "target": "com.azure.storagecache#StopCachePrimingJob"
-        },
-        {
-          "target": "com.azure.storagecache#StopCache"
-        },
-        {
-          "target": "com.azure.storagecache#StartCachePrimingJob"
-        },
-        {
-          "target": "com.azure.storagecache#StartCache"
-        },
-        {
-          "target": "com.azure.storagecache#CachesSpaceAllocation"
-        },
-        {
-          "target": "com.azure.storagecache#CachesResumePrimingJob"
-        },
-        {
-          "target": "com.azure.storagecache#CachesPausePrimingJob"
-        },
-        {
-          "target": "com.azure.storagecache#CachesFlush"
-        },
-        {
-          "target": "com.azure.storagecache#CachesDebugInfo"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteCache"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateCache"
-        },
-        {
-          "target": "com.azure.storagecache#CachesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetCache"
-        },
-        {
-          "target": "com.azure.storagecache#ListCacheByResourceGroup"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteRebalanceJob"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateRebalanceJob"
-        },
-        {
-          "target": "com.azure.storagecache#GetRebalanceJob"
-        },
-        {
-          "target": "com.azure.storagecache#ListRebalanceJobByAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#ImportJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#ListImportJobByAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteExpansionJob"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateExpansionJob"
-        },
-        {
-          "target": "com.azure.storagecache#ExpansionJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetExpansionJob"
-        },
-        {
-          "target": "com.azure.storagecache#ListExpansionJobByAmlFilesystem"
-        },
-        {
           "target": "com.azure.storagecache#AmlFilesystemsCancelArchive"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteAutoImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateAutoImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#AutoImportJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetAutoImportJob"
-        },
-        {
-          "target": "com.azure.storagecache#ListAutoImportJobByAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteAutoExportJob"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateAutoExportJob"
-        },
-        {
-          "target": "com.azure.storagecache#AutoExportJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagecache#GetAutoExportJob"
-        },
-        {
-          "target": "com.azure.storagecache#ListAutoExportJobByAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#AmlFilesystemsArchive"
-        },
-        {
-          "target": "com.azure.storagecache#DeleteAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#UpdateAmlFilesystem"
         },
         {
           "target": "com.azure.storagecache#AmlFilesystemsCreateOrUpdate"
         },
         {
+          "target": "com.azure.storagecache#ArchiveAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#AutoExportJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#AutoImportJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#CachesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#CachesDebugInfo"
+        },
+        {
+          "target": "com.azure.storagecache#CachesSpaceAllocation"
+        },
+        {
+          "target": "com.azure.storagecache#CachesUpgradeFirmware"
+        },
+        {
+          "target": "com.azure.storagecache#CheckAmlFSSubnets"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteAutoExportJob"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteAutoImportJob"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteCach"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteExpansionJob"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteImportJob"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteRebalanceJob"
+        },
+        {
+          "target": "com.azure.storagecache#DeleteStorageTarget"
+        },
+        {
+          "target": "com.azure.storagecache#ExpansionJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#FlushCach"
+        },
+        {
+          "target": "com.azure.storagecache#FlushStorageTarget"
+        },
+        {
           "target": "com.azure.storagecache#GetAmlFilesystem"
-        },
-        {
-          "target": "com.azure.storagecache#ListAmlFilesystemByResourceGroup"
-        },
-        {
-          "target": "com.azure.storagecache#ListUsageModels"
-        },
-        {
-          "target": "com.azure.storagecache#ListSkus"
-        },
-        {
-          "target": "com.azure.storagecache#ListAscUsages"
         },
         {
           "target": "com.azure.storagecache#GetAscOperation"
         },
         {
-          "target": "com.azure.storagecache#GetRequiredAmlFsSubnetsSize"
+          "target": "com.azure.storagecache#GetAutoExportJob"
         },
         {
-          "target": "com.azure.storagecache#CheckAmlFsSubnets"
+          "target": "com.azure.storagecache#GetAutoImportJob"
         },
         {
-          "target": "com.azure.storagecache#ListCaches"
+          "target": "com.azure.storagecache#GetCach"
+        },
+        {
+          "target": "com.azure.storagecache#GetExpansionJob"
+        },
+        {
+          "target": "com.azure.storagecache#GetImportJob"
+        },
+        {
+          "target": "com.azure.storagecache#GetRebalanceJob"
+        },
+        {
+          "target": "com.azure.storagecache#GetRequiredAmlFSSubnetsSize"
+        },
+        {
+          "target": "com.azure.storagecache#GetStorageTarget"
+        },
+        {
+          "target": "com.azure.storagecache#ImportJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#InvalidateStorageTarget"
+        },
+        {
+          "target": "com.azure.storagecache#ListAmlFilesystemByResourceGroup"
         },
         {
           "target": "com.azure.storagecache#ListAmlFilesystems"
         },
         {
+          "target": "com.azure.storagecache#ListAscUsages"
+        },
+        {
+          "target": "com.azure.storagecache#ListAutoExportJobByAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#ListAutoImportJobByAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#ListCachByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagecache#ListCaches"
+        },
+        {
+          "target": "com.azure.storagecache#ListExpansionJobByAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#ListImportJobByAmlFilesystem"
+        },
+        {
           "target": "com.azure.storagecache#ListOperations"
+        },
+        {
+          "target": "com.azure.storagecache#ListRebalanceJobByAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#ListSkus"
+        },
+        {
+          "target": "com.azure.storagecache#ListStorageTargetByCache"
+        },
+        {
+          "target": "com.azure.storagecache#ListUsageModels"
+        },
+        {
+          "target": "com.azure.storagecache#PauseCachPrimingJob"
+        },
+        {
+          "target": "com.azure.storagecache#RefreshStorageTargetsDns"
+        },
+        {
+          "target": "com.azure.storagecache#RestoreStorageTargetDefaults"
+        },
+        {
+          "target": "com.azure.storagecache#ResumeCachPrimingJob"
+        },
+        {
+          "target": "com.azure.storagecache#ResumeStorageTarget"
+        },
+        {
+          "target": "com.azure.storagecache#StartCach"
+        },
+        {
+          "target": "com.azure.storagecache#StartCachPrimingJob"
+        },
+        {
+          "target": "com.azure.storagecache#StopCach"
+        },
+        {
+          "target": "com.azure.storagecache#StopCachPrimingJob"
+        },
+        {
+          "target": "com.azure.storagecache#StorageTargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagecache#SuspendStorageTarget"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateAmlFilesystem"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateAutoExportJob"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateAutoImportJob"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateCach"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateExpansionJob"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateImportJob"
+        },
+        {
+          "target": "com.azure.storagecache#UpdateRebalanceJob"
         }
       ],
       "traits": {

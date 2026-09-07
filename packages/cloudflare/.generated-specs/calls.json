@@ -17,7 +17,8 @@
     ],
     "keyDictionary": {
       "key": "secret"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.calls#SfuListResultItem": {
@@ -95,34 +96,34 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.calls#SfuCreate"
+          "target": "com.cloudflare.calls#CreateSfu"
         },
         {
-          "target": "com.cloudflare.calls#SfuDelete"
+          "target": "com.cloudflare.calls#CreateTurn"
         },
         {
-          "target": "com.cloudflare.calls#SfuGet"
+          "target": "com.cloudflare.calls#DeleteSfu"
         },
         {
-          "target": "com.cloudflare.calls#SfuList"
+          "target": "com.cloudflare.calls#DeleteTurn"
         },
         {
-          "target": "com.cloudflare.calls#SfuUpdate"
+          "target": "com.cloudflare.calls#GetSfu"
         },
         {
-          "target": "com.cloudflare.calls#TurnCreate"
+          "target": "com.cloudflare.calls#GetTurn"
         },
         {
-          "target": "com.cloudflare.calls#TurnDelete"
+          "target": "com.cloudflare.calls#ListSfus"
         },
         {
-          "target": "com.cloudflare.calls#TurnGet"
+          "target": "com.cloudflare.calls#ListTurns"
         },
         {
-          "target": "com.cloudflare.calls#TurnList"
+          "target": "com.cloudflare.calls#UpdateSfu"
         },
         {
-          "target": "com.cloudflare.calls#TurnUpdate"
+          "target": "com.cloudflare.calls#UpdateTurn"
         }
       ],
       "traits": {

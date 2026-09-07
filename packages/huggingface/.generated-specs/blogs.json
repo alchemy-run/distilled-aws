@@ -1,0 +1,192 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.huggingface.blogs#GetBlogResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.blogs#GetBlogResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.blogs#GetBlogResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.blogs#GetBlogResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.blogs#GetBlogResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/blog/{namespace}/{slug}/resource-group",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get blog resource group"
+      }
+    },
+    "com.huggingface.blogs#SetBlogResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group to assign the blog to. If null, the blog is removed from any resource group.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.blogs#SetBlogResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.blogs#SetBlogResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.blogs#SetBlogResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.blogs#SetBlogResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/blog/{namespace}/{slug}/resource-group",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set blog resource group\n\nAssign, move, or unassign an organization-owned blog to a resource group. Pass null to unassign. User-owned blogs are not eligible."
+      }
+    },
+    "com.huggingface.blogs#Blogs": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.blogs#GetBlogResourceGroup"
+        },
+        {
+          "target": "com.huggingface.blogs#SetBlogResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

@@ -1,9 +1,10 @@
 #!/usr/bin/env bun
 /**
  * convert — original AWS Smithy models + patches/{sdkId}.json →
- * `.generated-specs/<sdkId>.json`.
+ * `.generated-specs/<sdkId>.json`, plus the endpoint rules engine's
+ * partition data → `src/rules-engine/partitions.json`.
  *
- * generate.ts compiles those models and does not re-read the spec-mirror.
+ * generate.ts compiles those models and does not read the spec-mirror.
  */
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -12,10 +13,8 @@ import { loadServiceSpecPatch } from "./spec-schema.ts";
 import { applyAwsSpecPatches, dropForeignNamespaceShapes } from "./spec.ts";
 
 const root = path.resolve(import.meta.dir, "..");
-const modelsRoot = path.join(
-  resolveSpecPath(root, "specs/spec-mirror-aws/specs"),
-  "models",
-);
+const specsRoot = resolveSpecPath(root, "specs/spec-mirror-aws/specs");
+const modelsRoot = path.join(specsRoot, "models");
 const outDir = path.join(root, ".generated-specs");
 
 const UNSUPPORTED_SERVICES = new Set(["partnercentral-revenue-measurement"]);
@@ -38,6 +37,16 @@ if (!fs.existsSync(modelsRoot)) {
 }
 
 fs.mkdirSync(outDir, { recursive: true });
+
+// Region → partition data the endpoint resolver reads at runtime. Not
+// generated code, but it comes from the same mirror as the models.
+{
+  const partitions = path.join(specsRoot, "partitions.json");
+  const dest = path.join(root, "src", "rules-engine");
+  fs.mkdirSync(dest, { recursive: true });
+  fs.copyFileSync(partitions, path.join(dest, "partitions.json"));
+  console.log("✅ partitions.json");
+}
 
 const services = fs.readdirSync(modelsRoot).sort();
 let written = 0;

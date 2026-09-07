@@ -658,6 +658,74 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5 =
     identifier: "BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5",
   }) as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5>;
 
+/** The resource IDs associated with the current plan item quantity */
+export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList =
+  Array<string>;
+export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList>;
+
+/** The current plan item quantities */
+export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem {
+  /** The ID of the current plan item to set the quantity for */
+  planItemId: string;
+  /** The nonnegative integer quantity for the current plan item */
+  quantity: number;
+  /** The resource IDs associated with the current plan item quantity */
+  resourceIds?: BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList;
+}
+export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      planItemId: S.String,
+      quantity: S.Number,
+      resourceIds: S.optional(
+        BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem",
+  }) as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem>;
+
+/** The current plan item quantities */
+export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList =
+  Array<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem>;
+export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList =
+  /*@__PURE__*/ S.Array(
+    BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem,
+  ) as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList>;
+
+/** The current plan being replaced by this purchase */
+export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan {
+  /** The end of the current plan billing cycle */
+  currentCycleEndDate: string;
+  /** The Orb subscription ID currently active for the owner on the source plan */
+  orbSubscriptionId: string;
+  /** The ID of the plan currently assigned */
+  planId: string;
+  /** The current plan item quantities */
+  planItemQuantities?: BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList;
+  /** The rate variant currently assigned */
+  rateVariantKey?: string;
+}
+export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      currentCycleEndDate: S.String,
+      orbSubscriptionId: S.String,
+      planId: S.String,
+      planItemQuantities: S.optional(
+        BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList,
+      ),
+      rateVariantKey: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan",
+  }) as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan>;
+
 /** The resource IDs to associate with the plan item quantity */
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsPlanItemQuantitiesItemResourceIdsList =
   Array<string>;
@@ -701,6 +769,8 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsP
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6Options {
   /** The ID of the plan to subscribe to */
   planId: string;
+  /** The current plan being replaced by this purchase */
+  fromPlan?: BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan;
   /** The plan item quantities to set for the subscription */
   planItemQuantities?: BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsPlanItemQuantitiesList;
   /** The rate variant key to apply to the subscription */
@@ -710,6 +780,9 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6Options 
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       planId: S.String,
+      fromPlan: S.optional(
+        BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan,
+      ),
       planItemQuantities: S.optional(
         BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsPlanItemQuantitiesList,
       ),

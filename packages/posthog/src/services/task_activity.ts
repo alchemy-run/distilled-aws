@@ -11,68 +11,6 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface TaskActivityReadMarker {
-  /** Task whose displayed activity should be marked read. */
-  task_id: string;
-  /** Comment activity row to mark read. Omit for collapsed task activity. */
-  activity_id?: string | null;
-  /** Mark activity at or before this timestamp read without clearing newer activity. */
-  seen_before: string;
-}
-export const TaskActivityReadMarker = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    activity_id: S.optional(S.NullOr(S.String)),
-    seen_before: S.String,
-  }),
-).annotate({
-  identifier: "TaskActivityReadMarker",
-}) as any as S.Schema<TaskActivityReadMarker>;
-
-/** Displayed task activities to mark read if they have not changed. */
-export type TaskActivityMarkReadCreateRequestActivitiesList =
-  Array<TaskActivityReadMarker>;
-export const TaskActivityMarkReadCreateRequestActivitiesList =
-  /*@__PURE__*/ S.Array(
-    TaskActivityReadMarker,
-  ) as any as S.Schema<TaskActivityMarkReadCreateRequestActivitiesList>;
-
-export interface CreateTaskActivityMarkReadRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Displayed task activities to mark read if they have not changed. */
-  activities: TaskActivityMarkReadCreateRequestActivitiesList;
-}
-export const CreateTaskActivityMarkReadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    activities: TaskActivityMarkReadCreateRequestActivitiesList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/task_activity/mark_read/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateTaskActivityMarkReadRequest",
-}) as any as S.Schema<CreateTaskActivityMarkReadRequest>;
-
-export interface TaskActivityMarkReadResponse {
-  /** How many feed rows changed from unread to read. */
-  marked_read: number;
-  /** The requester's remaining unread total after the update. */
-  unread_count: number;
-}
-export const TaskActivityMarkReadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    marked_read: S.Number,
-    unread_count: S.Number,
-  }),
-).annotate({
-  identifier: "TaskActivityMarkReadResponse",
-}) as any as S.Schema<TaskActivityMarkReadResponse>;
-
 export interface ListTaskActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -217,20 +155,67 @@ export const TaskActivityPageDTO = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskActivityPageDTO",
 }) as any as S.Schema<TaskActivityPageDTO>;
 
-export type CreateTaskActivityMarkReadError = PosthogOpError;
-/** Mark task activity read Clear collapsed task activity through task timestamps and individual comment activity through activity IDs. */
-export const createTaskActivityMarkRead: API.OperationMethod<
-  CreateTaskActivityMarkReadRequest,
-  TaskActivityMarkReadResponse,
-  CreateTaskActivityMarkReadError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateTaskActivityMarkReadRequest,
-  output: TaskActivityMarkReadResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+export interface TaskActivityReadMarker {
+  /** Task whose displayed activity should be marked read. */
+  task_id: string;
+  /** Comment activity row to mark read. Omit for collapsed task activity. */
+  activity_id?: string | null;
+  /** Mark activity at or before this timestamp read without clearing newer activity. */
+  seen_before: string;
+}
+export const TaskActivityReadMarker = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    activity_id: S.optional(S.NullOr(S.String)),
+    seen_before: S.String,
+  }),
+).annotate({
+  identifier: "TaskActivityReadMarker",
+}) as any as S.Schema<TaskActivityReadMarker>;
+
+/** Displayed task activities to mark read if they have not changed. */
+export type TaskActivityMarkReadCreateRequestActivitiesList =
+  Array<TaskActivityReadMarker>;
+export const TaskActivityMarkReadCreateRequestActivitiesList =
+  /*@__PURE__*/ S.Array(
+    TaskActivityReadMarker,
+  ) as any as S.Schema<TaskActivityMarkReadCreateRequestActivitiesList>;
+
+export interface TaskActivityMarkReadCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Displayed task activities to mark read if they have not changed. */
+  activities: TaskActivityMarkReadCreateRequestActivitiesList;
+}
+export const TaskActivityMarkReadCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    activities: TaskActivityMarkReadCreateRequestActivitiesList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/task_activity/mark_read/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskActivityMarkReadCreateRequest",
+}) as any as S.Schema<TaskActivityMarkReadCreateRequest>;
+
+export interface TaskActivityMarkReadResponse {
+  /** How many feed rows changed from unread to read. */
+  marked_read: number;
+  /** The requester's remaining unread total after the update. */
+  unread_count: number;
+}
+export const TaskActivityMarkReadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    marked_read: S.Number,
+    unread_count: S.Number,
+  }),
+).annotate({
+  identifier: "TaskActivityMarkReadResponse",
+}) as any as S.Schema<TaskActivityMarkReadResponse>;
 
 export type ListTaskActivityError = PosthogOpError;
 /** List the requester's task activity Task lifecycle rows collapse per task. Comment notifications remain separate. Results are most-recent first and restricted to tasks the requester can see. */
@@ -242,6 +227,21 @@ export const listTaskActivity: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTaskActivityRequest,
   output: TaskActivityPageDTO,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskActivityMarkReadCreateError = PosthogOpError;
+/** Mark task activity read Clear collapsed task activity through task timestamps and individual comment activity through activity IDs. */
+export const taskActivityMarkReadCreate: API.OperationMethod<
+  TaskActivityMarkReadCreateRequest,
+  TaskActivityMarkReadResponse,
+  TaskActivityMarkReadCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskActivityMarkReadCreateRequest,
+  output: TaskActivityMarkReadResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

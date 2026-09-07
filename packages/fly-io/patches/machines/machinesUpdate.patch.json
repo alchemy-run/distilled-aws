@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "add",
-      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}/post/responses/409",
+      "path": "/paths/~1v1~1apps~1{app_name}~1machines~1{machine_id}/post/responses/409",
       "value": {
         "description": "Conflict"
       }

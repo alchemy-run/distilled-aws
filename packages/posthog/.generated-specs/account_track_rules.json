@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.account_track_rules#ListAccountTrackRulesRequest": {
@@ -251,7 +252,7 @@
         }
       }
     },
-    "com.posthog.account_track_rules#AccountTrackRulesUpdateRequestGroupsList": {
+    "com.posthog.account_track_rules#UpdateAccountTrackRuleRequestGroupsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.account_track_rules#AccountTrackRuleGroup"
@@ -288,7 +289,7 @@
           }
         },
         "groups": {
-          "target": "com.posthog.account_track_rules#AccountTrackRulesUpdateRequestGroupsList",
+          "target": "com.posthog.account_track_rules#UpdateAccountTrackRuleRequestGroupsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -314,14 +315,14 @@
         }
       }
     },
-    "com.posthog.account_track_rules#AccountTrackRulesPreviewCreateRequestGroupsList": {
+    "com.posthog.account_track_rules#CreateAccountTrackRulesPreviewRequestGroupsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.account_track_rules#AccountTrackRuleGroup"
       },
       "traits": {}
     },
-    "com.posthog.account_track_rules#CreateAccountTrackRulePreviewRequest": {
+    "com.posthog.account_track_rules#CreateAccountTrackRulesPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -351,7 +352,7 @@
           }
         },
         "groups": {
-          "target": "com.posthog.account_track_rules#AccountTrackRulesPreviewCreateRequestGroupsList",
+          "target": "com.posthog.account_track_rules#CreateAccountTrackRulesPreviewRequestGroupsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -486,10 +487,10 @@
       },
       "traits": {}
     },
-    "com.posthog.account_track_rules#CreateAccountTrackRulePreview": {
+    "com.posthog.account_track_rules#CreateAccountTrackRulesPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_track_rules#CreateAccountTrackRulePreviewRequest"
+        "target": "com.posthog.account_track_rules#CreateAccountTrackRulesPreviewRequest"
       },
       "output": {
         "target": "com.posthog.account_track_rules#AccountTrackRulePreview"
@@ -502,7 +503,7 @@
         }
       }
     },
-    "com.posthog.account_track_rules#CreateAccountTrackRuleRunRequest": {
+    "com.posthog.account_track_rules#CreateAccountTrackRulesRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -530,10 +531,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.account_track_rules#CreateAccountTrackRuleRun": {
+    "com.posthog.account_track_rules#CreateAccountTrackRulesRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_track_rules#CreateAccountTrackRuleRunRequest"
+        "target": "com.posthog.account_track_rules#CreateAccountTrackRulesRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -546,7 +547,7 @@
         }
       }
     },
-    "com.posthog.account_track_rules#ListAccountTrackRuleRunsRequest": {
+    "com.posthog.account_track_rules#ListAccountTrackRulesRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -713,10 +714,10 @@
       },
       "traits": {}
     },
-    "com.posthog.account_track_rules#ListAccountTrackRuleRuns": {
+    "com.posthog.account_track_rules#ListAccountTrackRulesRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_track_rules#ListAccountTrackRuleRunsRequest"
+        "target": "com.posthog.account_track_rules#ListAccountTrackRulesRunsRequest"
       },
       "output": {
         "target": "com.posthog.account_track_rules#PaginatedAccountTrackRuleRunViewList"
@@ -734,19 +735,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.account_track_rules#CreateAccountTrackRulesPreview"
+        },
+        {
+          "target": "com.posthog.account_track_rules#CreateAccountTrackRulesRun"
+        },
+        {
           "target": "com.posthog.account_track_rules#ListAccountTrackRules"
         },
         {
+          "target": "com.posthog.account_track_rules#ListAccountTrackRulesRuns"
+        },
+        {
           "target": "com.posthog.account_track_rules#UpdateAccountTrackRule"
-        },
-        {
-          "target": "com.posthog.account_track_rules#CreateAccountTrackRulePreview"
-        },
-        {
-          "target": "com.posthog.account_track_rules#CreateAccountTrackRuleRun"
-        },
-        {
-          "target": "com.posthog.account_track_rules#ListAccountTrackRuleRuns"
         }
       ],
       "traits": {

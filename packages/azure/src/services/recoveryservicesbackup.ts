@@ -12,341 +12,9 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Storage type */
-export type StorageType =
-  | "Invalid"
-  | "GeoRedundant"
-  | "LocallyRedundant"
-  | "ZoneRedundant"
-  | "ReadAccessGeoZoneRedundant";
-export const StorageType = /*@__PURE__*/ S.String;
-
-/** Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked. */
-export type StorageTypeState = "Invalid" | "Locked" | "Unlocked";
-export const StorageTypeState = /*@__PURE__*/ S.String;
-
-/** Enabled or Disabled. */
-export type EnhancedSecurityState = "Invalid" | "Enabled" | "Disabled";
-export const EnhancedSecurityState = /*@__PURE__*/ S.String;
-
-/** Soft Delete feature state */
-export type SoftDeleteFeatureState =
-  | "Invalid"
-  | "Enabled"
-  | "Disabled"
-  | "AlwaysON";
-export const SoftDeleteFeatureState = /*@__PURE__*/ S.String;
-
-/** ResourceGuard Operation Requests */
-export type BackupResourceVaultConfigResourceGuardOperationRequestsList =
-  Array<string>;
-export const BackupResourceVaultConfigResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigResourceGuardOperationRequestsList>;
-
-/** Backup resource vault config details. */
-export interface BackupResourceVaultConfig {
-  /** Storage type. */
-  storageModelType?: StorageType | (string & {});
-  /** Storage type. */
-  storageType?: StorageType | (string & {});
-  /** Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked. */
-  storageTypeState?: StorageTypeState | (string & {});
-  /** Enabled or Disabled. */
-  enhancedSecurityState?: EnhancedSecurityState | (string & {});
-  /** Soft Delete feature state */
-  softDeleteFeatureState?: SoftDeleteFeatureState | (string & {});
-  /** Soft delete retention period in days */
-  softDeleteRetentionPeriodInDays?: number;
-  /** ResourceGuard Operation Requests */
-  resourceGuardOperationRequests?: BackupResourceVaultConfigResourceGuardOperationRequestsList;
-  /** This flag is no longer in use. Please use 'softDeleteFeatureState' to set the soft delete state for the vault */
-  isSoftDeleteFeatureStateEditable?: boolean;
-}
-export const BackupResourceVaultConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storageModelType: S.optional(StorageType),
-    storageType: S.optional(StorageType),
-    storageTypeState: S.optional(StorageTypeState),
-    enhancedSecurityState: S.optional(EnhancedSecurityState),
-    softDeleteFeatureState: S.optional(SoftDeleteFeatureState),
-    softDeleteRetentionPeriodInDays: S.optional(S.Number),
-    resourceGuardOperationRequests: S.optional(
-      BackupResourceVaultConfigResourceGuardOperationRequestsList,
-    ),
-    isSoftDeleteFeatureStateEditable: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "BackupResourceVaultConfig",
-}) as any as S.Schema<BackupResourceVaultConfig>;
-
-/** Resource tags. */
-export type BackupResourceVaultConfigsPutRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupResourceVaultConfigsPutRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigsPutRequestTagsMap>;
-
-export interface BackupResourceVaultConfigsPutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** BackupResourceVaultConfigResource properties */
-  properties?: BackupResourceVaultConfig;
-  /** Resource tags. */
-  tags?: BackupResourceVaultConfigsPutRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const BackupResourceVaultConfigsPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      properties: S.optional(BackupResourceVaultConfig),
-      tags: S.optional(BackupResourceVaultConfigsPutRequestTagsMap),
-      location: S.optional(S.String),
-      eTag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupconfig/vaultconfig",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupResourceVaultConfigsPutRequest",
-}) as any as S.Schema<BackupResourceVaultConfigsPutRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** Resource tags. */
-export type BackupResourceVaultConfigsPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupResourceVaultConfigsPutResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigsPutResponseTagsMap>;
-
-export interface BackupResourceVaultConfigsPutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BackupResourceVaultConfigResource properties */
-  properties?: BackupResourceVaultConfig;
-  /** Resource tags. */
-  tags?: BackupResourceVaultConfigsPutResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const BackupResourceVaultConfigsPutResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BackupResourceVaultConfig),
-      tags: S.optional(BackupResourceVaultConfigsPutResponseTagsMap),
-      location: S.optional(S.String),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BackupResourceVaultConfigsPutResponse",
-}) as any as S.Schema<BackupResourceVaultConfigsPutResponse>;
-
-/** Resource tags. */
-export type BackupsTriggerRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupsTriggerRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupsTriggerRequestTagsMap>;
-
-/** Base class for backup request. Workload-specific backup requests are derived from this class. */
-export interface BackupRequest {
-  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
-  objectType: string;
-}
-export const BackupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectType: S.String,
-  }),
-).annotate({ identifier: "BackupRequest" }) as any as S.Schema<BackupRequest>;
-
-export interface BackupsTriggerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-  /** Backed up item name whose details are to be fetched. */
-  protectedItemName: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: BackupsTriggerRequestTagsMap;
-  /** Optional ETag. */
-  eTag?: string;
-  /** BackupRequestResource properties */
-  properties?: BackupRequest;
-}
-export const BackupsTriggerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(BackupsTriggerRequestTagsMap),
-    eTag: S.optional(S.String),
-    properties: S.optional(BackupRequest),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/backup",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupsTriggerRequest",
-}) as any as S.Schema<BackupsTriggerRequest>;
-
-export interface BackupsTriggerResponse {}
-export const BackupsTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BackupsTriggerResponse",
-}) as any as S.Schema<BackupsTriggerResponse>;
-
 /** DataMove Level */
 export type DataMoveLevel = "Invalid" | "Vault" | "Container";
 export const DataMoveLevel = /*@__PURE__*/ S.String;
-
-/** Source Container ArmIds This needs to be populated only if DataMoveLevel is set to container */
-export type BMSPrepareDataMoveRequestSourceContainerArmIdsList = Array<string>;
-export const BMSPrepareDataMoveRequestSourceContainerArmIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BMSPrepareDataMoveRequestSourceContainerArmIdsList>;
-
-export interface BMSPrepareDataMoveRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** ARM Id of target vault */
-  targetResourceId: string;
-  /** Target Region */
-  targetRegion: string;
-  /** DataMove Level */
-  dataMoveLevel: DataMoveLevel | (string & {});
-  /** Source Container ArmIds This needs to be populated only if DataMoveLevel is set to container */
-  sourceContainerArmIds?: BMSPrepareDataMoveRequestSourceContainerArmIdsList;
-  /** Ignore the artifacts which are already moved. */
-  ignoreMoved?: boolean;
-}
-export const BMSPrepareDataMoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    targetResourceId: S.String,
-    targetRegion: S.String,
-    dataMoveLevel: DataMoveLevel,
-    sourceContainerArmIds: S.optional(
-      BMSPrepareDataMoveRequestSourceContainerArmIdsList,
-    ),
-    ignoreMoved: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig/prepareDataMove",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BMSPrepareDataMoveRequest",
-}) as any as S.Schema<BMSPrepareDataMoveRequest>;
-
-export interface BMSPrepareDataMoveResponse {}
-export const BMSPrepareDataMoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BMSPrepareDataMoveResponse",
-}) as any as S.Schema<BMSPrepareDataMoveResponse>;
 
 /** Source Container ArmIds */
 export type BMSTriggerDataMoveRequestSourceContainerArmIdsList = Array<string>;
@@ -393,7 +61,7 @@ export const BMSTriggerDataMoveRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig/triggerDataMove",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -406,107 +74,6 @@ export const BMSTriggerDataMoveResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BMSTriggerDataMoveResponse",
 }) as any as S.Schema<BMSTriggerDataMoveResponse>;
-
-/** Source scan configuration status for enabling or disabling source scan */
-export type SourceScanAction = "Enable" | "Disable";
-export const SourceScanAction = /*@__PURE__*/ S.String;
-
-export interface ConfigureSourceScanExecuteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-  /** Backed up item name whose details are to be fetched. */
-  protectedItemName: string;
-  /** Source scan action to perform */
-  sourceScanAction?: SourceScanAction | (string & {});
-}
-export const ConfigureSourceScanExecuteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    sourceScanAction: S.optional(SourceScanAction),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/configureSourceScan",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigureSourceScanExecuteRequest",
-}) as any as S.Schema<ConfigureSourceScanExecuteRequest>;
-
-/** Operation status. */
-export type OperationStatusValues =
-  | "Invalid"
-  | "InProgress"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const OperationStatusValues = /*@__PURE__*/ S.String;
-
-/** Error information associated with operation status call. */
-export interface OperationStatusError {
-  /** Error code of the operation failure. */
-  code?: string;
-  /** Error message displayed if the operation failure. */
-  message?: string;
-}
-export const OperationStatusError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationStatusError",
-}) as any as S.Schema<OperationStatusError>;
-
-/** Base class for additional information of operation status. */
-export type OperationStatusExtendedInfo = BackupRequest;
-export const OperationStatusExtendedInfo = BackupRequest;
-
-/** Operation status. */
-export interface OperationStatus {
-  /** ID of the operation. */
-  id?: string;
-  /** Name of the operation. */
-  name?: string;
-  /** Operation status. */
-  status?: OperationStatusValues;
-  /** Operation start time. Format: ISO-8601. */
-  startTime?: string;
-  /** Operation end time. Format: ISO-8601. */
-  endTime?: string;
-  /** Error information related to this operation. */
-  error?: OperationStatusError;
-  /** Additional information associated with this operation. */
-  properties?: BackupRequest;
-}
-export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.optional(OperationStatusValues),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    error: S.optional(OperationStatusError),
-    properties: S.optional(BackupRequest),
-  }),
-).annotate({
-  identifier: "OperationStatus",
-}) as any as S.Schema<OperationStatus>;
 
 export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. */
@@ -530,7 +97,7 @@ export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -571,7 +138,7 @@ export const DeleteProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -609,7 +176,7 @@ export const DeleteProtectionIntentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/backupProtectionIntent/{intentObjectName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -644,7 +211,7 @@ export const DeleteProtectionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies/{policyName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -678,7 +245,7 @@ export const DeleteResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -692,162 +259,150 @@ export const DeleteResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteResourceGuardProxyResponse",
 }) as any as S.Schema<DeleteResourceGuardProxyResponse>;
 
-export type ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
-  Array<string>;
-export const ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList>;
+/** Source scan configuration status for enabling or disabling source scan */
+export type SourceScanAction = "Enable" | "Disable";
+export const SourceScanAction = /*@__PURE__*/ S.String;
 
-export interface DeleteResourceGuardProxyUnlockRequest {
+export interface ExecuteConfigureSourceScanRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the VaultResource */
   vaultName: string;
-  resourceGuardProxyName: string;
-  resourceGuardOperationRequests?: ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList;
-  resourceToBeDeleted?: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** Backed up item name whose details are to be fetched. */
+  protectedItemName: string;
+  /** Source scan action to perform */
+  sourceScanAction?: SourceScanAction | (string & {});
 }
-export const DeleteResourceGuardProxyUnlockRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      resourceGuardProxyName: S.String.pipe(T.Label()),
-      resourceGuardOperationRequests: S.optional(
-        ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList,
-      ),
-      resourceToBeDeleted: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}/unlockDelete",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeleteResourceGuardProxyUnlockRequest",
-}) as any as S.Schema<DeleteResourceGuardProxyUnlockRequest>;
-
-/** Response of Unlock Delete API. */
-export interface UnlockDeleteResponse {
-  /** This is the time when unlock delete privileges will get expired. */
-  unlockDeleteExpiryTime?: string;
-}
-export const UnlockDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unlockDeleteExpiryTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UnlockDeleteResponse",
-}) as any as S.Schema<UnlockDeleteResponse>;
-
-export interface FeatureSupportValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Azure region to hit Api */
-  azureRegion: string;
-  /** backup support feature type. */
-  featureType: string;
-}
-export const FeatureSupportValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExecuteConfigureSourceScanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    azureRegion: S.String.pipe(T.Label()),
-    featureType: S.String,
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    sourceScanAction: S.optional(SourceScanAction),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupValidateFeatures",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/configureSourceScan",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "FeatureSupportValidateRequest",
-}) as any as S.Schema<FeatureSupportValidateRequest>;
+  identifier: "ExecuteConfigureSourceScanRequest",
+}) as any as S.Schema<ExecuteConfigureSourceScanRequest>;
 
-/** Support status of feature */
-export type SupportStatus =
+/** Operation status. */
+export type OperationStatusValues =
   | "Invalid"
-  | "Supported"
-  | "DefaultOFF"
-  | "DefaultON"
-  | "NotSupported";
-export const SupportStatus = /*@__PURE__*/ S.String;
+  | "InProgress"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const OperationStatusValues = /*@__PURE__*/ S.String;
 
-/** Response for feature support requests for Azure IaasVm */
-export interface AzureVMResourceFeatureSupportResponse {
-  /** Support status of feature */
-  supportStatus?: SupportStatus;
+/** Error information associated with operation status call. */
+export interface OperationStatusError {
+  /** Error code of the operation failure. */
+  code?: string;
+  /** Error message displayed if the operation failure. */
+  message?: string;
 }
-export const AzureVMResourceFeatureSupportResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      supportStatus: S.optional(SupportStatus),
-    }),
+export const OperationStatusError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "AzureVMResourceFeatureSupportResponse",
-}) as any as S.Schema<AzureVMResourceFeatureSupportResponse>;
+  identifier: "OperationStatusError",
+}) as any as S.Schema<OperationStatusError>;
 
-/** Recovery point tier type. */
-export type RecoveryPointTierType =
-  | "Invalid"
-  | "InstantRP"
-  | "HardenedRP"
-  | "ArchivedRP";
-export const RecoveryPointTierType = /*@__PURE__*/ S.String;
+/** Base class for additional information of operation status. */
+export interface OperationStatusExtendedInfo {
+  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
+  objectType: string;
+}
+export const OperationStatusExtendedInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectType: S.String,
+  }),
+).annotate({
+  identifier: "OperationStatusExtendedInfo",
+}) as any as S.Schema<OperationStatusExtendedInfo>;
 
-export interface FetchTieringCostPostRequest {
+/** Operation status. */
+export interface OperationStatus {
+  /** ID of the operation. */
+  id?: string;
+  /** Name of the operation. */
+  name?: string;
+  /** Operation status. */
+  status?: OperationStatusValues;
+  /** Operation start time. Format: ISO-8601. */
+  startTime?: string;
+  /** Operation end time. Format: ISO-8601. */
+  endTime?: string;
+  /** Error information related to this operation. */
+  error?: OperationStatusError;
+  /** Additional information associated with this operation. */
+  properties?: OperationStatusExtendedInfo;
+}
+export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.optional(OperationStatusValues),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    error: S.optional(OperationStatusError),
+    properties: S.optional(OperationStatusExtendedInfo),
+  }),
+).annotate({
+  identifier: "OperationStatus",
+}) as any as S.Schema<OperationStatus>;
+
+export interface ExportJobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the recovery services vault. */
   vaultName: string;
-  /** Source tier for the request */
-  sourceTierType: RecoveryPointTierType | (string & {});
-  /** target tier for the request */
-  targetTierType: RecoveryPointTierType | (string & {});
-  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
-  objectType: string;
+  /** OData filter options. */
+  _filter?: string;
 }
-export const FetchTieringCostPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    sourceTierType: RecoveryPointTierType,
-    targetTierType: RecoveryPointTierType,
-    objectType: S.String,
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTieringCost/default/fetchTieringCost",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobsExport",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "FetchTieringCostPostRequest",
-}) as any as S.Schema<FetchTieringCostPostRequest>;
+  identifier: "ExportJobRequest",
+}) as any as S.Schema<ExportJobRequest>;
 
-/** Base class for tiering cost response */
-export interface TieringCostInfo {
-  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
-  objectType: string;
-}
-export const TieringCostInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectType: S.String,
-  }),
+export interface ExportJobResponse {}
+export const ExportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "TieringCostInfo",
-}) as any as S.Schema<TieringCostInfo>;
+  identifier: "ExportJobResponse",
+}) as any as S.Schema<ExportJobResponse>;
 
 export interface GetBackupEngineRequest {
   /** The ID of the target subscription. */
@@ -876,12 +431,54 @@ export const GetBackupEngineRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupEngines/{backupEngineName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
   identifier: "GetBackupEngineRequest",
 }) as any as S.Schema<GetBackupEngineRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Backup management type to execute the current job. */
 export type BackupManagementType =
@@ -987,13 +584,13 @@ export const BackupEngineBase = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupEngineBase>;
 
 /** Resource tags. */
-export type BackupEnginesGetResponseTagsMap = {
+export type GetBackupEngineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupEnginesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBackupEngineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupEnginesGetResponseTagsMap>;
+) as any as S.Schema<GetBackupEngineResponseTagsMap>;
 
 export interface GetBackupEngineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1007,7 +604,7 @@ export interface GetBackupEngineResponse {
   /** BackupEngineBaseResource properties */
   properties?: BackupEngineBase;
   /** Resource tags. */
-  tags?: BackupEnginesGetResponseTagsMap;
+  tags?: GetBackupEngineResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -1020,7 +617,7 @@ export const GetBackupEngineResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BackupEngineBase),
-    tags: S.optional(BackupEnginesGetResponseTagsMap),
+    tags: S.optional(GetBackupEngineResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -1049,7 +646,7 @@ export const GetBackupOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupOperationResults/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1084,7 +681,7 @@ export const GetBackupOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupOperations/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1110,7 +707,7 @@ export const GetBackupResourceEncryptionConfigRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupEncryptionConfigs/backupResourceEncryptionConfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -1168,14 +765,14 @@ export const BackupResourceEncryptionConfigExtended = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<BackupResourceEncryptionConfigExtended>;
 
 /** Resource tags. */
-export type BackupResourceEncryptionConfigsGetResponseTagsMap = {
+export type GetBackupResourceEncryptionConfigResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceEncryptionConfigsGetResponseTagsMap =
+export const GetBackupResourceEncryptionConfigResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceEncryptionConfigsGetResponseTagsMap>;
+  ) as any as S.Schema<GetBackupResourceEncryptionConfigResponseTagsMap>;
 
 export interface GetBackupResourceEncryptionConfigResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1189,7 +786,7 @@ export interface GetBackupResourceEncryptionConfigResponse {
   /** The properties of the backup resource encryption config extended resource */
   properties?: BackupResourceEncryptionConfigExtended;
   /** Resource tags. */
-  tags?: BackupResourceEncryptionConfigsGetResponseTagsMap;
+  tags?: GetBackupResourceEncryptionConfigResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -1203,7 +800,7 @@ export const GetBackupResourceEncryptionConfigResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BackupResourceEncryptionConfigExtended),
-      tags: S.optional(BackupResourceEncryptionConfigsGetResponseTagsMap),
+      tags: S.optional(GetBackupResourceEncryptionConfigResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -1211,7 +808,7 @@ export const GetBackupResourceEncryptionConfigResponse =
     identifier: "GetBackupResourceEncryptionConfigResponse",
   }) as any as S.Schema<GetBackupResourceEncryptionConfigResponse>;
 
-export interface GetBackupResourceStorageConfigNonCrrRequest {
+export interface GetBackupResourceStorageConfigsNonCRRRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1219,7 +816,7 @@ export interface GetBackupResourceStorageConfigNonCrrRequest {
   /** The name of the VaultResource */
   vaultName: string;
 }
-export const GetBackupResourceStorageConfigNonCrrRequest =
+export const GetBackupResourceStorageConfigsNonCRRRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1230,12 +827,25 @@ export const GetBackupResourceStorageConfigNonCrrRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
-    identifier: "GetBackupResourceStorageConfigNonCrrRequest",
-  }) as any as S.Schema<GetBackupResourceStorageConfigNonCrrRequest>;
+    identifier: "GetBackupResourceStorageConfigsNonCRRRequest",
+  }) as any as S.Schema<GetBackupResourceStorageConfigsNonCRRRequest>;
+
+/** Storage type */
+export type StorageType =
+  | "Invalid"
+  | "GeoRedundant"
+  | "LocallyRedundant"
+  | "ZoneRedundant"
+  | "ReadAccessGeoZoneRedundant";
+export const StorageType = /*@__PURE__*/ S.String;
+
+/** Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked. */
+export type StorageTypeState = "Invalid" | "Locked" | "Unlocked";
+export const StorageTypeState = /*@__PURE__*/ S.String;
 
 /** Vault Dedup state */
 export type DedupState = "Invalid" | "Enabled" | "Disabled";
@@ -1274,16 +884,16 @@ export const BackupResourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupResourceConfig>;
 
 /** Resource tags. */
-export type BackupResourceStorageConfigsNonCRRGetResponseTagsMap = {
+export type GetBackupResourceStorageConfigsNonCRRResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceStorageConfigsNonCRRGetResponseTagsMap =
+export const GetBackupResourceStorageConfigsNonCRRResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceStorageConfigsNonCRRGetResponseTagsMap>;
+  ) as any as S.Schema<GetBackupResourceStorageConfigsNonCRRResponseTagsMap>;
 
-export interface GetBackupResourceStorageConfigNonCrrResponse {
+export interface GetBackupResourceStorageConfigsNonCRRResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1295,13 +905,13 @@ export interface GetBackupResourceStorageConfigNonCrrResponse {
   /** BackupResourceConfigResource properties */
   properties?: BackupResourceConfig;
   /** Resource tags. */
-  tags?: BackupResourceStorageConfigsNonCRRGetResponseTagsMap;
+  tags?: GetBackupResourceStorageConfigsNonCRRResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const GetBackupResourceStorageConfigNonCrrResponse =
+export const GetBackupResourceStorageConfigsNonCRRResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1309,13 +919,13 @@ export const GetBackupResourceStorageConfigNonCrrResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BackupResourceConfig),
-      tags: S.optional(BackupResourceStorageConfigsNonCRRGetResponseTagsMap),
+      tags: S.optional(GetBackupResourceStorageConfigsNonCRRResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "GetBackupResourceStorageConfigNonCrrResponse",
-  }) as any as S.Schema<GetBackupResourceStorageConfigNonCrrResponse>;
+    identifier: "GetBackupResourceStorageConfigsNonCRRResponse",
+  }) as any as S.Schema<GetBackupResourceStorageConfigsNonCRRResponse>;
 
 export interface GetBackupResourceVaultConfigRequest {
   /** The ID of the target subscription. */
@@ -1335,22 +945,78 @@ export const GetBackupResourceVaultConfigRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupconfig/vaultconfig",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
   identifier: "GetBackupResourceVaultConfigRequest",
 }) as any as S.Schema<GetBackupResourceVaultConfigRequest>;
 
+/** Enabled or Disabled. */
+export type EnhancedSecurityState = "Invalid" | "Enabled" | "Disabled";
+export const EnhancedSecurityState = /*@__PURE__*/ S.String;
+
+/** Soft Delete feature state */
+export type SoftDeleteFeatureState =
+  | "Invalid"
+  | "Enabled"
+  | "Disabled"
+  | "AlwaysON";
+export const SoftDeleteFeatureState = /*@__PURE__*/ S.String;
+
+/** ResourceGuard Operation Requests */
+export type BackupResourceVaultConfigResourceGuardOperationRequestsList =
+  Array<string>;
+export const BackupResourceVaultConfigResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BackupResourceVaultConfigResourceGuardOperationRequestsList>;
+
+/** Backup resource vault config details. */
+export interface BackupResourceVaultConfig {
+  /** Storage type. */
+  storageModelType?: StorageType | (string & {});
+  /** Storage type. */
+  storageType?: StorageType | (string & {});
+  /** Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked. */
+  storageTypeState?: StorageTypeState | (string & {});
+  /** Enabled or Disabled. */
+  enhancedSecurityState?: EnhancedSecurityState | (string & {});
+  /** Soft Delete feature state */
+  softDeleteFeatureState?: SoftDeleteFeatureState | (string & {});
+  /** Soft delete retention period in days */
+  softDeleteRetentionPeriodInDays?: number;
+  /** ResourceGuard Operation Requests */
+  resourceGuardOperationRequests?: BackupResourceVaultConfigResourceGuardOperationRequestsList;
+  /** This flag is no longer in use. Please use 'softDeleteFeatureState' to set the soft delete state for the vault */
+  isSoftDeleteFeatureStateEditable?: boolean;
+}
+export const BackupResourceVaultConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageModelType: S.optional(StorageType),
+    storageType: S.optional(StorageType),
+    storageTypeState: S.optional(StorageTypeState),
+    enhancedSecurityState: S.optional(EnhancedSecurityState),
+    softDeleteFeatureState: S.optional(SoftDeleteFeatureState),
+    softDeleteRetentionPeriodInDays: S.optional(S.Number),
+    resourceGuardOperationRequests: S.optional(
+      BackupResourceVaultConfigResourceGuardOperationRequestsList,
+    ),
+    isSoftDeleteFeatureStateEditable: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "BackupResourceVaultConfig",
+}) as any as S.Schema<BackupResourceVaultConfig>;
+
 /** Resource tags. */
-export type BackupResourceVaultConfigsGetResponseTagsMap = {
+export type GetBackupResourceVaultConfigResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceVaultConfigsGetResponseTagsMap =
+export const GetBackupResourceVaultConfigResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigsGetResponseTagsMap>;
+  ) as any as S.Schema<GetBackupResourceVaultConfigResponseTagsMap>;
 
 export interface GetBackupResourceVaultConfigResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1364,7 +1030,7 @@ export interface GetBackupResourceVaultConfigResponse {
   /** BackupResourceVaultConfigResource properties */
   properties?: BackupResourceVaultConfig;
   /** Resource tags. */
-  tags?: BackupResourceVaultConfigsGetResponseTagsMap;
+  tags?: GetBackupResourceVaultConfigResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -1378,7 +1044,7 @@ export const GetBackupResourceVaultConfigResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BackupResourceVaultConfig),
-      tags: S.optional(BackupResourceVaultConfigsGetResponseTagsMap),
+      tags: S.optional(GetBackupResourceVaultConfigResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -1430,7 +1096,7 @@ export const GetBackupStatusRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupStatus",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1497,7 +1163,7 @@ export const BackupStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BackupStatusResponse",
 }) as any as S.Schema<BackupStatusResponse>;
 
-export interface GetBmsPrepareDataMoveOperationResultRequest {
+export interface GetBMSPrepareDataMoveOperationResultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1507,7 +1173,7 @@ export interface GetBmsPrepareDataMoveOperationResultRequest {
   /** The name of the BackupResourceConfigResource */
   operationId: string;
 }
-export const GetBmsPrepareDataMoveOperationResultRequest =
+export const GetBMSPrepareDataMoveOperationResultRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1519,12 +1185,12 @@ export const GetBmsPrepareDataMoveOperationResultRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig/operationResults/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
-    identifier: "GetBmsPrepareDataMoveOperationResultRequest",
-  }) as any as S.Schema<GetBmsPrepareDataMoveOperationResultRequest>;
+    identifier: "GetBMSPrepareDataMoveOperationResultRequest",
+  }) as any as S.Schema<GetBMSPrepareDataMoveOperationResultRequest>;
 
 /** Operation result response for Vault Storage Config */
 export interface VaultStorageConfigOperationResultResponse {
@@ -1540,7 +1206,7 @@ export const VaultStorageConfigOperationResultResponse =
     identifier: "VaultStorageConfigOperationResultResponse",
   }) as any as S.Schema<VaultStorageConfigOperationResultResponse>;
 
-export interface GetExportJobOperationResultRequest {
+export interface GetExportJobsOperationResultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1550,7 +1216,7 @@ export interface GetExportJobOperationResultRequest {
   /** The name of the JobResource */
   operationId: string;
 }
-export const GetExportJobOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExportJobsOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1561,12 +1227,12 @@ export const GetExportJobOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/operationResults/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "GetExportJobOperationResultRequest",
-}) as any as S.Schema<GetExportJobOperationResultRequest>;
+  identifier: "GetExportJobsOperationResultRequest",
+}) as any as S.Schema<GetExportJobsOperationResultRequest>;
 
 /** HTTP Status Code of the operation. */
 export type HttpStatusCode =
@@ -1619,46 +1285,88 @@ export type HttpStatusCode =
   | "HttpVersionNotSupported";
 export const HttpStatusCode = /*@__PURE__*/ S.String;
 
-export type ExportJobsOperationResultsGetResponseHeadersValueList =
+export type GetExportJobsOperationResultResponseHeadersValueList =
   Array<string>;
-export const ExportJobsOperationResultsGetResponseHeadersValueList =
+export const GetExportJobsOperationResultResponseHeadersValueList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ExportJobsOperationResultsGetResponseHeadersValueList>;
+  ) as any as S.Schema<GetExportJobsOperationResultResponseHeadersValueList>;
 
 /** HTTP headers associated with this operation. */
-export type ExportJobsOperationResultsGetResponseHeadersMap = {
+export type GetExportJobsOperationResultResponseHeadersMap = {
   [key: string]:
-    | ExportJobsOperationResultsGetResponseHeadersValueList
+    | GetExportJobsOperationResultResponseHeadersValueList
     | undefined;
 };
-export const ExportJobsOperationResultsGetResponseHeadersMap =
+export const GetExportJobsOperationResultResponseHeadersMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ExportJobsOperationResultsGetResponseHeadersValueList,
-  ) as any as S.Schema<ExportJobsOperationResultsGetResponseHeadersMap>;
+    GetExportJobsOperationResultResponseHeadersValueList,
+  ) as any as S.Schema<GetExportJobsOperationResultResponseHeadersMap>;
 
 /** Base class for operation result info. */
-export type OperationResultInfoBase = BackupRequest;
-export const OperationResultInfoBase = BackupRequest;
+export type OperationResultInfoBase = OperationStatusExtendedInfo;
+export const OperationResultInfoBase = OperationStatusExtendedInfo;
 
-export interface GetExportJobOperationResultResponse {
+export interface GetExportJobsOperationResultResponse {
   /** HTTP Status Code of the operation. */
   statusCode?: HttpStatusCode;
   /** HTTP headers associated with this operation. */
-  headers?: ExportJobsOperationResultsGetResponseHeadersMap;
+  headers?: GetExportJobsOperationResultResponseHeadersMap;
   /** OperationResultInfoBaseResource operation */
-  operation?: BackupRequest;
+  operation?: OperationStatusExtendedInfo;
 }
-export const GetExportJobOperationResultResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetExportJobsOperationResultResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      statusCode: S.optional(HttpStatusCode),
+      headers: S.optional(GetExportJobsOperationResultResponseHeadersMap),
+      operation: S.optional(OperationStatusExtendedInfo),
+    }),
+).annotate({
+  identifier: "GetExportJobsOperationResultResponse",
+}) as any as S.Schema<GetExportJobsOperationResultResponse>;
+
+export interface GetGetTieringCostOperationResultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  operationId: string;
+}
+export const GetGetTieringCostOperationResultRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTieringCost/default/operationResults/{operationId}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetGetTieringCostOperationResultRequest",
+}) as any as S.Schema<GetGetTieringCostOperationResultRequest>;
+
+/** Base class for tiering cost response */
+export interface TieringCostInfo {
+  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
+  objectType: string;
+}
+export const TieringCostInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    statusCode: S.optional(HttpStatusCode),
-    headers: S.optional(ExportJobsOperationResultsGetResponseHeadersMap),
-    operation: S.optional(BackupRequest),
+    objectType: S.String,
   }),
 ).annotate({
-  identifier: "GetExportJobOperationResultResponse",
-}) as any as S.Schema<GetExportJobOperationResultResponse>;
+  identifier: "TieringCostInfo",
+}) as any as S.Schema<TieringCostInfo>;
 
 export interface GetJobDetailRequest {
   /** The ID of the target subscription. */
@@ -1681,7 +1389,7 @@ export const GetJobDetailRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1721,13 +1429,11 @@ export const Job = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Job" }) as any as S.Schema<Job>;
 
 /** Resource tags. */
-export type JobDetailsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JobDetailsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetJobDetailResponseTagsMap = { [key: string]: string | undefined };
+export const GetJobDetailResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobDetailsGetResponseTagsMap>;
+) as any as S.Schema<GetJobDetailResponseTagsMap>;
 
 export interface GetJobDetailResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1741,7 +1447,7 @@ export interface GetJobDetailResponse {
   /** JobResource properties */
   properties?: Job;
   /** Resource tags. */
-  tags?: JobDetailsGetResponseTagsMap;
+  tags?: GetJobDetailResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -1754,7 +1460,7 @@ export const GetJobDetailResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(Job),
-    tags: S.optional(JobDetailsGetResponseTagsMap),
+    tags: S.optional(GetJobDetailResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -1786,7 +1492,7 @@ export const GetJobOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}/operationResults/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1821,7 +1527,7 @@ export const GetOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig/operationStatus/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1849,7 +1555,7 @@ export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -1940,14 +1646,14 @@ export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnection>;
 
 /** Resource tags. */
-export type PrivateEndpointConnectionGetResponseTagsMap = {
+export type GetPrivateEndpointConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateEndpointConnectionGetResponseTagsMap =
+export const GetPrivateEndpointConnectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionResponseTagsMap>;
 
 export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1961,7 +1667,7 @@ export interface GetPrivateEndpointConnectionResponse {
   /** PrivateEndpointConnectionResource properties */
   properties?: PrivateEndpointConnection;
   /** Resource tags. */
-  tags?: PrivateEndpointConnectionGetResponseTagsMap;
+  tags?: GetPrivateEndpointConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -1975,7 +1681,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(PrivateEndpointConnection),
-      tags: S.optional(PrivateEndpointConnectionGetResponseTagsMap),
+      tags: S.optional(GetPrivateEndpointConnectionResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -2008,7 +1714,7 @@ export const GetPrivateEndpointOperationStatusRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}/operationsStatus/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -2045,7 +1751,7 @@ export const GetProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -2170,13 +1876,13 @@ export const ProtectedItem = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ProtectedItem" }) as any as S.Schema<ProtectedItem>;
 
 /** Resource tags. */
-export type ProtectedItemsGetResponseTagsMap = {
+export type GetProtectedItemResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectedItemsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProtectedItemResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProtectedItemsGetResponseTagsMap>;
+) as any as S.Schema<GetProtectedItemResponseTagsMap>;
 
 export interface GetProtectedItemResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2190,7 +1896,7 @@ export interface GetProtectedItemResponse {
   /** ProtectedItemResource properties */
   properties?: ProtectedItem;
   /** Resource tags. */
-  tags?: ProtectedItemsGetResponseTagsMap;
+  tags?: GetProtectedItemResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2203,7 +1909,7 @@ export const GetProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProtectedItem),
-    tags: S.optional(ProtectedItemsGetResponseTagsMap),
+    tags: S.optional(GetProtectedItemResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -2242,7 +1948,7 @@ export const GetProtectedItemOperationResultRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/operationResults/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -2250,14 +1956,14 @@ export const GetProtectedItemOperationResultRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProtectedItemOperationResultRequest>;
 
 /** Resource tags. */
-export type ProtectedItemOperationResultsGetResponseTagsMap = {
+export type GetProtectedItemOperationResultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectedItemOperationResultsGetResponseTagsMap =
+export const GetProtectedItemOperationResultResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProtectedItemOperationResultsGetResponseTagsMap>;
+  ) as any as S.Schema<GetProtectedItemOperationResultResponseTagsMap>;
 
 export interface GetProtectedItemOperationResultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2271,7 +1977,7 @@ export interface GetProtectedItemOperationResultResponse {
   /** ProtectedItemResource properties */
   properties?: ProtectedItem;
   /** Resource tags. */
-  tags?: ProtectedItemOperationResultsGetResponseTagsMap;
+  tags?: GetProtectedItemOperationResultResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2285,7 +1991,7 @@ export const GetProtectedItemOperationResultResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ProtectedItem),
-      tags: S.optional(ProtectedItemOperationResultsGetResponseTagsMap),
+      tags: S.optional(GetProtectedItemOperationResultResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -2324,7 +2030,7 @@ export const GetProtectedItemOperationStatusRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/operationsStatus/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -2355,7 +2061,7 @@ export const GetProtectionContainerRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -2416,13 +2122,13 @@ export const ProtectionContainer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionContainer>;
 
 /** Resource tags. */
-export type ProtectionContainersGetResponseTagsMap = {
+export type GetProtectionContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectionContainersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProtectionContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProtectionContainersGetResponseTagsMap>;
+) as any as S.Schema<GetProtectionContainerResponseTagsMap>;
 
 export interface GetProtectionContainerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2436,7 +2142,7 @@ export interface GetProtectionContainerResponse {
   /** ProtectionContainerResource properties */
   properties?: ProtectionContainer;
   /** Resource tags. */
-  tags?: ProtectionContainersGetResponseTagsMap;
+  tags?: GetProtectionContainerResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2449,7 +2155,7 @@ export const GetProtectionContainerResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProtectionContainer),
-    tags: S.optional(ProtectionContainersGetResponseTagsMap),
+    tags: S.optional(GetProtectionContainerResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -2485,7 +2191,7 @@ export const GetProtectionContainerOperationResultRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/operationResults/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
@@ -2493,14 +2199,14 @@ export const GetProtectionContainerOperationResultRequest =
   }) as any as S.Schema<GetProtectionContainerOperationResultRequest>;
 
 /** Resource tags. */
-export type ProtectionContainerOperationResultsGetResponseTagsMap = {
+export type GetProtectionContainerOperationResultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectionContainerOperationResultsGetResponseTagsMap =
+export const GetProtectionContainerOperationResultResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProtectionContainerOperationResultsGetResponseTagsMap>;
+  ) as any as S.Schema<GetProtectionContainerOperationResultResponseTagsMap>;
 
 export interface GetProtectionContainerOperationResultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2514,7 +2220,7 @@ export interface GetProtectionContainerOperationResultResponse {
   /** ProtectionContainerResource properties */
   properties?: ProtectionContainer;
   /** Resource tags. */
-  tags?: ProtectionContainerOperationResultsGetResponseTagsMap;
+  tags?: GetProtectionContainerOperationResultResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2528,7 +2234,7 @@ export const GetProtectionContainerOperationResultResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ProtectionContainer),
-      tags: S.optional(ProtectionContainerOperationResultsGetResponseTagsMap),
+      tags: S.optional(GetProtectionContainerOperationResultResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -2561,7 +2267,7 @@ export const GetProtectionContainerRefreshOperationResultRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/operationResults/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
@@ -2598,7 +2304,7 @@ export const GetProtectionIntentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/backupProtectionIntent/{intentObjectName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -2644,13 +2350,13 @@ export const ProtectionIntent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionIntent>;
 
 /** Resource tags. */
-export type ProtectionIntentGetResponseTagsMap = {
+export type GetProtectionIntentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectionIntentGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProtectionIntentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProtectionIntentGetResponseTagsMap>;
+) as any as S.Schema<GetProtectionIntentResponseTagsMap>;
 
 export interface GetProtectionIntentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2664,7 +2370,7 @@ export interface GetProtectionIntentResponse {
   /** ProtectionIntentResource properties */
   properties?: ProtectionIntent;
   /** Resource tags. */
-  tags?: ProtectionIntentGetResponseTagsMap;
+  tags?: GetProtectionIntentResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2677,7 +2383,7 @@ export const GetProtectionIntentResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProtectionIntent),
-    tags: S.optional(ProtectionIntentGetResponseTagsMap),
+    tags: S.optional(GetProtectionIntentResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -2706,7 +2412,7 @@ export const GetProtectionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies/{policyName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -2742,13 +2448,13 @@ export const ProtectionPolicy = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionPolicy>;
 
 /** Resource tags. */
-export type ProtectionPoliciesGetResponseTagsMap = {
+export type GetProtectionPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectionPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProtectionPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProtectionPoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetProtectionPolicyResponseTagsMap>;
 
 export interface GetProtectionPolicyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2762,7 +2468,7 @@ export interface GetProtectionPolicyResponse {
   /** ProtectionPolicyResource properties */
   properties?: ProtectionPolicy;
   /** Resource tags. */
-  tags?: ProtectionPoliciesGetResponseTagsMap;
+  tags?: GetProtectionPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2775,7 +2481,7 @@ export const GetProtectionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProtectionPolicy),
-    tags: S.optional(ProtectionPoliciesGetResponseTagsMap),
+    tags: S.optional(GetProtectionPolicyResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -2808,7 +2514,7 @@ export const GetProtectionPolicyOperationResultRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies/{policyName}/operationResults/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
@@ -2816,14 +2522,14 @@ export const GetProtectionPolicyOperationResultRequest =
   }) as any as S.Schema<GetProtectionPolicyOperationResultRequest>;
 
 /** Resource tags. */
-export type ProtectionPolicyOperationResultsGetResponseTagsMap = {
+export type GetProtectionPolicyOperationResultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProtectionPolicyOperationResultsGetResponseTagsMap =
+export const GetProtectionPolicyOperationResultResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProtectionPolicyOperationResultsGetResponseTagsMap>;
+  ) as any as S.Schema<GetProtectionPolicyOperationResultResponseTagsMap>;
 
 export interface GetProtectionPolicyOperationResultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2837,7 +2543,7 @@ export interface GetProtectionPolicyOperationResultResponse {
   /** ProtectionPolicyResource properties */
   properties?: ProtectionPolicy;
   /** Resource tags. */
-  tags?: ProtectionPolicyOperationResultsGetResponseTagsMap;
+  tags?: GetProtectionPolicyOperationResultResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -2851,7 +2557,7 @@ export const GetProtectionPolicyOperationResultResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ProtectionPolicy),
-      tags: S.optional(ProtectionPolicyOperationResultsGetResponseTagsMap),
+      tags: S.optional(GetProtectionPolicyOperationResultResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -2884,7 +2590,7 @@ export const GetProtectionPolicyOperationStatusRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies/{policyName}/operations/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
@@ -2921,7 +2627,7 @@ export const GetRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3001,13 +2707,13 @@ export const RecoveryPoint = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "RecoveryPoint" }) as any as S.Schema<RecoveryPoint>;
 
 /** Resource tags. */
-export type RecoveryPointsGetResponseTagsMap = {
+export type GetRecoveryPointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RecoveryPointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRecoveryPointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RecoveryPointsGetResponseTagsMap>;
+) as any as S.Schema<GetRecoveryPointResponseTagsMap>;
 
 export interface GetRecoveryPointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3021,7 +2727,7 @@ export interface GetRecoveryPointResponse {
   /** RecoveryPointResource properties */
   properties?: RecoveryPoint;
   /** Resource tags. */
-  tags?: RecoveryPointsGetResponseTagsMap;
+  tags?: GetRecoveryPointResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -3034,7 +2740,7 @@ export const GetRecoveryPointResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(RecoveryPoint),
-    tags: S.optional(RecoveryPointsGetResponseTagsMap),
+    tags: S.optional(GetRecoveryPointResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
@@ -3049,20 +2755,18 @@ export interface GetResourceGuardProxyRequest {
   resourceGroupName: string;
   /** The name of the VaultResource */
   vaultName: string;
-  resourceGuardProxyName: string;
 }
 export const GetResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    resourceGuardProxyName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3109,15 +2813,15 @@ export const ResourceGuardProxyBase = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourceGuardProxyBase>;
 
 /** Resource tags. */
-export type ResourceGuardProxyGetResponseTagsMap = {
+export type ResourceGuardProxyBaseResourceTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGuardProxyGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ResourceGuardProxyBaseResourceTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGuardProxyGetResponseTagsMap>;
+) as any as S.Schema<ResourceGuardProxyBaseResourceTagsMap>;
 
-export interface GetResourceGuardProxyResponse {
+export interface ResourceGuardProxyBaseResource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3129,36 +2833,127 @@ export interface GetResourceGuardProxyResponse {
   /** ResourceGuardProxyBaseResource properties */
   properties?: ResourceGuardProxyBase;
   /** Resource tags. */
-  tags?: ResourceGuardProxyGetResponseTagsMap;
+  tags?: ResourceGuardProxyBaseResourceTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const GetResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
+export const ResourceGuardProxyBaseResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ResourceGuardProxyBase),
-    tags: S.optional(ResourceGuardProxyGetResponseTagsMap),
+    tags: S.optional(ResourceGuardProxyBaseResourceTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceGuardProxyBaseResource",
+}) as any as S.Schema<ResourceGuardProxyBaseResource>;
+
+/** List of resources. */
+export type GetResourceGuardProxyResponseValueList =
+  Array<ResourceGuardProxyBaseResource>;
+export const GetResourceGuardProxyResponseValueList = /*@__PURE__*/ S.Array(
+  ResourceGuardProxyBaseResource,
+) as any as S.Schema<GetResourceGuardProxyResponseValueList>;
+
+export interface GetResourceGuardProxyResponse {
+  /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: GetResourceGuardProxyResponseValueList;
+}
+export const GetResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(GetResourceGuardProxyResponseValueList),
   }),
 ).annotate({
   identifier: "GetResourceGuardProxyResponse",
 }) as any as S.Schema<GetResourceGuardProxyResponse>;
 
+export interface GetResourceGuardProxyRequest2 {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  resourceGuardProxyName: string;
+}
+export const GetResourceGuardProxyRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    resourceGuardProxyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetResourceGuardProxyRequest2",
+}) as any as S.Schema<GetResourceGuardProxyRequest2>;
+
+/** Resource tags. */
+export type GetResourceGuardProxyResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetResourceGuardProxyResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetResourceGuardProxyResponseTagsMap>;
+
+export interface GetResourceGuardProxyResponse2 {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** ResourceGuardProxyBaseResource properties */
+  properties?: ResourceGuardProxyBase;
+  /** Resource tags. */
+  tags?: GetResourceGuardProxyResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const GetResourceGuardProxyResponse2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ResourceGuardProxyBase),
+    tags: S.optional(GetResourceGuardProxyResponseTagsMap),
+    location: S.optional(S.String),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetResourceGuardProxyResponse2",
+}) as any as S.Schema<GetResourceGuardProxyResponse2>;
+
 /** ResourceGuard Operation Requests */
-export type SecurityPINsGetRequestResourceGuardOperationRequestsList =
+export type GetSecurityPINRequestResourceGuardOperationRequestsList =
   Array<string>;
-export const SecurityPINsGetRequestResourceGuardOperationRequestsList =
+export const GetSecurityPINRequestResourceGuardOperationRequestsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SecurityPINsGetRequestResourceGuardOperationRequestsList>;
+  ) as any as S.Schema<GetSecurityPINRequestResourceGuardOperationRequestsList>;
 
-export interface GetSecurityPiNsRequest {
+export interface GetSecurityPINRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3166,27 +2961,27 @@ export interface GetSecurityPiNsRequest {
   /** The name of the recovery services vault. */
   vaultName: string;
   /** ResourceGuard Operation Requests */
-  resourceGuardOperationRequests?: SecurityPINsGetRequestResourceGuardOperationRequestsList;
+  resourceGuardOperationRequests?: GetSecurityPINRequestResourceGuardOperationRequestsList;
 }
-export const GetSecurityPiNsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSecurityPINRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     resourceGuardOperationRequests: S.optional(
-      SecurityPINsGetRequestResourceGuardOperationRequestsList,
+      GetSecurityPINRequestResourceGuardOperationRequestsList,
     ),
   }).pipe(
     T.Http({
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupSecurityPIN",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "GetSecurityPiNsRequest",
-}) as any as S.Schema<GetSecurityPiNsRequest>;
+  identifier: "GetSecurityPINRequest",
+}) as any as S.Schema<GetSecurityPINRequest>;
 
 /** The token information details. */
 export interface TokenInformation {
@@ -3206,34 +3001,6 @@ export const TokenInformation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TokenInformation",
 }) as any as S.Schema<TokenInformation>;
-
-export interface GetTieringCostOperationResultGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  operationId: string;
-}
-export const GetTieringCostOperationResultGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTieringCost/default/operationResults/{operationId}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "GetTieringCostOperationResultGetRequest",
-}) as any as S.Schema<GetTieringCostOperationResultGetRequest>;
 
 export interface GetTieringCostOperationStatusRequest {
   /** The ID of the target subscription. */
@@ -3256,7 +3023,7 @@ export const GetTieringCostOperationStatusRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTieringCost/default/operationsStatus/{operationId}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -3284,7 +3051,7 @@ export const GetValidateOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupValidateOperationResults/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3369,196 +3136,12 @@ export const GetValidateOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupValidateOperationsStatuses/{operationId}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
   identifier: "GetValidateOperationStatusRequest",
 }) as any as S.Schema<GetValidateOperationStatusRequest>;
-
-/** Resource tags. */
-export type ItemLevelRecoveryConnectionsProvisionRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ItemLevelRecoveryConnectionsProvisionRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ItemLevelRecoveryConnectionsProvisionRequestTagsMap>;
-
-/** Parameters to Provision ILR API. */
-export type ILRRequest = BackupRequest;
-export const ILRRequest = BackupRequest;
-
-export interface ItemLevelRecoveryConnectionsProvisionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-  /** Backed up item name whose details are to be fetched. */
-  protectedItemName: string;
-  /** RecoveryPointID represents the backed up data to be fetched. */
-  recoveryPointId: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: ItemLevelRecoveryConnectionsProvisionRequestTagsMap;
-  /** Optional ETag. */
-  eTag?: string;
-  /** ILRRequestResource properties */
-  properties?: BackupRequest;
-}
-export const ItemLevelRecoveryConnectionsProvisionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-      protectedItemName: S.String.pipe(T.Label()),
-      recoveryPointId: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-      tags: S.optional(ItemLevelRecoveryConnectionsProvisionRequestTagsMap),
-      eTag: S.optional(S.String),
-      properties: S.optional(BackupRequest),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/provisionInstantItemRecovery",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ItemLevelRecoveryConnectionsProvisionRequest",
-  }) as any as S.Schema<ItemLevelRecoveryConnectionsProvisionRequest>;
-
-export interface ItemLevelRecoveryConnectionsProvisionResponse {}
-export const ItemLevelRecoveryConnectionsProvisionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ItemLevelRecoveryConnectionsProvisionResponse",
-  }) as any as S.Schema<ItemLevelRecoveryConnectionsProvisionResponse>;
-
-export interface ItemLevelRecoveryConnectionsRevokeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-  /** Backed up item name whose details are to be fetched. */
-  protectedItemName: string;
-  /** RecoveryPointID represents the backed up data to be fetched. */
-  recoveryPointId: string;
-}
-export const ItemLevelRecoveryConnectionsRevokeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-      protectedItemName: S.String.pipe(T.Label()),
-      recoveryPointId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/revokeInstantItemRecovery",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ItemLevelRecoveryConnectionsRevokeRequest",
-  }) as any as S.Schema<ItemLevelRecoveryConnectionsRevokeRequest>;
-
-export interface ItemLevelRecoveryConnectionsRevokeResponse {}
-export const ItemLevelRecoveryConnectionsRevokeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ItemLevelRecoveryConnectionsRevokeResponse",
-  }) as any as S.Schema<ItemLevelRecoveryConnectionsRevokeResponse>;
-
-export interface JobCancellationsTriggerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** Name of the job whose details are to be fetched. */
-  jobName: string;
-}
-export const JobCancellationsTriggerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}/cancel",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobCancellationsTriggerRequest",
-}) as any as S.Schema<JobCancellationsTriggerRequest>;
-
-export interface JobCancellationsTriggerResponse {}
-export const JobCancellationsTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobCancellationsTriggerResponse",
-}) as any as S.Schema<JobCancellationsTriggerResponse>;
-
-export interface JobsExportRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** OData filter options. */
-  _filter?: string;
-}
-export const JobsExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobsExport",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsExportRequest",
-}) as any as S.Schema<JobsExportRequest>;
-
-export interface JobsExportResponse {}
-export const JobsExportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobsExportResponse",
-}) as any as S.Schema<JobsExportResponse>;
 
 export interface ListBackupEnginesRequest {
   /** The ID of the target subscription. */
@@ -3584,7 +3167,7 @@ export const ListBackupEnginesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupEngines",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3635,22 +3218,22 @@ export const BackupEngineBaseResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupEngineBaseResource>;
 
 /** List of resources. */
-export type BackupEnginesListResponseValueList =
+export type ListBackupEnginesResponseValueList =
   Array<BackupEngineBaseResource>;
-export const BackupEnginesListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListBackupEnginesResponseValueList = /*@__PURE__*/ S.Array(
   BackupEngineBaseResource,
-) as any as S.Schema<BackupEnginesListResponseValueList>;
+) as any as S.Schema<ListBackupEnginesResponseValueList>;
 
 export interface ListBackupEnginesResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupEnginesListResponseValueList;
+  value?: ListBackupEnginesResponseValueList;
 }
 export const ListBackupEnginesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupEnginesListResponseValueList),
+    value: S.optional(ListBackupEnginesResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupEnginesResponse",
@@ -3680,7 +3263,7 @@ export const ListBackupJobsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3727,21 +3310,21 @@ export const JobResource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "JobResource" }) as any as S.Schema<JobResource>;
 
 /** List of resources. */
-export type BackupJobsListResponseValueList = Array<JobResource>;
-export const BackupJobsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListBackupJobsResponseValueList = Array<JobResource>;
+export const ListBackupJobsResponseValueList = /*@__PURE__*/ S.Array(
   JobResource,
-) as any as S.Schema<BackupJobsListResponseValueList>;
+) as any as S.Schema<ListBackupJobsResponseValueList>;
 
 export interface ListBackupJobsResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupJobsListResponseValueList;
+  value?: ListBackupJobsResponseValueList;
 }
 export const ListBackupJobsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupJobsListResponseValueList),
+    value: S.optional(ListBackupJobsResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupJobsResponse",
@@ -3768,7 +3351,7 @@ export const ListBackupPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3819,22 +3402,22 @@ export const ProtectionPolicyResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionPolicyResource>;
 
 /** List of resources. */
-export type BackupPoliciesListResponseValueList =
+export type ListBackupPoliciesResponseValueList =
   Array<ProtectionPolicyResource>;
-export const BackupPoliciesListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListBackupPoliciesResponseValueList = /*@__PURE__*/ S.Array(
   ProtectionPolicyResource,
-) as any as S.Schema<BackupPoliciesListResponseValueList>;
+) as any as S.Schema<ListBackupPoliciesResponseValueList>;
 
 export interface ListBackupPoliciesResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupPoliciesListResponseValueList;
+  value?: ListBackupPoliciesResponseValueList;
 }
 export const ListBackupPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupPoliciesListResponseValueList),
+    value: S.optional(ListBackupPoliciesResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupPoliciesResponse",
@@ -3864,7 +3447,7 @@ export const ListBackupProtectableItemsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectableItems",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -3940,23 +3523,23 @@ export const WorkloadProtectableItemResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkloadProtectableItemResource>;
 
 /** List of resources. */
-export type BackupProtectableItemsListResponseValueList =
+export type ListBackupProtectableItemsResponseValueList =
   Array<WorkloadProtectableItemResource>;
-export const BackupProtectableItemsListResponseValueList =
+export const ListBackupProtectableItemsResponseValueList =
   /*@__PURE__*/ S.Array(
     WorkloadProtectableItemResource,
-  ) as any as S.Schema<BackupProtectableItemsListResponseValueList>;
+  ) as any as S.Schema<ListBackupProtectableItemsResponseValueList>;
 
 export interface ListBackupProtectableItemsResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupProtectableItemsListResponseValueList;
+  value?: ListBackupProtectableItemsResponseValueList;
 }
 export const ListBackupProtectableItemsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupProtectableItemsListResponseValueList),
+    value: S.optional(ListBackupProtectableItemsResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupProtectableItemsResponse",
@@ -3986,7 +3569,7 @@ export const ListBackupProtectedItemsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectedItems",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4037,22 +3620,22 @@ export const ProtectedItemResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectedItemResource>;
 
 /** List of resources. */
-export type BackupProtectedItemsListResponseValueList =
+export type ListBackupProtectedItemsResponseValueList =
   Array<ProtectedItemResource>;
-export const BackupProtectedItemsListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListBackupProtectedItemsResponseValueList = /*@__PURE__*/ S.Array(
   ProtectedItemResource,
-) as any as S.Schema<BackupProtectedItemsListResponseValueList>;
+) as any as S.Schema<ListBackupProtectedItemsResponseValueList>;
 
 export interface ListBackupProtectedItemsResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupProtectedItemsListResponseValueList;
+  value?: ListBackupProtectedItemsResponseValueList;
 }
 export const ListBackupProtectedItemsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupProtectedItemsListResponseValueList),
+    value: S.optional(ListBackupProtectedItemsResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupProtectedItemsResponse",
@@ -4080,7 +3663,7 @@ export const ListBackupProtectionContainersRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectionContainers",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -4131,24 +3714,24 @@ export const ProtectionContainerResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionContainerResource>;
 
 /** List of resources. */
-export type BackupProtectionContainersListResponseValueList =
+export type ListBackupProtectionContainersResponseValueList =
   Array<ProtectionContainerResource>;
-export const BackupProtectionContainersListResponseValueList =
+export const ListBackupProtectionContainersResponseValueList =
   /*@__PURE__*/ S.Array(
     ProtectionContainerResource,
-  ) as any as S.Schema<BackupProtectionContainersListResponseValueList>;
+  ) as any as S.Schema<ListBackupProtectionContainersResponseValueList>;
 
 export interface ListBackupProtectionContainersResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupProtectionContainersListResponseValueList;
+  value?: ListBackupProtectionContainersResponseValueList;
 }
 export const ListBackupProtectionContainersResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nextLink: S.optional(S.String),
-      value: S.optional(BackupProtectionContainersListResponseValueList),
+      value: S.optional(ListBackupProtectionContainersResponseValueList),
     }),
 ).annotate({
   identifier: "ListBackupProtectionContainersResponse",
@@ -4178,7 +3761,7 @@ export const ListBackupProtectionIntentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectionIntents",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4229,23 +3812,23 @@ export const ProtectionIntentResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectionIntentResource>;
 
 /** List of resources. */
-export type BackupProtectionIntentListResponseValueList =
+export type ListBackupProtectionIntentResponseValueList =
   Array<ProtectionIntentResource>;
-export const BackupProtectionIntentListResponseValueList =
+export const ListBackupProtectionIntentResponseValueList =
   /*@__PURE__*/ S.Array(
     ProtectionIntentResource,
-  ) as any as S.Schema<BackupProtectionIntentListResponseValueList>;
+  ) as any as S.Schema<ListBackupProtectionIntentResponseValueList>;
 
 export interface ListBackupProtectionIntentResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupProtectionIntentListResponseValueList;
+  value?: ListBackupProtectionIntentResponseValueList;
 }
 export const ListBackupProtectionIntentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupProtectionIntentListResponseValueList),
+    value: S.optional(ListBackupProtectionIntentResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupProtectionIntentResponse",
@@ -4275,7 +3858,7 @@ export const ListBackupUsageSummariesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupUsageSummaries",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4335,22 +3918,22 @@ export const BackupManagementUsage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupManagementUsage>;
 
 /** The list of backup management usages for the given vault. */
-export type BackupUsageSummariesListResponseValueList =
+export type ListBackupUsageSummariesResponseValueList =
   Array<BackupManagementUsage>;
-export const BackupUsageSummariesListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListBackupUsageSummariesResponseValueList = /*@__PURE__*/ S.Array(
   BackupManagementUsage,
-) as any as S.Schema<BackupUsageSummariesListResponseValueList>;
+) as any as S.Schema<ListBackupUsageSummariesResponseValueList>;
 
 export interface ListBackupUsageSummariesResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** The list of backup management usages for the given vault. */
-  value?: BackupUsageSummariesListResponseValueList;
+  value?: ListBackupUsageSummariesResponseValueList;
 }
 export const ListBackupUsageSummariesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupUsageSummariesListResponseValueList),
+    value: S.optional(ListBackupUsageSummariesResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupUsageSummariesResponse",
@@ -4386,7 +3969,7 @@ export const ListBackupWorkloadItemsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/items",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4458,22 +4041,22 @@ export const WorkloadItemResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkloadItemResource>;
 
 /** List of resources. */
-export type BackupWorkloadItemsListResponseValueList =
+export type ListBackupWorkloadItemsResponseValueList =
   Array<WorkloadItemResource>;
-export const BackupWorkloadItemsListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListBackupWorkloadItemsResponseValueList = /*@__PURE__*/ S.Array(
   WorkloadItemResource,
-) as any as S.Schema<BackupWorkloadItemsListResponseValueList>;
+) as any as S.Schema<ListBackupWorkloadItemsResponseValueList>;
 
 export interface ListBackupWorkloadItemsResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupWorkloadItemsListResponseValueList;
+  value?: ListBackupWorkloadItemsResponseValueList;
 }
 export const ListBackupWorkloadItemsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(BackupWorkloadItemsListResponseValueList),
+    value: S.optional(ListBackupWorkloadItemsResponseValueList),
   }),
 ).annotate({
   identifier: "ListBackupWorkloadItemsResponse",
@@ -4501,7 +4084,7 @@ export const ListDeletedProtectionContainersRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupDeletedProtectionContainers",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -4509,28 +4092,115 @@ export const ListDeletedProtectionContainersRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDeletedProtectionContainersRequest>;
 
 /** List of resources. */
-export type DeletedProtectionContainersListResponseValueList =
+export type ListDeletedProtectionContainersResponseValueList =
   Array<ProtectionContainerResource>;
-export const DeletedProtectionContainersListResponseValueList =
+export const ListDeletedProtectionContainersResponseValueList =
   /*@__PURE__*/ S.Array(
     ProtectionContainerResource,
-  ) as any as S.Schema<DeletedProtectionContainersListResponseValueList>;
+  ) as any as S.Schema<ListDeletedProtectionContainersResponseValueList>;
 
 export interface ListDeletedProtectionContainersResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: DeletedProtectionContainersListResponseValueList;
+  value?: ListDeletedProtectionContainersResponseValueList;
 }
 export const ListDeletedProtectionContainersResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nextLink: S.optional(S.String),
-      value: S.optional(DeletedProtectionContainersListResponseValueList),
+      value: S.optional(ListDeletedProtectionContainersResponseValueList),
     }),
 ).annotate({
   identifier: "ListDeletedProtectionContainersResponse",
 }) as any as S.Schema<ListDeletedProtectionContainersResponse>;
+
+export interface ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** Backed up item name whose details are to be fetched. */
+  protectedItemName: string;
+  /** RecoveryPointID represents the backed up data to be fetched. */
+  recoveryPointId: string;
+  /** Operation ID returned by the prior provisionInstantItemRecovery action whose iSCSI mount scripts are to be retrieved. */
+  provisionInstantItemRecoveryOperationId: string;
+}
+export const ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+      protectedItemName: S.String.pipe(T.Label()),
+      recoveryPointId: S.String.pipe(T.Label()),
+      provisionInstantItemRecoveryOperationId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/listInstantItemRecoveryOperationResult",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest",
+  }) as any as S.Schema<ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest>;
+
+/** Client script details for file / folder restore. */
+export interface ClientScriptForConnect {
+  /** File content of the client script for file / folder restore. */
+  scriptContent?: string;
+  /** File extension of the client script for file / folder restore - .ps1 , .sh , etc. */
+  scriptExtension?: string;
+  /** OS type - Windows, Linux etc. for which this file / folder restore client script works. */
+  osType?: string;
+  /** URL of Executable from where to source the content. If this is not null then ScriptContent should not be used */
+  url?: string;
+  /** Mandatory suffix that should be added to the name of script that is given for download to user. If its null or empty then , ignore it. */
+  scriptNameSuffix?: string;
+}
+export const ClientScriptForConnect = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scriptContent: S.optional(S.String),
+    scriptExtension: S.optional(S.String),
+    osType: S.optional(S.String),
+    url: S.optional(S.String),
+    scriptNameSuffix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClientScriptForConnect",
+}) as any as S.Schema<ClientScriptForConnect>;
+
+/** List of client scripts. */
+export type InstantItemRecoveryTargetClientScriptsList =
+  Array<ClientScriptForConnect>;
+export const InstantItemRecoveryTargetClientScriptsList = /*@__PURE__*/ S.Array(
+  ClientScriptForConnect,
+) as any as S.Schema<InstantItemRecoveryTargetClientScriptsList>;
+
+/** Target details for file / folder restore. */
+export interface InstantItemRecoveryTarget {
+  /** List of client scripts. */
+  clientScripts?: InstantItemRecoveryTargetClientScriptsList;
+}
+export const InstantItemRecoveryTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientScripts: S.optional(InstantItemRecoveryTargetClientScriptsList),
+  }),
+).annotate({
+  identifier: "InstantItemRecoveryTarget",
+}) as any as S.Schema<InstantItemRecoveryTarget>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -4539,7 +4209,7 @@ export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/providers/Microsoft.RecoveryServices/operations",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4692,7 +4362,7 @@ export const ListProtectableContainersRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectableContainers",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -4768,36 +4438,28 @@ export const ProtectableContainerResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProtectableContainerResource>;
 
 /** List of resources. */
-export type ProtectableContainersListResponseValueList =
+export type ListProtectableContainersResponseValueList =
   Array<ProtectableContainerResource>;
-export const ProtectableContainersListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListProtectableContainersResponseValueList = /*@__PURE__*/ S.Array(
   ProtectableContainerResource,
-) as any as S.Schema<ProtectableContainersListResponseValueList>;
+) as any as S.Schema<ListProtectableContainersResponseValueList>;
 
 export interface ListProtectableContainersResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: ProtectableContainersListResponseValueList;
+  value?: ListProtectableContainersResponseValueList;
 }
 export const ListProtectableContainersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
-    value: S.optional(ProtectableContainersListResponseValueList),
+    value: S.optional(ListProtectableContainersResponseValueList),
   }),
 ).annotate({
   identifier: "ListProtectableContainersResponse",
 }) as any as S.Schema<ListProtectableContainersResponse>;
 
-/** List of Recovery Points excluded from Move */
-export type RecoveryPointsRecommendedForMoveListRequestExcludedRPListList =
-  Array<string>;
-export const RecoveryPointsRecommendedForMoveListRequestExcludedRPListList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RecoveryPointsRecommendedForMoveListRequestExcludedRPListList>;
-
-export interface ListRecoveryPointRecommendedForMoveRequest {
+export interface ListRecoveryPointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4810,35 +4472,29 @@ export interface ListRecoveryPointRecommendedForMoveRequest {
   containerName: string;
   /** Backed up item name whose details are to be fetched. */
   protectedItemName: string;
-  /** Gets the class type. */
-  objectType?: string;
-  /** List of Recovery Points excluded from Move */
-  excludedRPList?: RecoveryPointsRecommendedForMoveListRequestExcludedRPListList;
+  /** OData filter options. */
+  _filter?: string;
 }
-export const ListRecoveryPointRecommendedForMoveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-      protectedItemName: S.String.pipe(T.Label()),
-      objectType: S.optional(S.String),
-      excludedRPList: S.optional(
-        RecoveryPointsRecommendedForMoveListRequestExcludedRPListList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPointsRecommendedForMove",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListRecoveryPointRecommendedForMoveRequest",
-  }) as any as S.Schema<ListRecoveryPointRecommendedForMoveRequest>;
+export const ListRecoveryPointsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRecoveryPointsRequest",
+}) as any as S.Schema<ListRecoveryPointsRequest>;
 
 /** Resource tags. */
 export type RecoveryPointResourceTagsMap = {
@@ -4884,30 +4540,35 @@ export const RecoveryPointResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecoveryPointResource>;
 
 /** List of resources. */
-export type RecoveryPointsRecommendedForMoveListResponseValueList =
-  Array<RecoveryPointResource>;
-export const RecoveryPointsRecommendedForMoveListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    RecoveryPointResource,
-  ) as any as S.Schema<RecoveryPointsRecommendedForMoveListResponseValueList>;
+export type ListRecoveryPointsResponseValueList = Array<RecoveryPointResource>;
+export const ListRecoveryPointsResponseValueList = /*@__PURE__*/ S.Array(
+  RecoveryPointResource,
+) as any as S.Schema<ListRecoveryPointsResponseValueList>;
 
-export interface ListRecoveryPointRecommendedForMoveResponse {
+export interface ListRecoveryPointsResponse {
   /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
   nextLink?: string;
   /** List of resources. */
-  value?: RecoveryPointsRecommendedForMoveListResponseValueList;
+  value?: ListRecoveryPointsResponseValueList;
 }
-export const ListRecoveryPointRecommendedForMoveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(RecoveryPointsRecommendedForMoveListResponseValueList),
-    }),
-  ).annotate({
-    identifier: "ListRecoveryPointRecommendedForMoveResponse",
-  }) as any as S.Schema<ListRecoveryPointRecommendedForMoveResponse>;
+export const ListRecoveryPointsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListRecoveryPointsResponseValueList),
+  }),
+).annotate({
+  identifier: "ListRecoveryPointsResponse",
+}) as any as S.Schema<ListRecoveryPointsResponse>;
 
-export interface ListRecoveryPointsRequest {
+/** List of Recovery Points excluded from Move */
+export type ListRecoveryPointsRecommendedForMoveRequestExcludedRPListList =
+  Array<string>;
+export const ListRecoveryPointsRecommendedForMoveRequestExcludedRPListList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListRecoveryPointsRecommendedForMoveRequestExcludedRPListList>;
+
+export interface ListRecoveryPointsRecommendedForMoveRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4920,50 +4581,123 @@ export interface ListRecoveryPointsRequest {
   containerName: string;
   /** Backed up item name whose details are to be fetched. */
   protectedItemName: string;
-  /** OData filter options. */
-  _filter?: string;
+  /** Gets the class type. */
+  objectType?: string;
+  /** List of Recovery Points excluded from Move */
+  excludedRPList?: ListRecoveryPointsRecommendedForMoveRequestExcludedRPListList;
 }
-export const ListRecoveryPointsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRecoveryPointsRecommendedForMoveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+      protectedItemName: S.String.pipe(T.Label()),
+      objectType: S.optional(S.String),
+      excludedRPList: S.optional(
+        ListRecoveryPointsRecommendedForMoveRequestExcludedRPListList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPointsRecommendedForMove",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListRecoveryPointsRecommendedForMoveRequest",
+  }) as any as S.Schema<ListRecoveryPointsRecommendedForMoveRequest>;
+
+/** List of resources. */
+export type ListRecoveryPointsRecommendedForMoveResponseValueList =
+  Array<RecoveryPointResource>;
+export const ListRecoveryPointsRecommendedForMoveResponseValueList =
+  /*@__PURE__*/ S.Array(
+    RecoveryPointResource,
+  ) as any as S.Schema<ListRecoveryPointsRecommendedForMoveResponseValueList>;
+
+export interface ListRecoveryPointsRecommendedForMoveResponse {
+  /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListRecoveryPointsRecommendedForMoveResponseValueList;
+}
+export const ListRecoveryPointsRecommendedForMoveResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(ListRecoveryPointsRecommendedForMoveResponseValueList),
+    }),
+  ).annotate({
+    identifier: "ListRecoveryPointsRecommendedForMoveResponse",
+  }) as any as S.Schema<ListRecoveryPointsRecommendedForMoveResponse>;
+
+/** Source Container ArmIds This needs to be populated only if DataMoveLevel is set to container */
+export type MoveBMSPrepareDataRequestSourceContainerArmIdsList = Array<string>;
+export const MoveBMSPrepareDataRequestSourceContainerArmIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MoveBMSPrepareDataRequestSourceContainerArmIdsList>;
+
+export interface MoveBMSPrepareDataRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** ARM Id of target vault */
+  targetResourceId: string;
+  /** Target Region */
+  targetRegion: string;
+  /** DataMove Level */
+  dataMoveLevel: DataMoveLevel | (string & {});
+  /** Source Container ArmIds This needs to be populated only if DataMoveLevel is set to container */
+  sourceContainerArmIds?: MoveBMSPrepareDataRequestSourceContainerArmIdsList;
+  /** Ignore the artifacts which are already moved. */
+  ignoreMoved?: boolean;
+}
+export const MoveBMSPrepareDataRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    targetResourceId: S.String,
+    targetRegion: S.String,
+    dataMoveLevel: DataMoveLevel,
+    sourceContainerArmIds: S.optional(
+      MoveBMSPrepareDataRequestSourceContainerArmIdsList,
+    ),
+    ignoreMoved: S.optional(S.Boolean),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig/prepareDataMove",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ListRecoveryPointsRequest",
-}) as any as S.Schema<ListRecoveryPointsRequest>;
+  identifier: "MoveBMSPrepareDataRequest",
+}) as any as S.Schema<MoveBMSPrepareDataRequest>;
 
-/** List of resources. */
-export type RecoveryPointsListResponseValueList = Array<RecoveryPointResource>;
-export const RecoveryPointsListResponseValueList = /*@__PURE__*/ S.Array(
-  RecoveryPointResource,
-) as any as S.Schema<RecoveryPointsListResponseValueList>;
-
-export interface ListRecoveryPointsResponse {
-  /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: RecoveryPointsListResponseValueList;
-}
-export const ListRecoveryPointsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RecoveryPointsListResponseValueList),
-  }),
+export interface MoveBMSPrepareDataResponse {}
+export const MoveBMSPrepareDataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ListRecoveryPointsResponse",
-}) as any as S.Schema<ListRecoveryPointsResponse>;
+  identifier: "MoveBMSPrepareDataResponse",
+}) as any as S.Schema<MoveBMSPrepareDataResponse>;
+
+/** Recovery point tier type. */
+export type RecoveryPointTierType =
+  | "Invalid"
+  | "InstantRP"
+  | "HardenedRP"
+  | "ArchivedRP";
+export const RecoveryPointTierType = /*@__PURE__*/ S.String;
 
 export interface MoveRecoveryPointRequest {
   /** The ID of the target subscription. */
@@ -5004,7 +4738,7 @@ export const MoveRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/move",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -5018,52 +4752,17 @@ export const MoveRecoveryPointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MoveRecoveryPointResponse",
 }) as any as S.Schema<MoveRecoveryPointResponse>;
 
-/** Base class for validate operation request. */
-export type ValidateOperationRequest = BackupRequest;
-export const ValidateOperationRequest = BackupRequest;
-
-export interface OperationValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Recovery point ID. */
-  id: string;
-  /** ValidateOperationRequestResource properties */
-  properties: BackupRequest;
-}
-export const OperationValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    id: S.String,
-    properties: BackupRequest,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupValidateOperation",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationValidateRequest",
-}) as any as S.Schema<OperationValidateRequest>;
-
 /** Resource tags. */
-export type BackupResourceStorageConfigsNonCRRPatchRequestTagsMap = {
+export type PatchBackupResourceStorageConfigsNonCRRRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceStorageConfigsNonCRRPatchRequestTagsMap =
+export const PatchBackupResourceStorageConfigsNonCRRRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceStorageConfigsNonCRRPatchRequestTagsMap>;
+  ) as any as S.Schema<PatchBackupResourceStorageConfigsNonCRRRequestTagsMap>;
 
-export interface PatchBackupResourceStorageConfigNonCrrRequest {
+export interface PatchBackupResourceStorageConfigsNonCRRRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5073,20 +4772,20 @@ export interface PatchBackupResourceStorageConfigNonCrrRequest {
   /** BackupResourceConfigResource properties */
   properties?: BackupResourceConfig;
   /** Resource tags. */
-  tags?: BackupResourceStorageConfigsNonCRRPatchRequestTagsMap;
+  tags?: PatchBackupResourceStorageConfigsNonCRRRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const PatchBackupResourceStorageConfigNonCrrRequest =
+export const PatchBackupResourceStorageConfigsNonCRRRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vaultName: S.String.pipe(T.Label()),
       properties: S.optional(BackupResourceConfig),
-      tags: S.optional(BackupResourceStorageConfigsNonCRRPatchRequestTagsMap),
+      tags: S.optional(PatchBackupResourceStorageConfigsNonCRRRequestTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }).pipe(
@@ -5094,112 +4793,52 @@ export const PatchBackupResourceStorageConfigNonCrrRequest =
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
-    identifier: "PatchBackupResourceStorageConfigNonCrrRequest",
-  }) as any as S.Schema<PatchBackupResourceStorageConfigNonCrrRequest>;
+    identifier: "PatchBackupResourceStorageConfigsNonCRRRequest",
+  }) as any as S.Schema<PatchBackupResourceStorageConfigsNonCRRRequest>;
 
-export interface PatchBackupResourceStorageConfigNonCrrResponse {}
-export const PatchBackupResourceStorageConfigNonCrrResponse =
+export interface PatchBackupResourceStorageConfigsNonCRRResponse {}
+export const PatchBackupResourceStorageConfigsNonCRRResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PatchBackupResourceStorageConfigNonCrrResponse",
-  }) as any as S.Schema<PatchBackupResourceStorageConfigNonCrrResponse>;
+    identifier: "PatchBackupResourceStorageConfigsNonCRRResponse",
+  }) as any as S.Schema<PatchBackupResourceStorageConfigsNonCRRResponse>;
 
-/** Resource tags. */
-export type PrivateEndpointConnectionPutRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionPutRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPutRequestTagsMap>;
-
-export interface PrivateEndpointConnectionPutRequest {
+export interface PostFetchTieringCostRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the VaultResource */
+  /** The name of the recovery services vault. */
   vaultName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-  /** PrivateEndpointConnectionResource properties */
-  properties?: PrivateEndpointConnection;
-  /** Resource tags. */
-  tags?: PrivateEndpointConnectionPutRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
+  /** Source tier for the request */
+  sourceTierType: RecoveryPointTierType | (string & {});
+  /** target tier for the request */
+  targetTierType: RecoveryPointTierType | (string & {});
+  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
+  objectType: string;
 }
-export const PrivateEndpointConnectionPutRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostFetchTieringCostRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    privateEndpointConnectionName: S.String.pipe(T.Label()),
-    properties: S.optional(PrivateEndpointConnection),
-    tags: S.optional(PrivateEndpointConnectionPutRequestTagsMap),
-    location: S.optional(S.String),
-    eTag: S.optional(S.String),
+    sourceTierType: RecoveryPointTierType,
+    targetTierType: RecoveryPointTierType,
+    objectType: S.String,
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTieringCost/default/fetchTieringCost",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionPutRequest",
-}) as any as S.Schema<PrivateEndpointConnectionPutRequest>;
-
-/** Resource tags. */
-export type PrivateEndpointConnectionPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionPutResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPutResponseTagsMap>;
-
-export interface PrivateEndpointConnectionPutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** PrivateEndpointConnectionResource properties */
-  properties?: PrivateEndpointConnection;
-  /** Resource tags. */
-  tags?: PrivateEndpointConnectionPutResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const PrivateEndpointConnectionPutResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnection),
-      tags: S.optional(PrivateEndpointConnectionPutResponseTagsMap),
-      location: S.optional(S.String),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPutResponse",
-}) as any as S.Schema<PrivateEndpointConnectionPutResponse>;
+  identifier: "PostFetchTieringCostRequest",
+}) as any as S.Schema<PostFetchTieringCostRequest>;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type ProtectedItemInputResourceGuardOperationRequestsList =
@@ -5321,7 +4960,7 @@ export const ProtectedItemsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -5399,7 +5038,7 @@ export const ProtectionContainersInquireRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/inquire",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
@@ -5412,208 +5051,6 @@ export const ProtectionContainersInquireResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProtectionContainersInquireResponse",
 }) as any as S.Schema<ProtectionContainersInquireResponse>;
-
-export interface ProtectionContainersRefreshRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Fabric name associated the container. */
-  fabricName: string;
-  /** OData filter options. */
-  _filter?: string;
-}
-export const ProtectionContainersRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/refreshContainers",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectionContainersRefreshRequest",
-}) as any as S.Schema<ProtectionContainersRefreshRequest>;
-
-export interface ProtectionContainersRefreshResponse {}
-export const ProtectionContainersRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProtectionContainersRefreshResponse",
-}) as any as S.Schema<ProtectionContainersRefreshResponse>;
-
-/** Base class for container with backup items. Containers with specific workloads are derived from this class. */
-export interface ProtectionContainerInput {
-  /** Friendly name of the container. */
-  friendlyName?: string;
-  /** Type of backup management for the container. */
-  backupManagementType?: BackupManagementType | (string & {});
-  /** Status of registration of the container with the Recovery Services Vault. */
-  registrationStatus?: string;
-  /** Status of health of the container. */
-  healthStatus?: string;
-  /** Type of the container. The value of this property for: 1. Compute Azure VM is Microsoft.Compute/virtualMachines 2. Classic Compute Azure VM is Microsoft.ClassicCompute/virtualMachines 3. Windows machines (like MAB, DPM etc) is Windows 4. Azure SQL instance is AzureSqlContainer. 5. Storage containers is StorageContainer. 6. Azure workload Backup is VMAppContainer */
-  containerType: ProtectableContainerType | (string & {});
-  /** Type of the protectable object associated with this container */
-  protectableObjectType?: string;
-}
-export const ProtectionContainerInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    friendlyName: S.optional(S.String),
-    backupManagementType: S.optional(BackupManagementType),
-    registrationStatus: S.optional(S.String),
-    healthStatus: S.optional(S.String),
-    containerType: ProtectableContainerType,
-    protectableObjectType: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProtectionContainerInput",
-}) as any as S.Schema<ProtectionContainerInput>;
-
-/** Resource tags. */
-export type ProtectionContainersRegisterRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProtectionContainersRegisterRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ProtectionContainersRegisterRequestTagsMap>;
-
-export interface ProtectionContainersRegisterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-  /** ProtectionContainerResource properties */
-  properties?: ProtectionContainerInput;
-  /** Resource tags. */
-  tags?: ProtectionContainersRegisterRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ProtectionContainersRegisterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    properties: S.optional(ProtectionContainerInput),
-    tags: S.optional(ProtectionContainersRegisterRequestTagsMap),
-    location: S.optional(S.String),
-    eTag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectionContainersRegisterRequest",
-}) as any as S.Schema<ProtectionContainersRegisterRequest>;
-
-/** Resource tags. */
-export type ProtectionContainersRegisterResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProtectionContainersRegisterResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ProtectionContainersRegisterResponseTagsMap>;
-
-export interface ProtectionContainersRegisterResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** ProtectionContainerResource properties */
-  properties?: ProtectionContainer;
-  /** Resource tags. */
-  tags?: ProtectionContainersRegisterResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ProtectionContainersRegisterResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ProtectionContainer),
-      tags: S.optional(ProtectionContainersRegisterResponseTagsMap),
-      location: S.optional(S.String),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProtectionContainersRegisterResponse",
-}) as any as S.Schema<ProtectionContainersRegisterResponse>;
-
-export interface ProtectionContainersUnregisterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VaultResource */
-  vaultName: string;
-  /** The name of the BackupFabricResource */
-  fabricName: string;
-  /** Name of the container whose details need to be fetched. */
-  containerName: string;
-}
-export const ProtectionContainersUnregisterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ProtectionContainersUnregisterRequest",
-}) as any as S.Schema<ProtectionContainersUnregisterRequest>;
-
-export interface ProtectionContainersUnregisterResponse {}
-export const ProtectionContainersUnregisterResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ProtectionContainersUnregisterResponse",
-}) as any as S.Schema<ProtectionContainersUnregisterResponse>;
 
 /** Resource tags. */
 export type ProtectionIntentCreateOrUpdateRequestTagsMap = {
@@ -5662,7 +5099,7 @@ export const ProtectionIntentCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/backupProtectionIntent/{intentObjectName}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -5713,72 +5150,6 @@ export const ProtectionIntentCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ProtectionIntentCreateOrUpdateResponse",
 }) as any as S.Schema<ProtectionIntentCreateOrUpdateResponse>;
 
-export interface ProtectionIntentValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Azure region to hit Api */
-  azureRegion: string;
-  /** ProtectedItem Type- VM, SqlDataBase, AzureFileShare etc */
-  resourceType?: DataSourceType | (string & {});
-  /** ARM Virtual Machine Id */
-  resourceId?: string;
-  /** ARM id of the Recovery Services Vault */
-  vaultId?: string;
-  /** Configuration of VM if any needs to be validated like OS type etc */
-  properties?: string;
-}
-export const ProtectionIntentValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    azureRegion: S.String.pipe(T.Label()),
-    resourceType: S.optional(DataSourceType),
-    resourceId: S.optional(S.String),
-    vaultId: S.optional(S.String),
-    properties: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupPreValidateProtection",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectionIntentValidateRequest",
-}) as any as S.Schema<ProtectionIntentValidateRequest>;
-
-/** Validation Status */
-export type ValidationStatus = "Invalid" | "Succeeded" | "Failed";
-export const ValidationStatus = /*@__PURE__*/ S.String;
-
-/** Response contract for enable backup validation request */
-export interface PreValidateEnableBackupResponse {
-  /** Validation Status */
-  status?: ValidationStatus;
-  /** Response error code */
-  errorCode?: string;
-  /** Response error message */
-  errorMessage?: string;
-  /** Recommended action for user */
-  recommendation?: string;
-  /** Specifies the product specific container name. E.g. iaasvmcontainer;iaasvmcontainer;rgname;vmname. This is required for portal */
-  containerName?: string;
-  /** Specifies the product specific ds name. E.g. vm;iaasvmcontainer;rgname;vmname. This is required for portal */
-  protectedItemName?: string;
-}
-export const PreValidateEnableBackupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(ValidationStatus),
-    errorCode: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-    recommendation: S.optional(S.String),
-    containerName: S.optional(S.String),
-    protectedItemName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PreValidateEnableBackupResponse",
-}) as any as S.Schema<PreValidateEnableBackupResponse>;
-
 /** Resource tags. */
 export type ProtectionPoliciesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -5823,7 +5194,7 @@ export const ProtectionPoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupPolicies/{policyName}",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -5874,41 +5245,134 @@ export const ProtectionPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ProtectionPoliciesCreateOrUpdateResponse",
 }) as any as S.Schema<ProtectionPoliciesCreateOrUpdateResponse>;
 
-export interface ResourceGuardProxiesGetRequest {
+/** Resource tags. */
+export type ProvisionItemLevelRecoveryConnectionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ProvisionItemLevelRecoveryConnectionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ProvisionItemLevelRecoveryConnectionRequestTagsMap>;
+
+/** Parameters to Provision ILR API. */
+export type ILRRequest = OperationStatusExtendedInfo;
+export const ILRRequest = OperationStatusExtendedInfo;
+
+export interface ProvisionItemLevelRecoveryConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the VaultResource */
   vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** Backed up item name whose details are to be fetched. */
+  protectedItemName: string;
+  /** RecoveryPointID represents the backed up data to be fetched. */
+  recoveryPointId: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ProvisionItemLevelRecoveryConnectionRequestTagsMap;
+  /** Optional ETag. */
+  eTag?: string;
+  /** ILRRequestResource properties */
+  properties?: OperationStatusExtendedInfo;
 }
-export const ResourceGuardProxiesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ProvisionItemLevelRecoveryConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+      protectedItemName: S.String.pipe(T.Label()),
+      recoveryPointId: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+      tags: S.optional(ProvisionItemLevelRecoveryConnectionRequestTagsMap),
+      eTag: S.optional(S.String),
+      properties: S.optional(OperationStatusExtendedInfo),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/provisionInstantItemRecovery",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProvisionItemLevelRecoveryConnectionRequest",
+  }) as any as S.Schema<ProvisionItemLevelRecoveryConnectionRequest>;
+
+export interface ProvisionItemLevelRecoveryConnectionResponse {}
+export const ProvisionItemLevelRecoveryConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ProvisionItemLevelRecoveryConnectionResponse",
+  }) as any as S.Schema<ProvisionItemLevelRecoveryConnectionResponse>;
+
+/** Resource tags. */
+export type PutBackupResourceVaultConfigRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutBackupResourceVaultConfigRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutBackupResourceVaultConfigRequestTagsMap>;
+
+export interface PutBackupResourceVaultConfigRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** BackupResourceVaultConfigResource properties */
+  properties?: BackupResourceVaultConfig;
+  /** Resource tags. */
+  tags?: PutBackupResourceVaultConfigRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PutBackupResourceVaultConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
+    properties: S.optional(BackupResourceVaultConfig),
+    tags: S.optional(PutBackupResourceVaultConfigRequestTagsMap),
+    location: S.optional(S.String),
+    eTag: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupconfig/vaultconfig",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ResourceGuardProxiesGetRequest",
-}) as any as S.Schema<ResourceGuardProxiesGetRequest>;
+  identifier: "PutBackupResourceVaultConfigRequest",
+}) as any as S.Schema<PutBackupResourceVaultConfigRequest>;
 
 /** Resource tags. */
-export type ResourceGuardProxyBaseResourceTagsMap = {
+export type PutBackupResourceVaultConfigResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGuardProxyBaseResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardProxyBaseResourceTagsMap>;
+export const PutBackupResourceVaultConfigResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutBackupResourceVaultConfigResponseTagsMap>;
 
-export interface ResourceGuardProxyBaseResource {
+export interface PutBackupResourceVaultConfigResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -5917,62 +5381,135 @@ export interface ResourceGuardProxyBaseResource {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** ResourceGuardProxyBaseResource properties */
-  properties?: ResourceGuardProxyBase;
+  /** BackupResourceVaultConfigResource properties */
+  properties?: BackupResourceVaultConfig;
   /** Resource tags. */
-  tags?: ResourceGuardProxyBaseResourceTagsMap;
+  tags?: PutBackupResourceVaultConfigResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const ResourceGuardProxyBaseResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ResourceGuardProxyBase),
-    tags: S.optional(ResourceGuardProxyBaseResourceTagsMap),
-    location: S.optional(S.String),
-    eTag: S.optional(S.String),
-  }),
+export const PutBackupResourceVaultConfigResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BackupResourceVaultConfig),
+      tags: S.optional(PutBackupResourceVaultConfigResponseTagsMap),
+      location: S.optional(S.String),
+      eTag: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "ResourceGuardProxyBaseResource",
-}) as any as S.Schema<ResourceGuardProxyBaseResource>;
-
-/** List of resources. */
-export type ResourceGuardProxiesGetResponseValueList =
-  Array<ResourceGuardProxyBaseResource>;
-export const ResourceGuardProxiesGetResponseValueList = /*@__PURE__*/ S.Array(
-  ResourceGuardProxyBaseResource,
-) as any as S.Schema<ResourceGuardProxiesGetResponseValueList>;
-
-export interface ResourceGuardProxiesGetResponse {
-  /** The URI to fetch the next page of resources, with each API call returning up to 200 resources per page. Use ListNext() to fetch the next page if the total number of resources exceeds 200. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: ResourceGuardProxiesGetResponseValueList;
-}
-export const ResourceGuardProxiesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ResourceGuardProxiesGetResponseValueList),
-  }),
-).annotate({
-  identifier: "ResourceGuardProxiesGetResponse",
-}) as any as S.Schema<ResourceGuardProxiesGetResponse>;
+  identifier: "PutBackupResourceVaultConfigResponse",
+}) as any as S.Schema<PutBackupResourceVaultConfigResponse>;
 
 /** Resource tags. */
-export type ResourceGuardProxyPutRequestTagsMap = {
+export type PutPrivateEndpointConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGuardProxyPutRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardProxyPutRequestTagsMap>;
+export const PutPrivateEndpointConnectionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutPrivateEndpointConnectionRequestTagsMap>;
 
-export interface ResourceGuardProxyPutRequest {
+export interface PutPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+  /** PrivateEndpointConnectionResource properties */
+  properties?: PrivateEndpointConnection;
+  /** Resource tags. */
+  tags?: PutPrivateEndpointConnectionRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PutPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+    properties: S.optional(PrivateEndpointConnection),
+    tags: S.optional(PutPrivateEndpointConnectionRequestTagsMap),
+    location: S.optional(S.String),
+    eTag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionRequest",
+}) as any as S.Schema<PutPrivateEndpointConnectionRequest>;
+
+/** Resource tags. */
+export type PutPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutPrivateEndpointConnectionResponseTagsMap>;
+
+export interface PutPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** PrivateEndpointConnectionResource properties */
+  properties?: PrivateEndpointConnection;
+  /** Resource tags. */
+  tags?: PutPrivateEndpointConnectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PutPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnection),
+      tags: S.optional(PutPrivateEndpointConnectionResponseTagsMap),
+      location: S.optional(S.String),
+      eTag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionResponse",
+}) as any as S.Schema<PutPrivateEndpointConnectionResponse>;
+
+/** Resource tags. */
+export type PutResourceGuardProxyRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutResourceGuardProxyRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PutResourceGuardProxyRequestTagsMap>;
+
+export interface PutResourceGuardProxyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5983,20 +5520,20 @@ export interface ResourceGuardProxyPutRequest {
   /** ResourceGuardProxyBaseResource properties */
   properties?: ResourceGuardProxyBase;
   /** Resource tags. */
-  tags?: ResourceGuardProxyPutRequestTagsMap;
+  tags?: PutResourceGuardProxyRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const ResourceGuardProxyPutRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     resourceGuardProxyName: S.String.pipe(T.Label()),
     properties: S.optional(ResourceGuardProxyBase),
-    tags: S.optional(ResourceGuardProxyPutRequestTagsMap),
+    tags: S.optional(PutResourceGuardProxyRequestTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }).pipe(
@@ -6004,23 +5541,23 @@ export const ResourceGuardProxyPutRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ResourceGuardProxyPutRequest",
-}) as any as S.Schema<ResourceGuardProxyPutRequest>;
+  identifier: "PutResourceGuardProxyRequest",
+}) as any as S.Schema<PutResourceGuardProxyRequest>;
 
 /** Resource tags. */
-export type ResourceGuardProxyPutResponseTagsMap = {
+export type PutResourceGuardProxyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGuardProxyPutResponseTagsMap = /*@__PURE__*/ S.Record(
+export const PutResourceGuardProxyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGuardProxyPutResponseTagsMap>;
+) as any as S.Schema<PutResourceGuardProxyResponseTagsMap>;
 
-export interface ResourceGuardProxyPutResponse {
+export interface PutResourceGuardProxyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6032,35 +5569,393 @@ export interface ResourceGuardProxyPutResponse {
   /** ResourceGuardProxyBaseResource properties */
   properties?: ResourceGuardProxyBase;
   /** Resource tags. */
-  tags?: ResourceGuardProxyPutResponseTagsMap;
+  tags?: PutResourceGuardProxyResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const ResourceGuardProxyPutResponse = /*@__PURE__*/ S.suspend(() =>
+export const PutResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ResourceGuardProxyBase),
-    tags: S.optional(ResourceGuardProxyPutResponseTagsMap),
+    tags: S.optional(PutResourceGuardProxyResponseTagsMap),
     location: S.optional(S.String),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ResourceGuardProxyPutResponse",
-}) as any as S.Schema<ResourceGuardProxyPutResponse>;
+  identifier: "PutResourceGuardProxyResponse",
+}) as any as S.Schema<PutResourceGuardProxyResponse>;
+
+export interface RefreshProtectionContainerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Fabric name associated the container. */
+  fabricName: string;
+  /** OData filter options. */
+  _filter?: string;
+}
+export const RefreshProtectionContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/refreshContainers",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "RefreshProtectionContainerRequest",
+}) as any as S.Schema<RefreshProtectionContainerRequest>;
+
+export interface RefreshProtectionContainerResponse {}
+export const RefreshProtectionContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RefreshProtectionContainerResponse",
+}) as any as S.Schema<RefreshProtectionContainerResponse>;
+
+/** Base class for container with backup items. Containers with specific workloads are derived from this class. */
+export interface ProtectionContainerInput {
+  /** Friendly name of the container. */
+  friendlyName?: string;
+  /** Type of backup management for the container. */
+  backupManagementType?: BackupManagementType | (string & {});
+  /** Status of registration of the container with the Recovery Services Vault. */
+  registrationStatus?: string;
+  /** Status of health of the container. */
+  healthStatus?: string;
+  /** Type of the container. The value of this property for: 1. Compute Azure VM is Microsoft.Compute/virtualMachines 2. Classic Compute Azure VM is Microsoft.ClassicCompute/virtualMachines 3. Windows machines (like MAB, DPM etc) is Windows 4. Azure SQL instance is AzureSqlContainer. 5. Storage containers is StorageContainer. 6. Azure workload Backup is VMAppContainer */
+  containerType: ProtectableContainerType | (string & {});
+  /** Type of the protectable object associated with this container */
+  protectableObjectType?: string;
+}
+export const ProtectionContainerInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    friendlyName: S.optional(S.String),
+    backupManagementType: S.optional(BackupManagementType),
+    registrationStatus: S.optional(S.String),
+    healthStatus: S.optional(S.String),
+    containerType: ProtectableContainerType,
+    protectableObjectType: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProtectionContainerInput",
+}) as any as S.Schema<ProtectionContainerInput>;
 
 /** Resource tags. */
-export type RestoresTriggerRequestTagsMap = {
+export type RegisterProtectionContainerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RestoresTriggerRequestTagsMap = /*@__PURE__*/ S.Record(
+export const RegisterProtectionContainerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RestoresTriggerRequestTagsMap>;
+) as any as S.Schema<RegisterProtectionContainerRequestTagsMap>;
+
+export interface RegisterProtectionContainerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** ProtectionContainerResource properties */
+  properties?: ProtectionContainerInput;
+  /** Resource tags. */
+  tags?: RegisterProtectionContainerRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const RegisterProtectionContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    properties: S.optional(ProtectionContainerInput),
+    tags: S.optional(RegisterProtectionContainerRequestTagsMap),
+    location: S.optional(S.String),
+    eTag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegisterProtectionContainerRequest",
+}) as any as S.Schema<RegisterProtectionContainerRequest>;
+
+/** Resource tags. */
+export type RegisterProtectionContainerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RegisterProtectionContainerResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RegisterProtectionContainerResponseTagsMap>;
+
+export interface RegisterProtectionContainerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** ProtectionContainerResource properties */
+  properties?: ProtectionContainer;
+  /** Resource tags. */
+  tags?: RegisterProtectionContainerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const RegisterProtectionContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProtectionContainer),
+    tags: S.optional(RegisterProtectionContainerResponseTagsMap),
+    location: S.optional(S.String),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RegisterProtectionContainerResponse",
+}) as any as S.Schema<RegisterProtectionContainerResponse>;
+
+export type ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
+  Array<string>;
+export const ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList>;
+
+export interface ResourceGuardProxyUnlockDeleteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  resourceGuardProxyName: string;
+  resourceGuardOperationRequests?: ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList;
+  resourceToBeDeleted?: string;
+}
+export const ResourceGuardProxyUnlockDeleteRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      resourceGuardProxyName: S.String.pipe(T.Label()),
+      resourceGuardOperationRequests: S.optional(
+        ResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList,
+      ),
+      resourceToBeDeleted: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}/unlockDelete",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ResourceGuardProxyUnlockDeleteRequest",
+}) as any as S.Schema<ResourceGuardProxyUnlockDeleteRequest>;
+
+/** Response of Unlock Delete API. */
+export interface UnlockDeleteResponse {
+  /** This is the time when unlock delete privileges will get expired. */
+  unlockDeleteExpiryTime?: string;
+}
+export const UnlockDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unlockDeleteExpiryTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UnlockDeleteResponse",
+}) as any as S.Schema<UnlockDeleteResponse>;
+
+export interface RevokeItemLevelRecoveryConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** Backed up item name whose details are to be fetched. */
+  protectedItemName: string;
+  /** RecoveryPointID represents the backed up data to be fetched. */
+  recoveryPointId: string;
+}
+export const RevokeItemLevelRecoveryConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+      protectedItemName: S.String.pipe(T.Label()),
+      recoveryPointId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/revokeInstantItemRecovery",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "RevokeItemLevelRecoveryConnectionRequest",
+}) as any as S.Schema<RevokeItemLevelRecoveryConnectionRequest>;
+
+export interface RevokeItemLevelRecoveryConnectionResponse {}
+export const RevokeItemLevelRecoveryConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RevokeItemLevelRecoveryConnectionResponse",
+  }) as any as S.Schema<RevokeItemLevelRecoveryConnectionResponse>;
+
+/** Resource tags. */
+export type TriggerBackupRequestTagsMap = { [key: string]: string | undefined };
+export const TriggerBackupRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TriggerBackupRequestTagsMap>;
+
+/** Base class for backup request. Workload-specific backup requests are derived from this class. */
+export type BackupRequest = OperationStatusExtendedInfo;
+export const BackupRequest = OperationStatusExtendedInfo;
+
+export interface TriggerBackupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+  /** Backed up item name whose details are to be fetched. */
+  protectedItemName: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: TriggerBackupRequestTagsMap;
+  /** Optional ETag. */
+  eTag?: string;
+  /** BackupRequestResource properties */
+  properties?: OperationStatusExtendedInfo;
+}
+export const TriggerBackupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(TriggerBackupRequestTagsMap),
+    eTag: S.optional(S.String),
+    properties: S.optional(OperationStatusExtendedInfo),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/backup",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerBackupRequest",
+}) as any as S.Schema<TriggerBackupRequest>;
+
+export interface TriggerBackupResponse {}
+export const TriggerBackupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TriggerBackupResponse",
+}) as any as S.Schema<TriggerBackupResponse>;
+
+export interface TriggerJobCancellationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** Name of the job whose details are to be fetched. */
+  jobName: string;
+}
+export const TriggerJobCancellationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}/cancel",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerJobCancellationRequest",
+}) as any as S.Schema<TriggerJobCancellationRequest>;
+
+export interface TriggerJobCancellationResponse {}
+export const TriggerJobCancellationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TriggerJobCancellationResponse",
+}) as any as S.Schema<TriggerJobCancellationResponse>;
+
+/** Resource tags. */
+export type TriggerRestoreRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TriggerRestoreRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TriggerRestoreRequestTagsMap>;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type RestoreRequestResourceGuardOperationRequestsList = Array<string>;
@@ -6085,7 +5980,7 @@ export const RestoreRequest = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RestoreRequest" }) as any as S.Schema<RestoreRequest>;
 
-export interface RestoresTriggerRequest {
+export interface TriggerRestoreRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6103,13 +5998,13 @@ export interface RestoresTriggerRequest {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: RestoresTriggerRequestTagsMap;
+  tags?: TriggerRestoreRequestTagsMap;
   /** Optional ETag. */
   eTag?: string;
   /** RestoreRequestResource properties */
   properties?: RestoreRequest;
 }
-export const RestoresTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+export const TriggerRestoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6119,7 +6014,7 @@ export const RestoresTriggerRequest = /*@__PURE__*/ S.suspend(() =>
     protectedItemName: S.String.pipe(T.Label()),
     recoveryPointId: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(RestoresTriggerRequestTagsMap),
+    tags: S.optional(TriggerRestoreRequestTagsMap),
     eTag: S.optional(S.String),
     properties: S.optional(RestoreRequest),
   }).pipe(
@@ -6127,19 +6022,100 @@ export const RestoresTriggerRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/restore",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "RestoresTriggerRequest",
-}) as any as S.Schema<RestoresTriggerRequest>;
+  identifier: "TriggerRestoreRequest",
+}) as any as S.Schema<TriggerRestoreRequest>;
 
-export interface RestoresTriggerResponse {}
-export const RestoresTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface TriggerRestoreResponse {}
+export const TriggerRestoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestoresTriggerResponse",
-}) as any as S.Schema<RestoresTriggerResponse>;
+  identifier: "TriggerRestoreResponse",
+}) as any as S.Schema<TriggerRestoreResponse>;
+
+/** Base class for validate operation request. */
+export type ValidateOperationRequest = OperationStatusExtendedInfo;
+export const ValidateOperationRequest = OperationStatusExtendedInfo;
+
+export interface TriggerValidateOperationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Recovery point ID. */
+  id: string;
+  /** ValidateOperationRequestResource properties */
+  properties: OperationStatusExtendedInfo;
+}
+export const TriggerValidateOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    id: S.String,
+    properties: OperationStatusExtendedInfo,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTriggerValidateOperation",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerValidateOperationRequest",
+}) as any as S.Schema<TriggerValidateOperationRequest>;
+
+export interface TriggerValidateOperationResponse {}
+export const TriggerValidateOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TriggerValidateOperationResponse",
+}) as any as S.Schema<TriggerValidateOperationResponse>;
+
+export interface UnregisterProtectionContainerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VaultResource */
+  vaultName: string;
+  /** The name of the BackupFabricResource */
+  fabricName: string;
+  /** Name of the container whose details need to be fetched. */
+  containerName: string;
+}
+export const UnregisterProtectionContainerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "UnregisterProtectionContainerRequest",
+}) as any as S.Schema<UnregisterProtectionContainerRequest>;
+
+export interface UnregisterProtectionContainerResponse {}
+export const UnregisterProtectionContainerResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UnregisterProtectionContainerResponse",
+}) as any as S.Schema<UnregisterProtectionContainerResponse>;
 
 export interface BackupResourceEncryptionConfig {
   /** Encryption At Rest Type */
@@ -6164,14 +6140,14 @@ export const BackupResourceEncryptionConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupResourceEncryptionConfig>;
 
 /** Resource tags. */
-export type BackupResourceEncryptionConfigsUpdateRequestTagsMap = {
+export type UpdateBackupResourceEncryptionConfigRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceEncryptionConfigsUpdateRequestTagsMap =
+export const UpdateBackupResourceEncryptionConfigRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceEncryptionConfigsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateBackupResourceEncryptionConfigRequestTagsMap>;
 
 export interface UpdateBackupResourceEncryptionConfigRequest {
   /** The ID of the target subscription. */
@@ -6183,7 +6159,7 @@ export interface UpdateBackupResourceEncryptionConfigRequest {
   /** The properties of the backup resource encryption config */
   properties?: BackupResourceEncryptionConfig;
   /** Resource tags. */
-  tags?: BackupResourceEncryptionConfigsUpdateRequestTagsMap;
+  tags?: UpdateBackupResourceEncryptionConfigRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -6196,7 +6172,7 @@ export const UpdateBackupResourceEncryptionConfigRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       vaultName: S.String.pipe(T.Label()),
       properties: S.optional(BackupResourceEncryptionConfig),
-      tags: S.optional(BackupResourceEncryptionConfigsUpdateRequestTagsMap),
+      tags: S.optional(UpdateBackupResourceEncryptionConfigRequestTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }).pipe(
@@ -6204,7 +6180,7 @@ export const UpdateBackupResourceEncryptionConfigRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupEncryptionConfigs/backupResourceEncryptionConfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
@@ -6218,16 +6194,16 @@ export const UpdateBackupResourceEncryptionConfigResponse =
   }) as any as S.Schema<UpdateBackupResourceEncryptionConfigResponse>;
 
 /** Resource tags. */
-export type BackupResourceStorageConfigsNonCRRUpdateRequestTagsMap = {
+export type UpdateBackupResourceStorageConfigsNonCRRRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceStorageConfigsNonCRRUpdateRequestTagsMap =
+export const UpdateBackupResourceStorageConfigsNonCRRRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceStorageConfigsNonCRRUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateBackupResourceStorageConfigsNonCRRRequestTagsMap>;
 
-export interface UpdateBackupResourceStorageConfigNonCrrRequest {
+export interface UpdateBackupResourceStorageConfigsNonCRRRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6237,20 +6213,20 @@ export interface UpdateBackupResourceStorageConfigNonCrrRequest {
   /** BackupResourceConfigResource properties */
   properties?: BackupResourceConfig;
   /** Resource tags. */
-  tags?: BackupResourceStorageConfigsNonCRRUpdateRequestTagsMap;
+  tags?: UpdateBackupResourceStorageConfigsNonCRRRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const UpdateBackupResourceStorageConfigNonCrrRequest =
+export const UpdateBackupResourceStorageConfigsNonCRRRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vaultName: S.String.pipe(T.Label()),
       properties: S.optional(BackupResourceConfig),
-      tags: S.optional(BackupResourceStorageConfigsNonCRRUpdateRequestTagsMap),
+      tags: S.optional(UpdateBackupResourceStorageConfigsNonCRRRequestTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }).pipe(
@@ -6258,24 +6234,24 @@ export const UpdateBackupResourceStorageConfigNonCrrRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
-    identifier: "UpdateBackupResourceStorageConfigNonCrrRequest",
-  }) as any as S.Schema<UpdateBackupResourceStorageConfigNonCrrRequest>;
+    identifier: "UpdateBackupResourceStorageConfigsNonCRRRequest",
+  }) as any as S.Schema<UpdateBackupResourceStorageConfigsNonCRRRequest>;
 
 /** Resource tags. */
-export type BackupResourceStorageConfigsNonCRRUpdateResponseTagsMap = {
+export type UpdateBackupResourceStorageConfigsNonCRRResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceStorageConfigsNonCRRUpdateResponseTagsMap =
+export const UpdateBackupResourceStorageConfigsNonCRRResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceStorageConfigsNonCRRUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateBackupResourceStorageConfigsNonCRRResponseTagsMap>;
 
-export interface UpdateBackupResourceStorageConfigNonCrrResponse {
+export interface UpdateBackupResourceStorageConfigsNonCRRResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6287,13 +6263,13 @@ export interface UpdateBackupResourceStorageConfigNonCrrResponse {
   /** BackupResourceConfigResource properties */
   properties?: BackupResourceConfig;
   /** Resource tags. */
-  tags?: BackupResourceStorageConfigsNonCRRUpdateResponseTagsMap;
+  tags?: UpdateBackupResourceStorageConfigsNonCRRResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
   eTag?: string;
 }
-export const UpdateBackupResourceStorageConfigNonCrrResponse =
+export const UpdateBackupResourceStorageConfigsNonCRRResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -6301,23 +6277,23 @@ export const UpdateBackupResourceStorageConfigNonCrrResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BackupResourceConfig),
-      tags: S.optional(BackupResourceStorageConfigsNonCRRUpdateResponseTagsMap),
+      tags: S.optional(UpdateBackupResourceStorageConfigsNonCRRResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "UpdateBackupResourceStorageConfigNonCrrResponse",
-  }) as any as S.Schema<UpdateBackupResourceStorageConfigNonCrrResponse>;
+    identifier: "UpdateBackupResourceStorageConfigsNonCRRResponse",
+  }) as any as S.Schema<UpdateBackupResourceStorageConfigsNonCRRResponse>;
 
 /** Resource tags. */
-export type BackupResourceVaultConfigsUpdateRequestTagsMap = {
+export type UpdateBackupResourceVaultConfigRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceVaultConfigsUpdateRequestTagsMap =
+export const UpdateBackupResourceVaultConfigRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateBackupResourceVaultConfigRequestTagsMap>;
 
 export interface UpdateBackupResourceVaultConfigRequest {
   /** The ID of the target subscription. */
@@ -6329,7 +6305,7 @@ export interface UpdateBackupResourceVaultConfigRequest {
   /** BackupResourceVaultConfigResource properties */
   properties?: BackupResourceVaultConfig;
   /** Resource tags. */
-  tags?: BackupResourceVaultConfigsUpdateRequestTagsMap;
+  tags?: UpdateBackupResourceVaultConfigRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -6342,7 +6318,7 @@ export const UpdateBackupResourceVaultConfigRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       vaultName: S.String.pipe(T.Label()),
       properties: S.optional(BackupResourceVaultConfig),
-      tags: S.optional(BackupResourceVaultConfigsUpdateRequestTagsMap),
+      tags: S.optional(UpdateBackupResourceVaultConfigRequestTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }).pipe(
@@ -6350,7 +6326,7 @@ export const UpdateBackupResourceVaultConfigRequest = /*@__PURE__*/ S.suspend(
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupconfig/vaultconfig",
         code: 200,
-        apiVersion: "2026-07-01",
+        apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
@@ -6358,14 +6334,14 @@ export const UpdateBackupResourceVaultConfigRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateBackupResourceVaultConfigRequest>;
 
 /** Resource tags. */
-export type BackupResourceVaultConfigsUpdateResponseTagsMap = {
+export type UpdateBackupResourceVaultConfigResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupResourceVaultConfigsUpdateResponseTagsMap =
+export const UpdateBackupResourceVaultConfigResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BackupResourceVaultConfigsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateBackupResourceVaultConfigResponseTagsMap>;
 
 export interface UpdateBackupResourceVaultConfigResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6379,7 +6355,7 @@ export interface UpdateBackupResourceVaultConfigResponse {
   /** BackupResourceVaultConfigResource properties */
   properties?: BackupResourceVaultConfig;
   /** Resource tags. */
-  tags?: BackupResourceVaultConfigsUpdateResponseTagsMap;
+  tags?: UpdateBackupResourceVaultConfigResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Optional ETag. */
@@ -6393,7 +6369,7 @@ export const UpdateBackupResourceVaultConfigResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BackupResourceVaultConfig),
-      tags: S.optional(BackupResourceVaultConfigsUpdateResponseTagsMap),
+      tags: S.optional(UpdateBackupResourceVaultConfigResponseTagsMap),
       location: S.optional(S.String),
       eTag: S.optional(S.String),
     }),
@@ -6401,7 +6377,55 @@ export const UpdateBackupResourceVaultConfigResponse = /*@__PURE__*/ S.suspend(
   identifier: "UpdateBackupResourceVaultConfigResponse",
 }) as any as S.Schema<UpdateBackupResourceVaultConfigResponse>;
 
-export interface ValidateOperationTriggerRequest {
+export interface ValidateFeatureSupportRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Azure region to hit Api */
+  azureRegion: string;
+  /** backup support feature type. */
+  featureType: string;
+}
+export const ValidateFeatureSupportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    azureRegion: S.String.pipe(T.Label()),
+    featureType: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupValidateFeatures",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateFeatureSupportRequest",
+}) as any as S.Schema<ValidateFeatureSupportRequest>;
+
+/** Support status of feature */
+export type SupportStatus =
+  | "Invalid"
+  | "Supported"
+  | "DefaultOFF"
+  | "DefaultON"
+  | "NotSupported";
+export const SupportStatus = /*@__PURE__*/ S.String;
+
+/** Response for feature support requests for Azure IaasVm */
+export interface AzureVMResourceFeatureSupportResponse {
+  /** Support status of feature */
+  supportStatus?: SupportStatus;
+}
+export const AzureVMResourceFeatureSupportResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      supportStatus: S.optional(SupportStatus),
+    }),
+).annotate({
+  identifier: "AzureVMResourceFeatureSupportResponse",
+}) as any as S.Schema<AzureVMResourceFeatureSupportResponse>;
+
+export interface ValidateOperationRequest2 {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6411,78 +6435,92 @@ export interface ValidateOperationTriggerRequest {
   /** Recovery point ID. */
   id: string;
   /** ValidateOperationRequestResource properties */
-  properties: BackupRequest;
+  properties: OperationStatusExtendedInfo;
 }
-export const ValidateOperationTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+export const ValidateOperationRequest2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     id: S.String,
-    properties: BackupRequest,
+    properties: OperationStatusExtendedInfo,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupTriggerValidateOperation",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupValidateOperation",
       code: 200,
-      apiVersion: "2026-07-01",
+      apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ValidateOperationTriggerRequest",
-}) as any as S.Schema<ValidateOperationTriggerRequest>;
+  identifier: "ValidateOperationRequest2",
+}) as any as S.Schema<ValidateOperationRequest2>;
 
-export interface ValidateOperationTriggerResponse {}
-export const ValidateOperationTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface ValidateProtectionIntentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Azure region to hit Api */
+  azureRegion: string;
+  /** ProtectedItem Type- VM, SqlDataBase, AzureFileShare etc */
+  resourceType?: DataSourceType | (string & {});
+  /** ARM Virtual Machine Id */
+  resourceId?: string;
+  /** ARM id of the Recovery Services Vault */
+  vaultId?: string;
+  /** Configuration of VM if any needs to be validated like OS type etc */
+  properties?: string;
+}
+export const ValidateProtectionIntentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    azureRegion: S.String.pipe(T.Label()),
+    resourceType: S.optional(DataSourceType),
+    resourceId: S.optional(S.String),
+    vaultId: S.optional(S.String),
+    properties: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupPreValidateProtection",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ValidateOperationTriggerResponse",
-}) as any as S.Schema<ValidateOperationTriggerResponse>;
+  identifier: "ValidateProtectionIntentRequest",
+}) as any as S.Schema<ValidateProtectionIntentRequest>;
 
-export type BackupResourceVaultConfigsPutError = AzureOpError;
-/** Updates vault security config. */
-export const BackupResourceVaultConfigsPut: API.OperationMethod<
-  BackupResourceVaultConfigsPutRequest,
-  BackupResourceVaultConfigsPutResponse,
-  BackupResourceVaultConfigsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupResourceVaultConfigsPutRequest,
-  output: BackupResourceVaultConfigsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Validation Status */
+export type ValidationStatus = "Invalid" | "Succeeded" | "Failed";
+export const ValidationStatus = /*@__PURE__*/ S.String;
 
-export type BackupsTriggerError = AzureOpError;
-/** Triggers backup for specified backed up item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API. */
-export const BackupsTrigger: API.OperationMethod<
-  BackupsTriggerRequest,
-  BackupsTriggerResponse,
-  BackupsTriggerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsTriggerRequest,
-  output: BackupsTriggerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BMSPrepareDataMoveError = AzureOpError;
-/** Prepares source vault for Data Move operation */
-export const BMSPrepareDataMove: API.OperationMethod<
-  BMSPrepareDataMoveRequest,
-  BMSPrepareDataMoveResponse,
-  BMSPrepareDataMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BMSPrepareDataMoveRequest,
-  output: BMSPrepareDataMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Response contract for enable backup validation request */
+export interface PreValidateEnableBackupResponse {
+  /** Validation Status */
+  status?: ValidationStatus;
+  /** Response error code */
+  errorCode?: string;
+  /** Response error message */
+  errorMessage?: string;
+  /** Recommended action for user */
+  recommendation?: string;
+  /** Specifies the product specific container name. E.g. iaasvmcontainer;iaasvmcontainer;rgname;vmname. This is required for portal */
+  containerName?: string;
+  /** Specifies the product specific ds name. E.g. vm;iaasvmcontainer;rgname;vmname. This is required for portal */
+  protectedItemName?: string;
+}
+export const PreValidateEnableBackupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(ValidationStatus),
+    errorCode: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    recommendation: S.optional(S.String),
+    containerName: S.optional(S.String),
+    protectedItemName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PreValidateEnableBackupResponse",
+}) as any as S.Schema<PreValidateEnableBackupResponse>;
 
 export type BMSTriggerDataMoveError = AzureOpError;
 /** Triggers Data Move Operation on target vault */
@@ -6494,21 +6532,6 @@ export const BMSTriggerDataMove: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BMSTriggerDataMoveRequest,
   output: BMSTriggerDataMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigureSourceScanExecuteError = AzureOpError;
-/** Configures source scan for a protected item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API. */
-export const ConfigureSourceScanExecute: API.OperationMethod<
-  ConfigureSourceScanExecuteRequest,
-  OperationStatus,
-  ConfigureSourceScanExecuteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigureSourceScanExecuteRequest,
-  output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6589,46 +6612,31 @@ export const DeleteResourceGuardProxy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteResourceGuardProxyUnlockError = AzureOpError;
-/** Secures delete ResourceGuardProxy operations. */
-export const DeleteResourceGuardProxyUnlock: API.OperationMethod<
-  DeleteResourceGuardProxyUnlockRequest,
-  UnlockDeleteResponse,
-  DeleteResourceGuardProxyUnlockError,
+export type ExecuteConfigureSourceScanError = AzureOpError;
+/** Configures source scan for a protected item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API. */
+export const ExecuteConfigureSourceScan: API.OperationMethod<
+  ExecuteConfigureSourceScanRequest,
+  OperationStatus,
+  ExecuteConfigureSourceScanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteResourceGuardProxyUnlockRequest,
-  output: UnlockDeleteResponse,
+  input: ExecuteConfigureSourceScanRequest,
+  output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureSupportValidateError = AzureOpError;
-/** It will validate if given feature with resource properties is supported in service It will validate if given feature with resource properties is supported in service */
-export const FeatureSupportValidate: API.OperationMethod<
-  FeatureSupportValidateRequest,
-  AzureVMResourceFeatureSupportResponse,
-  FeatureSupportValidateError,
+export type ExportJobError = AzureOpError;
+/** Triggers export of jobs specified by filters and returns an OperationID to track. */
+export const ExportJob: API.OperationMethod<
+  ExportJobRequest,
+  ExportJobResponse,
+  ExportJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureSupportValidateRequest,
-  output: AzureVMResourceFeatureSupportResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FetchTieringCostPostError = AzureOpError;
-/** Provides the details of the tiering related sizes and cost. Status of the operation can be fetched using GetTieringCostOperationStatus API and result using GetTieringCostOperationResult API. */
-export const FetchTieringCostPost: API.OperationMethod<
-  FetchTieringCostPostRequest,
-  TieringCostInfo,
-  FetchTieringCostPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FetchTieringCostPostRequest,
-  output: TieringCostInfo,
+  input: ExportJobRequest,
+  output: ExportJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6694,16 +6702,16 @@ export const GetBackupResourceEncryptionConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetBackupResourceStorageConfigNonCrrError = AzureOpError;
+export type GetBackupResourceStorageConfigsNonCRRError = AzureOpError;
 /** Fetches resource storage config. */
-export const GetBackupResourceStorageConfigNonCrr: API.OperationMethod<
-  GetBackupResourceStorageConfigNonCrrRequest,
-  GetBackupResourceStorageConfigNonCrrResponse,
-  GetBackupResourceStorageConfigNonCrrError,
+export const GetBackupResourceStorageConfigsNonCRR: API.OperationMethod<
+  GetBackupResourceStorageConfigsNonCRRRequest,
+  GetBackupResourceStorageConfigsNonCRRResponse,
+  GetBackupResourceStorageConfigsNonCRRError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetBackupResourceStorageConfigNonCrrRequest,
-  output: GetBackupResourceStorageConfigNonCrrResponse,
+  input: GetBackupResourceStorageConfigsNonCRRRequest,
+  output: GetBackupResourceStorageConfigsNonCRRResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6739,31 +6747,46 @@ export const GetBackupStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetBmsPrepareDataMoveOperationResultError = AzureOpError;
+export type GetBMSPrepareDataMoveOperationResultError = AzureOpError;
 /** Fetches operation status for data move operation on vault */
-export const GetBmsPrepareDataMoveOperationResult: API.OperationMethod<
-  GetBmsPrepareDataMoveOperationResultRequest,
+export const GetBMSPrepareDataMoveOperationResult: API.OperationMethod<
+  GetBMSPrepareDataMoveOperationResultRequest,
   VaultStorageConfigOperationResultResponse,
-  GetBmsPrepareDataMoveOperationResultError,
+  GetBMSPrepareDataMoveOperationResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetBmsPrepareDataMoveOperationResultRequest,
+  input: GetBMSPrepareDataMoveOperationResultRequest,
   output: VaultStorageConfigOperationResultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExportJobOperationResultError = AzureOpError;
+export type GetExportJobsOperationResultError = AzureOpError;
 /** Gets the operation result of operation triggered by Export Jobs API. If the operation is successful, then it also contains URL of a Blob and a SAS key to access the same. The blob contains exported jobs in JSON serialized format. */
-export const GetExportJobOperationResult: API.OperationMethod<
-  GetExportJobOperationResultRequest,
-  GetExportJobOperationResultResponse,
-  GetExportJobOperationResultError,
+export const GetExportJobsOperationResult: API.OperationMethod<
+  GetExportJobsOperationResultRequest,
+  GetExportJobsOperationResultResponse,
+  GetExportJobsOperationResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExportJobOperationResultRequest,
-  output: GetExportJobOperationResultResponse,
+  input: GetExportJobsOperationResultRequest,
+  output: GetExportJobsOperationResultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGetTieringCostOperationResultError = AzureOpError;
+/** Gets the result of async operation for tiering cost */
+export const GetGetTieringCostOperationResult: API.OperationMethod<
+  GetGetTieringCostOperationResultRequest,
+  TieringCostInfo,
+  GetGetTieringCostOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGetTieringCostOperationResultRequest,
+  output: TieringCostInfo,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7010,7 +7033,7 @@ export const GetRecoveryPoint: API.OperationMethod<
 }));
 
 export type GetResourceGuardProxyError = AzureOpError;
-/** Returns ResourceGuardProxy under vault and with the name referenced in request */
+/** List the ResourceGuardProxies under vault */
 export const GetResourceGuardProxy: API.OperationMethod<
   GetResourceGuardProxyRequest,
   GetResourceGuardProxyResponse,
@@ -7024,31 +7047,31 @@ export const GetResourceGuardProxy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSecurityPiNsError = AzureOpError;
-/** Get the security PIN. */
-export const GetSecurityPiNs: API.OperationMethod<
-  GetSecurityPiNsRequest,
-  TokenInformation,
-  GetSecurityPiNsError,
+export type GetResourceGuardProxy2Error = AzureOpError;
+/** Returns ResourceGuardProxy under vault and with the name referenced in request */
+export const GetResourceGuardProxy2: API.OperationMethod<
+  GetResourceGuardProxyRequest2,
+  GetResourceGuardProxyResponse2,
+  GetResourceGuardProxy2Error,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSecurityPiNsRequest,
-  output: TokenInformation,
+  input: GetResourceGuardProxyRequest2,
+  output: GetResourceGuardProxyResponse2,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetTieringCostOperationResultGetError = AzureOpError;
-/** Gets the result of async operation for tiering cost */
-export const GetTieringCostOperationResultGet: API.OperationMethod<
-  GetTieringCostOperationResultGetRequest,
-  TieringCostInfo,
-  GetTieringCostOperationResultGetError,
+export type GetSecurityPINError = AzureOpError;
+/** Get the security PIN. */
+export const GetSecurityPIN: API.OperationMethod<
+  GetSecurityPINRequest,
+  TokenInformation,
+  GetSecurityPINError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTieringCostOperationResultGetRequest,
-  output: TieringCostInfo,
+  input: GetSecurityPINRequest,
+  output: TokenInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7094,66 +7117,6 @@ export const GetValidateOperationStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetValidateOperationStatusRequest,
   output: OperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ItemLevelRecoveryConnectionsProvisionError = AzureOpError;
-/** Provisions a script which invokes an iSCSI connection to the backup data. Executing this script opens a file explorer displaying all the recoverable files and folders. This is an asynchronous operation. To know the status of provisioning, call GetProtectedItemOperationResult API. */
-export const ItemLevelRecoveryConnectionsProvision: API.OperationMethod<
-  ItemLevelRecoveryConnectionsProvisionRequest,
-  ItemLevelRecoveryConnectionsProvisionResponse,
-  ItemLevelRecoveryConnectionsProvisionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemLevelRecoveryConnectionsProvisionRequest,
-  output: ItemLevelRecoveryConnectionsProvisionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ItemLevelRecoveryConnectionsRevokeError = AzureOpError;
-/** Revokes an iSCSI connection which can be used to download a script. Executing this script opens a file explorer displaying all recoverable files and folders. This is an asynchronous operation. */
-export const ItemLevelRecoveryConnectionsRevoke: API.OperationMethod<
-  ItemLevelRecoveryConnectionsRevokeRequest,
-  ItemLevelRecoveryConnectionsRevokeResponse,
-  ItemLevelRecoveryConnectionsRevokeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemLevelRecoveryConnectionsRevokeRequest,
-  output: ItemLevelRecoveryConnectionsRevokeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCancellationsTriggerError = AzureOpError;
-/** Cancels a job. This is an asynchronous operation. To know the status of the cancellation, call GetCancelOperationResult API. */
-export const JobCancellationsTrigger: API.OperationMethod<
-  JobCancellationsTriggerRequest,
-  JobCancellationsTriggerResponse,
-  JobCancellationsTriggerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCancellationsTriggerRequest,
-  output: JobCancellationsTriggerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsExportError = AzureOpError;
-/** Triggers export of jobs specified by filters and returns an OperationID to track. */
-export const JobsExport: API.OperationMethod<
-  JobsExportRequest,
-  JobsExportResponse,
-  JobsExportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsExportRequest,
-  output: JobsExportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7309,6 +7272,23 @@ export const ListDeletedProtectionContainers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultError =
+  AzureOpError;
+/** Fetches the mount scripts (iSCSI connection details) for an active Instant Item Recovery (ILR) session on the recovery point. Required from API version 2026-08-01 onwards; replaces the scripts previously returned inline in the operationsStatus (ILR provision) response. */
+export const ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResult: API.OperationMethod<
+  ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest,
+  InstantItemRecoveryTarget,
+  ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResultRequest,
+  output: InstantItemRecoveryTarget,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
 export const ListOperations: API.OperationMethod<
@@ -7339,21 +7319,6 @@ export const ListProtectableContainers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListRecoveryPointRecommendedForMoveError = AzureOpError;
-/** Lists the recovery points recommended for move to another tier */
-export const ListRecoveryPointRecommendedForMove: API.OperationMethod<
-  ListRecoveryPointRecommendedForMoveRequest,
-  ListRecoveryPointRecommendedForMoveResponse,
-  ListRecoveryPointRecommendedForMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRecoveryPointRecommendedForMoveRequest,
-  output: ListRecoveryPointRecommendedForMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListRecoveryPointsError = AzureOpError;
 /** Lists the backup copies for the backed up item. */
 export const ListRecoveryPoints: API.OperationMethod<
@@ -7364,6 +7329,36 @@ export const ListRecoveryPoints: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRecoveryPointsRequest,
   output: ListRecoveryPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRecoveryPointsRecommendedForMoveError = AzureOpError;
+/** Lists the recovery points recommended for move to another tier */
+export const ListRecoveryPointsRecommendedForMove: API.OperationMethod<
+  ListRecoveryPointsRecommendedForMoveRequest,
+  ListRecoveryPointsRecommendedForMoveResponse,
+  ListRecoveryPointsRecommendedForMoveError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRecoveryPointsRecommendedForMoveRequest,
+  output: ListRecoveryPointsRecommendedForMoveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MoveBMSPrepareDataError = AzureOpError;
+/** Prepares source vault for Data Move operation */
+export const MoveBMSPrepareData: API.OperationMethod<
+  MoveBMSPrepareDataRequest,
+  MoveBMSPrepareDataResponse,
+  MoveBMSPrepareDataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MoveBMSPrepareDataRequest,
+  output: MoveBMSPrepareDataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7384,46 +7379,31 @@ export const MoveRecoveryPoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationValidateError = AzureOpError;
-/** Validate operation for specified backed up item. This is a synchronous operation. */
-export const OperationValidate: API.OperationMethod<
-  OperationValidateRequest,
-  ValidateOperationsResponse,
-  OperationValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationValidateRequest,
-  output: ValidateOperationsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchBackupResourceStorageConfigNonCrrError = AzureOpError;
+export type PatchBackupResourceStorageConfigsNonCRRError = AzureOpError;
 /** Updates vault storage model type. */
-export const PatchBackupResourceStorageConfigNonCrr: API.OperationMethod<
-  PatchBackupResourceStorageConfigNonCrrRequest,
-  PatchBackupResourceStorageConfigNonCrrResponse,
-  PatchBackupResourceStorageConfigNonCrrError,
+export const PatchBackupResourceStorageConfigsNonCRR: API.OperationMethod<
+  PatchBackupResourceStorageConfigsNonCRRRequest,
+  PatchBackupResourceStorageConfigsNonCRRResponse,
+  PatchBackupResourceStorageConfigsNonCRRError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchBackupResourceStorageConfigNonCrrRequest,
-  output: PatchBackupResourceStorageConfigNonCrrResponse,
+  input: PatchBackupResourceStorageConfigsNonCRRRequest,
+  output: PatchBackupResourceStorageConfigsNonCRRResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionPutError = AzureOpError;
-/** Approve or Reject Private Endpoint requests. This call is made by Backup Admin. */
-export const PrivateEndpointConnectionPut: API.OperationMethod<
-  PrivateEndpointConnectionPutRequest,
-  PrivateEndpointConnectionPutResponse,
-  PrivateEndpointConnectionPutError,
+export type PostFetchTieringCostError = AzureOpError;
+/** Provides the details of the tiering related sizes and cost. Status of the operation can be fetched using GetTieringCostOperationStatus API and result using GetTieringCostOperationResult API. */
+export const PostFetchTieringCost: API.OperationMethod<
+  PostFetchTieringCostRequest,
+  TieringCostInfo,
+  PostFetchTieringCostError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionPutRequest,
-  output: PrivateEndpointConnectionPutResponse,
+  input: PostFetchTieringCostRequest,
+  output: TieringCostInfo,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7459,51 +7439,6 @@ export const ProtectionContainersInquire: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProtectionContainersRefreshError = AzureOpError;
-/** Discovers all the containers in the subscription that can be backed up to Recovery Services Vault. This is an asynchronous operation. To know the status of the operation, call GetRefreshOperationResult API. */
-export const ProtectionContainersRefresh: API.OperationMethod<
-  ProtectionContainersRefreshRequest,
-  ProtectionContainersRefreshResponse,
-  ProtectionContainersRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectionContainersRefreshRequest,
-  output: ProtectionContainersRefreshResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectionContainersRegisterError = AzureOpError;
-/** Registers the container with Recovery Services vault. This is an asynchronous operation. To track the operation status, use location header to call get latest status of the operation. */
-export const ProtectionContainersRegister: API.OperationMethod<
-  ProtectionContainersRegisterRequest,
-  ProtectionContainersRegisterResponse,
-  ProtectionContainersRegisterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectionContainersRegisterRequest,
-  output: ProtectionContainersRegisterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectionContainersUnregisterError = AzureOpError;
-/** Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To determine whether the backend service has finished processing the request, call Get Container Operation Result API. */
-export const ProtectionContainersUnregister: API.OperationMethod<
-  ProtectionContainersUnregisterRequest,
-  ProtectionContainersUnregisterResponse,
-  ProtectionContainersUnregisterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectionContainersUnregisterRequest,
-  output: ProtectionContainersUnregisterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProtectionIntentCreateOrUpdateError = AzureOpError;
 /** Create Intent for Enabling backup of an item. This is a synchronous operation. */
 export const ProtectionIntentCreateOrUpdate: API.OperationMethod<
@@ -7514,21 +7449,6 @@ export const ProtectionIntentCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ProtectionIntentCreateOrUpdateRequest,
   output: ProtectionIntentCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectionIntentValidateError = AzureOpError;
-/** It will validate followings 1. Vault capacity 2. VM is already protected 3. Any VM related configuration passed in properties. It will validate followings 1. Vault capacity 2. VM is already protected 3. Any VM related configuration passed in properties. */
-export const ProtectionIntentValidate: API.OperationMethod<
-  ProtectionIntentValidateRequest,
-  PreValidateEnableBackupResponse,
-  ProtectionIntentValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectionIntentValidateRequest,
-  output: PreValidateEnableBackupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7549,46 +7469,196 @@ export const ProtectionPoliciesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardProxiesGetError = AzureOpError;
-/** List the ResourceGuardProxies under vault */
-export const ResourceGuardProxiesGet: API.OperationMethod<
-  ResourceGuardProxiesGetRequest,
-  ResourceGuardProxiesGetResponse,
-  ResourceGuardProxiesGetError,
+export type ProvisionItemLevelRecoveryConnectionError = AzureOpError;
+/** Provisions a script which invokes an iSCSI connection to the backup data. Executing this script opens a file explorer displaying all the recoverable files and folders. This is an asynchronous operation. To know the status of provisioning, call GetProtectedItemOperationResult API. */
+export const ProvisionItemLevelRecoveryConnection: API.OperationMethod<
+  ProvisionItemLevelRecoveryConnectionRequest,
+  ProvisionItemLevelRecoveryConnectionResponse,
+  ProvisionItemLevelRecoveryConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardProxiesGetRequest,
-  output: ResourceGuardProxiesGetResponse,
+  input: ProvisionItemLevelRecoveryConnectionRequest,
+  output: ProvisionItemLevelRecoveryConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardProxyPutError = AzureOpError;
+export type PutBackupResourceVaultConfigError = AzureOpError;
+/** Updates vault security config. */
+export const PutBackupResourceVaultConfig: API.OperationMethod<
+  PutBackupResourceVaultConfigRequest,
+  PutBackupResourceVaultConfigResponse,
+  PutBackupResourceVaultConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutBackupResourceVaultConfigRequest,
+  output: PutBackupResourceVaultConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutPrivateEndpointConnectionError = AzureOpError;
+/** Approve or Reject Private Endpoint requests. This call is made by Backup Admin. */
+export const PutPrivateEndpointConnection: API.OperationMethod<
+  PutPrivateEndpointConnectionRequest,
+  PutPrivateEndpointConnectionResponse,
+  PutPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutPrivateEndpointConnectionRequest,
+  output: PutPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutResourceGuardProxyError = AzureOpError;
 /** Add or Update ResourceGuardProxy under vault Secures vault critical operations */
-export const ResourceGuardProxyPut: API.OperationMethod<
-  ResourceGuardProxyPutRequest,
-  ResourceGuardProxyPutResponse,
-  ResourceGuardProxyPutError,
+export const PutResourceGuardProxy: API.OperationMethod<
+  PutResourceGuardProxyRequest,
+  PutResourceGuardProxyResponse,
+  PutResourceGuardProxyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardProxyPutRequest,
-  output: ResourceGuardProxyPutResponse,
+  input: PutResourceGuardProxyRequest,
+  output: PutResourceGuardProxyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RestoresTriggerError = AzureOpError;
-/** Restores the specified backed up data. This is an asynchronous operation. To know the status of this API call, use GetProtectedItemOperationResult API. */
-export const RestoresTrigger: API.OperationMethod<
-  RestoresTriggerRequest,
-  RestoresTriggerResponse,
-  RestoresTriggerError,
+export type RefreshProtectionContainerError = AzureOpError;
+/** Discovers all the containers in the subscription that can be backed up to Recovery Services Vault. This is an asynchronous operation. To know the status of the operation, call GetRefreshOperationResult API. */
+export const RefreshProtectionContainer: API.OperationMethod<
+  RefreshProtectionContainerRequest,
+  RefreshProtectionContainerResponse,
+  RefreshProtectionContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestoresTriggerRequest,
-  output: RestoresTriggerResponse,
+  input: RefreshProtectionContainerRequest,
+  output: RefreshProtectionContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegisterProtectionContainerError = AzureOpError;
+/** Registers the container with Recovery Services vault. This is an asynchronous operation. To track the operation status, use location header to call get latest status of the operation. */
+export const RegisterProtectionContainer: API.OperationMethod<
+  RegisterProtectionContainerRequest,
+  RegisterProtectionContainerResponse,
+  RegisterProtectionContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterProtectionContainerRequest,
+  output: RegisterProtectionContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResourceGuardProxyUnlockDeleteError = AzureOpError;
+/** Secures delete ResourceGuardProxy operations. */
+export const ResourceGuardProxyUnlockDelete: API.OperationMethod<
+  ResourceGuardProxyUnlockDeleteRequest,
+  UnlockDeleteResponse,
+  ResourceGuardProxyUnlockDeleteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResourceGuardProxyUnlockDeleteRequest,
+  output: UnlockDeleteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RevokeItemLevelRecoveryConnectionError = AzureOpError;
+/** Revokes an iSCSI connection which can be used to download a script. Executing this script opens a file explorer displaying all recoverable files and folders. This is an asynchronous operation. */
+export const RevokeItemLevelRecoveryConnection: API.OperationMethod<
+  RevokeItemLevelRecoveryConnectionRequest,
+  RevokeItemLevelRecoveryConnectionResponse,
+  RevokeItemLevelRecoveryConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RevokeItemLevelRecoveryConnectionRequest,
+  output: RevokeItemLevelRecoveryConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerBackupError = AzureOpError;
+/** Triggers backup for specified backed up item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API. */
+export const TriggerBackup: API.OperationMethod<
+  TriggerBackupRequest,
+  TriggerBackupResponse,
+  TriggerBackupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerBackupRequest,
+  output: TriggerBackupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerJobCancellationError = AzureOpError;
+/** Cancels a job. This is an asynchronous operation. To know the status of the cancellation, call GetCancelOperationResult API. */
+export const TriggerJobCancellation: API.OperationMethod<
+  TriggerJobCancellationRequest,
+  TriggerJobCancellationResponse,
+  TriggerJobCancellationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerJobCancellationRequest,
+  output: TriggerJobCancellationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerRestoreError = AzureOpError;
+/** Restores the specified backed up data. This is an asynchronous operation. To know the status of this API call, use GetProtectedItemOperationResult API. */
+export const TriggerRestore: API.OperationMethod<
+  TriggerRestoreRequest,
+  TriggerRestoreResponse,
+  TriggerRestoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerRestoreRequest,
+  output: TriggerRestoreResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerValidateOperationError = AzureOpError;
+/** Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking headers which can be tracked using GetValidateOperationResult API. */
+export const TriggerValidateOperation: API.OperationMethod<
+  TriggerValidateOperationRequest,
+  TriggerValidateOperationResponse,
+  TriggerValidateOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerValidateOperationRequest,
+  output: TriggerValidateOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnregisterProtectionContainerError = AzureOpError;
+/** Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To determine whether the backend service has finished processing the request, call Get Container Operation Result API. */
+export const UnregisterProtectionContainer: API.OperationMethod<
+  UnregisterProtectionContainerRequest,
+  UnregisterProtectionContainerResponse,
+  UnregisterProtectionContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnregisterProtectionContainerRequest,
+  output: UnregisterProtectionContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7609,16 +7679,16 @@ export const UpdateBackupResourceEncryptionConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateBackupResourceStorageConfigNonCrrError = AzureOpError;
+export type UpdateBackupResourceStorageConfigsNonCRRError = AzureOpError;
 /** Updates vault storage model type. */
-export const UpdateBackupResourceStorageConfigNonCrr: API.OperationMethod<
-  UpdateBackupResourceStorageConfigNonCrrRequest,
-  UpdateBackupResourceStorageConfigNonCrrResponse,
-  UpdateBackupResourceStorageConfigNonCrrError,
+export const UpdateBackupResourceStorageConfigsNonCRR: API.OperationMethod<
+  UpdateBackupResourceStorageConfigsNonCRRRequest,
+  UpdateBackupResourceStorageConfigsNonCRRResponse,
+  UpdateBackupResourceStorageConfigsNonCRRError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBackupResourceStorageConfigNonCrrRequest,
-  output: UpdateBackupResourceStorageConfigNonCrrResponse,
+  input: UpdateBackupResourceStorageConfigsNonCRRRequest,
+  output: UpdateBackupResourceStorageConfigsNonCRRResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7639,16 +7709,46 @@ export const UpdateBackupResourceVaultConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ValidateOperationTriggerError = AzureOpError;
-/** Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking headers which can be tracked using GetValidateOperationResult API. */
-export const ValidateOperationTrigger: API.OperationMethod<
-  ValidateOperationTriggerRequest,
-  ValidateOperationTriggerResponse,
-  ValidateOperationTriggerError,
+export type ValidateFeatureSupportError = AzureOpError;
+/** It will validate if given feature with resource properties is supported in service It will validate if given feature with resource properties is supported in service */
+export const ValidateFeatureSupport: API.OperationMethod<
+  ValidateFeatureSupportRequest,
+  AzureVMResourceFeatureSupportResponse,
+  ValidateFeatureSupportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidateOperationTriggerRequest,
-  output: ValidateOperationTriggerResponse,
+  input: ValidateFeatureSupportRequest,
+  output: AzureVMResourceFeatureSupportResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateOperationError = AzureOpError;
+/** Validate operation for specified backed up item. This is a synchronous operation. */
+export const ValidateOperation: API.OperationMethod<
+  ValidateOperationRequest2,
+  ValidateOperationsResponse,
+  ValidateOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateOperationRequest2,
+  output: ValidateOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateProtectionIntentError = AzureOpError;
+/** It will validate followings 1. Vault capacity 2. VM is already protected 3. Any VM related configuration passed in properties. It will validate followings 1. Vault capacity 2. VM is already protected 3. Any VM related configuration passed in properties. */
+export const ValidateProtectionIntent: API.OperationMethod<
+  ValidateProtectionIntentRequest,
+  PreValidateEnableBackupResponse,
+  ValidateProtectionIntentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateProtectionIntentRequest,
+  output: PreValidateEnableBackupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

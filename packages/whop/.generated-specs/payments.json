@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.payments#UpdateReturnUrlPaymentRequest": {
@@ -1354,7 +1355,7 @@
         "smithy.api#documentation": "Update payment return URL\n\nChanges where the buyer lands after completing an off-site step, up until they return. Accepts either a secret key or the payment's own `client_secret`, so the surface that knows the final destination can set it."
       }
     },
-    "com.whop.payments#RetrieveStatusPaymentRequest": {
+    "com.whop.payments#GetStatusPaymentRequest": {
       "type": "structure",
       "members": {
         "payment_id": {
@@ -1370,10 +1371,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.payments#RetrieveStatusPayment": {
+    "com.whop.payments#GetStatusPayment": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payments#RetrieveStatusPaymentRequest"
+        "target": "com.whop.payments#GetStatusPaymentRequest"
       },
       "output": {
         "target": "com.whop.payments#PaymentStatus"
@@ -8488,7 +8489,7 @@
         "smithy.api#documentation": "Create payment\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCharge an existing member off-session using one of their stored payment methods. You can provide an existing plan, or create a new one in-line. This endpoint will respond with a payment object immediately, but the payment is processed asynchronously in the background. Use webhooks to be notified when the payment succeeds or fails.\n\nRequired permissions:\n - `payment:charge`\n - `plan:create`\n - `access_pass:create`\n - `access_pass:update`\n - `plan:basic:read`\n - `access_pass:basic:read`\n - `member:email:read`\n - `member:basic:read`\n - `member:phone:read`\n - `promo_code:basic:read`\n - `shipment:basic:read`\n - `payment:dispute:read`\n - `payment:resolution_center_case:read`"
       }
     },
-    "com.whop.payments#RetrievePaymentRequest": {
+    "com.whop.payments#GetPaymentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -8504,7 +8505,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.payments#RetrievePaymentResponseApplicationFee": {
+    "com.whop.payments#GetPaymentResponseApplicationFee": {
       "type": "structure",
       "members": {
         "amount": {
@@ -8554,7 +8555,7 @@
         "smithy.api#documentation": "The application fee charged on this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseBillingAddress": {
+    "com.whop.payments#GetPaymentResponseBillingAddress": {
       "type": "structure",
       "members": {
         "city": {
@@ -8618,7 +8619,7 @@
         "smithy.api#documentation": "The address of the user who made the payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseCompany": {
+    "com.whop.payments#GetPaymentResponseCompany": {
       "type": "structure",
       "members": {
         "id": {
@@ -8647,7 +8648,7 @@
         "smithy.api#documentation": "The company for the payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseDisputesItem": {
+    "com.whop.payments#GetPaymentResponseDisputesItem": {
       "type": "structure",
       "members": {
         "amount": {
@@ -8715,16 +8716,16 @@
         "smithy.api#documentation": "A dispute is a chargeback or payment challenge filed against a company, including evidence and response status."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseDisputesList": {
+    "com.whop.payments#GetPaymentResponseDisputesList": {
       "type": "list",
       "member": {
-        "target": "com.whop.payments#RetrievePaymentResponseDisputesItem"
+        "target": "com.whop.payments#GetPaymentResponseDisputesItem"
       },
       "traits": {
         "smithy.api#documentation": "The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseFinancingTransactionsItem": {
+    "com.whop.payments#GetPaymentResponseFinancingTransactionsItem": {
       "type": "structure",
       "members": {
         "amount": {
@@ -8767,16 +8768,16 @@
         "smithy.api#documentation": "A payment transaction."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseFinancingTransactionsList": {
+    "com.whop.payments#GetPaymentResponseFinancingTransactionsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.payments#RetrievePaymentResponseFinancingTransactionsItem"
+        "target": "com.whop.payments#GetPaymentResponseFinancingTransactionsItem"
       },
       "traits": {
         "smithy.api#documentation": "The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.)."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseMember": {
+    "com.whop.payments#GetPaymentResponseMember": {
       "type": "structure",
       "members": {
         "id": {
@@ -8799,7 +8800,7 @@
         "smithy.api#documentation": "The member attached to this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseMembership": {
+    "com.whop.payments#GetPaymentResponseMembership": {
       "type": "structure",
       "members": {
         "id": {
@@ -8829,7 +8830,7 @@
         "smithy.api#documentation": "The membership attached to this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseMetadataMap": {
+    "com.whop.payments#GetPaymentResponseMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8841,7 +8842,7 @@
         "smithy.api#documentation": "The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made"
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentCard": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentCard": {
       "type": "structure",
       "members": {
         "brand": {
@@ -8864,7 +8865,7 @@
         "smithy.api#documentation": "Card payments only: the card's network and last four."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCardDark": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCardDark": {
       "type": "structure",
       "members": {
         "png_1x": {
@@ -8900,7 +8901,7 @@
         "smithy.api#documentation": "The colorway for dark surfaces."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCardLight": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCardLight": {
       "type": "structure",
       "members": {
         "png_1x": {
@@ -8936,18 +8937,18 @@
         "smithy.api#documentation": "The colorway for light surfaces."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCard": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCard": {
       "type": "structure",
       "members": {
         "dark": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCardDark",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCardDark",
           "traits": {
             "smithy.api#documentation": "The colorway for dark surfaces.",
             "smithy.api#required": {}
           }
         },
         "light": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCardLight",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCardLight",
           "traits": {
             "smithy.api#documentation": "The colorway for light surfaces.",
             "smithy.api#required": {}
@@ -8958,7 +8959,7 @@
         "smithy.api#documentation": "The credit-card-proportioned tile (48x30)."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquareDark": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquareDark": {
       "type": "structure",
       "members": {
         "png_1x": {
@@ -8994,7 +8995,7 @@
         "smithy.api#documentation": "The colorway for dark surfaces."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquareLight": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquareLight": {
       "type": "structure",
       "members": {
         "png_1x": {
@@ -9030,18 +9031,18 @@
         "smithy.api#documentation": "The colorway for light surfaces."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquare": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquare": {
       "type": "structure",
       "members": {
         "dark": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquareDark",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquareDark",
           "traits": {
             "smithy.api#documentation": "The colorway for dark surfaces.",
             "smithy.api#required": {}
           }
         },
         "light": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquareLight",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquareLight",
           "traits": {
             "smithy.api#documentation": "The colorway for light surfaces.",
             "smithy.api#required": {}
@@ -9052,18 +9053,18 @@
         "smithy.api#documentation": "The square tile (32x32)."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIcons": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrumentIcons": {
       "type": "structure",
       "members": {
         "card": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsCard",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsCard",
           "traits": {
             "smithy.api#documentation": "The credit-card-proportioned tile (48x30).",
             "smithy.api#required": {}
           }
         },
         "square": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIconsSquare",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIconsSquare",
           "traits": {
             "smithy.api#documentation": "The square tile (32x32).",
             "smithy.api#required": {}
@@ -9074,11 +9075,11 @@
         "smithy.api#documentation": "The standard icon set: square and card shapes, each in light and dark colorways."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentInstrument": {
+    "com.whop.payments#GetPaymentResponsePaymentInstrument": {
       "type": "structure",
       "members": {
         "card": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentCard",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentCard",
           "traits": {
             "smithy.api#documentation": "Card payments only: the card's network and last four.",
             "smithy.api#required": {},
@@ -9093,7 +9094,7 @@
           }
         },
         "icons": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrumentIcons",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrumentIcons",
           "traits": {
             "smithy.api#documentation": "The standard icon set: square and card shapes, each in light and dark colorways.",
             "smithy.api#required": {}
@@ -9119,7 +9120,7 @@
         "smithy.api#documentation": "The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentMethodCard": {
+    "com.whop.payments#GetPaymentResponsePaymentMethodCard": {
       "type": "structure",
       "members": {
         "brand": {
@@ -9167,11 +9168,11 @@
         "smithy.api#documentation": "The card data associated with the payment method, if its a debit or credit card."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePaymentMethod": {
+    "com.whop.payments#GetPaymentResponsePaymentMethod": {
       "type": "structure",
       "members": {
         "card": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentMethodCard",
+          "target": "com.whop.payments#GetPaymentResponsePaymentMethodCard",
           "traits": {
             "smithy.api#documentation": "The card data associated with the payment method, if its a debit or credit card.",
             "smithy.api#required": {},
@@ -9204,7 +9205,7 @@
         "smithy.api#documentation": "The tokenized payment method reference used for this payment. Null if no token was used."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePlanMetadataMap": {
+    "com.whop.payments#GetPaymentResponsePlanMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9216,7 +9217,7 @@
         "smithy.api#documentation": "Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan."
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePlan": {
+    "com.whop.payments#GetPaymentResponsePlan": {
       "type": "structure",
       "members": {
         "id": {
@@ -9235,7 +9236,7 @@
           }
         },
         "metadata": {
-          "target": "com.whop.payments#RetrievePaymentResponsePlanMetadataMap",
+          "target": "com.whop.payments#GetPaymentResponsePlanMetadataMap",
           "traits": {
             "smithy.api#documentation": "Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan.",
             "smithy.api#required": {},
@@ -9247,7 +9248,7 @@
         "smithy.api#documentation": "The plan attached to this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseProductMetadataMap": {
+    "com.whop.payments#GetPaymentResponseProductMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9259,7 +9260,7 @@
         "smithy.api#documentation": "Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseProduct": {
+    "com.whop.payments#GetPaymentResponseProduct": {
       "type": "structure",
       "members": {
         "id": {
@@ -9270,7 +9271,7 @@
           }
         },
         "metadata": {
-          "target": "com.whop.payments#RetrievePaymentResponseProductMetadataMap",
+          "target": "com.whop.payments#GetPaymentResponseProductMetadataMap",
           "traits": {
             "smithy.api#documentation": "Custom key-value pairs stored on the product and included in payment and membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters per string value.",
             "smithy.api#required": {},
@@ -9296,7 +9297,7 @@
         "smithy.api#documentation": "The product this payment was made for"
       }
     },
-    "com.whop.payments#RetrievePaymentResponsePromoCode": {
+    "com.whop.payments#GetPaymentResponsePromoCode": {
       "type": "structure",
       "members": {
         "amount_off": {
@@ -9348,7 +9349,7 @@
         "smithy.api#documentation": "The promo code used for this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseRefundsItem": {
+    "com.whop.payments#GetPaymentResponseRefundsItem": {
       "type": "structure",
       "members": {
         "amount": {
@@ -9391,16 +9392,16 @@
         "smithy.api#documentation": "A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseRefundsList": {
+    "com.whop.payments#GetPaymentResponseRefundsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.payments#RetrievePaymentResponseRefundsItem"
+        "target": "com.whop.payments#GetPaymentResponseRefundsItem"
       },
       "traits": {
         "smithy.api#documentation": "The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseResolutionsItemCustomerResponseActionsList": {
+    "com.whop.payments#GetPaymentResponseResolutionsItemCustomerResponseActionsList": {
       "type": "list",
       "member": {
         "target": "com.whop.payments#ResolutionCenterCaseCustomerResponses"
@@ -9409,7 +9410,7 @@
         "smithy.api#documentation": "The list of actions currently available to the customer."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseResolutionsItemMerchantResponseActionsList": {
+    "com.whop.payments#GetPaymentResponseResolutionsItemMerchantResponseActionsList": {
       "type": "list",
       "member": {
         "target": "com.whop.payments#ResolutionCenterCaseMerchantResponses"
@@ -9418,7 +9419,7 @@
         "smithy.api#documentation": "The list of actions currently available to the merchant."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseResolutionsItemPlatformResponseActionsList": {
+    "com.whop.payments#GetPaymentResponseResolutionsItemPlatformResponseActionsList": {
       "type": "list",
       "member": {
         "target": "com.whop.payments#ResolutionCenterCasePlatformResponses"
@@ -9427,7 +9428,7 @@
         "smithy.api#documentation": "The list of actions currently available to the Whop platform for moderating this resolution."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseResolutionsItem": {
+    "com.whop.payments#GetPaymentResponseResolutionsItem": {
       "type": "structure",
       "members": {
         "customer_appealed": {
@@ -9438,7 +9439,7 @@
           }
         },
         "customer_response_actions": {
-          "target": "com.whop.payments#RetrievePaymentResponseResolutionsItemCustomerResponseActionsList",
+          "target": "com.whop.payments#GetPaymentResponseResolutionsItemCustomerResponseActionsList",
           "traits": {
             "smithy.api#documentation": "The list of actions currently available to the customer.",
             "smithy.api#required": {}
@@ -9474,14 +9475,14 @@
           }
         },
         "merchant_response_actions": {
-          "target": "com.whop.payments#RetrievePaymentResponseResolutionsItemMerchantResponseActionsList",
+          "target": "com.whop.payments#GetPaymentResponseResolutionsItemMerchantResponseActionsList",
           "traits": {
             "smithy.api#documentation": "The list of actions currently available to the merchant.",
             "smithy.api#required": {}
           }
         },
         "platform_response_actions": {
-          "target": "com.whop.payments#RetrievePaymentResponseResolutionsItemPlatformResponseActionsList",
+          "target": "com.whop.payments#GetPaymentResponseResolutionsItemPlatformResponseActionsList",
           "traits": {
             "smithy.api#documentation": "The list of actions currently available to the Whop platform for moderating this resolution.",
             "smithy.api#required": {}
@@ -9499,16 +9500,16 @@
         "smithy.api#documentation": "A resolution center case is a dispute or support case between a user and a company, tracking the issue, status, and outcome."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseResolutionsList": {
+    "com.whop.payments#GetPaymentResponseResolutionsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.payments#RetrievePaymentResponseResolutionsItem"
+        "target": "com.whop.payments#GetPaymentResponseResolutionsItem"
       },
       "traits": {
         "smithy.api#documentation": "The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseRiskSignalsMap": {
+    "com.whop.payments#GetPaymentResponseRiskSignalsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9520,7 +9521,7 @@
         "smithy.api#documentation": "A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseShipment": {
+    "com.whop.payments#GetPaymentResponseShipment": {
       "type": "structure",
       "members": {
         "carrier": {
@@ -9564,7 +9565,7 @@
         "smithy.api#documentation": "The shipment attached to this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseShippingAddress": {
+    "com.whop.payments#GetPaymentResponseShippingAddress": {
       "type": "structure",
       "members": {
         "city": {
@@ -9628,7 +9629,7 @@
         "smithy.api#documentation": "The shipping address provided by the customer for physical goods. Null if no shipping address was collected."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseUser": {
+    "com.whop.payments#GetPaymentResponseUser": {
       "type": "structure",
       "members": {
         "email": {
@@ -9666,7 +9667,7 @@
         "smithy.api#documentation": "The user that made this payment."
       }
     },
-    "com.whop.payments#RetrievePaymentResponseVerificationChecks": {
+    "com.whop.payments#GetPaymentResponseVerificationChecks": {
       "type": "structure",
       "members": {
         "address_line1": {
@@ -9706,7 +9707,7 @@
         "smithy.api#documentation": "The issuer's address and card security code check results for this payment. Null when the processor returned none."
       }
     },
-    "com.whop.payments#RetrievePaymentResponse": {
+    "com.whop.payments#GetPaymentResponse": {
       "type": "structure",
       "members": {
         "amount_after_fees": {
@@ -9717,7 +9718,7 @@
           }
         },
         "application_fee": {
-          "target": "com.whop.payments#RetrievePaymentResponseApplicationFee",
+          "target": "com.whop.payments#GetPaymentResponseApplicationFee",
           "traits": {
             "smithy.api#documentation": "The application fee charged on this payment.",
             "smithy.api#required": {},
@@ -9732,7 +9733,7 @@
           }
         },
         "billing_address": {
-          "target": "com.whop.payments#RetrievePaymentResponseBillingAddress",
+          "target": "com.whop.payments#GetPaymentResponseBillingAddress",
           "traits": {
             "smithy.api#documentation": "The address of the user who made the payment.",
             "smithy.api#required": {},
@@ -9788,7 +9789,7 @@
           }
         },
         "company": {
-          "target": "com.whop.payments#RetrievePaymentResponseCompany",
+          "target": "com.whop.payments#GetPaymentResponseCompany",
           "traits": {
             "smithy.api#documentation": "The company for the payment.",
             "smithy.api#required": {},
@@ -9834,7 +9835,7 @@
           }
         },
         "disputes": {
-          "target": "com.whop.payments#RetrievePaymentResponseDisputesList",
+          "target": "com.whop.payments#GetPaymentResponseDisputesList",
           "traits": {
             "smithy.api#documentation": "The disputes attached to this payment. Null if the actor in context does not have the payment:dispute:read permission.",
             "smithy.api#required": {},
@@ -9858,7 +9859,7 @@
           }
         },
         "financing_transactions": {
-          "target": "com.whop.payments#RetrievePaymentResponseFinancingTransactionsList",
+          "target": "com.whop.payments#GetPaymentResponseFinancingTransactionsList",
           "traits": {
             "smithy.api#documentation": "The financing transactions attached to this payment. Present if the payment is a financing payment (e.g. Splitit, Klarna, etc.).",
             "smithy.api#required": {}
@@ -9880,7 +9881,7 @@
           }
         },
         "member": {
-          "target": "com.whop.payments#RetrievePaymentResponseMember",
+          "target": "com.whop.payments#GetPaymentResponseMember",
           "traits": {
             "smithy.api#documentation": "The member attached to this payment.",
             "smithy.api#required": {},
@@ -9888,7 +9889,7 @@
           }
         },
         "membership": {
-          "target": "com.whop.payments#RetrievePaymentResponseMembership",
+          "target": "com.whop.payments#GetPaymentResponseMembership",
           "traits": {
             "smithy.api#documentation": "The membership attached to this payment.",
             "smithy.api#required": {},
@@ -9896,7 +9897,7 @@
           }
         },
         "metadata": {
-          "target": "com.whop.payments#RetrievePaymentResponseMetadataMap",
+          "target": "com.whop.payments#GetPaymentResponseMetadataMap",
           "traits": {
             "smithy.api#documentation": "The custom metadata stored on this payment. This will be copied over to the checkout configuration for which this payment was made",
             "smithy.api#required": {},
@@ -9928,7 +9929,7 @@
           }
         },
         "payment_instrument": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentInstrument",
+          "target": "com.whop.payments#GetPaymentResponsePaymentInstrument",
           "traits": {
             "smithy.api#documentation": "The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the receipt names no payment method.",
             "smithy.api#required": {},
@@ -9936,7 +9937,7 @@
           }
         },
         "payment_method": {
-          "target": "com.whop.payments#RetrievePaymentResponsePaymentMethod",
+          "target": "com.whop.payments#GetPaymentResponsePaymentMethod",
           "traits": {
             "smithy.api#documentation": "The tokenized payment method reference used for this payment. Null if no token was used.",
             "smithy.api#required": {},
@@ -9960,7 +9961,7 @@
           }
         },
         "plan": {
-          "target": "com.whop.payments#RetrievePaymentResponsePlan",
+          "target": "com.whop.payments#GetPaymentResponsePlan",
           "traits": {
             "smithy.api#documentation": "The plan attached to this payment.",
             "smithy.api#required": {},
@@ -9968,7 +9969,7 @@
           }
         },
         "product": {
-          "target": "com.whop.payments#RetrievePaymentResponseProduct",
+          "target": "com.whop.payments#GetPaymentResponseProduct",
           "traits": {
             "smithy.api#documentation": "The product this payment was made for",
             "smithy.api#required": {},
@@ -9976,7 +9977,7 @@
           }
         },
         "promo_code": {
-          "target": "com.whop.payments#RetrievePaymentResponsePromoCode",
+          "target": "com.whop.payments#GetPaymentResponsePromoCode",
           "traits": {
             "smithy.api#documentation": "The promo code used for this payment.",
             "smithy.api#required": {},
@@ -10007,14 +10008,14 @@
           }
         },
         "refunds": {
-          "target": "com.whop.payments#RetrievePaymentResponseRefundsList",
+          "target": "com.whop.payments#GetPaymentResponseRefundsList",
           "traits": {
             "smithy.api#documentation": "The refunds issued against this payment, newest first, including failed and canceled refund attempts. Limited to the 100 most recent.",
             "smithy.api#required": {}
           }
         },
         "resolutions": {
-          "target": "com.whop.payments#RetrievePaymentResponseResolutionsList",
+          "target": "com.whop.payments#GetPaymentResponseResolutionsList",
           "traits": {
             "smithy.api#documentation": "The resolution center cases opened by the customer on this payment. Null if the actor in context does not have the payment:resolution_center_case:read permission.",
             "smithy.api#required": {},
@@ -10037,7 +10038,7 @@
           }
         },
         "risk_signals": {
-          "target": "com.whop.payments#RetrievePaymentResponseRiskSignalsMap",
+          "target": "com.whop.payments#GetPaymentResponseRiskSignalsMap",
           "traits": {
             "smithy.api#documentation": "A curated set of factors behind the risk score, grouped by category (business transaction history, buyer, device). Each entry has a key, human-readable label, category, and value. Null when there is no risk assessment for this payment.",
             "smithy.api#required": {},
@@ -10075,7 +10076,7 @@
           }
         },
         "shipment": {
-          "target": "com.whop.payments#RetrievePaymentResponseShipment",
+          "target": "com.whop.payments#GetPaymentResponseShipment",
           "traits": {
             "smithy.api#documentation": "The shipment attached to this payment.",
             "smithy.api#required": {},
@@ -10083,7 +10084,7 @@
           }
         },
         "shipping_address": {
-          "target": "com.whop.payments#RetrievePaymentResponseShippingAddress",
+          "target": "com.whop.payments#GetPaymentResponseShippingAddress",
           "traits": {
             "smithy.api#documentation": "The shipping address provided by the customer for physical goods. Null if no shipping address was collected.",
             "smithy.api#required": {},
@@ -10168,7 +10169,7 @@
           }
         },
         "user": {
-          "target": "com.whop.payments#RetrievePaymentResponseUser",
+          "target": "com.whop.payments#GetPaymentResponseUser",
           "traits": {
             "smithy.api#documentation": "The user that made this payment.",
             "smithy.api#required": {},
@@ -10176,7 +10177,7 @@
           }
         },
         "verification_checks": {
-          "target": "com.whop.payments#RetrievePaymentResponseVerificationChecks",
+          "target": "com.whop.payments#GetPaymentResponseVerificationChecks",
           "traits": {
             "smithy.api#documentation": "The issuer's address and card security code check results for this payment. Null when the processor returned none.",
             "smithy.api#required": {},
@@ -10204,13 +10205,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.payments#RetrievePayment": {
+    "com.whop.payments#GetPayment": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payments#RetrievePaymentRequest"
+        "target": "com.whop.payments#GetPaymentRequest"
       },
       "output": {
-        "target": "com.whop.payments#RetrievePaymentResponse"
+        "target": "com.whop.payments#GetPaymentResponse"
       },
       "errors": [
         {
@@ -12477,28 +12478,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payments#UpdateReturnUrlPayment"
-        },
-        {
-          "target": "com.whop.payments#RetrieveStatusPayment"
-        },
-        {
-          "target": "com.whop.payments#ListPayment"
-        },
-        {
           "target": "com.whop.payments#CreatePayment"
         },
         {
-          "target": "com.whop.payments#RetrievePayment"
+          "target": "com.whop.payments#FeesPayment"
         },
         {
-          "target": "com.whop.payments#FeesPayment"
+          "target": "com.whop.payments#GetPayment"
+        },
+        {
+          "target": "com.whop.payments#GetStatusPayment"
+        },
+        {
+          "target": "com.whop.payments#ListPayment"
         },
         {
           "target": "com.whop.payments#RefundPayment"
         },
         {
           "target": "com.whop.payments#RetryPayment"
+        },
+        {
+          "target": "com.whop.payments#UpdateReturnUrlPayment"
         },
         {
           "target": "com.whop.payments#VoidPayment"

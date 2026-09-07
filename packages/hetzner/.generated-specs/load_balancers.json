@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.load_balancers#ListLoadBalancersRequestSortItem": {
@@ -4563,22 +4564,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.load_balancers#ListLoadBalancers"
-        },
-        {
           "target": "com.hetzner.load_balancers#CreateLoadBalancer"
-        },
-        {
-          "target": "com.hetzner.load_balancers#GetLoadBalancer"
-        },
-        {
-          "target": "com.hetzner.load_balancers#UpdateLoadBalancer"
         },
         {
           "target": "com.hetzner.load_balancers#DeleteLoadBalancer"
         },
         {
+          "target": "com.hetzner.load_balancers#GetLoadBalancer"
+        },
+        {
           "target": "com.hetzner.load_balancers#GetLoadBalancerMetrics"
+        },
+        {
+          "target": "com.hetzner.load_balancers#ListLoadBalancers"
+        },
+        {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancer"
         }
       ],
       "traits": {

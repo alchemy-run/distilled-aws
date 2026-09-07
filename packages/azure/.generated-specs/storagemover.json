@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.storagemover#StopJobDefinitionJob": {
@@ -2959,7 +2960,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsUpdateResponseIdentity",
+          "target": "com.azure.storagemover#UpdateEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2969,7 +2970,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#EndpointsUpdateResponseIdentity": {
+    "com.azure.storagemover#UpdateEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3210,7 +3211,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsUpdateRequestIdentity",
+          "target": "com.azure.storagemover#UpdateEndpointRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3220,7 +3221,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#EndpointsUpdateRequestIdentity": {
+    "com.azure.storagemover#UpdateEndpointRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3530,7 +3531,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsGetResponseIdentity",
+          "target": "com.azure.storagemover#GetEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3540,7 +3541,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#EndpointsGetResponseIdentity": {
+    "com.azure.storagemover#GetEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5222,7 +5223,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversUpdateResponseTagsMap",
+          "target": "com.azure.storagemover#UpdateStorageMoverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5265,7 +5266,7 @@
         "smithy.api#documentation": "The resource specific properties for the Storage Mover resource."
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateResponseTagsMap": {
+    "com.azure.storagemover#UpdateStorageMoverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5311,7 +5312,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversUpdateRequestTagsMap",
+          "target": "com.azure.storagemover#UpdateStorageMoverRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5321,7 +5322,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateRequestTagsMap": {
+    "com.azure.storagemover#UpdateStorageMoverRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5553,7 +5554,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversGetResponseTagsMap",
+          "target": "com.azure.storagemover#GetStorageMoverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5576,7 +5577,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#StorageMoversGetResponseTagsMap": {
+    "com.azure.storagemover#GetStorageMoverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5814,7 +5815,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.storagemover#OperationsListResponseValueList",
+          "target": "com.azure.storagemover#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5830,7 +5831,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#OperationsListResponseValueList": {
+    "com.azure.storagemover#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.storagemover#Operation"
@@ -5954,112 +5955,112 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagemover#StopJobDefinitionJob"
-        },
-        {
-          "target": "com.azure.storagemover#StartJobDefinitionJob"
-        },
-        {
-          "target": "com.azure.storagemover#JobDefinitionsReconcileJob"
-        },
-        {
-          "target": "com.azure.storagemover#GetJobRun"
-        },
-        {
-          "target": "com.azure.storagemover#ListJobRuns"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteJobDefinition"
-        },
-        {
-          "target": "com.azure.storagemover#UpdateJobDefinition"
-        },
-        {
-          "target": "com.azure.storagemover#JobDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#GetJobDefinition"
-        },
-        {
-          "target": "com.azure.storagemover#ListJobDefinitions"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteProject"
-        },
-        {
-          "target": "com.azure.storagemover#UpdateProject"
-        },
-        {
-          "target": "com.azure.storagemover#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#GetProject"
-        },
-        {
-          "target": "com.azure.storagemover#ListProjects"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteEndpoint"
-        },
-        {
-          "target": "com.azure.storagemover#UpdateEndpoint"
-        },
-        {
-          "target": "com.azure.storagemover#EndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#GetEndpoint"
-        },
-        {
-          "target": "com.azure.storagemover#ListEndpoints"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteConnection"
+          "target": "com.azure.storagemover#AgentsCreateOrUpdate"
         },
         {
           "target": "com.azure.storagemover#ConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#GetConnection"
-        },
-        {
-          "target": "com.azure.storagemover#ListConnections"
-        },
-        {
           "target": "com.azure.storagemover#DeleteAgent"
         },
         {
-          "target": "com.azure.storagemover#UpdateAgent"
+          "target": "com.azure.storagemover#DeleteConnection"
         },
         {
-          "target": "com.azure.storagemover#AgentsCreateOrUpdate"
+          "target": "com.azure.storagemover#DeleteEndpoint"
         },
         {
-          "target": "com.azure.storagemover#GetAgent"
+          "target": "com.azure.storagemover#DeleteJobDefinition"
         },
         {
-          "target": "com.azure.storagemover#ListAgents"
+          "target": "com.azure.storagemover#DeleteProject"
         },
         {
           "target": "com.azure.storagemover#DeleteStorageMover"
         },
         {
-          "target": "com.azure.storagemover#UpdateStorageMover"
+          "target": "com.azure.storagemover#EndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversCreateOrUpdate"
+          "target": "com.azure.storagemover#GetAgent"
+        },
+        {
+          "target": "com.azure.storagemover#GetConnection"
+        },
+        {
+          "target": "com.azure.storagemover#GetEndpoint"
+        },
+        {
+          "target": "com.azure.storagemover#GetJobDefinition"
+        },
+        {
+          "target": "com.azure.storagemover#GetJobRun"
+        },
+        {
+          "target": "com.azure.storagemover#GetProject"
         },
         {
           "target": "com.azure.storagemover#GetStorageMover"
         },
         {
-          "target": "com.azure.storagemover#ListStorageMovers"
+          "target": "com.azure.storagemover#JobDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#JobDefinitionsReconcileJob"
+        },
+        {
+          "target": "com.azure.storagemover#ListAgents"
+        },
+        {
+          "target": "com.azure.storagemover#ListConnections"
+        },
+        {
+          "target": "com.azure.storagemover#ListEndpoints"
+        },
+        {
+          "target": "com.azure.storagemover#ListJobDefinitions"
+        },
+        {
+          "target": "com.azure.storagemover#ListJobRuns"
+        },
+        {
+          "target": "com.azure.storagemover#ListOperations"
+        },
+        {
+          "target": "com.azure.storagemover#ListProjects"
         },
         {
           "target": "com.azure.storagemover#ListStorageMoverBySubscription"
         },
         {
-          "target": "com.azure.storagemover#ListOperations"
+          "target": "com.azure.storagemover#ListStorageMovers"
+        },
+        {
+          "target": "com.azure.storagemover#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#StartJobDefinitionJob"
+        },
+        {
+          "target": "com.azure.storagemover#StopJobDefinitionJob"
+        },
+        {
+          "target": "com.azure.storagemover#StorageMoversCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateAgent"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateEndpoint"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateJobDefinition"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateProject"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateStorageMover"
         }
       ],
       "traits": {

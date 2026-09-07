@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.computeschedule#StartScheduledActionVirtualMachineSubmit": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStart": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#StartScheduledActionVirtualMachineSubmitRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStartRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#StartResourceOperationResponse"
@@ -355,7 +356,7 @@
         "smithy.api#documentation": "Type of operation performed on the resources"
       }
     },
-    "com.azure.computeschedule#StartScheduledActionVirtualMachineSubmitRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStartRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -772,10 +773,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationStatus": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationStatusRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatusRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#GetOperationStatusResponse"
@@ -815,7 +816,7 @@
         "smithy.api#documentation": "An array of resource operations based on their operation ids"
       }
     },
-    "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationStatusRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -862,10 +863,10 @@
         "smithy.api#documentation": "The list of operation ids to get the status of"
       }
     },
-    "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationError": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrors": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationErrorRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrorsRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#GetOperationErrorsResponse"
@@ -1010,7 +1011,7 @@
         "smithy.api#documentation": "This defines a list of operation errors associated with a unique operationId"
       }
     },
-    "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationErrorRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1050,10 +1051,10 @@
         "smithy.api#documentation": "The list of operation ids to query errors of"
       }
     },
-    "com.azure.computeschedule#StartScheduledActionVirtualMachineExecute": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStart": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#StartScheduledActionVirtualMachineExecuteRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStartRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#StartResourceOperationResponse"
@@ -1069,7 +1070,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.computeschedule#StartScheduledActionVirtualMachineExecuteRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStartRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1178,10 +1179,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computeschedule#DeleteScheduledActionVirtualMachineExecute": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDelete": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#DeleteScheduledActionVirtualMachineExecuteRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeleteRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#DeleteResourceOperationResponse"
@@ -1241,7 +1242,7 @@
         "smithy.api#documentation": "The results from the start request if no errors exist"
       }
     },
-    "com.azure.computeschedule#DeleteScheduledActionVirtualMachineExecuteRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeleteRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1355,10 +1356,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computeschedule#CreateScheduledActionVirtualMachineExecute": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computeschedule#CreateScheduledActionVirtualMachineExecuteRequest"
+        "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreateRequest"
       },
       "output": {
         "target": "com.azure.computeschedule#CreateResourceOperationResponse"
@@ -1418,7 +1419,7 @@
         "smithy.api#documentation": "The results from the start request if no errors exist"
       }
     },
-    "com.azure.computeschedule#CreateScheduledActionVirtualMachineExecuteRequest": {
+    "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1639,7 +1640,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.computeschedule#OperationsListResponseValueList",
+          "target": "com.azure.computeschedule#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1655,7 +1656,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computeschedule#OperationsListResponseValueList": {
+    "com.azure.computeschedule#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.computeschedule#Operation"
@@ -1779,40 +1780,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.computeschedule#StartScheduledActionVirtualMachineSubmit"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitHibernate"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitDeallocate"
-        },
-        {
-          "target": "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationStatus"
-        },
-        {
-          "target": "com.azure.computeschedule#GetScheduledActionVirtualMachineOperationError"
-        },
-        {
-          "target": "com.azure.computeschedule#StartScheduledActionVirtualMachineExecute"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteHibernate"
-        },
-        {
-          "target": "com.azure.computeschedule#DeleteScheduledActionVirtualMachineExecute"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeallocate"
-        },
-        {
-          "target": "com.azure.computeschedule#CreateScheduledActionVirtualMachineExecute"
+          "target": "com.azure.computeschedule#ListOperations"
         },
         {
           "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesCancelOperations"
         },
         {
-          "target": "com.azure.computeschedule#ListOperations"
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeallocate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDelete"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteHibernate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStart"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrors"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatus"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitDeallocate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitHibernate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStart"
         }
       ],
       "traits": {

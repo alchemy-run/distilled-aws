@@ -11,64 +11,6 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface ListDataQualityCheckHealthRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ListDataQualityCheckHealthRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/data_quality_checks/health/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListDataQualityCheckHealthRequest",
-}) as any as S.Schema<ListDataQualityCheckHealthRequest>;
-
-/** Per-subject rollup, the same rule the information_schema.data_quality_health table uses. */
-export interface DataQualitySubjectHealth {
-  /** 'table' or 'view'. */
-  subject_type: string;
-  /** Id of the table or view. */
-  subject_uuid: string;
-  /** failing (an error-severity check failed), erroring (a check could not run), warn (only warn-severity failures), healthy, or unknown (nothing has run yet). */
-  health: string;
-  /** How many enabled, non-deleted checks cover this subject. */
-  checks_total: number;
-  /** How many of those checks last reported a failure. */
-  checks_failing: number;
-}
-export const DataQualitySubjectHealth = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subject_type: S.String,
-    subject_uuid: S.String,
-    health: S.String,
-    checks_total: S.Number,
-    checks_failing: S.Number,
-  }),
-).annotate({
-  identifier: "DataQualitySubjectHealth",
-}) as any as S.Schema<DataQualitySubjectHealth>;
-
-export type DataQualityChecksHealthListResponseBodyList =
-  Array<DataQualitySubjectHealth>;
-export const DataQualityChecksHealthListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DataQualitySubjectHealth,
-  ) as any as S.Schema<DataQualityChecksHealthListResponseBodyList>;
-
-export type ListDataQualityCheckHealthResponse =
-  DataQualityChecksHealthListResponseBodyList;
-export const ListDataQualityCheckHealthResponse = /*@__PURE__*/ S.suspend(() =>
-  DataQualityChecksHealthListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListDataQualityCheckHealthResponse",
-}) as any as S.Schema<ListDataQualityCheckHealthResponse>;
-
 export interface ListDataQualityChecksRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -215,8 +157,10 @@ export interface DataQualityOverviewCheck {
   last_run_at: string | null;
   /** Outcome of the newest run: passed, failed, errored, skipped, or empty if never run. */
   last_status: string;
-  /** When the check last passed, so a failing check can say how long it has been failing. Null means it has not passed within the run retention window. */
+  /** When the check last passed. Read failing_since for how long a failing check has been failing. Null means it has not passed within the run retention window. */
   last_succeeded_at: string | null;
+  /** When the current streak of failing runs started, so a failing check can say how long it has been failing. Null when the check is not failing. */
+  failing_since: string | null;
   /** sha256 of the subject, type, column, and config. Re-creating the same check upserts. */
   fingerprint: string;
   /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
@@ -257,6 +201,7 @@ export const DataQualityOverviewCheck = /*@__PURE__*/ S.suspend(() =>
     last_run_at: S.NullOr(S.String),
     last_status: S.String,
     last_succeeded_at: S.NullOr(S.String),
+    failing_since: S.NullOr(S.String),
     fingerprint: S.String,
     created_source: S.optional(CreatedSourceEnum),
     ai_model: S.optional(S.String),
@@ -298,20 +243,63 @@ export const PaginatedDataQualityOverviewCheckList = /*@__PURE__*/ S.suspend(
   identifier: "PaginatedDataQualityOverviewCheckList",
 }) as any as S.Schema<PaginatedDataQualityOverviewCheckList>;
 
-export type ListDataQualityCheckHealthError = PosthogOpError;
-/** Health rollup for every table and view in the project that has checks. */
-export const listDataQualityCheckHealth: API.OperationMethod<
-  ListDataQualityCheckHealthRequest,
-  ListDataQualityCheckHealthResponse,
-  ListDataQualityCheckHealthError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListDataQualityCheckHealthRequest,
-  output: ListDataQualityCheckHealthResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+export interface ListDataQualityChecksHealthRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListDataQualityChecksHealthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_quality_checks/health/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDataQualityChecksHealthRequest",
+}) as any as S.Schema<ListDataQualityChecksHealthRequest>;
+
+/** Per-subject rollup, the same rule the information_schema.data_quality_health table uses. */
+export interface DataQualitySubjectHealth {
+  /** 'table' or 'view'. */
+  subject_type: string;
+  /** Id of the table or view. */
+  subject_uuid: string;
+  /** failing (an error-severity check failed), erroring (a check could not run), warn (only warn-severity failures), healthy, or unknown (nothing has run yet). */
+  health: string;
+  /** How many enabled, non-deleted checks cover this subject. */
+  checks_total: number;
+  /** How many of those checks last reported a failure. */
+  checks_failing: number;
+}
+export const DataQualitySubjectHealth = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subject_type: S.String,
+    subject_uuid: S.String,
+    health: S.String,
+    checks_total: S.Number,
+    checks_failing: S.Number,
+  }),
+).annotate({
+  identifier: "DataQualitySubjectHealth",
+}) as any as S.Schema<DataQualitySubjectHealth>;
+
+export type ListDataQualityChecksHealthResponseBodyList =
+  Array<DataQualitySubjectHealth>;
+export const ListDataQualityChecksHealthResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DataQualitySubjectHealth,
+  ) as any as S.Schema<ListDataQualityChecksHealthResponseBodyList>;
+
+export type ListDataQualityChecksHealthResponse =
+  ListDataQualityChecksHealthResponseBodyList;
+export const ListDataQualityChecksHealthResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDataQualityChecksHealthResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDataQualityChecksHealthResponse",
+}) as any as S.Schema<ListDataQualityChecksHealthResponse>;
 
 export type ListDataQualityChecksError = PosthogOpError;
 /** Every check in the project, and the health of every subject that has one. The per-subject surfaces answer "what is wrong with this table". This answers "what is wrong across the project", which they cannot: each is nested under one parent. Read-only -- authoring still happens against the subject that owns the check. */
@@ -323,6 +311,21 @@ export const listDataQualityChecks: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDataQualityChecksRequest,
   output: PaginatedDataQualityOverviewCheckList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataQualityChecksHealthError = PosthogOpError;
+/** Health rollup for every table and view in the project that has checks. */
+export const listDataQualityChecksHealth: API.OperationMethod<
+  ListDataQualityChecksHealthRequest,
+  ListDataQualityChecksHealthResponse,
+  ListDataQualityChecksHealthError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataQualityChecksHealthRequest,
+  output: ListDataQualityChecksHealthResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -40,82 +40,15 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface CheckWarehouseTableSuiteRunRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Id of the warehouse table whose suite runs these are. */
-  table_id: string;
-  /** A UUID string identifying this data quality suite run. */
-  id: string;
-}
-export const CheckWarehouseTableSuiteRunRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckWarehouseTableSuiteRunRetrieveRequest",
-  }) as any as S.Schema<CheckWarehouseTableSuiteRunRetrieveRequest>;
-
-export interface DataQualitySuiteRun {
-  id: string;
-  /** manual, materialization, or source_sync. */
-  trigger: string;
-  /** running, completed, failed, or empty (nothing matched the trigger). */
-  status: string;
-  /** 'table' or 'view' when the run targets exactly one subject, including a run of a single check on that subject; null for a run spanning several subjects. */
-  subject_type: string | null;
-  /** Set when the run targets exactly one subject. */
-  subject_uuid: string | null;
-  workflow_id: string;
-  checks_passed: number;
-  checks_failed: number;
-  checks_errored: number;
-  checks_skipped: number;
-  started_at: string | null;
-  finished_at: string | null;
-  /** Why the suite itself failed, as opposed to an individual check. */
-  error: string;
-  created_at: string;
-}
-export const DataQualitySuiteRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    trigger: S.String,
-    status: S.String,
-    subject_type: S.NullOr(S.String),
-    subject_uuid: S.NullOr(S.String),
-    workflow_id: S.String,
-    checks_passed: S.Number,
-    checks_failed: S.Number,
-    checks_errored: S.Number,
-    checks_skipped: S.Number,
-    started_at: S.NullOr(S.String),
-    finished_at: S.NullOr(S.String),
-    error: S.String,
-    created_at: S.String,
-  }),
-).annotate({
-  identifier: "DataQualitySuiteRun",
-}) as any as S.Schema<DataQualitySuiteRun>;
-
 /** * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-export type TableFormatEnum =
+export type DataWarehouseTableFormatEnum =
   | "CSV"
   | "CSVWithNames"
   | "Parquet"
   | "JSONEachRow"
   | "Delta"
   | "DeltaS3Wrapper";
-export const TableFormatEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseTableFormatEnum = /*@__PURE__*/ S.String;
 
 export interface CredentialInput {
   /** Access key ID for the bucket the files live in (an AWS access key ID, a Google Cloud HMAC key, or the equivalent for another S3-compatible store). */
@@ -133,13 +66,13 @@ export const CredentialInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CredentialInput>;
 
 /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-export type WarehouseTablesCreateRequestOptionsMap = {
+export type CreateWarehouseTableRequestOptionsMap = {
   [key: string]: unknown | undefined;
 };
-export const WarehouseTablesCreateRequestOptionsMap = /*@__PURE__*/ S.Record(
+export const CreateWarehouseTableRequestOptionsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<WarehouseTablesCreateRequestOptionsMap>;
+) as any as S.Schema<CreateWarehouseTableRequestOptionsMap>;
 
 export interface CreateWarehouseTableRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -149,22 +82,22 @@ export interface CreateWarehouseTableRequest {
   /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
   name?: string;
   /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum | (string & {});
+  format?: DataWarehouseTableFormatEnum | (string & {});
   /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
   url_pattern?: string;
   credential?: CredentialInput;
   /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-  options?: WarehouseTablesCreateRequestOptionsMap;
+  options?: CreateWarehouseTableRequestOptionsMap;
 }
 export const CreateWarehouseTableRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     deleted: S.optional(S.NullOr(S.Boolean)),
     name: S.optional(S.String),
-    format: S.optional(TableFormatEnum),
+    format: S.optional(DataWarehouseTableFormatEnum),
     url_pattern: S.optional(S.String),
     credential: S.optional(CredentialInput),
-    options: S.optional(WarehouseTablesCreateRequestOptionsMap),
+    options: S.optional(CreateWarehouseTableRequestOptionsMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -228,7 +161,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
 /** * `web` - web * `api` - api * `mcp` - mcp * `wizard` - wizard * `self_driving` - self_driving * `source` - source * `materialized_view` - materialized_view * `demo` - demo */
-export type TableCreatedViaEnum =
+export type DataWarehouseTableCreatedViaEnum =
   | "web"
   | "api"
   | "mcp"
@@ -237,7 +170,7 @@ export type TableCreatedViaEnum =
   | "source"
   | "materialized_view"
   | "demo";
-export const TableCreatedViaEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseTableCreatedViaEnum = /*@__PURE__*/ S.String;
 
 export interface CredentialOutput {
   id?: string;
@@ -265,7 +198,7 @@ export const TableOutputColumnsList = /*@__PURE__*/ S.Array(
   TableOutputColumnsItemMap,
 ) as any as S.Schema<TableOutputColumnsList>;
 
-/** * `Ashby` - Ashby * `Supabase` - Supabase * `CustomerIO` - CustomerIO * `Github` - Github * `Stripe` - Stripe * `Hubspot` - Hubspot * `Postgres` - Postgres * `Zendesk` - Zendesk * `Snowflake` - Snowflake * `Salesforce` - Salesforce * `MySQL` - MySQL * `MongoDB` - MongoDB * `MSSQL` - MSSQL * `Vitally` - Vitally * `BigQuery` - BigQuery * `Chargebee` - Chargebee * `Clerk` - Clerk * `GoogleAds` - GoogleAds * `GoogleSearchConsole` - GoogleSearchConsole * `TemporalIO` - TemporalIO * `DoIt` - DoIt * `GoogleSheets` - GoogleSheets * `MetaAds` - MetaAds * `Klaviyo` - Klaviyo * `Mailchimp` - Mailchimp * `Braze` - Braze * `Mailjet` - Mailjet * `Redshift` - Redshift * `Polar` - Polar * `RevenueCat` - RevenueCat * `LinkedinAds` - LinkedinAds * `RedditAds` - RedditAds * `TikTokAds` - TikTokAds * `BingAds` - BingAds * `Shopify` - Shopify * `Attio` - Attio * `SnapchatAds` - SnapchatAds * `Linear` - Linear * `Intercom` - Intercom * `Amplitude` - Amplitude * `Mixpanel` - Mixpanel * `Jira` - Jira * `ActiveCampaign` - ActiveCampaign * `Marketo` - Marketo * `Adjust` - Adjust * `AppsFlyer` - AppsFlyer * `Freshdesk` - Freshdesk * `GoogleAnalytics` - GoogleAnalytics * `Pipedrive` - Pipedrive * `SendGrid` - SendGrid * `Slack` - Slack * `PagerDuty` - PagerDuty * `Asana` - Asana * `Notion` - Notion * `Airtable` - Airtable * `Greenhouse` - Greenhouse * `BambooHR` - BambooHR * `Lever` - Lever * `GitLab` - GitLab * `Datadog` - Datadog * `Sentry` - Sentry * `Pendo` - Pendo * `FullStory` - FullStory * `AmazonAds` - AmazonAds * `PinterestAds` - PinterestAds * `AppleSearchAds` - AppleSearchAds * `QuickBooks` - QuickBooks * `Xero` - Xero * `NetSuite` - NetSuite * `WooCommerce` - WooCommerce * `BigCommerce` - BigCommerce * `PayPal` - PayPal * `Square` - Square * `Zoom` - Zoom * `Trello` - Trello * `Monday` - Monday * `ClickUp` - ClickUp * `Confluence` - Confluence * `Recurly` - Recurly * `SalesLoft` - SalesLoft * `Outreach` - Outreach * `Gong` - Gong * `Calendly` - Calendly * `Typeform` - Typeform * `Iterable` - Iterable * `ZohoCRM` - ZohoCRM * `Close` - Close * `Oracle` - Oracle * `DynamoDB` - DynamoDB * `Elasticsearch` - Elasticsearch * `Kafka` - Kafka * `LaunchDarkly` - LaunchDarkly * `Braintree` - Braintree * `Recharge` - Recharge * `HelpScout` - HelpScout * `Gorgias` - Gorgias * `Instagram` - Instagram * `YouTubeAnalytics` - YouTubeAnalytics * `FacebookPages` - FacebookPages * `TwitterAds` - TwitterAds * `Workday` - Workday * `ServiceNow` - ServiceNow * `Pardot` - Pardot * `Copper` - Copper * `Front` - Front * `ChartMogul` - ChartMogul * `Zuora` - Zuora * `Paddle` - Paddle * `CircleCI` - CircleCI * `CockroachDB` - CockroachDB * `Firebase` - Firebase * `AzureBlob` - AzureBlob * `GoogleDrive` - GoogleDrive * `OneDrive` - OneDrive * `SharePoint` - SharePoint * `Box` - Box * `SFTP` - SFTP * `MicrosoftTeams` - MicrosoftTeams * `Aircall` - Aircall * `Webflow` - Webflow * `Okta` - Okta * `Auth0` - Auth0 * `Productboard` - Productboard * `Smartsheet` - Smartsheet * `Wrike` - Wrike * `Plaid` - Plaid * `SurveyMonkey` - SurveyMonkey * `Eventbrite` - Eventbrite * `RingCentral` - RingCentral * `Twilio` - Twilio * `Freshsales` - Freshsales * `Shortcut` - Shortcut * `ConvertKit` - ConvertKit * `Drip` - Drip * `CampaignMonitor` - CampaignMonitor * `MailerLite` - MailerLite * `Omnisend` - Omnisend * `Brevo` - Brevo * `Postmark` - Postmark * `Granola` - Granola * `BuildBetter` - BuildBetter * `Convex` - Convex * `ClickHouse` - ClickHouse * `Plain` - Plain * `Resend` - Resend * `PgAnalyze` - PgAnalyze * `WorkOS` - WorkOS * `AmazonS3` - AmazonS3 * `GoogleCloudStorage` - GoogleCloudStorage * `Databricks` - Databricks * `Dynamics365` - Dynamics365 * `SalesforceMarketingCloud` - SalesforceMarketingCloud * `Db2` - Db2 * `Heap` - Heap * `AdobeAnalytics` - AdobeAnalytics * `Matomo` - Matomo * `Optimizely` - Optimizely * `Adyen` - Adyen * `GoCardless` - GoCardless * `Mollie` - Mollie * `CheckoutCom` - CheckoutCom * `Branch` - Branch * `Criteo` - Criteo * `Outbrain` - Outbrain * `Taboola` - Taboola * `AdRoll` - AdRoll * `DisplayVideo360` - DisplayVideo360 * `GoogleAdManager` - GoogleAdManager * `CampaignManager360` - CampaignManager360 * `SearchAds360` - SearchAds360 * `AdobeCommerce` - AdobeCommerce * `AmazonSellingPartner` - AmazonSellingPartner * `Ebay` - Ebay * `Commercetools` - Commercetools * `LightspeedRetail` - LightspeedRetail * `Shipmail` - Shipmail * `ShipStation` - ShipStation * `ConstantContact` - ConstantContact * `Mailgun` - Mailgun * `Eloqua` - Eloqua * `Sailthru` - Sailthru * `Ortto` - Ortto * `Attentive` - Attentive * `Kustomer` - Kustomer * `Dixa` - Dixa * `Gladly` - Gladly * `Qualtrics` - Qualtrics * `AzureDevOps` - AzureDevOps * `RoktAds` - RoktAds * `Rollbar` - Rollbar * `Opsgenie` - Opsgenie * `IncidentIo` - IncidentIo * `Pingdom` - Pingdom * `Cloudflare` - Cloudflare * `CosmosDB` - CosmosDB * `PlanetScaleMySQL` - PlanetScaleMySQL * `PlanetScalePostgres` - PlanetScalePostgres * `SapHana` - SapHana * `Rippling` - Rippling * `HiBob` - HiBob * `Personio` - Personio * `Deel` - Deel * `AdpWorkforceNow` - AdpWorkforceNow * `Paylocity` - Paylocity * `Gusto` - Gusto * `CultureAmp` - CultureAmp * `Lattice` - Lattice * `SageIntacct` - SageIntacct * `FreshBooks` - FreshBooks * `Expensify` - Expensify * `Ramp` - Ramp * `Brex` - Brex * `Coupa` - Coupa * `SapConcur` - SapConcur * `Apollo` - Apollo * `Crunchbase` - Crunchbase * `ZoomInfo` - ZoomInfo * `Clari` - Clari * `Chorus` - Chorus * `Coda` - Coda * `Guru` - Guru * `Dropbox` - Dropbox * `Docusign` - Docusign * `PandaDoc` - PandaDoc * `SapErp` - SapErp * `SapSuccessFactors` - SapSuccessFactors * `OracleEbs` - OracleEbs * `OracleFusion` - OracleFusion * `AmazonSNS` - AmazonSNS * `AmazonEventBridge` - AmazonEventBridge * `AmazonSQS` - AmazonSQS * `AmazonKinesis` - AmazonKinesis * `AmazonCloudWatch` - AmazonCloudWatch * `OpenAIAds` - OpenAIAds * `OneHundredMs` - OneHundredMs * `SevenShifts` - SevenShifts * `AcuityScheduling` - AcuityScheduling * `AgileCRM` - AgileCRM * `Aha` - Aha * `Airbyte` - Airbyte * `Akeneo` - Akeneo * `Algolia` - Algolia * `AlpacaBrokerAPI` - AlpacaBrokerAPI * `ApifyDataset` - ApifyDataset * `Appcues` - Appcues * `Appfigures` - Appfigures * `Appfollow` - Appfollow * `Apptivo` - Apptivo * `AssemblyAI` - AssemblyAI * `Awin` - Awin * `AwsCloudTrail` - AwsCloudTrail * `AzureTableStorage` - AzureTableStorage * `Babelforce` - Babelforce * `Basecamp` - Basecamp * `Beamer` - Beamer * `BigMailer` - BigMailer * `Bluetally` - Bluetally * `BoldSign` - BoldSign * `BreezyHR` - BreezyHR * `Bugsnag` - Bugsnag * `Buildkite` - Buildkite * `Bunny` - Bunny * `Buzzsprout` - Buzzsprout * `CalCom` - CalCom * `CallRail` - CallRail * `Campayn` - Campayn * `Canny` - Canny * `CapsuleCRM` - CapsuleCRM * `CaptainData` - CaptainData * `CartCom` - CartCom * `CastorEDC` - CastorEDC * `Chameleon` - Chameleon * `Chargedesk` - Chargedesk * `Chargify` - Chargify * `Chift` - Chift * `Churnkey` - Churnkey * `Cin7` - Cin7 * `CiscoMeraki` - CiscoMeraki * `Clazar` - Clazar * `Clockify` - Clockify * `Clockodo` - Clockodo * `Cloudbeds` - Cloudbeds * `Coassemble` - Coassemble * `Codefresh` - Codefresh * `Concord` - Concord * `ConfigCat` - ConfigCat * `Couchbase` - Couchbase * `Curve` - Curve * `Customerly` - Customerly * `Datascope` - Datascope * `Dbt` - Dbt * `Deputy` - Deputy * `DevinAI` - DevinAI * `Docuseal` - Docuseal * `Dolibarr` - Dolibarr * `Dremio` - Dremio * `DropboxSign` - DropboxSign * `Dwolla` - Dwolla * `EConomic` - EConomic * `Easypost` - Easypost * `Easypromos` - Easypromos * `Elasticemail` - Elasticemail * `EmailOctopus` - EmailOctopus * `EmploymentHero` - EmploymentHero * `Encharge` - Encharge * `Eventee` - Eventee * `Eventzilla` - Eventzilla * `Everhour` - Everhour * `EZOfficeInventory` - EZOfficeInventory * `Factorial` - Factorial * `Fastbill` - Fastbill * `Fastly` - Fastly * `Fauna` - Fauna * `Feishu` - Feishu * `Fillout` - Fillout * `Finage` - Finage * `Firebolt` - Firebolt * `FireHydrant` - FireHydrant * `Fleetio` - Fleetio * `Flexmail` - Flexmail * `Flexport` - Flexport * `FloatApp` - FloatApp * `Flowlu` - Flowlu * `Formbricks` - Formbricks * `Framer` - Framer * `FreeAgent` - FreeAgent * `Freightview` - Freightview * `Freshcaller` - Freshcaller * `Freshchat` - Freshchat * `Freshservice` - Freshservice * `Fulcrum` - Fulcrum * `GainsightPx` - GainsightPx * `GitBook` - GitBook * `Glassfrog` - Glassfrog * `Goldcast` - Goldcast * `GoLogin` - GoLogin * `Grafana` - Grafana * `GreytHr` - GreytHr * `Gridly` - Gridly * `Harness` - Harness * `Height` - Height * `Hellobaton` - Hellobaton * `HighLevel` - HighLevel * `HoorayHR` - HoorayHR * `Hubplanner` - Hubplanner * `Humanitix` - Humanitix * `Huntr` - Huntr * `Inflowinventory` - Inflowinventory * `InforNexus` - InforNexus * `Insightful` - Insightful * `Insightly` - Insightly * `Instantly` - Instantly * `Instatus` - Instatus * `Intruder` - Intruder * `Invoiced` - Invoiced * `Invoiceninja` - Invoiceninja * `JamfPro` - JamfPro * `JobNimbus` - JobNimbus * `Jotform` - Jotform * `JudgeMeReviews` - JudgeMeReviews * `JustCall` - JustCall * `JustSift` - JustSift * `K6Cloud` - K6Cloud * `Katana` - Katana * `Keka` - Keka * `Kisi` - Kisi * `Kissmetrics` - Kissmetrics * `Klarna` - Klarna * `Klaus` - Klaus * `Lago` - Lago * `Leadfeeder` - Leadfeeder * `Lemlist` - Lemlist * `LessAnnoyingCRM` - LessAnnoyingCRM * `LinkedinPages` - LinkedinPages * `Linkrunner` - Linkrunner * `Linnworks` - Linnworks * `Lob` - Lob * `Lokalise` - Lokalise * `Looker` - Looker * `Luma` - Luma * `MailerSend` - MailerSend * `Mailosaur` - Mailosaur * `Mailtrap` - Mailtrap * `Mantle` - Mantle * `Mention` - Mention * `MercadoAds` - MercadoAds * `Merge` - Merge * `Metabase` - Metabase * `Metricool` - Metricool * `MicrosoftDataverse` - MicrosoftDataverse * `MicrosoftEntraId` - MicrosoftEntraId * `MicrosoftLists` - MicrosoftLists * `Miro` - Miro * `Missive` - Missive * `MixMax` - MixMax * `Mode` - Mode * `Mux` - Mux * `MyHours` - MyHours * `N8n` - N8n * `Navan` - Navan * `NebiusAI` - NebiusAI * `Nexiopay` - Nexiopay * `NinjaOneRMM` - NinjaOneRMM * `NoCRM` - NoCRM * `NorthpassLMS` - NorthpassLMS * `Nutshell` - Nutshell * `Nylas` - Nylas * `Oncehub` - Oncehub * `Onepagecrm` - Onepagecrm * `OneSignal` - OneSignal * `Onfleet` - Onfleet * `OpinionStage` - OpinionStage * `OPUSWatch` - OPUSWatch * `Orb` - Orb * `Orbit` - Orbit * `Oura` - Oura * `Oveit` - Oveit * `PabblySubscriptionsBilling` - PabblySubscriptionsBilling * `Paperform` - Paperform * `Papersign` - Papersign * `Partnerize` - Partnerize * `PartnerStack` - PartnerStack * `PayFit` - PayFit * `Paystack` - Paystack * `Pennylane` - Pennylane * `Perk` - Perk * `PersistIq` - PersistIq * `Persona` - Persona * `Phyllo` - Phyllo * `Picqer` - Picqer * `Pipeliner` - Pipeliner * `PivotalTracker` - PivotalTracker * `Piwik` - Piwik * `Planhat` - Planhat * `Plausible` - Plausible * `Poplar` - Poplar * `PrestaShop` - PrestaShop * `Pretix` - Pretix * `Primetric` - Primetric * `Printavo` - Printavo * `Printify` - Printify * `Productive` - Productive * `Pylon` - Pylon * `Qonto` - Qonto * `Qualaroo` - Qualaroo * `Railz` - Railz * `RDStationMarketing` - RDStationMarketing * `Recruitee` - Recruitee * `Reddit` - Reddit * `ReferralHero` - ReferralHero * `RentCast` - RentCast * `Repairshopr` - Repairshopr * `ReplyIo` - ReplyIo * `RetailExpress` - RetailExpress * `Retently` - Retently * `RevolutMerchant` - RevolutMerchant * `RocketChat` - RocketChat * `Rocketlane` - Rocketlane * `Rootly` - Rootly * `Ruddr` - Ruddr * `SafetyCulture` - SafetyCulture * `SageHR` - SageHR * `Salesflare` - Salesflare * `SAPFieldglass` - SAPFieldglass * `SavvyCal` - SavvyCal * `Secoda` - Secoda * `Segment` - Segment * `Sendowl` - Sendowl * `SendPulse` - SendPulse * `Senseforce` - Senseforce * `Serpstat` - Serpstat * `Sharetribe` - Sharetribe * `Shippo` - Shippo * `ShopWired` - ShopWired * `Shortio` - Shortio * `Shutterstock` - Shutterstock * `SigmaComputing` - SigmaComputing * `SignNow` - SignNow * `SimpleCast` - SimpleCast * `Simplesat` - Simplesat * `Smaily` - Smaily * `SmartEngage` - SmartEngage * `Smartreach` - Smartreach * `Smartwaiver` - Smartwaiver * `SolarwindsServiceDesk` - SolarwindsServiceDesk * `SonarCloud` - SonarCloud * `SparkPost` - SparkPost * `SplitIo` - SplitIo * `SpotifyAds` - SpotifyAds * `SpotlerCRM` - SpotlerCRM * `Squarespace` - Squarespace * `Statsig` - Statsig * `Statuspage` - Statuspage * `Stigg` - Stigg * `Strava` - Strava * `SurveySparrow` - SurveySparrow * `Survicate` - Survicate * `Svix` - Svix * `Systeme` - Systeme * `Tavus` - Tavus * `Teamtailor` - Teamtailor * `Teamwork` - Teamwork * `Tempo` - Tempo * `Testrail` - Testrail * `Thinkific` - Thinkific * `ThinkificCourses` - ThinkificCourses * `ThriveLearning` - ThriveLearning * `Ticketmaster` - Ticketmaster * `TicketTailor` - TicketTailor * `TickTick` - TickTick * `Timely` - Timely * `Tinyemail` - Tinyemail * `Todoist` - Todoist * `Toggl` - Toggl * `TrackPMS` - TrackPMS * `Tremendous` - Tremendous * `TrustPilot` - TrustPilot * `Twitter` - Twitter * `TyntecSMS` - TyntecSMS * `Unleash` - Unleash * `UpPromote` - UpPromote * `Uptick` - Uptick * `Uservoice` - Uservoice * `Vantage` - Vantage * `Veeqo` - Veeqo * `Vercel` - Vercel * `VismaEconomic` - VismaEconomic * `VWO` - VWO * `Waiteraid` - Waiteraid * `Wasabi` - Wasabi * `WhenIWork` - WhenIWork * `Wordpress` - Wordpress * `Workable` - Workable * `Workflowmax` - Workflowmax * `Workramp` - Workramp * `Wufoo` - Wufoo * `Xsolla` - Xsolla * `YandexMetrica` - YandexMetrica * `Yotpo` - Yotpo * `Ynab` - Ynab * `Younium` - Younium * `YouSign` - YouSign * `YoutubeData` - YoutubeData * `ZapierSupportedStorage` - ZapierSupportedStorage * `ZapSign` - ZapSign * `ZendeskSell` - ZendeskSell * `ZendeskSunshine` - ZendeskSunshine * `Zenefits` - Zenefits * `Zenloop` - Zenloop * `ZohoAnalytics` - ZohoAnalytics * `ZohoBigin` - ZohoBigin * `ZohoBilling` - ZohoBilling * `ZohoBooks` - ZohoBooks * `ZohoCampaign` - ZohoCampaign * `ZohoDesk` - ZohoDesk * `ZohoExpense` - ZohoExpense * `ZohoInventory` - ZohoInventory * `ZohoInvoice` - ZohoInvoice * `ZonkaFeedback` - ZonkaFeedback * `AlphaVantage` - AlphaVantage * `Aviationstack` - Aviationstack * `Bitly` - Bitly * `Blogger` - Blogger * `Breezometer` - Breezometer * `CareQualityCommission` - CareQualityCommission * `Cimis` - Cimis * `CoinApi` - CoinApi * `CoinGecko` - CoinGecko * `CoinMarketCap` - CoinMarketCap * `DingConnect` - DingConnect * `Dockerhub` - Dockerhub * `ExchangeRatesApi` - ExchangeRatesApi * `FinancialModelling` - FinancialModelling * `Finnhub` - Finnhub * `Finnworlds` - Finnworlds * `Giphy` - Giphy * `Gmail` - Gmail * `GNews` - GNews * `GoogleCalendar` - GoogleCalendar * `GoogleClassroom` - GoogleClassroom * `GoogleDirectory` - GoogleDirectory * `GoogleForms` - GoogleForms * `GooglePageSpeedInsights` - GooglePageSpeedInsights * `GoogleTasks` - GoogleTasks * `GoogleWebfonts` - GoogleWebfonts * `GoogleWorkspaceAdminReports` - GoogleWorkspaceAdminReports * `HuggingFace` - HuggingFace * `IlluminaBasespace` - IlluminaBasespace * `Imagga` - Imagga * `Interzoid` - Interzoid * `IP2Whois` - IP2Whois * `KYVE` - KYVE * `Marketstack` - Marketstack * `Mendeley` - Mendeley * `Nasa` - Nasa * `NewYorkTimes` - NewYorkTimes * `NewsApi` - NewsApi * `NewsData` - NewsData * `OpenDataDc` - OpenDataDc * `OpenExchangeRates` - OpenExchangeRates * `OpenAQ` - OpenAQ * `OpenFDA` - OpenFDA * `OpenWeather` - OpenWeather * `Outlook` - Outlook * `Perigon` - Perigon * `Pexels` - Pexels * `Pocket` - Pocket * `Polygon` - Polygon * `PyPI` - PyPI * `Recreation` - Recreation * `RKICovid` - RKICovid * `Rss` - Rss * `SimFin` - SimFin * `StockData` - StockData * `Guardian` - Guardian * `TMDb` - TMDb * `TVMaze` - TVMaze * `TwelveData` - TwelveData * `Ubidots` - Ubidots * `USCensus` - USCensus * `Watchmode` - Watchmode * `WikipediaPageviews` - WikipediaPageviews * `YahooFinance` - YahooFinance * `Clarifai` - Clarifai * `Adapty` - Adapty * `Braintrust` - Braintrust * `StreamElements` - StreamElements * `Streamlabs` - Streamlabs * `Datorama` - Datorama * `Ahrefs` - Ahrefs * `Lightfield` - Lightfield * `Appstack` - Appstack * `Razorpay` - Razorpay * `Neon` - Neon * `NewRelic` - NewRelic * `Custom` - Custom * `Tile38` - Tile38 * `Chatwoot` - Chatwoot * `Sanity` - Sanity * `Metronome` - Metronome * `Jobber` - Jobber * `Knock` - Knock * `Leexi` - Leexi * `RB2B` - RB2B * `Superwall` - Superwall * `Liana` - Liana * `TawkTo` - TawkTo * `Hightouch` - Hightouch * `LemonSqueezy` - LemonSqueezy * `Ikas` - Ikas * `Talkwalker` - Talkwalker * `NextdoorAds` - NextdoorAds * `AppLovin` - AppLovin * `Baserow` - Baserow * `Plunk` - Plunk * `Dub` - Dub * `AirOps` - AirOps * `Podium` - Podium * `Loops` - Loops * `Redis` - Redis * `Mercury` - Mercury * `Gojiberry` - Gojiberry * `Teachable` - Teachable * `PeecAI` - PeecAI * `Healthchecks` - Healthchecks * `Impact` - Impact * `AikidoSecurity` - AikidoSecurity * `Alguna` - Alguna * `Anthropic` - Anthropic * `Appwrite` - Appwrite * `BlandAI` - BlandAI * `BrowseAI` - BrowseAI * `BrowserUse` - BrowserUse * `ChartHop` - ChartHop * `Cody` - Cody * `Cursor` - Cursor * `Decagon` - Decagon * `Deepgram` - Deepgram * `ElevenLabs` - ElevenLabs * `Harvey` - Harvey * `Hyperspell` - Hyperspell * `Langfuse` - Langfuse * `LingoDev` - LingoDev * `M3ter` - M3ter * `Maxio` - Maxio * `Metorial` - Metorial * `OpenRouter` - OpenRouter * `TogetherAI` - TogetherAI * `Vapi` - Vapi * `Vespa` - Vespa * `Writesonic` - Writesonic * `Aiven` - Aiven * `Aviator` - Aviator * `Backblaze` - Backblaze * `Baseten` - Baseten * `Browserbase` - Browserbase * `Cohere` - Cohere * `DenoDeploy` - DenoDeploy * `DigitalOcean` - DigitalOcean * `E2B` - E2B * `Fintoc` - Fintoc * `Firecrawl` - Firecrawl * `FireworksAI` - FireworksAI * `FlyIo` - FlyIo * `Groq` - Groq * `GrowthBook` - GrowthBook * `Gumloop` - Gumloop * `Hatchet` - Hatchet * `Helicone` - Helicone * `Heroku` - Heroku * `Hetzner` - Hetzner * `HeyGen` - HeyGen * `Infisical` - Infisical * `Inngest` - Inngest * `KapaAI` - KapaAI * `Kernel` - Kernel * `Koyeb` - Koyeb * `LambdaLabs` - LambdaLabs * `LangSmith` - LangSmith * `Linode` - Linode * `LlamaCloud` - LlamaCloud * `Mem0` - Mem0 * `Metriport` - Metriport * `Mintlify` - Mintlify * `MistralAI` - MistralAI * `Mono` - Mono * `Netlify` - Netlify * `Northflank` - Northflank * `OpenAI` - OpenAI * `Pinecone` - Pinecone * `PlatformSh` - PlatformSh * `PromptingCompany` - PromptingCompany * `Qdrant` - Qdrant * `Render` - Render * `Replicate` - Replicate * `RetellAI` - RetellAI * `Roark` - Roark * `RunPod` - RunPod * `ScaleAI` - ScaleAI * `Scaleway` - Scaleway * `SigNoz` - SigNoz * `Sim` - Sim * `Skyvern` - Skyvern * `Slash` - Slash * `Synthesia` - Synthesia * `Telli` - Telli * `TerraApi` - TerraApi * `TriggerDev` - TriggerDev * `Turso` - Turso * `Singular` - Singular * `Swonkie` - Swonkie * `TwelveLabs` - TwelveLabs * `Twenty` - Twenty * `Unstructured` - Unstructured * `Upstash` - Upstash * `Vellum` - Vellum * `Vultr` - Vultr * `Windmill` - Windmill * `Zep` - Zep * `Hex` - Hex * `Sumsub` - Sumsub * `GoogleChat` - GoogleChat * `Kickscale` - Kickscale * `Zellify` - Zellify * `RudderStack` - RudderStack * `DodoPayments` - DodoPayments * `Salestrics` - Salestrics * `Doppler` - Doppler * `Usersnap` - Usersnap * `Asknicely` - Asknicely * `Featurebase` - Featurebase * `Frill` - Frill * `Bettermode` - Bettermode * `Dynatrace` - Dynatrace * `Honeycomb` - Honeycomb * `SumoLogic` - SumoLogic * `LogzIO` - LogzIO * `Coralogix` - Coralogix * `BetterStack` - BetterStack * `Raygun` - Raygun * `Honeybadger` - Honeybadger * `Airbrake` - Airbrake * `Appsignal` - Appsignal * `Appdynamics` - Appdynamics * `Instana` - Instana * `SplunkObservabilityCloud` - SplunkObservabilityCloud * `Uptimerobot` - Uptimerobot * `Statuscake` - Statuscake * `Tailscale` - Tailscale * `Flagsmith` - Flagsmith * `Xmatters` - Xmatters * `Squadcast` - Squadcast * `Zenduty` - Zenduty * `Cronitor` - Cronitor * `Jenkins` - Jenkins * `Bitbucket` - Bitbucket * `Gitea` - Gitea * `Teamcity` - Teamcity * `TravisCI` - TravisCI * `Semaphore` - Semaphore * `CircleciInsights` - CircleciInsights * `OctopusDeploy` - OctopusDeploy * `Sourcegraph` - Sourcegraph * `Bitrise` - Bitrise * `Gerrit` - Gerrit * `TerraformCloud` - TerraformCloud * `PulumiCloud` - PulumiCloud * `Spacelift` - Spacelift * `Railway` - Railway * `Argocd` - Argocd * `PrefectCloud` - PrefectCloud * `DagsterCloud` - DagsterCloud * `Env0` - Env0 * `Kubecost` - Kubecost * `Snyk` - Snyk * `Semgrep` - Semgrep * `Veracode` - Veracode * `Checkmarx` - Checkmarx * `Gitguardian` - Gitguardian * `QualysVmdr` - QualysVmdr * `Rapid7Insightvm` - Rapid7Insightvm * `TenableVulnerabilityManagement` - TenableVulnerabilityManagement * `Sentinelone` - Sentinelone * `Lacework` - Lacework * `OrcaSecurity` - OrcaSecurity * `Drata` - Drata * `Secureframe` - Secureframe * `CiscoDuo` - CiscoDuo * `Jumpcloud` - Jumpcloud * `OnePassword` - OnePassword * `Stytch` - Stytch * `Sonarqube` - Sonarqube * `Codecov` - Codecov * `Coveralls` - Coveralls * `Codacy` - Codacy * `Deepsource` - Deepsource * `Linearb` - Linearb * `Jellyfish` - Jellyfish * `Swarmia` - Swarmia * `Packagist` - Packagist * `Nuget` - Nuget * `CratesIO` - CratesIO * `SonatypeNexus` - SonatypeNexus * `JfrogArtifactory` - JfrogArtifactory * `Snowplow` - Snowplow * `WeightsAndBiases` - WeightsAndBiases * `MonteCarlo` - MonteCarlo * `Metaplane` - Metaplane * `Datahub` - Datahub * `ClickhouseCloud` - ClickhouseCloud * `ConfluentCloud` - ConfluentCloud * `KongKonnect` - KongKonnect * `Kandji` - Kandji * `Automox` - Automox * `Autumn` - Autumn * `GetStream` - GetStream * `Octolens` - Octolens * `Kajabi` - Kajabi * `Shopware` - Shopware * `Dubsado` - Dubsado * `Campfire` - Campfire * `PromptWatch` - PromptWatch * `Crisp` - Crisp * `Kommo` - Kommo * `Axiom` - Axiom * `Plivo` - Plivo * `DataForSEO` - DataForSEO * `Sleekplan` - Sleekplan * `AbTasty` - AbTasty * `Ably` - Ably * `AbnormalSecurity` - AbnormalSecurity * `Acast` - Acast * `Acculynx` - Acculynx * `Actionstep` - Actionstep * `Aftership` - Aftership * `AhaIdeas` - AhaIdeas * `AkamaiReporting` - AkamaiReporting * `Alation` - Alation * `Alegra` - Alegra * `Allegro` - Allegro * `AnodotCost` - AnodotCost * `Anomalo` - Anomalo * `Apaleo` - Apaleo * `Apitally` - Apitally * `AppStoreConnect` - AppStoreConnect * `Appdirect` - Appdirect * `Appfolio` - Appfolio * `Arxiv` - Arxiv * `Asaas` - Asaas * `Astronomer` - Astronomer * `Athenahealth` - Athenahealth * `Atlan` - Atlan * `AutodeskConstructionCloud` - AutodeskConstructionCloud * `Avalara` - Avalara * `AwsAthena` - AwsAthena * `AwsBatch` - AwsBatch * `AwsBudgets` - AwsBudgets * `AwsCloudformation` - AwsCloudformation * `AwsComputeOptimizer` - AwsComputeOptimizer * `AwsConfig` - AwsConfig * `AwsConnect` - AwsConnect * `AwsCostAndUsageReport` - AwsCostAndUsageReport * `AwsCostAnomalyDetection` - AwsCostAnomalyDetection * `AwsCostExplorer` - AwsCostExplorer * `AwsGlueDataCatalog` - AwsGlueDataCatalog * `AwsGuardduty` - AwsGuardduty * `AwsHealth` - AwsHealth * `AwsIamAccessAnalyzer` - AwsIamAccessAnalyzer * `AwsInspector` - AwsInspector * `AwsMacie` - AwsMacie * `AwsOrganizations` - AwsOrganizations * `AwsRdsPerformanceInsights` - AwsRdsPerformanceInsights * `AwsSagemaker` - AwsSagemaker * `AwsSavingsPlans` - AwsSavingsPlans * `AwsSecurityHub` - AwsSecurityHub * `AwsSes` - AwsSes * `AwsStepFunctions` - AwsStepFunctions * `AwsSupport` - AwsSupport * `AwsSystemsManager` - AwsSystemsManager * `AwsTrustedAdvisor` - AwsTrustedAdvisor * `AwsWaf` - AwsWaf * `AwsXray` - AwsXray * `AzureActivityLog` - AzureActivityLog * `AzureAdvisor` - AzureAdvisor * `AzureApiManagement` - AzureApiManagement * `AzureApplicationInsights` - AzureApplicationInsights * `AzureCostManagement` - AzureCostManagement * `AzureDataExplorer` - AzureDataExplorer * `AzureDataFactory` - AzureDataFactory * `AzureLogAnalytics` - AzureLogAnalytics * `AzureMonitorAlerts` - AzureMonitorAlerts * `AzureMonitorMetrics` - AzureMonitorMetrics * `AzureOpenaiUsage` - AzureOpenaiUsage * `AzurePolicyInsights` - AzurePolicyInsights * `AzureReservations` - AzureReservations * `AzureResourceGraph` - AzureResourceGraph * `AzureResourceHealth` - AzureResourceHealth * `AzureServiceHealth` - AzureServiceHealth * `AzureSynapse` - AzureSynapse * `BackMarket` - BackMarket * `Beehiiv` - Beehiiv * `Bigeye` - Bigeye * `BillCom` - BillCom * `Billomat` - Billomat * `BingWebmasterTools` - BingWebmasterTools * `Bitwarden` - Bitwarden * `BlackbaudRaisersEdgeNxt` - BlackbaudRaisersEdgeNxt * `BlackboardLearn` - BlackboardLearn * `Bling` - Bling * `Bloomerang` - Bloomerang * `Bluesky` - Bluesky * `BolRetailer` - BolRetailer * `Boulevard` - Boulevard * `Buffer` - Buffer * `Bugherd` - Bugherd * `Buildium` - Buildium * `Buttondown` - Buttondown * `BuyMeACoffee` - BuyMeACoffee * `Calendarific` - Calendarific * `Calibre` - Calibre * `CanvasLms` - CanvasLms * `Captivate` - Captivate * `Cashfree` - Cashfree * `CastAi` - CastAi * `Catchpoint` - Catchpoint * `CdcOpenData` - CdcOpenData * `Census` - Census * `Checkly` - Checkly * `CircleSo` - CircleSo * `Classy` - Classy * `Cleartax` - Cleartax * `Clever` - Clever * `Clevertap` - Clevertap * `Cliniko` - Cliniko * `Clio` - Clio * `Clip` - Clip * `Cloudability` - Cloudability * `Cloudsmith` - Cloudsmith * `Cloudzero` - Cloudzero * `Clover` - Clover * `Codemagic` - Codemagic * `Codescene` - Codescene * `Collibra` - Collibra * `Companycam` - Companycam * `Conekta` - Conekta * `ContaAzul` - ContaAzul * `Contentsquare` - Contentsquare * `Cortex` - Cortex * `Courier` - Courier * `Crossref` - Crossref * `CrowdstrikeFalcon` - CrowdstrikeFalcon * `CubeCloud` - CubeCloud * `D2lBrightspace` - D2lBrightspace * `Dayforce` - Dayforce * `Debugbear` - Debugbear * `Descope` - Descope * `Develocity` - Develocity * `Dialpad` - Dialpad * `Discord` - Discord * `Discourse` - Discourse * `Donorbox` - Donorbox * `Doorloop` - Doorloop * `Dovetail` - Dovetail * `Drchrono` - Drchrono * `Dynamics365BusinessCentral` - Dynamics365BusinessCentral * `EcbDataPortal` - EcbDataPortal * `Emarsys` - Emarsys * `Embrace` - Embrace * `Entsoe` - Entsoe * `Eppo` - Eppo * `Etsy` - Etsy * `Eurostat` - Eurostat * `Faire` - Faire * `FarosAi` - FarosAi * `Fieldpulse` - Fieldpulse * `Fieldwire` - Fieldwire * `Filevine` - Filevine * `Finout` - Finout * `Five9` - Five9 * `FlexeraCloudCost` - FlexeraCloudCost * `Flutterwave` - Flutterwave * `Fortnox` - Fortnox * `Fourthwall` - Fourthwall * `Fred` - Fred * `Frontegg` - Frontegg * `FusionAuth` - FusionAuth * `G2` - G2 * `Gcore` - Gcore * `GcpApigee` - GcpApigee * `GcpArtifactRegistry` - GcpArtifactRegistry * `GcpBigtable` - GcpBigtable * `GcpChronicle` - GcpChronicle * `GcpCloudAssetInventory` - GcpCloudAssetInventory * `GcpCloudBilling` - GcpCloudBilling * `GcpCloudBuild` - GcpCloudBuild * `GcpCloudDeploy` - GcpCloudDeploy * `GcpCloudDns` - GcpCloudDns * `GcpCloudFunctions` - GcpCloudFunctions * `GcpCloudLogging` - GcpCloudLogging * `GcpCloudMonitoring` - GcpCloudMonitoring * `GcpCloudRun` - GcpCloudRun * `GcpCloudSpanner` - GcpCloudSpanner * `GcpCloudSql` - GcpCloudSql * `GcpCloudTrace` - GcpCloudTrace * `GcpCloudWorkflows` - GcpCloudWorkflows * `GcpComputeEngine` - GcpComputeEngine * `GcpContainerAnalysis` - GcpContainerAnalysis * `GcpDataflow` - GcpDataflow * `GcpDataplex` - GcpDataplex * `GcpDataproc` - GcpDataproc * `GcpErrorReporting` - GcpErrorReporting * `GcpGke` - GcpGke * `GcpPubsub` - GcpPubsub * `GcpRecaptchaEnterprise` - GcpRecaptchaEnterprise * `GcpRecommender` - GcpRecommender * `GcpSecurityCommandCenter` - GcpSecurityCommandCenter * `Gdelt` - Gdelt * `GenesysCloud` - GenesysCloud * `Getdx` - Getdx * `Ghost` - Ghost * `Givebutter` - Givebutter * `Gleif` - Gleif * `GooglePlayConsole` - GooglePlayConsole * `Guesty` - Guesty * `Gumroad` - Gumroad * `HarnessCcm` - HarnessCcm * `HarnessSei` - HarnessSei * `Harvest` - Harvest * `Healthie` - Healthie * `Hitpay` - Hitpay * `Hivebrite` - Hivebrite * `Holded` - Holded * `Hostaway` - Hostaway * `HousecallPro` - HousecallPro * `Humanitec` - Humanitec * `ImfData` - ImfData * `Imperva` - Imperva * `InfluxdbCloud` - InfluxdbCloud * `Iyzico` - Iyzico * `Jobtread` - Jobtread * `Kameleoon` - Kameleoon * `KauflandMarketplace` - KauflandMarketplace * `Kestra` - Kestra * `Kick` - Kick * `Kinde` - Kinde * `Kion` - Kion * `Knowbe4` - Knowbe4 * `Komodor` - Komodor * `Labelbox` - Labelbox * `Lawmatics` - Lawmatics * `Learnworlds` - Learnworlds * `LexwareOffice` - LexwareOffice * `Lightdash` - Lightdash * `Lodgify` - Lodgify * `Logicmonitor` - Logicmonitor * `Logrocket` - Logrocket * `LoopReturns` - LoopReturns * `Mastodon` - Mastodon * `Meetup` - Meetup * `Memberful` - Memberful * `MercadoPago` - MercadoPago * `Meteostat` - Meteostat * `Mews` - Mews * `Mezmo` - Mezmo * `Microsoft365UsageReports` - Microsoft365UsageReports * `MicrosoftAdvertising` - MicrosoftAdvertising * `MicrosoftClarity` - MicrosoftClarity * `MicrosoftDefenderCloudApps` - MicrosoftDefenderCloudApps * `MicrosoftDefenderEndpoint` - MicrosoftDefenderEndpoint * `MicrosoftDefenderForCloud` - MicrosoftDefenderForCloud * `MicrosoftIntune` - MicrosoftIntune * `MicrosoftPurview` - MicrosoftPurview * `MicrosoftPurviewAudit` - MicrosoftPurviewAudit * `MicrosoftSentinel` - MicrosoftSentinel * `MicrosoftTeamsCallRecords` - MicrosoftTeamsCallRecords * `Midtrans` - Midtrans * `MightyNetworks` - MightyNetworks * `Mindbody` - Mindbody * `Mirakl` - Mirakl * `Moesif` - Moesif * `Moneybird` - Moneybird * `Moodle` - Moodle * `Motherduck` - Motherduck * `Mycase` - Mycase * `NagerDate` - NagerDate * `NeonCrm` - NeonCrm * `Nexhealth` - Nexhealth * `NoaaCdo` - NoaaCdo * `Nobl9` - Nobl9 * `Nolt` - Nolt * `Nops` - Nops * `NpmRegistry` - NpmRegistry * `Oecd` - Oecd * `Okendo` - Okendo * `Omni` - Omni * `Onelogin` - Onelogin * `OpenDental` - OpenDental * `OpenMeteo` - OpenMeteo * `Openalex` - Openalex * `Opencorporates` - Opencorporates * `Openfec` - Openfec * `OpnPayments` - OpnPayments * `Opslevel` - Opslevel * `OttoMarket` - OttoMarket * `Ownerrez` - Ownerrez * `Pagbank` - Pagbank * `Patreon` - Patreon * `Pax8` - Pax8 * `Paychex` - Paychex * `Paymob` - Paymob * `Paymongo` - Paymongo * `Phonepe` - Phonepe * `Pike13` - Pike13 * `Pingone` - Pingone * `PinterestOrganic` - PinterestOrganic * `PlanningCenter` - PlanningCenter * `PluralsightFlow` - PluralsightFlow * `Podbean` - Podbean * `Postscript` - Postscript * `PowerBiAdmin` - PowerBiAdmin * `Practicepanther` - Practicepanther * `Preset` - Preset * `Procore` - Procore * `Productiv` - Productiv * `ProofpointTap` - ProofpointTap * `Propertyware` - Propertyware * `Pubnub` - Pubnub * `Quay` - Quay * `Raken` - Raken * `RedpandaCloud` - RedpandaCloud * `RentManager` - RentManager * `Reverb` - Reverb * `RocketMatter` - RocketMatter * `Rubygems` - Rubygems * `Scalr` - Scalr * `SecEdgar` - SecEdgar * `SelectStar` - SelectStar * `SemanticScholar` - SemanticScholar * `Semrush` - Semrush * `ServiceFusion` - ServiceFusion * `Servicem8` - Servicem8 * `Servicetitan` - Servicetitan * `Servicetrade` - Servicetrade * `Sevdesk` - Sevdesk * `Similarweb` - Similarweb * `Simpro` - Simpro * `Sinch` - Sinch * `Singlestore` - Singlestore * `Site24x7` - Site24x7 * `Sleuth` - Sleuth * `Smartlook` - Smartlook * `Smartrecruiters` - Smartrecruiters * `Smokeball` - Smokeball * `SodaCloud` - SodaCloud * `Speedcurve` - Speedcurve * `SpotIo` - SpotIo * `Sprig` - Sprig * `Sprinklr` - Sprinklr * `SproutSocial` - SproutSocial * `StackOverflowForTeams` - StackOverflowForTeams * `Stockx` - Stockx * `TackleIo` - TackleIo * `Talkdesk` - Talkdesk * `TeamupFitness` - TeamupFitness * `Tebra` - Tebra * `Telnyx` - Telnyx * `Ternary` - Ternary * `Thoughtspot` - Thoughtspot * `Thousandeyes` - Thousandeyes * `Threads` - Threads * `TiktokShop` - TiktokShop * `TinyErp` - TinyErp * `Tinybird` - Tinybird * `Tipalti` - Tipalti * `Toast` - Toast * `Torii` - Torii * `Transistor` - Transistor * `TrunkIo` - TrunkIo * `Trustradius` - Trustradius * `Twitch` - Twitch * `TwoC2p` - TwoC2p * `UkCompaniesHouse` - UkCompaniesHouse * `UkOns` - UkOns * `UnComtrade` - UnComtrade * `UsBea` - UsBea * `UsBls` - UsBls * `UsEia` - UsEia * `UsTreasuryFiscalData` - UsTreasuryFiscalData * `Vanta` - Vanta * `Vendr` - Vendr * `Virtuous` - Virtuous * `Vonage` - Vonage * `WalmartMarketplace` - WalmartMarketplace * `Waydev` - Waydev * `Wayfair` - Wayfair * `WhatsappBusinessManagement` - WhatsappBusinessManagement * `WhoGho` - WhoGho * `Whop` - Whop * `Wiz` - Wiz * `Wompi` - Wompi * `Workiz` - Workiz * `WorldBank` - WorldBank * `Xendit` - Xendit * `Yoco` - Yoco * `ZalandoZdirect` - ZalandoZdirect * `Zluri` - Zluri * `Zylo` - Zylo * `Tally` - Tally * `Nuntly` - Nuntly * `Vturb` - Vturb * `Meltwater` - Meltwater * `UserCom` - UserCom * `Latitude` - Latitude * `Workato` - Workato * `SideShift` - SideShift * `DuckLake` - DuckLake * `Starburst` - Starburst * `Trino` - Trino * `Easybill` - Easybill * `Bexio` - Bexio * `Umami` - Umami * `Manychat` - Manychat * `Kickstarter` - Kickstarter * `Typesense` - Typesense * `FirstPromoter` - FirstPromoter * `Zero` - Zero * `Inth` - Inth * `BCMS` - BCMS * `Convonite` - Convonite * `Hookdeck` - Hookdeck * `Billit` - Billit * `Moxie` - Moxie * `TripleWhale` - TripleWhale * `Directus` - Directus * `Clay` - Clay * `TradableBits` - TradableBits * `Swan` - Swan * `Hyros` - Hyros * `Odoo` - Odoo * `Airbridge` - Airbridge * `Snovio` - Snovio * `GoogleMerchantCenter` - GoogleMerchantCenter * `Raisely` - Raisely * `RakutenAdvertising` - RakutenAdvertising * `Zitadel` - Zitadel * `DeelFlows` - DeelFlows * `WindsorAi` - WindsorAi * `Wix` - Wix * `Sevalla` - Sevalla * `Motion` - Motion * `ImpactPartner` - ImpactPartner * `Cloudinary` - Cloudinary * `Uploadcare` - Uploadcare * `WHMCS` - WHMCS * `MSG91` - MSG91 * `Depot` - Depot * `Schematic` - Schematic * `Dokploy` - Dokploy * `Hootsuite` - Hootsuite * `WisprFlow` - WisprFlow * `SamCart` - SamCart * `IronSourceAds` - IronSourceAds * `MicrosoftExcel` - MicrosoftExcel * `Profound` - Profound * `Airwallex` - Airwallex * `Polymarket` - Polymarket * `Kalshi` - Kalshi * `Capterra` - Capterra * `GooglePostmasterTools` - GooglePostmasterTools * `Growi` - Growi * `Clarify` - Clarify * `DatoCMS` - DatoCMS * `WPSOffice` - WPSOffice * `TeraBox` - TeraBox * `SimonData` - SimonData * `CommissionJunction` - CommissionJunction * `Liveblocks` - Liveblocks * `NationBuilder` - NationBuilder * `Tana` - Tana * `Zenchef` - Zenchef * `Lovable` - Lovable * `Anvil` - Anvil * `Coolify` - Coolify * `SocialPilot` - SocialPilot */
+/** * `Ashby` - Ashby * `Supabase` - Supabase * `CustomerIO` - CustomerIO * `Github` - Github * `Stripe` - Stripe * `Hubspot` - Hubspot * `Postgres` - Postgres * `Zendesk` - Zendesk * `Snowflake` - Snowflake * `Salesforce` - Salesforce * `MySQL` - MySQL * `MongoDB` - MongoDB * `MSSQL` - MSSQL * `Vitally` - Vitally * `BigQuery` - BigQuery * `Chargebee` - Chargebee * `Clerk` - Clerk * `GoogleAds` - GoogleAds * `GoogleSearchConsole` - GoogleSearchConsole * `TemporalIO` - TemporalIO * `DoIt` - DoIt * `GoogleSheets` - GoogleSheets * `MetaAds` - MetaAds * `Klaviyo` - Klaviyo * `Mailchimp` - Mailchimp * `Braze` - Braze * `Mailjet` - Mailjet * `Redshift` - Redshift * `Polar` - Polar * `RevenueCat` - RevenueCat * `LinkedinAds` - LinkedinAds * `RedditAds` - RedditAds * `TikTokAds` - TikTokAds * `BingAds` - BingAds * `Shopify` - Shopify * `Attio` - Attio * `SnapchatAds` - SnapchatAds * `Linear` - Linear * `Intercom` - Intercom * `Amplitude` - Amplitude * `Mixpanel` - Mixpanel * `Jira` - Jira * `ActiveCampaign` - ActiveCampaign * `Marketo` - Marketo * `Adjust` - Adjust * `AppsFlyer` - AppsFlyer * `Freshdesk` - Freshdesk * `GoogleAnalytics` - GoogleAnalytics * `Pipedrive` - Pipedrive * `SendGrid` - SendGrid * `Slack` - Slack * `PagerDuty` - PagerDuty * `Asana` - Asana * `Notion` - Notion * `Airtable` - Airtable * `Greenhouse` - Greenhouse * `BambooHR` - BambooHR * `Lever` - Lever * `GitLab` - GitLab * `Datadog` - Datadog * `Sentry` - Sentry * `Pendo` - Pendo * `FullStory` - FullStory * `AmazonAds` - AmazonAds * `PinterestAds` - PinterestAds * `AppleSearchAds` - AppleSearchAds * `QuickBooks` - QuickBooks * `Xero` - Xero * `NetSuite` - NetSuite * `WooCommerce` - WooCommerce * `BigCommerce` - BigCommerce * `PayPal` - PayPal * `Square` - Square * `Zoom` - Zoom * `Trello` - Trello * `Monday` - Monday * `ClickUp` - ClickUp * `Confluence` - Confluence * `Recurly` - Recurly * `SalesLoft` - SalesLoft * `Outreach` - Outreach * `Gong` - Gong * `Calendly` - Calendly * `Typeform` - Typeform * `Iterable` - Iterable * `ZohoCRM` - ZohoCRM * `Close` - Close * `Oracle` - Oracle * `DynamoDB` - DynamoDB * `Elasticsearch` - Elasticsearch * `Kafka` - Kafka * `LaunchDarkly` - LaunchDarkly * `Braintree` - Braintree * `Recharge` - Recharge * `HelpScout` - HelpScout * `Gorgias` - Gorgias * `Instagram` - Instagram * `YouTubeAnalytics` - YouTubeAnalytics * `FacebookPages` - FacebookPages * `TwitterAds` - TwitterAds * `Workday` - Workday * `ServiceNow` - ServiceNow * `Pardot` - Pardot * `Copper` - Copper * `Front` - Front * `ChartMogul` - ChartMogul * `Zuora` - Zuora * `Paddle` - Paddle * `CircleCI` - CircleCI * `CockroachDB` - CockroachDB * `Firebase` - Firebase * `AzureBlob` - AzureBlob * `GoogleDrive` - GoogleDrive * `OneDrive` - OneDrive * `SharePoint` - SharePoint * `Box` - Box * `SFTP` - SFTP * `MicrosoftTeams` - MicrosoftTeams * `Aircall` - Aircall * `Webflow` - Webflow * `Okta` - Okta * `Auth0` - Auth0 * `Productboard` - Productboard * `Smartsheet` - Smartsheet * `Wrike` - Wrike * `Plaid` - Plaid * `SurveyMonkey` - SurveyMonkey * `Eventbrite` - Eventbrite * `RingCentral` - RingCentral * `Twilio` - Twilio * `Freshsales` - Freshsales * `Shortcut` - Shortcut * `ConvertKit` - ConvertKit * `Drip` - Drip * `CampaignMonitor` - CampaignMonitor * `MailerLite` - MailerLite * `Omnisend` - Omnisend * `Brevo` - Brevo * `Postmark` - Postmark * `Granola` - Granola * `BuildBetter` - BuildBetter * `Convex` - Convex * `ClickHouse` - ClickHouse * `Plain` - Plain * `Resend` - Resend * `PgAnalyze` - PgAnalyze * `WorkOS` - WorkOS * `AmazonS3` - AmazonS3 * `GoogleCloudStorage` - GoogleCloudStorage * `Databricks` - Databricks * `Dynamics365` - Dynamics365 * `SalesforceMarketingCloud` - SalesforceMarketingCloud * `Db2` - Db2 * `Heap` - Heap * `AdobeAnalytics` - AdobeAnalytics * `Matomo` - Matomo * `Optimizely` - Optimizely * `Adyen` - Adyen * `GoCardless` - GoCardless * `Mollie` - Mollie * `CheckoutCom` - CheckoutCom * `Branch` - Branch * `Criteo` - Criteo * `Outbrain` - Outbrain * `Taboola` - Taboola * `AdRoll` - AdRoll * `DisplayVideo360` - DisplayVideo360 * `GoogleAdManager` - GoogleAdManager * `CampaignManager360` - CampaignManager360 * `SearchAds360` - SearchAds360 * `AdobeCommerce` - AdobeCommerce * `AmazonSellingPartner` - AmazonSellingPartner * `Ebay` - Ebay * `Commercetools` - Commercetools * `LightspeedRetail` - LightspeedRetail * `Shipmail` - Shipmail * `ShipStation` - ShipStation * `ConstantContact` - ConstantContact * `Mailgun` - Mailgun * `Eloqua` - Eloqua * `Sailthru` - Sailthru * `Ortto` - Ortto * `Attentive` - Attentive * `Kustomer` - Kustomer * `Dixa` - Dixa * `Gladly` - Gladly * `Qualtrics` - Qualtrics * `AzureDevOps` - AzureDevOps * `RoktAds` - RoktAds * `Rollbar` - Rollbar * `Opsgenie` - Opsgenie * `IncidentIo` - IncidentIo * `Pingdom` - Pingdom * `Cloudflare` - Cloudflare * `CosmosDB` - CosmosDB * `PlanetScaleMySQL` - PlanetScaleMySQL * `PlanetScalePostgres` - PlanetScalePostgres * `SapHana` - SapHana * `Rippling` - Rippling * `HiBob` - HiBob * `Personio` - Personio * `Deel` - Deel * `AdpWorkforceNow` - AdpWorkforceNow * `Paylocity` - Paylocity * `Gusto` - Gusto * `CultureAmp` - CultureAmp * `Lattice` - Lattice * `SageIntacct` - SageIntacct * `FreshBooks` - FreshBooks * `Expensify` - Expensify * `Ramp` - Ramp * `Brex` - Brex * `Coupa` - Coupa * `SapConcur` - SapConcur * `Apollo` - Apollo * `Crunchbase` - Crunchbase * `ZoomInfo` - ZoomInfo * `Clari` - Clari * `Chorus` - Chorus * `Coda` - Coda * `Guru` - Guru * `Dropbox` - Dropbox * `Docusign` - Docusign * `PandaDoc` - PandaDoc * `SapErp` - SapErp * `SapSuccessFactors` - SapSuccessFactors * `OracleEbs` - OracleEbs * `OracleFusion` - OracleFusion * `AmazonSNS` - AmazonSNS * `AmazonEventBridge` - AmazonEventBridge * `AmazonSQS` - AmazonSQS * `AmazonKinesis` - AmazonKinesis * `AmazonCloudWatch` - AmazonCloudWatch * `OpenAIAds` - OpenAIAds * `OneHundredMs` - OneHundredMs * `SevenShifts` - SevenShifts * `AcuityScheduling` - AcuityScheduling * `AgileCRM` - AgileCRM * `Aha` - Aha * `Airbyte` - Airbyte * `Akeneo` - Akeneo * `Algolia` - Algolia * `AlpacaBrokerAPI` - AlpacaBrokerAPI * `ApifyDataset` - ApifyDataset * `Appcues` - Appcues * `Appfigures` - Appfigures * `Appfollow` - Appfollow * `Apptivo` - Apptivo * `AssemblyAI` - AssemblyAI * `Awin` - Awin * `AwsCloudTrail` - AwsCloudTrail * `AzureTableStorage` - AzureTableStorage * `Babelforce` - Babelforce * `Basecamp` - Basecamp * `Beamer` - Beamer * `BigMailer` - BigMailer * `Bluetally` - Bluetally * `BoldSign` - BoldSign * `BreezyHR` - BreezyHR * `Bugsnag` - Bugsnag * `Buildkite` - Buildkite * `Bunny` - Bunny * `Buzzsprout` - Buzzsprout * `CalCom` - CalCom * `CallRail` - CallRail * `Campayn` - Campayn * `Canny` - Canny * `CapsuleCRM` - CapsuleCRM * `CaptainData` - CaptainData * `CartCom` - CartCom * `CastorEDC` - CastorEDC * `Chameleon` - Chameleon * `Chargedesk` - Chargedesk * `Chargify` - Chargify * `Chift` - Chift * `Churnkey` - Churnkey * `Cin7` - Cin7 * `CiscoMeraki` - CiscoMeraki * `Clazar` - Clazar * `Clockify` - Clockify * `Clockodo` - Clockodo * `Cloudbeds` - Cloudbeds * `Coassemble` - Coassemble * `Codefresh` - Codefresh * `Concord` - Concord * `ConfigCat` - ConfigCat * `Couchbase` - Couchbase * `Curve` - Curve * `Customerly` - Customerly * `Datascope` - Datascope * `Dbt` - Dbt * `Demodesk` - Demodesk * `Deputy` - Deputy * `DevinAI` - DevinAI * `Docuseal` - Docuseal * `Dolibarr` - Dolibarr * `Dremio` - Dremio * `DropboxSign` - DropboxSign * `Dwolla` - Dwolla * `EConomic` - EConomic * `Easypost` - Easypost * `Easypromos` - Easypromos * `Elasticemail` - Elasticemail * `EmailOctopus` - EmailOctopus * `EmploymentHero` - EmploymentHero * `Encharge` - Encharge * `Eventee` - Eventee * `Eventzilla` - Eventzilla * `Everhour` - Everhour * `EZOfficeInventory` - EZOfficeInventory * `Factorial` - Factorial * `Fastbill` - Fastbill * `Fastly` - Fastly * `Fauna` - Fauna * `Feishu` - Feishu * `Fillout` - Fillout * `Finage` - Finage * `Firebolt` - Firebolt * `FireHydrant` - FireHydrant * `Fleetio` - Fleetio * `Flexmail` - Flexmail * `Flexport` - Flexport * `FloatApp` - FloatApp * `Flowlu` - Flowlu * `Formbricks` - Formbricks * `Framer` - Framer * `FreeAgent` - FreeAgent * `Freightview` - Freightview * `Freshcaller` - Freshcaller * `Freshchat` - Freshchat * `Freshservice` - Freshservice * `Fulcrum` - Fulcrum * `GainsightPx` - GainsightPx * `GitBook` - GitBook * `Glassfrog` - Glassfrog * `Goldcast` - Goldcast * `GoLogin` - GoLogin * `Grafana` - Grafana * `GreytHr` - GreytHr * `Gridly` - Gridly * `Harness` - Harness * `Height` - Height * `Hellobaton` - Hellobaton * `HighLevel` - HighLevel * `HoorayHR` - HoorayHR * `Hubplanner` - Hubplanner * `Humanitix` - Humanitix * `Huntr` - Huntr * `Inflowinventory` - Inflowinventory * `InforNexus` - InforNexus * `Insightful` - Insightful * `Insightly` - Insightly * `Instantly` - Instantly * `Instatus` - Instatus * `Intruder` - Intruder * `Invoiced` - Invoiced * `Invoiceninja` - Invoiceninja * `JamfPro` - JamfPro * `JobNimbus` - JobNimbus * `Jotform` - Jotform * `JudgeMeReviews` - JudgeMeReviews * `JustCall` - JustCall * `JustSift` - JustSift * `K6Cloud` - K6Cloud * `Katana` - Katana * `Keka` - Keka * `Kisi` - Kisi * `Kissmetrics` - Kissmetrics * `Klarna` - Klarna * `Klaus` - Klaus * `Lago` - Lago * `Leadfeeder` - Leadfeeder * `Lemlist` - Lemlist * `LessAnnoyingCRM` - LessAnnoyingCRM * `LinkedinPages` - LinkedinPages * `Linkrunner` - Linkrunner * `Linnworks` - Linnworks * `Lob` - Lob * `Lokalise` - Lokalise * `Looker` - Looker * `Luma` - Luma * `MailerSend` - MailerSend * `Mailosaur` - Mailosaur * `Mailtrap` - Mailtrap * `Mantle` - Mantle * `Mention` - Mention * `MercadoAds` - MercadoAds * `Merge` - Merge * `Metabase` - Metabase * `Metricool` - Metricool * `MicrosoftDataverse` - MicrosoftDataverse * `MicrosoftEntraId` - MicrosoftEntraId * `MicrosoftLists` - MicrosoftLists * `Miro` - Miro * `Missive` - Missive * `MixMax` - MixMax * `Mode` - Mode * `Mux` - Mux * `MyHours` - MyHours * `N8n` - N8n * `Navan` - Navan * `NebiusAI` - NebiusAI * `Nexiopay` - Nexiopay * `NinjaOneRMM` - NinjaOneRMM * `NoCRM` - NoCRM * `NorthpassLMS` - NorthpassLMS * `Nutshell` - Nutshell * `Nylas` - Nylas * `Oncehub` - Oncehub * `Onepagecrm` - Onepagecrm * `OneSignal` - OneSignal * `Onfleet` - Onfleet * `OpinionStage` - OpinionStage * `OPUSWatch` - OPUSWatch * `Orb` - Orb * `Orbit` - Orbit * `Oura` - Oura * `Oveit` - Oveit * `PabblySubscriptionsBilling` - PabblySubscriptionsBilling * `Paperform` - Paperform * `Papersign` - Papersign * `Partnerize` - Partnerize * `PartnerStack` - PartnerStack * `PayFit` - PayFit * `Paystack` - Paystack * `Pennylane` - Pennylane * `Perk` - Perk * `PersistIq` - PersistIq * `Persona` - Persona * `Phyllo` - Phyllo * `Picqer` - Picqer * `Pipeliner` - Pipeliner * `PivotalTracker` - PivotalTracker * `Piwik` - Piwik * `Planhat` - Planhat * `Plausible` - Plausible * `Poplar` - Poplar * `PrestaShop` - PrestaShop * `Pretix` - Pretix * `Primetric` - Primetric * `Printavo` - Printavo * `Printify` - Printify * `Productive` - Productive * `Pylon` - Pylon * `Qonto` - Qonto * `Qualaroo` - Qualaroo * `Railz` - Railz * `RDStationMarketing` - RDStationMarketing * `Recruitee` - Recruitee * `Reddit` - Reddit * `ReferralHero` - ReferralHero * `RentCast` - RentCast * `Repairshopr` - Repairshopr * `ReplyIo` - ReplyIo * `RetailExpress` - RetailExpress * `Retently` - Retently * `RevolutMerchant` - RevolutMerchant * `RocketChat` - RocketChat * `Rocketlane` - Rocketlane * `Rootly` - Rootly * `Ruddr` - Ruddr * `SafetyCulture` - SafetyCulture * `SageHR` - SageHR * `Salesflare` - Salesflare * `SAPFieldglass` - SAPFieldglass * `SavvyCal` - SavvyCal * `Secoda` - Secoda * `Segment` - Segment * `Sendowl` - Sendowl * `SendPulse` - SendPulse * `Senseforce` - Senseforce * `Serpstat` - Serpstat * `Sharetribe` - Sharetribe * `Shippo` - Shippo * `ShopWired` - ShopWired * `Shortio` - Shortio * `Shutterstock` - Shutterstock * `SigmaComputing` - SigmaComputing * `SignNow` - SignNow * `SimpleCast` - SimpleCast * `Simplesat` - Simplesat * `Smaily` - Smaily * `SmartEngage` - SmartEngage * `Smartreach` - Smartreach * `Smartwaiver` - Smartwaiver * `SolarwindsServiceDesk` - SolarwindsServiceDesk * `SonarCloud` - SonarCloud * `SparkPost` - SparkPost * `SplitIo` - SplitIo * `SpotifyAds` - SpotifyAds * `SpotlerCRM` - SpotlerCRM * `Squarespace` - Squarespace * `Statsig` - Statsig * `Statuspage` - Statuspage * `Stigg` - Stigg * `Strava` - Strava * `SurveySparrow` - SurveySparrow * `Survicate` - Survicate * `Svix` - Svix * `Systeme` - Systeme * `Tavus` - Tavus * `Teamtailor` - Teamtailor * `Teamwork` - Teamwork * `Tempo` - Tempo * `Testrail` - Testrail * `Thinkific` - Thinkific * `ThinkificCourses` - ThinkificCourses * `ThriveLearning` - ThriveLearning * `Ticketmaster` - Ticketmaster * `TicketTailor` - TicketTailor * `TickTick` - TickTick * `Timely` - Timely * `Tinyemail` - Tinyemail * `Todoist` - Todoist * `Toggl` - Toggl * `TrackPMS` - TrackPMS * `Tremendous` - Tremendous * `TrustPilot` - TrustPilot * `Twitter` - Twitter * `TyntecSMS` - TyntecSMS * `Unleash` - Unleash * `UpPromote` - UpPromote * `Uptick` - Uptick * `Uservoice` - Uservoice * `Vantage` - Vantage * `Veeqo` - Veeqo * `Vercel` - Vercel * `VismaEconomic` - VismaEconomic * `VWO` - VWO * `Waiteraid` - Waiteraid * `Wasabi` - Wasabi * `WhenIWork` - WhenIWork * `Wordpress` - Wordpress * `Workable` - Workable * `Workflowmax` - Workflowmax * `Workramp` - Workramp * `Wufoo` - Wufoo * `Xsolla` - Xsolla * `YandexMetrica` - YandexMetrica * `Yotpo` - Yotpo * `Ynab` - Ynab * `Younium` - Younium * `YouSign` - YouSign * `YoutubeData` - YoutubeData * `ZapierSupportedStorage` - ZapierSupportedStorage * `ZapSign` - ZapSign * `ZendeskSell` - ZendeskSell * `ZendeskSunshine` - ZendeskSunshine * `Zenefits` - Zenefits * `Zenloop` - Zenloop * `ZohoAnalytics` - ZohoAnalytics * `ZohoBigin` - ZohoBigin * `ZohoBilling` - ZohoBilling * `ZohoBooks` - ZohoBooks * `ZohoCampaign` - ZohoCampaign * `ZohoDesk` - ZohoDesk * `ZohoExpense` - ZohoExpense * `ZohoInventory` - ZohoInventory * `ZohoInvoice` - ZohoInvoice * `ZonkaFeedback` - ZonkaFeedback * `AlphaVantage` - AlphaVantage * `Aviationstack` - Aviationstack * `Bitly` - Bitly * `Blogger` - Blogger * `Breezometer` - Breezometer * `CareQualityCommission` - CareQualityCommission * `Cimis` - Cimis * `CoinApi` - CoinApi * `CoinGecko` - CoinGecko * `CoinMarketCap` - CoinMarketCap * `DingConnect` - DingConnect * `Dockerhub` - Dockerhub * `ExchangeRatesApi` - ExchangeRatesApi * `FinancialModelling` - FinancialModelling * `Finnhub` - Finnhub * `Finnworlds` - Finnworlds * `Giphy` - Giphy * `Gmail` - Gmail * `GNews` - GNews * `GoogleCalendar` - GoogleCalendar * `GoogleClassroom` - GoogleClassroom * `GoogleDirectory` - GoogleDirectory * `GoogleForms` - GoogleForms * `GooglePageSpeedInsights` - GooglePageSpeedInsights * `GoogleTasks` - GoogleTasks * `GoogleWebfonts` - GoogleWebfonts * `GoogleWorkspaceAdminReports` - GoogleWorkspaceAdminReports * `HuggingFace` - HuggingFace * `IlluminaBasespace` - IlluminaBasespace * `Imagga` - Imagga * `Interzoid` - Interzoid * `IP2Whois` - IP2Whois * `KYVE` - KYVE * `Marketstack` - Marketstack * `Mendeley` - Mendeley * `Nasa` - Nasa * `NewYorkTimes` - NewYorkTimes * `NewsApi` - NewsApi * `NewsData` - NewsData * `OpenDataDc` - OpenDataDc * `OpenExchangeRates` - OpenExchangeRates * `OpenAQ` - OpenAQ * `OpenFDA` - OpenFDA * `OpenWeather` - OpenWeather * `Outlook` - Outlook * `Perigon` - Perigon * `Pexels` - Pexels * `Pocket` - Pocket * `Polygon` - Polygon * `PyPI` - PyPI * `Recreation` - Recreation * `RKICovid` - RKICovid * `Rss` - Rss * `SimFin` - SimFin * `StockData` - StockData * `Guardian` - Guardian * `TMDb` - TMDb * `TVMaze` - TVMaze * `TwelveData` - TwelveData * `Ubidots` - Ubidots * `USCensus` - USCensus * `Watchmode` - Watchmode * `WikipediaPageviews` - WikipediaPageviews * `YahooFinance` - YahooFinance * `Clarifai` - Clarifai * `Adapty` - Adapty * `Braintrust` - Braintrust * `StreamElements` - StreamElements * `Streamlabs` - Streamlabs * `Datorama` - Datorama * `Ahrefs` - Ahrefs * `Lightfield` - Lightfield * `Appstack` - Appstack * `Razorpay` - Razorpay * `Neon` - Neon * `NewRelic` - NewRelic * `Custom` - Custom * `Tile38` - Tile38 * `Chatwoot` - Chatwoot * `Sanity` - Sanity * `Metronome` - Metronome * `Jobber` - Jobber * `Knock` - Knock * `Leexi` - Leexi * `RB2B` - RB2B * `Superwall` - Superwall * `Liana` - Liana * `TawkTo` - TawkTo * `Hightouch` - Hightouch * `LemonSqueezy` - LemonSqueezy * `Ikas` - Ikas * `Talkwalker` - Talkwalker * `NextdoorAds` - NextdoorAds * `AppLovin` - AppLovin * `Baserow` - Baserow * `Plunk` - Plunk * `Dub` - Dub * `AirOps` - AirOps * `Podium` - Podium * `Loops` - Loops * `Redis` - Redis * `Mercury` - Mercury * `Gojiberry` - Gojiberry * `Teachable` - Teachable * `PeecAI` - PeecAI * `Healthchecks` - Healthchecks * `Impact` - Impact * `AikidoSecurity` - AikidoSecurity * `Alguna` - Alguna * `Anthropic` - Anthropic * `Appwrite` - Appwrite * `BlandAI` - BlandAI * `BrowseAI` - BrowseAI * `BrowserUse` - BrowserUse * `ChartHop` - ChartHop * `Cody` - Cody * `Cursor` - Cursor * `Decagon` - Decagon * `Deepgram` - Deepgram * `ElevenLabs` - ElevenLabs * `Harvey` - Harvey * `Hyperspell` - Hyperspell * `Langfuse` - Langfuse * `LingoDev` - LingoDev * `M3ter` - M3ter * `Maxio` - Maxio * `Metorial` - Metorial * `OpenRouter` - OpenRouter * `TogetherAI` - TogetherAI * `Vapi` - Vapi * `Vespa` - Vespa * `Writesonic` - Writesonic * `Aiven` - Aiven * `Aviator` - Aviator * `Backblaze` - Backblaze * `Baseten` - Baseten * `Browserbase` - Browserbase * `Cohere` - Cohere * `DenoDeploy` - DenoDeploy * `DigitalOcean` - DigitalOcean * `E2B` - E2B * `Fintoc` - Fintoc * `Firecrawl` - Firecrawl * `FireworksAI` - FireworksAI * `FlyIo` - FlyIo * `Groq` - Groq * `GrowthBook` - GrowthBook * `Gumloop` - Gumloop * `Hatchet` - Hatchet * `Helicone` - Helicone * `Heroku` - Heroku * `Hetzner` - Hetzner * `HeyGen` - HeyGen * `Infisical` - Infisical * `Inngest` - Inngest * `KapaAI` - KapaAI * `Kernel` - Kernel * `Koyeb` - Koyeb * `LambdaLabs` - LambdaLabs * `LangSmith` - LangSmith * `Linode` - Linode * `LlamaCloud` - LlamaCloud * `Mem0` - Mem0 * `Metriport` - Metriport * `Mintlify` - Mintlify * `MistralAI` - MistralAI * `Mono` - Mono * `Netlify` - Netlify * `Northflank` - Northflank * `OpenAI` - OpenAI * `Pinecone` - Pinecone * `PlatformSh` - PlatformSh * `PromptingCompany` - PromptingCompany * `Qdrant` - Qdrant * `Render` - Render * `Replicate` - Replicate * `RetellAI` - RetellAI * `Roark` - Roark * `RunPod` - RunPod * `ScaleAI` - ScaleAI * `Scaleway` - Scaleway * `SigNoz` - SigNoz * `Sim` - Sim * `Skyvern` - Skyvern * `Slash` - Slash * `Synthesia` - Synthesia * `Telli` - Telli * `TerraApi` - TerraApi * `TriggerDev` - TriggerDev * `Turso` - Turso * `Singular` - Singular * `Swonkie` - Swonkie * `TwelveLabs` - TwelveLabs * `Twenty` - Twenty * `Unstructured` - Unstructured * `Upstash` - Upstash * `Vellum` - Vellum * `Vultr` - Vultr * `Windmill` - Windmill * `Zep` - Zep * `Hex` - Hex * `Sumsub` - Sumsub * `GoogleChat` - GoogleChat * `Kickscale` - Kickscale * `Zellify` - Zellify * `RudderStack` - RudderStack * `DodoPayments` - DodoPayments * `Salestrics` - Salestrics * `Doppler` - Doppler * `Usersnap` - Usersnap * `Asknicely` - Asknicely * `Featurebase` - Featurebase * `Frill` - Frill * `Bettermode` - Bettermode * `Dynatrace` - Dynatrace * `Honeycomb` - Honeycomb * `SumoLogic` - SumoLogic * `LogzIO` - LogzIO * `Coralogix` - Coralogix * `BetterStack` - BetterStack * `Raygun` - Raygun * `Honeybadger` - Honeybadger * `Airbrake` - Airbrake * `Appsignal` - Appsignal * `Appdynamics` - Appdynamics * `Instana` - Instana * `SplunkObservabilityCloud` - SplunkObservabilityCloud * `Uptimerobot` - Uptimerobot * `Statuscake` - Statuscake * `Tailscale` - Tailscale * `Flagsmith` - Flagsmith * `Xmatters` - Xmatters * `Squadcast` - Squadcast * `Zenduty` - Zenduty * `Cronitor` - Cronitor * `Jenkins` - Jenkins * `Bitbucket` - Bitbucket * `Gitea` - Gitea * `Teamcity` - Teamcity * `TravisCI` - TravisCI * `Semaphore` - Semaphore * `CircleciInsights` - CircleciInsights * `OctopusDeploy` - OctopusDeploy * `Sourcegraph` - Sourcegraph * `Bitrise` - Bitrise * `Gerrit` - Gerrit * `TerraformCloud` - TerraformCloud * `PulumiCloud` - PulumiCloud * `Spacelift` - Spacelift * `Railway` - Railway * `Argocd` - Argocd * `PrefectCloud` - PrefectCloud * `DagsterCloud` - DagsterCloud * `Env0` - Env0 * `Kubecost` - Kubecost * `Snyk` - Snyk * `Semgrep` - Semgrep * `Veracode` - Veracode * `Checkmarx` - Checkmarx * `Gitguardian` - Gitguardian * `QualysVmdr` - QualysVmdr * `Rapid7Insightvm` - Rapid7Insightvm * `TenableVulnerabilityManagement` - TenableVulnerabilityManagement * `Sentinelone` - Sentinelone * `Lacework` - Lacework * `OrcaSecurity` - OrcaSecurity * `Drata` - Drata * `Secureframe` - Secureframe * `CiscoDuo` - CiscoDuo * `Jumpcloud` - Jumpcloud * `OnePassword` - OnePassword * `Stytch` - Stytch * `Sonarqube` - Sonarqube * `Codecov` - Codecov * `Coveralls` - Coveralls * `Codacy` - Codacy * `Deepsource` - Deepsource * `Linearb` - Linearb * `Jellyfish` - Jellyfish * `Swarmia` - Swarmia * `Packagist` - Packagist * `Nuget` - Nuget * `CratesIO` - CratesIO * `SonatypeNexus` - SonatypeNexus * `JfrogArtifactory` - JfrogArtifactory * `Snowplow` - Snowplow * `WeightsAndBiases` - WeightsAndBiases * `MonteCarlo` - MonteCarlo * `Metaplane` - Metaplane * `Datahub` - Datahub * `ClickhouseCloud` - ClickhouseCloud * `ConfluentCloud` - ConfluentCloud * `KongKonnect` - KongKonnect * `Kandji` - Kandji * `Automox` - Automox * `Autumn` - Autumn * `GetStream` - GetStream * `Octolens` - Octolens * `Kajabi` - Kajabi * `Shopware` - Shopware * `Dubsado` - Dubsado * `Campfire` - Campfire * `PromptWatch` - PromptWatch * `Crisp` - Crisp * `Kommo` - Kommo * `Axiom` - Axiom * `Plivo` - Plivo * `DataForSEO` - DataForSEO * `Sleekplan` - Sleekplan * `AbTasty` - AbTasty * `Ably` - Ably * `AbnormalSecurity` - AbnormalSecurity * `Acast` - Acast * `Acculynx` - Acculynx * `Actionstep` - Actionstep * `Aftership` - Aftership * `AhaIdeas` - AhaIdeas * `AkamaiReporting` - AkamaiReporting * `Alation` - Alation * `Alegra` - Alegra * `Allegro` - Allegro * `AnodotCost` - AnodotCost * `Anomalo` - Anomalo * `Apaleo` - Apaleo * `Apitally` - Apitally * `AppStoreConnect` - AppStoreConnect * `Appdirect` - Appdirect * `Appfolio` - Appfolio * `Arxiv` - Arxiv * `Asaas` - Asaas * `Astronomer` - Astronomer * `Athenahealth` - Athenahealth * `Atlan` - Atlan * `AutodeskConstructionCloud` - AutodeskConstructionCloud * `Avalara` - Avalara * `AwsAthena` - AwsAthena * `AwsBatch` - AwsBatch * `AwsBudgets` - AwsBudgets * `AwsCloudformation` - AwsCloudformation * `AwsComputeOptimizer` - AwsComputeOptimizer * `AwsConfig` - AwsConfig * `AwsConnect` - AwsConnect * `AwsCostAndUsageReport` - AwsCostAndUsageReport * `AwsCostAnomalyDetection` - AwsCostAnomalyDetection * `AwsCostExplorer` - AwsCostExplorer * `AwsGlueDataCatalog` - AwsGlueDataCatalog * `AwsGuardduty` - AwsGuardduty * `AwsHealth` - AwsHealth * `AwsIamAccessAnalyzer` - AwsIamAccessAnalyzer * `AwsInspector` - AwsInspector * `AwsMacie` - AwsMacie * `AwsOrganizations` - AwsOrganizations * `AwsRdsPerformanceInsights` - AwsRdsPerformanceInsights * `AwsSagemaker` - AwsSagemaker * `AwsSavingsPlans` - AwsSavingsPlans * `AwsSecurityHub` - AwsSecurityHub * `AwsSes` - AwsSes * `AwsStepFunctions` - AwsStepFunctions * `AwsSupport` - AwsSupport * `AwsSystemsManager` - AwsSystemsManager * `AwsTrustedAdvisor` - AwsTrustedAdvisor * `AwsWaf` - AwsWaf * `AwsXray` - AwsXray * `AzureActivityLog` - AzureActivityLog * `AzureAdvisor` - AzureAdvisor * `AzureApiManagement` - AzureApiManagement * `AzureApplicationInsights` - AzureApplicationInsights * `AzureCostManagement` - AzureCostManagement * `AzureDataExplorer` - AzureDataExplorer * `AzureDataFactory` - AzureDataFactory * `AzureLogAnalytics` - AzureLogAnalytics * `AzureMonitorAlerts` - AzureMonitorAlerts * `AzureMonitorMetrics` - AzureMonitorMetrics * `AzureOpenaiUsage` - AzureOpenaiUsage * `AzurePolicyInsights` - AzurePolicyInsights * `AzureReservations` - AzureReservations * `AzureResourceGraph` - AzureResourceGraph * `AzureResourceHealth` - AzureResourceHealth * `AzureServiceHealth` - AzureServiceHealth * `AzureSynapse` - AzureSynapse * `BackMarket` - BackMarket * `Beehiiv` - Beehiiv * `Bigeye` - Bigeye * `BillCom` - BillCom * `Billomat` - Billomat * `BingWebmasterTools` - BingWebmasterTools * `Bitwarden` - Bitwarden * `BlackbaudRaisersEdgeNxt` - BlackbaudRaisersEdgeNxt * `BlackboardLearn` - BlackboardLearn * `Bling` - Bling * `Bloomerang` - Bloomerang * `Bluesky` - Bluesky * `BolRetailer` - BolRetailer * `Boulevard` - Boulevard * `Buffer` - Buffer * `Bugherd` - Bugherd * `Buildium` - Buildium * `Buttondown` - Buttondown * `BuyMeACoffee` - BuyMeACoffee * `Calendarific` - Calendarific * `Calibre` - Calibre * `CanvasLms` - CanvasLms * `Captivate` - Captivate * `Cashfree` - Cashfree * `CastAi` - CastAi * `Catchpoint` - Catchpoint * `CdcOpenData` - CdcOpenData * `Census` - Census * `Checkly` - Checkly * `CircleSo` - CircleSo * `Classy` - Classy * `Cleartax` - Cleartax * `Clever` - Clever * `Clevertap` - Clevertap * `Cliniko` - Cliniko * `Clio` - Clio * `Clip` - Clip * `Cloudability` - Cloudability * `Cloudsmith` - Cloudsmith * `Cloudzero` - Cloudzero * `Clover` - Clover * `Codemagic` - Codemagic * `Codescene` - Codescene * `Collibra` - Collibra * `Companycam` - Companycam * `Conekta` - Conekta * `ContaAzul` - ContaAzul * `Contentsquare` - Contentsquare * `Cortex` - Cortex * `Courier` - Courier * `Crossref` - Crossref * `CrowdstrikeFalcon` - CrowdstrikeFalcon * `CubeCloud` - CubeCloud * `D2lBrightspace` - D2lBrightspace * `Dayforce` - Dayforce * `Debugbear` - Debugbear * `Descope` - Descope * `Develocity` - Develocity * `Dialpad` - Dialpad * `Discord` - Discord * `Discourse` - Discourse * `Donorbox` - Donorbox * `Doorloop` - Doorloop * `Dovetail` - Dovetail * `Drchrono` - Drchrono * `Dynamics365BusinessCentral` - Dynamics365BusinessCentral * `EcbDataPortal` - EcbDataPortal * `Emarsys` - Emarsys * `Embrace` - Embrace * `Entsoe` - Entsoe * `Eppo` - Eppo * `Etsy` - Etsy * `Eurostat` - Eurostat * `Faire` - Faire * `FarosAi` - FarosAi * `Fieldpulse` - Fieldpulse * `Fieldwire` - Fieldwire * `Filevine` - Filevine * `Finout` - Finout * `Five9` - Five9 * `FlexeraCloudCost` - FlexeraCloudCost * `Flutterwave` - Flutterwave * `Fortnox` - Fortnox * `Fourthwall` - Fourthwall * `Fred` - Fred * `Frontegg` - Frontegg * `FusionAuth` - FusionAuth * `G2` - G2 * `Gcore` - Gcore * `GcpApigee` - GcpApigee * `GcpArtifactRegistry` - GcpArtifactRegistry * `GcpBigtable` - GcpBigtable * `GcpChronicle` - GcpChronicle * `GcpCloudAssetInventory` - GcpCloudAssetInventory * `GcpCloudBilling` - GcpCloudBilling * `GcpCloudBuild` - GcpCloudBuild * `GcpCloudDeploy` - GcpCloudDeploy * `GcpCloudDns` - GcpCloudDns * `GcpCloudFunctions` - GcpCloudFunctions * `GcpCloudLogging` - GcpCloudLogging * `GcpCloudMonitoring` - GcpCloudMonitoring * `GcpCloudRun` - GcpCloudRun * `GcpCloudSpanner` - GcpCloudSpanner * `GcpCloudSql` - GcpCloudSql * `GcpCloudTrace` - GcpCloudTrace * `GcpCloudWorkflows` - GcpCloudWorkflows * `GcpComputeEngine` - GcpComputeEngine * `GcpContainerAnalysis` - GcpContainerAnalysis * `GcpDataflow` - GcpDataflow * `GcpDataplex` - GcpDataplex * `GcpDataproc` - GcpDataproc * `GcpErrorReporting` - GcpErrorReporting * `GcpGke` - GcpGke * `GcpPubsub` - GcpPubsub * `GcpRecaptchaEnterprise` - GcpRecaptchaEnterprise * `GcpRecommender` - GcpRecommender * `GcpSecurityCommandCenter` - GcpSecurityCommandCenter * `Gdelt` - Gdelt * `GenesysCloud` - GenesysCloud * `Getdx` - Getdx * `Ghost` - Ghost * `Givebutter` - Givebutter * `Gleif` - Gleif * `GooglePlayConsole` - GooglePlayConsole * `Guesty` - Guesty * `Gumroad` - Gumroad * `HarnessCcm` - HarnessCcm * `HarnessSei` - HarnessSei * `Harvest` - Harvest * `Healthie` - Healthie * `Hitpay` - Hitpay * `Hivebrite` - Hivebrite * `Holded` - Holded * `Hostaway` - Hostaway * `HousecallPro` - HousecallPro * `Humanitec` - Humanitec * `ImfData` - ImfData * `Imperva` - Imperva * `InfluxdbCloud` - InfluxdbCloud * `Iyzico` - Iyzico * `Jobtread` - Jobtread * `Kameleoon` - Kameleoon * `KauflandMarketplace` - KauflandMarketplace * `Kestra` - Kestra * `Kick` - Kick * `Kinde` - Kinde * `Kion` - Kion * `Knowbe4` - Knowbe4 * `Komodor` - Komodor * `Labelbox` - Labelbox * `Lawmatics` - Lawmatics * `Learnworlds` - Learnworlds * `LexwareOffice` - LexwareOffice * `Lightdash` - Lightdash * `Lodgify` - Lodgify * `Logicmonitor` - Logicmonitor * `Logrocket` - Logrocket * `LoopReturns` - LoopReturns * `Mastodon` - Mastodon * `Meetup` - Meetup * `Memberful` - Memberful * `MercadoPago` - MercadoPago * `Meteostat` - Meteostat * `Mews` - Mews * `Mezmo` - Mezmo * `Microsoft365UsageReports` - Microsoft365UsageReports * `MicrosoftAdvertising` - MicrosoftAdvertising * `MicrosoftClarity` - MicrosoftClarity * `MicrosoftDefenderCloudApps` - MicrosoftDefenderCloudApps * `MicrosoftDefenderEndpoint` - MicrosoftDefenderEndpoint * `MicrosoftDefenderForCloud` - MicrosoftDefenderForCloud * `MicrosoftIntune` - MicrosoftIntune * `MicrosoftPurview` - MicrosoftPurview * `MicrosoftPurviewAudit` - MicrosoftPurviewAudit * `MicrosoftSentinel` - MicrosoftSentinel * `MicrosoftTeamsCallRecords` - MicrosoftTeamsCallRecords * `Midtrans` - Midtrans * `MightyNetworks` - MightyNetworks * `Mindbody` - Mindbody * `Mirakl` - Mirakl * `Moesif` - Moesif * `Moneybird` - Moneybird * `Moodle` - Moodle * `Motherduck` - Motherduck * `Mycase` - Mycase * `NagerDate` - NagerDate * `NeonCrm` - NeonCrm * `Nexhealth` - Nexhealth * `NoaaCdo` - NoaaCdo * `Nobl9` - Nobl9 * `Nolt` - Nolt * `Nops` - Nops * `NpmRegistry` - NpmRegistry * `Oecd` - Oecd * `Okendo` - Okendo * `Omni` - Omni * `Onelogin` - Onelogin * `OpenDental` - OpenDental * `OpenMeteo` - OpenMeteo * `Openalex` - Openalex * `Opencorporates` - Opencorporates * `Openfec` - Openfec * `OpnPayments` - OpnPayments * `Opslevel` - Opslevel * `OttoMarket` - OttoMarket * `Ownerrez` - Ownerrez * `Pagbank` - Pagbank * `Patreon` - Patreon * `Pax8` - Pax8 * `Paychex` - Paychex * `Paymob` - Paymob * `Paymongo` - Paymongo * `Phonepe` - Phonepe * `Pike13` - Pike13 * `Pingone` - Pingone * `PinterestOrganic` - PinterestOrganic * `PlanningCenter` - PlanningCenter * `PluralsightFlow` - PluralsightFlow * `Podbean` - Podbean * `Postscript` - Postscript * `PowerBiAdmin` - PowerBiAdmin * `Practicepanther` - Practicepanther * `Preset` - Preset * `Procore` - Procore * `Productiv` - Productiv * `ProofpointTap` - ProofpointTap * `Propertyware` - Propertyware * `Pubnub` - Pubnub * `Quay` - Quay * `Raken` - Raken * `RedpandaCloud` - RedpandaCloud * `RentManager` - RentManager * `Reverb` - Reverb * `RocketMatter` - RocketMatter * `Rubygems` - Rubygems * `Scalr` - Scalr * `SecEdgar` - SecEdgar * `SelectStar` - SelectStar * `SemanticScholar` - SemanticScholar * `Semrush` - Semrush * `ServiceFusion` - ServiceFusion * `Servicem8` - Servicem8 * `Servicetitan` - Servicetitan * `Servicetrade` - Servicetrade * `Sevdesk` - Sevdesk * `Similarweb` - Similarweb * `Simpro` - Simpro * `Sinch` - Sinch * `Singlestore` - Singlestore * `Site24x7` - Site24x7 * `Sleuth` - Sleuth * `Smartlook` - Smartlook * `Smartrecruiters` - Smartrecruiters * `Smokeball` - Smokeball * `SodaCloud` - SodaCloud * `Speedcurve` - Speedcurve * `SpotIo` - SpotIo * `Sprig` - Sprig * `Sprinklr` - Sprinklr * `SproutSocial` - SproutSocial * `StackOverflowForTeams` - StackOverflowForTeams * `Stockx` - Stockx * `TackleIo` - TackleIo * `Talkdesk` - Talkdesk * `TeamupFitness` - TeamupFitness * `Tebra` - Tebra * `Telnyx` - Telnyx * `Ternary` - Ternary * `Thoughtspot` - Thoughtspot * `Thousandeyes` - Thousandeyes * `Threads` - Threads * `TiktokShop` - TiktokShop * `TinyErp` - TinyErp * `Tinybird` - Tinybird * `Tipalti` - Tipalti * `Toast` - Toast * `Torii` - Torii * `Transistor` - Transistor * `TrunkIo` - TrunkIo * `Trustradius` - Trustradius * `Twitch` - Twitch * `TwoC2p` - TwoC2p * `UkCompaniesHouse` - UkCompaniesHouse * `UkOns` - UkOns * `UnComtrade` - UnComtrade * `UsBea` - UsBea * `UsBls` - UsBls * `UsEia` - UsEia * `UsTreasuryFiscalData` - UsTreasuryFiscalData * `Vanta` - Vanta * `Vendr` - Vendr * `Virtuous` - Virtuous * `Vonage` - Vonage * `WalmartMarketplace` - WalmartMarketplace * `Waydev` - Waydev * `Wayfair` - Wayfair * `WhatsappBusinessManagement` - WhatsappBusinessManagement * `WhoGho` - WhoGho * `Whop` - Whop * `Wiz` - Wiz * `Wompi` - Wompi * `Workiz` - Workiz * `WorldBank` - WorldBank * `Xendit` - Xendit * `Yoco` - Yoco * `ZalandoZdirect` - ZalandoZdirect * `Zluri` - Zluri * `Zylo` - Zylo * `Tally` - Tally * `Nuntly` - Nuntly * `Vturb` - Vturb * `Meltwater` - Meltwater * `UserCom` - UserCom * `Latitude` - Latitude * `Workato` - Workato * `SideShift` - SideShift * `DuckLake` - DuckLake * `Starburst` - Starburst * `Trino` - Trino * `Easybill` - Easybill * `Bexio` - Bexio * `Umami` - Umami * `Manychat` - Manychat * `Kickstarter` - Kickstarter * `Typesense` - Typesense * `FirstPromoter` - FirstPromoter * `Zero` - Zero * `Inth` - Inth * `BCMS` - BCMS * `Convonite` - Convonite * `Hookdeck` - Hookdeck * `Billit` - Billit * `Moxie` - Moxie * `TripleWhale` - TripleWhale * `Directus` - Directus * `Clay` - Clay * `TradableBits` - TradableBits * `Swan` - Swan * `Hyros` - Hyros * `Odoo` - Odoo * `Airbridge` - Airbridge * `Snovio` - Snovio * `GoogleMerchantCenter` - GoogleMerchantCenter * `Raisely` - Raisely * `RakutenAdvertising` - RakutenAdvertising * `Zitadel` - Zitadel * `DeelFlows` - DeelFlows * `WindsorAi` - WindsorAi * `Wix` - Wix * `Sevalla` - Sevalla * `Motion` - Motion * `ImpactPartner` - ImpactPartner * `Cloudinary` - Cloudinary * `Uploadcare` - Uploadcare * `WHMCS` - WHMCS * `MSG91` - MSG91 * `Depot` - Depot * `Schematic` - Schematic * `Dokploy` - Dokploy * `Hootsuite` - Hootsuite * `WisprFlow` - WisprFlow * `SamCart` - SamCart * `IronSourceAds` - IronSourceAds * `MicrosoftExcel` - MicrosoftExcel * `Profound` - Profound * `Airwallex` - Airwallex * `Polymarket` - Polymarket * `Kalshi` - Kalshi * `Capterra` - Capterra * `GooglePostmasterTools` - GooglePostmasterTools * `Growi` - Growi * `Clarify` - Clarify * `DatoCMS` - DatoCMS * `WPSOffice` - WPSOffice * `TeraBox` - TeraBox * `SimonData` - SimonData * `CommissionJunction` - CommissionJunction * `Liveblocks` - Liveblocks * `NationBuilder` - NationBuilder * `Tana` - Tana * `Zenchef` - Zenchef * `Lovable` - Lovable * `Anvil` - Anvil * `Coolify` - Coolify * `SocialPilot` - SocialPilot * `Strato` - Strato * `Medusa` - Medusa * `Membrain` - Membrain * `RecallAI` - RecallAI */
 export type ExternalDataSourceTypeEnum =
   | "Ashby"
   | "Supabase"
@@ -558,6 +491,7 @@ export type ExternalDataSourceTypeEnum =
   | "Customerly"
   | "Datascope"
   | "Dbt"
+  | "Demodesk"
   | "Deputy"
   | "DevinAI"
   | "Docuseal"
@@ -1590,7 +1524,11 @@ export type ExternalDataSourceTypeEnum =
   | "Lovable"
   | "Anvil"
   | "Coolify"
-  | "SocialPilot";
+  | "SocialPilot"
+  | "Strato"
+  | "Medusa"
+  | "Membrain"
+  | "RecallAI";
 export const ExternalDataSourceTypeEnum = /*@__PURE__*/ S.String;
 
 export interface SimpleExternalDataSourceSerializers {
@@ -1637,11 +1575,11 @@ export interface TableOutput {
   /** Dotted name the table is queried by in HogQL (e.g. `googleanalytics.devices` or `postgres.<prefix>.<table>`), as opposed to `name`, which is the underlying storage identifier. */
   hogql_name?: string;
   /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum;
+  format?: DataWarehouseTableFormatEnum;
   created_by?: UserBasic | null;
   created_at?: string;
   /** Where the table came from: `web` for the in-app UI, `api` for direct API callers, `mcp` for agent/MCP tool calls, `wizard` for the setup agent, `self_driving` for a self-driving run, `source` for a table a data source syncs, `materialized_view` for the table behind a materialized view, and `demo` for a demo project's sample table. Set server-side from the request, never from the request body. Null on tables created before this was recorded. * `web` - web * `api` - api * `mcp` - mcp * `wizard` - wizard * `self_driving` - self_driving * `source` - source * `materialized_view` - materialized_view * `demo` - demo */
-  created_via?: TableCreatedViaEnum | null;
+  created_via?: DataWarehouseTableCreatedViaEnum | null;
   /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
   url_pattern?: string;
   credential?: CredentialOutput;
@@ -1659,10 +1597,10 @@ export const TableOutput = /*@__PURE__*/ S.suspend(() =>
     deleted: S.optional(S.NullOr(S.Boolean)),
     name: S.optional(S.String),
     hogql_name: S.optional(S.String),
-    format: S.optional(TableFormatEnum),
+    format: S.optional(DataWarehouseTableFormatEnum),
     created_by: S.optional(S.NullOr(UserBasic)),
     created_at: S.optional(S.String),
-    created_via: S.optional(S.NullOr(TableCreatedViaEnum)),
+    created_via: S.optional(S.NullOr(DataWarehouseTableCreatedViaEnum)),
     url_pattern: S.optional(S.String),
     credential: S.optional(CredentialOutput),
     columns: S.optional(TableOutputColumnsList),
@@ -1685,30 +1623,30 @@ export type CheckTypeEnum =
 export const CheckTypeEnum = /*@__PURE__*/ S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
-export type WarehouseTablesChecksCreateRequestConfigMap = {
+export type CreateWarehouseTablesCheckRequestConfigMap = {
   [key: string]: unknown | undefined;
 };
-export const WarehouseTablesChecksCreateRequestConfigMap =
+export const CreateWarehouseTablesCheckRequestConfigMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<WarehouseTablesChecksCreateRequestConfigMap>;
+  ) as any as S.Schema<CreateWarehouseTablesCheckRequestConfigMap>;
 
 /** * `error` - error * `warn` - warn */
 export type DataQualityCheckSeverityEnum = "error" | "warn";
 export const DataQualityCheckSeverityEnum = /*@__PURE__*/ S.String;
 
 /** Free-form string labels for grouping and filtering. */
-export type WarehouseTablesChecksCreateRequestTagsList = Array<string>;
-export const WarehouseTablesChecksCreateRequestTagsList = /*@__PURE__*/ S.Array(
+export type CreateWarehouseTablesCheckRequestTagsList = Array<string>;
+export const CreateWarehouseTablesCheckRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WarehouseTablesChecksCreateRequestTagsList>;
+) as any as S.Schema<CreateWarehouseTablesCheckRequestTagsList>;
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
 export const CreatedSourceEnum = /*@__PURE__*/ S.String;
 
-export interface CreateWarehouseTableCheckRequest {
+export interface CreateWarehouseTablesCheckRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
@@ -1721,13 +1659,13 @@ export interface CreateWarehouseTableCheckRequest {
   /** Which assertion to make. Determines the shape of config; see /check_types/. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
   check_type: CheckTypeEnum | (string & {});
   /** Type-specific configuration, validated against the check type's JSON schema. */
-  config?: WarehouseTablesChecksCreateRequestConfigMap;
+  config?: CreateWarehouseTablesCheckRequestConfigMap;
   /** 'error' failures mark the subject failing and notify; 'warn' failures only surface. * `error` - error * `warn` - warn */
   severity?: DataQualityCheckSeverityEnum | (string & {});
   /** Disabled checks are never run by any trigger. */
   enabled?: boolean;
   /** Free-form string labels for grouping and filtering. */
-  tags?: WarehouseTablesChecksCreateRequestTagsList;
+  tags?: CreateWarehouseTablesCheckRequestTagsList;
   /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
   created_source?: CreatedSourceEnum | (string & {});
   /** Model that generated the check, if AI-authored. */
@@ -1737,7 +1675,7 @@ export interface CreateWarehouseTableCheckRequest {
   /** AI author's reasoning, surfaced as review context. */
   reasoning?: string;
 }
-export const CreateWarehouseTableCheckRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWarehouseTablesCheckRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     table_id: S.String.pipe(T.Label()),
@@ -1745,10 +1683,10 @@ export const CreateWarehouseTableCheckRequest = /*@__PURE__*/ S.suspend(() =>
     description: S.optional(S.String),
     column_name: S.optional(S.String),
     check_type: CheckTypeEnum,
-    config: S.optional(WarehouseTablesChecksCreateRequestConfigMap),
+    config: S.optional(CreateWarehouseTablesCheckRequestConfigMap),
     severity: S.optional(DataQualityCheckSeverityEnum),
     enabled: S.optional(S.Boolean),
-    tags: S.optional(WarehouseTablesChecksCreateRequestTagsList),
+    tags: S.optional(CreateWarehouseTablesCheckRequestTagsList),
     created_source: S.optional(CreatedSourceEnum),
     ai_model: S.optional(S.String),
     confidence: S.optional(S.NullOr(S.Number)),
@@ -1761,8 +1699,8 @@ export const CreateWarehouseTableCheckRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateWarehouseTableCheckRequest",
-}) as any as S.Schema<CreateWarehouseTableCheckRequest>;
+  identifier: "CreateWarehouseTablesCheckRequest",
+}) as any as S.Schema<CreateWarehouseTablesCheckRequest>;
 
 /** * `table` - table * `view` - view */
 export type SubjectTypeEnum = "table" | "view";
@@ -1814,8 +1752,10 @@ export interface DataQualityCheck {
   last_run_at: string | null;
   /** Outcome of the newest run: passed, failed, errored, skipped, or empty if never run. */
   last_status: string;
-  /** When the check last passed, so a failing check can say how long it has been failing. Null means it has not passed within the run retention window. */
+  /** When the check last passed. Read failing_since for how long a failing check has been failing. Null means it has not passed within the run retention window. */
   last_succeeded_at: string | null;
+  /** When the current streak of failing runs started, so a failing check can say how long it has been failing. Null when the check is not failing. */
+  failing_since: string | null;
   /** sha256 of the subject, type, column, and config. Re-creating the same check upserts. */
   fingerprint: string;
   /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
@@ -1850,6 +1790,7 @@ export const DataQualityCheck = /*@__PURE__*/ S.suspend(() =>
     last_run_at: S.NullOr(S.String),
     last_status: S.String,
     last_succeeded_at: S.NullOr(S.String),
+    failing_since: S.NullOr(S.String),
     fingerprint: S.String,
     created_source: S.optional(CreatedSourceEnum),
     ai_model: S.optional(S.String),
@@ -1863,35 +1804,78 @@ export const DataQualityCheck = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataQualityCheck",
 }) as any as S.Schema<DataQualityCheck>;
 
-export interface CreateWarehouseTableCheckRunRequest {
+export interface CreateWarehouseTablesChecksRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
   /** A UUID string identifying this data quality check. */
   id: string;
 }
-export const CreateWarehouseTableCheckRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    table_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/run/",
-      code: 200,
-    }),
-  ),
+export const CreateWarehouseTablesChecksRunRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/run/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "CreateWarehouseTableCheckRunRequest",
-}) as any as S.Schema<CreateWarehouseTableCheckRunRequest>;
+  identifier: "CreateWarehouseTablesChecksRunRequest",
+}) as any as S.Schema<CreateWarehouseTablesChecksRunRequest>;
 
-export interface CreateWarehouseTableCheckRunAllRequest {
+export interface DataQualitySuiteRun {
+  id: string;
+  /** manual, materialization, or source_sync. */
+  trigger: string;
+  /** running, completed, failed, or empty (nothing matched the trigger). */
+  status: string;
+  /** 'table' or 'view' when the run targets exactly one subject, including a run of a single check on that subject; null for a run spanning several subjects. */
+  subject_type: string | null;
+  /** Set when the run targets exactly one subject. */
+  subject_uuid: string | null;
+  workflow_id: string;
+  checks_passed: number;
+  checks_failed: number;
+  checks_errored: number;
+  checks_skipped: number;
+  started_at: string | null;
+  finished_at: string | null;
+  /** Why the suite itself failed, as opposed to an individual check. */
+  error: string;
+  created_at: string;
+}
+export const DataQualitySuiteRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    trigger: S.String,
+    status: S.String,
+    subject_type: S.NullOr(S.String),
+    subject_uuid: S.NullOr(S.String),
+    workflow_id: S.String,
+    checks_passed: S.Number,
+    checks_failed: S.Number,
+    checks_errored: S.Number,
+    checks_skipped: S.Number,
+    started_at: S.NullOr(S.String),
+    finished_at: S.NullOr(S.String),
+    error: S.String,
+    created_at: S.String,
+  }),
+).annotate({
+  identifier: "DataQualitySuiteRun",
+}) as any as S.Schema<DataQualitySuiteRun>;
+
+export interface CreateWarehouseTablesChecksRunAllRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
 }
-export const CreateWarehouseTableCheckRunAllRequest = /*@__PURE__*/ S.suspend(
+export const CreateWarehouseTablesChecksRunAllRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -1904,20 +1888,20 @@ export const CreateWarehouseTableCheckRunAllRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateWarehouseTableCheckRunAllRequest",
-}) as any as S.Schema<CreateWarehouseTableCheckRunAllRequest>;
+  identifier: "CreateWarehouseTablesChecksRunAllRequest",
+}) as any as S.Schema<CreateWarehouseTablesChecksRunAllRequest>;
 
 /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-export type WarehouseTablesFileCreateRequestOptionsMap = {
+export type CreateWarehouseTablesFileRequestOptionsMap = {
   [key: string]: unknown | undefined;
 };
-export const WarehouseTablesFileCreateRequestOptionsMap =
+export const CreateWarehouseTablesFileRequestOptionsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<WarehouseTablesFileCreateRequestOptionsMap>;
+  ) as any as S.Schema<CreateWarehouseTablesFileRequestOptionsMap>;
 
-export interface CreateWarehouseTableFileRequest {
+export interface CreateWarehouseTablesFileRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Whether the table is soft-deleted and hidden from queries. */
@@ -1925,22 +1909,22 @@ export interface CreateWarehouseTableFileRequest {
   /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
   name?: string;
   /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum | (string & {});
+  format?: DataWarehouseTableFormatEnum | (string & {});
   /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
   url_pattern?: string;
   credential?: CredentialInput;
   /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-  options?: WarehouseTablesFileCreateRequestOptionsMap;
+  options?: CreateWarehouseTablesFileRequestOptionsMap;
 }
-export const CreateWarehouseTableFileRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWarehouseTablesFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     deleted: S.optional(S.NullOr(S.Boolean)),
     name: S.optional(S.String),
-    format: S.optional(TableFormatEnum),
+    format: S.optional(DataWarehouseTableFormatEnum),
     url_pattern: S.optional(S.String),
     credential: S.optional(CredentialInput),
-    options: S.optional(WarehouseTablesFileCreateRequestOptionsMap),
+    options: S.optional(CreateWarehouseTablesFileRequestOptionsMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1950,107 +1934,45 @@ export const CreateWarehouseTableFileRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateWarehouseTableFileRequest",
-}) as any as S.Schema<CreateWarehouseTableFileRequest>;
+  identifier: "CreateWarehouseTablesFileRequest",
+}) as any as S.Schema<CreateWarehouseTablesFileRequest>;
 
-export interface CreateWarehouseTableFileResponse {}
-export const CreateWarehouseTableFileResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateWarehouseTablesFileResponse {}
+export const CreateWarehouseTablesFileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CreateWarehouseTableFileResponse",
-}) as any as S.Schema<CreateWarehouseTableFileResponse>;
+  identifier: "CreateWarehouseTablesFileResponse",
+}) as any as S.Schema<CreateWarehouseTablesFileResponse>;
 
-export interface CreateWarehouseTableRefreshSchemaRequest {
+export interface GetWarehouseTableRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this data warehouse table. */
   id: string;
 }
-export const CreateWarehouseTableRefreshSchemaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/warehouse_tables/{id}/refresh_schema/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CreateWarehouseTableRefreshSchemaRequest",
-}) as any as S.Schema<CreateWarehouseTableRefreshSchemaRequest>;
-
-export interface CreateWarehouseTableRefreshSchemaResponse {}
-export const CreateWarehouseTableRefreshSchemaResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateWarehouseTableRefreshSchemaResponse",
-  }) as any as S.Schema<CreateWarehouseTableRefreshSchemaResponse>;
-
-/** How the file will be read when the table is created. */
-export type WarehouseTablesUploadFileCreateRequestFileFormat =
-  | "csv"
-  | "json"
-  | "parquet";
-export const WarehouseTablesUploadFileCreateRequestFileFormat =
-  /*@__PURE__*/ S.String;
-
-export interface CreateWarehouseTableUploadFileRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The file to upload. */
-  file: string;
-  /** How the file will be read when the table is created. */
-  file_format: WarehouseTablesUploadFileCreateRequestFileFormat | (string & {});
-}
-export const CreateWarehouseTableUploadFileRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      file: S.String,
-      file_format: WarehouseTablesUploadFileCreateRequestFileFormat,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/warehouse_tables/upload_file/",
-        code: 200,
-        contentType: "multipart",
-      }),
-    ),
-).annotate({
-  identifier: "CreateWarehouseTableUploadFileRequest",
-}) as any as S.Schema<CreateWarehouseTableUploadFileRequest>;
-
-export interface FileUploadResponse {
-  /** Id of the stored upload. Pass it to create_from_upload to build the table. */
-  upload_id: string;
-  /** Sanitized name the file was stored under. */
-  filename: string;
-  /** Format the file will be read as: 'csv', 'json', or 'parquet'. */
-  file_format: string;
-  /** Size of the stored file in bytes. */
-  size_bytes: number;
-}
-export const FileUploadResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWarehouseTableRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    upload_id: S.String,
-    filename: S.String,
-    file_format: S.String,
-    size_bytes: S.Number,
-  }),
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "FileUploadResponse",
-}) as any as S.Schema<FileUploadResponse>;
+  identifier: "GetWarehouseTableRequest",
+}) as any as S.Schema<GetWarehouseTableRequest>;
 
-export interface ListWarehouseTableCheckRunsRequest {
+export interface GetWarehouseTablesCheckRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
   /** A UUID string identifying this data quality check. */
   id: string;
 }
-export const ListWarehouseTableCheckRunsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWarehouseTablesCheckRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     table_id: S.String.pipe(T.Label()),
@@ -2058,141 +1980,84 @@ export const ListWarehouseTableCheckRunsRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/runs/",
+      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListWarehouseTableCheckRunsRequest",
-}) as any as S.Schema<ListWarehouseTableCheckRunsRequest>;
+  identifier: "GetWarehouseTablesCheckRequest",
+}) as any as S.Schema<GetWarehouseTablesCheckRequest>;
 
-/** Config this run executed, snapshotted so an edit to the check cannot rewrite history. Null for runs recorded before snapshots existed -- unknown, not 'same as the check has now'. */
-export type DataQualityCheckRunCheckConfigMap = {
-  [key: string]: unknown | undefined;
-};
-export const DataQualityCheckRunCheckConfigMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DataQualityCheckRunCheckConfigMap>;
-
-export interface DataQualityCheckRun {
-  id: string;
-  /** The definition executed. Nulled rather than cascaded so history outlives hard deletes. */
-  quality_check: string | null;
-  suite_run: string;
-  subject_type: SubjectTypeEnum;
-  subject_uuid: string;
-  subject_name: string;
-  /** Which assertion this run made. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
-  check_type: CheckTypeEnum;
-  column_name: string;
-  /** Config this run executed, snapshotted so an edit to the check cannot rewrite history. Null for runs recorded before snapshots existed -- unknown, not 'same as the check has now'. */
-  check_config: DataQualityCheckRunCheckConfigMap | null;
-  /** Severity this run was judged at. Null for runs recorded before snapshots existed. * `error` - error * `warn` - warn */
-  check_severity: DataQualityCheckSeverityEnum | null;
-  /** passed, failed, errored, or skipped. */
-  status: string;
-  /** Rows violating the assertion. Null for bounds checks like row_count. */
-  failed_row_count: number | null;
-  /** The check's headline number, recorded on passes too. */
-  observed_value: number | null;
-  /** The HogQL that ran. Re-run it to see the offending rows. */
-  compiled_query: string;
-  /** Compilation or execution failure, when status is 'errored'. */
-  error: string;
-  duration_ms: number | null;
-  started_at: string | null;
-  finished_at: string | null;
-  created_at: string;
-}
-export const DataQualityCheckRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    quality_check: S.NullOr(S.String),
-    suite_run: S.String,
-    subject_type: SubjectTypeEnum,
-    subject_uuid: S.String,
-    subject_name: S.String,
-    check_type: CheckTypeEnum,
-    column_name: S.String,
-    check_config: S.NullOr(DataQualityCheckRunCheckConfigMap),
-    check_severity: S.NullOr(DataQualityCheckSeverityEnum),
-    status: S.String,
-    failed_row_count: S.NullOr(S.Number),
-    observed_value: S.NullOr(S.Number),
-    compiled_query: S.String,
-    error: S.String,
-    duration_ms: S.NullOr(S.Number),
-    started_at: S.NullOr(S.String),
-    finished_at: S.NullOr(S.String),
-    created_at: S.String,
-  }),
-).annotate({
-  identifier: "DataQualityCheckRun",
-}) as any as S.Schema<DataQualityCheckRun>;
-
-export type WarehouseTablesChecksRunsListResponseBodyList =
-  Array<DataQualityCheckRun>;
-export const WarehouseTablesChecksRunsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DataQualityCheckRun,
-  ) as any as S.Schema<WarehouseTablesChecksRunsListResponseBodyList>;
-
-export type ListWarehouseTableCheckRunsResponse =
-  WarehouseTablesChecksRunsListResponseBodyList;
-export const ListWarehouseTableCheckRunsResponse = /*@__PURE__*/ S.suspend(() =>
-  WarehouseTablesChecksRunsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListWarehouseTableCheckRunsResponse",
-}) as any as S.Schema<ListWarehouseTableCheckRunsResponse>;
-
-export interface ListWarehouseTableChecksRequest {
+export interface GetWarehouseTablesChecksHealthRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
 }
-export const ListWarehouseTableChecksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    table_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/",
-      code: 200,
-    }),
-  ),
+export const GetWarehouseTablesChecksHealthRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/health/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "ListWarehouseTableChecksRequest",
-}) as any as S.Schema<ListWarehouseTableChecksRequest>;
+  identifier: "GetWarehouseTablesChecksHealthRequest",
+}) as any as S.Schema<GetWarehouseTablesChecksHealthRequest>;
 
-export type PaginatedDataQualityCheckListResultsList = Array<DataQualityCheck>;
-export const PaginatedDataQualityCheckListResultsList = /*@__PURE__*/ S.Array(
-  DataQualityCheck,
-) as any as S.Schema<PaginatedDataQualityCheckListResultsList>;
-
-export interface PaginatedDataQualityCheckList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedDataQualityCheckListResultsList;
+/** Per-subject rollup, the same rule the information_schema.data_quality_health table uses. */
+export interface DataQualitySubjectHealth {
+  /** 'table' or 'view'. */
+  subject_type: string;
+  /** Id of the table or view. */
+  subject_uuid: string;
+  /** failing (an error-severity check failed), erroring (a check could not run), warn (only warn-severity failures), healthy, or unknown (nothing has run yet). */
+  health: string;
+  /** How many enabled, non-deleted checks cover this subject. */
+  checks_total: number;
+  /** How many of those checks last reported a failure. */
+  checks_failing: number;
 }
-export const PaginatedDataQualityCheckList = /*@__PURE__*/ S.suspend(() =>
+export const DataQualitySubjectHealth = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedDataQualityCheckListResultsList,
+    subject_type: S.String,
+    subject_uuid: S.String,
+    health: S.String,
+    checks_total: S.Number,
+    checks_failing: S.Number,
   }),
 ).annotate({
-  identifier: "PaginatedDataQualityCheckList",
-}) as any as S.Schema<PaginatedDataQualityCheckList>;
+  identifier: "DataQualitySubjectHealth",
+}) as any as S.Schema<DataQualitySubjectHealth>;
+
+export interface GetWarehouseTablesCheckSuiteRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Id of the warehouse table whose suite runs these are. */
+  table_id: string;
+  /** A UUID string identifying this data quality suite run. */
+  id: string;
+}
+export const GetWarehouseTablesCheckSuiteRunRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetWarehouseTablesCheckSuiteRunRequest",
+}) as any as S.Schema<GetWarehouseTablesCheckSuiteRunRequest>;
 
 export interface ListWarehouseTablesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2243,259 +2108,60 @@ export const PaginatedTableListOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedTableListOutput",
 }) as any as S.Schema<PaginatedTableListOutput>;
 
-/** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-export type WarehouseTablesUpdateRequestOptionsMap = {
-  [key: string]: unknown | undefined;
-};
-export const WarehouseTablesUpdateRequestOptionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<WarehouseTablesUpdateRequestOptionsMap>;
-
-export interface UpdateWarehouseTableRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse table. */
-  id: string;
-  /** Whether the table is soft-deleted and hidden from queries. */
-  deleted?: boolean | null;
-  /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
-  name?: string;
-  /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum | (string & {});
-  /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
-  url_pattern?: string;
-  credential?: CredentialInput;
-  /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-  options?: WarehouseTablesUpdateRequestOptionsMap;
-}
-export const UpdateWarehouseTableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    deleted: S.optional(S.NullOr(S.Boolean)),
-    name: S.optional(S.String),
-    format: S.optional(TableFormatEnum),
-    url_pattern: S.optional(S.String),
-    credential: S.optional(CredentialInput),
-    options: S.optional(WarehouseTablesUpdateRequestOptionsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UpdateWarehouseTableRequest",
-}) as any as S.Schema<UpdateWarehouseTableRequest>;
-
-/** Type-specific configuration, validated against the check type's JSON schema. */
-export type WarehouseTablesChecksUpdateRequestConfigMap = {
-  [key: string]: unknown | undefined;
-};
-export const WarehouseTablesChecksUpdateRequestConfigMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<WarehouseTablesChecksUpdateRequestConfigMap>;
-
-/** Free-form string labels for grouping and filtering. */
-export type WarehouseTablesChecksUpdateRequestTagsList = Array<string>;
-export const WarehouseTablesChecksUpdateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WarehouseTablesChecksUpdateRequestTagsList>;
-
-export interface UpdateWarehouseTableCheckRequest {
+export interface ListWarehouseTablesChecksRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
-  /** A UUID string identifying this data quality check. */
-  id: string;
-  /** Optional identifier-safe handle, unique per project. Omit to address the check by id. */
-  name?: string;
-  /** Why this check exists and what a failure means. */
-  description?: string;
-  /** Column the check applies to. Omit for table-scoped types like row_count. */
-  column_name?: string;
-  /** Which assertion to make. Determines the shape of config; see /check_types/. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
-  check_type: CheckTypeEnum | (string & {});
-  /** Type-specific configuration, validated against the check type's JSON schema. */
-  config?: WarehouseTablesChecksUpdateRequestConfigMap;
-  /** 'error' failures mark the subject failing and notify; 'warn' failures only surface. * `error` - error * `warn` - warn */
-  severity?: DataQualityCheckSeverityEnum | (string & {});
-  /** Disabled checks are never run by any trigger. */
-  enabled?: boolean;
-  /** Free-form string labels for grouping and filtering. */
-  tags?: WarehouseTablesChecksUpdateRequestTagsList;
-  /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
-  created_source?: CreatedSourceEnum | (string & {});
-  /** Model that generated the check, if AI-authored. */
-  ai_model?: string;
-  /** AI author's confidence in the check, 0-1. */
-  confidence?: number | null;
-  /** AI author's reasoning, surfaced as review context. */
-  reasoning?: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
 }
-export const UpdateWarehouseTableCheckRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWarehouseTablesChecksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     table_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    column_name: S.optional(S.String),
-    check_type: CheckTypeEnum,
-    config: S.optional(WarehouseTablesChecksUpdateRequestConfigMap),
-    severity: S.optional(DataQualityCheckSeverityEnum),
-    enabled: S.optional(S.Boolean),
-    tags: S.optional(WarehouseTablesChecksUpdateRequestTagsList),
-    created_source: S.optional(CreatedSourceEnum),
-    ai_model: S.optional(S.String),
-    confidence: S.optional(S.NullOr(S.Number)),
-    reasoning: S.optional(S.String),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "UpdateWarehouseTableCheckRequest",
-}) as any as S.Schema<UpdateWarehouseTableCheckRequest>;
+  identifier: "ListWarehouseTablesChecksRequest",
+}) as any as S.Schema<ListWarehouseTablesChecksRequest>;
 
-/** Type-specific configuration, validated against the check type's JSON schema. */
-export type WarehouseTablesChecksPartialUpdateRequestConfigMap = {
-  [key: string]: unknown | undefined;
-};
-export const WarehouseTablesChecksPartialUpdateRequestConfigMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<WarehouseTablesChecksPartialUpdateRequestConfigMap>;
+export type PaginatedDataQualityCheckListResultsList = Array<DataQualityCheck>;
+export const PaginatedDataQualityCheckListResultsList = /*@__PURE__*/ S.Array(
+  DataQualityCheck,
+) as any as S.Schema<PaginatedDataQualityCheckListResultsList>;
 
-/** Free-form string labels for grouping and filtering. */
-export type WarehouseTablesChecksPartialUpdateRequestTagsList = Array<string>;
-export const WarehouseTablesChecksPartialUpdateRequestTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WarehouseTablesChecksPartialUpdateRequestTagsList>;
-
-export interface UpdateWarehouseTableCheckPartialRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  table_id: string;
-  /** A UUID string identifying this data quality check. */
-  id: string;
-  /** Optional identifier-safe handle, unique per project. Omit to address the check by id. */
-  name?: string;
-  /** Why this check exists and what a failure means. */
-  description?: string;
-  /** Column the check applies to. Omit for table-scoped types like row_count. */
-  column_name?: string;
-  /** Which assertion to make. Determines the shape of config; see /check_types/. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
-  check_type?: CheckTypeEnum | (string & {});
-  /** Type-specific configuration, validated against the check type's JSON schema. */
-  config?: WarehouseTablesChecksPartialUpdateRequestConfigMap;
-  /** 'error' failures mark the subject failing and notify; 'warn' failures only surface. * `error` - error * `warn` - warn */
-  severity?: DataQualityCheckSeverityEnum | (string & {});
-  /** Disabled checks are never run by any trigger. */
-  enabled?: boolean;
-  /** Free-form string labels for grouping and filtering. */
-  tags?: WarehouseTablesChecksPartialUpdateRequestTagsList;
-  /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
-  created_source?: CreatedSourceEnum | (string & {});
-  /** Model that generated the check, if AI-authored. */
-  ai_model?: string;
-  /** AI author's confidence in the check, 0-1. */
-  confidence?: number | null;
-  /** AI author's reasoning, surfaced as review context. */
-  reasoning?: string;
+export interface PaginatedDataQualityCheckList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedDataQualityCheckListResultsList;
 }
-export const UpdateWarehouseTableCheckPartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      column_name: S.optional(S.String),
-      check_type: S.optional(CheckTypeEnum),
-      config: S.optional(WarehouseTablesChecksPartialUpdateRequestConfigMap),
-      severity: S.optional(DataQualityCheckSeverityEnum),
-      enabled: S.optional(S.Boolean),
-      tags: S.optional(WarehouseTablesChecksPartialUpdateRequestTagsList),
-      created_source: S.optional(CreatedSourceEnum),
-      ai_model: S.optional(S.String),
-      confidence: S.optional(S.NullOr(S.Number)),
-      reasoning: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateWarehouseTableCheckPartialRequest",
-}) as any as S.Schema<UpdateWarehouseTableCheckPartialRequest>;
-
-/** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-export type WarehouseTablesPartialUpdateRequestOptionsMap = {
-  [key: string]: unknown | undefined;
-};
-export const WarehouseTablesPartialUpdateRequestOptionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<WarehouseTablesPartialUpdateRequestOptionsMap>;
-
-export interface UpdateWarehouseTablePartialRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse table. */
-  id: string;
-  /** Whether the table is soft-deleted and hidden from queries. */
-  deleted?: boolean | null;
-  /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
-  name?: string;
-  /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum | (string & {});
-  /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
-  url_pattern?: string;
-  credential?: CredentialInput;
-  /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
-  options?: WarehouseTablesPartialUpdateRequestOptionsMap;
-}
-export const UpdateWarehouseTablePartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const PaginatedDataQualityCheckList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    deleted: S.optional(S.NullOr(S.Boolean)),
-    name: S.optional(S.String),
-    format: S.optional(TableFormatEnum),
-    url_pattern: S.optional(S.String),
-    credential: S.optional(CredentialInput),
-    options: S.optional(WarehouseTablesPartialUpdateRequestOptionsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
-      code: 200,
-    }),
-  ),
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedDataQualityCheckListResultsList,
+  }),
 ).annotate({
-  identifier: "UpdateWarehouseTablePartialRequest",
-}) as any as S.Schema<UpdateWarehouseTablePartialRequest>;
+  identifier: "PaginatedDataQualityCheckList",
+}) as any as S.Schema<PaginatedDataQualityCheckList>;
 
-export interface WarehouseTablesChecksCheckTypesListRequest {
+export interface ListWarehouseTablesChecksCheckTypesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   table_id: string;
 }
-export const WarehouseTablesChecksCheckTypesListRequest =
+export const ListWarehouseTablesChecksCheckTypesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -2508,8 +2174,8 @@ export const WarehouseTablesChecksCheckTypesListRequest =
       }),
     ),
   ).annotate({
-    identifier: "WarehouseTablesChecksCheckTypesListRequest",
-  }) as any as S.Schema<WarehouseTablesChecksCheckTypesListRequest>;
+    identifier: "ListWarehouseTablesChecksCheckTypesRequest",
+  }) as any as S.Schema<ListWarehouseTablesChecksCheckTypesRequest>;
 
 /** JSON schema the config object is validated against. */
 export type DataQualityCheckTypeConfigSchemaMap = {
@@ -2542,23 +2208,472 @@ export const DataQualityCheckType = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataQualityCheckType",
 }) as any as S.Schema<DataQualityCheckType>;
 
-export type WarehouseTablesChecksCheckTypesListResponseBodyList =
+export type ListWarehouseTablesChecksCheckTypesResponseBodyList =
   Array<DataQualityCheckType>;
-export const WarehouseTablesChecksCheckTypesListResponseBodyList =
+export const ListWarehouseTablesChecksCheckTypesResponseBodyList =
   /*@__PURE__*/ S.Array(
     DataQualityCheckType,
-  ) as any as S.Schema<WarehouseTablesChecksCheckTypesListResponseBodyList>;
+  ) as any as S.Schema<ListWarehouseTablesChecksCheckTypesResponseBodyList>;
 
-export type WarehouseTablesChecksCheckTypesListResponse =
-  WarehouseTablesChecksCheckTypesListResponseBodyList;
-export const WarehouseTablesChecksCheckTypesListResponse =
+export type ListWarehouseTablesChecksCheckTypesResponse =
+  ListWarehouseTablesChecksCheckTypesResponseBodyList;
+export const ListWarehouseTablesChecksCheckTypesResponse =
   /*@__PURE__*/ S.suspend(() =>
-    WarehouseTablesChecksCheckTypesListResponseBodyList.pipe(
+    ListWarehouseTablesChecksCheckTypesResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "WarehouseTablesChecksCheckTypesListResponse",
-  }) as any as S.Schema<WarehouseTablesChecksCheckTypesListResponse>;
+    identifier: "ListWarehouseTablesChecksCheckTypesResponse",
+  }) as any as S.Schema<ListWarehouseTablesChecksCheckTypesResponse>;
+
+export interface ListWarehouseTablesChecksRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  table_id: string;
+  /** A UUID string identifying this data quality check. */
+  id: string;
+}
+export const ListWarehouseTablesChecksRunsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/runs/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListWarehouseTablesChecksRunsRequest",
+}) as any as S.Schema<ListWarehouseTablesChecksRunsRequest>;
+
+/** Config this run executed, snapshotted so an edit to the check cannot rewrite history. Null for runs recorded before snapshots existed -- unknown, not 'same as the check has now'. */
+export type DataQualityCheckRunCheckConfigMap = {
+  [key: string]: unknown | undefined;
+};
+export const DataQualityCheckRunCheckConfigMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<DataQualityCheckRunCheckConfigMap>;
+
+export interface DataQualityCheckRun {
+  id: string;
+  /** The definition executed. Nulled rather than cascaded so history outlives hard deletes. */
+  quality_check: string | null;
+  /** Name the check carries now, so a run can be told from the others in its suite. Null when the check is unnamed, has been hard deleted, or is out of your reach today -- describe the run by check_type and column_name instead. */
+  check_name: string | null;
+  suite_run: string;
+  subject_type: SubjectTypeEnum;
+  subject_uuid: string;
+  subject_name: string;
+  /** Which assertion this run made. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
+  check_type: CheckTypeEnum;
+  column_name: string;
+  /** Config this run executed, snapshotted so an edit to the check cannot rewrite history. Null for runs recorded before snapshots existed -- unknown, not 'same as the check has now'. */
+  check_config: DataQualityCheckRunCheckConfigMap | null;
+  /** Severity this run was judged at. Null for runs recorded before snapshots existed. * `error` - error * `warn` - warn */
+  check_severity: DataQualityCheckSeverityEnum | null;
+  /** passed, failed, errored, or skipped. */
+  status: string;
+  /** Rows violating the assertion. Null for bounds checks like row_count. */
+  failed_row_count: number | null;
+  /** The check's headline number, recorded on passes too. */
+  observed_value: number | null;
+  /** The HogQL that ran. Re-run it to see the offending rows. */
+  compiled_query: string;
+  /** Compilation or execution failure, when status is 'errored'. */
+  error: string;
+  duration_ms: number | null;
+  started_at: string | null;
+  finished_at: string | null;
+  created_at: string;
+}
+export const DataQualityCheckRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    quality_check: S.NullOr(S.String),
+    check_name: S.NullOr(S.String),
+    suite_run: S.String,
+    subject_type: SubjectTypeEnum,
+    subject_uuid: S.String,
+    subject_name: S.String,
+    check_type: CheckTypeEnum,
+    column_name: S.String,
+    check_config: S.NullOr(DataQualityCheckRunCheckConfigMap),
+    check_severity: S.NullOr(DataQualityCheckSeverityEnum),
+    status: S.String,
+    failed_row_count: S.NullOr(S.Number),
+    observed_value: S.NullOr(S.Number),
+    compiled_query: S.String,
+    error: S.String,
+    duration_ms: S.NullOr(S.Number),
+    started_at: S.NullOr(S.String),
+    finished_at: S.NullOr(S.String),
+    created_at: S.String,
+  }),
+).annotate({
+  identifier: "DataQualityCheckRun",
+}) as any as S.Schema<DataQualityCheckRun>;
+
+export type ListWarehouseTablesChecksRunsResponseBodyList =
+  Array<DataQualityCheckRun>;
+export const ListWarehouseTablesChecksRunsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DataQualityCheckRun,
+  ) as any as S.Schema<ListWarehouseTablesChecksRunsResponseBodyList>;
+
+export type ListWarehouseTablesChecksRunsResponse =
+  ListWarehouseTablesChecksRunsResponseBodyList;
+export const ListWarehouseTablesChecksRunsResponse = /*@__PURE__*/ S.suspend(
+  () => ListWarehouseTablesChecksRunsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListWarehouseTablesChecksRunsResponse",
+}) as any as S.Schema<ListWarehouseTablesChecksRunsResponse>;
+
+export interface ListWarehouseTablesCheckSuiteRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Id of the warehouse table whose suite runs these are. */
+  table_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListWarehouseTablesCheckSuiteRunsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListWarehouseTablesCheckSuiteRunsRequest",
+}) as any as S.Schema<ListWarehouseTablesCheckSuiteRunsRequest>;
+
+export type PaginatedDataQualitySuiteRunListResultsList =
+  Array<DataQualitySuiteRun>;
+export const PaginatedDataQualitySuiteRunListResultsList =
+  /*@__PURE__*/ S.Array(
+    DataQualitySuiteRun,
+  ) as any as S.Schema<PaginatedDataQualitySuiteRunListResultsList>;
+
+export interface PaginatedDataQualitySuiteRunList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedDataQualitySuiteRunListResultsList;
+}
+export const PaginatedDataQualitySuiteRunList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedDataQualitySuiteRunListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedDataQualitySuiteRunList",
+}) as any as S.Schema<PaginatedDataQualitySuiteRunList>;
+
+export interface ListWarehouseTablesCheckSuiteRunsCheckRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Id of the warehouse table whose suite runs these are. */
+  table_id: string;
+  /** A UUID string identifying this data quality suite run. */
+  id: string;
+}
+export const ListWarehouseTablesCheckSuiteRunsCheckRunsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/{id}/check_runs/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWarehouseTablesCheckSuiteRunsCheckRunsRequest",
+  }) as any as S.Schema<ListWarehouseTablesCheckSuiteRunsCheckRunsRequest>;
+
+export type ListWarehouseTablesCheckSuiteRunsCheckRunsResponseBodyList =
+  Array<DataQualityCheckRun>;
+export const ListWarehouseTablesCheckSuiteRunsCheckRunsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DataQualityCheckRun,
+  ) as any as S.Schema<ListWarehouseTablesCheckSuiteRunsCheckRunsResponseBodyList>;
+
+export type ListWarehouseTablesCheckSuiteRunsCheckRunsResponse =
+  ListWarehouseTablesCheckSuiteRunsCheckRunsResponseBodyList;
+export const ListWarehouseTablesCheckSuiteRunsCheckRunsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListWarehouseTablesCheckSuiteRunsCheckRunsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListWarehouseTablesCheckSuiteRunsCheckRunsResponse",
+  }) as any as S.Schema<ListWarehouseTablesCheckSuiteRunsCheckRunsResponse>;
+
+/** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
+export type UpdateWarehouseTableRequestOptionsMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateWarehouseTableRequestOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateWarehouseTableRequestOptionsMap>;
+
+export interface UpdateWarehouseTableRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse table. */
+  id: string;
+  /** Whether the table is soft-deleted and hidden from queries. */
+  deleted?: boolean | null;
+  /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
+  name?: string;
+  /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
+  format?: DataWarehouseTableFormatEnum | (string & {});
+  /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
+  url_pattern?: string;
+  credential?: CredentialInput;
+  /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
+  options?: UpdateWarehouseTableRequestOptionsMap;
+}
+export const UpdateWarehouseTableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    deleted: S.optional(S.NullOr(S.Boolean)),
+    name: S.optional(S.String),
+    format: S.optional(DataWarehouseTableFormatEnum),
+    url_pattern: S.optional(S.String),
+    credential: S.optional(CredentialInput),
+    options: S.optional(UpdateWarehouseTableRequestOptionsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWarehouseTableRequest",
+}) as any as S.Schema<UpdateWarehouseTableRequest>;
+
+/** Type-specific configuration, validated against the check type's JSON schema. */
+export type UpdateWarehouseTablesCheckRequestConfigMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateWarehouseTablesCheckRequestConfigMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateWarehouseTablesCheckRequestConfigMap>;
+
+/** Free-form string labels for grouping and filtering. */
+export type UpdateWarehouseTablesCheckRequestTagsList = Array<string>;
+export const UpdateWarehouseTablesCheckRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateWarehouseTablesCheckRequestTagsList>;
+
+export interface UpdateWarehouseTablesCheckRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  table_id: string;
+  /** A UUID string identifying this data quality check. */
+  id: string;
+  /** Optional identifier-safe handle, unique per project. Omit to address the check by id. */
+  name?: string;
+  /** Why this check exists and what a failure means. */
+  description?: string;
+  /** Column the check applies to. Omit for table-scoped types like row_count. */
+  column_name?: string;
+  /** Which assertion to make. Determines the shape of config; see /check_types/. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
+  check_type: CheckTypeEnum | (string & {});
+  /** Type-specific configuration, validated against the check type's JSON schema. */
+  config?: UpdateWarehouseTablesCheckRequestConfigMap;
+  /** 'error' failures mark the subject failing and notify; 'warn' failures only surface. * `error` - error * `warn` - warn */
+  severity?: DataQualityCheckSeverityEnum | (string & {});
+  /** Disabled checks are never run by any trigger. */
+  enabled?: boolean;
+  /** Free-form string labels for grouping and filtering. */
+  tags?: UpdateWarehouseTablesCheckRequestTagsList;
+  /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
+  created_source?: CreatedSourceEnum | (string & {});
+  /** Model that generated the check, if AI-authored. */
+  ai_model?: string;
+  /** AI author's confidence in the check, 0-1. */
+  confidence?: number | null;
+  /** AI author's reasoning, surfaced as review context. */
+  reasoning?: string;
+}
+export const UpdateWarehouseTablesCheckRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    table_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    column_name: S.optional(S.String),
+    check_type: CheckTypeEnum,
+    config: S.optional(UpdateWarehouseTablesCheckRequestConfigMap),
+    severity: S.optional(DataQualityCheckSeverityEnum),
+    enabled: S.optional(S.Boolean),
+    tags: S.optional(UpdateWarehouseTablesCheckRequestTagsList),
+    created_source: S.optional(CreatedSourceEnum),
+    ai_model: S.optional(S.String),
+    confidence: S.optional(S.NullOr(S.Number)),
+    reasoning: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWarehouseTablesCheckRequest",
+}) as any as S.Schema<UpdateWarehouseTablesCheckRequest>;
+
+/** Type-specific configuration, validated against the check type's JSON schema. */
+export type UpdateWarehouseTablesChecksPartialRequestConfigMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateWarehouseTablesChecksPartialRequestConfigMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateWarehouseTablesChecksPartialRequestConfigMap>;
+
+/** Free-form string labels for grouping and filtering. */
+export type UpdateWarehouseTablesChecksPartialRequestTagsList = Array<string>;
+export const UpdateWarehouseTablesChecksPartialRequestTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateWarehouseTablesChecksPartialRequestTagsList>;
+
+export interface UpdateWarehouseTablesChecksPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  table_id: string;
+  /** A UUID string identifying this data quality check. */
+  id: string;
+  /** Optional identifier-safe handle, unique per project. Omit to address the check by id. */
+  name?: string;
+  /** Why this check exists and what a failure means. */
+  description?: string;
+  /** Column the check applies to. Omit for table-scoped types like row_count. */
+  column_name?: string;
+  /** Which assertion to make. Determines the shape of config; see /check_types/. * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
+  check_type?: CheckTypeEnum | (string & {});
+  /** Type-specific configuration, validated against the check type's JSON schema. */
+  config?: UpdateWarehouseTablesChecksPartialRequestConfigMap;
+  /** 'error' failures mark the subject failing and notify; 'warn' failures only surface. * `error` - error * `warn` - warn */
+  severity?: DataQualityCheckSeverityEnum | (string & {});
+  /** Disabled checks are never run by any trigger. */
+  enabled?: boolean;
+  /** Free-form string labels for grouping and filtering. */
+  tags?: UpdateWarehouseTablesChecksPartialRequestTagsList;
+  /** Whether a human ('user') or an agent ('ai_generated') authored this check. * `user` - user * `ai_generated` - ai_generated */
+  created_source?: CreatedSourceEnum | (string & {});
+  /** Model that generated the check, if AI-authored. */
+  ai_model?: string;
+  /** AI author's confidence in the check, 0-1. */
+  confidence?: number | null;
+  /** AI author's reasoning, surfaced as review context. */
+  reasoning?: string;
+}
+export const UpdateWarehouseTablesChecksPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      table_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      column_name: S.optional(S.String),
+      check_type: S.optional(CheckTypeEnum),
+      config: S.optional(UpdateWarehouseTablesChecksPartialRequestConfigMap),
+      severity: S.optional(DataQualityCheckSeverityEnum),
+      enabled: S.optional(S.Boolean),
+      tags: S.optional(UpdateWarehouseTablesChecksPartialRequestTagsList),
+      created_source: S.optional(CreatedSourceEnum),
+      ai_model: S.optional(S.String),
+      confidence: S.optional(S.NullOr(S.Number)),
+      reasoning: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateWarehouseTablesChecksPartialRequest",
+  }) as any as S.Schema<UpdateWarehouseTablesChecksPartialRequest>;
+
+/** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
+export type UpdateWarehouseTablesPartialRequestOptionsMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateWarehouseTablesPartialRequestOptionsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateWarehouseTablesPartialRequestOptionsMap>;
+
+export interface UpdateWarehouseTablesPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse table. */
+  id: string;
+  /** Whether the table is soft-deleted and hidden from queries. */
+  deleted?: boolean | null;
+  /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
+  name?: string;
+  /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
+  format?: DataWarehouseTableFormatEnum | (string & {});
+  /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
+  url_pattern?: string;
+  credential?: CredentialInput;
+  /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
+  options?: UpdateWarehouseTablesPartialRequestOptionsMap;
+}
+export const UpdateWarehouseTablesPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    deleted: S.optional(S.NullOr(S.Boolean)),
+    name: S.optional(S.String),
+    format: S.optional(DataWarehouseTableFormatEnum),
+    url_pattern: S.optional(S.String),
+    credential: S.optional(CredentialInput),
+    options: S.optional(UpdateWarehouseTablesPartialRequestOptionsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWarehouseTablesPartialRequest",
+}) as any as S.Schema<UpdateWarehouseTablesPartialRequest>;
 
 export interface WarehouseTablesChecksDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2589,171 +2704,6 @@ export const WarehouseTablesChecksDestroyResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "WarehouseTablesChecksDestroyResponse",
 }) as any as S.Schema<WarehouseTablesChecksDestroyResponse>;
-
-export interface WarehouseTablesChecksHealthRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  table_id: string;
-}
-export const WarehouseTablesChecksHealthRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/health/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "WarehouseTablesChecksHealthRetrieveRequest",
-  }) as any as S.Schema<WarehouseTablesChecksHealthRetrieveRequest>;
-
-/** Per-subject rollup, the same rule the information_schema.data_quality_health table uses. */
-export interface DataQualitySubjectHealth {
-  /** 'table' or 'view'. */
-  subject_type: string;
-  /** Id of the table or view. */
-  subject_uuid: string;
-  /** failing (an error-severity check failed), erroring (a check could not run), warn (only warn-severity failures), healthy, or unknown (nothing has run yet). */
-  health: string;
-  /** How many enabled, non-deleted checks cover this subject. */
-  checks_total: number;
-  /** How many of those checks last reported a failure. */
-  checks_failing: number;
-}
-export const DataQualitySubjectHealth = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subject_type: S.String,
-    subject_uuid: S.String,
-    health: S.String,
-    checks_total: S.Number,
-    checks_failing: S.Number,
-  }),
-).annotate({
-  identifier: "DataQualitySubjectHealth",
-}) as any as S.Schema<DataQualitySubjectHealth>;
-
-export interface WarehouseTablesChecksRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  table_id: string;
-  /** A UUID string identifying this data quality check. */
-  id: string;
-}
-export const WarehouseTablesChecksRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/checks/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "WarehouseTablesChecksRetrieveRequest",
-}) as any as S.Schema<WarehouseTablesChecksRetrieveRequest>;
-
-export interface WarehouseTablesCheckSuiteRunsCheckRunsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Id of the warehouse table whose suite runs these are. */
-  table_id: string;
-  /** A UUID string identifying this data quality suite run. */
-  id: string;
-}
-export const WarehouseTablesCheckSuiteRunsCheckRunsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/{id}/check_runs/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "WarehouseTablesCheckSuiteRunsCheckRunsListRequest",
-  }) as any as S.Schema<WarehouseTablesCheckSuiteRunsCheckRunsListRequest>;
-
-export type WarehouseTablesCheckSuiteRunsCheckRunsListResponseBodyList =
-  Array<DataQualityCheckRun>;
-export const WarehouseTablesCheckSuiteRunsCheckRunsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DataQualityCheckRun,
-  ) as any as S.Schema<WarehouseTablesCheckSuiteRunsCheckRunsListResponseBodyList>;
-
-export type WarehouseTablesCheckSuiteRunsCheckRunsListResponse =
-  WarehouseTablesCheckSuiteRunsCheckRunsListResponseBodyList;
-export const WarehouseTablesCheckSuiteRunsCheckRunsListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    WarehouseTablesCheckSuiteRunsCheckRunsListResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "WarehouseTablesCheckSuiteRunsCheckRunsListResponse",
-  }) as any as S.Schema<WarehouseTablesCheckSuiteRunsCheckRunsListResponse>;
-
-export interface WarehouseTablesCheckSuiteRunsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Id of the warehouse table whose suite runs these are. */
-  table_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const WarehouseTablesCheckSuiteRunsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      table_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_tables/{table_id}/check_suite_runs/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "WarehouseTablesCheckSuiteRunsListRequest",
-}) as any as S.Schema<WarehouseTablesCheckSuiteRunsListRequest>;
-
-export type PaginatedDataQualitySuiteRunListResultsList =
-  Array<DataQualitySuiteRun>;
-export const PaginatedDataQualitySuiteRunListResultsList =
-  /*@__PURE__*/ S.Array(
-    DataQualitySuiteRun,
-  ) as any as S.Schema<PaginatedDataQualitySuiteRunListResultsList>;
-
-export interface PaginatedDataQualitySuiteRunList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedDataQualitySuiteRunListResultsList;
-}
-export const PaginatedDataQualitySuiteRunList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedDataQualitySuiteRunListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedDataQualitySuiteRunList",
-}) as any as S.Schema<PaginatedDataQualitySuiteRunList>;
 
 /** * `csv` - csv * `json` - json * `parquet` - parquet */
 export type CreateTableFromUploadFileFormatEnum = "csv" | "json" | "parquet";
@@ -2818,26 +2768,33 @@ export const WarehouseTablesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseTablesDestroyResponse",
 }) as any as S.Schema<WarehouseTablesDestroyResponse>;
 
-export interface WarehouseTablesRetrieveRequest {
+export interface WarehouseTablesRefreshSchemaCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this data warehouse table. */
   id: string;
 }
-export const WarehouseTablesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_tables/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseTablesRetrieveRequest",
-}) as any as S.Schema<WarehouseTablesRetrieveRequest>;
+export const WarehouseTablesRefreshSchemaCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/warehouse_tables/{id}/refresh_schema/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WarehouseTablesRefreshSchemaCreateRequest",
+  }) as any as S.Schema<WarehouseTablesRefreshSchemaCreateRequest>;
+
+export interface WarehouseTablesRefreshSchemaCreateResponse {}
+export const WarehouseTablesRefreshSchemaCreateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "WarehouseTablesRefreshSchemaCreateResponse",
+  }) as any as S.Schema<WarehouseTablesRefreshSchemaCreateResponse>;
 
 /** Per-format read options. The only one read today is `csv_allow_double_quotes` (boolean), for CSV files that quote fields with doubled quotes. */
 export type WarehouseTablesUpdateSchemaCreateRequestOptionsMap = {
@@ -2859,7 +2816,7 @@ export interface WarehouseTablesUpdateSchemaCreateRequest {
   /** Name the table is queried by in HogQL. Must be unique within the project, and must start with a letter or underscore and contain only letters, numbers, and underscores. */
   name?: string;
   /** File format of the objects the pattern matches. Every matched file must share this format. * `CSV` - CSV * `CSVWithNames` - CSVWithNames * `Parquet` - Parquet * `JSONEachRow` - JSON * `Delta` - Delta * `DeltaS3Wrapper` - DeltaS3Wrapper */
-  format?: TableFormatEnum | (string & {});
+  format?: DataWarehouseTableFormatEnum | (string & {});
   /** HTTPS URL of the files to read, with `*` matching any part of a path segment (e.g. `https://your-bucket.s3.amazonaws.com/orders/*.parquet`). All matched files are read as one table. Must point at a bucket you control, not at PostHog's own storage. */
   url_pattern?: string;
   credential?: CredentialInput;
@@ -2873,7 +2830,7 @@ export const WarehouseTablesUpdateSchemaCreateRequest = /*@__PURE__*/ S.suspend(
       id: S.String.pipe(T.Label()),
       deleted: S.optional(S.NullOr(S.Boolean)),
       name: S.optional(S.String),
-      format: S.optional(TableFormatEnum),
+      format: S.optional(DataWarehouseTableFormatEnum),
       url_pattern: S.optional(S.String),
       credential: S.optional(CredentialInput),
       options: S.optional(WarehouseTablesUpdateSchemaCreateRequestOptionsMap),
@@ -2894,20 +2851,60 @@ export const WarehouseTablesUpdateSchemaCreateResponse =
     identifier: "WarehouseTablesUpdateSchemaCreateResponse",
   }) as any as S.Schema<WarehouseTablesUpdateSchemaCreateResponse>;
 
-export type CheckWarehouseTableSuiteRunRetrieveError = PosthogOpError;
-/** Read-only reports for this subject's check-suite executions. */
-export const checkWarehouseTableSuiteRunRetrieve: API.OperationMethod<
-  CheckWarehouseTableSuiteRunRetrieveRequest,
-  DataQualitySuiteRun,
-  CheckWarehouseTableSuiteRunRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckWarehouseTableSuiteRunRetrieveRequest,
-  output: DataQualitySuiteRun,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+/** How the file will be read when the table is created. */
+export type WarehouseTablesUploadFileCreateRequestFileFormat =
+  | "csv"
+  | "json"
+  | "parquet";
+export const WarehouseTablesUploadFileCreateRequestFileFormat =
+  /*@__PURE__*/ S.String;
+
+export interface WarehouseTablesUploadFileCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The file to upload. */
+  file: string;
+  /** How the file will be read when the table is created. */
+  file_format: WarehouseTablesUploadFileCreateRequestFileFormat | (string & {});
+}
+export const WarehouseTablesUploadFileCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      file: S.String,
+      file_format: WarehouseTablesUploadFileCreateRequestFileFormat,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/warehouse_tables/upload_file/",
+        code: 200,
+        contentType: "multipart",
+      }),
+    ),
+).annotate({
+  identifier: "WarehouseTablesUploadFileCreateRequest",
+}) as any as S.Schema<WarehouseTablesUploadFileCreateRequest>;
+
+export interface FileUploadResponse {
+  /** Id of the stored upload. Pass it to create_from_upload to build the table. */
+  upload_id: string;
+  /** Sanitized name the file was stored under. */
+  filename: string;
+  /** Format the file will be read as: 'csv', 'json', or 'parquet'. */
+  file_format: string;
+  /** Size of the stored file in bytes. */
+  size_bytes: number;
+}
+export const FileUploadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    upload_id: S.String,
+    filename: S.String,
+    file_format: S.String,
+    size_bytes: S.Number,
+  }),
+).annotate({
+  identifier: "FileUploadResponse",
+}) as any as S.Schema<FileUploadResponse>;
 
 export type CreateWarehouseTableError =
   | BadRequest
@@ -2928,129 +2925,125 @@ export const createWarehouseTable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableCheckError = PosthogOpError;
+export type CreateWarehouseTablesCheckError = PosthogOpError;
 /** Create a check on this table or view, or refine the one already carrying the same fingerprint. Re-creating a semantically identical check returns 200 and the existing row, never a duplicate. */
-export const createWarehouseTableCheck: API.OperationMethod<
-  CreateWarehouseTableCheckRequest,
+export const createWarehouseTablesCheck: API.OperationMethod<
+  CreateWarehouseTablesCheckRequest,
   DataQualityCheck,
-  CreateWarehouseTableCheckError,
+  CreateWarehouseTablesCheckError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableCheckRequest,
+  input: CreateWarehouseTablesCheckRequest,
   output: DataQualityCheck,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableCheckRunError = PosthogOpError;
+export type CreateWarehouseTablesChecksRunError = PosthogOpError;
 /** Run this check now. Returns the suite run to poll for the report. */
-export const createWarehouseTableCheckRun: API.OperationMethod<
-  CreateWarehouseTableCheckRunRequest,
+export const createWarehouseTablesChecksRun: API.OperationMethod<
+  CreateWarehouseTablesChecksRunRequest,
   DataQualitySuiteRun,
-  CreateWarehouseTableCheckRunError,
+  CreateWarehouseTablesChecksRunError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableCheckRunRequest,
+  input: CreateWarehouseTablesChecksRunRequest,
   output: DataQualitySuiteRun,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableCheckRunAllError = PosthogOpError;
+export type CreateWarehouseTablesChecksRunAllError = PosthogOpError;
 /** Run every enabled check on this table or view. Returns the suite run to poll. */
-export const createWarehouseTableCheckRunAll: API.OperationMethod<
-  CreateWarehouseTableCheckRunAllRequest,
+export const createWarehouseTablesChecksRunAll: API.OperationMethod<
+  CreateWarehouseTablesChecksRunAllRequest,
   DataQualitySuiteRun,
-  CreateWarehouseTableCheckRunAllError,
+  CreateWarehouseTablesChecksRunAllError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableCheckRunAllRequest,
+  input: CreateWarehouseTablesChecksRunAllRequest,
   output: DataQualitySuiteRun,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableFileError =
+export type CreateWarehouseTablesFileError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete Warehouse Tables. */
-export const createWarehouseTableFile: API.OperationMethod<
-  CreateWarehouseTableFileRequest,
-  CreateWarehouseTableFileResponse,
-  CreateWarehouseTableFileError,
+export const createWarehouseTablesFile: API.OperationMethod<
+  CreateWarehouseTablesFileRequest,
+  CreateWarehouseTablesFileResponse,
+  CreateWarehouseTablesFileError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableFileRequest,
-  output: CreateWarehouseTableFileResponse,
+  input: CreateWarehouseTablesFileRequest,
+  output: CreateWarehouseTablesFileResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableRefreshSchemaError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Refresh table schema from source Re-introspect a self-managed (manually linked) warehouse table's schema from its underlying source files and overwrite its stored column list. Use when the source schema has evolved (e.g. new columns in the underlying Delta/Parquet/CSV files) but queries still can't see the new columns, because PostHog serves a cached column snapshot until the table is refreshed. Not for tables managed by an external data source sync — those refresh on their own schedule. */
-export const createWarehouseTableRefreshSchema: API.OperationMethod<
-  CreateWarehouseTableRefreshSchemaRequest,
-  CreateWarehouseTableRefreshSchemaResponse,
-  CreateWarehouseTableRefreshSchemaError,
+export type GetWarehouseTableError = Forbidden | NotFound | PosthogOpError;
+/** Create, Read, Update and Delete Warehouse Tables. */
+export const getWarehouseTable: API.OperationMethod<
+  GetWarehouseTableRequest,
+  TableOutput,
+  GetWarehouseTableError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableRefreshSchemaRequest,
-  output: CreateWarehouseTableRefreshSchemaResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  input: GetWarehouseTableRequest,
+  output: TableOutput,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseTableUploadFileError = PosthogOpError;
-/** Upload a file for a new self-managed warehouse table Store an uploaded file in object storage so a self-managed table can be created from it. Uploading is a separate first step from `create_from_upload` so the create call stays JSON-only: this returns an `upload_id` the caller passes back to build the table. The file is written under a team-scoped prefix, so a table can only ever read back its own team's uploads. */
-export const createWarehouseTableUploadFile: API.OperationMethod<
-  CreateWarehouseTableUploadFileRequest,
-  FileUploadResponse,
-  CreateWarehouseTableUploadFileError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseTableUploadFileRequest,
-  output: FileUploadResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWarehouseTableCheckRunsError = PosthogOpError;
-/** Recent run history for this check, newest first. */
-export const listWarehouseTableCheckRuns: API.OperationMethod<
-  ListWarehouseTableCheckRunsRequest,
-  ListWarehouseTableCheckRunsResponse,
-  ListWarehouseTableCheckRunsError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWarehouseTableCheckRunsRequest,
-  output: ListWarehouseTableCheckRunsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWarehouseTableChecksError = PosthogOpError;
+export type GetWarehouseTablesCheckError = PosthogOpError;
 /** CRUD for one subject's checks, plus the actions that run them and report on them. */
-export const listWarehouseTableChecks: API.OperationMethod<
-  ListWarehouseTableChecksRequest,
-  PaginatedDataQualityCheckList,
-  ListWarehouseTableChecksError,
+export const getWarehouseTablesCheck: API.OperationMethod<
+  GetWarehouseTablesCheckRequest,
+  DataQualityCheck,
+  GetWarehouseTablesCheckError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWarehouseTableChecksRequest,
-  output: PaginatedDataQualityCheckList,
+  input: GetWarehouseTablesCheckRequest,
+  output: DataQualityCheck,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseTablesChecksHealthError = PosthogOpError;
+/** Health rollup for this table or view, from the denormalized status of its checks. */
+export const getWarehouseTablesChecksHealth: API.OperationMethod<
+  GetWarehouseTablesChecksHealthRequest,
+  DataQualitySubjectHealth,
+  GetWarehouseTablesChecksHealthError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseTablesChecksHealthRequest,
+  output: DataQualitySubjectHealth,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseTablesCheckSuiteRunError = PosthogOpError;
+/** Read-only reports for this subject's check-suite executions. */
+export const getWarehouseTablesCheckSuiteRun: API.OperationMethod<
+  GetWarehouseTablesCheckSuiteRunRequest,
+  DataQualitySuiteRun,
+  GetWarehouseTablesCheckSuiteRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseTablesCheckSuiteRunRequest,
+  output: DataQualitySuiteRun,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -3075,6 +3068,81 @@ export const listWarehouseTables: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListWarehouseTablesChecksError = PosthogOpError;
+/** CRUD for one subject's checks, plus the actions that run them and report on them. */
+export const listWarehouseTablesChecks: API.OperationMethod<
+  ListWarehouseTablesChecksRequest,
+  PaginatedDataQualityCheckList,
+  ListWarehouseTablesChecksError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseTablesChecksRequest,
+  output: PaginatedDataQualityCheckList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseTablesChecksCheckTypesError = PosthogOpError;
+/** The check types this project can author, with the JSON schema of each type's config. */
+export const listWarehouseTablesChecksCheckTypes: API.OperationMethod<
+  ListWarehouseTablesChecksCheckTypesRequest,
+  ListWarehouseTablesChecksCheckTypesResponse,
+  ListWarehouseTablesChecksCheckTypesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseTablesChecksCheckTypesRequest,
+  output: ListWarehouseTablesChecksCheckTypesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseTablesChecksRunsError = PosthogOpError;
+/** Recent run history for this check, newest first. */
+export const listWarehouseTablesChecksRuns: API.OperationMethod<
+  ListWarehouseTablesChecksRunsRequest,
+  ListWarehouseTablesChecksRunsResponse,
+  ListWarehouseTablesChecksRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseTablesChecksRunsRequest,
+  output: ListWarehouseTablesChecksRunsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseTablesCheckSuiteRunsError = PosthogOpError;
+/** Read-only reports for this subject's check-suite executions. */
+export const listWarehouseTablesCheckSuiteRuns: API.OperationMethod<
+  ListWarehouseTablesCheckSuiteRunsRequest,
+  PaginatedDataQualitySuiteRunList,
+  ListWarehouseTablesCheckSuiteRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseTablesCheckSuiteRunsRequest,
+  output: PaginatedDataQualitySuiteRunList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseTablesCheckSuiteRunsCheckRunsError = PosthogOpError;
+/** Every check execution in this suite run. */
+export const listWarehouseTablesCheckSuiteRunsCheckRuns: API.OperationMethod<
+  ListWarehouseTablesCheckSuiteRunsCheckRunsRequest,
+  ListWarehouseTablesCheckSuiteRunsCheckRunsResponse,
+  ListWarehouseTablesCheckSuiteRunsCheckRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseTablesCheckSuiteRunsCheckRunsRequest,
+  output: ListWarehouseTablesCheckSuiteRunsCheckRunsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateWarehouseTableError =
   | BadRequest
   | Forbidden
@@ -3094,66 +3162,51 @@ export const updateWarehouseTable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateWarehouseTableCheckError = PosthogOpError;
+export type UpdateWarehouseTablesCheckError = PosthogOpError;
 /** Edit this check in place, including what it asserts (check_type, column_name, config). The table or view it audits is fixed, and the check keeps its id, run history, latest status, and latest run time. A definition or name already held by another active check comes back as a field error, with nothing written. */
-export const updateWarehouseTableCheck: API.OperationMethod<
-  UpdateWarehouseTableCheckRequest,
+export const updateWarehouseTablesCheck: API.OperationMethod<
+  UpdateWarehouseTablesCheckRequest,
   DataQualityCheck,
-  UpdateWarehouseTableCheckError,
+  UpdateWarehouseTablesCheckError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWarehouseTableCheckRequest,
+  input: UpdateWarehouseTablesCheckRequest,
   output: DataQualityCheck,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateWarehouseTableCheckPartialError = PosthogOpError;
+export type UpdateWarehouseTablesChecksPartialError = PosthogOpError;
 /** Edit this check in place, including what it asserts (check_type, column_name, config). The table or view it audits is fixed, and the check keeps its id, run history, latest status, and latest run time. A definition or name already held by another active check comes back as a field error, with nothing written. */
-export const updateWarehouseTableCheckPartial: API.OperationMethod<
-  UpdateWarehouseTableCheckPartialRequest,
+export const updateWarehouseTablesChecksPartial: API.OperationMethod<
+  UpdateWarehouseTablesChecksPartialRequest,
   DataQualityCheck,
-  UpdateWarehouseTableCheckPartialError,
+  UpdateWarehouseTablesChecksPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWarehouseTableCheckPartialRequest,
+  input: UpdateWarehouseTablesChecksPartialRequest,
   output: DataQualityCheck,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateWarehouseTablePartialError =
+export type UpdateWarehouseTablesPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete Warehouse Tables. */
-export const updateWarehouseTablePartial: API.OperationMethod<
-  UpdateWarehouseTablePartialRequest,
+export const updateWarehouseTablesPartial: API.OperationMethod<
+  UpdateWarehouseTablesPartialRequest,
   TableOutput,
-  UpdateWarehouseTablePartialError,
+  UpdateWarehouseTablesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWarehouseTablePartialRequest,
+  input: UpdateWarehouseTablesPartialRequest,
   output: TableOutput,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseTablesChecksCheckTypesListError = PosthogOpError;
-/** The check types this project can author, with the JSON schema of each type's config. */
-export const warehouseTablesChecksCheckTypesList: API.OperationMethod<
-  WarehouseTablesChecksCheckTypesListRequest,
-  WarehouseTablesChecksCheckTypesListResponse,
-  WarehouseTablesChecksCheckTypesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesChecksCheckTypesListRequest,
-  output: WarehouseTablesChecksCheckTypesListResponse,
-  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -3168,66 +3221,6 @@ export const warehouseTablesChecksDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WarehouseTablesChecksDestroyRequest,
   output: WarehouseTablesChecksDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseTablesChecksHealthRetrieveError = PosthogOpError;
-/** Health rollup for this table or view, from the denormalized status of its checks. */
-export const warehouseTablesChecksHealthRetrieve: API.OperationMethod<
-  WarehouseTablesChecksHealthRetrieveRequest,
-  DataQualitySubjectHealth,
-  WarehouseTablesChecksHealthRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesChecksHealthRetrieveRequest,
-  output: DataQualitySubjectHealth,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseTablesChecksRetrieveError = PosthogOpError;
-/** CRUD for one subject's checks, plus the actions that run them and report on them. */
-export const warehouseTablesChecksRetrieve: API.OperationMethod<
-  WarehouseTablesChecksRetrieveRequest,
-  DataQualityCheck,
-  WarehouseTablesChecksRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesChecksRetrieveRequest,
-  output: DataQualityCheck,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseTablesCheckSuiteRunsCheckRunsListError = PosthogOpError;
-/** Every check execution in this suite run. */
-export const warehouseTablesCheckSuiteRunsCheckRunsList: API.OperationMethod<
-  WarehouseTablesCheckSuiteRunsCheckRunsListRequest,
-  WarehouseTablesCheckSuiteRunsCheckRunsListResponse,
-  WarehouseTablesCheckSuiteRunsCheckRunsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesCheckSuiteRunsCheckRunsListRequest,
-  output: WarehouseTablesCheckSuiteRunsCheckRunsListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseTablesCheckSuiteRunsListError = PosthogOpError;
-/** Read-only reports for this subject's check-suite executions. */
-export const warehouseTablesCheckSuiteRunsList: API.OperationMethod<
-  WarehouseTablesCheckSuiteRunsListRequest,
-  PaginatedDataQualitySuiteRunList,
-  WarehouseTablesCheckSuiteRunsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesCheckSuiteRunsListRequest,
-  output: PaginatedDataQualitySuiteRunList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -3263,20 +3256,21 @@ export const warehouseTablesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WarehouseTablesRetrieveError =
+export type WarehouseTablesRefreshSchemaCreateError =
+  | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-/** Create, Read, Update and Delete Warehouse Tables. */
-export const warehouseTablesRetrieve: API.OperationMethod<
-  WarehouseTablesRetrieveRequest,
-  TableOutput,
-  WarehouseTablesRetrieveError,
+/** Refresh table schema from source Re-introspect a self-managed (manually linked) warehouse table's schema from its underlying source files and overwrite its stored column list. Use when the source schema has evolved (e.g. new columns in the underlying Delta/Parquet/CSV files) but queries still can't see the new columns, because PostHog serves a cached column snapshot until the table is refreshed. Not for tables managed by an external data source sync — those refresh on their own schedule. */
+export const warehouseTablesRefreshSchemaCreate: API.OperationMethod<
+  WarehouseTablesRefreshSchemaCreateRequest,
+  WarehouseTablesRefreshSchemaCreateResponse,
+  WarehouseTablesRefreshSchemaCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseTablesRetrieveRequest,
-  output: TableOutput,
-  errors: [Forbidden, NotFound],
+  input: WarehouseTablesRefreshSchemaCreateRequest,
+  output: WarehouseTablesRefreshSchemaCreateResponse,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -3296,6 +3290,21 @@ export const warehouseTablesUpdateSchemaCreate: API.OperationMethod<
   input: WarehouseTablesUpdateSchemaCreateRequest,
   output: WarehouseTablesUpdateSchemaCreateResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WarehouseTablesUploadFileCreateError = PosthogOpError;
+/** Upload a file for a new self-managed warehouse table Store an uploaded file in object storage so a self-managed table can be created from it. Uploading is a separate first step from `create_from_upload` so the create call stays JSON-only: this returns an `upload_id` the caller passes back to build the table. The file is written under a team-scoped prefix, so a table can only ever read back its own team's uploads. */
+export const warehouseTablesUploadFileCreate: API.OperationMethod<
+  WarehouseTablesUploadFileCreateRequest,
+  FileUploadResponse,
+  WarehouseTablesUploadFileCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WarehouseTablesUploadFileCreateRequest,
+  output: FileUploadResponse,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

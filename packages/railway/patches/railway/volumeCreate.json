@@ -3,19 +3,21 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#VolumeCreateRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#CreateVolumeRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation volumeCreate($input: VolumeCreateInput!) {\n  volumeCreate(input: $input) {\n    createdAt\n    id\n    name\n    projectId\n    volumeInstances(first: 10) {\n      edges {\n        node {\n          createdAt\n          currentSizeMB\n          deletedAt\n          environmentId\n          id\n          isPendingDeletion\n          mountPath\n          region\n          serviceId\n          sizeMB\n          state\n          volume {\n            createdAt\n            id\n            name\n            projectId\n          }\n          volumeId\n        }\n      }\n    }\n  }\n}"
     },
     {
       "op": "remove",
-      "path": "/shapes/com.railway.api#VolumeCreateResponse/members/project"
+      "path": "/shapes/com.railway.api#CreateVolumeResponse/members/project"
     },
     {
       "op": "add",
-      "path": "/shapes/com.railway.api#VolumeCreateResponse/members/volumeInstances",
+      "path": "/shapes/com.railway.api#CreateVolumeResponse/members/volumeInstances",
       "value": {
         "target": "com.railway.api#EnvironmentResponseVolumeInstances",
-        "traits": { "smithy.api#required": {} }
+        "traits": {
+          "smithy.api#required": {}
+        }
       }
     }
   ]

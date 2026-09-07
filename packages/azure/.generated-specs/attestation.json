@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.attestation#ListPrivateLinkResourceByProvider": {
@@ -917,7 +918,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersUpdateResponseTagsMap",
+          "target": "com.azure.attestation#UpdateAttestationProviderResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1097,7 +1098,7 @@
         "smithy.api#documentation": "Status of attestation service."
       }
     },
-    "com.azure.attestation#AttestationProvidersUpdateResponseTagsMap": {
+    "com.azure.attestation#UpdateAttestationProviderResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1137,7 +1138,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersUpdateRequestTagsMap",
+          "target": "com.azure.attestation#UpdateAttestationProviderRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags that will be assigned to the attestation provider."
           }
@@ -1213,7 +1214,7 @@
         "smithy.api#documentation": "Controls whether traffic from the public network is allowed to access the Attestation Provider APIs."
       }
     },
-    "com.azure.attestation#AttestationProvidersUpdateRequestTagsMap": {
+    "com.azure.attestation#UpdateAttestationProviderRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1272,7 +1273,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersCreateResponseTagsMap",
+          "target": "com.azure.attestation#CreateAttestationProviderResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1295,7 +1296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.attestation#AttestationProvidersCreateResponseTagsMap": {
+    "com.azure.attestation#CreateAttestationProviderResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1342,7 +1343,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersCreateRequestTagsMap",
+          "target": "com.azure.attestation#CreateAttestationProviderRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags that will be assigned to the attestation provider."
           }
@@ -1564,7 +1565,7 @@
         "smithy.api#documentation": "Controls whether traffic from the public network is allowed to access the Attestation Provider APIs."
       }
     },
-    "com.azure.attestation#AttestationProvidersCreateRequestTagsMap": {
+    "com.azure.attestation#CreateAttestationProviderRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1623,7 +1624,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersGetResponseTagsMap",
+          "target": "com.azure.attestation#GetAttestationProviderResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1646,7 +1647,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.attestation#AttestationProvidersGetResponseTagsMap": {
+    "com.azure.attestation#GetAttestationProviderResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1980,7 +1981,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.attestation#AttestationProvidersGetDefaultByLocationResponseTagsMap",
+          "target": "com.azure.attestation#GetAttestationProviderDefaultByLocationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2003,7 +2004,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.attestation#AttestationProvidersGetDefaultByLocationResponseTagsMap": {
+    "com.azure.attestation#GetAttestationProviderDefaultByLocationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2385,37 +2386,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.attestation#ListPrivateLinkResourceByProvider"
-        },
-        {
-          "target": "com.azure.attestation#DeletePrivateEndpointConnection"
+          "target": "com.azure.attestation#CreateAttestationProvider"
         },
         {
           "target": "com.azure.attestation#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.attestation#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.attestation#ListPrivateEndpointConnections"
-        },
-        {
           "target": "com.azure.attestation#DeleteAttestationProvider"
         },
         {
-          "target": "com.azure.attestation#UpdateAttestationProvider"
-        },
-        {
-          "target": "com.azure.attestation#CreateAttestationProvider"
+          "target": "com.azure.attestation#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.attestation#GetAttestationProvider"
         },
         {
-          "target": "com.azure.attestation#ListAttestationProviderByResourceGroup"
+          "target": "com.azure.attestation#GetAttestationProviderDefaultByLocation"
         },
         {
-          "target": "com.azure.attestation#GetAttestationProviderDefaultByLocation"
+          "target": "com.azure.attestation#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.attestation#ListAttestationProviderByResourceGroup"
         },
         {
           "target": "com.azure.attestation#ListAttestationProviderDefault"
@@ -2425,6 +2417,15 @@
         },
         {
           "target": "com.azure.attestation#ListOperations"
+        },
+        {
+          "target": "com.azure.attestation#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.attestation#ListPrivateLinkResourceByProvider"
+        },
+        {
+          "target": "com.azure.attestation#UpdateAttestationProvider"
         }
       ],
       "traits": {

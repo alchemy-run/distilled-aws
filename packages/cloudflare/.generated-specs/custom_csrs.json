@@ -24,7 +24,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_csrs#CustomCsrs": {
@@ -32,28 +33,28 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.custom_csrs#CreateForAccount"
+          "target": "com.cloudflare.custom_csrs#CreateCustomCsrForAccount"
         },
         {
-          "target": "com.cloudflare.custom_csrs#CreateForZone"
+          "target": "com.cloudflare.custom_csrs#CreateCustomCsrForZone"
         },
         {
-          "target": "com.cloudflare.custom_csrs#DeleteForAccount"
+          "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForAccount"
         },
         {
-          "target": "com.cloudflare.custom_csrs#DeleteForZone"
+          "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForZone"
         },
         {
-          "target": "com.cloudflare.custom_csrs#GetForAccount"
+          "target": "com.cloudflare.custom_csrs#GetCustomCsrForAccount"
         },
         {
-          "target": "com.cloudflare.custom_csrs#GetForZone"
+          "target": "com.cloudflare.custom_csrs#GetCustomCsrForZone"
         },
         {
-          "target": "com.cloudflare.custom_csrs#ListForAccount"
+          "target": "com.cloudflare.custom_csrs#ListCustomCsrsForAccount"
         },
         {
-          "target": "com.cloudflare.custom_csrs#ListForZone"
+          "target": "com.cloudflare.custom_csrs#ListCustomCsrsForZone"
         }
       ],
       "traits": {
@@ -68,7 +69,7 @@
         "target": "com.cloudflare.custom_csrs#CreateCustomCsrForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#CreateCustomCsrForAccountResponse"
+        "target": "com.cloudflare.custom_csrs#CreateCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -167,7 +168,7 @@
         "target": "com.cloudflare.custom_csrs#CreateCustomCsrForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#CreateCustomCsrForZoneResponse"
+        "target": "com.cloudflare.custom_csrs#CreateCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -266,7 +267,7 @@
         "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForAccountResponse"
+        "target": "com.cloudflare.custom_csrs#DeleteCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -308,7 +309,7 @@
         "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#DeleteCustomCsrForZoneResponse"
+        "target": "com.cloudflare.custom_csrs#DeleteCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -350,7 +351,7 @@
         "target": "com.cloudflare.custom_csrs#GetCustomCsrForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#GetCustomCsrForAccountResponse"
+        "target": "com.cloudflare.custom_csrs#GetCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -392,7 +393,7 @@
         "target": "com.cloudflare.custom_csrs#GetCustomCsrForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#GetCustomCsrForZoneResponse"
+        "target": "com.cloudflare.custom_csrs#GetCustomCsrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -434,7 +435,7 @@
         "target": "com.cloudflare.custom_csrs#ListCustomCsrsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#ListCustomCsrsForAccountResponse"
+        "target": "com.cloudflare.custom_csrs#ListCustomCsrsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -489,7 +490,7 @@
         "target": "com.cloudflare.custom_csrs#ListCustomCsrsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_csrs#ListCustomCsrsForZoneResponse"
+        "target": "com.cloudflare.custom_csrs#ListCustomCsrsResponse"
       },
       "traits": {
         "smithy.api#http": {

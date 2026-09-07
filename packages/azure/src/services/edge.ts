@@ -12,6 +12,211 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface ArtifactsListDownloadUriRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the resource */
+  name: string;
+  /** The name of the Image */
+  imageName: string;
+  /** The name of the Artifact */
+  artifactName: string;
+}
+export const ArtifactsListDownloadUriRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+    artifactName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/disconnectedOperations/{name}/images/{imageName}/artifacts/{artifactName}/listDownloadUri",
+      code: 200,
+      apiVersion: "2026-03-15",
+    }),
+  ),
+).annotate({
+  identifier: "ArtifactsListDownloadUriRequest",
+}) as any as S.Schema<ArtifactsListDownloadUriRequest>;
+
+/** The provisioning state of a resource type. */
+export type AzureResourceManagerResourceProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const AzureResourceManagerResourceProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The artifact download properties */
+export interface ArtifactDownloadResult {
+  /** The resource provisioning state */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+  /** The artifact display order */
+  artifactOrder: number;
+  /** The artifact title */
+  title: string;
+  /** The artifact description */
+  description: string;
+  /** The artifact size in MB */
+  size?: number;
+  /** The download URI */
+  downloadLink: string;
+  /** The download link expiry time */
+  linkExpiry: string;
+}
+export const ArtifactDownloadResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+    artifactOrder: S.Number,
+    title: S.String,
+    description: S.String,
+    size: S.optional(S.Number),
+    downloadLink: S.String,
+    linkExpiry: S.String,
+  }),
+).annotate({
+  identifier: "ArtifactDownloadResult",
+}) as any as S.Schema<ArtifactDownloadResult>;
+
+/** Solution dependencies */
+export type SolutionDependencyParameterDependenciesList =
+  Array<SolutionDependencyParameter>;
+export const SolutionDependencyParameterDependenciesList =
+  /*@__PURE__*/ S.Array(
+    S.suspend(() => SolutionDependencyParameter),
+  ) as any as S.Schema<SolutionDependencyParameterDependenciesList>;
+
+/** Solution Dependency Context */
+export interface SolutionDependencyParameter {
+  /** Solution Version Id */
+  solutionVersionId?: string;
+  /** Solution Template Id */
+  solutionTemplateId?: string;
+  /** Solution Template Version */
+  solutionTemplateVersion?: string;
+  /** Solution Instance Name */
+  solutionInstanceName?: string;
+  /** Target Id */
+  targetId?: string;
+  /** Solution dependencies */
+  dependencies?: SolutionDependencyParameterDependenciesList;
+}
+export const SolutionDependencyParameter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    solutionVersionId: S.optional(S.String),
+    solutionTemplateId: S.optional(S.String),
+    solutionTemplateVersion: S.optional(S.String),
+    solutionInstanceName: S.optional(S.String),
+    targetId: S.optional(S.String),
+    dependencies: S.optional(SolutionDependencyParameterDependenciesList),
+  }),
+).annotate({
+  identifier: "SolutionDependencyParameter",
+}) as any as S.Schema<SolutionDependencyParameter>;
+
+/** Solution dependencies */
+export type BulkReviewTargetDetailsSolutionDependenciesList =
+  Array<SolutionDependencyParameter>;
+export const BulkReviewTargetDetailsSolutionDependenciesList =
+  /*@__PURE__*/ S.Array(
+    SolutionDependencyParameter,
+  ) as any as S.Schema<BulkReviewTargetDetailsSolutionDependenciesList>;
+
+/** Bulk publish target details */
+export interface BulkReviewTargetDetails {
+  /** ArmId of Target */
+  targetId: string;
+  /** Solution dependencies */
+  solutionDependencies?: BulkReviewTargetDetailsSolutionDependenciesList;
+  /** Name of the solution instance */
+  solutionInstanceName?: string;
+  /** Configuration of solution */
+  solutionConfiguration?: string;
+}
+export const BulkReviewTargetDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetId: S.String,
+    solutionDependencies: S.optional(
+      BulkReviewTargetDetailsSolutionDependenciesList,
+    ),
+    solutionInstanceName: S.optional(S.String),
+    solutionConfiguration: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkReviewTargetDetails",
+}) as any as S.Schema<BulkReviewTargetDetails>;
+
+/** Targets to which solution needs to be published */
+export type BulkSolutionTemplateVersionReviewSolutionRequestTargetsList =
+  Array<BulkReviewTargetDetails>;
+export const BulkSolutionTemplateVersionReviewSolutionRequestTargetsList =
+  /*@__PURE__*/ S.Array(
+    BulkReviewTargetDetails,
+  ) as any as S.Schema<BulkSolutionTemplateVersionReviewSolutionRequestTargetsList>;
+
+/** Solution dependencies */
+export type BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList =
+  Array<SolutionDependencyParameter>;
+export const BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList =
+  /*@__PURE__*/ S.Array(
+    SolutionDependencyParameter,
+  ) as any as S.Schema<BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList>;
+
+export interface BulkSolutionTemplateVersionReviewSolutionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SolutionTemplate */
+  solutionTemplateName: string;
+  /** The name of the SolutionTemplateVersion */
+  solutionTemplateVersionName: string;
+  /** Targets to which solution needs to be published */
+  targets: BulkSolutionTemplateVersionReviewSolutionRequestTargetsList;
+  /** Name of the solution instance */
+  solutionInstanceName?: string;
+  /** Solution dependencies */
+  solutionDependencies?: BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList;
+  /** Configuration of solution */
+  solutionConfiguration?: string;
+}
+export const BulkSolutionTemplateVersionReviewSolutionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      solutionTemplateName: S.String.pipe(T.Label()),
+      solutionTemplateVersionName: S.String.pipe(T.Label()),
+      targets: BulkSolutionTemplateVersionReviewSolutionRequestTargetsList,
+      solutionInstanceName: S.optional(S.String),
+      solutionDependencies: S.optional(
+        BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList,
+      ),
+      solutionConfiguration: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/solutionTemplates/{solutionTemplateName}/versions/{solutionTemplateVersionName}/bulkReviewSolution",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "BulkSolutionTemplateVersionReviewSolutionRequest",
+  }) as any as S.Schema<BulkSolutionTemplateVersionReviewSolutionRequest>;
+
+export interface BulkSolutionTemplateVersionReviewSolutionResponse {}
+export const BulkSolutionTemplateVersionReviewSolutionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "BulkSolutionTemplateVersionReviewSolutionResponse",
+  }) as any as S.Schema<BulkSolutionTemplateVersionReviewSolutionResponse>;
+
 /** Hierarchy Ids */
 export type HierarchyMetadataHierarchyIdsList = Array<string>;
 export const HierarchyMetadataHierarchyIdsList = /*@__PURE__*/ S.Array(
@@ -407,47 +612,6 @@ export const ConfigTemplatesLinkToHierarchiesResponse = /*@__PURE__*/ S.suspend(
   identifier: "ConfigTemplatesLinkToHierarchiesResponse",
 }) as any as S.Schema<ConfigTemplatesLinkToHierarchiesResponse>;
 
-export interface ConfigTemplatesRemoveVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ConfigTemplate */
-  configTemplateName: string;
-  /** Version of the Resource */
-  version: string;
-}
-export const ConfigTemplatesRemoveVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    configTemplateName: S.String.pipe(T.Label()),
-    version: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/removeVersion",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigTemplatesRemoveVersionRequest",
-}) as any as S.Schema<ConfigTemplatesRemoveVersionRequest>;
-
-/** Remove Version response */
-export interface RemoveVersionResponse {
-  /** Status for remove version response */
-  status: string;
-}
-export const RemoveVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-  }),
-).annotate({
-  identifier: "RemoveVersionResponse",
-}) as any as S.Schema<RemoveVersionResponse>;
-
 /** Hierarchy Ids */
 export type ConfigTemplatesUnLinkFromHierarchiesRequestHierarchyIdsList =
   Array<string>;
@@ -628,14 +792,6 @@ export const ConfigurationReferencesCreateOrUpdateRequest =
   ).annotate({
     identifier: "ConfigurationReferencesCreateOrUpdateRequest",
   }) as any as S.Schema<ConfigurationReferencesCreateOrUpdateRequest>;
-
-/** The provisioning state of a resource type. */
-export type AzureResourceManagerResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
 
 /** Properties for ConfigurationReference Resource */
 export interface ConfigurationReferenceProperties {
@@ -1333,7 +1489,7 @@ export const DeleteConfigTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteConfigTemplateResponse",
 }) as any as S.Schema<DeleteConfigTemplateResponse>;
 
-export interface DeleteConfigTemplateMetadataRequest {
+export interface DeleteConfigTemplateMetadatasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1343,30 +1499,31 @@ export interface DeleteConfigTemplateMetadataRequest {
   /** The name of the ConfigTemplateMetadataProperties */
   configTemplateMetadataName: string;
 }
-export const DeleteConfigTemplateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    configTemplateName: S.String.pipe(T.Label()),
-    configTemplateMetadataName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/configTemplateMetadatas/{configTemplateMetadataName}",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
+export const DeleteConfigTemplateMetadatasRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configTemplateName: S.String.pipe(T.Label()),
+      configTemplateMetadataName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/configTemplateMetadatas/{configTemplateMetadataName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "DeleteConfigTemplateMetadataRequest",
-}) as any as S.Schema<DeleteConfigTemplateMetadataRequest>;
+  identifier: "DeleteConfigTemplateMetadatasRequest",
+}) as any as S.Schema<DeleteConfigTemplateMetadatasRequest>;
 
-export interface DeleteConfigTemplateMetadataResponse {}
-export const DeleteConfigTemplateMetadataResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteConfigTemplateMetadatasResponse {}
+export const DeleteConfigTemplateMetadatasResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteConfigTemplateMetadataResponse",
-}) as any as S.Schema<DeleteConfigTemplateMetadataResponse>;
+  identifier: "DeleteConfigTemplateMetadatasResponse",
+}) as any as S.Schema<DeleteConfigTemplateMetadatasResponse>;
 
 export interface DeleteConfigTemplateVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1747,7 +1904,7 @@ export const DeleteExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteExecutionResponse",
 }) as any as S.Schema<DeleteExecutionResponse>;
 
-export interface DeleteHardwareSettingRequest {
+export interface DeleteHardwareSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1757,7 +1914,7 @@ export interface DeleteHardwareSettingRequest {
   /** The name of the HardwareSetting */
   hardwareSettingName: string;
 }
-export const DeleteHardwareSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteHardwareSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1772,15 +1929,15 @@ export const DeleteHardwareSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteHardwareSettingRequest",
-}) as any as S.Schema<DeleteHardwareSettingRequest>;
+  identifier: "DeleteHardwareSettingsRequest",
+}) as any as S.Schema<DeleteHardwareSettingsRequest>;
 
-export interface DeleteHardwareSettingResponse {}
-export const DeleteHardwareSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteHardwareSettingsResponse {}
+export const DeleteHardwareSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteHardwareSettingResponse",
-}) as any as S.Schema<DeleteHardwareSettingResponse>;
+  identifier: "DeleteHardwareSettingsResponse",
+}) as any as S.Schema<DeleteHardwareSettingsResponse>;
 
 export interface DeleteInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1948,64 +2105,6 @@ export const DeleteSiteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteSiteResponse",
 }) as any as S.Schema<DeleteSiteResponse>;
 
-export interface DeleteSiteByServiceGroupRequest {
-  /** The name of the service group */
-  servicegroupName: string;
-  /** The name of the Site */
-  siteName: string;
-}
-export const DeleteSiteByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    servicegroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSiteByServiceGroupRequest",
-}) as any as S.Schema<DeleteSiteByServiceGroupRequest>;
-
-export interface DeleteSiteByServiceGroupResponse {}
-export const DeleteSiteByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSiteByServiceGroupResponse",
-}) as any as S.Schema<DeleteSiteByServiceGroupResponse>;
-
-export interface DeleteSiteBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Site */
-  siteName: string;
-}
-export const DeleteSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSiteBySubscriptionRequest",
-}) as any as S.Schema<DeleteSiteBySubscriptionRequest>;
-
-export interface DeleteSiteBySubscriptionResponse {}
-export const DeleteSiteBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSiteBySubscriptionResponse",
-}) as any as S.Schema<DeleteSiteBySubscriptionResponse>;
-
 export interface DeleteSiteReferenceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2040,6 +2139,64 @@ export const DeleteSiteReferenceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteSiteReferenceResponse",
 }) as any as S.Schema<DeleteSiteReferenceResponse>;
+
+export interface DeleteSitesByServiceGroupRequest {
+  /** The name of the service group */
+  servicegroupName: string;
+  /** The name of the Site */
+  siteName: string;
+}
+export const DeleteSitesByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    servicegroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSitesByServiceGroupRequest",
+}) as any as S.Schema<DeleteSitesByServiceGroupRequest>;
+
+export interface DeleteSitesByServiceGroupResponse {}
+export const DeleteSitesByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSitesByServiceGroupResponse",
+}) as any as S.Schema<DeleteSitesByServiceGroupResponse>;
+
+export interface DeleteSitesBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Site */
+  siteName: string;
+}
+export const DeleteSitesBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSitesBySubscriptionRequest",
+}) as any as S.Schema<DeleteSitesBySubscriptionRequest>;
+
+export interface DeleteSitesBySubscriptionResponse {}
+export const DeleteSitesBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSitesBySubscriptionResponse",
+}) as any as S.Schema<DeleteSitesBySubscriptionResponse>;
 
 export interface DeleteSolutionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3376,13 +3533,13 @@ export const GetConfigTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConfigTemplateRequest>;
 
 /** Resource tags. */
-export type ConfigTemplatesGetResponseTagsMap = {
+export type GetConfigTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigTemplatesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConfigTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigTemplatesGetResponseTagsMap>;
+) as any as S.Schema<GetConfigTemplateResponseTagsMap>;
 
 export interface GetConfigTemplateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3394,7 +3551,7 @@ export interface GetConfigTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConfigTemplatesGetResponseTagsMap;
+  tags?: GetConfigTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3408,7 +3565,7 @@ export const GetConfigTemplateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConfigTemplatesGetResponseTagsMap),
+    tags: S.optional(GetConfigTemplateResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigTemplateProperties),
     eTag: S.optional(S.String),
@@ -3417,7 +3574,7 @@ export const GetConfigTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConfigTemplateResponse",
 }) as any as S.Schema<GetConfigTemplateResponse>;
 
-export interface GetConfigTemplateMetadataRequest {
+export interface GetConfigTemplateMetadatasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3427,7 +3584,7 @@ export interface GetConfigTemplateMetadataRequest {
   /** The name of the ConfigTemplateMetadataProperties */
   configTemplateMetadataName: string;
 }
-export const GetConfigTemplateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetConfigTemplateMetadatasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3442,10 +3599,10 @@ export const GetConfigTemplateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetConfigTemplateMetadataRequest",
-}) as any as S.Schema<GetConfigTemplateMetadataRequest>;
+  identifier: "GetConfigTemplateMetadatasRequest",
+}) as any as S.Schema<GetConfigTemplateMetadatasRequest>;
 
-export interface GetConfigTemplateMetadataResponse {
+export interface GetConfigTemplateMetadatasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3459,7 +3616,7 @@ export interface GetConfigTemplateMetadataResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const GetConfigTemplateMetadataResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetConfigTemplateMetadatasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3469,8 +3626,8 @@ export const GetConfigTemplateMetadataResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetConfigTemplateMetadataResponse",
-}) as any as S.Schema<GetConfigTemplateMetadataResponse>;
+  identifier: "GetConfigTemplateMetadatasResponse",
+}) as any as S.Schema<GetConfigTemplateMetadatasResponse>;
 
 export interface GetConfigTemplateSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3630,13 +3787,13 @@ export const GetConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConfigurationRequest>;
 
 /** Resource tags. */
-export type ConfigurationsGetResponseTagsMap = {
+export type GetConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationsGetResponseTagsMap>;
+) as any as S.Schema<GetConfigurationResponseTagsMap>;
 
 export interface GetConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3648,7 +3805,7 @@ export interface GetConfigurationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConfigurationsGetResponseTagsMap;
+  tags?: GetConfigurationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3660,7 +3817,7 @@ export const GetConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConfigurationsGetResponseTagsMap),
+    tags: S.optional(GetConfigurationResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigurationProperties),
   }),
@@ -3740,11 +3897,11 @@ export const GetContextRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContextRequest>;
 
 /** Resource tags. */
-export type ContextsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ContextsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetContextResponseTagsMap = { [key: string]: string | undefined };
+export const GetContextResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContextsGetResponseTagsMap>;
+) as any as S.Schema<GetContextResponseTagsMap>;
 
 export interface GetContextResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3756,7 +3913,7 @@ export interface GetContextResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContextsGetResponseTagsMap;
+  tags?: GetContextResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3768,7 +3925,7 @@ export const GetContextResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContextsGetResponseTagsMap),
+    tags: S.optional(GetContextResponseTagsMap),
     location: S.String,
     properties: S.optional(ContextProperties),
   }),
@@ -3802,13 +3959,13 @@ export const GetDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDiagnosticRequest>;
 
 /** Resource tags. */
-export type DiagnosticsGetResponseTagsMap = {
+export type GetDiagnosticResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DiagnosticsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDiagnosticResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiagnosticsGetResponseTagsMap>;
+) as any as S.Schema<GetDiagnosticResponseTagsMap>;
 
 export interface GetDiagnosticResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3820,7 +3977,7 @@ export interface GetDiagnosticResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DiagnosticsGetResponseTagsMap;
+  tags?: GetDiagnosticResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3836,7 +3993,7 @@ export const GetDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DiagnosticsGetResponseTagsMap),
+    tags: S.optional(GetDiagnosticResponseTagsMap),
     location: S.String,
     properties: S.optional(DiagnosticProperties),
     extendedLocation: S.optional(
@@ -3874,13 +4031,13 @@ export const GetDisconnectedOperationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDisconnectedOperationRequest>;
 
 /** Resource tags. */
-export type DisconnectedOperationsGetResponseTagsMap = {
+export type GetDisconnectedOperationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DisconnectedOperationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDisconnectedOperationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DisconnectedOperationsGetResponseTagsMap>;
+) as any as S.Schema<GetDisconnectedOperationResponseTagsMap>;
 
 export interface GetDisconnectedOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3892,7 +4049,7 @@ export interface GetDisconnectedOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DisconnectedOperationsGetResponseTagsMap;
+  tags?: GetDisconnectedOperationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3904,7 +4061,7 @@ export const GetDisconnectedOperationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DisconnectedOperationsGetResponseTagsMap),
+    tags: S.optional(GetDisconnectedOperationResponseTagsMap),
     location: S.String,
     properties: S.optional(DisconnectedOperationProperties),
   }),
@@ -4200,7 +4357,7 @@ export const GetExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExecutionResponse",
 }) as any as S.Schema<GetExecutionResponse>;
 
-export interface GetHardwareSettingRequest {
+export interface GetHardwareSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4210,7 +4367,7 @@ export interface GetHardwareSettingRequest {
   /** The name of the HardwareSetting */
   hardwareSettingName: string;
 }
-export const GetHardwareSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHardwareSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4225,8 +4382,8 @@ export const GetHardwareSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHardwareSettingRequest",
-}) as any as S.Schema<GetHardwareSettingRequest>;
+  identifier: "GetHardwareSettingsRequest",
+}) as any as S.Schema<GetHardwareSettingsRequest>;
 
 /** The hardware setting properties */
 export interface HardwareSettingProperties {
@@ -4270,7 +4427,7 @@ export const HardwareSettingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HardwareSettingProperties",
 }) as any as S.Schema<HardwareSettingProperties>;
 
-export interface GetHardwareSettingResponse {
+export interface GetHardwareSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4282,7 +4439,7 @@ export interface GetHardwareSettingResponse {
   /** The resource-specific properties for this resource. */
   properties?: HardwareSettingProperties;
 }
-export const GetHardwareSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHardwareSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4291,17 +4448,17 @@ export const GetHardwareSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(HardwareSettingProperties),
   }),
 ).annotate({
-  identifier: "GetHardwareSettingResponse",
-}) as any as S.Schema<GetHardwareSettingResponse>;
+  identifier: "GetHardwareSettingsResponse",
+}) as any as S.Schema<GetHardwareSettingsResponse>;
 
-export interface GetHierarchyConfigurationMetadataRequest {
+export interface GetHierarchyConfigurationMetadatasRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Name of the hierarchy configuration metadata */
   hierarchyConfigurationMetadataName: string;
 }
-export const GetHierarchyConfigurationMetadataRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetHierarchyConfigurationMetadatasRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
       hierarchyConfigurationMetadataName: S.String.pipe(T.Label()),
@@ -4313,9 +4470,9 @@ export const GetHierarchyConfigurationMetadataRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2026-03-01",
       }),
     ),
-).annotate({
-  identifier: "GetHierarchyConfigurationMetadataRequest",
-}) as any as S.Schema<GetHierarchyConfigurationMetadataRequest>;
+  ).annotate({
+    identifier: "GetHierarchyConfigurationMetadatasRequest",
+  }) as any as S.Schema<GetHierarchyConfigurationMetadatasRequest>;
 
 /** Hierarchy Configuration Metadata Properties */
 export interface HierarchyConfigurationMetadataProperties {
@@ -4334,7 +4491,7 @@ export const HierarchyConfigurationMetadataProperties = /*@__PURE__*/ S.suspend(
   identifier: "HierarchyConfigurationMetadataProperties",
 }) as any as S.Schema<HierarchyConfigurationMetadataProperties>;
 
-export interface GetHierarchyConfigurationMetadataResponse {
+export interface GetHierarchyConfigurationMetadatasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4346,7 +4503,7 @@ export interface GetHierarchyConfigurationMetadataResponse {
   /** The resource-specific properties for this resource. */
   properties?: HierarchyConfigurationMetadataProperties;
 }
-export const GetHierarchyConfigurationMetadataResponse =
+export const GetHierarchyConfigurationMetadatasResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -4356,8 +4513,8 @@ export const GetHierarchyConfigurationMetadataResponse =
       properties: S.optional(HierarchyConfigurationMetadataProperties),
     }),
   ).annotate({
-    identifier: "GetHierarchyConfigurationMetadataResponse",
-  }) as any as S.Schema<GetHierarchyConfigurationMetadataResponse>;
+    identifier: "GetHierarchyConfigurationMetadatasResponse",
+  }) as any as S.Schema<GetHierarchyConfigurationMetadatasResponse>;
 
 export interface GetHierarchyConfigurationMetadataVersionRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -5246,11 +5403,11 @@ export const GetSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSchemaRequest>;
 
 /** Resource tags. */
-export type SchemasGetResponseTagsMap = { [key: string]: string | undefined };
-export const SchemasGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetSchemaResponseTagsMap = { [key: string]: string | undefined };
+export const GetSchemaResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemasGetResponseTagsMap>;
+) as any as S.Schema<GetSchemaResponseTagsMap>;
 
 /** Schema Properties */
 export interface SchemaProperties {
@@ -5278,7 +5435,7 @@ export interface GetSchemaResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchemasGetResponseTagsMap;
+  tags?: GetSchemaResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5292,7 +5449,7 @@ export const GetSchemaResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchemasGetResponseTagsMap),
+    tags: S.optional(GetSchemaResponseTagsMap),
     location: S.String,
     properties: S.optional(SchemaProperties),
     eTag: S.optional(S.String),
@@ -5528,98 +5685,6 @@ export const GetSiteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSiteResponse",
 }) as any as S.Schema<GetSiteResponse>;
 
-export interface GetSiteByServiceGroupRequest {
-  /** The name of the service group */
-  servicegroupName: string;
-  /** The name of the Site */
-  siteName: string;
-}
-export const GetSiteByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    servicegroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetSiteByServiceGroupRequest",
-}) as any as S.Schema<GetSiteByServiceGroupRequest>;
-
-export interface GetSiteByServiceGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SiteProperties;
-}
-export const GetSiteByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SiteProperties),
-  }),
-).annotate({
-  identifier: "GetSiteByServiceGroupResponse",
-}) as any as S.Schema<GetSiteByServiceGroupResponse>;
-
-export interface GetSiteBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Site */
-  siteName: string;
-}
-export const GetSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetSiteBySubscriptionRequest",
-}) as any as S.Schema<GetSiteBySubscriptionRequest>;
-
-export interface GetSiteBySubscriptionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SiteProperties;
-}
-export const GetSiteBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SiteProperties),
-  }),
-).annotate({
-  identifier: "GetSiteBySubscriptionResponse",
-}) as any as S.Schema<GetSiteBySubscriptionResponse>;
-
 export interface GetSiteReferenceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5687,6 +5752,98 @@ export const GetSiteReferenceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSiteReferenceResponse",
 }) as any as S.Schema<GetSiteReferenceResponse>;
+
+export interface GetSitesByServiceGroupRequest {
+  /** The name of the service group */
+  servicegroupName: string;
+  /** The name of the Site */
+  siteName: string;
+}
+export const GetSitesByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    servicegroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSitesByServiceGroupRequest",
+}) as any as S.Schema<GetSitesByServiceGroupRequest>;
+
+export interface GetSitesByServiceGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SiteProperties;
+}
+export const GetSitesByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SiteProperties),
+  }),
+).annotate({
+  identifier: "GetSitesByServiceGroupResponse",
+}) as any as S.Schema<GetSitesByServiceGroupResponse>;
+
+export interface GetSitesBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Site */
+  siteName: string;
+}
+export const GetSitesBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSitesBySubscriptionRequest",
+}) as any as S.Schema<GetSitesBySubscriptionRequest>;
+
+export interface GetSitesBySubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SiteProperties;
+}
+export const GetSitesBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SiteProperties),
+  }),
+).annotate({
+  identifier: "GetSitesBySubscriptionResponse",
+}) as any as S.Schema<GetSitesBySubscriptionResponse>;
 
 export interface GetSolutionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5799,13 +5956,13 @@ export const GetSolutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSolutionResponse",
 }) as any as S.Schema<GetSolutionResponse>;
 
-export interface GetSolutionMetadataRequest {
+export interface GetSolutionMetadatasRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Name of the solution metadata */
   solutionMetadataName: string;
 }
-export const GetSolutionMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSolutionMetadatasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     solutionMetadataName: S.String.pipe(T.Label()),
@@ -5818,8 +5975,8 @@ export const GetSolutionMetadataRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSolutionMetadataRequest",
-}) as any as S.Schema<GetSolutionMetadataRequest>;
+  identifier: "GetSolutionMetadatasRequest",
+}) as any as S.Schema<GetSolutionMetadatasRequest>;
 
 /** Solution Metadata Properties */
 export interface SolutionMetadataProperties {
@@ -5843,7 +6000,7 @@ export const SolutionMetadataProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SolutionMetadataProperties",
 }) as any as S.Schema<SolutionMetadataProperties>;
 
-export interface GetSolutionMetadataResponse {
+export interface GetSolutionMetadatasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5855,7 +6012,7 @@ export interface GetSolutionMetadataResponse {
   /** The resource-specific properties for this resource. */
   properties?: SolutionMetadataProperties;
 }
-export const GetSolutionMetadataResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSolutionMetadatasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5864,8 +6021,8 @@ export const GetSolutionMetadataResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SolutionMetadataProperties),
   }),
 ).annotate({
-  identifier: "GetSolutionMetadataResponse",
-}) as any as S.Schema<GetSolutionMetadataResponse>;
+  identifier: "GetSolutionMetadatasResponse",
+}) as any as S.Schema<GetSolutionMetadatasResponse>;
 
 export interface GetSolutionMetadataVersionRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -6047,13 +6204,13 @@ export const GetSolutionTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSolutionTemplateRequest>;
 
 /** Resource tags. */
-export type SolutionTemplatesGetResponseTagsMap = {
+export type GetSolutionTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SolutionTemplatesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSolutionTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SolutionTemplatesGetResponseTagsMap>;
+) as any as S.Schema<GetSolutionTemplateResponseTagsMap>;
 
 /** List of capabilities */
 export type SolutionTemplatePropertiesCapabilitiesList = Array<string>;
@@ -6102,7 +6259,7 @@ export interface GetSolutionTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SolutionTemplatesGetResponseTagsMap;
+  tags?: GetSolutionTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -6116,7 +6273,7 @@ export const GetSolutionTemplateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SolutionTemplatesGetResponseTagsMap),
+    tags: S.optional(GetSolutionTemplateResponseTagsMap),
     location: S.String,
     properties: S.optional(SolutionTemplateProperties),
     eTag: S.optional(S.String),
@@ -6501,11 +6658,11 @@ export const GetTargetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTargetRequest>;
 
 /** Resource tags. */
-export type TargetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const TargetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetTargetResponseTagsMap = { [key: string]: string | undefined };
+export const GetTargetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TargetsGetResponseTagsMap>;
+) as any as S.Schema<GetTargetResponseTagsMap>;
 
 /** target spec */
 export type TargetPropertiesTargetSpecificationMap = {
@@ -6572,7 +6729,7 @@ export interface GetTargetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TargetsGetResponseTagsMap;
+  tags?: GetTargetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -6588,7 +6745,7 @@ export const GetTargetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TargetsGetResponseTagsMap),
+    tags: S.optional(GetTargetResponseTagsMap),
     location: S.String,
     properties: S.optional(TargetProperties),
     eTag: S.optional(S.String),
@@ -6971,6 +7128,120 @@ export const HardwareSettingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "HardwareSettingsCreateOrUpdateResponse",
 }) as any as S.Schema<HardwareSettingsCreateOrUpdateResponse>;
 
+export interface ImagesListDownloadUriRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the resource */
+  name: string;
+  /** The name of the Image */
+  imageName: string;
+}
+export const ImagesListDownloadUriRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/disconnectedOperations/{name}/images/{imageName}/listDownloadUri",
+      code: 200,
+      apiVersion: "2026-03-15",
+    }),
+  ),
+).annotate({
+  identifier: "ImagesListDownloadUriRequest",
+}) as any as S.Schema<ImagesListDownloadUriRequest>;
+
+/** The versions that are compatible for this update package. */
+export type ImageDownloadResultCompatibleVersionsList = Array<string>;
+export const ImageDownloadResultCompatibleVersionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImageDownloadResultCompatibleVersionsList>;
+
+/** The image download properties */
+export interface ImageDownloadResult {
+  /** The resource provisioning state */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+  /** The version of the package in the format 1.1.1 */
+  releaseVersion: string;
+  /** The release name */
+  releaseDisplayName: string;
+  /** The release notes */
+  releaseNotes: string;
+  /** The release date */
+  releaseDate: string;
+  /** The release type */
+  releaseType: ReleaseType;
+  /** The versions that are compatible for this update package. */
+  compatibleVersions?: ImageDownloadResultCompatibleVersionsList;
+  /** Image update properties for update release type image. */
+  updateProperties?: ImageUpdateProperties;
+  /** The unique identifier of the download */
+  transactionId: string;
+  /** The download URI */
+  downloadLink: string;
+  /** The download link expiry time */
+  linkExpiry: string;
+}
+export const ImageDownloadResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+    releaseVersion: S.String,
+    releaseDisplayName: S.String,
+    releaseNotes: S.String,
+    releaseDate: S.String,
+    releaseType: ReleaseType,
+    compatibleVersions: S.optional(ImageDownloadResultCompatibleVersionsList),
+    updateProperties: S.optional(ImageUpdateProperties),
+    transactionId: S.String,
+    downloadLink: S.String,
+    linkExpiry: S.String,
+  }),
+).annotate({
+  identifier: "ImageDownloadResult",
+}) as any as S.Schema<ImageDownloadResult>;
+
+export interface InstallTargetSolutionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the target */
+  targetName: string;
+  /** Solution Version ARM Id */
+  solutionVersionId: string;
+}
+export const InstallTargetSolutionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    solutionVersionId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/installSolution",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "InstallTargetSolutionRequest",
+}) as any as S.Schema<InstallTargetSolutionRequest>;
+
+export interface InstallTargetSolutionResponse {}
+export const InstallTargetSolutionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "InstallTargetSolutionResponse",
+}) as any as S.Schema<InstallTargetSolutionResponse>;
+
 /** Instance Properties */
 export interface InstancePropertiesInput {
   /** Solution version of instance */
@@ -7140,70 +7411,6 @@ export const ArtifactListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ArtifactListResult",
 }) as any as S.Schema<ArtifactListResult>;
 
-export interface ListArtifactDownloadUriRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the resource */
-  name: string;
-  /** The name of the Image */
-  imageName: string;
-  /** The name of the Artifact */
-  artifactName: string;
-}
-export const ListArtifactDownloadUriRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
-    artifactName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/disconnectedOperations/{name}/images/{imageName}/artifacts/{artifactName}/listDownloadUri",
-      code: 200,
-      apiVersion: "2026-03-15",
-    }),
-  ),
-).annotate({
-  identifier: "ListArtifactDownloadUriRequest",
-}) as any as S.Schema<ListArtifactDownloadUriRequest>;
-
-/** The artifact download properties */
-export interface ArtifactDownloadResult {
-  /** The resource provisioning state */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-  /** The artifact display order */
-  artifactOrder: number;
-  /** The artifact title */
-  title: string;
-  /** The artifact description */
-  description: string;
-  /** The artifact size in MB */
-  size?: number;
-  /** The download URI */
-  downloadLink: string;
-  /** The download link expiry time */
-  linkExpiry: string;
-}
-export const ArtifactDownloadResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-    artifactOrder: S.Number,
-    title: S.String,
-    description: S.String,
-    size: S.optional(S.Number),
-    downloadLink: S.String,
-    linkExpiry: S.String,
-  }),
-).annotate({
-  identifier: "ArtifactDownloadResult",
-}) as any as S.Schema<ArtifactDownloadResult>;
-
 export interface ListConfigTemplateByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7308,7 +7515,7 @@ export const ListConfigTemplateBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListConfigTemplateBySubscriptionRequest",
 }) as any as S.Schema<ListConfigTemplateBySubscriptionRequest>;
 
-export interface ListConfigTemplateMetadataByConfigTemplateRequest {
+export interface ListConfigTemplateMetadatasByConfigTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7316,7 +7523,7 @@ export interface ListConfigTemplateMetadataByConfigTemplateRequest {
   /** The name of the ConfigTemplate */
   configTemplateName: string;
 }
-export const ListConfigTemplateMetadataByConfigTemplateRequest =
+export const ListConfigTemplateMetadatasByConfigTemplateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7331,8 +7538,8 @@ export const ListConfigTemplateMetadataByConfigTemplateRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListConfigTemplateMetadataByConfigTemplateRequest",
-  }) as any as S.Schema<ListConfigTemplateMetadataByConfigTemplateRequest>;
+    identifier: "ListConfigTemplateMetadatasByConfigTemplateRequest",
+  }) as any as S.Schema<ListConfigTemplateMetadatasByConfigTemplateRequest>;
 
 /** ConfigTemplateMetadata Resource */
 export interface ConfigTemplateMetadata {
@@ -8478,7 +8685,7 @@ export const ExecutionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecutionListResult",
 }) as any as S.Schema<ExecutionListResult>;
 
-export interface ListHardwareSettingByParentRequest {
+export interface ListHardwareSettingsByParentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8486,7 +8693,7 @@ export interface ListHardwareSettingByParentRequest {
   /** Name of the resource */
   name: string;
 }
-export const ListHardwareSettingByParentRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListHardwareSettingsByParentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8500,8 +8707,8 @@ export const ListHardwareSettingByParentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListHardwareSettingByParentRequest",
-}) as any as S.Schema<ListHardwareSettingByParentRequest>;
+  identifier: "ListHardwareSettingsByParentRequest",
+}) as any as S.Schema<ListHardwareSettingsByParentRequest>;
 
 /** Hardware settings resource. */
 export interface HardwareSetting {
@@ -8550,11 +8757,11 @@ export const HardwareSettingListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HardwareSettingListResult",
 }) as any as S.Schema<HardwareSettingListResult>;
 
-export interface ListHierarchyConfigurationMetadataByParentRequest {
+export interface ListHierarchyConfigurationMetadatasByParentRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const ListHierarchyConfigurationMetadataByParentRequest =
+export const ListHierarchyConfigurationMetadatasByParentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -8567,8 +8774,8 @@ export const ListHierarchyConfigurationMetadataByParentRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHierarchyConfigurationMetadataByParentRequest",
-  }) as any as S.Schema<ListHierarchyConfigurationMetadataByParentRequest>;
+    identifier: "ListHierarchyConfigurationMetadatasByParentRequest",
+  }) as any as S.Schema<ListHierarchyConfigurationMetadatasByParentRequest>;
 
 /** Hierarchy Configuration Metadata Resource attached to a Target or Site */
 export interface HierarchyConfigurationMetadata {
@@ -8773,85 +8980,6 @@ export const ImageListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ImageListResult",
 }) as any as S.Schema<ImageListResult>;
-
-export interface ListImageDownloadUriRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the resource */
-  name: string;
-  /** The name of the Image */
-  imageName: string;
-}
-export const ListImageDownloadUriRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/disconnectedOperations/{name}/images/{imageName}/listDownloadUri",
-      code: 200,
-      apiVersion: "2026-03-15",
-    }),
-  ),
-).annotate({
-  identifier: "ListImageDownloadUriRequest",
-}) as any as S.Schema<ListImageDownloadUriRequest>;
-
-/** The versions that are compatible for this update package. */
-export type ImageDownloadResultCompatibleVersionsList = Array<string>;
-export const ImageDownloadResultCompatibleVersionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageDownloadResultCompatibleVersionsList>;
-
-/** The image download properties */
-export interface ImageDownloadResult {
-  /** The resource provisioning state */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-  /** The version of the package in the format 1.1.1 */
-  releaseVersion: string;
-  /** The release name */
-  releaseDisplayName: string;
-  /** The release notes */
-  releaseNotes: string;
-  /** The release date */
-  releaseDate: string;
-  /** The release type */
-  releaseType: ReleaseType;
-  /** The versions that are compatible for this update package. */
-  compatibleVersions?: ImageDownloadResultCompatibleVersionsList;
-  /** Image update properties for update release type image. */
-  updateProperties?: ImageUpdateProperties;
-  /** The unique identifier of the download */
-  transactionId: string;
-  /** The download URI */
-  downloadLink: string;
-  /** The download link expiry time */
-  linkExpiry: string;
-}
-export const ImageDownloadResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-    releaseVersion: S.String,
-    releaseDisplayName: S.String,
-    releaseNotes: S.String,
-    releaseDate: S.String,
-    releaseType: ReleaseType,
-    compatibleVersions: S.optional(ImageDownloadResultCompatibleVersionsList),
-    updateProperties: S.optional(ImageUpdateProperties),
-    transactionId: S.String,
-    downloadLink: S.String,
-    linkExpiry: S.String,
-  }),
-).annotate({
-  identifier: "ImageDownloadResult",
-}) as any as S.Schema<ImageDownloadResult>;
 
 export interface ListInstanceBySolutionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9154,20 +9282,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -9462,45 +9590,6 @@ export const SiteListResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SiteListResult" }) as any as S.Schema<SiteListResult>;
 
-export interface ListSiteByServiceGroupByServiceGroupRequest {
-  /** The name of the service group */
-  servicegroupName: string;
-}
-export const ListSiteByServiceGroupByServiceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      servicegroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListSiteByServiceGroupByServiceGroupRequest",
-  }) as any as S.Schema<ListSiteByServiceGroupByServiceGroupRequest>;
-
-export interface ListSiteBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListSiteBySubscriptionRequest",
-}) as any as S.Schema<ListSiteBySubscriptionRequest>;
-
 export interface ListSiteReferenceByContextRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9570,6 +9659,45 @@ export const SiteReferenceListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SiteReferenceListResult",
 }) as any as S.Schema<SiteReferenceListResult>;
+
+export interface ListSitesByServiceGroupByServiceGroupRequest {
+  /** The name of the service group */
+  servicegroupName: string;
+}
+export const ListSitesByServiceGroupByServiceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      servicegroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSitesByServiceGroupByServiceGroupRequest",
+  }) as any as S.Schema<ListSitesByServiceGroupByServiceGroupRequest>;
+
+export interface ListSitesBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSitesBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSitesBySubscriptionRequest",
+}) as any as S.Schema<ListSitesBySubscriptionRequest>;
 
 export interface ListSolutionByTargetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9649,24 +9777,25 @@ export const SolutionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SolutionListResult",
 }) as any as S.Schema<SolutionListResult>;
 
-export interface ListSolutionMetadataByParentRequest {
+export interface ListSolutionMetadatasByParentRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const ListSolutionMetadataByParentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.Edge/solutionMetadatas",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
+export const ListSolutionMetadatasByParentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{resourceUri}/providers/Microsoft.Edge/solutionMetadatas",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListSolutionMetadataByParentRequest",
-}) as any as S.Schema<ListSolutionMetadataByParentRequest>;
+  identifier: "ListSolutionMetadatasByParentRequest",
+}) as any as S.Schema<ListSolutionMetadatasByParentRequest>;
 
 /** Solution Metadata Resource attached to a Target or Site */
 export interface SolutionMetadata {
@@ -10399,6 +10528,286 @@ export const WorkflowVersionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkflowVersionListResult",
 }) as any as S.Schema<WorkflowVersionListResult>;
 
+export interface PublishTargetSolutionVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the target */
+  targetName: string;
+  /** Solution Version ARM Id */
+  solutionVersionId: string;
+}
+export const PublishTargetSolutionVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    solutionVersionId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/publishSolutionVersion",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishTargetSolutionVersionRequest",
+}) as any as S.Schema<PublishTargetSolutionVersionRequest>;
+
+export interface PublishTargetSolutionVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionVersionProperties;
+  /** The extended location of the resource. */
+  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const PublishTargetSolutionVersionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SolutionVersionProperties),
+      extendedLocation: S.optional(
+        AzureResourceManagerCommonTypesExtendedLocation,
+      ),
+      eTag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PublishTargetSolutionVersionResponse",
+}) as any as S.Schema<PublishTargetSolutionVersionResponse>;
+
+export interface RemoveConfigTemplateVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ConfigTemplate */
+  configTemplateName: string;
+  /** Version of the Resource */
+  version: string;
+}
+export const RemoveConfigTemplateVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    configTemplateName: S.String.pipe(T.Label()),
+    version: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/removeVersion",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveConfigTemplateVersionRequest",
+}) as any as S.Schema<RemoveConfigTemplateVersionRequest>;
+
+/** Remove Version response */
+export interface RemoveVersionResponse {
+  /** Status for remove version response */
+  status: string;
+}
+export const RemoveVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+  }),
+).annotate({
+  identifier: "RemoveVersionResponse",
+}) as any as S.Schema<RemoveVersionResponse>;
+
+export interface RemoveSchemaVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Schema */
+  schemaName: string;
+  /** Version of the Resource */
+  version: string;
+}
+export const RemoveSchemaVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schemaName: S.String.pipe(T.Label()),
+    version: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/schemas/{schemaName}/removeVersion",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveSchemaVersionRequest",
+}) as any as S.Schema<RemoveSchemaVersionRequest>;
+
+export interface RemoveSolutionTemplateVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SolutionTemplate */
+  solutionTemplateName: string;
+  /** Version of the Resource */
+  version: string;
+}
+export const RemoveSolutionTemplateVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      solutionTemplateName: S.String.pipe(T.Label()),
+      version: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/solutionTemplates/{solutionTemplateName}/removeVersion",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "RemoveSolutionTemplateVersionRequest",
+}) as any as S.Schema<RemoveSolutionTemplateVersionRequest>;
+
+export interface RemoveSolutionTemplateVersionResponse {}
+export const RemoveSolutionTemplateVersionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RemoveSolutionTemplateVersionResponse",
+}) as any as S.Schema<RemoveSolutionTemplateVersionResponse>;
+
+export interface RemoveTargetRevisionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the target */
+  targetName: string;
+  /** Solution Template ARM Id */
+  solutionTemplateId: string;
+  /** Solution Version Name */
+  solutionVersion: string;
+}
+export const RemoveTargetRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    solutionTemplateId: S.String,
+    solutionVersion: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/removeRevision",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveTargetRevisionRequest",
+}) as any as S.Schema<RemoveTargetRevisionRequest>;
+
+export interface RemoveTargetRevisionResponse {}
+export const RemoveTargetRevisionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RemoveTargetRevisionResponse",
+}) as any as S.Schema<RemoveTargetRevisionResponse>;
+
+/** Solution Dependencies */
+export type ReviewTargetSolutionVersionRequestSolutionDependenciesList =
+  Array<SolutionDependencyParameter>;
+export const ReviewTargetSolutionVersionRequestSolutionDependenciesList =
+  /*@__PURE__*/ S.Array(
+    SolutionDependencyParameter,
+  ) as any as S.Schema<ReviewTargetSolutionVersionRequestSolutionDependenciesList>;
+
+export interface ReviewTargetSolutionVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the target */
+  targetName: string;
+  /** Solution Template Version ARM Id */
+  solutionTemplateVersionId: string;
+  /** Solution Instance Name */
+  solutionInstanceName?: string;
+  /** Solution Dependencies */
+  solutionDependencies?: ReviewTargetSolutionVersionRequestSolutionDependenciesList;
+}
+export const ReviewTargetSolutionVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    solutionTemplateVersionId: S.String,
+    solutionInstanceName: S.optional(S.String),
+    solutionDependencies: S.optional(
+      ReviewTargetSolutionVersionRequestSolutionDependenciesList,
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/reviewSolutionVersion",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ReviewTargetSolutionVersionRequest",
+}) as any as S.Schema<ReviewTargetSolutionVersionRequest>;
+
+export interface ReviewTargetSolutionVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionVersionProperties;
+  /** The extended location of the resource. */
+  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const ReviewTargetSolutionVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SolutionVersionProperties),
+    extendedLocation: S.optional(
+      AzureResourceManagerCommonTypesExtendedLocation,
+    ),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReviewTargetSolutionVersionResponse",
+}) as any as S.Schema<ReviewTargetSolutionVersionResponse>;
+
 /** Schema Reference Properties */
 export interface SchemaReferencePropertiesInput {
   /** Schema Id of schema reference */
@@ -10554,34 +10963,6 @@ export const SchemasCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SchemasCreateOrUpdateResponse",
 }) as any as S.Schema<SchemasCreateOrUpdateResponse>;
-
-export interface SchemasRemoveVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Schema */
-  schemaName: string;
-  /** Version of the Resource */
-  version: string;
-}
-export const SchemasRemoveVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaName: S.String.pipe(T.Label()),
-    version: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/schemas/{schemaName}/removeVersion",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "SchemasRemoveVersionRequest",
-}) as any as S.Schema<SchemasRemoveVersionRequest>;
 
 export interface SchemaVersionsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11086,42 +11467,6 @@ export const SolutionTemplatesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "SolutionTemplatesCreateOrUpdateResponse",
 }) as any as S.Schema<SolutionTemplatesCreateOrUpdateResponse>;
 
-export interface SolutionTemplatesRemoveVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the SolutionTemplate */
-  solutionTemplateName: string;
-  /** Version of the Resource */
-  version: string;
-}
-export const SolutionTemplatesRemoveVersionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      solutionTemplateName: S.String.pipe(T.Label()),
-      version: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/solutionTemplates/{solutionTemplateName}/removeVersion",
-        code: 200,
-        apiVersion: "2026-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "SolutionTemplatesRemoveVersionRequest",
-}) as any as S.Schema<SolutionTemplatesRemoveVersionRequest>;
-
-export interface SolutionTemplatesRemoveVersionResponse {}
-export const SolutionTemplatesRemoveVersionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SolutionTemplatesRemoveVersionResponse",
-}) as any as S.Schema<SolutionTemplatesRemoveVersionResponse>;
-
 /** Bulk deploy target details */
 export interface BulkDeployTargetDetails {
   /** ArmId of Target Solution Version */
@@ -11180,42 +11525,6 @@ export const SolutionTemplateVersionsBulkDeploySolutionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "SolutionTemplateVersionsBulkDeploySolutionResponse",
   }) as any as S.Schema<SolutionTemplateVersionsBulkDeploySolutionResponse>;
-
-/** Solution dependencies */
-export type SolutionDependencyParameterDependenciesList =
-  Array<SolutionDependencyParameter>;
-export const SolutionDependencyParameterDependenciesList =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => SolutionDependencyParameter),
-  ) as any as S.Schema<SolutionDependencyParameterDependenciesList>;
-
-/** Solution Dependency Context */
-export interface SolutionDependencyParameter {
-  /** Solution Version Id */
-  solutionVersionId?: string;
-  /** Solution Template Id */
-  solutionTemplateId?: string;
-  /** Solution Template Version */
-  solutionTemplateVersion?: string;
-  /** Solution Instance Name */
-  solutionInstanceName?: string;
-  /** Target Id */
-  targetId?: string;
-  /** Solution dependencies */
-  dependencies?: SolutionDependencyParameterDependenciesList;
-}
-export const SolutionDependencyParameter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    solutionVersionId: S.optional(S.String),
-    solutionTemplateId: S.optional(S.String),
-    solutionTemplateVersion: S.optional(S.String),
-    solutionInstanceName: S.optional(S.String),
-    targetId: S.optional(S.String),
-    dependencies: S.optional(SolutionDependencyParameterDependenciesList),
-  }),
-).annotate({
-  identifier: "SolutionDependencyParameter",
-}) as any as S.Schema<SolutionDependencyParameter>;
 
 /** Solution dependencies */
 export type BulkPublishTargetDetailsSolutionDependenciesList =
@@ -11316,103 +11625,6 @@ export const SolutionTemplateVersionsBulkPublishSolutionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "SolutionTemplateVersionsBulkPublishSolutionResponse",
   }) as any as S.Schema<SolutionTemplateVersionsBulkPublishSolutionResponse>;
-
-/** Solution dependencies */
-export type BulkReviewTargetDetailsSolutionDependenciesList =
-  Array<SolutionDependencyParameter>;
-export const BulkReviewTargetDetailsSolutionDependenciesList =
-  /*@__PURE__*/ S.Array(
-    SolutionDependencyParameter,
-  ) as any as S.Schema<BulkReviewTargetDetailsSolutionDependenciesList>;
-
-/** Bulk publish target details */
-export interface BulkReviewTargetDetails {
-  /** ArmId of Target */
-  targetId: string;
-  /** Solution dependencies */
-  solutionDependencies?: BulkReviewTargetDetailsSolutionDependenciesList;
-  /** Name of the solution instance */
-  solutionInstanceName?: string;
-  /** Configuration of solution */
-  solutionConfiguration?: string;
-}
-export const BulkReviewTargetDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetId: S.String,
-    solutionDependencies: S.optional(
-      BulkReviewTargetDetailsSolutionDependenciesList,
-    ),
-    solutionInstanceName: S.optional(S.String),
-    solutionConfiguration: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BulkReviewTargetDetails",
-}) as any as S.Schema<BulkReviewTargetDetails>;
-
-/** Targets to which solution needs to be published */
-export type SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList =
-  Array<BulkReviewTargetDetails>;
-export const SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList =
-  /*@__PURE__*/ S.Array(
-    BulkReviewTargetDetails,
-  ) as any as S.Schema<SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList>;
-
-/** Solution dependencies */
-export type SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList =
-  Array<SolutionDependencyParameter>;
-export const SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList =
-  /*@__PURE__*/ S.Array(
-    SolutionDependencyParameter,
-  ) as any as S.Schema<SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList>;
-
-export interface SolutionTemplateVersionsBulkReviewSolutionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the SolutionTemplate */
-  solutionTemplateName: string;
-  /** The name of the SolutionTemplateVersion */
-  solutionTemplateVersionName: string;
-  /** Targets to which solution needs to be published */
-  targets: SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList;
-  /** Name of the solution instance */
-  solutionInstanceName?: string;
-  /** Solution dependencies */
-  solutionDependencies?: SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList;
-  /** Configuration of solution */
-  solutionConfiguration?: string;
-}
-export const SolutionTemplateVersionsBulkReviewSolutionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      solutionTemplateName: S.String.pipe(T.Label()),
-      solutionTemplateVersionName: S.String.pipe(T.Label()),
-      targets: SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList,
-      solutionInstanceName: S.optional(S.String),
-      solutionDependencies: S.optional(
-        SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList,
-      ),
-      solutionConfiguration: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/solutionTemplates/{solutionTemplateName}/versions/{solutionTemplateVersionName}/bulkReviewSolution",
-        code: 200,
-        apiVersion: "2026-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SolutionTemplateVersionsBulkReviewSolutionRequest",
-  }) as any as S.Schema<SolutionTemplateVersionsBulkReviewSolutionRequest>;
-
-export interface SolutionTemplateVersionsBulkReviewSolutionResponse {}
-export const SolutionTemplateVersionsBulkReviewSolutionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SolutionTemplateVersionsBulkReviewSolutionResponse",
-  }) as any as S.Schema<SolutionTemplateVersionsBulkReviewSolutionResponse>;
 
 export interface SolutionTemplateVersionsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11724,141 +11936,6 @@ export const TargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TargetsCreateOrUpdateResponse",
 }) as any as S.Schema<TargetsCreateOrUpdateResponse>;
 
-export interface TargetsInstallSolutionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the target */
-  targetName: string;
-  /** Solution Version ARM Id */
-  solutionVersionId: string;
-}
-export const TargetsInstallSolutionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    solutionVersionId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/installSolution",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsInstallSolutionRequest",
-}) as any as S.Schema<TargetsInstallSolutionRequest>;
-
-export interface TargetsInstallSolutionResponse {}
-export const TargetsInstallSolutionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TargetsInstallSolutionResponse",
-}) as any as S.Schema<TargetsInstallSolutionResponse>;
-
-export interface TargetsPublishSolutionVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the target */
-  targetName: string;
-  /** Solution Version ARM Id */
-  solutionVersionId: string;
-}
-export const TargetsPublishSolutionVersionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      targetName: S.String.pipe(T.Label()),
-      solutionVersionId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/publishSolutionVersion",
-        code: 200,
-        apiVersion: "2026-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "TargetsPublishSolutionVersionRequest",
-}) as any as S.Schema<TargetsPublishSolutionVersionRequest>;
-
-export interface TargetsPublishSolutionVersionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionVersionProperties;
-  /** The extended location of the resource. */
-  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const TargetsPublishSolutionVersionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SolutionVersionProperties),
-      extendedLocation: S.optional(
-        AzureResourceManagerCommonTypesExtendedLocation,
-      ),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "TargetsPublishSolutionVersionResponse",
-}) as any as S.Schema<TargetsPublishSolutionVersionResponse>;
-
-export interface TargetsRemoveRevisionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the target */
-  targetName: string;
-  /** Solution Template ARM Id */
-  solutionTemplateId: string;
-  /** Solution Version Name */
-  solutionVersion: string;
-}
-export const TargetsRemoveRevisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    solutionTemplateId: S.String,
-    solutionVersion: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/removeRevision",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsRemoveRevisionRequest",
-}) as any as S.Schema<TargetsRemoveRevisionRequest>;
-
-export interface TargetsRemoveRevisionResponse {}
-export const TargetsRemoveRevisionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TargetsRemoveRevisionResponse",
-}) as any as S.Schema<TargetsRemoveRevisionResponse>;
-
 /** Solution Dependencies */
 export type TargetsResolveConfigurationRequestSolutionDependenciesList =
   Array<SolutionDependencyParameter>;
@@ -11915,121 +11992,6 @@ export const ResolvedConfiguration = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResolvedConfiguration",
 }) as any as S.Schema<ResolvedConfiguration>;
-
-/** Solution Dependencies */
-export type TargetsReviewSolutionVersionRequestSolutionDependenciesList =
-  Array<SolutionDependencyParameter>;
-export const TargetsReviewSolutionVersionRequestSolutionDependenciesList =
-  /*@__PURE__*/ S.Array(
-    SolutionDependencyParameter,
-  ) as any as S.Schema<TargetsReviewSolutionVersionRequestSolutionDependenciesList>;
-
-export interface TargetsReviewSolutionVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the target */
-  targetName: string;
-  /** Solution Template Version ARM Id */
-  solutionTemplateVersionId: string;
-  /** Solution Instance Name */
-  solutionInstanceName?: string;
-  /** Solution Dependencies */
-  solutionDependencies?: TargetsReviewSolutionVersionRequestSolutionDependenciesList;
-}
-export const TargetsReviewSolutionVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    solutionTemplateVersionId: S.String,
-    solutionInstanceName: S.optional(S.String),
-    solutionDependencies: S.optional(
-      TargetsReviewSolutionVersionRequestSolutionDependenciesList,
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/reviewSolutionVersion",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsReviewSolutionVersionRequest",
-}) as any as S.Schema<TargetsReviewSolutionVersionRequest>;
-
-export interface TargetsReviewSolutionVersionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionVersionProperties;
-  /** The extended location of the resource. */
-  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const TargetsReviewSolutionVersionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SolutionVersionProperties),
-      extendedLocation: S.optional(
-        AzureResourceManagerCommonTypesExtendedLocation,
-      ),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "TargetsReviewSolutionVersionResponse",
-}) as any as S.Schema<TargetsReviewSolutionVersionResponse>;
-
-export interface TargetsUninstallSolutionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the target */
-  targetName: string;
-  /** Solution Template ARM Id */
-  solutionTemplateId: string;
-  /** Solution Instance Name */
-  solutionInstanceName?: string;
-}
-export const TargetsUninstallSolutionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    solutionTemplateId: S.String,
-    solutionInstanceName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/uninstallSolution",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsUninstallSolutionRequest",
-}) as any as S.Schema<TargetsUninstallSolutionRequest>;
-
-export interface TargetsUninstallSolutionResponse {}
-export const TargetsUninstallSolutionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TargetsUninstallSolutionResponse",
-}) as any as S.Schema<TargetsUninstallSolutionResponse>;
 
 export interface TargetsUnstageSolutionVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12093,14 +12055,52 @@ export const TargetsUnstageSolutionVersionResponse = /*@__PURE__*/ S.suspend(
   identifier: "TargetsUnstageSolutionVersionResponse",
 }) as any as S.Schema<TargetsUnstageSolutionVersionResponse>;
 
+export interface UninstallTargetSolutionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the target */
+  targetName: string;
+  /** Solution Template ARM Id */
+  solutionTemplateId: string;
+  /** Solution Instance Name */
+  solutionInstanceName?: string;
+}
+export const UninstallTargetSolutionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    solutionTemplateId: S.String,
+    solutionInstanceName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/targets/{targetName}/uninstallSolution",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UninstallTargetSolutionRequest",
+}) as any as S.Schema<UninstallTargetSolutionRequest>;
+
+export interface UninstallTargetSolutionResponse {}
+export const UninstallTargetSolutionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UninstallTargetSolutionResponse",
+}) as any as S.Schema<UninstallTargetSolutionResponse>;
+
 /** Resource tags. */
-export type ConfigTemplatesUpdateRequestTagsMap = {
+export type UpdateConfigTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigTemplatesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigTemplateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigTemplatesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConfigTemplateRequestTagsMap>;
 
 /** The updatable properties of the ConfigTemplate. */
 export interface ConfigTemplateUpdateProperties {
@@ -12123,7 +12123,7 @@ export interface UpdateConfigTemplateRequest {
   /** The name of the ConfigTemplate */
   configTemplateName: string;
   /** Resource tags. */
-  tags?: ConfigTemplatesUpdateRequestTagsMap;
+  tags?: UpdateConfigTemplateRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ConfigTemplateUpdateProperties;
 }
@@ -12132,7 +12132,7 @@ export const UpdateConfigTemplateRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     configTemplateName: S.String.pipe(T.Label()),
-    tags: S.optional(ConfigTemplatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateConfigTemplateRequestTagsMap),
     properties: S.optional(ConfigTemplateUpdateProperties),
   }).pipe(
     T.Http({
@@ -12147,13 +12147,13 @@ export const UpdateConfigTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConfigTemplateRequest>;
 
 /** Resource tags. */
-export type ConfigTemplatesUpdateResponseTagsMap = {
+export type UpdateConfigTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigTemplatesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigTemplatesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateConfigTemplateResponseTagsMap>;
 
 export interface UpdateConfigTemplateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12165,7 +12165,7 @@ export interface UpdateConfigTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConfigTemplatesUpdateResponseTagsMap;
+  tags?: UpdateConfigTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12179,7 +12179,7 @@ export const UpdateConfigTemplateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConfigTemplatesUpdateResponseTagsMap),
+    tags: S.optional(UpdateConfigTemplateResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigTemplateProperties),
     eTag: S.optional(S.String),
@@ -12228,7 +12228,7 @@ export const ConfigTemplateMetadataUpdateProperties = /*@__PURE__*/ S.suspend(
   identifier: "ConfigTemplateMetadataUpdateProperties",
 }) as any as S.Schema<ConfigTemplateMetadataUpdateProperties>;
 
-export interface UpdateConfigTemplateMetadataRequest {
+export interface UpdateConfigTemplateMetadatasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12240,26 +12240,27 @@ export interface UpdateConfigTemplateMetadataRequest {
   /** The resource-specific properties for this resource. */
   properties?: ConfigTemplateMetadataUpdateProperties;
 }
-export const UpdateConfigTemplateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    configTemplateName: S.String.pipe(T.Label()),
-    configTemplateMetadataName: S.String.pipe(T.Label()),
-    properties: S.optional(ConfigTemplateMetadataUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/configTemplateMetadatas/{configTemplateMetadataName}",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
+export const UpdateConfigTemplateMetadatasRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configTemplateName: S.String.pipe(T.Label()),
+      configTemplateMetadataName: S.String.pipe(T.Label()),
+      properties: S.optional(ConfigTemplateMetadataUpdateProperties),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/configTemplates/{configTemplateName}/configTemplateMetadatas/{configTemplateMetadataName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "UpdateConfigTemplateMetadataRequest",
-}) as any as S.Schema<UpdateConfigTemplateMetadataRequest>;
+  identifier: "UpdateConfigTemplateMetadatasRequest",
+}) as any as S.Schema<UpdateConfigTemplateMetadatasRequest>;
 
-export interface UpdateConfigTemplateMetadataResponse {
+export interface UpdateConfigTemplateMetadatasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12273,7 +12274,7 @@ export interface UpdateConfigTemplateMetadataResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const UpdateConfigTemplateMetadataResponse = /*@__PURE__*/ S.suspend(
+export const UpdateConfigTemplateMetadatasResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -12284,8 +12285,8 @@ export const UpdateConfigTemplateMetadataResponse = /*@__PURE__*/ S.suspend(
       eTag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "UpdateConfigTemplateMetadataResponse",
-}) as any as S.Schema<UpdateConfigTemplateMetadataResponse>;
+  identifier: "UpdateConfigTemplateMetadatasResponse",
+}) as any as S.Schema<UpdateConfigTemplateMetadatasResponse>;
 
 /** Config Template Version Properties */
 export interface ConfigTemplateVersionPropertiesUpdate {
@@ -12360,13 +12361,13 @@ export const UpdateConfigTemplateVersionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConfigTemplateVersionResponse>;
 
 /** Resource tags. */
-export type ConfigurationsUpdateRequestTagsMap = {
+export type UpdateConfigurationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigurationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConfigurationRequestTagsMap>;
 
 export interface UpdateConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12376,7 +12377,7 @@ export interface UpdateConfigurationRequest {
   /** Name of the Configuration */
   configurationName: string;
   /** Resource tags. */
-  tags?: ConfigurationsUpdateRequestTagsMap;
+  tags?: UpdateConfigurationRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ConfigurationPropertiesInput;
 }
@@ -12385,7 +12386,7 @@ export const UpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     configurationName: S.String.pipe(T.Label()),
-    tags: S.optional(ConfigurationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateConfigurationRequestTagsMap),
     properties: S.optional(ConfigurationPropertiesInput),
   }).pipe(
     T.Http({
@@ -12400,13 +12401,13 @@ export const UpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConfigurationRequest>;
 
 /** Resource tags. */
-export type ConfigurationsUpdateResponseTagsMap = {
+export type UpdateConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateConfigurationResponseTagsMap>;
 
 export interface UpdateConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12418,7 +12419,7 @@ export interface UpdateConfigurationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConfigurationsUpdateResponseTagsMap;
+  tags?: UpdateConfigurationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12430,7 +12431,7 @@ export const UpdateConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConfigurationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateConfigurationResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigurationProperties),
   }),
@@ -12489,13 +12490,11 @@ export const UpdateConfigurationReferenceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateConfigurationReferenceResponse>;
 
 /** Resource tags. */
-export type ContextsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ContextsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateContextRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateContextRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContextsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateContextRequestTagsMap>;
 
 /** List of Capabilities */
 export type ContextUpdatePropertiesCapabilitiesList = Array<Capability>;
@@ -12533,7 +12532,7 @@ export interface UpdateContextRequest {
   /** The name of the Context. */
   contextName: string;
   /** Resource tags. */
-  tags?: ContextsUpdateRequestTagsMap;
+  tags?: UpdateContextRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ContextUpdateProperties;
 }
@@ -12542,7 +12541,7 @@ export const UpdateContextRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     contextName: S.String.pipe(T.Label()),
-    tags: S.optional(ContextsUpdateRequestTagsMap),
+    tags: S.optional(UpdateContextRequestTagsMap),
     properties: S.optional(ContextUpdateProperties),
   }).pipe(
     T.Http({
@@ -12557,13 +12556,13 @@ export const UpdateContextRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContextRequest>;
 
 /** Resource tags. */
-export type ContextsUpdateResponseTagsMap = {
+export type UpdateContextResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContextsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContextResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContextsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateContextResponseTagsMap>;
 
 export interface UpdateContextResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12575,7 +12574,7 @@ export interface UpdateContextResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContextsUpdateResponseTagsMap;
+  tags?: UpdateContextResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12587,7 +12586,7 @@ export const UpdateContextResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContextsUpdateResponseTagsMap),
+    tags: S.optional(UpdateContextResponseTagsMap),
     location: S.String,
     properties: S.optional(ContextProperties),
   }),
@@ -12600,13 +12599,13 @@ export type DiagnosticUpdatePropertiesInput = ConfigurationPropertiesInput;
 export const DiagnosticUpdatePropertiesInput = ConfigurationPropertiesInput;
 
 /** Resource tags. */
-export type DiagnosticsUpdateRequestTagsMap = {
+export type UpdateDiagnosticRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DiagnosticsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDiagnosticRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiagnosticsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDiagnosticRequestTagsMap>;
 
 export interface UpdateDiagnosticRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12618,7 +12617,7 @@ export interface UpdateDiagnosticRequest {
   /** The resource-specific properties for this resource. */
   properties?: ConfigurationPropertiesInput;
   /** Resource tags. */
-  tags?: DiagnosticsUpdateRequestTagsMap;
+  tags?: UpdateDiagnosticRequestTagsMap;
 }
 export const UpdateDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12626,7 +12625,7 @@ export const UpdateDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     diagnosticName: S.String.pipe(T.Label()),
     properties: S.optional(ConfigurationPropertiesInput),
-    tags: S.optional(DiagnosticsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDiagnosticRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12640,13 +12639,13 @@ export const UpdateDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDiagnosticRequest>;
 
 /** Resource tags. */
-export type DiagnosticsUpdateResponseTagsMap = {
+export type UpdateDiagnosticResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DiagnosticsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDiagnosticResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiagnosticsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDiagnosticResponseTagsMap>;
 
 export interface UpdateDiagnosticResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12658,7 +12657,7 @@ export interface UpdateDiagnosticResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DiagnosticsUpdateResponseTagsMap;
+  tags?: UpdateDiagnosticResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12674,7 +12673,7 @@ export const UpdateDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DiagnosticsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDiagnosticResponseTagsMap),
     location: S.String,
     properties: S.optional(DiagnosticProperties),
     extendedLocation: S.optional(
@@ -12687,14 +12686,13 @@ export const UpdateDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDiagnosticResponse>;
 
 /** Resource tags. */
-export type DisconnectedOperationsUpdateRequestTagsMap = {
+export type UpdateDisconnectedOperationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DisconnectedOperationsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DisconnectedOperationsUpdateRequestTagsMap>;
+export const UpdateDisconnectedOperationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDisconnectedOperationRequestTagsMap>;
 
 /** The billing period */
 export interface BillingPeriodUpdate {
@@ -12765,7 +12763,7 @@ export interface UpdateDisconnectedOperationRequest {
   /** Name of the resource */
   name: string;
   /** Resource tags. */
-  tags?: DisconnectedOperationsUpdateRequestTagsMap;
+  tags?: UpdateDisconnectedOperationRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: DisconnectedOperationUpdateProperties;
 }
@@ -12774,7 +12772,7 @@ export const UpdateDisconnectedOperationRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(DisconnectedOperationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDisconnectedOperationRequestTagsMap),
     properties: S.optional(DisconnectedOperationUpdateProperties),
   }).pipe(
     T.Http({
@@ -12789,14 +12787,14 @@ export const UpdateDisconnectedOperationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDisconnectedOperationRequest>;
 
 /** Resource tags. */
-export type DisconnectedOperationsUpdateResponseTagsMap = {
+export type UpdateDisconnectedOperationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DisconnectedOperationsUpdateResponseTagsMap =
+export const UpdateDisconnectedOperationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DisconnectedOperationsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateDisconnectedOperationResponseTagsMap>;
 
 export interface UpdateDisconnectedOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12808,7 +12806,7 @@ export interface UpdateDisconnectedOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DisconnectedOperationsUpdateResponseTagsMap;
+  tags?: UpdateDisconnectedOperationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12820,7 +12818,7 @@ export const UpdateDisconnectedOperationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DisconnectedOperationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDisconnectedOperationResponseTagsMap),
     location: S.String,
     properties: S.optional(DisconnectedOperationProperties),
   }),
@@ -13310,11 +13308,11 @@ export type SchemaUpdatePropertiesInput = ConfigurationPropertiesInput;
 export const SchemaUpdatePropertiesInput = ConfigurationPropertiesInput;
 
 /** Resource tags. */
-export type SchemasUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const SchemasUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateSchemaRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateSchemaRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemasUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSchemaRequestTagsMap>;
 
 export interface UpdateSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13326,7 +13324,7 @@ export interface UpdateSchemaRequest {
   /** The resource-specific properties for this resource. */
   properties?: ConfigurationPropertiesInput;
   /** Resource tags. */
-  tags?: SchemasUpdateRequestTagsMap;
+  tags?: UpdateSchemaRequestTagsMap;
 }
 export const UpdateSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13334,7 +13332,7 @@ export const UpdateSchemaRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     schemaName: S.String.pipe(T.Label()),
     properties: S.optional(ConfigurationPropertiesInput),
-    tags: S.optional(SchemasUpdateRequestTagsMap),
+    tags: S.optional(UpdateSchemaRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -13348,13 +13346,11 @@ export const UpdateSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSchemaRequest>;
 
 /** Resource tags. */
-export type SchemasUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchemasUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateSchemaResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateSchemaResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemasUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSchemaResponseTagsMap>;
 
 export interface UpdateSchemaResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13366,7 +13362,7 @@ export interface UpdateSchemaResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchemasUpdateResponseTagsMap;
+  tags?: UpdateSchemaResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -13380,7 +13376,7 @@ export const UpdateSchemaResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchemasUpdateResponseTagsMap),
+    tags: S.optional(UpdateSchemaResponseTagsMap),
     location: S.String,
     properties: S.optional(SchemaProperties),
     eTag: S.optional(S.String),
@@ -13595,104 +13591,6 @@ export const UpdateSiteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSiteResponse",
 }) as any as S.Schema<UpdateSiteResponse>;
 
-export interface UpdateSiteByServiceGroupRequest {
-  /** The name of the service group */
-  servicegroupName: string;
-  /** The name of the Site */
-  siteName: string;
-  /** The updatable properties of the Site. */
-  properties?: SiteUpdateProperties;
-}
-export const UpdateSiteByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    servicegroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    properties: S.optional(SiteUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSiteByServiceGroupRequest",
-}) as any as S.Schema<UpdateSiteByServiceGroupRequest>;
-
-export interface UpdateSiteByServiceGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SiteProperties;
-}
-export const UpdateSiteByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SiteProperties),
-  }),
-).annotate({
-  identifier: "UpdateSiteByServiceGroupResponse",
-}) as any as S.Schema<UpdateSiteByServiceGroupResponse>;
-
-export interface UpdateSiteBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Site */
-  siteName: string;
-  /** The updatable properties of the Site. */
-  properties?: SiteUpdateProperties;
-}
-export const UpdateSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    properties: S.optional(SiteUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSiteBySubscriptionRequest",
-}) as any as S.Schema<UpdateSiteBySubscriptionRequest>;
-
-export interface UpdateSiteBySubscriptionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SiteProperties;
-}
-export const UpdateSiteBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SiteProperties),
-  }),
-).annotate({
-  identifier: "UpdateSiteBySubscriptionResponse",
-}) as any as S.Schema<UpdateSiteBySubscriptionResponse>;
-
 /** Site Reference Properties */
 export interface SiteReferencePropertiesUpdate {
   /** Azure Resource ID for Site */
@@ -13760,6 +13658,104 @@ export const UpdateSiteReferenceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateSiteReferenceResponse",
 }) as any as S.Schema<UpdateSiteReferenceResponse>;
+
+export interface UpdateSitesByServiceGroupRequest {
+  /** The name of the service group */
+  servicegroupName: string;
+  /** The name of the Site */
+  siteName: string;
+  /** The updatable properties of the Site. */
+  properties?: SiteUpdateProperties;
+}
+export const UpdateSitesByServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    servicegroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+    properties: S.optional(SiteUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSitesByServiceGroupRequest",
+}) as any as S.Schema<UpdateSitesByServiceGroupRequest>;
+
+export interface UpdateSitesByServiceGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SiteProperties;
+}
+export const UpdateSitesByServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SiteProperties),
+  }),
+).annotate({
+  identifier: "UpdateSitesByServiceGroupResponse",
+}) as any as S.Schema<UpdateSitesByServiceGroupResponse>;
+
+export interface UpdateSitesBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Site */
+  siteName: string;
+  /** The updatable properties of the Site. */
+  properties?: SiteUpdateProperties;
+}
+export const UpdateSitesBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+    properties: S.optional(SiteUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSitesBySubscriptionRequest",
+}) as any as S.Schema<UpdateSitesBySubscriptionRequest>;
+
+export interface UpdateSitesBySubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SiteProperties;
+}
+export const UpdateSitesBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SiteProperties),
+  }),
+).annotate({
+  identifier: "UpdateSitesBySubscriptionResponse",
+}) as any as S.Schema<UpdateSitesBySubscriptionResponse>;
 
 /** The updatable properties of the Solution. */
 export type SolutionUpdatePropertiesInput = ConfigurationPropertiesInput;
@@ -13829,13 +13825,13 @@ export const UpdateSolutionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSolutionResponse>;
 
 /** Resource tags. */
-export type SolutionTemplatesUpdateRequestTagsMap = {
+export type UpdateSolutionTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SolutionTemplatesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSolutionTemplateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SolutionTemplatesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSolutionTemplateRequestTagsMap>;
 
 /** List of capabilities */
 export type SolutionTemplateUpdatePropertiesCapabilitiesList = Array<string>;
@@ -13874,7 +13870,7 @@ export interface UpdateSolutionTemplateRequest {
   /** The name of the SolutionTemplate */
   solutionTemplateName: string;
   /** Resource tags. */
-  tags?: SolutionTemplatesUpdateRequestTagsMap;
+  tags?: UpdateSolutionTemplateRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: SolutionTemplateUpdateProperties;
 }
@@ -13883,7 +13879,7 @@ export const UpdateSolutionTemplateRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     solutionTemplateName: S.String.pipe(T.Label()),
-    tags: S.optional(SolutionTemplatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateSolutionTemplateRequestTagsMap),
     properties: S.optional(SolutionTemplateUpdateProperties),
   }).pipe(
     T.Http({
@@ -13898,13 +13894,13 @@ export const UpdateSolutionTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSolutionTemplateRequest>;
 
 /** Resource tags. */
-export type SolutionTemplatesUpdateResponseTagsMap = {
+export type UpdateSolutionTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SolutionTemplatesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSolutionTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SolutionTemplatesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSolutionTemplateResponseTagsMap>;
 
 export interface UpdateSolutionTemplateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13916,7 +13912,7 @@ export interface UpdateSolutionTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SolutionTemplatesUpdateResponseTagsMap;
+  tags?: UpdateSolutionTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -13930,7 +13926,7 @@ export const UpdateSolutionTemplateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SolutionTemplatesUpdateResponseTagsMap),
+    tags: S.optional(UpdateSolutionTemplateResponseTagsMap),
     location: S.String,
     properties: S.optional(SolutionTemplateProperties),
     eTag: S.optional(S.String),
@@ -14121,11 +14117,11 @@ export const UpdateSolutionVersionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSolutionVersionResponse>;
 
 /** Resource tags. */
-export type TargetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const TargetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateTargetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateTargetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TargetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateTargetRequestTagsMap>;
 
 /** target spec */
 export type TargetUpdatePropertiesTargetSpecificationMap = {
@@ -14187,7 +14183,7 @@ export interface UpdateTargetRequest {
   /** Name of the target */
   targetName: string;
   /** Resource tags. */
-  tags?: TargetsUpdateRequestTagsMap;
+  tags?: UpdateTargetRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: TargetUpdateProperties;
 }
@@ -14196,7 +14192,7 @@ export const UpdateTargetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     targetName: S.String.pipe(T.Label()),
-    tags: S.optional(TargetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateTargetRequestTagsMap),
     properties: S.optional(TargetUpdateProperties),
   }).pipe(
     T.Http({
@@ -14211,13 +14207,11 @@ export const UpdateTargetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTargetRequest>;
 
 /** Resource tags. */
-export type TargetsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TargetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateTargetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateTargetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TargetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateTargetResponseTagsMap>;
 
 export interface UpdateTargetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -14229,7 +14223,7 @@ export interface UpdateTargetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TargetsUpdateResponseTagsMap;
+  tags?: UpdateTargetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -14245,7 +14239,7 @@ export const UpdateTargetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TargetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateTargetResponseTagsMap),
     location: S.String,
     properties: S.optional(TargetProperties),
     eTag: S.optional(S.String),
@@ -14258,9 +14252,9 @@ export const UpdateTargetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTargetResponse>;
 
 /** The error detail. */
-export type TargetsUpdateExternalValidationStatusRequestErrorDetails =
+export type UpdateTargetExternalValidationStatusRequestErrorDetails =
   ConfigurationPropertiesInput;
-export const TargetsUpdateExternalValidationStatusRequestErrorDetails =
+export const UpdateTargetExternalValidationStatusRequestErrorDetails =
   ConfigurationPropertiesInput;
 
 /** Solution Instance Validation Status */
@@ -14678,6 +14672,36 @@ export const WorkflowVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "WorkflowVersionsCreateOrUpdateResponse",
 }) as any as S.Schema<WorkflowVersionsCreateOrUpdateResponse>;
 
+export type ArtifactsListDownloadUriError = AzureOpError;
+/** Get artifact download link. */
+export const ArtifactsListDownloadUri: API.OperationMethod<
+  ArtifactsListDownloadUriRequest,
+  ArtifactDownloadResult,
+  ArtifactsListDownloadUriError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArtifactsListDownloadUriRequest,
+  output: ArtifactDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkSolutionTemplateVersionReviewSolutionError = AzureOpError;
+/** Post request for bulk review */
+export const BulkSolutionTemplateVersionReviewSolution: API.OperationMethod<
+  BulkSolutionTemplateVersionReviewSolutionRequest,
+  BulkSolutionTemplateVersionReviewSolutionResponse,
+  BulkSolutionTemplateVersionReviewSolutionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkSolutionTemplateVersionReviewSolutionRequest,
+  output: BulkSolutionTemplateVersionReviewSolutionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ConfigTemplateMetadatasCreateOrUpdateError = AzureOpError;
 /** Create or update a ConfigTemplateMetadata Resource */
 export const ConfigTemplateMetadatasCreateOrUpdate: API.OperationMethod<
@@ -14718,21 +14742,6 @@ export const ConfigTemplatesLinkToHierarchies: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ConfigTemplatesLinkToHierarchiesRequest,
   output: ConfigTemplatesLinkToHierarchiesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigTemplatesRemoveVersionError = AzureOpError;
-/** Remove Config Template Version Resource */
-export const ConfigTemplatesRemoveVersion: API.OperationMethod<
-  ConfigTemplatesRemoveVersionRequest,
-  RemoveVersionResponse,
-  ConfigTemplatesRemoveVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigTemplatesRemoveVersionRequest,
-  output: RemoveVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14873,16 +14882,16 @@ export const DeleteConfigTemplate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteConfigTemplateMetadataError = AzureOpError;
+export type DeleteConfigTemplateMetadatasError = AzureOpError;
 /** Delete a ConfigTemplateMetadata Resource */
-export const DeleteConfigTemplateMetadata: API.OperationMethod<
-  DeleteConfigTemplateMetadataRequest,
-  DeleteConfigTemplateMetadataResponse,
-  DeleteConfigTemplateMetadataError,
+export const DeleteConfigTemplateMetadatas: API.OperationMethod<
+  DeleteConfigTemplateMetadatasRequest,
+  DeleteConfigTemplateMetadatasResponse,
+  DeleteConfigTemplateMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConfigTemplateMetadataRequest,
-  output: DeleteConfigTemplateMetadataResponse,
+  input: DeleteConfigTemplateMetadatasRequest,
+  output: DeleteConfigTemplateMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15053,16 +15062,16 @@ export const DeleteExecution: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteHardwareSettingError = AzureOpError;
+export type DeleteHardwareSettingsError = AzureOpError;
 /** Delete hardware settings */
-export const DeleteHardwareSetting: API.OperationMethod<
-  DeleteHardwareSettingRequest,
-  DeleteHardwareSettingResponse,
-  DeleteHardwareSettingError,
+export const DeleteHardwareSettings: API.OperationMethod<
+  DeleteHardwareSettingsRequest,
+  DeleteHardwareSettingsResponse,
+  DeleteHardwareSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHardwareSettingRequest,
-  output: DeleteHardwareSettingResponse,
+  input: DeleteHardwareSettingsRequest,
+  output: DeleteHardwareSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15143,36 +15152,6 @@ export const DeleteSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSiteByServiceGroupError = AzureOpError;
-/** Delete a Site */
-export const DeleteSiteByServiceGroup: API.OperationMethod<
-  DeleteSiteByServiceGroupRequest,
-  DeleteSiteByServiceGroupResponse,
-  DeleteSiteByServiceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSiteByServiceGroupRequest,
-  output: DeleteSiteByServiceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteSiteBySubscriptionError = AzureOpError;
-/** Delete a Site */
-export const DeleteSiteBySubscription: API.OperationMethod<
-  DeleteSiteBySubscriptionRequest,
-  DeleteSiteBySubscriptionResponse,
-  DeleteSiteBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSiteBySubscriptionRequest,
-  output: DeleteSiteBySubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteSiteReferenceError = AzureOpError;
 /** Get Site Reference Resource */
 export const DeleteSiteReference: API.OperationMethod<
@@ -15183,6 +15162,36 @@ export const DeleteSiteReference: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteSiteReferenceRequest,
   output: DeleteSiteReferenceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSitesByServiceGroupError = AzureOpError;
+/** Delete a Site */
+export const DeleteSitesByServiceGroup: API.OperationMethod<
+  DeleteSitesByServiceGroupRequest,
+  DeleteSitesByServiceGroupResponse,
+  DeleteSitesByServiceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSitesByServiceGroupRequest,
+  output: DeleteSitesByServiceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSitesBySubscriptionError = AzureOpError;
+/** Delete a Site */
+export const DeleteSitesBySubscription: API.OperationMethod<
+  DeleteSitesBySubscriptionRequest,
+  DeleteSitesBySubscriptionResponse,
+  DeleteSitesBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSitesBySubscriptionRequest,
+  output: DeleteSitesBySubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15428,16 +15437,16 @@ export const GetConfigTemplate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetConfigTemplateMetadataError = AzureOpError;
+export type GetConfigTemplateMetadatasError = AzureOpError;
 /** Get a ConfigTemplateMetadata Resource */
-export const GetConfigTemplateMetadata: API.OperationMethod<
-  GetConfigTemplateMetadataRequest,
-  GetConfigTemplateMetadataResponse,
-  GetConfigTemplateMetadataError,
+export const GetConfigTemplateMetadatas: API.OperationMethod<
+  GetConfigTemplateMetadatasRequest,
+  GetConfigTemplateMetadatasResponse,
+  GetConfigTemplateMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConfigTemplateMetadataRequest,
-  output: GetConfigTemplateMetadataResponse,
+  input: GetConfigTemplateMetadatasRequest,
+  output: GetConfigTemplateMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15623,31 +15632,31 @@ export const GetExecution: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetHardwareSettingError = AzureOpError;
+export type GetHardwareSettingsError = AzureOpError;
 /** Get the hardware settings resource */
-export const GetHardwareSetting: API.OperationMethod<
-  GetHardwareSettingRequest,
-  GetHardwareSettingResponse,
-  GetHardwareSettingError,
+export const GetHardwareSettings: API.OperationMethod<
+  GetHardwareSettingsRequest,
+  GetHardwareSettingsResponse,
+  GetHardwareSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHardwareSettingRequest,
-  output: GetHardwareSettingResponse,
+  input: GetHardwareSettingsRequest,
+  output: GetHardwareSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHierarchyConfigurationMetadataError = AzureOpError;
+export type GetHierarchyConfigurationMetadatasError = AzureOpError;
 /** Get a Hierarchy Configuration Metadata resource */
-export const GetHierarchyConfigurationMetadata: API.OperationMethod<
-  GetHierarchyConfigurationMetadataRequest,
-  GetHierarchyConfigurationMetadataResponse,
-  GetHierarchyConfigurationMetadataError,
+export const GetHierarchyConfigurationMetadatas: API.OperationMethod<
+  GetHierarchyConfigurationMetadatasRequest,
+  GetHierarchyConfigurationMetadatasResponse,
+  GetHierarchyConfigurationMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHierarchyConfigurationMetadataRequest,
-  output: GetHierarchyConfigurationMetadataResponse,
+  input: GetHierarchyConfigurationMetadatasRequest,
+  output: GetHierarchyConfigurationMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15788,36 +15797,6 @@ export const GetSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSiteByServiceGroupError = AzureOpError;
-/** Get a Site */
-export const GetSiteByServiceGroup: API.OperationMethod<
-  GetSiteByServiceGroupRequest,
-  GetSiteByServiceGroupResponse,
-  GetSiteByServiceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSiteByServiceGroupRequest,
-  output: GetSiteByServiceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSiteBySubscriptionError = AzureOpError;
-/** Get a Site */
-export const GetSiteBySubscription: API.OperationMethod<
-  GetSiteBySubscriptionRequest,
-  GetSiteBySubscriptionResponse,
-  GetSiteBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSiteBySubscriptionRequest,
-  output: GetSiteBySubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetSiteReferenceError = AzureOpError;
 /** Get Site Reference Resource */
 export const GetSiteReference: API.OperationMethod<
@@ -15828,6 +15807,36 @@ export const GetSiteReference: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSiteReferenceRequest,
   output: GetSiteReferenceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSitesByServiceGroupError = AzureOpError;
+/** Get a Site */
+export const GetSitesByServiceGroup: API.OperationMethod<
+  GetSitesByServiceGroupRequest,
+  GetSitesByServiceGroupResponse,
+  GetSitesByServiceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSitesByServiceGroupRequest,
+  output: GetSitesByServiceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSitesBySubscriptionError = AzureOpError;
+/** Get a Site */
+export const GetSitesBySubscription: API.OperationMethod<
+  GetSitesBySubscriptionRequest,
+  GetSitesBySubscriptionResponse,
+  GetSitesBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSitesBySubscriptionRequest,
+  output: GetSitesBySubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15848,16 +15857,16 @@ export const GetSolution: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSolutionMetadataError = AzureOpError;
+export type GetSolutionMetadatasError = AzureOpError;
 /** Get a Solution resource */
-export const GetSolutionMetadata: API.OperationMethod<
-  GetSolutionMetadataRequest,
-  GetSolutionMetadataResponse,
-  GetSolutionMetadataError,
+export const GetSolutionMetadatas: API.OperationMethod<
+  GetSolutionMetadatasRequest,
+  GetSolutionMetadatasResponse,
+  GetSolutionMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSolutionMetadataRequest,
-  output: GetSolutionMetadataResponse,
+  input: GetSolutionMetadatasRequest,
+  output: GetSolutionMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15998,6 +16007,36 @@ export const HardwareSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ImagesListDownloadUriError = AzureOpError;
+/** Get the URI to download the image. */
+export const ImagesListDownloadUri: API.OperationMethod<
+  ImagesListDownloadUriRequest,
+  ImageDownloadResult,
+  ImagesListDownloadUriError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImagesListDownloadUriRequest,
+  output: ImageDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InstallTargetSolutionError = AzureOpError;
+/** Post request to deploy */
+export const InstallTargetSolution: API.OperationMethod<
+  InstallTargetSolutionRequest,
+  InstallTargetSolutionResponse,
+  InstallTargetSolutionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InstallTargetSolutionRequest,
+  output: InstallTargetSolutionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type InstancesCreateOrUpdateError = AzureOpError;
 /** Create or update Instance Resource */
 export const InstancesCreateOrUpdate: API.OperationMethod<
@@ -16023,21 +16062,6 @@ export const ListArtifactByParent: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListArtifactByParentRequest,
   output: ArtifactListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListArtifactDownloadUriError = AzureOpError;
-/** Get artifact download link. */
-export const ListArtifactDownloadUri: API.OperationMethod<
-  ListArtifactDownloadUriRequest,
-  ArtifactDownloadResult,
-  ListArtifactDownloadUriError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListArtifactDownloadUriRequest,
-  output: ArtifactDownloadResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16073,15 +16097,15 @@ export const ListConfigTemplateBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListConfigTemplateMetadataByConfigTemplateError = AzureOpError;
+export type ListConfigTemplateMetadatasByConfigTemplateError = AzureOpError;
 /** List by ConfigTemplate */
-export const ListConfigTemplateMetadataByConfigTemplate: API.OperationMethod<
-  ListConfigTemplateMetadataByConfigTemplateRequest,
+export const ListConfigTemplateMetadatasByConfigTemplate: API.OperationMethod<
+  ListConfigTemplateMetadatasByConfigTemplateRequest,
   ConfigTemplateMetadataListResult,
-  ListConfigTemplateMetadataByConfigTemplateError,
+  ListConfigTemplateMetadatasByConfigTemplateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConfigTemplateMetadataByConfigTemplateRequest,
+  input: ListConfigTemplateMetadatasByConfigTemplateRequest,
   output: ConfigTemplateMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -16344,30 +16368,30 @@ export const ListExecutionByWorkflowVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListHardwareSettingByParentError = AzureOpError;
+export type ListHardwareSettingsByParentError = AzureOpError;
 /** List by parent */
-export const ListHardwareSettingByParent: API.OperationMethod<
-  ListHardwareSettingByParentRequest,
+export const ListHardwareSettingsByParent: API.OperationMethod<
+  ListHardwareSettingsByParentRequest,
   HardwareSettingListResult,
-  ListHardwareSettingByParentError,
+  ListHardwareSettingsByParentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHardwareSettingByParentRequest,
+  input: ListHardwareSettingsByParentRequest,
   output: HardwareSettingListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHierarchyConfigurationMetadataByParentError = AzureOpError;
+export type ListHierarchyConfigurationMetadatasByParentError = AzureOpError;
 /** List Solution resources */
-export const ListHierarchyConfigurationMetadataByParent: API.OperationMethod<
-  ListHierarchyConfigurationMetadataByParentRequest,
+export const ListHierarchyConfigurationMetadatasByParent: API.OperationMethod<
+  ListHierarchyConfigurationMetadatasByParentRequest,
   HierarchyConfigurationMetadataListResult,
-  ListHierarchyConfigurationMetadataByParentError,
+  ListHierarchyConfigurationMetadatasByParentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHierarchyConfigurationMetadataByParentRequest,
+  input: ListHierarchyConfigurationMetadatasByParentRequest,
   output: HierarchyConfigurationMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -16400,21 +16424,6 @@ export const ListImageByDisconnectedOperation: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListImageByDisconnectedOperationRequest,
   output: ImageListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListImageDownloadUriError = AzureOpError;
-/** Get the URI to download the image. */
-export const ListImageDownloadUri: API.OperationMethod<
-  ListImageDownloadUriRequest,
-  ImageDownloadResult,
-  ListImageDownloadUriError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListImageDownloadUriRequest,
-  output: ImageDownloadResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16555,36 +16564,6 @@ export const ListSiteByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSiteByServiceGroupByServiceGroupError = AzureOpError;
-/** List Site resources by scope */
-export const ListSiteByServiceGroupByServiceGroup: API.OperationMethod<
-  ListSiteByServiceGroupByServiceGroupRequest,
-  SiteListResult,
-  ListSiteByServiceGroupByServiceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteByServiceGroupByServiceGroupRequest,
-  output: SiteListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSiteBySubscriptionError = AzureOpError;
-/** List Site resources by scope */
-export const ListSiteBySubscription: API.OperationMethod<
-  ListSiteBySubscriptionRequest,
-  SiteListResult,
-  ListSiteBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteBySubscriptionRequest,
-  output: SiteListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListSiteReferenceByContextError = AzureOpError;
 /** List Site Reference Resources */
 export const ListSiteReferenceByContext: API.OperationMethod<
@@ -16595,6 +16574,36 @@ export const ListSiteReferenceByContext: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListSiteReferenceByContextRequest,
   output: SiteReferenceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSitesByServiceGroupByServiceGroupError = AzureOpError;
+/** List Site resources by scope */
+export const ListSitesByServiceGroupByServiceGroup: API.OperationMethod<
+  ListSitesByServiceGroupByServiceGroupRequest,
+  SiteListResult,
+  ListSitesByServiceGroupByServiceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSitesByServiceGroupByServiceGroupRequest,
+  output: SiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSitesBySubscriptionError = AzureOpError;
+/** List Site resources by scope */
+export const ListSitesBySubscription: API.OperationMethod<
+  ListSitesBySubscriptionRequest,
+  SiteListResult,
+  ListSitesBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSitesBySubscriptionRequest,
+  output: SiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16615,15 +16624,15 @@ export const ListSolutionByTarget: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSolutionMetadataByParentError = AzureOpError;
+export type ListSolutionMetadatasByParentError = AzureOpError;
 /** List Solution resources */
-export const ListSolutionMetadataByParent: API.OperationMethod<
-  ListSolutionMetadataByParentRequest,
+export const ListSolutionMetadatasByParent: API.OperationMethod<
+  ListSolutionMetadatasByParentRequest,
   SolutionMetadataListResult,
-  ListSolutionMetadataByParentError,
+  ListSolutionMetadatasByParentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSolutionMetadataByParentRequest,
+  input: ListSolutionMetadatasByParentRequest,
   output: SolutionMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -16780,6 +16789,96 @@ export const ListWorkflowVersionByWorkflow: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PublishTargetSolutionVersionError = AzureOpError;
+/** Post request to publish */
+export const PublishTargetSolutionVersion: API.OperationMethod<
+  PublishTargetSolutionVersionRequest,
+  PublishTargetSolutionVersionResponse,
+  PublishTargetSolutionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishTargetSolutionVersionRequest,
+  output: PublishTargetSolutionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveConfigTemplateVersionError = AzureOpError;
+/** Remove Config Template Version Resource */
+export const RemoveConfigTemplateVersion: API.OperationMethod<
+  RemoveConfigTemplateVersionRequest,
+  RemoveVersionResponse,
+  RemoveConfigTemplateVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveConfigTemplateVersionRequest,
+  output: RemoveVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveSchemaVersionError = AzureOpError;
+/** Remove Schema Version Resource */
+export const RemoveSchemaVersion: API.OperationMethod<
+  RemoveSchemaVersionRequest,
+  RemoveVersionResponse,
+  RemoveSchemaVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveSchemaVersionRequest,
+  output: RemoveVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveSolutionTemplateVersionError = AzureOpError;
+/** Remove Solution Template Version Resource */
+export const RemoveSolutionTemplateVersion: API.OperationMethod<
+  RemoveSolutionTemplateVersionRequest,
+  RemoveSolutionTemplateVersionResponse,
+  RemoveSolutionTemplateVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveSolutionTemplateVersionRequest,
+  output: RemoveSolutionTemplateVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveTargetRevisionError = AzureOpError;
+/** Post request to remove solution version revision */
+export const RemoveTargetRevision: API.OperationMethod<
+  RemoveTargetRevisionRequest,
+  RemoveTargetRevisionResponse,
+  RemoveTargetRevisionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveTargetRevisionRequest,
+  output: RemoveTargetRevisionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReviewTargetSolutionVersionError = AzureOpError;
+/** Post request to review configuration */
+export const ReviewTargetSolutionVersion: API.OperationMethod<
+  ReviewTargetSolutionVersionRequest,
+  ReviewTargetSolutionVersionResponse,
+  ReviewTargetSolutionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReviewTargetSolutionVersionRequest,
+  output: ReviewTargetSolutionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SchemaReferencesCreateOrUpdateError = AzureOpError;
 /** Create or update a Schema Reference Resource */
 export const SchemaReferencesCreateOrUpdate: API.OperationMethod<
@@ -16805,21 +16904,6 @@ export const SchemasCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SchemasCreateOrUpdateRequest,
   output: SchemasCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchemasRemoveVersionError = AzureOpError;
-/** Remove Schema Version Resource */
-export const SchemasRemoveVersion: API.OperationMethod<
-  SchemasRemoveVersionRequest,
-  RemoveVersionResponse,
-  SchemasRemoveVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchemasRemoveVersionRequest,
-  output: RemoveVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16930,21 +17014,6 @@ export const SolutionTemplatesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SolutionTemplatesRemoveVersionError = AzureOpError;
-/** Remove Solution Template Version Resource */
-export const SolutionTemplatesRemoveVersion: API.OperationMethod<
-  SolutionTemplatesRemoveVersionRequest,
-  SolutionTemplatesRemoveVersionResponse,
-  SolutionTemplatesRemoveVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionTemplatesRemoveVersionRequest,
-  output: SolutionTemplatesRemoveVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SolutionTemplateVersionsBulkDeploySolutionError = AzureOpError;
 /** Post request for bulk deploy */
 export const SolutionTemplateVersionsBulkDeploySolution: API.OperationMethod<
@@ -16970,21 +17039,6 @@ export const SolutionTemplateVersionsBulkPublishSolution: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SolutionTemplateVersionsBulkPublishSolutionRequest,
   output: SolutionTemplateVersionsBulkPublishSolutionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionTemplateVersionsBulkReviewSolutionError = AzureOpError;
-/** Post request for bulk review */
-export const SolutionTemplateVersionsBulkReviewSolution: API.OperationMethod<
-  SolutionTemplateVersionsBulkReviewSolutionRequest,
-  SolutionTemplateVersionsBulkReviewSolutionResponse,
-  SolutionTemplateVersionsBulkReviewSolutionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionTemplateVersionsBulkReviewSolutionRequest,
-  output: SolutionTemplateVersionsBulkReviewSolutionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17035,51 +17089,6 @@ export const TargetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TargetsInstallSolutionError = AzureOpError;
-/** Post request to deploy */
-export const TargetsInstallSolution: API.OperationMethod<
-  TargetsInstallSolutionRequest,
-  TargetsInstallSolutionResponse,
-  TargetsInstallSolutionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsInstallSolutionRequest,
-  output: TargetsInstallSolutionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsPublishSolutionVersionError = AzureOpError;
-/** Post request to publish */
-export const TargetsPublishSolutionVersion: API.OperationMethod<
-  TargetsPublishSolutionVersionRequest,
-  TargetsPublishSolutionVersionResponse,
-  TargetsPublishSolutionVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsPublishSolutionVersionRequest,
-  output: TargetsPublishSolutionVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsRemoveRevisionError = AzureOpError;
-/** Post request to remove solution version revision */
-export const TargetsRemoveRevision: API.OperationMethod<
-  TargetsRemoveRevisionRequest,
-  TargetsRemoveRevisionResponse,
-  TargetsRemoveRevisionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsRemoveRevisionRequest,
-  output: TargetsRemoveRevisionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TargetsResolveConfigurationError = AzureOpError;
 /** Post request to resolve configuration */
 export const TargetsResolveConfiguration: API.OperationMethod<
@@ -17090,36 +17099,6 @@ export const TargetsResolveConfiguration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TargetsResolveConfigurationRequest,
   output: ResolvedConfiguration,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsReviewSolutionVersionError = AzureOpError;
-/** Post request to review configuration */
-export const TargetsReviewSolutionVersion: API.OperationMethod<
-  TargetsReviewSolutionVersionRequest,
-  TargetsReviewSolutionVersionResponse,
-  TargetsReviewSolutionVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsReviewSolutionVersionRequest,
-  output: TargetsReviewSolutionVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsUninstallSolutionError = AzureOpError;
-/** Post request to uninstall */
-export const TargetsUninstallSolution: API.OperationMethod<
-  TargetsUninstallSolutionRequest,
-  TargetsUninstallSolutionResponse,
-  TargetsUninstallSolutionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsUninstallSolutionRequest,
-  output: TargetsUninstallSolutionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17140,6 +17119,21 @@ export const TargetsUnstageSolutionVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UninstallTargetSolutionError = AzureOpError;
+/** Post request to uninstall */
+export const UninstallTargetSolution: API.OperationMethod<
+  UninstallTargetSolutionRequest,
+  UninstallTargetSolutionResponse,
+  UninstallTargetSolutionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UninstallTargetSolutionRequest,
+  output: UninstallTargetSolutionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateConfigTemplateError = AzureOpError;
 /** update a Config Template Resource */
 export const UpdateConfigTemplate: API.OperationMethod<
@@ -17155,16 +17149,16 @@ export const UpdateConfigTemplate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateConfigTemplateMetadataError = AzureOpError;
+export type UpdateConfigTemplateMetadatasError = AzureOpError;
 /** Update a ConfigTemplateMetadata Resource */
-export const UpdateConfigTemplateMetadata: API.OperationMethod<
-  UpdateConfigTemplateMetadataRequest,
-  UpdateConfigTemplateMetadataResponse,
-  UpdateConfigTemplateMetadataError,
+export const UpdateConfigTemplateMetadatas: API.OperationMethod<
+  UpdateConfigTemplateMetadatasRequest,
+  UpdateConfigTemplateMetadatasResponse,
+  UpdateConfigTemplateMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateConfigTemplateMetadataRequest,
-  output: UpdateConfigTemplateMetadataResponse,
+  input: UpdateConfigTemplateMetadatasRequest,
+  output: UpdateConfigTemplateMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17410,36 +17404,6 @@ export const UpdateSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSiteByServiceGroupError = AzureOpError;
-/** Update a Site */
-export const UpdateSiteByServiceGroup: API.OperationMethod<
-  UpdateSiteByServiceGroupRequest,
-  UpdateSiteByServiceGroupResponse,
-  UpdateSiteByServiceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSiteByServiceGroupRequest,
-  output: UpdateSiteByServiceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSiteBySubscriptionError = AzureOpError;
-/** Update a Site */
-export const UpdateSiteBySubscription: API.OperationMethod<
-  UpdateSiteBySubscriptionRequest,
-  UpdateSiteBySubscriptionResponse,
-  UpdateSiteBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSiteBySubscriptionRequest,
-  output: UpdateSiteBySubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateSiteReferenceError = AzureOpError;
 /** Get Site Reference Resource */
 export const UpdateSiteReference: API.OperationMethod<
@@ -17450,6 +17414,36 @@ export const UpdateSiteReference: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateSiteReferenceRequest,
   output: UpdateSiteReferenceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSitesByServiceGroupError = AzureOpError;
+/** Update a Site */
+export const UpdateSitesByServiceGroup: API.OperationMethod<
+  UpdateSitesByServiceGroupRequest,
+  UpdateSitesByServiceGroupResponse,
+  UpdateSitesByServiceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSitesByServiceGroupRequest,
+  output: UpdateSitesByServiceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSitesBySubscriptionError = AzureOpError;
+/** Update a Site */
+export const UpdateSitesBySubscription: API.OperationMethod<
+  UpdateSitesBySubscriptionRequest,
+  UpdateSitesBySubscriptionResponse,
+  UpdateSitesBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSitesBySubscriptionRequest,
+  output: UpdateSitesBySubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

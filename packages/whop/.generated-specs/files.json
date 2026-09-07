@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.files#ListFilesRequestFileIdsList": {
@@ -471,7 +472,7 @@
         "smithy.api#documentation": "Create File\n\nCreates a file and returns a presigned destination to upload its bytes to. PUT the bytes to `upload_url` (single-part), or to each of `multipart_upload_urls` and then call Complete File Multipart Upload. Once the bytes land the file becomes `ready`, and its ID can be attached wherever a file is accepted — account legal documents, dispute evidence documents."
       }
     },
-    "com.whop.files#RetrieveFileRequest": {
+    "com.whop.files#GetFileRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -487,10 +488,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.files#RetrieveFile": {
+    "com.whop.files#GetFile": {
       "type": "operation",
       "input": {
-        "target": "com.whop.files#RetrieveFileRequest"
+        "target": "com.whop.files#GetFileRequest"
       },
       "output": {
         "target": "com.whop.files#File"
@@ -647,16 +648,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.files#ListFiles"
+          "target": "com.whop.files#CompleteFile"
         },
         {
           "target": "com.whop.files#CreateFile"
         },
         {
-          "target": "com.whop.files#RetrieveFile"
+          "target": "com.whop.files#GetFile"
         },
         {
-          "target": "com.whop.files#CompleteFile"
+          "target": "com.whop.files#ListFiles"
         }
       ],
       "traits": {

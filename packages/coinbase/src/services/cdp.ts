@@ -236,6 +236,7 @@ export const PaymentError = /*@__PURE__*/ S.suspend(() =>
 export type PaymentSourceNetwork =
   | "arbitrum"
   | "arbitrum-sepolia"
+  | "avalanche"
   | "base"
   | "base-sepolia"
   | "ethereum"
@@ -1309,8 +1310,8 @@ export const CapabilitiesMap = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapabilitiesMap",
 }) as any as S.Schema<CapabilitiesMap>;
 
-/** The current status of a requirement: - `due`: Must be submitted - `pending`: Submitted, awaiting verification - `rejected`: Verification failed - customer must resubmit When verification passes, the requirement disappears from the response entirely. */
-export type RequirementStatus = "due" | "pending" | "rejected";
+/** The current status of a requirement: - `due`: Must be submitted and no set deadline has passed - `past_due`: Must be submitted and a set deadline has passed - `pending`: Submitted, awaiting verification - `rejected`: Verification failed - customer must resubmit For a Terms of Service requirement, `past_due` applies if any unaccepted version has a deadline set in the past. Otherwise the status is `due`, including when a version has no deadline and requires immediate acceptance, or when every set deadline is in the future and acceptance is in grace. When verification passes, the requirement disappears from the response entirely. */
+export type RequirementStatus = "due" | "past_due" | "pending" | "rejected";
 export const RequirementStatus = /*@__PURE__*/ S.String;
 
 /** The name of a capability. Capabilities represent granular functional permissions that determine what actions a customer can perform. Each capability must be explicitly requested before use. */
@@ -1325,7 +1326,7 @@ export type CapabilityName =
   | "transferStablecoin";
 export const CapabilityName = /*@__PURE__*/ S.String;
 
-/** List of capabilities affected by this requirement, sorted alphabetically. Only present for `due`, `pending`, or `rejected` statuses. */
+/** List of capabilities affected by this requirement, sorted alphabetically. Only present for `due`, `past_due`, `pending`, or `rejected` statuses. */
 export type RequirementImpactList = Array<CapabilityName>;
 export const RequirementImpactList = /*@__PURE__*/ S.Array(
   CapabilityName,
@@ -1337,10 +1338,12 @@ export const TermsOfServiceLanguagesList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<TermsOfServiceLanguagesList>;
 
-/** Metadata for one Terms of Service document a Customer may need to accept. Each entry represents one logical document (identified by `versionId`) that may be published in multiple languages — `languages` lists the BCP 47 language tags the document is available to view and accept in. `url` is the canonical, language-agnostic document URL; partners append `?lang=<tag>` (where `<tag>` is one of `languages`) to retrieve a specific translation, and omit the parameter to let the documentation site choose a default. This API does not serve Terms of Service body content; this schema describes metadata only. */
+/** Metadata for one Terms of Service document a Customer may need to accept. Each entry represents one logical document (identified by `versionId`) that may be published in multiple languages — `languages` lists the BCP 47 language tags the document is available to view and accept in. An optional `deadline` records the end of a grace period: a future deadline is non-blocking `due`, an elapsed deadline is `past_due`, and no deadline means acceptance is required immediately with status `due`. `url` is the canonical, language-agnostic document URL; partners append `?lang=<tag>` (where `<tag>` is one of `languages`) to retrieve a specific translation, and omit the parameter to let the documentation site choose a default. This API does not serve Terms of Service body content; this schema describes metadata only. */
 export interface TermsOfService {
   /** Stable identifier for this Terms of Service document. Submit this value as `versionId` on a `TosAcceptance` to record acceptance. */
   versionId: string;
+  /** Optional deadline by which the Customer must accept this Terms of Service version, in ISO 8601 / RFC 3339 format. A future deadline is non-blocking grace with requirement status `due`; an elapsed deadline produces `past_due`. When omitted, acceptance is required immediately and the requirement status remains `due`. */
+  deadline?: string;
   /** BCP 47 language tags this Terms of Service document can be viewed and accepted in. The list is non-empty (every published document carries at least one language). Append the chosen tag to `url` as `?lang=<tag>` to fetch the localized document, and submit the same tag as `language` on the corresponding `TosAcceptance` to record which translation the Customer reviewed. */
   languages: TermsOfServiceLanguagesList;
   /** Canonical, language-agnostic URL where the Terms of Service document is hosted (for example, `https://docs.cdp.coinbase.com/legal/terms/us_individual`). Append `?lang=<tag>` (where `<tag>` is one of `languages`) to retrieve a specific translation; without the parameter, the documentation site renders a default translation. */
@@ -1349,12 +1352,13 @@ export interface TermsOfService {
 export const TermsOfService = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     versionId: S.String,
+    deadline: S.optional(S.String),
     languages: TermsOfServiceLanguagesList,
     url: S.String,
   }),
 ).annotate({ identifier: "TermsOfService" }) as any as S.Schema<TermsOfService>;
 
-/** Required Terms of Service versions the Customer has not yet accepted, with the metadata needed to render an acceptance UI (each entry carries a stable `versionId`, the BCP 47 `languages` the version is published in, and a language-agnostic `url`). This field appears only under the requirement key `tos`; do not infer meaning from `tosVersions` on other requirement keys. Only populated for the `tos` requirement; omitted on every other requirement key. Submit each `versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or `Create Customer`) together with `language` and `acceptedAt` to clear the requirement. */
+/** Required Terms of Service versions the Customer has not yet accepted, with the metadata needed to render an acceptance UI (each entry carries a stable `versionId`, the BCP 47 `languages` the version is published in, an optional per-version `deadline`, and a language-agnostic `url`). A missing deadline means acceptance is required immediately while the requirement status remains `due`; only a set deadline in the past produces `past_due`. This field appears only under the requirement key `tos`; do not infer meaning from `tosVersions` on other requirement keys. Only populated for the `tos` requirement; omitted on every other requirement key. Submit each `versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or `Create Customer`) together with `language` and `acceptedAt` to clear the requirement. */
 export type RequirementTosVersionsList = Array<TermsOfService>;
 export const RequirementTosVersionsList = /*@__PURE__*/ S.Array(
   TermsOfService,
@@ -1373,11 +1377,11 @@ export const RequirementTaxFormsList = /*@__PURE__*/ S.Array(
 /** A single requirement that a customer must submit to enable capabilities. Requirements are only shown for requested capabilities. */
 export interface Requirement {
   status: RequirementStatus;
-  /** Optional deadline by which this requirement must be satisfied. For the `tos` requirement, when present, `deadline` is the earliest deadline among the unaccepted required Terms of Service versions. */
+  /** Optional aggregate deadline by which this requirement must be satisfied. For the `tos` requirement, this is the earliest set deadline among the unaccepted required Terms of Service versions listed in `tosVersions`. It is omitted only when none of the unaccepted versions has a deadline. Do not infer `past_due` or whether the requirement blocks from this aggregate field alone; inspect each version's deadline. */
   deadline?: string;
-  /** List of capabilities affected by this requirement, sorted alphabetically. Only present for `due`, `pending`, or `rejected` statuses. */
+  /** List of capabilities affected by this requirement, sorted alphabetically. Only present for `due`, `past_due`, `pending`, or `rejected` statuses. */
   impact?: RequirementImpactList;
-  /** Required Terms of Service versions the Customer has not yet accepted, with the metadata needed to render an acceptance UI (each entry carries a stable `versionId`, the BCP 47 `languages` the version is published in, and a language-agnostic `url`). This field appears only under the requirement key `tos`; do not infer meaning from `tosVersions` on other requirement keys. Only populated for the `tos` requirement; omitted on every other requirement key. Submit each `versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or `Create Customer`) together with `language` and `acceptedAt` to clear the requirement. */
+  /** Required Terms of Service versions the Customer has not yet accepted, with the metadata needed to render an acceptance UI (each entry carries a stable `versionId`, the BCP 47 `languages` the version is published in, an optional per-version `deadline`, and a language-agnostic `url`). A missing deadline means acceptance is required immediately while the requirement status remains `due`; only a set deadline in the past produces `past_due`. This field appears only under the requirement key `tos`; do not infer meaning from `tosVersions` on other requirement keys. Only populated for the `tos` requirement; omitted on every other requirement key. Submit each `versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or `Create Customer`) together with `language` and `acceptedAt` to clear the requirement. */
   tosVersions?: RequirementTosVersionsList;
   /** Required tax attestation forms the Customer has not yet completed. This field appears only under the requirement key `taxAttestation`. Submit each `form` back via `taxAttestations[].form` on `Update Customer` (or `Create Customer`) together with the other fields required for that form to clear the requirement. */
   taxForms?: RequirementTaxFormsList;
@@ -1392,7 +1396,7 @@ export const Requirement = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Requirement" }) as any as S.Schema<Requirement>;
 
-/** Map of requirements to be submitted. Each key is the field name (e.g., "ssnLast4"), with values to describe its state. Requirements are only shown for requested capabilities. When a requirement is verified, it disappears from this map. When comparing deadlines across keys, note that `requirements.tos.deadline` is an aggregate: the earliest deadline among unaccepted required Terms of Service versions listed in `requirements.tos.tosVersions[]` (not a separate clock from those version rows). */
+/** Map of requirements to be submitted. Each key is the field name (e.g., "ssnLast4"), with values to describe its state. Requirements are only shown for requested capabilities. When a requirement is verified, it disappears from this map. For the `tos` key, each entry in `tosVersions[]` has its own optional deadline. The requirement-level `deadline` is an aggregate of those rows: the earliest set deadline among unaccepted versions, not a separate clock. A version with no deadline requires immediate acceptance but keeps the aggregate status `due`. A future deadline is also `due` and represents non-blocking grace. The aggregate status is `past_due` only when at least one unaccepted version has a deadline set in the past. Do not infer status or blocking behavior from omission of the aggregate deadline. */
 export type RequirementsMap = { [key: string]: Requirement | undefined };
 export const RequirementsMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -1542,7 +1546,8 @@ export type PaymentNetwork =
   | "optimism"
   | "monad"
   | "sui"
-  | "avacchain";
+  | "avacchain"
+  | "tempo";
 export const PaymentNetwork = /*@__PURE__*/ S.String;
 
 /** The target of the payment is an onchain address. */
@@ -5913,6 +5918,11 @@ export type EventType =
   | "acceptance.disbursement.pending"
   | "acceptance.disbursement.succeeded"
   | "acceptance.disbursement.failed"
+  | "health.status.updated"
+  | "health.maintenance.scheduled"
+  | "health.maintenance.started"
+  | "health.maintenance.completed"
+  | "health.maintenance.canceled"
   | "customers.capability.changed"
   | "customers.customer.deleted";
 export const EventType = /*@__PURE__*/ S.String;
@@ -7216,21 +7226,21 @@ export const GetSolanaAccountByNameRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSolanaAccountByNameRequest",
 }) as any as S.Schema<GetSolanaAccountByNameRequest>;
 
-export interface GetSqlGrammarRequest {}
-export const GetSqlGrammarRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetSQLGrammarRequest {}
+export const GetSQLGrammarRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/v2/data/query/grammar", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetSqlGrammarRequest",
-}) as any as S.Schema<GetSqlGrammarRequest>;
+  identifier: "GetSQLGrammarRequest",
+}) as any as S.Schema<GetSQLGrammarRequest>;
 
-export type GetSqlGrammarResponse = string;
-export const GetSqlGrammarResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetSQLGrammarResponse = string;
+export const GetSQLGrammarResponse = /*@__PURE__*/ S.suspend(() =>
   S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetSqlGrammarResponse",
-}) as any as S.Schema<GetSqlGrammarResponse>;
+  identifier: "GetSQLGrammarResponse",
+}) as any as S.Schema<GetSQLGrammarResponse>;
 
 export type GetSQLSchemaRequestDatabase =
   | "base"
@@ -7239,20 +7249,20 @@ export type GetSQLSchemaRequestDatabase =
   | "hyperevm";
 export const GetSQLSchemaRequestDatabase = /*@__PURE__*/ S.String;
 
-export interface GetSqlSchemaRequest {
+export interface GetSQLSchemaRequest {
   /** The name of the database to query. Defaults to "base" when not specified. */
   database?: GetSQLSchemaRequestDatabase | (string & {});
   /** Get the schema for a specific table. */
   table?: string;
 }
-export const GetSqlSchemaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSQLSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     database: S.optional(GetSQLSchemaRequestDatabase.pipe(T.Query())),
     table: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v2/data/query/schema", code: 200 })),
 ).annotate({
-  identifier: "GetSqlSchemaRequest",
-}) as any as S.Schema<GetSqlSchemaRequest>;
+  identifier: "GetSQLSchemaRequest",
+}) as any as S.Schema<GetSQLSchemaRequest>;
 
 /** Schema definition for a table column. */
 export interface OnchainDataColumnSchema {
@@ -13098,7 +13108,7 @@ export const addEndUserSolanaAccount: API.OperationMethod<
 }));
 
 export type AuthorizeCoinbasePaymentSessionError = CoinbaseOpError;
-/** Authorize a payment session with a Coinbase account Authorizes a payment session using the payer's Coinbase account authenticated via OAuth. The session must be in `created` status. **Authentication:** Requires a Coinbase OAuth Bearer token with the `coinbase:stablecoins:payment-create` scope. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
+/** Authorize a payment session with a Coinbase account **Merchant-initiated.** The merchant charges the payer's Coinbase account using an OAuth grant the payer authorized earlier, so the payer does not need to be present at payment time. The session must be in `created` status. **Authentication:** Requires a Coinbase OAuth Bearer token with the `coinbase:stablecoins:payment-create` scope. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
 export const authorizeCoinbasePaymentSession: API.OperationMethod<
   AuthorizeCoinbasePaymentSessionRequest,
   Authorization,
@@ -13113,7 +13123,7 @@ export const authorizeCoinbasePaymentSession: API.OperationMethod<
 }));
 
 export type AuthorizeWalletPaymentSessionError = CoinbaseOpError;
-/** Authorize a payment session with a wallet Authorizes a payment session using the payer's wallet. The session must be in `created` status. The `optionId` must match one of the options returned by the **Get Wallet Authorization Options** endpoint. Include the signed payloads for the selected option. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
+/** Authorize a payment session with a wallet **Customer-initiated.** Authorizes a payment session using the payer's wallet. The payer signs the payloads themselves, so this call is unauthenticated. The session must be in `created` status. The `optionId` must match one of the options returned by the **Get Wallet Authorization Options** endpoint. Include the signed payloads for the selected option. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
 export const authorizeWalletPaymentSession: API.OperationMethod<
   AuthorizeWalletPaymentSessionRequest,
   Authorization,
@@ -13128,7 +13138,7 @@ export const authorizeWalletPaymentSession: API.OperationMethod<
 }));
 
 export type AuthorizeX402PaymentSessionError = CoinbaseOpError;
-/** Authorize a payment session with x402 Authorizes a payment session using x402. The session must be in `created` status. The client sends no request body. You may supply the base64-encoded x402-compliant payment payload in the optional **`PAYMENT-SIGNATURE`** header. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. **402 Payment Required** may be returned when payment must be supplied before authorization can proceed. The **402** response uses the standard CDP **`Error`** JSON body and may include a **`PAYMENT-REQUIRED`** header (see the **402** response) describing accepted networks, assets, and amounts. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
+/** Authorize a payment session with x402 **Customer-initiated.** Authorizes a payment session using x402. The payer supplies the payment payload, so this call is unauthenticated. The session must be in `created` status. The client sends no request body. You may supply the base64-encoded x402-compliant payment payload in the optional **`PAYMENT-SIGNATURE`** header. On authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`. **402 Payment Required** may be returned when payment must be supplied before authorization can proceed. The **402** response uses the standard CDP **`Error`** JSON body and may include a **`PAYMENT-REQUIRED`** header (see the **402** response) describing accepted networks, assets, and amounts. If `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization. */
 export const authorizeX402PaymentSession: API.OperationMethod<
   AuthorizeX402PaymentSessionRequest,
   Authorization,
@@ -13952,30 +13962,30 @@ export const getSolanaAccountByName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSqlGrammarError = CoinbaseOpError;
+export type GetSQLGrammarError = CoinbaseOpError;
 /** Get SQL grammar Retrieve the SQL grammar for the SQL API. The SQL queries that are supported by the SQL API are defined in ANTLR4 grammar which is evaluated by server before executing the query. This ensures the safety and soundness of the SQL query before execution. This endpoint returns the ANTLR4 grammar that is used to evaluate the SQL queries so that developers can understand the SQL API and build SQL queries with high confidence and correctness. LLMs interact well with ANTLR4 grammar. You can feed the grammar directly into the LLMs to help generate SQL queries. */
-export const getSqlGrammar: API.OperationMethod<
-  GetSqlGrammarRequest,
-  GetSqlGrammarResponse,
-  GetSqlGrammarError,
+export const getSQLGrammar: API.OperationMethod<
+  GetSQLGrammarRequest,
+  GetSQLGrammarResponse,
+  GetSQLGrammarError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlGrammarRequest,
-  output: GetSqlGrammarResponse,
+  input: GetSQLGrammarRequest,
+  output: GetSQLGrammarResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlSchemaError = CoinbaseOpError;
+export type GetSQLSchemaError = CoinbaseOpError;
 /** Get schema details Retrieve the schema information for the available tables in the SQL API's indexed data. This includes table names, column definitions, data types, and indexed fields. */
-export const getSqlSchema: API.OperationMethod<
-  GetSqlSchemaRequest,
+export const getSQLSchema: API.OperationMethod<
+  GetSQLSchemaRequest,
   OnchainDataSchemaResponse,
-  GetSqlSchemaError,
+  GetSQLSchemaError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlSchemaRequest,
+  input: GetSQLSchemaRequest,
   output: OnchainDataSchemaResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,

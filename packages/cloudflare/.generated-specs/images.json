@@ -20,7 +20,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.images#V1CreateResponseVariantsList": {
@@ -929,55 +930,55 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.images#V1Create"
+          "target": "com.cloudflare.images#CreateV1"
         },
         {
-          "target": "com.cloudflare.images#V1Delete"
+          "target": "com.cloudflare.images#CreateV1Variant"
         },
         {
-          "target": "com.cloudflare.images#V1Edit"
+          "target": "com.cloudflare.images#CreateV2DirectUpload"
         },
         {
-          "target": "com.cloudflare.images#V1Get"
+          "target": "com.cloudflare.images#DeleteV1"
         },
         {
-          "target": "com.cloudflare.images#V1List"
+          "target": "com.cloudflare.images#DeleteV1Key"
         },
         {
-          "target": "com.cloudflare.images#V1BlobsGet"
+          "target": "com.cloudflare.images#DeleteV1Variant"
         },
         {
-          "target": "com.cloudflare.images#V1KeysDelete"
+          "target": "com.cloudflare.images#GetV1"
         },
         {
-          "target": "com.cloudflare.images#V1KeysList"
+          "target": "com.cloudflare.images#GetV1Blob"
         },
         {
-          "target": "com.cloudflare.images#V1KeysUpdate"
+          "target": "com.cloudflare.images#GetV1Stat"
         },
         {
-          "target": "com.cloudflare.images#V1StatsGet"
+          "target": "com.cloudflare.images#GetV1Variant"
         },
         {
-          "target": "com.cloudflare.images#V1VariantsCreate"
+          "target": "com.cloudflare.images#ListV1Keys"
         },
         {
-          "target": "com.cloudflare.images#V1VariantsDelete"
+          "target": "com.cloudflare.images#ListV1s"
         },
         {
-          "target": "com.cloudflare.images#V1VariantsEdit"
+          "target": "com.cloudflare.images#ListV1Variants"
         },
         {
-          "target": "com.cloudflare.images#V1VariantsGet"
+          "target": "com.cloudflare.images#ListV2s"
         },
         {
-          "target": "com.cloudflare.images#V1VariantsList"
+          "target": "com.cloudflare.images#PatchV1"
         },
         {
-          "target": "com.cloudflare.images#V2List"
+          "target": "com.cloudflare.images#PatchV1Variant"
         },
         {
-          "target": "com.cloudflare.images#V2DirectUploadsCreate"
+          "target": "com.cloudflare.images#PutV1Key"
         }
       ],
       "traits": {

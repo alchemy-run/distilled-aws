@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceAddOptOutRequest": {
+    "com.posthog.messaging_preferences#MessagingPreferencesAddOptOutCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -80,10 +81,10 @@
       },
       "traits": {}
     },
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceAddOptOut": {
+    "com.posthog.messaging_preferences#MessagingPreferencesAddOptOutCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceAddOptOutRequest"
+        "target": "com.posthog.messaging_preferences#MessagingPreferencesAddOptOutCreateRequest"
       },
       "output": {
         "target": "com.posthog.messaging_preferences#MessagePreferences"
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "Recipients to opt out, at most 1000 per request."
       }
     },
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceBulkAddOptOutRequest": {
+    "com.posthog.messaging_preferences#MessagingPreferencesBulkAddOptOutsCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -197,10 +198,10 @@
         "smithy.api#documentation": "The first few entry-level problems, so the caller can fix their list."
       }
     },
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceBulkAddOptOut": {
+    "com.posthog.messaging_preferences#MessagingPreferencesBulkAddOptOutsCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceBulkAddOptOutRequest"
+        "target": "com.posthog.messaging_preferences#MessagingPreferencesBulkAddOptOutsCreateRequest"
       },
       "output": {
         "target": "com.posthog.messaging_preferences#BulkAddOptOutsResult"
@@ -316,7 +317,7 @@
         "smithy.api#documentation": "Generate a preferences page link for a recipient\n\nGenerate an unsubscribe link for the current user's email address"
       }
     },
-    "com.posthog.messaging_preferences#MessagingPreferencesOptOutsRetrieveRequest": {
+    "com.posthog.messaging_preferences#GetMessagingPreferencesOptOutRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -402,10 +403,10 @@
       },
       "traits": {}
     },
-    "com.posthog.messaging_preferences#MessagingPreferencesOptOutsRetrieve": {
+    "com.posthog.messaging_preferences#GetMessagingPreferencesOptOut": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_preferences#MessagingPreferencesOptOutsRetrieveRequest"
+        "target": "com.posthog.messaging_preferences#GetMessagingPreferencesOptOutRequest"
       },
       "output": {
         "target": "com.posthog.messaging_preferences#PaginatedOptOuts"
@@ -424,7 +425,7 @@
         "smithy.api#documentation": "List recipients opted out of a message category\n\nGet opt-outs filtered by category or overall opt-outs if no category specified"
       }
     },
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceRemoveOptOutRequest": {
+    "com.posthog.messaging_preferences#MessagingPreferencesRemoveOptOutCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -453,10 +454,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.messaging_preferences#CreateMessagingPreferenceRemoveOptOut": {
+    "com.posthog.messaging_preferences#MessagingPreferencesRemoveOptOutCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceRemoveOptOutRequest"
+        "target": "com.posthog.messaging_preferences#MessagingPreferencesRemoveOptOutCreateRequest"
       },
       "output": {
         "target": "com.posthog.messaging_preferences#MessagePreferences"
@@ -470,7 +471,7 @@
         "smithy.api#documentation": "Remove a recipient from the opt-out list\n\nOpt a recipient back in to a specific category, or to all marketing messages."
       }
     },
-    "com.posthog.messaging_preferences#MessagingPreferencesWebhookUrlRetrieveRequest": {
+    "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrlRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -499,10 +500,10 @@
       },
       "traits": {}
     },
-    "com.posthog.messaging_preferences#MessagingPreferencesWebhookUrlRetrieve": {
+    "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrl": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_preferences#MessagingPreferencesWebhookUrlRetrieveRequest"
+        "target": "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrlRequest"
       },
       "output": {
         "target": "com.posthog.messaging_preferences#WebhookUrl"
@@ -534,10 +535,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceAddOptOut"
+          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesOptOut"
         },
         {
-          "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceBulkAddOptOut"
+          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrl"
+        },
+        {
+          "target": "com.posthog.messaging_preferences#MessagingPreferencesAddOptOutCreate"
+        },
+        {
+          "target": "com.posthog.messaging_preferences#MessagingPreferencesBulkAddOptOutsCreate"
         },
         {
           "target": "com.posthog.messaging_preferences#MessagingPreferencesExportOptOutsCsvRetrieve"
@@ -546,13 +553,7 @@
           "target": "com.posthog.messaging_preferences#MessagingPreferencesGenerateLinkCreate"
         },
         {
-          "target": "com.posthog.messaging_preferences#MessagingPreferencesOptOutsRetrieve"
-        },
-        {
-          "target": "com.posthog.messaging_preferences#CreateMessagingPreferenceRemoveOptOut"
-        },
-        {
-          "target": "com.posthog.messaging_preferences#MessagingPreferencesWebhookUrlRetrieve"
+          "target": "com.posthog.messaging_preferences#MessagingPreferencesRemoveOptOutCreate"
         }
       ],
       "traits": {

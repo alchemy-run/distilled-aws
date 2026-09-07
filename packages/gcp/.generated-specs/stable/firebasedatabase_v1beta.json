@@ -4,9 +4,43 @@
     "service": "firebasedatabase",
     "version": "v1beta",
     "title": "Firebase Realtime Database Management API",
-    "baseUrl": "https://firebasedatabase.googleapis.com/"
+    "baseUrl": "https://firebasedatabase.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.firebasedatabase_v1beta#UndeleteDatabaseInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request sent to UndeleteDatabaseInstance method."
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#ListDatabaseInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "instances": {
+          "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstanceList",
+          "traits": {
+            "smithy.api#documentation": "List of each DatabaseInstance that is in the parent Firebase project."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListDatabaseInstances` to find the next group of database instances. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the ListDatabaseInstances method."
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#DatabaseInstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
+      }
+    },
     "com.gcp.firebasedatabase_v1beta#DatabaseInstance": {
       "type": "structure",
       "members": {
@@ -22,12 +56,6 @@
             "smithy.api#documentation": "Output only. The database's lifecycle state. Read-only."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`."
-          }
-        },
         "project": {
           "target": "smithy.api#String",
           "traits": {
@@ -38,6 +66,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Output Only. The globally unique hostname of the database."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`."
           }
         }
       },
@@ -97,11 +131,11 @@
         }
       }
     },
-    "com.gcp.firebasedatabase_v1beta#UndeleteDatabaseInstanceRequest": {
+    "com.gcp.firebasedatabase_v1beta#DisableDatabaseInstanceRequest": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "The request sent to UndeleteDatabaseInstance method."
+        "smithy.api#documentation": "The request sent to the DisableDatabaseInstance method."
       }
     },
     "com.gcp.firebasedatabase_v1beta#ReenableDatabaseInstanceRequest": {
@@ -111,37 +145,67 @@
         "smithy.api#documentation": "The request sent to the ReenableDatabaseInstance method."
       }
     },
-    "com.gcp.firebasedatabase_v1beta#ListDatabaseInstancesResponse": {
+    "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstancesRequest": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListDatabaseInstances` to find the next group of database instances. Page tokens are short-lived and should not be persisted."
-          }
-        },
-        "instances": {
-          "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstanceList",
-          "traits": {
-            "smithy.api#documentation": "List of each DatabaseInstance that is in the parent Firebase project."
+            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response from the ListDatabaseInstances method."
       }
     },
-    "com.gcp.firebasedatabase_v1beta#DatabaseInstanceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#DisableDatabaseInstanceRequest": {
+    "com.gcp.firebasedatabase_v1beta#NotFound": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "The request sent to the DisableDatabaseInstance method."
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets the DatabaseInstance identified by the specified resource name."
       }
     },
     "com.gcp.firebasedatabase_v1beta#CreateProjectsLocationsInstancesRequest": {
@@ -176,32 +240,6 @@
             "smithy.api#documentation": "Request body"
           }
         }
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#NotFound": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 404,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 404
-          }
-        ]
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#Forbidden": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 403,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 403
-          }
-        ]
       }
     },
     "com.gcp.firebasedatabase_v1beta#BadRequest": {
@@ -260,86 +298,6 @@
         "smithy.api#documentation": "Requests that a new DatabaseInstance be created. The state of a successfully created DatabaseInstance is ACTIVE. Only available for projects on the Blaze plan. Projects can be upgraded using the Cloud Billing API https://cloud.google.com/billing/reference/rest/v1/projects/updateBillingInfo. Note that it might take a few minutes for billing enablement state to propagate to Firebase systems."
       }
     },
-    "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Marks a DatabaseInstance to be deleted. The DatabaseInstance will be set to the DELETED state for 20 days, and will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state."
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebasedatabase_v1beta#GetProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets the DatabaseInstance identified by the specified resource name."
-      }
-    },
     "com.gcp.firebasedatabase_v1beta#ReenableProjectsLocationsInstancesRequest": {
       "type": "structure",
       "members": {
@@ -390,6 +348,49 @@
         "smithy.api#documentation": "Enables a DatabaseInstance. The database must have been disabled previously using DisableDatabaseInstance. The state of a successfully reenabled DatabaseInstance is ACTIVE."
       }
     },
+    "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedatabase_v1beta#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Marks a DatabaseInstance to be deleted. The DatabaseInstance will be set to the DELETED state for 20 days, and will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state."
+      }
+    },
     "com.gcp.firebasedatabase_v1beta#DisableProjectsLocationsInstancesRequest": {
       "type": "structure",
       "members": {
@@ -438,6 +439,56 @@
           "uri": "v1beta/{+name}:disable"
         },
         "smithy.api#documentation": "Disables a DatabaseInstance. The database can be re-enabled later using ReenableDatabaseInstance. When a database is disabled, all reads and writes are denied, including view access in the Firebase console."
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebasedatabase_v1beta#UndeleteDatabaseInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedatabase_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Restores a DatabaseInstance that was previously marked to be deleted. After the delete method is used, DatabaseInstances are set to the DELETED state for 20 days, and will be purged within 30 days. Databases in the DELETED state can be undeleted without losing any data. This method may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstances may not be recovered."
       }
     },
     "com.gcp.firebasedatabase_v1beta#ListProjectsLocationsInstancesRequest": {
@@ -500,56 +551,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebasedatabase_v1beta#UndeleteDatabaseInstanceRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebasedatabase_v1beta#UndeleteProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebasedatabase_v1beta#DatabaseInstance"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebasedatabase_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:undelete"
-        },
-        "smithy.api#documentation": "Restores a DatabaseInstance that was previously marked to be deleted. After the delete method is used, DatabaseInstances are set to the DELETED state for 20 days, and will be purged within 30 days. Databases in the DELETED state can be undeleted without losing any data. This method may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstances may not be recovered."
       }
     }
   }

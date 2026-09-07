@@ -25,7 +25,8 @@
       "rateSensitivity": "rate_sensitivity",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResultItem": {
@@ -457,121 +458,121 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistBulkDelete"
+          "target": "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixes"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreate"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionAllowlists"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistList"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionPrefixes"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsDelete"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionFilters"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEdit"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionRules"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGet"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreate"
+          "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRules"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkDelete"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionAllowlist"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreate"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionPrefix"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesList"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilter"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDelete"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionRule"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEdit"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilter"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGet"
+          "target": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionRule"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEdit"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionAllowlistItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGet"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionPrefixItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersBulkDelete"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreate"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionRuleItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersList"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionTcpFlowProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDelete"
+          "target": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionTcpFlowProtectionRuleItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEdit"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionAllowlistItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGet"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesBulkDelete"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatus"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreate"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionSynProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesList"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionSynProtectionRuleItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsDelete"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionTcpFlowProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEdit"
+          "target": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionTcpFlowProtectionRuleItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGet"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDelete"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixes"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreate"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionSynProtectionFilters"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersList"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionSynProtectionRules"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsDelete"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionTcpFlowProtectionFilters"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEdit"
+          "target": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionTcpFlowProtectionRules"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGet"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionAllowlistItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesBulkDelete"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionPrefixItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreate"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionStatus"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesList"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionSynProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsDelete"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionSynProtectionRuleItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEdit"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItem"
         },
         {
-          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGet"
+          "target": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItem"
         }
       ],
       "traits": {
@@ -713,13 +714,13 @@
         ]
       }
     },
-    "com.cloudflare.ddos_protection#CreateBulkAdvancedTcpProtectionPrefixe": {
+    "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixes": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#CreateBulkAdvancedTcpProtectionPrefixeRequest"
+        "target": "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixesRequest"
       },
       "output": {
-        "target": "com.cloudflare.ddos_protection#CreateBulkAdvancedTcpProtectionPrefixeResponse"
+        "target": "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -734,7 +735,7 @@
         }
       }
     },
-    "com.cloudflare.ddos_protection#CreateBulkAdvancedTcpProtectionPrefixeRequest": {
+    "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -757,7 +758,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#CreateBulkAdvancedTcpProtectionPrefixeResponse": {
+    "com.cloudflare.ddos_protection#BulkCreateAdvancedTcpProtectionPrefixesResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -772,10 +773,10 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionAllowlist": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionAllowlists": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionAllowlistRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionAllowlistsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -790,7 +791,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionAllowlistRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionAllowlistsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -806,10 +807,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionPrefixe": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionPrefixes": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionPrefixeRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionPrefixesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -824,7 +825,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionPrefixeRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionPrefixesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -840,10 +841,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionFilter": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionFilters": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -858,7 +859,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -874,10 +875,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionRule": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionRules": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -892,7 +893,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -908,10 +909,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilter": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -926,7 +927,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -942,10 +943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRule": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRules": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest"
+        "target": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -960,7 +961,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.ddos_protection#DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest": {
+    "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest": {
       "type": "structure",
       "members": {
         "account_id": {

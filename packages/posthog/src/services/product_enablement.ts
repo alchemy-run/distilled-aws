@@ -19,23 +19,23 @@ export type ProductsEnum =
 export const ProductsEnum = /*@__PURE__*/ S.String;
 
 /** Products to turn on for this project, each enabled with server-owned conservative defaults. */
-export type ProductEnablementCreateRequestProductsList = Array<
+export type CreateProductEnablementRequestProductsList = Array<
   ProductsEnum | (string & {})
 >;
-export const ProductEnablementCreateRequestProductsList = /*@__PURE__*/ S.Array(
+export const CreateProductEnablementRequestProductsList = /*@__PURE__*/ S.Array(
   ProductsEnum,
-) as any as S.Schema<ProductEnablementCreateRequestProductsList>;
+) as any as S.Schema<CreateProductEnablementRequestProductsList>;
 
 export interface CreateProductEnablementRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Products to turn on for this project, each enabled with server-owned conservative defaults. */
-  products: ProductEnablementCreateRequestProductsList;
+  products: CreateProductEnablementRequestProductsList;
 }
 export const CreateProductEnablementRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    products: ProductEnablementCreateRequestProductsList,
+    products: CreateProductEnablementRequestProductsList,
   }).pipe(
     T.Http({
       method: "POST",

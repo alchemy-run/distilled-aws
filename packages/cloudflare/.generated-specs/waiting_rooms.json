@@ -51,7 +51,8 @@
       "totalCount": "total_count",
       "turnstileAction": "turnstile_action",
       "turnstileMode": "turnstile_mode"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.waiting_rooms#CreateRequestAdditionalRoutesItem": {
@@ -4099,76 +4100,76 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.waiting_rooms#Create"
+          "target": "com.cloudflare.waiting_rooms#CreateEvent"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#Delete"
+          "target": "com.cloudflare.waiting_rooms#CreateRule"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#Edit"
+          "target": "com.cloudflare.waiting_rooms#CreateWaitingRoom"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#Get"
+          "target": "com.cloudflare.waiting_rooms#DeleteEvent"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#ListForAccount"
+          "target": "com.cloudflare.waiting_rooms#DeleteRule"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#ListForZone"
+          "target": "com.cloudflare.waiting_rooms#DeleteWaitingRoom"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#Update"
+          "target": "com.cloudflare.waiting_rooms#GetEvent"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsCreate"
+          "target": "com.cloudflare.waiting_rooms#GetEventDetail"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsDelete"
+          "target": "com.cloudflare.waiting_rooms#GetRule"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsEdit"
+          "target": "com.cloudflare.waiting_rooms#GetSetting"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsGet"
+          "target": "com.cloudflare.waiting_rooms#GetStatus"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsList"
+          "target": "com.cloudflare.waiting_rooms#GetWaitingRoom"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsUpdate"
+          "target": "com.cloudflare.waiting_rooms#ListEvents"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#EventsDetailsGet"
+          "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForAccount"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#PagePreview"
+          "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForZone"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#RulesCreate"
+          "target": "com.cloudflare.waiting_rooms#PatchEvent"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#RulesDelete"
+          "target": "com.cloudflare.waiting_rooms#PatchRule"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#RulesEdit"
+          "target": "com.cloudflare.waiting_rooms#PatchSetting"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#RulesGet"
+          "target": "com.cloudflare.waiting_rooms#PatchWaitingRoom"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#RulesUpdate"
+          "target": "com.cloudflare.waiting_rooms#PreviewPage"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#SettingsEdit"
+          "target": "com.cloudflare.waiting_rooms#PutSetting"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#SettingsGet"
+          "target": "com.cloudflare.waiting_rooms#UpdateEvent"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#SettingsUpdate"
+          "target": "com.cloudflare.waiting_rooms#UpdateRule"
         },
         {
-          "target": "com.cloudflare.waiting_rooms#StatusesGet"
+          "target": "com.cloudflare.waiting_rooms#UpdateWaitingRoom"
         }
       ],
       "traits": {
@@ -5806,7 +5807,7 @@
         "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForAccountResponse"
+        "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5866,7 +5867,7 @@
         "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneResponse"
+        "target": "com.cloudflare.waiting_rooms#ListWaitingRoomsResponse"
       },
       "traits": {
         "smithy.api#http": {

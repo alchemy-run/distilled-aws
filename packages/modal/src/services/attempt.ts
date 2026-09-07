@@ -167,13 +167,13 @@ export const FunctionPutInputsItem = /*@__PURE__*/ S.suspend(() =>
   identifier: "FunctionPutInputsItem",
 }) as any as S.Schema<FunctionPutInputsItem>;
 
-export interface AttemptRetryRequest {
+export interface RetryAttemptRequest {
   functionId?: string;
   parentInputId?: string;
   input?: FunctionPutInputsItem;
   attemptToken?: string;
 }
-export const AttemptRetryRequest = /*@__PURE__*/ S.suspend(() =>
+export const RetryAttemptRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     functionId: S.optional(S.String),
     parentInputId: S.optional(S.String),
@@ -187,19 +187,19 @@ export const AttemptRetryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AttemptRetryRequest",
-}) as any as S.Schema<AttemptRetryRequest>;
+  identifier: "RetryAttemptRequest",
+}) as any as S.Schema<RetryAttemptRequest>;
 
-export interface AttemptRetryResponse {
+export interface RetryAttemptResponse {
   attemptToken?: string;
 }
-export const AttemptRetryResponse = /*@__PURE__*/ S.suspend(() =>
+export const RetryAttemptResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     attemptToken: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AttemptRetryResponse",
-}) as any as S.Schema<AttemptRetryResponse>;
+  identifier: "RetryAttemptResponse",
+}) as any as S.Schema<RetryAttemptResponse>;
 
 export interface StartAttemptRequest {
   functionId?: string;
@@ -270,15 +270,15 @@ export const attemptAwait: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AttemptRetryError = ModalOpError;
-export const attemptRetry: API.OperationMethod<
-  AttemptRetryRequest,
-  AttemptRetryResponse,
-  AttemptRetryError,
+export type RetryAttemptError = ModalOpError;
+export const retryAttempt: API.OperationMethod<
+  RetryAttemptRequest,
+  RetryAttemptResponse,
+  RetryAttemptError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AttemptRetryRequest,
-  output: AttemptRetryResponse,
+  input: RetryAttemptRequest,
+  output: RetryAttemptResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

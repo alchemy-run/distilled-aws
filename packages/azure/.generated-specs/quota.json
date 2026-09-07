@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.quota#ListQuotaOperation": {
@@ -111,13 +112,13 @@
       },
       "traits": {}
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdate": {
+    "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateRequest"
+        "target": "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequestRequest"
       },
       "output": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateResponse"
+        "target": "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -130,7 +131,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateResponse": {
+    "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -428,7 +429,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateRequest": {
+    "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -537,7 +538,7 @@
     "com.azure.quota#ListGroupQuotaSubscriptionAllocation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest"
+        "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest2"
       },
       "output": {
         "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationResponse"
@@ -588,7 +589,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest": {
+    "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest2": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -636,13 +637,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGet": {
+    "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetRequest"
+        "target": "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequestRequest"
       },
       "output": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetResponse"
+        "target": "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -655,7 +656,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetResponse": {
+    "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -775,7 +776,7 @@
         "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetRequest": {
+    "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -823,10 +824,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestList": {
+    "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestListRequest"
+        "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequestRequest"
       },
       "output": {
         "target": "com.azure.quota#QuotaAllocationRequestStatusList"
@@ -907,7 +908,7 @@
         "smithy.api#documentation": "The subscription quota allocation status."
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestListRequest": {
+    "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -1199,7 +1200,7 @@
     "com.azure.quota#GetGroupQuotaSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GetGroupQuotaSubscriptionRequest"
+        "target": "com.azure.quota#GetGroupQuotaSubscriptionRequest2"
       },
       "output": {
         "target": "com.azure.quota#GetGroupQuotaSubscriptionResponse"
@@ -1250,7 +1251,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.quota#GetGroupQuotaSubscriptionRequest": {
+    "com.azure.quota#GetGroupQuotaSubscriptionRequest2": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -1390,13 +1391,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionRequestsGet": {
+    "com.azure.quota#GetGroupQuotaSubscriptionRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGetRequest"
+        "target": "com.azure.quota#GetGroupQuotaSubscriptionRequestRequest"
       },
       "output": {
-        "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGetResponse"
+        "target": "com.azure.quota#GetGroupQuotaSubscriptionRequestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1409,7 +1410,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GroupQuotaSubscriptionRequestsGetResponse": {
+    "com.azure.quota#GetGroupQuotaSubscriptionRequestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1468,7 +1469,7 @@
       },
       "traits": {}
     },
-    "com.azure.quota#GroupQuotaSubscriptionRequestsGetRequest": {
+    "com.azure.quota#GetGroupQuotaSubscriptionRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -1787,13 +1788,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#UpdateGroupQuotaLocationSetting": {
+    "com.azure.quota#UpdateGroupQuotaLocationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#UpdateGroupQuotaLocationSettingRequest"
+        "target": "com.azure.quota#UpdateGroupQuotaLocationSettingsRequest"
       },
       "output": {
-        "target": "com.azure.quota#UpdateGroupQuotaLocationSettingResponse"
+        "target": "com.azure.quota#UpdateGroupQuotaLocationSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1806,7 +1807,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#UpdateGroupQuotaLocationSettingResponse": {
+    "com.azure.quota#UpdateGroupQuotaLocationSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1897,7 +1898,7 @@
         "smithy.api#documentation": "Enforcement status."
       }
     },
-    "com.azure.quota#UpdateGroupQuotaLocationSettingRequest": {
+    "com.azure.quota#UpdateGroupQuotaLocationSettingsRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2049,13 +2050,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GetGroupQuotaLocationSetting": {
+    "com.azure.quota#GetGroupQuotaLocationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GetGroupQuotaLocationSettingRequest"
+        "target": "com.azure.quota#GetGroupQuotaLocationSettingsRequest"
       },
       "output": {
-        "target": "com.azure.quota#GetGroupQuotaLocationSettingResponse"
+        "target": "com.azure.quota#GetGroupQuotaLocationSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2068,7 +2069,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GetGroupQuotaLocationSettingResponse": {
+    "com.azure.quota#GetGroupQuotaLocationSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2103,7 +2104,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.quota#GetGroupQuotaLocationSettingRequest": {
+    "com.azure.quota#GetGroupQuotaLocationSettingsRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2143,10 +2144,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestList": {
+    "com.azure.quota#ListGroupQuotaLimitsRequest2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaLimitsRequestListRequest"
+        "target": "com.azure.quota#ListGroupQuotaLimitsRequestRequest"
       },
       "output": {
         "target": "com.azure.quota#SubmittedResourceRequestStatusList"
@@ -2318,7 +2319,7 @@
         "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestListRequest": {
+    "com.azure.quota#ListGroupQuotaLimitsRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2358,13 +2359,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestUpdate": {
+    "com.azure.quota#UpdateGroupQuotaLimitsRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaLimitsRequestUpdateRequest"
+        "target": "com.azure.quota#UpdateGroupQuotaLimitsRequestRequest"
       },
       "output": {
-        "target": "com.azure.quota#GroupQuotaLimitsRequestUpdateResponse"
+        "target": "com.azure.quota#UpdateGroupQuotaLimitsRequestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2377,7 +2378,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestUpdateResponse": {
+    "com.azure.quota#UpdateGroupQuotaLimitsRequestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2572,7 +2573,7 @@
         "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestUpdateRequest": {
+    "com.azure.quota#UpdateGroupQuotaLimitsRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2770,13 +2771,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestGet": {
+    "com.azure.quota#GetGroupQuotaLimitsRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GroupQuotaLimitsRequestGetRequest"
+        "target": "com.azure.quota#GetGroupQuotaLimitsRequestRequest"
       },
       "output": {
-        "target": "com.azure.quota#GroupQuotaLimitsRequestGetResponse"
+        "target": "com.azure.quota#GetGroupQuotaLimitsRequestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2789,7 +2790,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestGetResponse": {
+    "com.azure.quota#GetGroupQuotaLimitsRequestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2824,7 +2825,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.quota#GroupQuotaLimitsRequestGetRequest": {
+    "com.azure.quota#GetGroupQuotaLimitsRequestRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2856,10 +2857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#DeleteGroupQuota": {
+    "com.azure.quota#DeleteGroupQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#DeleteGroupQuotaRequest"
+        "target": "com.azure.quota#DeleteGroupQuotasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2875,7 +2876,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#DeleteGroupQuotaRequest": {
+    "com.azure.quota#DeleteGroupQuotasRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -2899,13 +2900,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#UpdateGroupQuota": {
+    "com.azure.quota#UpdateGroupQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#UpdateGroupQuotaRequest"
+        "target": "com.azure.quota#UpdateGroupQuotasRequest"
       },
       "output": {
-        "target": "com.azure.quota#UpdateGroupQuotaResponse"
+        "target": "com.azure.quota#UpdateGroupQuotasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2918,7 +2919,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#UpdateGroupQuotaResponse": {
+    "com.azure.quota#UpdateGroupQuotasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3002,7 +3003,7 @@
         "smithy.api#documentation": "Type of the group."
       }
     },
-    "com.azure.quota#UpdateGroupQuotaRequest": {
+    "com.azure.quota#UpdateGroupQuotasRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -3147,13 +3148,13 @@
         "smithy.api#documentation": "Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified."
       }
     },
-    "com.azure.quota#GetGroupQuota": {
+    "com.azure.quota#GetGroupQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#GetGroupQuotaRequest"
+        "target": "com.azure.quota#GetGroupQuotasRequest"
       },
       "output": {
-        "target": "com.azure.quota#GetGroupQuotaResponse"
+        "target": "com.azure.quota#GetGroupQuotasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3166,7 +3167,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#GetGroupQuotaResponse": {
+    "com.azure.quota#GetGroupQuotasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3204,7 +3205,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.quota#GetGroupQuotaRequest": {
+    "com.azure.quota#GetGroupQuotasRequest": {
       "type": "structure",
       "members": {
         "managementGroupId": {
@@ -4109,13 +4110,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#QuotaRequestStatusGet": {
+    "com.azure.quota#GetQuotaRequestStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#QuotaRequestStatusGetRequest"
+        "target": "com.azure.quota#GetQuotaRequestStatusRequest"
       },
       "output": {
-        "target": "com.azure.quota#QuotaRequestStatusGetResponse"
+        "target": "com.azure.quota#GetQuotaRequestStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4128,7 +4129,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.quota#QuotaRequestStatusGetResponse": {
+    "com.azure.quota#GetQuotaRequestStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4321,7 +4322,7 @@
         "smithy.api#documentation": "Error details."
       }
     },
-    "com.azure.quota#QuotaRequestStatusGetRequest": {
+    "com.azure.quota#GetQuotaRequestStatusRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -4345,10 +4346,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.quota#QuotaRequestStatusList": {
+    "com.azure.quota#ListQuotaRequestStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.quota#QuotaRequestStatusListRequest"
+        "target": "com.azure.quota#ListQuotaRequestStatusRequest"
       },
       "output": {
         "target": "com.azure.quota#QuotaRequestDetailsList"
@@ -4432,7 +4433,7 @@
         "smithy.api#documentation": "List of quota requests with details."
       }
     },
-    "com.azure.quota#QuotaRequestStatusListRequest": {
+    "com.azure.quota#ListQuotaRequestStatusRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -4474,103 +4475,103 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.quota#ListQuotaOperation"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdate"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocation"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGet"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestList"
+          "target": "com.azure.quota#DeleteGroupQuotas"
         },
         {
           "target": "com.azure.quota#DeleteGroupQuotaSubscription"
         },
         {
-          "target": "com.azure.quota#UpdateGroupQuotaSubscription"
+          "target": "com.azure.quota#GetGroupQuotaLimitsRequest"
         },
         {
-          "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate"
+          "target": "com.azure.quota#GetGroupQuotaLocationSettings"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotas"
         },
         {
           "target": "com.azure.quota#GetGroupQuotaSubscription"
         },
         {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptions"
+          "target": "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequest"
         },
         {
-          "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGet"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptionRequests"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaUsages"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuotaLocationSetting"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaLocationSetting"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaLimitsRequestList"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaLimitsRequestUpdate"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaLimits"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaLimitsRequestGet"
-        },
-        {
-          "target": "com.azure.quota#DeleteGroupQuota"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuota"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuota"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotas"
-        },
-        {
-          "target": "com.azure.quota#GetUsage"
-        },
-        {
-          "target": "com.azure.quota#ListUsages"
-        },
-        {
-          "target": "com.azure.quota#UpdateQuota"
-        },
-        {
-          "target": "com.azure.quota#QuotaCreateOrUpdate"
+          "target": "com.azure.quota#GetGroupQuotaSubscriptionRequest"
         },
         {
           "target": "com.azure.quota#GetQuota"
         },
         {
+          "target": "com.azure.quota#GetQuotaRequestStatus"
+        },
+        {
+          "target": "com.azure.quota#GetUsage"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaLimits"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaLimitsRequest2"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocation"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionRequests"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptions"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaUsages"
+        },
+        {
           "target": "com.azure.quota#ListQuota"
         },
         {
-          "target": "com.azure.quota#QuotaRequestStatusGet"
+          "target": "com.azure.quota#ListQuotaOperation"
         },
         {
-          "target": "com.azure.quota#QuotaRequestStatusList"
+          "target": "com.azure.quota#ListQuotaRequestStatus"
+        },
+        {
+          "target": "com.azure.quota#ListUsages"
+        },
+        {
+          "target": "com.azure.quota#QuotaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaLimitsRequest"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaLocationSettings"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaSubscription"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequest"
+        },
+        {
+          "target": "com.azure.quota#UpdateQuota"
         }
       ],
       "traits": {

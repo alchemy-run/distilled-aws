@@ -151,114 +151,6 @@ export const CreateTaskContainerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateTaskContainerResponse",
 }) as any as S.Schema<CreateTaskContainerResponse>;
 
-export interface ExecTaskPollRequest {
-  /** The ID of the task running the exec'd command. */
-  taskId?: string;
-  /** The execution ID of the command to wait on. */
-  execId?: string;
-}
-export const ExecTaskPollRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    execId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecPoll",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ExecTaskPollRequest",
-}) as any as S.Schema<ExecTaskPollRequest>;
-
-export interface ExecTaskPollResponse {
-  /** The exit code of the command. */
-  code?: number;
-  /** The signal that terminated the command. */
-  signal?: number;
-}
-export const ExecTaskPollResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.Number),
-    signal: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ExecTaskPollResponse",
-}) as any as S.Schema<ExecTaskPollResponse>;
-
-export interface ExecTaskStdinStatusRequest {
-  /** The ID of the task running the exec'd command. */
-  taskId?: string;
-  /** The execution ID of the command to query. */
-  execId?: string;
-}
-export const ExecTaskStdinStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    execId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecStdinStatus",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ExecTaskStdinStatusRequest",
-}) as any as S.Schema<ExecTaskStdinStatusRequest>;
-
-export interface ExecTaskStdinStatusResponse {
-  /** Number of bytes the server has accepted for this exec so far. A streaming client that lost its connection should resume sending at this offset. */
-  numBytesWritten?: string;
-  /** True if stdin has already been closed (EOF sent) for this exec. */
-  closed?: boolean;
-}
-export const ExecTaskStdinStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numBytesWritten: S.optional(S.String),
-    closed: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ExecTaskStdinStatusResponse",
-}) as any as S.Schema<ExecTaskStdinStatusResponse>;
-
-export interface ExecTaskStdinWriteRequest {
-  /** The ID of the task running the exec'd command. */
-  taskId?: string;
-  /** The execution ID of the command to write to. */
-  execId?: string;
-  /** The offset to start writing to. This is used to resume writing from the last write position if the connection is closed and reopened. */
-  offset?: string;
-  data?: string;
-  /** If true, close the stdin stream after writing any provided data. This signals EOF to the exec'd process. */
-  eof?: boolean;
-}
-export const ExecTaskStdinWriteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    execId: S.optional(S.String),
-    offset: S.optional(S.String),
-    data: S.optional(S.String),
-    eof: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecStdinWrite",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ExecTaskStdinWriteRequest",
-}) as any as S.Schema<ExecTaskStdinWriteRequest>;
-
-export interface ExecTaskStdinWriteResponse {}
-export const ExecTaskStdinWriteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExecTaskStdinWriteResponse",
-}) as any as S.Schema<ExecTaskStdinWriteResponse>;
-
 export interface GetTaskContainerRequest {
   taskId?: string;
   containerName?: string;
@@ -422,58 +314,71 @@ export const SandboxStdinWriteV2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxStdinWriteV2Response",
 }) as any as S.Schema<SandboxStdinWriteV2Response>;
 
-export interface SetTaskNetworkAccessRequest {
+export interface SandboxWaitUntilReadyRequest {
   taskId?: string;
-  /** Replaces the task's network access policy. Only ALLOWLIST is currently supported; open access is expressed as an allow-all allowlist. */
-  networkAccess?: NetworkAccess;
+  timeout?: number;
 }
-export const SetTaskNetworkAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const SandboxWaitUntilReadyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.optional(S.String),
-    networkAccess: S.optional(NetworkAccess),
+    timeout: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/TaskSetNetworkAccess",
+      uri: "/modal.task_command_router.TaskCommandRouter/SandboxWaitUntilReady",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SetTaskNetworkAccessRequest",
-}) as any as S.Schema<SetTaskNetworkAccessRequest>;
+  identifier: "SandboxWaitUntilReadyRequest",
+}) as any as S.Schema<SandboxWaitUntilReadyRequest>;
 
-export interface SetTaskNetworkAccessResponse {}
-export const SetTaskNetworkAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SetTaskNetworkAccessResponse",
-}) as any as S.Schema<SetTaskNetworkAccessResponse>;
-
-export interface TaskContainerTerminateRequest {
-  taskId?: string;
-  containerId?: string;
+export interface SandboxWaitUntilReadyResponse {
+  readyAt?: number;
 }
-export const TaskContainerTerminateRequest = /*@__PURE__*/ S.suspend(() =>
+export const SandboxWaitUntilReadyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readyAt: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SandboxWaitUntilReadyResponse",
+}) as any as S.Schema<SandboxWaitUntilReadyResponse>;
+
+export interface TaskExecPollRequest {
+  /** The ID of the task running the exec'd command. */
+  taskId?: string;
+  /** The execution ID of the command to wait on. */
+  execId?: string;
+}
+export const TaskExecPollRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.optional(S.String),
-    containerId: S.optional(S.String),
+    execId: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/TaskContainerTerminate",
+      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecPoll",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "TaskContainerTerminateRequest",
-}) as any as S.Schema<TaskContainerTerminateRequest>;
+  identifier: "TaskExecPollRequest",
+}) as any as S.Schema<TaskExecPollRequest>;
 
-export interface TaskContainerTerminateResponse {}
-export const TaskContainerTerminateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface TaskExecPollResponse {
+  /** The exit code of the command. */
+  code?: number;
+  /** The signal that terminated the command. */
+  signal?: number;
+}
+export const TaskExecPollResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.Number),
+    signal: S.optional(S.Number),
+  }),
 ).annotate({
-  identifier: "TaskContainerTerminateResponse",
-}) as any as S.Schema<TaskContainerTerminateResponse>;
+  identifier: "TaskExecPollResponse",
+}) as any as S.Schema<TaskExecPollResponse>;
 
 export type TaskExecStdoutConfig =
   | "TASK_EXEC_STDOUT_CONFIG_DEVNULL"
@@ -543,6 +448,78 @@ export const TaskExecStartResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TaskExecStartResponse",
 }) as any as S.Schema<TaskExecStartResponse>;
+
+export interface TaskExecStdinStatusRequest {
+  /** The ID of the task running the exec'd command. */
+  taskId?: string;
+  /** The execution ID of the command to query. */
+  execId?: string;
+}
+export const TaskExecStdinStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    execId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecStdinStatus",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskExecStdinStatusRequest",
+}) as any as S.Schema<TaskExecStdinStatusRequest>;
+
+export interface TaskExecStdinStatusResponse {
+  /** Number of bytes the server has accepted for this exec so far. A streaming client that lost its connection should resume sending at this offset. */
+  numBytesWritten?: string;
+  /** True if stdin has already been closed (EOF sent) for this exec. */
+  closed?: boolean;
+}
+export const TaskExecStdinStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    numBytesWritten: S.optional(S.String),
+    closed: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TaskExecStdinStatusResponse",
+}) as any as S.Schema<TaskExecStdinStatusResponse>;
+
+export interface TaskExecStdinWriteRequest {
+  /** The ID of the task running the exec'd command. */
+  taskId?: string;
+  /** The execution ID of the command to write to. */
+  execId?: string;
+  /** The offset to start writing to. This is used to resume writing from the last write position if the connection is closed and reopened. */
+  offset?: string;
+  data?: string;
+  /** If true, close the stdin stream after writing any provided data. This signals EOF to the exec'd process. */
+  eof?: boolean;
+}
+export const TaskExecStdinWriteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    execId: S.optional(S.String),
+    offset: S.optional(S.String),
+    data: S.optional(S.String),
+    eof: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.task_command_router.TaskCommandRouter/TaskExecStdinWrite",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskExecStdinWriteRequest",
+}) as any as S.Schema<TaskExecStdinWriteRequest>;
+
+export interface TaskExecStdinWriteResponse {}
+export const TaskExecStdinWriteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TaskExecStdinWriteResponse",
+}) as any as S.Schema<TaskExecStdinWriteResponse>;
 
 export interface TaskExecWaitRequest {
   /** The ID of the task running the exec'd command. */
@@ -640,6 +617,33 @@ export const TaskReloadVolumesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TaskReloadVolumesResponse",
 }) as any as S.Schema<TaskReloadVolumesResponse>;
+
+export interface TaskSetNetworkAccessRequest {
+  taskId?: string;
+  /** Replaces the task's network access policy. Only ALLOWLIST is currently supported; open access is expressed as an allow-all allowlist. */
+  networkAccess?: NetworkAccess;
+}
+export const TaskSetNetworkAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    networkAccess: S.optional(NetworkAccess),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.task_command_router.TaskCommandRouter/TaskSetNetworkAccess",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TaskSetNetworkAccessRequest",
+}) as any as S.Schema<TaskSetNetworkAccessRequest>;
+
+export interface TaskSetNetworkAccessResponse {}
+export const TaskSetNetworkAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TaskSetNetworkAccessResponse",
+}) as any as S.Schema<TaskSetNetworkAccessResponse>;
 
 export interface TaskSnapshotDirectoryRequest {
   taskId?: string;
@@ -782,35 +786,31 @@ export const TaskUnmountDirectoryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskUnmountDirectoryResponse",
 }) as any as S.Schema<TaskUnmountDirectoryResponse>;
 
-export interface WaitSandboxUntilReadyRequest {
+export interface TerminateTaskContainerRequest {
   taskId?: string;
-  timeout?: number;
+  containerId?: string;
 }
-export const WaitSandboxUntilReadyRequest = /*@__PURE__*/ S.suspend(() =>
+export const TerminateTaskContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.optional(S.String),
-    timeout: S.optional(S.Number),
+    containerId: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.task_command_router.TaskCommandRouter/SandboxWaitUntilReady",
+      uri: "/modal.task_command_router.TaskCommandRouter/TaskContainerTerminate",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "WaitSandboxUntilReadyRequest",
-}) as any as S.Schema<WaitSandboxUntilReadyRequest>;
+  identifier: "TerminateTaskContainerRequest",
+}) as any as S.Schema<TerminateTaskContainerRequest>;
 
-export interface WaitSandboxUntilReadyResponse {
-  readyAt?: number;
-}
-export const WaitSandboxUntilReadyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    readyAt: S.optional(S.Number),
-  }),
+export interface TerminateTaskContainerResponse {}
+export const TerminateTaskContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "WaitSandboxUntilReadyResponse",
-}) as any as S.Schema<WaitSandboxUntilReadyResponse>;
+  identifier: "TerminateTaskContainerResponse",
+}) as any as S.Schema<TerminateTaskContainerResponse>;
 
 export interface WaitTaskContainerRequest {
   taskId?: string;
@@ -854,51 +854,6 @@ export const createTaskContainer: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateTaskContainerRequest,
   output: CreateTaskContainerResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExecTaskPollError = ModalOpError;
-/** Poll for the exit status of an exec'd command. */
-export const execTaskPoll: API.OperationMethod<
-  ExecTaskPollRequest,
-  ExecTaskPollResponse,
-  ExecTaskPollError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExecTaskPollRequest,
-  output: ExecTaskPollResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExecTaskStdinStatusError = ModalOpError;
-/** Get the current stdin write status for an exec'd command. Used to resume a TaskExecStdinWriteStream after a stream failure. Evicts any in-flight TaskExecStdinWriteStream for this exec, so it is not safe to call for read-only observability. */
-export const execTaskStdinStatus: API.OperationMethod<
-  ExecTaskStdinStatusRequest,
-  ExecTaskStdinStatusResponse,
-  ExecTaskStdinStatusError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExecTaskStdinStatusRequest,
-  output: ExecTaskStdinStatusResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExecTaskStdinWriteError = ModalOpError;
-/** Write to the stdin stream of an exec'd command. */
-export const execTaskStdinWrite: API.OperationMethod<
-  ExecTaskStdinWriteRequest,
-  ExecTaskStdinWriteResponse,
-  ExecTaskStdinWriteError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExecTaskStdinWriteRequest,
-  output: ExecTaskStdinWriteResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -948,31 +903,30 @@ export const sandboxStdinWriteV2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetTaskNetworkAccessError = ModalOpError;
-/** Replace the task's outbound network allowlist (domains + CIDRs). */
-export const setTaskNetworkAccess: API.OperationMethod<
-  SetTaskNetworkAccessRequest,
-  SetTaskNetworkAccessResponse,
-  SetTaskNetworkAccessError,
+export type SandboxWaitUntilReadyError = ModalOpError;
+export const sandboxWaitUntilReady: API.OperationMethod<
+  SandboxWaitUntilReadyRequest,
+  SandboxWaitUntilReadyResponse,
+  SandboxWaitUntilReadyError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetTaskNetworkAccessRequest,
-  output: SetTaskNetworkAccessResponse,
+  input: SandboxWaitUntilReadyRequest,
+  output: SandboxWaitUntilReadyResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TaskContainerTerminateError = ModalOpError;
-/** Terminate or release a tracked container. */
-export const taskContainerTerminate: API.OperationMethod<
-  TaskContainerTerminateRequest,
-  TaskContainerTerminateResponse,
-  TaskContainerTerminateError,
+export type TaskExecPollError = ModalOpError;
+/** Poll for the exit status of an exec'd command. */
+export const taskExecPoll: API.OperationMethod<
+  TaskExecPollRequest,
+  TaskExecPollResponse,
+  TaskExecPollError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskContainerTerminateRequest,
-  output: TaskContainerTerminateResponse,
+  input: TaskExecPollRequest,
+  output: TaskExecPollResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -988,6 +942,36 @@ export const taskExecStart: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TaskExecStartRequest,
   output: TaskExecStartResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskExecStdinStatusError = ModalOpError;
+/** Get the current stdin write status for an exec'd command. Used to resume a TaskExecStdinWriteStream after a stream failure. Evicts any in-flight TaskExecStdinWriteStream for this exec, so it is not safe to call for read-only observability. */
+export const taskExecStdinStatus: API.OperationMethod<
+  TaskExecStdinStatusRequest,
+  TaskExecStdinStatusResponse,
+  TaskExecStdinStatusError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskExecStdinStatusRequest,
+  output: TaskExecStdinStatusResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskExecStdinWriteError = ModalOpError;
+/** Write to the stdin stream of an exec'd command. */
+export const taskExecStdinWrite: API.OperationMethod<
+  TaskExecStdinWriteRequest,
+  TaskExecStdinWriteResponse,
+  TaskExecStdinWriteError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskExecStdinWriteRequest,
+  output: TaskExecStdinWriteResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -1033,6 +1017,21 @@ export const taskReloadVolumes: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TaskReloadVolumesRequest,
   output: TaskReloadVolumesResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TaskSetNetworkAccessError = ModalOpError;
+/** Replace the task's outbound network allowlist (domains + CIDRs). */
+export const taskSetNetworkAccess: API.OperationMethod<
+  TaskSetNetworkAccessRequest,
+  TaskSetNetworkAccessResponse,
+  TaskSetNetworkAccessError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TaskSetNetworkAccessRequest,
+  output: TaskSetNetworkAccessResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -1098,15 +1097,16 @@ export const taskUnmountDirectory: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WaitSandboxUntilReadyError = ModalOpError;
-export const waitSandboxUntilReady: API.OperationMethod<
-  WaitSandboxUntilReadyRequest,
-  WaitSandboxUntilReadyResponse,
-  WaitSandboxUntilReadyError,
+export type TerminateTaskContainerError = ModalOpError;
+/** Terminate or release a tracked container. */
+export const terminateTaskContainer: API.OperationMethod<
+  TerminateTaskContainerRequest,
+  TerminateTaskContainerResponse,
+  TerminateTaskContainerError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WaitSandboxUntilReadyRequest,
-  output: WaitSandboxUntilReadyResponse,
+  input: TerminateTaskContainerRequest,
+  output: TerminateTaskContainerResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

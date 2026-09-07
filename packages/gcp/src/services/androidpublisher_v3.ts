@@ -79,20 +79,20 @@ export const ProductPurchasesAcknowledgeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductPurchasesAcknowledgeRequest>;
 
 export interface AcknowledgePurchasesProductsRequest {
-  /** The inapp product SKU (for example, 'com.some.thing.inapp1'). */
-  productId: string;
   /** The package name of the application the inapp product was sold in (for example, 'com.some.thing'). */
   packageName: string;
   /** The token provided to the user's device when the inapp product was purchased. */
   token: string;
+  /** The inapp product SKU (for example, 'com.some.thing.inapp1'). */
+  productId: string;
   /** Request body */
   body?: ProductPurchasesAcknowledgeRequest;
 }
 export const AcknowledgePurchasesProductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     token: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
     body: S.optional(ProductPurchasesAcknowledgeRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -114,15 +114,15 @@ export const AcknowledgePurchasesProductsResponse = /*@__PURE__*/ S.suspend(
 
 /** User account identifier in your app. */
 export interface ExternalAccountIds {
-  /** Optional. Specifies an optional obfuscated string that is uniquely associated with the purchaser's user profile in your app. If you pass this value, Google Play can use it to detect irregular activity. Do not use this field to store any Personally Identifiable Information (PII) such as emails in cleartext. Attempting to store PII in this field will result in purchases being blocked. Google Play recommends that you use either encryption or a one-way hash to generate an obfuscated identifier to send to Google Play. This identifier is limited to 64 characters. This field can only be set for resubscription purchases. See https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid to set this field for purchases made using the standard in-app billing flow. */
-  obfuscatedProfileId?: string;
   /** Optional. Specifies an optional obfuscated string that is uniquely associated with the purchaser's user account in your app. If you pass this value, Google Play can use it to detect irregular activity. Do not use this field to store any Personally Identifiable Information (PII) such as emails in cleartext. Attempting to store PII in this field will result in purchases being blocked. Google Play recommends that you use either encryption or a one-way hash to generate an obfuscated identifier to send to Google Play. This identifier is limited to 64 characters. This field can only be set for resubscription purchases. See https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid to set this field for purchases made using the standard in-app billing flow. */
   obfuscatedAccountId?: string;
+  /** Optional. Specifies an optional obfuscated string that is uniquely associated with the purchaser's user profile in your app. If you pass this value, Google Play can use it to detect irregular activity. Do not use this field to store any Personally Identifiable Information (PII) such as emails in cleartext. Attempting to store PII in this field will result in purchases being blocked. Google Play recommends that you use either encryption or a one-way hash to generate an obfuscated identifier to send to Google Play. This identifier is limited to 64 characters. This field can only be set for resubscription purchases. See https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid to set this field for purchases made using the standard in-app billing flow. */
+  obfuscatedProfileId?: string;
 }
 export const ExternalAccountIds = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    obfuscatedProfileId: S.optional(S.String),
     obfuscatedAccountId: S.optional(S.String),
+    obfuscatedProfileId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ExternalAccountIds",
@@ -190,52 +190,52 @@ export const ActivateOneTimeProductOfferRequestLatencyToleranceEnum =
 
 /** Request message for ActivateOneTimeProductOffer. */
 export interface ActivateOneTimeProductOfferRequest {
-  /** Required. The parent app (package name) of the offer to activate. */
-  packageName?: string;
-  /** Required. The parent purchase option (ID) of the offer to activate. */
-  purchaseOptionId?: string;
-  /** Required. The offer ID of the offer to activate. */
-  offerId?: string;
-  /** Required. The parent one-time product (ID) of the offer to activate. */
-  productId?: string;
   /** Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive. */
   latencyTolerance?:
     | ActivateOneTimeProductOfferRequestLatencyToleranceEnum
     | (string & {});
+  /** Required. The offer ID of the offer to activate. */
+  offerId?: string;
+  /** Required. The parent one-time product (ID) of the offer to activate. */
+  productId?: string;
+  /** Required. The parent app (package name) of the offer to activate. */
+  packageName?: string;
+  /** Required. The parent purchase option (ID) of the offer to activate. */
+  purchaseOptionId?: string;
 }
 export const ActivateOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.optional(S.String),
-    purchaseOptionId: S.optional(S.String),
-    offerId: S.optional(S.String),
-    productId: S.optional(S.String),
     latencyTolerance: S.optional(
       ActivateOneTimeProductOfferRequestLatencyToleranceEnum,
     ),
+    offerId: S.optional(S.String),
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    purchaseOptionId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ActivateOneTimeProductOfferRequest",
 }) as any as S.Schema<ActivateOneTimeProductOfferRequest>;
 
 export interface ActivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
+  /** Required. The parent app (package name) of the offer to activate. */
+  packageName: string;
+  /** Required. The parent purchase option (ID) of the offer to activate. */
+  purchaseOptionId: string;
   /** Required. The parent one-time product (ID) of the offer to activate. */
   productId: string;
   /** Required. The offer ID of the offer to activate. */
   offerId: string;
-  /** Required. The parent purchase option (ID) of the offer to activate. */
-  purchaseOptionId: string;
-  /** Required. The parent app (package name) of the offer to activate. */
-  packageName: string;
   /** Request body */
   body?: ActivateOneTimeProductOfferRequest;
 }
 export const ActivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      purchaseOptionId: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
       offerId: S.String.pipe(T.Label()),
-      purchaseOptionId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
       body: S.optional(ActivateOneTimeProductOfferRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -249,74 +249,6 @@ export const ActivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
       "ActivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
   }) as any as S.Schema<ActivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
 
-/** Options for one-time product offers without a regional price override. */
-export interface OneTimeProductOfferNoPriceOverrideOptions {}
-export const OneTimeProductOfferNoPriceOverrideOptions =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "OneTimeProductOfferNoPriceOverrideOptions",
-  }) as any as S.Schema<OneTimeProductOfferNoPriceOverrideOptions>;
-
-export type OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  | "AVAILABILITY_UNSPECIFIED"
-  | "AVAILABLE"
-  | "NO_LONGER_AVAILABLE";
-export const OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
-
-/** Represents an amount of money with its currency type. */
-export interface Money {
-  /** The three-letter currency code defined in ISO 4217. */
-  currencyCode?: string;
-  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
-  units?: string;
-  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
-  nanos?: number;
-}
-export const Money = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currencyCode: S.optional(S.String),
-    units: S.optional(S.String),
-    nanos: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
-
-/** Regional pricing and availability configuration for a one-time product offer. */
-export interface OneTimeProductOfferRegionalPricingAndAvailabilityConfig {
-  /** The price defined in the purchase option for this region will be used. */
-  noOverride?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US". */
-  regionCode?: string;
-  /** The fraction of the purchase option price that the user pays for this offer. For example, if the purchase option price for this region is $12, then a 50% discount would correspond to a price of $6. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region. */
-  relativeDiscount?: number;
-  /** Required. The availability for this region. */
-  availability?:
-    | OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum
-    | (string & {});
-  /** The absolute value of the discount that is subtracted from the purchase option price. It should be between 0 and the purchase option price. */
-  absoluteDiscount?: Money;
-}
-export const OneTimeProductOfferRegionalPricingAndAvailabilityConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      noOverride: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-      regionCode: S.optional(S.String),
-      relativeDiscount: S.optional(S.Number),
-      availability: S.optional(
-        OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum,
-      ),
-      absoluteDiscount: S.optional(Money),
-    }),
-  ).annotate({
-    identifier: "OneTimeProductOfferRegionalPricingAndAvailabilityConfig",
-  }) as any as S.Schema<OneTimeProductOfferRegionalPricingAndAvailabilityConfig>;
-
-export type OneTimeProductOfferRegionalPricingAndAvailabilityConfigList =
-  Array<OneTimeProductOfferRegionalPricingAndAvailabilityConfig>;
-export const OneTimeProductOfferRegionalPricingAndAvailabilityConfigList =
-  /*@__PURE__*/ S.Array(
-    OneTimeProductOfferRegionalPricingAndAvailabilityConfig,
-  ) as any as S.Schema<OneTimeProductOfferRegionalPricingAndAvailabilityConfigList>;
-
 export type OneTimeProductOfferStateEnum =
   | "STATE_UNSPECIFIED"
   | "DRAFT"
@@ -325,64 +257,20 @@ export type OneTimeProductOfferStateEnum =
   | "INACTIVE";
 export const OneTimeProductOfferStateEnum = /*@__PURE__*/ S.String;
 
-export type OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
-  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED"
-  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST"
-  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY";
-export const OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
-  /*@__PURE__*/ S.String;
-
-/** Configuration specific to pre-order offers. */
-export interface OneTimeProductPreOrderOffer {
-  /** Required. Immutable. Specifies how price changes affect pre-existing pre-orders. */
-  priceChangeBehavior?:
-    | OneTimeProductPreOrderOfferPriceChangeBehaviorEnum
-    | (string & {});
-  /** Required. Time on which the product associated with the pre-order will be released and the pre-order orders fulfilled. */
-  releaseTime?: string;
-  /** Required. Time when the pre-order will start being available. */
-  startTime?: string;
-  /** Required. Time when the pre-order will stop being available. */
-  endTime?: string;
-}
-export const OneTimeProductPreOrderOffer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    priceChangeBehavior: S.optional(
-      OneTimeProductPreOrderOfferPriceChangeBehaviorEnum,
-    ),
-    releaseTime: S.optional(S.String),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OneTimeProductPreOrderOffer",
-}) as any as S.Schema<OneTimeProductPreOrderOffer>;
-
-/** The version of the available regions being used for the specified resource. */
-export interface RegionsVersion {
-  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
-  version?: string;
-}
-export const RegionsVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "RegionsVersion" }) as any as S.Schema<RegionsVersion>;
-
 /** Configuration specific to discounted offers. */
 export interface OneTimeProductDiscountedOffer {
+  /** Time when the offer will start being available. */
+  startTime?: string;
   /** Time when the offer will stop being available. */
   endTime?: string;
   /** Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive. */
   redemptionLimit?: string;
-  /** Time when the offer will start being available. */
-  startTime?: string;
 }
 export const OneTimeProductDiscountedOffer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    startTime: S.optional(S.String),
     endTime: S.optional(S.String),
     redemptionLimit: S.optional(S.String),
-    startTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "OneTimeProductDiscountedOffer",
@@ -404,43 +292,171 @@ export const OfferTagList = /*@__PURE__*/ S.Array(
   OfferTag,
 ) as any as S.Schema<OfferTagList>;
 
+/** Configuration specific to game reward offers. */
+export interface OneTimeProductGameRewardOffer {
+  /** Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive. */
+  redemptionLimit?: string;
+}
+export const OneTimeProductGameRewardOffer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    redemptionLimit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OneTimeProductGameRewardOffer",
+}) as any as S.Schema<OneTimeProductGameRewardOffer>;
+
+/** Options for one-time product offers without a regional price override. */
+export interface OneTimeProductOfferNoPriceOverrideOptions {}
+export const OneTimeProductOfferNoPriceOverrideOptions =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "OneTimeProductOfferNoPriceOverrideOptions",
+  }) as any as S.Schema<OneTimeProductOfferNoPriceOverrideOptions>;
+
+export type OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum =
+  | "AVAILABILITY_UNSPECIFIED"
+  | "AVAILABLE"
+  | "NO_LONGER_AVAILABLE";
+export const OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum =
+  /*@__PURE__*/ S.String;
+
+/** Represents an amount of money with its currency type. */
+export interface Money {
+  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
+  nanos?: number;
+  /** The three-letter currency code defined in ISO 4217. */
+  currencyCode?: string;
+  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
+  units?: string;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nanos: S.optional(S.Number),
+    currencyCode: S.optional(S.String),
+    units: S.optional(S.String),
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+/** Regional pricing and availability configuration for a one-time product offer. */
+export interface OneTimeProductOfferRegionalPricingAndAvailabilityConfig {
+  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US". */
+  regionCode?: string;
+  /** The price defined in the purchase option for this region will be used. */
+  noOverride?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The fraction of the purchase option price that the user pays for this offer. For example, if the purchase option price for this region is $12, then a 50% discount would correspond to a price of $6. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region. */
+  relativeDiscount?: number;
+  /** Required. The availability for this region. */
+  availability?:
+    | OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum
+    | (string & {});
+  /** The absolute value of the discount that is subtracted from the purchase option price. It should be between 0 and the purchase option price. */
+  absoluteDiscount?: Money;
+}
+export const OneTimeProductOfferRegionalPricingAndAvailabilityConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regionCode: S.optional(S.String),
+      noOverride: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+      relativeDiscount: S.optional(S.Number),
+      availability: S.optional(
+        OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum,
+      ),
+      absoluteDiscount: S.optional(Money),
+    }),
+  ).annotate({
+    identifier: "OneTimeProductOfferRegionalPricingAndAvailabilityConfig",
+  }) as any as S.Schema<OneTimeProductOfferRegionalPricingAndAvailabilityConfig>;
+
+export type OneTimeProductOfferRegionalPricingAndAvailabilityConfigList =
+  Array<OneTimeProductOfferRegionalPricingAndAvailabilityConfig>;
+export const OneTimeProductOfferRegionalPricingAndAvailabilityConfigList =
+  /*@__PURE__*/ S.Array(
+    OneTimeProductOfferRegionalPricingAndAvailabilityConfig,
+  ) as any as S.Schema<OneTimeProductOfferRegionalPricingAndAvailabilityConfigList>;
+
+export type OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
+  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED"
+  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST"
+  | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY";
+export const OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
+  /*@__PURE__*/ S.String;
+
+/** Configuration specific to pre-order offers. */
+export interface OneTimeProductPreOrderOffer {
+  /** Required. Time when the pre-order will stop being available. */
+  endTime?: string;
+  /** Required. Time on which the product associated with the pre-order will be released and the pre-order orders fulfilled. */
+  releaseTime?: string;
+  /** Required. Time when the pre-order will start being available. */
+  startTime?: string;
+  /** Required. Immutable. Specifies how price changes affect pre-existing pre-orders. */
+  priceChangeBehavior?:
+    | OneTimeProductPreOrderOfferPriceChangeBehaviorEnum
+    | (string & {});
+}
+export const OneTimeProductPreOrderOffer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endTime: S.optional(S.String),
+    releaseTime: S.optional(S.String),
+    startTime: S.optional(S.String),
+    priceChangeBehavior: S.optional(
+      OneTimeProductPreOrderOfferPriceChangeBehaviorEnum,
+    ),
+  }),
+).annotate({
+  identifier: "OneTimeProductPreOrderOffer",
+}) as any as S.Schema<OneTimeProductPreOrderOffer>;
+
+/** The version of the available regions being used for the specified resource. */
+export interface RegionsVersion {
+  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
+  version?: string;
+}
+export const RegionsVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "RegionsVersion" }) as any as S.Schema<RegionsVersion>;
+
 /** A single offer for a one-time product. */
 export interface OneTimeProductOffer {
+  /** Required. Immutable. The package name of the app the parent product belongs to. */
+  packageName?: string;
   /** Required. Immutable. The ID of the parent product this offer belongs to. */
   productId?: string;
-  /** Set of regional pricing and availability information for this offer. Must not have duplicate entries with the same region_code. */
-  regionalPricingAndAvailabilityConfigs?: OneTimeProductOfferRegionalPricingAndAvailabilityConfigList;
-  /** Required. Immutable. The ID of the purchase option to which this offer is an extension. */
-  purchaseOptionId?: string;
   /** Output only. The current state of this offer. This field cannot be changed by updating the resource. Use the dedicated endpoints instead. */
   state?: OneTimeProductOfferStateEnum | (string & {});
+  /** A discounted offer. */
+  discountedOffer?: OneTimeProductDiscountedOffer;
+  /** Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters. */
+  offerId?: string;
+  /** Optional. List of up to 20 custom tags specified for this offer, and returned to the app through the billing library. */
+  offerTags?: OfferTagList;
+  /** Required. Immutable. The ID of the purchase option to which this offer is an extension. */
+  purchaseOptionId?: string;
+  /** A game reward offer. */
+  gameRewardOffer?: OneTimeProductGameRewardOffer;
+  /** Set of regional pricing and availability information for this offer. Must not have duplicate entries with the same region_code. */
+  regionalPricingAndAvailabilityConfigs?: OneTimeProductOfferRegionalPricingAndAvailabilityConfigList;
   /** A pre-order offer. */
   preOrderOffer?: OneTimeProductPreOrderOffer;
   /** Output only. The version of the regions configuration that was used to generate the one-time product offer. */
   regionsVersion?: RegionsVersion;
-  /** Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters. */
-  offerId?: string;
-  /** A discounted offer. */
-  discountedOffer?: OneTimeProductDiscountedOffer;
-  /** Optional. List of up to 20 custom tags specified for this offer, and returned to the app through the billing library. */
-  offerTags?: OfferTagList;
-  /** Required. Immutable. The package name of the app the parent product belongs to. */
-  packageName?: string;
 }
 export const OneTimeProductOffer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    packageName: S.optional(S.String),
     productId: S.optional(S.String),
+    state: S.optional(OneTimeProductOfferStateEnum),
+    discountedOffer: S.optional(OneTimeProductDiscountedOffer),
+    offerId: S.optional(S.String),
+    offerTags: S.optional(OfferTagList),
+    purchaseOptionId: S.optional(S.String),
+    gameRewardOffer: S.optional(OneTimeProductGameRewardOffer),
     regionalPricingAndAvailabilityConfigs: S.optional(
       OneTimeProductOfferRegionalPricingAndAvailabilityConfigList,
     ),
-    purchaseOptionId: S.optional(S.String),
-    state: S.optional(OneTimeProductOfferStateEnum),
     preOrderOffer: S.optional(OneTimeProductPreOrderOffer),
     regionsVersion: S.optional(RegionsVersion),
-    offerId: S.optional(S.String),
-    discountedOffer: S.optional(OneTimeProductDiscountedOffer),
-    offerTags: S.optional(OfferTagList),
-    packageName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "OneTimeProductOffer",
@@ -455,23 +471,23 @@ export const ActivateBasePlanRequestLatencyToleranceEnum =
 
 /** Request message for ActivateBasePlan. */
 export interface ActivateBasePlanRequest {
+  /** Required. The parent subscription (ID) of the base plan to activate. */
+  productId?: string;
+  /** Required. The parent app (package name) of the base plan to activate. */
+  packageName?: string;
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
   latencyTolerance?:
     | ActivateBasePlanRequestLatencyToleranceEnum
     | (string & {});
-  /** Required. The parent subscription (ID) of the base plan to activate. */
-  productId?: string;
   /** Required. The unique base plan ID of the base plan to activate. */
   basePlanId?: string;
-  /** Required. The parent app (package name) of the base plan to activate. */
-  packageName?: string;
 }
 export const ActivateBasePlanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    latencyTolerance: S.optional(ActivateBasePlanRequestLatencyToleranceEnum),
     productId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
     packageName: S.optional(S.String),
+    latencyTolerance: S.optional(ActivateBasePlanRequestLatencyToleranceEnum),
+    basePlanId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ActivateBasePlanRequest",
@@ -505,135 +521,53 @@ export const ActivateMonetizationSubscriptionsBasePlansRequest =
     identifier: "ActivateMonetizationSubscriptionsBasePlansRequest",
   }) as any as S.Schema<ActivateMonetizationSubscriptionsBasePlansRequest>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
+export type PrepaidBasePlanTypeTimeExtensionEnum =
+  | "TIME_EXTENSION_UNSPECIFIED"
+  | "TIME_EXTENSION_ACTIVE"
+  | "TIME_EXTENSION_INACTIVE";
+export const PrepaidBasePlanTypeTimeExtensionEnum = /*@__PURE__*/ S.String;
 
-/** The consumer-visible metadata of a subscription. */
-export interface SubscriptionListing {
-  /** A list of benefits shown to the user on platforms such as the Play Store and in restoration flows in the language of this listing. Plain text. Ordered list of at most four benefits. */
-  benefits?: StringList;
-  /** Required. The title of this subscription in the language of this listing. Plain text. */
-  title?: string;
-  /** The description of this subscription in the language of this listing. Maximum length - 200 characters. Plain text. */
-  description?: string;
-  /** Required. The language of this listing, as defined by BCP-47, e.g. "en-US". */
-  languageCode?: string;
-}
-export const SubscriptionListing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    benefits: S.optional(StringList),
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-    languageCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SubscriptionListing",
-}) as any as S.Schema<SubscriptionListing>;
-
-export type SubscriptionListingList = Array<SubscriptionListing>;
-export const SubscriptionListingList = /*@__PURE__*/ S.Array(
-  SubscriptionListing,
-) as any as S.Schema<SubscriptionListingList>;
-
-export type AutoRenewingBasePlanTypeResubscribeStateEnum =
-  | "RESUBSCRIBE_STATE_UNSPECIFIED"
-  | "RESUBSCRIBE_STATE_ACTIVE"
-  | "RESUBSCRIBE_STATE_INACTIVE";
-export const AutoRenewingBasePlanTypeResubscribeStateEnum =
-  /*@__PURE__*/ S.String;
-
-export type AutoRenewingBasePlanTypeProrationModeEnum =
-  | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
-  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
-  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
-export const AutoRenewingBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
-
-/** Represents a base plan that automatically renews at the end of its subscription period. */
-export interface AutoRenewingBasePlanType {
-  /** Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
-  gracePeriodDuration?: string;
+/** Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user. */
+export interface PrepaidBasePlanType {
+  /** Whether users should be able to extend this prepaid base plan in Google Play surfaces. Defaults to TIME_EXTENSION_ACTIVE if not specified. */
+  timeExtension?: PrepaidBasePlanTypeTimeExtensionEnum | (string & {});
   /** Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created. */
   billingPeriodDuration?: string;
-  /** Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified. */
-  resubscribeState?:
-    | AutoRenewingBasePlanTypeResubscribeStateEnum
-    | (string & {});
-  /** The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE. */
-  prorationMode?: AutoRenewingBasePlanTypeProrationModeEnum | (string & {});
-  /** Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string. */
-  legacyCompatibleSubscriptionOfferId?: string;
-  /** Whether the renewing base plan is backward compatible. The backward compatible base plan is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one renewing base plan can be marked as legacy compatible for a given subscription. */
-  legacyCompatible?: boolean;
-  /** Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
-  accountHoldDuration?: string;
 }
-export const AutoRenewingBasePlanType = /*@__PURE__*/ S.suspend(() =>
+export const PrepaidBasePlanType = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    gracePeriodDuration: S.optional(S.String),
+    timeExtension: S.optional(PrepaidBasePlanTypeTimeExtensionEnum),
     billingPeriodDuration: S.optional(S.String),
-    resubscribeState: S.optional(AutoRenewingBasePlanTypeResubscribeStateEnum),
-    prorationMode: S.optional(AutoRenewingBasePlanTypeProrationModeEnum),
-    legacyCompatibleSubscriptionOfferId: S.optional(S.String),
-    legacyCompatible: S.optional(S.Boolean),
-    accountHoldDuration: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AutoRenewingBasePlanType",
-}) as any as S.Schema<AutoRenewingBasePlanType>;
+  identifier: "PrepaidBasePlanType",
+}) as any as S.Schema<PrepaidBasePlanType>;
 
-export type InstallmentsBasePlanTypeProrationModeEnum =
-  | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
-  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
-  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
-export const InstallmentsBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
-
-export type InstallmentsBasePlanTypeRenewalTypeEnum =
-  | "RENEWAL_TYPE_UNSPECIFIED"
-  | "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT"
-  | "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT";
-export const InstallmentsBasePlanTypeRenewalTypeEnum = /*@__PURE__*/ S.String;
-
-export type InstallmentsBasePlanTypeResubscribeStateEnum =
-  | "RESUBSCRIBE_STATE_UNSPECIFIED"
-  | "RESUBSCRIBE_STATE_ACTIVE"
-  | "RESUBSCRIBE_STATE_INACTIVE";
-export const InstallmentsBasePlanTypeResubscribeStateEnum =
-  /*@__PURE__*/ S.String;
-
-/** Represents an installments base plan where a user commits to a specified number of payments. */
-export interface InstallmentsBasePlanType {
-  /** Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
-  accountHoldDuration?: string;
-  /** Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created. */
-  billingPeriodDuration?: string;
-  /** Required. Immutable. The number of payments the user is committed to. It is immutable after the base plan is created. */
-  committedPaymentsCount?: number;
-  /** The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE. */
-  prorationMode?: InstallmentsBasePlanTypeProrationModeEnum | (string & {});
-  /** Required. Immutable. Installments base plan renewal type. Determines the behavior at the end of the initial commitment. The renewal type is immutable after the base plan is created. */
-  renewalType?: InstallmentsBasePlanTypeRenewalTypeEnum | (string & {});
-  /** Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified. */
-  resubscribeState?:
-    | InstallmentsBasePlanTypeResubscribeStateEnum
-    | (string & {});
-  /** Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
-  gracePeriodDuration?: string;
+/** Pricing information for any new locations Play may launch in. */
+export interface OtherRegionsBasePlanConfig {
+  /** Required. Price in EUR to use for any new locations Play may launch in. */
+  eurPrice?: Money;
+  /** Whether the base plan is available for new subscribers in any new locations Play may launch in. If not specified, this will default to false. */
+  newSubscriberAvailability?: boolean;
+  /** Required. Price in USD to use for any new locations Play may launch in. */
+  usdPrice?: Money;
 }
-export const InstallmentsBasePlanType = /*@__PURE__*/ S.suspend(() =>
+export const OtherRegionsBasePlanConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    accountHoldDuration: S.optional(S.String),
-    billingPeriodDuration: S.optional(S.String),
-    committedPaymentsCount: S.optional(S.Number),
-    prorationMode: S.optional(InstallmentsBasePlanTypeProrationModeEnum),
-    renewalType: S.optional(InstallmentsBasePlanTypeRenewalTypeEnum),
-    resubscribeState: S.optional(InstallmentsBasePlanTypeResubscribeStateEnum),
-    gracePeriodDuration: S.optional(S.String),
+    eurPrice: S.optional(Money),
+    newSubscriberAvailability: S.optional(S.Boolean),
+    usdPrice: S.optional(Money),
   }),
 ).annotate({
-  identifier: "InstallmentsBasePlanType",
-}) as any as S.Schema<InstallmentsBasePlanType>;
+  identifier: "OtherRegionsBasePlanConfig",
+}) as any as S.Schema<OtherRegionsBasePlanConfig>;
+
+export type BasePlanStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "DRAFT"
+  | "ACTIVE"
+  | "INACTIVE";
+export const BasePlanStateEnum = /*@__PURE__*/ S.String;
 
 /** Configuration for a base plan specific to a region. */
 export interface RegionalBasePlanConfig {
@@ -659,83 +593,133 @@ export const RegionalBasePlanConfigList = /*@__PURE__*/ S.Array(
   RegionalBasePlanConfig,
 ) as any as S.Schema<RegionalBasePlanConfigList>;
 
-export type BasePlanStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "DRAFT"
-  | "ACTIVE"
-  | "INACTIVE";
-export const BasePlanStateEnum = /*@__PURE__*/ S.String;
+export type AutoRenewingBasePlanTypeProrationModeEnum =
+  | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
+  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
+  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
+export const AutoRenewingBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
 
-/** Pricing information for any new locations Play may launch in. */
-export interface OtherRegionsBasePlanConfig {
-  /** Whether the base plan is available for new subscribers in any new locations Play may launch in. If not specified, this will default to false. */
-  newSubscriberAvailability?: boolean;
-  /** Required. Price in EUR to use for any new locations Play may launch in. */
-  eurPrice?: Money;
-  /** Required. Price in USD to use for any new locations Play may launch in. */
-  usdPrice?: Money;
-}
-export const OtherRegionsBasePlanConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    newSubscriberAvailability: S.optional(S.Boolean),
-    eurPrice: S.optional(Money),
-    usdPrice: S.optional(Money),
-  }),
-).annotate({
-  identifier: "OtherRegionsBasePlanConfig",
-}) as any as S.Schema<OtherRegionsBasePlanConfig>;
+export type AutoRenewingBasePlanTypeResubscribeStateEnum =
+  | "RESUBSCRIBE_STATE_UNSPECIFIED"
+  | "RESUBSCRIBE_STATE_ACTIVE"
+  | "RESUBSCRIBE_STATE_INACTIVE";
+export const AutoRenewingBasePlanTypeResubscribeStateEnum =
+  /*@__PURE__*/ S.String;
 
-export type PrepaidBasePlanTypeTimeExtensionEnum =
-  | "TIME_EXTENSION_UNSPECIFIED"
-  | "TIME_EXTENSION_ACTIVE"
-  | "TIME_EXTENSION_INACTIVE";
-export const PrepaidBasePlanTypeTimeExtensionEnum = /*@__PURE__*/ S.String;
-
-/** Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user. */
-export interface PrepaidBasePlanType {
-  /** Whether users should be able to extend this prepaid base plan in Google Play surfaces. Defaults to TIME_EXTENSION_ACTIVE if not specified. */
-  timeExtension?: PrepaidBasePlanTypeTimeExtensionEnum | (string & {});
+/** Represents a base plan that automatically renews at the end of its subscription period. */
+export interface AutoRenewingBasePlanType {
+  /** Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
+  gracePeriodDuration?: string;
   /** Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created. */
   billingPeriodDuration?: string;
+  /** Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string. */
+  legacyCompatibleSubscriptionOfferId?: string;
+  /** The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE. */
+  prorationMode?: AutoRenewingBasePlanTypeProrationModeEnum | (string & {});
+  /** Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
+  accountHoldDuration?: string;
+  /** Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified. */
+  resubscribeState?:
+    | AutoRenewingBasePlanTypeResubscribeStateEnum
+    | (string & {});
+  /** Whether the renewing base plan is backward compatible. The backward compatible base plan is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one renewing base plan can be marked as legacy compatible for a given subscription. */
+  legacyCompatible?: boolean;
 }
-export const PrepaidBasePlanType = /*@__PURE__*/ S.suspend(() =>
+export const AutoRenewingBasePlanType = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    timeExtension: S.optional(PrepaidBasePlanTypeTimeExtensionEnum),
+    gracePeriodDuration: S.optional(S.String),
     billingPeriodDuration: S.optional(S.String),
+    legacyCompatibleSubscriptionOfferId: S.optional(S.String),
+    prorationMode: S.optional(AutoRenewingBasePlanTypeProrationModeEnum),
+    accountHoldDuration: S.optional(S.String),
+    resubscribeState: S.optional(AutoRenewingBasePlanTypeResubscribeStateEnum),
+    legacyCompatible: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "PrepaidBasePlanType",
-}) as any as S.Schema<PrepaidBasePlanType>;
+  identifier: "AutoRenewingBasePlanType",
+}) as any as S.Schema<AutoRenewingBasePlanType>;
+
+export type InstallmentsBasePlanTypeRenewalTypeEnum =
+  | "RENEWAL_TYPE_UNSPECIFIED"
+  | "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT"
+  | "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT";
+export const InstallmentsBasePlanTypeRenewalTypeEnum = /*@__PURE__*/ S.String;
+
+export type InstallmentsBasePlanTypeResubscribeStateEnum =
+  | "RESUBSCRIBE_STATE_UNSPECIFIED"
+  | "RESUBSCRIBE_STATE_ACTIVE"
+  | "RESUBSCRIBE_STATE_INACTIVE";
+export const InstallmentsBasePlanTypeResubscribeStateEnum =
+  /*@__PURE__*/ S.String;
+
+export type InstallmentsBasePlanTypeProrationModeEnum =
+  | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
+  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
+  | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
+export const InstallmentsBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
+
+/** Represents an installments base plan where a user commits to a specified number of payments. */
+export interface InstallmentsBasePlanType {
+  /** Required. Immutable. Installments base plan renewal type. Determines the behavior at the end of the initial commitment. The renewal type is immutable after the base plan is created. */
+  renewalType?: InstallmentsBasePlanTypeRenewalTypeEnum | (string & {});
+  /** Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
+  accountHoldDuration?: string;
+  /** Required. Immutable. The number of payments the user is committed to. It is immutable after the base plan is created. */
+  committedPaymentsCount?: number;
+  /** Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive. */
+  gracePeriodDuration?: string;
+  /** Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created. */
+  billingPeriodDuration?: string;
+  /** Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified. */
+  resubscribeState?:
+    | InstallmentsBasePlanTypeResubscribeStateEnum
+    | (string & {});
+  /** The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE. */
+  prorationMode?: InstallmentsBasePlanTypeProrationModeEnum | (string & {});
+}
+export const InstallmentsBasePlanType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    renewalType: S.optional(InstallmentsBasePlanTypeRenewalTypeEnum),
+    accountHoldDuration: S.optional(S.String),
+    committedPaymentsCount: S.optional(S.Number),
+    gracePeriodDuration: S.optional(S.String),
+    billingPeriodDuration: S.optional(S.String),
+    resubscribeState: S.optional(InstallmentsBasePlanTypeResubscribeStateEnum),
+    prorationMode: S.optional(InstallmentsBasePlanTypeProrationModeEnum),
+  }),
+).annotate({
+  identifier: "InstallmentsBasePlanType",
+}) as any as S.Schema<InstallmentsBasePlanType>;
 
 /** A single base plan for a subscription. */
 export interface BasePlan {
-  /** Set when the base plan automatically renews at a regular interval. */
-  autoRenewingBasePlanType?: AutoRenewingBasePlanType;
-  /** Set for installments base plans where a user is committed to a specified number of payments. */
-  installmentsBasePlanType?: InstallmentsBasePlanType;
-  /** List of up to 20 custom tags specified for this base plan, and returned to the app through the billing library. Subscription offers for this base plan will also receive these offer tags in the billing library. */
-  offerTags?: OfferTagList;
-  /** Region-specific information for this base plan. */
-  regionalConfigs?: RegionalBasePlanConfigList;
-  /** Output only. The state of the base plan, i.e. whether it's active. Draft and inactive base plans can be activated or deleted. Active base plans can be made inactive. Inactive base plans can be canceled. This field cannot be changed by updating the resource. Use the dedicated endpoints instead. */
-  state?: BasePlanStateEnum | (string & {});
+  /** Set when the base plan does not automatically renew at the end of the billing period. */
+  prepaidBasePlanType?: PrepaidBasePlanType;
   /** Pricing information for any new locations Play may launch in the future. If omitted, the BasePlan will not be automatically available any new locations Play may launch in the future. */
   otherRegionsConfig?: OtherRegionsBasePlanConfig;
   /** Required. Immutable. The unique identifier of this base plan. Must be unique within the subscription, and conform with RFC-1034. That is, this ID can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 63 characters. */
   basePlanId?: string;
-  /** Set when the base plan does not automatically renew at the end of the billing period. */
-  prepaidBasePlanType?: PrepaidBasePlanType;
+  /** List of up to 20 custom tags specified for this base plan, and returned to the app through the billing library. Subscription offers for this base plan will also receive these offer tags in the billing library. */
+  offerTags?: OfferTagList;
+  /** Output only. The state of the base plan, i.e. whether it's active. Draft and inactive base plans can be activated or deleted. Active base plans can be made inactive. Inactive base plans can be canceled. This field cannot be changed by updating the resource. Use the dedicated endpoints instead. */
+  state?: BasePlanStateEnum | (string & {});
+  /** Region-specific information for this base plan. */
+  regionalConfigs?: RegionalBasePlanConfigList;
+  /** Set when the base plan automatically renews at a regular interval. */
+  autoRenewingBasePlanType?: AutoRenewingBasePlanType;
+  /** Set for installments base plans where a user is committed to a specified number of payments. */
+  installmentsBasePlanType?: InstallmentsBasePlanType;
 }
 export const BasePlan = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    autoRenewingBasePlanType: S.optional(AutoRenewingBasePlanType),
-    installmentsBasePlanType: S.optional(InstallmentsBasePlanType),
-    offerTags: S.optional(OfferTagList),
-    regionalConfigs: S.optional(RegionalBasePlanConfigList),
-    state: S.optional(BasePlanStateEnum),
+    prepaidBasePlanType: S.optional(PrepaidBasePlanType),
     otherRegionsConfig: S.optional(OtherRegionsBasePlanConfig),
     basePlanId: S.optional(S.String),
-    prepaidBasePlanType: S.optional(PrepaidBasePlanType),
+    offerTags: S.optional(OfferTagList),
+    state: S.optional(BasePlanStateEnum),
+    regionalConfigs: S.optional(RegionalBasePlanConfigList),
+    autoRenewingBasePlanType: S.optional(AutoRenewingBasePlanType),
+    installmentsBasePlanType: S.optional(InstallmentsBasePlanType),
   }),
 ).annotate({ identifier: "BasePlan" }) as any as S.Schema<BasePlan>;
 
@@ -744,12 +728,37 @@ export const BasePlanList = /*@__PURE__*/ S.Array(
   BasePlan,
 ) as any as S.Schema<BasePlanList>;
 
-export type SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
-  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
-  | "WITHDRAWAL_RIGHT_SERVICE";
-export const SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** The consumer-visible metadata of a subscription. */
+export interface SubscriptionListing {
+  /** The description of this subscription in the language of this listing. Maximum length - 200 characters. Plain text. */
+  description?: string;
+  /** Required. The title of this subscription in the language of this listing. Plain text. */
+  title?: string;
+  /** Required. The language of this listing, as defined by BCP-47, e.g. "en-US". */
+  languageCode?: string;
+  /** A list of benefits shown to the user on platforms such as the Play Store and in restoration flows in the language of this listing. Plain text. Ordered list of at most four benefits. */
+  benefits?: StringList;
+}
+export const SubscriptionListing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    title: S.optional(S.String),
+    languageCode: S.optional(S.String),
+    benefits: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "SubscriptionListing",
+}) as any as S.Schema<SubscriptionListing>;
+
+export type SubscriptionListingList = Array<SubscriptionListing>;
+export const SubscriptionListingList = /*@__PURE__*/ S.Array(
+  SubscriptionListing,
+) as any as S.Schema<SubscriptionListingList>;
 
 export type RegionalProductAgeRatingInfoProductAgeRatingTierEnum =
   | "PRODUCT_AGE_RATING_TIER_UNKNOWN"
@@ -786,14 +795,12 @@ export const RegionalProductAgeRatingInfoList = /*@__PURE__*/ S.Array(
   RegionalProductAgeRatingInfo,
 ) as any as S.Schema<RegionalProductAgeRatingInfoList>;
 
-export type RegionalTaxRateInfoTaxTierEnum =
-  | "TAX_TIER_UNSPECIFIED"
-  | "TAX_TIER_BOOKS_1"
-  | "TAX_TIER_NEWS_1"
-  | "TAX_TIER_NEWS_2"
-  | "TAX_TIER_MUSIC_OR_AUDIO_1"
-  | "TAX_TIER_LIVE_OR_BROADCAST_1";
-export const RegionalTaxRateInfoTaxTierEnum = /*@__PURE__*/ S.String;
+export type SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
+  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
+  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+  | "WITHDRAWAL_RIGHT_SERVICE";
+export const SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
+  /*@__PURE__*/ S.String;
 
 export type RegionalTaxRateInfoStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_UNSPECIFIED"
@@ -805,19 +812,28 @@ export type RegionalTaxRateInfoStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL";
 export const RegionalTaxRateInfoStreamingTaxTypeEnum = /*@__PURE__*/ S.String;
 
+export type RegionalTaxRateInfoTaxTierEnum =
+  | "TAX_TIER_UNSPECIFIED"
+  | "TAX_TIER_BOOKS_1"
+  | "TAX_TIER_NEWS_1"
+  | "TAX_TIER_NEWS_2"
+  | "TAX_TIER_MUSIC_OR_AUDIO_1"
+  | "TAX_TIER_LIVE_OR_BROADCAST_1";
+export const RegionalTaxRateInfoTaxTierEnum = /*@__PURE__*/ S.String;
+
 /** Specified details about taxation in a given geographical region. */
 export interface RegionalTaxRateInfo {
-  /** Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498). */
-  taxTier?: RegionalTaxRateInfoTaxTierEnum | (string & {});
   /** To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax). */
   streamingTaxType?: RegionalTaxRateInfoStreamingTaxTypeEnum | (string & {});
+  /** Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498). */
+  taxTier?: RegionalTaxRateInfoTaxTierEnum | (string & {});
   /** You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States. */
   eligibleForStreamingServiceTaxRate?: boolean;
 }
 export const RegionalTaxRateInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    taxTier: S.optional(RegionalTaxRateInfoTaxTierEnum),
     streamingTaxType: S.optional(RegionalTaxRateInfoStreamingTaxTypeEnum),
+    taxTier: S.optional(RegionalTaxRateInfoTaxTierEnum),
     eligibleForStreamingServiceTaxRate: S.optional(S.Boolean),
   }),
 ).annotate({
@@ -834,31 +850,31 @@ export const RegionalTaxRateInfoMap = /*@__PURE__*/ S.Record(
 
 /** Details about taxation, Google Play policy, and legal compliance for subscription products. */
 export interface SubscriptionTaxAndComplianceSettings {
+  /** Regional age rating information. Currently this field is only supported for region code `US`. */
+  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
+  /** Whether this subscription is declared as a product representing a tokenized digital asset. */
+  isTokenizedDigitalAsset?: boolean;
   /** Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information. */
   eeaWithdrawalRightType?:
     | SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum
     | (string & {});
-  /** Whether this subscription is declared as a product representing a tokenized digital asset. */
-  isTokenizedDigitalAsset?: boolean;
-  /** Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
-  productTaxCategoryCode?: string;
-  /** Regional age rating information. Currently this field is only supported for region code `US`. */
-  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
   /** A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR". */
   taxRateInfoByRegionCode?: RegionalTaxRateInfoMap;
+  /** Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
+  productTaxCategoryCode?: string;
 }
 export const SubscriptionTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      eeaWithdrawalRightType: S.optional(
-        SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum,
-      ),
-      isTokenizedDigitalAsset: S.optional(S.Boolean),
-      productTaxCategoryCode: S.optional(S.String),
       regionalProductAgeRatingInfos: S.optional(
         RegionalProductAgeRatingInfoList,
       ),
+      isTokenizedDigitalAsset: S.optional(S.Boolean),
+      eeaWithdrawalRightType: S.optional(
+        SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum,
+      ),
       taxRateInfoByRegionCode: S.optional(RegionalTaxRateInfoMap),
+      productTaxCategoryCode: S.optional(S.String),
     }),
 ).annotate({
   identifier: "SubscriptionTaxAndComplianceSettings",
@@ -879,29 +895,29 @@ export const RestrictedPaymentCountries = /*@__PURE__*/ S.suspend(() =>
 
 /** A single subscription for an app. */
 export interface Subscription {
-  /** Required. List of localized listings for this subscription. Must contain at least an entry for the default language of the parent app. */
-  listings?: SubscriptionListingList;
-  /** Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length. */
-  productId?: string;
-  /** The set of base plans for this subscription. Represents the prices and duration of the subscription if no other offers apply. */
-  basePlans?: BasePlanList;
   /** Immutable. Package name of the parent app. */
   packageName?: string;
   /** Output only. Deprecated: subscription archiving is not supported. */
   archived?: boolean;
+  /** The set of base plans for this subscription. Represents the prices and duration of the subscription if no other offers apply. */
+  basePlans?: BasePlanList;
+  /** Required. List of localized listings for this subscription. Must contain at least an entry for the default language of the parent app. */
+  listings?: SubscriptionListingList;
   /** Details about taxes and legal compliance. */
   taxAndComplianceSettings?: SubscriptionTaxAndComplianceSettings;
+  /** Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length. */
+  productId?: string;
   /** Optional. Countries where the purchase of this subscription is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed. */
   restrictedPaymentCountries?: RestrictedPaymentCountries;
 }
 export const Subscription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    listings: S.optional(SubscriptionListingList),
-    productId: S.optional(S.String),
-    basePlans: S.optional(BasePlanList),
     packageName: S.optional(S.String),
     archived: S.optional(S.Boolean),
+    basePlans: S.optional(BasePlanList),
+    listings: S.optional(SubscriptionListingList),
     taxAndComplianceSettings: S.optional(SubscriptionTaxAndComplianceSettings),
+    productId: S.optional(S.String),
     restrictedPaymentCountries: S.optional(RestrictedPaymentCountries),
   }),
 ).annotate({ identifier: "Subscription" }) as any as S.Schema<Subscription>;
@@ -917,8 +933,6 @@ export const ActivateSubscriptionOfferRequestLatencyToleranceEnum =
 export interface ActivateSubscriptionOfferRequest {
   /** Required. The unique offer ID of the offer to activate. */
   offerId?: string;
-  /** Required. The parent base plan (ID) of the offer to activate. */
-  basePlanId?: string;
   /** Required. The parent app (package name) of the offer to activate. */
   packageName?: string;
   /** Required. The parent subscription (ID) of the offer to activate. */
@@ -927,40 +941,42 @@ export interface ActivateSubscriptionOfferRequest {
   latencyTolerance?:
     | ActivateSubscriptionOfferRequestLatencyToleranceEnum
     | (string & {});
+  /** Required. The parent base plan (ID) of the offer to activate. */
+  basePlanId?: string;
 }
 export const ActivateSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     offerId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
     packageName: S.optional(S.String),
     productId: S.optional(S.String),
     latencyTolerance: S.optional(
       ActivateSubscriptionOfferRequestLatencyToleranceEnum,
     ),
+    basePlanId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ActivateSubscriptionOfferRequest",
 }) as any as S.Schema<ActivateSubscriptionOfferRequest>;
 
 export interface ActivateMonetizationSubscriptionsBasePlansOffersRequest {
-  /** Required. The unique offer ID of the offer to activate. */
-  offerId: string;
+  /** Required. The parent subscription (ID) of the offer to activate. */
+  productId: string;
   /** Required. The parent base plan (ID) of the offer to activate. */
   basePlanId: string;
   /** Required. The parent app (package name) of the offer to activate. */
   packageName: string;
-  /** Required. The parent subscription (ID) of the offer to activate. */
-  productId: string;
+  /** Required. The unique offer ID of the offer to activate. */
+  offerId: string;
   /** Request body */
   body?: ActivateSubscriptionOfferRequest;
 }
 export const ActivateMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      offerId: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
       basePlanId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
+      offerId: S.String.pipe(T.Label()),
       body: S.optional(ActivateSubscriptionOfferRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -973,96 +989,17 @@ export const ActivateMonetizationSubscriptionsBasePlansOffersRequest =
     identifier: "ActivateMonetizationSubscriptionsBasePlansOffersRequest",
   }) as any as S.Schema<ActivateMonetizationSubscriptionsBasePlansOffersRequest>;
 
-/** Represents the targeting rule scope corresponding to the subscriptions in which this offer is defined. */
-export type TargetingRuleScopeThisSubscription =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const TargetingRuleScopeThisSubscription =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Represents the targeting rule scope corresponding to any subscription in the parent app. */
-export type TargetingRuleScopeAnySubscriptionInApp =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const TargetingRuleScopeAnySubscriptionInApp =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement. */
-export interface TargetingRuleScope {
-  /** The scope of the current targeting rule is the subscription in which this offer is defined. */
-  thisSubscription?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The scope of the current targeting rule is any subscription in the parent app. */
-  anySubscriptionInApp?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app. */
-  specificSubscriptionInApp?: string;
-}
-export const TargetingRuleScope = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    thisSubscription: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    anySubscriptionInApp: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    specificSubscriptionInApp: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TargetingRuleScope",
-}) as any as S.Schema<TargetingRuleScope>;
-
-/** Represents a targeting rule of the form: User never had {scope} before. */
-export interface AcquisitionTargetingRule {
-  /** Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "any subscription in app". */
-  scope?: TargetingRuleScope;
-}
-export const AcquisitionTargetingRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.optional(TargetingRuleScope),
-  }),
-).annotate({
-  identifier: "AcquisitionTargetingRule",
-}) as any as S.Schema<AcquisitionTargetingRule>;
-
-/** Represents a targeting rule of the form: User currently has {scope} [with billing period {billing_period}]. */
-export interface UpgradeTargetingRule {
-  /** Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "specific subscription in app". */
-  scope?: TargetingRuleScope;
-  /** The specific billing period duration, specified in ISO 8601 format, that a user must be currently subscribed to to be eligible for this rule. If not specified, users subscribed to any billing period are matched. */
-  billingPeriodDuration?: string;
-  /** Limit this offer to only once per user. If set to true, a user can never be eligible for this offer again if they ever subscribed to this offer. */
-  oncePerUser?: boolean;
-}
-export const UpgradeTargetingRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.optional(TargetingRuleScope),
-    billingPeriodDuration: S.optional(S.String),
-    oncePerUser: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UpgradeTargetingRule",
-}) as any as S.Schema<UpgradeTargetingRule>;
-
-/** Defines the rule a user needs to satisfy to receive this offer. */
-export interface SubscriptionOfferTargeting {
-  /** Offer targeting rule for new user acquisition. */
-  acquisitionRule?: AcquisitionTargetingRule;
-  /** Offer targeting rule for upgrading users' existing plans. */
-  upgradeRule?: UpgradeTargetingRule;
-}
-export const SubscriptionOfferTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acquisitionRule: S.optional(AcquisitionTargetingRule),
-    upgradeRule: S.optional(UpgradeTargetingRule),
-  }),
-).annotate({
-  identifier: "SubscriptionOfferTargeting",
-}) as any as S.Schema<SubscriptionOfferTargeting>;
-
 /** Configuration for a subscription offer in a single region. */
 export interface RegionalSubscriptionOfferConfig {
-  /** Whether the subscription offer in the specified region is available for new subscribers. Existing subscribers will not have their subscription cancelled if this value is set to false. If not specified, this will default to false. */
-  newSubscriberAvailability?: boolean;
   /** Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US". */
   regionCode?: string;
+  /** Whether the subscription offer in the specified region is available for new subscribers. Existing subscribers will not have their subscription cancelled if this value is set to false. If not specified, this will default to false. */
+  newSubscriberAvailability?: boolean;
 }
 export const RegionalSubscriptionOfferConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    newSubscriberAvailability: S.optional(S.Boolean),
     regionCode: S.optional(S.String),
+    newSubscriberAvailability: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "RegionalSubscriptionOfferConfig",
@@ -1074,13 +1011,6 @@ export const RegionalSubscriptionOfferConfigList = /*@__PURE__*/ S.Array(
   RegionalSubscriptionOfferConfig,
 ) as any as S.Schema<RegionalSubscriptionOfferConfigList>;
 
-export type SubscriptionOfferStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "DRAFT"
-  | "ACTIVE"
-  | "INACTIVE";
-export const SubscriptionOfferStateEnum = /*@__PURE__*/ S.String;
-
 /** Represents the free price override configuration for a single phase of a subscription offer */
 export type RegionalSubscriptionOfferPhaseFreePriceOverride =
   OneTimeProductOfferNoPriceOverrideOptions;
@@ -1089,25 +1019,25 @@ export const RegionalSubscriptionOfferPhaseFreePriceOverride =
 
 /** Configuration for a single phase of a subscription offer in a single region. */
 export interface RegionalSubscriptionOfferPhaseConfig {
-  /** The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for this region. */
-  price?: Money;
-  /** Required. Immutable. The region to which this config applies. */
-  regionCode?: string;
-  /** Set to specify this offer is free to obtain. */
-  free?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region. */
-  relativeDiscount?: number;
   /** The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for this region. */
   absoluteDiscount?: Money;
+  /** Required. Immutable. The region to which this config applies. */
+  regionCode?: string;
+  /** The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for this region. */
+  price?: Money;
+  /** The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region. */
+  relativeDiscount?: number;
+  /** Set to specify this offer is free to obtain. */
+  free?: OneTimeProductOfferNoPriceOverrideOptions;
 }
 export const RegionalSubscriptionOfferPhaseConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      price: S.optional(Money),
-      regionCode: S.optional(S.String),
-      free: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-      relativeDiscount: S.optional(S.Number),
       absoluteDiscount: S.optional(Money),
+      regionCode: S.optional(S.String),
+      price: S.optional(Money),
+      relativeDiscount: S.optional(S.Number),
+      free: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     }),
 ).annotate({
   identifier: "RegionalSubscriptionOfferPhaseConfig",
@@ -1167,20 +1097,20 @@ export const OtherRegionsSubscriptionOfferPhaseConfig = /*@__PURE__*/ S.suspend(
 
 /** A single phase of a subscription offer. */
 export interface SubscriptionOfferPhase {
-  /** Required. The duration of a single recurrence of this phase. Specified in ISO 8601 format. */
-  duration?: string;
   /** Required. The number of times this phase repeats. If this offer phase is not free, each recurrence charges the user the price of this offer phase. */
   recurrenceCount?: number;
   /** Required. The region-specific configuration of this offer phase. This list must contain exactly one entry for each region for which the subscription offer has a regional config. */
   regionalConfigs?: RegionalSubscriptionOfferPhaseConfigList;
+  /** Required. The duration of a single recurrence of this phase. Specified in ISO 8601 format. */
+  duration?: string;
   /** Pricing information for any new locations Play may launch in. */
   otherRegionsConfig?: OtherRegionsSubscriptionOfferPhaseConfig;
 }
 export const SubscriptionOfferPhase = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    duration: S.optional(S.String),
     recurrenceCount: S.optional(S.Number),
     regionalConfigs: S.optional(RegionalSubscriptionOfferPhaseConfigList),
+    duration: S.optional(S.String),
     otherRegionsConfig: S.optional(OtherRegionsSubscriptionOfferPhaseConfig),
   }),
 ).annotate({
@@ -1191,6 +1121,92 @@ export type SubscriptionOfferPhaseList = Array<SubscriptionOfferPhase>;
 export const SubscriptionOfferPhaseList = /*@__PURE__*/ S.Array(
   SubscriptionOfferPhase,
 ) as any as S.Schema<SubscriptionOfferPhaseList>;
+
+export type SubscriptionOfferStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "DRAFT"
+  | "ACTIVE"
+  | "INACTIVE";
+export const SubscriptionOfferStateEnum = /*@__PURE__*/ S.String;
+
+/** Represents the targeting rule scope corresponding to any subscription in the parent app. */
+export type TargetingRuleScopeAnySubscriptionInApp =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const TargetingRuleScopeAnySubscriptionInApp =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Represents the targeting rule scope corresponding to the subscriptions in which this offer is defined. */
+export type TargetingRuleScopeThisSubscription =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const TargetingRuleScopeThisSubscription =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement. */
+export interface TargetingRuleScope {
+  /** The scope of the current targeting rule is any subscription in the parent app. */
+  anySubscriptionInApp?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The scope of the current targeting rule is the subscription in which this offer is defined. */
+  thisSubscription?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app. */
+  specificSubscriptionInApp?: string;
+}
+export const TargetingRuleScope = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    anySubscriptionInApp: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    thisSubscription: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    specificSubscriptionInApp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TargetingRuleScope",
+}) as any as S.Schema<TargetingRuleScope>;
+
+/** Represents a targeting rule of the form: User currently has {scope} [with billing period {billing_period}]. */
+export interface UpgradeTargetingRule {
+  /** Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "specific subscription in app". */
+  scope?: TargetingRuleScope;
+  /** Limit this offer to only once per user. If set to true, a user can never be eligible for this offer again if they ever subscribed to this offer. */
+  oncePerUser?: boolean;
+  /** The specific billing period duration, specified in ISO 8601 format, that a user must be currently subscribed to to be eligible for this rule. If not specified, users subscribed to any billing period are matched. */
+  billingPeriodDuration?: string;
+}
+export const UpgradeTargetingRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.optional(TargetingRuleScope),
+    oncePerUser: S.optional(S.Boolean),
+    billingPeriodDuration: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpgradeTargetingRule",
+}) as any as S.Schema<UpgradeTargetingRule>;
+
+/** Represents a targeting rule of the form: User never had {scope} before. */
+export interface AcquisitionTargetingRule {
+  /** Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "any subscription in app". */
+  scope?: TargetingRuleScope;
+}
+export const AcquisitionTargetingRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.optional(TargetingRuleScope),
+  }),
+).annotate({
+  identifier: "AcquisitionTargetingRule",
+}) as any as S.Schema<AcquisitionTargetingRule>;
+
+/** Defines the rule a user needs to satisfy to receive this offer. */
+export interface SubscriptionOfferTargeting {
+  /** Offer targeting rule for upgrading users' existing plans. */
+  upgradeRule?: UpgradeTargetingRule;
+  /** Offer targeting rule for new user acquisition. */
+  acquisitionRule?: AcquisitionTargetingRule;
+}
+export const SubscriptionOfferTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    upgradeRule: S.optional(UpgradeTargetingRule),
+    acquisitionRule: S.optional(AcquisitionTargetingRule),
+  }),
+).annotate({
+  identifier: "SubscriptionOfferTargeting",
+}) as any as S.Schema<SubscriptionOfferTargeting>;
 
 /** Configuration for any new locations Play may launch in specified on a subscription offer. */
 export interface OtherRegionsSubscriptionOfferConfig {
@@ -1209,37 +1225,37 @@ export const OtherRegionsSubscriptionOfferConfig = /*@__PURE__*/ S.suspend(() =>
 export interface SubscriptionOffer {
   /** Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan. */
   offerId?: string;
-  /** Required. Immutable. The ID of the base plan to which this offer is an extension. */
-  basePlanId?: string;
-  /** The requirements that users need to fulfil to be eligible for this offer. Represents the requirements that Play will evaluate to decide whether an offer should be returned. Developers may further filter these offers themselves. */
-  targeting?: SubscriptionOfferTargeting;
   /** List of up to 20 custom tags specified for this offer, and returned to the app through the billing library. */
   offerTags?: OfferTagList;
-  /** Required. Immutable. The ID of the parent subscription this offer belongs to. */
-  productId?: string;
-  /** Required. Immutable. The package name of the app the parent subscription belongs to. */
-  packageName?: string;
   /** Required. The region-specific configuration of this offer. Must contain at least one entry. */
   regionalConfigs?: RegionalSubscriptionOfferConfigList;
-  /** Output only. The current state of this offer. Can be changed using Activate and Deactivate actions. NB: the base plan state supersedes this state, so an active offer may not be available if the base plan is not active. */
-  state?: SubscriptionOfferStateEnum | (string & {});
+  /** Required. Immutable. The ID of the base plan to which this offer is an extension. */
+  basePlanId?: string;
   /** Required. The phases of this subscription offer. Must contain at least one and at most two entries. Users will always receive all these phases in the specified order. */
   phases?: SubscriptionOfferPhaseList;
+  /** Output only. The current state of this offer. Can be changed using Activate and Deactivate actions. NB: the base plan state supersedes this state, so an active offer may not be available if the base plan is not active. */
+  state?: SubscriptionOfferStateEnum | (string & {});
+  /** Required. Immutable. The package name of the app the parent subscription belongs to. */
+  packageName?: string;
+  /** The requirements that users need to fulfil to be eligible for this offer. Represents the requirements that Play will evaluate to decide whether an offer should be returned. Developers may further filter these offers themselves. */
+  targeting?: SubscriptionOfferTargeting;
   /** The configuration for any new locations Play may launch in the future. */
   otherRegionsConfig?: OtherRegionsSubscriptionOfferConfig;
+  /** Required. Immutable. The ID of the parent subscription this offer belongs to. */
+  productId?: string;
 }
 export const SubscriptionOffer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     offerId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
-    targeting: S.optional(SubscriptionOfferTargeting),
     offerTags: S.optional(OfferTagList),
-    productId: S.optional(S.String),
-    packageName: S.optional(S.String),
     regionalConfigs: S.optional(RegionalSubscriptionOfferConfigList),
-    state: S.optional(SubscriptionOfferStateEnum),
+    basePlanId: S.optional(S.String),
     phases: S.optional(SubscriptionOfferPhaseList),
+    state: S.optional(SubscriptionOfferStateEnum),
+    packageName: S.optional(S.String),
+    targeting: S.optional(SubscriptionOfferTargeting),
     otherRegionsConfig: S.optional(OtherRegionsSubscriptionOfferConfig),
+    productId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SubscriptionOffer",
@@ -1247,15 +1263,15 @@ export const SubscriptionOffer = /*@__PURE__*/ S.suspend(() =>
 
 /** A permission used by this APK. */
 export interface UsesPermission {
-  /** The name of the permission requested. */
-  name?: string;
   /** Optionally, the maximum SDK version for which the permission is required. */
   maxSdkVersion?: number;
+  /** The name of the permission requested. */
+  name?: string;
 }
 export const UsesPermission = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     maxSdkVersion: S.optional(S.Number),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "UsesPermission" }) as any as S.Schema<UsesPermission>;
 
@@ -1266,53 +1282,53 @@ export const UsesPermissionList = /*@__PURE__*/ S.Array(
 
 /** Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations. */
 export interface ExternallyHostedApk {
-  /** The minimum SDK targeted by this APK. */
-  minimumSdk?: number;
-  /** The sha1 checksum of this APK, represented as a base64 encoded byte array. */
-  fileSha1Base64?: string;
-  /** The URL at which the APK is hosted. This must be an https URL. */
-  externallyHostedUrl?: string;
-  /** The application label. */
-  applicationLabel?: string;
+  /** The icon image from the APK, as a base64 encoded byte array. */
+  iconBase64?: string;
+  /** The file size in bytes of this APK. */
+  fileSize?: string;
   /** The native code environments supported by this APK (optional). */
   nativeCodes?: StringList;
   /** The sha256 checksum of this APK, represented as a base64 encoded byte array. */
   fileSha256Base64?: string;
-  /** The icon image from the APK, as a base64 encoded byte array. */
-  iconBase64?: string;
-  /** The version name of this APK. */
-  versionName?: string;
-  /** A certificate (or array of certificates if a certificate-chain is used) used to sign this APK, represented as a base64 encoded byte array. */
-  certificateBase64s?: StringList;
-  /** The version code of this APK. */
-  versionCode?: number;
-  /** The maximum SDK supported by this APK (optional). */
-  maximumSdk?: number;
   /** The features required by this APK (optional). */
   usesFeatures?: StringList;
-  /** The file size in bytes of this APK. */
-  fileSize?: string;
+  /** The maximum SDK supported by this APK (optional). */
+  maximumSdk?: number;
   /** The package name. */
   packageName?: string;
+  /** The version code of this APK. */
+  versionCode?: number;
+  /** The version name of this APK. */
+  versionName?: string;
+  /** The minimum SDK targeted by this APK. */
+  minimumSdk?: number;
+  /** The sha1 checksum of this APK, represented as a base64 encoded byte array. */
+  fileSha1Base64?: string;
+  /** A certificate (or array of certificates if a certificate-chain is used) used to sign this APK, represented as a base64 encoded byte array. */
+  certificateBase64s?: StringList;
+  /** The application label. */
+  applicationLabel?: string;
+  /** The URL at which the APK is hosted. This must be an https URL. */
+  externallyHostedUrl?: string;
   /** The permissions requested by this APK. */
   usesPermissions?: UsesPermissionList;
 }
 export const ExternallyHostedApk = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    minimumSdk: S.optional(S.Number),
-    fileSha1Base64: S.optional(S.String),
-    externallyHostedUrl: S.optional(S.String),
-    applicationLabel: S.optional(S.String),
+    iconBase64: S.optional(S.String),
+    fileSize: S.optional(S.String),
     nativeCodes: S.optional(StringList),
     fileSha256Base64: S.optional(S.String),
-    iconBase64: S.optional(S.String),
-    versionName: S.optional(S.String),
-    certificateBase64s: S.optional(StringList),
-    versionCode: S.optional(S.Number),
-    maximumSdk: S.optional(S.Number),
     usesFeatures: S.optional(StringList),
-    fileSize: S.optional(S.String),
+    maximumSdk: S.optional(S.Number),
     packageName: S.optional(S.String),
+    versionCode: S.optional(S.Number),
+    versionName: S.optional(S.String),
+    minimumSdk: S.optional(S.Number),
+    fileSha1Base64: S.optional(S.String),
+    certificateBase64s: S.optional(StringList),
+    applicationLabel: S.optional(S.String),
+    externallyHostedUrl: S.optional(S.String),
     usesPermissions: S.optional(UsesPermissionList),
   }),
 ).annotate({
@@ -1333,17 +1349,17 @@ export const ApksAddExternallyHostedRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApksAddExternallyHostedRequest>;
 
 export interface AddexternallyhostedEditsApksRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
   /** Request body */
   body?: ApksAddExternallyHostedRequest;
 }
 export const AddexternallyhostedEditsApksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
     body: S.optional(ApksAddExternallyHostedRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1369,6 +1385,17 @@ export const ApksAddExternallyHostedResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApksAddExternallyHostedResponse",
 }) as any as S.Schema<ApksAddExternallyHostedResponse>;
 
+/** Android api level targeting data for app recovery action targeting. */
+export interface AndroidSdks {
+  /** Android api levels of devices targeted by recovery action. See https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels for different api levels in android. */
+  sdkLevels?: StringList;
+}
+export const AndroidSdks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sdkLevels: S.optional(StringList),
+  }),
+).annotate({ identifier: "AndroidSdks" }) as any as S.Schema<AndroidSdks>;
+
 /** Object representation to describe all set of users. */
 export interface AllUsers {
   /** Required. Set to true if all set of users are needed. */
@@ -1391,31 +1418,20 @@ export const Regions = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Regions" }) as any as S.Schema<Regions>;
 
-/** Android api level targeting data for app recovery action targeting. */
-export interface AndroidSdks {
-  /** Android api levels of devices targeted by recovery action. See https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels for different api levels in android. */
-  sdkLevels?: StringList;
-}
-export const AndroidSdks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sdkLevels: S.optional(StringList),
-  }),
-).annotate({ identifier: "AndroidSdks" }) as any as S.Schema<AndroidSdks>;
-
 /** Update type for targeting. Note it is always a subset Targeting. */
 export interface TargetingUpdate {
+  /** Additional android sdk levels are targeted by the recovery action. */
+  androidSdks?: AndroidSdks;
   /** All users are targeted. */
   allUsers?: AllUsers;
   /** Additional regions are targeted by the recovery action. */
   regions?: Regions;
-  /** Additional android sdk levels are targeted by the recovery action. */
-  androidSdks?: AndroidSdks;
 }
 export const TargetingUpdate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    androidSdks: S.optional(AndroidSdks),
     allUsers: S.optional(AllUsers),
     regions: S.optional(Regions),
-    androidSdks: S.optional(AndroidSdks),
   }),
 ).annotate({
   identifier: "TargetingUpdate",
@@ -1499,16 +1515,1102 @@ export const ArchiveMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
   identifier: "ArchiveMonetizationSubscriptionsRequest",
 }) as any as S.Schema<ArchiveMonetizationSubscriptionsRequest>;
 
-export interface BatchgetOrdersRequest {
-  /** Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
+export type InappproductsDeleteRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const InappproductsDeleteRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request to delete an in-app product. */
+export interface InappproductsDeleteRequest {
+  /** Unique identifier for the in-app product. */
+  sku?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | InappproductsDeleteRequestLatencyToleranceEnum
+    | (string & {});
+  /** Package name of the app. */
+  packageName?: string;
+}
+export const InappproductsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(S.String),
+    latencyTolerance: S.optional(
+      InappproductsDeleteRequestLatencyToleranceEnum,
+    ),
+    packageName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InappproductsDeleteRequest",
+}) as any as S.Schema<InappproductsDeleteRequest>;
+
+export type InappproductsDeleteRequestList = Array<InappproductsDeleteRequest>;
+export const InappproductsDeleteRequestList = /*@__PURE__*/ S.Array(
+  InappproductsDeleteRequest,
+) as any as S.Schema<InappproductsDeleteRequestList>;
+
+/** Request to delete multiple in-app products. */
+export interface InappproductsBatchDeleteRequest {
+  /** Individual delete requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products. */
+  requests?: InappproductsDeleteRequestList;
+}
+export const InappproductsBatchDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(InappproductsDeleteRequestList),
+  }),
+).annotate({
+  identifier: "InappproductsBatchDeleteRequest",
+}) as any as S.Schema<InappproductsBatchDeleteRequest>;
+
+export interface BatchDeleteInappproductsRequest {
+  /** Package name of the app. */
   packageName: string;
+  /** Request body */
+  body?: InappproductsBatchDeleteRequest;
+}
+export const BatchDeleteInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    packageName: S.String.pipe(T.Label()),
+    body: S.optional(InappproductsBatchDeleteRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete",
+      baseUrl: "https://androidpublisher.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "BatchDeleteInappproductsRequest",
+}) as any as S.Schema<BatchDeleteInappproductsRequest>;
+
+export interface BatchDeleteInappproductsResponse {}
+export const BatchDeleteInappproductsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BatchDeleteInappproductsResponse",
+}) as any as S.Schema<BatchDeleteInappproductsResponse>;
+
+export type DeleteOneTimeProductRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeleteOneTimeProductRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for deleting a one-time product. */
+export interface DeleteOneTimeProductRequest {
+  /** Required. The one-time product ID of the one-time product to delete. */
+  productId?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeleteOneTimeProductRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The parent app (package name) of the one-time product to delete. */
+  packageName?: string;
+}
+export const DeleteOneTimeProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    latencyTolerance: S.optional(
+      DeleteOneTimeProductRequestLatencyToleranceEnum,
+    ),
+    packageName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeleteOneTimeProductRequest",
+}) as any as S.Schema<DeleteOneTimeProductRequest>;
+
+export type DeleteOneTimeProductRequestList =
+  Array<DeleteOneTimeProductRequest>;
+export const DeleteOneTimeProductRequestList = /*@__PURE__*/ S.Array(
+  DeleteOneTimeProductRequest,
+) as any as S.Schema<DeleteOneTimeProductRequestList>;
+
+/** Request message for BatchDeleteOneTimeProduct. */
+export interface BatchDeleteOneTimeProductsRequest {
+  /** Required. A list of delete requests of up to 100 elements. All requests must delete different one-time products. */
+  requests?: DeleteOneTimeProductRequestList;
+}
+export const BatchDeleteOneTimeProductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(DeleteOneTimeProductRequestList),
+  }),
+).annotate({
+  identifier: "BatchDeleteOneTimeProductsRequest",
+}) as any as S.Schema<BatchDeleteOneTimeProductsRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsRequest {
+  /** Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources. */
+  packageName: string;
+  /** Request body */
+  body?: BatchDeleteOneTimeProductsRequest;
+}
+export const BatchDeleteMonetizationOnetimeproductsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(BatchDeleteOneTimeProductsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchDeleteMonetizationOnetimeproductsRequest",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsResponse {}
+export const BatchDeleteMonetizationOnetimeproductsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "BatchDeleteMonetizationOnetimeproductsResponse",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsResponse>;
+
+export type DeletePurchaseOptionRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeletePurchaseOptionRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for deleting a purchase option. */
+export interface DeletePurchaseOptionRequest {
+  /** Required. The purchase option ID of the purchase option to delete. */
+  purchaseOptionId?: string;
+  /** Required. The parent app (package name) of the purchase option to delete. */
+  packageName?: string;
+  /** Required. The parent one-time product (ID) of the purchase option to delete. */
+  productId?: string;
+  /** Optional. This field has no effect for purchase options with no offers under them. For purchase options with associated offers: * If `force` is set to false (default), an error will be returned. * If `force` is set to true, any associated offers under the purchase option will be deleted. */
+  force?: boolean;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeletePurchaseOptionRequestLatencyToleranceEnum
+    | (string & {});
+}
+export const DeletePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    purchaseOptionId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    productId: S.optional(S.String),
+    force: S.optional(S.Boolean),
+    latencyTolerance: S.optional(
+      DeletePurchaseOptionRequestLatencyToleranceEnum,
+    ),
+  }),
+).annotate({
+  identifier: "DeletePurchaseOptionRequest",
+}) as any as S.Schema<DeletePurchaseOptionRequest>;
+
+export type DeletePurchaseOptionRequestList =
+  Array<DeletePurchaseOptionRequest>;
+export const DeletePurchaseOptionRequestList = /*@__PURE__*/ S.Array(
+  DeletePurchaseOptionRequest,
+) as any as S.Schema<DeletePurchaseOptionRequestList>;
+
+/** Request message for BatchDeletePurchaseOption. */
+export interface BatchDeletePurchaseOptionsRequest {
+  /** Required. A list of delete requests of up to 100 elements. All requests must delete purchase options from different one-time products. */
+  requests?: DeletePurchaseOptionRequestList;
+}
+export const BatchDeletePurchaseOptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(DeletePurchaseOptionRequestList),
+  }),
+).annotate({
+  identifier: "BatchDeletePurchaseOptionsRequest",
+}) as any as S.Schema<BatchDeletePurchaseOptionsRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest {
+  /** Required. The product ID of the parent one-time product, if all purchase options to delete belong to the same one-time product. If this batch delete spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Required. The parent app (package name) of the purchase options to delete. */
+  packageName: string;
+  /** Request body */
+  body?: BatchDeletePurchaseOptionsRequest;
+}
+export const BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(BatchDeletePurchaseOptionsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse {}
+export const BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse>;
+
+export type DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for deleting an one-time product offer. */
+export interface DeleteOneTimeProductOfferRequest {
+  /** Required. The parent purchase option (ID) of the offer to delete. */
+  purchaseOptionId?: string;
+  /** Required. The unique offer ID of the offer to delete. */
+  offerId?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeleteOneTimeProductOfferRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The parent one-time product (ID) of the offer to delete. */
+  productId?: string;
+  /** Required. The parent app (package name) of the offer to delete. */
+  packageName?: string;
+}
+export const DeleteOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    purchaseOptionId: S.optional(S.String),
+    offerId: S.optional(S.String),
+    latencyTolerance: S.optional(
+      DeleteOneTimeProductOfferRequestLatencyToleranceEnum,
+    ),
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeleteOneTimeProductOfferRequest",
+}) as any as S.Schema<DeleteOneTimeProductOfferRequest>;
+
+export type DeleteOneTimeProductOfferRequestList =
+  Array<DeleteOneTimeProductOfferRequest>;
+export const DeleteOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
+  DeleteOneTimeProductOfferRequest,
+) as any as S.Schema<DeleteOneTimeProductOfferRequestList>;
+
+/** Request message for BatchDeleteOneTimeProductOffers. */
+export interface BatchDeleteOneTimeProductOffersRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must correspond to different offers. */
+  requests?: DeleteOneTimeProductOfferRequestList;
+}
+export const BatchDeleteOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requests: S.optional(DeleteOneTimeProductOfferRequestList),
+    }),
+).annotate({
+  identifier: "BatchDeleteOneTimeProductOffersRequest",
+}) as any as S.Schema<BatchDeleteOneTimeProductOffersRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
+  /** Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources. */
+  packageName: string;
+  /** Required. The parent purchase option (ID) for which the offers should be deleted. May be specified as '-' to update offers from multiple purchase options. */
+  purchaseOptionId: string;
+  /** Required. The product ID of the parent one-time product, if all offers to delete belong to the same product. If this request spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Request body */
+  body?: BatchDeleteOneTimeProductOffersRequest;
+}
+export const BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      purchaseOptionId: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      body: S.optional(
+        BatchDeleteOneTimeProductOffersRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
+
+export interface BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse {}
+export const BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier:
+      "BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse",
+  }) as any as S.Schema<BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse>;
+
+export interface BatchGetInappproductsRequest {
+  /** Unique identifier for the in-app products. */
+  sku?: StringList;
+  /** Package name of the app. */
+  packageName: string;
+}
+export const BatchGetInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(StringList.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchGet",
+      baseUrl: "https://androidpublisher.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "BatchGetInappproductsRequest",
+}) as any as S.Schema<BatchGetInappproductsRequest>;
+
+/** Store listing of a single in-app product. */
+export interface InAppProductListing {
+  /** Localized entitlement benefits for a subscription. */
+  benefits?: StringList;
+  /** Title for the store listing. */
+  title?: string;
+  /** Description for the store listing. */
+  description?: string;
+}
+export const InAppProductListing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    benefits: S.optional(StringList),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InAppProductListing",
+}) as any as S.Schema<InAppProductListing>;
+
+export type InAppProductListingMap = {
+  [key: string]: InAppProductListing | undefined;
+};
+export const InAppProductListingMap = /*@__PURE__*/ S.Record(
+  S.String,
+  InAppProductListing,
+) as any as S.Schema<InAppProductListingMap>;
+
+export type InAppProductStatusEnum =
+  | "statusUnspecified"
+  | "active"
+  | "inactive";
+export const InAppProductStatusEnum = /*@__PURE__*/ S.String;
+
+/** Definition of a price, i.e. currency and units. */
+export interface Price {
+  /** Price in 1/million of the currency base unit, represented as a string. */
+  priceMicros?: string;
+  /** 3 letter Currency code, as defined by ISO 4217. See java/com/google/common/money/CurrencyCode.java */
+  currency?: string;
+}
+export const Price = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    priceMicros: S.optional(S.String),
+    currency: S.optional(S.String),
+  }),
+).annotate({ identifier: "Price" }) as any as S.Schema<Price>;
+
+export type PriceMap = { [key: string]: Price | undefined };
+export const PriceMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Price,
+) as any as S.Schema<PriceMap>;
+
+export type ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
+  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
+  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+  | "WITHDRAWAL_RIGHT_SERVICE";
+export const ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Details about taxation and legal compliance for managed products. */
+export interface ManagedProductTaxAndComplianceSettings {
+  /** Product tax category code to assign to the in-app product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
+  productTaxCategoryCode?: string;
+  /** Regional age rating information. Currently this field is only supported for region code `US`. */
+  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
+  /** Whether this in-app product is declared as a product representing a tokenized digital asset. */
+  isTokenizedDigitalAsset?: boolean;
+  /** Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information. */
+  eeaWithdrawalRightType?:
+    | ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum
+    | (string & {});
+  /** A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR". */
+  taxRateInfoByRegionCode?: RegionalTaxRateInfoMap;
+}
+export const ManagedProductTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      productTaxCategoryCode: S.optional(S.String),
+      regionalProductAgeRatingInfos: S.optional(
+        RegionalProductAgeRatingInfoList,
+      ),
+      isTokenizedDigitalAsset: S.optional(S.Boolean),
+      eeaWithdrawalRightType: S.optional(
+        ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum,
+      ),
+      taxRateInfoByRegionCode: S.optional(RegionalTaxRateInfoMap),
+    }),
+).annotate({
+  identifier: "ManagedProductTaxAndComplianceSettings",
+}) as any as S.Schema<ManagedProductTaxAndComplianceSettings>;
+
+export type InAppProductPurchaseTypeEnum =
+  | "purchaseTypeUnspecified"
+  | "managedUser"
+  | "subscription";
+export const InAppProductPurchaseTypeEnum = /*@__PURE__*/ S.String;
+
+/** An in-app product. The resource for InappproductsService. */
+export interface InAppProduct {
+  /** Grace period of the subscription, specified in ISO 8601 format. Allows developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values are P0D (zero days), P3D (three days), P7D (seven days), P14D (14 days), and P30D (30 days). */
+  gracePeriod?: string;
+  /** Stock-keeping-unit (SKU) of the product, unique within an app. */
+  sku?: string;
+  /** Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days). */
+  trialPeriod?: string;
+  /** List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. "en-US". */
+  listings?: InAppProductListingMap;
+  /** The status of the product, e.g. whether it's active. */
+  status?: InAppProductStatusEnum | (string & {});
+  /** Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2. */
+  prices?: PriceMap;
+  /** Default price. Cannot be zero, as in-app products are never free. Always in the developer's Checkout merchant currency. */
+  defaultPrice?: Price;
+  /** Details about taxes and legal compliance. Only applicable to managed products. */
+  managedProductTaxesAndComplianceSettings?: ManagedProductTaxAndComplianceSettings;
+  /** Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year). */
+  subscriptionPeriod?: string;
+  /** The type of the product, e.g. a recurring subscription. */
+  purchaseType?: InAppProductPurchaseTypeEnum | (string & {});
+  /** Package name of the parent app. */
+  packageName?: string;
+  /** Default language of the localized data, as defined by BCP-47. e.g. "en-US". */
+  defaultLanguage?: string;
+  /** Details about taxes and legal compliance. Only applicable to subscription products. */
+  subscriptionTaxesAndComplianceSettings?: SubscriptionTaxAndComplianceSettings;
+}
+export const InAppProduct = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gracePeriod: S.optional(S.String),
+    sku: S.optional(S.String),
+    trialPeriod: S.optional(S.String),
+    listings: S.optional(InAppProductListingMap),
+    status: S.optional(InAppProductStatusEnum),
+    prices: S.optional(PriceMap),
+    defaultPrice: S.optional(Price),
+    managedProductTaxesAndComplianceSettings: S.optional(
+      ManagedProductTaxAndComplianceSettings,
+    ),
+    subscriptionPeriod: S.optional(S.String),
+    purchaseType: S.optional(InAppProductPurchaseTypeEnum),
+    packageName: S.optional(S.String),
+    defaultLanguage: S.optional(S.String),
+    subscriptionTaxesAndComplianceSettings: S.optional(
+      SubscriptionTaxAndComplianceSettings,
+    ),
+  }),
+).annotate({ identifier: "InAppProduct" }) as any as S.Schema<InAppProduct>;
+
+export type InAppProductList = Array<InAppProduct>;
+export const InAppProductList = /*@__PURE__*/ S.Array(
+  InAppProduct,
+) as any as S.Schema<InAppProductList>;
+
+/** Response message for BatchGetSubscriptions endpoint. */
+export interface InappproductsBatchGetResponse {
+  /** The list of requested in-app products, in the same order as the request. */
+  inappproduct?: InAppProductList;
+}
+export const InappproductsBatchGetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inappproduct: S.optional(InAppProductList),
+  }),
+).annotate({
+  identifier: "InappproductsBatchGetResponse",
+}) as any as S.Schema<InappproductsBatchGetResponse>;
+
+export interface BatchGetMonetizationOnetimeproductsRequest {
+  /** Required. A list of up to 100 product IDs to retrieve. All IDs must be different. */
+  productIds?: StringList;
+  /** Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests. */
+  packageName: string;
+}
+export const BatchGetMonetizationOnetimeproductsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      productIds: S.optional(StringList.pipe(T.Query())),
+      packageName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchGetMonetizationOnetimeproductsRequest",
+  }) as any as S.Schema<BatchGetMonetizationOnetimeproductsRequest>;
+
+export type RegionalTaxConfigTaxTierEnum =
+  | "TAX_TIER_UNSPECIFIED"
+  | "TAX_TIER_BOOKS_1"
+  | "TAX_TIER_NEWS_1"
+  | "TAX_TIER_NEWS_2"
+  | "TAX_TIER_MUSIC_OR_AUDIO_1"
+  | "TAX_TIER_LIVE_OR_BROADCAST_1";
+export const RegionalTaxConfigTaxTierEnum = /*@__PURE__*/ S.String;
+
+export type RegionalTaxConfigStreamingTaxTypeEnum =
+  | "STREAMING_TAX_TYPE_UNSPECIFIED"
+  | "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL"
+  | "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES"
+  | "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL"
+  | "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL"
+  | "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES"
+  | "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL";
+export const RegionalTaxConfigStreamingTaxTypeEnum = /*@__PURE__*/ S.String;
+
+/** Details about taxation in a given geographical region. */
+export interface RegionalTaxConfig {
+  /** Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498). */
+  taxTier?: RegionalTaxConfigTaxTierEnum | (string & {});
+  /** To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax). */
+  streamingTaxType?: RegionalTaxConfigStreamingTaxTypeEnum | (string & {});
+  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US". */
+  regionCode?: string;
+  /** You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States. */
+  eligibleForStreamingServiceTaxRate?: boolean;
+}
+export const RegionalTaxConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taxTier: S.optional(RegionalTaxConfigTaxTierEnum),
+    streamingTaxType: S.optional(RegionalTaxConfigStreamingTaxTypeEnum),
+    regionCode: S.optional(S.String),
+    eligibleForStreamingServiceTaxRate: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RegionalTaxConfig",
+}) as any as S.Schema<RegionalTaxConfig>;
+
+export type RegionalTaxConfigList = Array<RegionalTaxConfig>;
+export const RegionalTaxConfigList = /*@__PURE__*/ S.Array(
+  RegionalTaxConfig,
+) as any as S.Schema<RegionalTaxConfigList>;
+
+/** Details about taxation, Google Play policy and legal compliance for one-time products. */
+export interface OneTimeProductTaxAndComplianceSettings {
+  /** Regional tax configuration. */
+  regionalTaxConfigs?: RegionalTaxConfigList;
+  /** Whether this one-time product is declared as a product representing a tokenized digital asset. */
+  isTokenizedDigitalAsset?: boolean;
+  /** Regional age rating information. Currently this field is only supported for region code `US`. */
+  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
+  /** Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
+  productTaxCategoryCode?: string;
+}
+export const OneTimeProductTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      regionalTaxConfigs: S.optional(RegionalTaxConfigList),
+      isTokenizedDigitalAsset: S.optional(S.Boolean),
+      regionalProductAgeRatingInfos: S.optional(
+        RegionalProductAgeRatingInfoList,
+      ),
+      productTaxCategoryCode: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "OneTimeProductTaxAndComplianceSettings",
+}) as any as S.Schema<OneTimeProductTaxAndComplianceSettings>;
+
+/** A purchase option that can be rented. */
+export interface OneTimeProductRentPurchaseOption {
+  /** Required. The amount of time a user has the entitlement for. Starts at purchase flow completion. Specified in ISO 8601 format. */
+  rentalPeriod?: string;
+  /** Optional. The amount of time the user has after starting consuming the entitlement before it is revoked. Specified in ISO 8601 format. */
+  expirationPeriod?: string;
+}
+export const OneTimeProductRentPurchaseOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rentalPeriod: S.optional(S.String),
+    expirationPeriod: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OneTimeProductRentPurchaseOption",
+}) as any as S.Schema<OneTimeProductRentPurchaseOption>;
+
+export type OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
+  | "AVAILABILITY_UNSPECIFIED"
+  | "AVAILABLE"
+  | "NO_LONGER_AVAILABLE";
+export const OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
+  /*@__PURE__*/ S.String;
+
+/** Pricing information for any new regions Play may launch in the future. */
+export interface OneTimeProductPurchaseOptionNewRegionsConfig {
+  /** Required. Price in EUR to use for any new regions Play may launch in. */
+  eurPrice?: Money;
+  /** Required. Price in USD to use for any new regions Play may launch in. */
+  usdPrice?: Money;
+  /** Required. The regional availability for the new regions config. When set to AVAILABLE, the pricing information will be used for any new regions Play may launch in the future. */
+  availability?:
+    | OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum
+    | (string & {});
+}
+export const OneTimeProductPurchaseOptionNewRegionsConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      eurPrice: S.optional(Money),
+      usdPrice: S.optional(Money),
+      availability: S.optional(
+        OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum,
+      ),
+    }),
+  ).annotate({
+    identifier: "OneTimeProductPurchaseOptionNewRegionsConfig",
+  }) as any as S.Schema<OneTimeProductPurchaseOptionNewRegionsConfig>;
+
+export type OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum =
+  | "AVAILABILITY_UNSPECIFIED"
+  | "AVAILABLE"
+  | "NO_LONGER_AVAILABLE"
+  | "AVAILABLE_IF_RELEASED"
+  | "AVAILABLE_FOR_OFFERS_ONLY";
+export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum =
+  /*@__PURE__*/ S.String;
+
+/** Regional pricing and availability configuration for a purchase option. */
+export interface OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig {
+  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US". */
+  regionCode?: string;
+  /** The price of the purchase option in the specified region. Must be set in the currency that is linked to the specified region. */
+  price?: Money;
+  /** The availability of the purchase option. */
+  availability?:
+    | OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum
+    | (string & {});
+}
+export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regionCode: S.optional(S.String),
+      price: S.optional(Money),
+      availability: S.optional(
+        OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig",
+  }) as any as S.Schema<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig>;
+
+export type OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList =
+  Array<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig>;
+export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList =
+  /*@__PURE__*/ S.Array(
+    OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig,
+  ) as any as S.Schema<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList>;
+
+export type OneTimeProductPurchaseOptionStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "DRAFT"
+  | "ACTIVE"
+  | "INACTIVE"
+  | "INACTIVE_PUBLISHED";
+export const OneTimeProductPurchaseOptionStateEnum = /*@__PURE__*/ S.String;
+
+export type PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
+  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
+  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+  | "WITHDRAWAL_RIGHT_SERVICE";
+export const PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Details about taxation, Google Play policy and legal compliance for one-time product purchase options. */
+export interface PurchaseOptionTaxAndComplianceSettings {
+  /** Optional. Digital content or service classification for products distributed to users in eligible regions. If unset, it defaults to `WITHDRAWAL_RIGHT_DIGITAL_CONTENT`. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information. */
+  withdrawalRightType?:
+    | PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum
+    | (string & {});
+}
+export const PurchaseOptionTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      withdrawalRightType: S.optional(
+        PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum,
+      ),
+    }),
+).annotate({
+  identifier: "PurchaseOptionTaxAndComplianceSettings",
+}) as any as S.Schema<PurchaseOptionTaxAndComplianceSettings>;
+
+/** A purchase option that can be bought. */
+export interface OneTimeProductBuyPurchaseOption {
+  /** Optional. Whether this purchase option allows multi-quantity. Multi-quantity allows buyer to purchase more than one item in a single checkout. */
+  multiQuantityEnabled?: boolean;
+  /** Optional. Whether this purchase option will be available in legacy PBL flows that do not support one-time products model. Up to one "buy" purchase option can be marked as backwards compatible. */
+  legacyCompatible?: boolean;
+}
+export const OneTimeProductBuyPurchaseOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    multiQuantityEnabled: S.optional(S.Boolean),
+    legacyCompatible: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "OneTimeProductBuyPurchaseOption",
+}) as any as S.Schema<OneTimeProductBuyPurchaseOption>;
+
+/** A single purchase option for a one-time product. */
+export interface OneTimeProductPurchaseOption {
+  /** A purchase option that can be rented. */
+  rentOption?: OneTimeProductRentPurchaseOption;
+  /** Required. Immutable. The unique identifier of this purchase option. Must be unique within the one-time product. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters. */
+  purchaseOptionId?: string;
+  /** Pricing information for any new locations Play may launch in the future. If omitted, the purchase option will not be automatically available in any new locations Play may launch in the future. */
+  newRegionsConfig?: OneTimeProductPurchaseOptionNewRegionsConfig;
+  /** Regional pricing and availability information for this purchase option. */
+  regionalPricingAndAvailabilityConfigs?: OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList;
+  /** Output only. The state of the purchase option, i.e., whether it's active. This field cannot be changed by updating the resource. Use the dedicated endpoints instead. */
+  state?: OneTimeProductPurchaseOptionStateEnum | (string & {});
+  /** Optional. Details about taxes and legal compliance. */
+  taxAndComplianceSettings?: PurchaseOptionTaxAndComplianceSettings;
+  /** Optional. List of up to 20 custom tags specified for this purchase option, and returned to the app through the billing library. Offers for this purchase option will also receive these tags in the billing library. */
+  offerTags?: OfferTagList;
+  /** A purchase option that can be bought. */
+  buyOption?: OneTimeProductBuyPurchaseOption;
+}
+export const OneTimeProductPurchaseOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rentOption: S.optional(OneTimeProductRentPurchaseOption),
+    purchaseOptionId: S.optional(S.String),
+    newRegionsConfig: S.optional(OneTimeProductPurchaseOptionNewRegionsConfig),
+    regionalPricingAndAvailabilityConfigs: S.optional(
+      OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList,
+    ),
+    state: S.optional(OneTimeProductPurchaseOptionStateEnum),
+    taxAndComplianceSettings: S.optional(
+      PurchaseOptionTaxAndComplianceSettings,
+    ),
+    offerTags: S.optional(OfferTagList),
+    buyOption: S.optional(OneTimeProductBuyPurchaseOption),
+  }),
+).annotate({
+  identifier: "OneTimeProductPurchaseOption",
+}) as any as S.Schema<OneTimeProductPurchaseOption>;
+
+export type OneTimeProductPurchaseOptionList =
+  Array<OneTimeProductPurchaseOption>;
+export const OneTimeProductPurchaseOptionList = /*@__PURE__*/ S.Array(
+  OneTimeProductPurchaseOption,
+) as any as S.Schema<OneTimeProductPurchaseOptionList>;
+
+/** Regional store listing for a one-time product. */
+export interface OneTimeProductListing {
+  /** Required. The description of this product in the language of this listing. The maximum length is 200 characters. */
+  description?: string;
+  /** Required. The language of this listing, as defined by BCP-47, e.g., "en-US". */
+  languageCode?: string;
+  /** Required. The title of this product in the language of this listing. The maximum length is 55 characters. */
+  title?: string;
+}
+export const OneTimeProductListing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    languageCode: S.optional(S.String),
+    title: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OneTimeProductListing",
+}) as any as S.Schema<OneTimeProductListing>;
+
+export type OneTimeProductListingList = Array<OneTimeProductListing>;
+export const OneTimeProductListingList = /*@__PURE__*/ S.Array(
+  OneTimeProductListing,
+) as any as S.Schema<OneTimeProductListingList>;
+
+/** A single one-time product for an app. */
+export interface OneTimeProduct {
+  /** Details about taxes and legal compliance. */
+  taxAndComplianceSettings?: OneTimeProductTaxAndComplianceSettings;
+  /** Required. The set of purchase options for this one-time product. */
+  purchaseOptions?: OneTimeProductPurchaseOptionList;
+  /** Optional. List of up to 20 custom tags specified for this one-time product, and returned to the app through the billing library. Purchase options and offers for this product will also receive these tags in the billing library. */
+  offerTags?: OfferTagList;
+  /** Optional. Countries where the purchase of this one-time product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed. */
+  restrictedPaymentCountries?: RestrictedPaymentCountries;
+  /** Output only. The version of the regions configuration that was used to generate the one-time product. */
+  regionsVersion?: RegionsVersion;
+  /** Required. Immutable. Package name of the parent app. */
+  packageName?: string;
+  /** Required. Set of localized title and description data. Must not have duplicate entries with the same language_code. */
+  listings?: OneTimeProductListingList;
+  /** Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.). */
+  productId?: string;
+}
+export const OneTimeProduct = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taxAndComplianceSettings: S.optional(
+      OneTimeProductTaxAndComplianceSettings,
+    ),
+    purchaseOptions: S.optional(OneTimeProductPurchaseOptionList),
+    offerTags: S.optional(OfferTagList),
+    restrictedPaymentCountries: S.optional(RestrictedPaymentCountries),
+    regionsVersion: S.optional(RegionsVersion),
+    packageName: S.optional(S.String),
+    listings: S.optional(OneTimeProductListingList),
+    productId: S.optional(S.String),
+  }),
+).annotate({ identifier: "OneTimeProduct" }) as any as S.Schema<OneTimeProduct>;
+
+export type OneTimeProductList = Array<OneTimeProduct>;
+export const OneTimeProductList = /*@__PURE__*/ S.Array(
+  OneTimeProduct,
+) as any as S.Schema<OneTimeProductList>;
+
+/** Response message for the BatchGetOneTimeProducts endpoint. */
+export interface BatchGetOneTimeProductsResponse {
+  /** The list of requested one-time products, in the same order as the request. */
+  oneTimeProducts?: OneTimeProductList;
+}
+export const BatchGetOneTimeProductsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oneTimeProducts: S.optional(OneTimeProductList),
+  }),
+).annotate({
+  identifier: "BatchGetOneTimeProductsResponse",
+}) as any as S.Schema<BatchGetOneTimeProductsResponse>;
+
+/** Request message for GetOneTimeProductOffers. */
+export interface GetOneTimeProductOfferRequest {
+  /** Required. The parent one-time product (ID) of the offer to get. */
+  productId?: string;
+  /** Required. The parent app (package name) of the offer to get. */
+  packageName?: string;
+  /** Required. The parent purchase option (ID) of the offer to get. */
+  purchaseOptionId?: string;
+  /** Required. The unique offer ID of the offer to get. */
+  offerId?: string;
+}
+export const GetOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    purchaseOptionId: S.optional(S.String),
+    offerId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetOneTimeProductOfferRequest",
+}) as any as S.Schema<GetOneTimeProductOfferRequest>;
+
+export type GetOneTimeProductOfferRequestList =
+  Array<GetOneTimeProductOfferRequest>;
+export const GetOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
+  GetOneTimeProductOfferRequest,
+) as any as S.Schema<GetOneTimeProductOfferRequestList>;
+
+/** Request message for the BatchGetOneTimeProductOffers endpoint. */
+export interface BatchGetOneTimeProductOffersRequest {
+  /** Required. A list of get requests of up to 100 elements. All requests must retrieve different offers. */
+  requests?: GetOneTimeProductOfferRequestList;
+}
+export const BatchGetOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(GetOneTimeProductOfferRequestList),
+  }),
+).annotate({
+  identifier: "BatchGetOneTimeProductOffersRequest",
+}) as any as S.Schema<BatchGetOneTimeProductOffersRequest>;
+
+export interface BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
+  /** Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options. */
+  purchaseOptionId: string;
+  /** Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources. */
+  packageName: string;
+  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Request body */
+  body?: BatchGetOneTimeProductOffersRequest;
+}
+export const BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      purchaseOptionId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      body: S.optional(BatchGetOneTimeProductOffersRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
+  }) as any as S.Schema<BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
+
+export type OneTimeProductOfferList = Array<OneTimeProductOffer>;
+export const OneTimeProductOfferList = /*@__PURE__*/ S.Array(
+  OneTimeProductOffer,
+) as any as S.Schema<OneTimeProductOfferList>;
+
+/** Response message for the BatchGetOneTimeProductOffers endpoint. */
+export interface BatchGetOneTimeProductOffersResponse {
+  /** The list of updated one-time product offers, in the same order as the request. */
+  oneTimeProductOffers?: OneTimeProductOfferList;
+}
+export const BatchGetOneTimeProductOffersResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
+    }),
+).annotate({
+  identifier: "BatchGetOneTimeProductOffersResponse",
+}) as any as S.Schema<BatchGetOneTimeProductOffersResponse>;
+
+export interface BatchGetMonetizationSubscriptionsRequest {
+  /** Required. The parent app (package name) for which the subscriptions should be retrieved. Must be equal to the package_name field on all the requests. */
+  packageName: string;
+  /** Required. A list of up to 100 subscription product IDs to retrieve. All the IDs must be different. */
+  productIds?: StringList;
+}
+export const BatchGetMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      productIds: S.optional(StringList.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions:batchGet",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+).annotate({
+  identifier: "BatchGetMonetizationSubscriptionsRequest",
+}) as any as S.Schema<BatchGetMonetizationSubscriptionsRequest>;
+
+export type SubscriptionList = Array<Subscription>;
+export const SubscriptionList = /*@__PURE__*/ S.Array(
+  Subscription,
+) as any as S.Schema<SubscriptionList>;
+
+/** Response message for BatchGetSubscriptions endpoint. */
+export interface BatchGetSubscriptionsResponse {
+  /** The list of requested subscriptions, in the same order as the request. */
+  subscriptions?: SubscriptionList;
+}
+export const BatchGetSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptions: S.optional(SubscriptionList),
+  }),
+).annotate({
+  identifier: "BatchGetSubscriptionsResponse",
+}) as any as S.Schema<BatchGetSubscriptionsResponse>;
+
+/** Request message for GetSubscriptionOffer. */
+export interface GetSubscriptionOfferRequest {
+  /** Required. The parent subscription (ID) of the offer to get. */
+  productId?: string;
+  /** Required. The parent app (package name) of the offer to get. */
+  packageName?: string;
+  /** Required. The parent base plan (ID) of the offer to get. */
+  basePlanId?: string;
+  /** Required. The unique offer ID of the offer to get. */
+  offerId?: string;
+}
+export const GetSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    basePlanId: S.optional(S.String),
+    offerId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetSubscriptionOfferRequest",
+}) as any as S.Schema<GetSubscriptionOfferRequest>;
+
+export type GetSubscriptionOfferRequestList =
+  Array<GetSubscriptionOfferRequest>;
+export const GetSubscriptionOfferRequestList = /*@__PURE__*/ S.Array(
+  GetSubscriptionOfferRequest,
+) as any as S.Schema<GetSubscriptionOfferRequestList>;
+
+/** Request message for BatchGetSubscriptionOffers endpoint. */
+export interface BatchGetSubscriptionOffersRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must update different subscriptions. */
+  requests?: GetSubscriptionOfferRequestList;
+}
+export const BatchGetSubscriptionOffersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(GetSubscriptionOfferRequestList),
+  }),
+).annotate({
+  identifier: "BatchGetSubscriptionOffersRequest",
+}) as any as S.Schema<BatchGetSubscriptionOffersRequest>;
+
+export interface BatchGetMonetizationSubscriptionsBasePlansOffersRequest {
+  /** Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read offers from multiple base plans. */
+  basePlanId: string;
+  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
+  productId: string;
+  /** Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the requests. */
+  packageName: string;
+  /** Request body */
+  body?: BatchGetSubscriptionOffersRequest;
+}
+export const BatchGetMonetizationSubscriptionsBasePlansOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      basePlanId: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(BatchGetSubscriptionOffersRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchGetMonetizationSubscriptionsBasePlansOffersRequest",
+  }) as any as S.Schema<BatchGetMonetizationSubscriptionsBasePlansOffersRequest>;
+
+export type SubscriptionOfferList = Array<SubscriptionOffer>;
+export const SubscriptionOfferList = /*@__PURE__*/ S.Array(
+  SubscriptionOffer,
+) as any as S.Schema<SubscriptionOfferList>;
+
+/** Response message for BatchGetSubscriptionOffers endpoint. */
+export interface BatchGetSubscriptionOffersResponse {
+  subscriptionOffers?: SubscriptionOfferList;
+}
+export const BatchGetSubscriptionOffersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionOffers: S.optional(SubscriptionOfferList),
+  }),
+).annotate({
+  identifier: "BatchGetSubscriptionOffersResponse",
+}) as any as S.Schema<BatchGetSubscriptionOffersResponse>;
+
+export interface BatchgetOrdersRequest {
   /** Required. The list of order IDs to retrieve order details for. There must be between 1 and 1000 (inclusive) order IDs per request. If any order ID is not found or does not match the provided package, the entire request will fail with an error. The order IDs must be distinct. */
   orderIds?: StringList;
+  /** Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
+  packageName: string;
 }
 export const BatchgetOrdersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     orderIds: S.optional(StringList.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1520,65 +2622,25 @@ export const BatchgetOrdersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchgetOrdersRequest",
 }) as any as S.Schema<BatchgetOrdersRequest>;
 
-/** Address information for the customer, for use in tax computation. */
-export interface BuyerAddress {
-  /** Top-level administrative subdivision of the buyer address country. When Google is the Merchant of Record for the order, this information is not included. */
-  buyerState?: string;
-  /** Postal code of an address. When Google is the Merchant of Record for the order, this information is not included. */
-  buyerPostcode?: string;
-  /** Two letter country code based on ISO-3166-1 Alpha-2 (UN country codes). */
-  buyerCountry?: string;
-}
-export const BuyerAddress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buyerState: S.optional(S.String),
-    buyerPostcode: S.optional(S.String),
-    buyerCountry: S.optional(S.String),
-  }),
-).annotate({ identifier: "BuyerAddress" }) as any as S.Schema<BuyerAddress>;
-
-export type OrderStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "PENDING"
-  | "PROCESSED"
-  | "CANCELED"
-  | "PENDING_REFUND"
-  | "PARTIALLY_REFUNDED"
-  | "REFUNDED";
-export const OrderStateEnum = /*@__PURE__*/ S.String;
-
 /** Details relating to any Play Points applied to an order. */
 export interface PointsDetails {
   /** ID unique to the play points offer in use for this order. */
   pointsOfferId?: string;
-  /** The monetary value of a Play Points coupon. This is the discount the coupon provides, which may not be the total amount. Only set when Play Points coupons have been used. E.g. for a 100 points for $2 coupon, this is $2. */
-  pointsCouponValue?: Money;
   /** The percentage rate which the Play Points promotion reduces the cost by. E.g. for a 100 points for $2 coupon, this is 500,000. Since $2 has an estimate of 200 points, but the actual Points required, 100, is 50% of this, and 50% in micros is 500,000. Between 0 and 1,000,000. */
   pointsDiscountRateMicros?: string;
   /** The number of Play Points applied in this order. E.g. for a 100 points for $2 coupon, this is 100. For coupon stacked with base offer, this is the total points spent across both. */
   pointsSpent?: string;
+  /** The monetary value of a Play Points coupon. This is the discount the coupon provides, which may not be the total amount. Only set when Play Points coupons have been used. E.g. for a 100 points for $2 coupon, this is $2. */
+  pointsCouponValue?: Money;
 }
 export const PointsDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pointsOfferId: S.optional(S.String),
-    pointsCouponValue: S.optional(Money),
     pointsDiscountRateMicros: S.optional(S.String),
     pointsSpent: S.optional(S.String),
+    pointsCouponValue: S.optional(Money),
   }),
 ).annotate({ identifier: "PointsDetails" }) as any as S.Schema<PointsDetails>;
-
-/** Details of when the order was canceled. */
-export interface CancellationEvent {
-  /** The time when the order was canceled. */
-  eventTime?: string;
-}
-export const CancellationEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eventTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CancellationEvent",
-}) as any as S.Schema<CancellationEvent>;
 
 /** Details for a partial or full refund. */
 export interface RefundDetails {
@@ -1602,10 +2664,10 @@ export const PartialRefundEventStateEnum = /*@__PURE__*/ S.String;
 
 /** Details of the partial refund events for this order. */
 export interface PartialRefundEvent {
-  /** Details for the partial refund. */
-  refundDetails?: RefundDetails;
   /** The time when the partial refund was processed. */
   processTime?: string;
+  /** Details for the partial refund. */
+  refundDetails?: RefundDetails;
   /** The time when the partial refund was created. */
   createTime?: string;
   /** The state of the partial refund. */
@@ -1613,8 +2675,8 @@ export interface PartialRefundEvent {
 }
 export const PartialRefundEvent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    refundDetails: S.optional(RefundDetails),
     processTime: S.optional(S.String),
+    refundDetails: S.optional(RefundDetails),
     createTime: S.optional(S.String),
     state: S.optional(PartialRefundEventStateEnum),
   }),
@@ -1627,6 +2689,42 @@ export const PartialRefundEventList = /*@__PURE__*/ S.Array(
   PartialRefundEvent,
 ) as any as S.Schema<PartialRefundEventList>;
 
+/** Details of when the order was canceled. */
+export interface CancellationEvent {
+  /** The time when the order was canceled. */
+  eventTime?: string;
+}
+export const CancellationEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    eventTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CancellationEvent",
+}) as any as S.Schema<CancellationEvent>;
+
+export type RefundEventRefundReasonEnum =
+  | "REFUND_REASON_UNSPECIFIED"
+  | "OTHER"
+  | "CHARGEBACK";
+export const RefundEventRefundReasonEnum = /*@__PURE__*/ S.String;
+
+/** Details of when the order was fully refunded. */
+export interface RefundEvent {
+  /** The time when the order was fully refunded. */
+  eventTime?: string;
+  /** The reason the order was refunded. */
+  refundReason?: RefundEventRefundReasonEnum;
+  /** Details for the full refund. */
+  refundDetails?: RefundDetails;
+}
+export const RefundEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    eventTime: S.optional(S.String),
+    refundReason: S.optional(RefundEventRefundReasonEnum),
+    refundDetails: S.optional(RefundDetails),
+  }),
+).annotate({ identifier: "RefundEvent" }) as any as S.Schema<RefundEvent>;
+
 /** Details of when the order was processed. */
 export interface ProcessedEvent {
   /** The time when the order was processed. */
@@ -1638,46 +2736,23 @@ export const ProcessedEvent = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ProcessedEvent" }) as any as S.Schema<ProcessedEvent>;
 
-export type RefundEventRefundReasonEnum =
-  | "REFUND_REASON_UNSPECIFIED"
-  | "OTHER"
-  | "CHARGEBACK";
-export const RefundEventRefundReasonEnum = /*@__PURE__*/ S.String;
-
-/** Details of when the order was fully refunded. */
-export interface RefundEvent {
-  /** The reason the order was refunded. */
-  refundReason?: RefundEventRefundReasonEnum;
-  /** The time when the order was fully refunded. */
-  eventTime?: string;
-  /** Details for the full refund. */
-  refundDetails?: RefundDetails;
-}
-export const RefundEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    refundReason: S.optional(RefundEventRefundReasonEnum),
-    eventTime: S.optional(S.String),
-    refundDetails: S.optional(RefundDetails),
-  }),
-).annotate({ identifier: "RefundEvent" }) as any as S.Schema<RefundEvent>;
-
 /** Details about events which modified the order. */
 export interface OrderHistory {
-  /** Details of when the order was canceled. */
-  cancellationEvent?: CancellationEvent;
   /** Details of the partial refund events for this order. */
   partialRefundEvents?: PartialRefundEventList;
-  /** Details of when the order was processed. */
-  processedEvent?: ProcessedEvent;
+  /** Details of when the order was canceled. */
+  cancellationEvent?: CancellationEvent;
   /** Details of when the order was fully refunded. */
   refundEvent?: RefundEvent;
+  /** Details of when the order was processed. */
+  processedEvent?: ProcessedEvent;
 }
 export const OrderHistory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    cancellationEvent: S.optional(CancellationEvent),
     partialRefundEvents: S.optional(PartialRefundEventList),
-    processedEvent: S.optional(ProcessedEvent),
+    cancellationEvent: S.optional(CancellationEvent),
     refundEvent: S.optional(RefundEvent),
+    processedEvent: S.optional(ProcessedEvent),
   }),
 ).annotate({ identifier: "OrderHistory" }) as any as S.Schema<OrderHistory>;
 
@@ -1691,6 +2766,56 @@ export const OrderDetails = /*@__PURE__*/ S.suspend(() =>
     taxInclusive: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "OrderDetails" }) as any as S.Schema<OrderDetails>;
+
+export type OrderStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "PENDING"
+  | "PROCESSED"
+  | "CANCELED"
+  | "PENDING_REFUND"
+  | "PARTIALLY_REFUNDED"
+  | "REFUNDED";
+export const OrderStateEnum = /*@__PURE__*/ S.String;
+
+/** Details of a rental purchase. */
+export type RentalDetails = OneTimeProductOfferNoPriceOverrideOptions;
+export const RentalDetails = OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Details of a pre-order purchase. */
+export type PreorderDetails = OneTimeProductOfferNoPriceOverrideOptions;
+export const PreorderDetails = OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Details of a one-time purchase. */
+export interface OneTimePurchaseDetails {
+  /** The details of a rent purchase. Only set if it is a rent purchase. */
+  rentalDetails?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The number of items purchased (for multi-quantity item purchases). */
+  quantity?: number;
+  /** The details of a pre-order purchase. Only set if it is a pre-order purchase. Note that this field will be set even after pre-order is fulfilled. */
+  preorderDetails?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** ID of the purchase option. This field is set for both purchase options and variant offers. For purchase options, this ID identifies the purchase option itself. For variant offers, this ID refers to the associated purchase option, and in conjunction with offer_id it identifies the variant offer. */
+  purchaseOptionId?: string;
+  /** The offer ID of the one-time purchase offer. */
+  offerId?: string;
+}
+export const OneTimePurchaseDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rentalDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    quantity: S.optional(S.Number),
+    preorderDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    purchaseOptionId: S.optional(S.String),
+    offerId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OneTimePurchaseDetails",
+}) as any as S.Schema<OneTimePurchaseDetails>;
+
+export type SubscriptionDetailsOfferPhaseEnum =
+  | "OFFER_PHASE_UNSPECIFIED"
+  | "BASE"
+  | "INTRODUCTORY"
+  | "FREE_TRIAL";
+export const SubscriptionDetailsOfferPhaseEnum = /*@__PURE__*/ S.String;
 
 export type ProrationPeriodDetailsOriginalOfferPhaseEnum =
   | "OFFER_PHASE_UNSPECIFIED"
@@ -1721,13 +2846,13 @@ export type IntroductoryPriceDetails =
 export const IntroductoryPriceDetails =
   OneTimeProductOfferNoPriceOverrideOptions;
 
-/** Details of a base price pricing phase. */
-export type BaseDetails = OneTimeProductOfferNoPriceOverrideOptions;
-export const BaseDetails = OneTimeProductOfferNoPriceOverrideOptions;
-
 /** Details of a free trial pricing phase. */
 export type FreeTrialDetails = OneTimeProductOfferNoPriceOverrideOptions;
 export const FreeTrialDetails = OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Details of a base price pricing phase. */
+export type BaseDetails = OneTimeProductOfferNoPriceOverrideOptions;
+export const BaseDetails = OneTimeProductOfferNoPriceOverrideOptions;
 
 /** Details of a pricing phase for the entitlement period funded by this order. */
 export interface OfferPhaseDetails {
@@ -1735,10 +2860,10 @@ export interface OfferPhaseDetails {
   prorationPeriodDetails?: ProrationPeriodDetails;
   /** The order funds an introductory pricing period. */
   introductoryPriceDetails?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The order funds a base price period. */
-  baseDetails?: OneTimeProductOfferNoPriceOverrideOptions;
   /** The order funds a free trial period. */
   freeTrialDetails?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The order funds a base price period. */
+  baseDetails?: OneTimeProductOfferNoPriceOverrideOptions;
 }
 export const OfferPhaseDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1746,43 +2871,36 @@ export const OfferPhaseDetails = /*@__PURE__*/ S.suspend(() =>
     introductoryPriceDetails: S.optional(
       OneTimeProductOfferNoPriceOverrideOptions,
     ),
-    baseDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     freeTrialDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    baseDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
   }),
 ).annotate({
   identifier: "OfferPhaseDetails",
 }) as any as S.Schema<OfferPhaseDetails>;
 
-export type SubscriptionDetailsOfferPhaseEnum =
-  | "OFFER_PHASE_UNSPECIFIED"
-  | "BASE"
-  | "INTRODUCTORY"
-  | "FREE_TRIAL";
-export const SubscriptionDetailsOfferPhaseEnum = /*@__PURE__*/ S.String;
-
 /** Details of a subscription purchase. */
 export interface SubscriptionDetails {
-  /** The pricing phase details for the entitlement period funded by this order. */
-  offerPhaseDetails?: OfferPhaseDetails;
-  /** The start of the billing period funded by this order. This is a snapshot of the billing/service period start time at the moment the order was processed, and should be used only for accounting. */
-  servicePeriodStartTime?: string;
+  /** The offer ID for the current subscription offer. */
+  offerId?: string;
   /** Deprecated: Use offer_phase_details instead. The pricing phase for the billing period funded by this order. */
   offerPhase?: SubscriptionDetailsOfferPhaseEnum;
+  /** The pricing phase details for the entitlement period funded by this order. */
+  offerPhaseDetails?: OfferPhaseDetails;
   /** The base plan ID of the subscription. */
   basePlanId?: string;
   /** The end of the billing period funded by this order. This is a snapshot of the billing/service period end time at the moment the order was processed, and should be used only for accounting. To get the current end time of the subscription service period, use purchases.subscriptionsv2.get. */
   servicePeriodEndTime?: string;
-  /** The offer ID for the current subscription offer. */
-  offerId?: string;
+  /** The start of the billing period funded by this order. This is a snapshot of the billing/service period start time at the moment the order was processed, and should be used only for accounting. */
+  servicePeriodStartTime?: string;
 }
 export const SubscriptionDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    offerPhaseDetails: S.optional(OfferPhaseDetails),
-    servicePeriodStartTime: S.optional(S.String),
+    offerId: S.optional(S.String),
     offerPhase: S.optional(SubscriptionDetailsOfferPhaseEnum),
+    offerPhaseDetails: S.optional(OfferPhaseDetails),
     basePlanId: S.optional(S.String),
     servicePeriodEndTime: S.optional(S.String),
-    offerId: S.optional(S.String),
+    servicePeriodStartTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SubscriptionDetails",
@@ -1792,68 +2910,35 @@ export const SubscriptionDetails = /*@__PURE__*/ S.suspend(() =>
 export type PaidAppDetails = OneTimeProductOfferNoPriceOverrideOptions;
 export const PaidAppDetails = OneTimeProductOfferNoPriceOverrideOptions;
 
-/** Details of a rental purchase. */
-export type RentalDetails = OneTimeProductOfferNoPriceOverrideOptions;
-export const RentalDetails = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Details of a pre-order purchase. */
-export type PreorderDetails = OneTimeProductOfferNoPriceOverrideOptions;
-export const PreorderDetails = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Details of a one-time purchase. */
-export interface OneTimePurchaseDetails {
-  /** ID of the purchase option. This field is set for both purchase options and variant offers. For purchase options, this ID identifies the purchase option itself. For variant offers, this ID refers to the associated purchase option, and in conjunction with offer_id it identifies the variant offer. */
-  purchaseOptionId?: string;
-  /** The details of a rent purchase. Only set if it is a rent purchase. */
-  rentalDetails?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The offer ID of the one-time purchase offer. */
-  offerId?: string;
-  /** The details of a pre-order purchase. Only set if it is a pre-order purchase. Note that this field will be set even after pre-order is fulfilled. */
-  preorderDetails?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The number of items purchased (for multi-quantity item purchases). */
-  quantity?: number;
-}
-export const OneTimePurchaseDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    purchaseOptionId: S.optional(S.String),
-    rentalDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    offerId: S.optional(S.String),
-    preorderDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    quantity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "OneTimePurchaseDetails",
-}) as any as S.Schema<OneTimePurchaseDetails>;
-
 /** Details of a line item. */
 export interface LineItem {
-  /** The tax paid for this line item. */
-  tax?: Money;
-  /** The total amount paid by the user for this line item, taking into account discounts and tax. */
-  total?: Money;
   /** Developer-specified name of the product. Displayed in buyer's locale. Example: coins, monthly subscription, etc. */
   productTitle?: string;
   /** Item's listed price on Play Store, this may or may not include tax. Excludes Google-funded discounts only. */
   listingPrice?: Money;
-  /** Details of a subscription purchase. */
-  subscriptionDetails?: SubscriptionDetails;
-  /** The purchased product ID or in-app SKU (for example, 'monthly001' or 'com.some.thing.inapp1'). */
-  productId?: string;
-  /** Details of a paid app purchase. */
-  paidAppDetails?: OneTimeProductOfferNoPriceOverrideOptions;
   /** Details of a one-time purchase. */
   oneTimePurchaseDetails?: OneTimePurchaseDetails;
+  /** The purchased product ID or in-app SKU (for example, 'monthly001' or 'com.some.thing.inapp1'). */
+  productId?: string;
+  /** The tax paid for this line item. */
+  tax?: Money;
+  /** Details of a subscription purchase. */
+  subscriptionDetails?: SubscriptionDetails;
+  /** The total amount paid by the user for this line item, taking into account discounts and tax. */
+  total?: Money;
+  /** Details of a paid app purchase. */
+  paidAppDetails?: OneTimeProductOfferNoPriceOverrideOptions;
 }
 export const LineItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    tax: S.optional(Money),
-    total: S.optional(Money),
     productTitle: S.optional(S.String),
     listingPrice: S.optional(Money),
-    subscriptionDetails: S.optional(SubscriptionDetails),
-    productId: S.optional(S.String),
-    paidAppDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     oneTimePurchaseDetails: S.optional(OneTimePurchaseDetails),
+    productId: S.optional(S.String),
+    tax: S.optional(Money),
+    subscriptionDetails: S.optional(SubscriptionDetails),
+    total: S.optional(Money),
+    paidAppDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
   }),
 ).annotate({ identifier: "LineItem" }) as any as S.Schema<LineItem>;
 
@@ -1861,6 +2946,23 @@ export type LineItemList = Array<LineItem>;
 export const LineItemList = /*@__PURE__*/ S.Array(
   LineItem,
 ) as any as S.Schema<LineItemList>;
+
+/** Address information for the customer, for use in tax computation. */
+export interface BuyerAddress {
+  /** Two letter country code based on ISO-3166-1 Alpha-2 (UN country codes). */
+  buyerCountry?: string;
+  /** Top-level administrative subdivision of the buyer address country. When Google is the Merchant of Record for the order, this information is not included. */
+  buyerState?: string;
+  /** Postal code of an address. When Google is the Merchant of Record for the order, this information is not included. */
+  buyerPostcode?: string;
+}
+export const BuyerAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buyerCountry: S.optional(S.String),
+    buyerState: S.optional(S.String),
+    buyerPostcode: S.optional(S.String),
+  }),
+).annotate({ identifier: "BuyerAddress" }) as any as S.Schema<BuyerAddress>;
 
 export type OrderSalesChannelEnum =
   | "SALES_CHANNEL_UNSPECIFIED"
@@ -1875,49 +2977,49 @@ export const OrderSalesChannelEnum = /*@__PURE__*/ S.String;
 export interface Order {
   /** The final amount paid by the customer, taking into account discounts and taxes. */
   total?: Money;
-  /** The total tax paid as a part of this order. */
-  tax?: Money;
-  /** The token provided to the user's device when the subscription or item was purchased. */
-  purchaseToken?: string;
-  /** Address information for the customer, for use in tax computation. When Google is the Merchant of Record for the order, only country is shown. */
-  buyerAddress?: BuyerAddress;
-  /** The state of the order. */
-  state?: OrderStateEnum;
-  /** The order ID. */
-  orderId?: string;
-  /** The time when the order was created. */
-  createTime?: string;
   /** The time of the last event that occurred on the order. */
   lastEventTime?: string;
   /** Play points applied to the order, including offer information, discount rate and point values. */
   pointsDetails?: PointsDetails;
+  /** The time when the order was created. */
+  createTime?: string;
   /** Details about events which modified the order. */
   orderHistory?: OrderHistory;
+  /** The order ID. */
+  orderId?: string;
   /** Detailed information about the order at creation time. */
   orderDetails?: OrderDetails;
+  /** The total tax paid as a part of this order. */
+  tax?: Money;
+  /** The token provided to the user's device when the subscription or item was purchased. */
+  purchaseToken?: string;
+  /** The state of the order. */
+  state?: OrderStateEnum;
   /** The individual line items making up this order. */
   lineItems?: LineItemList;
-  /** The originating sales channel of the order. */
-  salesChannel?: OrderSalesChannelEnum;
+  /** Address information for the customer, for use in tax computation. When Google is the Merchant of Record for the order, only country is shown. */
+  buyerAddress?: BuyerAddress;
   /** Your revenue for this order in the buyer's currency, including deductions of partial refunds, taxes and fees. Google deducts standard transaction and third party fees from each sale, including VAT in some regions. */
   developerRevenueInBuyerCurrency?: Money;
+  /** The originating sales channel of the order. */
+  salesChannel?: OrderSalesChannelEnum;
 }
 export const Order = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     total: S.optional(Money),
-    tax: S.optional(Money),
-    purchaseToken: S.optional(S.String),
-    buyerAddress: S.optional(BuyerAddress),
-    state: S.optional(OrderStateEnum),
-    orderId: S.optional(S.String),
-    createTime: S.optional(S.String),
     lastEventTime: S.optional(S.String),
     pointsDetails: S.optional(PointsDetails),
+    createTime: S.optional(S.String),
     orderHistory: S.optional(OrderHistory),
+    orderId: S.optional(S.String),
     orderDetails: S.optional(OrderDetails),
+    tax: S.optional(Money),
+    purchaseToken: S.optional(S.String),
+    state: S.optional(OrderStateEnum),
     lineItems: S.optional(LineItemList),
-    salesChannel: S.optional(OrderSalesChannelEnum),
+    buyerAddress: S.optional(BuyerAddress),
     developerRevenueInBuyerCurrency: S.optional(Money),
+    salesChannel: S.optional(OrderSalesChannelEnum),
   }),
 ).annotate({ identifier: "Order" }) as any as S.Schema<Order>;
 
@@ -1948,22 +3050,22 @@ export const RegionalPriceMigrationConfigPriceIncreaseTypeEnum =
 
 /** Configuration for migration of a legacy price cohort. */
 export interface RegionalPriceMigrationConfig {
+  /** Required. Subscribers in all legacy price cohorts before this time will be migrated to the current price. Subscribers in any newer price cohorts are unaffected. Affected subscribers will receive one or more notifications from Google Play about the price change. Price decreases occur at the subscriber's next billing date. Price increases occur at the subscriber's next billing date following a notification period that varies by region and price increase type. */
+  oldestAllowedPriceVersionTime?: string;
   /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US". */
   regionCode?: string;
   /** Optional. The requested type of price increase */
   priceIncreaseType?:
     | RegionalPriceMigrationConfigPriceIncreaseTypeEnum
     | (string & {});
-  /** Required. Subscribers in all legacy price cohorts before this time will be migrated to the current price. Subscribers in any newer price cohorts are unaffected. Affected subscribers will receive one or more notifications from Google Play about the price change. Price decreases occur at the subscriber's next billing date. Price increases occur at the subscriber's next billing date following a notification period that varies by region and price increase type. */
-  oldestAllowedPriceVersionTime?: string;
 }
 export const RegionalPriceMigrationConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    oldestAllowedPriceVersionTime: S.optional(S.String),
     regionCode: S.optional(S.String),
     priceIncreaseType: S.optional(
       RegionalPriceMigrationConfigPriceIncreaseTypeEnum,
     ),
-    oldestAllowedPriceVersionTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RegionalPriceMigrationConfig",
@@ -1986,29 +3088,29 @@ export const MigrateBasePlanPricesRequestLatencyToleranceEnum =
 export interface MigrateBasePlanPricesRequest {
   /** Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource. */
   packageName?: string;
+  /** Required. The version of the available regions being used for the regional_price_migrations. */
+  regionsVersion?: RegionsVersion;
   /** Required. The regional prices to update. */
   regionalPriceMigrations?: RegionalPriceMigrationConfigList;
-  /** Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource. */
-  productId?: string;
-  /** Required. The unique base plan ID of the base plan to update prices on. */
-  basePlanId?: string;
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
   latencyTolerance?:
     | MigrateBasePlanPricesRequestLatencyToleranceEnum
     | (string & {});
-  /** Required. The version of the available regions being used for the regional_price_migrations. */
-  regionsVersion?: RegionsVersion;
+  /** Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource. */
+  productId?: string;
+  /** Required. The unique base plan ID of the base plan to update prices on. */
+  basePlanId?: string;
 }
 export const MigrateBasePlanPricesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     packageName: S.optional(S.String),
+    regionsVersion: S.optional(RegionsVersion),
     regionalPriceMigrations: S.optional(RegionalPriceMigrationConfigList),
-    productId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
     latencyTolerance: S.optional(
       MigrateBasePlanPricesRequestLatencyToleranceEnum,
     ),
-    regionsVersion: S.optional(RegionsVersion),
+    productId: S.optional(S.String),
+    basePlanId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "MigrateBasePlanPricesRequest",
@@ -2034,18 +3136,18 @@ export const BatchMigrateBasePlanPricesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchMigrateBasePlanPricesRequest>;
 
 export interface BatchMigratePricesMonetizationSubscriptionsBasePlansRequest {
-  /** Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the Subscription resources. */
-  packageName: string;
   /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this batch update spans multiple subscriptions, set this field to "-". Must be set. */
   productId: string;
+  /** Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the Subscription resources. */
+  packageName: string;
   /** Request body */
   body?: BatchMigrateBasePlanPricesRequest;
 }
 export const BatchMigratePricesMonetizationSubscriptionsBasePlansRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
       body: S.optional(BatchMigrateBasePlanPricesRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2084,6 +3186,1007 @@ export const BatchMigrateBasePlanPricesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BatchMigrateBasePlanPricesResponse",
 }) as any as S.Schema<BatchMigrateBasePlanPricesResponse>;
+
+export type InappproductsUpdateRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const InappproductsUpdateRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request to update an in-app product. */
+export interface InappproductsUpdateRequest {
+  /** Package name of the app. */
+  packageName?: string;
+  /** The new in-app product. */
+  inappproduct?: InAppProduct;
+  /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
+  autoConvertMissingPrices?: boolean;
+  /** Unique identifier for the in-app product. */
+  sku?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | InappproductsUpdateRequestLatencyToleranceEnum
+    | (string & {});
+  /** If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created. */
+  allowMissing?: boolean;
+}
+export const InappproductsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    packageName: S.optional(S.String),
+    inappproduct: S.optional(InAppProduct),
+    autoConvertMissingPrices: S.optional(S.Boolean),
+    sku: S.optional(S.String),
+    latencyTolerance: S.optional(
+      InappproductsUpdateRequestLatencyToleranceEnum,
+    ),
+    allowMissing: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "InappproductsUpdateRequest",
+}) as any as S.Schema<InappproductsUpdateRequest>;
+
+export type InappproductsUpdateRequestList = Array<InappproductsUpdateRequest>;
+export const InappproductsUpdateRequestList = /*@__PURE__*/ S.Array(
+  InappproductsUpdateRequest,
+) as any as S.Schema<InappproductsUpdateRequestList>;
+
+/** Request to update or insert one or more in-app products. */
+export interface InappproductsBatchUpdateRequest {
+  /** Required. Individual update requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products. */
+  requests?: InappproductsUpdateRequestList;
+}
+export const InappproductsBatchUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(InappproductsUpdateRequestList),
+  }),
+).annotate({
+  identifier: "InappproductsBatchUpdateRequest",
+}) as any as S.Schema<InappproductsBatchUpdateRequest>;
+
+export interface BatchUpdateInappproductsRequest {
+  /** Package name of the app. */
+  packageName: string;
+  /** Request body */
+  body?: InappproductsBatchUpdateRequest;
+}
+export const BatchUpdateInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    packageName: S.String.pipe(T.Label()),
+    body: S.optional(InappproductsBatchUpdateRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate",
+      baseUrl: "https://androidpublisher.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "BatchUpdateInappproductsRequest",
+}) as any as S.Schema<BatchUpdateInappproductsRequest>;
+
+/** Response for a batch in-app product update. */
+export interface InappproductsBatchUpdateResponse {
+  /** The updated or inserted in-app products. */
+  inappproducts?: InAppProductList;
+}
+export const InappproductsBatchUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inappproducts: S.optional(InAppProductList),
+  }),
+).annotate({
+  identifier: "InappproductsBatchUpdateResponse",
+}) as any as S.Schema<InappproductsBatchUpdateResponse>;
+
+export type UpdateOneTimeProductRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const UpdateOneTimeProductRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdateOneTimeProduct. */
+export interface UpdateOneTimeProductRequest {
+  /** Required. The list of fields to be updated. */
+  updateMask?: string;
+  /** Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored. */
+  allowMissing?: boolean;
+  /** Required. The one-time product to upsert. */
+  oneTimeProduct?: OneTimeProduct;
+  /** Required. The version of the available regions being used for the one-time product. */
+  regionsVersion?: RegionsVersion;
+  /** Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | UpdateOneTimeProductRequestLatencyToleranceEnum
+    | (string & {});
+}
+export const UpdateOneTimeProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    updateMask: S.optional(S.String),
+    allowMissing: S.optional(S.Boolean),
+    oneTimeProduct: S.optional(OneTimeProduct),
+    regionsVersion: S.optional(RegionsVersion),
+    latencyTolerance: S.optional(
+      UpdateOneTimeProductRequestLatencyToleranceEnum,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateOneTimeProductRequest",
+}) as any as S.Schema<UpdateOneTimeProductRequest>;
+
+export type UpdateOneTimeProductRequestList =
+  Array<UpdateOneTimeProductRequest>;
+export const UpdateOneTimeProductRequestList = /*@__PURE__*/ S.Array(
+  UpdateOneTimeProductRequest,
+) as any as S.Schema<UpdateOneTimeProductRequestList>;
+
+/** Request message for BatchUpdateOneTimeProduct. */
+export interface BatchUpdateOneTimeProductsRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must update different one-time products. */
+  requests?: UpdateOneTimeProductRequestList;
+}
+export const BatchUpdateOneTimeProductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(UpdateOneTimeProductRequestList),
+  }),
+).annotate({
+  identifier: "BatchUpdateOneTimeProductsRequest",
+}) as any as S.Schema<BatchUpdateOneTimeProductsRequest>;
+
+export interface BatchUpdateMonetizationOnetimeproductsRequest {
+  /** Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources. */
+  packageName: string;
+  /** Request body */
+  body?: BatchUpdateOneTimeProductsRequest;
+}
+export const BatchUpdateMonetizationOnetimeproductsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(BatchUpdateOneTimeProductsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchUpdateMonetizationOnetimeproductsRequest",
+  }) as any as S.Schema<BatchUpdateMonetizationOnetimeproductsRequest>;
+
+/** Response message for BatchUpdateOneTimeProduct. */
+export interface BatchUpdateOneTimeProductsResponse {
+  /** The list of updated one-time products list, in the same order as the request. */
+  oneTimeProducts?: OneTimeProductList;
+}
+export const BatchUpdateOneTimeProductsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oneTimeProducts: S.optional(OneTimeProductList),
+  }),
+).annotate({
+  identifier: "BatchUpdateOneTimeProductsResponse",
+}) as any as S.Schema<BatchUpdateOneTimeProductsResponse>;
+
+export type UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdateOneTimeProductOffer. */
+export interface UpdateOneTimeProductOfferRequest {
+  /** Required. The list of fields to be updated. */
+  updateMask?: string;
+  /** Optional. If set to true, and the offer with the given package_name, product_id, purchase_option_id and offer_id doesn't exist, an offer will be created. If a new offer is created, the update_mask is ignored. */
+  allowMissing?: boolean;
+  /** Required. The version of the available regions being used for the offer. */
+  regionsVersion?: RegionsVersion;
+  /** Optional. The latency tolerance for the propagation of this offer update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | UpdateOneTimeProductOfferRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The one-time product offer to update. */
+  oneTimeProductOffer?: OneTimeProductOffer;
+}
+export const UpdateOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    updateMask: S.optional(S.String),
+    allowMissing: S.optional(S.Boolean),
+    regionsVersion: S.optional(RegionsVersion),
+    latencyTolerance: S.optional(
+      UpdateOneTimeProductOfferRequestLatencyToleranceEnum,
+    ),
+    oneTimeProductOffer: S.optional(OneTimeProductOffer),
+  }),
+).annotate({
+  identifier: "UpdateOneTimeProductOfferRequest",
+}) as any as S.Schema<UpdateOneTimeProductOfferRequest>;
+
+export type UpdateOneTimeProductOfferRequestList =
+  Array<UpdateOneTimeProductOfferRequest>;
+export const UpdateOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
+  UpdateOneTimeProductOfferRequest,
+) as any as S.Schema<UpdateOneTimeProductOfferRequestList>;
+
+/** Request message for BatchUpdateOneTimeProductOffers. */
+export interface BatchUpdateOneTimeProductOffersRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must update different offers. */
+  requests?: UpdateOneTimeProductOfferRequestList;
+}
+export const BatchUpdateOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requests: S.optional(UpdateOneTimeProductOfferRequestList),
+    }),
+).annotate({
+  identifier: "BatchUpdateOneTimeProductOffersRequest",
+}) as any as S.Schema<BatchUpdateOneTimeProductOffersRequest>;
+
+export interface BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
+  /** Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options. */
+  purchaseOptionId: string;
+  /** Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources. */
+  packageName: string;
+  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Request body */
+  body?: BatchUpdateOneTimeProductOffersRequest;
+}
+export const BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      purchaseOptionId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      body: S.optional(
+        BatchUpdateOneTimeProductOffersRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
+  }) as any as S.Schema<BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
+
+/** Response message for BatchUpdateOneTimeProductOffers. */
+export interface BatchUpdateOneTimeProductOffersResponse {
+  /** The list of updated one-time product offers, in the same order as the request. */
+  oneTimeProductOffers?: OneTimeProductOfferList;
+}
+export const BatchUpdateOneTimeProductOffersResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
+    }),
+).annotate({
+  identifier: "BatchUpdateOneTimeProductOffersResponse",
+}) as any as S.Schema<BatchUpdateOneTimeProductOffersResponse>;
+
+export type UpdateSubscriptionRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const UpdateSubscriptionRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdateSubscription. */
+export interface UpdateSubscriptionRequest {
+  /** Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored. */
+  allowMissing?: boolean;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | UpdateSubscriptionRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The version of the available regions being used for the subscription. */
+  regionsVersion?: RegionsVersion;
+  /** Required. The subscription to update. */
+  subscription?: Subscription;
+  /** Required. The list of fields to be updated. */
+  updateMask?: string;
+}
+export const UpdateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowMissing: S.optional(S.Boolean),
+    latencyTolerance: S.optional(UpdateSubscriptionRequestLatencyToleranceEnum),
+    regionsVersion: S.optional(RegionsVersion),
+    subscription: S.optional(Subscription),
+    updateMask: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateSubscriptionRequest",
+}) as any as S.Schema<UpdateSubscriptionRequest>;
+
+export type UpdateSubscriptionRequestList = Array<UpdateSubscriptionRequest>;
+export const UpdateSubscriptionRequestList = /*@__PURE__*/ S.Array(
+  UpdateSubscriptionRequest,
+) as any as S.Schema<UpdateSubscriptionRequestList>;
+
+/** Request message for BatchUpdateSubscription. */
+export interface BatchUpdateSubscriptionsRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must update different subscriptions. */
+  requests?: UpdateSubscriptionRequestList;
+}
+export const BatchUpdateSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(UpdateSubscriptionRequestList),
+  }),
+).annotate({
+  identifier: "BatchUpdateSubscriptionsRequest",
+}) as any as S.Schema<BatchUpdateSubscriptionsRequest>;
+
+export interface BatchUpdateMonetizationSubscriptionsRequest {
+  /** Required. The parent app (package name) for which the subscriptions should be updated. Must be equal to the package_name field on all the Subscription resources. */
+  packageName: string;
+  /** Request body */
+  body?: BatchUpdateSubscriptionsRequest;
+}
+export const BatchUpdateMonetizationSubscriptionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(BatchUpdateSubscriptionsRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchUpdateMonetizationSubscriptionsRequest",
+  }) as any as S.Schema<BatchUpdateMonetizationSubscriptionsRequest>;
+
+/** Response message for BatchUpdateSubscription. */
+export interface BatchUpdateSubscriptionsResponse {
+  /** The updated subscriptions list. */
+  subscriptions?: SubscriptionList;
+}
+export const BatchUpdateSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptions: S.optional(SubscriptionList),
+  }),
+).annotate({
+  identifier: "BatchUpdateSubscriptionsResponse",
+}) as any as S.Schema<BatchUpdateSubscriptionsResponse>;
+
+export type UpdateSubscriptionOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const UpdateSubscriptionOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdateSubscriptionOffer. */
+export interface UpdateSubscriptionOfferRequest {
+  /** Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored. */
+  allowMissing?: boolean;
+  /** Required. The subscription offer to update. */
+  subscriptionOffer?: SubscriptionOffer;
+  /** Required. The version of the available regions being used for the subscription_offer. */
+  regionsVersion?: RegionsVersion;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | UpdateSubscriptionOfferRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The list of fields to be updated. */
+  updateMask?: string;
+}
+export const UpdateSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowMissing: S.optional(S.Boolean),
+    subscriptionOffer: S.optional(SubscriptionOffer),
+    regionsVersion: S.optional(RegionsVersion),
+    latencyTolerance: S.optional(
+      UpdateSubscriptionOfferRequestLatencyToleranceEnum,
+    ),
+    updateMask: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateSubscriptionOfferRequest",
+}) as any as S.Schema<UpdateSubscriptionOfferRequest>;
+
+export type UpdateSubscriptionOfferRequestList =
+  Array<UpdateSubscriptionOfferRequest>;
+export const UpdateSubscriptionOfferRequestList = /*@__PURE__*/ S.Array(
+  UpdateSubscriptionOfferRequest,
+) as any as S.Schema<UpdateSubscriptionOfferRequestList>;
+
+/** Request message for BatchUpdateSubscriptionOffers. */
+export interface BatchUpdateSubscriptionOffersRequest {
+  /** Required. A list of update requests of up to 100 elements. All requests must update different subscription offers. */
+  requests?: UpdateSubscriptionOfferRequestList;
+}
+export const BatchUpdateSubscriptionOffersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requests: S.optional(UpdateSubscriptionOfferRequestList),
+    }),
+).annotate({
+  identifier: "BatchUpdateSubscriptionOffersRequest",
+}) as any as S.Schema<BatchUpdateSubscriptionOffersRequest>;
+
+export interface BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest {
+  /** Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources. */
+  packageName: string;
+  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
+  productId: string;
+  /** Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans. */
+  basePlanId: string;
+  /** Request body */
+  body?: BatchUpdateSubscriptionOffersRequest;
+}
+export const BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      basePlanId: S.String.pipe(T.Label()),
+      body: S.optional(BatchUpdateSubscriptionOffersRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest",
+  }) as any as S.Schema<BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest>;
+
+/** Response message for BatchUpdateSubscriptionOffers. */
+export interface BatchUpdateSubscriptionOffersResponse {
+  /** The updated subscription offers list. */
+  subscriptionOffers?: SubscriptionOfferList;
+}
+export const BatchUpdateSubscriptionOffersResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionOffers: S.optional(SubscriptionOfferList),
+    }),
+).annotate({
+  identifier: "BatchUpdateSubscriptionOffersResponse",
+}) as any as S.Schema<BatchUpdateSubscriptionOffersResponse>;
+
+export type DeactivatePurchaseOptionRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeactivatePurchaseOptionRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdatePurchaseOptionState. */
+export interface DeactivatePurchaseOptionRequest {
+  /** Required. The parent one-time product (ID) of the purchase option to deactivate. */
+  productId?: string;
+  /** Required. The parent app (package name) of the purchase option to deactivate. */
+  packageName?: string;
+  /** Required. The purchase option ID of the purchase option to deactivate. */
+  purchaseOptionId?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeactivatePurchaseOptionRequestLatencyToleranceEnum
+    | (string & {});
+}
+export const DeactivatePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    purchaseOptionId: S.optional(S.String),
+    latencyTolerance: S.optional(
+      DeactivatePurchaseOptionRequestLatencyToleranceEnum,
+    ),
+  }),
+).annotate({
+  identifier: "DeactivatePurchaseOptionRequest",
+}) as any as S.Schema<DeactivatePurchaseOptionRequest>;
+
+export type ActivatePurchaseOptionRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const ActivatePurchaseOptionRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for UpdatePurchaseOptionState. */
+export interface ActivatePurchaseOptionRequest {
+  /** Required. The parent one-time product (ID) of the purchase option to activate. */
+  productId?: string;
+  /** Required. The purchase option ID of the purchase option to activate. */
+  purchaseOptionId?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | ActivatePurchaseOptionRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The parent app (package name) of the purchase option to activate. */
+  packageName?: string;
+}
+export const ActivatePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    purchaseOptionId: S.optional(S.String),
+    latencyTolerance: S.optional(
+      ActivatePurchaseOptionRequestLatencyToleranceEnum,
+    ),
+    packageName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivatePurchaseOptionRequest",
+}) as any as S.Schema<ActivatePurchaseOptionRequest>;
+
+/** Request message to update the state of a one-time product purchase option. */
+export interface UpdatePurchaseOptionStateRequest {
+  /** Deactivates a purchase option. Once deactivated, the purchase option will become unavailable. */
+  deactivatePurchaseOptionRequest?: DeactivatePurchaseOptionRequest;
+  /** Activates a purchase option. Once activated, the purchase option will be available. */
+  activatePurchaseOptionRequest?: ActivatePurchaseOptionRequest;
+}
+export const UpdatePurchaseOptionStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deactivatePurchaseOptionRequest: S.optional(
+      DeactivatePurchaseOptionRequest,
+    ),
+    activatePurchaseOptionRequest: S.optional(ActivatePurchaseOptionRequest),
+  }),
+).annotate({
+  identifier: "UpdatePurchaseOptionStateRequest",
+}) as any as S.Schema<UpdatePurchaseOptionStateRequest>;
+
+export type UpdatePurchaseOptionStateRequestList =
+  Array<UpdatePurchaseOptionStateRequest>;
+export const UpdatePurchaseOptionStateRequestList = /*@__PURE__*/ S.Array(
+  UpdatePurchaseOptionStateRequest,
+) as any as S.Schema<UpdatePurchaseOptionStateRequestList>;
+
+/** Request message for BatchUpdatePurchaseOptionStates. */
+export interface BatchUpdatePurchaseOptionStatesRequest {
+  /** Required. The update request list of up to 100 elements. All requests must update different purchase options. */
+  requests?: UpdatePurchaseOptionStateRequestList;
+}
+export const BatchUpdatePurchaseOptionStatesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requests: S.optional(UpdatePurchaseOptionStateRequestList),
+    }),
+).annotate({
+  identifier: "BatchUpdatePurchaseOptionStatesRequest",
+}) as any as S.Schema<BatchUpdatePurchaseOptionStatesRequest>;
+
+export interface BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest {
+  /** Required. The product ID of the parent one-time product, if all updated purchase options belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Required. The parent app (package name) of the updated purchase options. */
+  packageName: string;
+  /** Request body */
+  body?: BatchUpdatePurchaseOptionStatesRequest;
+}
+export const BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      body: S.optional(
+        BatchUpdatePurchaseOptionStatesRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest",
+  }) as any as S.Schema<BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest>;
+
+/** Response message for BatchUpdatePurchaseOptionStates. */
+export interface BatchUpdatePurchaseOptionStatesResponse {
+  /** The list of updated one-time products. This list will match the requests one to one, in the same order. */
+  oneTimeProducts?: OneTimeProductList;
+}
+export const BatchUpdatePurchaseOptionStatesResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      oneTimeProducts: S.optional(OneTimeProductList),
+    }),
+).annotate({
+  identifier: "BatchUpdatePurchaseOptionStatesResponse",
+}) as any as S.Schema<BatchUpdatePurchaseOptionStatesResponse>;
+
+export type DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for DeactivateOneTimeProductOffer. */
+export interface DeactivateOneTimeProductOfferRequest {
+  /** Required. The parent app (package name) of the offer to deactivate. */
+  packageName?: string;
+  /** Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeactivateOneTimeProductOfferRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The offer ID of the offer to deactivate. */
+  offerId?: string;
+  /** Required. The parent one-time product (ID) of the offer to deactivate. */
+  productId?: string;
+  /** Required. The parent purchase option (ID) of the offer to deactivate. */
+  purchaseOptionId?: string;
+}
+export const DeactivateOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      packageName: S.optional(S.String),
+      latencyTolerance: S.optional(
+        DeactivateOneTimeProductOfferRequestLatencyToleranceEnum,
+      ),
+      offerId: S.optional(S.String),
+      productId: S.optional(S.String),
+      purchaseOptionId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeactivateOneTimeProductOfferRequest",
+}) as any as S.Schema<DeactivateOneTimeProductOfferRequest>;
+
+export type CancelOneTimeProductOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const CancelOneTimeProductOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for CancelOneTimeProductOffer. */
+export interface CancelOneTimeProductOfferRequest {
+  /** Required. The parent purchase option (ID) of the offer to cancel. */
+  purchaseOptionId?: string;
+  /** Required. The offer ID of the offer to cancel. */
+  offerId?: string;
+  /** Required. The parent app (package name) of the offer to cancel. */
+  packageName?: string;
+  /** Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | CancelOneTimeProductOfferRequestLatencyToleranceEnum
+    | (string & {});
+  /** Required. The parent one-time product (ID) of the offer to cancel. */
+  productId?: string;
+}
+export const CancelOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    purchaseOptionId: S.optional(S.String),
+    offerId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    latencyTolerance: S.optional(
+      CancelOneTimeProductOfferRequestLatencyToleranceEnum,
+    ),
+    productId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CancelOneTimeProductOfferRequest",
+}) as any as S.Schema<CancelOneTimeProductOfferRequest>;
+
+/** Request message to update the state of a one-time product offer. */
+export interface UpdateOneTimeProductOfferStateRequest {
+  /** Deactivates an offer. Once deactivated, the offer is no longer available to users. This state transition is specific to discounted offers. */
+  deactivateOneTimeProductOfferRequest?: DeactivateOneTimeProductOfferRequest;
+  /** Activates an offer. Once activated, the offer is available to users, as long as its conditions are met. */
+  activateOneTimeProductOfferRequest?: ActivateOneTimeProductOfferRequest;
+  /** Cancels an offer. Once cancelled, the offer is not available to users. Any pending orders related to this offer will be cancelled. This state transition is specific to pre-orders. */
+  cancelOneTimeProductOfferRequest?: CancelOneTimeProductOfferRequest;
+}
+export const UpdateOneTimeProductOfferStateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      deactivateOneTimeProductOfferRequest: S.optional(
+        DeactivateOneTimeProductOfferRequest,
+      ),
+      activateOneTimeProductOfferRequest: S.optional(
+        ActivateOneTimeProductOfferRequest,
+      ),
+      cancelOneTimeProductOfferRequest: S.optional(
+        CancelOneTimeProductOfferRequest,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateOneTimeProductOfferStateRequest",
+}) as any as S.Schema<UpdateOneTimeProductOfferStateRequest>;
+
+export type UpdateOneTimeProductOfferStateRequestList =
+  Array<UpdateOneTimeProductOfferStateRequest>;
+export const UpdateOneTimeProductOfferStateRequestList = /*@__PURE__*/ S.Array(
+  UpdateOneTimeProductOfferStateRequest,
+) as any as S.Schema<UpdateOneTimeProductOfferStateRequestList>;
+
+/** Request message for BatchUpdateOneTimeProductOfferStates. */
+export interface BatchUpdateOneTimeProductOfferStatesRequest {
+  /** Required. The update request list of up to 100 elements. All requests must update different offers. */
+  requests?: UpdateOneTimeProductOfferStateRequestList;
+}
+export const BatchUpdateOneTimeProductOfferStatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      requests: S.optional(UpdateOneTimeProductOfferStateRequestList),
+    }),
+  ).annotate({
+    identifier: "BatchUpdateOneTimeProductOfferStatesRequest",
+  }) as any as S.Schema<BatchUpdateOneTimeProductOfferStatesRequest>;
+
+export interface BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
+  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-". */
+  productId: string;
+  /** Required. The parent app (package name) of the updated one-time product offers. */
+  packageName: string;
+  /** Required. The purchase option ID of the parent purchase option, if all updated offers belong to the same purchase option. If this batch update spans multiple purchase options, set this field to "-". */
+  purchaseOptionId: string;
+  /** Request body */
+  body?: BatchUpdateOneTimeProductOfferStatesRequest;
+}
+export const BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      purchaseOptionId: S.String.pipe(T.Label()),
+      body: S.optional(
+        BatchUpdateOneTimeProductOfferStatesRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
+  }) as any as S.Schema<BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
+
+/** Response message for BatchUpdateOneTimeProductOfferStates. */
+export interface BatchUpdateOneTimeProductOfferStatesResponse {
+  /** The updated one-time product offers list, in the same order as the request. */
+  oneTimeProductOffers?: OneTimeProductOfferList;
+}
+export const BatchUpdateOneTimeProductOfferStatesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
+    }),
+  ).annotate({
+    identifier: "BatchUpdateOneTimeProductOfferStatesResponse",
+  }) as any as S.Schema<BatchUpdateOneTimeProductOfferStatesResponse>;
+
+export type DeactivateBasePlanRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeactivateBasePlanRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for DeactivateBasePlan. */
+export interface DeactivateBasePlanRequest {
+  /** Required. The unique base plan ID of the base plan to deactivate. */
+  basePlanId?: string;
+  /** Required. The parent subscription (ID) of the base plan to deactivate. */
+  productId?: string;
+  /** Required. The parent app (package name) of the base plan to deactivate. */
+  packageName?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeactivateBasePlanRequestLatencyToleranceEnum
+    | (string & {});
+}
+export const DeactivateBasePlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    basePlanId: S.optional(S.String),
+    productId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    latencyTolerance: S.optional(DeactivateBasePlanRequestLatencyToleranceEnum),
+  }),
+).annotate({
+  identifier: "DeactivateBasePlanRequest",
+}) as any as S.Schema<DeactivateBasePlanRequest>;
+
+/** Request message to update the state of a subscription base plan. */
+export interface UpdateBasePlanStateRequest {
+  /** Activates a base plan. Once activated, base plans will be available to new subscribers. */
+  activateBasePlanRequest?: ActivateBasePlanRequest;
+  /** Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription */
+  deactivateBasePlanRequest?: DeactivateBasePlanRequest;
+}
+export const UpdateBasePlanStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activateBasePlanRequest: S.optional(ActivateBasePlanRequest),
+    deactivateBasePlanRequest: S.optional(DeactivateBasePlanRequest),
+  }),
+).annotate({
+  identifier: "UpdateBasePlanStateRequest",
+}) as any as S.Schema<UpdateBasePlanStateRequest>;
+
+export type UpdateBasePlanStateRequestList = Array<UpdateBasePlanStateRequest>;
+export const UpdateBasePlanStateRequestList = /*@__PURE__*/ S.Array(
+  UpdateBasePlanStateRequest,
+) as any as S.Schema<UpdateBasePlanStateRequestList>;
+
+/** Request message for BatchUpdateBasePlanStates. */
+export interface BatchUpdateBasePlanStatesRequest {
+  /** Required. The update request list of up to 100 elements. All requests must update different base plans. */
+  requests?: UpdateBasePlanStateRequestList;
+}
+export const BatchUpdateBasePlanStatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requests: S.optional(UpdateBasePlanStateRequestList),
+  }),
+).annotate({
+  identifier: "BatchUpdateBasePlanStatesRequest",
+}) as any as S.Schema<BatchUpdateBasePlanStatesRequest>;
+
+export interface BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest {
+  /** Required. The parent app (package name) of the updated base plans. */
+  packageName: string;
+  /** Required. The product ID of the parent subscription, if all updated base plans belong to the same subscription. If this batch update spans multiple subscriptions, set this field to "-". Must be set. */
+  productId: string;
+  /** Request body */
+  body?: BatchUpdateBasePlanStatesRequest;
+}
+export const BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      body: S.optional(BatchUpdateBasePlanStatesRequest.pipe(T.HttpBody())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest",
+  }) as any as S.Schema<BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest>;
+
+/** Response message for BatchUpdateBasePlanStates. */
+export interface BatchUpdateBasePlanStatesResponse {
+  /** The list of updated subscriptions. This list will match the requests one to one, in the same order. */
+  subscriptions?: SubscriptionList;
+}
+export const BatchUpdateBasePlanStatesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptions: S.optional(SubscriptionList),
+  }),
+).annotate({
+  identifier: "BatchUpdateBasePlanStatesResponse",
+}) as any as S.Schema<BatchUpdateBasePlanStatesResponse>;
+
+export type DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
+  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
+export const DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
+  /*@__PURE__*/ S.String;
+
+/** Request message for DeactivateSubscriptionOffer. */
+export interface DeactivateSubscriptionOfferRequest {
+  /** Required. The unique offer ID of the offer to deactivate. */
+  offerId?: string;
+  /** Required. The parent app (package name) of the offer to deactivate. */
+  packageName?: string;
+  /** Required. The parent subscription (ID) of the offer to deactivate. */
+  productId?: string;
+  /** Required. The parent base plan (ID) of the offer to deactivate. */
+  basePlanId?: string;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?:
+    | DeactivateSubscriptionOfferRequestLatencyToleranceEnum
+    | (string & {});
+}
+export const DeactivateSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerId: S.optional(S.String),
+    packageName: S.optional(S.String),
+    productId: S.optional(S.String),
+    basePlanId: S.optional(S.String),
+    latencyTolerance: S.optional(
+      DeactivateSubscriptionOfferRequestLatencyToleranceEnum,
+    ),
+  }),
+).annotate({
+  identifier: "DeactivateSubscriptionOfferRequest",
+}) as any as S.Schema<DeactivateSubscriptionOfferRequest>;
+
+/** Request message to update the state of a subscription offer. */
+export interface UpdateSubscriptionOfferStateRequest {
+  /** Deactivates an offer. Once deactivated, the offer will become unavailable to new subscribers, but existing subscribers will maintain their subscription */
+  deactivateSubscriptionOfferRequest?: DeactivateSubscriptionOfferRequest;
+  /** Activates an offer. Once activated, the offer will be available to new subscribers. */
+  activateSubscriptionOfferRequest?: ActivateSubscriptionOfferRequest;
+}
+export const UpdateSubscriptionOfferStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deactivateSubscriptionOfferRequest: S.optional(
+      DeactivateSubscriptionOfferRequest,
+    ),
+    activateSubscriptionOfferRequest: S.optional(
+      ActivateSubscriptionOfferRequest,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateSubscriptionOfferStateRequest",
+}) as any as S.Schema<UpdateSubscriptionOfferStateRequest>;
+
+export type UpdateSubscriptionOfferStateRequestList =
+  Array<UpdateSubscriptionOfferStateRequest>;
+export const UpdateSubscriptionOfferStateRequestList = /*@__PURE__*/ S.Array(
+  UpdateSubscriptionOfferStateRequest,
+) as any as S.Schema<UpdateSubscriptionOfferStateRequestList>;
+
+/** Request message for BatchUpdateSubscriptionOfferStates. */
+export interface BatchUpdateSubscriptionOfferStatesRequest {
+  /** Required. The update request list of up to 100 elements. All requests must update different offers. */
+  requests?: UpdateSubscriptionOfferStateRequestList;
+}
+export const BatchUpdateSubscriptionOfferStatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      requests: S.optional(UpdateSubscriptionOfferStateRequestList),
+    }),
+  ).annotate({
+    identifier: "BatchUpdateSubscriptionOfferStatesRequest",
+  }) as any as S.Schema<BatchUpdateSubscriptionOfferStatesRequest>;
+
+export interface BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest {
+  /** Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans. */
+  basePlanId: string;
+  /** Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources. */
+  packageName: string;
+  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
+  productId: string;
+  /** Request body */
+  body?: BatchUpdateSubscriptionOfferStatesRequest;
+}
+export const BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      basePlanId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      body: S.optional(
+        BatchUpdateSubscriptionOfferStatesRequest.pipe(T.HttpBody()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates",
+        baseUrl: "https://androidpublisher.googleapis.com/",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest",
+  }) as any as S.Schema<BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest>;
+
+/** Response message for BatchUpdateSubscriptionOfferStates. */
+export interface BatchUpdateSubscriptionOfferStatesResponse {
+  /** The updated subscription offers list. */
+  subscriptionOffers?: SubscriptionOfferList;
+}
+export const BatchUpdateSubscriptionOfferStatesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionOffers: S.optional(SubscriptionOfferList),
+    }),
+  ).annotate({
+    identifier: "BatchUpdateSubscriptionOfferStatesResponse",
+  }) as any as S.Schema<BatchUpdateSubscriptionOfferStatesResponse>;
 
 /** Request message for CancelAppRecovery. */
 export type CancelAppRecoveryRequest =
@@ -2125,61 +4228,25 @@ export const CancelAppRecoveryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelAppRecoveryResponse",
 }) as any as S.Schema<CancelAppRecoveryResponse>;
 
-export type CancelOneTimeProductOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const CancelOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for CancelOneTimeProductOffer. */
-export interface CancelOneTimeProductOfferRequest {
-  /** Required. The parent purchase option (ID) of the offer to cancel. */
-  purchaseOptionId?: string;
-  /** Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | CancelOneTimeProductOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The offer ID of the offer to cancel. */
-  offerId?: string;
-  /** Required. The parent app (package name) of the offer to cancel. */
-  packageName?: string;
-  /** Required. The parent one-time product (ID) of the offer to cancel. */
-  productId?: string;
-}
-export const CancelOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    purchaseOptionId: S.optional(S.String),
-    latencyTolerance: S.optional(
-      CancelOneTimeProductOfferRequestLatencyToleranceEnum,
-    ),
-    offerId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    productId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CancelOneTimeProductOfferRequest",
-}) as any as S.Schema<CancelOneTimeProductOfferRequest>;
-
 export interface CancelMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
-  /** Required. The parent one-time product (ID) of the offer to cancel. */
-  productId: string;
+  /** Required. The parent app (package name) of the offer to cancel. */
+  packageName: string;
   /** Required. The offer ID of the offer to cancel. */
   offerId: string;
   /** Required. The parent purchase option (ID) of the offer to cancel. */
   purchaseOptionId: string;
-  /** Required. The parent app (package name) of the offer to cancel. */
-  packageName: string;
+  /** Required. The parent one-time product (ID) of the offer to cancel. */
+  productId: string;
   /** Request body */
   body?: CancelOneTimeProductOfferRequest;
 }
 export const CancelMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
       offerId: S.String.pipe(T.Label()),
       purchaseOptionId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
       body: S.optional(CancelOneTimeProductOfferRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2295,25 +4362,25 @@ export type CommitEditsChangesInReviewBehaviorEnum =
 export const CommitEditsChangesInReviewBehaviorEnum = /*@__PURE__*/ S.String;
 
 export interface CommitEditsRequest {
-  /** Identifier of the edit. */
-  editId: string;
-  /** When a rejection happens, the parameter will make sure that the changes in this edit won't be reviewed until they are explicitly sent for review from within the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review. */
-  changesNotSentForReview?: boolean;
   /** Package name of the app. */
   packageName: string;
+  /** When a rejection happens, the parameter will make sure that the changes in this edit won't be reviewed until they are explicitly sent for review from within the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review. */
+  changesNotSentForReview?: boolean;
   /** Optional. Specify how the API should behave if there are changes currently in review. If this value is not set, it will default to "CANCEL_IN_REVIEW_AND_SUBMIT", which will cancel the changes in review and then send all the changes for publishing. */
   changesInReviewBehavior?:
     | CommitEditsChangesInReviewBehaviorEnum
     | (string & {});
+  /** Identifier of the edit. */
+  editId: string;
 }
 export const CommitEditsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    editId: S.String.pipe(T.Label()),
-    changesNotSentForReview: S.optional(S.Boolean.pipe(T.Query())),
     packageName: S.String.pipe(T.Label()),
+    changesNotSentForReview: S.optional(S.Boolean.pipe(T.Query())),
     changesInReviewBehavior: S.optional(
       CommitEditsChangesInReviewBehaviorEnum.pipe(T.Query()),
     ),
+    editId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2327,30 +4394,30 @@ export const CommitEditsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An app edit. The resource for EditsService. */
 export interface AppEdit {
-  /** Output only. Identifier of the edit. Can be used in subsequent API calls. */
-  id?: string;
   /** Output only. The time (as seconds since Epoch) at which the edit will expire and will be no longer valid for use. */
   expiryTimeSeconds?: string;
+  /** Output only. Identifier of the edit. Can be used in subsequent API calls. */
+  id?: string;
 }
 export const AppEdit = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     expiryTimeSeconds: S.optional(S.String),
+    id: S.optional(S.String),
   }),
 ).annotate({ identifier: "AppEdit" }) as any as S.Schema<AppEdit>;
 
 export interface ConsumePurchasesProductsRequest {
-  /** The token provided to the user's device when the inapp product was purchased. */
-  token: string;
   /** The package name of the application the inapp product was sold in (for example, 'com.some.thing'). */
   packageName: string;
+  /** The token provided to the user's device when the inapp product was purchased. */
+  token: string;
   /** The inapp product SKU (for example, 'com.some.thing.inapp1'). */
   productId: string;
 }
 export const ConsumePurchasesProductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    token: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -2426,18 +4493,18 @@ export const ConvertedOtherRegionsPrice = /*@__PURE__*/ S.suspend(() =>
 
 /** A converted region price. */
 export interface ConvertedRegionPrice {
+  /** The tax amount of the converted price. */
+  taxAmount?: Money;
   /** The region code of the region. */
   regionCode?: string;
   /** The converted price tax inclusive. */
   price?: Money;
-  /** The tax amount of the converted price. */
-  taxAmount?: Money;
 }
 export const ConvertedRegionPrice = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    taxAmount: S.optional(Money),
     regionCode: S.optional(S.String),
     price: S.optional(Money),
-    taxAmount: S.optional(Money),
   }),
 ).annotate({
   identifier: "ConvertedRegionPrice",
@@ -2470,25 +4537,6 @@ export const ConvertRegionPricesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConvertRegionPricesResponse",
 }) as any as S.Schema<ConvertRegionPricesResponse>;
 
-/** A set of user countries. A country set determines what variation of app content gets served to a specific location. */
-export interface UserCountrySet {
-  /** List of country codes representing countries. A Country code is represented in ISO 3166 alpha-2 format. For Example:- "IT" for Italy, "GE" for Georgia. */
-  countryCodes?: StringList;
-  /** Country set name. */
-  name?: string;
-}
-export const UserCountrySet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    countryCodes: S.optional(StringList),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "UserCountrySet" }) as any as S.Schema<UserCountrySet>;
-
-export type UserCountrySetList = Array<UserCountrySet>;
-export const UserCountrySetList = /*@__PURE__*/ S.Array(
-  UserCountrySet,
-) as any as S.Schema<UserCountrySetList>;
-
 /** A single device tier. Devices matching any of the device groups in device_group_names are considered to match the tier. */
 export interface DeviceTier {
   /** The priority level of the tier. Tiers are evaluated in descending order of level: the highest level tier has the highest priority. The highest tier matching a given device is selected for that device. You should use a contiguous range of levels for your tiers in a tier set; tier levels in a tier set must be unique. For instance, if your tier set has 4 tiers (including the global fallback), you should define tiers 1, 2 and 3 in this configuration. Note: tier 0 is implicitly defined as a global fallback and selected for devices that don't match any of the tiers explicitly defined here. You mustn't define level 0 explicitly in this configuration. */
@@ -2519,6 +4567,25 @@ export const DeviceTierSet = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DeviceTierSet" }) as any as S.Schema<DeviceTierSet>;
 
+/** Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices. */
+export interface SystemOnChip {
+  /** Required. The model of the SoC, eg. "Tensor" Value of build property "ro.soc.model" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required. */
+  model?: string;
+  /** Required. The designer of the SoC, eg. "Google" Value of build property "ro.soc.manufacturer" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required. */
+  manufacturer?: string;
+}
+export const SystemOnChip = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    model: S.optional(S.String),
+    manufacturer: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemOnChip" }) as any as S.Schema<SystemOnChip>;
+
+export type SystemOnChipList = Array<SystemOnChip>;
+export const SystemOnChipList = /*@__PURE__*/ S.Array(
+  SystemOnChip,
+) as any as S.Schema<SystemOnChipList>;
+
 /** Representation of a system feature. */
 export interface SystemFeature {
   /** The name of the feature. */
@@ -2534,6 +4601,20 @@ export type SystemFeatureList = Array<SystemFeature>;
 export const SystemFeatureList = /*@__PURE__*/ S.Array(
   SystemFeature,
 ) as any as S.Schema<SystemFeatureList>;
+
+/** Conditions about a device's RAM capabilities. */
+export interface DeviceRam {
+  /** Minimum RAM in bytes (bound included). */
+  minBytes?: string;
+  /** Maximum RAM in bytes (bound excluded). */
+  maxBytes?: string;
+}
+export const DeviceRam = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minBytes: S.optional(S.String),
+    maxBytes: S.optional(S.String),
+  }),
+).annotate({ identifier: "DeviceRam" }) as any as S.Schema<DeviceRam>;
 
 /** Identifier of a device. */
 export interface DeviceId {
@@ -2554,62 +4635,29 @@ export const DeviceIdList = /*@__PURE__*/ S.Array(
   DeviceId,
 ) as any as S.Schema<DeviceIdList>;
 
-/** Conditions about a device's RAM capabilities. */
-export interface DeviceRam {
-  /** Maximum RAM in bytes (bound excluded). */
-  maxBytes?: string;
-  /** Minimum RAM in bytes (bound included). */
-  minBytes?: string;
-}
-export const DeviceRam = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxBytes: S.optional(S.String),
-    minBytes: S.optional(S.String),
-  }),
-).annotate({ identifier: "DeviceRam" }) as any as S.Schema<DeviceRam>;
-
-/** Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices. */
-export interface SystemOnChip {
-  /** Required. The model of the SoC, eg. "Tensor" Value of build property "ro.soc.model" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required. */
-  model?: string;
-  /** Required. The designer of the SoC, eg. "Google" Value of build property "ro.soc.manufacturer" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required. */
-  manufacturer?: string;
-}
-export const SystemOnChip = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    model: S.optional(S.String),
-    manufacturer: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemOnChip" }) as any as S.Schema<SystemOnChip>;
-
-export type SystemOnChipList = Array<SystemOnChip>;
-export const SystemOnChipList = /*@__PURE__*/ S.Array(
-  SystemOnChip,
-) as any as S.Schema<SystemOnChipList>;
-
 /** Selector for a device group. A selector consists of a set of conditions on the device that should all match (logical AND) to determine a device group eligibility. For instance, if a selector specifies RAM conditions, device model inclusion and device model exclusion, a device is considered to match if: device matches RAM conditions AND device matches one of the included device models AND device doesn't match excluded device models */
 export interface DeviceSelector {
-  /** A device needs to have all these system features to be included by the selector. */
-  requiredSystemFeatures?: SystemFeatureList;
-  /** Device models included by this selector. */
-  includedDeviceIds?: DeviceIdList;
-  /** Device models excluded by this selector, even if they match all other conditions. */
-  excludedDeviceIds?: DeviceIdList;
+  /** Optional. The SoCs included by this selector. Only works for Android S+ devices. */
+  systemOnChips?: SystemOnChipList;
   /** A device that has any of these system features is excluded by this selector, even if it matches all other conditions. */
   forbiddenSystemFeatures?: SystemFeatureList;
   /** Conditions on the device's RAM. */
   deviceRam?: DeviceRam;
-  /** Optional. The SoCs included by this selector. Only works for Android S+ devices. */
-  systemOnChips?: SystemOnChipList;
+  /** Device models included by this selector. */
+  includedDeviceIds?: DeviceIdList;
+  /** Device models excluded by this selector, even if they match all other conditions. */
+  excludedDeviceIds?: DeviceIdList;
+  /** A device needs to have all these system features to be included by the selector. */
+  requiredSystemFeatures?: SystemFeatureList;
 }
 export const DeviceSelector = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requiredSystemFeatures: S.optional(SystemFeatureList),
-    includedDeviceIds: S.optional(DeviceIdList),
-    excludedDeviceIds: S.optional(DeviceIdList),
+    systemOnChips: S.optional(SystemOnChipList),
     forbiddenSystemFeatures: S.optional(SystemFeatureList),
     deviceRam: S.optional(DeviceRam),
-    systemOnChips: S.optional(SystemOnChipList),
+    includedDeviceIds: S.optional(DeviceIdList),
+    excludedDeviceIds: S.optional(DeviceIdList),
+    requiredSystemFeatures: S.optional(SystemFeatureList),
   }),
 ).annotate({ identifier: "DeviceSelector" }) as any as S.Schema<DeviceSelector>;
 
@@ -2620,15 +4668,15 @@ export const DeviceSelectorList = /*@__PURE__*/ S.Array(
 
 /** A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR). */
 export interface DeviceGroup {
-  /** The name of the group. */
-  name?: string;
   /** Device selectors for this group. A device matching any of the selectors is included in this group. */
   deviceSelectors?: DeviceSelectorList;
+  /** The name of the group. */
+  name?: string;
 }
 export const DeviceGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     deviceSelectors: S.optional(DeviceSelectorList),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "DeviceGroup" }) as any as S.Schema<DeviceGroup>;
 
@@ -2637,41 +4685,60 @@ export const DeviceGroupList = /*@__PURE__*/ S.Array(
   DeviceGroup,
 ) as any as S.Schema<DeviceGroupList>;
 
+/** A set of user countries. A country set determines what variation of app content gets served to a specific location. */
+export interface UserCountrySet {
+  /** List of country codes representing countries. A Country code is represented in ISO 3166 alpha-2 format. For Example:- "IT" for Italy, "GE" for Georgia. */
+  countryCodes?: StringList;
+  /** Country set name. */
+  name?: string;
+}
+export const UserCountrySet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    countryCodes: S.optional(StringList),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "UserCountrySet" }) as any as S.Schema<UserCountrySet>;
+
+export type UserCountrySetList = Array<UserCountrySet>;
+export const UserCountrySetList = /*@__PURE__*/ S.Array(
+  UserCountrySet,
+) as any as S.Schema<UserCountrySetList>;
+
 /** Configuration describing device targeting criteria for the content of an app. */
 export interface DeviceTierConfig {
-  /** Definition of user country sets for the app. */
-  userCountrySets?: UserCountrySetList;
   /** Output only. The device tier config ID. */
   deviceTierConfigId?: string;
   /** Definition of the set of device tiers for the app. */
   deviceTierSet?: DeviceTierSet;
   /** Definition of device groups for the app. */
   deviceGroups?: DeviceGroupList;
+  /** Definition of user country sets for the app. */
+  userCountrySets?: UserCountrySetList;
 }
 export const DeviceTierConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userCountrySets: S.optional(UserCountrySetList),
     deviceTierConfigId: S.optional(S.String),
     deviceTierSet: S.optional(DeviceTierSet),
     deviceGroups: S.optional(DeviceGroupList),
+    userCountrySets: S.optional(UserCountrySetList),
   }),
 ).annotate({
   identifier: "DeviceTierConfig",
 }) as any as S.Schema<DeviceTierConfig>;
 
 export interface CreateApplicationsDeviceTierConfigsRequest {
-  /** Whether the service should accept device IDs that are unknown to Play's device catalog. */
-  allowUnknownDevices?: boolean;
   /** Package name of the app. */
   packageName: string;
+  /** Whether the service should accept device IDs that are unknown to Play's device catalog. */
+  allowUnknownDevices?: boolean;
   /** Request body */
   body?: DeviceTierConfig;
 }
 export const CreateApplicationsDeviceTierConfigsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      allowUnknownDevices: S.optional(S.Boolean.pipe(T.Query())),
       packageName: S.String.pipe(T.Label()),
+      allowUnknownDevices: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(DeviceTierConfig.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2683,6 +4750,17 @@ export const CreateApplicationsDeviceTierConfigsRequest =
   ).annotate({
     identifier: "CreateApplicationsDeviceTierConfigsRequest",
   }) as any as S.Schema<CreateApplicationsDeviceTierConfigsRequest>;
+
+/** Data format for a list of app versions. */
+export interface AppVersionList {
+  /** List of app version codes. */
+  versionCodes?: StringList;
+}
+export const AppVersionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    versionCodes: S.optional(StringList),
+  }),
+).annotate({ identifier: "AppVersionList" }) as any as S.Schema<AppVersionList>;
 
 /** Data format for a continuous range of app versions. */
 export interface AppVersionRange {
@@ -2700,37 +4778,26 @@ export const AppVersionRange = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppVersionRange",
 }) as any as S.Schema<AppVersionRange>;
 
-/** Data format for a list of app versions. */
-export interface AppVersionList {
-  /** List of app version codes. */
-  versionCodes?: StringList;
-}
-export const AppVersionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    versionCodes: S.optional(StringList),
-  }),
-).annotate({ identifier: "AppVersionList" }) as any as S.Schema<AppVersionList>;
-
 /** Targeting details for a recovery action such as regions, android sdk levels, app versions etc. */
 export interface Targeting {
-  /** Target version codes as a range. */
-  versionRange?: AppVersionRange;
+  /** Targeting is based on the user account region. */
+  regions?: Regions;
   /** All users are targeted. */
   allUsers?: AllUsers;
   /** Target version codes as a list. */
   versionList?: AppVersionList;
-  /** Targeting is based on the user account region. */
-  regions?: Regions;
   /** Targeting is based on android api levels of devices. */
   androidSdks?: AndroidSdks;
+  /** Target version codes as a range. */
+  versionRange?: AppVersionRange;
 }
 export const Targeting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    versionRange: S.optional(AppVersionRange),
+    regions: S.optional(Regions),
     allUsers: S.optional(AllUsers),
     versionList: S.optional(AppVersionList),
-    regions: S.optional(Regions),
     androidSdks: S.optional(AndroidSdks),
+    versionRange: S.optional(AppVersionRange),
   }),
 ).annotate({ identifier: "Targeting" }) as any as S.Schema<Targeting>;
 
@@ -2784,29 +4851,20 @@ export const CreateApprecoveryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateApprecoveryRequest",
 }) as any as S.Schema<CreateApprecoveryRequest>;
 
-export type AppRecoveryActionStatusEnum =
-  | "RECOVERY_STATUS_UNSPECIFIED"
-  | "RECOVERY_STATUS_ACTIVE"
-  | "RECOVERY_STATUS_CANCELED"
-  | "RECOVERY_STATUS_DRAFT"
-  | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
-  | "RECOVERY_STATUS_GENERATION_FAILED";
-export const AppRecoveryActionStatusEnum = /*@__PURE__*/ S.String;
-
 /** Data related to the recovery action at bundle level. */
 export interface RemoteInAppUpdateDataPerBundle {
-  /** Version Code corresponding to the target bundle. */
-  versionCode?: string;
-  /** Total number of devices affected by this recovery action associated with bundle of the app. */
-  totalDeviceCount?: string;
   /** Total number of devices which have been rescued. */
   recoveredDeviceCount?: string;
+  /** Total number of devices affected by this recovery action associated with bundle of the app. */
+  totalDeviceCount?: string;
+  /** Version Code corresponding to the target bundle. */
+  versionCode?: string;
 }
 export const RemoteInAppUpdateDataPerBundle = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    versionCode: S.optional(S.String),
-    totalDeviceCount: S.optional(S.String),
     recoveredDeviceCount: S.optional(S.String),
+    totalDeviceCount: S.optional(S.String),
+    versionCode: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RemoteInAppUpdateDataPerBundle",
@@ -2833,35 +4891,44 @@ export const RemoteInAppUpdateData = /*@__PURE__*/ S.suspend(() =>
   identifier: "RemoteInAppUpdateData",
 }) as any as S.Schema<RemoteInAppUpdateData>;
 
+export type AppRecoveryActionStatusEnum =
+  | "RECOVERY_STATUS_UNSPECIFIED"
+  | "RECOVERY_STATUS_ACTIVE"
+  | "RECOVERY_STATUS_CANCELED"
+  | "RECOVERY_STATUS_DRAFT"
+  | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
+  | "RECOVERY_STATUS_GENERATION_FAILED";
+export const AppRecoveryActionStatusEnum = /*@__PURE__*/ S.String;
+
 /** Information about an app recovery action. */
 export interface AppRecoveryAction {
   /** Timestamp of when the app recovery action is created by the developer. It is always set after creation of the recovery action. */
   createTime?: string;
-  /** Timestamp of when the app recovery action is canceled by the developer. Only set if the recovery action has been canceled. */
-  cancelTime?: string;
-  /** The status of the recovery action. */
-  status?: AppRecoveryActionStatusEnum;
-  /** ID corresponding to the app recovery action. */
-  appRecoveryId?: string;
-  /** Timestamp of when the app recovery action is deployed to the users. Only set if the recovery action has been deployed. */
-  deployTime?: string;
   /** Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc. */
   targeting?: Targeting;
   /** Data about the remote in-app update action such as such as recovered user base, recoverable user base etc. Set only if the recovery action type is Remote In-App Update. */
   remoteInAppUpdateData?: RemoteInAppUpdateData;
+  /** Timestamp of when the app recovery action is canceled by the developer. Only set if the recovery action has been canceled. */
+  cancelTime?: string;
+  /** ID corresponding to the app recovery action. */
+  appRecoveryId?: string;
+  /** Timestamp of when the app recovery action is deployed to the users. Only set if the recovery action has been deployed. */
+  deployTime?: string;
   /** Timestamp of when the developer last updated recovery action. In case the action is cancelled, it corresponds to cancellation time. It is always set after creation of the recovery action. */
   lastUpdateTime?: string;
+  /** The status of the recovery action. */
+  status?: AppRecoveryActionStatusEnum;
 }
 export const AppRecoveryAction = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createTime: S.optional(S.String),
-    cancelTime: S.optional(S.String),
-    status: S.optional(AppRecoveryActionStatusEnum),
-    appRecoveryId: S.optional(S.String),
-    deployTime: S.optional(S.String),
     targeting: S.optional(Targeting),
     remoteInAppUpdateData: S.optional(RemoteInAppUpdateData),
+    cancelTime: S.optional(S.String),
+    appRecoveryId: S.optional(S.String),
+    deployTime: S.optional(S.String),
     lastUpdateTime: S.optional(S.String),
+    status: S.optional(AppRecoveryActionStatusEnum),
   }),
 ).annotate({
   identifier: "AppRecoveryAction",
@@ -2977,25 +5044,6 @@ export const CountryTargeting = /*@__PURE__*/ S.suspend(() =>
   identifier: "CountryTargeting",
 }) as any as S.Schema<CountryTargeting>;
 
-/** Localized text in given language. */
-export interface LocalizedText {
-  /** The text in the given language. */
-  text?: string;
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
-  language?: string;
-}
-export const LocalizedText = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    text: S.optional(S.String),
-    language: S.optional(S.String),
-  }),
-).annotate({ identifier: "LocalizedText" }) as any as S.Schema<LocalizedText>;
-
-export type LocalizedTextList = Array<LocalizedText>;
-export const LocalizedTextList = /*@__PURE__*/ S.Array(
-  LocalizedText,
-) as any as S.Schema<LocalizedTextList>;
-
 export type TrackReleaseStatusEnum =
   | "statusUnspecified"
   | "draft"
@@ -3004,32 +5052,51 @@ export type TrackReleaseStatusEnum =
   | "completed";
 export const TrackReleaseStatusEnum = /*@__PURE__*/ S.String;
 
+/** Localized text in given language. */
+export interface LocalizedText {
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
+  language?: string;
+  /** The text in the given language. */
+  text?: string;
+}
+export const LocalizedText = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    language: S.optional(S.String),
+    text: S.optional(S.String),
+  }),
+).annotate({ identifier: "LocalizedText" }) as any as S.Schema<LocalizedText>;
+
+export type LocalizedTextList = Array<LocalizedText>;
+export const LocalizedTextList = /*@__PURE__*/ S.Array(
+  LocalizedText,
+) as any as S.Schema<LocalizedTextList>;
+
 /** A release within a track. */
 export interface TrackRelease {
-  /** Fraction of users who are eligible for a staged release. 0 < fraction < 1. Can only be set when status is "inProgress" or "halted". */
-  userFraction?: number;
-  /** The release name. Not required to be unique. If not set, the name is generated from the APK's version_name. If the release contains multiple APKs, the name is generated from the date. */
-  name?: string;
-  /** Restricts a release to a specific set of countries. Note this is only allowed to be set for inProgress releases in the production track. */
-  countryTargeting?: CountryTargeting;
-  /** A description of what is new in this release. */
-  releaseNotes?: LocalizedTextList;
-  /** The status of the release. */
-  status?: TrackReleaseStatusEnum | (string & {});
-  /** In-app update priority of the release. All newly added APKs in the release will be considered at this priority. Can take values in the range [0, 5], with 5 the highest priority. Defaults to 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates. */
-  inAppUpdatePriority?: number;
   /** Version codes of all APKs in the release. Must include version codes to retain from previous releases. */
   versionCodes?: StringList;
+  /** The release name. Not required to be unique. If not set, the name is generated from the APK's version_name. If the release contains multiple APKs, the name is generated from the date. */
+  name?: string;
+  /** Fraction of users who are eligible for a staged release. 0 < fraction < 1. Can only be set when status is "inProgress" or "halted". */
+  userFraction?: number;
+  /** Restricts a release to a specific set of countries. Note this is only allowed to be set for inProgress releases in the production track. */
+  countryTargeting?: CountryTargeting;
+  /** In-app update priority of the release. All newly added APKs in the release will be considered at this priority. Can take values in the range [0, 5], with 5 the highest priority. Defaults to 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates. */
+  inAppUpdatePriority?: number;
+  /** The status of the release. */
+  status?: TrackReleaseStatusEnum | (string & {});
+  /** A description of what is new in this release. */
+  releaseNotes?: LocalizedTextList;
 }
 export const TrackRelease = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userFraction: S.optional(S.Number),
-    name: S.optional(S.String),
-    countryTargeting: S.optional(CountryTargeting),
-    releaseNotes: S.optional(LocalizedTextList),
-    status: S.optional(TrackReleaseStatusEnum),
-    inAppUpdatePriority: S.optional(S.Number),
     versionCodes: S.optional(StringList),
+    name: S.optional(S.String),
+    userFraction: S.optional(S.Number),
+    countryTargeting: S.optional(CountryTargeting),
+    inAppUpdatePriority: S.optional(S.Number),
+    status: S.optional(TrackReleaseStatusEnum),
+    releaseNotes: S.optional(LocalizedTextList),
   }),
 ).annotate({ identifier: "TrackRelease" }) as any as S.Schema<TrackRelease>;
 
@@ -3051,88 +5118,6 @@ export const Track = /*@__PURE__*/ S.suspend(() =>
     track: S.optional(S.String),
   }),
 ).annotate({ identifier: "Track" }) as any as S.Schema<Track>;
-
-/** Definition of a price, i.e. currency and units. */
-export interface Price {
-  /** 3 letter Currency code, as defined by ISO 4217. See java/com/google/common/money/CurrencyCode.java */
-  currency?: string;
-  /** Price in 1/million of the currency base unit, represented as a string. */
-  priceMicros?: string;
-}
-export const Price = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currency: S.optional(S.String),
-    priceMicros: S.optional(S.String),
-  }),
-).annotate({ identifier: "Price" }) as any as S.Schema<Price>;
-
-/** Represents a one-time transaction. */
-export interface OneTimeExternalTransaction {
-  /** Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched. */
-  externalTransactionToken?: string;
-}
-export const OneTimeExternalTransaction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    externalTransactionToken: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OneTimeExternalTransaction",
-}) as any as S.Schema<OneTimeExternalTransaction>;
-
-export type ExternalOfferDetailsLinkTypeEnum =
-  | "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED"
-  | "LINK_TO_DIGITAL_CONTENT_OFFER"
-  | "LINK_TO_APP_DOWNLOAD";
-export const ExternalOfferDetailsLinkTypeEnum = /*@__PURE__*/ S.String;
-
-export type ExternalOfferDetailsInstalledAppCategoryEnum =
-  | "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED"
-  | "APP"
-  | "GAME";
-export const ExternalOfferDetailsInstalledAppCategoryEnum =
-  /*@__PURE__*/ S.String;
-
-/** Reporting details unique to the external offers program. */
-export interface ExternalOfferDetails {
-  /** Optional. The external transaction id associated with the app download event through an external link. Required when reporting transactions made in externally installed apps. */
-  appDownloadEventExternalTransactionId?: string;
-  /** Optional. The type of content being reported by this transaction. Required when reporting app downloads or purchased digital content offers made in app installed through Google Play. */
-  linkType?: ExternalOfferDetailsLinkTypeEnum | (string & {});
-  /** Optional. The package name of the app downloaded through this transaction. Required when link_type is LINK_TO_APP_DOWNLOAD. */
-  installedAppPackage?: string;
-  /** Optional. The category of the downloaded app though this transaction. This must match the category provided in Play Console during the external app verification process. Only required for app downloads. */
-  installedAppCategory?:
-    | ExternalOfferDetailsInstalledAppCategoryEnum
-    | (string & {});
-}
-export const ExternalOfferDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appDownloadEventExternalTransactionId: S.optional(S.String),
-    linkType: S.optional(ExternalOfferDetailsLinkTypeEnum),
-    installedAppPackage: S.optional(S.String),
-    installedAppCategory: S.optional(
-      ExternalOfferDetailsInstalledAppCategoryEnum,
-    ),
-  }),
-).annotate({
-  identifier: "ExternalOfferDetails",
-}) as any as S.Schema<ExternalOfferDetails>;
-
-/** User's address for the external transaction. */
-export interface ExternalTransactionAddress {
-  /** Optional. Top-level administrative subdivision of the country/region. Only required for transactions in India. Valid values are "ANDAMAN AND NICOBAR ISLANDS", "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHANDIGARH", "CHHATTISGARH", "DADRA AND NAGAR HAVELI", "DADRA AND NAGAR HAVELI AND DAMAN AND DIU", "DAMAN AND DIU", "DELHI", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JAMMU AND KASHMIR", "JHARKHAND", "KARNATAKA", "KERALA", "LADAKH", "LAKSHADWEEP", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ODISHA", "PUDUCHERRY", "PUNJAB", "RAJASTHAN", "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTAR PRADESH", "UTTARAKHAND", and "WEST BENGAL". */
-  administrativeArea?: string;
-  /** Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes). */
-  regionCode?: string;
-}
-export const ExternalTransactionAddress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administrativeArea: S.optional(S.String),
-    regionCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExternalTransactionAddress",
-}) as any as S.Schema<ExternalTransactionAddress>;
 
 /** Details of a recurring external transaction product which doesn't belong to any other more specific category. */
 export type OtherRecurringProduct = OneTimeProductOfferNoPriceOverrideOptions;
@@ -3166,6 +5151,8 @@ export const RecurringExternalTransactionMigratedTransactionProgramEnum =
 
 /** Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder). */
 export interface RecurringExternalTransaction {
+  /** The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions. */
+  initialExternalTransactionId?: string;
   /** Details of a recurring external transaction product which doesn't belong to any other specific category. */
   otherRecurringProduct?: OneTimeProductOfferNoPriceOverrideOptions;
   /** Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched. Required only for the initial purchase. */
@@ -3176,11 +5163,10 @@ export interface RecurringExternalTransaction {
   migratedTransactionProgram?:
     | RecurringExternalTransactionMigratedTransactionProgramEnum
     | (string & {});
-  /** The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions. */
-  initialExternalTransactionId?: string;
 }
 export const RecurringExternalTransaction = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    initialExternalTransactionId: S.optional(S.String),
     otherRecurringProduct: S.optional(
       OneTimeProductOfferNoPriceOverrideOptions,
     ),
@@ -3189,17 +5175,26 @@ export const RecurringExternalTransaction = /*@__PURE__*/ S.suspend(() =>
     migratedTransactionProgram: S.optional(
       RecurringExternalTransactionMigratedTransactionProgramEnum,
     ),
-    initialExternalTransactionId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RecurringExternalTransaction",
 }) as any as S.Schema<RecurringExternalTransaction>;
 
-/** Represents a transaction performed using a test account. These transactions will not be charged by Google. */
-export type ExternalTransactionTestPurchase =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const ExternalTransactionTestPurchase =
-  OneTimeProductOfferNoPriceOverrideOptions;
+/** User's address for the external transaction. */
+export interface ExternalTransactionAddress {
+  /** Optional. Top-level administrative subdivision of the country/region. Only required for transactions in India. Valid values are "ANDAMAN AND NICOBAR ISLANDS", "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHANDIGARH", "CHHATTISGARH", "DADRA AND NAGAR HAVELI", "DADRA AND NAGAR HAVELI AND DAMAN AND DIU", "DAMAN AND DIU", "DELHI", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JAMMU AND KASHMIR", "JHARKHAND", "KARNATAKA", "KERALA", "LADAKH", "LAKSHADWEEP", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ODISHA", "PUDUCHERRY", "PUNJAB", "RAJASTHAN", "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTAR PRADESH", "UTTARAKHAND", and "WEST BENGAL". */
+  administrativeArea?: string;
+  /** Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes). */
+  regionCode?: string;
+}
+export const ExternalTransactionAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administrativeArea: S.optional(S.String),
+    regionCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExternalTransactionAddress",
+}) as any as S.Schema<ExternalTransactionAddress>;
 
 export type ExternalTransactionTransactionStateEnum =
   | "TRANSACTION_STATE_UNSPECIFIED"
@@ -3207,74 +5202,171 @@ export type ExternalTransactionTransactionStateEnum =
   | "TRANSACTION_CANCELED";
 export const ExternalTransactionTransactionStateEnum = /*@__PURE__*/ S.String;
 
+export type ExternalOfferDetailsLinkTypeEnum =
+  | "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED"
+  | "LINK_TO_DIGITAL_CONTENT_OFFER"
+  | "LINK_TO_APP_DOWNLOAD";
+export const ExternalOfferDetailsLinkTypeEnum = /*@__PURE__*/ S.String;
+
+export type ExternalOfferDetailsInstalledAppCategoryEnum =
+  | "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED"
+  | "APP"
+  | "GAME";
+export const ExternalOfferDetailsInstalledAppCategoryEnum =
+  /*@__PURE__*/ S.String;
+
+/** Reporting details unique to the external offers program. */
+export interface ExternalOfferDetails {
+  /** Optional. The type of content being reported by this transaction. Required when reporting app downloads or purchased digital content offers made in app installed through Google Play. */
+  linkType?: ExternalOfferDetailsLinkTypeEnum | (string & {});
+  /** Optional. The category of the downloaded app though this transaction. This must match the category provided in Play Console during the external app verification process. Only required for app downloads. */
+  installedAppCategory?:
+    | ExternalOfferDetailsInstalledAppCategoryEnum
+    | (string & {});
+  /** Optional. The package name of the app downloaded through this transaction. Required when link_type is LINK_TO_APP_DOWNLOAD. */
+  installedAppPackage?: string;
+  /** Optional. The external transaction id associated with the app download event through an external link. Required when reporting transactions made in externally installed apps. */
+  appDownloadEventExternalTransactionId?: string;
+}
+export const ExternalOfferDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    linkType: S.optional(ExternalOfferDetailsLinkTypeEnum),
+    installedAppCategory: S.optional(
+      ExternalOfferDetailsInstalledAppCategoryEnum,
+    ),
+    installedAppPackage: S.optional(S.String),
+    appDownloadEventExternalTransactionId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExternalOfferDetails",
+}) as any as S.Schema<ExternalOfferDetails>;
+
+/** Represents a one-time transaction. */
+export interface OneTimeExternalTransaction {
+  /** Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched. */
+  externalTransactionToken?: string;
+}
+export const OneTimeExternalTransaction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    externalTransactionToken: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OneTimeExternalTransaction",
+}) as any as S.Schema<OneTimeExternalTransaction>;
+
+/** Represents a transaction performed using a test account. These transactions will not be charged by Google. */
+export type ExternalTransactionTestPurchase =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const ExternalTransactionTestPurchase =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+export type ExternalContentLinkDetailsExternalAppCategoryEnum =
+  | "EXTERNAL_CONTENT_APP_CATEGORY_UNSPECIFIED"
+  | "APP"
+  | "GAME";
+export const ExternalContentLinkDetailsExternalAppCategoryEnum =
+  /*@__PURE__*/ S.String;
+
+export type ExternalContentLinkDetailsLinkTypeEnum =
+  | "EXTERNAL_CONTENT_LINK_TYPE_UNSPECIFIED"
+  | "LINK_TO_DIGITAL_CONTENT_OFFER"
+  | "LINK_TO_APP_DOWNLOAD";
+export const ExternalContentLinkDetailsLinkTypeEnum = /*@__PURE__*/ S.String;
+
+/** Reporting details unique to the external content link program. */
+export interface ExternalContentLinkDetails {
+  /** Optional. The category of the downlaoded app. This must match the category provided in Play Console during the external app verification process. Only required for app installs. */
+  externalAppCategory?:
+    | ExternalContentLinkDetailsExternalAppCategoryEnum
+    | (string & {});
+  /** Required. The type content being reported by this transaction. */
+  linkType?: ExternalContentLinkDetailsLinkTypeEnum | (string & {});
+  /** Optional. The package name of the app downloaded through this transaction. Only required for app installs. */
+  installedAppPackage?: string;
+}
+export const ExternalContentLinkDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    externalAppCategory: S.optional(
+      ExternalContentLinkDetailsExternalAppCategoryEnum,
+    ),
+    linkType: S.optional(ExternalContentLinkDetailsLinkTypeEnum),
+    installedAppPackage: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExternalContentLinkDetails",
+}) as any as S.Schema<ExternalContentLinkDetails>;
+
 /** The details of an external transaction. */
 export interface ExternalTransaction {
-  /** Required. The original tax amount. This represents the tax amount originally notified to Google before any refunds were applied. */
-  originalTaxAmount?: Price;
-  /** This is a one-time transaction and not part of a subscription. */
-  oneTimeTransaction?: OneTimeExternalTransaction;
-  /** Output only. The current transaction amount before tax. This represents the current pre-tax amount including any refunds that may have been applied to this transaction. */
-  currentPreTaxAmount?: Price;
-  /** Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction. */
-  externalTransactionId?: string;
-  /** Output only. The resource name of the external transaction. The package name of the application the inapp products were sold (for example, 'com.some.app'). */
-  packageName?: string;
-  /** Required. The original transaction amount before taxes. This represents the pre-tax amount originally notified to Google before any refunds were applied. */
-  originalPreTaxAmount?: Price;
-  /** Optional. Details necessary to accurately report external offers transactions. */
-  externalOfferDetails?: ExternalOfferDetails;
-  /** Required. User address for tax computation. */
-  userTaxAddress?: ExternalTransactionAddress;
+  /** Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions. */
+  transactionProgramCode?: number;
   /** This transaction is part of a recurring series of transactions. */
   recurringTransaction?: RecurringExternalTransaction;
+  /** Required. User address for tax computation. */
+  userTaxAddress?: ExternalTransactionAddress;
+  /** Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction. */
+  externalTransactionId?: string;
+  /** Output only. The current state of the transaction. */
+  transactionState?: ExternalTransactionTransactionStateEnum | (string & {});
+  /** Required. The original tax amount. This represents the tax amount originally notified to Google before any refunds were applied. */
+  originalTaxAmount?: Price;
+  /** Optional. Details necessary to accurately report external offers transactions. */
+  externalOfferDetails?: ExternalOfferDetails;
+  /** This is a one-time transaction and not part of a subscription. */
+  oneTimeTransaction?: OneTimeExternalTransaction;
   /** Output only. If set, this transaction was a test purchase. Google will not charge for a test transaction. */
   testPurchase?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Required. The original transaction amount before taxes. This represents the pre-tax amount originally notified to Google before any refunds were applied. */
+  originalPreTaxAmount?: Price;
+  /** Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction. */
+  currentTaxAmount?: Price;
+  /** Optional. Details necessary to accurately report external content link transactions. */
+  externalContentLinkDetails?: ExternalContentLinkDetails;
+  /** Output only. The resource name of the external transaction. The package name of the application the inapp products were sold (for example, 'com.some.app'). */
+  packageName?: string;
   /** Required. The time when the transaction was completed. */
   transactionTime?: string;
   /** Output only. The time when this transaction was created. This is the time when Google was notified of the transaction. */
   createTime?: string;
-  /** Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction. */
-  currentTaxAmount?: Price;
-  /** Output only. The current state of the transaction. */
-  transactionState?: ExternalTransactionTransactionStateEnum | (string & {});
-  /** Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions. */
-  transactionProgramCode?: number;
+  /** Output only. The current transaction amount before tax. This represents the current pre-tax amount including any refunds that may have been applied to this transaction. */
+  currentPreTaxAmount?: Price;
 }
 export const ExternalTransaction = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    originalTaxAmount: S.optional(Price),
-    oneTimeTransaction: S.optional(OneTimeExternalTransaction),
-    currentPreTaxAmount: S.optional(Price),
-    externalTransactionId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    originalPreTaxAmount: S.optional(Price),
-    externalOfferDetails: S.optional(ExternalOfferDetails),
-    userTaxAddress: S.optional(ExternalTransactionAddress),
+    transactionProgramCode: S.optional(S.Number),
     recurringTransaction: S.optional(RecurringExternalTransaction),
+    userTaxAddress: S.optional(ExternalTransactionAddress),
+    externalTransactionId: S.optional(S.String),
+    transactionState: S.optional(ExternalTransactionTransactionStateEnum),
+    originalTaxAmount: S.optional(Price),
+    externalOfferDetails: S.optional(ExternalOfferDetails),
+    oneTimeTransaction: S.optional(OneTimeExternalTransaction),
     testPurchase: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    originalPreTaxAmount: S.optional(Price),
+    currentTaxAmount: S.optional(Price),
+    externalContentLinkDetails: S.optional(ExternalContentLinkDetails),
+    packageName: S.optional(S.String),
     transactionTime: S.optional(S.String),
     createTime: S.optional(S.String),
-    currentTaxAmount: S.optional(Price),
-    transactionState: S.optional(ExternalTransactionTransactionStateEnum),
-    transactionProgramCode: S.optional(S.Number),
+    currentPreTaxAmount: S.optional(Price),
   }),
 ).annotate({
   identifier: "ExternalTransaction",
 }) as any as S.Schema<ExternalTransaction>;
 
 export interface CreateexternaltransactionExternaltransactionsRequest {
-  /** Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-zA-Z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked. */
-  externalTransactionId?: string;
   /** Required. The parent resource where this external transaction will be created. Format: applications/{package_name} */
   parent: string;
+  /** Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-zA-Z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked. */
+  externalTransactionId?: string;
   /** Request body */
   body?: ExternalTransaction;
 }
 export const CreateexternaltransactionExternaltransactionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      externalTransactionId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      externalTransactionId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(ExternalTransaction.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3314,18 +5406,18 @@ export const GrantAppLevelPermissionsItemEnumList = /*@__PURE__*/ S.Array(
 
 /** An access grant resource. */
 export interface Grant {
+  /** Required. Resource name for this grant, following the pattern "developers/{developer}/users/{email}/grants/{package_name}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name. */
+  name?: string;
   /** The permissions granted to the user for this app. */
   appLevelPermissions?: GrantAppLevelPermissionsItemEnumList;
   /** Immutable. The package name of the app. This will be empty for draft apps. */
   packageName?: string;
-  /** Required. Resource name for this grant, following the pattern "developers/{developer}/users/{email}/grants/{package_name}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name. */
-  name?: string;
 }
 export const Grant = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
     appLevelPermissions: S.optional(GrantAppLevelPermissionsItemEnumList),
     packageName: S.optional(S.String),
-    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Grant" }) as any as S.Schema<Grant>;
 
@@ -3353,10 +5445,10 @@ export const CreateGrantsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface CreateMonetizationSubscriptionsRequest {
   /** Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource. */
   productId?: string;
-  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
-  "regionsVersion.version"?: string;
   /** Required. The parent app (package name) for which the subscription should be created. Must be equal to the package_name field on the Subscription resource. */
   packageName: string;
+  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
+  "regionsVersion.version"?: string;
   /** Request body */
   body?: Subscription;
 }
@@ -3364,8 +5456,8 @@ export const CreateMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       productId: S.optional(S.String.pipe(T.Query())),
-      "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
       packageName: S.String.pipe(T.Label()),
+      "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
       body: S.optional(Subscription.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3379,27 +5471,27 @@ export const CreateMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateMonetizationSubscriptionsRequest>;
 
 export interface CreateMonetizationSubscriptionsBasePlansOffersRequest {
-  /** Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource. */
-  productId: string;
-  /** Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource. */
-  basePlanId: string;
-  /** Required. The ID to use for the offer. For the requirements on this format, see the documentation of the offer_id field on the SubscriptionOffer resource. */
-  offerId?: string;
   /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
   "regionsVersion.version"?: string;
   /** Required. The parent app (package name) for which the offer should be created. Must be equal to the package_name field on the Subscription resource. */
   packageName: string;
+  /** Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource. */
+  productId: string;
+  /** Required. The ID to use for the offer. For the requirements on this format, see the documentation of the offer_id field on the SubscriptionOffer resource. */
+  offerId?: string;
+  /** Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource. */
+  basePlanId: string;
   /** Request body */
   body?: SubscriptionOffer;
 }
 export const CreateMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      productId: S.String.pipe(T.Label()),
-      basePlanId: S.String.pipe(T.Label()),
-      offerId: S.optional(S.String.pipe(T.Query())),
       "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
       packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      offerId: S.optional(S.String.pipe(T.Query())),
+      basePlanId: S.String.pipe(T.Label()),
       body: S.optional(SubscriptionOffer.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3412,71 +5504,71 @@ export const CreateMonetizationSubscriptionsBasePlansOffersRequest =
     identifier: "CreateMonetizationSubscriptionsBasePlansOffersRequest",
   }) as any as S.Schema<CreateMonetizationSubscriptionsBasePlansOffersRequest>;
 
+/** The device spec used to generate a system APK. */
+export interface DeviceSpec {
+  /** Supported ABI architectures in the order of preference. The values should be the string as reported by the platform, e.g. "armeabi-v7a", "x86_64". */
+  supportedAbis?: StringList;
+  /** Screen dpi. */
+  screenDensity?: number;
+  /** All installed locales represented as BCP-47 strings, e.g. "en-US". */
+  supportedLocales?: StringList;
+}
+export const DeviceSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    supportedAbis: S.optional(StringList),
+    screenDensity: S.optional(S.Number),
+    supportedLocales: S.optional(StringList),
+  }),
+).annotate({ identifier: "DeviceSpec" }) as any as S.Schema<DeviceSpec>;
+
 /** Options for system APKs. */
 export interface SystemApkOptions {
-  /** Whether system APK was generated with uncompressed native libraries. */
-  uncompressedNativeLibraries?: boolean;
-  /** Whether to use the rotated key for signing the system APK. */
-  rotated?: boolean;
   /** Whether system APK was generated with uncompressed dex files. */
   uncompressedDexFiles?: boolean;
+  /** Whether to use the rotated key for signing the system APK. */
+  rotated?: boolean;
+  /** Whether system APK was generated with uncompressed native libraries. */
+  uncompressedNativeLibraries?: boolean;
 }
 export const SystemApkOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    uncompressedNativeLibraries: S.optional(S.Boolean),
-    rotated: S.optional(S.Boolean),
     uncompressedDexFiles: S.optional(S.Boolean),
+    rotated: S.optional(S.Boolean),
+    uncompressedNativeLibraries: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "SystemApkOptions",
 }) as any as S.Schema<SystemApkOptions>;
 
-/** The device spec used to generate a system APK. */
-export interface DeviceSpec {
-  /** Screen dpi. */
-  screenDensity?: number;
-  /** All installed locales represented as BCP-47 strings, e.g. "en-US". */
-  supportedLocales?: StringList;
-  /** Supported ABI architectures in the order of preference. The values should be the string as reported by the platform, e.g. "armeabi-v7a", "x86_64". */
-  supportedAbis?: StringList;
-}
-export const DeviceSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    screenDensity: S.optional(S.Number),
-    supportedLocales: S.optional(StringList),
-    supportedAbis: S.optional(StringList),
-  }),
-).annotate({ identifier: "DeviceSpec" }) as any as S.Schema<DeviceSpec>;
-
 /** APK that is suitable for inclusion in a system image. The resource of SystemApksService. */
 export interface Variant {
-  /** Output only. The ID of a previously created system APK variant. */
-  variantId?: number;
-  /** Optional. Options applied to the generated APK. */
-  options?: SystemApkOptions;
   /** The device spec used to generate the APK. */
   deviceSpec?: DeviceSpec;
+  /** Optional. Options applied to the generated APK. */
+  options?: SystemApkOptions;
+  /** Output only. The ID of a previously created system APK variant. */
+  variantId?: number;
 }
 export const Variant = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    variantId: S.optional(S.Number),
-    options: S.optional(SystemApkOptions),
     deviceSpec: S.optional(DeviceSpec),
+    options: S.optional(SystemApkOptions),
+    variantId: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Variant" }) as any as S.Schema<Variant>;
 
 export interface CreateSystemapksVariantsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** The version code of the App Bundle. */
   versionCode: string;
+  /** Package name of the app. */
+  packageName: string;
   /** Request body */
   body?: Variant;
 }
 export const CreateSystemapksVariantsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     versionCode: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
     body: S.optional(Variant.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3488,11 +5580,6 @@ export const CreateSystemapksVariantsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateSystemapksVariantsRequest",
 }) as any as S.Schema<CreateSystemapksVariantsRequest>;
-
-export type GrantList = Array<Grant>;
-export const GrantList = /*@__PURE__*/ S.Array(
-  Grant,
-) as any as S.Schema<GrantList>;
 
 export type UserDeveloperAccountPermissionsItemEnum =
   | "DEVELOPER_LEVEL_PERMISSION_UNSPECIFIED"
@@ -3534,34 +5621,39 @@ export type UserAccessStateEnum =
   | "ACCESS_EXPIRED";
 export const UserAccessStateEnum = /*@__PURE__*/ S.String;
 
+export type GrantList = Array<Grant>;
+export const GrantList = /*@__PURE__*/ S.Array(
+  Grant,
+) as any as S.Schema<GrantList>;
+
 /** A user resource. */
 export interface User {
-  /** Output only. Per-app permissions for the user. */
-  grants?: GrantList;
-  /** Permissions for the user which apply across the developer account. */
-  developerAccountPermissions?: UserDeveloperAccountPermissionsItemEnumList;
-  /** Required. Resource name for this user, following the pattern "developers/{developer}/users/{email}". */
-  name?: string;
-  /** Output only. Whether there are more permissions for the user that are not represented here. This can happen if the caller does not have permission to manage all apps in the account. This is also `true` if this user is the account owner. If this field is `true`, it should be taken as a signal that this user cannot be fully managed via the API. That is, the API caller is not be able to manage all of the permissions this user holds, either because it doesn't know about them or because the user is the account owner. */
-  partial?: boolean;
   /** The time at which the user's access expires, if set. When setting this value, it must always be in the future. */
   expirationTime?: string;
+  /** Permissions for the user which apply across the developer account. */
+  developerAccountPermissions?: UserDeveloperAccountPermissionsItemEnumList;
+  /** Output only. Whether there are more permissions for the user that are not represented here. This can happen if the caller does not have permission to manage all apps in the account. This is also `true` if this user is the account owner. If this field is `true`, it should be taken as a signal that this user cannot be fully managed via the API. That is, the API caller is not be able to manage all of the permissions this user holds, either because it doesn't know about them or because the user is the account owner. */
+  partial?: boolean;
+  /** Required. Resource name for this user, following the pattern "developers/{developer}/users/{email}". */
+  name?: string;
   /** Output only. The state of the user's access to the Play Console. */
   accessState?: UserAccessStateEnum | (string & {});
   /** Immutable. The user's email address. */
   email?: string;
+  /** Output only. Per-app permissions for the user. */
+  grants?: GrantList;
 }
 export const User = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    grants: S.optional(GrantList),
+    expirationTime: S.optional(S.String),
     developerAccountPermissions: S.optional(
       UserDeveloperAccountPermissionsItemEnumList,
     ),
-    name: S.optional(S.String),
     partial: S.optional(S.Boolean),
-    expirationTime: S.optional(S.String),
+    name: S.optional(S.String),
     accessState: S.optional(UserAccessStateEnum),
     email: S.optional(S.String),
+    grants: S.optional(GrantList),
   }),
 ).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
@@ -3628,52 +5720,15 @@ export const SafetyLabelsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SafetyLabelsUpdateResponse",
 }) as any as S.Schema<SafetyLabelsUpdateResponse>;
 
-export type DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for DeactivateOneTimeProductOffer. */
-export interface DeactivateOneTimeProductOfferRequest {
-  /** Required. The parent app (package name) of the offer to deactivate. */
-  packageName?: string;
-  /** Required. The offer ID of the offer to deactivate. */
-  offerId?: string;
-  /** Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeactivateOneTimeProductOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The parent purchase option (ID) of the offer to deactivate. */
-  purchaseOptionId?: string;
-  /** Required. The parent one-time product (ID) of the offer to deactivate. */
-  productId?: string;
-}
-export const DeactivateOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      packageName: S.optional(S.String),
-      offerId: S.optional(S.String),
-      latencyTolerance: S.optional(
-        DeactivateOneTimeProductOfferRequestLatencyToleranceEnum,
-      ),
-      purchaseOptionId: S.optional(S.String),
-      productId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DeactivateOneTimeProductOfferRequest",
-}) as any as S.Schema<DeactivateOneTimeProductOfferRequest>;
-
 export interface DeactivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
   /** Required. The parent purchase option (ID) of the offer to deactivate. */
   purchaseOptionId: string;
-  /** Required. The offer ID of the offer to deactivate. */
-  offerId: string;
-  /** Required. The parent one-time product (ID) of the offer to deactivate. */
-  productId: string;
   /** Required. The parent app (package name) of the offer to deactivate. */
   packageName: string;
+  /** Required. The parent one-time product (ID) of the offer to deactivate. */
+  productId: string;
+  /** Required. The offer ID of the offer to deactivate. */
+  offerId: string;
   /** Request body */
   body?: DeactivateOneTimeProductOfferRequest;
 }
@@ -3681,9 +5736,9 @@ export const DeactivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       purchaseOptionId: S.String.pipe(T.Label()),
-      offerId: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      offerId: S.String.pipe(T.Label()),
       body: S.optional(DeactivateOneTimeProductOfferRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3696,37 +5751,6 @@ export const DeactivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
     identifier:
       "DeactivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest",
   }) as any as S.Schema<DeactivateMonetizationOnetimeproductsPurchaseOptionsOffersRequest>;
-
-export type DeactivateBasePlanRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivateBasePlanRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for DeactivateBasePlan. */
-export interface DeactivateBasePlanRequest {
-  /** Required. The parent subscription (ID) of the base plan to deactivate. */
-  productId?: string;
-  /** Required. The parent app (package name) of the base plan to deactivate. */
-  packageName?: string;
-  /** Required. The unique base plan ID of the base plan to deactivate. */
-  basePlanId?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeactivateBasePlanRequestLatencyToleranceEnum
-    | (string & {});
-}
-export const DeactivateBasePlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    basePlanId: S.optional(S.String),
-    latencyTolerance: S.optional(DeactivateBasePlanRequestLatencyToleranceEnum),
-  }),
-).annotate({
-  identifier: "DeactivateBasePlanRequest",
-}) as any as S.Schema<DeactivateBasePlanRequest>;
 
 export interface DeactivateMonetizationSubscriptionsBasePlansRequest {
   /** Required. The parent subscription (ID) of the base plan to deactivate. */
@@ -3756,49 +5780,13 @@ export const DeactivateMonetizationSubscriptionsBasePlansRequest =
     identifier: "DeactivateMonetizationSubscriptionsBasePlansRequest",
   }) as any as S.Schema<DeactivateMonetizationSubscriptionsBasePlansRequest>;
 
-export type DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for DeactivateSubscriptionOffer. */
-export interface DeactivateSubscriptionOfferRequest {
-  /** Required. The parent base plan (ID) of the offer to deactivate. */
-  basePlanId?: string;
-  /** Required. The parent subscription (ID) of the offer to deactivate. */
-  productId?: string;
-  /** Required. The parent app (package name) of the offer to deactivate. */
-  packageName?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeactivateSubscriptionOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The unique offer ID of the offer to deactivate. */
-  offerId?: string;
-}
-export const DeactivateSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    basePlanId: S.optional(S.String),
-    productId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    latencyTolerance: S.optional(
-      DeactivateSubscriptionOfferRequestLatencyToleranceEnum,
-    ),
-    offerId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeactivateSubscriptionOfferRequest",
-}) as any as S.Schema<DeactivateSubscriptionOfferRequest>;
-
 export interface DeactivateMonetizationSubscriptionsBasePlansOffersRequest {
   /** Required. The parent base plan (ID) of the offer to deactivate. */
   basePlanId: string;
-  /** Required. The unique offer ID of the offer to deactivate. */
-  offerId: string;
   /** Required. The parent subscription (ID) of the offer to deactivate. */
   productId: string;
+  /** Required. The unique offer ID of the offer to deactivate. */
+  offerId: string;
   /** Required. The parent app (package name) of the offer to deactivate. */
   packageName: string;
   /** Request body */
@@ -3808,8 +5796,8 @@ export const DeactivateMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       basePlanId: S.String.pipe(T.Label()),
-      offerId: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
+      offerId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
       body: S.optional(DeactivateSubscriptionOfferRequest.pipe(T.HttpBody())),
     }).pipe(
@@ -3825,15 +5813,15 @@ export const DeactivateMonetizationSubscriptionsBasePlansOffersRequest =
 
 /** A SubscriptionDeferralInfo contains the data needed to defer a subscription purchase to a future expiry time. */
 export interface SubscriptionDeferralInfo {
-  /** The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription. */
-  desiredExpiryTimeMillis?: string;
   /** The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur. */
   expectedExpiryTimeMillis?: string;
+  /** The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription. */
+  desiredExpiryTimeMillis?: string;
 }
 export const SubscriptionDeferralInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    desiredExpiryTimeMillis: S.optional(S.String),
     expectedExpiryTimeMillis: S.optional(S.String),
+    desiredExpiryTimeMillis: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SubscriptionDeferralInfo",
@@ -3853,20 +5841,20 @@ export const SubscriptionPurchasesDeferRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubscriptionPurchasesDeferRequest>;
 
 export interface DeferPurchasesSubscriptionsRequest {
-  /** The purchased subscription ID (for example, 'monthly001'). */
-  subscriptionId: string;
   /** The package name of the application for which this subscription was purchased (for example, 'com.some.thing'). */
   packageName: string;
   /** The token provided to the user's device when the subscription was purchased. */
   token: string;
+  /** The purchased subscription ID (for example, 'monthly001'). */
+  subscriptionId: string;
   /** Request body */
   body?: SubscriptionPurchasesDeferRequest;
 }
 export const DeferPurchasesSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     token: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
     body: S.optional(SubscriptionPurchasesDeferRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3925,18 +5913,18 @@ export const DeferSubscriptionPurchaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeferSubscriptionPurchaseRequest>;
 
 export interface DeferPurchasesSubscriptionsv2Request {
-  /** Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing'). */
-  packageName: string;
   /** Required. The token provided to the user's device when the subscription was purchased. */
   token: string;
+  /** Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing'). */
+  packageName: string;
   /** Request body */
   body?: DeferSubscriptionPurchaseRequest;
 }
 export const DeferPurchasesSubscriptionsv2Request = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
       token: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
       body: S.optional(DeferSubscriptionPurchaseRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3996,21 +5984,21 @@ export type DeleteallEditsImagesImageTypeEnum =
 export const DeleteallEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
 
 export interface DeleteallEditsImagesRequest {
-  /** Type of the Image. Providing an image type that refers to no images is a no-op. */
-  imageType: DeleteallEditsImagesImageTypeEnum | (string & {});
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op. */
-  language: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op. */
+  language: string;
   /** Package name of the app. */
   packageName: string;
+  /** Type of the Image. Providing an image type that refers to no images is a no-op. */
+  imageType: DeleteallEditsImagesImageTypeEnum | (string & {});
 }
 export const DeleteallEditsImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    imageType: DeleteallEditsImagesImageTypeEnum.pipe(T.Label()),
-    language: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    imageType: DeleteallEditsImagesImageTypeEnum.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -4032,22 +6020,22 @@ export const ImageAiGeneratedStateEnum = /*@__PURE__*/ S.String;
 export interface Image {
   /** A sha256 hash of the image. */
   sha256?: string;
-  /** Optional. Whether the image was generated by AI. Attested by the developer. */
-  aiGeneratedState?: ImageAiGeneratedStateEnum;
-  /** A sha1 hash of the image. */
-  sha1?: string;
-  /** A URL that will serve a preview of the image. */
-  url?: string;
   /** A unique id representing this image. */
   id?: string;
+  /** Optional. Whether the image was generated by AI. Attested by the developer. */
+  aiGeneratedState?: ImageAiGeneratedStateEnum;
+  /** A URL that will serve a preview of the image. */
+  url?: string;
+  /** A sha1 hash of the image. */
+  sha1?: string;
 }
 export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     sha256: S.optional(S.String),
-    aiGeneratedState: S.optional(ImageAiGeneratedStateEnum),
-    sha1: S.optional(S.String),
-    url: S.optional(S.String),
     id: S.optional(S.String),
+    aiGeneratedState: S.optional(ImageAiGeneratedStateEnum),
+    url: S.optional(S.String),
+    sha1: S.optional(S.String),
   }),
 ).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
@@ -4070,15 +6058,15 @@ export const ImagesDeleteAllResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImagesDeleteAllResponse>;
 
 export interface DeleteallEditsListingsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const DeleteallEditsListingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -4097,349 +6085,16 @@ export const DeleteallEditsListingsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteallEditsListingsResponse",
 }) as any as S.Schema<DeleteallEditsListingsResponse>;
 
-export type InappproductsDeleteRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const InappproductsDeleteRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request to delete an in-app product. */
-export interface InappproductsDeleteRequest {
-  /** Package name of the app. */
-  packageName?: string;
-  /** Unique identifier for the in-app product. */
-  sku?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | InappproductsDeleteRequestLatencyToleranceEnum
-    | (string & {});
-}
-export const InappproductsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    sku: S.optional(S.String),
-    latencyTolerance: S.optional(
-      InappproductsDeleteRequestLatencyToleranceEnum,
-    ),
-  }),
-).annotate({
-  identifier: "InappproductsDeleteRequest",
-}) as any as S.Schema<InappproductsDeleteRequest>;
-
-export type InappproductsDeleteRequestList = Array<InappproductsDeleteRequest>;
-export const InappproductsDeleteRequestList = /*@__PURE__*/ S.Array(
-  InappproductsDeleteRequest,
-) as any as S.Schema<InappproductsDeleteRequestList>;
-
-/** Request to delete multiple in-app products. */
-export interface InappproductsBatchDeleteRequest {
-  /** Individual delete requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products. */
-  requests?: InappproductsDeleteRequestList;
-}
-export const InappproductsBatchDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(InappproductsDeleteRequestList),
-  }),
-).annotate({
-  identifier: "InappproductsBatchDeleteRequest",
-}) as any as S.Schema<InappproductsBatchDeleteRequest>;
-
-export interface DeleteBatchInappproductRequest {
-  /** Package name of the app. */
-  packageName: string;
-  /** Request body */
-  body?: InappproductsBatchDeleteRequest;
-}
-export const DeleteBatchInappproductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.String.pipe(T.Label()),
-    body: S.optional(InappproductsBatchDeleteRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete",
-      baseUrl: "https://androidpublisher.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteBatchInappproductRequest",
-}) as any as S.Schema<DeleteBatchInappproductRequest>;
-
-export interface DeleteBatchInappproductResponse {}
-export const DeleteBatchInappproductResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteBatchInappproductResponse",
-}) as any as S.Schema<DeleteBatchInappproductResponse>;
-
-export type DeleteOneTimeProductRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteOneTimeProductRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for deleting a one-time product. */
-export interface DeleteOneTimeProductRequest {
-  /** Required. The parent app (package name) of the one-time product to delete. */
-  packageName?: string;
-  /** Required. The one-time product ID of the one-time product to delete. */
-  productId?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeleteOneTimeProductRequestLatencyToleranceEnum
-    | (string & {});
-}
-export const DeleteOneTimeProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    productId: S.optional(S.String),
-    latencyTolerance: S.optional(
-      DeleteOneTimeProductRequestLatencyToleranceEnum,
-    ),
-  }),
-).annotate({
-  identifier: "DeleteOneTimeProductRequest",
-}) as any as S.Schema<DeleteOneTimeProductRequest>;
-
-export type DeleteOneTimeProductRequestList =
-  Array<DeleteOneTimeProductRequest>;
-export const DeleteOneTimeProductRequestList = /*@__PURE__*/ S.Array(
-  DeleteOneTimeProductRequest,
-) as any as S.Schema<DeleteOneTimeProductRequestList>;
-
-/** Request message for BatchDeleteOneTimeProduct. */
-export interface BatchDeleteOneTimeProductsRequest {
-  /** Required. A list of delete requests of up to 100 elements. All requests must delete different one-time products. */
-  requests?: DeleteOneTimeProductRequestList;
-}
-export const BatchDeleteOneTimeProductsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(DeleteOneTimeProductRequestList),
-  }),
-).annotate({
-  identifier: "BatchDeleteOneTimeProductsRequest",
-}) as any as S.Schema<BatchDeleteOneTimeProductsRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductRequest {
-  /** Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources. */
-  packageName: string;
-  /** Request body */
-  body?: BatchDeleteOneTimeProductsRequest;
-}
-export const DeleteBatchMonetizationOnetimeproductRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      body: S.optional(BatchDeleteOneTimeProductsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteBatchMonetizationOnetimeproductRequest",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductResponse {}
-export const DeleteBatchMonetizationOnetimeproductResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteBatchMonetizationOnetimeproductResponse",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductResponse>;
-
-export type DeletePurchaseOptionRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeletePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for deleting a purchase option. */
-export interface DeletePurchaseOptionRequest {
-  /** Required. The parent one-time product (ID) of the purchase option to delete. */
-  productId?: string;
-  /** Required. The purchase option ID of the purchase option to delete. */
-  purchaseOptionId?: string;
-  /** Optional. This field has no effect for purchase options with no offers under them. For purchase options with associated offers: * If `force` is set to false (default), an error will be returned. * If `force` is set to true, any associated offers under the purchase option will be deleted. */
-  force?: boolean;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeletePurchaseOptionRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The parent app (package name) of the purchase option to delete. */
-  packageName?: string;
-}
-export const DeletePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productId: S.optional(S.String),
-    purchaseOptionId: S.optional(S.String),
-    force: S.optional(S.Boolean),
-    latencyTolerance: S.optional(
-      DeletePurchaseOptionRequestLatencyToleranceEnum,
-    ),
-    packageName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeletePurchaseOptionRequest",
-}) as any as S.Schema<DeletePurchaseOptionRequest>;
-
-export type DeletePurchaseOptionRequestList =
-  Array<DeletePurchaseOptionRequest>;
-export const DeletePurchaseOptionRequestList = /*@__PURE__*/ S.Array(
-  DeletePurchaseOptionRequest,
-) as any as S.Schema<DeletePurchaseOptionRequestList>;
-
-/** Request message for BatchDeletePurchaseOption. */
-export interface BatchDeletePurchaseOptionsRequest {
-  /** Required. A list of delete requests of up to 100 elements. All requests must delete purchase options from different one-time products. */
-  requests?: DeletePurchaseOptionRequestList;
-}
-export const BatchDeletePurchaseOptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(DeletePurchaseOptionRequestList),
-  }),
-).annotate({
-  identifier: "BatchDeletePurchaseOptionsRequest",
-}) as any as S.Schema<BatchDeletePurchaseOptionsRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest {
-  /** Required. The parent app (package name) of the purchase options to delete. */
-  packageName: string;
-  /** Required. The product ID of the parent one-time product, if all purchase options to delete belong to the same one-time product. If this batch delete spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Request body */
-  body?: BatchDeletePurchaseOptionsRequest;
-}
-export const DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(BatchDeletePurchaseOptionsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse {}
-export const DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse>;
-
-export type DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for deleting an one-time product offer. */
-export interface DeleteOneTimeProductOfferRequest {
-  /** Required. The parent one-time product (ID) of the offer to delete. */
-  productId?: string;
-  /** Required. The unique offer ID of the offer to delete. */
-  offerId?: string;
-  /** Required. The parent app (package name) of the offer to delete. */
-  packageName?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeleteOneTimeProductOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The parent purchase option (ID) of the offer to delete. */
-  purchaseOptionId?: string;
-}
-export const DeleteOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productId: S.optional(S.String),
-    offerId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    latencyTolerance: S.optional(
-      DeleteOneTimeProductOfferRequestLatencyToleranceEnum,
-    ),
-    purchaseOptionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeleteOneTimeProductOfferRequest",
-}) as any as S.Schema<DeleteOneTimeProductOfferRequest>;
-
-export type DeleteOneTimeProductOfferRequestList =
-  Array<DeleteOneTimeProductOfferRequest>;
-export const DeleteOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
-  DeleteOneTimeProductOfferRequest,
-) as any as S.Schema<DeleteOneTimeProductOfferRequestList>;
-
-/** Request message for BatchDeleteOneTimeProductOffers. */
-export interface BatchDeleteOneTimeProductOffersRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must correspond to different offers. */
-  requests?: DeleteOneTimeProductOfferRequestList;
-}
-export const BatchDeleteOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requests: S.optional(DeleteOneTimeProductOfferRequestList),
-    }),
-).annotate({
-  identifier: "BatchDeleteOneTimeProductOffersRequest",
-}) as any as S.Schema<BatchDeleteOneTimeProductOffersRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest {
-  /** Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources. */
-  packageName: string;
-  /** Required. The parent purchase option (ID) for which the offers should be deleted. May be specified as '-' to update offers from multiple purchase options. */
-  purchaseOptionId: string;
-  /** Required. The product ID of the parent one-time product, if all offers to delete belong to the same product. If this request spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Request body */
-  body?: BatchDeleteOneTimeProductOffersRequest;
-}
-export const DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      purchaseOptionId: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(
-        BatchDeleteOneTimeProductOffersRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest>;
-
-export interface DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse {}
-export const DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse",
-  }) as any as S.Schema<DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse>;
-
 export interface DeleteEditsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const DeleteEditsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -4471,24 +6126,24 @@ export type DeleteEditsImagesImageTypeEnum =
 export const DeleteEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
 
 export interface DeleteEditsImagesRequest {
-  /** Package name of the app. */
-  packageName: string;
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
+  language: string;
   /** Unique identifier an image within the set of images attached to this edit. */
   imageId: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
   /** Type of the Image. */
   imageType: DeleteEditsImagesImageTypeEnum | (string & {});
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
-  language: string;
 }
 export const DeleteEditsImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
     imageId: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
     imageType: DeleteEditsImagesImageTypeEnum.pipe(T.Label()),
-    language: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -4610,23 +6265,23 @@ export const DeleteMonetizationOnetimeproductsLatencyToleranceEnum =
   /*@__PURE__*/ S.String;
 
 export interface DeleteMonetizationOnetimeproductsRequest {
+  /** Required. The parent app (package name) of the one-time product to delete. */
+  packageName: string;
+  /** Required. The one-time product ID of the one-time product to delete. */
+  productId: string;
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
   latencyTolerance?:
     | DeleteMonetizationOnetimeproductsLatencyToleranceEnum
     | (string & {});
-  /** Required. The one-time product ID of the one-time product to delete. */
-  productId: string;
-  /** Required. The parent app (package name) of the one-time product to delete. */
-  packageName: string;
 }
 export const DeleteMonetizationOnetimeproductsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
       latencyTolerance: S.optional(
         DeleteMonetizationOnetimeproductsLatencyToleranceEnum.pipe(T.Query()),
       ),
-      productId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -4645,16 +6300,16 @@ export const DeleteMonetizationOnetimeproductsResponse =
   }) as any as S.Schema<DeleteMonetizationOnetimeproductsResponse>;
 
 export interface DeleteMonetizationSubscriptionsRequest {
-  /** Required. The unique product ID of the subscription to delete. */
-  productId: string;
   /** Required. The parent app (package name) of the app of the subscription to delete. */
   packageName: string;
+  /** Required. The unique product ID of the subscription to delete. */
+  productId: string;
 }
 export const DeleteMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      productId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -4676,17 +6331,17 @@ export const DeleteMonetizationSubscriptionsResponse = /*@__PURE__*/ S.suspend(
 export interface DeleteMonetizationSubscriptionsBasePlansRequest {
   /** Required. The unique offer ID of the base plan to delete. */
   basePlanId: string;
-  /** Required. The parent app (package name) of the base plan to delete. */
-  packageName: string;
   /** Required. The parent subscription (ID) of the base plan to delete. */
   productId: string;
+  /** Required. The parent app (package name) of the base plan to delete. */
+  packageName: string;
 }
 export const DeleteMonetizationSubscriptionsBasePlansRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       basePlanId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -4707,20 +6362,20 @@ export const DeleteMonetizationSubscriptionsBasePlansResponse =
 export interface DeleteMonetizationSubscriptionsBasePlansOffersRequest {
   /** Required. The parent subscription (ID) of the offer to delete. */
   productId: string;
-  /** Required. The unique offer ID of the offer to delete. */
-  offerId: string;
-  /** Required. The parent app (package name) of the offer to delete. */
-  packageName: string;
   /** Required. The parent base plan (ID) of the offer to delete. */
   basePlanId: string;
+  /** Required. The parent app (package name) of the offer to delete. */
+  packageName: string;
+  /** Required. The unique offer ID of the offer to delete. */
+  offerId: string;
 }
 export const DeleteMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       productId: S.String.pipe(T.Label()),
-      offerId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
       basePlanId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      offerId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -4837,16 +6492,16 @@ export const DownloadGeneratedapksResponse = /*@__PURE__*/ S.suspend(() =>
 export interface DownloadSystemapksVariantsRequest {
   /** Package name of the app. */
   packageName: string;
-  /** The version code of the App Bundle. */
-  versionCode: string;
   /** The ID of a previously created system APK variant. */
   variantId: number;
+  /** The version code of the App Bundle. */
+  versionCode: string;
 }
 export const DownloadSystemapksVariantsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     packageName: S.String.pipe(T.Label()),
-    versionCode: S.String.pipe(T.Label()),
     variantId: S.Number.pipe(T.Label()),
+    versionCode: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4878,15 +6533,15 @@ export const CloudKmsKey = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud KMS key and the certificate associated with the key. */
 export interface CloudKmsKeyAndCert {
-  /** Required. Certificate associated with the key. The bytes must contain the certificate in PEM format. */
-  pemCertificate?: string;
   /** Required. Cloud KMS key. */
   cloudKmsKey?: CloudKmsKey;
+  /** Required. Certificate associated with the key. The bytes must contain the certificate in PEM format. */
+  pemCertificate?: string;
 }
 export const CloudKmsKeyAndCert = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pemCertificate: S.optional(S.String),
     cloudKmsKey: S.optional(CloudKmsKey),
+    pemCertificate: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CloudKmsKeyAndCert",
@@ -4918,18 +6573,18 @@ export const EnrollExistingApp = /*@__PURE__*/ S.suspend(() =>
 
 /** Request to enroll an app into Play App Signing using a self-hosted Cloud KMS key. */
 export interface EnrollAppRequest {
-  /** The certificate associated with the upload key, in PEM format. */
-  pemUploadCertificate?: string;
   /** Changes the signing key of a new app to an external Cloud KMS key. The app must not have published to Open testing or Production tracks. */
   enrollNewApp?: EnrollNewApp;
   /** Enrolls an existing app into Play signing using an external Cloud KMS key. */
   enrollExistingApp?: EnrollExistingApp;
+  /** The certificate associated with the upload key, in PEM format. */
+  pemUploadCertificate?: string;
 }
 export const EnrollAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pemUploadCertificate: S.optional(S.String),
     enrollNewApp: S.optional(EnrollNewApp),
     enrollExistingApp: S.optional(EnrollExistingApp),
+    pemUploadCertificate: S.optional(S.String),
   }),
 ).annotate({
   identifier: "EnrollAppRequest",
@@ -4977,15 +6632,15 @@ export const CertificateHashes = /*@__PURE__*/ S.suspend(() =>
 
 /** Response to enroll an app into Play signing. */
 export interface EnrollAppResponse {
-  /** The upload certificate hashes for the app. Set iff pem_upload_certificate was set in the request. */
-  uploadCertificate?: CertificateHashes;
   /** The signing certificate hashes for the app. Always set. */
   signingCertificate?: CertificateHashes;
+  /** The upload certificate hashes for the app. Set iff pem_upload_certificate was set in the request. */
+  uploadCertificate?: CertificateHashes;
 }
 export const EnrollAppResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    uploadCertificate: S.optional(CertificateHashes),
     signingCertificate: S.optional(CertificateHashes),
+    uploadCertificate: S.optional(CertificateHashes),
   }),
 ).annotate({
   identifier: "EnrollAppResponse",
@@ -5014,16 +6669,16 @@ export const GetApplicationsDeviceTierConfigsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetApplicationsDeviceTierConfigsRequest>;
 
 export interface GetAppstorecatalogRecentappviewsRequest {
-  /** Required. The package name of the requested Play app. */
-  playAppPackageName: string;
   /** Required. The package name of the app store on behalf of which the request is made. */
   appStorePackageName: string;
+  /** Required. The package name of the requested Play app. */
+  playAppPackageName: string;
 }
 export const GetAppstorecatalogRecentappviewsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      playAppPackageName: S.String.pipe(T.Label()),
       appStorePackageName: S.String.pipe(T.Label()),
+      playAppPackageName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -5034,391 +6689,6 @@ export const GetAppstorecatalogRecentappviewsRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "GetAppstorecatalogRecentappviewsRequest",
 }) as any as S.Schema<GetAppstorecatalogRecentappviewsRequest>;
-
-/** Defines a range of SDK versions. A device is considered compatible uf its\ SDK version falls within the min_sdk_version and max_sdk_version range. */
-export interface CatalogSdkVersion {
-  /** The maximum SDK version required for the app (inclusive). */
-  maxSdkVersion?: string;
-  /** The minimum SDK version required for the app (inclusive). */
-  minSdkVersion?: string;
-  /** The target SDK version for the app. */
-  targetSdkVersion?: string;
-}
-export const CatalogSdkVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxSdkVersion: S.optional(S.String),
-    minSdkVersion: S.optional(S.String),
-    targetSdkVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CatalogSdkVersion",
-}) as any as S.Schema<CatalogSdkVersion>;
-
-export type DeviceCompatibilityRequirementsSupportedScreensItemEnum =
-  | "SCREEN_SIZE_UNSPECIFIED"
-  | "SCREEN_SIZE_SMALL"
-  | "SCREEN_SIZE_NORMAL"
-  | "SCREEN_SIZE_LARGE"
-  | "SCREEN_SIZE_EXTRA_LARGE";
-export const DeviceCompatibilityRequirementsSupportedScreensItemEnum =
-  /*@__PURE__*/ S.String;
-
-export type DeviceCompatibilityRequirementsSupportedScreensItemEnumList =
-  Array<DeviceCompatibilityRequirementsSupportedScreensItemEnum>;
-export const DeviceCompatibilityRequirementsSupportedScreensItemEnumList =
-  /*@__PURE__*/ S.Array(
-    DeviceCompatibilityRequirementsSupportedScreensItemEnum,
-  ) as any as S.Schema<DeviceCompatibilityRequirementsSupportedScreensItemEnumList>;
-
-export type CompatibleScreenDensityEnum =
-  | "DENSITY_UNSPECIFIED"
-  | "DENSITY_NODPI"
-  | "DENSITY_LDPI"
-  | "DENSITY_MDPI"
-  | "DENSITY_TVDPI"
-  | "DENSITY_HDPI"
-  | "DENSITY_280"
-  | "DENSITY_XHDPI"
-  | "DENSITY_360"
-  | "DENSITY_400"
-  | "DENSITY_420"
-  | "DENSITY_XXHDPI"
-  | "DENSITY_560"
-  | "DENSITY_XXXHDPI";
-export const CompatibleScreenDensityEnum = /*@__PURE__*/ S.String;
-
-export type CompatibleScreenScreenSizeEnum =
-  | "SCREEN_SIZE_UNSPECIFIED"
-  | "SCREEN_SIZE_SMALL"
-  | "SCREEN_SIZE_NORMAL"
-  | "SCREEN_SIZE_LARGE"
-  | "SCREEN_SIZE_EXTRA_LARGE";
-export const CompatibleScreenScreenSizeEnum = /*@__PURE__*/ S.String;
-
-/** Compatible screens as listed in the `compatible-screens` Manifest tag. */
-export interface CompatibleScreen {
-  /** Screen density. */
-  density?: CompatibleScreenDensityEnum;
-  /** The screen size. */
-  screenSize?: CompatibleScreenScreenSizeEnum;
-}
-export const CompatibleScreen = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    density: S.optional(CompatibleScreenDensityEnum),
-    screenSize: S.optional(CompatibleScreenScreenSizeEnum),
-  }),
-).annotate({
-  identifier: "CompatibleScreen",
-}) as any as S.Schema<CompatibleScreen>;
-
-export type CompatibleScreenList = Array<CompatibleScreen>;
-export const CompatibleScreenList = /*@__PURE__*/ S.Array(
-  CompatibleScreen,
-) as any as S.Schema<CompatibleScreenList>;
-
-export type UsesConfigurationRequiredTouchscreenTypeEnum =
-  | "TOUCHSCREEN_TYPE_UNSPECIFIED"
-  | "TOUCHSCREEN_TYPE_UNDEFINED"
-  | "TOUCHSCREEN_TYPE_NO_TOUCHSCREEN"
-  | "TOUCHSCREEN_TYPE_STYLUS"
-  | "TOUCHSCREEN_TYPE_FINGER";
-export const UsesConfigurationRequiredTouchscreenTypeEnum =
-  /*@__PURE__*/ S.String;
-
-export type UsesConfigurationRequiredKeyboardTypeEnum =
-  | "KEYBOARD_TYPE_UNSPECIFIED"
-  | "KEYBOARD_TYPE_UNDEFINED"
-  | "KEYBOARD_TYPE_NO_KEYS"
-  | "KEYBOARD_TYPE_QWERTY"
-  | "KEYBOARD_TYPE_TWELVE_KEY";
-export const UsesConfigurationRequiredKeyboardTypeEnum = /*@__PURE__*/ S.String;
-
-export type UsesConfigurationRequiredNavigationTypeEnum =
-  | "NAVIGATION_TYPE_UNSPECIFIED"
-  | "NAVIGATION_TYPE_UNDEFINED"
-  | "NAVIGATION_TYPE_NO_NAVIGATION"
-  | "NAVIGATION_TYPE_DPAD"
-  | "NAVIGATION_TYPE_TRACKBALL"
-  | "NAVIGATION_TYPE_WHEEL";
-export const UsesConfigurationRequiredNavigationTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Represents all configurations marked as required by use of the uses-configuration manifest tag. */
-export interface UsesConfiguration {
-  /** The type of touchscreen required. */
-  requiredTouchscreenType?: UsesConfigurationRequiredTouchscreenTypeEnum;
-  /** The type of keyboard required. */
-  requiredKeyboardType?: UsesConfigurationRequiredKeyboardTypeEnum;
-  /** The navigation device required. */
-  requiredNavigationType?: UsesConfigurationRequiredNavigationTypeEnum;
-  /** Whether or not the application requires a five-way navigation control. */
-  requiresFiveWayNavigation?: boolean;
-  /** Whether or not the application requires a hardware keyboard. */
-  requiresHardwareKeyboard?: boolean;
-}
-export const UsesConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requiredTouchscreenType: S.optional(
-      UsesConfigurationRequiredTouchscreenTypeEnum,
-    ),
-    requiredKeyboardType: S.optional(UsesConfigurationRequiredKeyboardTypeEnum),
-    requiredNavigationType: S.optional(
-      UsesConfigurationRequiredNavigationTypeEnum,
-    ),
-    requiresFiveWayNavigation: S.optional(S.Boolean),
-    requiresHardwareKeyboard: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UsesConfiguration",
-}) as any as S.Schema<UsesConfiguration>;
-
-export type UsesConfigurationList = Array<UsesConfiguration>;
-export const UsesConfigurationList = /*@__PURE__*/ S.Array(
-  UsesConfiguration,
-) as any as S.Schema<UsesConfigurationList>;
-
-export type DeviceCompatibilityRequirementsUse32BitAbiEnum =
-  | "USE_32_BIT_ABI_UNSPECIFIED"
-  | "USE_32_BIT_ABI_TRUE"
-  | "USE_32_BIT_ABI_OTHER";
-export const DeviceCompatibilityRequirementsUse32BitAbiEnum =
-  /*@__PURE__*/ S.String;
-
-/** Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in a set to be considered compatible with the app. */
-export interface DeviceCompatibilityRequirements {
-  /** List of required ABIs (Application Binary Interface), e.g. `armeabi` or `x86`. */
-  nativePlatforms?: StringList;
-  /** Specifies if the app requires a screen. */
-  isScreenRequired?: boolean;
-  /** Supported gl textures as specified by the `supported-gl-texture` Manifest tag. */
-  supportedGlTextures?: StringList;
-  /** Defines a range of SDK versions that the app is compatible with. */
-  sdkVersion?: CatalogSdkVersion;
-  /** Compatible screens as listed in the `supports-screens` Manifest tag. */
-  supportedScreens?: DeviceCompatibilityRequirementsSupportedScreensItemEnumList;
-  /** Compatible screens as listed in the `compatible-screens` Manifest tag. */
-  compatibleScreens?: CompatibleScreenList;
-  /** Lists all configurations marked as required by use of the `uses-configuration` manifest tag. Each instance of this proto represents a single `uses-configuration` entry. See http://developer.android.com/guide/topics/manifest/uses-configuration-element.html */
-  usesConfigurations?: UsesConfigurationList;
-  /** Specifies the minimum smallest width required of the screen. */
-  requiresSmallestWidthDp?: string;
-  /** Required version of OpenGL ES. */
-  glEsVersion?: number;
-  /** The system features that the app requires. A device must have all of the system features to be considered compatible with the app. */
-  requiredSystemFeatures?: StringList;
-  /** List of required libraries as declared in the `uses-library` manifest tag. */
-  requiredSoftwareLibraries?: StringList;
-  /** Value of `android:use32BitAbi` flag retrieved from the Manifest. */
-  use32BitAbi?: DeviceCompatibilityRequirementsUse32BitAbiEnum;
-}
-export const DeviceCompatibilityRequirements = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nativePlatforms: S.optional(StringList),
-    isScreenRequired: S.optional(S.Boolean),
-    supportedGlTextures: S.optional(StringList),
-    sdkVersion: S.optional(CatalogSdkVersion),
-    supportedScreens: S.optional(
-      DeviceCompatibilityRequirementsSupportedScreensItemEnumList,
-    ),
-    compatibleScreens: S.optional(CompatibleScreenList),
-    usesConfigurations: S.optional(UsesConfigurationList),
-    requiresSmallestWidthDp: S.optional(S.String),
-    glEsVersion: S.optional(S.Number),
-    requiredSystemFeatures: S.optional(StringList),
-    requiredSoftwareLibraries: S.optional(StringList),
-    use32BitAbi: S.optional(DeviceCompatibilityRequirementsUse32BitAbiEnum),
-  }),
-).annotate({
-  identifier: "DeviceCompatibilityRequirements",
-}) as any as S.Schema<DeviceCompatibilityRequirements>;
-
-export type DeviceCompatibilityRequirementsList =
-  Array<DeviceCompatibilityRequirements>;
-export const DeviceCompatibilityRequirementsList = /*@__PURE__*/ S.Array(
-  DeviceCompatibilityRequirements,
-) as any as S.Schema<DeviceCompatibilityRequirementsList>;
-
-/** Defines a device identifier for a device. */
-export interface DeviceIdentifier {
-  /** The brand of the device. */
-  deviceBrand?: string;
-  /** The model of the device. */
-  deviceModel?: string;
-}
-export const DeviceIdentifier = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceBrand: S.optional(S.String),
-    deviceModel: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeviceIdentifier",
-}) as any as S.Schema<DeviceIdentifier>;
-
-export type DeviceIdentifierList = Array<DeviceIdentifier>;
-export const DeviceIdentifierList = /*@__PURE__*/ S.Array(
-  DeviceIdentifier,
-) as any as S.Schema<DeviceIdentifierList>;
-
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Androidpublisher_Date {
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-}
-export const Androidpublisher_Date = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    day: S.optional(S.Number),
-    year: S.optional(S.Number),
-    month: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "Androidpublisher_Date",
-}) as any as S.Schema<Androidpublisher_Date>;
-
-/** Defines a SOC selector for a device. This will match any device whose SoC (System on Chip) matches all fields in the selector. */
-export interface SocSelector {
-  /** The manufacturer of the SoC. */
-  socMake?: string;
-  /** The model of the SoC. */
-  socModel?: string;
-}
-export const SocSelector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    socMake: S.optional(S.String),
-    socModel: S.optional(S.String),
-  }),
-).annotate({ identifier: "SocSelector" }) as any as S.Schema<SocSelector>;
-
-export type SocSelectorList = Array<SocSelector>;
-export const SocSelectorList = /*@__PURE__*/ S.Array(
-  SocSelector,
-) as any as S.Schema<SocSelectorList>;
-
-export type CatalogDeviceSelectorDeviceTypeSelectorEnum =
-  | "DEVICE_TYPE_SELECTOR_UNSPECIFIED"
-  | "ANDROID_GO";
-export const CatalogDeviceSelectorDeviceTypeSelectorEnum =
-  /*@__PURE__*/ S.String;
-
-/** Defines a RAM selector for a device. */
-export interface RamSelector {
-  /** This will match any device that has less than or equal ram_mb_less_than_or_equal mb of RAM. */
-  ramMbLessThanOrEqual?: string;
-}
-export const RamSelector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ramMbLessThanOrEqual: S.optional(S.String),
-  }),
-).annotate({ identifier: "RamSelector" }) as any as S.Schema<RamSelector>;
-
-/** Defines a device selector for a device. A device is considered matched if it matches any of given the selectors. */
-export interface CatalogDeviceSelector {
-  /** The SOC selectors. A device matches the device selector if it matches any of the SOC selectors. */
-  socSelectors?: SocSelectorList;
-  /** The device type selector. */
-  deviceTypeSelector?: CatalogDeviceSelectorDeviceTypeSelectorEnum;
-  /** Defines a RAM selector for a device. */
-  ramSelector?: RamSelector;
-}
-export const CatalogDeviceSelector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    socSelectors: S.optional(SocSelectorList),
-    deviceTypeSelector: S.optional(CatalogDeviceSelectorDeviceTypeSelectorEnum),
-    ramSelector: S.optional(RamSelector),
-  }),
-).annotate({
-  identifier: "CatalogDeviceSelector",
-}) as any as S.Schema<CatalogDeviceSelector>;
-
-export type CatalogDeviceSelectorList = Array<CatalogDeviceSelector>;
-export const CatalogDeviceSelectorList = /*@__PURE__*/ S.Array(
-  CatalogDeviceSelector,
-) as any as S.Schema<CatalogDeviceSelectorList>;
-
-/** The developer details of a Google Play app. */
-export interface DeveloperDetails {
-  /** The developer name of the app. */
-  developerName?: string;
-  /** The phone number of the developer. */
-  phoneNumber?: string;
-  /** The physical address of the developer. */
-  address?: string;
-  /** The website of the developer. */
-  website?: string;
-  /** The contact email of the developer. */
-  contactEmail?: string;
-}
-export const DeveloperDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    developerName: S.optional(S.String),
-    phoneNumber: S.optional(S.String),
-    address: S.optional(S.String),
-    website: S.optional(S.String),
-    contactEmail: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeveloperDetails",
-}) as any as S.Schema<DeveloperDetails>;
-
-export type CatalogAppViewAppCategoryEnum =
-  | "APP_CATEGORY_UNSPECIFIED"
-  | "GAME"
-  | "APP";
-export const CatalogAppViewAppCategoryEnum = /*@__PURE__*/ S.String;
-
-/** A permission declared by an app. */
-export interface CatalogPermission {
-  /** The `maxSdkVersion` attribute indicating up to which Android SDK version the permission is requested. */
-  maxSdkVersion?: number;
-  /** The `name` attribute indicating the permission name. */
-  name?: string;
-}
-export const CatalogPermission = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxSdkVersion: S.optional(S.Number),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CatalogPermission",
-}) as any as S.Schema<CatalogPermission>;
-
-export type CatalogPermissionList = Array<CatalogPermission>;
-export const CatalogPermissionList = /*@__PURE__*/ S.Array(
-  CatalogPermission,
-) as any as S.Schema<CatalogPermissionList>;
-
-/** Contact information for the app. */
-export interface AppContactInformation {
-  /** The contact phone for this app. Optionally provided by the developer. */
-  phoneNumber?: string;
-  /** The contact website url for this app. Optionally provided by the developer. */
-  websiteUrl?: string;
-  /** The contact email for this app. Always set. */
-  contactEmail?: string;
-}
-export const AppContactInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    phoneNumber: S.optional(S.String),
-    websiteUrl: S.optional(S.String),
-    contactEmail: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppContactInformation",
-}) as any as S.Schema<AppContactInformation>;
-
-/** A video asset. */
-export interface VideoAsset {
-  /** The URL of the video asset. */
-  videoUrl?: string;
-}
-export const VideoAsset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    videoUrl: S.optional(S.String),
-  }),
-).annotate({ identifier: "VideoAsset" }) as any as S.Schema<VideoAsset>;
 
 /** An image asset. */
 export interface ImageAsset {
@@ -5447,41 +6717,52 @@ export const ScreenshotSet = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ScreenshotSet" }) as any as S.Schema<ScreenshotSet>;
 
+/** A video asset. */
+export interface VideoAsset {
+  /** The URL of the video asset. */
+  videoUrl?: string;
+}
+export const VideoAsset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    videoUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "VideoAsset" }) as any as S.Schema<VideoAsset>;
+
 /** A localized store listings of the app. */
 export interface LocalizedStoreListing {
-  /** The video of the app. */
-  video?: VideoAsset;
   /** The small tablet screenshots of the app. */
   tabletSmallScreenshots?: ScreenshotSet;
-  /** The regular tablet screenshots of the app. */
-  tabletRegularScreenshots?: ScreenshotSet;
-  /** A longer description of the app in this localization. */
-  fullDescription?: string;
-  /** The feature graphic of the app. */
-  featureGraphic?: ImageAsset;
-  /** The name of the app in this localization. */
-  appName?: string;
-  /** A short description of the app in this localization. */
-  shortDescription?: string;
   /** The BCP-47 language code for this localization. */
   languageCode?: string;
-  /** The icon of the app. */
-  icon?: ImageAsset;
+  /** A longer description of the app in this localization. */
+  fullDescription?: string;
+  /** A short description of the app in this localization. */
+  shortDescription?: string;
+  /** The name of the app in this localization. */
+  appName?: string;
+  /** The regular tablet screenshots of the app. */
+  tabletRegularScreenshots?: ScreenshotSet;
   /** The phone screenshots of the app. */
   phoneScreenshots?: ScreenshotSet;
+  /** The feature graphic of the app. */
+  featureGraphic?: ImageAsset;
+  /** The video of the app. */
+  video?: VideoAsset;
+  /** The icon of the app. */
+  icon?: ImageAsset;
 }
 export const LocalizedStoreListing = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    video: S.optional(VideoAsset),
     tabletSmallScreenshots: S.optional(ScreenshotSet),
-    tabletRegularScreenshots: S.optional(ScreenshotSet),
-    fullDescription: S.optional(S.String),
-    featureGraphic: S.optional(ImageAsset),
-    appName: S.optional(S.String),
-    shortDescription: S.optional(S.String),
     languageCode: S.optional(S.String),
-    icon: S.optional(ImageAsset),
+    fullDescription: S.optional(S.String),
+    shortDescription: S.optional(S.String),
+    appName: S.optional(S.String),
+    tabletRegularScreenshots: S.optional(ScreenshotSet),
     phoneScreenshots: S.optional(ScreenshotSet),
+    featureGraphic: S.optional(ImageAsset),
+    video: S.optional(VideoAsset),
+    icon: S.optional(ImageAsset),
   }),
 ).annotate({
   identifier: "LocalizedStoreListing",
@@ -5494,92 +6775,466 @@ export const LocalizedStoreListingList = /*@__PURE__*/ S.Array(
 
 /** The localized store listings of an app. */
 export interface LocalizedStoreListings {
-  localizedStoreListings?: LocalizedStoreListingList;
   /** The default language code of the app. If a localized store listing is not available for a given language, assets from the default language are used instead. */
   defaultLanguageCode?: string;
+  localizedStoreListings?: LocalizedStoreListingList;
 }
 export const LocalizedStoreListings = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    localizedStoreListings: S.optional(LocalizedStoreListingList),
     defaultLanguageCode: S.optional(S.String),
+    localizedStoreListings: S.optional(LocalizedStoreListingList),
   }),
 ).annotate({
   identifier: "LocalizedStoreListings",
 }) as any as S.Schema<LocalizedStoreListings>;
 
+/** Defines a device identifier for a device. */
+export interface DeviceIdentifier {
+  /** The brand of the device. */
+  deviceBrand?: string;
+  /** The model of the device. */
+  deviceModel?: string;
+}
+export const DeviceIdentifier = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceBrand: S.optional(S.String),
+    deviceModel: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeviceIdentifier",
+}) as any as S.Schema<DeviceIdentifier>;
+
+export type DeviceIdentifierList = Array<DeviceIdentifier>;
+export const DeviceIdentifierList = /*@__PURE__*/ S.Array(
+  DeviceIdentifier,
+) as any as S.Schema<DeviceIdentifierList>;
+
+/** Defines a range of SDK versions. A device is considered compatible uf its\ SDK version falls within the min_sdk_version and max_sdk_version range. */
+export interface CatalogSdkVersion {
+  /** The maximum SDK version required for the app (inclusive). */
+  maxSdkVersion?: string;
+  /** The minimum SDK version required for the app (inclusive). */
+  minSdkVersion?: string;
+  /** The target SDK version for the app. */
+  targetSdkVersion?: string;
+}
+export const CatalogSdkVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxSdkVersion: S.optional(S.String),
+    minSdkVersion: S.optional(S.String),
+    targetSdkVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CatalogSdkVersion",
+}) as any as S.Schema<CatalogSdkVersion>;
+
+export type CompatibleScreenScreenSizeEnum =
+  | "SCREEN_SIZE_UNSPECIFIED"
+  | "SCREEN_SIZE_SMALL"
+  | "SCREEN_SIZE_NORMAL"
+  | "SCREEN_SIZE_LARGE"
+  | "SCREEN_SIZE_EXTRA_LARGE";
+export const CompatibleScreenScreenSizeEnum = /*@__PURE__*/ S.String;
+
+export type CompatibleScreenDensityEnum =
+  | "DENSITY_UNSPECIFIED"
+  | "DENSITY_NODPI"
+  | "DENSITY_LDPI"
+  | "DENSITY_MDPI"
+  | "DENSITY_TVDPI"
+  | "DENSITY_HDPI"
+  | "DENSITY_280"
+  | "DENSITY_XHDPI"
+  | "DENSITY_360"
+  | "DENSITY_400"
+  | "DENSITY_420"
+  | "DENSITY_XXHDPI"
+  | "DENSITY_560"
+  | "DENSITY_XXXHDPI";
+export const CompatibleScreenDensityEnum = /*@__PURE__*/ S.String;
+
+/** Compatible screens as listed in the `compatible-screens` Manifest tag. */
+export interface CompatibleScreen {
+  /** The screen size. */
+  screenSize?: CompatibleScreenScreenSizeEnum;
+  /** Screen density. */
+  density?: CompatibleScreenDensityEnum;
+}
+export const CompatibleScreen = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    screenSize: S.optional(CompatibleScreenScreenSizeEnum),
+    density: S.optional(CompatibleScreenDensityEnum),
+  }),
+).annotate({
+  identifier: "CompatibleScreen",
+}) as any as S.Schema<CompatibleScreen>;
+
+export type CompatibleScreenList = Array<CompatibleScreen>;
+export const CompatibleScreenList = /*@__PURE__*/ S.Array(
+  CompatibleScreen,
+) as any as S.Schema<CompatibleScreenList>;
+
+export type DeviceCompatibilityRequirementsSupportedScreensItemEnum =
+  | "SCREEN_SIZE_UNSPECIFIED"
+  | "SCREEN_SIZE_SMALL"
+  | "SCREEN_SIZE_NORMAL"
+  | "SCREEN_SIZE_LARGE"
+  | "SCREEN_SIZE_EXTRA_LARGE";
+export const DeviceCompatibilityRequirementsSupportedScreensItemEnum =
+  /*@__PURE__*/ S.String;
+
+export type DeviceCompatibilityRequirementsSupportedScreensItemEnumList =
+  Array<DeviceCompatibilityRequirementsSupportedScreensItemEnum>;
+export const DeviceCompatibilityRequirementsSupportedScreensItemEnumList =
+  /*@__PURE__*/ S.Array(
+    DeviceCompatibilityRequirementsSupportedScreensItemEnum,
+  ) as any as S.Schema<DeviceCompatibilityRequirementsSupportedScreensItemEnumList>;
+
+export type UsesConfigurationRequiredTouchscreenTypeEnum =
+  | "TOUCHSCREEN_TYPE_UNSPECIFIED"
+  | "TOUCHSCREEN_TYPE_UNDEFINED"
+  | "TOUCHSCREEN_TYPE_NO_TOUCHSCREEN"
+  | "TOUCHSCREEN_TYPE_STYLUS"
+  | "TOUCHSCREEN_TYPE_FINGER";
+export const UsesConfigurationRequiredTouchscreenTypeEnum =
+  /*@__PURE__*/ S.String;
+
+export type UsesConfigurationRequiredNavigationTypeEnum =
+  | "NAVIGATION_TYPE_UNSPECIFIED"
+  | "NAVIGATION_TYPE_UNDEFINED"
+  | "NAVIGATION_TYPE_NO_NAVIGATION"
+  | "NAVIGATION_TYPE_DPAD"
+  | "NAVIGATION_TYPE_TRACKBALL"
+  | "NAVIGATION_TYPE_WHEEL";
+export const UsesConfigurationRequiredNavigationTypeEnum =
+  /*@__PURE__*/ S.String;
+
+export type UsesConfigurationRequiredKeyboardTypeEnum =
+  | "KEYBOARD_TYPE_UNSPECIFIED"
+  | "KEYBOARD_TYPE_UNDEFINED"
+  | "KEYBOARD_TYPE_NO_KEYS"
+  | "KEYBOARD_TYPE_QWERTY"
+  | "KEYBOARD_TYPE_TWELVE_KEY";
+export const UsesConfigurationRequiredKeyboardTypeEnum = /*@__PURE__*/ S.String;
+
+/** Represents all configurations marked as required by use of the uses-configuration manifest tag. */
+export interface UsesConfiguration {
+  /** The type of touchscreen required. */
+  requiredTouchscreenType?: UsesConfigurationRequiredTouchscreenTypeEnum;
+  /** Whether or not the application requires a hardware keyboard. */
+  requiresHardwareKeyboard?: boolean;
+  /** Whether or not the application requires a five-way navigation control. */
+  requiresFiveWayNavigation?: boolean;
+  /** The navigation device required. */
+  requiredNavigationType?: UsesConfigurationRequiredNavigationTypeEnum;
+  /** The type of keyboard required. */
+  requiredKeyboardType?: UsesConfigurationRequiredKeyboardTypeEnum;
+}
+export const UsesConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requiredTouchscreenType: S.optional(
+      UsesConfigurationRequiredTouchscreenTypeEnum,
+    ),
+    requiresHardwareKeyboard: S.optional(S.Boolean),
+    requiresFiveWayNavigation: S.optional(S.Boolean),
+    requiredNavigationType: S.optional(
+      UsesConfigurationRequiredNavigationTypeEnum,
+    ),
+    requiredKeyboardType: S.optional(UsesConfigurationRequiredKeyboardTypeEnum),
+  }),
+).annotate({
+  identifier: "UsesConfiguration",
+}) as any as S.Schema<UsesConfiguration>;
+
+export type UsesConfigurationList = Array<UsesConfiguration>;
+export const UsesConfigurationList = /*@__PURE__*/ S.Array(
+  UsesConfiguration,
+) as any as S.Schema<UsesConfigurationList>;
+
+export type DeviceCompatibilityRequirementsUse32BitAbiEnum =
+  | "USE_32_BIT_ABI_UNSPECIFIED"
+  | "USE_32_BIT_ABI_TRUE"
+  | "USE_32_BIT_ABI_OTHER";
+export const DeviceCompatibilityRequirementsUse32BitAbiEnum =
+  /*@__PURE__*/ S.String;
+
+/** Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in a set to be considered compatible with the app. */
+export interface DeviceCompatibilityRequirements {
+  /** Specifies if the app requires a screen. */
+  isScreenRequired?: boolean;
+  /** List of required libraries as declared in the `uses-library` manifest tag. */
+  requiredSoftwareLibraries?: StringList;
+  /** Defines a range of SDK versions that the app is compatible with. */
+  sdkVersion?: CatalogSdkVersion;
+  /** Compatible screens as listed in the `compatible-screens` Manifest tag. */
+  compatibleScreens?: CompatibleScreenList;
+  /** Required version of OpenGL ES. */
+  glEsVersion?: number;
+  /** Specifies the minimum smallest width required of the screen. */
+  requiresSmallestWidthDp?: string;
+  /** List of required ABIs (Application Binary Interface), e.g. `armeabi` or `x86`. */
+  nativePlatforms?: StringList;
+  /** The system features that the app requires. A device must have all of the system features to be considered compatible with the app. */
+  requiredSystemFeatures?: StringList;
+  /** Compatible screens as listed in the `supports-screens` Manifest tag. */
+  supportedScreens?: DeviceCompatibilityRequirementsSupportedScreensItemEnumList;
+  /** Supported gl textures as specified by the `supported-gl-texture` Manifest tag. */
+  supportedGlTextures?: StringList;
+  /** Lists all configurations marked as required by use of the `uses-configuration` manifest tag. Each instance of this proto represents a single `uses-configuration` entry. See http://developer.android.com/guide/topics/manifest/uses-configuration-element.html */
+  usesConfigurations?: UsesConfigurationList;
+  /** Value of `android:use32BitAbi` flag retrieved from the Manifest. */
+  use32BitAbi?: DeviceCompatibilityRequirementsUse32BitAbiEnum;
+}
+export const DeviceCompatibilityRequirements = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isScreenRequired: S.optional(S.Boolean),
+    requiredSoftwareLibraries: S.optional(StringList),
+    sdkVersion: S.optional(CatalogSdkVersion),
+    compatibleScreens: S.optional(CompatibleScreenList),
+    glEsVersion: S.optional(S.Number),
+    requiresSmallestWidthDp: S.optional(S.String),
+    nativePlatforms: S.optional(StringList),
+    requiredSystemFeatures: S.optional(StringList),
+    supportedScreens: S.optional(
+      DeviceCompatibilityRequirementsSupportedScreensItemEnumList,
+    ),
+    supportedGlTextures: S.optional(StringList),
+    usesConfigurations: S.optional(UsesConfigurationList),
+    use32BitAbi: S.optional(DeviceCompatibilityRequirementsUse32BitAbiEnum),
+  }),
+).annotate({
+  identifier: "DeviceCompatibilityRequirements",
+}) as any as S.Schema<DeviceCompatibilityRequirements>;
+
+export type DeviceCompatibilityRequirementsList =
+  Array<DeviceCompatibilityRequirements>;
+export const DeviceCompatibilityRequirementsList = /*@__PURE__*/ S.Array(
+  DeviceCompatibilityRequirements,
+) as any as S.Schema<DeviceCompatibilityRequirementsList>;
+
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Androidpublisher_Date {
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+}
+export const Androidpublisher_Date = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    year: S.optional(S.Number),
+    month: S.optional(S.Number),
+    day: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "Androidpublisher_Date",
+}) as any as S.Schema<Androidpublisher_Date>;
+
+/** A permission declared by an app. */
+export interface CatalogPermission {
+  /** The `name` attribute indicating the permission name. */
+  name?: string;
+  /** The `maxSdkVersion` attribute indicating up to which Android SDK version the permission is requested. */
+  maxSdkVersion?: number;
+}
+export const CatalogPermission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    maxSdkVersion: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CatalogPermission",
+}) as any as S.Schema<CatalogPermission>;
+
+export type CatalogPermissionList = Array<CatalogPermission>;
+export const CatalogPermissionList = /*@__PURE__*/ S.Array(
+  CatalogPermission,
+) as any as S.Schema<CatalogPermissionList>;
+
+/** The developer details of a Google Play app. */
+export interface DeveloperDetails {
+  /** The phone number of the developer. */
+  phoneNumber?: string;
+  /** The contact email of the developer. */
+  contactEmail?: string;
+  /** The physical address of the developer. */
+  address?: string;
+  /** The website of the developer. */
+  website?: string;
+  /** The developer name of the app. */
+  developerName?: string;
+}
+export const DeveloperDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    phoneNumber: S.optional(S.String),
+    contactEmail: S.optional(S.String),
+    address: S.optional(S.String),
+    website: S.optional(S.String),
+    developerName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeveloperDetails",
+}) as any as S.Schema<DeveloperDetails>;
+
+/** Contact information for the app. */
+export interface AppContactInformation {
+  /** The contact email for this app. Always set. */
+  contactEmail?: string;
+  /** The contact website url for this app. Optionally provided by the developer. */
+  websiteUrl?: string;
+  /** The contact phone for this app. Optionally provided by the developer. */
+  phoneNumber?: string;
+}
+export const AppContactInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contactEmail: S.optional(S.String),
+    websiteUrl: S.optional(S.String),
+    phoneNumber: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppContactInformation",
+}) as any as S.Schema<AppContactInformation>;
+
+/** Defines a RAM selector for a device. */
+export interface RamSelector {
+  /** This will match any device that has less than or equal ram_mb_less_than_or_equal mb of RAM. */
+  ramMbLessThanOrEqual?: string;
+}
+export const RamSelector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ramMbLessThanOrEqual: S.optional(S.String),
+  }),
+).annotate({ identifier: "RamSelector" }) as any as S.Schema<RamSelector>;
+
+/** Defines a SOC selector for a device. This will match any device whose SoC (System on Chip) matches all fields in the selector. */
+export interface SocSelector {
+  /** The model of the SoC. */
+  socModel?: string;
+  /** The manufacturer of the SoC. */
+  socMake?: string;
+}
+export const SocSelector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    socModel: S.optional(S.String),
+    socMake: S.optional(S.String),
+  }),
+).annotate({ identifier: "SocSelector" }) as any as S.Schema<SocSelector>;
+
+export type SocSelectorList = Array<SocSelector>;
+export const SocSelectorList = /*@__PURE__*/ S.Array(
+  SocSelector,
+) as any as S.Schema<SocSelectorList>;
+
+export type CatalogDeviceSelectorDeviceTypeSelectorEnum =
+  | "DEVICE_TYPE_SELECTOR_UNSPECIFIED"
+  | "ANDROID_GO";
+export const CatalogDeviceSelectorDeviceTypeSelectorEnum =
+  /*@__PURE__*/ S.String;
+
+/** Defines a device selector for a device. A device is considered matched if it matches any of given the selectors. */
+export interface CatalogDeviceSelector {
+  /** Defines a RAM selector for a device. */
+  ramSelector?: RamSelector;
+  /** The SOC selectors. A device matches the device selector if it matches any of the SOC selectors. */
+  socSelectors?: SocSelectorList;
+  /** The device type selector. */
+  deviceTypeSelector?: CatalogDeviceSelectorDeviceTypeSelectorEnum;
+}
+export const CatalogDeviceSelector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ramSelector: S.optional(RamSelector),
+    socSelectors: S.optional(SocSelectorList),
+    deviceTypeSelector: S.optional(CatalogDeviceSelectorDeviceTypeSelectorEnum),
+  }),
+).annotate({
+  identifier: "CatalogDeviceSelector",
+}) as any as S.Schema<CatalogDeviceSelector>;
+
+export type CatalogDeviceSelectorList = Array<CatalogDeviceSelector>;
+export const CatalogDeviceSelectorList = /*@__PURE__*/ S.Array(
+  CatalogDeviceSelector,
+) as any as S.Schema<CatalogDeviceSelectorList>;
+
+export type CatalogAppViewAppCategoryEnum =
+  | "APP_CATEGORY_UNSPECIFIED"
+  | "GAME"
+  | "APP";
+export const CatalogAppViewAppCategoryEnum = /*@__PURE__*/ S.String;
+
 /** LINT.IfChange A view of a Google Play app within the Catalog Export for app stores. */
 export interface CatalogAppView {
-  /** The IARC certificate ID for the app. */
-  iarcCertificateId?: string;
-  /** The timestamp when the app was last published. */
-  lastPublishTime?: string;
-  /** The app may specify multiple sets of device compatibility requirements, and a device is considered compatible with the app if it satisfies at least one of `DeviceCompatibilityRequirements`. */
-  deviceCompatibilityRequirements?: DeviceCompatibilityRequirementsList;
-  /** The token used for delivery of the app with the Google Play Inline Install API. */
-  deliveryToken?: string;
-  /** List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. These are OR-ed, i.e. a device is excluded if it matches any of the identifiers. */
-  excludedDevicesByIdentifier?: DeviceIdentifierList;
-  /** The date when the app was first released. */
-  firstReleaseDate?: Androidpublisher_Date;
+  /** The localized store listings of the app which are shown on Google Play. */
+  localizedStoreListings?: LocalizedStoreListings;
   /** Whether the app is targeted to an adult-only (18+) audience. */
   isAdultOnlyAudience?: boolean;
-  /** List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. A device is excluded if it matches any of given the selectors. */
-  excludedDevicesBySelector?: CatalogDeviceSelectorList;
-  /** The package name of the app. */
-  packageName?: string;
   /** Whether the app has in-app purchases through Google Play. */
   hasInAppPurchases?: boolean;
+  /** The IARC certificate ID for the app. */
+  iarcCertificateId?: string;
+  /** Active versions of the app mapped from `android:versionName` manifest attributes. */
+  activeVersionNames?: StringList;
+  /** The timestamp when the app was last published. */
+  lastPublishTime?: string;
+  /** The subcategory of the app e.g. "GAME_ACTION". */
+  appSubcategory?: string;
+  /** List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. These are OR-ed, i.e. a device is excluded if it matches any of the identifiers. */
+  excludedDevicesByIdentifier?: DeviceIdentifierList;
+  /** The app may specify multiple sets of device compatibility requirements, and a device is considered compatible with the app if it satisfies at least one of `DeviceCompatibilityRequirements`. */
+  deviceCompatibilityRequirements?: DeviceCompatibilityRequirementsList;
+  /** The date when the app was first released. */
+  firstReleaseDate?: Androidpublisher_Date;
+  /** Required permissions declared by the app which apply for Android SDK versions SDK 23 and above. */
+  permissionsSdk23?: CatalogPermissionList;
+  /** The package name of the app. */
+  packageName?: string;
+  /** Whether the app has ads. */
+  hasInAppAds?: boolean;
   /** The developer details of the app. */
   developerDetails?: DeveloperDetails;
+  /** The token used for delivery of the app with the Google Play Inline Install API. */
+  deliveryToken?: string;
+  /** Developer-provided contact information for the app. */
+  appContactInformation?: AppContactInformation;
+  /** The price of the app in the United States. Empty if the app is free. */
+  priceInTheUnitedStates?: Money;
+  /** List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. A device is excluded if it matches any of given the selectors. */
+  excludedDevicesBySelector?: CatalogDeviceSelectorList;
+  /** Required permissions declared by the app which apply for all Android SDK versions. */
+  permissions?: CatalogPermissionList;
   /** The URL of the app's privacy policy. */
   privacyPolicyUrl?: string;
   /** The category of the app. */
   appCategory?: CatalogAppViewAppCategoryEnum;
-  /** Required permissions declared by the app which apply for Android SDK versions SDK 23 and above. */
-  permissionsSdk23?: CatalogPermissionList;
-  /** The subcategory of the app e.g. "GAME_ACTION". */
-  appSubcategory?: string;
-  /** Required permissions declared by the app which apply for all Android SDK versions. */
-  permissions?: CatalogPermissionList;
-  /** Developer-provided contact information for the app. */
-  appContactInformation?: AppContactInformation;
-  /** The localized store listings of the app which are shown on Google Play. */
-  localizedStoreListings?: LocalizedStoreListings;
   /** The sale price of the app in the United States. Only populated for paid apps with an active US sale. */
   salePriceInTheUnitedStates?: Money;
-  /** Active versions of the app mapped from `android:versionName` manifest attributes. */
-  activeVersionNames?: StringList;
-  /** Whether the app has ads. */
-  hasInAppAds?: boolean;
-  /** The price of the app in the United States. Empty if the app is free. */
-  priceInTheUnitedStates?: Money;
 }
 export const CatalogAppView = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    localizedStoreListings: S.optional(LocalizedStoreListings),
+    isAdultOnlyAudience: S.optional(S.Boolean),
+    hasInAppPurchases: S.optional(S.Boolean),
     iarcCertificateId: S.optional(S.String),
+    activeVersionNames: S.optional(StringList),
     lastPublishTime: S.optional(S.String),
+    appSubcategory: S.optional(S.String),
+    excludedDevicesByIdentifier: S.optional(DeviceIdentifierList),
     deviceCompatibilityRequirements: S.optional(
       DeviceCompatibilityRequirementsList,
     ),
-    deliveryToken: S.optional(S.String),
-    excludedDevicesByIdentifier: S.optional(DeviceIdentifierList),
     firstReleaseDate: S.optional(Androidpublisher_Date),
-    isAdultOnlyAudience: S.optional(S.Boolean),
-    excludedDevicesBySelector: S.optional(CatalogDeviceSelectorList),
+    permissionsSdk23: S.optional(CatalogPermissionList),
     packageName: S.optional(S.String),
-    hasInAppPurchases: S.optional(S.Boolean),
+    hasInAppAds: S.optional(S.Boolean),
     developerDetails: S.optional(DeveloperDetails),
+    deliveryToken: S.optional(S.String),
+    appContactInformation: S.optional(AppContactInformation),
+    priceInTheUnitedStates: S.optional(Money),
+    excludedDevicesBySelector: S.optional(CatalogDeviceSelectorList),
+    permissions: S.optional(CatalogPermissionList),
     privacyPolicyUrl: S.optional(S.String),
     appCategory: S.optional(CatalogAppViewAppCategoryEnum),
-    permissionsSdk23: S.optional(CatalogPermissionList),
-    appSubcategory: S.optional(S.String),
-    permissions: S.optional(CatalogPermissionList),
-    appContactInformation: S.optional(AppContactInformation),
-    localizedStoreListings: S.optional(LocalizedStoreListings),
     salePriceInTheUnitedStates: S.optional(Money),
-    activeVersionNames: S.optional(StringList),
-    hasInAppAds: S.optional(S.Boolean),
-    priceInTheUnitedStates: S.optional(Money),
   }),
 ).annotate({ identifier: "CatalogAppView" }) as any as S.Schema<CatalogAppView>;
 
@@ -5594,754 +7249,16 @@ export const RecentAppView = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RecentAppView" }) as any as S.Schema<RecentAppView>;
 
-export interface GetBatchInappproductRequest {
-  /** Unique identifier for the in-app products. */
-  sku?: StringList;
-  /** Package name of the app. */
-  packageName: string;
-}
-export const GetBatchInappproductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(StringList.pipe(T.Query())),
-    packageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchGet",
-      baseUrl: "https://androidpublisher.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "GetBatchInappproductRequest",
-}) as any as S.Schema<GetBatchInappproductRequest>;
-
-/** Store listing of a single in-app product. */
-export interface InAppProductListing {
-  /** Description for the store listing. */
-  description?: string;
-  /** Localized entitlement benefits for a subscription. */
-  benefits?: StringList;
-  /** Title for the store listing. */
-  title?: string;
-}
-export const InAppProductListing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    benefits: S.optional(StringList),
-    title: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InAppProductListing",
-}) as any as S.Schema<InAppProductListing>;
-
-export type InAppProductListingMap = {
-  [key: string]: InAppProductListing | undefined;
-};
-export const InAppProductListingMap = /*@__PURE__*/ S.Record(
-  S.String,
-  InAppProductListing,
-) as any as S.Schema<InAppProductListingMap>;
-
-export type ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
-  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
-  | "WITHDRAWAL_RIGHT_SERVICE";
-export const ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Details about taxation and legal compliance for managed products. */
-export interface ManagedProductTaxAndComplianceSettings {
-  /** Whether this in-app product is declared as a product representing a tokenized digital asset. */
-  isTokenizedDigitalAsset?: boolean;
-  /** Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information. */
-  eeaWithdrawalRightType?:
-    | ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum
-    | (string & {});
-  /** Regional age rating information. Currently this field is only supported for region code `US`. */
-  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
-  /** A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR". */
-  taxRateInfoByRegionCode?: RegionalTaxRateInfoMap;
-  /** Product tax category code to assign to the in-app product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
-  productTaxCategoryCode?: string;
-}
-export const ManagedProductTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      isTokenizedDigitalAsset: S.optional(S.Boolean),
-      eeaWithdrawalRightType: S.optional(
-        ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum,
-      ),
-      regionalProductAgeRatingInfos: S.optional(
-        RegionalProductAgeRatingInfoList,
-      ),
-      taxRateInfoByRegionCode: S.optional(RegionalTaxRateInfoMap),
-      productTaxCategoryCode: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ManagedProductTaxAndComplianceSettings",
-}) as any as S.Schema<ManagedProductTaxAndComplianceSettings>;
-
-export type PriceMap = { [key: string]: Price | undefined };
-export const PriceMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Price,
-) as any as S.Schema<PriceMap>;
-
-export type InAppProductStatusEnum =
-  | "statusUnspecified"
-  | "active"
-  | "inactive";
-export const InAppProductStatusEnum = /*@__PURE__*/ S.String;
-
-export type InAppProductPurchaseTypeEnum =
-  | "purchaseTypeUnspecified"
-  | "managedUser"
-  | "subscription";
-export const InAppProductPurchaseTypeEnum = /*@__PURE__*/ S.String;
-
-/** An in-app product. The resource for InappproductsService. */
-export interface InAppProduct {
-  /** Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days). */
-  trialPeriod?: string;
-  /** List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. "en-US". */
-  listings?: InAppProductListingMap;
-  /** Package name of the parent app. */
-  packageName?: string;
-  /** Details about taxes and legal compliance. Only applicable to managed products. */
-  managedProductTaxesAndComplianceSettings?: ManagedProductTaxAndComplianceSettings;
-  /** Stock-keeping-unit (SKU) of the product, unique within an app. */
-  sku?: string;
-  /** Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2. */
-  prices?: PriceMap;
-  /** Default price. Cannot be zero, as in-app products are never free. Always in the developer's Checkout merchant currency. */
-  defaultPrice?: Price;
-  /** The status of the product, e.g. whether it's active. */
-  status?: InAppProductStatusEnum | (string & {});
-  /** The type of the product, e.g. a recurring subscription. */
-  purchaseType?: InAppProductPurchaseTypeEnum | (string & {});
-  /** Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year). */
-  subscriptionPeriod?: string;
-  /** Details about taxes and legal compliance. Only applicable to subscription products. */
-  subscriptionTaxesAndComplianceSettings?: SubscriptionTaxAndComplianceSettings;
-  /** Default language of the localized data, as defined by BCP-47. e.g. "en-US". */
-  defaultLanguage?: string;
-  /** Grace period of the subscription, specified in ISO 8601 format. Allows developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values are P0D (zero days), P3D (three days), P7D (seven days), P14D (14 days), and P30D (30 days). */
-  gracePeriod?: string;
-}
-export const InAppProduct = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trialPeriod: S.optional(S.String),
-    listings: S.optional(InAppProductListingMap),
-    packageName: S.optional(S.String),
-    managedProductTaxesAndComplianceSettings: S.optional(
-      ManagedProductTaxAndComplianceSettings,
-    ),
-    sku: S.optional(S.String),
-    prices: S.optional(PriceMap),
-    defaultPrice: S.optional(Price),
-    status: S.optional(InAppProductStatusEnum),
-    purchaseType: S.optional(InAppProductPurchaseTypeEnum),
-    subscriptionPeriod: S.optional(S.String),
-    subscriptionTaxesAndComplianceSettings: S.optional(
-      SubscriptionTaxAndComplianceSettings,
-    ),
-    defaultLanguage: S.optional(S.String),
-    gracePeriod: S.optional(S.String),
-  }),
-).annotate({ identifier: "InAppProduct" }) as any as S.Schema<InAppProduct>;
-
-export type InAppProductList = Array<InAppProduct>;
-export const InAppProductList = /*@__PURE__*/ S.Array(
-  InAppProduct,
-) as any as S.Schema<InAppProductList>;
-
-/** Response message for BatchGetSubscriptions endpoint. */
-export interface InappproductsBatchGetResponse {
-  /** The list of requested in-app products, in the same order as the request. */
-  inappproduct?: InAppProductList;
-}
-export const InappproductsBatchGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inappproduct: S.optional(InAppProductList),
-  }),
-).annotate({
-  identifier: "InappproductsBatchGetResponse",
-}) as any as S.Schema<InappproductsBatchGetResponse>;
-
-export interface GetBatchMonetizationOnetimeproductRequest {
-  /** Required. A list of up to 100 product IDs to retrieve. All IDs must be different. */
-  productIds?: StringList;
-  /** Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests. */
-  packageName: string;
-}
-export const GetBatchMonetizationOnetimeproductRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      productIds: S.optional(StringList.pipe(T.Query())),
-      packageName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetBatchMonetizationOnetimeproductRequest",
-  }) as any as S.Schema<GetBatchMonetizationOnetimeproductRequest>;
-
-/** A purchase option that can be rented. */
-export interface OneTimeProductRentPurchaseOption {
-  /** Optional. The amount of time the user has after starting consuming the entitlement before it is revoked. Specified in ISO 8601 format. */
-  expirationPeriod?: string;
-  /** Required. The amount of time a user has the entitlement for. Starts at purchase flow completion. Specified in ISO 8601 format. */
-  rentalPeriod?: string;
-}
-export const OneTimeProductRentPurchaseOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationPeriod: S.optional(S.String),
-    rentalPeriod: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OneTimeProductRentPurchaseOption",
-}) as any as S.Schema<OneTimeProductRentPurchaseOption>;
-
-export type OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  | "AVAILABILITY_UNSPECIFIED"
-  | "AVAILABLE"
-  | "NO_LONGER_AVAILABLE"
-  | "AVAILABLE_IF_RELEASED"
-  | "AVAILABLE_FOR_OFFERS_ONLY";
-export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
-
-/** Regional pricing and availability configuration for a purchase option. */
-export interface OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig {
-  /** The price of the purchase option in the specified region. Must be set in the currency that is linked to the specified region. */
-  price?: Money;
-  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US". */
-  regionCode?: string;
-  /** The availability of the purchase option. */
-  availability?:
-    | OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum
-    | (string & {});
-}
-export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      price: S.optional(Money),
-      regionCode: S.optional(S.String),
-      availability: S.optional(
-        OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig",
-  }) as any as S.Schema<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig>;
-
-export type OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList =
-  Array<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig>;
-export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList =
-  /*@__PURE__*/ S.Array(
-    OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig,
-  ) as any as S.Schema<OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList>;
-
-export type OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
-  | "AVAILABILITY_UNSPECIFIED"
-  | "AVAILABLE"
-  | "NO_LONGER_AVAILABLE";
-export const OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
-
-/** Pricing information for any new regions Play may launch in the future. */
-export interface OneTimeProductPurchaseOptionNewRegionsConfig {
-  /** Required. The regional availability for the new regions config. When set to AVAILABLE, the pricing information will be used for any new regions Play may launch in the future. */
-  availability?:
-    | OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum
-    | (string & {});
-  /** Required. Price in USD to use for any new regions Play may launch in. */
-  usdPrice?: Money;
-  /** Required. Price in EUR to use for any new regions Play may launch in. */
-  eurPrice?: Money;
-}
-export const OneTimeProductPurchaseOptionNewRegionsConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      availability: S.optional(
-        OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum,
-      ),
-      usdPrice: S.optional(Money),
-      eurPrice: S.optional(Money),
-    }),
-  ).annotate({
-    identifier: "OneTimeProductPurchaseOptionNewRegionsConfig",
-  }) as any as S.Schema<OneTimeProductPurchaseOptionNewRegionsConfig>;
-
-/** A purchase option that can be bought. */
-export interface OneTimeProductBuyPurchaseOption {
-  /** Optional. Whether this purchase option will be available in legacy PBL flows that do not support one-time products model. Up to one "buy" purchase option can be marked as backwards compatible. */
-  legacyCompatible?: boolean;
-  /** Optional. Whether this purchase option allows multi-quantity. Multi-quantity allows buyer to purchase more than one item in a single checkout. */
-  multiQuantityEnabled?: boolean;
-}
-export const OneTimeProductBuyPurchaseOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    legacyCompatible: S.optional(S.Boolean),
-    multiQuantityEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "OneTimeProductBuyPurchaseOption",
-}) as any as S.Schema<OneTimeProductBuyPurchaseOption>;
-
-export type PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
-  | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
-  | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
-  | "WITHDRAWAL_RIGHT_SERVICE";
-export const PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Details about taxation, Google Play policy and legal compliance for one-time product purchase options. */
-export interface PurchaseOptionTaxAndComplianceSettings {
-  /** Optional. Digital content or service classification for products distributed to users in eligible regions. If unset, it defaults to `WITHDRAWAL_RIGHT_DIGITAL_CONTENT`. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information. */
-  withdrawalRightType?:
-    | PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum
-    | (string & {});
-}
-export const PurchaseOptionTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      withdrawalRightType: S.optional(
-        PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum,
-      ),
-    }),
-).annotate({
-  identifier: "PurchaseOptionTaxAndComplianceSettings",
-}) as any as S.Schema<PurchaseOptionTaxAndComplianceSettings>;
-
-export type OneTimeProductPurchaseOptionStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "DRAFT"
-  | "ACTIVE"
-  | "INACTIVE"
-  | "INACTIVE_PUBLISHED";
-export const OneTimeProductPurchaseOptionStateEnum = /*@__PURE__*/ S.String;
-
-/** A single purchase option for a one-time product. */
-export interface OneTimeProductPurchaseOption {
-  /** Optional. List of up to 20 custom tags specified for this purchase option, and returned to the app through the billing library. Offers for this purchase option will also receive these tags in the billing library. */
-  offerTags?: OfferTagList;
-  /** A purchase option that can be rented. */
-  rentOption?: OneTimeProductRentPurchaseOption;
-  /** Regional pricing and availability information for this purchase option. */
-  regionalPricingAndAvailabilityConfigs?: OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList;
-  /** Pricing information for any new locations Play may launch in the future. If omitted, the purchase option will not be automatically available in any new locations Play may launch in the future. */
-  newRegionsConfig?: OneTimeProductPurchaseOptionNewRegionsConfig;
-  /** A purchase option that can be bought. */
-  buyOption?: OneTimeProductBuyPurchaseOption;
-  /** Optional. Details about taxes and legal compliance. */
-  taxAndComplianceSettings?: PurchaseOptionTaxAndComplianceSettings;
-  /** Output only. The state of the purchase option, i.e., whether it's active. This field cannot be changed by updating the resource. Use the dedicated endpoints instead. */
-  state?: OneTimeProductPurchaseOptionStateEnum | (string & {});
-  /** Required. Immutable. The unique identifier of this purchase option. Must be unique within the one-time product. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters. */
-  purchaseOptionId?: string;
-}
-export const OneTimeProductPurchaseOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerTags: S.optional(OfferTagList),
-    rentOption: S.optional(OneTimeProductRentPurchaseOption),
-    regionalPricingAndAvailabilityConfigs: S.optional(
-      OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigList,
-    ),
-    newRegionsConfig: S.optional(OneTimeProductPurchaseOptionNewRegionsConfig),
-    buyOption: S.optional(OneTimeProductBuyPurchaseOption),
-    taxAndComplianceSettings: S.optional(
-      PurchaseOptionTaxAndComplianceSettings,
-    ),
-    state: S.optional(OneTimeProductPurchaseOptionStateEnum),
-    purchaseOptionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OneTimeProductPurchaseOption",
-}) as any as S.Schema<OneTimeProductPurchaseOption>;
-
-export type OneTimeProductPurchaseOptionList =
-  Array<OneTimeProductPurchaseOption>;
-export const OneTimeProductPurchaseOptionList = /*@__PURE__*/ S.Array(
-  OneTimeProductPurchaseOption,
-) as any as S.Schema<OneTimeProductPurchaseOptionList>;
-
-export type RegionalTaxConfigStreamingTaxTypeEnum =
-  | "STREAMING_TAX_TYPE_UNSPECIFIED"
-  | "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL"
-  | "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES"
-  | "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL"
-  | "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL"
-  | "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES"
-  | "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL";
-export const RegionalTaxConfigStreamingTaxTypeEnum = /*@__PURE__*/ S.String;
-
-export type RegionalTaxConfigTaxTierEnum =
-  | "TAX_TIER_UNSPECIFIED"
-  | "TAX_TIER_BOOKS_1"
-  | "TAX_TIER_NEWS_1"
-  | "TAX_TIER_NEWS_2"
-  | "TAX_TIER_MUSIC_OR_AUDIO_1"
-  | "TAX_TIER_LIVE_OR_BROADCAST_1";
-export const RegionalTaxConfigTaxTierEnum = /*@__PURE__*/ S.String;
-
-/** Details about taxation in a given geographical region. */
-export interface RegionalTaxConfig {
-  /** Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US". */
-  regionCode?: string;
-  /** To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax). */
-  streamingTaxType?: RegionalTaxConfigStreamingTaxTypeEnum | (string & {});
-  /** You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States. */
-  eligibleForStreamingServiceTaxRate?: boolean;
-  /** Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498). */
-  taxTier?: RegionalTaxConfigTaxTierEnum | (string & {});
-}
-export const RegionalTaxConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regionCode: S.optional(S.String),
-    streamingTaxType: S.optional(RegionalTaxConfigStreamingTaxTypeEnum),
-    eligibleForStreamingServiceTaxRate: S.optional(S.Boolean),
-    taxTier: S.optional(RegionalTaxConfigTaxTierEnum),
-  }),
-).annotate({
-  identifier: "RegionalTaxConfig",
-}) as any as S.Schema<RegionalTaxConfig>;
-
-export type RegionalTaxConfigList = Array<RegionalTaxConfig>;
-export const RegionalTaxConfigList = /*@__PURE__*/ S.Array(
-  RegionalTaxConfig,
-) as any as S.Schema<RegionalTaxConfigList>;
-
-/** Details about taxation, Google Play policy and legal compliance for one-time products. */
-export interface OneTimeProductTaxAndComplianceSettings {
-  /** Regional tax configuration. */
-  regionalTaxConfigs?: RegionalTaxConfigList;
-  /** Whether this one-time product is declared as a product representing a tokenized digital asset. */
-  isTokenizedDigitalAsset?: boolean;
-  /** Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information. */
-  productTaxCategoryCode?: string;
-  /** Regional age rating information. Currently this field is only supported for region code `US`. */
-  regionalProductAgeRatingInfos?: RegionalProductAgeRatingInfoList;
-}
-export const OneTimeProductTaxAndComplianceSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      regionalTaxConfigs: S.optional(RegionalTaxConfigList),
-      isTokenizedDigitalAsset: S.optional(S.Boolean),
-      productTaxCategoryCode: S.optional(S.String),
-      regionalProductAgeRatingInfos: S.optional(
-        RegionalProductAgeRatingInfoList,
-      ),
-    }),
-).annotate({
-  identifier: "OneTimeProductTaxAndComplianceSettings",
-}) as any as S.Schema<OneTimeProductTaxAndComplianceSettings>;
-
-/** Regional store listing for a one-time product. */
-export interface OneTimeProductListing {
-  /** Required. The language of this listing, as defined by BCP-47, e.g., "en-US". */
-  languageCode?: string;
-  /** Required. The description of this product in the language of this listing. The maximum length is 200 characters. */
-  description?: string;
-  /** Required. The title of this product in the language of this listing. The maximum length is 55 characters. */
-  title?: string;
-}
-export const OneTimeProductListing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    languageCode: S.optional(S.String),
-    description: S.optional(S.String),
-    title: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OneTimeProductListing",
-}) as any as S.Schema<OneTimeProductListing>;
-
-export type OneTimeProductListingList = Array<OneTimeProductListing>;
-export const OneTimeProductListingList = /*@__PURE__*/ S.Array(
-  OneTimeProductListing,
-) as any as S.Schema<OneTimeProductListingList>;
-
-/** A single one-time product for an app. */
-export interface OneTimeProduct {
-  /** Optional. Countries where the purchase of this one-time product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed. */
-  restrictedPaymentCountries?: RestrictedPaymentCountries;
-  /** Required. The set of purchase options for this one-time product. */
-  purchaseOptions?: OneTimeProductPurchaseOptionList;
-  /** Details about taxes and legal compliance. */
-  taxAndComplianceSettings?: OneTimeProductTaxAndComplianceSettings;
-  /** Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.). */
-  productId?: string;
-  /** Optional. List of up to 20 custom tags specified for this one-time product, and returned to the app through the billing library. Purchase options and offers for this product will also receive these tags in the billing library. */
-  offerTags?: OfferTagList;
-  /** Required. Immutable. Package name of the parent app. */
-  packageName?: string;
-  /** Required. Set of localized title and description data. Must not have duplicate entries with the same language_code. */
-  listings?: OneTimeProductListingList;
-  /** Output only. The version of the regions configuration that was used to generate the one-time product. */
-  regionsVersion?: RegionsVersion;
-}
-export const OneTimeProduct = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    restrictedPaymentCountries: S.optional(RestrictedPaymentCountries),
-    purchaseOptions: S.optional(OneTimeProductPurchaseOptionList),
-    taxAndComplianceSettings: S.optional(
-      OneTimeProductTaxAndComplianceSettings,
-    ),
-    productId: S.optional(S.String),
-    offerTags: S.optional(OfferTagList),
-    packageName: S.optional(S.String),
-    listings: S.optional(OneTimeProductListingList),
-    regionsVersion: S.optional(RegionsVersion),
-  }),
-).annotate({ identifier: "OneTimeProduct" }) as any as S.Schema<OneTimeProduct>;
-
-export type OneTimeProductList = Array<OneTimeProduct>;
-export const OneTimeProductList = /*@__PURE__*/ S.Array(
-  OneTimeProduct,
-) as any as S.Schema<OneTimeProductList>;
-
-/** Response message for the BatchGetOneTimeProducts endpoint. */
-export interface BatchGetOneTimeProductsResponse {
-  /** The list of requested one-time products, in the same order as the request. */
-  oneTimeProducts?: OneTimeProductList;
-}
-export const BatchGetOneTimeProductsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oneTimeProducts: S.optional(OneTimeProductList),
-  }),
-).annotate({
-  identifier: "BatchGetOneTimeProductsResponse",
-}) as any as S.Schema<BatchGetOneTimeProductsResponse>;
-
-/** Request message for GetOneTimeProductOffers. */
-export interface GetOneTimeProductOfferRequest {
-  /** Required. The unique offer ID of the offer to get. */
-  offerId?: string;
-  /** Required. The parent one-time product (ID) of the offer to get. */
-  productId?: string;
-  /** Required. The parent app (package name) of the offer to get. */
-  packageName?: string;
-  /** Required. The parent purchase option (ID) of the offer to get. */
-  purchaseOptionId?: string;
-}
-export const GetOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerId: S.optional(S.String),
-    productId: S.optional(S.String),
-    packageName: S.optional(S.String),
-    purchaseOptionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetOneTimeProductOfferRequest",
-}) as any as S.Schema<GetOneTimeProductOfferRequest>;
-
-export type GetOneTimeProductOfferRequestList =
-  Array<GetOneTimeProductOfferRequest>;
-export const GetOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
-  GetOneTimeProductOfferRequest,
-) as any as S.Schema<GetOneTimeProductOfferRequestList>;
-
-/** Request message for the BatchGetOneTimeProductOffers endpoint. */
-export interface BatchGetOneTimeProductOffersRequest {
-  /** Required. A list of get requests of up to 100 elements. All requests must retrieve different offers. */
-  requests?: GetOneTimeProductOfferRequestList;
-}
-export const BatchGetOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(GetOneTimeProductOfferRequestList),
-  }),
-).annotate({
-  identifier: "BatchGetOneTimeProductOffersRequest",
-}) as any as S.Schema<BatchGetOneTimeProductOffersRequest>;
-
-export interface GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest {
-  /** Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options. */
-  purchaseOptionId: string;
-  /** Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources. */
-  packageName: string;
-  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Request body */
-  body?: BatchGetOneTimeProductOffersRequest;
-}
-export const GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      purchaseOptionId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(BatchGetOneTimeProductOffersRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest",
-  }) as any as S.Schema<GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest>;
-
-export type OneTimeProductOfferList = Array<OneTimeProductOffer>;
-export const OneTimeProductOfferList = /*@__PURE__*/ S.Array(
-  OneTimeProductOffer,
-) as any as S.Schema<OneTimeProductOfferList>;
-
-/** Response message for the BatchGetOneTimeProductOffers endpoint. */
-export interface BatchGetOneTimeProductOffersResponse {
-  /** The list of updated one-time product offers, in the same order as the request. */
-  oneTimeProductOffers?: OneTimeProductOfferList;
-}
-export const BatchGetOneTimeProductOffersResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
-    }),
-).annotate({
-  identifier: "BatchGetOneTimeProductOffersResponse",
-}) as any as S.Schema<BatchGetOneTimeProductOffersResponse>;
-
-export interface GetBatchMonetizationSubscriptionRequest {
-  /** Required. The parent app (package name) for which the subscriptions should be retrieved. Must be equal to the package_name field on all the requests. */
-  packageName: string;
-  /** Required. A list of up to 100 subscription product IDs to retrieve. All the IDs must be different. */
-  productIds?: StringList;
-}
-export const GetBatchMonetizationSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productIds: S.optional(StringList.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions:batchGet",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-).annotate({
-  identifier: "GetBatchMonetizationSubscriptionRequest",
-}) as any as S.Schema<GetBatchMonetizationSubscriptionRequest>;
-
-export type SubscriptionList = Array<Subscription>;
-export const SubscriptionList = /*@__PURE__*/ S.Array(
-  Subscription,
-) as any as S.Schema<SubscriptionList>;
-
-/** Response message for BatchGetSubscriptions endpoint. */
-export interface BatchGetSubscriptionsResponse {
-  /** The list of requested subscriptions, in the same order as the request. */
-  subscriptions?: SubscriptionList;
-}
-export const BatchGetSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptions: S.optional(SubscriptionList),
-  }),
-).annotate({
-  identifier: "BatchGetSubscriptionsResponse",
-}) as any as S.Schema<BatchGetSubscriptionsResponse>;
-
-/** Request message for GetSubscriptionOffer. */
-export interface GetSubscriptionOfferRequest {
-  /** Required. The parent app (package name) of the offer to get. */
-  packageName?: string;
-  /** Required. The parent subscription (ID) of the offer to get. */
-  productId?: string;
-  /** Required. The unique offer ID of the offer to get. */
-  offerId?: string;
-  /** Required. The parent base plan (ID) of the offer to get. */
-  basePlanId?: string;
-}
-export const GetSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    productId: S.optional(S.String),
-    offerId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetSubscriptionOfferRequest",
-}) as any as S.Schema<GetSubscriptionOfferRequest>;
-
-export type GetSubscriptionOfferRequestList =
-  Array<GetSubscriptionOfferRequest>;
-export const GetSubscriptionOfferRequestList = /*@__PURE__*/ S.Array(
-  GetSubscriptionOfferRequest,
-) as any as S.Schema<GetSubscriptionOfferRequestList>;
-
-/** Request message for BatchGetSubscriptionOffers endpoint. */
-export interface BatchGetSubscriptionOffersRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must update different subscriptions. */
-  requests?: GetSubscriptionOfferRequestList;
-}
-export const BatchGetSubscriptionOffersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(GetSubscriptionOfferRequestList),
-  }),
-).annotate({
-  identifier: "BatchGetSubscriptionOffersRequest",
-}) as any as S.Schema<BatchGetSubscriptionOffersRequest>;
-
-export interface GetBatchMonetizationSubscriptionBasePlanOfferRequest {
-  /** Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the requests. */
-  packageName: string;
-  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
-  productId: string;
-  /** Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read offers from multiple base plans. */
-  basePlanId: string;
-  /** Request body */
-  body?: BatchGetSubscriptionOffersRequest;
-}
-export const GetBatchMonetizationSubscriptionBasePlanOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      basePlanId: S.String.pipe(T.Label()),
-      body: S.optional(BatchGetSubscriptionOffersRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetBatchMonetizationSubscriptionBasePlanOfferRequest",
-  }) as any as S.Schema<GetBatchMonetizationSubscriptionBasePlanOfferRequest>;
-
-export type SubscriptionOfferList = Array<SubscriptionOffer>;
-export const SubscriptionOfferList = /*@__PURE__*/ S.Array(
-  SubscriptionOffer,
-) as any as S.Schema<SubscriptionOfferList>;
-
-/** Response message for BatchGetSubscriptionOffers endpoint. */
-export interface BatchGetSubscriptionOffersResponse {
-  subscriptionOffers?: SubscriptionOfferList;
-}
-export const BatchGetSubscriptionOffersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionOffers: S.optional(SubscriptionOfferList),
-  }),
-).annotate({
-  identifier: "BatchGetSubscriptionOffersResponse",
-}) as any as S.Schema<BatchGetSubscriptionOffersResponse>;
-
 export interface GetEditsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const GetEditsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6354,18 +7271,18 @@ export const GetEditsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEditsRequest>;
 
 export interface GetEditsCountryavailabilityRequest {
-  /** The track to read from. */
-  track: string;
-  /** Identifier of the edit. */
-  editId: string;
   /** Package name of the app. */
   packageName: string;
+  /** Identifier of the edit. */
+  editId: string;
+  /** The track to read from. */
+  track: string;
 }
 export const GetEditsCountryavailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    track: S.String.pipe(T.Label()),
-    editId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
+    track: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6399,31 +7316,31 @@ export const TrackTargetedCountryList = /*@__PURE__*/ S.Array(
 export interface TrackCountryAvailability {
   /** Whether this track's availability is synced with the default production track. See https://support.google.com/googleplay/android-developer/answer/7550024 for more information on syncing country availability with production. Note that if this is true, the returned "countries" and "rest_of_world" fields will reflect the values for the default production track. */
   syncWithProduction?: boolean;
-  /** Whether artifacts in this track are available to "rest of the world" countries. */
-  restOfWorld?: boolean;
   /** A list of one or more countries where artifacts in this track are available. This list includes all countries that are targeted by the track, even if only specific carriers are targeted in that country. */
   countries?: TrackTargetedCountryList;
+  /** Whether artifacts in this track are available to "rest of the world" countries. */
+  restOfWorld?: boolean;
 }
 export const TrackCountryAvailability = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     syncWithProduction: S.optional(S.Boolean),
-    restOfWorld: S.optional(S.Boolean),
     countries: S.optional(TrackTargetedCountryList),
+    restOfWorld: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "TrackCountryAvailability",
 }) as any as S.Schema<TrackCountryAvailability>;
 
 export interface GetEditsDetailsRequest {
-  /** Identifier of the edit. */
-  editId: string;
   /** Package name of the app. */
   packageName: string;
+  /** Identifier of the edit. */
+  editId: string;
 }
 export const GetEditsDetailsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    editId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6437,20 +7354,20 @@ export const GetEditsDetailsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The app details. The resource for DetailsService. */
 export interface AppDetails {
-  /** The user-visible website for this app. */
-  contactWebsite?: string;
-  /** The user-visible support telephone number for this app. */
-  contactPhone?: string;
   /** The user-visible support email for this app. */
   contactEmail?: string;
+  /** The user-visible support telephone number for this app. */
+  contactPhone?: string;
+  /** The user-visible website for this app. */
+  contactWebsite?: string;
   /** Default language code, in BCP 47 format (eg "en-US"). */
   defaultLanguage?: string;
 }
 export const AppDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    contactWebsite: S.optional(S.String),
-    contactPhone: S.optional(S.String),
     contactEmail: S.optional(S.String),
+    contactPhone: S.optional(S.String),
+    contactWebsite: S.optional(S.String),
     defaultLanguage: S.optional(S.String),
   }),
 ).annotate({ identifier: "AppDetails" }) as any as S.Schema<AppDetails>;
@@ -6510,16 +7427,16 @@ export const ExpansionFile = /*@__PURE__*/ S.suspend(() =>
 export interface GetEditsListingsRequest {
   /** Package name of the app. */
   packageName: string;
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
-  language: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
+  language: string;
 }
 export const GetEditsListingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     packageName: S.String.pipe(T.Label()),
-    language: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6535,22 +7452,22 @@ export const GetEditsListingsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface Listing {
   /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
   language?: string;
-  /** Localized title of the app. */
-  title?: string;
-  /** Full description of the app. */
-  fullDescription?: string;
-  /** URL of a promotional YouTube video for the app. */
-  video?: string;
   /** Short description of the app. */
   shortDescription?: string;
+  /** Localized title of the app. */
+  title?: string;
+  /** URL of a promotional YouTube video for the app. */
+  video?: string;
+  /** Full description of the app. */
+  fullDescription?: string;
 }
 export const Listing = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     language: S.optional(S.String),
-    title: S.optional(S.String),
-    fullDescription: S.optional(S.String),
-    video: S.optional(S.String),
     shortDescription: S.optional(S.String),
+    title: S.optional(S.String),
+    video: S.optional(S.String),
+    fullDescription: S.optional(S.String),
   }),
 ).annotate({ identifier: "Listing" }) as any as S.Schema<Listing>;
 
@@ -6590,18 +7507,18 @@ export const Testers = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Testers" }) as any as S.Schema<Testers>;
 
 export interface GetEditsTracksRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
   /** Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name) */
   track: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const GetEditsTracksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
     track: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6654,16 +7571,16 @@ export const GetInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInappproductsRequest>;
 
 export interface GetMonetizationOnetimeproductsRequest {
-  /** Required. The product ID of the product to retrieve. */
-  productId: string;
   /** Required. The parent app (package name) of the product to retrieve. */
   packageName: string;
+  /** Required. The product ID of the product to retrieve. */
+  productId: string;
 }
 export const GetMonetizationOnetimeproductsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      productId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -6697,22 +7614,22 @@ export const GetMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMonetizationSubscriptionsRequest>;
 
 export interface GetMonetizationSubscriptionsBasePlansOffersRequest {
-  /** Required. The parent base plan (ID) of the offer to get. */
-  basePlanId: string;
   /** Required. The parent subscription (ID) of the offer to get. */
   productId: string;
-  /** Required. The parent app (package name) of the offer to get. */
-  packageName: string;
   /** Required. The unique offer ID of the offer to get. */
   offerId: string;
+  /** Required. The parent app (package name) of the offer to get. */
+  packageName: string;
+  /** Required. The parent base plan (ID) of the offer to get. */
+  basePlanId: string;
 }
 export const GetMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      basePlanId: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
       offerId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      basePlanId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -6725,15 +7642,15 @@ export const GetMonetizationSubscriptionsBasePlansOffersRequest =
   }) as any as S.Schema<GetMonetizationSubscriptionsBasePlansOffersRequest>;
 
 export interface GetOrdersRequest {
-  /** Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
-  packageName: string;
   /** Required. The order ID provided to the user when the subscription or in-app order was purchased. */
   orderId: string;
+  /** Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
+  packageName: string;
 }
 export const GetOrdersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     orderId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6789,87 +7706,6 @@ export type ProductPurchaseV2AcknowledgementStateEnum =
   | "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED";
 export const ProductPurchaseV2AcknowledgementStateEnum = /*@__PURE__*/ S.String;
 
-/** Offer details information related to a rental line item. */
-export type RentOfferDetails = OneTimeProductOfferNoPriceOverrideOptions;
-export const RentOfferDetails = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Offer details information related to a preorder line item. */
-export interface PreorderOfferDetails {
-  /** The time when a preordered item is released for a preorder purchase. */
-  preorderReleaseTime?: string;
-}
-export const PreorderOfferDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    preorderReleaseTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PreorderOfferDetails",
-}) as any as S.Schema<PreorderOfferDetails>;
-
-export type ProductOfferDetailsConsumptionStateEnum =
-  | "CONSUMPTION_STATE_UNSPECIFIED"
-  | "CONSUMPTION_STATE_YET_TO_BE_CONSUMED"
-  | "CONSUMPTION_STATE_CONSUMED";
-export const ProductOfferDetailsConsumptionStateEnum = /*@__PURE__*/ S.String;
-
-/** Offer details information related to a purchase line item. */
-export interface ProductOfferDetails {
-  /** The per-transaction offer token used to make this purchase line item. */
-  offerToken?: string;
-  /** The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds. */
-  refundableQuantity?: number;
-  /** The offer ID. Only present for offers. */
-  offerId?: string;
-  /** Offer details about rent offers. This will only be set for rental line items. */
-  rentOfferDetails?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** The quantity associated with the purchase of the inapp product. */
-  quantity?: number;
-  /** Offer details for a preorder offer. This will only be set for preorders. */
-  preorderOfferDetails?: PreorderOfferDetails;
-  /** The purchase option ID. */
-  purchaseOptionId?: string;
-  /** Output only. The consumption state of the purchase. */
-  consumptionState?: ProductOfferDetailsConsumptionStateEnum;
-  /** The latest offer tags associated with the offer. It includes tags inherited from the purchase option. */
-  offerTags?: StringList;
-}
-export const ProductOfferDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerToken: S.optional(S.String),
-    refundableQuantity: S.optional(S.Number),
-    offerId: S.optional(S.String),
-    rentOfferDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    quantity: S.optional(S.Number),
-    preorderOfferDetails: S.optional(PreorderOfferDetails),
-    purchaseOptionId: S.optional(S.String),
-    consumptionState: S.optional(ProductOfferDetailsConsumptionStateEnum),
-    offerTags: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "ProductOfferDetails",
-}) as any as S.Schema<ProductOfferDetails>;
-
-/** Contains item-level info for a ProductPurchaseV2. */
-export interface ProductLineItem {
-  /** The offer details for this item. */
-  productOfferDetails?: ProductOfferDetails;
-  /** The purchased product ID (for example, 'monthly001'). */
-  productId?: string;
-}
-export const ProductLineItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productOfferDetails: S.optional(ProductOfferDetails),
-    productId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductLineItem",
-}) as any as S.Schema<ProductLineItem>;
-
-export type ProductLineItemList = Array<ProductLineItem>;
-export const ProductLineItemList = /*@__PURE__*/ S.Array(
-  ProductLineItem,
-) as any as S.Schema<ProductLineItemList>;
-
 export type PurchaseStateContextPurchaseStateEnum =
   | "PURCHASE_STATE_UNSPECIFIED"
   | "PURCHASED"
@@ -6890,40 +7726,121 @@ export const PurchaseStateContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "PurchaseStateContext",
 }) as any as S.Schema<PurchaseStateContext>;
 
+/** Offer details information related to a rental line item. */
+export type RentOfferDetails = OneTimeProductOfferNoPriceOverrideOptions;
+export const RentOfferDetails = OneTimeProductOfferNoPriceOverrideOptions;
+
+export type ProductOfferDetailsConsumptionStateEnum =
+  | "CONSUMPTION_STATE_UNSPECIFIED"
+  | "CONSUMPTION_STATE_YET_TO_BE_CONSUMED"
+  | "CONSUMPTION_STATE_CONSUMED";
+export const ProductOfferDetailsConsumptionStateEnum = /*@__PURE__*/ S.String;
+
+/** Offer details information related to a preorder line item. */
+export interface PreorderOfferDetails {
+  /** The time when a preordered item is released for a preorder purchase. */
+  preorderReleaseTime?: string;
+}
+export const PreorderOfferDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    preorderReleaseTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PreorderOfferDetails",
+}) as any as S.Schema<PreorderOfferDetails>;
+
+/** Offer details information related to a purchase line item. */
+export interface ProductOfferDetails {
+  /** The latest offer tags associated with the offer. It includes tags inherited from the purchase option. */
+  offerTags?: StringList;
+  /** Offer details about rent offers. This will only be set for rental line items. */
+  rentOfferDetails?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Output only. The consumption state of the purchase. */
+  consumptionState?: ProductOfferDetailsConsumptionStateEnum;
+  /** The offer ID. Only present for offers. */
+  offerId?: string;
+  /** The quantity associated with the purchase of the inapp product. */
+  quantity?: number;
+  /** The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds. */
+  refundableQuantity?: number;
+  /** The per-transaction offer token used to make this purchase line item. */
+  offerToken?: string;
+  /** The purchase option ID. */
+  purchaseOptionId?: string;
+  /** Offer details for a preorder offer. This will only be set for preorders. */
+  preorderOfferDetails?: PreorderOfferDetails;
+}
+export const ProductOfferDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerTags: S.optional(StringList),
+    rentOfferDetails: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    consumptionState: S.optional(ProductOfferDetailsConsumptionStateEnum),
+    offerId: S.optional(S.String),
+    quantity: S.optional(S.Number),
+    refundableQuantity: S.optional(S.Number),
+    offerToken: S.optional(S.String),
+    purchaseOptionId: S.optional(S.String),
+    preorderOfferDetails: S.optional(PreorderOfferDetails),
+  }),
+).annotate({
+  identifier: "ProductOfferDetails",
+}) as any as S.Schema<ProductOfferDetails>;
+
+/** Contains item-level info for a ProductPurchaseV2. */
+export interface ProductLineItem {
+  /** The purchased product ID (for example, 'monthly001'). */
+  productId?: string;
+  /** The offer details for this item. */
+  productOfferDetails?: ProductOfferDetails;
+}
+export const ProductLineItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productId: S.optional(S.String),
+    productOfferDetails: S.optional(ProductOfferDetails),
+  }),
+).annotate({
+  identifier: "ProductLineItem",
+}) as any as S.Schema<ProductLineItem>;
+
+export type ProductLineItemList = Array<ProductLineItem>;
+export const ProductLineItemList = /*@__PURE__*/ S.Array(
+  ProductLineItem,
+) as any as S.Schema<ProductLineItemList>;
+
 /** A ProductPurchaseV2 resource indicates the status of a user's inapp product purchase. */
 export interface ProductPurchaseV2 {
-  /** An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made. */
-  obfuscatedExternalProfileId?: string;
   /** Information related to test purchases. This will only be set for test purchases. */
   testPurchaseContext?: TestPurchaseContext;
-  /** Output only. The acknowledgement state of the purchase. */
-  acknowledgementState?: ProductPurchaseV2AcknowledgementStateEnum;
-  /** The time when the purchase was successful, i.e., when the PurchaseState has changed to PURCHASED. This field will not be present until the payment is complete. For example, if the user initiated a pending transaction (https://developer.android.com/google/play/billing/integrate#pending), this field will not be populated until the user successfully completes the steps required to complete the transaction. */
-  purchaseCompletionTime?: string;
   /** This kind represents a ProductPurchaseV2 object in the androidpublisher service. */
   kind?: string;
-  /** The order id associated with the purchase of the inapp product. May not be set if there is no order associated with the purchase. */
-  orderId?: string;
-  /** An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made. */
-  obfuscatedExternalAccountId?: string;
-  /** Contains item-level info for a ProductPurchaseV2. */
-  productLineItem?: ProductLineItemList;
+  /** The time when the purchase was successful, i.e., when the PurchaseState has changed to PURCHASED. This field will not be present until the payment is complete. For example, if the user initiated a pending transaction (https://developer.android.com/google/play/billing/integrate#pending), this field will not be populated until the user successfully completes the steps required to complete the transaction. */
+  purchaseCompletionTime?: string;
+  /** Output only. The acknowledgement state of the purchase. */
+  acknowledgementState?: ProductPurchaseV2AcknowledgementStateEnum;
   /** Information about the purchase state of the purchase. */
   purchaseStateContext?: PurchaseStateContext;
+  /** An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made. */
+  obfuscatedExternalAccountId?: string;
+  /** An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made. */
+  obfuscatedExternalProfileId?: string;
+  /** The order id associated with the purchase of the inapp product. May not be set if there is no order associated with the purchase. */
+  orderId?: string;
+  /** Contains item-level info for a ProductPurchaseV2. */
+  productLineItem?: ProductLineItemList;
   /** ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted. */
   regionCode?: string;
 }
 export const ProductPurchaseV2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    obfuscatedExternalProfileId: S.optional(S.String),
     testPurchaseContext: S.optional(TestPurchaseContext),
-    acknowledgementState: S.optional(ProductPurchaseV2AcknowledgementStateEnum),
-    purchaseCompletionTime: S.optional(S.String),
     kind: S.optional(S.String),
-    orderId: S.optional(S.String),
-    obfuscatedExternalAccountId: S.optional(S.String),
-    productLineItem: S.optional(ProductLineItemList),
+    purchaseCompletionTime: S.optional(S.String),
+    acknowledgementState: S.optional(ProductPurchaseV2AcknowledgementStateEnum),
     purchaseStateContext: S.optional(PurchaseStateContext),
+    obfuscatedExternalAccountId: S.optional(S.String),
+    obfuscatedExternalProfileId: S.optional(S.String),
+    orderId: S.optional(S.String),
+    productLineItem: S.optional(ProductLineItemList),
     regionCode: S.optional(S.String),
   }),
 ).annotate({
@@ -6933,16 +7850,16 @@ export const ProductPurchaseV2 = /*@__PURE__*/ S.suspend(() =>
 export interface GetPurchasesProductsRequest {
   /** The inapp product SKU (for example, 'com.some.thing.inapp1'). */
   productId: string;
-  /** The package name of the application the inapp product was sold in (for example, 'com.some.thing'). */
-  packageName: string;
   /** The token provided to the user's device when the inapp product was purchased. */
   token: string;
+  /** The package name of the application the inapp product was sold in (for example, 'com.some.thing'). */
+  packageName: string;
 }
 export const GetPurchasesProductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     productId: S.String.pipe(T.Label()),
-    packageName: S.String.pipe(T.Label()),
     token: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6956,69 +7873,69 @@ export const GetPurchasesProductsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A ProductPurchase resource indicates the status of a user's inapp product purchase. */
 export interface ProductPurchase {
-  /** The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970). */
-  purchaseTimeMillis?: string;
-  /** This kind represents an inappPurchase object in the androidpublisher service. */
-  kind?: string;
-  /** An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made. */
-  obfuscatedExternalAccountId?: string;
-  /** The purchase state of the order. Possible values are: 0. Purchased 1. Canceled 2. Pending */
-  purchaseState?: number;
-  /** The consumption state of the inapp product. Possible values are: 0. Yet to be consumed 1. Consumed */
-  consumptionState?: number;
-  /** The acknowledgement state of the inapp product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged */
-  acknowledgementState?: number;
-  /** ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted. */
-  regionCode?: string;
-  /** The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code). Does not include Play Points purchases. 2. Rewarded (i.e. from watching a video ad instead of paying) */
-  purchaseType?: number;
-  /** The quantity associated with the purchase of the inapp product. If not present, the quantity is 1. */
-  quantity?: number;
-  /** The purchase token generated to identify this purchase. May not be present. */
-  purchaseToken?: string;
-  /** The inapp product SKU. May not be present. */
-  productId?: string;
   /** The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds. */
   refundableQuantity?: number;
-  /** The order id associated with the purchase of the inapp product. */
-  orderId?: string;
-  /** An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made. */
-  obfuscatedExternalProfileId?: string;
+  /** The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code). Does not include Play Points purchases. 2. Rewarded (i.e. from watching a video ad instead of paying) */
+  purchaseType?: number;
   /** A developer-specified string that contains supplemental information about an order. */
   developerPayload?: string;
+  /** The quantity associated with the purchase of the inapp product. If not present, the quantity is 1. */
+  quantity?: number;
+  /** This kind represents an inappPurchase object in the androidpublisher service. */
+  kind?: string;
+  /** The acknowledgement state of the inapp product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged */
+  acknowledgementState?: number;
+  /** An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made. */
+  obfuscatedExternalAccountId?: string;
+  /** The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970). */
+  purchaseTimeMillis?: string;
+  /** The purchase state of the order. Possible values are: 0. Purchased 1. Canceled 2. Pending */
+  purchaseState?: number;
+  /** ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted. */
+  regionCode?: string;
+  /** The order id associated with the purchase of the inapp product. */
+  orderId?: string;
+  /** The inapp product SKU. May not be present. */
+  productId?: string;
+  /** The purchase token generated to identify this purchase. May not be present. */
+  purchaseToken?: string;
+  /** An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made. */
+  obfuscatedExternalProfileId?: string;
+  /** The consumption state of the inapp product. Possible values are: 0. Yet to be consumed 1. Consumed */
+  consumptionState?: number;
 }
 export const ProductPurchase = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    purchaseTimeMillis: S.optional(S.String),
-    kind: S.optional(S.String),
-    obfuscatedExternalAccountId: S.optional(S.String),
-    purchaseState: S.optional(S.Number),
-    consumptionState: S.optional(S.Number),
-    acknowledgementState: S.optional(S.Number),
-    regionCode: S.optional(S.String),
-    purchaseType: S.optional(S.Number),
-    quantity: S.optional(S.Number),
-    purchaseToken: S.optional(S.String),
-    productId: S.optional(S.String),
     refundableQuantity: S.optional(S.Number),
-    orderId: S.optional(S.String),
-    obfuscatedExternalProfileId: S.optional(S.String),
+    purchaseType: S.optional(S.Number),
     developerPayload: S.optional(S.String),
+    quantity: S.optional(S.Number),
+    kind: S.optional(S.String),
+    acknowledgementState: S.optional(S.Number),
+    obfuscatedExternalAccountId: S.optional(S.String),
+    purchaseTimeMillis: S.optional(S.String),
+    purchaseState: S.optional(S.Number),
+    regionCode: S.optional(S.String),
+    orderId: S.optional(S.String),
+    productId: S.optional(S.String),
+    purchaseToken: S.optional(S.String),
+    obfuscatedExternalProfileId: S.optional(S.String),
+    consumptionState: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "ProductPurchase",
 }) as any as S.Schema<ProductPurchase>;
 
 export interface GetPurchasesSubscriptionsv2Request {
-  /** Required. The token provided to the user's device when the subscription was purchased. */
-  token: string;
   /** The package of the application for which this subscription was purchased (for example, 'com.some.thing'). */
   packageName: string;
+  /** Required. The token provided to the user's device when the subscription was purchased. */
+  token: string;
 }
 export const GetPurchasesSubscriptionsv2Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    token: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -7043,32 +7960,57 @@ export const RenewalDeclinedContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "RenewalDeclinedContext",
 }) as any as S.Schema<RenewalDeclinedContext>;
 
-/** Additional context around subscriptions in IN_GRACE_PERIOD state. */
-export interface InGracePeriodStateContext {
+/** Additional context around subscriptions in ON_HOLD state. */
+export interface OnHoldStateContext {
   /** Optional. The payment for the renewal was declined. */
   renewalDeclined?: RenewalDeclinedContext;
 }
-export const InGracePeriodStateContext = /*@__PURE__*/ S.suspend(() =>
+export const OnHoldStateContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     renewalDeclined: S.optional(RenewalDeclinedContext),
   }),
 ).annotate({
-  identifier: "InGracePeriodStateContext",
-}) as any as S.Schema<InGracePeriodStateContext>;
+  identifier: "OnHoldStateContext",
+}) as any as S.Schema<OnHoldStateContext>;
+
+/** Information associated with purchases made with 'Subscribe with Google'. */
+export interface SubscribeWithGoogleInfo {
+  /** The profile name of the user when the subscription was purchased. */
+  profileName?: string;
+  /** The email address of the user when the subscription was purchased. */
+  emailAddress?: string;
+  /** The family name of the user when the subscription was purchased. */
+  familyName?: string;
+  /** The Google profile id of the user when the subscription was purchased. */
+  profileId?: string;
+  /** The given name of the user when the subscription was purchased. */
+  givenName?: string;
+}
+export const SubscribeWithGoogleInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    profileName: S.optional(S.String),
+    emailAddress: S.optional(S.String),
+    familyName: S.optional(S.String),
+    profileId: S.optional(S.String),
+    givenName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SubscribeWithGoogleInfo",
+}) as any as S.Schema<SubscribeWithGoogleInfo>;
 
 /** User account identifier in the third-party service. */
 export interface ExternalAccountIdentifiers {
-  /** User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow. */
-  externalAccountId?: string;
   /** An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made. */
   obfuscatedExternalProfileId?: string;
+  /** User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow. */
+  externalAccountId?: string;
   /** An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made. */
   obfuscatedExternalAccountId?: string;
 }
 export const ExternalAccountIdentifiers = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    externalAccountId: S.optional(S.String),
     obfuscatedExternalProfileId: S.optional(S.String),
+    externalAccountId: S.optional(S.String),
     obfuscatedExternalAccountId: S.optional(S.String),
   }),
 ).annotate({
@@ -7091,6 +8033,120 @@ export const OutOfAppPurchaseContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "OutOfAppPurchaseContext",
 }) as any as S.Schema<OutOfAppPurchaseContext>;
 
+/** Additional context around subscriptions in IN_GRACE_PERIOD state. */
+export type InGracePeriodStateContext = OnHoldStateContext;
+export const InGracePeriodStateContext = OnHoldStateContext;
+
+/** Information specific to cancellations initiated by developers. */
+export type DeveloperInitiatedCancellation =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const DeveloperInitiatedCancellation =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Information specific to cancellations caused by subscription replacement. */
+export type ReplacementCancellation = OneTimeProductOfferNoPriceOverrideOptions;
+export const ReplacementCancellation =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+export type CancelSurveyResultReasonEnum =
+  | "CANCEL_SURVEY_REASON_UNSPECIFIED"
+  | "CANCEL_SURVEY_REASON_NOT_ENOUGH_USAGE"
+  | "CANCEL_SURVEY_REASON_TECHNICAL_ISSUES"
+  | "CANCEL_SURVEY_REASON_COST_RELATED"
+  | "CANCEL_SURVEY_REASON_FOUND_BETTER_APP"
+  | "CANCEL_SURVEY_REASON_OTHERS";
+export const CancelSurveyResultReasonEnum = /*@__PURE__*/ S.String;
+
+/** Result of the cancel survey when the subscription was canceled by the user. */
+export interface CancelSurveyResult {
+  /** Only set for CANCEL_SURVEY_REASON_OTHERS. This is the user's freeform response to the survey. */
+  reasonUserInput?: string;
+  /** The reason the user selected in the cancel survey. */
+  reason?: CancelSurveyResultReasonEnum;
+}
+export const CancelSurveyResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reasonUserInput: S.optional(S.String),
+    reason: S.optional(CancelSurveyResultReasonEnum),
+  }),
+).annotate({
+  identifier: "CancelSurveyResult",
+}) as any as S.Schema<CancelSurveyResult>;
+
+/** Information specific to cancellations initiated by users. */
+export interface UserInitiatedCancellation {
+  /** The time at which the subscription was canceled by the user. The user might still have access to the subscription after this time. Use line_items.expiry_time to determine if a user still has access. */
+  cancelTime?: string;
+  /** Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey). */
+  cancelSurveyResult?: CancelSurveyResult;
+}
+export const UserInitiatedCancellation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cancelTime: S.optional(S.String),
+    cancelSurveyResult: S.optional(CancelSurveyResult),
+  }),
+).annotate({
+  identifier: "UserInitiatedCancellation",
+}) as any as S.Schema<UserInitiatedCancellation>;
+
+/** Information specific to cancellations initiated by Google system. */
+export type SystemInitiatedCancellation =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const SystemInitiatedCancellation =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Information specific to a subscription in the SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED state. */
+export interface CanceledStateContext {
+  /** Subscription was canceled by the developer. */
+  developerInitiatedCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Subscription was replaced by a new subscription. */
+  replacementCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Subscription was canceled by user. */
+  userInitiatedCancellation?: UserInitiatedCancellation;
+  /** Subscription was canceled by the system, for example because of a billing problem. */
+  systemInitiatedCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
+}
+export const CanceledStateContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    developerInitiatedCancellation: S.optional(
+      OneTimeProductOfferNoPriceOverrideOptions,
+    ),
+    replacementCancellation: S.optional(
+      OneTimeProductOfferNoPriceOverrideOptions,
+    ),
+    userInitiatedCancellation: S.optional(UserInitiatedCancellation),
+    systemInitiatedCancellation: S.optional(
+      OneTimeProductOfferNoPriceOverrideOptions,
+    ),
+  }),
+).annotate({
+  identifier: "CanceledStateContext",
+}) as any as S.Schema<CanceledStateContext>;
+
+/** Information specific to a subscription in paused state. */
+export interface PausedStateContext {
+  /** Time at which the subscription will be automatically resumed. */
+  autoResumeTime?: string;
+}
+export const PausedStateContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoResumeTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PausedStateContext",
+}) as any as S.Schema<PausedStateContext>;
+
+/** Whether this subscription purchase is a test purchase. */
+export type TestPurchase = OneTimeProductOfferNoPriceOverrideOptions;
+export const TestPurchase = OneTimeProductOfferNoPriceOverrideOptions;
+
+export type SubscriptionPurchaseV2AcknowledgementStateEnum =
+  | "ACKNOWLEDGEMENT_STATE_UNSPECIFIED"
+  | "ACKNOWLEDGEMENT_STATE_PENDING"
+  | "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED";
+export const SubscriptionPurchaseV2AcknowledgementStateEnum =
+  /*@__PURE__*/ S.String;
+
 export type SubscriptionPurchaseV2SubscriptionStateEnum =
   | "SUBSCRIPTION_STATE_UNSPECIFIED"
   | "SUBSCRIPTION_STATE_PENDING"
@@ -7104,34 +8160,227 @@ export type SubscriptionPurchaseV2SubscriptionStateEnum =
 export const SubscriptionPurchaseV2SubscriptionStateEnum =
   /*@__PURE__*/ S.String;
 
-/** Information associated with purchases made with 'Subscribe with Google'. */
-export interface SubscribeWithGoogleInfo {
-  /** The family name of the user when the subscription was purchased. */
-  familyName?: string;
-  /** The given name of the user when the subscription was purchased. */
-  givenName?: string;
-  /** The Google profile id of the user when the subscription was purchased. */
-  profileId?: string;
-  /** The email address of the user when the subscription was purchased. */
-  emailAddress?: string;
-  /** The profile name of the user when the subscription was purchased. */
-  profileName?: string;
+/** Information related to deferred item replacement. */
+export interface DeferredItemReplacement {
+  /** The product_id going to replace the existing product_id. */
+  productId?: string;
 }
-export const SubscribeWithGoogleInfo = /*@__PURE__*/ S.suspend(() =>
+export const DeferredItemReplacement = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    familyName: S.optional(S.String),
-    givenName: S.optional(S.String),
-    profileId: S.optional(S.String),
-    emailAddress: S.optional(S.String),
-    profileName: S.optional(S.String),
+    productId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SubscribeWithGoogleInfo",
-}) as any as S.Schema<SubscribeWithGoogleInfo>;
+  identifier: "DeferredItemReplacement",
+}) as any as S.Schema<DeferredItemReplacement>;
 
-/** Whether this subscription purchase is a test purchase. */
-export type TestPurchase = OneTimeProductOfferNoPriceOverrideOptions;
-export const TestPurchase = OneTimeProductOfferNoPriceOverrideOptions;
+/** Information related to deferred item replacement. */
+export type DeferredItemRemoval = OneTimeProductOfferNoPriceOverrideOptions;
+export const DeferredItemRemoval = OneTimeProductOfferNoPriceOverrideOptions;
+
+export type SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
+  | "PRICE_CHANGE_MODE_UNSPECIFIED"
+  | "PRICE_DECREASE"
+  | "PRICE_INCREASE"
+  | "OPT_OUT_PRICE_INCREASE";
+export const SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
+  /*@__PURE__*/ S.String;
+
+export type SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
+  | "PRICE_CHANGE_STATE_UNSPECIFIED"
+  | "OUTSTANDING"
+  | "CONFIRMED"
+  | "APPLIED"
+  | "CANCELED";
+export const SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
+  /*@__PURE__*/ S.String;
+
+/** Price change related information of a subscription item. */
+export interface SubscriptionItemPriceChangeDetails {
+  /** New recurring price for the subscription item. */
+  newPrice?: Money;
+  /** Price change mode specifies how the subscription item price is changing. */
+  priceChangeMode?: SubscriptionItemPriceChangeDetailsPriceChangeModeEnum;
+  /** State the price change is currently in. */
+  priceChangeState?: SubscriptionItemPriceChangeDetailsPriceChangeStateEnum;
+  /** The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause. This field is only populated if the price change has not taken effect. */
+  expectedNewPriceChargeTime?: string;
+}
+export const SubscriptionItemPriceChangeDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    newPrice: S.optional(Money),
+    priceChangeMode: S.optional(
+      SubscriptionItemPriceChangeDetailsPriceChangeModeEnum,
+    ),
+    priceChangeState: S.optional(
+      SubscriptionItemPriceChangeDetailsPriceChangeStateEnum,
+    ),
+    expectedNewPriceChargeTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SubscriptionItemPriceChangeDetails",
+}) as any as S.Schema<SubscriptionItemPriceChangeDetails>;
+
+export type PriceStepUpConsentDetailsStateEnum =
+  | "CONSENT_STATE_UNSPECIFIED"
+  | "PENDING"
+  | "CONFIRMED"
+  | "COMPLETED";
+export const PriceStepUpConsentDetailsStateEnum = /*@__PURE__*/ S.String;
+
+/** Information related to a price step-up that requires user consent. */
+export interface PriceStepUpConsentDetails {
+  /** The new price which requires user consent. */
+  newPrice?: Money;
+  /** The deadline by which the user must provide consent. If consent is not provided by this time, the subscription will be canceled. */
+  consentDeadlineTime?: string;
+  /** Output only. The state of the price step-up consent. */
+  state?: PriceStepUpConsentDetailsStateEnum;
+}
+export const PriceStepUpConsentDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    newPrice: S.optional(Money),
+    consentDeadlineTime: S.optional(S.String),
+    state: S.optional(PriceStepUpConsentDetailsStateEnum),
+  }),
+).annotate({
+  identifier: "PriceStepUpConsentDetails",
+}) as any as S.Schema<PriceStepUpConsentDetails>;
+
+/** This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments. */
+export type PendingCancellation = OneTimeProductOfferNoPriceOverrideOptions;
+export const PendingCancellation = OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Information to a installment plan. */
+export interface InstallmentPlan {
+  /** Total number of payments the user will be committed for after each commitment period. Empty means the installment plan will fall back to a normal auto-renew subscription after initial commitment. */
+  subsequentCommittedPaymentsCount?: number;
+  /** Total number of committed payments remaining to be paid for in this renewal cycle. */
+  remainingCommittedPaymentsCount?: number;
+  /** Total number of payments the user is initially committed for. */
+  initialCommittedPaymentsCount?: number;
+  /** If present, this installment plan is pending to be canceled. The cancellation will happen only after the user finished all committed payments. */
+  pendingCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
+}
+export const InstallmentPlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subsequentCommittedPaymentsCount: S.optional(S.Number),
+    remainingCommittedPaymentsCount: S.optional(S.Number),
+    initialCommittedPaymentsCount: S.optional(S.Number),
+    pendingCancellation: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+  }),
+).annotate({
+  identifier: "InstallmentPlan",
+}) as any as S.Schema<InstallmentPlan>;
+
+/** Information related to an auto renewing plan. */
+export interface AutoRenewingPlan {
+  /** The information of the last price change for the item since subscription signup. */
+  priceChangeDetails?: SubscriptionItemPriceChangeDetails;
+  /** The information of the latest price step-up consent. */
+  priceStepUpConsentDetails?: PriceStepUpConsentDetails;
+  /** The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes. For tax-exclusive pricing, please call orders.get API instead if transaction details are needed. */
+  recurringPrice?: Money;
+  /** If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription */
+  autoRenewEnabled?: boolean;
+  /** The installment plan commitment and state related info for the auto renewing plan. */
+  installmentDetails?: InstallmentPlan;
+}
+export const AutoRenewingPlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    priceChangeDetails: S.optional(SubscriptionItemPriceChangeDetails),
+    priceStepUpConsentDetails: S.optional(PriceStepUpConsentDetails),
+    recurringPrice: S.optional(Money),
+    autoRenewEnabled: S.optional(S.Boolean),
+    installmentDetails: S.optional(InstallmentPlan),
+  }),
+).annotate({
+  identifier: "AutoRenewingPlan",
+}) as any as S.Schema<AutoRenewingPlan>;
+
+/** Information related to a prepaid plan. */
+export interface PrepaidPlan {
+  /** If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans. */
+  allowExtendAfterTime?: string;
+}
+export const PrepaidPlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowExtendAfterTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "PrepaidPlan" }) as any as S.Schema<PrepaidPlan>;
+
+/** Offer details information related to a purchase line item. */
+export interface OfferDetails {
+  /** The latest offer tags associated with the offer. It includes tags inherited from the base plan. */
+  offerTags?: StringList;
+  /** The base plan ID. Present for all base plan and offers. */
+  basePlanId?: string;
+  /** The offer ID. Only present for discounted offers. */
+  offerId?: string;
+}
+export const OfferDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerTags: S.optional(StringList),
+    basePlanId: S.optional(S.String),
+    offerId: S.optional(S.String),
+  }),
+).annotate({ identifier: "OfferDetails" }) as any as S.Schema<OfferDetails>;
+
+/** Details about introductory price offer phase. */
+export type IntroductoryPriceOfferPhase =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const IntroductoryPriceOfferPhase =
+  OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Details about free trial offer phase. */
+export type FreeTrialOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
+export const FreeTrialOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
+
+/** Details about base price offer phase. */
+export type BasePriceOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
+export const BasePriceOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
+
+export type ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
+  | "ORIGINAL_OFFER_PHASE_TYPE_UNSPECIFIED"
+  | "BASE"
+  | "INTRODUCTORY"
+  | "FREE_TRIAL";
+export const ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Details about proration period offer phase. */
+export interface ProrationPeriodOfferPhase {
+  /** The original offer phase type before the proration period. Only set when the proration period is updated from an existing offer phase. */
+  originalOfferPhaseType?: ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum;
+}
+export const ProrationPeriodOfferPhase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    originalOfferPhaseType: S.optional(
+      ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum,
+    ),
+  }),
+).annotate({
+  identifier: "ProrationPeriodOfferPhase",
+}) as any as S.Schema<ProrationPeriodOfferPhase>;
+
+/** Offer phase details. */
+export interface OfferPhase {
+  /** Set when the offer phase is an introductory price offer phase. */
+  introductoryPrice?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Set when the offer phase is a free trial. */
+  freeTrial?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Set when the offer phase is a base plan pricing phase. */
+  basePrice?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** Set when the offer phase is a proration period. */
+  prorationPeriod?: ProrationPeriodOfferPhase;
+}
+export const OfferPhase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    introductoryPrice: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    freeTrial: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    basePrice: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    prorationPeriod: S.optional(ProrationPeriodOfferPhase),
+  }),
+).annotate({ identifier: "OfferPhase" }) as any as S.Schema<OfferPhase>;
 
 export type ItemReplacementReplacementModeEnum =
   | "REPLACEMENT_MODE_UNSPECIFIED"
@@ -7145,36 +8394,25 @@ export const ItemReplacementReplacementModeEnum = /*@__PURE__*/ S.String;
 
 /** Details about a subscription line item that is being replaced. */
 export interface ItemReplacement {
-  /** The product ID of the subscription line item being replaced. */
-  productId?: string;
   /** The replacement mode applied during the purchase. */
   replacementMode?: ItemReplacementReplacementModeEnum;
-  /** The base plan ID of the subscription line item being replaced. */
-  basePlanId?: string;
+  /** The product ID of the subscription line item being replaced. */
+  productId?: string;
   /** The offer ID of the subscription line item being replaced, if applicable. */
   offerId?: string;
+  /** The base plan ID of the subscription line item being replaced. */
+  basePlanId?: string;
 }
 export const ItemReplacement = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productId: S.optional(S.String),
     replacementMode: S.optional(ItemReplacementReplacementModeEnum),
-    basePlanId: S.optional(S.String),
+    productId: S.optional(S.String),
     offerId: S.optional(S.String),
+    basePlanId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ItemReplacement",
 }) as any as S.Schema<ItemReplacement>;
-
-/** Information related to a prepaid plan. */
-export interface PrepaidPlan {
-  /** If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans. */
-  allowExtendAfterTime?: string;
-}
-export const PrepaidPlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowExtendAfterTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "PrepaidPlan" }) as any as S.Schema<PrepaidPlan>;
 
 /** A single use promotion code. */
 export type OneTimeCode = OneTimeProductOfferNoPriceOverrideOptions;
@@ -7207,255 +8445,44 @@ export const SignupPromotion = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignupPromotion",
 }) as any as S.Schema<SignupPromotion>;
 
-/** Information related to deferred item replacement. */
-export type DeferredItemRemoval = OneTimeProductOfferNoPriceOverrideOptions;
-export const DeferredItemRemoval = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Details about free trial offer phase. */
-export type FreeTrialOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
-export const FreeTrialOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
-
-export type ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
-  | "ORIGINAL_OFFER_PHASE_TYPE_UNSPECIFIED"
-  | "BASE"
-  | "INTRODUCTORY"
-  | "FREE_TRIAL";
-export const ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Details about proration period offer phase. */
-export interface ProrationPeriodOfferPhase {
-  /** The original offer phase type before the proration period. Only set when the proration period is updated from an existing offer phase. */
-  originalOfferPhaseType?: ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum;
-}
-export const ProrationPeriodOfferPhase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    originalOfferPhaseType: S.optional(
-      ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum,
-    ),
-  }),
-).annotate({
-  identifier: "ProrationPeriodOfferPhase",
-}) as any as S.Schema<ProrationPeriodOfferPhase>;
-
-/** Details about introductory price offer phase. */
-export type IntroductoryPriceOfferPhase =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const IntroductoryPriceOfferPhase =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Details about base price offer phase. */
-export type BasePriceOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
-export const BasePriceOfferPhase = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Offer phase details. */
-export interface OfferPhase {
-  /** Set when the offer phase is a free trial. */
-  freeTrial?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Set when the offer phase is a proration period. */
-  prorationPeriod?: ProrationPeriodOfferPhase;
-  /** Set when the offer phase is an introductory price offer phase. */
-  introductoryPrice?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Set when the offer phase is a base plan pricing phase. */
-  basePrice?: OneTimeProductOfferNoPriceOverrideOptions;
-}
-export const OfferPhase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    freeTrial: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    prorationPeriod: S.optional(ProrationPeriodOfferPhase),
-    introductoryPrice: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    basePrice: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-  }),
-).annotate({ identifier: "OfferPhase" }) as any as S.Schema<OfferPhase>;
-
-/** Information related to deferred item replacement. */
-export interface DeferredItemReplacement {
-  /** The product_id going to replace the existing product_id. */
-  productId?: string;
-}
-export const DeferredItemReplacement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeferredItemReplacement",
-}) as any as S.Schema<DeferredItemReplacement>;
-
-/** Offer details information related to a purchase line item. */
-export interface OfferDetails {
-  /** The latest offer tags associated with the offer. It includes tags inherited from the base plan. */
-  offerTags?: StringList;
-  /** The offer ID. Only present for discounted offers. */
-  offerId?: string;
-  /** The base plan ID. Present for all base plan and offers. */
-  basePlanId?: string;
-}
-export const OfferDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerTags: S.optional(StringList),
-    offerId: S.optional(S.String),
-    basePlanId: S.optional(S.String),
-  }),
-).annotate({ identifier: "OfferDetails" }) as any as S.Schema<OfferDetails>;
-
-export type PriceStepUpConsentDetailsStateEnum =
-  | "CONSENT_STATE_UNSPECIFIED"
-  | "PENDING"
-  | "CONFIRMED"
-  | "COMPLETED";
-export const PriceStepUpConsentDetailsStateEnum = /*@__PURE__*/ S.String;
-
-/** Information related to a price step-up that requires user consent. */
-export interface PriceStepUpConsentDetails {
-  /** The deadline by which the user must provide consent. If consent is not provided by this time, the subscription will be canceled. */
-  consentDeadlineTime?: string;
-  /** Output only. The state of the price step-up consent. */
-  state?: PriceStepUpConsentDetailsStateEnum;
-  /** The new price which requires user consent. */
-  newPrice?: Money;
-}
-export const PriceStepUpConsentDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    consentDeadlineTime: S.optional(S.String),
-    state: S.optional(PriceStepUpConsentDetailsStateEnum),
-    newPrice: S.optional(Money),
-  }),
-).annotate({
-  identifier: "PriceStepUpConsentDetails",
-}) as any as S.Schema<PriceStepUpConsentDetails>;
-
-export type SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
-  | "PRICE_CHANGE_MODE_UNSPECIFIED"
-  | "PRICE_DECREASE"
-  | "PRICE_INCREASE"
-  | "OPT_OUT_PRICE_INCREASE";
-export const SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
-  /*@__PURE__*/ S.String;
-
-export type SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
-  | "PRICE_CHANGE_STATE_UNSPECIFIED"
-  | "OUTSTANDING"
-  | "CONFIRMED"
-  | "APPLIED"
-  | "CANCELED";
-export const SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
-  /*@__PURE__*/ S.String;
-
-/** Price change related information of a subscription item. */
-export interface SubscriptionItemPriceChangeDetails {
-  /** Price change mode specifies how the subscription item price is changing. */
-  priceChangeMode?: SubscriptionItemPriceChangeDetailsPriceChangeModeEnum;
-  /** State the price change is currently in. */
-  priceChangeState?: SubscriptionItemPriceChangeDetailsPriceChangeStateEnum;
-  /** New recurring price for the subscription item. */
-  newPrice?: Money;
-  /** The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause. This field is only populated if the price change has not taken effect. */
-  expectedNewPriceChargeTime?: string;
-}
-export const SubscriptionItemPriceChangeDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    priceChangeMode: S.optional(
-      SubscriptionItemPriceChangeDetailsPriceChangeModeEnum,
-    ),
-    priceChangeState: S.optional(
-      SubscriptionItemPriceChangeDetailsPriceChangeStateEnum,
-    ),
-    newPrice: S.optional(Money),
-    expectedNewPriceChargeTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SubscriptionItemPriceChangeDetails",
-}) as any as S.Schema<SubscriptionItemPriceChangeDetails>;
-
-/** This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments. */
-export type PendingCancellation = OneTimeProductOfferNoPriceOverrideOptions;
-export const PendingCancellation = OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Information to a installment plan. */
-export interface InstallmentPlan {
-  /** Total number of payments the user is initially committed for. */
-  initialCommittedPaymentsCount?: number;
-  /** Total number of committed payments remaining to be paid for in this renewal cycle. */
-  remainingCommittedPaymentsCount?: number;
-  /** Total number of payments the user will be committed for after each commitment period. Empty means the installment plan will fall back to a normal auto-renew subscription after initial commitment. */
-  subsequentCommittedPaymentsCount?: number;
-  /** If present, this installment plan is pending to be canceled. The cancellation will happen only after the user finished all committed payments. */
-  pendingCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
-}
-export const InstallmentPlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    initialCommittedPaymentsCount: S.optional(S.Number),
-    remainingCommittedPaymentsCount: S.optional(S.Number),
-    subsequentCommittedPaymentsCount: S.optional(S.Number),
-    pendingCancellation: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-  }),
-).annotate({
-  identifier: "InstallmentPlan",
-}) as any as S.Schema<InstallmentPlan>;
-
-/** Information related to an auto renewing plan. */
-export interface AutoRenewingPlan {
-  /** The information of the latest price step-up consent. */
-  priceStepUpConsentDetails?: PriceStepUpConsentDetails;
-  /** If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription */
-  autoRenewEnabled?: boolean;
-  /** The information of the last price change for the item since subscription signup. */
-  priceChangeDetails?: SubscriptionItemPriceChangeDetails;
-  /** The installment plan commitment and state related info for the auto renewing plan. */
-  installmentDetails?: InstallmentPlan;
-  /** The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes. For tax-exclusive pricing, please call orders.get API instead if transaction details are needed. */
-  recurringPrice?: Money;
-}
-export const AutoRenewingPlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    priceStepUpConsentDetails: S.optional(PriceStepUpConsentDetails),
-    autoRenewEnabled: S.optional(S.Boolean),
-    priceChangeDetails: S.optional(SubscriptionItemPriceChangeDetails),
-    installmentDetails: S.optional(InstallmentPlan),
-    recurringPrice: S.optional(Money),
-  }),
-).annotate({
-  identifier: "AutoRenewingPlan",
-}) as any as S.Schema<AutoRenewingPlan>;
-
 /** Item-level info for a subscription purchase. */
 export interface SubscriptionPurchaseLineItem {
+  /** Information for deferred item replacement. */
+  deferredItemReplacement?: DeferredItemReplacement;
+  /** Information for deferred item removal. */
+  deferredItemRemoval?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** The item is auto renewing. */
+  autoRenewingPlan?: AutoRenewingPlan;
+  /** The item is prepaid. */
+  prepaidPlan?: PrepaidPlan;
+  /** The order id of the latest successful order associated with this item. Not present if the item is not owned by the user yet (e.g. the item being deferred replaced to). */
+  latestSuccessfulOrderId?: string;
+  /** The offer details for this item. */
+  offerDetails?: OfferDetails;
+  /** Current offer phase details for this item. */
+  offerPhase?: OfferPhase;
   /** The purchased product ID (for example, 'monthly001'). */
   productId?: string;
   /** Details of the item being replaced. This field is only populated if this item replaced another item in a previous subscription and is only available for 60 days after the purchase time. */
   itemReplacement?: ItemReplacement;
-  /** Time at which the subscription expired or will expire unless the access is extended (ex. renews). */
-  expiryTime?: string;
-  /** The item is prepaid. */
-  prepaidPlan?: PrepaidPlan;
   /** Promotion details about this item. Only set if a promotion was applied during signup. */
   signupPromotion?: SignupPromotion;
-  /** The order id of the latest successful order associated with this item. Not present if the item is not owned by the user yet (e.g. the item being deferred replaced to). */
-  latestSuccessfulOrderId?: string;
-  /** Information for deferred item removal. */
-  deferredItemRemoval?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Current offer phase details for this item. */
-  offerPhase?: OfferPhase;
-  /** Information for deferred item replacement. */
-  deferredItemReplacement?: DeferredItemReplacement;
-  /** The offer details for this item. */
-  offerDetails?: OfferDetails;
-  /** The item is auto renewing. */
-  autoRenewingPlan?: AutoRenewingPlan;
+  /** Time at which the subscription expired or will expire unless the access is extended (ex. renews). */
+  expiryTime?: string;
 }
 export const SubscriptionPurchaseLineItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    deferredItemReplacement: S.optional(DeferredItemReplacement),
+    deferredItemRemoval: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    autoRenewingPlan: S.optional(AutoRenewingPlan),
+    prepaidPlan: S.optional(PrepaidPlan),
+    latestSuccessfulOrderId: S.optional(S.String),
+    offerDetails: S.optional(OfferDetails),
+    offerPhase: S.optional(OfferPhase),
     productId: S.optional(S.String),
     itemReplacement: S.optional(ItemReplacement),
-    expiryTime: S.optional(S.String),
-    prepaidPlan: S.optional(PrepaidPlan),
     signupPromotion: S.optional(SignupPromotion),
-    latestSuccessfulOrderId: S.optional(S.String),
-    deferredItemRemoval: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    offerPhase: S.optional(OfferPhase),
-    deferredItemReplacement: S.optional(DeferredItemReplacement),
-    offerDetails: S.optional(OfferDetails),
-    autoRenewingPlan: S.optional(AutoRenewingPlan),
+    expiryTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SubscriptionPurchaseLineItem",
@@ -7467,171 +8494,61 @@ export const SubscriptionPurchaseLineItemList = /*@__PURE__*/ S.Array(
   SubscriptionPurchaseLineItem,
 ) as any as S.Schema<SubscriptionPurchaseLineItemList>;
 
-/** Information specific to cancellations initiated by Google system. */
-export type SystemInitiatedCancellation =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const SystemInitiatedCancellation =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Information specific to cancellations caused by subscription replacement. */
-export type ReplacementCancellation = OneTimeProductOfferNoPriceOverrideOptions;
-export const ReplacementCancellation =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-/** Information specific to cancellations initiated by developers. */
-export type DeveloperInitiatedCancellation =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const DeveloperInitiatedCancellation =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
-export type CancelSurveyResultReasonEnum =
-  | "CANCEL_SURVEY_REASON_UNSPECIFIED"
-  | "CANCEL_SURVEY_REASON_NOT_ENOUGH_USAGE"
-  | "CANCEL_SURVEY_REASON_TECHNICAL_ISSUES"
-  | "CANCEL_SURVEY_REASON_COST_RELATED"
-  | "CANCEL_SURVEY_REASON_FOUND_BETTER_APP"
-  | "CANCEL_SURVEY_REASON_OTHERS";
-export const CancelSurveyResultReasonEnum = /*@__PURE__*/ S.String;
-
-/** Result of the cancel survey when the subscription was canceled by the user. */
-export interface CancelSurveyResult {
-  /** The reason the user selected in the cancel survey. */
-  reason?: CancelSurveyResultReasonEnum;
-  /** Only set for CANCEL_SURVEY_REASON_OTHERS. This is the user's freeform response to the survey. */
-  reasonUserInput?: string;
-}
-export const CancelSurveyResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reason: S.optional(CancelSurveyResultReasonEnum),
-    reasonUserInput: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CancelSurveyResult",
-}) as any as S.Schema<CancelSurveyResult>;
-
-/** Information specific to cancellations initiated by users. */
-export interface UserInitiatedCancellation {
-  /** Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey). */
-  cancelSurveyResult?: CancelSurveyResult;
-  /** The time at which the subscription was canceled by the user. The user might still have access to the subscription after this time. Use line_items.expiry_time to determine if a user still has access. */
-  cancelTime?: string;
-}
-export const UserInitiatedCancellation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cancelSurveyResult: S.optional(CancelSurveyResult),
-    cancelTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserInitiatedCancellation",
-}) as any as S.Schema<UserInitiatedCancellation>;
-
-/** Information specific to a subscription in the SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED state. */
-export interface CanceledStateContext {
-  /** Subscription was canceled by the system, for example because of a billing problem. */
-  systemInitiatedCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Subscription was replaced by a new subscription. */
-  replacementCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Subscription was canceled by the developer. */
-  developerInitiatedCancellation?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Subscription was canceled by user. */
-  userInitiatedCancellation?: UserInitiatedCancellation;
-}
-export const CanceledStateContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    systemInitiatedCancellation: S.optional(
-      OneTimeProductOfferNoPriceOverrideOptions,
-    ),
-    replacementCancellation: S.optional(
-      OneTimeProductOfferNoPriceOverrideOptions,
-    ),
-    developerInitiatedCancellation: S.optional(
-      OneTimeProductOfferNoPriceOverrideOptions,
-    ),
-    userInitiatedCancellation: S.optional(UserInitiatedCancellation),
-  }),
-).annotate({
-  identifier: "CanceledStateContext",
-}) as any as S.Schema<CanceledStateContext>;
-
-export type SubscriptionPurchaseV2AcknowledgementStateEnum =
-  | "ACKNOWLEDGEMENT_STATE_UNSPECIFIED"
-  | "ACKNOWLEDGEMENT_STATE_PENDING"
-  | "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED";
-export const SubscriptionPurchaseV2AcknowledgementStateEnum =
-  /*@__PURE__*/ S.String;
-
-/** Information specific to a subscription in paused state. */
-export interface PausedStateContext {
-  /** Time at which the subscription will be automatically resumed. */
-  autoResumeTime?: string;
-}
-export const PausedStateContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoResumeTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PausedStateContext",
-}) as any as S.Schema<PausedStateContext>;
-
-/** Additional context around subscriptions in ON_HOLD state. */
-export type OnHoldStateContext = InGracePeriodStateContext;
-export const OnHoldStateContext = InGracePeriodStateContext;
-
 /** Indicates the status of a user's subscription purchase. */
 export interface SubscriptionPurchaseV2 {
-  /** Optional. Additional context around subscriptions in IN_GRACE_PERIOD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_IN_GRACE_PERIOD. */
-  inGracePeriodStateContext?: InGracePeriodStateContext;
-  /** The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription. */
-  linkedPurchaseToken?: string;
-  /** Entity tag representing the current state of the subscription. The developer will provide this etag for subscription actions. This etag is always present for auto-renewing and prepaid subscriptions. */
-  etag?: string;
-  /** Additional context for out of app purchases. This information is only present for re-subscription purchases (subscription purchases made after the previous subscription of the same product has expired) made through the Google Play subscriptions center. This field will be removed after you acknowledge the subscription. */
-  outOfAppPurchaseContext?: OutOfAppPurchaseContext;
-  /** The current state of the subscription. */
-  subscriptionState?: SubscriptionPurchaseV2SubscriptionStateEnum;
+  /** Optional. Additional context around subscriptions in ON_HOLD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_ON_HOLD. */
+  onHoldStateContext?: OnHoldStateContext;
   /** User profile associated with purchases made with 'Subscribe with Google'. */
   subscribeWithGoogleInfo?: SubscribeWithGoogleInfo;
-  /** Time at which the subscription was granted. Not set for pending subscriptions (subscription was created but awaiting payment during signup). */
-  startTime?: string;
-  /** Only present if this subscription purchase is a test purchase. */
-  testPurchase?: OneTimeProductOfferNoPriceOverrideOptions;
-  /** Item-level info for a subscription purchase. The items in the same purchase should be either all with AutoRenewingPlan or all with PrepaidPlan. */
-  lineItems?: SubscriptionPurchaseLineItemList;
+  /** Additional context for out of app purchases. This information is only present for re-subscription purchases (subscription purchases made after the previous subscription of the same product has expired) made through the Google Play subscriptions center. This field will be removed after you acknowledge the subscription. */
+  outOfAppPurchaseContext?: OutOfAppPurchaseContext;
   /** User account identifier in the third-party service. */
   externalAccountIdentifiers?: ExternalAccountIdentifiers;
-  /** ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted. */
-  regionCode?: string;
-  /** This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service. */
-  kind?: string;
+  /** Optional. Additional context around subscriptions in IN_GRACE_PERIOD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_IN_GRACE_PERIOD. */
+  inGracePeriodStateContext?: OnHoldStateContext;
   /** Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED. */
   canceledStateContext?: CanceledStateContext;
-  /** The acknowledgement state of the subscription. */
-  acknowledgementState?: SubscriptionPurchaseV2AcknowledgementStateEnum;
+  /** Entity tag representing the current state of the subscription. The developer will provide this etag for subscription actions. This etag is always present for auto-renewing and prepaid subscriptions. */
+  etag?: string;
+  /** Time at which the subscription was granted. Not set for pending subscriptions (subscription was created but awaiting payment during signup). */
+  startTime?: string;
   /** Additional context around paused subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_PAUSED. */
   pausedStateContext?: PausedStateContext;
-  /** Optional. Additional context around subscriptions in ON_HOLD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_ON_HOLD. */
-  onHoldStateContext?: InGracePeriodStateContext;
+  /** The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription. */
+  linkedPurchaseToken?: string;
+  /** Only present if this subscription purchase is a test purchase. */
+  testPurchase?: OneTimeProductOfferNoPriceOverrideOptions;
+  /** This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service. */
+  kind?: string;
+  /** ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted. */
+  regionCode?: string;
+  /** The acknowledgement state of the subscription. */
+  acknowledgementState?: SubscriptionPurchaseV2AcknowledgementStateEnum;
+  /** The current state of the subscription. */
+  subscriptionState?: SubscriptionPurchaseV2SubscriptionStateEnum;
+  /** Item-level info for a subscription purchase. The items in the same purchase should be either all with AutoRenewingPlan or all with PrepaidPlan. */
+  lineItems?: SubscriptionPurchaseLineItemList;
 }
 export const SubscriptionPurchaseV2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    inGracePeriodStateContext: S.optional(InGracePeriodStateContext),
-    linkedPurchaseToken: S.optional(S.String),
-    etag: S.optional(S.String),
-    outOfAppPurchaseContext: S.optional(OutOfAppPurchaseContext),
-    subscriptionState: S.optional(SubscriptionPurchaseV2SubscriptionStateEnum),
+    onHoldStateContext: S.optional(OnHoldStateContext),
     subscribeWithGoogleInfo: S.optional(SubscribeWithGoogleInfo),
-    startTime: S.optional(S.String),
-    testPurchase: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
-    lineItems: S.optional(SubscriptionPurchaseLineItemList),
+    outOfAppPurchaseContext: S.optional(OutOfAppPurchaseContext),
     externalAccountIdentifiers: S.optional(ExternalAccountIdentifiers),
-    regionCode: S.optional(S.String),
-    kind: S.optional(S.String),
+    inGracePeriodStateContext: S.optional(OnHoldStateContext),
     canceledStateContext: S.optional(CanceledStateContext),
+    etag: S.optional(S.String),
+    startTime: S.optional(S.String),
+    pausedStateContext: S.optional(PausedStateContext),
+    linkedPurchaseToken: S.optional(S.String),
+    testPurchase: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
+    kind: S.optional(S.String),
+    regionCode: S.optional(S.String),
     acknowledgementState: S.optional(
       SubscriptionPurchaseV2AcknowledgementStateEnum,
     ),
-    pausedStateContext: S.optional(PausedStateContext),
-    onHoldStateContext: S.optional(InGracePeriodStateContext),
+    subscriptionState: S.optional(SubscriptionPurchaseV2SubscriptionStateEnum),
+    lineItems: S.optional(SubscriptionPurchaseLineItemList),
   }),
 ).annotate({
   identifier: "SubscriptionPurchaseV2",
@@ -7663,114 +8580,114 @@ export const GetReviewsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Characteristics of the user's device. */
 export interface DeviceMetadata {
-  /** OpenGL version */
-  glEsVersion?: number;
-  /** Device CPU model, e.g. "MSM8974" */
-  cpuModel?: string;
-  /** Device class (e.g. tablet) */
-  deviceClass?: string;
-  /** Comma separated list of native platforms (e.g. "arm", "arm7") */
-  nativePlatform?: string;
-  /** Device CPU make, e.g. "Qualcomm" */
-  cpuMake?: string;
   /** Device manufacturer (e.g. Motorola) */
   manufacturer?: string;
   /** Screen width in pixels */
   screenWidthPx?: number;
   /** Device RAM in Megabytes, e.g. "2048" */
   ramMb?: number;
-  /** Screen height in pixels */
-  screenHeightPx?: number;
-  /** Device model name (e.g. Droid) */
-  productName?: string;
+  /** Device CPU model, e.g. "MSM8974" */
+  cpuModel?: string;
   /** Screen density in DPI */
   screenDensityDpi?: number;
+  /** OpenGL version */
+  glEsVersion?: number;
+  /** Device CPU make, e.g. "Qualcomm" */
+  cpuMake?: string;
+  /** Device model name (e.g. Droid) */
+  productName?: string;
+  /** Comma separated list of native platforms (e.g. "arm", "arm7") */
+  nativePlatform?: string;
+  /** Screen height in pixels */
+  screenHeightPx?: number;
+  /** Device class (e.g. tablet) */
+  deviceClass?: string;
 }
 export const DeviceMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    glEsVersion: S.optional(S.Number),
-    cpuModel: S.optional(S.String),
-    deviceClass: S.optional(S.String),
-    nativePlatform: S.optional(S.String),
-    cpuMake: S.optional(S.String),
     manufacturer: S.optional(S.String),
     screenWidthPx: S.optional(S.Number),
     ramMb: S.optional(S.Number),
-    screenHeightPx: S.optional(S.Number),
-    productName: S.optional(S.String),
+    cpuModel: S.optional(S.String),
     screenDensityDpi: S.optional(S.Number),
+    glEsVersion: S.optional(S.Number),
+    cpuMake: S.optional(S.String),
+    productName: S.optional(S.String),
+    nativePlatform: S.optional(S.String),
+    screenHeightPx: S.optional(S.Number),
+    deviceClass: S.optional(S.String),
   }),
 ).annotate({ identifier: "DeviceMetadata" }) as any as S.Schema<DeviceMetadata>;
 
 /** A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970. */
 export interface Timestamp {
-  /** Non-negative fractions of a second at nanosecond resolution. Must be from 0 to 999,999,999 inclusive. */
-  nanos?: number;
   /** Represents seconds of UTC time since Unix epoch. */
   seconds?: string;
+  /** Non-negative fractions of a second at nanosecond resolution. Must be from 0 to 999,999,999 inclusive. */
+  nanos?: number;
 }
 export const Timestamp = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nanos: S.optional(S.Number),
     seconds: S.optional(S.String),
+    nanos: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Timestamp" }) as any as S.Schema<Timestamp>;
 
 /** User entry from conversation between user and developer. */
 export interface UserComment {
+  /** Information about the characteristics of the user's device. */
+  deviceMetadata?: DeviceMetadata;
   /** Number of users who have given this review a thumbs down. */
   thumbsDownCount?: number;
-  /** The star rating associated with the review, from 1 to 5. */
-  starRating?: number;
+  /** The last time at which this comment was updated. */
+  lastModified?: Timestamp;
+  /** Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent. */
+  reviewerLanguage?: string;
   /** The content of the comment, i.e. review body. In some cases users have been able to write a review with separate title and body; in those cases the title and body are concatenated and separated by a tab character. */
   text?: string;
   /** Integer Android SDK version of the user's device at the time the review was written, e.g. 23 is Marshmallow. May be absent. */
   androidOsVersion?: number;
-  /** Untranslated text of the review, where the review was translated. If the review was not translated this is left blank. */
-  originalText?: string;
-  /** Integer version code of the app as installed at the time the review was written. May be absent. */
-  appVersionCode?: number;
-  /** Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent. */
-  reviewerLanguage?: string;
-  /** String version name of the app as installed at the time the review was written. May be absent. */
-  appVersionName?: string;
-  /** Information about the characteristics of the user's device. */
-  deviceMetadata?: DeviceMetadata;
   /** Number of users who have given this review a thumbs up. */
   thumbsUpCount?: number;
-  /** The last time at which this comment was updated. */
-  lastModified?: Timestamp;
+  /** Integer version code of the app as installed at the time the review was written. May be absent. */
+  appVersionCode?: number;
+  /** String version name of the app as installed at the time the review was written. May be absent. */
+  appVersionName?: string;
+  /** The star rating associated with the review, from 1 to 5. */
+  starRating?: number;
   /** Codename for the reviewer's device, e.g. klte, flounder. May be absent. */
   device?: string;
+  /** Untranslated text of the review, where the review was translated. If the review was not translated this is left blank. */
+  originalText?: string;
 }
 export const UserComment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    deviceMetadata: S.optional(DeviceMetadata),
     thumbsDownCount: S.optional(S.Number),
-    starRating: S.optional(S.Number),
+    lastModified: S.optional(Timestamp),
+    reviewerLanguage: S.optional(S.String),
     text: S.optional(S.String),
     androidOsVersion: S.optional(S.Number),
-    originalText: S.optional(S.String),
-    appVersionCode: S.optional(S.Number),
-    reviewerLanguage: S.optional(S.String),
-    appVersionName: S.optional(S.String),
-    deviceMetadata: S.optional(DeviceMetadata),
     thumbsUpCount: S.optional(S.Number),
-    lastModified: S.optional(Timestamp),
+    appVersionCode: S.optional(S.Number),
+    appVersionName: S.optional(S.String),
+    starRating: S.optional(S.Number),
     device: S.optional(S.String),
+    originalText: S.optional(S.String),
   }),
 ).annotate({ identifier: "UserComment" }) as any as S.Schema<UserComment>;
 
 /** Developer entry from conversation between user and developer. */
 export interface DeveloperComment {
-  /** The last time at which this comment was updated. */
-  lastModified?: Timestamp;
   /** The content of the comment, i.e. reply body. */
   text?: string;
+  /** The last time at which this comment was updated. */
+  lastModified?: Timestamp;
 }
 export const DeveloperComment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    lastModified: S.optional(Timestamp),
     text: S.optional(S.String),
+    lastModified: S.optional(Timestamp),
   }),
 ).annotate({
   identifier: "DeveloperComment",
@@ -7797,34 +8714,34 @@ export const CommentList = /*@__PURE__*/ S.Array(
 
 /** An Android app review. */
 export interface Review {
+  /** The name of the user who wrote the review. */
+  authorName?: string;
   /** Unique identifier for this review. */
   reviewId?: string;
   /** A repeated field containing comments for the review. */
   comments?: CommentList;
-  /** The name of the user who wrote the review. */
-  authorName?: string;
 }
 export const Review = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    authorName: S.optional(S.String),
     reviewId: S.optional(S.String),
     comments: S.optional(CommentList),
-    authorName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Review" }) as any as S.Schema<Review>;
 
 export interface GetSystemapksVariantsRequest {
-  /** The ID of a previously created system APK variant. */
-  variantId: number;
   /** Package name of the app. */
   packageName: string;
   /** The version code of the App Bundle. */
   versionCode: string;
+  /** The ID of a previously created system APK variant. */
+  variantId: number;
 }
 export const GetSystemapksVariantsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    variantId: S.Number.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     versionCode: S.String.pipe(T.Label()),
+    variantId: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -7858,17 +8775,17 @@ export const InsertEditsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertEditsRequest>;
 
 export interface InsertInappproductsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
   autoConvertMissingPrices?: boolean;
+  /** Package name of the app. */
+  packageName: string;
   /** Request body */
   body?: InAppProduct;
 }
 export const InsertInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     autoConvertMissingPrices: S.optional(S.Boolean.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
     body: S.optional(InAppProduct.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -7913,15 +8830,15 @@ export const DeviceTierConfigList = /*@__PURE__*/ S.Array(
 
 /** Response listing existing device tier configs. */
 export interface ListDeviceTierConfigsResponse {
-  /** Device tier configs created by the developer. */
-  deviceTierConfigs?: DeviceTierConfigList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** Device tier configs created by the developer. */
+  deviceTierConfigs?: DeviceTierConfigList;
 }
 export const ListDeviceTierConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    deviceTierConfigs: S.optional(DeviceTierConfigList),
     nextPageToken: S.optional(S.String),
+    deviceTierConfigs: S.optional(DeviceTierConfigList),
   }),
 ).annotate({
   identifier: "ListDeviceTierConfigsResponse",
@@ -7946,16 +8863,6 @@ export const ListApplicationsTracksReleasesRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListApplicationsTracksReleasesRequest",
 }) as any as S.Schema<ListApplicationsTracksReleasesRequest>;
 
-export type ReleaseSummaryReleaseLifecycleStateEnum =
-  | "RELEASE_LIFECYCLE_STATE_UNSPECIFIED"
-  | "RELEASE_LIFECYCLE_STATE_DRAFT"
-  | "RELEASE_LIFECYCLE_STATE_NOT_SENT_FOR_REVIEW"
-  | "RELEASE_LIFECYCLE_STATE_IN_REVIEW"
-  | "RELEASE_LIFECYCLE_STATE_APPROVED_NOT_PUBLISHED"
-  | "RELEASE_LIFECYCLE_STATE_NOT_APPROVED"
-  | "RELEASE_LIFECYCLE_STATE_PUBLISHED";
-export const ReleaseSummaryReleaseLifecycleStateEnum = /*@__PURE__*/ S.String;
-
 /** Summary of an artifact. */
 export interface ArtifactSummary {
   /** Artifact's version code */
@@ -7974,23 +8881,33 @@ export const ArtifactSummaryList = /*@__PURE__*/ S.Array(
   ArtifactSummary,
 ) as any as S.Schema<ArtifactSummaryList>;
 
+export type ReleaseSummaryReleaseLifecycleStateEnum =
+  | "RELEASE_LIFECYCLE_STATE_UNSPECIFIED"
+  | "RELEASE_LIFECYCLE_STATE_DRAFT"
+  | "RELEASE_LIFECYCLE_STATE_NOT_SENT_FOR_REVIEW"
+  | "RELEASE_LIFECYCLE_STATE_IN_REVIEW"
+  | "RELEASE_LIFECYCLE_STATE_APPROVED_NOT_PUBLISHED"
+  | "RELEASE_LIFECYCLE_STATE_NOT_APPROVED"
+  | "RELEASE_LIFECYCLE_STATE_PUBLISHED";
+export const ReleaseSummaryReleaseLifecycleStateEnum = /*@__PURE__*/ S.String;
+
 /** Summary of a release. */
 export interface ReleaseSummary {
-  /** Identifier for the track. [Learn more about track names.](https://developers.google.com/android-publisher/tracks). */
-  track?: string;
   /** Name of the release. */
   releaseName?: string;
-  /** The lifecycle state of a release. */
-  releaseLifecycleState?: ReleaseSummaryReleaseLifecycleStateEnum;
   /** List of active artifacts on this release */
   activeArtifacts?: ArtifactSummaryList;
+  /** The lifecycle state of a release. */
+  releaseLifecycleState?: ReleaseSummaryReleaseLifecycleStateEnum;
+  /** Identifier for the track. [Learn more about track names.](https://developers.google.com/android-publisher/tracks). */
+  track?: string;
 }
 export const ReleaseSummary = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    track: S.optional(S.String),
     releaseName: S.optional(S.String),
-    releaseLifecycleState: S.optional(ReleaseSummaryReleaseLifecycleStateEnum),
     activeArtifacts: S.optional(ArtifactSummaryList),
+    releaseLifecycleState: S.optional(ReleaseSummaryReleaseLifecycleStateEnum),
+    track: S.optional(S.String),
   }),
 ).annotate({ identifier: "ReleaseSummary" }) as any as S.Schema<ReleaseSummary>;
 
@@ -8013,15 +8930,15 @@ export const ListReleaseSummariesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReleaseSummariesResponse>;
 
 export interface ListApprecoveryRequest {
-  /** Required. Package name of the app for which list of recovery actions is requested. */
-  packageName: string;
   /** Required. Version code targeted by the list of recovery actions. */
   versionCode?: string;
+  /** Required. Package name of the app for which list of recovery actions is requested. */
+  packageName: string;
 }
 export const ListApprecoveryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     versionCode: S.optional(S.String.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -8052,25 +8969,25 @@ export const ListAppRecoveriesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAppRecoveriesResponse>;
 
 export interface ListAppstorecatalogRecentupdateeventsRequest {
-  /** Optional. The maximum number of update events to return. The service may return fewer than this value. If unspecified, at most 100 update events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
   /** Required. The start time of the range (inclusive). */
   startTime?: string;
   /** Required. The package name of the app store on behalf of which the request is made. */
   appStorePackageName: string;
-  /** Required. The end time of the range (exclusive). */
-  endTime?: string;
   /** Optional. A page token, received from a previous `ListRecentUpdateEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRecentUpdateEvents` must match the call that provided the page token. */
   pageToken?: string;
+  /** Required. The end time of the range (exclusive). */
+  endTime?: string;
+  /** Optional. The maximum number of update events to return. The service may return fewer than this value. If unspecified, at most 100 update events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
 }
 export const ListAppstorecatalogRecentupdateeventsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       startTime: S.optional(S.String.pipe(T.Query())),
       appStorePackageName: S.String.pipe(T.Label()),
-      endTime: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      endTime: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -8090,18 +9007,18 @@ export const RecentUpdateEventUpdateTypeEnum = /*@__PURE__*/ S.String;
 
 /** A recent update event. */
 export interface RecentUpdateEvent {
-  /** The package name of the app. */
-  playAppPackageName?: string;
-  /** The type of the update event. */
-  updateType?: RecentUpdateEventUpdateTypeEnum;
   /** The timestamp of the update. */
   eventTime?: string;
+  /** The type of the update event. */
+  updateType?: RecentUpdateEventUpdateTypeEnum;
+  /** The package name of the app. */
+  playAppPackageName?: string;
 }
 export const RecentUpdateEvent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    playAppPackageName: S.optional(S.String),
-    updateType: S.optional(RecentUpdateEventUpdateTypeEnum),
     eventTime: S.optional(S.String),
+    updateType: S.optional(RecentUpdateEventUpdateTypeEnum),
+    playAppPackageName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RecentUpdateEvent",
@@ -8114,15 +9031,15 @@ export const RecentUpdateEventList = /*@__PURE__*/ S.Array(
 
 /** Response message for ListRecentUpdateEvents. */
 export interface ListRecentUpdateEventsResponse {
-  /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
-  nextPageToken?: string;
   /** The list of recent update events. */
   recentUpdateEvents?: RecentUpdateEventList;
+  /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
+  nextPageToken?: string;
 }
 export const ListRecentUpdateEventsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     recentUpdateEvents: S.optional(RecentUpdateEventList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListRecentUpdateEventsResponse",
@@ -8165,15 +9082,15 @@ export const ApkBinary = /*@__PURE__*/ S.suspend(() =>
 
 /** Information about an APK. The resource for ApksService. */
 export interface Apk {
-  /** Information about the binary payload of this APK. */
-  binary?: ApkBinary;
   /** The version code of the APK, as specified in the manifest file. */
   versionCode?: number;
+  /** Information about the binary payload of this APK. */
+  binary?: ApkBinary;
 }
 export const Apk = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    binary: S.optional(ApkBinary),
     versionCode: S.optional(S.Number),
+    binary: S.optional(ApkBinary),
   }),
 ).annotate({ identifier: "Apk" }) as any as S.Schema<Apk>;
 
@@ -8219,18 +9136,18 @@ export const ListEditsBundlesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Information about an app bundle. The resource for BundlesService. */
 export interface Bundle {
+  /** A sha1 hash of the upload payload, encoded as a hex string and matching the output of the sha1sum command. */
+  sha1?: string;
   /** A sha256 hash of the upload payload, encoded as a hex string and matching the output of the sha256sum command. */
   sha256?: string;
   /** The version code of the Android App Bundle, as specified in the Android App Bundle's base module APK manifest file. */
   versionCode?: number;
-  /** A sha1 hash of the upload payload, encoded as a hex string and matching the output of the sha1sum command. */
-  sha1?: string;
 }
 export const Bundle = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    sha1: S.optional(S.String),
     sha256: S.optional(S.String),
     versionCode: S.optional(S.Number),
-    sha1: S.optional(S.String),
   }),
 ).annotate({ identifier: "Bundle" }) as any as S.Schema<Bundle>;
 
@@ -8241,15 +9158,15 @@ export const BundleList = /*@__PURE__*/ S.Array(
 
 /** Response listing all app bundles. */
 export interface BundlesListResponse {
-  /** The kind of this response ("androidpublisher#bundlesListResponse"). */
-  kind?: string;
   /** All app bundles. */
   bundles?: BundleList;
+  /** The kind of this response ("androidpublisher#bundlesListResponse"). */
+  kind?: string;
 }
 export const BundlesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     bundles: S.optional(BundleList),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BundlesListResponse",
@@ -8268,21 +9185,21 @@ export type ListEditsImagesImageTypeEnum =
 export const ListEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
 
 export interface ListEditsImagesRequest {
-  /** Identifier of the edit. */
-  editId: string;
   /** Package name of the app. */
   packageName: string;
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language. */
-  language: string;
+  /** Identifier of the edit. */
+  editId: string;
   /** Type of the Image. Providing an image type that refers to no images will return an empty response. */
   imageType: ListEditsImagesImageTypeEnum | (string & {});
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language. */
+  language: string;
 }
 export const ListEditsImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    editId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
-    language: S.String.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
     imageType: ListEditsImagesImageTypeEnum.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -8335,15 +9252,15 @@ export const ListingList = /*@__PURE__*/ S.Array(
 
 /** Response listing all localized listings. */
 export interface ListingsListResponse {
-  /** All localized listings. */
-  listings?: ListingList;
   /** The kind of this response ("androidpublisher#listingsListResponse"). */
   kind?: string;
+  /** All localized listings. */
+  listings?: ListingList;
 }
 export const ListingsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    listings: S.optional(ListingList),
     kind: S.optional(S.String),
+    listings: S.optional(ListingList),
   }),
 ).annotate({
   identifier: "ListingsListResponse",
@@ -8412,41 +9329,53 @@ export const ListGeneratedapksRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListGeneratedapksRequest",
 }) as any as S.Schema<ListGeneratedapksRequest>;
 
-export type GeneratedRecoveryApkRecoveryStatusEnum =
-  | "RECOVERY_STATUS_UNSPECIFIED"
-  | "RECOVERY_STATUS_ACTIVE"
-  | "RECOVERY_STATUS_CANCELED"
-  | "RECOVERY_STATUS_DRAFT"
-  | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
-  | "RECOVERY_STATUS_GENERATION_FAILED";
-export const GeneratedRecoveryApkRecoveryStatusEnum = /*@__PURE__*/ S.String;
-
-/** Download metadata for an app recovery module. */
-export interface GeneratedRecoveryApk {
-  /** The status of the recovery action corresponding to the recovery apk. */
-  recoveryStatus?: GeneratedRecoveryApkRecoveryStatusEnum;
+/** Download metadata for a split APK. */
+export interface GeneratedSplitApk {
+  /** ID of the generated variant. */
+  variantId?: number;
   /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
   downloadId?: string;
-  /** ID of the recovery action. */
-  recoveryId?: string;
-  /** Name of the module which recovery apk belongs to. */
+  /** Split ID. Empty for the main split of the base module. */
+  splitId?: string;
+  /** Name of the module that this APK belongs to. */
   moduleName?: string;
 }
-export const GeneratedRecoveryApk = /*@__PURE__*/ S.suspend(() =>
+export const GeneratedSplitApk = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    recoveryStatus: S.optional(GeneratedRecoveryApkRecoveryStatusEnum),
+    variantId: S.optional(S.Number),
     downloadId: S.optional(S.String),
-    recoveryId: S.optional(S.String),
+    splitId: S.optional(S.String),
     moduleName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GeneratedRecoveryApk",
-}) as any as S.Schema<GeneratedRecoveryApk>;
+  identifier: "GeneratedSplitApk",
+}) as any as S.Schema<GeneratedSplitApk>;
 
-export type GeneratedRecoveryApkList = Array<GeneratedRecoveryApk>;
-export const GeneratedRecoveryApkList = /*@__PURE__*/ S.Array(
-  GeneratedRecoveryApk,
-) as any as S.Schema<GeneratedRecoveryApkList>;
+export type GeneratedSplitApkList = Array<GeneratedSplitApk>;
+export const GeneratedSplitApkList = /*@__PURE__*/ S.Array(
+  GeneratedSplitApk,
+) as any as S.Schema<GeneratedSplitApkList>;
+
+/** Download metadata for a standalone APK. */
+export interface GeneratedStandaloneApk {
+  /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
+  downloadId?: string;
+  /** ID of the generated variant. */
+  variantId?: number;
+}
+export const GeneratedStandaloneApk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    downloadId: S.optional(S.String),
+    variantId: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GeneratedStandaloneApk",
+}) as any as S.Schema<GeneratedStandaloneApk>;
+
+export type GeneratedStandaloneApkList = Array<GeneratedStandaloneApk>;
+export const GeneratedStandaloneApkList = /*@__PURE__*/ S.Array(
+  GeneratedStandaloneApk,
+) as any as S.Schema<GeneratedStandaloneApkList>;
 
 /** Download metadata for a universal APK. */
 export interface GeneratedUniversalApk {
@@ -8461,53 +9390,139 @@ export const GeneratedUniversalApk = /*@__PURE__*/ S.suspend(() =>
   identifier: "GeneratedUniversalApk",
 }) as any as S.Schema<GeneratedUniversalApk>;
 
-/** Download metadata for a standalone APK. */
-export interface GeneratedStandaloneApk {
-  /** ID of the generated variant. */
-  variantId?: number;
-  /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
-  downloadId?: string;
+/** Represents an sdk version. */
+export interface SdkVersion {
+  /** Inclusive minimum value of an sdk version. */
+  min?: number;
 }
-export const GeneratedStandaloneApk = /*@__PURE__*/ S.suspend(() =>
+export const SdkVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    variantId: S.optional(S.Number),
-    downloadId: S.optional(S.String),
+    min: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SdkVersion" }) as any as S.Schema<SdkVersion>;
+
+export type SdkVersionList = Array<SdkVersion>;
+export const SdkVersionList = /*@__PURE__*/ S.Array(
+  SdkVersion,
+) as any as S.Schema<SdkVersionList>;
+
+/** Targeting based on sdk version. */
+export interface SdkVersionTargeting {
+  /** Value of an sdk version. */
+  value?: SdkVersionList;
+  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
+  alternatives?: SdkVersionList;
+}
+export const SdkVersionTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SdkVersionList),
+    alternatives: S.optional(SdkVersionList),
   }),
 ).annotate({
-  identifier: "GeneratedStandaloneApk",
-}) as any as S.Schema<GeneratedStandaloneApk>;
+  identifier: "SdkVersionTargeting",
+}) as any as S.Schema<SdkVersionTargeting>;
 
-export type GeneratedStandaloneApkList = Array<GeneratedStandaloneApk>;
-export const GeneratedStandaloneApkList = /*@__PURE__*/ S.Array(
-  GeneratedStandaloneApk,
-) as any as S.Schema<GeneratedStandaloneApkList>;
-
-/** Download metadata for an asset pack slice. */
-export interface GeneratedAssetPackSlice {
-  /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
-  downloadId?: string;
-  /** Asset module version. */
-  version?: string;
-  /** Name of the module that this asset slice belongs to. */
-  moduleName?: string;
-  /** Asset slice ID. */
-  sliceId?: string;
+/** Describes an inclusive/exclusive list of country codes that module targets. */
+export interface UserCountriesTargeting {
+  /** List of country codes in the two-letter CLDR territory format. */
+  countryCodes?: StringList;
+  /** Indicates if the list above is exclusive. */
+  exclude?: boolean;
 }
-export const GeneratedAssetPackSlice = /*@__PURE__*/ S.suspend(() =>
+export const UserCountriesTargeting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    downloadId: S.optional(S.String),
-    version: S.optional(S.String),
-    moduleName: S.optional(S.String),
-    sliceId: S.optional(S.String),
+    countryCodes: S.optional(StringList),
+    exclude: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "GeneratedAssetPackSlice",
-}) as any as S.Schema<GeneratedAssetPackSlice>;
+  identifier: "UserCountriesTargeting",
+}) as any as S.Schema<UserCountriesTargeting>;
 
-export type GeneratedAssetPackSliceList = Array<GeneratedAssetPackSlice>;
-export const GeneratedAssetPackSliceList = /*@__PURE__*/ S.Array(
-  GeneratedAssetPackSlice,
-) as any as S.Schema<GeneratedAssetPackSliceList>;
+/** Represents a device feature. */
+export interface DeviceFeature {
+  /** The feature version specified by android:glEsVersion or android:version in in the AndroidManifest. */
+  featureVersion?: number;
+  /** Name of the feature. */
+  featureName?: string;
+}
+export const DeviceFeature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    featureVersion: S.optional(S.Number),
+    featureName: S.optional(S.String),
+  }),
+).annotate({ identifier: "DeviceFeature" }) as any as S.Schema<DeviceFeature>;
+
+/** Targeting for a device feature. */
+export interface DeviceFeatureTargeting {
+  /** Feature of the device. */
+  requiredFeature?: DeviceFeature;
+}
+export const DeviceFeatureTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requiredFeature: S.optional(DeviceFeature),
+  }),
+).annotate({
+  identifier: "DeviceFeatureTargeting",
+}) as any as S.Schema<DeviceFeatureTargeting>;
+
+export type DeviceFeatureTargetingList = Array<DeviceFeatureTargeting>;
+export const DeviceFeatureTargetingList = /*@__PURE__*/ S.Array(
+  DeviceFeatureTargeting,
+) as any as S.Schema<DeviceFeatureTargetingList>;
+
+/** Targeting on the module level. */
+export interface ModuleTargeting {
+  /** The sdk version that the variant targets */
+  sdkVersionTargeting?: SdkVersionTargeting;
+  /** Countries-level targeting */
+  userCountriesTargeting?: UserCountriesTargeting;
+  /** Targeting for device features. */
+  deviceFeatureTargeting?: DeviceFeatureTargetingList;
+}
+export const ModuleTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sdkVersionTargeting: S.optional(SdkVersionTargeting),
+    userCountriesTargeting: S.optional(UserCountriesTargeting),
+    deviceFeatureTargeting: S.optional(DeviceFeatureTargetingList),
+  }),
+).annotate({
+  identifier: "ModuleTargeting",
+}) as any as S.Schema<ModuleTargeting>;
+
+export type ModuleMetadataDeliveryTypeEnum =
+  | "UNKNOWN_DELIVERY_TYPE"
+  | "INSTALL_TIME"
+  | "ON_DEMAND"
+  | "FAST_FOLLOW";
+export const ModuleMetadataDeliveryTypeEnum = /*@__PURE__*/ S.String;
+
+export type ModuleMetadataModuleTypeEnum =
+  | "UNKNOWN_MODULE_TYPE"
+  | "FEATURE_MODULE";
+export const ModuleMetadataModuleTypeEnum = /*@__PURE__*/ S.String;
+
+/** Metadata of a module. */
+export interface ModuleMetadata {
+  /** The targeting that makes a conditional module installed. Relevant only for Split APKs. */
+  targeting?: ModuleTargeting;
+  /** Indicates the delivery type (e.g. on-demand) of the module. */
+  deliveryType?: ModuleMetadataDeliveryTypeEnum;
+  /** Indicates the type of this feature module. */
+  moduleType?: ModuleMetadataModuleTypeEnum;
+  /** Names of the modules that this module directly depends on. Each module implicitly depends on the base module. */
+  dependencies?: StringList;
+  /** Module name. */
+  name?: string;
+}
+export const ModuleMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targeting: S.optional(ModuleTargeting),
+    deliveryType: S.optional(ModuleMetadataDeliveryTypeEnum),
+    moduleType: S.optional(ModuleMetadataModuleTypeEnum),
+    dependencies: S.optional(StringList),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "ModuleMetadata" }) as any as S.Schema<ModuleMetadata>;
 
 /** Holds data specific to Split APKs. */
 export interface SplitApkMetadata {
@@ -8538,43 +9553,68 @@ export const StandaloneApkMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "StandaloneApkMetadata",
 }) as any as S.Schema<StandaloneApkMetadata>;
 
-export type AbiAliasEnum =
-  | "UNSPECIFIED_CPU_ARCHITECTURE"
-  | "ARMEABI"
-  | "ARMEABI_V7A"
-  | "ARM64_V8A"
-  | "X86"
-  | "X86_64"
-  | "RISCV64";
-export const AbiAliasEnum = /*@__PURE__*/ S.String;
+export type ScreenDensityDensityAliasEnum =
+  | "DENSITY_UNSPECIFIED"
+  | "NODPI"
+  | "LDPI"
+  | "MDPI"
+  | "TVDPI"
+  | "HDPI"
+  | "XHDPI"
+  | "XXHDPI"
+  | "XXXHDPI";
+export const ScreenDensityDensityAliasEnum = /*@__PURE__*/ S.String;
 
-/** Represents an Abi. */
-export interface Abi {
-  /** Alias for an abi. */
-  alias?: AbiAliasEnum;
+/** Represents a screen density. */
+export interface ScreenDensity {
+  /** Value for density dpi. */
+  densityDpi?: number;
+  /** Alias for a screen density. */
+  densityAlias?: ScreenDensityDensityAliasEnum;
 }
-export const Abi = /*@__PURE__*/ S.suspend(() =>
+export const ScreenDensity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    alias: S.optional(AbiAliasEnum),
+    densityDpi: S.optional(S.Number),
+    densityAlias: S.optional(ScreenDensityDensityAliasEnum),
   }),
-).annotate({ identifier: "Abi" }) as any as S.Schema<Abi>;
+).annotate({ identifier: "ScreenDensity" }) as any as S.Schema<ScreenDensity>;
 
-export type AbiList = Array<Abi>;
-export const AbiList = /*@__PURE__*/ S.Array(Abi) as any as S.Schema<AbiList>;
+export type ScreenDensityList = Array<ScreenDensity>;
+export const ScreenDensityList = /*@__PURE__*/ S.Array(
+  ScreenDensity,
+) as any as S.Schema<ScreenDensityList>;
 
-/** Targeting based on Abi. */
-export interface AbiTargeting {
-  /** Value of an abi. */
-  value?: AbiList;
+/** Targeting based on screen density. */
+export interface ScreenDensityTargeting {
+  /** Value of a screen density. */
+  value?: ScreenDensityList;
   /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
-  alternatives?: AbiList;
+  alternatives?: ScreenDensityList;
 }
-export const AbiTargeting = /*@__PURE__*/ S.suspend(() =>
+export const ScreenDensityTargeting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(AbiList),
-    alternatives: S.optional(AbiList),
+    value: S.optional(ScreenDensityList),
+    alternatives: S.optional(ScreenDensityList),
   }),
-).annotate({ identifier: "AbiTargeting" }) as any as S.Schema<AbiTargeting>;
+).annotate({
+  identifier: "ScreenDensityTargeting",
+}) as any as S.Schema<ScreenDensityTargeting>;
+
+/** Targeting based on language. */
+export interface LanguageTargeting {
+  /** Alternative languages. */
+  alternatives?: StringList;
+  /** ISO-639: 2 or 3 letter language code. */
+  value?: StringList;
+}
+export const LanguageTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alternatives: S.optional(StringList),
+    value: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "LanguageTargeting",
+}) as any as S.Schema<LanguageTargeting>;
 
 export type TextureCompressionFormatAliasEnum =
   | "UNSPECIFIED_TEXTURE_COMPRESSION_FORMAT"
@@ -8624,100 +9664,29 @@ export const TextureCompressionFormatTargeting = /*@__PURE__*/ S.suspend(() =>
   identifier: "TextureCompressionFormatTargeting",
 }) as any as S.Schema<TextureCompressionFormatTargeting>;
 
-export type ScreenDensityDensityAliasEnum =
-  | "DENSITY_UNSPECIFIED"
-  | "NODPI"
-  | "LDPI"
-  | "MDPI"
-  | "TVDPI"
-  | "HDPI"
-  | "XHDPI"
-  | "XXHDPI"
-  | "XXXHDPI";
-export const ScreenDensityDensityAliasEnum = /*@__PURE__*/ S.String;
+export type AbiAliasEnum =
+  | "UNSPECIFIED_CPU_ARCHITECTURE"
+  | "ARMEABI"
+  | "ARMEABI_V7A"
+  | "ARM64_V8A"
+  | "X86"
+  | "X86_64"
+  | "RISCV64";
+export const AbiAliasEnum = /*@__PURE__*/ S.String;
 
-/** Represents a screen density. */
-export interface ScreenDensity {
-  /** Value for density dpi. */
-  densityDpi?: number;
-  /** Alias for a screen density. */
-  densityAlias?: ScreenDensityDensityAliasEnum;
+/** Represents an Abi. */
+export interface Abi {
+  /** Alias for an abi. */
+  alias?: AbiAliasEnum;
 }
-export const ScreenDensity = /*@__PURE__*/ S.suspend(() =>
+export const Abi = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    densityDpi: S.optional(S.Number),
-    densityAlias: S.optional(ScreenDensityDensityAliasEnum),
+    alias: S.optional(AbiAliasEnum),
   }),
-).annotate({ identifier: "ScreenDensity" }) as any as S.Schema<ScreenDensity>;
+).annotate({ identifier: "Abi" }) as any as S.Schema<Abi>;
 
-export type ScreenDensityList = Array<ScreenDensity>;
-export const ScreenDensityList = /*@__PURE__*/ S.Array(
-  ScreenDensity,
-) as any as S.Schema<ScreenDensityList>;
-
-/** Targeting based on screen density. */
-export interface ScreenDensityTargeting {
-  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
-  alternatives?: ScreenDensityList;
-  /** Value of a screen density. */
-  value?: ScreenDensityList;
-}
-export const ScreenDensityTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alternatives: S.optional(ScreenDensityList),
-    value: S.optional(ScreenDensityList),
-  }),
-).annotate({
-  identifier: "ScreenDensityTargeting",
-}) as any as S.Schema<ScreenDensityTargeting>;
-
-/** Targeting based on language. */
-export interface LanguageTargeting {
-  /** Alternative languages. */
-  alternatives?: StringList;
-  /** ISO-639: 2 or 3 letter language code. */
-  value?: StringList;
-}
-export const LanguageTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alternatives: S.optional(StringList),
-    value: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "LanguageTargeting",
-}) as any as S.Schema<LanguageTargeting>;
-
-/** Represents an sdk version. */
-export interface SdkVersion {
-  /** Inclusive minimum value of an sdk version. */
-  min?: number;
-}
-export const SdkVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    min: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SdkVersion" }) as any as S.Schema<SdkVersion>;
-
-export type SdkVersionList = Array<SdkVersion>;
-export const SdkVersionList = /*@__PURE__*/ S.Array(
-  SdkVersion,
-) as any as S.Schema<SdkVersionList>;
-
-/** Targeting based on sdk version. */
-export interface SdkVersionTargeting {
-  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
-  alternatives?: SdkVersionList;
-  /** Value of an sdk version. */
-  value?: SdkVersionList;
-}
-export const SdkVersionTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alternatives: S.optional(SdkVersionList),
-    value: S.optional(SdkVersionList),
-  }),
-).annotate({
-  identifier: "SdkVersionTargeting",
-}) as any as S.Schema<SdkVersionTargeting>;
+export type AbiList = Array<Abi>;
+export const AbiList = /*@__PURE__*/ S.Array(Abi) as any as S.Schema<AbiList>;
 
 /** Represents a list of ABIs. */
 export interface MultiAbi {
@@ -8737,45 +9706,59 @@ export const MultiAbiList = /*@__PURE__*/ S.Array(
 
 /** Targeting based on multiple abis. */
 export interface MultiAbiTargeting {
-  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
-  alternatives?: MultiAbiList;
   /** Value of a multi abi. */
   value?: MultiAbiList;
+  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
+  alternatives?: MultiAbiList;
 }
 export const MultiAbiTargeting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    alternatives: S.optional(MultiAbiList),
     value: S.optional(MultiAbiList),
+    alternatives: S.optional(MultiAbiList),
   }),
 ).annotate({
   identifier: "MultiAbiTargeting",
 }) as any as S.Schema<MultiAbiTargeting>;
 
+/** Targeting based on Abi. */
+export interface AbiTargeting {
+  /** Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits. */
+  alternatives?: AbiList;
+  /** Value of an abi. */
+  value?: AbiList;
+}
+export const AbiTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alternatives: S.optional(AbiList),
+    value: S.optional(AbiList),
+  }),
+).annotate({ identifier: "AbiTargeting" }) as any as S.Schema<AbiTargeting>;
+
 /** Represents a set of apk-level targetings. */
 export interface ApkTargeting {
-  /** The abi that the apk targets */
-  abiTargeting?: AbiTargeting;
-  /** Texture-compression-format-level targeting */
-  textureCompressionFormatTargeting?: TextureCompressionFormatTargeting;
   /** The screen density that this apk supports. */
   screenDensityTargeting?: ScreenDensityTargeting;
-  /** The language that the apk targets */
-  languageTargeting?: LanguageTargeting;
   /** The sdk version that the apk targets */
   sdkVersionTargeting?: SdkVersionTargeting;
+  /** The language that the apk targets */
+  languageTargeting?: LanguageTargeting;
+  /** Texture-compression-format-level targeting */
+  textureCompressionFormatTargeting?: TextureCompressionFormatTargeting;
   /** Multi-api-level targeting. */
   multiAbiTargeting?: MultiAbiTargeting;
+  /** The abi that the apk targets */
+  abiTargeting?: AbiTargeting;
 }
 export const ApkTargeting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    abiTargeting: S.optional(AbiTargeting),
+    screenDensityTargeting: S.optional(ScreenDensityTargeting),
+    sdkVersionTargeting: S.optional(SdkVersionTargeting),
+    languageTargeting: S.optional(LanguageTargeting),
     textureCompressionFormatTargeting: S.optional(
       TextureCompressionFormatTargeting,
     ),
-    screenDensityTargeting: S.optional(ScreenDensityTargeting),
-    languageTargeting: S.optional(LanguageTargeting),
-    sdkVersionTargeting: S.optional(SdkVersionTargeting),
     multiAbiTargeting: S.optional(MultiAbiTargeting),
+    abiTargeting: S.optional(AbiTargeting),
   }),
 ).annotate({ identifier: "ApkTargeting" }) as any as S.Schema<ApkTargeting>;
 
@@ -8783,25 +9766,25 @@ export const ApkTargeting = /*@__PURE__*/ S.suspend(() =>
 export interface ApkDescription {
   /** Set only for Split APKs. */
   splitApkMetadata?: SplitApkMetadata;
-  /** Path of the Apk, will be in the following format: .apk where DownloadId is the ID used to download the apk using GeneratedApks.Download API. */
-  path?: string;
   /** Set only for Instant split APKs. */
   instantApkMetadata?: SplitApkMetadata;
   /** Set only for standalone APKs. */
   standaloneApkMetadata?: StandaloneApkMetadata;
-  /** Apk-level targeting. */
-  targeting?: ApkTargeting;
+  /** Path of the Apk, will be in the following format: .apk where DownloadId is the ID used to download the apk using GeneratedApks.Download API. */
+  path?: string;
   /** Set only for asset slices. */
   assetSliceMetadata?: SplitApkMetadata;
+  /** Apk-level targeting. */
+  targeting?: ApkTargeting;
 }
 export const ApkDescription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     splitApkMetadata: S.optional(SplitApkMetadata),
-    path: S.optional(S.String),
     instantApkMetadata: S.optional(SplitApkMetadata),
     standaloneApkMetadata: S.optional(StandaloneApkMetadata),
-    targeting: S.optional(ApkTargeting),
+    path: S.optional(S.String),
     assetSliceMetadata: S.optional(SplitApkMetadata),
+    targeting: S.optional(ApkTargeting),
   }),
 ).annotate({ identifier: "ApkDescription" }) as any as S.Schema<ApkDescription>;
 
@@ -8809,6 +9792,76 @@ export type ApkDescriptionList = Array<ApkDescription>;
 export const ApkDescriptionList = /*@__PURE__*/ S.Array(
   ApkDescription,
 ) as any as S.Schema<ApkDescriptionList>;
+
+/** A set of apks representing a module. */
+export interface ApkSet {
+  /** Metadata about the module represented by this ApkSet */
+  moduleMetadata?: ModuleMetadata;
+  /** Description of the generated apks. */
+  apkDescription?: ApkDescriptionList;
+}
+export const ApkSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    moduleMetadata: S.optional(ModuleMetadata),
+    apkDescription: S.optional(ApkDescriptionList),
+  }),
+).annotate({ identifier: "ApkSet" }) as any as S.Schema<ApkSet>;
+
+export type ApkSetList = Array<ApkSet>;
+export const ApkSetList = /*@__PURE__*/ S.Array(
+  ApkSet,
+) as any as S.Schema<ApkSetList>;
+
+/** Targeting on the level of variants. */
+export interface VariantTargeting {
+  /** Texture-compression-format-level targeting */
+  textureCompressionFormatTargeting?: TextureCompressionFormatTargeting;
+  /** Multi-api-level targeting */
+  multiAbiTargeting?: MultiAbiTargeting;
+  /** The abi that the variant targets */
+  abiTargeting?: AbiTargeting;
+  /** The sdk version that the variant targets */
+  sdkVersionTargeting?: SdkVersionTargeting;
+  /** The screen densities that this variant supports */
+  screenDensityTargeting?: ScreenDensityTargeting;
+}
+export const VariantTargeting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    textureCompressionFormatTargeting: S.optional(
+      TextureCompressionFormatTargeting,
+    ),
+    multiAbiTargeting: S.optional(MultiAbiTargeting),
+    abiTargeting: S.optional(AbiTargeting),
+    sdkVersionTargeting: S.optional(SdkVersionTargeting),
+    screenDensityTargeting: S.optional(ScreenDensityTargeting),
+  }),
+).annotate({
+  identifier: "VariantTargeting",
+}) as any as S.Schema<VariantTargeting>;
+
+/** Variant is a group of APKs that covers a part of the device configuration space. APKs from multiple variants are never combined on one device. */
+export interface SplitApkVariant {
+  /** Number of the variant, starting at 0 (unless overridden). A device will receive APKs from the first variant that matches the device configuration, with higher variant numbers having priority over lower variant numbers. */
+  variantNumber?: number;
+  /** Set of APKs, one set per module. */
+  apkSet?: ApkSetList;
+  /** Variant-level targeting. */
+  targeting?: VariantTargeting;
+}
+export const SplitApkVariant = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    variantNumber: S.optional(S.Number),
+    apkSet: S.optional(ApkSetList),
+    targeting: S.optional(VariantTargeting),
+  }),
+).annotate({
+  identifier: "SplitApkVariant",
+}) as any as S.Schema<SplitApkVariant>;
+
+export type SplitApkVariantList = Array<SplitApkVariant>;
+export const SplitApkVariantList = /*@__PURE__*/ S.Array(
+  SplitApkVariant,
+) as any as S.Schema<SplitApkVariantList>;
 
 export type AssetModuleMetadataDeliveryTypeEnum =
   | "UNKNOWN_DELIVERY_TYPE"
@@ -8852,254 +9905,118 @@ export const AssetSliceSetList = /*@__PURE__*/ S.Array(
   AssetSliceSet,
 ) as any as S.Schema<AssetSliceSetList>;
 
-/** Targeting on the level of variants. */
-export interface VariantTargeting {
-  /** Multi-api-level targeting */
-  multiAbiTargeting?: MultiAbiTargeting;
-  /** The screen densities that this variant supports */
-  screenDensityTargeting?: ScreenDensityTargeting;
-  /** The sdk version that the variant targets */
-  sdkVersionTargeting?: SdkVersionTargeting;
-  /** The abi that the variant targets */
-  abiTargeting?: AbiTargeting;
-  /** Texture-compression-format-level targeting */
-  textureCompressionFormatTargeting?: TextureCompressionFormatTargeting;
-}
-export const VariantTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    multiAbiTargeting: S.optional(MultiAbiTargeting),
-    screenDensityTargeting: S.optional(ScreenDensityTargeting),
-    sdkVersionTargeting: S.optional(SdkVersionTargeting),
-    abiTargeting: S.optional(AbiTargeting),
-    textureCompressionFormatTargeting: S.optional(
-      TextureCompressionFormatTargeting,
-    ),
-  }),
-).annotate({
-  identifier: "VariantTargeting",
-}) as any as S.Schema<VariantTargeting>;
-
-export type ModuleMetadataDeliveryTypeEnum =
-  | "UNKNOWN_DELIVERY_TYPE"
-  | "INSTALL_TIME"
-  | "ON_DEMAND"
-  | "FAST_FOLLOW";
-export const ModuleMetadataDeliveryTypeEnum = /*@__PURE__*/ S.String;
-
-/** Represents a device feature. */
-export interface DeviceFeature {
-  /** Name of the feature. */
-  featureName?: string;
-  /** The feature version specified by android:glEsVersion or android:version in in the AndroidManifest. */
-  featureVersion?: number;
-}
-export const DeviceFeature = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    featureName: S.optional(S.String),
-    featureVersion: S.optional(S.Number),
-  }),
-).annotate({ identifier: "DeviceFeature" }) as any as S.Schema<DeviceFeature>;
-
-/** Targeting for a device feature. */
-export interface DeviceFeatureTargeting {
-  /** Feature of the device. */
-  requiredFeature?: DeviceFeature;
-}
-export const DeviceFeatureTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requiredFeature: S.optional(DeviceFeature),
-  }),
-).annotate({
-  identifier: "DeviceFeatureTargeting",
-}) as any as S.Schema<DeviceFeatureTargeting>;
-
-export type DeviceFeatureTargetingList = Array<DeviceFeatureTargeting>;
-export const DeviceFeatureTargetingList = /*@__PURE__*/ S.Array(
-  DeviceFeatureTargeting,
-) as any as S.Schema<DeviceFeatureTargetingList>;
-
-/** Describes an inclusive/exclusive list of country codes that module targets. */
-export interface UserCountriesTargeting {
-  /** List of country codes in the two-letter CLDR territory format. */
-  countryCodes?: StringList;
-  /** Indicates if the list above is exclusive. */
-  exclude?: boolean;
-}
-export const UserCountriesTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    countryCodes: S.optional(StringList),
-    exclude: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UserCountriesTargeting",
-}) as any as S.Schema<UserCountriesTargeting>;
-
-/** Targeting on the module level. */
-export interface ModuleTargeting {
-  /** Targeting for device features. */
-  deviceFeatureTargeting?: DeviceFeatureTargetingList;
-  /** The sdk version that the variant targets */
-  sdkVersionTargeting?: SdkVersionTargeting;
-  /** Countries-level targeting */
-  userCountriesTargeting?: UserCountriesTargeting;
-}
-export const ModuleTargeting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceFeatureTargeting: S.optional(DeviceFeatureTargetingList),
-    sdkVersionTargeting: S.optional(SdkVersionTargeting),
-    userCountriesTargeting: S.optional(UserCountriesTargeting),
-  }),
-).annotate({
-  identifier: "ModuleTargeting",
-}) as any as S.Schema<ModuleTargeting>;
-
-export type ModuleMetadataModuleTypeEnum =
-  | "UNKNOWN_MODULE_TYPE"
-  | "FEATURE_MODULE";
-export const ModuleMetadataModuleTypeEnum = /*@__PURE__*/ S.String;
-
-/** Metadata of a module. */
-export interface ModuleMetadata {
-  /** Module name. */
-  name?: string;
-  /** Indicates the delivery type (e.g. on-demand) of the module. */
-  deliveryType?: ModuleMetadataDeliveryTypeEnum;
-  /** Names of the modules that this module directly depends on. Each module implicitly depends on the base module. */
-  dependencies?: StringList;
-  /** The targeting that makes a conditional module installed. Relevant only for Split APKs. */
-  targeting?: ModuleTargeting;
-  /** Indicates the type of this feature module. */
-  moduleType?: ModuleMetadataModuleTypeEnum;
-}
-export const ModuleMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    deliveryType: S.optional(ModuleMetadataDeliveryTypeEnum),
-    dependencies: S.optional(StringList),
-    targeting: S.optional(ModuleTargeting),
-    moduleType: S.optional(ModuleMetadataModuleTypeEnum),
-  }),
-).annotate({ identifier: "ModuleMetadata" }) as any as S.Schema<ModuleMetadata>;
-
-/** A set of apks representing a module. */
-export interface ApkSet {
-  /** Metadata about the module represented by this ApkSet */
-  moduleMetadata?: ModuleMetadata;
-  /** Description of the generated apks. */
-  apkDescription?: ApkDescriptionList;
-}
-export const ApkSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    moduleMetadata: S.optional(ModuleMetadata),
-    apkDescription: S.optional(ApkDescriptionList),
-  }),
-).annotate({ identifier: "ApkSet" }) as any as S.Schema<ApkSet>;
-
-export type ApkSetList = Array<ApkSet>;
-export const ApkSetList = /*@__PURE__*/ S.Array(
-  ApkSet,
-) as any as S.Schema<ApkSetList>;
-
-/** Variant is a group of APKs that covers a part of the device configuration space. APKs from multiple variants are never combined on one device. */
-export interface SplitApkVariant {
-  /** Number of the variant, starting at 0 (unless overridden). A device will receive APKs from the first variant that matches the device configuration, with higher variant numbers having priority over lower variant numbers. */
-  variantNumber?: number;
-  /** Variant-level targeting. */
-  targeting?: VariantTargeting;
-  /** Set of APKs, one set per module. */
-  apkSet?: ApkSetList;
-}
-export const SplitApkVariant = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    variantNumber: S.optional(S.Number),
-    targeting: S.optional(VariantTargeting),
-    apkSet: S.optional(ApkSetList),
-  }),
-).annotate({
-  identifier: "SplitApkVariant",
-}) as any as S.Schema<SplitApkVariant>;
-
-export type SplitApkVariantList = Array<SplitApkVariant>;
-export const SplitApkVariantList = /*@__PURE__*/ S.Array(
-  SplitApkVariant,
-) as any as S.Schema<SplitApkVariantList>;
-
 /** Targeting information about the generated apks. */
 export interface TargetingInfo {
-  /** List of created asset slices. */
-  assetSliceSet?: AssetSliceSetList;
   /** List of the created variants. */
   variant?: SplitApkVariantList;
+  /** List of created asset slices. */
+  assetSliceSet?: AssetSliceSetList;
   /** The package name of this app. */
   packageName?: string;
 }
 export const TargetingInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    assetSliceSet: S.optional(AssetSliceSetList),
     variant: S.optional(SplitApkVariantList),
+    assetSliceSet: S.optional(AssetSliceSetList),
     packageName: S.optional(S.String),
   }),
 ).annotate({ identifier: "TargetingInfo" }) as any as S.Schema<TargetingInfo>;
 
-/** Download metadata for a split APK. */
-export interface GeneratedSplitApk {
+export type GeneratedRecoveryApkRecoveryStatusEnum =
+  | "RECOVERY_STATUS_UNSPECIFIED"
+  | "RECOVERY_STATUS_ACTIVE"
+  | "RECOVERY_STATUS_CANCELED"
+  | "RECOVERY_STATUS_DRAFT"
+  | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
+  | "RECOVERY_STATUS_GENERATION_FAILED";
+export const GeneratedRecoveryApkRecoveryStatusEnum = /*@__PURE__*/ S.String;
+
+/** Download metadata for an app recovery module. */
+export interface GeneratedRecoveryApk {
   /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
   downloadId?: string;
-  /** ID of the generated variant. */
-  variantId?: number;
-  /** Name of the module that this APK belongs to. */
+  /** Name of the module which recovery apk belongs to. */
   moduleName?: string;
-  /** Split ID. Empty for the main split of the base module. */
-  splitId?: string;
+  /** The status of the recovery action corresponding to the recovery apk. */
+  recoveryStatus?: GeneratedRecoveryApkRecoveryStatusEnum;
+  /** ID of the recovery action. */
+  recoveryId?: string;
 }
-export const GeneratedSplitApk = /*@__PURE__*/ S.suspend(() =>
+export const GeneratedRecoveryApk = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     downloadId: S.optional(S.String),
-    variantId: S.optional(S.Number),
     moduleName: S.optional(S.String),
-    splitId: S.optional(S.String),
+    recoveryStatus: S.optional(GeneratedRecoveryApkRecoveryStatusEnum),
+    recoveryId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GeneratedSplitApk",
-}) as any as S.Schema<GeneratedSplitApk>;
+  identifier: "GeneratedRecoveryApk",
+}) as any as S.Schema<GeneratedRecoveryApk>;
 
-export type GeneratedSplitApkList = Array<GeneratedSplitApk>;
-export const GeneratedSplitApkList = /*@__PURE__*/ S.Array(
-  GeneratedSplitApk,
-) as any as S.Schema<GeneratedSplitApkList>;
+export type GeneratedRecoveryApkList = Array<GeneratedRecoveryApk>;
+export const GeneratedRecoveryApkList = /*@__PURE__*/ S.Array(
+  GeneratedRecoveryApk,
+) as any as S.Schema<GeneratedRecoveryApkList>;
+
+/** Download metadata for an asset pack slice. */
+export interface GeneratedAssetPackSlice {
+  /** Asset module version. */
+  version?: string;
+  /** Name of the module that this asset slice belongs to. */
+  moduleName?: string;
+  /** Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method. */
+  downloadId?: string;
+  /** Asset slice ID. */
+  sliceId?: string;
+}
+export const GeneratedAssetPackSlice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    moduleName: S.optional(S.String),
+    downloadId: S.optional(S.String),
+    sliceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GeneratedAssetPackSlice",
+}) as any as S.Schema<GeneratedAssetPackSlice>;
+
+export type GeneratedAssetPackSliceList = Array<GeneratedAssetPackSlice>;
+export const GeneratedAssetPackSliceList = /*@__PURE__*/ S.Array(
+  GeneratedAssetPackSlice,
+) as any as S.Schema<GeneratedAssetPackSliceList>;
 
 /** Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. */
 export interface GeneratedApksPerSigningKey {
-  /** SHA256 hash of the APK signing public key certificate. */
-  certificateSha256Hash?: string;
-  /** Generated recovery apks for recovery actions signed with a key corresponding to certificate_sha256_hash. This includes all generated recovery APKs, also those in draft or cancelled state. This field is not set if no recovery actions were created for this signing key. */
-  generatedRecoveryModules?: GeneratedRecoveryApkList;
-  /** Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key. */
-  generatedUniversalApk?: GeneratedUniversalApk;
-  /** List of generated standalone APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_standalone_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection. */
-  unprotectedGeneratedStandaloneApks?: GeneratedStandaloneApkList;
-  /** List of asset pack slices which will be served for this app bundle, signed with a key corresponding to certificate_sha256_hash. */
-  generatedAssetPackSlices?: GeneratedAssetPackSliceList;
-  /** Contains targeting information about the generated apks. */
-  targetingInfo?: TargetingInfo;
-  /** List of generated split APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_split_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection. */
-  unprotectedGeneratedSplitApks?: GeneratedSplitApkList;
   /** List of generated split APKs, signed with a key corresponding to certificate_sha256_hash. */
   generatedSplitApks?: GeneratedSplitApkList;
   /** List of generated standalone APKs, signed with a key corresponding to certificate_sha256_hash. */
   generatedStandaloneApks?: GeneratedStandaloneApkList;
+  /** Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key. */
+  generatedUniversalApk?: GeneratedUniversalApk;
+  /** Contains targeting information about the generated apks. */
+  targetingInfo?: TargetingInfo;
+  /** List of generated split APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_split_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection. */
+  unprotectedGeneratedSplitApks?: GeneratedSplitApkList;
+  /** List of generated standalone APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_standalone_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection. */
+  unprotectedGeneratedStandaloneApks?: GeneratedStandaloneApkList;
+  /** SHA256 hash of the APK signing public key certificate. */
+  certificateSha256Hash?: string;
+  /** Generated recovery apks for recovery actions signed with a key corresponding to certificate_sha256_hash. This includes all generated recovery APKs, also those in draft or cancelled state. This field is not set if no recovery actions were created for this signing key. */
+  generatedRecoveryModules?: GeneratedRecoveryApkList;
+  /** List of asset pack slices which will be served for this app bundle, signed with a key corresponding to certificate_sha256_hash. */
+  generatedAssetPackSlices?: GeneratedAssetPackSliceList;
 }
 export const GeneratedApksPerSigningKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    certificateSha256Hash: S.optional(S.String),
-    generatedRecoveryModules: S.optional(GeneratedRecoveryApkList),
-    generatedUniversalApk: S.optional(GeneratedUniversalApk),
-    unprotectedGeneratedStandaloneApks: S.optional(GeneratedStandaloneApkList),
-    generatedAssetPackSlices: S.optional(GeneratedAssetPackSliceList),
-    targetingInfo: S.optional(TargetingInfo),
-    unprotectedGeneratedSplitApks: S.optional(GeneratedSplitApkList),
     generatedSplitApks: S.optional(GeneratedSplitApkList),
     generatedStandaloneApks: S.optional(GeneratedStandaloneApkList),
+    generatedUniversalApk: S.optional(GeneratedUniversalApk),
+    targetingInfo: S.optional(TargetingInfo),
+    unprotectedGeneratedSplitApks: S.optional(GeneratedSplitApkList),
+    unprotectedGeneratedStandaloneApks: S.optional(GeneratedStandaloneApkList),
+    certificateSha256Hash: S.optional(S.String),
+    generatedRecoveryModules: S.optional(GeneratedRecoveryApkList),
+    generatedAssetPackSlices: S.optional(GeneratedAssetPackSliceList),
   }),
 ).annotate({
   identifier: "GeneratedApksPerSigningKey",
@@ -9126,19 +10043,19 @@ export const GeneratedApksListResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListInappproductsRequest {
   /** Pagination token. If empty, list starts at the first product. */
   token?: string;
-  /** Deprecated and ignored. Set the `token` parameter to retrieve the next page. */
-  startIndex?: number;
   /** Deprecated and ignored. The page size is determined by the server. */
   maxResults?: number;
   /** Package name of the app. */
   packageName: string;
+  /** Deprecated and ignored. Set the `token` parameter to retrieve the next page. */
+  startIndex?: number;
 }
 export const ListInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.optional(S.String.pipe(T.Query())),
-    startIndex: S.optional(S.Number.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     packageName: S.String.pipe(T.Label()),
+    startIndex: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -9149,23 +10066,6 @@ export const ListInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListInappproductsRequest",
 }) as any as S.Schema<ListInappproductsRequest>;
-
-/** Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned. */
-export interface PageInfo {
-  /** Index of the first result returned in the current page. */
-  startIndex?: number;
-  /** Total number of results available on the backend ! The total number of results in the result set. */
-  totalResults?: number;
-  /** Maximum number of results returned in one page. ! The number of results included in the API response. */
-  resultPerPage?: number;
-}
-export const PageInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startIndex: S.optional(S.Number),
-    totalResults: S.optional(S.Number),
-    resultPerPage: S.optional(S.Number),
-  }),
-).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
 
 /** Pagination information returned by a List operation when token pagination is enabled. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned. When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page. */
 export interface TokenPagination {
@@ -9182,42 +10082,59 @@ export const TokenPagination = /*@__PURE__*/ S.suspend(() =>
   identifier: "TokenPagination",
 }) as any as S.Schema<TokenPagination>;
 
+/** Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned. */
+export interface PageInfo {
+  /** Total number of results available on the backend ! The total number of results in the result set. */
+  totalResults?: number;
+  /** Maximum number of results returned in one page. ! The number of results included in the API response. */
+  resultPerPage?: number;
+  /** Index of the first result returned in the current page. */
+  startIndex?: number;
+}
+export const PageInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalResults: S.optional(S.Number),
+    resultPerPage: S.optional(S.Number),
+    startIndex: S.optional(S.Number),
+  }),
+).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
+
 /** Response listing all in-app products. */
 export interface InappproductsListResponse {
-  /** Deprecated and unset. */
-  pageInfo?: PageInfo;
-  /** The kind of this response ("androidpublisher#inappproductsListResponse"). */
-  kind?: string;
-  /** All in-app products. */
-  inappproduct?: InAppProductList;
   /** Pagination token, to handle a number of products that is over one page. */
   tokenPagination?: TokenPagination;
+  /** All in-app products. */
+  inappproduct?: InAppProductList;
+  /** The kind of this response ("androidpublisher#inappproductsListResponse"). */
+  kind?: string;
+  /** Deprecated and unset. */
+  pageInfo?: PageInfo;
 }
 export const InappproductsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageInfo: S.optional(PageInfo),
-    kind: S.optional(S.String),
-    inappproduct: S.optional(InAppProductList),
     tokenPagination: S.optional(TokenPagination),
+    inappproduct: S.optional(InAppProductList),
+    kind: S.optional(S.String),
+    pageInfo: S.optional(PageInfo),
   }),
 ).annotate({
   identifier: "InappproductsListResponse",
 }) as any as S.Schema<InappproductsListResponse>;
 
 export interface ListMonetizationOnetimeproductsRequest {
-  /** Optional. The maximum number of one-time product to return. The service may return fewer than this value. If unspecified, at most 50 one-time products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
-  /** Required. The parent app (package name) for which the one-time product should be read. */
-  packageName: string;
   /** Optional. A page token, received from a previous `ListOneTimeProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOneTimeProducts` must match the call that provided the page token. */
   pageToken?: string;
+  /** Required. The parent app (package name) for which the one-time product should be read. */
+  packageName: string;
+  /** Optional. The maximum number of one-time product to return. The service may return fewer than this value. If unspecified, at most 50 one-time products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
 }
 export const ListMonetizationOnetimeproductsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      packageName: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      packageName: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -9246,24 +10163,24 @@ export const ListOneTimeProductsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOneTimeProductsResponse>;
 
 export interface ListMonetizationOnetimeproductsPurchaseOptionsOffersRequest {
-  /** Optional. A page token, received from a previous `ListOneTimeProductsOffers` call. Provide this to retrieve the subsequent page. When paginating, product_id, package_name and purchase_option_id provided to `ListOneTimeProductsOffersRequest` must match the call that provided the page token. */
-  pageToken?: string;
+  /** Required. The parent purchase option (ID) for which the offers should be read. May be specified as '-' to read all offers under a one-time product or an app. Must be specified as '-' if product_id is specified as '-'. */
+  purchaseOptionId: string;
   /** Required. The parent app (package name) for which the offers should be read. */
   packageName: string;
   /** Required. The parent one-time product (ID) for which the offers should be read. May be specified as '-' to read all offers under an app. */
   productId: string;
-  /** Required. The parent purchase option (ID) for which the offers should be read. May be specified as '-' to read all offers under a one-time product or an app. Must be specified as '-' if product_id is specified as '-'. */
-  purchaseOptionId: string;
+  /** Optional. A page token, received from a previous `ListOneTimeProductsOffers` call. Provide this to retrieve the subsequent page. When paginating, product_id, package_name and purchase_option_id provided to `ListOneTimeProductsOffersRequest` must match the call that provided the page token. */
+  pageToken?: string;
   /** Optional. The maximum number of offers to return. The service may return fewer than this value. If unspecified, at most 50 offers will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
   pageSize?: number;
 }
 export const ListMonetizationOnetimeproductsPurchaseOptionsOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
+      purchaseOptionId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
-      purchaseOptionId: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -9293,22 +10210,22 @@ export const ListOneTimeProductOffersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOneTimeProductOffersResponse>;
 
 export interface ListMonetizationSubscriptionsRequest {
-  /** Required. The parent app (package name) for which the subscriptions should be read. */
-  packageName: string;
-  /** Deprecated: subscription archiving is not supported. */
-  showArchived?: boolean;
-  /** A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token. */
-  pageToken?: string;
   /** The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
   pageSize?: number;
+  /** Deprecated: subscription archiving is not supported. */
+  showArchived?: boolean;
+  /** Required. The parent app (package name) for which the subscriptions should be read. */
+  packageName: string;
+  /** A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token. */
+  pageToken?: string;
 }
 export const ListMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      showArchived: S.optional(S.Boolean.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      showArchived: S.optional(S.Boolean.pipe(T.Query())),
+      packageName: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -9322,39 +10239,39 @@ export const ListMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
 
 /** Response message for ListSubscriptions. */
 export interface ListSubscriptionsResponse {
-  /** The subscriptions from the specified app. */
-  subscriptions?: SubscriptionList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** The subscriptions from the specified app. */
+  subscriptions?: SubscriptionList;
 }
 export const ListSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptions: S.optional(SubscriptionList),
     nextPageToken: S.optional(S.String),
+    subscriptions: S.optional(SubscriptionList),
   }),
 ).annotate({
   identifier: "ListSubscriptionsResponse",
 }) as any as S.Schema<ListSubscriptionsResponse>;
 
 export interface ListMonetizationSubscriptionsBasePlansOffersRequest {
-  /** The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
-  /** Required. The parent app (package name) for which the subscriptions should be read. */
-  packageName: string;
-  /** A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token. */
-  pageToken?: string;
   /** Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app. */
   productId: string;
+  /** A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token. */
+  pageToken?: string;
+  /** Required. The parent app (package name) for which the subscriptions should be read. */
+  packageName: string;
+  /** The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
   /** Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'. */
   basePlanId: string;
 }
 export const ListMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      packageName: S.String.pipe(T.Label()),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       productId: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      packageName: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       basePlanId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -9384,33 +10301,33 @@ export const ListSubscriptionOffersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSubscriptionOffersResponse>;
 
 export interface ListPurchasesVoidedpurchasesRequest {
-  /** The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response. */
-  endTime?: string;
   /** The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken. */
   type?: number;
-  /** Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled. */
-  token?: string;
-  /** The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response. */
-  startTime?: string;
-  /** The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing'). */
-  packageName: string;
   /** Defines how many results the list operation should return. The default number depends on the resource collection. */
   maxResults?: number;
   /** Defines the index of the first element to return. This can only be used if indexed paging is enabled. */
   startIndex?: number;
+  /** The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing'). */
+  packageName: string;
   /** Optional. Whether to include voided purchases of quantity-based partial refunds, which are applicable only to multi-quantity purchases. If true, additional voided purchases may be returned with voidedQuantity that indicates the refund quantity of a quantity-based partial refund. The default value is false. */
   includeQuantityBasedPartialRefund?: boolean;
+  /** The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response. */
+  startTime?: string;
+  /** The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response. */
+  endTime?: string;
+  /** Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled. */
+  token?: string;
 }
 export const ListPurchasesVoidedpurchasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endTime: S.optional(S.String.pipe(T.Query())),
     type: S.optional(S.Number.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
-    startTime: S.optional(S.String.pipe(T.Query())),
-    packageName: S.String.pipe(T.Label()),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     startIndex: S.optional(S.Number.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
     includeQuantityBasedPartialRefund: S.optional(S.Boolean.pipe(T.Query())),
+    startTime: S.optional(S.String.pipe(T.Query())),
+    endTime: S.optional(S.String.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -9424,33 +10341,33 @@ export const ListPurchasesVoidedpurchasesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back. */
 export interface VoidedPurchase {
+  /** The voided quantity as the result of a quantity-based partial refund. Voided purchases of quantity-based partial refunds may only be returned when includeQuantityBasedPartialRefund is set to true. */
+  voidedQuantity?: number;
   /** The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970). */
   purchaseTimeMillis?: string;
-  /** The order id which uniquely identifies a one-time purchase, subscription purchase, or subscription renewal. */
-  orderId?: string;
   /** This kind represents a voided purchase object in the androidpublisher service. */
   kind?: string;
+  /** The order id which uniquely identifies a one-time purchase, subscription purchase, or subscription renewal. */
+  orderId?: string;
+  /** The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970). */
+  voidedTimeMillis?: string;
   /** The token which uniquely identifies a one-time purchase or subscription. To uniquely identify subscription renewals use order_id (available starting from version 3 of the API). */
   purchaseToken?: string;
   /** The initiator of voided purchase, possible values are: 0. User 1. Developer 2. Google */
   voidedSource?: number;
   /** The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback 8. Unacknowledged_purchase */
   voidedReason?: number;
-  /** The voided quantity as the result of a quantity-based partial refund. Voided purchases of quantity-based partial refunds may only be returned when includeQuantityBasedPartialRefund is set to true. */
-  voidedQuantity?: number;
-  /** The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970). */
-  voidedTimeMillis?: string;
 }
 export const VoidedPurchase = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    voidedQuantity: S.optional(S.Number),
     purchaseTimeMillis: S.optional(S.String),
-    orderId: S.optional(S.String),
     kind: S.optional(S.String),
+    orderId: S.optional(S.String),
+    voidedTimeMillis: S.optional(S.String),
     purchaseToken: S.optional(S.String),
     voidedSource: S.optional(S.Number),
     voidedReason: S.optional(S.Number),
-    voidedQuantity: S.optional(S.Number),
-    voidedTimeMillis: S.optional(S.String),
   }),
 ).annotate({ identifier: "VoidedPurchase" }) as any as S.Schema<VoidedPurchase>;
 
@@ -9463,39 +10380,39 @@ export const VoidedPurchaseList = /*@__PURE__*/ S.Array(
 export interface VoidedPurchasesListResponse {
   /** Pagination information for token pagination. */
   tokenPagination?: TokenPagination;
-  voidedPurchases?: VoidedPurchaseList;
   /** General pagination information. */
   pageInfo?: PageInfo;
+  voidedPurchases?: VoidedPurchaseList;
 }
 export const VoidedPurchasesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokenPagination: S.optional(TokenPagination),
-    voidedPurchases: S.optional(VoidedPurchaseList),
     pageInfo: S.optional(PageInfo),
+    voidedPurchases: S.optional(VoidedPurchaseList),
   }),
 ).annotate({
   identifier: "VoidedPurchasesListResponse",
 }) as any as S.Schema<VoidedPurchasesListResponse>;
 
 export interface ListReviewsRequest {
-  /** Package name of the app. */
-  packageName: string;
-  /** Pagination token. If empty, list starts at the first review. */
-  token?: string;
   /** The index of the first element to return. */
   startIndex?: number;
-  /** How many results the list operation should return. */
-  maxResults?: number;
   /** Language localization code. */
   translationLanguage?: string;
+  /** How many results the list operation should return. */
+  maxResults?: number;
+  /** Pagination token. If empty, list starts at the first review. */
+  token?: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const ListReviewsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
-    token: S.optional(S.String.pipe(T.Query())),
     startIndex: S.optional(S.Number.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     translationLanguage: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -9514,18 +10431,18 @@ export const ReviewList = /*@__PURE__*/ S.Array(
 
 /** Response listing reviews. */
 export interface ReviewsListResponse {
-  /** Information about the current page. */
-  pageInfo?: PageInfo;
   /** Pagination token, to handle a number of products that is over one page. */
   tokenPagination?: TokenPagination;
   /** List of reviews. */
   reviews?: ReviewList;
+  /** Information about the current page. */
+  pageInfo?: PageInfo;
 }
 export const ReviewsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageInfo: S.optional(PageInfo),
     tokenPagination: S.optional(TokenPagination),
     reviews: S.optional(ReviewList),
+    pageInfo: S.optional(PageInfo),
   }),
 ).annotate({
   identifier: "ReviewsListResponse",
@@ -9571,17 +10488,17 @@ export const SystemApksListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SystemApksListResponse>;
 
 export interface ListUsersRequest {
-  /** Required. The developer account to fetch users from. Format: developers/{developer} */
-  parent: string;
   /** The maximum number of results to return. This must be set to -1 to disable pagination. */
   pageSize?: number;
+  /** Required. The developer account to fetch users from. Format: developers/{developer} */
+  parent: string;
   /** A token received from a previous call to this method, in order to retrieve further results. */
   pageToken?: string;
 }
 export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -9601,36 +10518,36 @@ export const UserList = /*@__PURE__*/ S.Array(
 
 /** A response containing one or more users with access to an account. */
 export interface ListUsersResponse {
-  /** A token to pass to subsequent calls in order to retrieve subsequent results. This will not be set if there are no more results to return. */
-  nextPageToken?: string;
   /** The resulting users. */
   users?: UserList;
+  /** A token to pass to subsequent calls in order to retrieve subsequent results. This will not be set if there are no more results to return. */
+  nextPageToken?: string;
 }
 export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     users: S.optional(UserList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListUsersResponse",
 }) as any as S.Schema<ListUsersResponse>;
 
 export interface MigratePricesMonetizationSubscriptionsBasePlansRequest {
+  /** Required. The unique base plan ID of the base plan to update prices on. */
+  basePlanId: string;
   /** Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource. */
   productId: string;
   /** Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource. */
   packageName: string;
-  /** Required. The unique base plan ID of the base plan to update prices on. */
-  basePlanId: string;
   /** Request body */
   body?: MigrateBasePlanPricesRequest;
 }
 export const MigratePricesMonetizationSubscriptionsBasePlansRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      basePlanId: S.String.pipe(T.Label()),
       productId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
-      basePlanId: S.String.pipe(T.Label()),
       body: S.optional(MigrateBasePlanPricesRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -9675,14 +10592,14 @@ export const PatchEditsExpansionfilesExpansionFileTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface PatchEditsExpansionfilesRequest {
+  /** Package name of the app. */
+  packageName: string;
   /** The file type of the expansion file configuration which is being updated. */
   expansionFileType:
     | PatchEditsExpansionfilesExpansionFileTypeEnum
     | (string & {});
   /** The version code of the APK whose expansion file configuration is being read or modified. */
   apkVersionCode: number;
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
   /** Request body */
@@ -9690,11 +10607,11 @@ export interface PatchEditsExpansionfilesRequest {
 }
 export const PatchEditsExpansionfilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    packageName: S.String.pipe(T.Label()),
     expansionFileType: PatchEditsExpansionfilesExpansionFileTypeEnum.pipe(
       T.Label(),
     ),
     apkVersionCode: S.Number.pipe(T.Label()),
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
     body: S.optional(ExpansionFile.pipe(T.HttpBody())),
   }).pipe(
@@ -9709,10 +10626,10 @@ export const PatchEditsExpansionfilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchEditsExpansionfilesRequest>;
 
 export interface PatchEditsListingsRequest {
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
-  language: string;
   /** Package name of the app. */
   packageName: string;
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
+  language: string;
   /** Identifier of the edit. */
   editId: string;
   /** Request body */
@@ -9720,8 +10637,8 @@ export interface PatchEditsListingsRequest {
 }
 export const PatchEditsListingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    language: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
     body: S.optional(Listing.pipe(T.HttpBody())),
   }).pipe(
@@ -9763,20 +10680,20 @@ export const PatchEditsTestersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchEditsTestersRequest>;
 
 export interface PatchEditsTracksRequest {
-  /** Package name of the app. */
-  packageName: string;
-  /** Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name) */
-  track: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name) */
+  track: string;
+  /** Package name of the app. */
+  packageName: string;
   /** Request body */
   body?: Track;
 }
 export const PatchEditsTracksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
-    track: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    track: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
     body: S.optional(Track.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -9820,25 +10737,25 @@ export type PatchInappproductsLatencyToleranceEnum =
 export const PatchInappproductsLatencyToleranceEnum = /*@__PURE__*/ S.String;
 
 export interface PatchInappproductsRequest {
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?: PatchInappproductsLatencyToleranceEnum | (string & {});
   /** Package name of the app. */
   packageName: string;
-  /** Unique identifier for the in-app product. */
-  sku: string;
   /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
   autoConvertMissingPrices?: boolean;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?: PatchInappproductsLatencyToleranceEnum | (string & {});
+  /** Unique identifier for the in-app product. */
+  sku: string;
   /** Request body */
   body?: InAppProduct;
 }
 export const PatchInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    packageName: S.String.pipe(T.Label()),
+    autoConvertMissingPrices: S.optional(S.Boolean.pipe(T.Query())),
     latencyTolerance: S.optional(
       PatchInappproductsLatencyToleranceEnum.pipe(T.Query()),
     ),
-    packageName: S.String.pipe(T.Label()),
     sku: S.String.pipe(T.Label()),
-    autoConvertMissingPrices: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(InAppProduct.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -9859,34 +10776,34 @@ export const PatchMonetizationOnetimeproductsLatencyToleranceEnum =
   /*@__PURE__*/ S.String;
 
 export interface PatchMonetizationOnetimeproductsRequest {
-  /** Required. Immutable. Package name of the parent app. */
-  packageName: string;
-  /** Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.). */
-  productId: string;
-  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
-  "regionsVersion.version"?: string;
-  /** Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored. */
-  allowMissing?: boolean;
   /** Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive. */
   latencyTolerance?:
     | PatchMonetizationOnetimeproductsLatencyToleranceEnum
     | (string & {});
+  /** Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.). */
+  productId: string;
+  /** Required. Immutable. Package name of the parent app. */
+  packageName: string;
+  /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
+  "regionsVersion.version"?: string;
   /** Required. The list of fields to be updated. */
   updateMask?: string;
+  /** Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored. */
+  allowMissing?: boolean;
   /** Request body */
   body?: OneTimeProduct;
 }
 export const PatchMonetizationOnetimeproductsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
-      allowMissing: S.optional(S.Boolean.pipe(T.Query())),
       latencyTolerance: S.optional(
         PatchMonetizationOnetimeproductsLatencyToleranceEnum.pipe(T.Query()),
       ),
+      productId: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
+      "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      allowMissing: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(OneTimeProduct.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -9907,18 +10824,18 @@ export const PatchMonetizationSubscriptionsLatencyToleranceEnum =
   /*@__PURE__*/ S.String;
 
 export interface PatchMonetizationSubscriptionsRequest {
-  /** Immutable. Package name of the parent app. */
-  packageName: string;
-  /** Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored. */
-  allowMissing?: boolean;
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
   latencyTolerance?:
     | PatchMonetizationSubscriptionsLatencyToleranceEnum
     | (string & {});
-  /** Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length. */
-  productId: string;
   /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
   "regionsVersion.version"?: string;
+  /** Immutable. Package name of the parent app. */
+  packageName: string;
+  /** Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored. */
+  allowMissing?: boolean;
+  /** Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length. */
+  productId: string;
   /** Required. The list of fields to be updated. */
   updateMask?: string;
   /** Request body */
@@ -9927,13 +10844,13 @@ export interface PatchMonetizationSubscriptionsRequest {
 export const PatchMonetizationSubscriptionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      allowMissing: S.optional(S.Boolean.pipe(T.Query())),
       latencyTolerance: S.optional(
         PatchMonetizationSubscriptionsLatencyToleranceEnum.pipe(T.Query()),
       ),
-      productId: S.String.pipe(T.Label()),
       "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
+      packageName: S.String.pipe(T.Label()),
+      allowMissing: S.optional(S.Boolean.pipe(T.Query())),
+      productId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Subscription.pipe(T.HttpBody())),
     }).pipe(
@@ -9955,16 +10872,12 @@ export const PatchMonetizationSubscriptionsBasePlansOffersLatencyToleranceEnum =
   /*@__PURE__*/ S.String;
 
 export interface PatchMonetizationSubscriptionsBasePlansOffersRequest {
-  /** Required. Immutable. The ID of the parent subscription this offer belongs to. */
-  productId: string;
   /** Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored. */
   allowMissing?: boolean;
-  /** Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan. */
-  offerId: string;
-  /** Required. The list of fields to be updated. */
-  updateMask?: string;
   /** Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. */
   "regionsVersion.version"?: string;
+  /** Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan. */
+  offerId: string;
   /** Required. Immutable. The package name of the app the parent subscription belongs to. */
   packageName: string;
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
@@ -9973,17 +10886,19 @@ export interface PatchMonetizationSubscriptionsBasePlansOffersRequest {
     | (string & {});
   /** Required. Immutable. The ID of the base plan to which this offer is an extension. */
   basePlanId: string;
+  /** Required. Immutable. The ID of the parent subscription this offer belongs to. */
+  productId: string;
+  /** Required. The list of fields to be updated. */
+  updateMask?: string;
   /** Request body */
   body?: SubscriptionOffer;
 }
 export const PatchMonetizationSubscriptionsBasePlansOffersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      productId: S.String.pipe(T.Label()),
       allowMissing: S.optional(S.Boolean.pipe(T.Query())),
-      offerId: S.String.pipe(T.Label()),
-      updateMask: S.optional(S.String.pipe(T.Query())),
       "regionsVersion.version": S.optional(S.String.pipe(T.Query())),
+      offerId: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
       latencyTolerance: S.optional(
         PatchMonetizationSubscriptionsBasePlansOffersLatencyToleranceEnum.pipe(
@@ -9991,6 +10906,8 @@ export const PatchMonetizationSubscriptionsBasePlansOffersRequest =
         ),
       ),
       basePlanId: S.String.pipe(T.Label()),
+      productId: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(SubscriptionOffer.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -10004,17 +10921,17 @@ export const PatchMonetizationSubscriptionsBasePlansOffersRequest =
   }) as any as S.Schema<PatchMonetizationSubscriptionsBasePlansOffersRequest>;
 
 export interface PatchUsersRequest {
-  /** Required. Resource name for this user, following the pattern "developers/{developer}/users/{email}". */
-  name: string;
   /** Optional. The list of fields to be updated. */
   updateMask?: string;
+  /** Required. Resource name for this user, following the pattern "developers/{developer}/users/{email}". */
+  name: string;
   /** Request body */
   body?: User;
 }
 export const PatchUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     body: S.optional(User.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -10027,38 +10944,38 @@ export const PatchUsersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchUsersRequest",
 }) as any as S.Schema<PatchUsersRequest>;
 
-/** A partial refund of a transaction. */
-export interface PartialRefund {
-  /** Required. A unique id distinguishing this partial refund. If the refund is successful, subsequent refunds with the same id will fail. Must be unique across refunds for one individual transaction. */
-  refundId?: string;
-  /** Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction. */
-  refundPreTaxAmount?: Price;
-}
-export const PartialRefund = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    refundId: S.optional(S.String),
-    refundPreTaxAmount: S.optional(Price),
-  }),
-).annotate({ identifier: "PartialRefund" }) as any as S.Schema<PartialRefund>;
-
 /** A full refund of the remaining amount of a transaction. */
 export type FullRefund = OneTimeProductOfferNoPriceOverrideOptions;
 export const FullRefund = OneTimeProductOfferNoPriceOverrideOptions;
 
+/** A partial refund of a transaction. */
+export interface PartialRefund {
+  /** Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction. */
+  refundPreTaxAmount?: Price;
+  /** Required. A unique id distinguishing this partial refund. If the refund is successful, subsequent refunds with the same id will fail. Must be unique across refunds for one individual transaction. */
+  refundId?: string;
+}
+export const PartialRefund = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    refundPreTaxAmount: S.optional(Price),
+    refundId: S.optional(S.String),
+  }),
+).annotate({ identifier: "PartialRefund" }) as any as S.Schema<PartialRefund>;
+
 /** A request to refund an existing external transaction. */
 export interface RefundExternalTransactionRequest {
-  /** A partial refund. */
-  partialRefund?: PartialRefund;
   /** A full-amount refund. */
   fullRefund?: OneTimeProductOfferNoPriceOverrideOptions;
   /** Required. The time that the transaction was refunded. */
   refundTime?: string;
+  /** A partial refund. */
+  partialRefund?: PartialRefund;
 }
 export const RefundExternalTransactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    partialRefund: S.optional(PartialRefund),
     fullRefund: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     refundTime: S.optional(S.String),
+    partialRefund: S.optional(PartialRefund),
   }),
 ).annotate({
   identifier: "RefundExternalTransactionRequest",
@@ -10087,18 +11004,18 @@ export const RefundexternaltransactionExternaltransactionsRequest =
   }) as any as S.Schema<RefundexternaltransactionExternaltransactionsRequest>;
 
 export interface RefundOrdersRequest {
-  /** The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
-  packageName: string;
-  /** Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional). */
-  revoke?: boolean;
   /** The order ID provided to the user when the subscription or in-app order was purchased. */
   orderId: string;
+  /** Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional). */
+  revoke?: boolean;
+  /** The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
+  packageName: string;
 }
 export const RefundOrdersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
-    revoke: S.optional(S.Boolean.pipe(T.Query())),
     orderId: S.String.pipe(T.Label()),
+    revoke: S.optional(S.Boolean.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -10183,49 +11100,57 @@ export const ReviewsReplyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReviewsReplyResponse",
 }) as any as S.Schema<ReviewsReplyResponse>;
 
+export type OrdersReviewRefundRequestRefundPreferenceEnum =
+  | "REFUND_PREFERENCE_UNSPECIFIED"
+  | "DECLINE"
+  | "APPROVE"
+  | "NEUTRAL";
+export const OrdersReviewRefundRequestRefundPreferenceEnum =
+  /*@__PURE__*/ S.String;
+
 /** Coarse Geographic location details for where the consumption happened. */
 export interface CoarseLocation {
-  /** Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty. */
-  locality?: string;
-  /** Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated. */
-  administrativeArea?: string;
   /** Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district. For most addresses, you can omit this. */
   sublocality?: string;
   /** Required. [CLDR region code](https://cldr.unicode.org/) of the country/region of the address. This value is never inferred and you must ensure the value is correct. Example: "CH" for Switzerland. */
   regionCode?: string;
+  /** Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated. */
+  administrativeArea?: string;
+  /** Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty. */
+  locality?: string;
 }
 export const CoarseLocation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    locality: S.optional(S.String),
-    administrativeArea: S.optional(S.String),
     sublocality: S.optional(S.String),
     regionCode: S.optional(S.String),
+    administrativeArea: S.optional(S.String),
+    locality: S.optional(S.String),
   }),
 ).annotate({ identifier: "CoarseLocation" }) as any as S.Schema<CoarseLocation>;
 
 /** List of events, each representing an instance where the user consumed or used the purchased item or service. */
 export interface ConsumptionUsageEvent {
-  /** Optional. The IP address from which the consumption occurred. */
-  ipAddress?: string;
   /** Optional. Time when the user consumed, used, downloaded, opened, or streamed the content. */
   consumptionTime?: string;
-  /** Optional. Obfuscated string that is uniquely associated with the purchaser's user account in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedAccountId(java.lang.String) */
-  obfuscatedAccountId?: string;
-  /** Optional. Obfuscated string that is uniquely associated with the purchaser's user profile in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedProfileId(java.lang.String) */
-  obfuscatedProfileId?: string;
   /** Optional. Geographic location where the consumption occurred. */
   location?: CoarseLocation;
   /** Optional. Free form text that allows developers to provide more info on the item consumed. Maximum length is 5000 characters. */
   consumptionItemDescription?: string;
+  /** Optional. The IP address from which the consumption occurred. */
+  ipAddress?: string;
+  /** Optional. Obfuscated string that is uniquely associated with the purchaser's user account in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedAccountId(java.lang.String) */
+  obfuscatedAccountId?: string;
+  /** Optional. Obfuscated string that is uniquely associated with the purchaser's user profile in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedProfileId(java.lang.String) */
+  obfuscatedProfileId?: string;
 }
 export const ConsumptionUsageEvent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ipAddress: S.optional(S.String),
     consumptionTime: S.optional(S.String),
-    obfuscatedAccountId: S.optional(S.String),
-    obfuscatedProfileId: S.optional(S.String),
     location: S.optional(CoarseLocation),
     consumptionItemDescription: S.optional(S.String),
+    ipAddress: S.optional(S.String),
+    obfuscatedAccountId: S.optional(S.String),
+    obfuscatedProfileId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ConsumptionUsageEvent",
@@ -10236,53 +11161,45 @@ export const ConsumptionUsageEventList = /*@__PURE__*/ S.Array(
   ConsumptionUsageEvent,
 ) as any as S.Schema<ConsumptionUsageEventList>;
 
-export type OrdersReviewRefundRequestRefundPreferenceEnum =
-  | "REFUND_PREFERENCE_UNSPECIFIED"
-  | "DECLINE"
-  | "APPROVE"
-  | "NEUTRAL";
-export const OrdersReviewRefundRequestRefundPreferenceEnum =
-  /*@__PURE__*/ S.String;
-
 /** Request for the orders.reviewrefund API. */
 export interface OrdersReviewRefundRequest {
-  /** Required. The pending refund token included in the pending refund review notification. */
-  pendingRefundToken?: string;
-  /** Optional. Percentage of the In-App purchase the customer consumed, in milliunits. Minimum: 0 Maximum: 100,000. For paid apps, this can be omitted. Example : 45200 represents 45.2%. */
-  consumptionPercentageMilliunits?: number;
-  /** Optional. List of events, each representing an instance where the user consumed or used the purchased item or service. Lists with over 1000 items will be rejected. */
-  consumptionUsageEvents?: ConsumptionUsageEventList;
-  /** Required. Indicates whether you provided a free sample, trial, or information about the functionality prior to the purchase. */
-  sampleContentProvided?: boolean;
   /** Required. Indicates your preference, based on your operational logic, as to whether the Play Store should grant the refund. */
   refundPreference?:
     | OrdersReviewRefundRequestRefundPreferenceEnum
     | (string & {});
+  /** Required. Indicates whether you provided a free sample, trial, or information about the functionality prior to the purchase. */
+  sampleContentProvided?: boolean;
+  /** Required. The pending refund token included in the pending refund review notification. */
+  pendingRefundToken?: string;
+  /** Optional. List of events, each representing an instance where the user consumed or used the purchased item or service. Lists with over 1000 items will be rejected. */
+  consumptionUsageEvents?: ConsumptionUsageEventList;
+  /** Optional. Percentage of the In-App purchase the customer consumed, in milliunits. Minimum: 0 Maximum: 100,000. For paid apps, this can be omitted. Example : 45200 represents 45.2%. */
+  consumptionPercentageMilliunits?: number;
 }
 export const OrdersReviewRefundRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pendingRefundToken: S.optional(S.String),
-    consumptionPercentageMilliunits: S.optional(S.Number),
-    consumptionUsageEvents: S.optional(ConsumptionUsageEventList),
-    sampleContentProvided: S.optional(S.Boolean),
     refundPreference: S.optional(OrdersReviewRefundRequestRefundPreferenceEnum),
+    sampleContentProvided: S.optional(S.Boolean),
+    pendingRefundToken: S.optional(S.String),
+    consumptionUsageEvents: S.optional(ConsumptionUsageEventList),
+    consumptionPercentageMilliunits: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "OrdersReviewRefundRequest",
 }) as any as S.Schema<OrdersReviewRefundRequest>;
 
 export interface ReviewrefundOrdersRequest {
-  /** Required. The order ID provided to the user when the subscription or in-app order was purchased. */
-  orderId: string;
   /** Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing'). */
   packageName: string;
+  /** Required. The order ID provided to the user when the subscription or in-app order was purchased. */
+  orderId: string;
   /** Request body */
   body?: OrdersReviewRefundRequest;
 }
 export const ReviewrefundOrdersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    orderId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
+    orderId: S.String.pipe(T.Label()),
     body: S.optional(OrdersReviewRefundRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -10301,6 +11218,12 @@ export const ReviewrefundOrdersResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReviewrefundOrdersResponse",
 }) as any as S.Schema<ReviewrefundOrdersResponse>;
+
+/** Used to determine if the refund type in the RevocationContext is a prorated refund. */
+export type RevocationContextProratedRefund =
+  OneTimeProductOfferNoPriceOverrideOptions;
+export const RevocationContextProratedRefund =
+  OneTimeProductOfferNoPriceOverrideOptions;
 
 /** Used to determine if the refund type in the RevocationContext is a full refund. */
 export type RevocationContextFullRefund =
@@ -10321,26 +11244,20 @@ export const RevocationContextItemBasedRefund = /*@__PURE__*/ S.suspend(() =>
   identifier: "RevocationContextItemBasedRefund",
 }) as any as S.Schema<RevocationContextItemBasedRefund>;
 
-/** Used to determine if the refund type in the RevocationContext is a prorated refund. */
-export type RevocationContextProratedRefund =
-  OneTimeProductOfferNoPriceOverrideOptions;
-export const RevocationContextProratedRefund =
-  OneTimeProductOfferNoPriceOverrideOptions;
-
 /** Revocation context of the purchases.subscriptionsv2.revoke API. */
 export interface RevocationContext {
+  /** Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription. */
+  proratedRefund?: OneTimeProductOfferNoPriceOverrideOptions;
   /** Optional. Used when users should be refunded the full amount of latest charge on each item in the subscription. */
   fullRefund?: OneTimeProductOfferNoPriceOverrideOptions;
   /** Optional. Used when a specific item should be refunded in a subscription with add-on items. */
   itemBasedRefund?: RevocationContextItemBasedRefund;
-  /** Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription. */
-  proratedRefund?: OneTimeProductOfferNoPriceOverrideOptions;
 }
 export const RevocationContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    proratedRefund: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     fullRefund: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
     itemBasedRefund: S.optional(RevocationContextItemBasedRefund),
-    proratedRefund: S.optional(OneTimeProductOfferNoPriceOverrideOptions),
   }),
 ).annotate({
   identifier: "RevocationContext",
@@ -10394,15 +11311,15 @@ export const RevokeSubscriptionPurchaseResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Message representing rotated Cloud KMS key. Consists of the Cloud KMS key and its associated proof of rotation. */
 export interface RotatedCloudKmsKey {
-  /** Required. Cloud KMS key and the certificate associated with the key. */
-  cloudKmsKeyAndCert?: CloudKmsKeyAndCert;
   /** Required. Proof-of-rotation. See [creating signing certificate lineages](https://developer.android.com/studio/command-line/apksigner#rotate_signing_keys_2). */
   signingCertificateLineage?: string;
+  /** Required. Cloud KMS key and the certificate associated with the key. */
+  cloudKmsKeyAndCert?: CloudKmsKeyAndCert;
 }
 export const RotatedCloudKmsKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    cloudKmsKeyAndCert: S.optional(CloudKmsKeyAndCert),
     signingCertificateLineage: S.optional(S.String),
+    cloudKmsKeyAndCert: S.optional(CloudKmsKeyAndCert),
   }),
 ).annotate({
   identifier: "RotatedCloudKmsKey",
@@ -10477,32 +11394,68 @@ export const RotateAppSigningKeyResponse = /*@__PURE__*/ S.suspend(() =>
 export interface AppStoreAppDetails {
   /** Required. The app developer's name. */
   developerName?: string;
-  /** Required. The app developer's contact email address. */
-  contactEmail?: string;
   /** Optional. Website link for the developer or app. */
   developerWebsite?: string;
+  /** Required. The app developer's contact email address. */
+  contactEmail?: string;
 }
 export const AppStoreAppDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     developerName: S.optional(S.String),
-    contactEmail: S.optional(S.String),
     developerWebsite: S.optional(S.String),
+    contactEmail: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AppStoreAppDetails",
 }) as any as S.Schema<AppStoreAppDetails>;
 
+/** A localized store listing. These are the details about the app as shown in your app store. */
+export interface AppStoreAppStoreListing {
+  /** Required. Comprehensive description text about the app. */
+  fullDescription?: string;
+  /** Required. Image ID generated from UploadImage for the main app icon. */
+  appIconId?: string;
+  /** Required. Multiple image IDs for screenshot galleries. */
+  screenshotId?: StringList;
+  /** Required. Language code (e.g., "en-US") of the listing. */
+  languageCode?: string;
+  /** Optional. Link to a video about the app. */
+  videoLink?: string;
+  /** Optional. Quick summary about the app. */
+  shortDescription?: string;
+  /** Required. The title of the app. */
+  appName?: string;
+}
+export const AppStoreAppStoreListing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fullDescription: S.optional(S.String),
+    appIconId: S.optional(S.String),
+    screenshotId: S.optional(StringList),
+    languageCode: S.optional(S.String),
+    videoLink: S.optional(S.String),
+    shortDescription: S.optional(S.String),
+    appName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppStoreAppStoreListing",
+}) as any as S.Schema<AppStoreAppStoreListing>;
+
+export type AppStoreAppStoreListingList = Array<AppStoreAppStoreListing>;
+export const AppStoreAppStoreListingList = /*@__PURE__*/ S.Array(
+  AppStoreAppStoreListing,
+) as any as S.Schema<AppStoreAppStoreListingList>;
+
 /** An installable set of active APKs. A set of APKs might only contain 1 APK if the app in question publishes using APKs. If the app uses app bundles (or a similar technology), this set should contain all APKs (even optional ones) that might be installed for this app. A set of APKs should be installable together. If certain APKs are exclusive to one another and cannot be installed together, then a separate AppStoreAppActiveApkSet should be created. */
 export interface AppStoreAppActiveApkSet {
-  /** Required. The ID for the main base application module. Example: base.apk or app.apk. */
-  baseApkId?: string;
   /** Optional. IDs for split modules that might be installed in combination with the base APK. Can be empty if app bundles (or a similar technology) are not used. Example: config.en.apk. */
   splitApkId?: StringList;
+  /** Required. The ID for the main base application module. Example: base.apk or app.apk. */
+  baseApkId?: string;
 }
 export const AppStoreAppActiveApkSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    baseApkId: S.optional(S.String),
     splitApkId: S.optional(StringList),
+    baseApkId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AppStoreAppActiveApkSet",
@@ -10526,19 +11479,6 @@ export const AppStoreAppActiveApks = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppStoreAppActiveApks",
 }) as any as S.Schema<AppStoreAppActiveApks>;
 
-/** Responses that will only ever be a boolean. */
-export interface PolicyBooleanResponse {
-  /** Required. Provided boolean value. */
-  value?: boolean;
-}
-export const PolicyBooleanResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "PolicyBooleanResponse",
-}) as any as S.Schema<PolicyBooleanResponse>;
-
 /** Any response where multiple options can be chosen from several possibilities. */
 export interface PolicyMultipleChoiceResponse {
   /** Optional. Provided values. */
@@ -10551,6 +11491,45 @@ export const PolicyMultipleChoiceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PolicyMultipleChoiceResponse",
 }) as any as S.Schema<PolicyMultipleChoiceResponse>;
+
+/** Any response where a single option is chosen from several possibilities. */
+export interface PolicySingleChoiceResponse {
+  /** Required. Provided value. */
+  value?: string;
+}
+export const PolicySingleChoiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PolicySingleChoiceResponse",
+}) as any as S.Schema<PolicySingleChoiceResponse>;
+
+/** Any response best encoded as a string. Includes URLs and multiline text fields. */
+export interface PolicyStringResponse {
+  /** Required. Provided string value. */
+  value?: string;
+}
+export const PolicyStringResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PolicyStringResponse",
+}) as any as S.Schema<PolicyStringResponse>;
+
+/** Responses that will only ever be a boolean. */
+export interface PolicyBooleanResponse {
+  /** Required. Provided boolean value. */
+  value?: boolean;
+}
+export const PolicyBooleanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "PolicyBooleanResponse",
+}) as any as S.Schema<PolicyBooleanResponse>;
 
 /** An uploaded document. Must be a single logical document (e.g. a financial license). */
 export interface PolicyDocumentResponse {
@@ -10571,55 +11550,29 @@ export const PolicyDocumentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PolicyDocumentResponse",
 }) as any as S.Schema<PolicyDocumentResponse>;
 
-/** Any response best encoded as a string. Includes URLs and multiline text fields. */
-export interface PolicyStringResponse {
-  /** Required. Provided string value. */
-  value?: string;
-}
-export const PolicyStringResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PolicyStringResponse",
-}) as any as S.Schema<PolicyStringResponse>;
-
-/** Any response where a single option is chosen from several possibilities. */
-export interface PolicySingleChoiceResponse {
-  /** Required. Provided value. */
-  value?: string;
-}
-export const PolicySingleChoiceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PolicySingleChoiceResponse",
-}) as any as S.Schema<PolicySingleChoiceResponse>;
-
 /** An individual nested response to a policy question about an app. Nested responses are like regular responses but without groups. */
 export interface NestedPolicyResponse {
-  /** Required. ID of the question being answered. */
-  questionId?: string;
-  /** Optional. A multiple choice response. */
-  multipleChoiceResponse?: PolicyMultipleChoiceResponse;
-  /** Optional. A string response. */
-  stringResponse?: PolicyStringResponse;
-  /** Optional. A boolean response. */
-  booleanResponse?: PolicyBooleanResponse;
   /** Optional. A single choice response. */
   singleChoiceResponse?: PolicySingleChoiceResponse;
+  /** Optional. A string response. */
+  stringResponse?: PolicyStringResponse;
+  /** Optional. A multiple choice response. */
+  multipleChoiceResponse?: PolicyMultipleChoiceResponse;
+  /** Optional. A boolean response. */
+  booleanResponse?: PolicyBooleanResponse;
   /** Optional. A document response. */
   documentResponse?: PolicyDocumentResponse;
+  /** Required. ID of the question being answered. */
+  questionId?: string;
 }
 export const NestedPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    questionId: S.optional(S.String),
-    multipleChoiceResponse: S.optional(PolicyMultipleChoiceResponse),
-    stringResponse: S.optional(PolicyStringResponse),
-    booleanResponse: S.optional(PolicyBooleanResponse),
     singleChoiceResponse: S.optional(PolicySingleChoiceResponse),
+    stringResponse: S.optional(PolicyStringResponse),
+    multipleChoiceResponse: S.optional(PolicyMultipleChoiceResponse),
+    booleanResponse: S.optional(PolicyBooleanResponse),
     documentResponse: S.optional(PolicyDocumentResponse),
+    questionId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "NestedPolicyResponse",
@@ -10661,15 +11614,15 @@ export const PolicyGroupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** A group of responses, with a key. */
 export interface KeyedGroup {
-  /** Required. Key for this group. */
-  key?: string;
   /** Required. Responses in this group. */
   responses?: NestedPolicyResponseList;
+  /** Required. Key for this group. */
+  key?: string;
 }
 export const KeyedGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    key: S.optional(S.String),
     responses: S.optional(NestedPolicyResponseList),
+    key: S.optional(S.String),
   }),
 ).annotate({ identifier: "KeyedGroup" }) as any as S.Schema<KeyedGroup>;
 
@@ -10693,33 +11646,33 @@ export const PolicyKeyedGroupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** An individual response (answer) to a policy question about an app. */
 export interface PolicyResponse {
-  /** Optional. A boolean response. */
-  booleanResponse?: PolicyBooleanResponse;
   /** Optional. A multiple choice response. */
   multipleChoiceResponse?: PolicyMultipleChoiceResponse;
-  /** Optional. A document response. */
-  documentResponse?: PolicyDocumentResponse;
   /** Optional. A group response. */
   groupResponse?: PolicyGroupResponse;
   /** Required. ID of the question being answered. */
   questionId?: string;
-  /** Optional. A single choice response. */
-  singleChoiceResponse?: PolicySingleChoiceResponse;
-  /** Optional. A string response. */
-  stringResponse?: PolicyStringResponse;
+  /** Optional. A document response. */
+  documentResponse?: PolicyDocumentResponse;
   /** Optional. A keyed group response. */
   keyedGroupResponse?: PolicyKeyedGroupResponse;
+  /** Optional. A single choice response. */
+  singleChoiceResponse?: PolicySingleChoiceResponse;
+  /** Optional. A boolean response. */
+  booleanResponse?: PolicyBooleanResponse;
+  /** Optional. A string response. */
+  stringResponse?: PolicyStringResponse;
 }
 export const PolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    booleanResponse: S.optional(PolicyBooleanResponse),
     multipleChoiceResponse: S.optional(PolicyMultipleChoiceResponse),
-    documentResponse: S.optional(PolicyDocumentResponse),
     groupResponse: S.optional(PolicyGroupResponse),
     questionId: S.optional(S.String),
-    singleChoiceResponse: S.optional(PolicySingleChoiceResponse),
-    stringResponse: S.optional(PolicyStringResponse),
+    documentResponse: S.optional(PolicyDocumentResponse),
     keyedGroupResponse: S.optional(PolicyKeyedGroupResponse),
+    singleChoiceResponse: S.optional(PolicySingleChoiceResponse),
+    booleanResponse: S.optional(PolicyBooleanResponse),
+    stringResponse: S.optional(PolicyStringResponse),
   }),
 ).annotate({ identifier: "PolicyResponse" }) as any as S.Schema<PolicyResponse>;
 
@@ -10730,15 +11683,15 @@ export const PolicyResponseList = /*@__PURE__*/ S.Array(
 
 /** A policy declaration with its responses. */
 export interface AppStoreAppPolicyDeclaration {
-  /** Required. Responses provided for this declaration. */
-  responses?: PolicyResponseList;
   /** Required. ID of the policy declaration. */
   declarationId?: string;
+  /** Required. Responses provided for this declaration. */
+  responses?: PolicyResponseList;
 }
 export const AppStoreAppPolicyDeclaration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    responses: S.optional(PolicyResponseList),
     declarationId: S.optional(S.String),
+    responses: S.optional(PolicyResponseList),
   }),
 ).annotate({
   identifier: "AppStoreAppPolicyDeclaration",
@@ -10750,62 +11703,26 @@ export const AppStoreAppPolicyDeclarationList = /*@__PURE__*/ S.Array(
   AppStoreAppPolicyDeclaration,
 ) as any as S.Schema<AppStoreAppPolicyDeclarationList>;
 
-/** A localized store listing. These are the details about the app as shown in your app store. */
-export interface AppStoreAppStoreListing {
-  /** Required. Multiple image IDs for screenshot galleries. */
-  screenshotId?: StringList;
-  /** Required. The title of the app. */
-  appName?: string;
-  /** Required. Image ID generated from UploadImage for the main app icon. */
-  appIconId?: string;
-  /** Required. Comprehensive description text about the app. */
-  fullDescription?: string;
-  /** Optional. Link to a video about the app. */
-  videoLink?: string;
-  /** Required. Language code (e.g., "en-US") of the listing. */
-  languageCode?: string;
-  /** Optional. Quick summary about the app. */
-  shortDescription?: string;
-}
-export const AppStoreAppStoreListing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    screenshotId: S.optional(StringList),
-    appName: S.optional(S.String),
-    appIconId: S.optional(S.String),
-    fullDescription: S.optional(S.String),
-    videoLink: S.optional(S.String),
-    languageCode: S.optional(S.String),
-    shortDescription: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppStoreAppStoreListing",
-}) as any as S.Schema<AppStoreAppStoreListing>;
-
-export type AppStoreAppStoreListingList = Array<AppStoreAppStoreListing>;
-export const AppStoreAppStoreListingList = /*@__PURE__*/ S.Array(
-  AppStoreAppStoreListing,
-) as any as S.Schema<AppStoreAppStoreListingList>;
-
 /** Request to update an app record for an app store hosted app. */
 export interface UpdateAppStoreHostedAppRequest {
-  /** Required. Package name of the app. */
-  packageName?: string;
   /** Required. General developer details for the app. */
   appDetails?: AppStoreAppDetails;
+  /** Required. Localized store listings details of the update. */
+  activeLocalizedStoreListings?: AppStoreAppStoreListingList;
+  /** Required. Package name of the app. */
+  packageName?: string;
   /** Required. Actively distributed APKs of the app. */
   activeApks?: AppStoreAppActiveApks;
   /** Required. Policy declarations provided for the app. */
   policyDeclarations?: AppStoreAppPolicyDeclarationList;
-  /** Required. Localized store listings details of the update. */
-  activeLocalizedStoreListings?: AppStoreAppStoreListingList;
 }
 export const UpdateAppStoreHostedAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.optional(S.String),
     appDetails: S.optional(AppStoreAppDetails),
+    activeLocalizedStoreListings: S.optional(AppStoreAppStoreListingList),
+    packageName: S.optional(S.String),
     activeApks: S.optional(AppStoreAppActiveApks),
     policyDeclarations: S.optional(AppStoreAppPolicyDeclarationList),
-    activeLocalizedStoreListings: S.optional(AppStoreAppStoreListingList),
   }),
 ).annotate({
   identifier: "UpdateAppStoreHostedAppRequest",
@@ -10867,18 +11784,18 @@ export const UpdateAppStoreHostedAppPublishStatusRequest =
   }) as any as S.Schema<UpdateAppStoreHostedAppPublishStatusRequest>;
 
 export interface UpdateappstorehostedapppublishstatusAppstoreappsreviewRequest {
-  /** Required. Package name of the third-party app store. */
-  appStorePackageName: string;
   /** Required. Package name of the app. */
   packageName: string;
+  /** Required. Package name of the third-party app store. */
+  appStorePackageName: string;
   /** Request body */
   body?: UpdateAppStoreHostedAppPublishStatusRequest;
 }
 export const UpdateappstorehostedapppublishstatusAppstoreappsreviewRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      appStorePackageName: S.String.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
+      appStorePackageName: S.String.pipe(T.Label()),
       body: S.optional(
         UpdateAppStoreHostedAppPublishStatusRequest.pipe(T.HttpBody()),
       ),
@@ -10899,866 +11816,6 @@ export const UpdateAppStoreHostedAppPublishStatusResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "UpdateAppStoreHostedAppPublishStatusResponse",
   }) as any as S.Schema<UpdateAppStoreHostedAppPublishStatusResponse>;
-
-export type InappproductsUpdateRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const InappproductsUpdateRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request to update an in-app product. */
-export interface InappproductsUpdateRequest {
-  /** The new in-app product. */
-  inappproduct?: InAppProduct;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | InappproductsUpdateRequestLatencyToleranceEnum
-    | (string & {});
-  /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
-  autoConvertMissingPrices?: boolean;
-  /** If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created. */
-  allowMissing?: boolean;
-  /** Package name of the app. */
-  packageName?: string;
-  /** Unique identifier for the in-app product. */
-  sku?: string;
-}
-export const InappproductsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inappproduct: S.optional(InAppProduct),
-    latencyTolerance: S.optional(
-      InappproductsUpdateRequestLatencyToleranceEnum,
-    ),
-    autoConvertMissingPrices: S.optional(S.Boolean),
-    allowMissing: S.optional(S.Boolean),
-    packageName: S.optional(S.String),
-    sku: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InappproductsUpdateRequest",
-}) as any as S.Schema<InappproductsUpdateRequest>;
-
-export type InappproductsUpdateRequestList = Array<InappproductsUpdateRequest>;
-export const InappproductsUpdateRequestList = /*@__PURE__*/ S.Array(
-  InappproductsUpdateRequest,
-) as any as S.Schema<InappproductsUpdateRequestList>;
-
-/** Request to update or insert one or more in-app products. */
-export interface InappproductsBatchUpdateRequest {
-  /** Required. Individual update requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products. */
-  requests?: InappproductsUpdateRequestList;
-}
-export const InappproductsBatchUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(InappproductsUpdateRequestList),
-  }),
-).annotate({
-  identifier: "InappproductsBatchUpdateRequest",
-}) as any as S.Schema<InappproductsBatchUpdateRequest>;
-
-export interface UpdateBatchInappproductRequest {
-  /** Package name of the app. */
-  packageName: string;
-  /** Request body */
-  body?: InappproductsBatchUpdateRequest;
-}
-export const UpdateBatchInappproductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.String.pipe(T.Label()),
-    body: S.optional(InappproductsBatchUpdateRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate",
-      baseUrl: "https://androidpublisher.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateBatchInappproductRequest",
-}) as any as S.Schema<UpdateBatchInappproductRequest>;
-
-/** Response for a batch in-app product update. */
-export interface InappproductsBatchUpdateResponse {
-  /** The updated or inserted in-app products. */
-  inappproducts?: InAppProductList;
-}
-export const InappproductsBatchUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inappproducts: S.optional(InAppProductList),
-  }),
-).annotate({
-  identifier: "InappproductsBatchUpdateResponse",
-}) as any as S.Schema<InappproductsBatchUpdateResponse>;
-
-export type UpdateOneTimeProductRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateOneTimeProductRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdateOneTimeProduct. */
-export interface UpdateOneTimeProductRequest {
-  /** Required. The one-time product to upsert. */
-  oneTimeProduct?: OneTimeProduct;
-  /** Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored. */
-  allowMissing?: boolean;
-  /** Required. The version of the available regions being used for the one-time product. */
-  regionsVersion?: RegionsVersion;
-  /** Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | UpdateOneTimeProductRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The list of fields to be updated. */
-  updateMask?: string;
-}
-export const UpdateOneTimeProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oneTimeProduct: S.optional(OneTimeProduct),
-    allowMissing: S.optional(S.Boolean),
-    regionsVersion: S.optional(RegionsVersion),
-    latencyTolerance: S.optional(
-      UpdateOneTimeProductRequestLatencyToleranceEnum,
-    ),
-    updateMask: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateOneTimeProductRequest",
-}) as any as S.Schema<UpdateOneTimeProductRequest>;
-
-export type UpdateOneTimeProductRequestList =
-  Array<UpdateOneTimeProductRequest>;
-export const UpdateOneTimeProductRequestList = /*@__PURE__*/ S.Array(
-  UpdateOneTimeProductRequest,
-) as any as S.Schema<UpdateOneTimeProductRequestList>;
-
-/** Request message for BatchUpdateOneTimeProduct. */
-export interface BatchUpdateOneTimeProductsRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must update different one-time products. */
-  requests?: UpdateOneTimeProductRequestList;
-}
-export const BatchUpdateOneTimeProductsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(UpdateOneTimeProductRequestList),
-  }),
-).annotate({
-  identifier: "BatchUpdateOneTimeProductsRequest",
-}) as any as S.Schema<BatchUpdateOneTimeProductsRequest>;
-
-export interface UpdateBatchMonetizationOnetimeproductRequest {
-  /** Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources. */
-  packageName: string;
-  /** Request body */
-  body?: BatchUpdateOneTimeProductsRequest;
-}
-export const UpdateBatchMonetizationOnetimeproductRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      body: S.optional(BatchUpdateOneTimeProductsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateBatchMonetizationOnetimeproductRequest",
-  }) as any as S.Schema<UpdateBatchMonetizationOnetimeproductRequest>;
-
-/** Response message for BatchUpdateOneTimeProduct. */
-export interface BatchUpdateOneTimeProductsResponse {
-  /** The list of updated one-time products list, in the same order as the request. */
-  oneTimeProducts?: OneTimeProductList;
-}
-export const BatchUpdateOneTimeProductsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oneTimeProducts: S.optional(OneTimeProductList),
-  }),
-).annotate({
-  identifier: "BatchUpdateOneTimeProductsResponse",
-}) as any as S.Schema<BatchUpdateOneTimeProductsResponse>;
-
-export type UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdateOneTimeProductOffer. */
-export interface UpdateOneTimeProductOfferRequest {
-  /** Optional. The latency tolerance for the propagation of this offer update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | UpdateOneTimeProductOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The version of the available regions being used for the offer. */
-  regionsVersion?: RegionsVersion;
-  /** Required. The list of fields to be updated. */
-  updateMask?: string;
-  /** Optional. If set to true, and the offer with the given package_name, product_id, purchase_option_id and offer_id doesn't exist, an offer will be created. If a new offer is created, the update_mask is ignored. */
-  allowMissing?: boolean;
-  /** Required. The one-time product offer to update. */
-  oneTimeProductOffer?: OneTimeProductOffer;
-}
-export const UpdateOneTimeProductOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latencyTolerance: S.optional(
-      UpdateOneTimeProductOfferRequestLatencyToleranceEnum,
-    ),
-    regionsVersion: S.optional(RegionsVersion),
-    updateMask: S.optional(S.String),
-    allowMissing: S.optional(S.Boolean),
-    oneTimeProductOffer: S.optional(OneTimeProductOffer),
-  }),
-).annotate({
-  identifier: "UpdateOneTimeProductOfferRequest",
-}) as any as S.Schema<UpdateOneTimeProductOfferRequest>;
-
-export type UpdateOneTimeProductOfferRequestList =
-  Array<UpdateOneTimeProductOfferRequest>;
-export const UpdateOneTimeProductOfferRequestList = /*@__PURE__*/ S.Array(
-  UpdateOneTimeProductOfferRequest,
-) as any as S.Schema<UpdateOneTimeProductOfferRequestList>;
-
-/** Request message for BatchUpdateOneTimeProductOffers. */
-export interface BatchUpdateOneTimeProductOffersRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must update different offers. */
-  requests?: UpdateOneTimeProductOfferRequestList;
-}
-export const BatchUpdateOneTimeProductOffersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requests: S.optional(UpdateOneTimeProductOfferRequestList),
-    }),
-).annotate({
-  identifier: "BatchUpdateOneTimeProductOffersRequest",
-}) as any as S.Schema<BatchUpdateOneTimeProductOffersRequest>;
-
-export interface UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest {
-  /** Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources. */
-  packageName: string;
-  /** Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options. */
-  purchaseOptionId: string;
-  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Request body */
-  body?: BatchUpdateOneTimeProductOffersRequest;
-}
-export const UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      purchaseOptionId: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(
-        BatchUpdateOneTimeProductOffersRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest",
-  }) as any as S.Schema<UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest>;
-
-/** Response message for BatchUpdateOneTimeProductOffers. */
-export interface BatchUpdateOneTimeProductOffersResponse {
-  /** The list of updated one-time product offers, in the same order as the request. */
-  oneTimeProductOffers?: OneTimeProductOfferList;
-}
-export const BatchUpdateOneTimeProductOffersResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
-    }),
-).annotate({
-  identifier: "BatchUpdateOneTimeProductOffersResponse",
-}) as any as S.Schema<BatchUpdateOneTimeProductOffersResponse>;
-
-export type UpdateSubscriptionRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateSubscriptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdateSubscription. */
-export interface UpdateSubscriptionRequest {
-  /** Required. The version of the available regions being used for the subscription. */
-  regionsVersion?: RegionsVersion;
-  /** Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored. */
-  allowMissing?: boolean;
-  /** Required. The list of fields to be updated. */
-  updateMask?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | UpdateSubscriptionRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The subscription to update. */
-  subscription?: Subscription;
-}
-export const UpdateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regionsVersion: S.optional(RegionsVersion),
-    allowMissing: S.optional(S.Boolean),
-    updateMask: S.optional(S.String),
-    latencyTolerance: S.optional(UpdateSubscriptionRequestLatencyToleranceEnum),
-    subscription: S.optional(Subscription),
-  }),
-).annotate({
-  identifier: "UpdateSubscriptionRequest",
-}) as any as S.Schema<UpdateSubscriptionRequest>;
-
-export type UpdateSubscriptionRequestList = Array<UpdateSubscriptionRequest>;
-export const UpdateSubscriptionRequestList = /*@__PURE__*/ S.Array(
-  UpdateSubscriptionRequest,
-) as any as S.Schema<UpdateSubscriptionRequestList>;
-
-/** Request message for BatchUpdateSubscription. */
-export interface BatchUpdateSubscriptionsRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must update different subscriptions. */
-  requests?: UpdateSubscriptionRequestList;
-}
-export const BatchUpdateSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(UpdateSubscriptionRequestList),
-  }),
-).annotate({
-  identifier: "BatchUpdateSubscriptionsRequest",
-}) as any as S.Schema<BatchUpdateSubscriptionsRequest>;
-
-export interface UpdateBatchMonetizationSubscriptionRequest {
-  /** Required. The parent app (package name) for which the subscriptions should be updated. Must be equal to the package_name field on all the Subscription resources. */
-  packageName: string;
-  /** Request body */
-  body?: BatchUpdateSubscriptionsRequest;
-}
-export const UpdateBatchMonetizationSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      body: S.optional(BatchUpdateSubscriptionsRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateBatchMonetizationSubscriptionRequest",
-  }) as any as S.Schema<UpdateBatchMonetizationSubscriptionRequest>;
-
-/** Response message for BatchUpdateSubscription. */
-export interface BatchUpdateSubscriptionsResponse {
-  /** The updated subscriptions list. */
-  subscriptions?: SubscriptionList;
-}
-export const BatchUpdateSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptions: S.optional(SubscriptionList),
-  }),
-).annotate({
-  identifier: "BatchUpdateSubscriptionsResponse",
-}) as any as S.Schema<BatchUpdateSubscriptionsResponse>;
-
-export type UpdateSubscriptionOfferRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateSubscriptionOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdateSubscriptionOffer. */
-export interface UpdateSubscriptionOfferRequest {
-  /** Required. The subscription offer to update. */
-  subscriptionOffer?: SubscriptionOffer;
-  /** Required. The list of fields to be updated. */
-  updateMask?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | UpdateSubscriptionOfferRequestLatencyToleranceEnum
-    | (string & {});
-  /** Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored. */
-  allowMissing?: boolean;
-  /** Required. The version of the available regions being used for the subscription_offer. */
-  regionsVersion?: RegionsVersion;
-}
-export const UpdateSubscriptionOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionOffer: S.optional(SubscriptionOffer),
-    updateMask: S.optional(S.String),
-    latencyTolerance: S.optional(
-      UpdateSubscriptionOfferRequestLatencyToleranceEnum,
-    ),
-    allowMissing: S.optional(S.Boolean),
-    regionsVersion: S.optional(RegionsVersion),
-  }),
-).annotate({
-  identifier: "UpdateSubscriptionOfferRequest",
-}) as any as S.Schema<UpdateSubscriptionOfferRequest>;
-
-export type UpdateSubscriptionOfferRequestList =
-  Array<UpdateSubscriptionOfferRequest>;
-export const UpdateSubscriptionOfferRequestList = /*@__PURE__*/ S.Array(
-  UpdateSubscriptionOfferRequest,
-) as any as S.Schema<UpdateSubscriptionOfferRequestList>;
-
-/** Request message for BatchUpdateSubscriptionOffers. */
-export interface BatchUpdateSubscriptionOffersRequest {
-  /** Required. A list of update requests of up to 100 elements. All requests must update different subscription offers. */
-  requests?: UpdateSubscriptionOfferRequestList;
-}
-export const BatchUpdateSubscriptionOffersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requests: S.optional(UpdateSubscriptionOfferRequestList),
-    }),
-).annotate({
-  identifier: "BatchUpdateSubscriptionOffersRequest",
-}) as any as S.Schema<BatchUpdateSubscriptionOffersRequest>;
-
-export interface UpdateBatchMonetizationSubscriptionBasePlanOfferRequest {
-  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
-  productId: string;
-  /** Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans. */
-  basePlanId: string;
-  /** Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources. */
-  packageName: string;
-  /** Request body */
-  body?: BatchUpdateSubscriptionOffersRequest;
-}
-export const UpdateBatchMonetizationSubscriptionBasePlanOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      productId: S.String.pipe(T.Label()),
-      basePlanId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
-      body: S.optional(BatchUpdateSubscriptionOffersRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateBatchMonetizationSubscriptionBasePlanOfferRequest",
-  }) as any as S.Schema<UpdateBatchMonetizationSubscriptionBasePlanOfferRequest>;
-
-/** Response message for BatchUpdateSubscriptionOffers. */
-export interface BatchUpdateSubscriptionOffersResponse {
-  /** The updated subscription offers list. */
-  subscriptionOffers?: SubscriptionOfferList;
-}
-export const BatchUpdateSubscriptionOffersResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionOffers: S.optional(SubscriptionOfferList),
-    }),
-).annotate({
-  identifier: "BatchUpdateSubscriptionOffersResponse",
-}) as any as S.Schema<BatchUpdateSubscriptionOffersResponse>;
-
-export type ActivatePurchaseOptionRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const ActivatePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdatePurchaseOptionState. */
-export interface ActivatePurchaseOptionRequest {
-  /** Required. The parent app (package name) of the purchase option to activate. */
-  packageName?: string;
-  /** Required. The purchase option ID of the purchase option to activate. */
-  purchaseOptionId?: string;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | ActivatePurchaseOptionRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The parent one-time product (ID) of the purchase option to activate. */
-  productId?: string;
-}
-export const ActivatePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    purchaseOptionId: S.optional(S.String),
-    latencyTolerance: S.optional(
-      ActivatePurchaseOptionRequestLatencyToleranceEnum,
-    ),
-    productId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActivatePurchaseOptionRequest",
-}) as any as S.Schema<ActivatePurchaseOptionRequest>;
-
-export type DeactivatePurchaseOptionRequestLatencyToleranceEnum =
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
-  | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivatePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
-
-/** Request message for UpdatePurchaseOptionState. */
-export interface DeactivatePurchaseOptionRequest {
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?:
-    | DeactivatePurchaseOptionRequestLatencyToleranceEnum
-    | (string & {});
-  /** Required. The parent app (package name) of the purchase option to deactivate. */
-  packageName?: string;
-  /** Required. The parent one-time product (ID) of the purchase option to deactivate. */
-  productId?: string;
-  /** Required. The purchase option ID of the purchase option to deactivate. */
-  purchaseOptionId?: string;
-}
-export const DeactivatePurchaseOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latencyTolerance: S.optional(
-      DeactivatePurchaseOptionRequestLatencyToleranceEnum,
-    ),
-    packageName: S.optional(S.String),
-    productId: S.optional(S.String),
-    purchaseOptionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeactivatePurchaseOptionRequest",
-}) as any as S.Schema<DeactivatePurchaseOptionRequest>;
-
-/** Request message to update the state of a one-time product purchase option. */
-export interface UpdatePurchaseOptionStateRequest {
-  /** Activates a purchase option. Once activated, the purchase option will be available. */
-  activatePurchaseOptionRequest?: ActivatePurchaseOptionRequest;
-  /** Deactivates a purchase option. Once deactivated, the purchase option will become unavailable. */
-  deactivatePurchaseOptionRequest?: DeactivatePurchaseOptionRequest;
-}
-export const UpdatePurchaseOptionStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activatePurchaseOptionRequest: S.optional(ActivatePurchaseOptionRequest),
-    deactivatePurchaseOptionRequest: S.optional(
-      DeactivatePurchaseOptionRequest,
-    ),
-  }),
-).annotate({
-  identifier: "UpdatePurchaseOptionStateRequest",
-}) as any as S.Schema<UpdatePurchaseOptionStateRequest>;
-
-export type UpdatePurchaseOptionStateRequestList =
-  Array<UpdatePurchaseOptionStateRequest>;
-export const UpdatePurchaseOptionStateRequestList = /*@__PURE__*/ S.Array(
-  UpdatePurchaseOptionStateRequest,
-) as any as S.Schema<UpdatePurchaseOptionStateRequestList>;
-
-/** Request message for BatchUpdatePurchaseOptionStates. */
-export interface BatchUpdatePurchaseOptionStatesRequest {
-  /** Required. The update request list of up to 100 elements. All requests must update different purchase options. */
-  requests?: UpdatePurchaseOptionStateRequestList;
-}
-export const BatchUpdatePurchaseOptionStatesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requests: S.optional(UpdatePurchaseOptionStateRequestList),
-    }),
-).annotate({
-  identifier: "BatchUpdatePurchaseOptionStatesRequest",
-}) as any as S.Schema<BatchUpdatePurchaseOptionStatesRequest>;
-
-export interface UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest {
-  /** Required. The parent app (package name) of the updated purchase options. */
-  packageName: string;
-  /** Required. The product ID of the parent one-time product, if all updated purchase options belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Request body */
-  body?: BatchUpdatePurchaseOptionStatesRequest;
-}
-export const UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(
-        BatchUpdatePurchaseOptionStatesRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest",
-  }) as any as S.Schema<UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest>;
-
-/** Response message for BatchUpdatePurchaseOptionStates. */
-export interface BatchUpdatePurchaseOptionStatesResponse {
-  /** The list of updated one-time products. This list will match the requests one to one, in the same order. */
-  oneTimeProducts?: OneTimeProductList;
-}
-export const BatchUpdatePurchaseOptionStatesResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      oneTimeProducts: S.optional(OneTimeProductList),
-    }),
-).annotate({
-  identifier: "BatchUpdatePurchaseOptionStatesResponse",
-}) as any as S.Schema<BatchUpdatePurchaseOptionStatesResponse>;
-
-/** Request message to update the state of a one-time product offer. */
-export interface UpdateOneTimeProductOfferStateRequest {
-  /** Activates an offer. Once activated, the offer is available to users, as long as its conditions are met. */
-  activateOneTimeProductOfferRequest?: ActivateOneTimeProductOfferRequest;
-  /** Cancels an offer. Once cancelled, the offer is not available to users. Any pending orders related to this offer will be cancelled. This state transition is specific to pre-orders. */
-  cancelOneTimeProductOfferRequest?: CancelOneTimeProductOfferRequest;
-  /** Deactivates an offer. Once deactivated, the offer is no longer available to users. This state transition is specific to discounted offers. */
-  deactivateOneTimeProductOfferRequest?: DeactivateOneTimeProductOfferRequest;
-}
-export const UpdateOneTimeProductOfferStateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      activateOneTimeProductOfferRequest: S.optional(
-        ActivateOneTimeProductOfferRequest,
-      ),
-      cancelOneTimeProductOfferRequest: S.optional(
-        CancelOneTimeProductOfferRequest,
-      ),
-      deactivateOneTimeProductOfferRequest: S.optional(
-        DeactivateOneTimeProductOfferRequest,
-      ),
-    }),
-).annotate({
-  identifier: "UpdateOneTimeProductOfferStateRequest",
-}) as any as S.Schema<UpdateOneTimeProductOfferStateRequest>;
-
-export type UpdateOneTimeProductOfferStateRequestList =
-  Array<UpdateOneTimeProductOfferStateRequest>;
-export const UpdateOneTimeProductOfferStateRequestList = /*@__PURE__*/ S.Array(
-  UpdateOneTimeProductOfferStateRequest,
-) as any as S.Schema<UpdateOneTimeProductOfferStateRequestList>;
-
-/** Request message for BatchUpdateOneTimeProductOfferStates. */
-export interface BatchUpdateOneTimeProductOfferStatesRequest {
-  /** Required. The update request list of up to 100 elements. All requests must update different offers. */
-  requests?: UpdateOneTimeProductOfferStateRequestList;
-}
-export const BatchUpdateOneTimeProductOfferStatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      requests: S.optional(UpdateOneTimeProductOfferStateRequestList),
-    }),
-  ).annotate({
-    identifier: "BatchUpdateOneTimeProductOfferStatesRequest",
-  }) as any as S.Schema<BatchUpdateOneTimeProductOfferStatesRequest>;
-
-export interface UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest {
-  /** Required. The product ID of the parent one-time product, if all updated offers belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-". */
-  productId: string;
-  /** Required. The purchase option ID of the parent purchase option, if all updated offers belong to the same purchase option. If this batch update spans multiple purchase options, set this field to "-". */
-  purchaseOptionId: string;
-  /** Required. The parent app (package name) of the updated one-time product offers. */
-  packageName: string;
-  /** Request body */
-  body?: BatchUpdateOneTimeProductOfferStatesRequest;
-}
-export const UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      productId: S.String.pipe(T.Label()),
-      purchaseOptionId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
-      body: S.optional(
-        BatchUpdateOneTimeProductOfferStatesRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest",
-  }) as any as S.Schema<UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest>;
-
-/** Response message for BatchUpdateOneTimeProductOfferStates. */
-export interface BatchUpdateOneTimeProductOfferStatesResponse {
-  /** The updated one-time product offers list, in the same order as the request. */
-  oneTimeProductOffers?: OneTimeProductOfferList;
-}
-export const BatchUpdateOneTimeProductOfferStatesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      oneTimeProductOffers: S.optional(OneTimeProductOfferList),
-    }),
-  ).annotate({
-    identifier: "BatchUpdateOneTimeProductOfferStatesResponse",
-  }) as any as S.Schema<BatchUpdateOneTimeProductOfferStatesResponse>;
-
-/** Request message to update the state of a subscription base plan. */
-export interface UpdateBasePlanStateRequest {
-  /** Activates a base plan. Once activated, base plans will be available to new subscribers. */
-  activateBasePlanRequest?: ActivateBasePlanRequest;
-  /** Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription */
-  deactivateBasePlanRequest?: DeactivateBasePlanRequest;
-}
-export const UpdateBasePlanStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activateBasePlanRequest: S.optional(ActivateBasePlanRequest),
-    deactivateBasePlanRequest: S.optional(DeactivateBasePlanRequest),
-  }),
-).annotate({
-  identifier: "UpdateBasePlanStateRequest",
-}) as any as S.Schema<UpdateBasePlanStateRequest>;
-
-export type UpdateBasePlanStateRequestList = Array<UpdateBasePlanStateRequest>;
-export const UpdateBasePlanStateRequestList = /*@__PURE__*/ S.Array(
-  UpdateBasePlanStateRequest,
-) as any as S.Schema<UpdateBasePlanStateRequestList>;
-
-/** Request message for BatchUpdateBasePlanStates. */
-export interface BatchUpdateBasePlanStatesRequest {
-  /** Required. The update request list of up to 100 elements. All requests must update different base plans. */
-  requests?: UpdateBasePlanStateRequestList;
-}
-export const BatchUpdateBasePlanStatesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requests: S.optional(UpdateBasePlanStateRequestList),
-  }),
-).annotate({
-  identifier: "BatchUpdateBasePlanStatesRequest",
-}) as any as S.Schema<BatchUpdateBasePlanStatesRequest>;
-
-export interface UpdateBatchStateMonetizationSubscriptionBasePlanRequest {
-  /** Required. The parent app (package name) of the updated base plans. */
-  packageName: string;
-  /** Required. The product ID of the parent subscription, if all updated base plans belong to the same subscription. If this batch update spans multiple subscriptions, set this field to "-". Must be set. */
-  productId: string;
-  /** Request body */
-  body?: BatchUpdateBasePlanStatesRequest;
-}
-export const UpdateBatchStateMonetizationSubscriptionBasePlanRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      packageName: S.String.pipe(T.Label()),
-      productId: S.String.pipe(T.Label()),
-      body: S.optional(BatchUpdateBasePlanStatesRequest.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateBatchStateMonetizationSubscriptionBasePlanRequest",
-  }) as any as S.Schema<UpdateBatchStateMonetizationSubscriptionBasePlanRequest>;
-
-/** Response message for BatchUpdateBasePlanStates. */
-export interface BatchUpdateBasePlanStatesResponse {
-  /** The list of updated subscriptions. This list will match the requests one to one, in the same order. */
-  subscriptions?: SubscriptionList;
-}
-export const BatchUpdateBasePlanStatesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptions: S.optional(SubscriptionList),
-  }),
-).annotate({
-  identifier: "BatchUpdateBasePlanStatesResponse",
-}) as any as S.Schema<BatchUpdateBasePlanStatesResponse>;
-
-/** Request message to update the state of a subscription offer. */
-export interface UpdateSubscriptionOfferStateRequest {
-  /** Activates an offer. Once activated, the offer will be available to new subscribers. */
-  activateSubscriptionOfferRequest?: ActivateSubscriptionOfferRequest;
-  /** Deactivates an offer. Once deactivated, the offer will become unavailable to new subscribers, but existing subscribers will maintain their subscription */
-  deactivateSubscriptionOfferRequest?: DeactivateSubscriptionOfferRequest;
-}
-export const UpdateSubscriptionOfferStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activateSubscriptionOfferRequest: S.optional(
-      ActivateSubscriptionOfferRequest,
-    ),
-    deactivateSubscriptionOfferRequest: S.optional(
-      DeactivateSubscriptionOfferRequest,
-    ),
-  }),
-).annotate({
-  identifier: "UpdateSubscriptionOfferStateRequest",
-}) as any as S.Schema<UpdateSubscriptionOfferStateRequest>;
-
-export type UpdateSubscriptionOfferStateRequestList =
-  Array<UpdateSubscriptionOfferStateRequest>;
-export const UpdateSubscriptionOfferStateRequestList = /*@__PURE__*/ S.Array(
-  UpdateSubscriptionOfferStateRequest,
-) as any as S.Schema<UpdateSubscriptionOfferStateRequestList>;
-
-/** Request message for BatchUpdateSubscriptionOfferStates. */
-export interface BatchUpdateSubscriptionOfferStatesRequest {
-  /** Required. The update request list of up to 100 elements. All requests must update different offers. */
-  requests?: UpdateSubscriptionOfferStateRequestList;
-}
-export const BatchUpdateSubscriptionOfferStatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      requests: S.optional(UpdateSubscriptionOfferStateRequestList),
-    }),
-  ).annotate({
-    identifier: "BatchUpdateSubscriptionOfferStatesRequest",
-  }) as any as S.Schema<BatchUpdateSubscriptionOfferStatesRequest>;
-
-export interface UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest {
-  /** Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set. */
-  productId: string;
-  /** Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources. */
-  packageName: string;
-  /** Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans. */
-  basePlanId: string;
-  /** Request body */
-  body?: BatchUpdateSubscriptionOfferStatesRequest;
-}
-export const UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      productId: S.String.pipe(T.Label()),
-      packageName: S.String.pipe(T.Label()),
-      basePlanId: S.String.pipe(T.Label()),
-      body: S.optional(
-        BatchUpdateSubscriptionOfferStatesRequest.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates",
-        baseUrl: "https://androidpublisher.googleapis.com/",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest",
-  }) as any as S.Schema<UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest>;
-
-/** Response message for BatchUpdateSubscriptionOfferStates. */
-export interface BatchUpdateSubscriptionOfferStatesResponse {
-  /** The updated subscription offers list. */
-  subscriptionOffers?: SubscriptionOfferList;
-}
-export const BatchUpdateSubscriptionOfferStatesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionOffers: S.optional(SubscriptionOfferList),
-    }),
-  ).annotate({
-    identifier: "BatchUpdateSubscriptionOfferStatesResponse",
-  }) as any as S.Schema<BatchUpdateSubscriptionOfferStatesResponse>;
 
 export interface UpdateEditsDetailsRequest {
   /** Package name of the app. */
@@ -11792,27 +11849,27 @@ export const UpdateEditsExpansionfilesExpansionFileTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface UpdateEditsExpansionfilesRequest {
+  /** Identifier of the edit. */
+  editId: string;
+  /** The version code of the APK whose expansion file configuration is being read or modified. */
+  apkVersionCode: number;
   /** The file type of the file configuration which is being read or modified. */
   expansionFileType:
     | UpdateEditsExpansionfilesExpansionFileTypeEnum
     | (string & {});
-  /** The version code of the APK whose expansion file configuration is being read or modified. */
-  apkVersionCode: number;
   /** Package name of the app. */
   packageName: string;
-  /** Identifier of the edit. */
-  editId: string;
   /** Request body */
   body?: ExpansionFile;
 }
 export const UpdateEditsExpansionfilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    editId: S.String.pipe(T.Label()),
+    apkVersionCode: S.Number.pipe(T.Label()),
     expansionFileType: UpdateEditsExpansionfilesExpansionFileTypeEnum.pipe(
       T.Label(),
     ),
-    apkVersionCode: S.Number.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
-    editId: S.String.pipe(T.Label()),
     body: S.optional(ExpansionFile.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -11826,10 +11883,10 @@ export const UpdateEditsExpansionfilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEditsExpansionfilesRequest>;
 
 export interface UpdateEditsListingsRequest {
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
-  language: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
+  language: string;
   /** Package name of the app. */
   packageName: string;
   /** Request body */
@@ -11837,8 +11894,8 @@ export interface UpdateEditsListingsRequest {
 }
 export const UpdateEditsListingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    language: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    language: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     body: S.optional(Listing.pipe(T.HttpBody())),
   }).pipe(
@@ -11880,10 +11937,10 @@ export const UpdateEditsTestersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEditsTestersRequest>;
 
 export interface UpdateEditsTracksRequest {
-  /** Identifier of the edit. */
-  editId: string;
   /** Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name) */
   track: string;
+  /** Identifier of the edit. */
+  editId: string;
   /** Package name of the app. */
   packageName: string;
   /** Request body */
@@ -11891,8 +11948,8 @@ export interface UpdateEditsTracksRequest {
 }
 export const UpdateEditsTracksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    editId: S.String.pipe(T.Label()),
     track: S.String.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     body: S.optional(Track.pipe(T.HttpBody())),
   }).pipe(
@@ -11915,12 +11972,12 @@ export const UpdateInappproductsLatencyToleranceEnum = /*@__PURE__*/ S.String;
 export interface UpdateInappproductsRequest {
   /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
   autoConvertMissingPrices?: boolean;
+  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
+  latencyTolerance?: UpdateInappproductsLatencyToleranceEnum | (string & {});
   /** Package name of the app. */
   packageName: string;
   /** If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created. */
   allowMissing?: boolean;
-  /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
-  latencyTolerance?: UpdateInappproductsLatencyToleranceEnum | (string & {});
   /** Unique identifier for the in-app product. */
   sku: string;
   /** Request body */
@@ -11929,11 +11986,11 @@ export interface UpdateInappproductsRequest {
 export const UpdateInappproductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     autoConvertMissingPrices: S.optional(S.Boolean.pipe(T.Query())),
-    packageName: S.String.pipe(T.Label()),
-    allowMissing: S.optional(S.Boolean.pipe(T.Query())),
     latencyTolerance: S.optional(
       UpdateInappproductsLatencyToleranceEnum.pipe(T.Query()),
     ),
+    packageName: S.String.pipe(T.Label()),
+    allowMissing: S.optional(S.Boolean.pipe(T.Query())),
     sku: S.String.pipe(T.Label()),
     body: S.optional(InAppProduct.pipe(T.HttpBody())),
   }).pipe(
@@ -12011,17 +12068,17 @@ export const UploadapkInternalappsharingartifactsRequest =
 
 /** An artifact resource which gets created when uploading an APK or Android App Bundle through internal app sharing. */
 export interface InternalAppSharingArtifact {
-  /** The download URL generated for the uploaded artifact. Users that are authorized to download can follow the link to the Play Store app to install it. */
-  downloadUrl?: string;
   /** The sha256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command. */
   sha256?: string;
+  /** The download URL generated for the uploaded artifact. Users that are authorized to download can follow the link to the Play Store app to install it. */
+  downloadUrl?: string;
   /** The sha256 fingerprint of the certificate used to sign the generated artifact. */
   certificateFingerprint?: string;
 }
 export const InternalAppSharingArtifact = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    downloadUrl: S.optional(S.String),
     sha256: S.optional(S.String),
+    downloadUrl: S.optional(S.String),
     certificateFingerprint: S.optional(S.String),
   }),
 ).annotate({
@@ -12053,18 +12110,18 @@ export const UploadAppStoreAppPolicyDeclarationFileRequest =
   }) as any as S.Schema<UploadAppStoreAppPolicyDeclarationFileRequest>;
 
 export interface UploadappstoreapppolicydeclarationfileAppstoreappsreviewRequest {
-  /** Required. Package name of the app. */
-  packageName: string;
   /** Required. Package name of the third-party app store. */
   appStorePackageName: string;
+  /** Required. Package name of the app. */
+  packageName: string;
   /** Request body */
   body?: UploadAppStoreAppPolicyDeclarationFileRequest;
 }
 export const UploadappstoreapppolicydeclarationfileAppstoreappsreviewRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      packageName: S.String.pipe(T.Label()),
       appStorePackageName: S.String.pipe(T.Label()),
+      packageName: S.String.pipe(T.Label()),
       body: S.optional(
         UploadAppStoreAppPolicyDeclarationFileRequest.pipe(T.HttpBody()),
       ),
@@ -12135,21 +12192,21 @@ export const UploadEditsApksRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UploadEditsApksRequest>;
 
 export interface UploadEditsBundlesRequest {
-  /** Deprecated. The installation warning has been removed, it's not necessary to set this field anymore. */
-  ackBundleInstallationWarning?: boolean;
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Deprecated. The installation warning has been removed, it's not necessary to set this field anymore. */
+  ackBundleInstallationWarning?: boolean;
   /** Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC. */
   deviceTierConfigId?: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const UploadEditsBundlesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ackBundleInstallationWarning: S.optional(S.Boolean.pipe(T.Query())),
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    ackBundleInstallationWarning: S.optional(S.Boolean.pipe(T.Query())),
     deviceTierConfigId: S.optional(S.String.pipe(T.Query())),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -12169,25 +12226,25 @@ export const UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface UploadEditsDeobfuscationfilesRequest {
-  /** Unique identifier for this edit. */
-  editId: string;
-  /** The version code of the APK whose Deobfuscation File is being uploaded. */
-  apkVersionCode: number;
   /** The type of the deobfuscation file. */
   deobfuscationFileType:
     | UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum
     | (string & {});
+  /** The version code of the APK whose Deobfuscation File is being uploaded. */
+  apkVersionCode: number;
   /** Unique identifier for the Android app. */
   packageName: string;
+  /** Unique identifier for this edit. */
+  editId: string;
 }
 export const UploadEditsDeobfuscationfilesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      editId: S.String.pipe(T.Label()),
-      apkVersionCode: S.Number.pipe(T.Label()),
       deobfuscationFileType:
         UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum.pipe(T.Label()),
+      apkVersionCode: S.Number.pipe(T.Label()),
       packageName: S.String.pipe(T.Label()),
+      editId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "POST",
@@ -12239,25 +12296,25 @@ export const UploadEditsExpansionfilesExpansionFileTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface UploadEditsExpansionfilesRequest {
+  /** Package name of the app. */
+  packageName: string;
+  /** The version code of the APK whose expansion file configuration is being read or modified. */
+  apkVersionCode: number;
+  /** Identifier of the edit. */
+  editId: string;
   /** The file type of the expansion file configuration which is being updated. */
   expansionFileType:
     | UploadEditsExpansionfilesExpansionFileTypeEnum
     | (string & {});
-  /** Identifier of the edit. */
-  editId: string;
-  /** The version code of the APK whose expansion file configuration is being read or modified. */
-  apkVersionCode: number;
-  /** Package name of the app. */
-  packageName: string;
 }
 export const UploadEditsExpansionfilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    packageName: S.String.pipe(T.Label()),
+    apkVersionCode: S.Number.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
     expansionFileType: UploadEditsExpansionfilesExpansionFileTypeEnum.pipe(
       T.Label(),
     ),
-    editId: S.String.pipe(T.Label()),
-    apkVersionCode: S.Number.pipe(T.Label()),
-    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -12303,24 +12360,24 @@ export const UploadEditsImagesAiGeneratedStateEnum = /*@__PURE__*/ S.String;
 export interface UploadEditsImagesRequest {
   /** Type of the Image. */
   imageType: UploadEditsImagesImageTypeEnum | (string & {});
-  /** Optional. Whether the image was generated by AI. Attested by the developer. */
-  aiGeneratedState?: UploadEditsImagesAiGeneratedStateEnum | (string & {});
-  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op. */
-  language: string;
   /** Identifier of the edit. */
   editId: string;
   /** Package name of the app. */
   packageName: string;
+  /** Optional. Whether the image was generated by AI. Attested by the developer. */
+  aiGeneratedState?: UploadEditsImagesAiGeneratedStateEnum | (string & {});
+  /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op. */
+  language: string;
 }
 export const UploadEditsImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     imageType: UploadEditsImagesImageTypeEnum.pipe(T.Label()),
+    editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
     aiGeneratedState: S.optional(
       UploadEditsImagesAiGeneratedStateEnum.pipe(T.Query()),
     ),
     language: S.String.pipe(T.Label()),
-    editId: S.String.pipe(T.Label()),
-    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -12390,15 +12447,15 @@ export const UploadImageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UploadImageResponse>;
 
 export interface ValidateEditsRequest {
-  /** Package name of the app. */
-  packageName: string;
   /** Identifier of the edit. */
   editId: string;
+  /** Package name of the app. */
+  packageName: string;
 }
 export const ValidateEditsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    packageName: S.String.pipe(T.Label()),
     editId: S.String.pipe(T.Label()),
+    packageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -12570,6 +12627,177 @@ export const archiveMonetizationSubscriptions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type BatchDeleteInappproductsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Deletes in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should not be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
+export const batchDeleteInappproducts: API.OperationMethod<
+  BatchDeleteInappproductsRequest,
+  BatchDeleteInappproductsResponse,
+  BatchDeleteInappproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchDeleteInappproductsRequest,
+  output: BatchDeleteInappproductsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchDeleteMonetizationOnetimeproductsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Deletes one or more one-time products. */
+export const batchDeleteMonetizationOnetimeproducts: API.OperationMethod<
+  BatchDeleteMonetizationOnetimeproductsRequest,
+  BatchDeleteMonetizationOnetimeproductsResponse,
+  BatchDeleteMonetizationOnetimeproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchDeleteMonetizationOnetimeproductsRequest,
+  output: BatchDeleteMonetizationOnetimeproductsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchDeleteMonetizationOnetimeproductsPurchaseOptionsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Deletes purchase options across one or multiple one-time products. By default this operation will fail if there are any existing offers under the deleted purchase options. Use the force parameter to override the default behavior. */
+export const batchDeleteMonetizationOnetimeproductsPurchaseOptions: API.OperationMethod<
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest,
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse,
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchDeleteMonetizationOnetimeproductsPurchaseOptionsRequest,
+  output: BatchDeleteMonetizationOnetimeproductsPurchaseOptionsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Deletes one or more one-time product offers. */
+export const batchDeleteMonetizationOnetimeproductsPurchaseOptionsOffers: API.OperationMethod<
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse,
+  BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  output: BatchDeleteMonetizationOnetimeproductsPurchaseOptionsOffersResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchGetInappproductsError = NotFound | Forbidden | GcpOpError;
+/** Reads multiple in-app products, which can be managed products or subscriptions. This method should not be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
+export const batchGetInappproducts: API.OperationMethod<
+  BatchGetInappproductsRequest,
+  InappproductsBatchGetResponse,
+  BatchGetInappproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetInappproductsRequest,
+  output: InappproductsBatchGetResponse,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchGetMonetizationOnetimeproductsError =
+  | NotFound
+  | Forbidden
+  | GcpOpError;
+/** Reads one or more one-time products. */
+export const batchGetMonetizationOnetimeproducts: API.OperationMethod<
+  BatchGetMonetizationOnetimeproductsRequest,
+  BatchGetOneTimeProductsResponse,
+  BatchGetMonetizationOnetimeproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetMonetizationOnetimeproductsRequest,
+  output: BatchGetOneTimeProductsResponse,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Reads one or more one-time product offers. */
+export const batchGetMonetizationOnetimeproductsPurchaseOptionsOffers: API.OperationMethod<
+  BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  BatchGetOneTimeProductOffersResponse,
+  BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  output: BatchGetOneTimeProductOffersResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchGetMonetizationSubscriptionsError =
+  | NotFound
+  | Forbidden
+  | GcpOpError;
+/** Reads one or more subscriptions. */
+export const batchGetMonetizationSubscriptions: API.OperationMethod<
+  BatchGetMonetizationSubscriptionsRequest,
+  BatchGetSubscriptionsResponse,
+  BatchGetMonetizationSubscriptionsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetMonetizationSubscriptionsRequest,
+  output: BatchGetSubscriptionsResponse,
+  errors: [NotFound, Forbidden, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchGetMonetizationSubscriptionsBasePlansOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Reads one or more subscription offers. */
+export const batchGetMonetizationSubscriptionsBasePlansOffers: API.OperationMethod<
+  BatchGetMonetizationSubscriptionsBasePlansOffersRequest,
+  BatchGetSubscriptionOffersResponse,
+  BatchGetMonetizationSubscriptionsBasePlansOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchGetMonetizationSubscriptionsBasePlansOffersRequest,
+  output: BatchGetSubscriptionOffersResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BatchgetOrdersError = NotFound | Forbidden | GcpOpError;
 /** Get order details for a list of orders. */
 export const batchgetOrders: API.OperationMethod<
@@ -12600,6 +12828,187 @@ export const batchMigratePricesMonetizationSubscriptionsBasePlans: API.Operation
 > = /*@__PURE__*/ API.make(() => ({
   input: BatchMigratePricesMonetizationSubscriptionsBasePlansRequest,
   output: BatchMigrateBasePlanPricesResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateInappproductsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Updates or inserts one or more in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
+export const batchUpdateInappproducts: API.OperationMethod<
+  BatchUpdateInappproductsRequest,
+  InappproductsBatchUpdateResponse,
+  BatchUpdateInappproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateInappproductsRequest,
+  output: InappproductsBatchUpdateResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateMonetizationOnetimeproductsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Creates or updates one or more one-time products. */
+export const batchUpdateMonetizationOnetimeproducts: API.OperationMethod<
+  BatchUpdateMonetizationOnetimeproductsRequest,
+  BatchUpdateOneTimeProductsResponse,
+  BatchUpdateMonetizationOnetimeproductsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateMonetizationOnetimeproductsRequest,
+  output: BatchUpdateOneTimeProductsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Creates or updates one or more one-time product offers. */
+export const batchUpdateMonetizationOnetimeproductsPurchaseOptionsOffers: API.OperationMethod<
+  BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  BatchUpdateOneTimeProductOffersResponse,
+  BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  output: BatchUpdateOneTimeProductOffersResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateMonetizationSubscriptionsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Updates a batch of subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
+export const batchUpdateMonetizationSubscriptions: API.OperationMethod<
+  BatchUpdateMonetizationSubscriptionsRequest,
+  BatchUpdateSubscriptionsResponse,
+  BatchUpdateMonetizationSubscriptionsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateMonetizationSubscriptionsRequest,
+  output: BatchUpdateSubscriptionsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateMonetizationSubscriptionsBasePlansOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Updates a batch of subscription offers. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
+export const batchUpdateMonetizationSubscriptionsBasePlansOffers: API.OperationMethod<
+  BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest,
+  BatchUpdateSubscriptionOffersResponse,
+  BatchUpdateMonetizationSubscriptionsBasePlansOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateMonetizationSubscriptionsBasePlansOffersRequest,
+  output: BatchUpdateSubscriptionOffersResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Activates or deactivates purchase options across one or multiple one-time products. */
+export const batchUpdateStatesMonetizationOnetimeproductsPurchaseOptions: API.OperationMethod<
+  BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest,
+  BatchUpdatePurchaseOptionStatesResponse,
+  BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsRequest,
+  output: BatchUpdatePurchaseOptionStatesResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Updates a batch of one-time product offer states. */
+export const batchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffers: API.OperationMethod<
+  BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  BatchUpdateOneTimeProductOfferStatesResponse,
+  BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    BatchUpdateStatesMonetizationOnetimeproductsPurchaseOptionsOffersRequest,
+  output: BatchUpdateOneTimeProductOfferStatesResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateStatesMonetizationSubscriptionsBasePlansError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Activates or deactivates base plans across one or multiple subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
+export const batchUpdateStatesMonetizationSubscriptionsBasePlans: API.OperationMethod<
+  BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest,
+  BatchUpdateBasePlanStatesResponse,
+  BatchUpdateStatesMonetizationSubscriptionsBasePlansError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateStatesMonetizationSubscriptionsBasePlansRequest,
+  output: BatchUpdateBasePlanStatesResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Updates a batch of subscription offer states. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
+export const batchUpdateStatesMonetizationSubscriptionsBasePlansOffers: API.OperationMethod<
+  BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest,
+  BatchUpdateSubscriptionOfferStatesResponse,
+  BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateStatesMonetizationSubscriptionsBasePlansOffersRequest,
+  output: BatchUpdateSubscriptionOfferStatesResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -13105,86 +13514,6 @@ export const deleteallEditsListings: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteBatchInappproductError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Deletes in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should not be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
-export const deleteBatchInappproduct: API.OperationMethod<
-  DeleteBatchInappproductRequest,
-  DeleteBatchInappproductResponse,
-  DeleteBatchInappproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBatchInappproductRequest,
-  output: DeleteBatchInappproductResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBatchMonetizationOnetimeproductError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Deletes one or more one-time products. */
-export const deleteBatchMonetizationOnetimeproduct: API.OperationMethod<
-  DeleteBatchMonetizationOnetimeproductRequest,
-  DeleteBatchMonetizationOnetimeproductResponse,
-  DeleteBatchMonetizationOnetimeproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBatchMonetizationOnetimeproductRequest,
-  output: DeleteBatchMonetizationOnetimeproductResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBatchMonetizationOnetimeproductPurchaseOptionError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Deletes purchase options across one or multiple one-time products. By default this operation will fail if there are any existing offers under the deleted purchase options. Use the force parameter to override the default behavior. */
-export const deleteBatchMonetizationOnetimeproductPurchaseOption: API.OperationMethod<
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest,
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse,
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBatchMonetizationOnetimeproductPurchaseOptionRequest,
-  output: DeleteBatchMonetizationOnetimeproductPurchaseOptionResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Deletes one or more one-time product offers. */
-export const deleteBatchMonetizationOnetimeproductPurchaseOptionOffer: API.OperationMethod<
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse,
-  DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  output: DeleteBatchMonetizationOnetimeproductPurchaseOptionOfferResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteEditsError =
   | NotFound
   | Forbidden
@@ -13487,97 +13816,6 @@ export const getAppstorecatalogRecentappviews: API.OperationMethod<
   input: GetAppstorecatalogRecentappviewsRequest,
   output: RecentAppView,
   errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchInappproductError = NotFound | Forbidden | GcpOpError;
-/** Reads multiple in-app products, which can be managed products or subscriptions. This method should not be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
-export const getBatchInappproduct: API.OperationMethod<
-  GetBatchInappproductRequest,
-  InappproductsBatchGetResponse,
-  GetBatchInappproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchInappproductRequest,
-  output: InappproductsBatchGetResponse,
-  errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchMonetizationOnetimeproductError =
-  | NotFound
-  | Forbidden
-  | GcpOpError;
-/** Reads one or more one-time products. */
-export const getBatchMonetizationOnetimeproduct: API.OperationMethod<
-  GetBatchMonetizationOnetimeproductRequest,
-  BatchGetOneTimeProductsResponse,
-  GetBatchMonetizationOnetimeproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchMonetizationOnetimeproductRequest,
-  output: BatchGetOneTimeProductsResponse,
-  errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchMonetizationOnetimeproductPurchaseOptionOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Reads one or more one-time product offers. */
-export const getBatchMonetizationOnetimeproductPurchaseOptionOffer: API.OperationMethod<
-  GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  BatchGetOneTimeProductOffersResponse,
-  GetBatchMonetizationOnetimeproductPurchaseOptionOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  output: BatchGetOneTimeProductOffersResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchMonetizationSubscriptionError =
-  | NotFound
-  | Forbidden
-  | GcpOpError;
-/** Reads one or more subscriptions. */
-export const getBatchMonetizationSubscription: API.OperationMethod<
-  GetBatchMonetizationSubscriptionRequest,
-  BatchGetSubscriptionsResponse,
-  GetBatchMonetizationSubscriptionError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchMonetizationSubscriptionRequest,
-  output: BatchGetSubscriptionsResponse,
-  errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBatchMonetizationSubscriptionBasePlanOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Reads one or more subscription offers. */
-export const getBatchMonetizationSubscriptionBasePlanOffer: API.OperationMethod<
-  GetBatchMonetizationSubscriptionBasePlanOfferRequest,
-  BatchGetSubscriptionOffersResponse,
-  GetBatchMonetizationSubscriptionBasePlanOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBatchMonetizationSubscriptionBasePlanOfferRequest,
-  output: BatchGetSubscriptionOffersResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
 }));
@@ -14652,186 +14890,6 @@ export const updateappstorehostedapppublishstatusAppstoreappsreview: API.Operati
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateappstorehostedapppublishstatusAppstoreappsreviewRequest,
   output: UpdateAppStoreHostedAppPublishStatusResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchInappproductError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Updates or inserts one or more in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information. */
-export const updateBatchInappproduct: API.OperationMethod<
-  UpdateBatchInappproductRequest,
-  InappproductsBatchUpdateResponse,
-  UpdateBatchInappproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchInappproductRequest,
-  output: InappproductsBatchUpdateResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchMonetizationOnetimeproductError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Creates or updates one or more one-time products. */
-export const updateBatchMonetizationOnetimeproduct: API.OperationMethod<
-  UpdateBatchMonetizationOnetimeproductRequest,
-  BatchUpdateOneTimeProductsResponse,
-  UpdateBatchMonetizationOnetimeproductError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchMonetizationOnetimeproductRequest,
-  output: BatchUpdateOneTimeProductsResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Creates or updates one or more one-time product offers. */
-export const updateBatchMonetizationOnetimeproductPurchaseOptionOffer: API.OperationMethod<
-  UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  BatchUpdateOneTimeProductOffersResponse,
-  UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  output: BatchUpdateOneTimeProductOffersResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchMonetizationSubscriptionError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Updates a batch of subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
-export const updateBatchMonetizationSubscription: API.OperationMethod<
-  UpdateBatchMonetizationSubscriptionRequest,
-  BatchUpdateSubscriptionsResponse,
-  UpdateBatchMonetizationSubscriptionError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchMonetizationSubscriptionRequest,
-  output: BatchUpdateSubscriptionsResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchMonetizationSubscriptionBasePlanOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Updates a batch of subscription offers. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
-export const updateBatchMonetizationSubscriptionBasePlanOffer: API.OperationMethod<
-  UpdateBatchMonetizationSubscriptionBasePlanOfferRequest,
-  BatchUpdateSubscriptionOffersResponse,
-  UpdateBatchMonetizationSubscriptionBasePlanOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchMonetizationSubscriptionBasePlanOfferRequest,
-  output: BatchUpdateSubscriptionOffersResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchStateMonetizationOnetimeproductPurchaseOptionError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Activates or deactivates purchase options across one or multiple one-time products. */
-export const updateBatchStateMonetizationOnetimeproductPurchaseOption: API.OperationMethod<
-  UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest,
-  BatchUpdatePurchaseOptionStatesResponse,
-  UpdateBatchStateMonetizationOnetimeproductPurchaseOptionError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchStateMonetizationOnetimeproductPurchaseOptionRequest,
-  output: BatchUpdatePurchaseOptionStatesResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Updates a batch of one-time product offer states. */
-export const updateBatchStateMonetizationOnetimeproductPurchaseOptionOffer: API.OperationMethod<
-  UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  BatchUpdateOneTimeProductOfferStatesResponse,
-  UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchStateMonetizationOnetimeproductPurchaseOptionOfferRequest,
-  output: BatchUpdateOneTimeProductOfferStatesResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchStateMonetizationSubscriptionBasePlanError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Activates or deactivates base plans across one or multiple subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
-export const updateBatchStateMonetizationSubscriptionBasePlan: API.OperationMethod<
-  UpdateBatchStateMonetizationSubscriptionBasePlanRequest,
-  BatchUpdateBasePlanStatesResponse,
-  UpdateBatchStateMonetizationSubscriptionBasePlanError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchStateMonetizationSubscriptionBasePlanRequest,
-  output: BatchUpdateBasePlanStatesResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchStateMonetizationSubscriptionBasePlanOfferError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Updates a batch of subscription offer states. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. */
-export const updateBatchStateMonetizationSubscriptionBasePlanOffer: API.OperationMethod<
-  UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest,
-  BatchUpdateSubscriptionOfferStatesResponse,
-  UpdateBatchStateMonetizationSubscriptionBasePlanOfferError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchStateMonetizationSubscriptionBasePlanOfferRequest,
-  output: BatchUpdateSubscriptionOfferStatesResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,

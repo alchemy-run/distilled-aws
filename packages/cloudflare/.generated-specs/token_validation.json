@@ -25,7 +25,8 @@
       "tokenSources": "token_sources",
       "tokenType": "token_type",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.token_validation#ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg": {
@@ -3076,43 +3077,43 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.token_validation#ConfigurationCreate"
+          "target": "com.cloudflare.token_validation#BulkCreateRules"
         },
         {
-          "target": "com.cloudflare.token_validation#ConfigurationDelete"
+          "target": "com.cloudflare.token_validation#BulkPatchRules"
         },
         {
-          "target": "com.cloudflare.token_validation#ConfigurationEdit"
+          "target": "com.cloudflare.token_validation#CreateConfiguration"
         },
         {
-          "target": "com.cloudflare.token_validation#ConfigurationGet"
+          "target": "com.cloudflare.token_validation#CreateRule"
         },
         {
-          "target": "com.cloudflare.token_validation#ConfigurationList"
+          "target": "com.cloudflare.token_validation#DeleteConfiguration"
         },
         {
-          "target": "com.cloudflare.token_validation#ConfigurationCredentialsUpdate"
+          "target": "com.cloudflare.token_validation#DeleteRule"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesBulkCreate"
+          "target": "com.cloudflare.token_validation#GetConfiguration"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesBulkEdit"
+          "target": "com.cloudflare.token_validation#GetRule"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesCreate"
+          "target": "com.cloudflare.token_validation#ListConfigurations"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesDelete"
+          "target": "com.cloudflare.token_validation#ListRules"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesEdit"
+          "target": "com.cloudflare.token_validation#PatchConfiguration"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesGet"
+          "target": "com.cloudflare.token_validation#PatchRule"
         },
         {
-          "target": "com.cloudflare.token_validation#RulesList"
+          "target": "com.cloudflare.token_validation#PutConfigurationCredential"
         }
       ],
       "traits": {
@@ -3197,13 +3198,13 @@
         ]
       }
     },
-    "com.cloudflare.token_validation#CreateBulkRule": {
+    "com.cloudflare.token_validation#BulkCreateRules": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.token_validation#CreateBulkRuleRequest"
+        "target": "com.cloudflare.token_validation#BulkCreateRulesRequest"
       },
       "output": {
-        "target": "com.cloudflare.token_validation#CreateBulkRuleResponse"
+        "target": "com.cloudflare.token_validation#BulkCreateRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3218,7 +3219,7 @@
         }
       }
     },
-    "com.cloudflare.token_validation#CreateBulkRuleRequest": {
+    "com.cloudflare.token_validation#BulkCreateRulesRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -3241,7 +3242,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.token_validation#CreateBulkRuleResponse": {
+    "com.cloudflare.token_validation#BulkCreateRulesResponse": {
       "type": "structure",
       "members": {
         "result": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.batch#BatchAccountSynchronizeAutoStorageKeys": {
@@ -68,10 +69,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#BatchAccountRegenerateKey": {
+    "com.azure.batch#RegenerateBatchAccountKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#BatchAccountRegenerateKeyRequest"
+        "target": "com.azure.batch#RegenerateBatchAccountKeyRequest"
       },
       "output": {
         "target": "com.azure.batch#BatchAccountKeys"
@@ -113,7 +114,7 @@
         "smithy.api#documentation": "A set of Azure Batch account keys."
       }
     },
-    "com.azure.batch#BatchAccountRegenerateKeyRequest": {
+    "com.azure.batch#RegenerateBatchAccountKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -231,7 +232,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PrivateLinkResourceGetResponseTagsMap",
+          "target": "com.azure.batch#GetPrivateLinkResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -241,7 +242,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PrivateLinkResourceGetResponseTagsMap": {
+    "com.azure.batch#GetPrivateLinkResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -713,7 +714,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PrivateEndpointConnectionUpdateResponseTagsMap",
+          "target": "com.azure.batch#UpdatePrivateEndpointConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -723,7 +724,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PrivateEndpointConnectionUpdateResponseTagsMap": {
+    "com.azure.batch#UpdatePrivateEndpointConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -935,7 +936,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PrivateEndpointConnectionUpdateRequestTagsMap",
+          "target": "com.azure.batch#UpdatePrivateEndpointConnectionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -945,7 +946,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#PrivateEndpointConnectionUpdateRequestTagsMap": {
+    "com.azure.batch#UpdatePrivateEndpointConnectionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1051,7 +1052,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PrivateEndpointConnectionGetResponseTagsMap",
+          "target": "com.azure.batch#GetPrivateEndpointConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -1061,7 +1062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PrivateEndpointConnectionGetResponseTagsMap": {
+    "com.azure.batch#GetPrivateEndpointConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1263,13 +1264,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#StopPoolResize": {
+    "com.azure.batch#PoolStopResize": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#StopPoolResizeRequest"
+        "target": "com.azure.batch#PoolStopResizeRequest"
       },
       "output": {
-        "target": "com.azure.batch#StopPoolResizeResponse"
+        "target": "com.azure.batch#PoolStopResizeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1282,7 +1283,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.batch#StopPoolResizeResponse": {
+    "com.azure.batch#PoolStopResizeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4039,7 +4040,7 @@
         "smithy.api#documentation": "The current state of the pool."
       }
     },
-    "com.azure.batch#StopPoolResizeRequest": {
+    "com.azure.batch#PoolStopResizeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4144,7 +4145,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolDisableAutoScaleResponseTagsMap",
+          "target": "com.azure.batch#DisablePoolAutoScaleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4154,7 +4155,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PoolDisableAutoScaleResponseTagsMap": {
+    "com.azure.batch#DisablePoolAutoScaleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4330,7 +4331,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolUpdateResponseTagsMap",
+          "target": "com.azure.batch#UpdatePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4340,7 +4341,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PoolUpdateResponseTagsMap": {
+    "com.azure.batch#UpdatePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4400,7 +4401,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolUpdateRequestTagsMap",
+          "target": "com.azure.batch#UpdatePoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4410,7 +4411,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#PoolUpdateRequestTagsMap": {
+    "com.azure.batch#UpdatePoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4655,7 +4656,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolCreateResponseTagsMap",
+          "target": "com.azure.batch#CreatePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4665,7 +4666,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PoolCreateResponseTagsMap": {
+    "com.azure.batch#CreatePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4725,7 +4726,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolCreateRequestTagsMap",
+          "target": "com.azure.batch#CreatePoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4735,7 +4736,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#PoolCreateRequestTagsMap": {
+    "com.azure.batch#CreatePoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4812,7 +4813,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#PoolGetResponseTagsMap",
+          "target": "com.azure.batch#GetPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4822,7 +4823,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#PoolGetResponseTagsMap": {
+    "com.azure.batch#GetPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5044,10 +5045,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#ListBatchAccountOutboundNetworkDependencyEndpoints": {
+    "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.batch#OutboundEnvironmentEndpointCollection"
@@ -5171,7 +5172,7 @@
         "smithy.api#documentation": "Details about the connection between the Batch service and the endpoint."
       }
     },
-    "com.azure.batch#ListBatchAccountOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5959,10 +5960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#GetBatchAccountKey": {
+    "com.azure.batch#GetBatchAccountKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#GetBatchAccountKeyRequest"
+        "target": "com.azure.batch#GetBatchAccountKeysRequest"
       },
       "output": {
         "target": "com.azure.batch#BatchAccountKeys"
@@ -5978,7 +5979,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.batch#GetBatchAccountKeyRequest": {
+    "com.azure.batch#GetBatchAccountKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6069,7 +6070,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountGetDetectorResponseTagsMap",
+          "target": "com.azure.batch#GetBatchAccountDetectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6079,7 +6080,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#BatchAccountGetDetectorResponseTagsMap": {
+    "com.azure.batch#GetBatchAccountDetectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6288,13 +6289,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#ApplicationPackageActivate": {
+    "com.azure.batch#ActivateApplicationPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#ApplicationPackageActivateRequest"
+        "target": "com.azure.batch#ActivateApplicationPackageRequest"
       },
       "output": {
-        "target": "com.azure.batch#ApplicationPackageActivateResponse"
+        "target": "com.azure.batch#ActivateApplicationPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6307,7 +6308,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.batch#ApplicationPackageActivateResponse": {
+    "com.azure.batch#ActivateApplicationPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6347,7 +6348,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationPackageActivateResponseTagsMap",
+          "target": "com.azure.batch#ActivateApplicationPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6357,7 +6358,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationPackageActivateResponseTagsMap": {
+    "com.azure.batch#ActivateApplicationPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6427,7 +6428,7 @@
         "smithy.api#documentation": "The current state of the application package."
       }
     },
-    "com.azure.batch#ApplicationPackageActivateRequest": {
+    "com.azure.batch#ActivateApplicationPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6608,7 +6609,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationPackageCreateResponseTagsMap",
+          "target": "com.azure.batch#CreateApplicationPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6618,7 +6619,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationPackageCreateResponseTagsMap": {
+    "com.azure.batch#CreateApplicationPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6680,7 +6681,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationPackageCreateRequestTagsMap",
+          "target": "com.azure.batch#CreateApplicationPackageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6690,7 +6691,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#ApplicationPackageCreateRequestTagsMap": {
+    "com.azure.batch#CreateApplicationPackageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6768,7 +6769,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationPackageGetResponseTagsMap",
+          "target": "com.azure.batch#GetApplicationPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6778,7 +6779,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationPackageGetResponseTagsMap": {
+    "com.azure.batch#GetApplicationPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7114,7 +7115,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationUpdateResponseTagsMap",
+          "target": "com.azure.batch#UpdateApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7124,7 +7125,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationUpdateResponseTagsMap": {
+    "com.azure.batch#UpdateApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7204,7 +7205,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationUpdateRequestTagsMap",
+          "target": "com.azure.batch#UpdateApplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7214,7 +7215,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#ApplicationUpdateRequestTagsMap": {
+    "com.azure.batch#UpdateApplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7285,7 +7286,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationCreateResponseTagsMap",
+          "target": "com.azure.batch#CreateApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7295,7 +7296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationCreateResponseTagsMap": {
+    "com.azure.batch#CreateApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7349,7 +7350,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationCreateRequestTagsMap",
+          "target": "com.azure.batch#CreateApplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7359,7 +7360,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#ApplicationCreateRequestTagsMap": {
+    "com.azure.batch#CreateApplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7430,7 +7431,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#ApplicationGetResponseTagsMap",
+          "target": "com.azure.batch#GetApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7440,7 +7441,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#ApplicationGetResponseTagsMap": {
+    "com.azure.batch#GetApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7740,7 +7741,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountUpdateResponseTagsMap",
+          "target": "com.azure.batch#UpdateBatchAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8356,7 +8357,7 @@
         "smithy.api#documentation": "The provisioned state of the resource"
       }
     },
-    "com.azure.batch#BatchAccountUpdateResponseTagsMap": {
+    "com.azure.batch#UpdateBatchAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8396,7 +8397,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountUpdateRequestTagsMap",
+          "target": "com.azure.batch#UpdateBatchAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The user-specified tags associated with the account."
           }
@@ -8572,7 +8573,7 @@
         "smithy.api#documentation": "The authentication mode which the Batch service will use to manage the auto-storage account."
       }
     },
-    "com.azure.batch#BatchAccountUpdateRequestTagsMap": {
+    "com.azure.batch#UpdateBatchAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8631,7 +8632,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountCreateResponseTagsMap",
+          "target": "com.azure.batch#CreateBatchAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8660,7 +8661,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#BatchAccountCreateResponseTagsMap": {
+    "com.azure.batch#CreateBatchAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8707,7 +8708,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountCreateRequestTagsMap",
+          "target": "com.azure.batch#CreateBatchAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The user-specified tags associated with the account."
           }
@@ -8815,7 +8816,7 @@
         "smithy.api#documentation": "The network access type for operating on the resources in the Batch account."
       }
     },
-    "com.azure.batch#BatchAccountCreateRequestTagsMap": {
+    "com.azure.batch#CreateBatchAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8874,7 +8875,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.batch#BatchAccountGetResponseTagsMap",
+          "target": "com.azure.batch#GetBatchAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8903,7 +8904,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.batch#BatchAccountGetResponseTagsMap": {
+    "com.azure.batch#GetBatchAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8953,7 +8954,7 @@
         "target": "com.azure.batch#ListBatchAccountByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.batch#ListBatchAccountResult"
+        "target": "com.azure.batch#BatchAccountListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -8966,7 +8967,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.batch#ListBatchAccountResult": {
+    "com.azure.batch#BatchAccountListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -9237,10 +9238,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.batch#GetLocationQuota": {
+    "com.azure.batch#GetLocationQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.batch#GetLocationQuotaRequest"
+        "target": "com.azure.batch#GetLocationQuotasRequest"
       },
       "output": {
         "target": "com.azure.batch#BatchLocationQuota"
@@ -9270,7 +9271,7 @@
         "smithy.api#documentation": "Quotas associated with a Batch region for a particular subscription."
       }
     },
-    "com.azure.batch#GetLocationQuotaRequest": {
+    "com.azure.batch#GetLocationQuotasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9417,7 +9418,7 @@
         "target": "com.azure.batch#ListBatchAccountRequest"
       },
       "output": {
-        "target": "com.azure.batch#ListBatchAccountResult"
+        "target": "com.azure.batch#BatchAccountListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -9570,130 +9571,130 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.batch#ActivateApplicationPackage"
+        },
+        {
           "target": "com.azure.batch#BatchAccountSynchronizeAutoStorageKeys"
-        },
-        {
-          "target": "com.azure.batch#BatchAccountRegenerateKey"
-        },
-        {
-          "target": "com.azure.batch#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.batch#ListPrivateLinkResourceByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.batch#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.batch#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.batch#ListPrivateEndpointConnectionByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#StopPoolResize"
-        },
-        {
-          "target": "com.azure.batch#DisablePoolAutoScale"
-        },
-        {
-          "target": "com.azure.batch#DeletePool"
-        },
-        {
-          "target": "com.azure.batch#UpdatePool"
-        },
-        {
-          "target": "com.azure.batch#CreatePool"
-        },
-        {
-          "target": "com.azure.batch#GetPool"
-        },
-        {
-          "target": "com.azure.batch#ListPoolByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependencyEndpoints"
-        },
-        {
-          "target": "com.azure.batch#NetworkSecurityPerimeterReconcileConfiguration"
-        },
-        {
-          "target": "com.azure.batch#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.batch#ListNetworkSecurityPerimeterConfigurations"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccountKey"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccountDetector"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountDetectors"
-        },
-        {
-          "target": "com.azure.batch#ApplicationPackageActivate"
-        },
-        {
-          "target": "com.azure.batch#DeleteApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#CreateApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#GetApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#ListApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#DeleteApplication"
-        },
-        {
-          "target": "com.azure.batch#UpdateApplication"
-        },
-        {
-          "target": "com.azure.batch#CreateApplication"
-        },
-        {
-          "target": "com.azure.batch#GetApplication"
-        },
-        {
-          "target": "com.azure.batch#ListApplication"
-        },
-        {
-          "target": "com.azure.batch#DeleteBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#UpdateBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#CreateBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.batch#ListLocationSupportedVirtualMachineSkus"
-        },
-        {
-          "target": "com.azure.batch#GetLocationQuota"
         },
         {
           "target": "com.azure.batch#CheckLocationNameAvailability"
         },
         {
+          "target": "com.azure.batch#CreateApplication"
+        },
+        {
+          "target": "com.azure.batch#CreateApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#CreateBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#CreatePool"
+        },
+        {
+          "target": "com.azure.batch#DeleteApplication"
+        },
+        {
+          "target": "com.azure.batch#DeleteApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#DeleteBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#DeletePool"
+        },
+        {
+          "target": "com.azure.batch#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.batch#DisablePoolAutoScale"
+        },
+        {
+          "target": "com.azure.batch#GetApplication"
+        },
+        {
+          "target": "com.azure.batch#GetApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccountDetector"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccountKeys"
+        },
+        {
+          "target": "com.azure.batch#GetLocationQuotas"
+        },
+        {
+          "target": "com.azure.batch#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.batch#GetPool"
+        },
+        {
+          "target": "com.azure.batch#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.batch#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.batch#ListApplication"
+        },
+        {
+          "target": "com.azure.batch#ListApplicationPackage"
+        },
+        {
           "target": "com.azure.batch#ListBatchAccount"
         },
         {
+          "target": "com.azure.batch#ListBatchAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccountDetectors"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.batch#ListLocationSupportedVirtualMachineSkus"
+        },
+        {
+          "target": "com.azure.batch#ListNetworkSecurityPerimeterConfigurations"
+        },
+        {
           "target": "com.azure.batch#ListOperations"
+        },
+        {
+          "target": "com.azure.batch#ListPoolByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#ListPrivateEndpointConnectionByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#ListPrivateLinkResourceByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#NetworkSecurityPerimeterReconcileConfiguration"
+        },
+        {
+          "target": "com.azure.batch#PoolStopResize"
+        },
+        {
+          "target": "com.azure.batch#RegenerateBatchAccountKey"
+        },
+        {
+          "target": "com.azure.batch#UpdateApplication"
+        },
+        {
+          "target": "com.azure.batch#UpdateBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#UpdatePool"
+        },
+        {
+          "target": "com.azure.batch#UpdatePrivateEndpointConnection"
         }
       ],
       "traits": {

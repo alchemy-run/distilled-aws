@@ -86,11 +86,11 @@ export const CheckProfileTrafficManagerRelativeDnsNameAvailabilityRequest =
     identifier: "CheckProfileTrafficManagerRelativeDnsNameAvailabilityRequest",
   }) as any as S.Schema<CheckProfileTrafficManagerRelativeDnsNameAvailabilityRequest>;
 
-export type EndpointsDeleteRequestEndpointType =
+export type DeleteEndpointRequestEndpointType =
   | "AzureEndpoints"
   | "ExternalEndpoints"
   | "NestedEndpoints";
-export const EndpointsDeleteRequestEndpointType = /*@__PURE__*/ S.String;
+export const DeleteEndpointRequestEndpointType = /*@__PURE__*/ S.String;
 
 export interface DeleteEndpointRequest {
   /** The ID of the target subscription. */
@@ -100,7 +100,7 @@ export interface DeleteEndpointRequest {
   /** The name of the Traffic Manager profile. */
   profileName: string;
   /** The type of the Traffic Manager endpoint. */
-  endpointType: EndpointsDeleteRequestEndpointType | (string & {});
+  endpointType: DeleteEndpointRequestEndpointType | (string & {});
   /** The name of the Traffic Manager endpoint. */
   endpointName: string;
 }
@@ -109,7 +109,7 @@ export const DeleteEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     profileName: S.String.pipe(T.Label()),
-    endpointType: EndpointsDeleteRequestEndpointType.pipe(T.Label()),
+    endpointType: DeleteEndpointRequestEndpointType.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -161,12 +161,12 @@ export const DeleteProfileRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProfileRequest",
 }) as any as S.Schema<DeleteProfileRequest>;
 
-export interface DeleteTrafficManagerUserMetricKeyRequest {
+export interface DeleteTrafficManagerUserMetricsKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const DeleteTrafficManagerUserMetricKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteTrafficManagerUserMetricsKeysRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
     }).pipe(
@@ -177,9 +177,9 @@ export const DeleteTrafficManagerUserMetricKeyRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2022-04-01",
       }),
     ),
-).annotate({
-  identifier: "DeleteTrafficManagerUserMetricKeyRequest",
-}) as any as S.Schema<DeleteTrafficManagerUserMetricKeyRequest>;
+  ).annotate({
+    identifier: "DeleteTrafficManagerUserMetricsKeysRequest",
+  }) as any as S.Schema<DeleteTrafficManagerUserMetricsKeysRequest>;
 
 export type EndpointsCreateOrUpdateRequestEndpointType =
   | "AzureEndpoints"
@@ -378,11 +378,11 @@ export const EndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<EndpointsCreateOrUpdateResponse>;
 
-export type EndpointsGetRequestEndpointType =
+export type GetEndpointRequestEndpointType =
   | "AzureEndpoints"
   | "ExternalEndpoints"
   | "NestedEndpoints";
-export const EndpointsGetRequestEndpointType = /*@__PURE__*/ S.String;
+export const GetEndpointRequestEndpointType = /*@__PURE__*/ S.String;
 
 export interface GetEndpointRequest {
   /** The ID of the target subscription. */
@@ -392,7 +392,7 @@ export interface GetEndpointRequest {
   /** The name of the Traffic Manager profile. */
   profileName: string;
   /** The type of the Traffic Manager endpoint. */
-  endpointType: EndpointsGetRequestEndpointType | (string & {});
+  endpointType: GetEndpointRequestEndpointType | (string & {});
   /** The name of the Traffic Manager endpoint. */
   endpointName: string;
 }
@@ -401,7 +401,7 @@ export const GetEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     profileName: S.String.pipe(T.Label()),
-    endpointType: EndpointsGetRequestEndpointType.pipe(T.Label()),
+    endpointType: GetEndpointRequestEndpointType.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -509,18 +509,18 @@ export const GetGeographicHierarchyDefaultResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetGeographicHierarchyDefaultResponse",
 }) as any as S.Schema<GetGeographicHierarchyDefaultResponse>;
 
-export type HeatMapGetRequestHeatMapType = "default";
-export const HeatMapGetRequestHeatMapType = /*@__PURE__*/ S.String;
+export type GetHeatMapRequestHeatMapType = "default";
+export const GetHeatMapRequestHeatMapType = /*@__PURE__*/ S.String;
 
-export type HeatMapGetRequestTopLeftList = Array<number>;
-export const HeatMapGetRequestTopLeftList = /*@__PURE__*/ S.Array(
+export type GetHeatMapRequestTopLeftList = Array<number>;
+export const GetHeatMapRequestTopLeftList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<HeatMapGetRequestTopLeftList>;
+) as any as S.Schema<GetHeatMapRequestTopLeftList>;
 
-export type HeatMapGetRequestBotRightList = Array<number>;
-export const HeatMapGetRequestBotRightList = /*@__PURE__*/ S.Array(
+export type GetHeatMapRequestBotRightList = Array<number>;
+export const GetHeatMapRequestBotRightList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<HeatMapGetRequestBotRightList>;
+) as any as S.Schema<GetHeatMapRequestBotRightList>;
 
 export interface GetHeatMapRequest {
   /** The ID of the target subscription. */
@@ -530,20 +530,20 @@ export interface GetHeatMapRequest {
   /** The name of the Traffic Manager profile. */
   profileName: string;
   /** The type of the heatmap. */
-  heatMapType: HeatMapGetRequestHeatMapType | (string & {});
+  heatMapType: GetHeatMapRequestHeatMapType | (string & {});
   /** The top left latitude,longitude pair of the rectangular viewport to query for. */
-  topLeft?: HeatMapGetRequestTopLeftList;
+  topLeft?: GetHeatMapRequestTopLeftList;
   /** The bottom right latitude,longitude pair of the rectangular viewport to query for. */
-  botRight?: HeatMapGetRequestBotRightList;
+  botRight?: GetHeatMapRequestBotRightList;
 }
 export const GetHeatMapRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     profileName: S.String.pipe(T.Label()),
-    heatMapType: HeatMapGetRequestHeatMapType.pipe(T.Label()),
-    topLeft: S.optional(HeatMapGetRequestTopLeftList.pipe(T.Query())),
-    botRight: S.optional(HeatMapGetRequestBotRightList.pipe(T.Query())),
+    heatMapType: GetHeatMapRequestHeatMapType.pipe(T.Label()),
+    topLeft: S.optional(GetHeatMapRequestTopLeftList.pipe(T.Query())),
+    botRight: S.optional(GetHeatMapRequestBotRightList.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -698,11 +698,11 @@ export const GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProfileRequest>;
 
 /** Resource tags. */
-export type ProfilesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetProfileResponseTagsMap = { [key: string]: string | undefined };
+export const GetProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProfilesGetResponseTagsMap>;
+) as any as S.Schema<GetProfileResponseTagsMap>;
 
 /** The status of the Traffic Manager profile. */
 export type ProfileStatus = "Enabled" | "Disabled";
@@ -912,7 +912,7 @@ export interface GetProfileResponse {
   /** The type of the resource. Ex- Microsoft.Network/trafficManagerProfiles. */
   type?: string;
   /** Resource tags. */
-  tags?: ProfilesGetResponseTagsMap;
+  tags?: GetProfileResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The properties of the Traffic Manager profile. */
@@ -923,7 +923,7 @@ export const GetProfileResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ProfilesGetResponseTagsMap),
+    tags: S.optional(GetProfileResponseTagsMap),
     location: S.optional(S.String),
     properties: S.optional(ProfileProperties),
   }),
@@ -931,11 +931,11 @@ export const GetProfileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProfileResponse",
 }) as any as S.Schema<GetProfileResponse>;
 
-export interface GetTrafficManagerUserMetricKeyRequest {
+export interface GetTrafficManagerUserMetricsKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const GetTrafficManagerUserMetricKeyRequest = /*@__PURE__*/ S.suspend(
+export const GetTrafficManagerUserMetricsKeysRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -948,8 +948,8 @@ export const GetTrafficManagerUserMetricKeyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetTrafficManagerUserMetricKeyRequest",
-}) as any as S.Schema<GetTrafficManagerUserMetricKeyRequest>;
+  identifier: "GetTrafficManagerUserMetricsKeysRequest",
+}) as any as S.Schema<GetTrafficManagerUserMetricsKeysRequest>;
 
 /** Class representing a Traffic Manager Real User Metrics key response. */
 export interface UserMetricsProperties {
@@ -964,7 +964,7 @@ export const UserMetricsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserMetricsProperties",
 }) as any as S.Schema<UserMetricsProperties>;
 
-export interface GetTrafficManagerUserMetricKeyResponse {
+export interface GetTrafficManagerUserMetricsKeysResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -974,7 +974,7 @@ export interface GetTrafficManagerUserMetricKeyResponse {
   /** The properties of the Traffic Manager User Metrics. */
   properties?: UserMetricsProperties;
 }
-export const GetTrafficManagerUserMetricKeyResponse = /*@__PURE__*/ S.suspend(
+export const GetTrafficManagerUserMetricsKeysResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -983,8 +983,8 @@ export const GetTrafficManagerUserMetricKeyResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(UserMetricsProperties),
     }),
 ).annotate({
-  identifier: "GetTrafficManagerUserMetricKeyResponse",
-}) as any as S.Schema<GetTrafficManagerUserMetricKeyResponse>;
+  identifier: "GetTrafficManagerUserMetricsKeysResponse",
+}) as any as S.Schema<GetTrafficManagerUserMetricsKeysResponse>;
 
 export interface ListProfileByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -1277,11 +1277,11 @@ export const TrafficManagerUserMetricsKeysCreateOrUpdateResponse =
     identifier: "TrafficManagerUserMetricsKeysCreateOrUpdateResponse",
   }) as any as S.Schema<TrafficManagerUserMetricsKeysCreateOrUpdateResponse>;
 
-export type EndpointsUpdateRequestEndpointType =
+export type UpdateEndpointRequestEndpointType =
   | "AzureEndpoints"
   | "ExternalEndpoints"
   | "NestedEndpoints";
-export const EndpointsUpdateRequestEndpointType = /*@__PURE__*/ S.String;
+export const UpdateEndpointRequestEndpointType = /*@__PURE__*/ S.String;
 
 export interface UpdateEndpointRequest {
   /** The ID of the target subscription. */
@@ -1291,7 +1291,7 @@ export interface UpdateEndpointRequest {
   /** The name of the Traffic Manager profile. */
   profileName: string;
   /** The type of the Traffic Manager endpoint. */
-  endpointType: EndpointsUpdateRequestEndpointType | (string & {});
+  endpointType: UpdateEndpointRequestEndpointType | (string & {});
   /** The name of the Traffic Manager endpoint. */
   endpointName: string;
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName} */
@@ -1308,7 +1308,7 @@ export const UpdateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     profileName: S.String.pipe(T.Label()),
-    endpointType: EndpointsUpdateRequestEndpointType.pipe(T.Label()),
+    endpointType: UpdateEndpointRequestEndpointType.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1348,13 +1348,11 @@ export const UpdateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEndpointResponse>;
 
 /** Resource tags. */
-export type ProfilesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProfilesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateProfileRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProfileRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProfilesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateProfileRequestTagsMap>;
 
 export interface UpdateProfileRequest {
   /** The ID of the target subscription. */
@@ -1370,7 +1368,7 @@ export interface UpdateProfileRequest {
   /** The type of the resource. Ex- Microsoft.Network/trafficManagerProfiles. */
   type?: string;
   /** Resource tags. */
-  tags?: ProfilesUpdateRequestTagsMap;
+  tags?: UpdateProfileRequestTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The properties of the Traffic Manager profile. */
@@ -1384,7 +1382,7 @@ export const UpdateProfileRequest = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ProfilesUpdateRequestTagsMap),
+    tags: S.optional(UpdateProfileRequestTagsMap),
     location: S.optional(S.String),
     properties: S.optional(ProfilePropertiesInput),
   }).pipe(
@@ -1400,13 +1398,13 @@ export const UpdateProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProfileRequest>;
 
 /** Resource tags. */
-export type ProfilesUpdateResponseTagsMap = {
+export type UpdateProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProfilesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProfilesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateProfileResponseTagsMap>;
 
 export interface UpdateProfileResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName} */
@@ -1416,7 +1414,7 @@ export interface UpdateProfileResponse {
   /** The type of the resource. Ex- Microsoft.Network/trafficManagerProfiles. */
   type?: string;
   /** Resource tags. */
-  tags?: ProfilesUpdateResponseTagsMap;
+  tags?: UpdateProfileResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The properties of the Traffic Manager profile. */
@@ -1427,7 +1425,7 @@ export const UpdateProfileResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ProfilesUpdateResponseTagsMap),
+    tags: S.optional(UpdateProfileResponseTagsMap),
     location: S.optional(S.String),
     properties: S.optional(ProfileProperties),
   }),
@@ -1496,15 +1494,15 @@ export const DeleteProfile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteTrafficManagerUserMetricKeyError = AzureOpError;
+export type DeleteTrafficManagerUserMetricsKeysError = AzureOpError;
 /** Delete a subscription-level key used for Real User Metrics collection. */
-export const DeleteTrafficManagerUserMetricKey: API.OperationMethod<
-  DeleteTrafficManagerUserMetricKeyRequest,
+export const DeleteTrafficManagerUserMetricsKeys: API.OperationMethod<
+  DeleteTrafficManagerUserMetricsKeysRequest,
   DeleteOperationResult,
-  DeleteTrafficManagerUserMetricKeyError,
+  DeleteTrafficManagerUserMetricsKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTrafficManagerUserMetricKeyRequest,
+  input: DeleteTrafficManagerUserMetricsKeysRequest,
   output: DeleteOperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1586,16 +1584,16 @@ export const GetProfile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTrafficManagerUserMetricKeyError = AzureOpError;
+export type GetTrafficManagerUserMetricsKeysError = AzureOpError;
 /** Get the subscription-level key used for Real User Metrics collection. */
-export const GetTrafficManagerUserMetricKey: API.OperationMethod<
-  GetTrafficManagerUserMetricKeyRequest,
-  GetTrafficManagerUserMetricKeyResponse,
-  GetTrafficManagerUserMetricKeyError,
+export const GetTrafficManagerUserMetricsKeys: API.OperationMethod<
+  GetTrafficManagerUserMetricsKeysRequest,
+  GetTrafficManagerUserMetricsKeysResponse,
+  GetTrafficManagerUserMetricsKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTrafficManagerUserMetricKeyRequest,
-  output: GetTrafficManagerUserMetricKeyResponse,
+  input: GetTrafficManagerUserMetricsKeysRequest,
+  output: GetTrafficManagerUserMetricsKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

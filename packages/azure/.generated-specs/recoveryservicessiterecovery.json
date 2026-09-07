@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.recoveryservicessiterecovery#ListReplicationvCenters": {
@@ -930,13 +931,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefresh": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefreshRequest"
+        "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealthRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefreshResponse"
+        "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealthResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -949,7 +950,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefreshResponse": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealthResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1246,7 +1247,7 @@
         "smithy.api#documentation": "The list of errors on the vault."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefreshRequest": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1860,10 +1861,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviders": {
+    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviders": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProvidersRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProvidersRequest"
       },
       "output": {
         "target": "com.azure.recoveryservicessiterecovery#RecoveryServicesProviderCollection"
@@ -2201,7 +2202,7 @@
         "smithy.api#documentation": "The scenarios allowed on this provider."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProvidersRequest": {
+    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProvidersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2883,13 +2884,13 @@
         "smithy.api#documentation": "A value indicating whether source site operations are required."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanup": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanupRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanupRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanupResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2902,7 +2903,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanupResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2946,7 +2947,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanupRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3007,13 +3008,13 @@
         "smithy.api#documentation": "Recovery plan test failover cleanup input properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailover": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3026,7 +3027,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3070,7 +3071,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3403,13 +3404,13 @@
         "smithy.api#documentation": "The provider specific properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommit": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommitRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommitResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3422,7 +3423,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommitResponse": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3466,7 +3467,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommitRequest": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3506,13 +3507,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancel": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancelRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancelResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3525,7 +3526,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancelResponse": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3569,7 +3570,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancelRequest": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7553,13 +7554,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsExport": {
+    "com.azure.recoveryservicessiterecovery#ExportReplicationJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsExportRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ExportReplicationJobRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsExportResponse"
+        "target": "com.azure.recoveryservicessiterecovery#ExportReplicationJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7572,7 +7573,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsExportResponse": {
+    "com.azure.recoveryservicessiterecovery#ExportReplicationJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8025,7 +8026,7 @@
         "smithy.api#documentation": "The state/actions applicable on this task."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsExportRequest": {
+    "com.azure.recoveryservicessiterecovery#ExportReplicationJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8131,13 +8132,13 @@
         "smithy.api#documentation": "The output type of the jobs."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsResume": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsResumeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationJobRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsResumeResponse"
+        "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8150,7 +8151,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsResumeResponse": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8194,7 +8195,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsResumeRequest": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8357,13 +8358,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsCancel": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsCancelRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationJobRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsCancelResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8376,7 +8377,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsCancelResponse": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8420,7 +8421,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationJobsCancelRequest": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9812,10 +9813,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServiceProvider": {
+    "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServiceProviderRequest"
+        "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProviderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9831,7 +9832,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServiceProviderRequest": {
+    "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9879,13 +9880,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProvider": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProviderRequest"
+        "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProviderRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProviderResponse"
+        "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9898,7 +9899,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProviderResponse": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9942,7 +9943,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProviderRequest": {
+    "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9990,10 +9991,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersPurge": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersPurgeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProviderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10009,7 +10010,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersPurgeRequest": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10057,13 +10058,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProvider": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProviderRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProviderRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProviderResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10076,7 +10077,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProviderResponse": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10120,7 +10121,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProviderRequest": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10265,13 +10266,13 @@
         "smithy.api#documentation": "Identity provider input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProvider": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProviderRequest"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProviderRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProviderResponse"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10284,7 +10285,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProviderResponse": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10328,7 +10329,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProviderRequest": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10376,10 +10377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviderByReplicationFabrics": {
+    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviderByReplicationFabricsRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabricsRequest"
       },
       "output": {
         "target": "com.azure.recoveryservicessiterecovery#RecoveryServicesProviderCollection"
@@ -10395,7 +10396,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviderByReplicationFabricsRequest": {
+    "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10848,10 +10849,10 @@
         "smithy.api#documentation": "Provider specific input for unpairing operations."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainerMappingsPurge": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainerMappingsPurgeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMappingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10867,7 +10868,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainerMappingsPurgeRequest": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11590,13 +11591,13 @@
         "smithy.api#documentation": "Provider specific unplanned cluster failover input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanup": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanupRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanupRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanupResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11609,7 +11610,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanupResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11647,7 +11648,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanupRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11724,13 +11725,13 @@
         "smithy.api#documentation": "Input definition for test failover cleanup input properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailover": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11743,7 +11744,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11781,7 +11782,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12311,13 +12312,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResult": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultRequest"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultsRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultResponse"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12330,7 +12331,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultResponse": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12368,7 +12369,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultRequest": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12432,13 +12433,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommit": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommitRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommitResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12451,7 +12452,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommitResponse": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12489,7 +12490,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommitRequest": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12545,13 +12546,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPoint": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPointRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPointRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPointResponse"
+        "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12564,7 +12565,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPointResponse": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12602,7 +12603,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPointRequest": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12716,10 +12717,10 @@
         "smithy.api#documentation": "The list of individual node recovery points."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersPurge": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersPurgeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12735,7 +12736,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersPurgeRequest": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13786,13 +13787,13 @@
         "smithy.api#documentation": "Provider specific unplanned failover input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanup": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanupRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanupRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanupResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13805,7 +13806,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanupResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13849,7 +13850,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanupRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13926,13 +13927,13 @@
         "smithy.api#documentation": "Input definition for test failover cleanup input properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailover": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverRequest"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverResponse"
+        "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13945,7 +13946,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverResponse": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13989,7 +13990,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverRequest": {
+    "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14099,10 +14100,10 @@
         "smithy.api#documentation": "Provider specific test failover input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListTargetComputeSizeByReplicationProtectedItems": {
+    "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItems": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizeByReplicationProtectedItemsRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItemsRequest"
       },
       "output": {
         "target": "com.azure.recoveryservicessiterecovery#TargetComputeSizeCollection"
@@ -14286,7 +14287,7 @@
         "smithy.api#documentation": "Represents the error used to indicate why the target compute size is not applicable."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ListTargetComputeSizeByReplicationProtectedItemsRequest": {
+    "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItemsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14783,13 +14784,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisks": {
+    "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisksRequest"
+        "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisksRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisksResponse"
+        "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14802,7 +14803,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisksResponse": {
+    "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisksResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14846,7 +14847,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisksRequest": {
+    "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15850,13 +15851,13 @@
         "smithy.api#documentation": "Provider specific failover input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommit": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommitRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommitResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15869,7 +15870,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommitResponse": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15913,7 +15914,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommitRequest": {
+    "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15969,13 +15970,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancel": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancelRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailoverRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancelResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15988,7 +15989,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancelResponse": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16032,7 +16033,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancelRequest": {
+    "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16088,13 +16089,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPoint": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPointRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPointRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPointResponse"
+        "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16107,7 +16108,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPointResponse": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16151,7 +16152,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPointRequest": {
+    "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16250,13 +16251,13 @@
         "smithy.api#documentation": "Provider specific input for apply recovery point."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisks": {
+    "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisksRequest"
+        "target": "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisksRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisksResponse"
+        "target": "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16269,7 +16270,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisksResponse": {
+    "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisksResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16313,7 +16314,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisksRequest": {
+    "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16405,10 +16406,10 @@
         "smithy.api#documentation": "Add Disks provider specific input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPurge": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPurgeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16424,7 +16425,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPurgeRequest": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17733,13 +17734,13 @@
         "smithy.api#documentation": "Test migrate cleanup input properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrate": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateRequest"
+        "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTestRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateResponse"
+        "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17752,7 +17753,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateResponse": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTestResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17796,7 +17797,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateRequest": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTestRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18045,13 +18046,13 @@
         "smithy.api#documentation": "Resync provider specific input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplication": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplicationRequest"
+        "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplicationRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplicationResponse"
+        "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18064,7 +18065,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplicationResponse": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18108,7 +18109,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplicationRequest": {
+    "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18201,13 +18202,13 @@
         "smithy.api#documentation": "Resume replication provider specific input."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplication": {
+    "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplicationRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplicationRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplicationResponse"
+        "target": "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18220,7 +18221,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplicationResponse": {
+    "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18264,7 +18265,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplicationRequest": {
+    "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18664,13 +18665,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrate": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrateRequest"
+        "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrateResponse"
+        "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18683,7 +18684,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrateResponse": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18727,7 +18728,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrateRequest": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21003,13 +21004,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificate": {
+    "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificateRequest"
+        "target": "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificateRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificateResponse"
+        "target": "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21022,7 +21023,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificateResponse": {
+    "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21172,7 +21173,7 @@
         "smithy.api#documentation": "Encryption details for the fabric."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificateRequest": {
+    "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21232,10 +21233,10 @@
         "smithy.api#documentation": "Renew Certificate input properties."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsRemoveInfra": {
+    "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfra": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsRemoveInfraRequest"
+        "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfraRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21251,7 +21252,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsRemoveInfraRequest": {
+    "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfraRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21506,10 +21507,10 @@
         "smithy.api#documentation": "The VMS to migrate."
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsMigrateToAad": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAad": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsMigrateToAadRequest"
+        "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAadRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21525,7 +21526,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsMigrateToAadRequest": {
+    "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAadRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21668,10 +21669,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsPurge": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsPurgeRequest"
+        "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationFabricRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21687,7 +21688,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#ReplicationFabricsPurgeRequest": {
+    "com.azure.recoveryservicessiterecovery#PurgeReplicationFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22579,13 +22580,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSetting": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingRequest"
+        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingsRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingResponse"
+        "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22598,7 +22599,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingResponse": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22677,7 +22678,7 @@
         "smithy.api#documentation": "The custom email address for sending emails."
       }
     },
-    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingRequest": {
+    "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22758,13 +22759,13 @@
         "smithy.api#documentation": "The custom email address for sending emails."
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSetting": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingRequest"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingsRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingResponse"
+        "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22777,7 +22778,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingResponse": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22821,7 +22822,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingRequest": {
+    "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23396,466 +23397,466 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenters"
+          "target": "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisks"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationVaultSetting"
+          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPoint"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultSetting"
+          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPoint"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationVaultSetting"
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationJob"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationVaultHealthRefresh"
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultHealth"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetSupportedOperatingSystem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassifications"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviders"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansUnplannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailoverCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansTestFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansReprotect"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansPlannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCommit"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansFailoverCancel"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryPlans"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionIntents"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusters"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationPolicies"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsExport"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsResume"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#RestartReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationJobsCancel"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationJobs"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenterByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationStorageClassificationMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationStorageClassificationMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassificationMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappingByReplicationStorageClassifications"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassification"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServiceProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersRefreshProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryServicesProvidersPurge"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServiceProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServiceProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServiceProviderByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchProtection"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchClusterProtection"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainerMappingsPurge"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappingByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersUnplannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailoverCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersTestFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersRepairReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetClusterRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListClusterRecoveryPointByReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersFailoverCommit"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersApplyRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersPurge"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusterByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemMobilityService"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemAppliance"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsUnplannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailoverCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsTestFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizeByReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsSwitchProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsResolveHealthErrors"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRepairReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRemoveDisks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReinstallMobilityService"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListRecoveryPointByReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReprotect"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPlannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCommit"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsFailoverCancel"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsApplyRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsAddDisks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPurge"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectableItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectableItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrate"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResync"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResumeReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsPauseReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetMigrationRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListMigrationRecoveryPointByReplicationMigrationItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsMigrate"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersDiscoverProtectableItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappingByReplicationNetworks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetwork"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationLogicalNetwork"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationLogicalNetworkByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsRenewCertificate"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsRemoveInfra"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsReassociateGateway"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsMigrateToAad"
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailover"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#CheckReplicationFabricConsistency"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsPurge"
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettings"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#CreateReplicationFabric"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationFabric"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationMigrationItem"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationFabrics"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationNetworkMapping"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEvent"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationPolicy"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEvents"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectedItem"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAppliances"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionCluster"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSetting"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainer"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSetting"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainerMapping"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAlertSettings"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionIntent"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListOperations"
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationVaultSetting"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ExportReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetClusterRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetMigrationRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettings"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#GetReplicationEligibilityResult"
         },
         {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEvent"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationLogicalNetwork"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetwork"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectableItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResults"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassification"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultHealth"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultSetting"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetSupportedOperatingSystem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListClusterRecoveryPointByReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListMigrationRecoveryPointByReplicationMigrationItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListOperations"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListRecoveryPointByReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAlertSettings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAppliances"
+        },
+        {
           "target": "com.azure.recoveryservicessiterecovery#ListReplicationEligibilityResults"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEvents"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationJobs"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationLogicalNetworkByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappingByReplicationNetworks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationPolicies"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectableItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusterByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusters"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappingByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionIntents"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryPlans"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviders"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappingByReplicationStorageClassifications"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassifications"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationVaultSetting"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenterByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenters"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAad"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTest"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealth"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfra"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificate"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsReassociateGateway"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResync"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPlannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReinstallMobilityService"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRepairReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReprotect"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsResolveHealthErrors"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsSwitchProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsUnplannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersRepairReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersUnplannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersDiscoverProtectableItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchClusterProtection"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchProtection"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansPlannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansReprotect"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansUnplannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RestartReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemAppliance"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemMobilityService"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationvCenter"
         }
       ],
       "traits": {

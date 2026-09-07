@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.deployments#GetDeploymentEventsRequestDirection": {
@@ -302,6 +303,9 @@
         },
         "readyState": {
           "target": "smithy.api#String"
+        },
+        "serviceName": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {}
@@ -561,6 +565,9 @@
         },
         "readyState": {
           "target": "smithy.api#String"
+        },
+        "serviceName": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {}
@@ -818,6 +825,9 @@
           "target": "smithy.api#String"
         },
         "readyState": {
+          "target": "smithy.api#String"
+        },
+        "serviceName": {
           "target": "smithy.api#String"
         }
       },
@@ -1077,6 +1087,9 @@
           "target": "smithy.api#String"
         },
         "readyState": {
+          "target": "smithy.api#String"
+        },
+        "serviceName": {
           "target": "smithy.api#String"
         }
       },
@@ -2163,6 +2176,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -5247,6 +5266,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -5448,6 +5491,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1FunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -6751,6 +6797,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -6952,6 +7022,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -7514,6 +7587,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -7715,6 +7812,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -8078,6 +8178,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -8279,6 +8403,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -16643,6 +16770,12 @@
             "smithy.api#enumValue": "ash"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "EVE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -17603,6 +17736,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -20687,6 +20826,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -20888,6 +21051,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1FunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -22191,6 +22357,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -22392,6 +22582,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -22954,6 +23147,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -23155,6 +23372,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -23518,6 +23738,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -23719,6 +23963,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -28991,6 +29238,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -32073,6 +32326,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CancelDeploymentResponseFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CancelDeploymentResponseFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CancelDeploymentResponseFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -32274,6 +32551,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CancelDeploymentResponseFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -33577,6 +33857,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -33778,6 +34082,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -34340,6 +34647,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -34541,6 +34872,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -34904,6 +35238,30 @@
       },
       "traits": {}
     },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode": {
+      "type": "enum",
+      "members": {
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "strict"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueRegionsList": {
       "type": "list",
       "member": {
@@ -35105,6 +35463,9 @@
         },
         "maxDuration": {
           "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration"
+        },
+        "affinity": {
+          "target": "com.vercel.deployments#CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity"
         },
         "maxConcurrency": {
           "target": "smithy.api#Double"
@@ -39949,28 +40310,28 @@
         "contentLength": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#httpHeader": "content-Length",
+            "smithy.api#httpHeader": "Content-Length",
             "smithy.api#documentation": "The file size in bytes"
           }
         },
         "xVercelDigest": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Vercel-Digest",
+            "smithy.api#httpHeader": "x-vercel-digest",
             "smithy.api#documentation": "The file SHA1 used to check the integrity"
           }
         },
         "xNowDigest": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Now-Digest",
+            "smithy.api#httpHeader": "x-now-digest",
             "smithy.api#documentation": "The file SHA1 used to check the integrity"
           }
         },
         "xNowSize": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#httpHeader": "x-Now-Size",
+            "smithy.api#httpHeader": "x-now-size",
             "smithy.api#documentation": "The file size as an alternative to `Content-Length`"
           }
         }
@@ -41120,6 +41481,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -42548,25 +42915,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.deployments#GetDeploymentEvents"
-        },
-        {
-          "target": "com.vercel.deployments#UpdateIntegrationDeploymentAction"
-        },
-        {
-          "target": "com.vercel.deployments#GetDeployment"
+          "target": "com.vercel.deployments#CancelDeployment"
         },
         {
           "target": "com.vercel.deployments#CreateDeployment"
         },
         {
-          "target": "com.vercel.deployments#CancelDeployment"
+          "target": "com.vercel.deployments#DeleteDeployment"
         },
         {
-          "target": "com.vercel.deployments#UploadFile"
+          "target": "com.vercel.deployments#GetDeployment"
         },
         {
-          "target": "com.vercel.deployments#ListDeploymentFiles"
+          "target": "com.vercel.deployments#GetDeploymentEvents"
         },
         {
           "target": "com.vercel.deployments#GetDeploymentFileContents"
@@ -42575,7 +42936,13 @@
           "target": "com.vercel.deployments#GetDeployments"
         },
         {
-          "target": "com.vercel.deployments#DeleteDeployment"
+          "target": "com.vercel.deployments#ListDeploymentFiles"
+        },
+        {
+          "target": "com.vercel.deployments#UpdateIntegrationDeploymentAction"
+        },
+        {
+          "target": "com.vercel.deployments#UploadFile"
         }
       ],
       "traits": {

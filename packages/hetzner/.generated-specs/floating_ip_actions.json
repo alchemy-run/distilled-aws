@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.floating_ip_actions#ListFloatingIpsActionsRequestIdList": {
@@ -1875,7 +1876,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.floating_ip_actions#ListFloatingIpsActions"
+          "target": "com.hetzner.floating_ip_actions#AssignFloatingIp"
+        },
+        {
+          "target": "com.hetzner.floating_ip_actions#ChangeFloatingIpDnsPtr"
+        },
+        {
+          "target": "com.hetzner.floating_ip_actions#ChangeFloatingIpProtection"
         },
         {
           "target": "com.hetzner.floating_ip_actions#GetFloatingIpsAction"
@@ -1884,13 +1891,7 @@
           "target": "com.hetzner.floating_ip_actions#ListFloatingIpActions"
         },
         {
-          "target": "com.hetzner.floating_ip_actions#AssignFloatingIp"
-        },
-        {
-          "target": "com.hetzner.floating_ip_actions#ChangeFloatingIpDnsPtr"
-        },
-        {
-          "target": "com.hetzner.floating_ip_actions#ChangeFloatingIpProtection"
+          "target": "com.hetzner.floating_ip_actions#ListFloatingIpsActions"
         },
         {
           "target": "com.hetzner.floating_ip_actions#UnassignFloatingIp"

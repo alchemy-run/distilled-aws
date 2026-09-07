@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.machinelearning#ListWorkspaces": {
@@ -574,7 +575,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.machinelearning#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -596,7 +597,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.machinelearning#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -636,7 +637,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.machinelearning#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags for the machine learning workspace."
           }
@@ -728,7 +729,7 @@
         "smithy.api#documentation": "The current state of workspace resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.machinelearning#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -967,7 +968,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.machinelearning#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -989,7 +990,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesGetResponseTagsMap": {
+    "com.azure.machinelearning#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1132,19 +1133,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.machinelearning#ListWorkspaces"
+          "target": "com.azure.machinelearning#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearning#GetWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearning#ListOperations"
         },
         {
           "target": "com.azure.machinelearning#ListWorkspaceByResourceGroup"
         },
         {
+          "target": "com.azure.machinelearning#ListWorkspaces"
+        },
+        {
           "target": "com.azure.machinelearning#ListWorkspaceWorkspaceKeys"
-        },
-        {
-          "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
-        },
-        {
-          "target": "com.azure.machinelearning#DeleteWorkspace"
         },
         {
           "target": "com.azure.machinelearning#UpdateWorkspace"
@@ -1153,10 +1157,7 @@
           "target": "com.azure.machinelearning#WorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearning#GetWorkspace"
-        },
-        {
-          "target": "com.azure.machinelearning#ListOperations"
+          "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
         }
       ],
       "traits": {

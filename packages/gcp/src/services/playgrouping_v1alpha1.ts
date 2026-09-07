@@ -67,24 +67,24 @@ export class NotFound
 
 /** A tag is associated with exactly one package name and user. */
 export interface Tag {
-  /** A string value of the tag. */
-  stringValue?: string;
-  /** A boolean value of the tag. */
-  booleanValue?: boolean;
-  /** A time value of the tag. */
-  timeValue?: string;
   /** Required. Key for the tag. */
   key?: string;
+  /** A boolean value of the tag. */
+  booleanValue?: boolean;
   /** A signed 64-bit integer value of the tag. */
   int64Value?: string;
+  /** A time value of the tag. */
+  timeValue?: string;
+  /** A string value of the tag. */
+  stringValue?: string;
 }
 export const Tag = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    stringValue: S.optional(S.String),
-    booleanValue: S.optional(S.Boolean),
-    timeValue: S.optional(S.String),
     key: S.optional(S.String),
+    booleanValue: S.optional(S.Boolean),
     int64Value: S.optional(S.String),
+    timeValue: S.optional(S.String),
+    stringValue: S.optional(S.String),
   }),
 ).annotate({ identifier: "Tag" }) as any as S.Schema<Tag>;
 

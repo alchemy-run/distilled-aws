@@ -54,7 +54,8 @@
       "visibilityTimeoutMs": "visibility_timeout_ms",
       "workerName": "worker_name",
       "workflowName": "workflow_name"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.queues#CreateResponseConsumersItemWorkerSettings": {
@@ -4473,73 +4474,73 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.queues#Create"
+          "target": "com.cloudflare.queues#AckMessage"
         },
         {
-          "target": "com.cloudflare.queues#Delete"
+          "target": "com.cloudflare.queues#BulkPushMessages"
         },
         {
-          "target": "com.cloudflare.queues#Edit"
+          "target": "com.cloudflare.queues#CreateConsumer"
         },
         {
-          "target": "com.cloudflare.queues#Get"
+          "target": "com.cloudflare.queues#CreateQueue"
         },
         {
-          "target": "com.cloudflare.queues#GetMetrics"
+          "target": "com.cloudflare.queues#CreateSubscription"
         },
         {
-          "target": "com.cloudflare.queues#List"
+          "target": "com.cloudflare.queues#DeleteConsumer"
         },
         {
-          "target": "com.cloudflare.queues#Update"
+          "target": "com.cloudflare.queues#DeleteQueue"
         },
         {
-          "target": "com.cloudflare.queues#ConsumersCreate"
+          "target": "com.cloudflare.queues#DeleteSubscription"
         },
         {
-          "target": "com.cloudflare.queues#ConsumersDelete"
+          "target": "com.cloudflare.queues#GetConsumer"
         },
         {
-          "target": "com.cloudflare.queues#ConsumersGet"
+          "target": "com.cloudflare.queues#GetMetricsQueue"
         },
         {
-          "target": "com.cloudflare.queues#ConsumersList"
+          "target": "com.cloudflare.queues#GetQueue"
         },
         {
-          "target": "com.cloudflare.queues#ConsumersUpdate"
+          "target": "com.cloudflare.queues#GetSubscription"
         },
         {
-          "target": "com.cloudflare.queues#MessagesAck"
+          "target": "com.cloudflare.queues#ListConsumers"
         },
         {
-          "target": "com.cloudflare.queues#MessagesBulkPush"
+          "target": "com.cloudflare.queues#ListQueues"
         },
         {
-          "target": "com.cloudflare.queues#MessagesPull"
+          "target": "com.cloudflare.queues#ListSubscriptions"
         },
         {
-          "target": "com.cloudflare.queues#MessagesPush"
+          "target": "com.cloudflare.queues#PatchQueue"
         },
         {
-          "target": "com.cloudflare.queues#PurgeStart"
+          "target": "com.cloudflare.queues#PatchSubscription"
+        },
+        {
+          "target": "com.cloudflare.queues#PullMessage"
         },
         {
           "target": "com.cloudflare.queues#PurgeStatus"
         },
         {
-          "target": "com.cloudflare.queues#SubscriptionsCreate"
+          "target": "com.cloudflare.queues#PushMessage"
         },
         {
-          "target": "com.cloudflare.queues#SubscriptionsDelete"
+          "target": "com.cloudflare.queues#StartPurge"
         },
         {
-          "target": "com.cloudflare.queues#SubscriptionsGet"
+          "target": "com.cloudflare.queues#UpdateConsumer"
         },
         {
-          "target": "com.cloudflare.queues#SubscriptionsList"
-        },
-        {
-          "target": "com.cloudflare.queues#SubscriptionsUpdate"
+          "target": "com.cloudflare.queues#UpdateQueue"
         }
       ],
       "traits": {
@@ -6683,13 +6684,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.queues#StatusPurge": {
+    "com.cloudflare.queues#PurgeStatus": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.queues#StatusPurgeRequest"
+        "target": "com.cloudflare.queues#PurgeStatusRequest"
       },
       "output": {
-        "target": "com.cloudflare.queues#StatusPurgeResponse"
+        "target": "com.cloudflare.queues#PurgeStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6709,7 +6710,7 @@
         }
       ]
     },
-    "com.cloudflare.queues#StatusPurgeRequest": {
+    "com.cloudflare.queues#PurgeStatusRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -6733,7 +6734,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.queues#StatusPurgeResponse": {
+    "com.cloudflare.queues#PurgeStatusResponse": {
       "type": "structure",
       "members": {
         "completed": {

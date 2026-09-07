@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.flyio.addons#AddOnRequest": {
@@ -2764,37 +2765,34 @@
           "target": "com.flyio.addons#AddOn"
         },
         {
-          "target": "com.flyio.addons#AddOns"
-        },
-        {
           "target": "com.flyio.addons#AddOnPlans"
         },
         {
           "target": "com.flyio.addons#AddOnProvider"
         },
         {
-          "target": "com.flyio.addons#Organization"
+          "target": "com.flyio.addons#AddOns"
+        },
+        {
+          "target": "com.flyio.addons#AgreedToProviderTos"
         },
         {
           "target": "com.flyio.addons#CreateAddOn"
         },
         {
-          "target": "com.flyio.addons#UpdateAddOn"
+          "target": "com.flyio.addons#CreateExtensionTosAgreement"
         },
         {
           "target": "com.flyio.addons#DeleteAddOn"
         },
         {
-          "target": "com.flyio.addons#CreateExtensionTosAgreement"
+          "target": "com.flyio.addons#Organization"
         },
         {
           "target": "com.flyio.addons#ResetAddOnPassword"
         },
         {
-          "target": "com.flyio.addons#AgreedToProviderTos"
-        },
-        {
-          "target": "com.flyio.addons#AgreedToProviderTos"
+          "target": "com.flyio.addons#UpdateAddOn"
         }
       ],
       "traits": {

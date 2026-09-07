@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.axiom.api#GetAnnotationsRequestDatasetsList": {
@@ -8277,7 +8278,7 @@
       },
       "traits": {}
     },
-    "com.axiom.api#GetApiTokensResponse": {
+    "com.axiom.api#GetAPITokensResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -8292,13 +8293,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.axiom.api#GetApiTokens": {
+    "com.axiom.api#GetAPITokens": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.axiom.api#GetApiTokensResponse"
+        "target": "com.axiom.api#GetAPITokensResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8309,7 +8310,7 @@
         "smithy.api#documentation": "Get API tokens"
       }
     },
-    "com.axiom.api#CreateApiTokenRequest": {
+    "com.axiom.api#CreateAPITokenRequest": {
       "type": "structure",
       "members": {
         "datasetCapabilities": {
@@ -8346,7 +8347,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.axiom.api#CreateApiTokenResponse": {
+    "com.axiom.api#CreateAPITokenResponse": {
       "type": "structure",
       "members": {
         "datasetCapabilities": {
@@ -8402,13 +8403,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.axiom.api#CreateApiToken": {
+    "com.axiom.api#CreateAPIToken": {
       "type": "operation",
       "input": {
-        "target": "com.axiom.api#CreateApiTokenRequest"
+        "target": "com.axiom.api#CreateAPITokenRequest"
       },
       "output": {
-        "target": "com.axiom.api#CreateApiTokenResponse"
+        "target": "com.axiom.api#CreateAPITokenResponse"
       },
       "errors": [
         {
@@ -8424,7 +8425,7 @@
         "smithy.api#documentation": "Create API token"
       }
     },
-    "com.axiom.api#GetApiTokenRequest": {
+    "com.axiom.api#GetAPITokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -8439,10 +8440,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.axiom.api#GetApiToken": {
+    "com.axiom.api#GetAPIToken": {
       "type": "operation",
       "input": {
-        "target": "com.axiom.api#GetApiTokenRequest"
+        "target": "com.axiom.api#GetAPITokenRequest"
       },
       "output": {
         "target": "com.axiom.api#APIToken"
@@ -8461,7 +8462,7 @@
         "smithy.api#documentation": "Get API token by ID"
       }
     },
-    "com.axiom.api#DeleteApiTokenRequest": {
+    "com.axiom.api#DeleteAPITokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -8476,10 +8477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.axiom.api#DeleteApiToken": {
+    "com.axiom.api#DeleteAPIToken": {
       "type": "operation",
       "input": {
-        "target": "com.axiom.api#DeleteApiTokenRequest"
+        "target": "com.axiom.api#DeleteAPITokenRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11955,238 +11956,238 @@
       "version": "2.0.0",
       "operations": [
         {
-          "target": "com.axiom.api#GetAnnotations"
-        },
-        {
           "target": "com.axiom.api#CreateAnnotation"
         },
         {
-          "target": "com.axiom.api#GetAnnotation"
-        },
-        {
-          "target": "com.axiom.api#UpdateAnnotation"
-        },
-        {
-          "target": "com.axiom.api#DeleteAnnotation"
-        },
-        {
-          "target": "com.axiom.api#GetDatasets"
-        },
-        {
-          "target": "com.axiom.api#CreateDataset"
-        },
-        {
-          "target": "com.axiom.api#GetDataset"
-        },
-        {
-          "target": "com.axiom.api#UpdateDataset"
-        },
-        {
-          "target": "com.axiom.api#DeleteDataset"
-        },
-        {
-          "target": "com.axiom.api#TrimDataset"
-        },
-        {
-          "target": "com.axiom.api#VacuumDataset"
-        },
-        {
-          "target": "com.axiom.api#GetFieldsForDataset"
-        },
-        {
-          "target": "com.axiom.api#GetFieldForDataset"
-        },
-        {
-          "target": "com.axiom.api#UpdateFieldForDataset"
-        },
-        {
-          "target": "com.axiom.api#GetMapFields"
-        },
-        {
-          "target": "com.axiom.api#CreateMapField"
-        },
-        {
-          "target": "com.axiom.api#UpdateMapFields"
-        },
-        {
-          "target": "com.axiom.api#DeleteMapField"
-        },
-        {
-          "target": "com.axiom.api#GetMonitors"
-        },
-        {
-          "target": "com.axiom.api#CreateMonitor"
-        },
-        {
-          "target": "com.axiom.api#GetMonitor"
-        },
-        {
-          "target": "com.axiom.api#UpdateMonitor"
-        },
-        {
-          "target": "com.axiom.api#DeleteMonitor"
-        },
-        {
-          "target": "com.axiom.api#GetMonitorHistory"
-        },
-        {
-          "target": "com.axiom.api#GetNotifiers"
-        },
-        {
-          "target": "com.axiom.api#CreateNotifier"
-        },
-        {
-          "target": "com.axiom.api#GetNotifier"
-        },
-        {
-          "target": "com.axiom.api#UpdateNotifier"
-        },
-        {
-          "target": "com.axiom.api#DeleteNotifier"
-        },
-        {
-          "target": "com.axiom.api#GetOrgs"
-        },
-        {
-          "target": "com.axiom.api#CreateOrg"
-        },
-        {
-          "target": "com.axiom.api#ProvisionOrg"
-        },
-        {
-          "target": "com.axiom.api#GetOrg"
-        },
-        {
-          "target": "com.axiom.api#UpdateOrg"
-        },
-        {
-          "target": "com.axiom.api#ListRoles"
-        },
-        {
-          "target": "com.axiom.api#CreateRole"
-        },
-        {
-          "target": "com.axiom.api#GetRoleById"
-        },
-        {
-          "target": "com.axiom.api#UpdateRole"
-        },
-        {
-          "target": "com.axiom.api#DeleteRole"
-        },
-        {
-          "target": "com.axiom.api#ListGroups"
-        },
-        {
-          "target": "com.axiom.api#CreateGroup"
-        },
-        {
-          "target": "com.axiom.api#GetGroupById"
-        },
-        {
-          "target": "com.axiom.api#UpdateGroup"
-        },
-        {
-          "target": "com.axiom.api#DeleteGroup"
-        },
-        {
-          "target": "com.axiom.api#GetStarredQueries"
-        },
-        {
-          "target": "com.axiom.api#CreateStarred"
-        },
-        {
-          "target": "com.axiom.api#GetStarred"
-        },
-        {
-          "target": "com.axiom.api#UpdateStarred"
-        },
-        {
-          "target": "com.axiom.api#DeleteStarred"
-        },
-        {
-          "target": "com.axiom.api#GetApiTokens"
-        },
-        {
-          "target": "com.axiom.api#CreateApiToken"
-        },
-        {
-          "target": "com.axiom.api#GetApiToken"
-        },
-        {
-          "target": "com.axiom.api#DeleteApiToken"
-        },
-        {
-          "target": "com.axiom.api#RegenerateAPIToken"
-        },
-        {
-          "target": "com.axiom.api#GetCurrentUser"
-        },
-        {
-          "target": "com.axiom.api#UpdateCurrentUser"
-        },
-        {
-          "target": "com.axiom.api#GetUsers"
-        },
-        {
-          "target": "com.axiom.api#CreateUser"
-        },
-        {
-          "target": "com.axiom.api#GetUser"
-        },
-        {
-          "target": "com.axiom.api#RemoveUserFromOrg"
-        },
-        {
-          "target": "com.axiom.api#UpdateUserRole"
-        },
-        {
-          "target": "com.axiom.api#GetVirtualFields"
-        },
-        {
-          "target": "com.axiom.api#CreateVirtualField"
-        },
-        {
-          "target": "com.axiom.api#GetVirtualField"
-        },
-        {
-          "target": "com.axiom.api#UpdateVirtualField"
-        },
-        {
-          "target": "com.axiom.api#DeleteVirtualField"
-        },
-        {
-          "target": "com.axiom.api#GetViews"
-        },
-        {
-          "target": "com.axiom.api#CreateView"
-        },
-        {
-          "target": "com.axiom.api#GetView"
-        },
-        {
-          "target": "com.axiom.api#UpdateView"
-        },
-        {
-          "target": "com.axiom.api#DeleteView"
-        },
-        {
-          "target": "com.axiom.api#ListDashboards"
+          "target": "com.axiom.api#CreateAPIToken"
         },
         {
           "target": "com.axiom.api#CreateDashboard"
         },
         {
-          "target": "com.axiom.api#GetDashboard"
+          "target": "com.axiom.api#CreateDataset"
         },
         {
-          "target": "com.axiom.api#UpdateDashboard"
+          "target": "com.axiom.api#CreateGroup"
+        },
+        {
+          "target": "com.axiom.api#CreateMapField"
+        },
+        {
+          "target": "com.axiom.api#CreateMonitor"
+        },
+        {
+          "target": "com.axiom.api#CreateNotifier"
+        },
+        {
+          "target": "com.axiom.api#CreateOrg"
+        },
+        {
+          "target": "com.axiom.api#CreateRole"
+        },
+        {
+          "target": "com.axiom.api#CreateStarred"
+        },
+        {
+          "target": "com.axiom.api#CreateUser"
+        },
+        {
+          "target": "com.axiom.api#CreateView"
+        },
+        {
+          "target": "com.axiom.api#CreateVirtualField"
+        },
+        {
+          "target": "com.axiom.api#DeleteAnnotation"
+        },
+        {
+          "target": "com.axiom.api#DeleteAPIToken"
         },
         {
           "target": "com.axiom.api#DeleteDashboard"
         },
         {
+          "target": "com.axiom.api#DeleteDataset"
+        },
+        {
+          "target": "com.axiom.api#DeleteGroup"
+        },
+        {
+          "target": "com.axiom.api#DeleteMapField"
+        },
+        {
+          "target": "com.axiom.api#DeleteMonitor"
+        },
+        {
+          "target": "com.axiom.api#DeleteNotifier"
+        },
+        {
+          "target": "com.axiom.api#DeleteRole"
+        },
+        {
+          "target": "com.axiom.api#DeleteStarred"
+        },
+        {
+          "target": "com.axiom.api#DeleteView"
+        },
+        {
+          "target": "com.axiom.api#DeleteVirtualField"
+        },
+        {
+          "target": "com.axiom.api#GetAnnotation"
+        },
+        {
+          "target": "com.axiom.api#GetAnnotations"
+        },
+        {
+          "target": "com.axiom.api#GetAPIToken"
+        },
+        {
+          "target": "com.axiom.api#GetAPITokens"
+        },
+        {
+          "target": "com.axiom.api#GetCurrentUser"
+        },
+        {
+          "target": "com.axiom.api#GetDashboard"
+        },
+        {
+          "target": "com.axiom.api#GetDataset"
+        },
+        {
+          "target": "com.axiom.api#GetDatasets"
+        },
+        {
+          "target": "com.axiom.api#GetFieldForDataset"
+        },
+        {
+          "target": "com.axiom.api#GetFieldsForDataset"
+        },
+        {
+          "target": "com.axiom.api#GetGroupById"
+        },
+        {
+          "target": "com.axiom.api#GetMapFields"
+        },
+        {
+          "target": "com.axiom.api#GetMonitor"
+        },
+        {
+          "target": "com.axiom.api#GetMonitorHistory"
+        },
+        {
+          "target": "com.axiom.api#GetMonitors"
+        },
+        {
+          "target": "com.axiom.api#GetNotifier"
+        },
+        {
+          "target": "com.axiom.api#GetNotifiers"
+        },
+        {
+          "target": "com.axiom.api#GetOrg"
+        },
+        {
+          "target": "com.axiom.api#GetOrgs"
+        },
+        {
+          "target": "com.axiom.api#GetRoleById"
+        },
+        {
+          "target": "com.axiom.api#GetStarred"
+        },
+        {
+          "target": "com.axiom.api#GetStarredQueries"
+        },
+        {
+          "target": "com.axiom.api#GetUser"
+        },
+        {
+          "target": "com.axiom.api#GetUsers"
+        },
+        {
+          "target": "com.axiom.api#GetView"
+        },
+        {
+          "target": "com.axiom.api#GetViews"
+        },
+        {
+          "target": "com.axiom.api#GetVirtualField"
+        },
+        {
+          "target": "com.axiom.api#GetVirtualFields"
+        },
+        {
+          "target": "com.axiom.api#ListDashboards"
+        },
+        {
+          "target": "com.axiom.api#ListGroups"
+        },
+        {
+          "target": "com.axiom.api#ListRoles"
+        },
+        {
           "target": "com.axiom.api#PatchDashboardChart"
+        },
+        {
+          "target": "com.axiom.api#ProvisionOrg"
+        },
+        {
+          "target": "com.axiom.api#RegenerateAPIToken"
+        },
+        {
+          "target": "com.axiom.api#RemoveUserFromOrg"
+        },
+        {
+          "target": "com.axiom.api#TrimDataset"
+        },
+        {
+          "target": "com.axiom.api#UpdateAnnotation"
+        },
+        {
+          "target": "com.axiom.api#UpdateCurrentUser"
+        },
+        {
+          "target": "com.axiom.api#UpdateDashboard"
+        },
+        {
+          "target": "com.axiom.api#UpdateDataset"
+        },
+        {
+          "target": "com.axiom.api#UpdateFieldForDataset"
+        },
+        {
+          "target": "com.axiom.api#UpdateGroup"
+        },
+        {
+          "target": "com.axiom.api#UpdateMapFields"
+        },
+        {
+          "target": "com.axiom.api#UpdateMonitor"
+        },
+        {
+          "target": "com.axiom.api#UpdateNotifier"
+        },
+        {
+          "target": "com.axiom.api#UpdateOrg"
+        },
+        {
+          "target": "com.axiom.api#UpdateRole"
+        },
+        {
+          "target": "com.axiom.api#UpdateStarred"
+        },
+        {
+          "target": "com.axiom.api#UpdateUserRole"
+        },
+        {
+          "target": "com.axiom.api#UpdateView"
+        },
+        {
+          "target": "com.axiom.api#UpdateVirtualField"
+        },
+        {
+          "target": "com.axiom.api#VacuumDataset"
         }
       ],
       "traits": {

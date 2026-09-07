@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.payouts#ListPayoutsRequestStatus": {
@@ -3751,7 +3752,7 @@
         }
       }
     },
-    "com.whop.payouts#RetrievePayoutRequest": {
+    "com.whop.payouts#GetPayoutRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3781,7 +3782,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseFailure": {
+    "com.whop.payouts#GetPayoutResponseFailure": {
       "type": "structure",
       "members": {
         "code": {
@@ -3813,7 +3814,7 @@
         "smithy.api#documentation": "Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseFeePaidBy": {
+    "com.whop.payouts#GetPayoutResponseFeePaidBy": {
       "type": "enum",
       "members": {
         "SELF": {
@@ -3833,7 +3834,7 @@
         "smithy.api#documentation": "Who bore the payout fee: the account itself, or its parent platform."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseMetadataMap": {
+    "com.whop.payouts#GetPayoutResponseMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3845,7 +3846,7 @@
         "smithy.api#documentation": "Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseObject": {
+    "com.whop.payouts#GetPayoutResponseObject": {
       "type": "enum",
       "members": {
         "PAYOUT": {
@@ -3857,7 +3858,7 @@
       },
       "traits": {}
     },
-    "com.whop.payouts#RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType": {
+    "com.whop.payouts#GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType": {
       "type": "enum",
       "members": {
         "CASH_PICKUP": {
@@ -3919,11 +3920,11 @@
         "smithy.api#documentation": "How the funds are delivered to the recipient."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponsePayoutMethodSupportedPayoutMethod": {
+    "com.whop.payouts#GetPayoutResponsePayoutMethodSupportedPayoutMethod": {
       "type": "structure",
       "members": {
         "delivery_type": {
-          "target": "com.whop.payouts#RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType",
+          "target": "com.whop.payouts#GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType",
           "traits": {
             "smithy.api#documentation": "How the funds are delivered to the recipient.",
             "smithy.api#required": {}
@@ -3950,7 +3951,7 @@
         "smithy.api#documentation": "Supported payout method display details."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponsePayoutMethod": {
+    "com.whop.payouts#GetPayoutResponsePayoutMethod": {
       "type": "structure",
       "members": {
         "nickname": {
@@ -3962,7 +3963,7 @@
           }
         },
         "supported_payout_method": {
-          "target": "com.whop.payouts#RetrievePayoutResponsePayoutMethodSupportedPayoutMethod",
+          "target": "com.whop.payouts#GetPayoutResponsePayoutMethodSupportedPayoutMethod",
           "traits": {
             "smithy.api#documentation": "Supported payout method display details.",
             "smithy.api#required": {},
@@ -3974,7 +3975,7 @@
         "smithy.api#documentation": "The saved payout method used. Requires payout:destination:read; null without it."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseSource": {
+    "com.whop.payouts#GetPayoutResponseSource": {
       "type": "enum",
       "members": {
         "API": {
@@ -4000,7 +4001,7 @@
         "smithy.api#documentation": "How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseSpeed": {
+    "com.whop.payouts#GetPayoutResponseSpeed": {
       "type": "enum",
       "members": {
         "STANDARD": {
@@ -4020,7 +4021,7 @@
         "smithy.api#documentation": "Payout delivery speed."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponseStatus": {
+    "com.whop.payouts#GetPayoutResponseStatus": {
       "type": "enum",
       "members": {
         "REQUESTED": {
@@ -4076,7 +4077,7 @@
         "smithy.api#documentation": "Current payout status."
       }
     },
-    "com.whop.payouts#RetrievePayoutResponse": {
+    "com.whop.payouts#GetPayoutResponse": {
       "type": "structure",
       "members": {
         "amount": {
@@ -4133,7 +4134,7 @@
           }
         },
         "failure": {
-          "target": "com.whop.payouts#RetrievePayoutResponseFailure",
+          "target": "com.whop.payouts#GetPayoutResponseFailure",
           "traits": {
             "smithy.api#documentation": "Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise.",
             "smithy.api#required": {},
@@ -4148,7 +4149,7 @@
           }
         },
         "fee_paid_by": {
-          "target": "com.whop.payouts#RetrievePayoutResponseFeePaidBy",
+          "target": "com.whop.payouts#GetPayoutResponseFeePaidBy",
           "traits": {
             "smithy.api#documentation": "Who bore the payout fee: the account itself, or its parent platform.",
             "smithy.api#required": {}
@@ -4169,7 +4170,7 @@
           }
         },
         "metadata": {
-          "target": "com.whop.payouts#RetrievePayoutResponseMetadataMap",
+          "target": "com.whop.payouts#GetPayoutResponseMetadataMap",
           "traits": {
             "smithy.api#documentation": "Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters.",
             "smithy.api#required": {}
@@ -4191,7 +4192,7 @@
           }
         },
         "object": {
-          "target": "com.whop.payouts#RetrievePayoutResponseObject",
+          "target": "com.whop.payouts#GetPayoutResponseObject",
           "traits": {
             "smithy.api#required": {}
           }
@@ -4205,7 +4206,7 @@
           }
         },
         "payout_method": {
-          "target": "com.whop.payouts#RetrievePayoutResponsePayoutMethod",
+          "target": "com.whop.payouts#GetPayoutResponsePayoutMethod",
           "traits": {
             "smithy.api#documentation": "The saved payout method used. Requires payout:destination:read; null without it.",
             "smithy.api#required": {},
@@ -4221,7 +4222,7 @@
           }
         },
         "source": {
-          "target": "com.whop.payouts#RetrievePayoutResponseSource",
+          "target": "com.whop.payouts#GetPayoutResponseSource",
           "traits": {
             "smithy.api#documentation": "How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling.",
             "smithy.api#required": {},
@@ -4229,14 +4230,14 @@
           }
         },
         "speed": {
-          "target": "com.whop.payouts#RetrievePayoutResponseSpeed",
+          "target": "com.whop.payouts#GetPayoutResponseSpeed",
           "traits": {
             "smithy.api#documentation": "Payout delivery speed.",
             "smithy.api#required": {}
           }
         },
         "status": {
-          "target": "com.whop.payouts#RetrievePayoutResponseStatus",
+          "target": "com.whop.payouts#GetPayoutResponseStatus",
           "traits": {
             "smithy.api#documentation": "Current payout status.",
             "smithy.api#required": {}
@@ -4262,13 +4263,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.payouts#RetrievePayout": {
+    "com.whop.payouts#GetPayout": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payouts#RetrievePayoutRequest"
+        "target": "com.whop.payouts#GetPayoutRequest"
       },
       "output": {
-        "target": "com.whop.payouts#RetrievePayoutResponse"
+        "target": "com.whop.payouts#GetPayoutResponse"
       },
       "errors": [
         {
@@ -4893,31 +4894,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payouts#ListPayouts"
+          "target": "com.whop.payouts#CancelPayout"
         },
         {
           "target": "com.whop.payouts#CreatePayout"
         },
         {
-          "target": "com.whop.payouts#ListPayoutMethods"
-        },
-        {
           "target": "com.whop.payouts#CreatePayoutMethod"
-        },
-        {
-          "target": "com.whop.payouts#UpdatePayoutMethod"
         },
         {
           "target": "com.whop.payouts#DeletePayoutMethod"
         },
         {
+          "target": "com.whop.payouts#GetPayout"
+        },
+        {
+          "target": "com.whop.payouts#ListPayoutMethods"
+        },
+        {
+          "target": "com.whop.payouts#ListPayouts"
+        },
+        {
           "target": "com.whop.payouts#ListSupportedPayoutMethods"
         },
         {
-          "target": "com.whop.payouts#RetrievePayout"
-        },
-        {
-          "target": "com.whop.payouts#CancelPayout"
+          "target": "com.whop.payouts#UpdatePayoutMethod"
         }
       ],
       "traits": {

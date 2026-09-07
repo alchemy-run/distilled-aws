@@ -39,17 +39,17 @@ export const CheckPlaywrightWorkspaceNameAvailabilityRequest =
   }) as any as S.Schema<CheckPlaywrightWorkspaceNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type PlaywrightWorkspacesCheckNameAvailabilityResponseReason =
+export type CheckPlaywrightWorkspaceNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const PlaywrightWorkspacesCheckNameAvailabilityResponseReason =
+export const CheckPlaywrightWorkspaceNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckPlaywrightWorkspaceNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: PlaywrightWorkspacesCheckNameAvailabilityResponseReason;
+  reason?: CheckPlaywrightWorkspaceNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -58,7 +58,7 @@ export const CheckPlaywrightWorkspaceNameAvailabilityResponse =
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
       reason: S.optional(
-        PlaywrightWorkspacesCheckNameAvailabilityResponseReason,
+        CheckPlaywrightWorkspaceNameAvailabilityResponseReason,
       ),
       message: S.optional(S.String),
     }),
@@ -105,7 +105,7 @@ export const QuotaBucketRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaBucketRequestProperties",
 }) as any as S.Schema<QuotaBucketRequestProperties>;
 
-export interface CheckQuotaAvailabilityRequest {
+export interface CheckQuotasAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -115,7 +115,7 @@ export interface CheckQuotaAvailabilityRequest {
   /** Request object of new quota for a quota bucket. */
   properties?: QuotaBucketRequestProperties;
 }
-export const CheckQuotaAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+export const CheckQuotasAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -130,8 +130,8 @@ export const CheckQuotaAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CheckQuotaAvailabilityRequest",
-}) as any as S.Schema<CheckQuotaAvailabilityRequest>;
+  identifier: "CheckQuotasAvailabilityRequest",
+}) as any as S.Schema<CheckQuotasAvailabilityRequest>;
 
 /** The type of identity that created the resource. */
 export type CheckQuotaAvailabilityResponseSystemDataCreatedByType =
@@ -358,11 +358,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type LoadTestsGetResponseTagsMap = { [key: string]: string | undefined };
-export const LoadTestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetLoadTestResponseTagsMap = { [key: string]: string | undefined };
+export const GetLoadTestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LoadTestsGetResponseTagsMap>;
+) as any as S.Schema<GetLoadTestResponseTagsMap>;
 
 /** Resources provisioning states. */
 export type ResourceState = "Succeeded" | "Failed" | "Canceled" | "Deleted";
@@ -460,7 +460,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface LoadTestsGetResponseIdentity {
+export interface GetLoadTestResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -468,7 +468,7 @@ export interface LoadTestsGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const LoadTestsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetLoadTestResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -476,8 +476,8 @@ export const LoadTestsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "LoadTestsGetResponseIdentity",
-}) as any as S.Schema<LoadTestsGetResponseIdentity>;
+  identifier: "GetLoadTestResponseIdentity",
+}) as any as S.Schema<GetLoadTestResponseIdentity>;
 
 export interface GetLoadTestResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -489,13 +489,13 @@ export interface GetLoadTestResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LoadTestsGetResponseTagsMap;
+  tags?: GetLoadTestResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: LoadTestProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: LoadTestsGetResponseIdentity;
+  identity?: GetLoadTestResponseIdentity;
 }
 export const GetLoadTestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -503,34 +503,34 @@ export const GetLoadTestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LoadTestsGetResponseTagsMap),
+    tags: S.optional(GetLoadTestResponseTagsMap),
     location: S.String,
     properties: S.optional(LoadTestProperties),
-    identity: S.optional(LoadTestsGetResponseIdentity),
+    identity: S.optional(GetLoadTestResponseIdentity),
   }),
 ).annotate({
   identifier: "GetLoadTestResponse",
 }) as any as S.Schema<GetLoadTestResponse>;
 
-export type PlaywrightQuotasGetRequestPlaywrightQuotaName = "ExecutionMinutes";
-export const PlaywrightQuotasGetRequestPlaywrightQuotaName =
+export type GetPlaywrightQuotasRequestPlaywrightQuotaName = "ExecutionMinutes";
+export const GetPlaywrightQuotasRequestPlaywrightQuotaName =
   /*@__PURE__*/ S.String;
 
-export interface GetPlaywrightQuotaRequest {
+export interface GetPlaywrightQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
   /** The name of the PlaywrightQuota */
   playwrightQuotaName:
-    | PlaywrightQuotasGetRequestPlaywrightQuotaName
+    | GetPlaywrightQuotasRequestPlaywrightQuotaName
     | (string & {});
 }
-export const GetPlaywrightQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPlaywrightQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
-    playwrightQuotaName: PlaywrightQuotasGetRequestPlaywrightQuotaName.pipe(
+    playwrightQuotaName: GetPlaywrightQuotasRequestPlaywrightQuotaName.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -542,8 +542,8 @@ export const GetPlaywrightQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPlaywrightQuotaRequest",
-}) as any as S.Schema<GetPlaywrightQuotaRequest>;
+  identifier: "GetPlaywrightQuotasRequest",
+}) as any as S.Schema<GetPlaywrightQuotasRequest>;
 
 /** The free trial state. */
 export type FreeTrialState = "Active" | "Expired" | "NotApplicable";
@@ -591,7 +591,7 @@ export const PlaywrightQuotaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PlaywrightQuotaProperties",
 }) as any as S.Schema<PlaywrightQuotaProperties>;
 
-export interface GetPlaywrightQuotaResponse {
+export interface GetPlaywrightQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -603,7 +603,7 @@ export interface GetPlaywrightQuotaResponse {
   /** The resource-specific properties for this resource. */
   properties?: PlaywrightQuotaProperties;
 }
-export const GetPlaywrightQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPlaywrightQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -612,8 +612,8 @@ export const GetPlaywrightQuotaResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PlaywrightQuotaProperties),
   }),
 ).annotate({
-  identifier: "GetPlaywrightQuotaResponse",
-}) as any as S.Schema<GetPlaywrightQuotaResponse>;
+  identifier: "GetPlaywrightQuotasResponse",
+}) as any as S.Schema<GetPlaywrightQuotasResponse>;
 
 export interface GetPlaywrightWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -641,13 +641,13 @@ export const GetPlaywrightWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPlaywrightWorkspaceRequest>;
 
 /** Resource tags. */
-export type PlaywrightWorkspacesGetResponseTagsMap = {
+export type GetPlaywrightWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PlaywrightWorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPlaywrightWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PlaywrightWorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetPlaywrightWorkspaceResponseTagsMap>;
 
 /** Controls the connection region for client workers to cloud-hosted browsers. When enabled, workers connect to browsers in the closest Azure region for lower latency. When disabled, workers connect to browsers in the Azure region where the workspace was created. */
 export type PlaywrightWorkspacePropertiesRegionalAffinity =
@@ -695,7 +695,7 @@ export interface GetPlaywrightWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PlaywrightWorkspacesGetResponseTagsMap;
+  tags?: GetPlaywrightWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -707,7 +707,7 @@ export const GetPlaywrightWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PlaywrightWorkspacesGetResponseTagsMap),
+    tags: S.optional(GetPlaywrightWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(PlaywrightWorkspaceProperties),
   }),
@@ -715,11 +715,11 @@ export const GetPlaywrightWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPlaywrightWorkspaceResponse",
 }) as any as S.Schema<GetPlaywrightWorkspaceResponse>;
 
-export type PlaywrightWorkspaceQuotasGetRequestQuotaName = "ExecutionMinutes";
-export const PlaywrightWorkspaceQuotasGetRequestQuotaName =
+export type GetPlaywrightWorkspaceQuotasRequestQuotaName = "ExecutionMinutes";
+export const GetPlaywrightWorkspaceQuotasRequestQuotaName =
   /*@__PURE__*/ S.String;
 
-export interface GetPlaywrightWorkspaceQuotaRequest {
+export interface GetPlaywrightWorkspaceQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -727,14 +727,14 @@ export interface GetPlaywrightWorkspaceQuotaRequest {
   /** The name of the PlaywrightWorkspace */
   playwrightWorkspaceName: string;
   /** The name of the PlaywrightWorkspaceQuota */
-  quotaName: PlaywrightWorkspaceQuotasGetRequestQuotaName | (string & {});
+  quotaName: GetPlaywrightWorkspaceQuotasRequestQuotaName | (string & {});
 }
-export const GetPlaywrightWorkspaceQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPlaywrightWorkspaceQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     playwrightWorkspaceName: S.String.pipe(T.Label()),
-    quotaName: PlaywrightWorkspaceQuotasGetRequestQuotaName.pipe(T.Label()),
+    quotaName: GetPlaywrightWorkspaceQuotasRequestQuotaName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -744,8 +744,8 @@ export const GetPlaywrightWorkspaceQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPlaywrightWorkspaceQuotaRequest",
-}) as any as S.Schema<GetPlaywrightWorkspaceQuotaRequest>;
+  identifier: "GetPlaywrightWorkspaceQuotasRequest",
+}) as any as S.Schema<GetPlaywrightWorkspaceQuotasRequest>;
 
 /** Playwright workspace quota free trial properties. */
 export interface PlaywrightWorkspaceFreeTrialProperties {
@@ -789,7 +789,7 @@ export const PlaywrightWorkspaceQuotaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PlaywrightWorkspaceQuotaProperties",
 }) as any as S.Schema<PlaywrightWorkspaceQuotaProperties>;
 
-export interface GetPlaywrightWorkspaceQuotaResponse {
+export interface GetPlaywrightWorkspaceQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -801,19 +801,20 @@ export interface GetPlaywrightWorkspaceQuotaResponse {
   /** The resource-specific properties for this resource. */
   properties?: PlaywrightWorkspaceQuotaProperties;
 }
-export const GetPlaywrightWorkspaceQuotaResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PlaywrightWorkspaceQuotaProperties),
-  }),
+export const GetPlaywrightWorkspaceQuotasResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PlaywrightWorkspaceQuotaProperties),
+    }),
 ).annotate({
-  identifier: "GetPlaywrightWorkspaceQuotaResponse",
-}) as any as S.Schema<GetPlaywrightWorkspaceQuotaResponse>;
+  identifier: "GetPlaywrightWorkspaceQuotasResponse",
+}) as any as S.Schema<GetPlaywrightWorkspaceQuotasResponse>;
 
-export interface GetQuotaRequest {
+export interface GetQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -821,7 +822,7 @@ export interface GetQuotaRequest {
   /** The quota name. */
   quotaBucketName: string;
 }
-export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -835,8 +836,8 @@ export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQuotaRequest",
-}) as any as S.Schema<GetQuotaRequest>;
+  identifier: "GetQuotasRequest",
+}) as any as S.Schema<GetQuotasRequest>;
 
 /** Quota bucket resource properties. */
 export interface QuotaResourceProperties {
@@ -857,7 +858,7 @@ export const QuotaResourceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaResourceProperties",
 }) as any as S.Schema<QuotaResourceProperties>;
 
-export interface GetQuotaResponse {
+export interface GetQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -869,7 +870,7 @@ export interface GetQuotaResponse {
   /** The resource-specific properties for this resource. */
   properties?: QuotaResourceProperties;
 }
-export const GetQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -878,8 +879,8 @@ export const GetQuotaResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(QuotaResourceProperties),
   }),
 ).annotate({
-  identifier: "GetQuotaResponse",
-}) as any as S.Schema<GetQuotaResponse>;
+  identifier: "GetQuotasResponse",
+}) as any as S.Schema<GetQuotasResponse>;
 
 export interface ListLoadTestByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -911,8 +912,8 @@ export const LoadTestResourceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<LoadTestResourceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type LoadTestResourceIdentity = LoadTestsGetResponseIdentity;
-export const LoadTestResourceIdentity = LoadTestsGetResponseIdentity;
+export type LoadTestResourceIdentity = GetLoadTestResponseIdentity;
+export const LoadTestResourceIdentity = GetLoadTestResponseIdentity;
 
 /** LoadTest details. */
 export interface LoadTestResource {
@@ -931,7 +932,7 @@ export interface LoadTestResource {
   /** The resource-specific properties for this resource. */
   properties?: LoadTestProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: LoadTestsGetResponseIdentity;
+  identity?: GetLoadTestResponseIdentity;
 }
 export const LoadTestResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -942,7 +943,7 @@ export const LoadTestResource = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(LoadTestResourceTagsMap),
     location: S.String,
     properties: S.optional(LoadTestProperties),
-    identity: S.optional(LoadTestsGetResponseIdentity),
+    identity: S.optional(GetLoadTestResponseIdentity),
   }),
 ).annotate({
   identifier: "LoadTestResource",
@@ -989,7 +990,7 @@ export const ListLoadTestBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLoadTestBySubscriptionRequest",
 }) as any as S.Schema<ListLoadTestBySubscriptionRequest>;
 
-export interface ListLoadTestOutboundNetworkDependencyEndpointsRequest {
+export interface ListLoadTestOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -997,7 +998,7 @@ export interface ListLoadTestOutboundNetworkDependencyEndpointsRequest {
   /** Load Test name */
   loadTestName: string;
 }
-export const ListLoadTestOutboundNetworkDependencyEndpointsRequest =
+export const ListLoadTestOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1012,8 +1013,8 @@ export const ListLoadTestOutboundNetworkDependencyEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListLoadTestOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListLoadTestOutboundNetworkDependencyEndpointsRequest>;
+    identifier: "ListLoadTestOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListLoadTestOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Details about the connection between the Batch service and the endpoint. */
 export interface EndpointDetail {
@@ -1165,34 +1166,34 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export interface ListPlaywrightQuotaBySubscriptionRequest {
+export interface ListPlaywrightQuotasBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const ListPlaywrightQuotaBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListPlaywrightQuotasBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
@@ -1204,9 +1205,9 @@ export const ListPlaywrightQuotaBySubscriptionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2025-09-01",
       }),
     ),
-).annotate({
-  identifier: "ListPlaywrightQuotaBySubscriptionRequest",
-}) as any as S.Schema<ListPlaywrightQuotaBySubscriptionRequest>;
+  ).annotate({
+    identifier: "ListPlaywrightQuotasBySubscriptionRequest",
+  }) as any as S.Schema<ListPlaywrightQuotasBySubscriptionRequest>;
 
 /** Subscription-level location-based Playwright quota resource. */
 export interface PlaywrightQuota {
@@ -1358,7 +1359,7 @@ export const ListPlaywrightWorkspaceBySubscriptionRequest =
     identifier: "ListPlaywrightWorkspaceBySubscriptionRequest",
   }) as any as S.Schema<ListPlaywrightWorkspaceBySubscriptionRequest>;
 
-export interface ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest {
+export interface ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1366,7 +1367,7 @@ export interface ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest {
   /** The name of the PlaywrightWorkspace */
   playwrightWorkspaceName: string;
 }
-export const ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest =
+export const ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1381,8 +1382,8 @@ export const ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest",
-  }) as any as S.Schema<ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest>;
+    identifier: "ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest",
+  }) as any as S.Schema<ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest>;
 
 /** Playwright workspace quota resource. */
 export interface PlaywrightWorkspaceQuota {
@@ -1605,9 +1606,9 @@ export const LoadTestsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type LoadTestsCreateOrUpdateResponseIdentity =
-  LoadTestsGetResponseIdentity;
+  GetLoadTestResponseIdentity;
 export const LoadTestsCreateOrUpdateResponseIdentity =
-  LoadTestsGetResponseIdentity;
+  GetLoadTestResponseIdentity;
 
 export interface LoadTestsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1625,7 +1626,7 @@ export interface LoadTestsCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: LoadTestProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: LoadTestsGetResponseIdentity;
+  identity?: GetLoadTestResponseIdentity;
 }
 export const LoadTestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1636,7 +1637,7 @@ export const LoadTestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(LoadTestsCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(LoadTestProperties),
-    identity: S.optional(LoadTestsGetResponseIdentity),
+    identity: S.optional(GetLoadTestResponseIdentity),
   }),
 ).annotate({
   identifier: "LoadTestsCreateOrUpdateResponse",
@@ -1763,19 +1764,19 @@ export const PlaywrightWorkspacesCreateOrUpdateResponse =
   }) as any as S.Schema<PlaywrightWorkspacesCreateOrUpdateResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type LoadTestsUpdateRequestIdentity =
+export type UpdateLoadTestRequestIdentity =
   LoadTestsCreateOrUpdateRequestIdentity;
-export const LoadTestsUpdateRequestIdentity =
+export const UpdateLoadTestRequestIdentity =
   LoadTestsCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type LoadTestsUpdateRequestTagsMap = {
+export type UpdateLoadTestRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const LoadTestsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLoadTestRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LoadTestsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateLoadTestRequestTagsMap>;
 
 /** The updatable properties of the LoadTestResource. */
 export type LoadTestResourceUpdateProperties = LoadTestPropertiesInput;
@@ -1791,7 +1792,7 @@ export interface UpdateLoadTestRequest {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: LoadTestsCreateOrUpdateRequestIdentity;
   /** Resource tags. */
-  tags?: LoadTestsUpdateRequestTagsMap;
+  tags?: UpdateLoadTestRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: LoadTestPropertiesInput;
 }
@@ -1801,7 +1802,7 @@ export const UpdateLoadTestRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     loadTestName: S.String.pipe(T.Label()),
     identity: S.optional(LoadTestsCreateOrUpdateRequestIdentity),
-    tags: S.optional(LoadTestsUpdateRequestTagsMap),
+    tags: S.optional(UpdateLoadTestRequestTagsMap),
     properties: S.optional(LoadTestPropertiesInput),
   }).pipe(
     T.Http({
@@ -1816,17 +1817,17 @@ export const UpdateLoadTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLoadTestRequest>;
 
 /** Resource tags. */
-export type LoadTestsUpdateResponseTagsMap = {
+export type UpdateLoadTestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LoadTestsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLoadTestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LoadTestsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateLoadTestResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type LoadTestsUpdateResponseIdentity = LoadTestsGetResponseIdentity;
-export const LoadTestsUpdateResponseIdentity = LoadTestsGetResponseIdentity;
+export type UpdateLoadTestResponseIdentity = GetLoadTestResponseIdentity;
+export const UpdateLoadTestResponseIdentity = GetLoadTestResponseIdentity;
 
 export interface UpdateLoadTestResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1838,13 +1839,13 @@ export interface UpdateLoadTestResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LoadTestsUpdateResponseTagsMap;
+  tags?: UpdateLoadTestResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: LoadTestProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: LoadTestsGetResponseIdentity;
+  identity?: GetLoadTestResponseIdentity;
 }
 export const UpdateLoadTestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1852,23 +1853,23 @@ export const UpdateLoadTestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LoadTestsUpdateResponseTagsMap),
+    tags: S.optional(UpdateLoadTestResponseTagsMap),
     location: S.String,
     properties: S.optional(LoadTestProperties),
-    identity: S.optional(LoadTestsGetResponseIdentity),
+    identity: S.optional(GetLoadTestResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateLoadTestResponse",
 }) as any as S.Schema<UpdateLoadTestResponse>;
 
 /** Resource tags. */
-export type PlaywrightWorkspacesUpdateRequestTagsMap = {
+export type UpdatePlaywrightWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PlaywrightWorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePlaywrightWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PlaywrightWorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePlaywrightWorkspaceRequestTagsMap>;
 
 /** The enablement status of a feature. */
 export type EnablementStatus = "Enabled" | "Disabled";
@@ -1898,7 +1899,7 @@ export interface UpdatePlaywrightWorkspaceRequest {
   /** The name of the PlaywrightWorkspace */
   playwrightWorkspaceName: string;
   /** Resource tags. */
-  tags?: PlaywrightWorkspacesUpdateRequestTagsMap;
+  tags?: UpdatePlaywrightWorkspaceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: PlaywrightWorkspaceUpdateProperties;
 }
@@ -1907,7 +1908,7 @@ export const UpdatePlaywrightWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     playwrightWorkspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(PlaywrightWorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdatePlaywrightWorkspaceRequestTagsMap),
     properties: S.optional(PlaywrightWorkspaceUpdateProperties),
   }).pipe(
     T.Http({
@@ -1922,13 +1923,13 @@ export const UpdatePlaywrightWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePlaywrightWorkspaceRequest>;
 
 /** Resource tags. */
-export type PlaywrightWorkspacesUpdateResponseTagsMap = {
+export type UpdatePlaywrightWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PlaywrightWorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePlaywrightWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PlaywrightWorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePlaywrightWorkspaceResponseTagsMap>;
 
 export interface UpdatePlaywrightWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1940,7 +1941,7 @@ export interface UpdatePlaywrightWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PlaywrightWorkspacesUpdateResponseTagsMap;
+  tags?: UpdatePlaywrightWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1952,7 +1953,7 @@ export const UpdatePlaywrightWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PlaywrightWorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdatePlaywrightWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(PlaywrightWorkspaceProperties),
   }),
@@ -1975,15 +1976,15 @@ export const CheckPlaywrightWorkspaceNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckQuotaAvailabilityError = AzureOpError;
+export type CheckQuotasAvailabilityError = AzureOpError;
 /** Check Quota Availability on quota bucket per region per subscription. */
-export const CheckQuotaAvailability: API.OperationMethod<
-  CheckQuotaAvailabilityRequest,
+export const CheckQuotasAvailability: API.OperationMethod<
+  CheckQuotasAvailabilityRequest,
   CheckQuotaAvailabilityResponse,
-  CheckQuotaAvailabilityError,
+  CheckQuotasAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckQuotaAvailabilityRequest,
+  input: CheckQuotasAvailabilityRequest,
   output: CheckQuotaAvailabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2035,16 +2036,16 @@ export const GetLoadTest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPlaywrightQuotaError = AzureOpError;
+export type GetPlaywrightQuotasError = AzureOpError;
 /** Gets a subscription-level location-based Playwright quota resource by name. */
-export const GetPlaywrightQuota: API.OperationMethod<
-  GetPlaywrightQuotaRequest,
-  GetPlaywrightQuotaResponse,
-  GetPlaywrightQuotaError,
+export const GetPlaywrightQuotas: API.OperationMethod<
+  GetPlaywrightQuotasRequest,
+  GetPlaywrightQuotasResponse,
+  GetPlaywrightQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPlaywrightQuotaRequest,
-  output: GetPlaywrightQuotaResponse,
+  input: GetPlaywrightQuotasRequest,
+  output: GetPlaywrightQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2065,31 +2066,31 @@ export const GetPlaywrightWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPlaywrightWorkspaceQuotaError = AzureOpError;
+export type GetPlaywrightWorkspaceQuotasError = AzureOpError;
 /** Gets a Playwright workspace quota resource by name. */
-export const GetPlaywrightWorkspaceQuota: API.OperationMethod<
-  GetPlaywrightWorkspaceQuotaRequest,
-  GetPlaywrightWorkspaceQuotaResponse,
-  GetPlaywrightWorkspaceQuotaError,
+export const GetPlaywrightWorkspaceQuotas: API.OperationMethod<
+  GetPlaywrightWorkspaceQuotasRequest,
+  GetPlaywrightWorkspaceQuotasResponse,
+  GetPlaywrightWorkspaceQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPlaywrightWorkspaceQuotaRequest,
-  output: GetPlaywrightWorkspaceQuotaResponse,
+  input: GetPlaywrightWorkspaceQuotasRequest,
+  output: GetPlaywrightWorkspaceQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetQuotaError = AzureOpError;
+export type GetQuotasError = AzureOpError;
 /** Get the available quota for a quota bucket per region per subscription. */
-export const GetQuota: API.OperationMethod<
-  GetQuotaRequest,
-  GetQuotaResponse,
-  GetQuotaError,
+export const GetQuotas: API.OperationMethod<
+  GetQuotasRequest,
+  GetQuotasResponse,
+  GetQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQuotaRequest,
-  output: GetQuotaResponse,
+  input: GetQuotasRequest,
+  output: GetQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2125,15 +2126,16 @@ export const ListLoadTestBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListLoadTestOutboundNetworkDependencyEndpointsError = AzureOpError;
+export type ListLoadTestOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
 /** Lists the endpoints that agents may call as part of load testing. */
-export const ListLoadTestOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListLoadTestOutboundNetworkDependencyEndpointsRequest,
+export const ListLoadTestOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListLoadTestOutboundNetworkDependenciesEndpointsRequest,
   PagedOutboundEnvironmentEndpoint,
-  ListLoadTestOutboundNetworkDependencyEndpointsError,
+  ListLoadTestOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListLoadTestOutboundNetworkDependencyEndpointsRequest,
+  input: ListLoadTestOutboundNetworkDependenciesEndpointsRequest,
   output: PagedOutboundEnvironmentEndpoint,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2155,15 +2157,15 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPlaywrightQuotaBySubscriptionError = AzureOpError;
+export type ListPlaywrightQuotasBySubscriptionError = AzureOpError;
 /** Lists Playwright quota resources for a given subscription ID. */
-export const ListPlaywrightQuotaBySubscription: API.OperationMethod<
-  ListPlaywrightQuotaBySubscriptionRequest,
+export const ListPlaywrightQuotasBySubscription: API.OperationMethod<
+  ListPlaywrightQuotasBySubscriptionRequest,
   PlaywrightQuotaListResult,
-  ListPlaywrightQuotaBySubscriptionError,
+  ListPlaywrightQuotasBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPlaywrightQuotaBySubscriptionRequest,
+  input: ListPlaywrightQuotasBySubscriptionRequest,
   output: PlaywrightQuotaListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2200,16 +2202,16 @@ export const ListPlaywrightWorkspaceBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceError =
+export type ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceError =
   AzureOpError;
 /** Lists quota resources for a given Playwright workspace. */
-export const ListPlaywrightWorkspaceQuotaByPlaywrightWorkspace: API.OperationMethod<
-  ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest,
+export const ListPlaywrightWorkspaceQuotasByPlaywrightWorkspace: API.OperationMethod<
+  ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest,
   PlaywrightWorkspaceQuotaListResult,
-  ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceError,
+  ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPlaywrightWorkspaceQuotaByPlaywrightWorkspaceRequest,
+  input: ListPlaywrightWorkspaceQuotasByPlaywrightWorkspaceRequest,
   output: PlaywrightWorkspaceQuotaListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

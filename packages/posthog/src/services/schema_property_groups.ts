@@ -40,18 +40,17 @@ export class NotFound
   ) {}
 
 /** * `DateTime` - DateTime * `String` - String * `Numeric` - Numeric * `Boolean` - Boolean * `Object` - Object */
-export type SchemaPropertyGroupPropertyPropertyTypeEnum =
+export type SchemaPropertyTypeEnum =
   | "DateTime"
   | "String"
   | "Numeric"
   | "Boolean"
   | "Object";
-export const SchemaPropertyGroupPropertyPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SchemaPropertyTypeEnum = /*@__PURE__*/ S.String;
 
 export interface SchemaPropertyGroupPropertyInput {
   name?: string;
-  property_type?: SchemaPropertyGroupPropertyPropertyTypeEnum | (string & {});
+  property_type?: SchemaPropertyTypeEnum | (string & {});
   is_required?: boolean;
   is_optional_in_types?: boolean;
   description?: string;
@@ -59,7 +58,7 @@ export interface SchemaPropertyGroupPropertyInput {
 export const SchemaPropertyGroupPropertyInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
-    property_type: S.optional(SchemaPropertyGroupPropertyPropertyTypeEnum),
+    property_type: S.optional(SchemaPropertyTypeEnum),
     is_required: S.optional(S.Boolean),
     is_optional_in_types: S.optional(S.Boolean),
     description: S.optional(S.String),
@@ -68,26 +67,26 @@ export const SchemaPropertyGroupPropertyInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchemaPropertyGroupPropertyInput",
 }) as any as S.Schema<SchemaPropertyGroupPropertyInput>;
 
-export type SchemaPropertyGroupsCreateRequestPropertiesList =
+export type CreateSchemaPropertyGroupRequestPropertiesList =
   Array<SchemaPropertyGroupPropertyInput>;
-export const SchemaPropertyGroupsCreateRequestPropertiesList =
+export const CreateSchemaPropertyGroupRequestPropertiesList =
   /*@__PURE__*/ S.Array(
     SchemaPropertyGroupPropertyInput,
-  ) as any as S.Schema<SchemaPropertyGroupsCreateRequestPropertiesList>;
+  ) as any as S.Schema<CreateSchemaPropertyGroupRequestPropertiesList>;
 
 export interface CreateSchemaPropertyGroupRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name?: string;
   description?: string;
-  properties?: SchemaPropertyGroupsCreateRequestPropertiesList;
+  properties?: CreateSchemaPropertyGroupRequestPropertiesList;
 }
 export const CreateSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
     description: S.optional(S.String),
-    properties: S.optional(SchemaPropertyGroupsCreateRequestPropertiesList),
+    properties: S.optional(CreateSchemaPropertyGroupRequestPropertiesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -102,7 +101,7 @@ export const CreateSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
 export interface SchemaPropertyGroupProperty {
   id?: string;
   name?: string;
-  property_type?: SchemaPropertyGroupPropertyPropertyTypeEnum;
+  property_type?: SchemaPropertyTypeEnum;
   is_required?: boolean;
   is_optional_in_types?: boolean;
   description?: string;
@@ -113,7 +112,7 @@ export const SchemaPropertyGroupProperty = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
-    property_type: S.optional(SchemaPropertyGroupPropertyPropertyTypeEnum),
+    property_type: S.optional(SchemaPropertyTypeEnum),
     is_required: S.optional(S.Boolean),
     is_optional_in_types: S.optional(S.Boolean),
     description: S.optional(S.String),
@@ -224,6 +223,27 @@ export const SchemaPropertyGroup = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchemaPropertyGroup",
 }) as any as S.Schema<SchemaPropertyGroup>;
 
+export interface GetSchemaPropertyGroupRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this schema property group. */
+  id: string;
+}
+export const GetSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/schema_property_groups/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSchemaPropertyGroupRequest",
+}) as any as S.Schema<GetSchemaPropertyGroupRequest>;
+
 export interface ListSchemaPropertyGroupsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -300,33 +320,12 @@ export const SchemaPropertyGroupsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchemaPropertyGroupsDestroyResponse",
 }) as any as S.Schema<SchemaPropertyGroupsDestroyResponse>;
 
-export interface SchemaPropertyGroupsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this schema property group. */
-  id: string;
-}
-export const SchemaPropertyGroupsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/schema_property_groups/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SchemaPropertyGroupsRetrieveRequest",
-}) as any as S.Schema<SchemaPropertyGroupsRetrieveRequest>;
-
-export type SchemaPropertyGroupsUpdateRequestPropertiesList =
+export type UpdateSchemaPropertyGroupRequestPropertiesList =
   Array<SchemaPropertyGroupPropertyInput>;
-export const SchemaPropertyGroupsUpdateRequestPropertiesList =
+export const UpdateSchemaPropertyGroupRequestPropertiesList =
   /*@__PURE__*/ S.Array(
     SchemaPropertyGroupPropertyInput,
-  ) as any as S.Schema<SchemaPropertyGroupsUpdateRequestPropertiesList>;
+  ) as any as S.Schema<UpdateSchemaPropertyGroupRequestPropertiesList>;
 
 export interface UpdateSchemaPropertyGroupRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -335,7 +334,7 @@ export interface UpdateSchemaPropertyGroupRequest {
   id: string;
   name?: string;
   description?: string;
-  properties?: SchemaPropertyGroupsUpdateRequestPropertiesList;
+  properties?: UpdateSchemaPropertyGroupRequestPropertiesList;
 }
 export const UpdateSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -343,7 +342,7 @@ export const UpdateSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
     id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
     description: S.optional(S.String),
-    properties: S.optional(SchemaPropertyGroupsUpdateRequestPropertiesList),
+    properties: S.optional(UpdateSchemaPropertyGroupRequestPropertiesList),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -355,23 +354,23 @@ export const UpdateSchemaPropertyGroupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSchemaPropertyGroupRequest",
 }) as any as S.Schema<UpdateSchemaPropertyGroupRequest>;
 
-export type SchemaPropertyGroupsPartialUpdateRequestPropertiesList =
+export type UpdateSchemaPropertyGroupsPartialRequestPropertiesList =
   Array<SchemaPropertyGroupPropertyInput>;
-export const SchemaPropertyGroupsPartialUpdateRequestPropertiesList =
+export const UpdateSchemaPropertyGroupsPartialRequestPropertiesList =
   /*@__PURE__*/ S.Array(
     SchemaPropertyGroupPropertyInput,
-  ) as any as S.Schema<SchemaPropertyGroupsPartialUpdateRequestPropertiesList>;
+  ) as any as S.Schema<UpdateSchemaPropertyGroupsPartialRequestPropertiesList>;
 
-export interface UpdateSchemaPropertyGroupPartialRequest {
+export interface UpdateSchemaPropertyGroupsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this schema property group. */
   id: string;
   name?: string;
   description?: string;
-  properties?: SchemaPropertyGroupsPartialUpdateRequestPropertiesList;
+  properties?: UpdateSchemaPropertyGroupsPartialRequestPropertiesList;
 }
-export const UpdateSchemaPropertyGroupPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateSchemaPropertyGroupsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -379,7 +378,7 @@ export const UpdateSchemaPropertyGroupPartialRequest = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       description: S.optional(S.String),
       properties: S.optional(
-        SchemaPropertyGroupsPartialUpdateRequestPropertiesList,
+        UpdateSchemaPropertyGroupsPartialRequestPropertiesList,
       ),
     }).pipe(
       T.Http({
@@ -389,8 +388,8 @@ export const UpdateSchemaPropertyGroupPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateSchemaPropertyGroupPartialRequest",
-}) as any as S.Schema<UpdateSchemaPropertyGroupPartialRequest>;
+  identifier: "UpdateSchemaPropertyGroupsPartialRequest",
+}) as any as S.Schema<UpdateSchemaPropertyGroupsPartialRequest>;
 
 export type CreateSchemaPropertyGroupError =
   | BadRequest
@@ -406,6 +405,20 @@ export const createSchemaPropertyGroup: API.OperationMethod<
   input: CreateSchemaPropertyGroupRequest,
   output: SchemaPropertyGroup,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSchemaPropertyGroupError = Forbidden | NotFound | PosthogOpError;
+export const getSchemaPropertyGroup: API.OperationMethod<
+  GetSchemaPropertyGroupRequest,
+  SchemaPropertyGroup,
+  GetSchemaPropertyGroupError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSchemaPropertyGroupRequest,
+  output: SchemaPropertyGroup,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -445,23 +458,6 @@ export const schemaPropertyGroupsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SchemaPropertyGroupsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const schemaPropertyGroupsRetrieve: API.OperationMethod<
-  SchemaPropertyGroupsRetrieveRequest,
-  SchemaPropertyGroup,
-  SchemaPropertyGroupsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchemaPropertyGroupsRetrieveRequest,
-  output: SchemaPropertyGroup,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateSchemaPropertyGroupError =
   | BadRequest
   | Forbidden
@@ -480,18 +476,18 @@ export const updateSchemaPropertyGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSchemaPropertyGroupPartialError =
+export type UpdateSchemaPropertyGroupsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateSchemaPropertyGroupPartial: API.OperationMethod<
-  UpdateSchemaPropertyGroupPartialRequest,
+export const updateSchemaPropertyGroupsPartial: API.OperationMethod<
+  UpdateSchemaPropertyGroupsPartialRequest,
   SchemaPropertyGroup,
-  UpdateSchemaPropertyGroupPartialError,
+  UpdateSchemaPropertyGroupsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSchemaPropertyGroupPartialRequest,
+  input: UpdateSchemaPropertyGroupsPartialRequest,
   output: SchemaPropertyGroup,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

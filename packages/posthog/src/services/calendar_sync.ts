@@ -88,14 +88,14 @@ export const CalendarSyncStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "CalendarSyncStatus",
 }) as any as S.Schema<CalendarSyncStatus>;
 
-export type CalendarSyncListResponseBodyList = Array<CalendarSyncStatus>;
-export const CalendarSyncListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListCalendarSyncResponseBodyList = Array<CalendarSyncStatus>;
+export const ListCalendarSyncResponseBodyList = /*@__PURE__*/ S.Array(
   CalendarSyncStatus,
-) as any as S.Schema<CalendarSyncListResponseBodyList>;
+) as any as S.Schema<ListCalendarSyncResponseBodyList>;
 
-export type ListCalendarSyncResponse = CalendarSyncListResponseBodyList;
+export type ListCalendarSyncResponse = ListCalendarSyncResponseBodyList;
 export const ListCalendarSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  CalendarSyncListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListCalendarSyncResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListCalendarSyncResponse",
 }) as any as S.Schema<ListCalendarSyncResponse>;

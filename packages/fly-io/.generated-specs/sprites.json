@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.flyio.sprites#CreateOrganizationTokenRequest": {
@@ -1395,52 +1396,52 @@
       "version": "v1",
       "operations": [
         {
-          "target": "com.flyio.sprites#CreateOrganizationToken"
+          "target": "com.flyio.sprites#CreateCheckpoint"
         },
         {
-          "target": "com.flyio.sprites#ListSprites"
+          "target": "com.flyio.sprites#CreateOrganizationToken"
         },
         {
           "target": "com.flyio.sprites#CreateSprite"
         },
         {
-          "target": "com.flyio.sprites#GetSprite"
-        },
-        {
-          "target": "com.flyio.sprites#UpdateSprite"
-        },
-        {
           "target": "com.flyio.sprites#DeleteSprite"
-        },
-        {
-          "target": "com.flyio.sprites#ListExecSessions"
         },
         {
           "target": "com.flyio.sprites#ExecCommand"
         },
         {
-          "target": "com.flyio.sprites#CreateCheckpoint"
-        },
-        {
-          "target": "com.flyio.sprites#ListCheckpoints"
-        },
-        {
           "target": "com.flyio.sprites#GetCheckpoint"
-        },
-        {
-          "target": "com.flyio.sprites#RestoreCheckpoint"
-        },
-        {
-          "target": "com.flyio.sprites#WriteFile"
-        },
-        {
-          "target": "com.flyio.sprites#ListServices"
         },
         {
           "target": "com.flyio.sprites#GetService"
         },
         {
+          "target": "com.flyio.sprites#GetSprite"
+        },
+        {
+          "target": "com.flyio.sprites#ListCheckpoints"
+        },
+        {
+          "target": "com.flyio.sprites#ListExecSessions"
+        },
+        {
+          "target": "com.flyio.sprites#ListServices"
+        },
+        {
+          "target": "com.flyio.sprites#ListSprites"
+        },
+        {
           "target": "com.flyio.sprites#PutService"
+        },
+        {
+          "target": "com.flyio.sprites#RestoreCheckpoint"
+        },
+        {
+          "target": "com.flyio.sprites#UpdateSprite"
+        },
+        {
+          "target": "com.flyio.sprites#WriteFile"
         }
       ],
       "traits": {

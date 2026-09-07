@@ -65,22 +65,149 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+/** Describes a resource referenced in the request. */
+export interface ResourceInfo {
+  /** The resource permission needed for this request. The format must be "{service}/{plural}.{verb}". */
+  permission?: string;
+  /** The resource type in the format of "{service}/{kind}". */
+  type?: string;
+  /** Optional. The identifier of the container of this resource. For Google Cloud APIs, the resource container must be one of the following formats: - `projects/` - `folders/` - `organizations/` Required for the policy enforcement on the container level (e.g. VPCSC, Location Policy check, Org Policy check). */
+  container?: string;
+  /** The name of the resource referenced in the request. */
+  name?: string;
+  /** Optional. The location of the resource, it must be a valid zone, region or multiregion, for example: "europe-west4", "northamerica-northeast1-a". Required for location policy check. */
+  location?: string;
+}
+export const ResourceInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    permission: S.optional(S.String),
+    type: S.optional(S.String),
+    container: S.optional(S.String),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "ResourceInfo" }) as any as S.Schema<ResourceInfo>;
+
+export type ResourceInfoList = Array<ResourceInfo>;
+export const ResourceInfoList = /*@__PURE__*/ S.Array(
+  ResourceInfo,
+) as any as S.Schema<ResourceInfoList>;
+
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<StringMap>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
+/** This message defines attributes for a typical network response. It generally models semantics of an HTTP response. */
+export interface Response {
+  /** The HTTP response headers. If multiple headers share the same key, they must be merged according to HTTP spec. All header keys must be lowercased, because HTTP header keys are case-insensitive. */
+  headers?: StringMap;
+  /** The HTTP response status code, such as `200` and `404`. */
+  code?: string;
+  /** The amount of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend. */
+  backendLatency?: string;
+  /** The HTTP response size in bytes. If unknown, it must be -1. */
+  size?: string;
+  /** The timestamp when the `destination` service sends the last byte of the response. */
+  time?: string;
+}
+export const Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    headers: S.optional(StringMap),
+    code: S.optional(S.String),
+    backendLatency: S.optional(S.String),
+    size: S.optional(S.String),
+    time: S.optional(S.String),
+  }),
+).annotate({ identifier: "Response" }) as any as S.Schema<Response>;
 
-export type DocumentMap = { [key: string]: unknown | undefined };
-export const DocumentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DocumentMap>;
+/** This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate. */
+export interface Peer {
+  /** The network port of the peer. */
+  port?: string;
+  /** The IP address of the peer. */
+  ip?: string;
+  /** The labels associated with the peer. */
+  labels?: StringMap;
+  /** The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the identity associated with a load balancer that forwarded the request. */
+  principal?: string;
+  /** The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running. */
+  regionCode?: string;
+}
+export const Peer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    port: S.optional(S.String),
+    ip: S.optional(S.String),
+    labels: S.optional(StringMap),
+    principal: S.optional(S.String),
+    regionCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "Peer" }) as any as S.Schema<Peer>;
+
+/** This message defines core attributes for a resource. A resource is an addressable (named) entity provided by the destination service. For example, a file stored on a network storage service. */
+export interface Resource {
+  /** Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written. */
+  etag?: string;
+  /** Immutable. The location of the resource. The location encoding is specific to the service provider, and new encoding may be introduced as the service evolves. For Google Cloud products, the encoding is what is used by Google Cloud APIs, such as `us-east1`, `aws-us-east-1`, and `azure-eastus2`. The semantics of `location` is identical to the `cloud.googleapis.com/location` label used by some Google Cloud APIs. */
+  location?: string;
+  /** The name of the service that this resource belongs to, such as `pubsub.googleapis.com`. The service may be different from the DNS hostname that actually serves the request. */
+  service?: string;
+  /** Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ */
+  annotations?: StringMap;
+  /** The stable identifier (name) of a resource on the `service`. A resource can be logically identified as "//{resource.service}/{resource.name}". The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details. */
+  name?: string;
+  /** The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4. */
+  uid?: string;
+  /** Mutable. The display name set by clients. Must be <= 63 characters. */
+  displayName?: string;
+  /** Output only. The timestamp when the resource was created. This may be either the time creation was initiated or when it was completed. */
+  createTime?: string;
+  /** The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be "{service}/{kind}", such as "pubsub.googleapis.com/Topic". */
+  type?: string;
+  /** Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value. */
+  updateTime?: string;
+  /** The labels or tags on the resource, such as AWS resource tags and Kubernetes resource labels. */
+  labels?: StringMap;
+  /** Output only. The timestamp when the resource was deleted. If the resource is not deleted, this must be empty. */
+  deleteTime?: string;
+}
+export const Resource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    etag: S.optional(S.String),
+    location: S.optional(S.String),
+    service: S.optional(S.String),
+    annotations: S.optional(StringMap),
+    name: S.optional(S.String),
+    uid: S.optional(S.String),
+    displayName: S.optional(S.String),
+    createTime: S.optional(S.String),
+    type: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    labels: S.optional(StringMap),
+    deleteTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
+
+/** This message defines attributes associated with API operations, such as a network API request. The terminology is based on the conventions used by Google APIs, Istio, and OpenAPI. */
+export interface Api {
+  /** The API protocol used for sending the request, such as "http", "https", "grpc", or "internal". */
+  protocol?: string;
+  /** The API service name. It is a logical identifier for a networked API, such as "pubsub.googleapis.com". The naming syntax depends on the API management system being used for handling the request. */
+  service?: string;
+  /** The API operation name. For gRPC requests, it is the fully qualified API method name, such as "google.pubsub.v1.Publisher.Publish". For OpenAPI requests, it is the `operationId`, such as "getPet". */
+  operation?: string;
+  /** The API version associated with the API operation above, such as "v1" or "v1alpha1". */
+  version?: string;
+}
+export const Api = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protocol: S.optional(S.String),
+    service: S.optional(S.String),
+    operation: S.optional(S.String),
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "Api" }) as any as S.Schema<Api>;
 
 /** This message defines attributes associated with OAuth credentials. */
 export interface Oauth {
@@ -93,191 +220,92 @@ export const Oauth = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Oauth" }) as any as S.Schema<Oauth>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+export type DocumentMap = { [key: string]: unknown | undefined };
+export const DocumentMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<DocumentMap>;
+
 /** This message defines request authentication attributes. Terminology is based on the JSON Web Token (JWT) standard, but the terms also correlate to concepts in other standards. */
 export interface Auth {
-  /** The authenticated principal. Reflects the issuer (`iss`) and subject (`sub`) claims within a JWT. The issuer and subject should be `/` delimited, with `/` percent-encoded within the subject fragment. For Google accounts, the principal format is: "https://accounts.google.com/{id}" */
-  principal?: string;
-  /** Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs. */
-  credentialId?: string;
+  /** Attributes of the OAuth token associated with the request. */
+  oauth?: Oauth;
   /** The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: "123456789012.apps.googleusercontent.com". */
   presenter?: string;
   /** A list of access level resource names that allow resources to be accessed by authenticated requester. It is part of Secure GCP processing for the incoming request. An access level string has the format: "//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}" Example: "//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL" */
   accessLevels?: StringList;
-  /** Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure. */
-  claims?: DocumentMap;
-  /** Attributes of the OAuth token associated with the request. */
-  oauth?: Oauth;
+  /** Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs. */
+  credentialId?: string;
   /** The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information: * The services intended to receive the credential. For example, ["https://pubsub.googleapis.com/", "https://storage.googleapis.com/"]. * A set of service-based scopes. For example, ["https://www.googleapis.com/auth/cloud-platform"]. * The client id of an app, such as the Firebase project id for JWTs from Firebase Auth. Consult the documentation for the credential issuer to determine the information provided. */
   audiences?: StringList;
+  /** The authenticated principal. Reflects the issuer (`iss`) and subject (`sub`) claims within a JWT. The issuer and subject should be `/` delimited, with `/` percent-encoded within the subject fragment. For Google accounts, the principal format is: "https://accounts.google.com/{id}" */
+  principal?: string;
+  /** Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure. */
+  claims?: DocumentMap;
 }
 export const Auth = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    principal: S.optional(S.String),
-    credentialId: S.optional(S.String),
+    oauth: S.optional(Oauth),
     presenter: S.optional(S.String),
     accessLevels: S.optional(StringList),
-    claims: S.optional(DocumentMap),
-    oauth: S.optional(Oauth),
+    credentialId: S.optional(S.String),
     audiences: S.optional(StringList),
+    principal: S.optional(S.String),
+    claims: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Auth" }) as any as S.Schema<Auth>;
 
 /** This message defines attributes for an HTTP request. If the actual request is not an HTTP request, the runtime system should try to map the actual request to an equivalent HTTP request. */
 export interface Request {
-  /** The values from Origin header from the HTTP request, such as "https://console.cloud.google.com". Modern browsers can only have one origin. Special browsers and/or HTTP clients may require multiple origins. */
-  origin?: string;
-  /** The HTTP request size in bytes. If unknown, it must be -1. */
-  size?: string;
-  /** The unique ID for a request, which can be propagated to downstream systems. The ID should have low probability of collision within a single day for a specific service. */
-  id?: string;
-  /** The HTTP request `Host` header value. */
-  host?: string;
-  /** The HTTP request method, such as `GET`, `POST`. */
-  method?: string;
-  /** A special parameter for request reason. It is used by security systems to associate auditing information with a request. */
-  reason?: string;
-  /** The HTTP request headers. If multiple headers share the same key, they must be merged according to the HTTP spec. All header keys must be lowercased, because HTTP header keys are case-insensitive. */
-  headers?: StringMap;
-  /** The HTTP URL query in the format of `name1=value1&name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed. */
-  query?: string;
-  /** The request authentication. May be absent for unauthenticated requests. Derived from the HTTP request `Authorization` header or equivalent. */
-  auth?: Auth;
-  /** The timestamp when the `destination` service receives the last byte of the request. */
-  time?: string;
-  /** The network protocol used with the request, such as "http/1.1", "spdy/3", "h2", "h2c", "webrtc", "tcp", "udp", "quic". See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for details. */
-  protocol?: string;
   /** The HTTP URL path, excluding the query parameters. */
   path?: string;
+  /** The HTTP URL query in the format of `name1=value1&name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed. */
+  query?: string;
+  /** The network protocol used with the request, such as "http/1.1", "spdy/3", "h2", "h2c", "webrtc", "tcp", "udp", "quic". See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for details. */
+  protocol?: string;
+  /** The unique ID for a request, which can be propagated to downstream systems. The ID should have low probability of collision within a single day for a specific service. */
+  id?: string;
+  /** The HTTP request size in bytes. If unknown, it must be -1. */
+  size?: string;
+  /** The request authentication. May be absent for unauthenticated requests. Derived from the HTTP request `Authorization` header or equivalent. */
+  auth?: Auth;
+  /** The HTTP request method, such as `GET`, `POST`. */
+  method?: string;
+  /** The values from Origin header from the HTTP request, such as "https://console.cloud.google.com". Modern browsers can only have one origin. Special browsers and/or HTTP clients may require multiple origins. */
+  origin?: string;
   /** The HTTP URL scheme, such as `http` and `https`. */
   scheme?: string;
+  /** The HTTP request `Host` header value. */
+  host?: string;
+  /** The HTTP request headers. If multiple headers share the same key, they must be merged according to the HTTP spec. All header keys must be lowercased, because HTTP header keys are case-insensitive. */
+  headers?: StringMap;
+  /** A special parameter for request reason. It is used by security systems to associate auditing information with a request. */
+  reason?: string;
+  /** The timestamp when the `destination` service receives the last byte of the request. */
+  time?: string;
 }
 export const Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    origin: S.optional(S.String),
-    size: S.optional(S.String),
-    id: S.optional(S.String),
-    host: S.optional(S.String),
-    method: S.optional(S.String),
-    reason: S.optional(S.String),
-    headers: S.optional(StringMap),
-    query: S.optional(S.String),
-    auth: S.optional(Auth),
-    time: S.optional(S.String),
-    protocol: S.optional(S.String),
     path: S.optional(S.String),
+    query: S.optional(S.String),
+    protocol: S.optional(S.String),
+    id: S.optional(S.String),
+    size: S.optional(S.String),
+    auth: S.optional(Auth),
+    method: S.optional(S.String),
+    origin: S.optional(S.String),
     scheme: S.optional(S.String),
+    host: S.optional(S.String),
+    headers: S.optional(StringMap),
+    reason: S.optional(S.String),
+    time: S.optional(S.String),
   }),
 ).annotate({ identifier: "Request" }) as any as S.Schema<Request>;
-
-/** This message defines attributes for a typical network response. It generally models semantics of an HTTP response. */
-export interface Response {
-  /** The timestamp when the `destination` service sends the last byte of the response. */
-  time?: string;
-  /** The HTTP response size in bytes. If unknown, it must be -1. */
-  size?: string;
-  /** The HTTP response status code, such as `200` and `404`. */
-  code?: string;
-  /** The amount of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend. */
-  backendLatency?: string;
-  /** The HTTP response headers. If multiple headers share the same key, they must be merged according to HTTP spec. All header keys must be lowercased, because HTTP header keys are case-insensitive. */
-  headers?: StringMap;
-}
-export const Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    time: S.optional(S.String),
-    size: S.optional(S.String),
-    code: S.optional(S.String),
-    backendLatency: S.optional(S.String),
-    headers: S.optional(StringMap),
-  }),
-).annotate({ identifier: "Response" }) as any as S.Schema<Response>;
-
-/** This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate. */
-export interface Peer {
-  /** The IP address of the peer. */
-  ip?: string;
-  /** The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the identity associated with a load balancer that forwarded the request. */
-  principal?: string;
-  /** The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running. */
-  regionCode?: string;
-  /** The labels associated with the peer. */
-  labels?: StringMap;
-  /** The network port of the peer. */
-  port?: string;
-}
-export const Peer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ip: S.optional(S.String),
-    principal: S.optional(S.String),
-    regionCode: S.optional(S.String),
-    labels: S.optional(StringMap),
-    port: S.optional(S.String),
-  }),
-).annotate({ identifier: "Peer" }) as any as S.Schema<Peer>;
-
-/** This message defines core attributes for a resource. A resource is an addressable (named) entity provided by the destination service. For example, a file stored on a network storage service. */
-export interface Resource {
-  /** Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ */
-  annotations?: StringMap;
-  /** The stable identifier (name) of a resource on the `service`. A resource can be logically identified as "//{resource.service}/{resource.name}". The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details. */
-  name?: string;
-  /** The name of the service that this resource belongs to, such as `pubsub.googleapis.com`. The service may be different from the DNS hostname that actually serves the request. */
-  service?: string;
-  /** Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value. */
-  updateTime?: string;
-  /** Mutable. The display name set by clients. Must be <= 63 characters. */
-  displayName?: string;
-  /** The labels or tags on the resource, such as AWS resource tags and Kubernetes resource labels. */
-  labels?: StringMap;
-  /** Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written. */
-  etag?: string;
-  /** Output only. The timestamp when the resource was created. This may be either the time creation was initiated or when it was completed. */
-  createTime?: string;
-  /** The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be "{service}/{kind}", such as "pubsub.googleapis.com/Topic". */
-  type?: string;
-  /** Output only. The timestamp when the resource was deleted. If the resource is not deleted, this must be empty. */
-  deleteTime?: string;
-  /** The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4. */
-  uid?: string;
-  /** Immutable. The location of the resource. The location encoding is specific to the service provider, and new encoding may be introduced as the service evolves. For Google Cloud products, the encoding is what is used by Google Cloud APIs, such as `us-east1`, `aws-us-east-1`, and `azure-eastus2`. The semantics of `location` is identical to the `cloud.googleapis.com/location` label used by some Google Cloud APIs. */
-  location?: string;
-}
-export const Resource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotations: S.optional(StringMap),
-    name: S.optional(S.String),
-    service: S.optional(S.String),
-    updateTime: S.optional(S.String),
-    displayName: S.optional(S.String),
-    labels: S.optional(StringMap),
-    etag: S.optional(S.String),
-    createTime: S.optional(S.String),
-    type: S.optional(S.String),
-    deleteTime: S.optional(S.String),
-    uid: S.optional(S.String),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
-
-/** This message defines attributes associated with API operations, such as a network API request. The terminology is based on the conventions used by Google APIs, Istio, and OpenAPI. */
-export interface Api {
-  /** The API service name. It is a logical identifier for a networked API, such as "pubsub.googleapis.com". The naming syntax depends on the API management system being used for handling the request. */
-  service?: string;
-  /** The API protocol used for sending the request, such as "http", "https", "grpc", or "internal". */
-  protocol?: string;
-  /** The API version associated with the API operation above, such as "v1" or "v1alpha1". */
-  version?: string;
-  /** The API operation name. For gRPC requests, it is the fully qualified API method name, such as "google.pubsub.v1.Publisher.Publish". For OpenAPI requests, it is the `operationId`, such as "getPet". */
-  operation?: string;
-}
-export const Api = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    service: S.optional(S.String),
-    protocol: S.optional(S.String),
-    version: S.optional(S.String),
-    operation: S.optional(S.String),
-  }),
-).annotate({ identifier: "Api" }) as any as S.Schema<Api>;
 
 export type DocumentMapList = Array<DocumentMap>;
 export const DocumentMapList = /*@__PURE__*/ S.Array(
@@ -286,83 +314,55 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** This message defines the standard attribute vocabulary for Google APIs. An attribute is a piece of metadata that describes an activity on a network service. For example, the size of an HTTP request, or the status code of an HTTP response. Each attribute has a type and a name, which is logically defined as a proto message field in `AttributeContext`. The field type becomes the attribute type, and the field path becomes the attribute name. For example, the attribute `source.ip` maps to field `AttributeContext.source.ip`. This message definition is guaranteed not to have any wire breaking change. So you can use it directly for passing attributes across different systems. NOTE: Different system may generate different subset of attributes. Please verify the system specification before relying on an attribute generated a system. */
 export interface AttributeContext {
-  /** Represents a network request, such as an HTTP request. */
-  request?: Request;
   /** Represents a network response, such as an HTTP response. */
   response?: Response;
   /** The destination of a network activity, such as accepting a TCP connection. In a multi hop network activity, the destination represents the receiver of the last hop. */
   destination?: Peer;
+  /** The source of a network activity, such as starting a TCP connection. In a multi hop network activity, the source represents the sender of the last hop. */
+  source?: Peer;
   /** Represents a target resource that is involved with a network activity. If multiple resources are involved with an activity, this must be the primary one. */
   resource?: Resource;
   /** Represents an API operation that is involved to a network activity. */
   api?: Api;
   /** The origin of a network activity. In a multi hop network activity, the origin represents the sender of the first hop. For the first hop, the `source` and the `origin` must have the same content. */
   origin?: Peer;
-  /** The source of a network activity, such as starting a TCP connection. In a multi hop network activity, the source represents the sender of the last hop. */
-  source?: Peer;
+  /** Represents a network request, such as an HTTP request. */
+  request?: Request;
   /** Supports extensions for advanced use cases, such as logs and metrics. */
   extensions?: DocumentMapList;
 }
 export const AttributeContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    request: S.optional(Request),
     response: S.optional(Response),
     destination: S.optional(Peer),
+    source: S.optional(Peer),
     resource: S.optional(Resource),
     api: S.optional(Api),
     origin: S.optional(Peer),
-    source: S.optional(Peer),
+    request: S.optional(Request),
     extensions: S.optional(DocumentMapList),
   }),
 ).annotate({
   identifier: "AttributeContext",
 }) as any as S.Schema<AttributeContext>;
 
-/** Describes a resource referenced in the request. */
-export interface ResourceInfo {
-  /** Optional. The identifier of the container of this resource. For Google Cloud APIs, the resource container must be one of the following formats: - `projects/` - `folders/` - `organizations/` Required for the policy enforcement on the container level (e.g. VPCSC, Location Policy check, Org Policy check). */
-  container?: string;
-  /** Optional. The location of the resource, it must be a valid zone, region or multiregion, for example: "europe-west4", "northamerica-northeast1-a". Required for location policy check. */
-  location?: string;
-  /** The resource type in the format of "{service}/{kind}". */
-  type?: string;
-  /** The resource permission needed for this request. The format must be "{service}/{plural}.{verb}". */
-  permission?: string;
-  /** The name of the resource referenced in the request. */
-  name?: string;
-}
-export const ResourceInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    container: S.optional(S.String),
-    location: S.optional(S.String),
-    type: S.optional(S.String),
-    permission: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "ResourceInfo" }) as any as S.Schema<ResourceInfo>;
-
-export type ResourceInfoList = Array<ResourceInfo>;
-export const ResourceInfoList = /*@__PURE__*/ S.Array(
-  ResourceInfo,
-) as any as S.Schema<ResourceInfoList>;
-
 /** Request message for the Check method. */
 export interface CheckRequest {
-  /** Specifies the version of the service configuration that should be used to process the request. Must not be empty. Set this field to 'latest' to specify using the latest configuration. */
-  serviceConfigId?: string;
-  /** Describes attributes about the operation being executed by the service. */
-  attributes?: AttributeContext;
   /** Describes the resources and the policies applied to each resource. */
   resources?: ResourceInfoList;
   /** Optional. Contains a comma-separated list of flags. */
   flags?: string;
+  /** Specifies the version of the service configuration that should be used to process the request. Must not be empty. Set this field to 'latest' to specify using the latest configuration. */
+  serviceConfigId?: string;
+  /** Describes attributes about the operation being executed by the service. */
+  attributes?: AttributeContext;
 }
 export const CheckRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceConfigId: S.optional(S.String),
-    attributes: S.optional(AttributeContext),
     resources: S.optional(ResourceInfoList),
     flags: S.optional(S.String),
+    serviceConfigId: S.optional(S.String),
+    attributes: S.optional(AttributeContext),
   }),
 ).annotate({ identifier: "CheckRequest" }) as any as S.Schema<CheckRequest>;
 
@@ -389,18 +389,18 @@ export const CheckServicesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
+  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
+  message?: string;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
   /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
   details?: DocumentMapList;
-  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
-  message?: string;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    message: S.optional(S.String),
     code: S.optional(S.Number),
     details: S.optional(DocumentMapList),
-    message: S.optional(S.String),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
@@ -408,16 +408,16 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 export interface CheckResponse {
   /** Returns a set of request contexts generated from the `CheckRequest`. */
   headers?: StringMap;
-  /** Optional response metadata that will be emitted as dynamic metadata to be consumed by the caller of ServiceController. For compatibility with the ext_authz interface. */
-  dynamicMetadata?: DocumentMap;
   /** Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; google.rpc.Status.details would contain additional details about the denial. */
   status?: Status;
+  /** Optional response metadata that will be emitted as dynamic metadata to be consumed by the caller of ServiceController. For compatibility with the ext_authz interface. */
+  dynamicMetadata?: DocumentMap;
 }
 export const CheckResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     headers: S.optional(StringMap),
-    dynamicMetadata: S.optional(DocumentMap),
     status: S.optional(Status),
+    dynamicMetadata: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "CheckResponse" }) as any as S.Schema<CheckResponse>;
 

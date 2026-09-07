@@ -48,7 +48,7 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface CreateSignalReportArtefactRequest {
+export interface CreateSignalsReportArtefactRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
@@ -58,7 +58,7 @@ export interface CreateSignalReportArtefactRequest {
   /** The artefact payload as a JSON object or array; shape depends on artefact_type and is validated against its schema. */
   content: unknown;
 }
-export const CreateSignalReportArtefactRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsReportArtefactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     report_id: S.String.pipe(T.Label()),
@@ -72,8 +72,8 @@ export const CreateSignalReportArtefactRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalReportArtefactRequest",
-}) as any as S.Schema<CreateSignalReportArtefactRequest>;
+  identifier: "CreateSignalsReportArtefactRequest",
+}) as any as S.Schema<CreateSignalsReportArtefactRequest>;
 
 /** Response shape for the log-artefact create/update endpoints — echoes the stored row. */
 export interface SignalReportArtefactWriteResponse {
@@ -106,160 +106,11 @@ export const SignalReportArtefactWriteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalReportArtefactWriteResponse",
 }) as any as S.Schema<SignalReportArtefactWriteResponse>;
 
-/** * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
-export type SignalReportStateEnum = "suppressed" | "potential" | "resolved";
-export const SignalReportStateEnum = /*@__PURE__*/ S.String;
-
-/** * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `other` - Something else… */
-export type DismissalReasonEnum =
-  | "already_fixed"
-  | "report_unclear"
-  | "analysis_wrong"
-  | "wontfix_intentional"
-  | "wontfix_irrelevant"
-  | "other";
-export const DismissalReasonEnum = /*@__PURE__*/ S.String;
-
-/** Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note` and `snooze_for` apply to every id. */
-export type SignalsReportsBulkStateCreateRequestIdsList = Array<string>;
-export const SignalsReportsBulkStateCreateRequestIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SignalsReportsBulkStateCreateRequestIdsList>;
-
-export interface CreateSignalReportBulkStateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
-  state: SignalReportStateEnum | (string & {});
-  /** Optional canonical reason code for the dismissal. Must be one of: already_fixed, report_unclear, analysis_wrong, wontfix_intentional, wontfix_irrelevant, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' (the reason/note records why). Reserve 'already_fixed' with state='potential' (snooze/restore) for "fixed by something else / might recur" cases, so the report reappears if the issue comes back. Use 'other' together with a dismissal_note for anything that doesn't fit a code. * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `other` - Something else… */
-  dismissal_reason?: DismissalReasonEnum | (string & {});
-  /** Optional free-form note explaining the dismissal. Capped at 4000 characters. */
-  dismissal_note?: string;
-  /** Optional, only honored when state is 'potential'. Number of additional signals the report must accumulate before it is re-promoted into the pipeline — effectively snoozing it until then. Omit to let the report re-enter the pipeline on the next matching signal. */
-  snooze_for?: number;
-  /** Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note` and `snooze_for` apply to every id. */
-  ids: SignalsReportsBulkStateCreateRequestIdsList;
-}
-export const CreateSignalReportBulkStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    state: SignalReportStateEnum,
-    dismissal_reason: S.optional(DismissalReasonEnum),
-    dismissal_note: S.optional(S.String),
-    snooze_for: S.optional(S.Number),
-    ids: SignalsReportsBulkStateCreateRequestIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/reports/bulk-state/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateSignalReportBulkStateRequest",
-}) as any as S.Schema<CreateSignalReportBulkStateRequest>;
-
-export interface SignalReportBulkStateResult {
-  /** The report id this result refers to. */
-  id: string;
-  /** One of: transitioned, skipped, failed, not_found. transitioned: the state change was applied. skipped: the transition was not allowed from the report's current status (a 409 on the single-report endpoint). failed: the request data was invalid for this report. not_found: no report with this id is visible to you. */
-  outcome: string;
-  /** The report's status after the transition. Present only when outcome is 'transitioned'. */
-  status?: string | null;
-  /** Human-readable explanation for non-transitioned outcomes (skipped / failed / not_found). */
-  detail?: string | null;
-}
-export const SignalReportBulkStateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    outcome: S.String,
-    status: S.optional(S.NullOr(S.String)),
-    detail: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SignalReportBulkStateResult",
-}) as any as S.Schema<SignalReportBulkStateResult>;
-
-/** One result per requested id, in request order (after de-duplication). */
-export type SignalReportBulkStateResponseResultsList =
-  Array<SignalReportBulkStateResult>;
-export const SignalReportBulkStateResponseResultsList = /*@__PURE__*/ S.Array(
-  SignalReportBulkStateResult,
-) as any as S.Schema<SignalReportBulkStateResponseResultsList>;
-
-export interface SignalReportBulkStateResponse {
-  /** One result per requested id, in request order (after de-duplication). */
-  results: SignalReportBulkStateResponseResultsList;
-  /** Number of reports whose state was changed. */
-  transitioned_count: number;
-  /** Number of reports whose transition was not allowed. */
-  skipped_count: number;
-  /** Number of reports that failed on invalid request data. */
-  failed_count: number;
-  /** Number of requested ids not visible to the caller. */
-  not_found_count: number;
-}
-export const SignalReportBulkStateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: SignalReportBulkStateResponseResultsList,
-    transitioned_count: S.Number,
-    skipped_count: S.Number,
-    failed_count: S.Number,
-    not_found_count: S.Number,
-  }),
-).annotate({
-  identifier: "SignalReportBulkStateResponse",
-}) as any as S.Schema<SignalReportBulkStateResponse>;
-
-/** * `positive` - positive * `negative` - negative */
-export type SentimentEnum = "positive" | "negative";
-export const SentimentEnum = /*@__PURE__*/ S.String;
-
-export interface CreateSignalReportFeedbackRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-  /** The rating left on the report: 'positive' (thumbs up) or 'negative' (thumbs down). * `positive` - positive * `negative` - negative */
-  sentiment: SentimentEnum | (string & {});
-  /** Free-form note explaining the rating. Capped at 4000 characters. Optional — a bare thumb carries none. When present and the report was authored by a scout, the note is forwarded to that scout as a steering note. */
-  note?: string;
-}
-export const CreateSignalReportFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    sentiment: SentimentEnum,
-    note: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/reports/{id}/feedback/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateSignalReportFeedbackRequest",
-}) as any as S.Schema<CreateSignalReportFeedbackRequest>;
-
-export interface SignalReportFeedbackResponse {
-  /** Whether the note was forwarded to the report's authoring scout as a steering note. False when the report has no resolvable authoring scout, or the caller lacks scout-steering access. */
-  forwarded: boolean;
-}
-export const SignalReportFeedbackResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    forwarded: S.Boolean,
-  }),
-).annotate({
-  identifier: "SignalReportFeedbackResponse",
-}) as any as S.Schema<SignalReportFeedbackResponse>;
-
 /** * `LEFT` - LEFT * `RIGHT` - RIGHT */
 export type SideEnum = "LEFT" | "RIGHT";
 export const SideEnum = /*@__PURE__*/ S.String;
 
-export interface CreateSignalReportPrReviewCommentRequest {
+export interface CreateSignalsReportPrReviewCommentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
@@ -275,8 +126,8 @@ export interface CreateSignalReportPrReviewCommentRequest {
   /** Diff side of the anchor line: 'LEFT' = deletions, 'RIGHT' = additions. Defaults to 'RIGHT'. * `LEFT` - LEFT * `RIGHT` - RIGHT */
   side?: SideEnum | (string & {}) | null;
 }
-export const CreateSignalReportPrReviewCommentRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CreateSignalsReportPrReviewCommentRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
@@ -292,9 +143,9 @@ export const CreateSignalReportPrReviewCommentRequest = /*@__PURE__*/ S.suspend(
         code: 200,
       }),
     ),
-).annotate({
-  identifier: "CreateSignalReportPrReviewCommentRequest",
-}) as any as S.Schema<CreateSignalReportPrReviewCommentRequest>;
+  ).annotate({
+    identifier: "CreateSignalsReportPrReviewCommentRequest",
+  }) as any as S.Schema<CreateSignalsReportPrReviewCommentRequest>;
 
 /** * `conversation` - conversation * `review` - review */
 export type CommentTypeEnum = "conversation" | "review";
@@ -405,7 +256,7 @@ export type ContentEnum =
   | "eyes";
 export const ContentEnum = /*@__PURE__*/ S.String;
 
-export interface CreateSignalReportPrReviewCommentReactionRequest {
+export interface CreateSignalsReportPrReviewCommentReactionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
@@ -414,7 +265,7 @@ export interface CreateSignalReportPrReviewCommentReactionRequest {
   /** Reaction to add: one of '+1', '-1', 'laugh', 'hooray', 'confused', 'heart', 'rocket', 'eyes'. * `+1` - +1 * `-1` - -1 * `laugh` - laugh * `hooray` - hooray * `confused` - confused * `heart` - heart * `rocket` - rocket * `eyes` - eyes */
   content: ContentEnum | (string & {});
 }
-export const CreateSignalReportPrReviewCommentReactionRequest =
+export const CreateSignalsReportPrReviewCommentReactionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -429,8 +280,8 @@ export const CreateSignalReportPrReviewCommentReactionRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateSignalReportPrReviewCommentReactionRequest",
-  }) as any as S.Schema<CreateSignalReportPrReviewCommentReactionRequest>;
+    identifier: "CreateSignalsReportPrReviewCommentReactionRequest",
+  }) as any as S.Schema<CreateSignalsReportPrReviewCommentReactionRequest>;
 
 /** Response after adding a reaction — the created reaction, so the frontend can track its id. */
 export interface PullRequestReviewCommentReactionCreateResponse {
@@ -445,6 +296,49 @@ export const PullRequestReviewCommentReactionCreateResponse =
     identifier: "PullRequestReviewCommentReactionCreateResponse",
   }) as any as S.Schema<PullRequestReviewCommentReactionCreateResponse>;
 
+/** * `positive` - positive * `negative` - negative */
+export type SentimentEnum = "positive" | "negative";
+export const SentimentEnum = /*@__PURE__*/ S.String;
+
+export interface CreateSignalsReportsFeedbackRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+  /** The rating left on the report: 'positive' (thumbs up) or 'negative' (thumbs down). * `positive` - positive * `negative` - negative */
+  sentiment: SentimentEnum | (string & {});
+  /** Free-form note explaining the rating. Capped at 4000 characters. Optional — a bare thumb carries none. When present and the report was authored by a scout, the note is forwarded to that scout as a steering note. */
+  note?: string;
+}
+export const CreateSignalsReportsFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    sentiment: SentimentEnum,
+    note: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/signals/reports/{id}/feedback/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSignalsReportsFeedbackRequest",
+}) as any as S.Schema<CreateSignalsReportsFeedbackRequest>;
+
+export interface SignalReportFeedbackResponse {
+  /** Whether the note was forwarded to the report's authoring scout as a steering note. False when the report has no resolvable authoring scout, or the caller lacks scout-steering access. */
+  forwarded: boolean;
+}
+export const SignalReportFeedbackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    forwarded: S.Boolean,
+  }),
+).annotate({
+  identifier: "SignalReportFeedbackResponse",
+}) as any as S.Schema<SignalReportFeedbackResponse>;
+
 /** * `pr_incorrect` - PR incorrect * `pr_not_useful` - PR not useful * `duplicate` - Duplicate * `other` - Other */
 export type SignalReportRefundReasonEnum =
   | "pr_incorrect"
@@ -453,7 +347,7 @@ export type SignalReportRefundReasonEnum =
   | "other";
 export const SignalReportRefundReasonEnum = /*@__PURE__*/ S.String;
 
-export interface CreateSignalReportRefundRequest {
+export interface CreateSignalsReportsRefundRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
@@ -463,7 +357,7 @@ export interface CreateSignalReportRefundRequest {
   /** Optional free-form context for the refund; stored on the refund and echoed in the report's dismissal artefact. Capped at 4000 characters. */
   note?: string;
 }
-export const CreateSignalReportRefundRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsReportsRefundRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -477,12 +371,12 @@ export const CreateSignalReportRefundRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalReportRefundRequest",
-}) as any as S.Schema<CreateSignalReportRefundRequest>;
+  identifier: "CreateSignalsReportsRefundRequest",
+}) as any as S.Schema<CreateSignalsReportsRefundRequest>;
 
 /** * `excluded` - Excluded * `credited` - Credited */
-export type BillingPathEnum = "excluded" | "credited";
-export const BillingPathEnum = /*@__PURE__*/ S.String;
+export type SignalReportRefundBillingPathEnum = "excluded" | "credited";
+export const SignalReportRefundBillingPathEnum = /*@__PURE__*/ S.String;
 
 export interface SignalReportRefundResponse {
   id: string;
@@ -491,7 +385,7 @@ export interface SignalReportRefundResponse {
   /** Optional free-form note captured with the refund. */
   note: string;
   /** How the refund was executed, frozen at refund time: 'excluded' (same UTC day as the billable PR run — the report never reaches billing) or 'credited' (billing issues a Stripe customer-balance credit). * `excluded` - Excluded * `credited` - Credited */
-  billing_path: BillingPathEnum;
+  billing_path: SignalReportRefundBillingPathEnum;
   /** Signals credits refunded (flat per-PR charge snapshot; 1 credit = $0.01). */
   credits: number;
   /** The refunded implementation PR's GitHub URL, snapshotted at refund time. */
@@ -512,7 +406,7 @@ export const SignalReportRefundResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     reason: SignalReportRefundReasonEnum,
     note: S.String,
-    billing_path: BillingPathEnum,
+    billing_path: SignalReportRefundBillingPathEnum,
     credits: S.Number,
     pr_url: S.String,
     pr_run_created_at: S.String,
@@ -525,27 +419,47 @@ export const SignalReportRefundResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalReportRefundResponse",
 }) as any as S.Schema<SignalReportRefundResponse>;
 
-export interface CreateSignalReportStateRequest {
+/** * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
+export type SignalReportStateEnum = "suppressed" | "potential" | "resolved";
+export const SignalReportStateEnum = /*@__PURE__*/ S.String;
+
+/** * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wrong_repo` - Agent picked the wrong repository * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `fixed_outside_posthog` - Fixed outside PostHog * `pr_merged` - PR was merged * `other` - Something else… */
+export type DismissalReasonEnum =
+  | "already_fixed"
+  | "report_unclear"
+  | "analysis_wrong"
+  | "wrong_repo"
+  | "wontfix_intentional"
+  | "wontfix_irrelevant"
+  | "fixed_outside_posthog"
+  | "pr_merged"
+  | "other";
+export const DismissalReasonEnum = /*@__PURE__*/ S.String;
+
+export interface CreateSignalsReportsStateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
   id: string;
-  /** Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
+  /** Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). Dismissing or resolving closes the report's open implementation PR, if it has one. * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
   state: SignalReportStateEnum | (string & {});
-  /** Optional canonical reason code for the dismissal. Must be one of: already_fixed, report_unclear, analysis_wrong, wontfix_intentional, wontfix_irrelevant, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' (the reason/note records why). Reserve 'already_fixed' with state='potential' (snooze/restore) for "fixed by something else / might recur" cases, so the report reappears if the issue comes back. Use 'other' together with a dismissal_note for anything that doesn't fit a code. * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `other` - Something else… */
+  /** Optional canonical reason code recorded with the transition. Must be one of: already_fixed, report_unclear, analysis_wrong, wrong_repo, wontfix_intentional, wontfix_irrelevant, fixed_outside_posthog, pr_merged, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' with 'fixed_outside_posthog' (the fix landed without a pull request), 'pr_merged' (a pull request with the fix was merged but did not resolve the report on its own), or 'already_fixed' (it was fixed before the report was filed). The dismissal codes (report_unclear, analysis_wrong, wrong_repo, wontfix_*) go with state='suppressed'. Use 'wrong_repo' when the agent picked the wrong repository for this report, ideally with corrected_repository naming the right one. Use 'other' together with a dismissal_note for anything that doesn't fit a code. * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wrong_repo` - Agent picked the wrong repository * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `fixed_outside_posthog` - Fixed outside PostHog * `pr_merged` - PR was merged * `other` - Something else… */
   dismissal_reason?: DismissalReasonEnum | (string & {});
   /** Optional free-form note explaining the dismissal. Capped at 4000 characters. */
   dismissal_note?: string;
+  /** Optional, only allowed with dismissal_reason='wrong_repo'. The repository this report should have targeted, in 'owner/repo' format (case-insensitive). It is recorded with the dismissal and fed into future repository selection for this project. When the repository is connected to the project, it also becomes the report's corrected repo selection, so restoring the report re-researches against it. */
+  corrected_repository?: string;
   /** Optional, only honored when state is 'potential'. Number of additional signals the report must accumulate before it is re-promoted into the pipeline — effectively snoozing it until then. Omit to let the report re-enter the pipeline on the next matching signal. */
   snooze_for?: number;
 }
-export const CreateSignalReportStateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsReportsStateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     state: SignalReportStateEnum,
     dismissal_reason: S.optional(DismissalReasonEnum),
     dismissal_note: S.optional(S.String),
+    corrected_repository: S.optional(S.String),
     snooze_for: S.optional(S.Number),
   }).pipe(
     T.Http({
@@ -555,8 +469,8 @@ export const CreateSignalReportStateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalReportStateRequest",
-}) as any as S.Schema<CreateSignalReportStateRequest>;
+  identifier: "CreateSignalsReportsStateRequest",
+}) as any as S.Schema<CreateSignalsReportsStateRequest>;
 
 /** * `potential` - Potential * `candidate` - Candidate * `in_progress` - In Progress * `pending_input` - Pending Input * `ready` - Ready * `resolved` - Resolved * `failed` - Failed * `deleted` - Deleted * `suppressed` - Suppressed */
 export type SignalReportStatusEnum =
@@ -604,7 +518,7 @@ export const SignalReportChartsList = /*@__PURE__*/ S.Array(
   ReportChart,
 ) as any as S.Schema<SignalReportChartsList>;
 
-/** Follow-up questions the report's author suggests asking about it, in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it. */
+/** Follow-up prompts the report's author suggests sending about it (questions to ask, or next-step actions to request), in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it. */
 export type SignalReportSuggestedPromptsList = Array<string>;
 export const SignalReportSuggestedPromptsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -623,7 +537,7 @@ export interface SignalReportRefund {
   /** Optional free-form note captured with the refund. */
   note: string;
   /** How the refund was executed, frozen at refund time: 'excluded' (same UTC day as the billable PR run — the report never reaches billing) or 'credited' (billing issues a Stripe customer-balance credit). * `excluded` - Excluded * `credited` - Credited */
-  billing_path: BillingPathEnum;
+  billing_path: SignalReportRefundBillingPathEnum;
   /** Signals credits refunded (flat per-PR charge snapshot; 1 credit = $0.01). */
   credits: number;
   /** The refunded implementation PR's GitHub URL, snapshotted at refund time. */
@@ -642,7 +556,7 @@ export const SignalReportRefund = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     reason: SignalReportRefundReasonEnum,
     note: S.String,
-    billing_path: BillingPathEnum,
+    billing_path: SignalReportRefundBillingPathEnum,
     credits: S.Number,
     pr_url: S.String,
     pr_run_created_at: S.String,
@@ -662,11 +576,11 @@ export type RefundIneligibilityReasonEnum =
 export const RefundIneligibilityReasonEnum = /*@__PURE__*/ S.String;
 
 /** * `posthog_health_check` - PostHog health check * `posthog_onboarding` - PostHog onboarding * `posthog_system` - PostHog system */
-export type BillingExemptReasonEnum =
+export type SignalReportBillingExemptReasonEnum =
   | "posthog_health_check"
   | "posthog_onboarding"
   | "posthog_system";
-export const BillingExemptReasonEnum = /*@__PURE__*/ S.String;
+export const SignalReportBillingExemptReasonEnum = /*@__PURE__*/ S.String;
 
 export interface SignalReport {
   id: string;
@@ -681,7 +595,7 @@ export interface SignalReport {
   artefact_count: number;
   /** Charts the report shows, in the order they were written. The summary places one with a `[label](chart:<chart_id>)` link; the rest render below it. */
   charts: SignalReportChartsList;
-  /** Follow-up questions the report's author suggests asking about it, in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it. */
+  /** Follow-up prompts the report's author suggests sending about it (questions to ask, or next-step actions to request), in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it. */
   suggested_prompts: SignalReportSuggestedPromptsList;
   /** P0–P4 from the latest priority judgment artefact (when present). */
   priority: string | null;
@@ -707,7 +621,7 @@ export interface SignalReport {
   /** Why refunding this report's PR would be rejected right now, or null when a refund would be accepted (see the field's schema for the reason values). */
   refund_ineligibility_reason: RefundIneligibilityReasonEnum | null;
   /** Non-null when this report is system-marked never-billable (PostHog-system origin, e.g. a health-check scout finding) — its implementation PRs are free and cannot be refunded because nothing was charged. * `posthog_health_check` - PostHog health check * `posthog_onboarding` - PostHog onboarding * `posthog_system` - PostHog system */
-  billing_exempt_reason: BillingExemptReasonEnum | null;
+  billing_exempt_reason: SignalReportBillingExemptReasonEnum | null;
   /** The space (task channel) this report is assigned to, or null when unassigned. The general view lists every report regardless of this value. */
   channel_id: string | null;
 }
@@ -737,18 +651,18 @@ export const SignalReport = /*@__PURE__*/ S.suspend(() =>
     implementation_pr_merged: S.Boolean,
     refund: S.NullOr(SignalReportRefund),
     refund_ineligibility_reason: S.NullOr(RefundIneligibilityReasonEnum),
-    billing_exempt_reason: S.NullOr(BillingExemptReasonEnum),
+    billing_exempt_reason: S.NullOr(SignalReportBillingExemptReasonEnum),
     channel_id: S.NullOr(S.String),
   }),
 ).annotate({ identifier: "SignalReport" }) as any as S.Schema<SignalReport>;
 
-export interface CreateSignalReportViewedRequest {
+export interface CreateSignalsReportsViewedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
   id: string;
 }
-export const CreateSignalReportViewedRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsReportsViewedRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -760,15 +674,15 @@ export const CreateSignalReportViewedRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalReportViewedRequest",
-}) as any as S.Schema<CreateSignalReportViewedRequest>;
+  identifier: "CreateSignalsReportsViewedRequest",
+}) as any as S.Schema<CreateSignalsReportsViewedRequest>;
 
-export interface CreateSignalReportViewedResponse {}
-export const CreateSignalReportViewedResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateSignalsReportsViewedResponse {}
+export const CreateSignalsReportsViewedResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CreateSignalReportViewedResponse",
-}) as any as S.Schema<CreateSignalReportViewedResponse>;
+  identifier: "CreateSignalsReportsViewedResponse",
+}) as any as S.Schema<CreateSignalsReportsViewedResponse>;
 
 export interface LLMSkillFileInput {
   /** File path relative to skill root, e.g. 'scripts/setup.sh' or 'references/guide.md'. */
@@ -789,23 +703,32 @@ export const LLMSkillFileInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LLMSkillFileInput>;
 
 /** Optional reference files bundled with the scout prompt. */
-export type SignalsScoutCreateRequestFilesList = Array<LLMSkillFileInput>;
-export const SignalsScoutCreateRequestFilesList = /*@__PURE__*/ S.Array(
+export type CreateSignalsScoutRequestFilesList = Array<LLMSkillFileInput>;
+export const CreateSignalsScoutRequestFilesList = /*@__PURE__*/ S.Array(
   LLMSkillFileInput,
-) as any as S.Schema<SignalsScoutCreateRequestFilesList>;
+) as any as S.Schema<CreateSignalsScoutRequestFilesList>;
+
+/** Slack members to send output to as direct messages, each in `member_id|@display-name` format (a bare member ID like `U0123ABC456` also works). Each member gets their own DM from the PostHog app; at most 5. Set either this or `channel`, not both. Useful for personal scouts where a DM beats a channel. */
+export type SignalScoutSlackDestinationUsersList = Array<string>;
+export const SignalScoutSlackDestinationUsersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutSlackDestinationUsersList>;
 
 export interface SignalScoutSlackDestination {
   /** ID of the Slack integration whose bot posts this scout's findings and reports. */
   integration_id: number;
-  /** Slack channel target in the channel picker's `channel_id|#channel-name` format. Null while choosing a channel; no messages are sent until it is set. */
+  /** Slack channel target in the channel picker's `channel_id|#channel-name` format. Null while choosing a channel; no messages are sent until a channel or user is set. */
   channel?: string | null;
-  /** When true, post a report as a thread: a short lead in the channel and the rest split by the report's Markdown headings into replies. Keeps a long summary from being clipped at Slack's section limit. Off by default, and it does not change how findings post. */
+  /** Slack members to send output to as direct messages, each in `member_id|@display-name` format (a bare member ID like `U0123ABC456` also works). Each member gets their own DM from the PostHog app; at most 5. Set either this or `channel`, not both. Useful for personal scouts where a DM beats a channel. */
+  users?: SignalScoutSlackDestinationUsersList | null;
+  /** When true, post a report as a thread: a short lead in the channel and the rest split into replies at the summary's section labels, which can be Markdown headings or bold labels. Keeps a long summary from being clipped at Slack's section limit. Off by default, and it does not change how findings post. */
   thread_reports?: boolean;
 }
 export const SignalScoutSlackDestination = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     integration_id: S.Number,
     channel: S.optional(S.NullOr(S.String)),
+    users: S.optional(S.NullOr(SignalScoutSlackDestinationUsersList)),
     thread_reports: S.optional(S.Boolean),
   }),
 ).annotate({
@@ -840,8 +763,8 @@ export const SignalScoutOutputDestinations = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SignalScoutOutputDestinations>;
 
 /** * `trusted` - Trusted domains only * `full` - Full */
-export type ScoutConfigNetworkAccessEnum = "trusted" | "full";
-export const ScoutConfigNetworkAccessEnum = /*@__PURE__*/ S.String;
+export type SignalScoutConfigNetworkAccessEnum = "trusted" | "full";
+export const SignalScoutConfigNetworkAccessEnum = /*@__PURE__*/ S.String;
 
 /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
 export type SignalScoutConfigOptionsTagsList = Array<string>;
@@ -877,7 +800,7 @@ export interface SignalScoutConfigOptions {
   /** Destinations that receive each finding or report this scout emits. Empty by default. */
   output_destinations?: SignalScoutOutputDestinations;
   /** What the scout's sandbox can reach over the network while it runs. Defaults to `trusted`, the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers. * `trusted` - Trusted domains only * `full` - Full */
-  network_access?: ScoutConfigNetworkAccessEnum | (string & {});
+  network_access?: SignalScoutConfigNetworkAccessEnum | (string & {});
   /** Exempt this scout from the inactivity pause, which otherwise switches off a scout that goes a fortnight without surfacing anything anyone engages with. Set it on watchdog scouts whose value is staying quiet. Defaults to false. */
   auto_pause_exempt?: boolean;
   /** Optional five-field cron expression, e.g. '30 9 * * *' (daily at 09:30), '0 9,17 * * *' (twice daily), or '0 9 * * 1-5' (weekday mornings). Evaluated in the project timezone. Takes precedence over `run_interval_minutes`; occurrences must be at least 30 minutes apart. */
@@ -897,7 +820,7 @@ export const SignalScoutConfigOptions = /*@__PURE__*/ S.suspend(() =>
     emit: S.optional(S.Boolean),
     run_interval_minutes: S.optional(S.Number),
     output_destinations: S.optional(SignalScoutOutputDestinations),
-    network_access: S.optional(ScoutConfigNetworkAccessEnum),
+    network_access: S.optional(SignalScoutConfigNetworkAccessEnum),
     auto_pause_exempt: S.optional(S.Boolean),
     run_cron_schedule: S.optional(S.NullOr(S.String)),
     model: S.optional(S.NullOr(S.String)),
@@ -913,7 +836,7 @@ export const SignalScoutConfigOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalScoutConfigOptions",
 }) as any as S.Schema<SignalScoutConfigOptions>;
 
-export interface CreateSignalScoutRequest {
+export interface CreateSignalsScoutRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Unique scout name. Must start with `signals-scout-` and contain only lowercase letters, numbers, and hyphens. */
@@ -923,17 +846,17 @@ export interface CreateSignalScoutRequest {
   /** Complete markdown prompt executed on every scout run. Include any project-specific signal names, thresholds, investigation steps, and report criteria here. */
   body: string;
   /** Optional reference files bundled with the scout prompt. */
-  files?: SignalsScoutCreateRequestFilesList;
+  files?: CreateSignalsScoutRequestFilesList;
   /** Optional schedule, enablement, dry-run posture, and delivery settings. Defaults to an enabled, emitting scout on the daily interval with no external destination. */
   config?: SignalScoutConfigOptions;
 }
-export const CreateSignalScoutRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsScoutRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
     description: S.String,
     body: S.String,
-    files: S.optional(SignalsScoutCreateRequestFilesList),
+    files: S.optional(CreateSignalsScoutRequestFilesList),
     config: S.optional(SignalScoutConfigOptions),
   }).pipe(
     T.Http({
@@ -943,8 +866,8 @@ export const CreateSignalScoutRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalScoutRequest",
-}) as any as S.Schema<CreateSignalScoutRequest>;
+  identifier: "CreateSignalsScoutRequest",
+}) as any as S.Schema<CreateSignalsScoutRequest>;
 
 /** Server-managed report tools granted to this scout. */
 export type SignalScoutSkillSummaryAllowedToolsList = Array<string>;
@@ -972,6 +895,7 @@ export const SignalScoutSkillSummary = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalScoutSkillSummary",
 }) as any as S.Schema<SignalScoutSkillSummary>;
 
+/** * `canonical` - canonical * `custom` - custom */
 export type ScoutOriginEnum = "canonical" | "custom";
 export const ScoutOriginEnum = /*@__PURE__*/ S.String;
 
@@ -1033,19 +957,19 @@ export const SignalScoutConfigOwnersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SignalScoutConfigOwnersList>;
 
 /** * `active` - Active * `pending_pause` - Pending pause * `paused_by_system` - Paused by system * `paused_by_user` - Paused by user */
-export type ScoutConfigStatusEnum =
+export type SignalScoutConfigStatusEnum =
   | "active"
   | "pending_pause"
   | "paused_by_system"
   | "paused_by_user";
-export const ScoutConfigStatusEnum = /*@__PURE__*/ S.String;
+export const SignalScoutConfigStatusEnum = /*@__PURE__*/ S.String;
 
 /** * `no_output` - No output * `ignored` - Ignored * `repeated_failures` - Repeated failures */
-export type ScoutConfigPauseReasonEnum =
+export type SignalScoutConfigPauseReasonEnum =
   | "no_output"
   | "ignored"
   | "repeated_failures";
-export const ScoutConfigPauseReasonEnum = /*@__PURE__*/ S.String;
+export const SignalScoutConfigPauseReasonEnum = /*@__PURE__*/ S.String;
 
 /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
 export type SignalScoutConfigStructuredOutputSchemaMap = {
@@ -1083,9 +1007,9 @@ export interface SignalScoutConfig {
   /** Whether this scout runs on its schedule. Disabled scouts are skipped by the coordinator. Derived from `status`: true for `active` and `pending_pause`, false for the paused statuses. */
   enabled: boolean;
   /** Lifecycle status. `active`: runs on its schedule. `pending_pause`: still running, but flagged by the system to pause soon unless something changes (any config edit clears it). `paused_by_system`: paused automatically, see `pause_reason`; set `enabled=true` to resume. `paused_by_user`: switched off by a person and never resumed automatically. * `active` - Active * `pending_pause` - Pending pause * `paused_by_system` - Paused by system * `paused_by_user` - Paused by user */
-  status: ScoutConfigStatusEnum;
+  status: SignalScoutConfigStatusEnum;
   /** Why the system paused (or warned) this scout: `no_output` (it emitted nothing over the evaluation window), `ignored` (no person engaged with its reports — no view, rating, note, dismissal, or resolution), or `repeated_failures` (consecutive failed runs). Null unless `status` is `pending_pause` or `paused_by_system`. * `no_output` - No output * `ignored` - Ignored * `repeated_failures` - Repeated failures */
-  pause_reason: ScoutConfigPauseReasonEnum | null;
+  pause_reason: SignalScoutConfigPauseReasonEnum | null;
   /** Whether the scout writes findings to the inbox. False = dry-run: it runs and logs but emits nothing. */
   emit: boolean;
   /** Minutes between runs (30–43200). The scout runs once this interval has elapsed since its last run. */
@@ -1097,7 +1021,7 @@ export interface SignalScoutConfig {
   /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
   structured_output_schema: SignalScoutConfigStructuredOutputSchemaMap | null;
   /** What the scout's sandbox can reach over the network while it runs. `trusted` (the default) restricts runs to the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). `full` lets the scout reach any site, for skills that read external sources such as documentation or papers. * `trusted` - Trusted domains only * `full` - Full */
-  network_access: ScoutConfigNetworkAccessEnum;
+  network_access: SignalScoutConfigNetworkAccessEnum;
   /** Optional model id this scout's runs are pinned to, e.g. `claude-opus-4-5`. Must be one of the platform's agent models; an invalid id is rejected with the available ones listed. Null keeps the default model, chosen by the platform. Early access: the pin can only be set on projects enrolled in the scout model preview, and only takes effect there. Set null to clear it. */
   model: string | null;
   /** MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run. */
@@ -1126,8 +1050,8 @@ export const SignalScoutConfig = /*@__PURE__*/ S.suspend(() =>
     scout_origin: ScoutOriginEnum,
     owners: SignalScoutConfigOwnersList,
     enabled: S.Boolean,
-    status: ScoutConfigStatusEnum,
-    pause_reason: S.NullOr(ScoutConfigPauseReasonEnum),
+    status: SignalScoutConfigStatusEnum,
+    pause_reason: S.NullOr(SignalScoutConfigPauseReasonEnum),
     emit: S.Boolean,
     run_interval_minutes: S.Number,
     run_cron_schedule: S.NullOr(S.String),
@@ -1135,7 +1059,7 @@ export const SignalScoutConfig = /*@__PURE__*/ S.suspend(() =>
     structured_output_schema: S.NullOr(
       SignalScoutConfigStructuredOutputSchemaMap,
     ),
-    network_access: ScoutConfigNetworkAccessEnum,
+    network_access: SignalScoutConfigNetworkAccessEnum,
     model: S.NullOr(S.String),
     mcp_gateway_server_ids: SignalScoutConfigMcpGatewayServerIdsList,
     last_run_at: S.NullOr(S.String),
@@ -1171,13 +1095,13 @@ export const SignalScoutCreateResponse = /*@__PURE__*/ S.suspend(() =>
 export type ChatTypeEnum = "author_scout" | "fleet_overview" | "recent_signals";
 export const ChatTypeEnum = /*@__PURE__*/ S.String;
 
-export interface CreateSignalScoutChatTaskRequest {
+export interface CreateSignalsScoutChatTaskRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Which scout chat to start: `author_scout` (guided scout authoring), `fleet_overview` (health of the scout fleet), or `recent_signals` (walk through recently emitted signals). The prompt template is owned server-side. * `author_scout` - author_scout * `fleet_overview` - fleet_overview * `recent_signals` - recent_signals */
   chat_type: ChatTypeEnum | (string & {});
 }
-export const CreateSignalScoutChatTaskRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsScoutChatTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     chat_type: ChatTypeEnum,
@@ -1189,8 +1113,8 @@ export const CreateSignalScoutChatTaskRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalScoutChatTaskRequest",
-}) as any as S.Schema<CreateSignalScoutChatTaskRequest>;
+  identifier: "CreateSignalsScoutChatTaskRequest",
+}) as any as S.Schema<CreateSignalsScoutChatTaskRequest>;
 
 export interface ScoutChatTask {
   /** The created chat task. Open it on the task detail page to continue. */
@@ -1203,30 +1127,30 @@ export const ScoutChatTask = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ScoutChatTask" }) as any as S.Schema<ScoutChatTask>;
 
 /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
-export type SignalsScoutConfigCreateRequestTagsList = Array<string>;
-export const SignalsScoutConfigCreateRequestTagsList = /*@__PURE__*/ S.Array(
+export type CreateSignalsScoutConfigRequestTagsList = Array<string>;
+export const CreateSignalsScoutConfigRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SignalsScoutConfigCreateRequestTagsList>;
+) as any as S.Schema<CreateSignalsScoutConfigRequestTagsList>;
 
 /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
-export type SignalsScoutConfigCreateRequestStructuredOutputSchemaMap = {
+export type CreateSignalsScoutConfigRequestStructuredOutputSchemaMap = {
   [key: string]: unknown | undefined;
 };
-export const SignalsScoutConfigCreateRequestStructuredOutputSchemaMap =
+export const CreateSignalsScoutConfigRequestStructuredOutputSchemaMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<SignalsScoutConfigCreateRequestStructuredOutputSchemaMap>;
+  ) as any as S.Schema<CreateSignalsScoutConfigRequestStructuredOutputSchemaMap>;
 
 /** MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run. */
-export type SignalsScoutConfigCreateRequestMcpGatewayServerIdsList =
+export type CreateSignalsScoutConfigRequestMcpGatewayServerIdsList =
   Array<string>;
-export const SignalsScoutConfigCreateRequestMcpGatewayServerIdsList =
+export const CreateSignalsScoutConfigRequestMcpGatewayServerIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SignalsScoutConfigCreateRequestMcpGatewayServerIdsList>;
+  ) as any as S.Schema<CreateSignalsScoutConfigRequestMcpGatewayServerIdsList>;
 
-export interface CreateSignalScoutConfigRequest {
+export interface CreateSignalsScoutConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Whether this scout runs on its schedule. Defaults to true. */
@@ -1238,7 +1162,7 @@ export interface CreateSignalScoutConfigRequest {
   /** Destinations that receive each finding or report this scout emits. Empty by default. */
   output_destinations?: SignalScoutOutputDestinations;
   /** What the scout's sandbox can reach over the network while it runs. Defaults to `trusted`, the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers. * `trusted` - Trusted domains only * `full` - Full */
-  network_access?: ScoutConfigNetworkAccessEnum | (string & {});
+  network_access?: SignalScoutConfigNetworkAccessEnum | (string & {});
   /** Exempt this scout from the inactivity pause, which otherwise switches off a scout that goes a fortnight without surfacing anything anyone engages with. Set it on watchdog scouts whose value is staying quiet. Defaults to false. */
   auto_pause_exempt?: boolean;
   /** Optional five-field cron expression, e.g. '30 9 * * *' (daily at 09:30), '0 9,17 * * *' (twice daily), or '0 9 * * 1-5' (weekday mornings). Evaluated in the project timezone. Takes precedence over `run_interval_minutes`; occurrences must be at least 30 minutes apart. */
@@ -1246,31 +1170,31 @@ export interface CreateSignalScoutConfigRequest {
   /** Optional model id this scout's runs are pinned to, e.g. `claude-opus-4-5`. Must be one of the platform's agent models; an invalid id is rejected with the available ones listed. Null keeps the default model, chosen by the platform. Early access: the pin can only be set on projects enrolled in the scout model preview, and only takes effect there. Set null to clear it. */
   model?: string | null;
   /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
-  tags?: SignalsScoutConfigCreateRequestTagsList;
+  tags?: CreateSignalsScoutConfigRequestTagsList;
   /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
-  structured_output_schema?: SignalsScoutConfigCreateRequestStructuredOutputSchemaMap | null;
+  structured_output_schema?: CreateSignalsScoutConfigRequestStructuredOutputSchemaMap | null;
   /** MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run. */
-  mcp_gateway_server_ids?: SignalsScoutConfigCreateRequestMcpGatewayServerIdsList;
+  mcp_gateway_server_ids?: CreateSignalsScoutConfigRequestMcpGatewayServerIdsList;
   /** The `signals-scout-*` skill to register a config for. The skill must already exist on this project — author it via the skills store first. */
   skill_name: string;
 }
-export const CreateSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     enabled: S.optional(S.Boolean),
     emit: S.optional(S.Boolean),
     run_interval_minutes: S.optional(S.Number),
     output_destinations: S.optional(SignalScoutOutputDestinations),
-    network_access: S.optional(ScoutConfigNetworkAccessEnum),
+    network_access: S.optional(SignalScoutConfigNetworkAccessEnum),
     auto_pause_exempt: S.optional(S.Boolean),
     run_cron_schedule: S.optional(S.NullOr(S.String)),
     model: S.optional(S.NullOr(S.String)),
-    tags: S.optional(SignalsScoutConfigCreateRequestTagsList),
+    tags: S.optional(CreateSignalsScoutConfigRequestTagsList),
     structured_output_schema: S.optional(
-      S.NullOr(SignalsScoutConfigCreateRequestStructuredOutputSchemaMap),
+      S.NullOr(CreateSignalsScoutConfigRequestStructuredOutputSchemaMap),
     ),
     mcp_gateway_server_ids: S.optional(
-      SignalsScoutConfigCreateRequestMcpGatewayServerIdsList,
+      CreateSignalsScoutConfigRequestMcpGatewayServerIdsList,
     ),
     skill_name: S.String,
   }).pipe(
@@ -1281,10 +1205,10 @@ export const CreateSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalScoutConfigRequest",
-}) as any as S.Schema<CreateSignalScoutConfigRequest>;
+  identifier: "CreateSignalsScoutConfigRequest",
+}) as any as S.Schema<CreateSignalsScoutConfigRequest>;
 
-export interface CreateSignalScoutNoteRequest {
+export interface CreateSignalsScoutNoteRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The note's prose — feedback, a pointer, or a nudge for the scout(s) to weigh on their next runs (e.g. 'we shipped a new checkout on Tuesday, watch conversion closely', 'stop flagging the staging traffic spike'). Write it in Markdown; the run reads it verbatim. */
@@ -1294,7 +1218,7 @@ export interface CreateSignalScoutNoteRequest {
   /** Optional ISO-8601 expiry. After this time the note drops out of the default list view, so time-boxed steering ('watch closely this week') retires itself. Omit for a note that stays active until deleted. */
   expires_at?: string | null;
 }
-export const CreateSignalScoutNoteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsScoutNoteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     content: S.String,
@@ -1308,8 +1232,8 @@ export const CreateSignalScoutNoteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalScoutNoteRequest",
-}) as any as S.Schema<CreateSignalScoutNoteRequest>;
+  identifier: "CreateSignalsScoutNoteRequest",
+}) as any as S.Schema<CreateSignalsScoutNoteRequest>;
 
 /** `SignalScoutNote` projection used by `notes-list` and `notes-create`. */
 export interface ScoutNote {
@@ -1325,7 +1249,7 @@ export interface ScoutNote {
   expires_at: string | null;
   /** Display name of the user who left the note, or null when unavailable. */
   created_by_name: string | null;
-  /** Where the note came from. `human` for one left directly through this API. `report_dismissal` for one forwarded from the note someone typed when they dismissed, snoozed, or restored one or more inbox reports: one reviewer's verdict on the reports its content names, so weigh it as evidence about those reports rather than as fleet-level steering. `report_discussion` for the question someone asked when they opened a discussion on a report: context to weigh, neither a verdict on the report nor a directive. `report_feedback` for the note someone left when rating a report useful or not: one reader's rating of the named report, context to weigh rather than a directive. */
+  /** Where the note came from. `human` for one left directly through this API. `report_dismissal` for one forwarded from the note someone typed when they dismissed, snoozed, or restored one or more inbox reports: one reviewer's verdict on the reports its content names, so weigh it as evidence about those reports rather than as fleet-level steering. `report_discussion` for the question someone asked when they opened a discussion on a report: context to weigh, neither a verdict on the report nor a directive. `report_feedback` for the note someone left when rating a report useful or not: one reader's rating of the named report, context to weigh rather than a directive. `report_reviewer_correction` for a suggested reviewer someone added or removed on a report: evidence about who owns that surface, and a prompt to revisit the routing memory it corrects, rather than a directive. */
   origin: string;
 }
 export const ScoutNote = /*@__PURE__*/ S.suspend(() =>
@@ -1418,31 +1342,30 @@ export type SignalSourceConfigSourceTypeEnum =
 export const SignalSourceConfigSourceTypeEnum = /*@__PURE__*/ S.String;
 
 /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-export type SignalsSourceConfigsCreateRequestConfigMap = {
+export type CreateSignalsSourceConfigRequestConfigMap = {
   [key: string]: unknown | undefined;
 };
-export const SignalsSourceConfigsCreateRequestConfigMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<SignalsSourceConfigsCreateRequestConfigMap>;
+export const CreateSignalsSourceConfigRequestConfigMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateSignalsSourceConfigRequestConfigMap>;
 
-export interface CreateSignalSourceConfigRequest {
+export interface CreateSignalsSourceConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   source_product?: SignalSourceProductEnum | (string & {});
   source_type?: SignalSourceConfigSourceTypeEnum | (string & {});
   enabled?: boolean;
   /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-  config?: SignalsSourceConfigsCreateRequestConfigMap;
+  config?: CreateSignalsSourceConfigRequestConfigMap;
 }
-export const CreateSignalSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSignalsSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     source_product: S.optional(SignalSourceProductEnum),
     source_type: S.optional(SignalSourceConfigSourceTypeEnum),
     enabled: S.optional(S.Boolean),
-    config: S.optional(SignalsSourceConfigsCreateRequestConfigMap),
+    config: S.optional(CreateSignalsSourceConfigRequestConfigMap),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1451,8 +1374,8 @@ export const CreateSignalSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSignalSourceConfigRequest",
-}) as any as S.Schema<CreateSignalSourceConfigRequest>;
+  identifier: "CreateSignalsSourceConfigRequest",
+}) as any as S.Schema<CreateSignalsSourceConfigRequest>;
 
 /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
 export type SignalSourceConfigConfigMap = {
@@ -1489,1159 +1412,255 @@ export const SignalSourceConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalSourceConfig",
 }) as any as S.Schema<SignalSourceConfig>;
 
-export interface GetSignalScoutMetadataRequest {
+export interface DismissSignalsScoutSuggestionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
+  /** A UUID string identifying this Signal scout suggestion set. */
+  id: string;
 }
-export const GetSignalScoutMetadataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/metadata/current/",
-      code: 200,
-    }),
-  ),
+export const DismissSignalsScoutSuggestionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/signals/scout/suggestions/{id}/dismiss/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetSignalScoutMetadataRequest",
-}) as any as S.Schema<GetSignalScoutMetadataRequest>;
+  identifier: "DismissSignalsScoutSuggestionRequest",
+}) as any as S.Schema<DismissSignalsScoutSuggestionRequest>;
 
-/** A team's enforced scout run caps and current usage. These are the values the coordinator actually applies at dispatch (resolved per-team override → fleet-wide default → code constant), so the UI can show the real throttle rather than what a user thinks they configured. */
-export interface ScoutLimits {
-  /** Most scout runs the team can start in a single 30-minute coordinator tick. */
-  max_runs_per_tick: number;
-  /** Most scout runs the team can start per rolling 24 hours, or null when uncapped. */
-  max_runs_per_day: number | null;
-  /** Scout runs the team has started in the trailing 24 hours. */
-  runs_today: number;
-  /** Runs still allowed in the trailing 24h window (max_runs_per_day − runs_today), or null when uncapped. */
-  runs_remaining_today: number | null;
-}
-export const ScoutLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    max_runs_per_tick: S.Number,
-    max_runs_per_day: S.NullOr(S.Number),
-    runs_today: S.Number,
-    runs_remaining_today: S.NullOr(S.Number),
-  }),
-).annotate({ identifier: "ScoutLimits" }) as any as S.Schema<ScoutLimits>;
-
-/** Team-scoped scout metadata for the inbox / Code-app UIs: enrollment, the alpha banner, and the enforced limits. Sourced from the `signals-scout` flag payload so the banner and caps can change without a deploy to either app. */
-export interface ScoutMetadata {
-  /** Whether this project runs scouts. True when the project is in the signals-scout flag's enrollment set — either listed explicitly in guaranteed_team_ids or covered by the "*" wildcard (every project that turns scouts on) — and not in skip_team_ids. */
-  enrolled: boolean;
-  /** Free-form announcement banner to show above the scout UI (e.g. alpha run-limit notice), or null when unset. */
-  banner_message: string | null;
-  /** The team's enforced scout run caps and current usage. */
-  limits: ScoutLimits;
-}
-export const ScoutMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enrolled: S.Boolean,
-    banner_message: S.NullOr(S.String),
-    limits: ScoutLimits,
-  }),
-).annotate({ identifier: "ScoutMetadata" }) as any as S.Schema<ScoutMetadata>;
-
-export interface GetSignalScoutProjectProfileRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** When true, skip the cache and rebuild the profile from authoritative sources before responding. Use after seeding events, importing data, or any other change the caller knows just landed but hasn't surfaced through natural cache expiry yet. Honored only for the internal scout token — public read callers get the cached profile regardless. Concurrent forced rebuilds are serialized by the team-keyed advisory lock — at most one extra `build_inventory` per simultaneous request. */
-  force_refresh?: boolean;
-}
-export const GetSignalScoutProjectProfileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    force_refresh: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/project_profile/current/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetSignalScoutProjectProfileRequest",
-}) as any as S.Schema<GetSignalScoutProjectProfileRequest>;
-
-/** Registered app URLs for this team (toolbar / replay). The team's actual product surface; complements `$pageview.$host` discovery via `read-data-schema`. */
-export type ProjectContextAppUrlsList = Array<string>;
-export const ProjectContextAppUrlsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProjectContextAppUrlsList>;
-
-/** `inventory.project_context` — free-form orientation about the project's product. */
-export interface ProjectContext {
-  /** Human-set product description on the project (max 1000 chars). When present, the most direct "what does this team's product do" answer. `null` when unset. */
-  product_description: string | null;
-  /** Registered app URLs for this team (toolbar / replay). The team's actual product surface; complements `$pageview.$host` discovery via `read-data-schema`. */
-  app_urls: ProjectContextAppUrlsList;
-}
-export const ProjectContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product_description: S.NullOr(S.String),
-    app_urls: ProjectContextAppUrlsList,
-  }),
-).annotate({ identifier: "ProjectContext" }) as any as S.Schema<ProjectContext>;
-
-/** Product keys this team has completed onboarding for, sorted alphabetically. */
-export type ProjectProfileInventoryProductsInUseList = Array<string>;
-export const ProjectProfileInventoryProductsInUseList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProjectProfileInventoryProductsInUseList>;
-
-/** One row in `inventory.product_intents`. */
-export interface ProductIntentEntry {
-  /** Product key the team signaled intent to use. */
-  product_type: string;
-  /** ISO-8601 timestamp the team activated the product, or null if intent only. */
-  activated_at: string | null;
-  /** ISO-8601 timestamp the intent was first recorded. */
-  created_at: string | null;
-}
-export const ProductIntentEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product_type: S.String,
-    activated_at: S.NullOr(S.String),
-    created_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "ProductIntentEntry",
-}) as any as S.Schema<ProductIntentEntry>;
-
-/** Products the team signaled intent to use; useful for spotting stuck onboardings. */
-export type ProjectProfileInventoryProductIntentsList =
-  Array<ProductIntentEntry>;
-export const ProjectProfileInventoryProductIntentsList = /*@__PURE__*/ S.Array(
-  ProductIntentEntry,
-) as any as S.Schema<ProjectProfileInventoryProductIntentsList>;
-
-/** One row in `inventory.integrations`. Sensitive config is intentionally excluded. */
-export interface IntegrationEntry {
-  /** Integration kind (e.g. `slack`, `github`, `linear`). */
-  kind: string;
-  /** ISO-8601 timestamp the integration was connected. */
-  created_at: string | null;
-}
-export const IntegrationEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.String,
-    created_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationEntry",
-}) as any as S.Schema<IntegrationEntry>;
-
-/** Connected integrations (kind + connection time only — config never surfaced). */
-export type ProjectProfileInventoryIntegrationsList = Array<IntegrationEntry>;
-export const ProjectProfileInventoryIntegrationsList = /*@__PURE__*/ S.Array(
-  IntegrationEntry,
-) as any as S.Schema<ProjectProfileInventoryIntegrationsList>;
-
-/** One row in `inventory.external_data_sources`. */
-export interface ExternalDataSourceEntry {
-  /** Warehouse source type (e.g. `Stripe`, `Postgres`, `BigQuery`). */
-  source_type: string;
-  /** Current sync status (`Running`, `Failed`, `Paused`, etc.). */
-  status: string;
-  /** Schema prefix used by this source, if any. */
-  prefix: string;
-  /** ISO-8601 timestamp the source was connected. */
-  created_at: string | null;
-  /** ISO-8601 timestamp of the most recent completed sync job, or null if this source has never completed a sync. Use this to tell a healthy source apart from one stuck in `Running` that has imported zero rows — `status` alone conflates the two. */
-  last_run_at: string | null;
-  /** Newest schema-level sync error for this source, or null if no schema is erroring. */
-  latest_error: string | null;
-}
-export const ExternalDataSourceEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source_type: S.String,
-    status: S.String,
-    prefix: S.String,
-    created_at: S.NullOr(S.String),
-    last_run_at: S.NullOr(S.String),
-    latest_error: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "ExternalDataSourceEntry",
-}) as any as S.Schema<ExternalDataSourceEntry>;
-
-/** Connected warehouse sources (excludes soft-deleted). */
-export type ProjectProfileInventoryExternalDataSourcesList =
-  Array<ExternalDataSourceEntry>;
-export const ProjectProfileInventoryExternalDataSourcesList =
-  /*@__PURE__*/ S.Array(
-    ExternalDataSourceEntry,
-  ) as any as S.Schema<ProjectProfileInventoryExternalDataSourcesList>;
-
-/** One row in either bucket of `inventory.signal_source_configs`. */
-export interface SignalSourceConfigEntry {
-  /** Source product the config applies to. */
-  source_product: string;
-  /** Source type within the product. */
-  source_type: string;
-}
-export const SignalSourceConfigEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source_product: S.String,
-    source_type: S.String,
-  }),
-).annotate({
-  identifier: "SignalSourceConfigEntry",
-}) as any as S.Schema<SignalSourceConfigEntry>;
-
-/** Source configs the team has explicitly enabled. */
-export type SignalSourceConfigsBucketsEnabledList =
-  Array<SignalSourceConfigEntry>;
-export const SignalSourceConfigsBucketsEnabledList = /*@__PURE__*/ S.Array(
-  SignalSourceConfigEntry,
-) as any as S.Schema<SignalSourceConfigsBucketsEnabledList>;
-
-/** Source configs the team has explicitly disabled (different from never wired up). */
-export type SignalSourceConfigsBucketsDisabledList =
-  Array<SignalSourceConfigEntry>;
-export const SignalSourceConfigsBucketsDisabledList = /*@__PURE__*/ S.Array(
-  SignalSourceConfigEntry,
-) as any as S.Schema<SignalSourceConfigsBucketsDisabledList>;
-
-/** `inventory.signal_source_configs` split into enabled and disabled buckets. */
-export interface SignalSourceConfigsBuckets {
-  /** Source configs the team has explicitly enabled. */
-  enabled: SignalSourceConfigsBucketsEnabledList;
-  /** Source configs the team has explicitly disabled (different from never wired up). */
-  disabled: SignalSourceConfigsBucketsDisabledList;
-}
-export const SignalSourceConfigsBuckets = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: SignalSourceConfigsBucketsEnabledList,
-    disabled: SignalSourceConfigsBucketsDisabledList,
-  }),
-).annotate({
-  identifier: "SignalSourceConfigsBuckets",
-}) as any as S.Schema<SignalSourceConfigsBuckets>;
-
-/** `inventory.emit_eligibility` — whether scout findings can reach the inbox for this team. */
-export interface EmitEligibility {
-  /** Whether the organization has approved AI data processing (an org-level gate on all scout emits). */
-  ai_processing_approved: boolean;
-  /** Whether the `signals_scout` signal source is enabled for this team. */
-  source_enabled: boolean;
-  /** True only when both team/org-level gates pass, so scout findings (signal and report channels alike) actually reach the inbox. When False, every emit is silently dropped — quick-close instead of doing throwaway investigation. Does not account for a scout's own dry-run `emit` toggle, which is per-config, not team-wide. */
-  can_emit: boolean;
-  /** One-line next step to unblock emits when `can_emit` is False; null when emits can flow. */
-  remediation: string | null;
-}
-export const EmitEligibility = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ai_processing_approved: S.Boolean,
-    source_enabled: S.Boolean,
-    can_emit: S.Boolean,
-    remediation: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "EmitEligibility",
-}) as any as S.Schema<EmitEligibility>;
-
-/** One scout in either bucket of `inventory.scout_fleet`. */
-export interface ScoutFleetEntry {
-  /** The `signals-scout-*` skill this config schedules. */
-  skill_name: string;
-  /** Minutes between runs when no cron schedule is set (default 1440, every 24 hours). */
-  run_interval_minutes: number;
-  /** Optional cron expression, evaluated in the project timezone. Takes precedence over the interval. */
-  run_cron_schedule: string | null;
-  /** Whether this scout's findings actually reach the inbox. False means dry-run: it runs and logs but emits nothing, so its silence says nothing about the surface it watches. */
+export interface ScoutSuggestionProposedConfig {
+  /** Suggested five-field cron schedule in the project timezone, or null for an interval. */
+  run_cron_schedule?: string | null;
+  /** Suggested minutes between runs when no cron is given; null means the daily default. */
+  run_interval_minutes?: number | null;
+  /** Whether the suggested scout should write to the inbox (false = dry run). */
   emit: boolean;
-  /** ISO-8601 timestamp the coordinator last dispatched this scout, or null if it has never run. */
-  last_run_at: string | null;
-  /** ISO-8601 timestamp this scout last produced output on either channel (a finding, or an authored/edited report), within `emitted_lookback_days`. Null means quiet for at least that window, not never. */
-  last_emitted_at: string | null;
-  /** Why this scout is in the `disabled` bucket: `turned_off` (a person or seed posture set it off), `auto_paused` (the system paused it), or `skill_unavailable` (left on, but its skill was deleted, superseded, or withheld, so it never dispatches). Null for scouts that actually run. */
-  not_running_reason: string | null;
-  /** The cause behind an `auto_paused` entry: `no_output`, `ignored`, or `repeated_failures`. Null for every other entry. */
-  pause_reason: string | null;
 }
-export const ScoutFleetEntry = /*@__PURE__*/ S.suspend(() =>
+export const ScoutSuggestionProposedConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    skill_name: S.String,
-    run_interval_minutes: S.Number,
-    run_cron_schedule: S.NullOr(S.String),
+    run_cron_schedule: S.optional(S.NullOr(S.String)),
+    run_interval_minutes: S.optional(S.NullOr(S.Number)),
     emit: S.Boolean,
-    last_run_at: S.NullOr(S.String),
-    last_emitted_at: S.NullOr(S.String),
-    not_running_reason: S.NullOr(S.String),
-    pause_reason: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "ScoutFleetEntry",
-}) as any as S.Schema<ScoutFleetEntry>;
+  identifier: "ScoutSuggestionProposedConfig",
+}) as any as S.Schema<ScoutSuggestionProposedConfig>;
 
-/** Scouts that actually run on this team: enabled, with a live skill the coordinator dispatches. */
-export type ScoutFleetEnabledList = Array<ScoutFleetEntry>;
-export const ScoutFleetEnabledList = /*@__PURE__*/ S.Array(
-  ScoutFleetEntry,
-) as any as S.Schema<ScoutFleetEnabledList>;
+/** * `low` - low * `medium` - medium * `high` - high */
+export type ConfidenceTierEnum = "low" | "medium" | "high";
+export const ConfidenceTierEnum = /*@__PURE__*/ S.String;
 
-/** Scouts that do not run, each carrying a `not_running_reason` — turned off, or left on with a skill that can't dispatch. Different from a surface no scout ever covered. */
-export type ScoutFleetDisabledList = Array<ScoutFleetEntry>;
-export const ScoutFleetDisabledList = /*@__PURE__*/ S.Array(
-  ScoutFleetEntry,
-) as any as S.Schema<ScoutFleetDisabledList>;
-
-/** `inventory.scout_fleet` — the other scouts running on this project, split by enablement. */
-export interface ScoutFleet {
-  /** Scouts that actually run on this team: enabled, with a live skill the coordinator dispatches. */
-  enabled: ScoutFleetEnabledList;
-  /** Scouts that do not run, each carrying a `not_running_reason` — turned off, or left on with a skill that can't dispatch. Different from a surface no scout ever covered. */
-  disabled: ScoutFleetDisabledList;
-  /** The window `last_emitted_at` was resolved over, so a null reads as 'quiet', not 'never'. */
-  emitted_lookback_days: number;
+export interface ScoutSuggestionItem {
+  /** Stable id of this suggestion within the batch; use it to dismiss. */
+  id: string;
+  /** `canonical`: enable a PostHog-authored scout that exists but is off. `custom`: create a drafted scout. * `canonical` - canonical * `custom` - custom */
+  kind: ScoutOriginEnum;
+  /** The scout's `signals-scout-*` skill name (existing for canonical, proposed for custom). */
+  skill_name: string;
+  /** Short sentence-case title: what the scout watches. */
+  title: string;
+  /** Project-specific evidence for this suggestion, in prose. */
+  why_here: string;
+  /** Custom only: the one-line description the scout would be created with. */
+  description: string;
+  /** Custom only: the complete skill body the scout would be created with. */
+  draft_body: string;
+  /** Suggested schedule and emit posture. */
+  proposed_config: ScoutSuggestionProposedConfig;
+  /** True when nothing in the current fleet covers this. */
+  gap: boolean;
+  /** The producer's confidence. * `low` - low * `medium` - medium * `high` - high */
+  confidence: ConfidenceTierEnum;
 }
-export const ScoutFleet = /*@__PURE__*/ S.suspend(() =>
+export const ScoutSuggestionItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    enabled: ScoutFleetEnabledList,
-    disabled: ScoutFleetDisabledList,
-    emitted_lookback_days: S.Number,
-  }),
-).annotate({ identifier: "ScoutFleet" }) as any as S.Schema<ScoutFleet>;
-
-/** One bucket in `inventory.existing_inbox_reports.by_status`. */
-export interface InboxReportStatusBucket {
-  /** Report status (e.g. `potential`, `candidate`, `ready`). */
-  status: string;
-  /** Number of reports in this status (excludes deleted/suppressed). */
-  count: number;
-}
-export const InboxReportStatusBucket = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-    count: S.Number,
+    id: S.String,
+    kind: ScoutOriginEnum,
+    skill_name: S.String,
+    title: S.String,
+    why_here: S.String,
+    description: S.String,
+    draft_body: S.String,
+    proposed_config: ScoutSuggestionProposedConfig,
+    gap: S.Boolean,
+    confidence: ConfidenceTierEnum,
   }),
 ).annotate({
-  identifier: "InboxReportStatusBucket",
-}) as any as S.Schema<InboxReportStatusBucket>;
+  identifier: "ScoutSuggestionItem",
+}) as any as S.Schema<ScoutSuggestionItem>;
 
-/** Per-status breakdown of inbox reports. */
-export type ExistingInboxReportsByStatusList = Array<InboxReportStatusBucket>;
-export const ExistingInboxReportsByStatusList = /*@__PURE__*/ S.Array(
-  InboxReportStatusBucket,
-) as any as S.Schema<ExistingInboxReportsByStatusList>;
-
-/** `inventory.existing_inbox_reports` — what's already been surfaced to the inbox. */
-export interface ExistingInboxReports {
-  /** Total non-deleted, non-suppressed reports for this team. */
-  total: number;
-  /** Per-status breakdown of inbox reports. */
-  by_status: ExistingInboxReportsByStatusList;
+/** One suggested reviewer — identified by `github_login`, `user_uuid`, or both. The server canonicalizes each entry to a lowercased GitHub login: a `user_uuid` is resolved to the org member's linked GitHub login (and wins over a supplied `github_login` when both are given). A `user_uuid` that isn't an org member of this team with a linked GitHub identity is rejected — so a reviewer is never silently dropped. */
+export interface SuggestedReviewer {
+  /** GitHub login (case-insensitive, stored lowercased) — e.g. `octocat`, no `@`, no display name. Resolve one via `scout-members-list` (each member row carries a resolved `github_login`) or git history when you only have a name. */
+  github_login?: string;
+  /** PostHog user UUID (e.g. from `scout-members-list`, or an entity's `created_by`). Resolved server-side to the member's linked GitHub login — use this when you know the PostHog user but not their GitHub handle. Must be a concrete UUID; the `@me` alias is not valid here. */
+  user_uuid?: string;
+  /** One sentence of evidence for WHY this person: what ties them to the affected surface (e.g. 'authored 4 of the last 10 commits touching products/tracing/mcp/', 'human correction routed the prior tracing report to them'). Persisted on the report so the routing is auditable — always set it when you can name the evidence; 'precedent' alone is weak, prefer code-derived ownership. */
+  reason?: string | null;
 }
-export const ExistingInboxReports = /*@__PURE__*/ S.suspend(() =>
+export const SuggestedReviewer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    total: S.Number,
-    by_status: ExistingInboxReportsByStatusList,
+    github_login: S.optional(S.String),
+    user_uuid: S.optional(S.String),
+    reason: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "ExistingInboxReports",
-}) as any as S.Schema<ExistingInboxReports>;
+  identifier: "SuggestedReviewer",
+}) as any as S.Schema<SuggestedReviewer>;
 
-/** One row in `inventory.recent_activity.by_scope`. */
-export interface ScopeActivityEntry {
-  /** Activity-log scope (entity type), e.g. `FeatureFlag`, `Dashboard`, `Survey`. */
-  scope: string;
-  /** Total activity-log entries for this scope in the window (write velocity). */
-  edits: number;
-  /** Distinct users who edited this scope in the window. */
-  users: number;
-  /** ISO-8601 timestamp of the most recent edit in the window. */
-  last_edit: string | null;
-}
-export const ScopeActivityEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String,
-    edits: S.Number,
-    users: S.Number,
-    last_edit: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "ScopeActivityEntry",
-}) as any as S.Schema<ScopeActivityEntry>;
+/** Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared). */
+export type EditSignalsScoutReportRequestSuggestedReviewersList =
+  Array<SuggestedReviewer>;
+export const EditSignalsScoutReportRequestSuggestedReviewersList =
+  /*@__PURE__*/ S.Array(
+    SuggestedReviewer,
+  ) as any as S.Schema<EditSignalsScoutReportRequestSuggestedReviewersList>;
 
-/** Per-scope activity rows, busiest scope first. Triage which entity type the team has worked in lately. */
-export type RecentActivityByScopeList = Array<ScopeActivityEntry>;
-export const RecentActivityByScopeList = /*@__PURE__*/ S.Array(
-  ScopeActivityEntry,
-) as any as S.Schema<RecentActivityByScopeList>;
+/** The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down. */
+export type EditSignalsScoutReportRequestChartsList = Array<ReportChart>;
+export const EditSignalsScoutReportRequestChartsList = /*@__PURE__*/ S.Array(
+  ReportChart,
+) as any as S.Schema<EditSignalsScoutReportRequestChartsList>;
 
-/** `inventory.recent_activity` — per-scope counts off the activity log. */
-export interface RecentActivity {
-  /** Lookback window in days the per-scope counts cover. */
-  window_days: number;
-  /** Per-scope activity rows, busiest scope first. Triage which entity type the team has worked in lately. */
-  by_scope: RecentActivityByScopeList;
-}
-export const RecentActivity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    window_days: S.Number,
-    by_scope: RecentActivityByScopeList,
-  }),
-).annotate({ identifier: "RecentActivity" }) as any as S.Schema<RecentActivity>;
+/** The full set of follow-up prompts (questions or next-step actions) the report should offer above its `Ask AI` box. Replaces the report's prompts rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them pointing at the old report. */
+export type EditSignalsScoutReportRequestSuggestedPromptsList = Array<string>;
+export const EditSignalsScoutReportRequestSuggestedPromptsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EditSignalsScoutReportRequestSuggestedPromptsList>;
 
-/** GitHub logins on the report before the human edit (lowercased). */
-export type ReviewerCorrectionEntryBeforeList = Array<string>;
-export const ReviewerCorrectionEntryBeforeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReviewerCorrectionEntryBeforeList>;
-
-/** GitHub logins on the report after the human edit (lowercased). */
-export type ReviewerCorrectionEntryAfterList = Array<string>;
-export const ReviewerCorrectionEntryAfterList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReviewerCorrectionEntryAfterList>;
-
-/** One row in `inventory.recent_reviewer_corrections.corrections`. */
-export interface ReviewerCorrectionEntry {
-  /** UUID of the report whose reviewers a human edited. */
+export interface EditSignalsScoutReportRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the `SignalScoutRun` bridge row. */
+  run_id: string;
+  /** Id of the report to edit (must belong to this project). */
   report_id: string;
-  /** Report title at the time of the edit. */
-  report_title: string | null;
-  /** GitHub logins on the report before the human edit (lowercased). */
-  before: ReviewerCorrectionEntryBeforeList;
-  /** GitHub logins on the report after the human edit (lowercased). */
-  after: ReviewerCorrectionEntryAfterList;
-  /** ISO-8601 timestamp of the edit. */
-  at: string | null;
+  /** Optional new title. Conventional-commit style (`type(scope): description`) renders with type/scope styling. The pipeline may later re-research and overwrite it. */
+  title?: string | null;
+  /** Optional new summary. Markdown is supported (headings, lists, code, links; images are not rendered); lead with one plain declarative sentence — it becomes the inbox card headline. A heading, or a bold label on a line of its own with a blank line above it, marks a section that a threaded Slack delivery splits into its own reply. The pipeline may later re-research and overwrite it. */
+  summary?: string | null;
+  /** Optional free-form note to append to the report's work log (attributed to this scout). */
+  append_note?: string | null;
+  /** Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared). */
+  suggested_reviewers?: EditSignalsScoutReportRequestSuggestedReviewersList;
+  /** The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down. */
+  charts?: EditSignalsScoutReportRequestChartsList | null;
+  /** The full set of follow-up prompts (questions or next-step actions) the report should offer above its `Ask AI` box. Replaces the report's prompts rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them pointing at the old report. */
+  suggested_prompts?: EditSignalsScoutReportRequestSuggestedPromptsList | null;
 }
-export const ReviewerCorrectionEntry = /*@__PURE__*/ S.suspend(() =>
+export const EditSignalsScoutReportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    run_id: S.String.pipe(T.Label()),
+    report_id: S.String,
+    title: S.optional(S.NullOr(S.String)),
+    summary: S.optional(S.NullOr(S.String)),
+    append_note: S.optional(S.NullOr(S.String)),
+    suggested_reviewers: S.optional(
+      EditSignalsScoutReportRequestSuggestedReviewersList,
+    ),
+    charts: S.optional(S.NullOr(EditSignalsScoutReportRequestChartsList)),
+    suggested_prompts: S.optional(
+      S.NullOr(EditSignalsScoutReportRequestSuggestedPromptsList),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/edit-report/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "EditSignalsScoutReportRequest",
+}) as any as S.Schema<EditSignalsScoutReportRequest>;
+
+/** Which presentation fields changed (e.g. `title`, `summary`); empty if only a note was appended. */
+export type EditReportResponseUpdatedFieldsList = Array<string>;
+export const EditReportResponseUpdatedFieldsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EditReportResponseUpdatedFieldsList>;
+
+export interface EditReportResponse {
+  /** Id of the edited report. */
+  report_id: string;
+  /** Which presentation fields changed (e.g. `title`, `summary`); empty if only a note was appended. */
+  updated_fields: EditReportResponseUpdatedFieldsList;
+  /** Whether a note artefact was appended. */
+  note_appended: boolean;
+  /** Whether the report's suggested reviewers were replaced. */
+  reviewers_set: boolean;
+  /** How many charts the report now shows, or null if the edit left its charts as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's charts down. */
+  charts_set: number | null;
+  /** How many prompts the report now suggests, or null if the edit left them as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's suggested prompts down. */
+  suggested_prompts_set: number | null;
+}
+export const EditReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     report_id: S.String,
-    report_title: S.NullOr(S.String),
-    before: ReviewerCorrectionEntryBeforeList,
-    after: ReviewerCorrectionEntryAfterList,
-    at: S.NullOr(S.String),
+    updated_fields: EditReportResponseUpdatedFieldsList,
+    note_appended: S.Boolean,
+    reviewers_set: S.Boolean,
+    charts_set: S.NullOr(S.Number),
+    suggested_prompts_set: S.NullOr(S.Number),
   }),
 ).annotate({
-  identifier: "ReviewerCorrectionEntry",
-}) as any as S.Schema<ReviewerCorrectionEntry>;
+  identifier: "EditReportResponse",
+}) as any as S.Schema<EditReportResponse>;
 
-/** Human reviewer edits, newest first. A human swapping a report's suggested reviewers is authoritative ownership precedent — route to who they chose. */
-export type RecentReviewerCorrectionsCorrectionsList =
-  Array<ReviewerCorrectionEntry>;
-export const RecentReviewerCorrectionsCorrectionsList = /*@__PURE__*/ S.Array(
-  ReviewerCorrectionEntry,
-) as any as S.Schema<RecentReviewerCorrectionsCorrectionsList>;
-
-/** `inventory.recent_reviewer_corrections` — human edits to report reviewer lists. */
-export interface RecentReviewerCorrections {
-  /** Lookback window in days the corrections cover. */
-  window_days: number;
-  /** Human reviewer edits, newest first. A human swapping a report's suggested reviewers is authoritative ownership precedent — route to who they chose. */
-  corrections: RecentReviewerCorrectionsCorrectionsList;
-}
-export const RecentReviewerCorrections = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    window_days: S.Number,
-    corrections: RecentReviewerCorrectionsCorrectionsList,
-  }),
-).annotate({
-  identifier: "RecentReviewerCorrections",
-}) as any as S.Schema<RecentReviewerCorrections>;
-
-/** One row in `inventory.recent_dashboards`. */
-export interface RecentDashboardEntry {
-  /** Dashboard ID — pass to `dashboard-get` to pull the full payload. */
-  id: number;
-  /** Dashboard name (may be blank if unnamed). */
-  name: string;
-  /** ISO-8601 timestamp of the most recent view in the PostHog UI. */
-  last_accessed_at: string | null;
-  /** ISO-8601 timestamp of the most recent data refresh. Distinct from access — a dashboard can be refreshed without anyone viewing it. */
-  last_refresh: string | null;
-  /** ISO-8601 timestamp the dashboard was created. */
-  created_at: string | null;
-}
-export const RecentDashboardEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    name: S.String,
-    last_accessed_at: S.NullOr(S.String),
-    last_refresh: S.NullOr(S.String),
-    created_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentDashboardEntry",
-}) as any as S.Schema<RecentDashboardEntry>;
-
-/** Up to 20 dashboards on this team sorted by `last_accessed_at` desc — what the team is currently looking at, not necessarily the most-trafficked. We don't have per-dashboard view counts in Postgres, only the timestamp of the most recent access. */
-export type ProjectProfileInventoryRecentDashboardsList =
-  Array<RecentDashboardEntry>;
-export const ProjectProfileInventoryRecentDashboardsList =
-  /*@__PURE__*/ S.Array(
-    RecentDashboardEntry,
-  ) as any as S.Schema<ProjectProfileInventoryRecentDashboardsList>;
-
-/** One row in `inventory.recent_surveys.recent`. */
-export interface RecentSurveyEntry {
-  /** Survey UUID — pass to `survey-get` for full question shape. */
-  id: string;
-  /** Survey name (may be blank if unnamed). */
-  name: string;
-  /** Survey mode: `popover`, `widget`, `external_survey`, or `api`. */
-  type: string;
-  /** Derived status: `draft`, `running`, `stopped`, or `archived`. */
-  status: string;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentSurveyEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    type: S.String,
-    status: S.String,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentSurveyEntry",
-}) as any as S.Schema<RecentSurveyEntry>;
-
-/** The 5 most recently updated surveys. */
-export type RecentSurveysRecentList = Array<RecentSurveyEntry>;
-export const RecentSurveysRecentList = /*@__PURE__*/ S.Array(
-  RecentSurveyEntry,
-) as any as S.Schema<RecentSurveysRecentList>;
-
-/** `inventory.recent_surveys` — total + active count, plus the 5 most recently modified. */
-export interface RecentSurveys {
-  /** Total surveys on the team. */
-  total_count: number;
-  /** Surveys that are live (not archived, started, and not yet ended). */
-  active_count: number;
-  /** The 5 most recently updated surveys. */
-  recent: RecentSurveysRecentList;
-}
-export const RecentSurveys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    active_count: S.Number,
-    recent: RecentSurveysRecentList,
-  }),
-).annotate({ identifier: "RecentSurveys" }) as any as S.Schema<RecentSurveys>;
-
-/** One row in `inventory.recent_feature_flags.recent`. */
-export interface RecentFeatureFlagEntry {
-  /** Feature flag ID. */
-  id: number;
-  /** Flag key used in code (`posthog.isFeatureEnabled('<key>')`). */
-  key: string;
-  /** Human-set description; falls back to the key when blank. */
-  name: string;
-  /** Whether the flag is currently evaluating (a user could be hitting it). */
-  active: boolean;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentFeatureFlagEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    key: S.String,
-    name: S.String,
-    active: S.Boolean,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentFeatureFlagEntry",
-}) as any as S.Schema<RecentFeatureFlagEntry>;
-
-/** The 5 most recently updated non-deleted flags. */
-export type RecentFeatureFlagsRecentList = Array<RecentFeatureFlagEntry>;
-export const RecentFeatureFlagsRecentList = /*@__PURE__*/ S.Array(
-  RecentFeatureFlagEntry,
-) as any as S.Schema<RecentFeatureFlagsRecentList>;
-
-/** `inventory.recent_feature_flags` — total + active count, plus the 5 most recently modified. */
-export interface RecentFeatureFlags {
-  /** Total non-deleted feature flags on the team. */
-  total_count: number;
-  /** Flags currently evaluating (`active=true`). */
-  active_count: number;
-  /** The 5 most recently updated non-deleted flags. */
-  recent: RecentFeatureFlagsRecentList;
-}
-export const RecentFeatureFlags = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    active_count: S.Number,
-    recent: RecentFeatureFlagsRecentList,
-  }),
-).annotate({
-  identifier: "RecentFeatureFlags",
-}) as any as S.Schema<RecentFeatureFlags>;
-
-/** One row in `inventory.recent_experiments.recent`. */
-export interface RecentExperimentEntry {
-  /** Experiment ID. */
-  id: number;
-  /** Experiment name. */
-  name: string;
-  /** Derived status: `draft`, `running`, `stopped`, or `archived`. */
-  status: string;
-  /** Key of the experiment's feature flag — cross-ref into `recent_feature_flags`. Null if unlinked. */
-  feature_flag_key: string | null;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentExperimentEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    name: S.String,
-    status: S.String,
-    feature_flag_key: S.NullOr(S.String),
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentExperimentEntry",
-}) as any as S.Schema<RecentExperimentEntry>;
-
-/** The 5 most recently updated experiments. */
-export type RecentExperimentsRecentList = Array<RecentExperimentEntry>;
-export const RecentExperimentsRecentList = /*@__PURE__*/ S.Array(
-  RecentExperimentEntry,
-) as any as S.Schema<RecentExperimentsRecentList>;
-
-/** `inventory.recent_experiments` — total + currently-running count, plus the 5 most recently modified. */
-export interface RecentExperiments {
-  /** Total experiments on the team. */
-  total_count: number;
-  /** Experiments currently running (started, not ended, not archived). */
-  running_count: number;
-  /** The 5 most recently updated experiments. */
-  recent: RecentExperimentsRecentList;
-}
-export const RecentExperiments = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    running_count: S.Number,
-    recent: RecentExperimentsRecentList,
-  }),
-).annotate({
-  identifier: "RecentExperiments",
-}) as any as S.Schema<RecentExperiments>;
-
-/** One row in `inventory.recent_alerts.recent`. */
-export interface RecentAlertEntry {
-  /** Alert configuration UUID. */
-  id: string;
-  /** Alert name. */
-  name: string;
-  /** Whether the alert is currently armed. */
-  enabled: boolean;
-  /** Alert state (e.g. `not_firing`, `firing`). */
-  state: string;
-  /** How often the alert is evaluated (e.g. `daily`, `hourly`); null if unset. */
-  calculation_interval: string | null;
-  /** ID of the insight the alert watches; null if none. */
-  insight_id: number | null;
-  /** ISO-8601 creation timestamp. */
-  created_at: string | null;
-}
-export const RecentAlertEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    enabled: S.Boolean,
-    state: S.String,
-    calculation_interval: S.NullOr(S.String),
-    insight_id: S.NullOr(S.Number),
-    created_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentAlertEntry",
-}) as any as S.Schema<RecentAlertEntry>;
-
-/** The 5 most recently created alerts. */
-export type RecentAlertsRecentList = Array<RecentAlertEntry>;
-export const RecentAlertsRecentList = /*@__PURE__*/ S.Array(
-  RecentAlertEntry,
-) as any as S.Schema<RecentAlertsRecentList>;
-
-/** `inventory.recent_alerts` — total + currently-enabled count, plus the 5 most recently created. */
-export interface RecentAlerts {
-  /** Total insight alerts on the team. */
-  total_count: number;
-  /** Alerts currently armed (`enabled=true`). */
-  enabled_count: number;
-  /** The 5 most recently created alerts. */
-  recent: RecentAlertsRecentList;
-}
-export const RecentAlerts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    enabled_count: S.Number,
-    recent: RecentAlertsRecentList,
-  }),
-).annotate({ identifier: "RecentAlerts" }) as any as S.Schema<RecentAlerts>;
-
-/** One row in `inventory.recent_hog_functions.recent`. */
-export interface RecentHogFunctionEntry {
-  /** Hog function UUID. */
-  id: string;
-  /** Hog function name. */
-  name: string;
-  /** Function type: `destination`, `transformation`, `site_app`, etc. Null if unset. */
-  type: string | null;
-  /** Function kind sub-classifier; null if unset. */
-  kind: string | null;
-  /** Whether the function is currently enabled. */
-  enabled: boolean;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentHogFunctionEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    type: S.NullOr(S.String),
-    kind: S.NullOr(S.String),
-    enabled: S.Boolean,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentHogFunctionEntry",
-}) as any as S.Schema<RecentHogFunctionEntry>;
-
-/** The 5 most recently updated hog functions. */
-export type RecentHogFunctionsRecentList = Array<RecentHogFunctionEntry>;
-export const RecentHogFunctionsRecentList = /*@__PURE__*/ S.Array(
-  RecentHogFunctionEntry,
-) as any as S.Schema<RecentHogFunctionsRecentList>;
-
-/** `inventory.recent_hog_functions` — total + enabled count, plus the 5 most recently modified. */
-export interface RecentHogFunctions {
-  /** Total non-deleted hog functions on the team. */
-  total_count: number;
-  /** Hog functions currently enabled (`enabled=true`). */
-  enabled_count: number;
-  /** The 5 most recently updated hog functions. */
-  recent: RecentHogFunctionsRecentList;
-}
-export const RecentHogFunctions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    enabled_count: S.Number,
-    recent: RecentHogFunctionsRecentList,
-  }),
-).annotate({
-  identifier: "RecentHogFunctions",
-}) as any as S.Schema<RecentHogFunctions>;
-
-/** One row in `inventory.recent_hog_flows.recent`. */
-export interface RecentHogFlowEntry {
-  /** Hog flow UUID. */
-  id: string;
-  /** Hog flow name. */
-  name: string;
-  /** Flow lifecycle state (e.g. `draft`, `active`, `archived`). */
-  status: string;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentHogFlowEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    status: S.String,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentHogFlowEntry",
-}) as any as S.Schema<RecentHogFlowEntry>;
-
-/** The 5 most recently updated hog flows. */
-export type RecentHogFlowsRecentList = Array<RecentHogFlowEntry>;
-export const RecentHogFlowsRecentList = /*@__PURE__*/ S.Array(
-  RecentHogFlowEntry,
-) as any as S.Schema<RecentHogFlowsRecentList>;
-
-/** `inventory.recent_hog_flows` — total + non-archived count, plus the 5 most recently modified. */
-export interface RecentHogFlows {
-  /** Total hog flows on the team. */
-  total_count: number;
-  /** Hog flows that are not archived. */
-  active_count: number;
-  /** The 5 most recently updated hog flows. */
-  recent: RecentHogFlowsRecentList;
-}
-export const RecentHogFlows = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    active_count: S.Number,
-    recent: RecentHogFlowsRecentList,
-  }),
-).annotate({ identifier: "RecentHogFlows" }) as any as S.Schema<RecentHogFlows>;
-
-/** One row in `inventory.recent_notebooks.recent`. */
-export interface RecentNotebookEntry {
-  /** Notebook short ID — pass to the notebooks API to open it. */
-  short_id: string;
-  /** Notebook title (may be blank if untitled). */
-  title: string;
-  /** ISO-8601 last-modified timestamp. */
-  last_modified_at: string | null;
-}
-export const RecentNotebookEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    short_id: S.String,
-    title: S.String,
-    last_modified_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentNotebookEntry",
-}) as any as S.Schema<RecentNotebookEntry>;
-
-/** The 5 most recently modified notebooks. */
-export type RecentNotebooksRecentList = Array<RecentNotebookEntry>;
-export const RecentNotebooksRecentList = /*@__PURE__*/ S.Array(
-  RecentNotebookEntry,
-) as any as S.Schema<RecentNotebooksRecentList>;
-
-/** `inventory.recent_notebooks` — total + the 5 most recently modified. */
-export interface RecentNotebooks {
-  /** Total non-deleted notebooks on the team. */
-  total_count: number;
-  /** The 5 most recently modified notebooks. */
-  recent: RecentNotebooksRecentList;
-}
-export const RecentNotebooks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    recent: RecentNotebooksRecentList,
-  }),
-).annotate({
-  identifier: "RecentNotebooks",
-}) as any as S.Schema<RecentNotebooks>;
-
-/** One row in `inventory.recent_cohorts.recent`. */
-export interface RecentCohortEntry {
-  /** Cohort ID. */
-  id: number;
-  /** Cohort name. */
-  name: string;
-  /** True for a one-shot snapshot cohort; false for a dynamic-filter cohort. */
-  is_static: boolean;
-  /** Membership size when last calculated; null if never calculated. */
-  count: number | null;
-  /** ISO-8601 creation timestamp. */
-  created_at: string | null;
-}
-export const RecentCohortEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    name: S.String,
-    is_static: S.Boolean,
-    count: S.NullOr(S.Number),
-    created_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentCohortEntry",
-}) as any as S.Schema<RecentCohortEntry>;
-
-/** The 5 most recently created cohorts. */
-export type RecentCohortsRecentList = Array<RecentCohortEntry>;
-export const RecentCohortsRecentList = /*@__PURE__*/ S.Array(
-  RecentCohortEntry,
-) as any as S.Schema<RecentCohortsRecentList>;
-
-/** `inventory.recent_cohorts` — total + the 5 most recently created. */
-export interface RecentCohorts {
-  /** Total non-deleted cohorts on the team. */
-  total_count: number;
-  /** The 5 most recently created cohorts. */
-  recent: RecentCohortsRecentList;
-}
-export const RecentCohorts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    recent: RecentCohortsRecentList,
-  }),
-).annotate({ identifier: "RecentCohorts" }) as any as S.Schema<RecentCohorts>;
-
-/** One row in `inventory.recent_actions.recent`. */
-export interface RecentActionEntry {
-  /** Action ID. */
-  id: number;
-  /** Action name. */
-  name: string;
-  /** ISO-8601 last-modified timestamp. */
-  updated_at: string | null;
-}
-export const RecentActionEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    name: S.String,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecentActionEntry",
-}) as any as S.Schema<RecentActionEntry>;
-
-/** The 5 most recently updated actions. */
-export type RecentActionsRecentList = Array<RecentActionEntry>;
-export const RecentActionsRecentList = /*@__PURE__*/ S.Array(
-  RecentActionEntry,
-) as any as S.Schema<RecentActionsRecentList>;
-
-/** `inventory.recent_actions` — total + the 5 most recently modified. */
-export interface RecentActions {
-  /** Total non-deleted actions on the team. */
-  total_count: number;
-  /** The 5 most recently updated actions. */
-  recent: RecentActionsRecentList;
-}
-export const RecentActions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_count: S.Number,
-    recent: RecentActionsRecentList,
-  }),
-).annotate({ identifier: "RecentActions" }) as any as S.Schema<RecentActions>;
-
-/** One row in `inventory.top_events`. */
-export interface TopEventEntry {
-  /** Rolling lookback window (in days) that every count and timestamp on this row is measured over — these are windowed figures, NOT lifetime totals. A capture gap can collapse a real, high-volume project's in-window counts to near-zero, so a thin `count` here does not by itself mean the project is low-volume: rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before closing out a surface as unused. */
-  window_days: number;
-  /** Event name as captured. */
-  event: string;
-  /** Number of occurrences within the last `window_days` (windowed, not lifetime). */
-  count: number;
-  /** `uniq(person_id)` over the window — reach. Distinguishes a high-count event firing on one power user from one firing on many users. */
-  distinct_users: number;
-  /** Count in just the last 24 hours. Compare to `count / window_days` to spot bursts: a ratio well above `1 / window_days` means the event is concentrated in the last day. */
-  recent_24h_count: number;
-  /** `uniq(person_id)` over just the last 24 hours. A burst across many users is qualitatively different from one user in a loop. */
-  recent_24h_users: number;
-  /** ISO-8601 timestamp of the earliest occurrence within the `window_days` window. Compare to the window start to spot new event types: close to `now` ⇒ likely new or recently bursting; close to the window edge ⇒ has been around at least that long (the window can't tell you when the event *truly* first appeared). */
-  first_seen_in_window: string | null;
-  /** ISO-8601 timestamp of the most recent occurrence within the `window_days` window. */
-  last_seen_in_window: string | null;
-}
-export const TopEventEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    window_days: S.Number,
-    event: S.String,
-    count: S.Number,
-    distinct_users: S.Number,
-    recent_24h_count: S.Number,
-    recent_24h_users: S.Number,
-    first_seen_in_window: S.NullOr(S.String),
-    last_seen_in_window: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "TopEventEntry" }) as any as S.Schema<TopEventEntry>;
-
-/** Top ~50 events by count over a recent rolling window (each row carries `window_days`), with first/last seen timestamps within that window. These are WINDOWED counts, not lifetime totals: a capture gap can collapse a real, high-volume project's counts to near-zero here, so rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before reading thinness as a genuinely low-volume project. `null` if the underlying ClickHouse query failed or timed out (distinct from `[]`, which means the team has no captures in the window). Use the gap between `first_seen_in_window` and `now` to spot new event types or recent bursts. */
-export type ProjectProfileInventoryTopEventsList = Array<TopEventEntry>;
-export const ProjectProfileInventoryTopEventsList = /*@__PURE__*/ S.Array(
-  TopEventEntry,
-) as any as S.Schema<ProjectProfileInventoryTopEventsList>;
-
-/** The deterministic inventory layer of a project profile. Read this to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface in one tool call. Distinct from `SignalScratchpad`: profile is ground truth from authoritative tables; memory is agent inference. */
-export interface ProjectProfileInventory {
-  /** Free-form orientation: human-set product description + registered app URLs. */
-  project_context: ProjectContext;
-  /** Product keys this team has completed onboarding for, sorted alphabetically. */
-  products_in_use: ProjectProfileInventoryProductsInUseList;
-  /** Products the team signaled intent to use; useful for spotting stuck onboardings. */
-  product_intents: ProjectProfileInventoryProductIntentsList;
-  /** Connected integrations (kind + connection time only — config never surfaced). */
-  integrations: ProjectProfileInventoryIntegrationsList;
-  /** Connected warehouse sources (excludes soft-deleted). */
-  external_data_sources: ProjectProfileInventoryExternalDataSourcesList;
-  /** Signal source configs split into enabled / disabled buckets. */
-  signal_source_configs: SignalSourceConfigsBuckets;
-  /** Whether scout findings can actually reach the inbox for this team — the org-level AI data-processing consent gate and the `signals_scout` source toggle, plus a one-line remediation pointer. Read at cold start to quick-close before doing throwaway work. */
-  emit_eligibility: EmitEligibility;
-  /** The other scouts configured on this project, split into enabled / disabled, each with its cadence, dry-run posture, last run, and last emit. Read it to see who else is watching this project before investigating a surface a sibling already covers. */
-  scout_fleet: ScoutFleet;
-  /** Counts of reports already in the inbox, grouped by status. */
-  existing_inbox_reports: ExistingInboxReports;
-  /** Per-scope counts off the activity log over the recent-activity window — cross-cutting orientation across every entity type (surveys, feature flags, experiments, dashboards, insights, cohorts, notebooks, actions, etc.). Each scope reports `edits` (total log entries), `users` (distinct user count), and `last_edit` (ISO-8601). Use to triage which scope a team has been working in lately before drilling down via the per-entity readers or `advanced-activity-logs-list`. */
-  recent_activity: RecentActivity;
-  /** Recent human edits to report reviewer lists (before/after GitHub logins). The strongest ownership precedent available — check it before setting `suggested_reviewers` and fold what it shows into `reviewer:` memory keys. */
-  recent_reviewer_corrections: RecentReviewerCorrections;
-  /** Up to 20 dashboards on this team sorted by `last_accessed_at` desc — what the team is currently looking at, not necessarily the most-trafficked. We don't have per-dashboard view counts in Postgres, only the timestamp of the most recent access. */
-  recent_dashboards: ProjectProfileInventoryRecentDashboardsList;
-  /** Surveys orientation: total + active count, plus the 5 most recently updated surveys with id, name, type, status (draft / running / stopped / archived), and updated_at. */
-  recent_surveys: RecentSurveys;
-  /** Feature flag orientation: total + active count, plus the 5 most recently updated non-deleted flags with id, key, name, active, and updated_at. */
-  recent_feature_flags: RecentFeatureFlags;
-  /** Experiment orientation: total + running count, plus the 5 most recently updated experiments. The feature_flag_key on each row lets the scout correlate experiments with the `recent_feature_flags` section. */
-  recent_experiments: RecentExperiments;
-  /** Alert orientation: total + enabled count, plus the 5 most recently created alerts with their state and threshold metadata. */
-  recent_alerts: RecentAlerts;
-  /** Hog function orientation: total + enabled count, plus the 5 most recently updated destinations / transformations the team has wired up via the CDP pipelines. */
-  recent_hog_functions: RecentHogFunctions;
-  /** Hog flow orientation: total + non-archived count, plus the 5 most recently updated automation flows. */
-  recent_hog_flows: RecentHogFlows;
-  /** Notebook orientation: total + the 5 most recently modified notebooks — useful signal for what the team has been investigating. */
-  recent_notebooks: RecentNotebooks;
-  /** Cohort orientation: total + the 5 most recently created cohorts on the team. */
-  recent_cohorts: RecentCohorts;
-  /** Action orientation: total + the 5 most recently updated actions — useful to anchor agent reasoning about what the team treats as a meaningful interaction. */
-  recent_actions: RecentActions;
-  /** Top ~50 events by count over a recent rolling window (each row carries `window_days`), with first/last seen timestamps within that window. These are WINDOWED counts, not lifetime totals: a capture gap can collapse a real, high-volume project's counts to near-zero here, so rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before reading thinness as a genuinely low-volume project. `null` if the underlying ClickHouse query failed or timed out (distinct from `[]`, which means the team has no captures in the window). Use the gap between `first_seen_in_window` and `now` to spot new event types or recent bursts. */
-  top_events: ProjectProfileInventoryTopEventsList | null;
-}
-export const ProjectProfileInventory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_context: ProjectContext,
-    products_in_use: ProjectProfileInventoryProductsInUseList,
-    product_intents: ProjectProfileInventoryProductIntentsList,
-    integrations: ProjectProfileInventoryIntegrationsList,
-    external_data_sources: ProjectProfileInventoryExternalDataSourcesList,
-    signal_source_configs: SignalSourceConfigsBuckets,
-    emit_eligibility: EmitEligibility,
-    scout_fleet: ScoutFleet,
-    existing_inbox_reports: ExistingInboxReports,
-    recent_activity: RecentActivity,
-    recent_reviewer_corrections: RecentReviewerCorrections,
-    recent_dashboards: ProjectProfileInventoryRecentDashboardsList,
-    recent_surveys: RecentSurveys,
-    recent_feature_flags: RecentFeatureFlags,
-    recent_experiments: RecentExperiments,
-    recent_alerts: RecentAlerts,
-    recent_hog_functions: RecentHogFunctions,
-    recent_hog_flows: RecentHogFlows,
-    recent_notebooks: RecentNotebooks,
-    recent_cohorts: RecentCohorts,
-    recent_actions: RecentActions,
-    top_events: S.NullOr(ProjectProfileInventoryTopEventsList),
-  }),
-).annotate({
-  identifier: "ProjectProfileInventory",
-}) as any as S.Schema<ProjectProfileInventory>;
-
-/** Top-level `payload` shape on a `SignalProjectProfile` row. v1 carries `inventory` only. Phase 7 will add `deltas`, `activity_notes`, and `narrative` slots — they're absent (not null) in v1 responses. */
-export interface ProjectProfilePayload {
-  /** Deterministic snapshot of what's true about the project. */
-  inventory: ProjectProfileInventory;
-}
-export const ProjectProfilePayload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inventory: ProjectProfileInventory,
-  }),
-).annotate({
-  identifier: "ProjectProfilePayload",
-}) as any as S.Schema<ProjectProfilePayload>;
-
-/** Wire shape for the project profile returned by `signals-scout-harness-project-profile-list`. Read this once at the start of a run (after `skill-get`) to orient on the team. Cache is per-team with a soft TTL (`PROFILE_TTL`); the response always reflects either the latest cached profile or a freshly-built one if the cache was stale or the caller passed `force_refresh=true`. */
-export interface ProjectProfile {
-  /** UUID of the `SignalProjectProfile` row. */
-  profile_id: string;
-  /** ISO-8601 timestamp the profile was built. */
-  computed_at: string;
-  /** ISO-8601 timestamp after which the profile is considered stale. */
-  expires_at: string;
-  /** Schema version of the inventory builder. Bumps invalidate older cached rows. */
-  source_version: string;
-  /** Structured profile content. v1 has `inventory` only. */
-  payload: ProjectProfilePayload;
-}
-export const ProjectProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    profile_id: S.String,
-    computed_at: S.String,
-    expires_at: S.String,
-    source_version: S.String,
-    payload: ProjectProfilePayload,
-  }),
-).annotate({ identifier: "ProjectProfile" }) as any as S.Schema<ProjectProfile>;
-
-export interface ListSignalProcessingRequest {
+export interface GetSignalsReportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  /** A UUID string identifying this signal report. */
+  id: string;
 }
-export const ListSignalProcessingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSignalsReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/signals/processing/",
+      uri: "/api/projects/{project_id}/signals/reports/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListSignalProcessingRequest",
-}) as any as S.Schema<ListSignalProcessingRequest>;
+  identifier: "GetSignalsReportRequest",
+}) as any as S.Schema<GetSignalsReportRequest>;
 
-export interface PauseStateResponse {
-  /** The timestamp the pipeline is paused until, or null if not paused/not running. */
-  paused_until?: string | null;
-}
-export const PauseStateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    paused_until: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "PauseStateResponse",
-}) as any as S.Schema<PauseStateResponse>;
-
-export type PaginatedPauseStateResponseListResultsList =
-  Array<PauseStateResponse>;
-export const PaginatedPauseStateResponseListResultsList = /*@__PURE__*/ S.Array(
-  PauseStateResponse,
-) as any as S.Schema<PaginatedPauseStateResponseListResultsList>;
-
-export interface PaginatedPauseStateResponseList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedPauseStateResponseListResultsList;
-}
-export const PaginatedPauseStateResponseList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedPauseStateResponseListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedPauseStateResponseList",
-}) as any as S.Schema<PaginatedPauseStateResponseList>;
-
-export interface ListSignalReportArtefactsRequest {
+export interface GetSignalsReportArtefactRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
   report_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  /** A UUID string identifying this signal report artefact. */
+  id: string;
 }
-export const ListSignalReportArtefactsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSignalsReportArtefactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     report_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/",
+      uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListSignalReportArtefactsRequest",
-}) as any as S.Schema<ListSignalReportArtefactsRequest>;
+  identifier: "GetSignalsReportArtefactRequest",
+}) as any as S.Schema<GetSignalsReportArtefactRequest>;
 
 /** * `video_segment` - Video Segment * `safety_judgment` - Safety Judgment * `actionability_judgment` - Actionability Judgment * `priority_judgment` - Priority Judgment * `signal_finding` - Signal Finding * `repo_selection` - Repo Selection * `suggested_reviewers` - Suggested Reviewers * `channel_assignment` - Channel Assignment * `dismissal` - Dismissal * `code_reference` - Code Reference * `commit` - Commit * `task_run` - Task Run * `note` - Note * `title_change` - Title Change * `summary_change` - Summary Change * `code_review` - Code Review * `related_to` - Related To */
-export type SignalReportArtefactTypeEnum =
+export type SignalReportArtefactArtefactTypeEnum =
   | "video_segment"
   | "safety_judgment"
   | "actionability_judgment"
@@ -2659,7 +1678,7 @@ export type SignalReportArtefactTypeEnum =
   | "summary_change"
   | "code_review"
   | "related_to";
-export const SignalReportArtefactTypeEnum = /*@__PURE__*/ S.String;
+export const SignalReportArtefactArtefactTypeEnum = /*@__PURE__*/ S.String;
 
 export type SignalReportArtefactContentCase0Map = {
   [key: string]: unknown | undefined;
@@ -2699,7 +1718,7 @@ export const User = /*@__PURE__*/ S.suspend(() =>
 
 export interface SignalReportArtefact {
   id: string;
-  type: SignalReportArtefactTypeEnum;
+  type: SignalReportArtefactArtefactTypeEnum;
   content: SignalReportArtefactContent;
   created_at: string;
   updated_at: string | null;
@@ -2711,7 +1730,7 @@ export interface SignalReportArtefact {
 export const SignalReportArtefact = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    type: SignalReportArtefactTypeEnum,
+    type: SignalReportArtefactArtefactTypeEnum,
     content: SignalReportArtefactContent,
     created_at: S.String,
     updated_at: S.NullOr(S.String),
@@ -2722,920 +1741,12 @@ export const SignalReportArtefact = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalReportArtefact",
 }) as any as S.Schema<SignalReportArtefact>;
 
-export type PaginatedSignalReportArtefactListResultsList =
-  Array<SignalReportArtefact>;
-export const PaginatedSignalReportArtefactListResultsList =
-  /*@__PURE__*/ S.Array(
-    SignalReportArtefact,
-  ) as any as S.Schema<PaginatedSignalReportArtefactListResultsList>;
-
-export interface PaginatedSignalReportArtefactList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedSignalReportArtefactListResultsList;
-}
-export const PaginatedSignalReportArtefactList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedSignalReportArtefactListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedSignalReportArtefactList",
-}) as any as S.Schema<PaginatedSignalReportArtefactList>;
-
-export interface ListSignalReportsRequest {
+export interface GetSignalsReportsRefundSummaryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Narrow to reports assigned to one space (channel). Absent or empty means all reports regardless of assignment. */
-  channel_id?: string;
-  /** Filter reports by whether a shipped implementation pull request exists. 'true' keeps only reports with a PR; 'false' keeps only those without. Pair with limit=1 to count PR reports cheaply. */
-  has_implementation_pr?: boolean;
-  /** When true, the list includes reports in every status with no default exclusions applied — currently that adds suppressed (dismissed) reports, which are otherwise hidden. Use it to see the full inbox state (e.g. deduplicating before creating a report) and read each row's status (plus dismissal_reason/dismissal_note on dismissed rows) before acting. Deleted reports are terminal and never returned. Defaults to false, which keeps the existing default exclusions. Ignored when an explicit 'status' filter is set — that filter alone decides which statuses are returned. */
-  include_all_statuses?: boolean;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Comma-separated ordering clauses. Each clause is a field name optionally prefixed with '-' for descending. Allowed fields: status, is_suggested_reviewer, signal_count, total_weight, priority, created_at, updated_at, id. Defaults to '-is_suggested_reviewer,status,-updated_at'. */
-  ordering?: string;
-  /** Comma-separated list of priorities to include. Valid values: P0, P1, P2, P3, P4. Reports without a priority assignment are excluded when this filter is set. */
-  priority?: string;
-  /** Comma-separated list of scout skill_name slugs (e.g. signals-scout-error-tracking). Reports are kept if at least one of their contributing signals was authored by one of these scouts. Combines with source_product as an AND. */
-  scout?: string;
-  /** Scout skill_name prefix (e.g. signals-scout-customer-analytics). Reports are kept if at least one of their contributing signals was authored by a scout whose skill_name starts with this prefix — new scouts in the family match without callers listing every name. Combines with the other filters as an AND. */
-  scout_prefix?: string;
-  /** Case-insensitive substring match against report title and summary. */
-  search?: string;
-  /** Comma-separated list of source record ids. Reports are kept if at least one of their contributing signals came from one of these records — e.g. pass a support ticket's UUID to see what the inbox already found for that ticket. Requires exactly one source_product, since a source id is only unique within its product. */
-  source_id?: string;
-  /** Comma-separated list of source products to include. Reports are kept if at least one of their contributing signals comes from one of these products (e.g. error_tracking, session_replay). */
-  source_product?: string;
-  /** Comma-separated list of statuses to include. Valid values: potential, candidate, in_progress, pending_input, ready, resolved, failed, suppressed. Defaults to all statuses except suppressed. */
-  status?: string;
-  /** Comma-separated list of PostHog user UUIDs. Reports are kept if their suggested reviewers include any of the given users. */
-  suggested_reviewers?: string;
-  /** Only reports associated with this task (via the report's task associations). */
-  task_id?: string;
 }
-export const ListSignalReportsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    channel_id: S.optional(S.String.pipe(T.Query())),
-    has_implementation_pr: S.optional(S.Boolean.pipe(T.Query())),
-    include_all_statuses: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    ordering: S.optional(S.String.pipe(T.Query())),
-    priority: S.optional(S.String.pipe(T.Query())),
-    scout: S.optional(S.String.pipe(T.Query())),
-    scout_prefix: S.optional(S.String.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-    source_id: S.optional(S.String.pipe(T.Query())),
-    source_product: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(S.String.pipe(T.Query())),
-    suggested_reviewers: S.optional(S.String.pipe(T.Query())),
-    task_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalReportsRequest",
-}) as any as S.Schema<ListSignalReportsRequest>;
-
-export type PaginatedSignalReportListResultsList = Array<SignalReport>;
-export const PaginatedSignalReportListResultsList = /*@__PURE__*/ S.Array(
-  SignalReport,
-) as any as S.Schema<PaginatedSignalReportListResultsList>;
-
-export interface PaginatedSignalReportList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedSignalReportListResultsList;
-}
-export const PaginatedSignalReportList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedSignalReportListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedSignalReportList",
-}) as any as S.Schema<PaginatedSignalReportList>;
-
-export interface ListSignalScoutConfigRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Comma-separated tags, e.g. `revenue,on-call`. Returns the scouts carrying at least one of them. Values are normalized the same way stored tags are, so `On Call` matches `on-call`. Omit for the whole fleet. */
-  tags?: string;
-}
-export const ListSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    tags: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/configs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalScoutConfigRequest",
-}) as any as S.Schema<ListSignalScoutConfigRequest>;
-
-export type SignalsScoutConfigListResponseBodyList = Array<SignalScoutConfig>;
-export const SignalsScoutConfigListResponseBodyList = /*@__PURE__*/ S.Array(
-  SignalScoutConfig,
-) as any as S.Schema<SignalsScoutConfigListResponseBodyList>;
-
-export type ListSignalScoutConfigResponse =
-  SignalsScoutConfigListResponseBodyList;
-export const ListSignalScoutConfigResponse = /*@__PURE__*/ S.suspend(() =>
-  SignalsScoutConfigListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListSignalScoutConfigResponse",
-}) as any as S.Schema<ListSignalScoutConfigResponse>;
-
-export interface ListSignalScoutMembersRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Case-insensitive substring filter over member email and first/last name. Use it to narrow a large project's roster to the owner you're trying to match instead of pulling every member. */
-  search?: string;
-}
-export const ListSignalScoutMembersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/members/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalScoutMembersRequest",
-}) as any as S.Schema<ListSignalScoutMembersRequest>;
-
-/** One project member's routing identity, for picking a `suggested_reviewers` entry on a report. */
-export interface ScoutMember {
-  /** The member's stable PostHog user UUID — the same id that appears as `created_by.uuid` on entities they own. A durable handle for this person across runs. */
-  user_uuid: string;
-  /** The member's email — use to match a finding's owner by name/email. */
-  email: string;
-  /** The member's first name (may be empty). */
-  first_name: string;
-  /** The member's last name (may be empty). */
-  last_name: string;
-  /** The member's resolved GitHub login (lowercased), already resolved server-side — put this value in a report's `suggested_reviewers` once you've matched the finding's owner to this row. Null when the member has no linked GitHub identity: a null-login member can't be routed to at all (neither a login nor a uuid resolves), so pick a different owner or leave `suggested_reviewers` empty. */
-  github_login: string | null;
-}
-export const ScoutMember = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_uuid: S.String,
-    email: S.String,
-    first_name: S.String,
-    last_name: S.String,
-    github_login: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "ScoutMember" }) as any as S.Schema<ScoutMember>;
-
-export type SignalsScoutMembersListResponseBodyList = Array<ScoutMember>;
-export const SignalsScoutMembersListResponseBodyList = /*@__PURE__*/ S.Array(
-  ScoutMember,
-) as any as S.Schema<SignalsScoutMembersListResponseBodyList>;
-
-export type ListSignalScoutMembersResponse =
-  SignalsScoutMembersListResponseBodyList;
-export const ListSignalScoutMembersResponse = /*@__PURE__*/ S.suspend(() =>
-  SignalsScoutMembersListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListSignalScoutMembersResponse",
-}) as any as S.Schema<ListSignalScoutMembersResponse>;
-
-export interface ListSignalScoutNotesRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Truncate each note's `content` to the first N characters (a preview). Omit for the full body — use this on wide scans so stacked notes can't dominate your context. */
-  content_max_chars?: number;
-  /** ISO-8601 inclusive lower bound on `created_at`. Omit to skip the lower bound. */
-  date_from?: string;
-  /** ISO-8601 exclusive upper bound on `created_at`. Pass the `created_at` of the oldest note from the prior page to walk back past the result cap. */
-  date_to?: string;
-  /** Include notes whose `expires_at` has passed. Off by default so time-boxed steering retires itself. */
-  include_expired?: boolean;
-  /** Only meaningful with `skill_name`: when false, exclude the general fleet-wide notes and return the target's own notes only. */
-  include_general?: boolean;
-  /** Max rows to return (default 20, hard cap 500). */
-  limit?: number;
-  /** Return the notes addressed to this target plus the general (blank-target) notes for the whole fleet. Pass a scout skill (`signals-scout-*`) or a pipeline audience (`pipeline:report-research`). Omit to browse every note on the project. */
-  skill_name?: string;
-}
-export const ListSignalScoutNotesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    content_max_chars: S.optional(S.Number.pipe(T.Query())),
-    date_from: S.optional(S.String.pipe(T.Query())),
-    date_to: S.optional(S.String.pipe(T.Query())),
-    include_expired: S.optional(S.Boolean.pipe(T.Query())),
-    include_general: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    skill_name: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/notes/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalScoutNotesRequest",
-}) as any as S.Schema<ListSignalScoutNotesRequest>;
-
-export type SignalsScoutNotesListResponseBodyList = Array<ScoutNote>;
-export const SignalsScoutNotesListResponseBodyList = /*@__PURE__*/ S.Array(
-  ScoutNote,
-) as any as S.Schema<SignalsScoutNotesListResponseBodyList>;
-
-export type ListSignalScoutNotesResponse =
-  SignalsScoutNotesListResponseBodyList;
-export const ListSignalScoutNotesResponse = /*@__PURE__*/ S.suspend(() =>
-  SignalsScoutNotesListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListSignalScoutNotesResponse",
-}) as any as S.Schema<ListSignalScoutNotesResponse>;
-
-export interface ListSignalScoutRunsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** ISO-8601 inclusive lower bound on `created_at`. Omit to skip the lower bound. */
-  date_from?: string;
-  /** ISO-8601 exclusive upper bound on `created_at`. Pass to walk back past the result cap on subsequent calls (cursor-style: set to the `created_at` of the oldest run from the prior page). */
-  date_to?: string;
-  /** Filter by emit outcome. `true` returns only runs that emitted at least one finding (`emitted_count > 0`); `false` returns only runs that emitted nothing. Omit for both. */
-  emitted?: boolean;
-  /** Max rows to return (default 20, hard cap 100). */
-  limit?: number;
-  /** Exact-match filter on the scout skill (e.g. `signals-scout-errors`). Narrows the run dump to a single scout — the primary scoping path when a specialist dedupes against its own past runs. Omit to span every scout on the team. */
-  skill_name?: string;
-  /** Exact-match filter on the skill version. Pair with `skill_name` to pin one version; omit for all. */
-  skill_version?: number;
-  /** Case-insensitive substring match on the scout's end-of-run `summary`. Omit to skip the filter. */
-  text?: string;
-}
-export const ListSignalScoutRunsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    date_from: S.optional(S.String.pipe(T.Query())),
-    date_to: S.optional(S.String.pipe(T.Query())),
-    emitted: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    skill_name: S.optional(S.String.pipe(T.Query())),
-    skill_version: S.optional(S.Number.pipe(T.Query())),
-    text: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalScoutRunsRequest",
-}) as any as S.Schema<ListSignalScoutRunsRequest>;
-
-/** * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-export type RunStatusEnum =
-  | "not_started"
-  | "queued"
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "cancelled";
-export const RunStatusEnum = /*@__PURE__*/ S.String;
-
-/** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
-export type SignalScoutRunSummaryEmittedFindingIdsList = Array<string>;
-export const SignalScoutRunSummaryEmittedFindingIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunSummaryEmittedFindingIdsList>;
-
-/** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
-export type SignalScoutRunSummaryEmittedReportIdsList = Array<string>;
-export const SignalScoutRunSummaryEmittedReportIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunSummaryEmittedReportIdsList>;
-
-/** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
-export type SignalScoutRunSummaryEditedReportIdsList = Array<string>;
-export const SignalScoutRunSummaryEditedReportIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunSummaryEditedReportIdsList>;
-
-export interface SignalScoutRunSummaryMetadataDerived {
-  has_emit_report: boolean;
-  has_edit_report: boolean;
-  has_self_improvement: boolean;
-  has_chart: boolean;
-  has_self_validation: boolean;
-  has_structured_output: boolean;
-}
-export const SignalScoutRunSummaryMetadataDerived = /*@__PURE__*/ S.suspend(
+export const GetSignalsReportsRefundSummaryRequest = /*@__PURE__*/ S.suspend(
   () =>
-    S.Struct({
-      has_emit_report: S.Boolean,
-      has_edit_report: S.Boolean,
-      has_self_improvement: S.Boolean,
-      has_chart: S.Boolean,
-      has_self_validation: S.Boolean,
-      has_structured_output: S.Boolean,
-    }),
-).annotate({
-  identifier: "SignalScoutRunSummaryMetadataDerived",
-}) as any as S.Schema<SignalScoutRunSummaryMetadataDerived>;
-
-/** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
-export interface SignalScoutRunSummaryMetadata {
-  harness_prompt_version?: string;
-  report_channel?: string;
-  skill_origin?: string;
-  github_guidance?: boolean;
-  business_knowledge_maintained?: boolean;
-  model?: string;
-  runtime_adapter?: string;
-  reasoning_effort?: string;
-  network_access?: string;
-  derived?: SignalScoutRunSummaryMetadataDerived;
-}
-export const SignalScoutRunSummaryMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    harness_prompt_version: S.optional(S.String),
-    report_channel: S.optional(S.String),
-    skill_origin: S.optional(S.String),
-    github_guidance: S.optional(S.Boolean),
-    business_knowledge_maintained: S.optional(S.Boolean),
-    model: S.optional(S.String),
-    runtime_adapter: S.optional(S.String),
-    reasoning_effort: S.optional(S.String),
-    network_access: S.optional(S.String),
-    derived: S.optional(SignalScoutRunSummaryMetadataDerived),
-  }),
-).annotate({
-  identifier: "SignalScoutRunSummaryMetadata",
-}) as any as S.Schema<SignalScoutRunSummaryMetadata>;
-
-/** Lightweight projection of a `SignalScoutRun` row used by `search-recent-runs`. Status and timestamps flow from the linked `tasks.TaskRun`. */
-export interface SignalScoutRunSummary {
-  /** UUID of the bridge row. */
-  run_id: string;
-  /** Canonical skill name the run executed (e.g. `signals-scout-general`). */
-  skill_name: string;
-  /** Skill version snapshotted at run start. */
-  skill_version: number;
-  /** Status from the linked TaskRun. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-  status: RunStatusEnum;
-  /** ISO-8601 timestamp the bridge row was created — the field `date_from` / `date_to` filter and order on. Use this (not `started_at`) as the `date_to` cursor when walking past the 100-row cap, so runs created in the gap between a boundary run's TaskRun and its bridge row aren't skipped. */
-  created_at: string;
-  /** ISO-8601 timestamp the TaskRun was created. */
-  started_at: string;
-  /** ISO-8601 timestamp the TaskRun completed; null while still running. */
-  completed_at: string | null;
-  /** UUID of the Tasks `Task` the scout span ran inside. */
-  task_id?: string | null;
-  /** UUID of the Tasks `TaskRun`. Pairs with `task_id` to deep-link. */
-  task_run_id?: string | null;
-  /** Relative deep-link to the Tasks UI for this run, e.g. `/project/{team_id}/tasks/{task_id}?runId={task_run_id}`. */
-  task_url?: string | null;
-  /** One-paragraph close-out the scout wrote at end-of-run. Empty string for runs that errored before close-out. The dedupe key for non-emitting runs. */
-  summary: string;
-  /** Full `error_message` from the linked TaskRun, surfaced only for failed/cancelled runs (null otherwise, including on success). Use `failure_reason` for a concise scan-friendly summary. */
-  error?: string | null;
-  /** Concise derived reason the run didn't complete cleanly — the first line of `error` (bounded), or a status-derived fallback. Null unless the run terminated failed/cancelled. Read this to see at a glance *why* a run emitted nothing without pulling full stack traces. */
-  failure_reason?: string | null;
-  /** Number of findings this run actually emitted to the inbox. 0 for runs that investigated but surfaced nothing, or ran dry-run / before AI approval. `> 0` means the run produced at least one `Signal`. */
-  emitted_count: number;
-  /** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
-  emitted_finding_ids: SignalScoutRunSummaryEmittedFindingIdsList;
-  /** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
-  emitted_report_ids: SignalScoutRunSummaryEmittedReportIdsList;
-  /** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
-  edited_report_ids: SignalScoutRunSummaryEditedReportIdsList;
-  /** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
-  metadata: SignalScoutRunSummaryMetadata;
-}
-export const SignalScoutRunSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run_id: S.String,
-    skill_name: S.String,
-    skill_version: S.Number,
-    status: RunStatusEnum,
-    created_at: S.String,
-    started_at: S.String,
-    completed_at: S.NullOr(S.String),
-    task_id: S.optional(S.NullOr(S.String)),
-    task_run_id: S.optional(S.NullOr(S.String)),
-    task_url: S.optional(S.NullOr(S.String)),
-    summary: S.String,
-    error: S.optional(S.NullOr(S.String)),
-    failure_reason: S.optional(S.NullOr(S.String)),
-    emitted_count: S.Number,
-    emitted_finding_ids: SignalScoutRunSummaryEmittedFindingIdsList,
-    emitted_report_ids: SignalScoutRunSummaryEmittedReportIdsList,
-    edited_report_ids: SignalScoutRunSummaryEditedReportIdsList,
-    metadata: SignalScoutRunSummaryMetadata,
-  }),
-).annotate({
-  identifier: "SignalScoutRunSummary",
-}) as any as S.Schema<SignalScoutRunSummary>;
-
-export type SignalsScoutRunsListResponseBodyList = Array<SignalScoutRunSummary>;
-export const SignalsScoutRunsListResponseBodyList = /*@__PURE__*/ S.Array(
-  SignalScoutRunSummary,
-) as any as S.Schema<SignalsScoutRunsListResponseBodyList>;
-
-export type ListSignalScoutRunsResponse = SignalsScoutRunsListResponseBodyList;
-export const ListSignalScoutRunsResponse = /*@__PURE__*/ S.suspend(() =>
-  SignalsScoutRunsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListSignalScoutRunsResponse",
-}) as any as S.Schema<ListSignalScoutRunsResponse>;
-
-export interface ListSignalSourceConfigsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ListSignalSourceConfigsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/source_configs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListSignalSourceConfigsRequest",
-}) as any as S.Schema<ListSignalSourceConfigsRequest>;
-
-export type PaginatedSignalSourceConfigListResultsList =
-  Array<SignalSourceConfig>;
-export const PaginatedSignalSourceConfigListResultsList = /*@__PURE__*/ S.Array(
-  SignalSourceConfig,
-) as any as S.Schema<PaginatedSignalSourceConfigListResultsList>;
-
-export interface PaginatedSignalSourceConfigList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedSignalSourceConfigListResultsList;
-}
-export const PaginatedSignalSourceConfigList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedSignalSourceConfigListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedSignalSourceConfigList",
-}) as any as S.Schema<PaginatedSignalSourceConfigList>;
-
-/** One citation attached to a finding. Mirrors `SignalsScoutEvidenceEntry`. */
-export interface EvidenceEntry {
-  /** Source the citation came from (`error_tracking`, `session_replay`, `logs`, ...). */
-  source_product: string;
-  /** One-sentence prose about why this evidence supports the finding. */
-  summary: string;
-  /** Optional ID of the cited entity (issue id, recording id, log query id). */
-  entity_id?: string | null;
-}
-export const EvidenceEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source_product: S.String,
-    summary: S.String,
-    entity_id: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "EvidenceEntry" }) as any as S.Schema<EvidenceEntry>;
-
-/** Citations supporting the finding. Capped at 20 entries. */
-export type SignalsScoutEmitSignalRequestEvidenceList = Array<EvidenceEntry>;
-export const SignalsScoutEmitSignalRequestEvidenceList = /*@__PURE__*/ S.Array(
-  EvidenceEntry,
-) as any as S.Schema<SignalsScoutEmitSignalRequestEvidenceList>;
-
-/** * `P0` - P0 * `P1` - P1 * `P2` - P2 * `P3` - P3 * `P4` - P4 */
-export type AutonomyPriorityEnum = "P0" | "P1" | "P2" | "P3" | "P4";
-export const AutonomyPriorityEnum = /*@__PURE__*/ S.String;
-
-/** Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`). */
-export type SignalsScoutEmitSignalRequestDedupeKeysList = Array<string>;
-export const SignalsScoutEmitSignalRequestDedupeKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SignalsScoutEmitSignalRequestDedupeKeysList>;
-
-/** Optional category tags as lowercase kebab-case slugs (e.g. `cost-spike`, `silent-failure`), max 10. Reuse the vocabulary in your `tags:<domain>:taxonomy` scratchpad entry when a tag fits; coin a new slug when a genuinely new category emerges. Near-miss formats are normalized to slugs; persisted in the signal's `extra.tags` and on the emission row. */
-export type SignalsScoutEmitSignalRequestTagsList = Array<string>;
-export const SignalsScoutEmitSignalRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalsScoutEmitSignalRequestTagsList>;
-
-export interface TimeRange {
-  /** ISO-8601 inclusive lower bound for the finding's window. */
-  date_from: string;
-  /** ISO-8601 inclusive upper bound for the finding's window. */
-  date_to: string;
-}
-export const TimeRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date_from: S.String,
-    date_to: S.String,
-  }),
-).annotate({ identifier: "TimeRange" }) as any as S.Schema<TimeRange>;
-
-export interface SignalSignalScoutEmitRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the `SignalScoutRun` bridge row. */
-  run_id: string;
-  /** Canonical evidence-bundle prose. Becomes the signal's `description`. */
-  description: string;
-  /** Agent's confidence the finding is real in [0, 1]. Persisted in `extra`. */
-  confidence: number;
-  /** Citations supporting the finding. Capped at 20 entries. */
-  evidence: SignalsScoutEmitSignalRequestEvidenceList;
-  /** Optional one-line hypothesis the finding tests. */
-  hypothesis?: string | null;
-  /** Optional severity tag — one of P0, P1, P2, P3, P4. Informational only. * `P0` - P0 * `P1` - P1 * `P2` - P2 * `P3` - P3 * `P4` - P4 */
-  severity?: AutonomyPriorityEnum | (string & {}) | null;
-  /** Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`). */
-  dedupe_keys?: SignalsScoutEmitSignalRequestDedupeKeysList;
-  /** Optional category tags as lowercase kebab-case slugs (e.g. `cost-spike`, `silent-failure`), max 10. Reuse the vocabulary in your `tags:<domain>:taxonomy` scratchpad entry when a tag fits; coin a new slug when a genuinely new category emerges. Near-miss formats are normalized to slugs; persisted in the signal's `extra.tags` and on the emission row. */
-  tags?: SignalsScoutEmitSignalRequestTagsList;
-  /** Optional time window the finding refers to. */
-  time_range?: TimeRange | null;
-  /** Optional MCP trace id for cross-system debugging. */
-  mcp_trace_id?: string | null;
-  /** Stable id for this finding, baked into the signal's source_id for traceability. NOT a dedupe key — re-emitting the same id creates another signal. */
-  finding_id?: string | null;
-}
-export const SignalSignalScoutEmitRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    run_id: S.String.pipe(T.Label()),
-    description: S.String,
-    confidence: S.Number,
-    evidence: SignalsScoutEmitSignalRequestEvidenceList,
-    hypothesis: S.optional(S.NullOr(S.String)),
-    severity: S.optional(S.NullOr(AutonomyPriorityEnum)),
-    dedupe_keys: S.optional(SignalsScoutEmitSignalRequestDedupeKeysList),
-    tags: S.optional(SignalsScoutEmitSignalRequestTagsList),
-    time_range: S.optional(S.NullOr(TimeRange)),
-    mcp_trace_id: S.optional(S.NullOr(S.String)),
-    finding_id: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/emit-signal/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalSignalScoutEmitRequest",
-}) as any as S.Schema<SignalSignalScoutEmitRequest>;
-
-export interface EmitFindingResponse {
-  /** Stable id for the finding (echoed back from request, or generated). */
-  finding_id: string;
-  /** Whether `emit_signal` was actually fired. */
-  emitted: boolean;
-  /** `ai_processing_not_approved` | `source_disabled` | null when emitted normally. */
-  skipped_reason: string | null;
-  /** One-line, actionable next step when `skipped_reason` is set and the block is fixable (e.g. an org admin must approve AI data processing). Null when emitted normally or the skip isn't something the scout can act on. */
-  remediation: string | null;
-}
-export const EmitFindingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    finding_id: S.String,
-    emitted: S.Boolean,
-    skipped_reason: S.NullOr(S.String),
-    remediation: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "EmitFindingResponse",
-}) as any as S.Schema<EmitFindingResponse>;
-
-export interface SignalsProcessingPauseDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const SignalsProcessingPauseDestroyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/signals/processing/pause/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SignalsProcessingPauseDestroyRequest",
-}) as any as S.Schema<SignalsProcessingPauseDestroyRequest>;
-
-export interface PauseResponse {
-  /** Always 'paused'. */
-  status?: string;
-  /** The timestamp the pipeline is paused until. */
-  paused_until?: string;
-}
-export const PauseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    paused_until: S.optional(S.String),
-  }),
-).annotate({ identifier: "PauseResponse" }) as any as S.Schema<PauseResponse>;
-
-export interface SignalsReportArtefactsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
-  report_id: string;
-  /** A UUID string identifying this signal report artefact. */
-  id: string;
-}
-export const SignalsReportArtefactsDestroyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      report_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SignalsReportArtefactsDestroyRequest",
-}) as any as S.Schema<SignalsReportArtefactsDestroyRequest>;
-
-export interface SignalsReportArtefactsDestroyResponse {}
-export const SignalsReportArtefactsDestroyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SignalsReportArtefactsDestroyResponse",
-}) as any as S.Schema<SignalsReportArtefactsDestroyResponse>;
-
-export interface SignalsReportArtefactsDiffRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
-  report_id: string;
-  /** A UUID string identifying this signal report artefact. */
-  id: string;
-}
-export const SignalsReportArtefactsDiffRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    report_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/diff/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsReportArtefactsDiffRequest",
-}) as any as S.Schema<SignalsReportArtefactsDiffRequest>;
-
-/** Response for the `commit` artefact diff endpoint — the commit's branch rendered against the repository default branch. */
-export interface CommitDiffResponse {
-  /** Unified diff (patch) text of the branch against the repository default branch, from the GitHub compare API. */
-  diff: string;
-  /** True when the diff was too large to return in full and has been truncated. */
-  truncated: boolean;
-}
-export const CommitDiffResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diff: S.String,
-    truncated: S.Boolean,
-  }),
-).annotate({
-  identifier: "CommitDiffResponse",
-}) as any as S.Schema<CommitDiffResponse>;
-
-export interface SignalsReportArtefactsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
-  report_id: string;
-  /** A UUID string identifying this signal report artefact. */
-  id: string;
-}
-export const SignalsReportArtefactsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      report_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SignalsReportArtefactsRetrieveRequest",
-}) as any as S.Schema<SignalsReportArtefactsRetrieveRequest>;
-
-export interface SignalsReportPrChecksRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-}
-export const SignalsReportPrChecksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/{id}/pr_checks/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsReportPrChecksRequest",
-}) as any as S.Schema<SignalsReportPrChecksRequest>;
-
-/** One CI check on a pull request's head commit — a GitHub Actions check run or a legacy commit status, normalized to a common shape. */
-export interface PullRequestCheck {
-  /** Check run name or status context. */
-  name: string;
-  /** Lifecycle state: 'queued', 'in_progress', or 'completed'. */
-  status: string | null;
-  /** Outcome once completed: 'success', 'failure', 'neutral', 'cancelled', 'skipped', 'timed_out', or 'action_required'. Null while still running. */
-  conclusion: string | null;
-  /** Link to the check run / status detail on GitHub. */
-  url: string | null;
-}
-export const PullRequestCheck = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    status: S.NullOr(S.String),
-    conclusion: S.NullOr(S.String),
-    url: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PullRequestCheck",
-}) as any as S.Schema<PullRequestCheck>;
-
-export type PullRequestChecksResponseChecksList = Array<PullRequestCheck>;
-export const PullRequestChecksResponseChecksList = /*@__PURE__*/ S.Array(
-  PullRequestCheck,
-) as any as S.Schema<PullRequestChecksResponseChecksList>;
-
-/** Response for the PR checks endpoint — the CI status of a report's implementation PR. */
-export interface PullRequestChecksResponse {
-  checks: PullRequestChecksResponseChecksList;
-}
-export const PullRequestChecksResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    checks: PullRequestChecksResponseChecksList,
-  }),
-).annotate({
-  identifier: "PullRequestChecksResponse",
-}) as any as S.Schema<PullRequestChecksResponse>;
-
-export interface SignalsReportPrCommentsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-}
-export const SignalsReportPrCommentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/{id}/pr_comments/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsReportPrCommentsRequest",
-}) as any as S.Schema<SignalsReportPrCommentsRequest>;
-
-export type PullRequestCommentsResponseCommentsList = Array<PullRequestComment>;
-export const PullRequestCommentsResponseCommentsList = /*@__PURE__*/ S.Array(
-  PullRequestComment,
-) as any as S.Schema<PullRequestCommentsResponseCommentsList>;
-
-/** Response for the PR comments endpoint — conversation and review comments merged chronologically. */
-export interface PullRequestCommentsResponse {
-  comments: PullRequestCommentsResponseCommentsList;
-}
-export const PullRequestCommentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comments: PullRequestCommentsResponseCommentsList,
-  }),
-).annotate({
-  identifier: "PullRequestCommentsResponse",
-}) as any as S.Schema<PullRequestCommentsResponse>;
-
-export interface SignalsReportPrReviewCommentDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-  comment_id: string;
-}
-export const SignalsReportPrReviewCommentDestroyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      comment_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SignalsReportPrReviewCommentDestroyRequest",
-  }) as any as S.Schema<SignalsReportPrReviewCommentDestroyRequest>;
-
-export interface SignalsReportPrReviewCommentDestroyResponse {}
-export const SignalsReportPrReviewCommentDestroyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SignalsReportPrReviewCommentDestroyResponse",
-  }) as any as S.Schema<SignalsReportPrReviewCommentDestroyResponse>;
-
-export interface SignalsReportPrReviewCommentReactionDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-  comment_id: string;
-  reaction_id: string;
-}
-export const SignalsReportPrReviewCommentReactionDestroyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      comment_id: S.String.pipe(T.Label()),
-      reaction_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/reactions/{reaction_id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SignalsReportPrReviewCommentReactionDestroyRequest",
-  }) as any as S.Schema<SignalsReportPrReviewCommentReactionDestroyRequest>;
-
-export interface SignalsReportPrReviewCommentReactionDestroyResponse {}
-export const SignalsReportPrReviewCommentReactionDestroyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SignalsReportPrReviewCommentReactionDestroyResponse",
-  }) as any as S.Schema<SignalsReportPrReviewCommentReactionDestroyResponse>;
-
-export interface SignalsReportsRefundSummaryRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const SignalsReportsRefundSummaryRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -3645,9 +1756,9 @@ export const SignalsReportsRefundSummaryRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "SignalsReportsRefundSummaryRetrieveRequest",
-  }) as any as S.Schema<SignalsReportsRefundSummaryRetrieveRequest>;
+).annotate({
+  identifier: "GetSignalsReportsRefundSummaryRequest",
+}) as any as S.Schema<GetSignalsReportsRefundSummaryRequest>;
 
 export interface SignalReportRefundSummaryResponse {
   /** Number of credited-path refunds across the whole organization whose refunded PR run falls in the current billing period. Excluded-path refunds never reach billing usage, so they are deliberately absent. */
@@ -3670,48 +1781,26 @@ export const SignalReportRefundSummaryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalReportRefundSummaryResponse",
 }) as any as S.Schema<SignalReportRefundSummaryResponse>;
 
-export interface SignalsReportsRetrieveRequest {
+export interface GetSignalsReportsSignalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
   id: string;
 }
-export const SignalsReportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSignalsReportsSignalRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/signals/reports/{id}/",
+      uri: "/api/projects/{project_id}/signals/reports/{id}/signals/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SignalsReportsRetrieveRequest",
-}) as any as S.Schema<SignalsReportsRetrieveRequest>;
-
-export interface SignalsReportsSignalsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-}
-export const SignalsReportsSignalsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/signals/reports/{id}/signals/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SignalsReportsSignalsRetrieveRequest",
-}) as any as S.Schema<SignalsReportsSignalsRetrieveRequest>;
+  identifier: "GetSignalsReportsSignalRequest",
+}) as any as S.Schema<GetSignalsReportsSignalRequest>;
 
 /** * `session_replay` - session_replay * `llm_analytics` - llm_analytics * `github` - github * `linear` - linear * `jira` - jira * `zendesk` - zendesk * `conversations` - conversations * `error_tracking` - error_tracking * `endpoints` - endpoints * `pganalyze` - pganalyze * `signals_scout` - signals_scout * `logs` - logs * `health_checks` - health_checks * `replay_vision` - replay_vision * `analytics` - analytics * `freshdesk` - freshdesk * `freshservice` - freshservice * `front` - front * `gorgias` - gorgias * `kustomer` - kustomer * `dixa` - dixa * `plain` - plain * `gitlab` - gitlab * `gitea` - gitea * `shortcut` - shortcut * `sentry` - sentry * `rollbar` - rollbar * `bugsnag` - bugsnag * `honeybadger` - honeybadger * `raygun` - raygun * `snyk` - snyk * `sonarqube` - sonarqube * `semgrep` - semgrep * `rapid7_insightvm` - rapid7_insightvm * `featurebase` - featurebase * `frill` - frill * `aha` - aha * `uservoice` - uservoice * `productboard` - productboard * `canny` - canny * `asknicely` - asknicely * `retently` - retently * `appfigures` - appfigures * `appfollow` - appfollow * `judgeme_reviews` - judgeme_reviews * `intercom` - intercom * `hubspot` - hubspot * `engineering_analytics` - engineering_analytics * `google_search_console` - google_search_console */
 export type SignalSourceProduct =
@@ -5372,6 +3461,2502 @@ export const ReportSignalsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReportSignalsResponse",
 }) as any as S.Schema<ReportSignalsResponse>;
 
+export interface GetSignalsScoutMetadataRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetSignalsScoutMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/metadata/current/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSignalsScoutMetadataRequest",
+}) as any as S.Schema<GetSignalsScoutMetadataRequest>;
+
+/** A team's enforced scout run caps and current usage. These are the values the coordinator actually applies at dispatch (resolved per-team override → fleet-wide default → code constant), so the UI can show the real throttle rather than what a user thinks they configured. */
+export interface ScoutLimits {
+  /** Most scout runs the team can start in a single 30-minute coordinator tick. */
+  max_runs_per_tick: number;
+  /** Most scout runs the team can start per rolling 24 hours, or null when uncapped. */
+  max_runs_per_day: number | null;
+  /** Scout runs the team has started in the trailing 24 hours. */
+  runs_today: number;
+  /** Runs still allowed in the trailing 24h window (max_runs_per_day − runs_today), or null when uncapped. */
+  runs_remaining_today: number | null;
+}
+export const ScoutLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    max_runs_per_tick: S.Number,
+    max_runs_per_day: S.NullOr(S.Number),
+    runs_today: S.Number,
+    runs_remaining_today: S.NullOr(S.Number),
+  }),
+).annotate({ identifier: "ScoutLimits" }) as any as S.Schema<ScoutLimits>;
+
+/** Team-scoped scout metadata for the inbox / Code-app UIs: enrollment, the alpha banner, and the enforced limits. Sourced from the `signals-scout` flag payload so the banner and caps can change without a deploy to either app. */
+export interface ScoutMetadata {
+  /** Whether this project runs scouts. True when the project is in the signals-scout flag's enrollment set — either listed explicitly in guaranteed_team_ids or covered by the "*" wildcard (every project that turns scouts on) — and not in skip_team_ids. */
+  enrolled: boolean;
+  /** Free-form announcement banner to show above the scout UI (e.g. alpha run-limit notice), or null when unset. */
+  banner_message: string | null;
+  /** The team's enforced scout run caps and current usage. */
+  limits: ScoutLimits;
+}
+export const ScoutMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enrolled: S.Boolean,
+    banner_message: S.NullOr(S.String),
+    limits: ScoutLimits,
+  }),
+).annotate({ identifier: "ScoutMetadata" }) as any as S.Schema<ScoutMetadata>;
+
+export interface GetSignalsScoutProjectProfileRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** When true, skip the cache and rebuild the profile from authoritative sources before responding. Use after seeding events, importing data, or any other change the caller knows just landed but hasn't surfaced through natural cache expiry yet. Honored only for the internal scout token — public read callers get the cached profile regardless. Concurrent forced rebuilds are serialized by the team-keyed advisory lock — at most one extra `build_inventory` per simultaneous request. */
+  force_refresh?: boolean;
+}
+export const GetSignalsScoutProjectProfileRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      force_refresh: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/signals/scout/project_profile/current/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetSignalsScoutProjectProfileRequest",
+}) as any as S.Schema<GetSignalsScoutProjectProfileRequest>;
+
+/** Registered app URLs for this team (toolbar / replay). The team's actual product surface; complements `$pageview.$host` discovery via `read-data-schema`. */
+export type ProjectContextAppUrlsList = Array<string>;
+export const ProjectContextAppUrlsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProjectContextAppUrlsList>;
+
+/** `inventory.project_context` — free-form orientation about the project's product. */
+export interface ProjectContext {
+  /** Human-set product description on the project (max 1000 chars). When present, the most direct "what does this team's product do" answer. `null` when unset. */
+  product_description: string | null;
+  /** Registered app URLs for this team (toolbar / replay). The team's actual product surface; complements `$pageview.$host` discovery via `read-data-schema`. */
+  app_urls: ProjectContextAppUrlsList;
+}
+export const ProjectContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    product_description: S.NullOr(S.String),
+    app_urls: ProjectContextAppUrlsList,
+  }),
+).annotate({ identifier: "ProjectContext" }) as any as S.Schema<ProjectContext>;
+
+/** Product keys this team has completed onboarding for, sorted alphabetically. */
+export type ProjectProfileInventoryProductsInUseList = Array<string>;
+export const ProjectProfileInventoryProductsInUseList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProjectProfileInventoryProductsInUseList>;
+
+/** One row in `inventory.product_intents`. */
+export interface ProductIntentEntry {
+  /** Product key the team signaled intent to use. */
+  product_type: string;
+  /** ISO-8601 timestamp the team activated the product, or null if intent only. */
+  activated_at: string | null;
+  /** ISO-8601 timestamp the intent was first recorded. */
+  created_at: string | null;
+}
+export const ProductIntentEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    product_type: S.String,
+    activated_at: S.NullOr(S.String),
+    created_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ProductIntentEntry",
+}) as any as S.Schema<ProductIntentEntry>;
+
+/** Products the team signaled intent to use; useful for spotting stuck onboardings. */
+export type ProjectProfileInventoryProductIntentsList =
+  Array<ProductIntentEntry>;
+export const ProjectProfileInventoryProductIntentsList = /*@__PURE__*/ S.Array(
+  ProductIntentEntry,
+) as any as S.Schema<ProjectProfileInventoryProductIntentsList>;
+
+/** One row in `inventory.integrations`. Sensitive config is intentionally excluded. */
+export interface IntegrationEntry {
+  /** Integration kind (e.g. `slack`, `github`, `linear`). */
+  kind: string;
+  /** ISO-8601 timestamp the integration was connected. */
+  created_at: string | null;
+}
+export const IntegrationEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.String,
+    created_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationEntry",
+}) as any as S.Schema<IntegrationEntry>;
+
+/** Connected integrations (kind + connection time only — config never surfaced). */
+export type ProjectProfileInventoryIntegrationsList = Array<IntegrationEntry>;
+export const ProjectProfileInventoryIntegrationsList = /*@__PURE__*/ S.Array(
+  IntegrationEntry,
+) as any as S.Schema<ProjectProfileInventoryIntegrationsList>;
+
+/** One row in `inventory.external_data_sources`. */
+export interface ExternalDataSourceEntry {
+  /** Warehouse source type (e.g. `Stripe`, `Postgres`, `BigQuery`). */
+  source_type: string;
+  /** Current sync status (`Running`, `Failed`, `Paused`, etc.). */
+  status: string;
+  /** Schema prefix used by this source, if any. */
+  prefix: string;
+  /** ISO-8601 timestamp the source was connected. */
+  created_at: string | null;
+  /** ISO-8601 timestamp of the most recent completed sync job, or null if this source has never completed a sync. Use this to tell a healthy source apart from one stuck in `Running` that has imported zero rows — `status` alone conflates the two. */
+  last_run_at: string | null;
+  /** Newest schema-level sync error for this source, or null if no schema is erroring. */
+  latest_error: string | null;
+}
+export const ExternalDataSourceEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source_type: S.String,
+    status: S.String,
+    prefix: S.String,
+    created_at: S.NullOr(S.String),
+    last_run_at: S.NullOr(S.String),
+    latest_error: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ExternalDataSourceEntry",
+}) as any as S.Schema<ExternalDataSourceEntry>;
+
+/** Connected warehouse sources (excludes soft-deleted). */
+export type ProjectProfileInventoryExternalDataSourcesList =
+  Array<ExternalDataSourceEntry>;
+export const ProjectProfileInventoryExternalDataSourcesList =
+  /*@__PURE__*/ S.Array(
+    ExternalDataSourceEntry,
+  ) as any as S.Schema<ProjectProfileInventoryExternalDataSourcesList>;
+
+/** One row in either bucket of `inventory.signal_source_configs`. */
+export interface SignalSourceConfigEntry {
+  /** Source product the config applies to. */
+  source_product: string;
+  /** Source type within the product. */
+  source_type: string;
+}
+export const SignalSourceConfigEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source_product: S.String,
+    source_type: S.String,
+  }),
+).annotate({
+  identifier: "SignalSourceConfigEntry",
+}) as any as S.Schema<SignalSourceConfigEntry>;
+
+/** Source configs the team has explicitly enabled. */
+export type SignalSourceConfigsBucketsEnabledList =
+  Array<SignalSourceConfigEntry>;
+export const SignalSourceConfigsBucketsEnabledList = /*@__PURE__*/ S.Array(
+  SignalSourceConfigEntry,
+) as any as S.Schema<SignalSourceConfigsBucketsEnabledList>;
+
+/** Source configs the team has explicitly disabled (different from never wired up). */
+export type SignalSourceConfigsBucketsDisabledList =
+  Array<SignalSourceConfigEntry>;
+export const SignalSourceConfigsBucketsDisabledList = /*@__PURE__*/ S.Array(
+  SignalSourceConfigEntry,
+) as any as S.Schema<SignalSourceConfigsBucketsDisabledList>;
+
+/** `inventory.signal_source_configs` split into enabled and disabled buckets. */
+export interface SignalSourceConfigsBuckets {
+  /** Source configs the team has explicitly enabled. */
+  enabled: SignalSourceConfigsBucketsEnabledList;
+  /** Source configs the team has explicitly disabled (different from never wired up). */
+  disabled: SignalSourceConfigsBucketsDisabledList;
+}
+export const SignalSourceConfigsBuckets = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: SignalSourceConfigsBucketsEnabledList,
+    disabled: SignalSourceConfigsBucketsDisabledList,
+  }),
+).annotate({
+  identifier: "SignalSourceConfigsBuckets",
+}) as any as S.Schema<SignalSourceConfigsBuckets>;
+
+/** `inventory.emit_eligibility` — whether scout findings can reach the inbox for this team. */
+export interface EmitEligibility {
+  /** Whether the organization has approved AI data processing (an org-level gate on all scout emits). */
+  ai_processing_approved: boolean;
+  /** Whether the `signals_scout` signal source is enabled for this team. */
+  source_enabled: boolean;
+  /** True only when both team/org-level gates pass, so scout findings (signal and report channels alike) actually reach the inbox. When False, every emit is silently dropped — quick-close instead of doing throwaway investigation. Does not account for a scout's own dry-run `emit` toggle, which is per-config, not team-wide. */
+  can_emit: boolean;
+  /** One-line next step to unblock emits when `can_emit` is False; null when emits can flow. */
+  remediation: string | null;
+}
+export const EmitEligibility = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ai_processing_approved: S.Boolean,
+    source_enabled: S.Boolean,
+    can_emit: S.Boolean,
+    remediation: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "EmitEligibility",
+}) as any as S.Schema<EmitEligibility>;
+
+/** One scout in either bucket of `inventory.scout_fleet`. */
+export interface ScoutFleetEntry {
+  /** The `signals-scout-*` skill this config schedules. */
+  skill_name: string;
+  /** Minutes between runs when no cron schedule is set (default 1440, every 24 hours). */
+  run_interval_minutes: number;
+  /** Optional cron expression, evaluated in the project timezone. Takes precedence over the interval. */
+  run_cron_schedule: string | null;
+  /** Whether this scout's findings actually reach the inbox. False means dry-run: it runs and logs but emits nothing, so its silence says nothing about the surface it watches. */
+  emit: boolean;
+  /** ISO-8601 timestamp the coordinator last dispatched this scout, or null if it has never run. */
+  last_run_at: string | null;
+  /** ISO-8601 timestamp this scout last produced output on either channel (a finding, or an authored/edited report), within `emitted_lookback_days`. Null means quiet for at least that window, not never. */
+  last_emitted_at: string | null;
+  /** Why this scout is in the `disabled` bucket: `turned_off` (a person or seed posture set it off), `auto_paused` (the system paused it), or `skill_unavailable` (left on, but its skill was deleted, superseded, or withheld, so it never dispatches). Null for scouts that actually run. */
+  not_running_reason: string | null;
+  /** The cause behind an `auto_paused` entry: `no_output`, `ignored`, or `repeated_failures`. Null for every other entry. */
+  pause_reason: string | null;
+}
+export const ScoutFleetEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill_name: S.String,
+    run_interval_minutes: S.Number,
+    run_cron_schedule: S.NullOr(S.String),
+    emit: S.Boolean,
+    last_run_at: S.NullOr(S.String),
+    last_emitted_at: S.NullOr(S.String),
+    not_running_reason: S.NullOr(S.String),
+    pause_reason: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ScoutFleetEntry",
+}) as any as S.Schema<ScoutFleetEntry>;
+
+/** Scouts that actually run on this team: enabled, with a live skill the coordinator dispatches. */
+export type ScoutFleetEnabledList = Array<ScoutFleetEntry>;
+export const ScoutFleetEnabledList = /*@__PURE__*/ S.Array(
+  ScoutFleetEntry,
+) as any as S.Schema<ScoutFleetEnabledList>;
+
+/** Scouts that do not run, each carrying a `not_running_reason` — turned off, or left on with a skill that can't dispatch. Different from a surface no scout ever covered. */
+export type ScoutFleetDisabledList = Array<ScoutFleetEntry>;
+export const ScoutFleetDisabledList = /*@__PURE__*/ S.Array(
+  ScoutFleetEntry,
+) as any as S.Schema<ScoutFleetDisabledList>;
+
+/** `inventory.scout_fleet` — the other scouts running on this project, split by enablement. */
+export interface ScoutFleet {
+  /** Scouts that actually run on this team: enabled, with a live skill the coordinator dispatches. */
+  enabled: ScoutFleetEnabledList;
+  /** Scouts that do not run, each carrying a `not_running_reason` — turned off, or left on with a skill that can't dispatch. Different from a surface no scout ever covered. */
+  disabled: ScoutFleetDisabledList;
+  /** The window `last_emitted_at` was resolved over, so a null reads as 'quiet', not 'never'. */
+  emitted_lookback_days: number;
+}
+export const ScoutFleet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: ScoutFleetEnabledList,
+    disabled: ScoutFleetDisabledList,
+    emitted_lookback_days: S.Number,
+  }),
+).annotate({ identifier: "ScoutFleet" }) as any as S.Schema<ScoutFleet>;
+
+/** One bucket in `inventory.existing_inbox_reports.by_status`. */
+export interface InboxReportStatusBucket {
+  /** Report status (e.g. `potential`, `candidate`, `ready`). */
+  status: string;
+  /** Number of reports in this status (excludes deleted/suppressed). */
+  count: number;
+}
+export const InboxReportStatusBucket = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    count: S.Number,
+  }),
+).annotate({
+  identifier: "InboxReportStatusBucket",
+}) as any as S.Schema<InboxReportStatusBucket>;
+
+/** Per-status breakdown of inbox reports. */
+export type ExistingInboxReportsByStatusList = Array<InboxReportStatusBucket>;
+export const ExistingInboxReportsByStatusList = /*@__PURE__*/ S.Array(
+  InboxReportStatusBucket,
+) as any as S.Schema<ExistingInboxReportsByStatusList>;
+
+/** `inventory.existing_inbox_reports` — what's already been surfaced to the inbox. */
+export interface ExistingInboxReports {
+  /** Total non-deleted, non-suppressed reports for this team. */
+  total: number;
+  /** Per-status breakdown of inbox reports. */
+  by_status: ExistingInboxReportsByStatusList;
+}
+export const ExistingInboxReports = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total: S.Number,
+    by_status: ExistingInboxReportsByStatusList,
+  }),
+).annotate({
+  identifier: "ExistingInboxReports",
+}) as any as S.Schema<ExistingInboxReports>;
+
+/** One row in `inventory.recent_activity.by_scope`. */
+export interface ScopeActivityEntry {
+  /** Activity-log scope (entity type), e.g. `FeatureFlag`, `Dashboard`, `Survey`. */
+  scope: string;
+  /** Total activity-log entries for this scope in the window (write velocity). */
+  edits: number;
+  /** Distinct users who edited this scope in the window. */
+  users: number;
+  /** ISO-8601 timestamp of the most recent edit in the window. */
+  last_edit: string | null;
+}
+export const ScopeActivityEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String,
+    edits: S.Number,
+    users: S.Number,
+    last_edit: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ScopeActivityEntry",
+}) as any as S.Schema<ScopeActivityEntry>;
+
+/** Per-scope activity rows, busiest scope first. Triage which entity type the team has worked in lately. */
+export type RecentActivityByScopeList = Array<ScopeActivityEntry>;
+export const RecentActivityByScopeList = /*@__PURE__*/ S.Array(
+  ScopeActivityEntry,
+) as any as S.Schema<RecentActivityByScopeList>;
+
+/** `inventory.recent_activity` — per-scope counts off the activity log. */
+export interface RecentActivity {
+  /** Lookback window in days the per-scope counts cover. */
+  window_days: number;
+  /** Per-scope activity rows, busiest scope first. Triage which entity type the team has worked in lately. */
+  by_scope: RecentActivityByScopeList;
+}
+export const RecentActivity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    window_days: S.Number,
+    by_scope: RecentActivityByScopeList,
+  }),
+).annotate({ identifier: "RecentActivity" }) as any as S.Schema<RecentActivity>;
+
+/** GitHub logins on the report before the human edit (lowercased). */
+export type ReviewerCorrectionEntryBeforeList = Array<string>;
+export const ReviewerCorrectionEntryBeforeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReviewerCorrectionEntryBeforeList>;
+
+/** GitHub logins on the report after the human edit (lowercased). */
+export type ReviewerCorrectionEntryAfterList = Array<string>;
+export const ReviewerCorrectionEntryAfterList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReviewerCorrectionEntryAfterList>;
+
+/** One row in `inventory.recent_reviewer_corrections.corrections`. */
+export interface ReviewerCorrectionEntry {
+  /** UUID of the report whose reviewers a human edited. */
+  report_id: string;
+  /** Report title at the time of the edit. */
+  report_title: string | null;
+  /** GitHub logins on the report before the human edit (lowercased). */
+  before: ReviewerCorrectionEntryBeforeList;
+  /** GitHub logins on the report after the human edit (lowercased). */
+  after: ReviewerCorrectionEntryAfterList;
+  /** ISO-8601 timestamp of the edit. */
+  at: string | null;
+}
+export const ReviewerCorrectionEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    report_id: S.String,
+    report_title: S.NullOr(S.String),
+    before: ReviewerCorrectionEntryBeforeList,
+    after: ReviewerCorrectionEntryAfterList,
+    at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ReviewerCorrectionEntry",
+}) as any as S.Schema<ReviewerCorrectionEntry>;
+
+/** Human reviewer edits, newest first. A human swapping a report's suggested reviewers is authoritative ownership precedent — route to who they chose. */
+export type RecentReviewerCorrectionsCorrectionsList =
+  Array<ReviewerCorrectionEntry>;
+export const RecentReviewerCorrectionsCorrectionsList = /*@__PURE__*/ S.Array(
+  ReviewerCorrectionEntry,
+) as any as S.Schema<RecentReviewerCorrectionsCorrectionsList>;
+
+/** `inventory.recent_reviewer_corrections` — human edits to report reviewer lists. */
+export interface RecentReviewerCorrections {
+  /** Lookback window in days the corrections cover. */
+  window_days: number;
+  /** Human reviewer edits, newest first. A human swapping a report's suggested reviewers is authoritative ownership precedent — route to who they chose. */
+  corrections: RecentReviewerCorrectionsCorrectionsList;
+}
+export const RecentReviewerCorrections = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    window_days: S.Number,
+    corrections: RecentReviewerCorrectionsCorrectionsList,
+  }),
+).annotate({
+  identifier: "RecentReviewerCorrections",
+}) as any as S.Schema<RecentReviewerCorrections>;
+
+/** One row in `inventory.recent_dashboards`. */
+export interface RecentDashboardEntry {
+  /** Dashboard ID — pass to `dashboard-get` to pull the full payload. */
+  id: number;
+  /** Dashboard name (may be blank if unnamed). */
+  name: string;
+  /** ISO-8601 timestamp of the most recent view in the PostHog UI. */
+  last_accessed_at: string | null;
+  /** ISO-8601 timestamp of the most recent data refresh. Distinct from access — a dashboard can be refreshed without anyone viewing it. */
+  last_refresh: string | null;
+  /** ISO-8601 timestamp the dashboard was created. */
+  created_at: string | null;
+}
+export const RecentDashboardEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    name: S.String,
+    last_accessed_at: S.NullOr(S.String),
+    last_refresh: S.NullOr(S.String),
+    created_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentDashboardEntry",
+}) as any as S.Schema<RecentDashboardEntry>;
+
+/** Up to 20 dashboards on this team sorted by `last_accessed_at` desc — what the team is currently looking at, not necessarily the most-trafficked. We don't have per-dashboard view counts in Postgres, only the timestamp of the most recent access. */
+export type ProjectProfileInventoryRecentDashboardsList =
+  Array<RecentDashboardEntry>;
+export const ProjectProfileInventoryRecentDashboardsList =
+  /*@__PURE__*/ S.Array(
+    RecentDashboardEntry,
+  ) as any as S.Schema<ProjectProfileInventoryRecentDashboardsList>;
+
+/** One row in `inventory.recent_surveys.recent`. */
+export interface RecentSurveyEntry {
+  /** Survey UUID — pass to `survey-get` for full question shape. */
+  id: string;
+  /** Survey name (may be blank if unnamed). */
+  name: string;
+  /** Survey mode: `popover`, `widget`, `external_survey`, or `api`. */
+  type: string;
+  /** Derived status: `draft`, `running`, `stopped`, or `archived`. */
+  status: string;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentSurveyEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    type: S.String,
+    status: S.String,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentSurveyEntry",
+}) as any as S.Schema<RecentSurveyEntry>;
+
+/** The 5 most recently updated surveys. */
+export type RecentSurveysRecentList = Array<RecentSurveyEntry>;
+export const RecentSurveysRecentList = /*@__PURE__*/ S.Array(
+  RecentSurveyEntry,
+) as any as S.Schema<RecentSurveysRecentList>;
+
+/** `inventory.recent_surveys` — total + active count, plus the 5 most recently modified. */
+export interface RecentSurveys {
+  /** Total surveys on the team. */
+  total_count: number;
+  /** Surveys that are live (not archived, started, and not yet ended). */
+  active_count: number;
+  /** The 5 most recently updated surveys. */
+  recent: RecentSurveysRecentList;
+}
+export const RecentSurveys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    active_count: S.Number,
+    recent: RecentSurveysRecentList,
+  }),
+).annotate({ identifier: "RecentSurveys" }) as any as S.Schema<RecentSurveys>;
+
+/** One row in `inventory.recent_feature_flags.recent`. */
+export interface RecentFeatureFlagEntry {
+  /** Feature flag ID. */
+  id: number;
+  /** Flag key used in code (`posthog.isFeatureEnabled('<key>')`). */
+  key: string;
+  /** Human-set description; falls back to the key when blank. */
+  name: string;
+  /** Whether the flag is currently evaluating (a user could be hitting it). */
+  active: boolean;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentFeatureFlagEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    key: S.String,
+    name: S.String,
+    active: S.Boolean,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentFeatureFlagEntry",
+}) as any as S.Schema<RecentFeatureFlagEntry>;
+
+/** The 5 most recently updated non-deleted flags. */
+export type RecentFeatureFlagsRecentList = Array<RecentFeatureFlagEntry>;
+export const RecentFeatureFlagsRecentList = /*@__PURE__*/ S.Array(
+  RecentFeatureFlagEntry,
+) as any as S.Schema<RecentFeatureFlagsRecentList>;
+
+/** `inventory.recent_feature_flags` — total + active count, plus the 5 most recently modified. */
+export interface RecentFeatureFlags {
+  /** Total non-deleted feature flags on the team. */
+  total_count: number;
+  /** Flags currently evaluating (`active=true`). */
+  active_count: number;
+  /** The 5 most recently updated non-deleted flags. */
+  recent: RecentFeatureFlagsRecentList;
+}
+export const RecentFeatureFlags = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    active_count: S.Number,
+    recent: RecentFeatureFlagsRecentList,
+  }),
+).annotate({
+  identifier: "RecentFeatureFlags",
+}) as any as S.Schema<RecentFeatureFlags>;
+
+/** One row in `inventory.recent_experiments.recent`. */
+export interface RecentExperimentEntry {
+  /** Experiment ID. */
+  id: number;
+  /** Experiment name. */
+  name: string;
+  /** Derived status: `draft`, `running`, `stopped`, or `archived`. */
+  status: string;
+  /** Key of the experiment's feature flag — cross-ref into `recent_feature_flags`. Null if unlinked. */
+  feature_flag_key: string | null;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentExperimentEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    name: S.String,
+    status: S.String,
+    feature_flag_key: S.NullOr(S.String),
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentExperimentEntry",
+}) as any as S.Schema<RecentExperimentEntry>;
+
+/** The 5 most recently updated experiments. */
+export type RecentExperimentsRecentList = Array<RecentExperimentEntry>;
+export const RecentExperimentsRecentList = /*@__PURE__*/ S.Array(
+  RecentExperimentEntry,
+) as any as S.Schema<RecentExperimentsRecentList>;
+
+/** `inventory.recent_experiments` — total + currently-running count, plus the 5 most recently modified. */
+export interface RecentExperiments {
+  /** Total experiments on the team. */
+  total_count: number;
+  /** Experiments currently running (started, not ended, not archived). */
+  running_count: number;
+  /** The 5 most recently updated experiments. */
+  recent: RecentExperimentsRecentList;
+}
+export const RecentExperiments = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    running_count: S.Number,
+    recent: RecentExperimentsRecentList,
+  }),
+).annotate({
+  identifier: "RecentExperiments",
+}) as any as S.Schema<RecentExperiments>;
+
+/** One row in `inventory.recent_alerts.recent`. */
+export interface RecentAlertEntry {
+  /** Alert configuration UUID. */
+  id: string;
+  /** Alert name. */
+  name: string;
+  /** Whether the alert is currently armed. */
+  enabled: boolean;
+  /** Alert state (e.g. `not_firing`, `firing`). */
+  state: string;
+  /** How often the alert is evaluated (e.g. `daily`, `hourly`); null if unset. */
+  calculation_interval: string | null;
+  /** ID of the insight the alert watches; null if none. */
+  insight_id: number | null;
+  /** ISO-8601 creation timestamp. */
+  created_at: string | null;
+}
+export const RecentAlertEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    enabled: S.Boolean,
+    state: S.String,
+    calculation_interval: S.NullOr(S.String),
+    insight_id: S.NullOr(S.Number),
+    created_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentAlertEntry",
+}) as any as S.Schema<RecentAlertEntry>;
+
+/** The 5 most recently created alerts. */
+export type RecentAlertsRecentList = Array<RecentAlertEntry>;
+export const RecentAlertsRecentList = /*@__PURE__*/ S.Array(
+  RecentAlertEntry,
+) as any as S.Schema<RecentAlertsRecentList>;
+
+/** `inventory.recent_alerts` — total + currently-enabled count, plus the 5 most recently created. */
+export interface RecentAlerts {
+  /** Total insight alerts on the team. */
+  total_count: number;
+  /** Alerts currently armed (`enabled=true`). */
+  enabled_count: number;
+  /** The 5 most recently created alerts. */
+  recent: RecentAlertsRecentList;
+}
+export const RecentAlerts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    enabled_count: S.Number,
+    recent: RecentAlertsRecentList,
+  }),
+).annotate({ identifier: "RecentAlerts" }) as any as S.Schema<RecentAlerts>;
+
+/** One row in `inventory.recent_hog_functions.recent`. */
+export interface RecentHogFunctionEntry {
+  /** Hog function UUID. */
+  id: string;
+  /** Hog function name. */
+  name: string;
+  /** Function type: `destination`, `transformation`, `site_app`, etc. Null if unset. */
+  type: string | null;
+  /** Function kind sub-classifier; null if unset. */
+  kind: string | null;
+  /** Whether the function is currently enabled. */
+  enabled: boolean;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentHogFunctionEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    type: S.NullOr(S.String),
+    kind: S.NullOr(S.String),
+    enabled: S.Boolean,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentHogFunctionEntry",
+}) as any as S.Schema<RecentHogFunctionEntry>;
+
+/** The 5 most recently updated hog functions. */
+export type RecentHogFunctionsRecentList = Array<RecentHogFunctionEntry>;
+export const RecentHogFunctionsRecentList = /*@__PURE__*/ S.Array(
+  RecentHogFunctionEntry,
+) as any as S.Schema<RecentHogFunctionsRecentList>;
+
+/** `inventory.recent_hog_functions` — total + enabled count, plus the 5 most recently modified. */
+export interface RecentHogFunctions {
+  /** Total non-deleted hog functions on the team. */
+  total_count: number;
+  /** Hog functions currently enabled (`enabled=true`). */
+  enabled_count: number;
+  /** The 5 most recently updated hog functions. */
+  recent: RecentHogFunctionsRecentList;
+}
+export const RecentHogFunctions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    enabled_count: S.Number,
+    recent: RecentHogFunctionsRecentList,
+  }),
+).annotate({
+  identifier: "RecentHogFunctions",
+}) as any as S.Schema<RecentHogFunctions>;
+
+/** One row in `inventory.recent_hog_flows.recent`. */
+export interface RecentHogFlowEntry {
+  /** Hog flow UUID. */
+  id: string;
+  /** Hog flow name. */
+  name: string;
+  /** Flow lifecycle state (e.g. `draft`, `active`, `archived`). */
+  status: string;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentHogFlowEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    status: S.String,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentHogFlowEntry",
+}) as any as S.Schema<RecentHogFlowEntry>;
+
+/** The 5 most recently updated hog flows. */
+export type RecentHogFlowsRecentList = Array<RecentHogFlowEntry>;
+export const RecentHogFlowsRecentList = /*@__PURE__*/ S.Array(
+  RecentHogFlowEntry,
+) as any as S.Schema<RecentHogFlowsRecentList>;
+
+/** `inventory.recent_hog_flows` — total + non-archived count, plus the 5 most recently modified. */
+export interface RecentHogFlows {
+  /** Total hog flows on the team. */
+  total_count: number;
+  /** Hog flows that are not archived. */
+  active_count: number;
+  /** The 5 most recently updated hog flows. */
+  recent: RecentHogFlowsRecentList;
+}
+export const RecentHogFlows = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    active_count: S.Number,
+    recent: RecentHogFlowsRecentList,
+  }),
+).annotate({ identifier: "RecentHogFlows" }) as any as S.Schema<RecentHogFlows>;
+
+/** One row in `inventory.recent_notebooks.recent`. */
+export interface RecentNotebookEntry {
+  /** Notebook short ID — pass to the notebooks API to open it. */
+  short_id: string;
+  /** Notebook title (may be blank if untitled). */
+  title: string;
+  /** ISO-8601 last-modified timestamp. */
+  last_modified_at: string | null;
+}
+export const RecentNotebookEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    short_id: S.String,
+    title: S.String,
+    last_modified_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentNotebookEntry",
+}) as any as S.Schema<RecentNotebookEntry>;
+
+/** The 5 most recently modified notebooks. */
+export type RecentNotebooksRecentList = Array<RecentNotebookEntry>;
+export const RecentNotebooksRecentList = /*@__PURE__*/ S.Array(
+  RecentNotebookEntry,
+) as any as S.Schema<RecentNotebooksRecentList>;
+
+/** `inventory.recent_notebooks` — total + the 5 most recently modified. */
+export interface RecentNotebooks {
+  /** Total non-deleted notebooks on the team. */
+  total_count: number;
+  /** The 5 most recently modified notebooks. */
+  recent: RecentNotebooksRecentList;
+}
+export const RecentNotebooks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    recent: RecentNotebooksRecentList,
+  }),
+).annotate({
+  identifier: "RecentNotebooks",
+}) as any as S.Schema<RecentNotebooks>;
+
+/** One row in `inventory.recent_cohorts.recent`. */
+export interface RecentCohortEntry {
+  /** Cohort ID. */
+  id: number;
+  /** Cohort name. */
+  name: string;
+  /** True for a one-shot snapshot cohort; false for a dynamic-filter cohort. */
+  is_static: boolean;
+  /** Membership size when last calculated; null if never calculated. */
+  count: number | null;
+  /** ISO-8601 creation timestamp. */
+  created_at: string | null;
+}
+export const RecentCohortEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    name: S.String,
+    is_static: S.Boolean,
+    count: S.NullOr(S.Number),
+    created_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentCohortEntry",
+}) as any as S.Schema<RecentCohortEntry>;
+
+/** The 5 most recently created cohorts. */
+export type RecentCohortsRecentList = Array<RecentCohortEntry>;
+export const RecentCohortsRecentList = /*@__PURE__*/ S.Array(
+  RecentCohortEntry,
+) as any as S.Schema<RecentCohortsRecentList>;
+
+/** `inventory.recent_cohorts` — total + the 5 most recently created. */
+export interface RecentCohorts {
+  /** Total non-deleted cohorts on the team. */
+  total_count: number;
+  /** The 5 most recently created cohorts. */
+  recent: RecentCohortsRecentList;
+}
+export const RecentCohorts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    recent: RecentCohortsRecentList,
+  }),
+).annotate({ identifier: "RecentCohorts" }) as any as S.Schema<RecentCohorts>;
+
+/** One row in `inventory.recent_actions.recent`. */
+export interface RecentActionEntry {
+  /** Action ID. */
+  id: number;
+  /** Action name. */
+  name: string;
+  /** ISO-8601 last-modified timestamp. */
+  updated_at: string | null;
+}
+export const RecentActionEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    name: S.String,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecentActionEntry",
+}) as any as S.Schema<RecentActionEntry>;
+
+/** The 5 most recently updated actions. */
+export type RecentActionsRecentList = Array<RecentActionEntry>;
+export const RecentActionsRecentList = /*@__PURE__*/ S.Array(
+  RecentActionEntry,
+) as any as S.Schema<RecentActionsRecentList>;
+
+/** `inventory.recent_actions` — total + the 5 most recently modified. */
+export interface RecentActions {
+  /** Total non-deleted actions on the team. */
+  total_count: number;
+  /** The 5 most recently updated actions. */
+  recent: RecentActionsRecentList;
+}
+export const RecentActions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_count: S.Number,
+    recent: RecentActionsRecentList,
+  }),
+).annotate({ identifier: "RecentActions" }) as any as S.Schema<RecentActions>;
+
+/** One row in `inventory.top_events`. */
+export interface TopEventEntry {
+  /** Rolling lookback window (in days) that every count and timestamp on this row is measured over — these are windowed figures, NOT lifetime totals. A capture gap can collapse a real, high-volume project's in-window counts to near-zero, so a thin `count` here does not by itself mean the project is low-volume: rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before closing out a surface as unused. */
+  window_days: number;
+  /** Event name as captured. */
+  event: string;
+  /** Number of occurrences within the last `window_days` (windowed, not lifetime). */
+  count: number;
+  /** `uniq(person_id)` over the window — reach. Distinguishes a high-count event firing on one power user from one firing on many users. */
+  distinct_users: number;
+  /** Count in just the last 24 hours. Compare to `count / window_days` to spot bursts: a ratio well above `1 / window_days` means the event is concentrated in the last day. */
+  recent_24h_count: number;
+  /** `uniq(person_id)` over just the last 24 hours. A burst across many users is qualitatively different from one user in a loop. */
+  recent_24h_users: number;
+  /** ISO-8601 timestamp of the earliest occurrence within the `window_days` window. Compare to the window start to spot new event types: close to `now` ⇒ likely new or recently bursting; close to the window edge ⇒ has been around at least that long (the window can't tell you when the event *truly* first appeared). */
+  first_seen_in_window: string | null;
+  /** ISO-8601 timestamp of the most recent occurrence within the `window_days` window. */
+  last_seen_in_window: string | null;
+}
+export const TopEventEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    window_days: S.Number,
+    event: S.String,
+    count: S.Number,
+    distinct_users: S.Number,
+    recent_24h_count: S.Number,
+    recent_24h_users: S.Number,
+    first_seen_in_window: S.NullOr(S.String),
+    last_seen_in_window: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "TopEventEntry" }) as any as S.Schema<TopEventEntry>;
+
+/** Top ~50 events by count over a recent rolling window (each row carries `window_days`), with first/last seen timestamps within that window. These are WINDOWED counts, not lifetime totals: a capture gap can collapse a real, high-volume project's counts to near-zero here, so rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before reading thinness as a genuinely low-volume project. `null` if the underlying ClickHouse query failed or timed out (distinct from `[]`, which means the team has no captures in the window). Use the gap between `first_seen_in_window` and `now` to spot new event types or recent bursts. */
+export type ProjectProfileInventoryTopEventsList = Array<TopEventEntry>;
+export const ProjectProfileInventoryTopEventsList = /*@__PURE__*/ S.Array(
+  TopEventEntry,
+) as any as S.Schema<ProjectProfileInventoryTopEventsList>;
+
+/** The deterministic inventory layer of a project profile. Read this to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface in one tool call. Distinct from `SignalScratchpad`: profile is ground truth from authoritative tables; memory is agent inference. */
+export interface ProjectProfileInventory {
+  /** Free-form orientation: human-set product description + registered app URLs. */
+  project_context: ProjectContext;
+  /** Product keys this team has completed onboarding for, sorted alphabetically. */
+  products_in_use: ProjectProfileInventoryProductsInUseList;
+  /** Products the team signaled intent to use; useful for spotting stuck onboardings. */
+  product_intents: ProjectProfileInventoryProductIntentsList;
+  /** Connected integrations (kind + connection time only — config never surfaced). */
+  integrations: ProjectProfileInventoryIntegrationsList;
+  /** Connected warehouse sources (excludes soft-deleted). */
+  external_data_sources: ProjectProfileInventoryExternalDataSourcesList;
+  /** Signal source configs split into enabled / disabled buckets. */
+  signal_source_configs: SignalSourceConfigsBuckets;
+  /** Whether scout findings can actually reach the inbox for this team — the org-level AI data-processing consent gate and the `signals_scout` source toggle, plus a one-line remediation pointer. Read at cold start to quick-close before doing throwaway work. */
+  emit_eligibility: EmitEligibility;
+  /** The other scouts configured on this project, split into enabled / disabled, each with its cadence, dry-run posture, last run, and last emit. Read it to see who else is watching this project before investigating a surface a sibling already covers. */
+  scout_fleet: ScoutFleet;
+  /** Counts of reports already in the inbox, grouped by status. */
+  existing_inbox_reports: ExistingInboxReports;
+  /** Per-scope counts off the activity log over the recent-activity window — cross-cutting orientation across every entity type (surveys, feature flags, experiments, dashboards, insights, cohorts, notebooks, actions, etc.). Each scope reports `edits` (total log entries), `users` (distinct user count), and `last_edit` (ISO-8601). Use to triage which scope a team has been working in lately before drilling down via the per-entity readers or `advanced-activity-logs-list`. */
+  recent_activity: RecentActivity;
+  /** Recent human edits to report reviewer lists (before/after GitHub logins). The strongest ownership precedent available — check it before setting `suggested_reviewers` and fold what it shows into `reviewer:` memory keys. */
+  recent_reviewer_corrections: RecentReviewerCorrections;
+  /** Up to 20 dashboards on this team sorted by `last_accessed_at` desc — what the team is currently looking at, not necessarily the most-trafficked. We don't have per-dashboard view counts in Postgres, only the timestamp of the most recent access. */
+  recent_dashboards: ProjectProfileInventoryRecentDashboardsList;
+  /** Surveys orientation: total + active count, plus the 5 most recently updated surveys with id, name, type, status (draft / running / stopped / archived), and updated_at. */
+  recent_surveys: RecentSurveys;
+  /** Feature flag orientation: total + active count, plus the 5 most recently updated non-deleted flags with id, key, name, active, and updated_at. */
+  recent_feature_flags: RecentFeatureFlags;
+  /** Experiment orientation: total + running count, plus the 5 most recently updated experiments. The feature_flag_key on each row lets the scout correlate experiments with the `recent_feature_flags` section. */
+  recent_experiments: RecentExperiments;
+  /** Alert orientation: total + enabled count, plus the 5 most recently created alerts with their state and threshold metadata. */
+  recent_alerts: RecentAlerts;
+  /** Hog function orientation: total + enabled count, plus the 5 most recently updated destinations / transformations the team has wired up via the CDP pipelines. */
+  recent_hog_functions: RecentHogFunctions;
+  /** Hog flow orientation: total + non-archived count, plus the 5 most recently updated automation flows. */
+  recent_hog_flows: RecentHogFlows;
+  /** Notebook orientation: total + the 5 most recently modified notebooks — useful signal for what the team has been investigating. */
+  recent_notebooks: RecentNotebooks;
+  /** Cohort orientation: total + the 5 most recently created cohorts on the team. */
+  recent_cohorts: RecentCohorts;
+  /** Action orientation: total + the 5 most recently updated actions — useful to anchor agent reasoning about what the team treats as a meaningful interaction. */
+  recent_actions: RecentActions;
+  /** Top ~50 events by count over a recent rolling window (each row carries `window_days`), with first/last seen timestamps within that window. These are WINDOWED counts, not lifetime totals: a capture gap can collapse a real, high-volume project's counts to near-zero here, so rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before reading thinness as a genuinely low-volume project. `null` if the underlying ClickHouse query failed or timed out (distinct from `[]`, which means the team has no captures in the window). Use the gap between `first_seen_in_window` and `now` to spot new event types or recent bursts. */
+  top_events: ProjectProfileInventoryTopEventsList | null;
+}
+export const ProjectProfileInventory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_context: ProjectContext,
+    products_in_use: ProjectProfileInventoryProductsInUseList,
+    product_intents: ProjectProfileInventoryProductIntentsList,
+    integrations: ProjectProfileInventoryIntegrationsList,
+    external_data_sources: ProjectProfileInventoryExternalDataSourcesList,
+    signal_source_configs: SignalSourceConfigsBuckets,
+    emit_eligibility: EmitEligibility,
+    scout_fleet: ScoutFleet,
+    existing_inbox_reports: ExistingInboxReports,
+    recent_activity: RecentActivity,
+    recent_reviewer_corrections: RecentReviewerCorrections,
+    recent_dashboards: ProjectProfileInventoryRecentDashboardsList,
+    recent_surveys: RecentSurveys,
+    recent_feature_flags: RecentFeatureFlags,
+    recent_experiments: RecentExperiments,
+    recent_alerts: RecentAlerts,
+    recent_hog_functions: RecentHogFunctions,
+    recent_hog_flows: RecentHogFlows,
+    recent_notebooks: RecentNotebooks,
+    recent_cohorts: RecentCohorts,
+    recent_actions: RecentActions,
+    top_events: S.NullOr(ProjectProfileInventoryTopEventsList),
+  }),
+).annotate({
+  identifier: "ProjectProfileInventory",
+}) as any as S.Schema<ProjectProfileInventory>;
+
+/** Top-level `payload` shape on a `SignalProjectProfile` row. v1 carries `inventory` only. Phase 7 will add `deltas`, `activity_notes`, and `narrative` slots — they're absent (not null) in v1 responses. */
+export interface ProjectProfilePayload {
+  /** Deterministic snapshot of what's true about the project. */
+  inventory: ProjectProfileInventory;
+}
+export const ProjectProfilePayload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inventory: ProjectProfileInventory,
+  }),
+).annotate({
+  identifier: "ProjectProfilePayload",
+}) as any as S.Schema<ProjectProfilePayload>;
+
+/** Wire shape for the project profile returned by `signals-scout-harness-project-profile-list`. Read this once at the start of a run (after `skill-get`) to orient on the team. Cache is per-team with a soft TTL (`PROFILE_TTL`); the response always reflects either the latest cached profile or a freshly-built one if the cache was stale or the caller passed `force_refresh=true`. */
+export interface ProjectProfile {
+  /** UUID of the `SignalProjectProfile` row. */
+  profile_id: string;
+  /** ISO-8601 timestamp the profile was built. */
+  computed_at: string;
+  /** ISO-8601 timestamp after which the profile is considered stale. */
+  expires_at: string;
+  /** Schema version of the inventory builder. Bumps invalidate older cached rows. */
+  source_version: string;
+  /** Structured profile content. v1 has `inventory` only. */
+  payload: ProjectProfilePayload;
+}
+export const ProjectProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    profile_id: S.String,
+    computed_at: S.String,
+    expires_at: S.String,
+    source_version: S.String,
+    payload: ProjectProfilePayload,
+  }),
+).annotate({ identifier: "ProjectProfile" }) as any as S.Schema<ProjectProfile>;
+
+export interface GetSignalsScoutRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the `SignalScoutRun` bridge row. */
+  run_id: string;
+}
+export const GetSignalsScoutRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    run_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSignalsScoutRunRequest",
+}) as any as S.Schema<GetSignalsScoutRunRequest>;
+
+/** * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+export type RunStatusEnum =
+  | "not_started"
+  | "queued"
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "cancelled";
+export const RunStatusEnum = /*@__PURE__*/ S.String;
+
+/** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
+export type SignalScoutRunDetailEmittedFindingIdsList = Array<string>;
+export const SignalScoutRunDetailEmittedFindingIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunDetailEmittedFindingIdsList>;
+
+/** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
+export type SignalScoutRunDetailEmittedReportIdsList = Array<string>;
+export const SignalScoutRunDetailEmittedReportIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunDetailEmittedReportIdsList>;
+
+/** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
+export type SignalScoutRunDetailEditedReportIdsList = Array<string>;
+export const SignalScoutRunDetailEditedReportIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunDetailEditedReportIdsList>;
+
+export interface SignalScoutRunDetailMetadataDerived {
+  has_emit_report: boolean;
+  has_edit_report: boolean;
+  has_self_improvement: boolean;
+  has_chart: boolean;
+  has_self_validation: boolean;
+  has_structured_output: boolean;
+}
+export const SignalScoutRunDetailMetadataDerived = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    has_emit_report: S.Boolean,
+    has_edit_report: S.Boolean,
+    has_self_improvement: S.Boolean,
+    has_chart: S.Boolean,
+    has_self_validation: S.Boolean,
+    has_structured_output: S.Boolean,
+  }),
+).annotate({
+  identifier: "SignalScoutRunDetailMetadataDerived",
+}) as any as S.Schema<SignalScoutRunDetailMetadataDerived>;
+
+/** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
+export interface SignalScoutRunDetailMetadata {
+  harness_prompt_version?: string;
+  report_channel?: string;
+  skill_origin?: string;
+  github_guidance?: boolean;
+  business_knowledge_maintained?: boolean;
+  model?: string;
+  runtime_adapter?: string;
+  reasoning_effort?: string;
+  network_access?: string;
+  triggered_by?: string;
+  derived?: SignalScoutRunDetailMetadataDerived;
+}
+export const SignalScoutRunDetailMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    harness_prompt_version: S.optional(S.String),
+    report_channel: S.optional(S.String),
+    skill_origin: S.optional(S.String),
+    github_guidance: S.optional(S.Boolean),
+    business_knowledge_maintained: S.optional(S.Boolean),
+    model: S.optional(S.String),
+    runtime_adapter: S.optional(S.String),
+    reasoning_effort: S.optional(S.String),
+    network_access: S.optional(S.String),
+    triggered_by: S.optional(S.String),
+    derived: S.optional(SignalScoutRunDetailMetadataDerived),
+  }),
+).annotate({
+  identifier: "SignalScoutRunDetailMetadata",
+}) as any as S.Schema<SignalScoutRunDetailMetadata>;
+
+/** Full `SignalScoutRun` projection used by `get-run`. Same shape as the summary today; kept distinct so future detail-only extensions (linked Signal rows, LLMA token-cost join) can land here without bloating the list response. */
+export interface SignalScoutRunDetail {
+  /** UUID of the bridge row. */
+  run_id: string;
+  /** Canonical skill name the run executed (e.g. `signals-scout-general`). */
+  skill_name: string;
+  /** Skill version snapshotted at run start. */
+  skill_version: number;
+  /** Status from the linked TaskRun. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+  status: RunStatusEnum;
+  /** ISO-8601 timestamp the bridge row was created — the field `date_from` / `date_to` filter and order on. Use this (not `started_at`) as the `date_to` cursor when walking past the 100-row cap, so runs created in the gap between a boundary run's TaskRun and its bridge row aren't skipped. */
+  created_at: string;
+  /** ISO-8601 timestamp the TaskRun was created. */
+  started_at: string;
+  /** ISO-8601 timestamp the TaskRun completed; null while still running. */
+  completed_at: string | null;
+  /** UUID of the Tasks `Task` the scout span ran inside. */
+  task_id?: string | null;
+  /** UUID of the Tasks `TaskRun`. Pairs with `task_id` to deep-link. */
+  task_run_id?: string | null;
+  /** Relative deep-link to the Tasks UI for this run, e.g. `/project/{team_id}/tasks/{task_id}?runId={task_run_id}`. */
+  task_url?: string | null;
+  /** One-paragraph close-out the scout wrote at end-of-run. Empty string for runs that errored before close-out. The dedupe key for non-emitting runs. */
+  summary: string;
+  /** Full `error_message` from the linked TaskRun, surfaced only for failed/cancelled runs (null otherwise, including on success). Use `failure_reason` for a concise scan-friendly summary. */
+  error?: string | null;
+  /** Concise derived reason the run didn't complete cleanly — the first line of `error` (bounded), or a status-derived fallback. Null unless the run terminated failed/cancelled. Read this to see at a glance *why* a run emitted nothing without pulling full stack traces. */
+  failure_reason?: string | null;
+  /** Number of findings this run actually emitted to the inbox. 0 for runs that investigated but surfaced nothing, or ran dry-run / before AI approval. `> 0` means the run produced at least one `Signal`. */
+  emitted_count: number;
+  /** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
+  emitted_finding_ids: SignalScoutRunDetailEmittedFindingIdsList;
+  /** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
+  emitted_report_ids: SignalScoutRunDetailEmittedReportIdsList;
+  /** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
+  edited_report_ids: SignalScoutRunDetailEditedReportIdsList;
+  /** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
+  metadata: SignalScoutRunDetailMetadata;
+}
+export const SignalScoutRunDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run_id: S.String,
+    skill_name: S.String,
+    skill_version: S.Number,
+    status: RunStatusEnum,
+    created_at: S.String,
+    started_at: S.String,
+    completed_at: S.NullOr(S.String),
+    task_id: S.optional(S.NullOr(S.String)),
+    task_run_id: S.optional(S.NullOr(S.String)),
+    task_url: S.optional(S.NullOr(S.String)),
+    summary: S.String,
+    error: S.optional(S.NullOr(S.String)),
+    failure_reason: S.optional(S.NullOr(S.String)),
+    emitted_count: S.Number,
+    emitted_finding_ids: SignalScoutRunDetailEmittedFindingIdsList,
+    emitted_report_ids: SignalScoutRunDetailEmittedReportIdsList,
+    edited_report_ids: SignalScoutRunDetailEditedReportIdsList,
+    metadata: SignalScoutRunDetailMetadata,
+  }),
+).annotate({
+  identifier: "SignalScoutRunDetail",
+}) as any as S.Schema<SignalScoutRunDetail>;
+
+export interface GetSignalsSourceConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal source config. */
+  id: string;
+}
+export const GetSignalsSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/source_configs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSignalsSourceConfigRequest",
+}) as any as S.Schema<GetSignalsSourceConfigRequest>;
+
+export interface ListSignalsProcessingRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListSignalsProcessingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/processing/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsProcessingRequest",
+}) as any as S.Schema<ListSignalsProcessingRequest>;
+
+export interface PauseStateResponse {
+  /** The timestamp the pipeline is paused until, or null if not paused/not running. */
+  paused_until?: string | null;
+}
+export const PauseStateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    paused_until: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "PauseStateResponse",
+}) as any as S.Schema<PauseStateResponse>;
+
+export type PaginatedPauseStateResponseListResultsList =
+  Array<PauseStateResponse>;
+export const PaginatedPauseStateResponseListResultsList = /*@__PURE__*/ S.Array(
+  PauseStateResponse,
+) as any as S.Schema<PaginatedPauseStateResponseListResultsList>;
+
+export interface PaginatedPauseStateResponseList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedPauseStateResponseListResultsList;
+}
+export const PaginatedPauseStateResponseList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedPauseStateResponseListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedPauseStateResponseList",
+}) as any as S.Schema<PaginatedPauseStateResponseList>;
+
+export interface ListSignalsReportArtefactsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
+  report_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListSignalsReportArtefactsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    report_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsReportArtefactsRequest",
+}) as any as S.Schema<ListSignalsReportArtefactsRequest>;
+
+export type PaginatedSignalReportArtefactListResultsList =
+  Array<SignalReportArtefact>;
+export const PaginatedSignalReportArtefactListResultsList =
+  /*@__PURE__*/ S.Array(
+    SignalReportArtefact,
+  ) as any as S.Schema<PaginatedSignalReportArtefactListResultsList>;
+
+export interface PaginatedSignalReportArtefactList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedSignalReportArtefactListResultsList;
+}
+export const PaginatedSignalReportArtefactList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedSignalReportArtefactListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedSignalReportArtefactList",
+}) as any as S.Schema<PaginatedSignalReportArtefactList>;
+
+export interface ListSignalsReportsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Comma-separated actionability judgments to include. Valid values: immediately_actionable, requires_human_input, not_actionable. Reports without a judgment are excluded. */
+  actionability?: string;
+  /** Filter by whether the latest actionability judgment says the issue is already being handled. False also includes older reports where that judgment did not record a value. */
+  already_addressed?: boolean;
+  /** Narrow to reports assigned to one space (channel). Absent or empty means all reports regardless of assignment. */
+  channel_id?: string;
+  /** Return the filtered total with an empty results page. Skips report ordering, serialization, and decorative metadata lookups. Defaults to false. */
+  count_only?: boolean;
+  /** Filter reports by whether a shipped implementation pull request exists. 'true' keeps only reports with a PR; 'false' keeps only those without. Pair with count_only=true to return only the filtered total. */
+  has_implementation_pr?: boolean;
+  /** When true, the list includes reports in every status with no default exclusions applied — currently that adds suppressed (dismissed) reports, which are otherwise hidden. Use it to see the full inbox state (e.g. deduplicating before creating a report) and read each row's status (plus dismissal_reason/dismissal_note on dismissed rows) before acting. Deleted reports are terminal and never returned. Defaults to false, which keeps the existing default exclusions. Ignored when an explicit 'status' filter is set — that filter alone decides which statuses are returned. */
+  include_all_statuses?: boolean;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Comma-separated ordering clauses. Each clause is a field name optionally prefixed with '-' for descending. Allowed fields: status, is_suggested_reviewer, signal_count, total_weight, priority, created_at, updated_at, id. Defaults to '-is_suggested_reviewer,status,-updated_at'. */
+  ordering?: string;
+  /** Comma-separated list of priorities to include. Valid values: P0, P1, P2, P3, P4. Reports without a priority assignment are excluded when this filter is set. */
+  priority?: string;
+  /** Reviewer scope: for_me, entire_project, or teammate. Pass teammate_uuid with teammate. */
+  scope?: string;
+  /** Comma-separated list of scout skill_name slugs (e.g. signals-scout-error-tracking). Reports are kept if at least one of their contributing signals was authored by one of these scouts. Combines with source_product as an AND. */
+  scout?: string;
+  /** Scout skill_name prefix (e.g. signals-scout-customer-analytics). Reports are kept if at least one of their contributing signals was authored by a scout whose skill_name starts with this prefix — new scouts in the family match without callers listing every name. Combines with the other filters as an AND. */
+  scout_prefix?: string;
+  /** Case-insensitive substring match against report title and summary. */
+  search?: string;
+  /** Inbox sort preset: priority, last_updated, newest, or oldest. Ignored when ordering is supplied. */
+  sort?: string;
+  /** Comma-separated list of source record ids. Reports are kept if at least one of their contributing signals came from one of these records — e.g. pass a support ticket's UUID to see what the inbox already found for that ticket. Requires exactly one source_product, since a source id is only unique within its product. */
+  source_id?: string;
+  /** Comma-separated list of source products to include. Reports are kept if at least one of their contributing signals comes from one of these products (e.g. error_tracking, session_replay). */
+  source_product?: string;
+  /** Comma-separated list of statuses to include. Valid values: potential, candidate, in_progress, pending_input, ready, resolved, failed, suppressed. Defaults to all statuses except suppressed. */
+  status?: string;
+  /** Comma-separated list of PostHog user UUIDs. Reports are kept if their suggested reviewers include any of the given users. */
+  suggested_reviewers?: string;
+  /** Only reports associated with this task (via the report's task associations). */
+  task_id?: string;
+  /** PostHog user UUID used when scope=teammate. */
+  teammate_uuid?: string;
+  /** When true and priority is omitted, include priorities at or above the requesting user's personal PR-generation threshold, falling back to the project threshold. */
+  use_priority_preference?: boolean;
+  /** Apply an inbox view: actionable, needs_input, monitoring, resolved, dismissed, not_actionable, or all. Each view applies the corresponding status, actionability, and implementation-PR filters. */
+  view?: string;
+}
+export const ListSignalsReportsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    actionability: S.optional(S.String.pipe(T.Query())),
+    already_addressed: S.optional(S.Boolean.pipe(T.Query())),
+    channel_id: S.optional(S.String.pipe(T.Query())),
+    count_only: S.optional(S.Boolean.pipe(T.Query())),
+    has_implementation_pr: S.optional(S.Boolean.pipe(T.Query())),
+    include_all_statuses: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    ordering: S.optional(S.String.pipe(T.Query())),
+    priority: S.optional(S.String.pipe(T.Query())),
+    scope: S.optional(S.String.pipe(T.Query())),
+    scout: S.optional(S.String.pipe(T.Query())),
+    scout_prefix: S.optional(S.String.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+    sort: S.optional(S.String.pipe(T.Query())),
+    source_id: S.optional(S.String.pipe(T.Query())),
+    source_product: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(S.String.pipe(T.Query())),
+    suggested_reviewers: S.optional(S.String.pipe(T.Query())),
+    task_id: S.optional(S.String.pipe(T.Query())),
+    teammate_uuid: S.optional(S.String.pipe(T.Query())),
+    use_priority_preference: S.optional(S.Boolean.pipe(T.Query())),
+    view: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/reports/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsReportsRequest",
+}) as any as S.Schema<ListSignalsReportsRequest>;
+
+export type PaginatedSignalReportListResultsList = Array<SignalReport>;
+export const PaginatedSignalReportListResultsList = /*@__PURE__*/ S.Array(
+  SignalReport,
+) as any as S.Schema<PaginatedSignalReportListResultsList>;
+
+export interface PaginatedSignalReportList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedSignalReportListResultsList;
+}
+export const PaginatedSignalReportList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedSignalReportListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedSignalReportList",
+}) as any as S.Schema<PaginatedSignalReportList>;
+
+export interface ListSignalsScoutConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Comma-separated tags, e.g. `revenue,on-call`. Returns the scouts carrying at least one of them. Values are normalized the same way stored tags are, so `On Call` matches `on-call`. Omit for the whole fleet. */
+  tags?: string;
+}
+export const ListSignalsScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    tags: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/configs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsScoutConfigRequest",
+}) as any as S.Schema<ListSignalsScoutConfigRequest>;
+
+export type ListSignalsScoutConfigResponseBodyList = Array<SignalScoutConfig>;
+export const ListSignalsScoutConfigResponseBodyList = /*@__PURE__*/ S.Array(
+  SignalScoutConfig,
+) as any as S.Schema<ListSignalsScoutConfigResponseBodyList>;
+
+export type ListSignalsScoutConfigResponse =
+  ListSignalsScoutConfigResponseBodyList;
+export const ListSignalsScoutConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSignalsScoutConfigResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSignalsScoutConfigResponse",
+}) as any as S.Schema<ListSignalsScoutConfigResponse>;
+
+export interface ListSignalsScoutMembersRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Case-insensitive substring filter over member email and first/last name. Use it to narrow a large project's roster to the owner you're trying to match instead of pulling every member. */
+  search?: string;
+}
+export const ListSignalsScoutMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/members/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsScoutMembersRequest",
+}) as any as S.Schema<ListSignalsScoutMembersRequest>;
+
+/** One project member's routing identity, for picking a `suggested_reviewers` entry on a report. */
+export interface ScoutMember {
+  /** The member's stable PostHog user UUID — the same id that appears as `created_by.uuid` on entities they own. A durable handle for this person across runs. */
+  user_uuid: string;
+  /** The member's email — use to match a finding's owner by name/email. */
+  email: string;
+  /** The member's first name (may be empty). */
+  first_name: string;
+  /** The member's last name (may be empty). */
+  last_name: string;
+  /** The member's resolved GitHub login (lowercased), already resolved server-side — put this value in a report's `suggested_reviewers` once you've matched the finding's owner to this row. Null when the member has no linked GitHub identity: a null-login member can't be routed to at all (neither a login nor a uuid resolves), so pick a different owner or leave `suggested_reviewers` empty. */
+  github_login: string | null;
+}
+export const ScoutMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_uuid: S.String,
+    email: S.String,
+    first_name: S.String,
+    last_name: S.String,
+    github_login: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "ScoutMember" }) as any as S.Schema<ScoutMember>;
+
+export type ListSignalsScoutMembersResponseBodyList = Array<ScoutMember>;
+export const ListSignalsScoutMembersResponseBodyList = /*@__PURE__*/ S.Array(
+  ScoutMember,
+) as any as S.Schema<ListSignalsScoutMembersResponseBodyList>;
+
+export type ListSignalsScoutMembersResponse =
+  ListSignalsScoutMembersResponseBodyList;
+export const ListSignalsScoutMembersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSignalsScoutMembersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSignalsScoutMembersResponse",
+}) as any as S.Schema<ListSignalsScoutMembersResponse>;
+
+export interface ListSignalsScoutNotesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Truncate each note's `content` to the first N characters (a preview). Omit for the full body — use this on wide scans so stacked notes can't dominate your context. */
+  content_max_chars?: number;
+  /** ISO-8601 inclusive lower bound on `created_at`. Omit to skip the lower bound. */
+  date_from?: string;
+  /** ISO-8601 exclusive upper bound on `created_at`. Pass the `created_at` of the oldest note from the prior page to walk back past the result cap. */
+  date_to?: string;
+  /** Include notes whose `expires_at` has passed. Off by default so time-boxed steering retires itself. */
+  include_expired?: boolean;
+  /** Only meaningful with `skill_name`: when false, exclude the general fleet-wide notes and return the target's own notes only. */
+  include_general?: boolean;
+  /** Max rows to return (default 20, hard cap 500). */
+  limit?: number;
+  /** Return the notes addressed to this target plus the general (blank-target) notes for the whole fleet. Pass a scout skill (`signals-scout-*`) or a pipeline audience (`pipeline:report-research`). Omit to browse every note on the project. */
+  skill_name?: string;
+}
+export const ListSignalsScoutNotesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    content_max_chars: S.optional(S.Number.pipe(T.Query())),
+    date_from: S.optional(S.String.pipe(T.Query())),
+    date_to: S.optional(S.String.pipe(T.Query())),
+    include_expired: S.optional(S.Boolean.pipe(T.Query())),
+    include_general: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    skill_name: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/notes/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsScoutNotesRequest",
+}) as any as S.Schema<ListSignalsScoutNotesRequest>;
+
+export type ListSignalsScoutNotesResponseBodyList = Array<ScoutNote>;
+export const ListSignalsScoutNotesResponseBodyList = /*@__PURE__*/ S.Array(
+  ScoutNote,
+) as any as S.Schema<ListSignalsScoutNotesResponseBodyList>;
+
+export type ListSignalsScoutNotesResponse =
+  ListSignalsScoutNotesResponseBodyList;
+export const ListSignalsScoutNotesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSignalsScoutNotesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSignalsScoutNotesResponse",
+}) as any as S.Schema<ListSignalsScoutNotesResponse>;
+
+export interface ListSignalsScoutRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** ISO-8601 inclusive lower bound on `created_at`. Omit to skip the lower bound. */
+  date_from?: string;
+  /** ISO-8601 exclusive upper bound on `created_at`. Pass to walk back past the result cap on subsequent calls (cursor-style: set to the `created_at` of the oldest run from the prior page). */
+  date_to?: string;
+  /** Filter by emit outcome. `true` returns only runs that emitted at least one finding (`emitted_count > 0`); `false` returns only runs that emitted nothing. Omit for both. */
+  emitted?: boolean;
+  /** Max rows to return (default 20, hard cap 100). */
+  limit?: number;
+  /** Exact-match filter on the scout skill (e.g. `signals-scout-errors`). Narrows the run dump to a single scout — the primary scoping path when a specialist dedupes against its own past runs. Omit to span every scout on the team. */
+  skill_name?: string;
+  /** Exact-match filter on the skill version. Pair with `skill_name` to pin one version; omit for all. */
+  skill_version?: number;
+  /** Case-insensitive substring match on the scout's end-of-run `summary`. Omit to skip the filter. */
+  text?: string;
+}
+export const ListSignalsScoutRunsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    date_from: S.optional(S.String.pipe(T.Query())),
+    date_to: S.optional(S.String.pipe(T.Query())),
+    emitted: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    skill_name: S.optional(S.String.pipe(T.Query())),
+    skill_version: S.optional(S.Number.pipe(T.Query())),
+    text: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsScoutRunsRequest",
+}) as any as S.Schema<ListSignalsScoutRunsRequest>;
+
+/** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
+export type SignalScoutRunSummaryEmittedFindingIdsList = Array<string>;
+export const SignalScoutRunSummaryEmittedFindingIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunSummaryEmittedFindingIdsList>;
+
+/** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
+export type SignalScoutRunSummaryEmittedReportIdsList = Array<string>;
+export const SignalScoutRunSummaryEmittedReportIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunSummaryEmittedReportIdsList>;
+
+/** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
+export type SignalScoutRunSummaryEditedReportIdsList = Array<string>;
+export const SignalScoutRunSummaryEditedReportIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalScoutRunSummaryEditedReportIdsList>;
+
+export type SignalScoutRunSummaryMetadataDerived =
+  SignalScoutRunDetailMetadataDerived;
+export const SignalScoutRunSummaryMetadataDerived =
+  SignalScoutRunDetailMetadataDerived;
+
+/** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
+export type SignalScoutRunSummaryMetadata = SignalScoutRunDetailMetadata;
+export const SignalScoutRunSummaryMetadata = SignalScoutRunDetailMetadata;
+
+/** Lightweight projection of a `SignalScoutRun` row used by `search-recent-runs`. Status and timestamps flow from the linked `tasks.TaskRun`. */
+export interface SignalScoutRunSummary {
+  /** UUID of the bridge row. */
+  run_id: string;
+  /** Canonical skill name the run executed (e.g. `signals-scout-general`). */
+  skill_name: string;
+  /** Skill version snapshotted at run start. */
+  skill_version: number;
+  /** Status from the linked TaskRun. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+  status: RunStatusEnum;
+  /** ISO-8601 timestamp the bridge row was created — the field `date_from` / `date_to` filter and order on. Use this (not `started_at`) as the `date_to` cursor when walking past the 100-row cap, so runs created in the gap between a boundary run's TaskRun and its bridge row aren't skipped. */
+  created_at: string;
+  /** ISO-8601 timestamp the TaskRun was created. */
+  started_at: string;
+  /** ISO-8601 timestamp the TaskRun completed; null while still running. */
+  completed_at: string | null;
+  /** UUID of the Tasks `Task` the scout span ran inside. */
+  task_id?: string | null;
+  /** UUID of the Tasks `TaskRun`. Pairs with `task_id` to deep-link. */
+  task_run_id?: string | null;
+  /** Relative deep-link to the Tasks UI for this run, e.g. `/project/{team_id}/tasks/{task_id}?runId={task_run_id}`. */
+  task_url?: string | null;
+  /** One-paragraph close-out the scout wrote at end-of-run. Empty string for runs that errored before close-out. The dedupe key for non-emitting runs. */
+  summary: string;
+  /** Full `error_message` from the linked TaskRun, surfaced only for failed/cancelled runs (null otherwise, including on success). Use `failure_reason` for a concise scan-friendly summary. */
+  error?: string | null;
+  /** Concise derived reason the run didn't complete cleanly — the first line of `error` (bounded), or a status-derived fallback. Null unless the run terminated failed/cancelled. Read this to see at a glance *why* a run emitted nothing without pulling full stack traces. */
+  failure_reason?: string | null;
+  /** Number of findings this run actually emitted to the inbox. 0 for runs that investigated but surfaced nothing, or ran dry-run / before AI approval. `> 0` means the run produced at least one `Signal`. */
+  emitted_count: number;
+  /** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
+  emitted_finding_ids: SignalScoutRunSummaryEmittedFindingIdsList;
+  /** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
+  emitted_report_ids: SignalScoutRunSummaryEmittedReportIdsList;
+  /** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
+  edited_report_ids: SignalScoutRunSummaryEditedReportIdsList;
+  /** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
+  metadata: SignalScoutRunDetailMetadata;
+}
+export const SignalScoutRunSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run_id: S.String,
+    skill_name: S.String,
+    skill_version: S.Number,
+    status: RunStatusEnum,
+    created_at: S.String,
+    started_at: S.String,
+    completed_at: S.NullOr(S.String),
+    task_id: S.optional(S.NullOr(S.String)),
+    task_run_id: S.optional(S.NullOr(S.String)),
+    task_url: S.optional(S.NullOr(S.String)),
+    summary: S.String,
+    error: S.optional(S.NullOr(S.String)),
+    failure_reason: S.optional(S.NullOr(S.String)),
+    emitted_count: S.Number,
+    emitted_finding_ids: SignalScoutRunSummaryEmittedFindingIdsList,
+    emitted_report_ids: SignalScoutRunSummaryEmittedReportIdsList,
+    edited_report_ids: SignalScoutRunSummaryEditedReportIdsList,
+    metadata: SignalScoutRunDetailMetadata,
+  }),
+).annotate({
+  identifier: "SignalScoutRunSummary",
+}) as any as S.Schema<SignalScoutRunSummary>;
+
+export type ListSignalsScoutRunsResponseBodyList = Array<SignalScoutRunSummary>;
+export const ListSignalsScoutRunsResponseBodyList = /*@__PURE__*/ S.Array(
+  SignalScoutRunSummary,
+) as any as S.Schema<ListSignalsScoutRunsResponseBodyList>;
+
+export type ListSignalsScoutRunsResponse = ListSignalsScoutRunsResponseBodyList;
+export const ListSignalsScoutRunsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSignalsScoutRunsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSignalsScoutRunsResponse",
+}) as any as S.Schema<ListSignalsScoutRunsResponse>;
+
+export interface ListSignalsScoutSuggestionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const ListSignalsScoutSuggestionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/suggestions/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsScoutSuggestionsRequest",
+}) as any as S.Schema<ListSignalsScoutSuggestionsRequest>;
+
+/** * `fresh` - Fresh * `stale` - Stale * `failed` - Failed * `empty` - Empty */
+export type SignalScoutSuggestionSetStatusEnum =
+  | "fresh"
+  | "stale"
+  | "failed"
+  | "empty";
+export const SignalScoutSuggestionSetStatusEnum = /*@__PURE__*/ S.String;
+
+/** Skill names that were enabled when the batch was generated. */
+export type ScoutSuggestionSetFleetSnapshotList = Array<string>;
+export const ScoutSuggestionSetFleetSnapshotList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ScoutSuggestionSetFleetSnapshotList>;
+
+/** Suggestions not yet dismissed or created, best first. Up to 5. */
+export type ScoutSuggestionSetItemsList = Array<ScoutSuggestionItem>;
+export const ScoutSuggestionSetItemsList = /*@__PURE__*/ S.Array(
+  ScoutSuggestionItem,
+) as any as S.Schema<ScoutSuggestionSetItemsList>;
+
+export interface ScoutSuggestionSet {
+  /** `fresh`: current batch. `stale`: the fleet changed since it was generated, or the batch aged past the refresh window. `failed`: the last refresh failed (items are the prior batch, if any). `empty`: nothing to suggest yet. * `fresh` - Fresh * `stale` - Stale * `failed` - Failed * `empty` - Empty */
+  status: SignalScoutSuggestionSetStatusEnum;
+  /** When the current batch was generated; null before the first run. */
+  generated_at: string | null;
+  /** The model that produced the batch, when pinned. */
+  model: string;
+  /** Skill names that were enabled when the batch was generated. */
+  fleet_snapshot: ScoutSuggestionSetFleetSnapshotList;
+  /** Suggestions not yet dismissed or created, best first. Up to 5. */
+  items: ScoutSuggestionSetItemsList;
+}
+export const ScoutSuggestionSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: SignalScoutSuggestionSetStatusEnum,
+    generated_at: S.NullOr(S.String),
+    model: S.String,
+    fleet_snapshot: ScoutSuggestionSetFleetSnapshotList,
+    items: ScoutSuggestionSetItemsList,
+  }),
+).annotate({
+  identifier: "ScoutSuggestionSet",
+}) as any as S.Schema<ScoutSuggestionSet>;
+
+export interface ListSignalsSourceConfigsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListSignalsSourceConfigsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/source_configs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSignalsSourceConfigsRequest",
+}) as any as S.Schema<ListSignalsSourceConfigsRequest>;
+
+export type PaginatedSignalSourceConfigListResultsList =
+  Array<SignalSourceConfig>;
+export const PaginatedSignalSourceConfigListResultsList = /*@__PURE__*/ S.Array(
+  SignalSourceConfig,
+) as any as S.Schema<PaginatedSignalSourceConfigListResultsList>;
+
+export interface PaginatedSignalSourceConfigList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedSignalSourceConfigListResultsList;
+}
+export const PaginatedSignalSourceConfigList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedSignalSourceConfigListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedSignalSourceConfigList",
+}) as any as S.Schema<PaginatedSignalSourceConfigList>;
+
+export interface PauseSignalsProcessingDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const PauseSignalsProcessingDestroyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/signals/processing/pause/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PauseSignalsProcessingDestroyRequest",
+}) as any as S.Schema<PauseSignalsProcessingDestroyRequest>;
+
+export interface PauseResponse {
+  /** Always 'paused'. */
+  status?: string;
+  /** The timestamp the pipeline is paused until. */
+  paused_until?: string;
+}
+export const PauseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    paused_until: S.optional(S.String),
+  }),
+).annotate({ identifier: "PauseResponse" }) as any as S.Schema<PauseResponse>;
+
+export interface RefreshSignalsScoutSuggestionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const RefreshSignalsScoutSuggestionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/signals/scout/suggestions/refresh/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RefreshSignalsScoutSuggestionRequest",
+}) as any as S.Schema<RefreshSignalsScoutSuggestionRequest>;
+
+export interface RefreshSignalsScoutSuggestionResponse {}
+export const RefreshSignalsScoutSuggestionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RefreshSignalsScoutSuggestionResponse",
+}) as any as S.Schema<RefreshSignalsScoutSuggestionResponse>;
+
+export interface ReviewSignalsReportPrCommentDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+  comment_id: string;
+}
+export const ReviewSignalsReportPrCommentDestroyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      comment_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReviewSignalsReportPrCommentDestroyRequest",
+  }) as any as S.Schema<ReviewSignalsReportPrCommentDestroyRequest>;
+
+export interface ReviewSignalsReportPrCommentDestroyResponse {}
+export const ReviewSignalsReportPrCommentDestroyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ReviewSignalsReportPrCommentDestroyResponse",
+  }) as any as S.Schema<ReviewSignalsReportPrCommentDestroyResponse>;
+
+export interface ReviewSignalsReportPrCommentReactionDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+  comment_id: string;
+  reaction_id: string;
+}
+export const ReviewSignalsReportPrCommentReactionDestroyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      comment_id: S.String.pipe(T.Label()),
+      reaction_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/reactions/{reaction_id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReviewSignalsReportPrCommentReactionDestroyRequest",
+  }) as any as S.Schema<ReviewSignalsReportPrCommentReactionDestroyRequest>;
+
+export interface ReviewSignalsReportPrCommentReactionDestroyResponse {}
+export const ReviewSignalsReportPrCommentReactionDestroyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ReviewSignalsReportPrCommentReactionDestroyResponse",
+  }) as any as S.Schema<ReviewSignalsReportPrCommentReactionDestroyResponse>;
+
+export interface RunSignalsScoutConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this Signal scout config. */
+  id: string;
+}
+export const RunSignalsScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/signals/scout/configs/{id}/run/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RunSignalsScoutConfigRequest",
+}) as any as S.Schema<RunSignalsScoutConfigRequest>;
+
+export interface RunSignalsScoutConfigResponse {}
+export const RunSignalsScoutConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunSignalsScoutConfigResponse",
+}) as any as S.Schema<RunSignalsScoutConfigResponse>;
+
+export interface SearchSignalsScoutScratchpadRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Truncate each entry's `content` to the first N characters (a preview). Omit for the full body. Ignored when `keys_only=true`. */
+  content_max_chars?: number;
+  /** ISO-8601 inclusive lower bound on `updated_at`. Omit to skip the lower bound. */
+  date_from?: string;
+  /** ISO-8601 exclusive upper bound on `updated_at`. Pass to walk back past the result cap on subsequent calls (cursor-style: set to the `updated_at` of the oldest entry from the prior page). */
+  date_to?: string;
+  /** Include entries whose `expires_at` has passed. Off by default so a time-boxed memory retires itself; turn it on to audit what the fleet remembered and when it lapsed. */
+  include_expired?: boolean;
+  /** Exact key match — returns the single entry with this key, or nothing. Use this to re-read a known entry; `text` searches key *and* content, so it can push the row you asked for past the limit. */
+  key?: string;
+  /** When true, blank each entry's `content` and return only keys + metadata. Use to scan which memories exist without pulling their (potentially large) bodies, then re-query the ones worth a full read. Takes precedence over `content_max_chars`. */
+  keys_only?: boolean;
+  /** Max rows to return (default 20, hard cap 1000). */
+  limit?: number;
+  /** ILIKE substring match against `content`. Omit to return the most recent entries. */
+  text?: string;
+}
+export const SearchSignalsScoutScratchpadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    content_max_chars: S.optional(S.Number.pipe(T.Query())),
+    date_from: S.optional(S.String.pipe(T.Query())),
+    date_to: S.optional(S.String.pipe(T.Query())),
+    include_expired: S.optional(S.Boolean.pipe(T.Query())),
+    key: S.optional(S.String.pipe(T.Query())),
+    keys_only: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    text: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/scout/scratchpad/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchSignalsScoutScratchpadRequest",
+}) as any as S.Schema<SearchSignalsScoutScratchpadRequest>;
+
+/** `SignalScratchpad` projection used by `search-memory` and `remember`. */
+export interface ScratchpadEntry {
+  /** Agent-chosen semantic key, unique per team. */
+  key: string;
+  /** Prose content for prompt injection. Blank when the search projected it out (`keys_only=true`); truncated to a preview when `content_max_chars` was set. */
+  content: string;
+  /** ISO-8601 creation timestamp. */
+  created_at: string | null;
+  /** ISO-8601 last-write timestamp. */
+  updated_at: string | null;
+  /** ISO-8601 expiry, or null for a durable memory that stays until it's forgotten. */
+  expires_at?: string | null;
+  /** Scout run that wrote this entry, or null when a report-pipeline stage or a human wrote it. */
+  created_by_run_id: string | null;
+  /** Who created this entry: the canonical skill name of the scout that wrote it (e.g. `signals-scout-apm`), or the report-pipeline stage that did (`pipeline:report-research`, `pipeline:implementation`). Null if human-authored. */
+  created_by_skill?: string | null;
+  /** Relative Tasks UI deep-link to the run that created this entry, or null if the run linkage isn't captured. */
+  created_by_run_url?: string | null;
+}
+export const ScratchpadEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    content: S.String,
+    created_at: S.NullOr(S.String),
+    updated_at: S.NullOr(S.String),
+    expires_at: S.optional(S.NullOr(S.String)),
+    created_by_run_id: S.NullOr(S.String),
+    created_by_skill: S.optional(S.NullOr(S.String)),
+    created_by_run_url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ScratchpadEntry",
+}) as any as S.Schema<ScratchpadEntry>;
+
+export type SearchSignalsScoutScratchpadResponseBodyList =
+  Array<ScratchpadEntry>;
+export const SearchSignalsScoutScratchpadResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    ScratchpadEntry,
+  ) as any as S.Schema<SearchSignalsScoutScratchpadResponseBodyList>;
+
+export type SearchSignalsScoutScratchpadResponse =
+  SearchSignalsScoutScratchpadResponseBodyList;
+export const SearchSignalsScoutScratchpadResponse = /*@__PURE__*/ S.suspend(
+  () => SearchSignalsScoutScratchpadResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "SearchSignalsScoutScratchpadResponse",
+}) as any as S.Schema<SearchSignalsScoutScratchpadResponse>;
+
+/** One citation attached to a finding. Mirrors `SignalsScoutEvidenceEntry`. */
+export interface EvidenceEntry {
+  /** Source the citation came from (`error_tracking`, `session_replay`, `logs`, ...). */
+  source_product: string;
+  /** One-sentence prose about why this evidence supports the finding. */
+  summary: string;
+  /** Optional ID of the cited entity (issue id, recording id, log query id). */
+  entity_id?: string | null;
+}
+export const EvidenceEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source_product: S.String,
+    summary: S.String,
+    entity_id: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "EvidenceEntry" }) as any as S.Schema<EvidenceEntry>;
+
+/** Citations supporting the finding. Capped at 20 entries. */
+export type SignalSignalsScoutEmitRequestEvidenceList = Array<EvidenceEntry>;
+export const SignalSignalsScoutEmitRequestEvidenceList = /*@__PURE__*/ S.Array(
+  EvidenceEntry,
+) as any as S.Schema<SignalSignalsScoutEmitRequestEvidenceList>;
+
+/** * `P0` - P0 * `P1` - P1 * `P2` - P2 * `P3` - P3 * `P4` - P4 */
+export type AutonomyPriorityEnum = "P0" | "P1" | "P2" | "P3" | "P4";
+export const AutonomyPriorityEnum = /*@__PURE__*/ S.String;
+
+/** Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`). */
+export type SignalSignalsScoutEmitRequestDedupeKeysList = Array<string>;
+export const SignalSignalsScoutEmitRequestDedupeKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SignalSignalsScoutEmitRequestDedupeKeysList>;
+
+/** Optional category tags as lowercase kebab-case slugs (e.g. `cost-spike`, `silent-failure`), max 10. Reuse the vocabulary in your `tags:<domain>:taxonomy` scratchpad entry when a tag fits; coin a new slug when a genuinely new category emerges. Near-miss formats are normalized to slugs; persisted in the signal's `extra.tags` and on the emission row. */
+export type SignalSignalsScoutEmitRequestTagsList = Array<string>;
+export const SignalSignalsScoutEmitRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SignalSignalsScoutEmitRequestTagsList>;
+
+export interface TimeRange {
+  /** ISO-8601 inclusive lower bound for the finding's window. */
+  date_from: string;
+  /** ISO-8601 inclusive upper bound for the finding's window. */
+  date_to: string;
+}
+export const TimeRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date_from: S.String,
+    date_to: S.String,
+  }),
+).annotate({ identifier: "TimeRange" }) as any as S.Schema<TimeRange>;
+
+export interface SignalSignalsScoutEmitRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the `SignalScoutRun` bridge row. */
+  run_id: string;
+  /** Canonical evidence-bundle prose. Becomes the signal's `description`. */
+  description: string;
+  /** Agent's confidence the finding is real in [0, 1]. Persisted in `extra`. */
+  confidence: number;
+  /** Citations supporting the finding. Capped at 20 entries. */
+  evidence: SignalSignalsScoutEmitRequestEvidenceList;
+  /** Optional one-line hypothesis the finding tests. */
+  hypothesis?: string | null;
+  /** Optional severity tag — one of P0, P1, P2, P3, P4. Informational only. * `P0` - P0 * `P1` - P1 * `P2` - P2 * `P3` - P3 * `P4` - P4 */
+  severity?: AutonomyPriorityEnum | (string & {}) | null;
+  /** Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`). */
+  dedupe_keys?: SignalSignalsScoutEmitRequestDedupeKeysList;
+  /** Optional category tags as lowercase kebab-case slugs (e.g. `cost-spike`, `silent-failure`), max 10. Reuse the vocabulary in your `tags:<domain>:taxonomy` scratchpad entry when a tag fits; coin a new slug when a genuinely new category emerges. Near-miss formats are normalized to slugs; persisted in the signal's `extra.tags` and on the emission row. */
+  tags?: SignalSignalsScoutEmitRequestTagsList;
+  /** Optional time window the finding refers to. */
+  time_range?: TimeRange | null;
+  /** Optional MCP trace id for cross-system debugging. */
+  mcp_trace_id?: string | null;
+  /** Stable id for this finding, baked into the signal's source_id for traceability. NOT a dedupe key — re-emitting the same id creates another signal. */
+  finding_id?: string | null;
+}
+export const SignalSignalsScoutEmitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    run_id: S.String.pipe(T.Label()),
+    description: S.String,
+    confidence: S.Number,
+    evidence: SignalSignalsScoutEmitRequestEvidenceList,
+    hypothesis: S.optional(S.NullOr(S.String)),
+    severity: S.optional(S.NullOr(AutonomyPriorityEnum)),
+    dedupe_keys: S.optional(SignalSignalsScoutEmitRequestDedupeKeysList),
+    tags: S.optional(SignalSignalsScoutEmitRequestTagsList),
+    time_range: S.optional(S.NullOr(TimeRange)),
+    mcp_trace_id: S.optional(S.NullOr(S.String)),
+    finding_id: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/emit-signal/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SignalSignalsScoutEmitRequest",
+}) as any as S.Schema<SignalSignalsScoutEmitRequest>;
+
+export interface EmitFindingResponse {
+  /** Stable id for the finding (echoed back from request, or generated). */
+  finding_id: string;
+  /** Whether `emit_signal` was actually fired. */
+  emitted: boolean;
+  /** `ai_processing_not_approved` | `source_disabled` | null when emitted normally. */
+  skipped_reason: string | null;
+  /** One-line, actionable next step when `skipped_reason` is set and the block is fixable (e.g. an org admin must approve AI data processing). Null when emitted normally or the skip isn't something the scout can act on. */
+  remediation: string | null;
+}
+export const EmitFindingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    finding_id: S.String,
+    emitted: S.Boolean,
+    skipped_reason: S.NullOr(S.String),
+    remediation: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "EmitFindingResponse",
+}) as any as S.Schema<EmitFindingResponse>;
+
+export interface SignalsReportArtefactsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
+  report_id: string;
+  /** A UUID string identifying this signal report artefact. */
+  id: string;
+}
+export const SignalsReportArtefactsDestroyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      report_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "SignalsReportArtefactsDestroyRequest",
+}) as any as S.Schema<SignalsReportArtefactsDestroyRequest>;
+
+export interface SignalsReportArtefactsDestroyResponse {}
+export const SignalsReportArtefactsDestroyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SignalsReportArtefactsDestroyResponse",
+}) as any as S.Schema<SignalsReportArtefactsDestroyResponse>;
+
+export interface SignalsReportArtefactsDiffRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
+  report_id: string;
+  /** A UUID string identifying this signal report artefact. */
+  id: string;
+}
+export const SignalsReportArtefactsDiffRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    report_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/reports/{report_id}/artefacts/{id}/diff/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SignalsReportArtefactsDiffRequest",
+}) as any as S.Schema<SignalsReportArtefactsDiffRequest>;
+
+/** Response for the `commit` artefact diff endpoint — the commit's branch rendered against the repository default branch. */
+export interface CommitDiffResponse {
+  /** Unified diff (patch) text of the branch against the repository default branch, from the GitHub compare API. */
+  diff: string;
+  /** True when the diff was too large to return in full and has been truncated. */
+  truncated: boolean;
+}
+export const CommitDiffResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diff: S.String,
+    truncated: S.Boolean,
+  }),
+).annotate({
+  identifier: "CommitDiffResponse",
+}) as any as S.Schema<CommitDiffResponse>;
+
+export interface SignalsReportPrChecksRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+}
+export const SignalsReportPrChecksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/reports/{id}/pr_checks/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SignalsReportPrChecksRequest",
+}) as any as S.Schema<SignalsReportPrChecksRequest>;
+
+/** One CI check on a pull request's head commit — a GitHub Actions check run or a legacy commit status, normalized to a common shape. */
+export interface PullRequestCheck {
+  /** Check run name or status context. */
+  name: string;
+  /** Lifecycle state: 'queued', 'in_progress', or 'completed'. */
+  status: string | null;
+  /** Outcome once completed: 'success', 'failure', 'neutral', 'cancelled', 'skipped', 'timed_out', or 'action_required'. Null while still running. */
+  conclusion: string | null;
+  /** Link to the check run / status detail on GitHub. */
+  url: string | null;
+}
+export const PullRequestCheck = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    status: S.NullOr(S.String),
+    conclusion: S.NullOr(S.String),
+    url: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PullRequestCheck",
+}) as any as S.Schema<PullRequestCheck>;
+
+export type PullRequestChecksResponseChecksList = Array<PullRequestCheck>;
+export const PullRequestChecksResponseChecksList = /*@__PURE__*/ S.Array(
+  PullRequestCheck,
+) as any as S.Schema<PullRequestChecksResponseChecksList>;
+
+/** Response for the PR checks endpoint — the CI status of a report's implementation PR. */
+export interface PullRequestChecksResponse {
+  checks: PullRequestChecksResponseChecksList;
+}
+export const PullRequestChecksResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    checks: PullRequestChecksResponseChecksList,
+  }),
+).annotate({
+  identifier: "PullRequestChecksResponse",
+}) as any as S.Schema<PullRequestChecksResponse>;
+
+export interface SignalsReportPrCommentsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+}
+export const SignalsReportPrCommentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/signals/reports/{id}/pr_comments/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SignalsReportPrCommentsRequest",
+}) as any as S.Schema<SignalsReportPrCommentsRequest>;
+
+export type PullRequestCommentsResponseCommentsList = Array<PullRequestComment>;
+export const PullRequestCommentsResponseCommentsList = /*@__PURE__*/ S.Array(
+  PullRequestComment,
+) as any as S.Schema<PullRequestCommentsResponseCommentsList>;
+
+/** Response for the PR comments endpoint — conversation and review comments merged chronologically. */
+export interface PullRequestCommentsResponse {
+  comments: PullRequestCommentsResponseCommentsList;
+}
+export const PullRequestCommentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: PullRequestCommentsResponseCommentsList,
+  }),
+).annotate({
+  identifier: "PullRequestCommentsResponse",
+}) as any as S.Schema<PullRequestCommentsResponse>;
+
+/** Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note`, `corrected_repository` and `snooze_for` apply to every id. */
+export type SignalsReportsBulkStateCreateRequestIdsList = Array<string>;
+export const SignalsReportsBulkStateCreateRequestIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SignalsReportsBulkStateCreateRequestIdsList>;
+
+export interface SignalsReportsBulkStateCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). Dismissing or resolving closes the report's open implementation PR, if it has one. * `suppressed` - suppressed * `potential` - potential * `resolved` - resolved */
+  state: SignalReportStateEnum | (string & {});
+  /** Optional canonical reason code recorded with the transition. Must be one of: already_fixed, report_unclear, analysis_wrong, wrong_repo, wontfix_intentional, wontfix_irrelevant, fixed_outside_posthog, pr_merged, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' with 'fixed_outside_posthog' (the fix landed without a pull request), 'pr_merged' (a pull request with the fix was merged but did not resolve the report on its own), or 'already_fixed' (it was fixed before the report was filed). The dismissal codes (report_unclear, analysis_wrong, wrong_repo, wontfix_*) go with state='suppressed'. Use 'wrong_repo' when the agent picked the wrong repository for this report, ideally with corrected_repository naming the right one. Use 'other' together with a dismissal_note for anything that doesn't fit a code. * `already_fixed` - Already fixed * `report_unclear` - Report is unclear to me * `analysis_wrong` - Agent's analysis is wrong * `wrong_repo` - Agent picked the wrong repository * `wontfix_intentional` - Won't fix - intentional behavior * `wontfix_irrelevant` - Won't fix - issue is real but insignificant * `fixed_outside_posthog` - Fixed outside PostHog * `pr_merged` - PR was merged * `other` - Something else… */
+  dismissal_reason?: DismissalReasonEnum | (string & {});
+  /** Optional free-form note explaining the dismissal. Capped at 4000 characters. */
+  dismissal_note?: string;
+  /** Optional, only allowed with dismissal_reason='wrong_repo'. The repository this report should have targeted, in 'owner/repo' format (case-insensitive). It is recorded with the dismissal and fed into future repository selection for this project. When the repository is connected to the project, it also becomes the report's corrected repo selection, so restoring the report re-researches against it. */
+  corrected_repository?: string;
+  /** Optional, only honored when state is 'potential'. Number of additional signals the report must accumulate before it is re-promoted into the pipeline — effectively snoozing it until then. Omit to let the report re-enter the pipeline on the next matching signal. */
+  snooze_for?: number;
+  /** Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note`, `corrected_repository` and `snooze_for` apply to every id. */
+  ids: SignalsReportsBulkStateCreateRequestIdsList;
+}
+export const SignalsReportsBulkStateCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      state: SignalReportStateEnum,
+      dismissal_reason: S.optional(DismissalReasonEnum),
+      dismissal_note: S.optional(S.String),
+      corrected_repository: S.optional(S.String),
+      snooze_for: S.optional(S.Number),
+      ids: SignalsReportsBulkStateCreateRequestIdsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/signals/reports/bulk-state/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "SignalsReportsBulkStateCreateRequest",
+}) as any as S.Schema<SignalsReportsBulkStateCreateRequest>;
+
+export interface SignalReportBulkStateResult {
+  /** The report id this result refers to. */
+  id: string;
+  /** One of: transitioned, skipped, failed, not_found. transitioned: the state change was applied. skipped: the transition was not allowed from the report's current status (a 409 on the single-report endpoint). failed: the request data was invalid for this report. not_found: no report with this id is visible to you. */
+  outcome: string;
+  /** The report's status after the transition. Present only when outcome is 'transitioned'. */
+  status?: string | null;
+  /** Human-readable explanation for non-transitioned outcomes (skipped / failed / not_found). */
+  detail?: string | null;
+}
+export const SignalReportBulkStateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    outcome: S.String,
+    status: S.optional(S.NullOr(S.String)),
+    detail: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "SignalReportBulkStateResult",
+}) as any as S.Schema<SignalReportBulkStateResult>;
+
+/** One result per requested id, in request order (after de-duplication). */
+export type SignalReportBulkStateResponseResultsList =
+  Array<SignalReportBulkStateResult>;
+export const SignalReportBulkStateResponseResultsList = /*@__PURE__*/ S.Array(
+  SignalReportBulkStateResult,
+) as any as S.Schema<SignalReportBulkStateResponseResultsList>;
+
+export interface SignalReportBulkStateResponse {
+  /** One result per requested id, in request order (after de-duplication). */
+  results: SignalReportBulkStateResponseResultsList;
+  /** Number of reports whose state was changed. */
+  transitioned_count: number;
+  /** Number of reports whose transition was not allowed. */
+  skipped_count: number;
+  /** Number of reports that failed on invalid request data. */
+  failed_count: number;
+  /** Number of requested ids not visible to the caller. */
+  not_found_count: number;
+}
+export const SignalReportBulkStateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: SignalReportBulkStateResponseResultsList,
+    transitioned_count: S.Number,
+    skipped_count: S.Number,
+    failed_count: S.Number,
+    not_found_count: S.Number,
+  }),
+).annotate({
+  identifier: "SignalReportBulkStateResponse",
+}) as any as S.Schema<SignalReportBulkStateResponse>;
+
 export interface SignalsScoutConfigDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -5399,184 +5984,6 @@ export const SignalsScoutConfigDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SignalsScoutConfigDestroyResponse",
 }) as any as S.Schema<SignalsScoutConfigDestroyResponse>;
-
-export interface SignalsScoutConfigRunRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this Signal scout config. */
-  id: string;
-}
-export const SignalsScoutConfigRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/scout/configs/{id}/run/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsScoutConfigRunRequest",
-}) as any as S.Schema<SignalsScoutConfigRunRequest>;
-
-export interface SignalsScoutConfigRunResponse {}
-export const SignalsScoutConfigRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SignalsScoutConfigRunResponse",
-}) as any as S.Schema<SignalsScoutConfigRunResponse>;
-
-export interface SignalsScoutConfigSyncRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const SignalsScoutConfigSyncRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/scout/configs/sync/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsScoutConfigSyncRequest",
-}) as any as S.Schema<SignalsScoutConfigSyncRequest>;
-
-export type SignalsScoutConfigSyncResponseBodyList = Array<SignalScoutConfig>;
-export const SignalsScoutConfigSyncResponseBodyList = /*@__PURE__*/ S.Array(
-  SignalScoutConfig,
-) as any as S.Schema<SignalsScoutConfigSyncResponseBodyList>;
-
-export type SignalsScoutConfigSyncResponse =
-  SignalsScoutConfigSyncResponseBodyList;
-export const SignalsScoutConfigSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  SignalsScoutConfigSyncResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SignalsScoutConfigSyncResponse",
-}) as any as S.Schema<SignalsScoutConfigSyncResponse>;
-
-/** One suggested reviewer — identified by `github_login`, `user_uuid`, or both. The server canonicalizes each entry to a lowercased GitHub login: a `user_uuid` is resolved to the org member's linked GitHub login (and wins over a supplied `github_login` when both are given). A `user_uuid` that isn't an org member of this team with a linked GitHub identity is rejected — so a reviewer is never silently dropped. */
-export interface SuggestedReviewer {
-  /** GitHub login (case-insensitive, stored lowercased) — e.g. `octocat`, no `@`, no display name. Resolve one via `scout-members-list` (each member row carries a resolved `github_login`) or git history when you only have a name. */
-  github_login?: string;
-  /** PostHog user UUID (e.g. from `scout-members-list`, or an entity's `created_by`). Resolved server-side to the member's linked GitHub login — use this when you know the PostHog user but not their GitHub handle. Must be a concrete UUID; the `@me` alias is not valid here. */
-  user_uuid?: string;
-  /** One sentence of evidence for WHY this person: what ties them to the affected surface (e.g. 'authored 4 of the last 10 commits touching products/tracing/mcp/', 'human correction routed the prior tracing report to them'). Persisted on the report so the routing is auditable — always set it when you can name the evidence; 'precedent' alone is weak, prefer code-derived ownership. */
-  reason?: string | null;
-}
-export const SuggestedReviewer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    github_login: S.optional(S.String),
-    user_uuid: S.optional(S.String),
-    reason: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SuggestedReviewer",
-}) as any as S.Schema<SuggestedReviewer>;
-
-/** Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared). */
-export type SignalsScoutEditReportRequestSuggestedReviewersList =
-  Array<SuggestedReviewer>;
-export const SignalsScoutEditReportRequestSuggestedReviewersList =
-  /*@__PURE__*/ S.Array(
-    SuggestedReviewer,
-  ) as any as S.Schema<SignalsScoutEditReportRequestSuggestedReviewersList>;
-
-/** The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down. */
-export type SignalsScoutEditReportRequestChartsList = Array<ReportChart>;
-export const SignalsScoutEditReportRequestChartsList = /*@__PURE__*/ S.Array(
-  ReportChart,
-) as any as S.Schema<SignalsScoutEditReportRequestChartsList>;
-
-/** The full set of follow-up questions the report should offer above its `Ask AI` box. Replaces the report's questions rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them answering the old report. */
-export type SignalsScoutEditReportRequestSuggestedPromptsList = Array<string>;
-export const SignalsScoutEditReportRequestSuggestedPromptsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SignalsScoutEditReportRequestSuggestedPromptsList>;
-
-export interface SignalsScoutEditReportRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the `SignalScoutRun` bridge row. */
-  run_id: string;
-  /** Id of the report to edit (must belong to this project). */
-  report_id: string;
-  /** Optional new title. Conventional-commit style (`type(scope): description`) renders with type/scope styling. The pipeline may later re-research and overwrite it. */
-  title?: string | null;
-  /** Optional new summary. Markdown is supported (headings, lists, code, links; images are not rendered); lead with one plain declarative sentence — it becomes the inbox card headline. The pipeline may later re-research and overwrite it. */
-  summary?: string | null;
-  /** Optional free-form note to append to the report's work log (attributed to this scout). */
-  append_note?: string | null;
-  /** Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared). */
-  suggested_reviewers?: SignalsScoutEditReportRequestSuggestedReviewersList;
-  /** The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down. */
-  charts?: SignalsScoutEditReportRequestChartsList | null;
-  /** The full set of follow-up questions the report should offer above its `Ask AI` box. Replaces the report's questions rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them answering the old report. */
-  suggested_prompts?: SignalsScoutEditReportRequestSuggestedPromptsList | null;
-}
-export const SignalsScoutEditReportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    run_id: S.String.pipe(T.Label()),
-    report_id: S.String,
-    title: S.optional(S.NullOr(S.String)),
-    summary: S.optional(S.NullOr(S.String)),
-    append_note: S.optional(S.NullOr(S.String)),
-    suggested_reviewers: S.optional(
-      SignalsScoutEditReportRequestSuggestedReviewersList,
-    ),
-    charts: S.optional(S.NullOr(SignalsScoutEditReportRequestChartsList)),
-    suggested_prompts: S.optional(
-      S.NullOr(SignalsScoutEditReportRequestSuggestedPromptsList),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/edit-report/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsScoutEditReportRequest",
-}) as any as S.Schema<SignalsScoutEditReportRequest>;
-
-/** Which presentation fields changed (e.g. `title`, `summary`); empty if only a note was appended. */
-export type EditReportResponseUpdatedFieldsList = Array<string>;
-export const EditReportResponseUpdatedFieldsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EditReportResponseUpdatedFieldsList>;
-
-export interface EditReportResponse {
-  /** Id of the edited report. */
-  report_id: string;
-  /** Which presentation fields changed (e.g. `title`, `summary`); empty if only a note was appended. */
-  updated_fields: EditReportResponseUpdatedFieldsList;
-  /** Whether a note artefact was appended. */
-  note_appended: boolean;
-  /** Whether the report's suggested reviewers were replaced. */
-  reviewers_set: boolean;
-  /** How many charts the report now shows, or null if the edit left its charts as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's charts down. */
-  charts_set: number | null;
-  /** How many questions the report now suggests, or null if the edit left them as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's suggested prompts down. */
-  suggested_prompts_set: number | null;
-}
-export const EditReportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    report_id: S.String,
-    updated_fields: EditReportResponseUpdatedFieldsList,
-    note_appended: S.Boolean,
-    reviewers_set: S.Boolean,
-    charts_set: S.NullOr(S.Number),
-    suggested_prompts_set: S.NullOr(S.Number),
-  }),
-).annotate({
-  identifier: "EditReportResponse",
-}) as any as S.Schema<EditReportResponse>;
 
 /** One observation backing an authored report — becomes a bound signal row on the report. */
 export interface ReportEvidence {
@@ -5622,7 +6029,7 @@ export const SignalsScoutEmitReportRequestChartsList = /*@__PURE__*/ S.Array(
   ReportChart,
 ) as any as S.Schema<SignalsScoutEmitReportRequestChartsList>;
 
-/** Optional follow-up questions to offer above the report's `Ask AI` box. The reader clicks one to fill the box with it, then sends or edits it. Write the questions your own research left open, phrased as the reader would ask them. */
+/** Optional follow-up prompts to offer above the report's `Ask AI` box: questions to ask, or next-step actions to request (e.g. carrying out the report's recommendation). The reader clicks one to fill the box with it, then sends or edits it. Write the prompts your own research left open, phrased as the reader would send them. */
 export type SignalsScoutEmitReportRequestSuggestedPromptsList = Array<string>;
 export const SignalsScoutEmitReportRequestSuggestedPromptsList =
   /*@__PURE__*/ S.Array(
@@ -5636,7 +6043,7 @@ export interface SignalsScoutEmitReportRequest {
   run_id: string;
   /** One-line report title the inbox shows. Conventional-commit style (`type(scope): description`, e.g. `fix(insights): missing series color`) renders with type/scope styling. */
   title: string;
-  /** The report body the inbox shows. Markdown is supported (headings, lists, code, links; images are not rendered). Lead with one plain declarative sentence — the inbox card uses your first line verbatim as the headline (~140 chars, emphasis stripped), then renders the full markdown in the detail view. */
+  /** The report body the inbox shows. Markdown is supported (headings, lists, code, links; images are not rendered). Lead with one plain declarative sentence — the inbox card uses your first line verbatim as the headline (~140 chars, emphasis stripped), then renders the full markdown in the detail view. A heading, or a bold label on a line of its own with a blank line above it, marks a section that a threaded Slack delivery splits into its own reply. */
   summary: string;
   /** The observations backing the report — each becomes a bound signal. At least one. */
   evidence: SignalsScoutEmitReportRequestEvidenceList;
@@ -5646,7 +6053,7 @@ export interface SignalsScoutEmitReportRequest {
   actionability: ActionabilityEnum | (string & {});
   /** Whether the issue is already being handled — fixed in recent changes, or with a fix in flight (an open PR, a recently active branch, an assigned / in-progress issue or agent task). Gates autostart, so a wrong `false` opens a duplicate PR. Tracked separately. */
   already_addressed?: boolean;
-  /** Optional repo for autostart (opening a draft PR): `owner/repo` targets that repo, the `NO_REPO` sentinel opts out (report lands without a PR), and omitting it triggers free-form selection across the team's repos — the slow path on a many-repo team, so pass `owner/repo` when you know it. */
+  /** Optional repo for opening a draft PR, by autostart or by a person from the inbox. Pass `owner/repo` whenever you can say where a fix would land. Omit the field when you can't, which triggers free-form selection across the team's repos (the slow path on a many-repo team). Keep the `NO_REPO` sentinel for the rare report where nothing under version control could change, since a skill body, a config file, or a doc still lives in a repo. */
   repository?: string | null;
   /** Optional priority (`P0`-`P4`). Required for autostart; pair with `priority_explanation`. * `P0` - P0 * `P1` - P1 * `P2` - P2 * `P3` - P3 * `P4` - P4 */
   priority?: AutonomyPriorityEnum | (string & {}) | null;
@@ -5656,7 +6063,7 @@ export interface SignalsScoutEmitReportRequest {
   suggested_reviewers?: SignalsScoutEmitReportRequestSuggestedReviewersList;
   /** Optional charts to attach to the report — the inbox renders them inline, so a metric move is something the reader sees rather than a number they take on trust. Attach one whenever the finding rests on a trend, a spike, or a comparison you already queried. */
   charts?: SignalsScoutEmitReportRequestChartsList;
-  /** Optional follow-up questions to offer above the report's `Ask AI` box. The reader clicks one to fill the box with it, then sends or edits it. Write the questions your own research left open, phrased as the reader would ask them. */
+  /** Optional follow-up prompts to offer above the report's `Ask AI` box: questions to ask, or next-step actions to request (e.g. carrying out the report's recommendation). The reader clicks one to fill the box with it, then sends or edits it. Write the prompts your own research left open, phrased as the reader would send them. */
   suggested_prompts?: SignalsScoutEmitReportRequestSuggestedPromptsList;
 }
 export const SignalsScoutEmitReportRequest = /*@__PURE__*/ S.suspend(() =>
@@ -6210,118 +6617,6 @@ export const SignalsScoutRunsRecentPerScoutResponse = /*@__PURE__*/ S.suspend(
   identifier: "SignalsScoutRunsRecentPerScoutResponse",
 }) as any as S.Schema<SignalsScoutRunsRecentPerScoutResponse>;
 
-export interface SignalsScoutRunsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the `SignalScoutRun` bridge row. */
-  run_id: string;
-}
-export const SignalsScoutRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    run_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/runs/{run_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsScoutRunsRetrieveRequest",
-}) as any as S.Schema<SignalsScoutRunsRetrieveRequest>;
-
-/** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
-export type SignalScoutRunDetailEmittedFindingIdsList = Array<string>;
-export const SignalScoutRunDetailEmittedFindingIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunDetailEmittedFindingIdsList>;
-
-/** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
-export type SignalScoutRunDetailEmittedReportIdsList = Array<string>;
-export const SignalScoutRunDetailEmittedReportIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunDetailEmittedReportIdsList>;
-
-/** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
-export type SignalScoutRunDetailEditedReportIdsList = Array<string>;
-export const SignalScoutRunDetailEditedReportIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SignalScoutRunDetailEditedReportIdsList>;
-
-export type SignalScoutRunDetailMetadataDerived =
-  SignalScoutRunSummaryMetadataDerived;
-export const SignalScoutRunDetailMetadataDerived =
-  SignalScoutRunSummaryMetadataDerived;
-
-/** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
-export type SignalScoutRunDetailMetadata = SignalScoutRunSummaryMetadata;
-export const SignalScoutRunDetailMetadata = SignalScoutRunSummaryMetadata;
-
-/** Full `SignalScoutRun` projection used by `get-run`. Same shape as the summary today; kept distinct so future detail-only extensions (linked Signal rows, LLMA token-cost join) can land here without bloating the list response. */
-export interface SignalScoutRunDetail {
-  /** UUID of the bridge row. */
-  run_id: string;
-  /** Canonical skill name the run executed (e.g. `signals-scout-general`). */
-  skill_name: string;
-  /** Skill version snapshotted at run start. */
-  skill_version: number;
-  /** Status from the linked TaskRun. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-  status: RunStatusEnum;
-  /** ISO-8601 timestamp the bridge row was created — the field `date_from` / `date_to` filter and order on. Use this (not `started_at`) as the `date_to` cursor when walking past the 100-row cap, so runs created in the gap between a boundary run's TaskRun and its bridge row aren't skipped. */
-  created_at: string;
-  /** ISO-8601 timestamp the TaskRun was created. */
-  started_at: string;
-  /** ISO-8601 timestamp the TaskRun completed; null while still running. */
-  completed_at: string | null;
-  /** UUID of the Tasks `Task` the scout span ran inside. */
-  task_id?: string | null;
-  /** UUID of the Tasks `TaskRun`. Pairs with `task_id` to deep-link. */
-  task_run_id?: string | null;
-  /** Relative deep-link to the Tasks UI for this run, e.g. `/project/{team_id}/tasks/{task_id}?runId={task_run_id}`. */
-  task_url?: string | null;
-  /** One-paragraph close-out the scout wrote at end-of-run. Empty string for runs that errored before close-out. The dedupe key for non-emitting runs. */
-  summary: string;
-  /** Full `error_message` from the linked TaskRun, surfaced only for failed/cancelled runs (null otherwise, including on success). Use `failure_reason` for a concise scan-friendly summary. */
-  error?: string | null;
-  /** Concise derived reason the run didn't complete cleanly — the first line of `error` (bounded), or a status-derived fallback. Null unless the run terminated failed/cancelled. Read this to see at a glance *why* a run emitted nothing without pulling full stack traces. */
-  failure_reason?: string | null;
-  /** Number of findings this run actually emitted to the inbox. 0 for runs that investigated but surfaced nothing, or ran dry-run / before AI approval. `> 0` means the run produced at least one `Signal`. */
-  emitted_count: number;
-  /** The `finding_id`s behind `emitted_count`, in emit order. Each maps to a `Signal` with `source_id = run:<run_id>:finding:<finding_id>`. Empty for non-emitting runs. */
-  emitted_finding_ids: SignalScoutRunDetailEmittedFindingIdsList;
-  /** The `SignalReport` ids this run authored directly via the `emit_report` channel, in emit order. Separate from `emitted_finding_ids` (weak `emit_signal` findings) — a report-authoring scout writes a full report here instead. Empty for runs that authored no report. */
-  emitted_report_ids: SignalScoutRunDetailEmittedReportIdsList;
-  /** The `SignalReport` ids this run mutated via the `edit_report` channel (rewrote title/summary and/or appended a note), deduped. Distinct from `emitted_report_ids`: edit can target any inbox report, so these are generally not reports the run authored. Empty for runs that edited no report. */
-  edited_report_ids: SignalScoutRunDetailEditedReportIdsList;
-  /** Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed. */
-  metadata: SignalScoutRunSummaryMetadata;
-}
-export const SignalScoutRunDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run_id: S.String,
-    skill_name: S.String,
-    skill_version: S.Number,
-    status: RunStatusEnum,
-    created_at: S.String,
-    started_at: S.String,
-    completed_at: S.NullOr(S.String),
-    task_id: S.optional(S.NullOr(S.String)),
-    task_run_id: S.optional(S.NullOr(S.String)),
-    task_url: S.optional(S.NullOr(S.String)),
-    summary: S.String,
-    error: S.optional(S.NullOr(S.String)),
-    failure_reason: S.optional(S.NullOr(S.String)),
-    emitted_count: S.Number,
-    emitted_finding_ids: SignalScoutRunDetailEmittedFindingIdsList,
-    emitted_report_ids: SignalScoutRunDetailEmittedReportIdsList,
-    edited_report_ids: SignalScoutRunDetailEditedReportIdsList,
-    metadata: SignalScoutRunSummaryMetadata,
-  }),
-).annotate({
-  identifier: "SignalScoutRunDetail",
-}) as any as S.Schema<SignalScoutRunDetail>;
-
 export interface SignalsScoutScratchpadForgetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -6360,9 +6655,9 @@ export interface SignalsScoutScratchpadRememberRequest {
   key: string;
   /** Prose to write. Read verbatim into future prompts. */
   content: string;
-  /** Run that authored this memory; persisted as `created_by_run_id` for lineage. Best-effort — a `run_id` that isn't a run on this project is dropped (lineage left null), not rejected, so the memory write is never lost. */
+  /** Run that authored this memory; persisted as `created_by_run_id` for lineage. Best-effort — a `run_id` that is unparseable, or that isn't a run on this project, is dropped rather than rejected, so the memory write is never lost. Omit it and the lineage still lands: a write from a scout sandbox is attributed to that sandbox's own run. */
   run_id?: string | null;
-  /** Optional ISO-8601 expiry for a memory that's only true for a while (a cooldown, a window you're watching). After this time the entry drops out of searches, so you don't have to come back and forget it. Omit for a durable memory — every write sets the whole entry, so omitting it on a later write clears an expiry set earlier. */
+  /** Optional ISO-8601 expiry for a memory that's only true for a while (a cooldown, a window you're watching). After this time the entry drops out of searches, so you don't have to come back and forget it. Omit for a durable memory — every write sets the whole entry, so omitting it on a later write clears an expiry set earlier. Best-effort — a value that can't be parsed or is already in the past is dropped (the memory stays durable), not rejected, so the memory write is never lost. */
   expires_at?: string | null;
 }
 export const SignalsScoutScratchpadRememberRequest = /*@__PURE__*/ S.suspend(
@@ -6383,97 +6678,6 @@ export const SignalsScoutScratchpadRememberRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "SignalsScoutScratchpadRememberRequest",
 }) as any as S.Schema<SignalsScoutScratchpadRememberRequest>;
-
-/** `SignalScratchpad` projection used by `search-memory` and `remember`. */
-export interface ScratchpadEntry {
-  /** Agent-chosen semantic key, unique per team. */
-  key: string;
-  /** Prose content for prompt injection. Blank when the search projected it out (`keys_only=true`); truncated to a preview when `content_max_chars` was set. */
-  content: string;
-  /** ISO-8601 creation timestamp. */
-  created_at: string | null;
-  /** ISO-8601 last-write timestamp. */
-  updated_at: string | null;
-  /** ISO-8601 expiry, or null for a durable memory that stays until it's forgotten. */
-  expires_at?: string | null;
-  /** Run that wrote this entry, or null if human-authored. */
-  created_by_run_id: string | null;
-  /** Canonical skill name of the scout that created this entry (e.g. `signals-scout-apm`), or null if human-authored. */
-  created_by_skill?: string | null;
-  /** Relative Tasks UI deep-link to the run that created this entry, or null if the run linkage isn't captured. */
-  created_by_run_url?: string | null;
-}
-export const ScratchpadEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    content: S.String,
-    created_at: S.NullOr(S.String),
-    updated_at: S.NullOr(S.String),
-    expires_at: S.optional(S.NullOr(S.String)),
-    created_by_run_id: S.NullOr(S.String),
-    created_by_skill: S.optional(S.NullOr(S.String)),
-    created_by_run_url: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ScratchpadEntry",
-}) as any as S.Schema<ScratchpadEntry>;
-
-export interface SignalsScoutScratchpadSearchRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Truncate each entry's `content` to the first N characters (a preview). Omit for the full body. Ignored when `keys_only=true`. */
-  content_max_chars?: number;
-  /** ISO-8601 inclusive lower bound on `updated_at`. Omit to skip the lower bound. */
-  date_from?: string;
-  /** ISO-8601 exclusive upper bound on `updated_at`. Pass to walk back past the result cap on subsequent calls (cursor-style: set to the `updated_at` of the oldest entry from the prior page). */
-  date_to?: string;
-  /** Include entries whose `expires_at` has passed. Off by default so a time-boxed memory retires itself; turn it on to audit what the fleet remembered and when it lapsed. */
-  include_expired?: boolean;
-  /** Exact key match — returns the single entry with this key, or nothing. Use this to re-read a known entry; `text` searches key *and* content, so it can push the row you asked for past the limit. */
-  key?: string;
-  /** When true, blank each entry's `content` and return only keys + metadata. Use to scan which memories exist without pulling their (potentially large) bodies, then re-query the ones worth a full read. Takes precedence over `content_max_chars`. */
-  keys_only?: boolean;
-  /** Max rows to return (default 20, hard cap 1000). */
-  limit?: number;
-  /** ILIKE substring match against `content`. Omit to return the most recent entries. */
-  text?: string;
-}
-export const SignalsScoutScratchpadSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    content_max_chars: S.optional(S.Number.pipe(T.Query())),
-    date_from: S.optional(S.String.pipe(T.Query())),
-    date_to: S.optional(S.String.pipe(T.Query())),
-    include_expired: S.optional(S.Boolean.pipe(T.Query())),
-    key: S.optional(S.String.pipe(T.Query())),
-    keys_only: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    text: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/scout/scratchpad/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SignalsScoutScratchpadSearchRequest",
-}) as any as S.Schema<SignalsScoutScratchpadSearchRequest>;
-
-export type SignalsScoutScratchpadSearchResponseBodyList =
-  Array<ScratchpadEntry>;
-export const SignalsScoutScratchpadSearchResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    ScratchpadEntry,
-  ) as any as S.Schema<SignalsScoutScratchpadSearchResponseBodyList>;
-
-export type SignalsScoutScratchpadSearchResponse =
-  SignalsScoutScratchpadSearchResponseBodyList;
-export const SignalsScoutScratchpadSearchResponse = /*@__PURE__*/ S.suspend(
-  () => SignalsScoutScratchpadSearchResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SignalsScoutScratchpadSearchResponse",
-}) as any as S.Schema<SignalsScoutScratchpadSearchResponse>;
 
 export interface SignalsSourceConfigsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -6503,34 +6707,53 @@ export const SignalsSourceConfigsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignalsSourceConfigsDestroyResponse",
 }) as any as S.Schema<SignalsSourceConfigsDestroyResponse>;
 
-export interface SignalsSourceConfigsRetrieveRequest {
+export type SyncSignalsScoutConfigRequestSurface =
+  | "roster"
+  | "desktop"
+  | "wizard";
+export const SyncSignalsScoutConfigRequestSurface = /*@__PURE__*/ S.String;
+
+export interface SyncSignalsScoutConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this signal source config. */
-  id: string;
+  /** Which surface asked for the materialization, recorded on the `signals_scout_fleet_synced` analytics event so a fleet a person's tab-open delivered is separable from one the coordinator was going to deliver anyway. Omitted means unknown. * `roster` - roster * `desktop` - desktop * `wizard` - wizard */
+  surface?: SyncSignalsScoutConfigRequestSurface | (string & {});
 }
-export const SignalsSourceConfigsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const SyncSignalsScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    surface: S.optional(SyncSignalsScoutConfigRequestSurface.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/signals/source_configs/{id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/signals/scout/configs/sync/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SignalsSourceConfigsRetrieveRequest",
-}) as any as S.Schema<SignalsSourceConfigsRetrieveRequest>;
+  identifier: "SyncSignalsScoutConfigRequest",
+}) as any as S.Schema<SyncSignalsScoutConfigRequest>;
 
-export interface UpdateSignalProcessingPauseRequest {
+export type SyncSignalsScoutConfigResponseBodyList = Array<SignalScoutConfig>;
+export const SyncSignalsScoutConfigResponseBodyList = /*@__PURE__*/ S.Array(
+  SignalScoutConfig,
+) as any as S.Schema<SyncSignalsScoutConfigResponseBodyList>;
+
+export type SyncSignalsScoutConfigResponse =
+  SyncSignalsScoutConfigResponseBodyList;
+export const SyncSignalsScoutConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  SyncSignalsScoutConfigResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "SyncSignalsScoutConfigResponse",
+}) as any as S.Schema<SyncSignalsScoutConfigResponse>;
+
+export interface UpdateSignalsProcessingPauseRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Pause the grouping pipeline until this timestamp (ISO 8601). */
   timestamp?: string;
 }
-export const UpdateSignalProcessingPauseRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSignalsProcessingPauseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     timestamp: S.optional(S.String),
@@ -6542,10 +6765,10 @@ export const UpdateSignalProcessingPauseRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSignalProcessingPauseRequest",
-}) as any as S.Schema<UpdateSignalProcessingPauseRequest>;
+  identifier: "UpdateSignalsProcessingPauseRequest",
+}) as any as S.Schema<UpdateSignalsProcessingPauseRequest>;
 
-export interface UpdateSignalReportArtefactPartialRequest {
+export interface UpdateSignalsReportArtefactsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the report whose artefacts you're addressing. This must be a report id (the report's own UUID), not a signal id such as `sig_praise` — a non-report id returns 404. */
@@ -6555,8 +6778,8 @@ export interface UpdateSignalReportArtefactPartialRequest {
   /** The new artefact payload as a JSON object or array, matching the artefact type's schema. */
   content?: unknown;
 }
-export const UpdateSignalReportArtefactPartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateSignalsReportArtefactsPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       report_id: S.String.pipe(T.Label()),
@@ -6569,11 +6792,38 @@ export const UpdateSignalReportArtefactPartialRequest = /*@__PURE__*/ S.suspend(
         code: 200,
       }),
     ),
-).annotate({
-  identifier: "UpdateSignalReportArtefactPartialRequest",
-}) as any as S.Schema<UpdateSignalReportArtefactPartialRequest>;
+  ).annotate({
+    identifier: "UpdateSignalsReportArtefactsPartialRequest",
+  }) as any as S.Schema<UpdateSignalsReportArtefactsPartialRequest>;
 
-export interface UpdateSignalReportPartialRequest {
+export interface UpdateSignalsReportPrReviewCommentRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this signal report. */
+  id: string;
+  comment_id: string;
+  /** New comment body (GitHub-flavored markdown). */
+  body?: string;
+}
+export const UpdateSignalsReportPrReviewCommentRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      comment_id: S.String.pipe(T.Label()),
+      body: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateSignalsReportPrReviewCommentRequest",
+  }) as any as S.Schema<UpdateSignalsReportPrReviewCommentRequest>;
+
+export interface UpdateSignalsReportsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal report. */
@@ -6583,7 +6833,7 @@ export interface UpdateSignalReportPartialRequest {
   /** New summary (the report's description) explaining what the report is about. Omit to leave the summary unchanged. */
   summary?: string;
 }
-export const UpdateSignalReportPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSignalsReportsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -6597,61 +6847,34 @@ export const UpdateSignalReportPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSignalReportPartialRequest",
-}) as any as S.Schema<UpdateSignalReportPartialRequest>;
-
-export interface UpdateSignalReportPrReviewCommentRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this signal report. */
-  id: string;
-  comment_id: string;
-  /** New comment body (GitHub-flavored markdown). */
-  body?: string;
-}
-export const UpdateSignalReportPrReviewCommentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      comment_id: S.String.pipe(T.Label()),
-      body: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/signals/reports/{id}/pr_review_comments/{comment_id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateSignalReportPrReviewCommentRequest",
-}) as any as S.Schema<UpdateSignalReportPrReviewCommentRequest>;
+  identifier: "UpdateSignalsReportsPartialRequest",
+}) as any as S.Schema<UpdateSignalsReportsPartialRequest>;
 
 /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
-export type SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap = {
+export type UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap = {
   [key: string]: unknown | undefined;
 };
-export const SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap =
+export const UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap>;
+  ) as any as S.Schema<UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap>;
 
 /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
-export type SignalsScoutConfigUpdateRequestTagsList = Array<string>;
-export const SignalsScoutConfigUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdateSignalsScoutConfigRequestTagsList = Array<string>;
+export const UpdateSignalsScoutConfigRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SignalsScoutConfigUpdateRequestTagsList>;
+) as any as S.Schema<UpdateSignalsScoutConfigRequestTagsList>;
 
 /** MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run. */
-export type SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList =
+export type UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList =
   Array<string>;
-export const SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList =
+export const UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList>;
+  ) as any as S.Schema<UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList>;
 
-export interface UpdateSignalScoutConfigRequest {
+export interface UpdateSignalsScoutConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this Signal scout config. */
@@ -6667,19 +6890,19 @@ export interface UpdateSignalScoutConfigRequest {
   /** Destinations that receive each finding or report this scout emits. Pass an empty object to disable delivery. */
   output_destinations?: SignalScoutOutputDestinations;
   /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
-  structured_output_schema?: SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap | null;
+  structured_output_schema?: UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap | null;
   /** What the scout's sandbox can reach over the network while it runs. `trusted` (the default) restricts runs to the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers. Applies from the scout's next run. * `trusted` - Trusted domains only * `full` - Full */
-  network_access?: ScoutConfigNetworkAccessEnum | (string & {});
+  network_access?: SignalScoutConfigNetworkAccessEnum | (string & {});
   /** Optional model id this scout's runs are pinned to, e.g. `claude-opus-4-5`. Must be one of the platform's agent models; an invalid id is rejected with the available ones listed. Null keeps the default model, chosen by the platform. Early access: the pin can only be set on projects enrolled in the scout model preview, and only takes effect there. Set null to clear it. */
   model?: string | null;
   /** Exempt this scout from the inactivity sweep, meaning both the `ignored` pause and the `no_output` quiet warning. Set it on watchdog scouts whose value is staying quiet. */
   auto_pause_exempt?: boolean;
   /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
-  tags?: SignalsScoutConfigUpdateRequestTagsList;
+  tags?: UpdateSignalsScoutConfigRequestTagsList;
   /** MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run. */
-  mcp_gateway_server_ids?: SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList;
+  mcp_gateway_server_ids?: UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList;
 }
-export const UpdateSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSignalsScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -6689,14 +6912,14 @@ export const UpdateSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
     run_cron_schedule: S.optional(S.NullOr(S.String)),
     output_destinations: S.optional(SignalScoutOutputDestinations),
     structured_output_schema: S.optional(
-      S.NullOr(SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap),
+      S.NullOr(UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap),
     ),
-    network_access: S.optional(ScoutConfigNetworkAccessEnum),
+    network_access: S.optional(SignalScoutConfigNetworkAccessEnum),
     model: S.optional(S.NullOr(S.String)),
     auto_pause_exempt: S.optional(S.Boolean),
-    tags: S.optional(SignalsScoutConfigUpdateRequestTagsList),
+    tags: S.optional(UpdateSignalsScoutConfigRequestTagsList),
     mcp_gateway_server_ids: S.optional(
-      SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList,
+      UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList,
     ),
   }).pipe(
     T.Http({
@@ -6706,20 +6929,19 @@ export const UpdateSignalScoutConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSignalScoutConfigRequest",
-}) as any as S.Schema<UpdateSignalScoutConfigRequest>;
+  identifier: "UpdateSignalsScoutConfigRequest",
+}) as any as S.Schema<UpdateSignalsScoutConfigRequest>;
 
 /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-export type SignalsSourceConfigsUpdateRequestConfigMap = {
+export type UpdateSignalsSourceConfigRequestConfigMap = {
   [key: string]: unknown | undefined;
 };
-export const SignalsSourceConfigsUpdateRequestConfigMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<SignalsSourceConfigsUpdateRequestConfigMap>;
+export const UpdateSignalsSourceConfigRequestConfigMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateSignalsSourceConfigRequestConfigMap>;
 
-export interface UpdateSignalSourceConfigRequest {
+export interface UpdateSignalsSourceConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal source config. */
@@ -6728,16 +6950,16 @@ export interface UpdateSignalSourceConfigRequest {
   source_type?: SignalSourceConfigSourceTypeEnum | (string & {});
   enabled?: boolean;
   /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-  config?: SignalsSourceConfigsUpdateRequestConfigMap;
+  config?: UpdateSignalsSourceConfigRequestConfigMap;
 }
-export const UpdateSignalSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSignalsSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     source_product: S.optional(SignalSourceProductEnum),
     source_type: S.optional(SignalSourceConfigSourceTypeEnum),
     enabled: S.optional(S.Boolean),
-    config: S.optional(SignalsSourceConfigsUpdateRequestConfigMap),
+    config: S.optional(UpdateSignalsSourceConfigRequestConfigMap),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -6746,20 +6968,20 @@ export const UpdateSignalSourceConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSignalSourceConfigRequest",
-}) as any as S.Schema<UpdateSignalSourceConfigRequest>;
+  identifier: "UpdateSignalsSourceConfigRequest",
+}) as any as S.Schema<UpdateSignalsSourceConfigRequest>;
 
 /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-export type SignalsSourceConfigsPartialUpdateRequestConfigMap = {
+export type UpdateSignalsSourceConfigsPartialRequestConfigMap = {
   [key: string]: unknown | undefined;
 };
-export const SignalsSourceConfigsPartialUpdateRequestConfigMap =
+export const UpdateSignalsSourceConfigsPartialRequestConfigMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<SignalsSourceConfigsPartialUpdateRequestConfigMap>;
+  ) as any as S.Schema<UpdateSignalsSourceConfigsPartialRequestConfigMap>;
 
-export interface UpdateSignalSourceConfigPartialRequest {
+export interface UpdateSignalsSourceConfigsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this signal source config. */
@@ -6768,9 +6990,9 @@ export interface UpdateSignalSourceConfigPartialRequest {
   source_type?: SignalSourceConfigSourceTypeEnum | (string & {});
   enabled?: boolean;
   /** Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis. */
-  config?: SignalsSourceConfigsPartialUpdateRequestConfigMap;
+  config?: UpdateSignalsSourceConfigsPartialRequestConfigMap;
 }
-export const UpdateSignalSourceConfigPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateSignalsSourceConfigsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -6778,7 +7000,7 @@ export const UpdateSignalSourceConfigPartialRequest = /*@__PURE__*/ S.suspend(
       source_product: S.optional(SignalSourceProductEnum),
       source_type: S.optional(SignalSourceConfigSourceTypeEnum),
       enabled: S.optional(S.Boolean),
-      config: S.optional(SignalsSourceConfigsPartialUpdateRequestConfigMap),
+      config: S.optional(UpdateSignalsSourceConfigsPartialRequestConfigMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -6787,405 +7009,617 @@ export const UpdateSignalSourceConfigPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateSignalSourceConfigPartialRequest",
-}) as any as S.Schema<UpdateSignalSourceConfigPartialRequest>;
+  identifier: "UpdateSignalsSourceConfigsPartialRequest",
+}) as any as S.Schema<UpdateSignalsSourceConfigsPartialRequest>;
 
-export type CreateSignalReportArtefactError =
+export type CreateSignalsReportArtefactError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Append an artefact to a report Append an artefact to a report (see artefact_type for the writable types). Everything is append-only: log entries (code reference, commit, task run, note) accumulate, while status types (safety / actionability / priority judgments, repo selection, suggested reviewers, channel assignments) are latest-wins — appending a new version supersedes the previous one as the report's canonical status. Content is validated against the type's schema. */
-export const createSignalReportArtefact: API.OperationMethod<
-  CreateSignalReportArtefactRequest,
+export const createSignalsReportArtefact: API.OperationMethod<
+  CreateSignalsReportArtefactRequest,
   SignalReportArtefactWriteResponse,
-  CreateSignalReportArtefactError,
+  CreateSignalsReportArtefactError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportArtefactRequest,
+  input: CreateSignalsReportArtefactRequest,
   output: SignalReportArtefactWriteResponse,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalReportBulkStateError = PosthogOpError;
-/** Transition many reports to a new state in one call. Each id is processed independently: a report whose transition isn't allowed from its current status is reported as `skipped` (a 409 on the single-report endpoint) and the rest still go through. Returns one result per requested id (in request order, after de-duplication) plus per-outcome counts. The whole call is 200 even on partial failure — inspect `results` / the counts to see what happened. */
-export const createSignalReportBulkState: API.OperationMethod<
-  CreateSignalReportBulkStateRequest,
-  SignalReportBulkStateResponse,
-  CreateSignalReportBulkStateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportBulkStateRequest,
-  output: SignalReportBulkStateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateSignalReportFeedbackError = PosthogOpError;
-/** Leave feedback on a report Record the thumbs rating at the end of a report, with an optional note. For browser-session requests the rating is persisted as a per-person report action, which counts as consumption evidence for the scout that authored the report (scouts whose output nobody consumes are eventually paused); requests authenticated any other way record no action. When a note is present and the report was authored by a scout, the note is also forwarded to that scout as a steering note it reads on its next run; for any other report there is nothing to steer. The report's state is never changed. */
-export const createSignalReportFeedback: API.OperationMethod<
-  CreateSignalReportFeedbackRequest,
-  SignalReportFeedbackResponse,
-  CreateSignalReportFeedbackError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportFeedbackRequest,
-  output: SignalReportFeedbackResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateSignalReportPrReviewCommentError =
+export type CreateSignalsReportPrReviewCommentError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Post an inline review comment on a report's implementation PR Post an inline review comment on the report's implementation pull request, attributed to the requesting user's own GitHub identity via their personal GitHub connection. Either replies to an existing thread (`in_reply_to`) or starts a new thread on a diff line (`path` + `line`). */
-export const createSignalReportPrReviewComment: API.OperationMethod<
-  CreateSignalReportPrReviewCommentRequest,
+export const createSignalsReportPrReviewComment: API.OperationMethod<
+  CreateSignalsReportPrReviewCommentRequest,
   PullRequestReviewCommentCreateResponse,
-  CreateSignalReportPrReviewCommentError,
+  CreateSignalsReportPrReviewCommentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportPrReviewCommentRequest,
+  input: CreateSignalsReportPrReviewCommentRequest,
   output: PullRequestReviewCommentCreateResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalReportPrReviewCommentReactionError =
+export type CreateSignalsReportPrReviewCommentReactionError =
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** React to a review comment as the requesting user */
-export const createSignalReportPrReviewCommentReaction: API.OperationMethod<
-  CreateSignalReportPrReviewCommentReactionRequest,
+export const createSignalsReportPrReviewCommentReaction: API.OperationMethod<
+  CreateSignalsReportPrReviewCommentReactionRequest,
   PullRequestReviewCommentReactionCreateResponse,
-  CreateSignalReportPrReviewCommentReactionError,
+  CreateSignalsReportPrReviewCommentReactionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportPrReviewCommentReactionRequest,
+  input: CreateSignalsReportPrReviewCommentReactionRequest,
   output: PullRequestReviewCommentReactionCreateResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalReportRefundError =
+export type CreateSignalsReportsFeedbackError = PosthogOpError;
+/** Leave feedback on a report Record the thumbs rating at the end of a report, with an optional note. For browser-session requests the rating is persisted as a per-person report action, which counts as consumption evidence for the scout that authored the report (scouts whose output nobody consumes are eventually paused); requests authenticated any other way record no action. When a note is present and the report was authored by a scout, the note is also forwarded to that scout as a steering note it reads on its next run; for any other report there is nothing to steer. The report's state is never changed. */
+export const createSignalsReportsFeedback: API.OperationMethod<
+  CreateSignalsReportsFeedbackRequest,
+  SignalReportFeedbackResponse,
+  CreateSignalsReportsFeedbackError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSignalsReportsFeedbackRequest,
+  output: SignalReportFeedbackResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSignalsReportsRefundError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Refund a report's implementation PR Refund the flat charge for this report's implementation PR and archive the report. Refunds auto-approve: the charge is either excluded from usage before it is ever reported to billing (refund on the same UTC day as the PR run) or returned as a Stripe customer-balance credit on the next invoice. A refunded PR does not count toward the free monthly PR allowance. One refund per report, ever — repeat calls return the existing refund with already_refunded=true. The report is archived as part of the refund (a resolved report stays resolved) and can't be restored afterwards. */
-export const createSignalReportRefund: API.OperationMethod<
-  CreateSignalReportRefundRequest,
+export const createSignalsReportsRefund: API.OperationMethod<
+  CreateSignalsReportsRefundRequest,
   SignalReportRefundResponse,
-  CreateSignalReportRefundError,
+  CreateSignalsReportsRefundError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportRefundRequest,
+  input: CreateSignalsReportsRefundRequest,
   output: SignalReportRefundResponse,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalReportStateError = PosthogOpError;
-/** Transition a report to a new state. The model validates allowed transitions. The request body is validated by SignalReportStateRequestSerializer — only the fields it declares (state, dismissal_reason, dismissal_note, snooze_for) are read, and only snooze_for is ever forwarded to transition_to. Any other key is ignored, so internal transition_to kwargs (reset_weight, error, ...) can't be injected. Body: { "state": "suppressed" | "potential" | "resolved", # Optional dismissal feedback (honored when state == "suppressed", "potential", or "resolved"): "dismissal_reason": "<canonical reason code, see SIGNAL_REPORT_DISMISSAL_REASON_CHOICES>", "dismissal_note": "free-form text", # Optional, only honored for state == "potential": "snooze_for": <number of additional signals before re-promotion>, } */
-export const createSignalReportState: API.OperationMethod<
-  CreateSignalReportStateRequest,
+export type CreateSignalsReportsStateError = PosthogOpError;
+/** Transition a report to a new state. The model validates allowed transitions. The request body is validated by SignalReportStateRequestSerializer — only the fields it declares (state, dismissal_reason, dismissal_note, corrected_repository, snooze_for) are read, and only snooze_for is ever forwarded to transition_to. Any other key is ignored, so internal transition_to kwargs (reset_weight, error, ...) can't be injected. Body: { "state": "suppressed" | "potential" | "resolved", # Optional dismissal feedback (honored when state == "suppressed", "potential", or "resolved"): "dismissal_reason": "<canonical reason code, see SIGNAL_REPORT_DISMISSAL_REASON_CHOICES>", "dismissal_note": "free-form text", # Optional, only allowed with dismissal_reason == "wrong_repo": "corrected_repository": "owner/repo the report should have targeted", # Optional, only honored for state == "potential": "snooze_for": <number of additional signals before re-promotion>, } */
+export const createSignalsReportsState: API.OperationMethod<
+  CreateSignalsReportsStateRequest,
   SignalReport,
-  CreateSignalReportStateError,
+  CreateSignalsReportsStateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportStateRequest,
+  input: CreateSignalsReportsStateRequest,
   output: SignalReport,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalReportViewedError = PosthogOpError;
+export type CreateSignalsReportsViewedError = PosthogOpError;
 /** Record that a person viewed a report Record that the caller opened this report's detail view. One row per person per report is kept (repeat views bump a counter), and the record counts as consumption evidence for the scout that authored the report — scouts whose reports nobody consumes are eventually paused. Intended as fire-and-forget from the inbox UI when a person opens a report. Only browser-session requests leave a record; a call with any other credential (personal API key, OAuth token) returns 204 but records nothing. */
-export const createSignalReportViewed: API.OperationMethod<
-  CreateSignalReportViewedRequest,
-  CreateSignalReportViewedResponse,
-  CreateSignalReportViewedError,
+export const createSignalsReportsViewed: API.OperationMethod<
+  CreateSignalsReportsViewedRequest,
+  CreateSignalsReportsViewedResponse,
+  CreateSignalsReportsViewedError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalReportViewedRequest,
-  output: CreateSignalReportViewedResponse,
+  input: CreateSignalsReportsViewedRequest,
+  output: CreateSignalsReportsViewedResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalScoutError = BadRequest | Conflict | PosthogOpError;
+export type CreateSignalsScoutError = BadRequest | Conflict | PosthogOpError;
 /** Create a scout Create a `signals-scout-*` skill and its runnable config atomically. The skill always receives the report-channel tools. The optional config controls schedule, enablement, dry-run posture, network access, and typed destinations such as Slack. Repeating the same definition is safe and applies any supplied config fields; reusing its name for a different definition returns 409. */
-export const createSignalScout: API.OperationMethod<
-  CreateSignalScoutRequest,
+export const createSignalsScout: API.OperationMethod<
+  CreateSignalsScoutRequest,
   SignalScoutCreateResponse,
-  CreateSignalScoutError,
+  CreateSignalsScoutError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalScoutRequest,
+  input: CreateSignalsScoutRequest,
   output: SignalScoutCreateResponse,
   errors: [BadRequest, Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalScoutChatTaskError = Forbidden | PosthogOpError;
+export type CreateSignalsScoutChatTaskError = Forbidden | PosthogOpError;
 /** Start a scout chat task Create and run a cloud task for one of the fixed scout chat templates (suggest a scout, fleet overview, recent signals). The prompt is server-owned; the response carries the task id to navigate to. */
-export const createSignalScoutChatTask: API.OperationMethod<
-  CreateSignalScoutChatTaskRequest,
+export const createSignalsScoutChatTask: API.OperationMethod<
+  CreateSignalsScoutChatTaskRequest,
   ScoutChatTask,
-  CreateSignalScoutChatTaskError,
+  CreateSignalsScoutChatTaskError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalScoutChatTaskRequest,
+  input: CreateSignalsScoutChatTaskRequest,
   output: ScoutChatTask,
   errors: [Forbidden],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalScoutConfigError = BadRequest | PosthogOpError;
+export type CreateSignalsScoutConfigError = BadRequest | PosthogOpError;
 /** Create a scout config Register the config for a `signals-scout-*` skill immediately, without waiting for the coordinator to auto-register it. The same call can optionally set `run_interval_minutes`, a cron `run_cron_schedule`, `enabled`, `emit`, `network_access`, and output destinations. The skill must already exist on this project. Upsert: if a config already exists for the skill, the provided fields are applied to it. */
-export const createSignalScoutConfig: API.OperationMethod<
-  CreateSignalScoutConfigRequest,
+export const createSignalsScoutConfig: API.OperationMethod<
+  CreateSignalsScoutConfigRequest,
   SignalScoutConfig,
-  CreateSignalScoutConfigError,
+  CreateSignalsScoutConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalScoutConfigRequest,
+  input: CreateSignalsScoutConfigRequest,
   output: SignalScoutConfig,
   errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalScoutNoteError = BadRequest | PosthogOpError;
+export type CreateSignalsScoutNoteError = BadRequest | PosthogOpError;
 /** Leave a note for the scouts Leave a steering note the scout fleet reads on its next runs. Address it to one scout via `skill_name` (`signals-scout-*`), to one stage of the report pipeline via a reserved audience (`pipeline:report-research`), or omit it for a general note every scout sees. Each call creates a new note (no upsert); delete retires one. Attributed to the authenticated user. */
-export const createSignalScoutNote: API.OperationMethod<
-  CreateSignalScoutNoteRequest,
+export const createSignalsScoutNote: API.OperationMethod<
+  CreateSignalsScoutNoteRequest,
   ScoutNote,
-  CreateSignalScoutNoteError,
+  CreateSignalsScoutNoteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalScoutNoteRequest,
+  input: CreateSignalsScoutNoteRequest,
   output: ScoutNote,
   errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSignalSourceConfigError =
+export type CreateSignalsSourceConfigError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const createSignalSourceConfig: API.OperationMethod<
-  CreateSignalSourceConfigRequest,
+export const createSignalsSourceConfig: API.OperationMethod<
+  CreateSignalsSourceConfigRequest,
   SignalSourceConfig,
-  CreateSignalSourceConfigError,
+  CreateSignalsSourceConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSignalSourceConfigRequest,
+  input: CreateSignalsSourceConfigRequest,
   output: SignalSourceConfig,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSignalScoutMetadataError = PosthogOpError;
-/** Get scout metadata Return the project's scout metadata: whether it is enrolled, the current announcement banner (e.g. an alpha run-limit notice, or null when unset), and the enforced run limits with current usage. Limits reflect what the coordinator actually applies at dispatch, so a user can see the real throttle rather than what they assume they set. All values come from the `signals-scout` flag payload, so the banner and caps can change with no deploy. */
-export const getSignalScoutMetadata: API.OperationMethod<
-  GetSignalScoutMetadataRequest,
-  ScoutMetadata,
-  GetSignalScoutMetadataError,
+export type DismissSignalsScoutSuggestionError = NotFound | PosthogOpError;
+/** Dismiss a suggested scout Hide one suggestion from this project's batch. Dismissal is remembered across refreshes by skill name, so the same suggestion is not shown again. */
+export const dismissSignalsScoutSuggestion: API.OperationMethod<
+  DismissSignalsScoutSuggestionRequest,
+  ScoutSuggestionItem,
+  DismissSignalsScoutSuggestionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSignalScoutMetadataRequest,
+  input: DismissSignalsScoutSuggestionRequest,
+  output: ScoutSuggestionItem,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditSignalsScoutReportError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Edit an existing report for a run Rewrite a report's title/summary, append a note, and/or set its suggested reviewers. Can target ANY of the project's inbox reports, not just scout-authored ones — so the edit is attributed to this scout. Setting reviewers is how you rescue a report that surfaced routed to no one: it replaces the reviewer list and re-runs autostart, so a report missing a qualifying reviewer can open a draft PR. Title/summary edits are best-effort: the pipeline may later re-research them. */
+export const editSignalsScoutReport: API.OperationMethod<
+  EditSignalsScoutReportRequest,
+  EditReportResponse,
+  EditSignalsScoutReportError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditSignalsScoutReportRequest,
+  output: EditReportResponse,
+  errors: [BadRequest, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsReportError = PosthogOpError;
+export const getSignalsReport: API.OperationMethod<
+  GetSignalsReportRequest,
+  SignalReport,
+  GetSignalsReportError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsReportRequest,
+  output: SignalReport,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsReportArtefactError = PosthogOpError;
+/** Get a single artefact Get one artefact by id, content parsed (and reviewers enriched) the same way as the list. */
+export const getSignalsReportArtefact: API.OperationMethod<
+  GetSignalsReportArtefactRequest,
+  SignalReportArtefact,
+  GetSignalsReportArtefactError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsReportArtefactRequest,
+  output: SignalReportArtefact,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsReportsRefundSummaryError = NotFound | PosthogOpError;
+/** Summarize credited PR refunds for the billing period Aggregate credited-path refunds across the whole organization for the current billing period — counts only, no per-team detail. The billing usage widget needs this because billing usage is org-wide while reports (and their refunds) are team-scoped: subtract the refunded credits from billing usage to show the net PR count. Excluded-path refunds never reach billing usage, so no adjustment is needed for them. Also carries the org's live billable credits for the period (billing's recorded usage lags by up to a day), so the widget can count just-created PRs and react to same-day refunds. */
+export const getSignalsReportsRefundSummary: API.OperationMethod<
+  GetSignalsReportsRefundSummaryRequest,
+  SignalReportRefundSummaryResponse,
+  GetSignalsReportsRefundSummaryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsReportsRefundSummaryRequest,
+  output: SignalReportRefundSummaryResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsReportsSignalError = PosthogOpError;
+/** List a report's signals Fetch all signals for a report from ClickHouse, including full metadata. */
+export const getSignalsReportsSignal: API.OperationMethod<
+  GetSignalsReportsSignalRequest,
+  ReportSignalsResponse,
+  GetSignalsReportsSignalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsReportsSignalRequest,
+  output: ReportSignalsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsScoutMetadataError = PosthogOpError;
+/** Get scout metadata Return the project's scout metadata: whether it is enrolled, the current announcement banner (e.g. an alpha run-limit notice, or null when unset), and the enforced run limits with current usage. Limits reflect what the coordinator actually applies at dispatch, so a user can see the real throttle rather than what they assume they set. All values come from the `signals-scout` flag payload, so the banner and caps can change with no deploy. */
+export const getSignalsScoutMetadata: API.OperationMethod<
+  GetSignalsScoutMetadataRequest,
+  ScoutMetadata,
+  GetSignalsScoutMetadataError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsScoutMetadataRequest,
   output: ScoutMetadata,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSignalScoutProjectProfileError = NotFound | PosthogOpError;
+export type GetSignalsScoutProjectProfileError = NotFound | PosthogOpError;
 /** Get the current project profile Return the team's deterministic project profile. For the internal scout token the response reflects the newest non-expired cached row or a freshly-built one (lazy compute on cache miss); `force_refresh=true` skips the cache and rebuilds from authoritative sources. Public read callers (session auth or a `signal_scout:read` PAK) get the newest cached profile, or 404 if none has been built yet — they never trigger a rebuild. Read this at the start of a run to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface. */
-export const getSignalScoutProjectProfile: API.OperationMethod<
-  GetSignalScoutProjectProfileRequest,
+export const getSignalsScoutProjectProfile: API.OperationMethod<
+  GetSignalsScoutProjectProfileRequest,
   ProjectProfile,
-  GetSignalScoutProjectProfileError,
+  GetSignalsScoutProjectProfileError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSignalScoutProjectProfileRequest,
+  input: GetSignalsScoutProjectProfileRequest,
   output: ProjectProfile,
   errors: [NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalProcessingError =
+export type GetSignalsScoutRunError = NotFound | PosthogOpError;
+/** Get a run by ID Return the full `SignalScoutRun` row. Status, timing, and error flow from the linked `tasks.TaskRun`. Strictly team-scoped — a UUID belonging to another team returns 404. */
+export const getSignalsScoutRun: API.OperationMethod<
+  GetSignalsScoutRunRequest,
+  SignalScoutRunDetail,
+  GetSignalsScoutRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsScoutRunRequest,
+  output: SignalScoutRunDetail,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSignalsSourceConfigError = Forbidden | NotFound | PosthogOpError;
+export const getSignalsSourceConfig: API.OperationMethod<
+  GetSignalsSourceConfigRequest,
+  SignalSourceConfig,
+  GetSignalsSourceConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSignalsSourceConfigRequest,
+  output: SignalSourceConfig,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSignalsProcessingError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Return current processing state including pause status. */
-export const listSignalProcessing: API.OperationMethod<
-  ListSignalProcessingRequest,
+export const listSignalsProcessing: API.OperationMethod<
+  ListSignalsProcessingRequest,
   PaginatedPauseStateResponseList,
-  ListSignalProcessingError,
+  ListSignalsProcessingError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalProcessingRequest,
+  input: ListSignalsProcessingRequest,
   output: PaginatedPauseStateResponseList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalReportArtefactsError = PosthogOpError;
+export type ListSignalsReportArtefactsError = PosthogOpError;
 /** List a report's artefacts List every artefact on a report — the full work log: signal findings (the evidence behind the report), status judgments (safety / actionability / priority, repo selection, suggested reviewers — the newest row of each status type is canonical), and log entries (code references, commits, task runs, notes). `suggested_reviewers` content is enriched with PostHog user info at read time. */
-export const listSignalReportArtefacts: API.OperationMethod<
-  ListSignalReportArtefactsRequest,
+export const listSignalsReportArtefacts: API.OperationMethod<
+  ListSignalsReportArtefactsRequest,
   PaginatedSignalReportArtefactList,
-  ListSignalReportArtefactsError,
+  ListSignalsReportArtefactsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalReportArtefactsRequest,
+  input: ListSignalsReportArtefactsRequest,
   output: PaginatedSignalReportArtefactList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalReportsError = PosthogOpError;
-export const listSignalReports: API.OperationMethod<
-  ListSignalReportsRequest,
+export type ListSignalsReportsError = PosthogOpError;
+export const listSignalsReports: API.OperationMethod<
+  ListSignalsReportsRequest,
   PaginatedSignalReportList,
-  ListSignalReportsError,
+  ListSignalsReportsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalReportsRequest,
+  input: ListSignalsReportsRequest,
   output: PaginatedSignalReportList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalScoutConfigError = PosthogOpError;
+export type ListSignalsScoutConfigError = PosthogOpError;
 /** List scout configs List the per-(team, skill) scout configs for this project. Each row includes its schedule (rolling `run_interval_minutes`, or a project-local `run_cron_schedule` when set), `enabled`, `emit` posture, and `tags`. A freshly authored scout skill appears here once its config is registered, either explicitly via create or by the coordinator's next tick. Pass `tags` to narrow the fleet to the scouts carrying at least one of the given labels. */
-export const listSignalScoutConfig: API.OperationMethod<
-  ListSignalScoutConfigRequest,
-  ListSignalScoutConfigResponse,
-  ListSignalScoutConfigError,
+export const listSignalsScoutConfig: API.OperationMethod<
+  ListSignalsScoutConfigRequest,
+  ListSignalsScoutConfigResponse,
+  ListSignalsScoutConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalScoutConfigRequest,
-  output: ListSignalScoutConfigResponse,
+  input: ListSignalsScoutConfigRequest,
+  output: ListSignalsScoutConfigResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalScoutMembersError = PosthogOpError;
+export type ListSignalsScoutMembersError = PosthogOpError;
 /** List project members for reviewer routing Return the people who can review work on this project — one row per member with access to it, each with their `user_uuid`, `email`, `first_name`/`last_name`, and resolved GitHub `login` (null when they have no linked GitHub identity). The cold-start reviewer-routing path: when a finding's owner can't be read off a fetched entity's `created_by` and there's no cached `reviewer:<area>` memory or inbox precedent, list members, match the owner by email/name, then put their resolved `github_login` in `suggested_reviewers` on `emit-report` / `edit-report`. Pass `search` to narrow a large roster; the result is capped at 200. Strictly team-scoped. */
-export const listSignalScoutMembers: API.OperationMethod<
-  ListSignalScoutMembersRequest,
-  ListSignalScoutMembersResponse,
-  ListSignalScoutMembersError,
+export const listSignalsScoutMembers: API.OperationMethod<
+  ListSignalsScoutMembersRequest,
+  ListSignalsScoutMembersResponse,
+  ListSignalsScoutMembersError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalScoutMembersRequest,
-  output: ListSignalScoutMembersResponse,
+  input: ListSignalsScoutMembersRequest,
+  output: ListSignalsScoutMembersResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalScoutNotesError = PosthogOpError;
+export type ListSignalsScoutNotesError = PosthogOpError;
 /** List scout notes Return the steering notes left for this project's scouts, newest first. Pass `skill_name` to get the notes addressed to one scout (or one pipeline audience, e.g. `pipeline:report-research`) plus the general (blank-target) fleet-wide notes — the shape a scout run reads at cold start. Omit `skill_name` to browse every note. Expired notes are excluded unless `include_expired=true`. `date_from` / `date_to` are a half-open window on `created_at` (`>= date_from`, `< date_to`); pass `date_to` (the `created_at` of the oldest note seen) to walk past the cap. Results capped at 500. */
-export const listSignalScoutNotes: API.OperationMethod<
-  ListSignalScoutNotesRequest,
-  ListSignalScoutNotesResponse,
-  ListSignalScoutNotesError,
+export const listSignalsScoutNotes: API.OperationMethod<
+  ListSignalsScoutNotesRequest,
+  ListSignalsScoutNotesResponse,
+  ListSignalsScoutNotesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalScoutNotesRequest,
-  output: ListSignalScoutNotesResponse,
+  input: ListSignalsScoutNotesRequest,
+  output: ListSignalsScoutNotesResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalScoutRunsError = PosthogOpError;
+export type ListSignalsScoutRunsError = PosthogOpError;
 /** Search recent agent runs Return the most recent `SignalScoutRun` summaries for this project, newest first. Used by the headless scout to dedupe against work other runs already covered. ILIKE matches on `summary`. `date_from` / `date_to` are a half-open window on `created_at` (`>= date_from`, `< date_to`); pass `date_to` on subsequent calls to walk past the 100-row cap. Pass `emitted=true` to see only runs that surfaced at least one finding. Pass `skill_name` (optionally with `skill_version`) to scope to a single scout. Results capped at 100. */
-export const listSignalScoutRuns: API.OperationMethod<
-  ListSignalScoutRunsRequest,
-  ListSignalScoutRunsResponse,
-  ListSignalScoutRunsError,
+export const listSignalsScoutRuns: API.OperationMethod<
+  ListSignalsScoutRunsRequest,
+  ListSignalsScoutRunsResponse,
+  ListSignalsScoutRunsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalScoutRunsRequest,
-  output: ListSignalScoutRunsResponse,
+  input: ListSignalsScoutRunsRequest,
+  output: ListSignalsScoutRunsResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSignalSourceConfigsError =
+export type ListSignalsScoutSuggestionsError = PosthogOpError;
+/** Get suggested scouts for this project Return the pre-computed scout suggestions for this project: up to five picks, best first, each either a PostHog-authored scout to turn on or a drafted custom scout. Dismissed and already-created suggestions are omitted. An empty `items` with status `empty` means no batch has been generated yet; the interactive `scout-chat-tasks` path still works. */
+export const listSignalsScoutSuggestions: API.OperationMethod<
+  ListSignalsScoutSuggestionsRequest,
+  ScoutSuggestionSet,
+  ListSignalsScoutSuggestionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSignalsScoutSuggestionsRequest,
+  output: ScoutSuggestionSet,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSignalsSourceConfigsError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const listSignalSourceConfigs: API.OperationMethod<
-  ListSignalSourceConfigsRequest,
+export const listSignalsSourceConfigs: API.OperationMethod<
+  ListSignalsSourceConfigsRequest,
   PaginatedSignalSourceConfigList,
-  ListSignalSourceConfigsError,
+  ListSignalsSourceConfigsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSignalSourceConfigsRequest,
+  input: ListSignalsSourceConfigsRequest,
   output: PaginatedSignalSourceConfigList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type SignalSignalScoutEmitError = BadRequest | NotFound | PosthogOpError;
-/** Emit a finding for a run Fire `emit_signal` with `source_product = signals_scout`. The `finding_id` is baked into the deterministic `Signal.source_id = run:<id>:finding:<id>` for traceability, but this is NOT idempotent — a second call with the same `finding_id` emits a second signal, so do not retry an emit that may have already succeeded. */
-export const signalSignalScoutEmit: API.OperationMethod<
-  SignalSignalScoutEmitRequest,
-  EmitFindingResponse,
-  SignalSignalScoutEmitError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalSignalScoutEmitRequest,
-  output: EmitFindingResponse,
-  errors: [BadRequest, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsProcessingPauseDestroyError =
+export type PauseSignalsProcessingDestroyError =
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** View and control signal processing pipeline state for a team. */
-export const signalsProcessingPauseDestroy: API.OperationMethod<
-  SignalsProcessingPauseDestroyRequest,
+export const pauseSignalsProcessingDestroy: API.OperationMethod<
+  PauseSignalsProcessingDestroyRequest,
   PauseResponse,
-  SignalsProcessingPauseDestroyError,
+  PauseSignalsProcessingDestroyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SignalsProcessingPauseDestroyRequest,
+  input: PauseSignalsProcessingDestroyRequest,
   output: PauseResponse,
   errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshSignalsScoutSuggestionError =
+  | Forbidden
+  | Conflict
+  | PosthogOpError;
+/** Refresh suggested scouts Re-run the suggestion scan for this project now instead of waiting for the scheduled refresh. Runs headlessly; poll the list endpoint for the new batch (`generated_at` advances). Capped per project per day. */
+export const refreshSignalsScoutSuggestion: API.OperationMethod<
+  RefreshSignalsScoutSuggestionRequest,
+  RefreshSignalsScoutSuggestionResponse,
+  RefreshSignalsScoutSuggestionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshSignalsScoutSuggestionRequest,
+  output: RefreshSignalsScoutSuggestionResponse,
+  errors: [Forbidden, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReviewSignalsReportPrCommentDestroyError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Delete one of the requesting user's own review comments */
+export const reviewSignalsReportPrCommentDestroy: API.OperationMethod<
+  ReviewSignalsReportPrCommentDestroyRequest,
+  ReviewSignalsReportPrCommentDestroyResponse,
+  ReviewSignalsReportPrCommentDestroyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReviewSignalsReportPrCommentDestroyRequest,
+  output: ReviewSignalsReportPrCommentDestroyResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReviewSignalsReportPrCommentReactionDestroyError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Remove one of the requesting user's own reactions from a review comment */
+export const reviewSignalsReportPrCommentReactionDestroy: API.OperationMethod<
+  ReviewSignalsReportPrCommentReactionDestroyRequest,
+  ReviewSignalsReportPrCommentReactionDestroyResponse,
+  ReviewSignalsReportPrCommentReactionDestroyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReviewSignalsReportPrCommentReactionDestroyRequest,
+  output: ReviewSignalsReportPrCommentReactionDestroyResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunSignalsScoutConfigError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | PosthogOpError;
+/** Run a scout now Dispatch one on-demand run of this scout immediately, regardless of its schedule. Useful to test a scout right after authoring it, or to refresh its findings on demand. The run executes asynchronously on the worker and inherits every guard the scheduled path has: it is forbidden if scouts are not enabled for the project (403), and skipped if the project is over its Signals credits quota, daily report limit, or daily run budget (429) or a run for this scout is already in progress (409). A manual run counts against the same daily run budget as scheduled runs, so repeated manual runs of the same scout can exhaust the project's daily allowance. A manual run does not change the scout's schedule or `last_run_at`. A disabled scout can still be run this way (to test before enabling). Returns immediately with the workflow id — poll the scout's runs for the result. */
+export const runSignalsScoutConfig: API.OperationMethod<
+  RunSignalsScoutConfigRequest,
+  RunSignalsScoutConfigResponse,
+  RunSignalsScoutConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunSignalsScoutConfigRequest,
+  output: RunSignalsScoutConfigResponse,
+  errors: [Forbidden, NotFound, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchSignalsScoutScratchpadError = PosthogOpError;
+/** Search the scout scratchpad Return `SignalScratchpad` entries for this project, newest-first. ILIKE matches on `content` and `key`; pass `key` instead for an exact single-entry lookup. `date_from` / `date_to` are a half-open window on `updated_at` (`>= date_from`, `< date_to`); pass `date_to` (the `updated_at` of the oldest entry seen) on subsequent calls to walk past the cap. Entries whose `expires_at` has passed are excluded unless `include_expired=true`. Pass `keys_only=true` to scan keys without pulling entry bodies, or `content_max_chars` to cap each `content` to a preview — both keep a wide orientation scan from returning every entry's full prose. Results capped at 1000. */
+export const searchSignalsScoutScratchpad: API.OperationMethod<
+  SearchSignalsScoutScratchpadRequest,
+  SearchSignalsScoutScratchpadResponse,
+  SearchSignalsScoutScratchpadError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchSignalsScoutScratchpadRequest,
+  output: SearchSignalsScoutScratchpadResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SignalSignalsScoutEmitError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Emit a finding for a run Fire `emit_signal` with `source_product = signals_scout`. The `finding_id` is baked into the deterministic `Signal.source_id = run:<id>:finding:<id>` for traceability, but this is NOT idempotent — a second call with the same `finding_id` emits a second signal, so do not retry an emit that may have already succeeded. */
+export const signalSignalsScoutEmit: API.OperationMethod<
+  SignalSignalsScoutEmitRequest,
+  EmitFindingResponse,
+  SignalSignalsScoutEmitError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SignalSignalsScoutEmitRequest,
+  output: EmitFindingResponse,
+  errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -7226,21 +7660,6 @@ export const signalsReportArtefactsDiff: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SignalsReportArtefactsRetrieveError = PosthogOpError;
-/** Get a single artefact Get one artefact by id, content parsed (and reviewers enriched) the same way as the list. */
-export const signalsReportArtefactsRetrieve: API.OperationMethod<
-  SignalsReportArtefactsRetrieveRequest,
-  SignalReportArtefact,
-  SignalsReportArtefactsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportArtefactsRetrieveRequest,
-  output: SignalReportArtefact,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SignalsReportPrChecksError = NotFound | PosthogOpError;
 /** Fetch CI checks for a report's implementation PR Fetch the CI status (GitHub Actions check runs and legacy commit statuses) of the pull request the report's implementation task opened, via the team's GitHub integration. */
 export const signalsReportPrChecks: API.OperationMethod<
@@ -7271,83 +7690,16 @@ export const signalsReportPrComments: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SignalsReportPrReviewCommentDestroyError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Delete one of the requesting user's own review comments */
-export const signalsReportPrReviewCommentDestroy: API.OperationMethod<
-  SignalsReportPrReviewCommentDestroyRequest,
-  SignalsReportPrReviewCommentDestroyResponse,
-  SignalsReportPrReviewCommentDestroyError,
+export type SignalsReportsBulkStateCreateError = PosthogOpError;
+/** Transition many reports to a new state in one call. Each id is processed independently: a report whose transition isn't allowed from its current status is reported as `skipped` (a 409 on the single-report endpoint) and the rest still go through. Returns one result per requested id (in request order, after de-duplication) plus per-outcome counts. The whole call is 200 even on partial failure — inspect `results` / the counts to see what happened. */
+export const signalsReportsBulkStateCreate: API.OperationMethod<
+  SignalsReportsBulkStateCreateRequest,
+  SignalReportBulkStateResponse,
+  SignalsReportsBulkStateCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportPrReviewCommentDestroyRequest,
-  output: SignalsReportPrReviewCommentDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsReportPrReviewCommentReactionDestroyError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Remove one of the requesting user's own reactions from a review comment */
-export const signalsReportPrReviewCommentReactionDestroy: API.OperationMethod<
-  SignalsReportPrReviewCommentReactionDestroyRequest,
-  SignalsReportPrReviewCommentReactionDestroyResponse,
-  SignalsReportPrReviewCommentReactionDestroyError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportPrReviewCommentReactionDestroyRequest,
-  output: SignalsReportPrReviewCommentReactionDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsReportsRefundSummaryRetrieveError =
-  | NotFound
-  | PosthogOpError;
-/** Summarize credited PR refunds for the billing period Aggregate credited-path refunds across the whole organization for the current billing period — counts only, no per-team detail. The billing usage widget needs this because billing usage is org-wide while reports (and their refunds) are team-scoped: subtract the refunded credits from billing usage to show the net PR count. Excluded-path refunds never reach billing usage, so no adjustment is needed for them. Also carries the org's live billable credits for the period (billing's recorded usage lags by up to a day), so the widget can count just-created PRs and react to same-day refunds. */
-export const signalsReportsRefundSummaryRetrieve: API.OperationMethod<
-  SignalsReportsRefundSummaryRetrieveRequest,
-  SignalReportRefundSummaryResponse,
-  SignalsReportsRefundSummaryRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportsRefundSummaryRetrieveRequest,
-  output: SignalReportRefundSummaryResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsReportsRetrieveError = PosthogOpError;
-export const signalsReportsRetrieve: API.OperationMethod<
-  SignalsReportsRetrieveRequest,
-  SignalReport,
-  SignalsReportsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportsRetrieveRequest,
-  output: SignalReport,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsReportsSignalsRetrieveError = PosthogOpError;
-/** List a report's signals Fetch all signals for a report from ClickHouse, including full metadata. */
-export const signalsReportsSignalsRetrieve: API.OperationMethod<
-  SignalsReportsSignalsRetrieveRequest,
-  ReportSignalsResponse,
-  SignalsReportsSignalsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsReportsSignalsRetrieveRequest,
-  output: ReportSignalsResponse,
+  input: SignalsReportsBulkStateCreateRequest,
+  output: SignalReportBulkStateResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -7364,58 +7716,6 @@ export const signalsScoutConfigDestroy: API.OperationMethod<
   input: SignalsScoutConfigDestroyRequest,
   output: SignalsScoutConfigDestroyResponse,
   errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsScoutConfigRunError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | PosthogOpError;
-/** Run a scout now Dispatch one on-demand run of this scout immediately, regardless of its schedule. Useful to test a scout right after authoring it, or to refresh its findings on demand. The run executes asynchronously on the worker and inherits every guard the scheduled path has: it is forbidden if scouts are not enabled for the project (403), and skipped if the project is over its Signals credits quota, daily report limit, or daily run budget (429) or a run for this scout is already in progress (409). A manual run counts against the same daily run budget as scheduled runs, so repeated manual runs of the same scout can exhaust the project's daily allowance. A manual run does not change the scout's schedule or `last_run_at`. A disabled scout can still be run this way (to test before enabling). Returns immediately with the workflow id — poll the scout's runs for the result. */
-export const signalsScoutConfigRun: API.OperationMethod<
-  SignalsScoutConfigRunRequest,
-  SignalsScoutConfigRunResponse,
-  SignalsScoutConfigRunError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsScoutConfigRunRequest,
-  output: SignalsScoutConfigRunResponse,
-  errors: [Forbidden, NotFound, Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsScoutConfigSyncError = PosthogOpError;
-/** Sync scout configs Materialize the scout fleet for this project on demand (idempotent): seed the canonical `signals-scout-*` skills, create a default-schedule config for any scout lacking one, and return all scout configs. Normally the Temporal coordinator does this on its next tick; this action exists so setup flows (e.g. the wizard's self-driving program) can hand the user a tunable fleet immediately. */
-export const signalsScoutConfigSync: API.OperationMethod<
-  SignalsScoutConfigSyncRequest,
-  SignalsScoutConfigSyncResponse,
-  SignalsScoutConfigSyncError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsScoutConfigSyncRequest,
-  output: SignalsScoutConfigSyncResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SignalsScoutEditReportError =
-  | BadRequest
-  | NotFound
-  | PosthogOpError;
-/** Edit an existing report for a run Rewrite a report's title/summary, append a note, and/or set its suggested reviewers. Can target ANY of the project's inbox reports, not just scout-authored ones — so the edit is attributed to this scout. Setting reviewers is how you rescue a report that surfaced routed to no one: it replaces the reviewer list and re-runs autostart, so a report missing a qualifying reviewer can open a draft PR. Title/summary edits are best-effort: the pipeline may later re-research them. */
-export const signalsScoutEditReport: API.OperationMethod<
-  SignalsScoutEditReportRequest,
-  EditReportResponse,
-  SignalsScoutEditReportError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsScoutEditReportRequest,
-  output: EditReportResponse,
-  errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -7576,21 +7876,6 @@ export const signalsScoutRunsRecentPerScout: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SignalsScoutRunsRetrieveError = NotFound | PosthogOpError;
-/** Get a run by ID Return the full `SignalScoutRun` row. Status, timing, and error flow from the linked `tasks.TaskRun`. Strictly team-scoped — a UUID belonging to another team returns 404. */
-export const signalsScoutRunsRetrieve: API.OperationMethod<
-  SignalsScoutRunsRetrieveRequest,
-  SignalScoutRunDetail,
-  SignalsScoutRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsScoutRunsRetrieveRequest,
-  output: SignalScoutRunDetail,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SignalsScoutScratchpadForgetError = PosthogOpError;
 /** Forget a scratchpad entry by key Delete an entry by key. Returns `deleted=false` if no row matched. */
 export const signalsScoutScratchpadForget: API.OperationMethod<
@@ -7621,21 +7906,6 @@ export const signalsScoutScratchpadRemember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SignalsScoutScratchpadSearchError = PosthogOpError;
-/** Search the scout scratchpad Return `SignalScratchpad` entries for this project, newest-first. ILIKE matches on `content` and `key`; pass `key` instead for an exact single-entry lookup. `date_from` / `date_to` are a half-open window on `updated_at` (`>= date_from`, `< date_to`); pass `date_to` (the `updated_at` of the oldest entry seen) on subsequent calls to walk past the cap. Entries whose `expires_at` has passed are excluded unless `include_expired=true`. Pass `keys_only=true` to scan keys without pulling entry bodies, or `content_max_chars` to cap each `content` to a preview — both keep a wide orientation scan from returning every entry's full prose. Results capped at 1000. */
-export const signalsScoutScratchpadSearch: API.OperationMethod<
-  SignalsScoutScratchpadSearchRequest,
-  SignalsScoutScratchpadSearchResponse,
-  SignalsScoutScratchpadSearchError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SignalsScoutScratchpadSearchRequest,
-  output: SignalsScoutScratchpadSearchResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SignalsSourceConfigsDestroyError =
   | Forbidden
   | NotFound
@@ -7653,144 +7923,142 @@ export const signalsSourceConfigsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SignalsSourceConfigsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const signalsSourceConfigsRetrieve: API.OperationMethod<
-  SignalsSourceConfigsRetrieveRequest,
-  SignalSourceConfig,
-  SignalsSourceConfigsRetrieveError,
+export type SyncSignalsScoutConfigError = PosthogOpError;
+/** Sync scout configs Materialize the scout fleet for this project on demand (idempotent): seed the canonical `signals-scout-*` skills, create a default-schedule config for any scout lacking one, retire the skills whose canonical scout no longer ships, and return all scout configs. Normally the Temporal coordinator does this on its next tick; this action exists so the scout UIs and setup flows (e.g. the wizard's self-driving program) can hand the user a tunable fleet immediately. */
+export const syncSignalsScoutConfig: API.OperationMethod<
+  SyncSignalsScoutConfigRequest,
+  SyncSignalsScoutConfigResponse,
+  SyncSignalsScoutConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SignalsSourceConfigsRetrieveRequest,
-  output: SignalSourceConfig,
-  errors: [Forbidden, NotFound],
+  input: SyncSignalsScoutConfigRequest,
+  output: SyncSignalsScoutConfigResponse,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalProcessingPauseError =
+export type UpdateSignalsProcessingPauseError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** View and control signal processing pipeline state for a team. */
-export const updateSignalProcessingPause: API.OperationMethod<
-  UpdateSignalProcessingPauseRequest,
+export const updateSignalsProcessingPause: API.OperationMethod<
+  UpdateSignalsProcessingPauseRequest,
   PauseResponse,
-  UpdateSignalProcessingPauseError,
+  UpdateSignalsProcessingPauseError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalProcessingPauseRequest,
+  input: UpdateSignalsProcessingPauseRequest,
   output: PauseResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalReportArtefactPartialError =
+export type UpdateSignalsReportArtefactsPartialError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Replace an artefact's content Replace the content of an existing artefact, addressed by id. The new content is validated against the artefact's type schema. Editing the latest row of a status type changes the report's canonical status (latest-wins); to re-assess while keeping history, append a new artefact instead. Attribution is creation-time only — edits don't reassign it. */
-export const updateSignalReportArtefactPartial: API.OperationMethod<
-  UpdateSignalReportArtefactPartialRequest,
+export const updateSignalsReportArtefactsPartial: API.OperationMethod<
+  UpdateSignalsReportArtefactsPartialRequest,
   SignalReportArtefactWriteResponse,
-  UpdateSignalReportArtefactPartialError,
+  UpdateSignalsReportArtefactsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalReportArtefactPartialRequest,
+  input: UpdateSignalsReportArtefactsPartialRequest,
   output: SignalReportArtefactWriteResponse,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalReportPartialError =
-  | BadRequest
-  | NotFound
-  | PosthogOpError;
-/** Edit a report's title or summary Edit the human-facing title and/or summary (description) of a signal report, addressed by id. Both fields are optional — supply only the ones you want to change; at least one is required. Every other report field (status, weights, judgments) is managed by the signals pipeline and cannot be set here. Returns the full updated report. */
-export const updateSignalReportPartial: API.OperationMethod<
-  UpdateSignalReportPartialRequest,
-  SignalReport,
-  UpdateSignalReportPartialError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalReportPartialRequest,
-  output: SignalReport,
-  errors: [BadRequest, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSignalReportPrReviewCommentError =
+export type UpdateSignalsReportPrReviewCommentError =
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Edit one of the requesting user's own review comments */
-export const updateSignalReportPrReviewComment: API.OperationMethod<
-  UpdateSignalReportPrReviewCommentRequest,
+export const updateSignalsReportPrReviewComment: API.OperationMethod<
+  UpdateSignalsReportPrReviewCommentRequest,
   PullRequestReviewCommentCreateResponse,
-  UpdateSignalReportPrReviewCommentError,
+  UpdateSignalsReportPrReviewCommentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalReportPrReviewCommentRequest,
+  input: UpdateSignalsReportPrReviewCommentRequest,
   output: PullRequestReviewCommentCreateResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalScoutConfigError =
+export type UpdateSignalsReportsPartialError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Edit a report's title or summary Edit the human-facing title and/or summary (description) of a signal report, addressed by id. Both fields are optional — supply only the ones you want to change; at least one is required. Every other report field (status, weights, judgments) is managed by the signals pipeline and cannot be set here. Returns the full updated report. */
+export const updateSignalsReportsPartial: API.OperationMethod<
+  UpdateSignalsReportsPartialRequest,
+  SignalReport,
+  UpdateSignalsReportsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSignalsReportsPartialRequest,
+  output: SignalReport,
+  errors: [BadRequest, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSignalsScoutConfigError =
   | BadRequest
   | NotFound
   | PosthogOpError;
 /** Update a scout config Tune one scout: change its schedule (rolling `run_interval_minutes`, or a cron `run_cron_schedule` that takes precedence when set), `enabled`, `emit` (dry-run) posture, `network_access` (trusted-domain allowlist vs full access for the scout's sandbox), or output destinations. `skill_name` is fixed. Enabling records `enabled_by` and is activity-logged since it drives spend. */
-export const updateSignalScoutConfig: API.OperationMethod<
-  UpdateSignalScoutConfigRequest,
+export const updateSignalsScoutConfig: API.OperationMethod<
+  UpdateSignalsScoutConfigRequest,
   SignalScoutConfig,
-  UpdateSignalScoutConfigError,
+  UpdateSignalsScoutConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalScoutConfigRequest,
+  input: UpdateSignalsScoutConfigRequest,
   output: SignalScoutConfig,
   errors: [BadRequest, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalSourceConfigError =
+export type UpdateSignalsSourceConfigError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateSignalSourceConfig: API.OperationMethod<
-  UpdateSignalSourceConfigRequest,
+export const updateSignalsSourceConfig: API.OperationMethod<
+  UpdateSignalsSourceConfigRequest,
   SignalSourceConfig,
-  UpdateSignalSourceConfigError,
+  UpdateSignalsSourceConfigError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalSourceConfigRequest,
+  input: UpdateSignalsSourceConfigRequest,
   output: SignalSourceConfig,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSignalSourceConfigPartialError =
+export type UpdateSignalsSourceConfigsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateSignalSourceConfigPartial: API.OperationMethod<
-  UpdateSignalSourceConfigPartialRequest,
+export const updateSignalsSourceConfigsPartial: API.OperationMethod<
+  UpdateSignalsSourceConfigsPartialRequest,
   SignalSourceConfig,
-  UpdateSignalSourceConfigPartialError,
+  UpdateSignalsSourceConfigsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSignalSourceConfigPartialRequest,
+  input: UpdateSignalsSourceConfigsPartialRequest,
   output: SignalSourceConfig,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.copilot#CopilotEnterpriseOneDayUsageMetricsRequest": {
@@ -4351,85 +4352,43 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.copilot#CopilotEnterpriseOneDayUsageMetrics"
-        },
-        {
-          "target": "com.github.copilot#CopilotEnterpriseUsageMetrics"
-        },
-        {
-          "target": "com.github.copilot#CopilotEnterpriseReposOneDayReport"
-        },
-        {
-          "target": "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReport"
-        },
-        {
-          "target": "com.github.copilot#CopilotUsersOneDayUsageMetrics"
-        },
-        {
-          "target": "com.github.copilot#CopilotUsersUsageMetrics"
-        },
-        {
-          "target": "com.github.copilot#SetEnterpriseCodingAgentPolicy"
-        },
-        {
-          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicy"
-        },
-        {
-          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicy"
-        },
-        {
-          "target": "com.github.copilot#GetCopilotOrganizationDetails"
-        },
-        {
-          "target": "com.github.copilot#ListCopilotSeats"
-        },
-        {
           "target": "com.github.copilot#AddCopilotSeatsForTeams"
-        },
-        {
-          "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeams"
         },
         {
           "target": "com.github.copilot#AddCopilotSeatsForUsers"
         },
         {
+          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicy"
+        },
+        {
+          "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeams"
+        },
+        {
           "target": "com.github.copilot#CancelCopilotSeatAssignmentForUsers"
-        },
-        {
-          "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganization"
-        },
-        {
-          "target": "com.github.copilot#SetCopilotCodingAgentPermissionsOrganization"
-        },
-        {
-          "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganization"
-        },
-        {
-          "target": "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganization"
-        },
-        {
-          "target": "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganization"
-        },
-        {
-          "target": "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganization"
         },
         {
           "target": "com.github.copilot#CopilotContentExclusionForOrganization"
         },
         {
-          "target": "com.github.copilot#SetCopilotContentExclusionForOrganization"
+          "target": "com.github.copilot#CopilotEnterpriseOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseReposOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReport"
         },
         {
           "target": "com.github.copilot#CopilotOrganizationOneDayUsageMetrics"
         },
         {
-          "target": "com.github.copilot#CopilotOrganizationUsageMetrics"
-        },
-        {
           "target": "com.github.copilot#CopilotOrganizationReposOneDayReport"
         },
         {
-          "target": "com.github.copilot#CopilotOrganizationUserTeamsOneDayReport"
+          "target": "com.github.copilot#CopilotOrganizationUsageMetrics"
         },
         {
           "target": "com.github.copilot#CopilotOrganizationUsersOneDayUsageMetrics"
@@ -4438,10 +4397,52 @@
           "target": "com.github.copilot#CopilotOrganizationUsersUsageMetrics"
         },
         {
-          "target": "com.github.copilot#GetCopilotSeatDetailsForUser"
+          "target": "com.github.copilot#CopilotOrganizationUserTeamsOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotUsersOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotUsersUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganization"
+        },
+        {
+          "target": "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganization"
         },
         {
           "target": "com.github.copilot#GetCopilotCloudAgentConfiguration"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganization"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotOrganizationDetails"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotSeatDetailsForUser"
+        },
+        {
+          "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganization"
+        },
+        {
+          "target": "com.github.copilot#ListCopilotSeats"
+        },
+        {
+          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicy"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotCodingAgentPermissionsOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetEnterpriseCodingAgentPolicy"
         }
       ],
       "traits": {

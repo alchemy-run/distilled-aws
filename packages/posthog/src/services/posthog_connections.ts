@@ -21,16 +21,16 @@ export type PostHogConnectionForwardMethodEnum =
 export const PostHogConnectionForwardMethodEnum = /*@__PURE__*/ S.String;
 
 /** Query parameters to send to the target. */
-export type PosthogConnectionsForwardCreateRequestQueryMap = {
+export type CreatePosthogConnectionsForwardRequestQueryMap = {
   [key: string]: string | undefined;
 };
-export const PosthogConnectionsForwardCreateRequestQueryMap =
+export const CreatePosthogConnectionsForwardRequestQueryMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PosthogConnectionsForwardCreateRequestQueryMap>;
+  ) as any as S.Schema<CreatePosthogConnectionsForwardRequestQueryMap>;
 
-export interface CreatePosthogConnectionForwardRequest {
+export interface CreatePosthogConnectionsForwardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -39,18 +39,18 @@ export interface CreatePosthogConnectionForwardRequest {
   /** Relative target API path with no host or scheme, e.g. `api/projects/2/insights/`. */
   path: string;
   /** Query parameters to send to the target. */
-  query?: PosthogConnectionsForwardCreateRequestQueryMap;
+  query?: CreatePosthogConnectionsForwardRequestQueryMap;
   /** JSON request body for write methods. */
   data?: unknown;
 }
-export const CreatePosthogConnectionForwardRequest = /*@__PURE__*/ S.suspend(
+export const CreatePosthogConnectionsForwardRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
       method: PostHogConnectionForwardMethodEnum,
       path: S.String,
-      query: S.optional(PosthogConnectionsForwardCreateRequestQueryMap),
+      query: S.optional(CreatePosthogConnectionsForwardRequestQueryMap),
       data: S.optional(S.Unknown),
     }).pipe(
       T.Http({
@@ -60,8 +60,8 @@ export const CreatePosthogConnectionForwardRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreatePosthogConnectionForwardRequest",
-}) as any as S.Schema<CreatePosthogConnectionForwardRequest>;
+  identifier: "CreatePosthogConnectionsForwardRequest",
+}) as any as S.Schema<CreatePosthogConnectionsForwardRequest>;
 
 export interface PostHogConnectionForwardResponse {
   /** HTTP status the target project returned. */
@@ -78,26 +78,25 @@ export const PostHogConnectionForwardResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostHogConnectionForwardResponse",
 }) as any as S.Schema<PostHogConnectionForwardResponse>;
 
-export interface PosthogConnectionsTargetRetrieveRequest {
+export interface GetPosthogConnectionsTargetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const PosthogConnectionsTargetRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/posthog_connections/{id}/target/",
-        code: 200,
-      }),
-    ),
+export const GetPosthogConnectionsTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/posthog_connections/{id}/target/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PosthogConnectionsTargetRetrieveRequest",
-}) as any as S.Schema<PosthogConnectionsTargetRetrieveRequest>;
+  identifier: "GetPosthogConnectionsTargetRequest",
+}) as any as S.Schema<GetPosthogConnectionsTargetRequest>;
 
 export interface PostHogConnectionTarget {
   /** Project id to use in target API paths. It is the connected project's id, not this one's. */
@@ -126,30 +125,30 @@ export const PostHogConnectionTarget = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostHogConnectionTarget",
 }) as any as S.Schema<PostHogConnectionTarget>;
 
-export type CreatePosthogConnectionForwardError = PosthogOpError;
+export type CreatePosthogConnectionsForwardError = PosthogOpError;
 /** Forward a request through a PostHog connection Replay an API request against the connected PostHog project. The server injects the connection's token; the response is passed through. */
-export const createPosthogConnectionForward: API.OperationMethod<
-  CreatePosthogConnectionForwardRequest,
+export const createPosthogConnectionsForward: API.OperationMethod<
+  CreatePosthogConnectionsForwardRequest,
   PostHogConnectionForwardResponse,
-  CreatePosthogConnectionForwardError,
+  CreatePosthogConnectionsForwardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreatePosthogConnectionForwardRequest,
+  input: CreatePosthogConnectionsForwardRequest,
   output: PostHogConnectionForwardResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type PosthogConnectionsTargetRetrieveError = PosthogOpError;
+export type GetPosthogConnectionsTargetError = PosthogOpError;
 /** Read the connected project's identity Resolve which project, organization and region a PostHog connection points at, so callers can build target API paths without reading `api/users/@me/` through the connection first. */
-export const posthogConnectionsTargetRetrieve: API.OperationMethod<
-  PosthogConnectionsTargetRetrieveRequest,
+export const getPosthogConnectionsTarget: API.OperationMethod<
+  GetPosthogConnectionsTargetRequest,
   PostHogConnectionTarget,
-  PosthogConnectionsTargetRetrieveError,
+  GetPosthogConnectionsTargetError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PosthogConnectionsTargetRetrieveRequest,
+  input: GetPosthogConnectionsTargetRequest,
   output: PostHogConnectionTarget,
   errors: [],
   protocol: PosthogProtocol,

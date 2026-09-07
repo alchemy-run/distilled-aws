@@ -138,8 +138,8 @@ export const CopilotSettingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "CopilotSettingsCreateOrUpdateResponse",
 }) as any as S.Schema<CopilotSettingsCreateOrUpdateResponse>;
 
-export interface DeleteCopilotSettingRequest {}
-export const DeleteCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCopilotSettingsRequest {}
+export const DeleteCopilotSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "DELETE",
@@ -149,18 +149,18 @@ export const DeleteCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteCopilotSettingRequest",
-}) as any as S.Schema<DeleteCopilotSettingRequest>;
+  identifier: "DeleteCopilotSettingsRequest",
+}) as any as S.Schema<DeleteCopilotSettingsRequest>;
 
-export interface DeleteCopilotSettingResponse {}
-export const DeleteCopilotSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCopilotSettingsResponse {}
+export const DeleteCopilotSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCopilotSettingResponse",
-}) as any as S.Schema<DeleteCopilotSettingResponse>;
+  identifier: "DeleteCopilotSettingsResponse",
+}) as any as S.Schema<DeleteCopilotSettingsResponse>;
 
-export interface GetCopilotSettingRequest {}
-export const GetCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetCopilotSettingsRequest {}
+export const GetCopilotSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -170,10 +170,10 @@ export const GetCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCopilotSettingRequest",
-}) as any as S.Schema<GetCopilotSettingRequest>;
+  identifier: "GetCopilotSettingsRequest",
+}) as any as S.Schema<GetCopilotSettingsRequest>;
 
-export interface GetCopilotSettingResponse {
+export interface GetCopilotSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -185,7 +185,7 @@ export interface GetCopilotSettingResponse {
   /** The resource-specific properties for this resource. */
   properties?: CopilotSettingsProperties;
 }
-export const GetCopilotSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCopilotSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -194,8 +194,8 @@ export const GetCopilotSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(CopilotSettingsProperties),
   }),
 ).annotate({
-  identifier: "GetCopilotSettingResponse",
-}) as any as S.Schema<GetCopilotSettingResponse>;
+  identifier: "GetCopilotSettingsResponse",
+}) as any as S.Schema<GetCopilotSettingsResponse>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -265,20 +265,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -368,11 +368,11 @@ export const CopilotSettingsResourceUpdateProperties = /*@__PURE__*/ S.suspend(
   identifier: "CopilotSettingsResourceUpdateProperties",
 }) as any as S.Schema<CopilotSettingsResourceUpdateProperties>;
 
-export interface UpdateCopilotSettingRequest {
+export interface UpdateCopilotSettingsRequest {
   /** The resource-specific properties for this resource. */
   properties?: CopilotSettingsResourceUpdateProperties;
 }
-export const UpdateCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCopilotSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     properties: S.optional(CopilotSettingsResourceUpdateProperties),
   }).pipe(
@@ -384,10 +384,10 @@ export const UpdateCopilotSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateCopilotSettingRequest",
-}) as any as S.Schema<UpdateCopilotSettingRequest>;
+  identifier: "UpdateCopilotSettingsRequest",
+}) as any as S.Schema<UpdateCopilotSettingsRequest>;
 
-export interface UpdateCopilotSettingResponse {
+export interface UpdateCopilotSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -399,7 +399,7 @@ export interface UpdateCopilotSettingResponse {
   /** The resource-specific properties for this resource. */
   properties?: CopilotSettingsProperties;
 }
-export const UpdateCopilotSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCopilotSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -408,8 +408,8 @@ export const UpdateCopilotSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(CopilotSettingsProperties),
   }),
 ).annotate({
-  identifier: "UpdateCopilotSettingResponse",
-}) as any as S.Schema<UpdateCopilotSettingResponse>;
+  identifier: "UpdateCopilotSettingsResponse",
+}) as any as S.Schema<UpdateCopilotSettingsResponse>;
 
 export type CopilotSettingsCreateOrUpdateError = AzureOpError;
 /** Create a CopilotSettingsResource */
@@ -426,31 +426,31 @@ export const CopilotSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteCopilotSettingError = AzureOpError;
+export type DeleteCopilotSettingsError = AzureOpError;
 /** Delete a CopilotSettingsResource */
-export const DeleteCopilotSetting: API.OperationMethod<
-  DeleteCopilotSettingRequest,
-  DeleteCopilotSettingResponse,
-  DeleteCopilotSettingError,
+export const DeleteCopilotSettings: API.OperationMethod<
+  DeleteCopilotSettingsRequest,
+  DeleteCopilotSettingsResponse,
+  DeleteCopilotSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCopilotSettingRequest,
-  output: DeleteCopilotSettingResponse,
+  input: DeleteCopilotSettingsRequest,
+  output: DeleteCopilotSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetCopilotSettingError = AzureOpError;
+export type GetCopilotSettingsError = AzureOpError;
 /** Get a CopilotSettingsResource */
-export const GetCopilotSetting: API.OperationMethod<
-  GetCopilotSettingRequest,
-  GetCopilotSettingResponse,
-  GetCopilotSettingError,
+export const GetCopilotSettings: API.OperationMethod<
+  GetCopilotSettingsRequest,
+  GetCopilotSettingsResponse,
+  GetCopilotSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCopilotSettingRequest,
-  output: GetCopilotSettingResponse,
+  input: GetCopilotSettingsRequest,
+  output: GetCopilotSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -486,16 +486,16 @@ export const PortalTenantCompilefile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCopilotSettingError = AzureOpError;
+export type UpdateCopilotSettingsError = AzureOpError;
 /** Update a CopilotSettingsResource */
-export const UpdateCopilotSetting: API.OperationMethod<
-  UpdateCopilotSettingRequest,
-  UpdateCopilotSettingResponse,
-  UpdateCopilotSettingError,
+export const UpdateCopilotSettings: API.OperationMethod<
+  UpdateCopilotSettingsRequest,
+  UpdateCopilotSettingsResponse,
+  UpdateCopilotSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCopilotSettingRequest,
-  output: UpdateCopilotSettingResponse,
+  input: UpdateCopilotSettingsRequest,
+  output: UpdateCopilotSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

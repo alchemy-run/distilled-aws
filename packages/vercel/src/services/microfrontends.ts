@@ -2236,6 +2236,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -2323,6 +2324,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -2890,7 +2892,6 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase1DeployHooksLis
 export interface GetMicrofrontendsInGroupResponseProjectsItemLinkCase1 {
   type: GetMicrofrontendsInGroupResponseProjectsItemLinkCase1Type;
   createdAt?: number;
-  updatedAt?: number;
   org: string;
   /** A new field, should be included in all new project links, is being added just in time when a deployment is created. This is needed for Protected Git scopes. */
   repoOwnerId?: number;
@@ -2898,6 +2899,7 @@ export interface GetMicrofrontendsInGroupResponseProjectsItemLinkCase1 {
   repoId?: number;
   deployHooks: GetMicrofrontendsInGroupResponseProjectsItemLinkCase1DeployHooksList;
   gitCredentialId: string;
+  updatedAt?: number;
   sourceless?: boolean;
   productionBranch: string;
 }
@@ -2906,7 +2908,6 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase1 =
     S.Struct({
       type: GetMicrofrontendsInGroupResponseProjectsItemLinkCase1Type,
       createdAt: S.optional(S.Number),
-      updatedAt: S.optional(S.Number),
       org: S.String,
       repoOwnerId: S.optional(S.Number),
       repo: S.optional(S.String),
@@ -2914,6 +2915,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase1 =
       deployHooks:
         GetMicrofrontendsInGroupResponseProjectsItemLinkCase1DeployHooksList,
       gitCredentialId: S.String,
+      updatedAt: S.optional(S.Number),
       sourceless: S.optional(S.Boolean),
       productionBranch: S.String,
     }),
@@ -4265,6 +4267,587 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTargetsMap =
 export type ACLAction = "create" | "delete" | "list" | "read" | "update";
 export const ACLAction = /*@__PURE__*/ S.String;
 
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList>;
+
 export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList =
   Array<ACLAction>;
 export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList =
@@ -4404,6 +4987,20 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySet
   /*@__PURE__*/ S.Array(
     ACLAction,
   ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySettingsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList>;
+
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayUsageList =
   Array<ACLAction>;
@@ -5329,6 +5926,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTrans
     ACLAction,
   ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferInList>;
 
+export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList>;
+
 export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList =
@@ -5623,588 +6227,90 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebhookEvent
     ACLAction,
   ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebhookEventList>;
 
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList>;
-
-export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList =
-  Array<ACLAction>;
-export const GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList =
-  /*@__PURE__*/ S.Array(
-    ACLAction,
-  ) as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList>;
-
 export interface GetMicrofrontendsInGroupResponseProjectsItemPermissions {
+  aliasProject?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList;
+  aliasProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList;
+  bulkRedirects?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList;
+  buildMachine?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList;
+  connectConfigurationLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList;
+  dataCacheNamespace?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList;
+  deployment?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList;
+  deploymentBuildLogs?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList;
+  deploymentCheck?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList;
+  deploymentCheckPreview?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList;
+  deploymentCheckReRunFromProductionBranch?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList;
+  deploymentProductionGit?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList;
+  deploymentV0?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List;
+  deploymentPreview?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList;
+  deploymentPrivate?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList;
+  deploymentPromote?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList;
+  deploymentRollback?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList;
+  edgeCacheNamespace?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList;
+  environments?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList;
+  job?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList;
+  logs?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList;
+  logsPreset?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList;
+  observabilityData?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList;
+  onDemandBuild?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList;
+  onDemandConcurrency?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList;
+  optionsAllowlist?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList;
+  passwordProtection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList;
+  privateLinkEndpoint?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList;
+  productionAliasProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList;
+  productionShareableLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList;
+  project?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList;
+  projectAccessGroup?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList;
+  projectAnalyticsSampling?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList;
+  projectAnalyticsUsage?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList;
+  projectCheck?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList;
+  projectCheckRun?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList;
+  projectDeploymentExpiration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList;
+  projectDeploymentHook?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList;
+  projectDeploymentProtectionStrict?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList;
+  projectDomain?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList;
+  projectDomainCheckConfig?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList;
+  projectDomainMove?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList;
+  projectDomainVerify?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList;
+  projectEvent?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList;
+  projectEnvVars?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList;
+  projectEnvVarsProduction?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList;
+  projectEnvVarsUnownedByIntegration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList;
+  projectFlags?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList;
+  projectFlagsProduction?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList;
+  projectFlagsSdkKey?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList;
+  projectFromV0?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List;
+  projectId?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList;
+  projectIntegrationConfiguration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList;
+  projectLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList;
+  projectMember?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList;
+  projectMonitoring?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList;
+  projectOIDCToken?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList;
+  projectPermissions?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList;
+  projectProductionBranch?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList;
+  projectProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList;
+  projectRollingRelease?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList;
+  projectRoutes?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList;
+  projectSupportCase?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList;
+  projectSupportCaseComment?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList;
+  projectTier?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList;
+  projectTransfer?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList;
+  projectTransferOut?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList;
+  projectUsage?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList;
+  pageIntegrity?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList;
+  seawallConfig?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList;
+  securityPlusConfiguration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList;
+  shareableLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList;
+  shareableLinkStrict?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList;
+  sharedEnvVarConnection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList;
+  skewProtection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList;
+  analytics?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList;
+  trustedIps?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList;
+  trustedSources?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList;
+  v0Chat?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList;
+  vercelAuth?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList;
+  vercelRun?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList;
+  webAnalytics?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList;
+  workflowRunData?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList;
   oauth2Connection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList;
   user?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsUserList;
   userConnection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsUserConnectionList;
@@ -6225,6 +6331,8 @@ export interface GetMicrofrontendsInGroupResponseProjectsItemPermissions {
   aiGatewayGuardrails?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayRulesList;
   aiGatewaySettings?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayVirtualModelConfigsList;
   alerts?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAlertsList;
@@ -6357,6 +6465,7 @@ export interface GetMicrofrontendsInGroupResponseProjectsItemPermissions {
   previewDeploymentSuffix?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateCloudAccountList;
   projectTransferIn?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferInList;
+  projectTransferRequest?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList;
   proTrialOnboarding?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList;
   rateLimit?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsRateLimitList;
   redis?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsRedisList;
@@ -6399,93 +6508,259 @@ export interface GetMicrofrontendsInGroupResponseProjectsItemPermissions {
   webAnalyticsPlan?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsPlanList;
   webhook?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebhookList;
   webhook_event?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebhookEventList;
-  aliasProject?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList;
-  aliasProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList;
-  bulkRedirects?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList;
-  buildMachine?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList;
-  connectConfigurationLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList;
-  dataCacheNamespace?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList;
-  deployment?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList;
-  deploymentBuildLogs?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList;
-  deploymentCheck?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList;
-  deploymentCheckPreview?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList;
-  deploymentCheckReRunFromProductionBranch?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList;
-  deploymentProductionGit?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList;
-  deploymentV0?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List;
-  deploymentPreview?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList;
-  deploymentPrivate?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList;
-  deploymentPromote?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList;
-  deploymentRollback?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList;
-  edgeCacheNamespace?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList;
-  environments?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList;
-  job?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList;
-  logs?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList;
-  logsPreset?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList;
-  observabilityData?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList;
-  onDemandBuild?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList;
-  onDemandConcurrency?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList;
-  optionsAllowlist?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList;
-  passwordProtection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList;
-  privateLinkEndpoint?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList;
-  productionAliasProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList;
-  productionShareableLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList;
-  project?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList;
-  projectAccessGroup?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList;
-  projectAnalyticsSampling?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList;
-  projectAnalyticsUsage?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList;
-  projectCheck?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList;
-  projectCheckRun?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList;
-  projectDeploymentExpiration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList;
-  projectDeploymentHook?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList;
-  projectDeploymentProtectionStrict?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList;
-  projectDomain?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList;
-  projectDomainCheckConfig?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList;
-  projectDomainMove?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList;
-  projectDomainVerify?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList;
-  projectEvent?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList;
-  projectEnvVars?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList;
-  projectEnvVarsProduction?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList;
-  projectEnvVarsUnownedByIntegration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList;
-  projectFlags?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList;
-  projectFlagsProduction?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList;
-  projectFlagsSdkKey?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList;
-  projectFromV0?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List;
-  projectId?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList;
-  projectIntegrationConfiguration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList;
-  projectLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList;
-  projectMember?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList;
-  projectMonitoring?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList;
-  projectOIDCToken?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList;
-  projectPermissions?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList;
-  projectProductionBranch?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList;
-  projectProtectionBypass?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList;
-  projectRollingRelease?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList;
-  projectRoutes?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList;
-  projectSupportCase?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList;
-  projectSupportCaseComment?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList;
-  projectTier?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList;
-  projectTransfer?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList;
-  projectTransferOut?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList;
-  projectUsage?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList;
-  pageIntegrity?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList;
-  seawallConfig?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList;
-  securityPlusConfiguration?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList;
-  shareableLink?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList;
-  shareableLinkStrict?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList;
-  sharedEnvVarConnection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList;
-  skewProtection?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList;
-  analytics?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList;
-  trustedIps?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList;
-  trustedSources?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList;
-  v0Chat?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList;
-  vercelAuth?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList;
-  vercelRun?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList;
-  webAnalytics?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList;
-  workflowRunData?: GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList;
 }
 export const GetMicrofrontendsInGroupResponseProjectsItemPermissions =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      aliasProject: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList,
+      ),
+      aliasProtectionBypass: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList,
+      ),
+      bulkRedirects: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList,
+      ),
+      buildMachine: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList,
+      ),
+      connectConfigurationLink: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList,
+      ),
+      dataCacheNamespace: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList,
+      ),
+      deployment: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList,
+      ),
+      deploymentBuildLogs: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList,
+      ),
+      deploymentCheck: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList,
+      ),
+      deploymentCheckPreview: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList,
+      ),
+      deploymentCheckReRunFromProductionBranch: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList,
+      ),
+      deploymentProductionGit: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList,
+      ),
+      deploymentV0: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List,
+      ),
+      deploymentPreview: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList,
+      ),
+      deploymentPrivate: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList,
+      ),
+      deploymentPromote: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList,
+      ),
+      deploymentRollback: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList,
+      ),
+      edgeCacheNamespace: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList,
+      ),
+      environments: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList,
+      ),
+      job: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList,
+      ),
+      logs: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList,
+      ),
+      logsPreset: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList,
+      ),
+      observabilityData: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList,
+      ),
+      onDemandBuild: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList,
+      ),
+      onDemandConcurrency: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList,
+      ),
+      optionsAllowlist: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList,
+      ),
+      passwordProtection: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList,
+      ),
+      privateLinkEndpoint: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList,
+      ),
+      productionAliasProtectionBypass: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList,
+      ),
+      productionShareableLink: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList,
+      ),
+      project: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList,
+      ),
+      projectAccessGroup: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList,
+      ),
+      projectAnalyticsSampling: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList,
+      ),
+      projectAnalyticsUsage: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList,
+      ),
+      projectCheck: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList,
+      ),
+      projectCheckRun: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList,
+      ),
+      projectDeploymentExpiration: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList,
+      ),
+      projectDeploymentHook: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList,
+      ),
+      projectDeploymentProtectionStrict: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList,
+      ),
+      projectDomain: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList,
+      ),
+      projectDomainCheckConfig: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList,
+      ),
+      projectDomainMove: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList,
+      ),
+      projectDomainVerify: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList,
+      ),
+      projectEvent: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList,
+      ),
+      projectEnvVars: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList,
+      ),
+      projectEnvVarsProduction: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList,
+      ),
+      projectEnvVarsUnownedByIntegration: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList,
+      ),
+      projectFlags: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList,
+      ),
+      projectFlagsProduction: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList,
+      ),
+      projectFlagsSdkKey: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList,
+      ),
+      projectFromV0: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List,
+      ),
+      projectId: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList,
+      ),
+      projectIntegrationConfiguration: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList,
+      ),
+      projectLink: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList,
+      ),
+      projectMember: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList,
+      ),
+      projectMonitoring: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList,
+      ),
+      projectOIDCToken: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList,
+      ),
+      projectPermissions: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList,
+      ),
+      projectProductionBranch: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList,
+      ),
+      projectProtectionBypass: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList,
+      ),
+      projectRollingRelease: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList,
+      ),
+      projectRoutes: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList,
+      ),
+      projectSupportCase: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList,
+      ),
+      projectSupportCaseComment: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList,
+      ),
+      projectTier: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList,
+      ),
+      projectTransfer: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList,
+      ),
+      projectTransferOut: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList,
+      ),
+      projectUsage: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList,
+      ),
+      pageIntegrity: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList,
+      ),
+      seawallConfig: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList,
+      ),
+      securityPlusConfiguration: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList,
+      ),
+      shareableLink: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList,
+      ),
+      shareableLinkStrict: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList,
+      ),
+      sharedEnvVarConnection: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList,
+      ),
+      skewProtection: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList,
+      ),
+      analytics: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList,
+      ),
+      trustedIps: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList,
+      ),
+      trustedSources: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList,
+      ),
+      v0Chat: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList,
+      ),
+      vercelAuth: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList,
+      ),
+      vercelRun: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList,
+      ),
+      webAnalytics: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList,
+      ),
+      workflowRunData: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList,
+      ),
       oauth2Connection: S.optional(
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList,
       ),
@@ -6545,6 +6820,12 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissions =
       ),
       aiGatewaySettings: S.optional(
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySettingsList,
+      ),
+      aiGatewayTranscripts: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList,
+      ),
+      aiGatewayTranscriptsSettings: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList,
       ),
       aiGatewayUsage: S.optional(
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayUsageList,
@@ -6942,6 +7223,9 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissions =
       projectTransferIn: S.optional(
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferInList,
       ),
+      projectTransferRequest: S.optional(
+        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList,
+      ),
       proTrialOnboarding: S.optional(
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList,
       ),
@@ -7069,255 +7353,6 @@ export const GetMicrofrontendsInGroupResponseProjectsItemPermissions =
         GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebhookEventList.pipe(
           T.Body("webhook-event"),
         ),
-      ),
-      aliasProject: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList,
-      ),
-      aliasProtectionBypass: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList,
-      ),
-      bulkRedirects: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList,
-      ),
-      buildMachine: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList,
-      ),
-      connectConfigurationLink: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList,
-      ),
-      dataCacheNamespace: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList,
-      ),
-      deployment: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList,
-      ),
-      deploymentBuildLogs: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList,
-      ),
-      deploymentCheck: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList,
-      ),
-      deploymentCheckPreview: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList,
-      ),
-      deploymentCheckReRunFromProductionBranch: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList,
-      ),
-      deploymentProductionGit: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList,
-      ),
-      deploymentV0: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List,
-      ),
-      deploymentPreview: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList,
-      ),
-      deploymentPrivate: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList,
-      ),
-      deploymentPromote: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList,
-      ),
-      deploymentRollback: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList,
-      ),
-      edgeCacheNamespace: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList,
-      ),
-      environments: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList,
-      ),
-      job: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList,
-      ),
-      logs: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList,
-      ),
-      logsPreset: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList,
-      ),
-      observabilityData: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList,
-      ),
-      onDemandBuild: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList,
-      ),
-      onDemandConcurrency: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList,
-      ),
-      optionsAllowlist: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList,
-      ),
-      passwordProtection: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList,
-      ),
-      privateLinkEndpoint: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList,
-      ),
-      productionAliasProtectionBypass: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList,
-      ),
-      productionShareableLink: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList,
-      ),
-      project: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList,
-      ),
-      projectAccessGroup: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList,
-      ),
-      projectAnalyticsSampling: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList,
-      ),
-      projectAnalyticsUsage: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList,
-      ),
-      projectCheck: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList,
-      ),
-      projectCheckRun: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList,
-      ),
-      projectDeploymentExpiration: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList,
-      ),
-      projectDeploymentHook: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList,
-      ),
-      projectDeploymentProtectionStrict: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList,
-      ),
-      projectDomain: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList,
-      ),
-      projectDomainCheckConfig: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList,
-      ),
-      projectDomainMove: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList,
-      ),
-      projectDomainVerify: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList,
-      ),
-      projectEvent: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList,
-      ),
-      projectEnvVars: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList,
-      ),
-      projectEnvVarsProduction: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList,
-      ),
-      projectEnvVarsUnownedByIntegration: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList,
-      ),
-      projectFlags: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList,
-      ),
-      projectFlagsProduction: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList,
-      ),
-      projectFlagsSdkKey: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList,
-      ),
-      projectFromV0: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List,
-      ),
-      projectId: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList,
-      ),
-      projectIntegrationConfiguration: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList,
-      ),
-      projectLink: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList,
-      ),
-      projectMember: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList,
-      ),
-      projectMonitoring: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList,
-      ),
-      projectOIDCToken: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList,
-      ),
-      projectPermissions: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList,
-      ),
-      projectProductionBranch: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList,
-      ),
-      projectProtectionBypass: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList,
-      ),
-      projectRollingRelease: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList,
-      ),
-      projectRoutes: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList,
-      ),
-      projectSupportCase: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList,
-      ),
-      projectSupportCaseComment: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList,
-      ),
-      projectTier: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList,
-      ),
-      projectTransfer: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList,
-      ),
-      projectTransferOut: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList,
-      ),
-      projectUsage: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList,
-      ),
-      pageIntegrity: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList,
-      ),
-      seawallConfig: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList,
-      ),
-      securityPlusConfiguration: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList,
-      ),
-      shareableLink: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList,
-      ),
-      shareableLinkStrict: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList,
-      ),
-      sharedEnvVarConnection: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList,
-      ),
-      skewProtection: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList,
-      ),
-      analytics: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList,
-      ),
-      trustedIps: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList,
-      ),
-      trustedSources: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList,
-      ),
-      v0Chat: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList,
-      ),
-      vercelAuth: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList,
-      ),
-      vercelRun: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList,
-      ),
-      webAnalytics: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList,
-      ),
-      workflowRunData: S.optional(
-        GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList,
       ),
     }),
   ).annotate({

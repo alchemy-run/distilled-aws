@@ -27,7 +27,8 @@
       "serialNumber": "serial_number",
       "totalCount": "total_count",
       "validityDays": "validity_days"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.client_certificates#CreateResponseCertificateAuthority": {
@@ -389,19 +390,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.client_certificates#Create"
+          "target": "com.cloudflare.client_certificates#CreateClientCertificate"
         },
         {
-          "target": "com.cloudflare.client_certificates#Delete"
+          "target": "com.cloudflare.client_certificates#DeleteClientCertificate"
         },
         {
-          "target": "com.cloudflare.client_certificates#Edit"
+          "target": "com.cloudflare.client_certificates#GetClientCertificate"
         },
         {
-          "target": "com.cloudflare.client_certificates#Get"
+          "target": "com.cloudflare.client_certificates#ListClientCertificates"
         },
         {
-          "target": "com.cloudflare.client_certificates#List"
+          "target": "com.cloudflare.client_certificates#PatchClientCertificate"
         }
       ],
       "traits": {

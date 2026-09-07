@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ai_security#CustomTopicsGetResponseTopicsItem": {
@@ -97,16 +98,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ai_security#Get"
+          "target": "com.cloudflare.ai_security#GetAiSecurity"
         },
         {
-          "target": "com.cloudflare.ai_security#Update"
+          "target": "com.cloudflare.ai_security#GetCustomTopic"
         },
         {
-          "target": "com.cloudflare.ai_security#CustomTopicsGet"
+          "target": "com.cloudflare.ai_security#PutAiSecurity"
         },
         {
-          "target": "com.cloudflare.ai_security#CustomTopicsUpdate"
+          "target": "com.cloudflare.ai_security#PutCustomTopic"
         }
       ],
       "traits": {

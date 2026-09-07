@@ -30,7 +30,8 @@
       "tableUuids": "table_uuids",
       "targetSizeMb": "target_size_mb",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.r2_data_catalog#GetResponseStatus": {
@@ -1268,37 +1269,37 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.r2_data_catalog#Disable"
+          "target": "com.cloudflare.r2_data_catalog#CreateCredential"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#Enable"
+          "target": "com.cloudflare.r2_data_catalog#DisableR2DataCatalog"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#Get"
+          "target": "com.cloudflare.r2_data_catalog#EnableR2DataCatalog"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#List"
+          "target": "com.cloudflare.r2_data_catalog#GetMaintenanceConfig"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#CredentialsCreate"
+          "target": "com.cloudflare.r2_data_catalog#GetNamespaceTableMaintenanceConfig"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGet"
+          "target": "com.cloudflare.r2_data_catalog#GetR2DataCatalog"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdate"
+          "target": "com.cloudflare.r2_data_catalog#ListNamespaces"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#NamespacesList"
+          "target": "com.cloudflare.r2_data_catalog#ListNamespaceTables"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesList"
+          "target": "com.cloudflare.r2_data_catalog#ListR2DataCatalogs"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGet"
+          "target": "com.cloudflare.r2_data_catalog#UpdateMaintenanceConfig"
         },
         {
-          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdate"
+          "target": "com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfig"
         }
       ],
       "traits": {

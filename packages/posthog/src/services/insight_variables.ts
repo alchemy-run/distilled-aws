@@ -129,6 +129,27 @@ export const InsightVariable = /*@__PURE__*/ S.suspend(() =>
   identifier: "InsightVariable",
 }) as any as S.Schema<InsightVariable>;
 
+export interface GetInsightVariableRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this insight variable. */
+  id: string;
+}
+export const GetInsightVariableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/insight_variables/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetInsightVariableRequest",
+}) as any as S.Schema<GetInsightVariableRequest>;
+
 export interface InsightVariablesDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -156,27 +177,6 @@ export const InsightVariablesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "InsightVariablesDestroyResponse",
 }) as any as S.Schema<InsightVariablesDestroyResponse>;
-
-export interface InsightVariablesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this insight variable. */
-  id: string;
-}
-export const InsightVariablesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/insight_variables/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InsightVariablesRetrieveRequest",
-}) as any as S.Schema<InsightVariablesRetrieveRequest>;
 
 export interface ListInsightVariablesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -263,7 +263,7 @@ export const UpdateInsightVariableRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateInsightVariableRequest",
 }) as any as S.Schema<UpdateInsightVariableRequest>;
 
-export interface UpdateInsightVariablePartialRequest {
+export interface UpdateInsightVariablesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this insight variable. */
@@ -283,27 +283,28 @@ export interface UpdateInsightVariablePartialRequest {
   /** ID of the external data source connection values_query runs against. Null runs it against PostHog. */
   values_query_connection_id?: string | null;
 }
-export const UpdateInsightVariablePartialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    type: S.optional(InsightVariableTypeEnum),
-    default_value: S.optional(S.Unknown),
-    values: S.optional(S.Unknown),
-    is_multi: S.optional(S.Boolean),
-    values_query: S.optional(S.NullOr(S.String)),
-    values_query_connection_id: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/insight_variables/{id}/",
-      code: 200,
-    }),
-  ),
+export const UpdateInsightVariablesPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(InsightVariableTypeEnum),
+      default_value: S.optional(S.Unknown),
+      values: S.optional(S.Unknown),
+      is_multi: S.optional(S.Boolean),
+      values_query: S.optional(S.NullOr(S.String)),
+      values_query_connection_id: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/insight_variables/{id}/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "UpdateInsightVariablePartialRequest",
-}) as any as S.Schema<UpdateInsightVariablePartialRequest>;
+  identifier: "UpdateInsightVariablesPartialRequest",
+}) as any as S.Schema<UpdateInsightVariablesPartialRequest>;
 
 export type CreateInsightVariableError =
   | BadRequest
@@ -323,6 +324,20 @@ export const createInsightVariable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetInsightVariableError = Forbidden | NotFound | PosthogOpError;
+export const getInsightVariable: API.OperationMethod<
+  GetInsightVariableRequest,
+  InsightVariable,
+  GetInsightVariableError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInsightVariableRequest,
+  output: InsightVariable,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type InsightVariablesDestroyError =
   | Forbidden
   | NotFound
@@ -335,23 +350,6 @@ export const insightVariablesDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InsightVariablesDestroyRequest,
   output: InsightVariablesDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InsightVariablesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const insightVariablesRetrieve: API.OperationMethod<
-  InsightVariablesRetrieveRequest,
-  InsightVariable,
-  InsightVariablesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InsightVariablesRetrieveRequest,
-  output: InsightVariable,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -393,18 +391,18 @@ export const updateInsightVariable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateInsightVariablePartialError =
+export type UpdateInsightVariablesPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateInsightVariablePartial: API.OperationMethod<
-  UpdateInsightVariablePartialRequest,
+export const updateInsightVariablesPartial: API.OperationMethod<
+  UpdateInsightVariablesPartialRequest,
   InsightVariable,
-  UpdateInsightVariablePartialError,
+  UpdateInsightVariablesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateInsightVariablePartialRequest,
+  input: UpdateInsightVariablesPartialRequest,
   output: InsightVariable,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

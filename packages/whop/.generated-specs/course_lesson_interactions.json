@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.course_lesson_interactions#ListCourseLessonInteractionRequest": {
@@ -298,7 +299,7 @@
         }
       }
     },
-    "com.whop.course_lesson_interactions#RetrieveCourseLessonInteractionRequest": {
+    "com.whop.course_lesson_interactions#GetCourseLessonInteractionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -483,10 +484,10 @@
         "smithy.api#documentation": "The user whose progress is being tracked."
       }
     },
-    "com.whop.course_lesson_interactions#RetrieveCourseLessonInteraction": {
+    "com.whop.course_lesson_interactions#GetCourseLessonInteraction": {
       "type": "operation",
       "input": {
-        "target": "com.whop.course_lesson_interactions#RetrieveCourseLessonInteractionRequest"
+        "target": "com.whop.course_lesson_interactions#GetCourseLessonInteractionRequest"
       },
       "output": {
         "target": "com.whop.course_lesson_interactions#CourseLessonInteraction"
@@ -571,10 +572,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_lesson_interactions#ListCourseLessonInteraction"
+          "target": "com.whop.course_lesson_interactions#GetCourseLessonInteraction"
         },
         {
-          "target": "com.whop.course_lesson_interactions#RetrieveCourseLessonInteraction"
+          "target": "com.whop.course_lesson_interactions#ListCourseLessonInteraction"
         }
       ],
       "traits": {

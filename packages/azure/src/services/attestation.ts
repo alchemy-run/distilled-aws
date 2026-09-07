@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** The tags that will be assigned to the attestation provider. */
-export type AttestationProvidersCreateRequestTagsMap = {
+export type CreateAttestationProviderRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAttestationProviderRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AttestationProvidersCreateRequestTagsMap>;
+) as any as S.Schema<CreateAttestationProviderRequestTagsMap>;
 
 /** Controls whether traffic from the public network is allowed to access the Attestation Provider APIs. */
 export type AttestationServiceCreationSpecificParamsPublicNetworkAccess =
@@ -153,7 +153,7 @@ export interface CreateAttestationProviderRequest {
   /** The supported Azure location where the attestation provider should be created. */
   location: string;
   /** The tags that will be assigned to the attestation provider. */
-  tags?: AttestationProvidersCreateRequestTagsMap;
+  tags?: CreateAttestationProviderRequestTagsMap;
   /** Properties of the attestation provider */
   properties: AttestationServiceCreationSpecificParams;
 }
@@ -163,7 +163,7 @@ export const CreateAttestationProviderRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     providerName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(AttestationProvidersCreateRequestTagsMap),
+    tags: S.optional(CreateAttestationProviderRequestTagsMap),
     properties: AttestationServiceCreationSpecificParams,
   }).pipe(
     T.Http({
@@ -220,13 +220,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type AttestationProvidersCreateResponseTagsMap = {
+export type CreateAttestationProviderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAttestationProviderResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AttestationProvidersCreateResponseTagsMap>;
+) as any as S.Schema<CreateAttestationProviderResponseTagsMap>;
 
 /** Status of attestation service. */
 export type AttestationServiceStatus = "Ready" | "NotReady" | "Error";
@@ -380,7 +380,7 @@ export interface CreateAttestationProviderResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AttestationProvidersCreateResponseTagsMap;
+  tags?: CreateAttestationProviderResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Attestation service status. */
@@ -392,7 +392,7 @@ export const CreateAttestationProviderResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AttestationProvidersCreateResponseTagsMap),
+    tags: S.optional(CreateAttestationProviderResponseTagsMap),
     location: S.String,
     properties: S.optional(StatusResult),
   }),
@@ -576,13 +576,13 @@ export const GetAttestationProviderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAttestationProviderRequest>;
 
 /** Resource tags. */
-export type AttestationProvidersGetResponseTagsMap = {
+export type GetAttestationProviderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAttestationProviderResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AttestationProvidersGetResponseTagsMap>;
+) as any as S.Schema<GetAttestationProviderResponseTagsMap>;
 
 export interface GetAttestationProviderResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -594,7 +594,7 @@ export interface GetAttestationProviderResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AttestationProvidersGetResponseTagsMap;
+  tags?: GetAttestationProviderResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Attestation service status. */
@@ -606,7 +606,7 @@ export const GetAttestationProviderResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AttestationProvidersGetResponseTagsMap),
+    tags: S.optional(GetAttestationProviderResponseTagsMap),
     location: S.String,
     properties: S.optional(StatusResult),
   }),
@@ -638,14 +638,14 @@ export const GetAttestationProviderDefaultByLocationRequest =
   }) as any as S.Schema<GetAttestationProviderDefaultByLocationRequest>;
 
 /** Resource tags. */
-export type AttestationProvidersGetDefaultByLocationResponseTagsMap = {
+export type GetAttestationProviderDefaultByLocationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersGetDefaultByLocationResponseTagsMap =
+export const GetAttestationProviderDefaultByLocationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AttestationProvidersGetDefaultByLocationResponseTagsMap>;
+  ) as any as S.Schema<GetAttestationProviderDefaultByLocationResponseTagsMap>;
 
 export interface GetAttestationProviderDefaultByLocationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -657,7 +657,7 @@ export interface GetAttestationProviderDefaultByLocationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AttestationProvidersGetDefaultByLocationResponseTagsMap;
+  tags?: GetAttestationProviderDefaultByLocationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Attestation service status. */
@@ -670,7 +670,7 @@ export const GetAttestationProviderDefaultByLocationResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AttestationProvidersGetDefaultByLocationResponseTagsMap),
+      tags: S.optional(GetAttestationProviderDefaultByLocationResponseTagsMap),
       location: S.String,
       properties: S.optional(StatusResult),
     }),
@@ -1240,13 +1240,13 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
 /** The tags that will be assigned to the attestation provider. */
-export type AttestationProvidersUpdateRequestTagsMap = {
+export type UpdateAttestationProviderRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAttestationProviderRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AttestationProvidersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAttestationProviderRequestTagsMap>;
 
 /** Controls whether traffic from the public network is allowed to access the Attestation Provider APIs. */
 export type AttestationServicePatchSpecificParamsPublicNetworkAccess =
@@ -1295,7 +1295,7 @@ export interface UpdateAttestationProviderRequest {
   /** Name of the attestation provider. */
   providerName: string;
   /** The tags that will be assigned to the attestation provider. */
-  tags?: AttestationProvidersUpdateRequestTagsMap;
+  tags?: UpdateAttestationProviderRequestTagsMap;
   /** Properties of the attestation provider */
   properties?: AttestationServicePatchSpecificParams;
 }
@@ -1304,7 +1304,7 @@ export const UpdateAttestationProviderRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     providerName: S.String.pipe(T.Label()),
-    tags: S.optional(AttestationProvidersUpdateRequestTagsMap),
+    tags: S.optional(UpdateAttestationProviderRequestTagsMap),
     properties: S.optional(AttestationServicePatchSpecificParams),
   }).pipe(
     T.Http({
@@ -1319,13 +1319,13 @@ export const UpdateAttestationProviderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAttestationProviderRequest>;
 
 /** Resource tags. */
-export type AttestationProvidersUpdateResponseTagsMap = {
+export type UpdateAttestationProviderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AttestationProvidersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAttestationProviderResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AttestationProvidersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAttestationProviderResponseTagsMap>;
 
 export interface UpdateAttestationProviderResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1337,7 +1337,7 @@ export interface UpdateAttestationProviderResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AttestationProvidersUpdateResponseTagsMap;
+  tags?: UpdateAttestationProviderResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Attestation service status. */
@@ -1349,7 +1349,7 @@ export const UpdateAttestationProviderResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AttestationProvidersUpdateResponseTagsMap),
+    tags: S.optional(UpdateAttestationProviderResponseTagsMap),
     location: S.String,
     properties: S.optional(StatusResult),
   }),

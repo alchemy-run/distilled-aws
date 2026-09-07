@@ -65,6 +65,56 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export interface TranslatedString {
+  /** Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
+  language?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#translatedString"`. */
+  kind?: string;
+  /** The UTF-8 encoded translated string. */
+  value?: string;
+}
+export const TranslatedString = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    language: S.optional(S.String),
+    kind: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TranslatedString",
+}) as any as S.Schema<TranslatedString>;
+
+export type TranslatedStringList = Array<TranslatedString>;
+export const TranslatedStringList = /*@__PURE__*/ S.Array(
+  TranslatedString,
+) as any as S.Schema<TranslatedStringList>;
+
+export interface LocalizedString {
+  /** Contains the string to be displayed if no appropriate translation is available. */
+  defaultValue?: TranslatedString;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#localizedString"`. */
+  kind?: string;
+  /** Contains the translations for the string. */
+  translatedValues?: TranslatedStringList;
+}
+export const LocalizedString = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultValue: S.optional(TranslatedString),
+    kind: S.optional(S.String),
+    translatedValues: S.optional(TranslatedStringList),
+  }),
+).annotate({
+  identifier: "LocalizedString",
+}) as any as S.Schema<LocalizedString>;
+
+export type MessageMessageTypeEnum =
+  | "MESSAGE_TYPE_UNSPECIFIED"
+  | "TEXT"
+  | "text"
+  | "EXPIRATION_NOTIFICATION"
+  | "expirationNotification"
+  | "TEXT_AND_NOTIFY";
+export const MessageMessageTypeEnum = /*@__PURE__*/ S.String;
+
 export interface DateTime {
   /** An ISO 8601 extended format date/time. Offset may or may not be required (refer to the parent field's documentation). Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the date/time is intended for a physical location in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. Providing an offset makes this an absolute instant in time around the world. The date/time will be adjusted based on the user's time zone. For example, a time of `2018-06-19T18:30:00-04:00` will be 18:30:00 for a user in New York and 15:30:00 for a user in Los Angeles. Omitting the offset makes this a local date/time, representing several instants in time around the world. The date/time will always be in the user's current time zone. For example, a time of `2018-06-19T18:30:00` will be 18:30:00 for a user in New York and also 18:30:00 for a user in Los Angeles. This is useful when the same local date/time should apply to many physical locations across several time zones. */
   date?: string;
@@ -91,85 +141,35 @@ export const TimeInterval = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TimeInterval" }) as any as S.Schema<TimeInterval>;
 
-export interface TranslatedString {
-  /** Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
-  language?: string;
-  /** The UTF-8 encoded translated string. */
-  value?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#translatedString"`. */
-  kind?: string;
-}
-export const TranslatedString = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    language: S.optional(S.String),
-    value: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TranslatedString",
-}) as any as S.Schema<TranslatedString>;
-
-export type TranslatedStringList = Array<TranslatedString>;
-export const TranslatedStringList = /*@__PURE__*/ S.Array(
-  TranslatedString,
-) as any as S.Schema<TranslatedStringList>;
-
-export interface LocalizedString {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#localizedString"`. */
-  kind?: string;
-  /** Contains the translations for the string. */
-  translatedValues?: TranslatedStringList;
-  /** Contains the string to be displayed if no appropriate translation is available. */
-  defaultValue?: TranslatedString;
-}
-export const LocalizedString = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    translatedValues: S.optional(TranslatedStringList),
-    defaultValue: S.optional(TranslatedString),
-  }),
-).annotate({
-  identifier: "LocalizedString",
-}) as any as S.Schema<LocalizedString>;
-
-export type MessageMessageTypeEnum =
-  | "MESSAGE_TYPE_UNSPECIFIED"
-  | "TEXT"
-  | "text"
-  | "EXPIRATION_NOTIFICATION"
-  | "expirationNotification"
-  | "TEXT_AND_NOTIFY";
-export const MessageMessageTypeEnum = /*@__PURE__*/ S.String;
-
 /** A message that will be displayed with a Valuable */
 export interface Message {
-  /** The period of time that the message will be displayed to users. You can define both a `startTime` and `endTime` for each message. A message is displayed immediately after a Wallet Object is inserted unless a `startTime` is set. The message will appear in a list of messages indefinitely if `endTime` is not provided. */
-  displayInterval?: TimeInterval;
-  /** The message body. */
-  body?: string;
-  /** The message header. */
-  header?: string;
-  /** The ID associated with a message. This field is here to enable ease of management of messages. Notice ID values could possibly duplicate across multiple messages in the same class/instance, and care must be taken to select a reasonable ID for each message. */
-  id?: string;
   /** Translated strings for the message body. */
   localizedBody?: LocalizedString;
-  /** The message type. */
-  messageType?: MessageMessageTypeEnum | (string & {});
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#walletObjectMessage"`. */
-  kind?: string;
   /** Translated strings for the message header. */
   localizedHeader?: LocalizedString;
+  /** The message header. */
+  header?: string;
+  /** The message type. */
+  messageType?: MessageMessageTypeEnum | (string & {});
+  /** The message body. */
+  body?: string;
+  /** The ID associated with a message. This field is here to enable ease of management of messages. Notice ID values could possibly duplicate across multiple messages in the same class/instance, and care must be taken to select a reasonable ID for each message. */
+  id?: string;
+  /** The period of time that the message will be displayed to users. You can define both a `startTime` and `endTime` for each message. A message is displayed immediately after a Wallet Object is inserted unless a `startTime` is set. The message will appear in a list of messages indefinitely if `endTime` is not provided. */
+  displayInterval?: TimeInterval;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#walletObjectMessage"`. */
+  kind?: string;
 }
 export const Message = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayInterval: S.optional(TimeInterval),
-    body: S.optional(S.String),
-    header: S.optional(S.String),
-    id: S.optional(S.String),
     localizedBody: S.optional(LocalizedString),
-    messageType: S.optional(MessageMessageTypeEnum),
-    kind: S.optional(S.String),
     localizedHeader: S.optional(LocalizedString),
+    header: S.optional(S.String),
+    messageType: S.optional(MessageMessageTypeEnum),
+    body: S.optional(S.String),
+    id: S.optional(S.String),
+    displayInterval: S.optional(TimeInterval),
+    kind: S.optional(S.String),
   }),
 ).annotate({ identifier: "Message" }) as any as S.Schema<Message>;
 
@@ -206,114 +206,59 @@ export const AddmessageEventticketclassRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageEventticketclassRequest",
 }) as any as S.Schema<AddmessageEventticketclassRequest>;
 
-export interface LatLongPoint {
-  /** The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected. */
-  latitude?: number;
-  /** The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected. */
-  longitude?: number;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#latLongPoint"`. */
-  kind?: string;
-}
-export const LatLongPoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latitude: S.optional(S.Number),
-    longitude: S.optional(S.Number),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "LatLongPoint" }) as any as S.Schema<LatLongPoint>;
-
-export type LatLongPointList = Array<LatLongPoint>;
-export const LatLongPointList = /*@__PURE__*/ S.Array(
-  LatLongPoint,
-) as any as S.Schema<LatLongPointList>;
-
-export interface ImageUri {
-  /** The location of the image. URIs must have a scheme. */
-  uri?: string;
-  /** Translated strings for the description, which are unused and retained only for backward compatibility. */
-  localizedDescription?: LocalizedString;
-  /** Additional information about the image, which is unused and retained only for backward compatibility. */
-  description?: string;
-}
-export const ImageUri = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uri: S.optional(S.String),
-    localizedDescription: S.optional(LocalizedString),
-    description: S.optional(S.String),
-  }),
-).annotate({ identifier: "ImageUri" }) as any as S.Schema<ImageUri>;
-
-/** Wrapping type for Google hosted images. */
-export interface Image {
-  /** An ID for an already uploaded private image. Either this or source_uri should be set. Requests setting both or neither will be rejected. Please contact support to use private images. */
-  privateImageId?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#image"`. */
-  kind?: string;
-  /** A URI for the image. Either this or private_image_id should be set. Requests setting both or neither will be rejected. */
-  sourceUri?: ImageUri;
-  /** Description of the image used for accessibility. */
-  contentDescription?: LocalizedString;
-}
-export const Image = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateImageId: S.optional(S.String),
-    kind: S.optional(S.String),
-    sourceUri: S.optional(ImageUri),
-    contentDescription: S.optional(LocalizedString),
-  }),
-).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
-
-/** Constraints that all must be met for the module to be shown. */
-export interface ModuleViewConstraints {
-  /** The period of time that the module will be displayed to users. Can define both a `startTime` and `endTime`. The module is displayed immediately after insertion unless a `startTime` is set. The module is displayed indefinitely if `endTime` is not set. */
-  displayInterval?: TimeInterval;
-}
-export const ModuleViewConstraints = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayInterval: S.optional(TimeInterval),
-  }),
-).annotate({
-  identifier: "ModuleViewConstraints",
-}) as any as S.Schema<ModuleViewConstraints>;
-
-/** Data for Value Added module. Required fields are header and uri. */
-export interface ValueAddedModuleData {
-  /** The index for sorting the modules. Modules with a lower sort index are shown before modules with a higher sort index. If unspecified, the sort index is assumed to be INT_MAX. For two modules with the same index, the sorting behavior is undefined. */
-  sortIndex?: number;
-  /** Image to be displayed on the module. Recommended image ratio is 1:1. Images will be resized to fit this ratio. */
-  image?: Image;
-  /** URI that the module leads to on click. This can be a web link or a deep link as mentioned in https://developer.android.com/training/app-links/deep-linking. */
-  uri?: string;
-  /** Constraints that all must be met for the module to be shown. */
-  viewConstraints?: ModuleViewConstraints;
-  /** Header to be displayed on the module. Character limit is 60 and longer strings will be truncated. */
-  header?: LocalizedString;
-  /** Body to be displayed on the module. Character limit is 50 and longer strings will be truncated. */
-  body?: LocalizedString;
-}
-export const ValueAddedModuleData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sortIndex: S.optional(S.Number),
-    image: S.optional(Image),
-    uri: S.optional(S.String),
-    viewConstraints: S.optional(ModuleViewConstraints),
-    header: S.optional(LocalizedString),
-    body: S.optional(LocalizedString),
-  }),
-).annotate({
-  identifier: "ValueAddedModuleData",
-}) as any as S.Schema<ValueAddedModuleData>;
-
-export type ValueAddedModuleDataList = Array<ValueAddedModuleData>;
-export const ValueAddedModuleDataList = /*@__PURE__*/ S.Array(
-  ValueAddedModuleData,
-) as any as S.Schema<ValueAddedModuleDataList>;
-
 export type EventTicketClassViewUnlockRequirementEnum =
   | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
   | "UNLOCK_NOT_REQUIRED"
   | "UNLOCK_REQUIRED_TO_VIEW";
 export const EventTicketClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
+
+export type EventTicketClassSectionLabelEnum =
+  | "SECTION_LABEL_UNSPECIFIED"
+  | "SECTION"
+  | "section"
+  | "THEATER"
+  | "theater";
+export const EventTicketClassSectionLabelEnum = /*@__PURE__*/ S.String;
+
+export type EventTicketClassGateLabelEnum =
+  | "GATE_LABEL_UNSPECIFIED"
+  | "GATE"
+  | "gate"
+  | "DOOR"
+  | "door"
+  | "ENTRANCE"
+  | "entrance";
+export const EventTicketClassGateLabelEnum = /*@__PURE__*/ S.String;
+
+export type EventTicketClassReviewStatusEnum =
+  | "REVIEW_STATUS_UNSPECIFIED"
+  | "UNDER_REVIEW"
+  | "underReview"
+  | "APPROVED"
+  | "approved"
+  | "REJECTED"
+  | "rejected"
+  | "DRAFT"
+  | "draft";
+export const EventTicketClassReviewStatusEnum = /*@__PURE__*/ S.String;
+
+export type SecurityAnimationAnimationTypeEnum =
+  | "ANIMATION_UNSPECIFIED"
+  | "FOIL_SHIMMER"
+  | "foilShimmer";
+export const SecurityAnimationAnimationTypeEnum = /*@__PURE__*/ S.String;
+
+export interface SecurityAnimation {
+  /** Type of animation. */
+  animationType?: SecurityAnimationAnimationTypeEnum | (string & {});
+}
+export const SecurityAnimation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    animationType: S.optional(SecurityAnimationAnimationTypeEnum),
+  }),
+).annotate({
+  identifier: "SecurityAnimation",
+}) as any as S.Schema<SecurityAnimation>;
 
 /** A pair of text strings to be displayed in the details view. Note we no longer display LabelValue/LabelValueRow as a table, instead a list of items. */
 export interface LabelValue {
@@ -356,167 +301,109 @@ export const LabelValueRowList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LabelValueRowList>;
 
 export interface InfoModuleData {
-  showLastUpdateTime?: boolean;
   /** A list of collections of labels and values. These will be displayed one after the other in a singular column. */
   labelValueRows?: LabelValueRowList;
+  showLastUpdateTime?: boolean;
 }
 export const InfoModuleData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    showLastUpdateTime: S.optional(S.Boolean),
     labelValueRows: S.optional(LabelValueRowList),
+    showLastUpdateTime: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "InfoModuleData" }) as any as S.Schema<InfoModuleData>;
 
-export type EventTicketClassReviewStatusEnum =
-  | "REVIEW_STATUS_UNSPECIFIED"
-  | "UNDER_REVIEW"
-  | "underReview"
-  | "APPROVED"
-  | "approved"
-  | "REJECTED"
-  | "rejected"
-  | "DRAFT"
-  | "draft";
-export const EventTicketClassReviewStatusEnum = /*@__PURE__*/ S.String;
-
-export type EventDateTimeDoorsOpenLabelEnum =
-  | "DOORS_OPEN_LABEL_UNSPECIFIED"
-  | "DOORS_OPEN"
-  | "doorsOpen"
-  | "GATES_OPEN"
-  | "gatesOpen";
-export const EventDateTimeDoorsOpenLabelEnum = /*@__PURE__*/ S.String;
-
-export interface EventDateTime {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventDateTime"`. */
-  kind?: string;
-  /** The label to use for the doors open value (`doorsOpen`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `doorsOpenLabel` and `customDoorsOpenLabel` may not be set. If neither is set, the label will default to "Doors Open", localized. If the doors open field is unset, this label will not be used. */
-  doorsOpenLabel?: EventDateTimeDoorsOpenLabelEnum | (string & {});
-  /** The date/time when the doors open at the venue. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
-  doorsOpen?: string;
-  /** The date/time when the event starts. If the event spans multiple days, it should be the start date/time on the first day. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
-  start?: string;
-  /** The date/time when the event ends. If the event spans multiple days, it should be the end date/time on the last day. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
-  end?: string;
-  /** A custom label to use for the doors open value (`doorsOpen`) on the card detail view. This should only be used if the default "Doors Open" label or one of the `doorsOpenLabel` options is not sufficient. Both `doorsOpenLabel` and `customDoorsOpenLabel` may not be set. If neither is set, the label will default to "Doors Open", localized. If the doors open field is unset, this label will not be used. */
-  customDoorsOpenLabel?: LocalizedString;
+/** Constraints that all must be met for the module to be shown. */
+export interface ModuleViewConstraints {
+  /** The period of time that the module will be displayed to users. Can define both a `startTime` and `endTime`. The module is displayed immediately after insertion unless a `startTime` is set. The module is displayed indefinitely if `endTime` is not set. */
+  displayInterval?: TimeInterval;
 }
-export const EventDateTime = /*@__PURE__*/ S.suspend(() =>
+export const ModuleViewConstraints = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    doorsOpenLabel: S.optional(EventDateTimeDoorsOpenLabelEnum),
-    doorsOpen: S.optional(S.String),
-    start: S.optional(S.String),
-    end: S.optional(S.String),
-    customDoorsOpenLabel: S.optional(LocalizedString),
+    displayInterval: S.optional(TimeInterval),
   }),
-).annotate({ identifier: "EventDateTime" }) as any as S.Schema<EventDateTime>;
+).annotate({
+  identifier: "ModuleViewConstraints",
+}) as any as S.Schema<ModuleViewConstraints>;
 
-export type EventTicketClassRowLabelEnum =
-  | "ROW_LABEL_UNSPECIFIED"
-  | "ROW"
-  | "row";
-export const EventTicketClassRowLabelEnum = /*@__PURE__*/ S.String;
-
-export type EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  | "STATUS_UNSPECIFIED"
-  | "MULTIPLE_HOLDERS"
-  | "ONE_USER_ALL_DEVICES"
-  | "ONE_USER_ONE_DEVICE"
-  | "multipleHolders"
-  | "oneUserAllDevices"
-  | "oneUserOneDevice";
-export const EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  /*@__PURE__*/ S.String;
-
-export interface Uri {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#uri"`. */
-  kind?: string;
-  /** The URI's title appearing in the app as text. Recommended maximum is 20 characters to ensure full string is displayed on smaller screens. Note that in some contexts this text is not used, such as when `description` is part of an image. */
-  description?: string;
-  /** Translated strings for the description. Recommended maximum is 20 characters to ensure full string is displayed on smaller screens. */
-  localizedDescription?: LocalizedString;
-  /** The ID associated with a uri. This field is here to enable ease of management of uris. */
-  id?: string;
-  /** The location of a web page, image, or other resource. URIs in the `LinksModuleData` module can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address). URIs must have a scheme. */
+export interface ImageUri {
+  /** The location of the image. URIs must have a scheme. */
   uri?: string;
+  /** Translated strings for the description, which are unused and retained only for backward compatibility. */
+  localizedDescription?: LocalizedString;
+  /** Additional information about the image, which is unused and retained only for backward compatibility. */
+  description?: string;
 }
-export const Uri = /*@__PURE__*/ S.suspend(() =>
+export const ImageUri = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    description: S.optional(S.String),
-    localizedDescription: S.optional(LocalizedString),
-    id: S.optional(S.String),
     uri: S.optional(S.String),
+    localizedDescription: S.optional(LocalizedString),
+    description: S.optional(S.String),
   }),
-).annotate({ identifier: "Uri" }) as any as S.Schema<Uri>;
+).annotate({ identifier: "ImageUri" }) as any as S.Schema<ImageUri>;
 
-export type EventTicketClassNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const EventTicketClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
-/** Data for Text module. All fields are optional. Header will be displayed if available, different types of bodies will be concatenated if they are defined. */
-export interface TextModuleData {
-  /** The header of the Text Module. Recommended maximum length is 35 characters to ensure full string is displayed on smaller screens. */
-  header?: string;
-  /** The body of the Text Module, which is defined as an uninterrupted string. Recommended maximum length is 500 characters to ensure full string is displayed on smaller screens. */
-  body?: string;
-  /** Translated strings for the header. Recommended maximum length is 35 characters to ensure full string is displayed on smaller screens. */
-  localizedHeader?: LocalizedString;
-  /** Translated strings for the body. Recommended maximum length is 500 characters to ensure full string is displayed on smaller screens. */
-  localizedBody?: LocalizedString;
-  /** The ID associated with a text module. This field is here to enable ease of management of text modules and referencing them in template overrides. The ID should only include alphanumeric characters, '_', or '-'. It can not include dots, as dots are used to separate fields within FieldReference.fieldPaths in template overrides. */
-  id?: string;
+/** Wrapping type for Google hosted images. */
+export interface Image {
+  /** A URI for the image. Either this or private_image_id should be set. Requests setting both or neither will be rejected. */
+  sourceUri?: ImageUri;
+  /** Description of the image used for accessibility. */
+  contentDescription?: LocalizedString;
+  /** An ID for an already uploaded private image. Either this or source_uri should be set. Requests setting both or neither will be rejected. Please contact support to use private images. */
+  privateImageId?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#image"`. */
+  kind?: string;
 }
-export const TextModuleData = /*@__PURE__*/ S.suspend(() =>
+export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    header: S.optional(S.String),
-    body: S.optional(S.String),
-    localizedHeader: S.optional(LocalizedString),
-    localizedBody: S.optional(LocalizedString),
-    id: S.optional(S.String),
+    sourceUri: S.optional(ImageUri),
+    contentDescription: S.optional(LocalizedString),
+    privateImageId: S.optional(S.String),
+    kind: S.optional(S.String),
   }),
-).annotate({ identifier: "TextModuleData" }) as any as S.Schema<TextModuleData>;
+).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
-export type TextModuleDataList = Array<TextModuleData>;
-export const TextModuleDataList = /*@__PURE__*/ S.Array(
-  TextModuleData,
-) as any as S.Schema<TextModuleDataList>;
+/** Data for Value Added module. Required fields are header and uri. */
+export interface ValueAddedModuleData {
+  /** Header to be displayed on the module. Character limit is 60 and longer strings will be truncated. */
+  header?: LocalizedString;
+  /** The index for sorting the modules. Modules with a lower sort index are shown before modules with a higher sort index. If unspecified, the sort index is assumed to be INT_MAX. For two modules with the same index, the sorting behavior is undefined. */
+  sortIndex?: number;
+  /** URI that the module leads to on click. This can be a web link or a deep link as mentioned in https://developer.android.com/training/app-links/deep-linking. */
+  uri?: string;
+  /** Constraints that all must be met for the module to be shown. */
+  viewConstraints?: ModuleViewConstraints;
+  /** Body to be displayed on the module. Character limit is 50 and longer strings will be truncated. */
+  body?: LocalizedString;
+  /** Image to be displayed on the module. Recommended image ratio is 1:1. Images will be resized to fit this ratio. */
+  image?: Image;
+}
+export const ValueAddedModuleData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    header: S.optional(LocalizedString),
+    sortIndex: S.optional(S.Number),
+    uri: S.optional(S.String),
+    viewConstraints: S.optional(ModuleViewConstraints),
+    body: S.optional(LocalizedString),
+    image: S.optional(Image),
+  }),
+).annotate({
+  identifier: "ValueAddedModuleData",
+}) as any as S.Schema<ValueAddedModuleData>;
 
-export type EventTicketClassGateLabelEnum =
-  | "GATE_LABEL_UNSPECIFIED"
-  | "GATE"
-  | "gate"
-  | "DOOR"
-  | "door"
-  | "ENTRANCE"
-  | "entrance";
-export const EventTicketClassGateLabelEnum = /*@__PURE__*/ S.String;
-
-export type EventTicketClassSectionLabelEnum =
-  | "SECTION_LABEL_UNSPECIFIED"
-  | "SECTION"
-  | "section"
-  | "THEATER"
-  | "theater";
-export const EventTicketClassSectionLabelEnum = /*@__PURE__*/ S.String;
-
-export type MessageList = Array<Message>;
-export const MessageList = /*@__PURE__*/ S.Array(
-  Message,
-) as any as S.Schema<MessageList>;
+export type ValueAddedModuleDataList = Array<ValueAddedModuleData>;
+export const ValueAddedModuleDataList = /*@__PURE__*/ S.Array(
+  ValueAddedModuleData,
+) as any as S.Schema<ValueAddedModuleDataList>;
 
 export interface ImageModuleData {
-  /** The ID associated with an image module. This field is here to enable ease of management of image modules. */
-  id?: string;
   /** A 100% width image. */
   mainImage?: Image;
+  /** The ID associated with an image module. This field is here to enable ease of management of image modules. */
+  id?: string;
 }
 export const ImageModuleData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     mainImage: S.optional(Image),
+    id: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ImageModuleData",
@@ -527,180 +414,20 @@ export const ImageModuleDataList = /*@__PURE__*/ S.Array(
   ImageModuleData,
 ) as any as S.Schema<ImageModuleDataList>;
 
-export type SecurityAnimationAnimationTypeEnum =
-  | "ANIMATION_UNSPECIFIED"
-  | "FOIL_SHIMMER"
-  | "foilShimmer";
-export const SecurityAnimationAnimationTypeEnum = /*@__PURE__*/ S.String;
+export type EventTicketClassNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const EventTicketClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
-export interface SecurityAnimation {
-  /** Type of animation. */
-  animationType?: SecurityAnimationAnimationTypeEnum | (string & {});
-}
-export const SecurityAnimation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    animationType: S.optional(SecurityAnimationAnimationTypeEnum),
-  }),
-).annotate({
-  identifier: "SecurityAnimation",
-}) as any as S.Schema<SecurityAnimation>;
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
-/** Locations of interest for this class or object. Currently, this location is used for geofenced notifications. When a user is within a set radius of this lat/long, and dwells there, Google will trigger a notification. When a user exits this radius, the notification will be hidden. */
-export interface MerchantLocation {
-  /** The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected. */
-  longitude?: number;
-  /** The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected. */
-  latitude?: number;
-}
-export const MerchantLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    longitude: S.optional(S.Number),
-    latitude: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "MerchantLocation",
-}) as any as S.Schema<MerchantLocation>;
-
-export type MerchantLocationList = Array<MerchantLocation>;
-export const MerchantLocationList = /*@__PURE__*/ S.Array(
-  MerchantLocation,
-) as any as S.Schema<MerchantLocationList>;
-
-export type UriList = Array<Uri>;
-export const UriList = /*@__PURE__*/ S.Array(Uri) as any as S.Schema<UriList>;
-
-export interface LinksModuleData {
-  /** The list of URIs. */
-  uris?: UriList;
-}
-export const LinksModuleData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uris: S.optional(UriList),
-  }),
-).annotate({
-  identifier: "LinksModuleData",
-}) as any as S.Schema<LinksModuleData>;
-
-export interface Review {
-  comments?: string;
-}
-export const Review = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comments: S.optional(S.String),
-  }),
-).annotate({ identifier: "Review" }) as any as S.Schema<Review>;
-
-export interface AppLinkDataAppLinkInfoAppTarget {
-  /** Package name for AppTarget. For example: com.google.android.gm */
-  packageName?: string;
-  /** URI for AppTarget. The description on the URI must be set. Prefer setting package field instead, if this target is defined for your application. */
-  targetUri?: Uri;
-}
-export const AppLinkDataAppLinkInfoAppTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    targetUri: S.optional(Uri),
-  }),
-).annotate({
-  identifier: "AppLinkDataAppLinkInfoAppTarget",
-}) as any as S.Schema<AppLinkDataAppLinkInfoAppTarget>;
-
-export interface AppLinkDataAppLinkInfo {
-  /** Deprecated. Title isn't supported in the app link module. */
-  title?: LocalizedString;
-  /** Deprecated. Description isn't supported in the app link module. */
-  description?: LocalizedString;
-  /** Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage. */
-  appTarget?: AppLinkDataAppLinkInfoAppTarget;
-  /** Deprecated. Image isn't supported in the app link module. */
-  appLogoImage?: Image;
-}
-export const AppLinkDataAppLinkInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(LocalizedString),
-    description: S.optional(LocalizedString),
-    appTarget: S.optional(AppLinkDataAppLinkInfoAppTarget),
-    appLogoImage: S.optional(Image),
-  }),
-).annotate({
-  identifier: "AppLinkDataAppLinkInfo",
-}) as any as S.Schema<AppLinkDataAppLinkInfo>;
-
-export interface AppLinkData {
-  /** Deprecated. Links to open iOS apps are not supported. */
-  iosAppLinkInfo?: AppLinkDataAppLinkInfo;
-  /** Optional display text for the app link button. Character limit is 30. */
-  displayText?: LocalizedString;
-  /** Optional information about the partner web link. */
-  webAppLinkInfo?: AppLinkDataAppLinkInfo;
-  /** Optional information about the partner app link. */
-  androidAppLinkInfo?: AppLinkDataAppLinkInfo;
-}
-export const AppLinkData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iosAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
-    displayText: S.optional(LocalizedString),
-    webAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
-    androidAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
-  }),
-).annotate({ identifier: "AppLinkData" }) as any as S.Schema<AppLinkData>;
-
-export type EventTicketClassSeatLabelEnum =
-  | "SEAT_LABEL_UNSPECIFIED"
-  | "SEAT"
-  | "seat";
-export const EventTicketClassSeatLabelEnum = /*@__PURE__*/ S.String;
-
-export interface EventVenue {
-  /** The address of the venue, such as "24 Willie Mays Plaza\nSan Francisco, CA 94107". Address lines are separated by line feed (`\n`) characters. This is required. */
-  address?: LocalizedString;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventVenue"`. */
-  kind?: string;
-  /** The name of the venue, such as "AT&T Park". This is required. */
-  name?: LocalizedString;
-}
-export const EventVenue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    address: S.optional(LocalizedString),
-    kind: S.optional(S.String),
-    name: S.optional(LocalizedString),
-  }),
-).annotate({ identifier: "EventVenue" }) as any as S.Schema<EventVenue>;
-
-export interface CallbackOptions {
-  /** The HTTPS url configured by the merchant. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot. */
-  url?: string;
-  /** URL for the merchant endpoint that would be called to request updates. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot. Deprecated. */
-  updateRequestUrl?: string;
-}
-export const CallbackOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    updateRequestUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CallbackOptions",
-}) as any as S.Schema<CallbackOptions>;
-
-export type EventTicketClassConfirmationCodeLabelEnum =
-  | "CONFIRMATION_CODE_LABEL_UNSPECIFIED"
-  | "CONFIRMATION_CODE"
-  | "confirmationCode"
-  | "CONFIRMATION_NUMBER"
-  | "confirmationNumber"
-  | "ORDER_NUMBER"
-  | "orderNumber"
-  | "RESERVATION_NUMBER"
-  | "reservationNumber";
-export const EventTicketClassConfirmationCodeLabelEnum = /*@__PURE__*/ S.String;
-
-export type TemplateItemPredefinedItemEnum =
-  | "PREDEFINED_ITEM_UNSPECIFIED"
-  | "FREQUENT_FLYER_PROGRAM_NAME_AND_NUMBER"
-  | "frequentFlyerProgramNameAndNumber"
-  | "FLIGHT_NUMBER_AND_OPERATING_FLIGHT_NUMBER"
-  | "flightNumberAndOperatingFlightNumber";
-export const TemplateItemPredefinedItemEnum = /*@__PURE__*/ S.String;
+export type MessageList = Array<Message>;
+export const MessageList = /*@__PURE__*/ S.Array(
+  Message,
+) as any as S.Schema<MessageList>;
 
 export type FieldReferenceDateFormatEnum =
   | "DATE_FORMAT_UNSPECIFIED"
@@ -748,19 +475,27 @@ export const FieldSelector = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "FieldSelector" }) as any as S.Schema<FieldSelector>;
 
+export type TemplateItemPredefinedItemEnum =
+  | "PREDEFINED_ITEM_UNSPECIFIED"
+  | "FREQUENT_FLYER_PROGRAM_NAME_AND_NUMBER"
+  | "frequentFlyerProgramNameAndNumber"
+  | "FLIGHT_NUMBER_AND_OPERATING_FLIGHT_NUMBER"
+  | "flightNumberAndOperatingFlightNumber";
+export const TemplateItemPredefinedItemEnum = /*@__PURE__*/ S.String;
+
 export interface TemplateItem {
-  /** A predefined item to display. Only one of `firstValue` or `predefinedItem` may be set. */
-  predefinedItem?: TemplateItemPredefinedItemEnum | (string & {});
-  /** A reference to a field to display. If both `firstValue` and `secondValue` are populated, they will both appear as one item with a slash between them. For example, values A and B would be shown as "A / B". */
-  firstValue?: FieldSelector;
   /** A reference to a field to display. This may only be populated if the `firstValue` field is populated. */
   secondValue?: FieldSelector;
+  /** A reference to a field to display. If both `firstValue` and `secondValue` are populated, they will both appear as one item with a slash between them. For example, values A and B would be shown as "A / B". */
+  firstValue?: FieldSelector;
+  /** A predefined item to display. Only one of `firstValue` or `predefinedItem` may be set. */
+  predefinedItem?: TemplateItemPredefinedItemEnum | (string & {});
 }
 export const TemplateItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    predefinedItem: S.optional(TemplateItemPredefinedItemEnum),
-    firstValue: S.optional(FieldSelector),
     secondValue: S.optional(FieldSelector),
+    firstValue: S.optional(FieldSelector),
+    predefinedItem: S.optional(TemplateItemPredefinedItemEnum),
   }),
 ).annotate({ identifier: "TemplateItem" }) as any as S.Schema<TemplateItem>;
 
@@ -773,24 +508,6 @@ export const CardRowOneItem = /*@__PURE__*/ S.suspend(() =>
     item: S.optional(TemplateItem),
   }),
 ).annotate({ identifier: "CardRowOneItem" }) as any as S.Schema<CardRowOneItem>;
-
-export interface CardRowThreeItems {
-  /** The item to be displayed in the middle of the row. This item will be centered between the start and end items. */
-  middleItem?: TemplateItem;
-  /** The item to be displayed at the start of the row. This item will be aligned to the left. */
-  startItem?: TemplateItem;
-  /** The item to be displayed at the end of the row. This item will be aligned to the right. */
-  endItem?: TemplateItem;
-}
-export const CardRowThreeItems = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    middleItem: S.optional(TemplateItem),
-    startItem: S.optional(TemplateItem),
-    endItem: S.optional(TemplateItem),
-  }),
-).annotate({
-  identifier: "CardRowThreeItems",
-}) as any as S.Schema<CardRowThreeItems>;
 
 export interface CardRowTwoItems {
   /** The item to be displayed at the end of the row. This item will be aligned to the right. */
@@ -807,19 +524,37 @@ export const CardRowTwoItems = /*@__PURE__*/ S.suspend(() =>
   identifier: "CardRowTwoItems",
 }) as any as S.Schema<CardRowTwoItems>;
 
+export interface CardRowThreeItems {
+  /** The item to be displayed in the middle of the row. This item will be centered between the start and end items. */
+  middleItem?: TemplateItem;
+  /** The item to be displayed at the end of the row. This item will be aligned to the right. */
+  endItem?: TemplateItem;
+  /** The item to be displayed at the start of the row. This item will be aligned to the left. */
+  startItem?: TemplateItem;
+}
+export const CardRowThreeItems = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    middleItem: S.optional(TemplateItem),
+    endItem: S.optional(TemplateItem),
+    startItem: S.optional(TemplateItem),
+  }),
+).annotate({
+  identifier: "CardRowThreeItems",
+}) as any as S.Schema<CardRowThreeItems>;
+
 export interface CardRowTemplateInfo {
   /** Template for a row containing one item. Exactly one of "one_item", "two_items", "three_items" must be set. */
   oneItem?: CardRowOneItem;
-  /** Template for a row containing three items. Exactly one of "one_item", "two_items", "three_items" must be set. */
-  threeItems?: CardRowThreeItems;
   /** Template for a row containing two items. Exactly one of "one_item", "two_items", "three_items" must be set. */
   twoItems?: CardRowTwoItems;
+  /** Template for a row containing three items. Exactly one of "one_item", "two_items", "three_items" must be set. */
+  threeItems?: CardRowThreeItems;
 }
 export const CardRowTemplateInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     oneItem: S.optional(CardRowOneItem),
-    threeItems: S.optional(CardRowThreeItems),
     twoItems: S.optional(CardRowTwoItems),
+    threeItems: S.optional(CardRowThreeItems),
   }),
 ).annotate({
   identifier: "CardRowTemplateInfo",
@@ -865,22 +600,52 @@ export const FirstRowOption = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FirstRowOption" }) as any as S.Schema<FirstRowOption>;
 
 export interface ListTemplateOverride {
+  /** Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row. To set this override, set the FirstRowOption.fieldOption to the FieldSelector of your choice. */
+  firstRowOption?: FirstRowOption;
   /** A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects. To set this override, please set secondRowOption to the FieldSelector of you choice. */
   secondRowOption?: FieldSelector;
   /** An unused/deprecated field. Setting it will have no effect on what the user sees. */
   thirdRowOption?: FieldSelector;
-  /** Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row. To set this override, set the FirstRowOption.fieldOption to the FieldSelector of your choice. */
-  firstRowOption?: FirstRowOption;
 }
 export const ListTemplateOverride = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    firstRowOption: S.optional(FirstRowOption),
     secondRowOption: S.optional(FieldSelector),
     thirdRowOption: S.optional(FieldSelector),
-    firstRowOption: S.optional(FirstRowOption),
   }),
 ).annotate({
   identifier: "ListTemplateOverride",
 }) as any as S.Schema<ListTemplateOverride>;
+
+export interface BarcodeSectionDetail {
+  /** A reference to an existing text-based or image field to display. */
+  fieldSelector?: FieldSelector;
+}
+export const BarcodeSectionDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fieldSelector: S.optional(FieldSelector),
+  }),
+).annotate({
+  identifier: "BarcodeSectionDetail",
+}) as any as S.Schema<BarcodeSectionDetail>;
+
+export interface CardBarcodeSectionDetails {
+  /** Optional information to display above the barcode. If `secondTopDetail` is defined, this will be displayed to the start side of this detail section. */
+  firstTopDetail?: BarcodeSectionDetail;
+  /** Optional second piece of information to display above the barcode. If `firstTopDetail` is defined, this will be displayed to the end side of this detail section. */
+  secondTopDetail?: BarcodeSectionDetail;
+  /** Optional information to display below the barcode. */
+  firstBottomDetail?: BarcodeSectionDetail;
+}
+export const CardBarcodeSectionDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    firstTopDetail: S.optional(BarcodeSectionDetail),
+    secondTopDetail: S.optional(BarcodeSectionDetail),
+    firstBottomDetail: S.optional(BarcodeSectionDetail),
+  }),
+).annotate({
+  identifier: "CardBarcodeSectionDetails",
+}) as any as S.Schema<CardBarcodeSectionDetails>;
 
 export interface DetailsItemInfo {
   /** The item to be displayed in the details list. */
@@ -911,219 +676,454 @@ export const DetailsTemplateOverride = /*@__PURE__*/ S.suspend(() =>
   identifier: "DetailsTemplateOverride",
 }) as any as S.Schema<DetailsTemplateOverride>;
 
-export interface BarcodeSectionDetail {
-  /** A reference to an existing text-based or image field to display. */
-  fieldSelector?: FieldSelector;
-}
-export const BarcodeSectionDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fieldSelector: S.optional(FieldSelector),
-  }),
-).annotate({
-  identifier: "BarcodeSectionDetail",
-}) as any as S.Schema<BarcodeSectionDetail>;
-
-export interface CardBarcodeSectionDetails {
-  /** Optional second piece of information to display above the barcode. If `firstTopDetail` is defined, this will be displayed to the end side of this detail section. */
-  secondTopDetail?: BarcodeSectionDetail;
-  /** Optional information to display below the barcode. */
-  firstBottomDetail?: BarcodeSectionDetail;
-  /** Optional information to display above the barcode. If `secondTopDetail` is defined, this will be displayed to the start side of this detail section. */
-  firstTopDetail?: BarcodeSectionDetail;
-}
-export const CardBarcodeSectionDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secondTopDetail: S.optional(BarcodeSectionDetail),
-    firstBottomDetail: S.optional(BarcodeSectionDetail),
-    firstTopDetail: S.optional(BarcodeSectionDetail),
-  }),
-).annotate({
-  identifier: "CardBarcodeSectionDetails",
-}) as any as S.Schema<CardBarcodeSectionDetails>;
-
 export interface ClassTemplateInfo {
   /** Override for the card view. */
   cardTemplateOverride?: CardTemplateOverride;
   /** Override for the passes list view. */
   listTemplateOverride?: ListTemplateOverride;
-  /** Override for the details view (beneath the card view). */
-  detailsTemplateOverride?: DetailsTemplateOverride;
   /** Specifies extra information to be displayed above and below the barcode. */
   cardBarcodeSectionDetails?: CardBarcodeSectionDetails;
+  /** Override for the details view (beneath the card view). */
+  detailsTemplateOverride?: DetailsTemplateOverride;
 }
 export const ClassTemplateInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     cardTemplateOverride: S.optional(CardTemplateOverride),
     listTemplateOverride: S.optional(ListTemplateOverride),
-    detailsTemplateOverride: S.optional(DetailsTemplateOverride),
     cardBarcodeSectionDetails: S.optional(CardBarcodeSectionDetails),
+    detailsTemplateOverride: S.optional(DetailsTemplateOverride),
   }),
 ).annotate({
   identifier: "ClassTemplateInfo",
 }) as any as S.Schema<ClassTemplateInfo>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
+export type EventDateTimeDoorsOpenLabelEnum =
+  | "DOORS_OPEN_LABEL_UNSPECIFIED"
+  | "DOORS_OPEN"
+  | "doorsOpen"
+  | "GATES_OPEN"
+  | "gatesOpen";
+export const EventDateTimeDoorsOpenLabelEnum = /*@__PURE__*/ S.String;
+
+export interface EventDateTime {
+  /** The date/time when the event ends. If the event spans multiple days, it should be the end date/time on the last day. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
+  end?: string;
+  /** The date/time when the event starts. If the event spans multiple days, it should be the start date/time on the first day. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
+  start?: string;
+  /** A custom label to use for the doors open value (`doorsOpen`) on the card detail view. This should only be used if the default "Doors Open" label or one of the `doorsOpenLabel` options is not sufficient. Both `doorsOpenLabel` and `customDoorsOpenLabel` may not be set. If neither is set, the label will default to "Doors Open", localized. If the doors open field is unset, this label will not be used. */
+  customDoorsOpenLabel?: LocalizedString;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventDateTime"`. */
+  kind?: string;
+  /** The label to use for the doors open value (`doorsOpen`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `doorsOpenLabel` and `customDoorsOpenLabel` may not be set. If neither is set, the label will default to "Doors Open", localized. If the doors open field is unset, this label will not be used. */
+  doorsOpenLabel?: EventDateTimeDoorsOpenLabelEnum | (string & {});
+  /** The date/time when the doors open at the venue. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the venue. For example, if the event occurs at the 20th hour of June 5th, 2018 at the venue, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the venue is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
+  doorsOpen?: string;
+}
+export const EventDateTime = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end: S.optional(S.String),
+    start: S.optional(S.String),
+    customDoorsOpenLabel: S.optional(LocalizedString),
+    kind: S.optional(S.String),
+    doorsOpenLabel: S.optional(EventDateTimeDoorsOpenLabelEnum),
+    doorsOpen: S.optional(S.String),
+  }),
+).annotate({ identifier: "EventDateTime" }) as any as S.Schema<EventDateTime>;
+
+export interface Uri {
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#uri"`. */
+  kind?: string;
+  /** The location of a web page, image, or other resource. URIs in the `LinksModuleData` module can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address). URIs must have a scheme. */
+  uri?: string;
+  /** Translated strings for the description. Recommended maximum is 20 characters to ensure full string is displayed on smaller screens. */
+  localizedDescription?: LocalizedString;
+  /** The URI's title appearing in the app as text. Recommended maximum is 20 characters to ensure full string is displayed on smaller screens. Note that in some contexts this text is not used, such as when `description` is part of an image. */
+  description?: string;
+  /** The ID associated with a uri. This field is here to enable ease of management of uris. */
+  id?: string;
+}
+export const Uri = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    uri: S.optional(S.String),
+    localizedDescription: S.optional(LocalizedString),
+    description: S.optional(S.String),
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "Uri" }) as any as S.Schema<Uri>;
+
+export type UriList = Array<Uri>;
+export const UriList = /*@__PURE__*/ S.Array(Uri) as any as S.Schema<UriList>;
+
+export interface LinksModuleData {
+  /** The list of URIs. */
+  uris?: UriList;
+}
+export const LinksModuleData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uris: S.optional(UriList),
+  }),
+).annotate({
+  identifier: "LinksModuleData",
+}) as any as S.Schema<LinksModuleData>;
+
+export type EventTicketClassSeatLabelEnum =
+  | "SEAT_LABEL_UNSPECIFIED"
+  | "SEAT"
+  | "seat";
+export const EventTicketClassSeatLabelEnum = /*@__PURE__*/ S.String;
+
+/** Locations of interest for this class or object. Currently, this location is used for geofenced notifications. When a user is within a set radius of this lat/long, and dwells there, Google will trigger a notification. When a user exits this radius, the notification will be hidden. */
+export interface MerchantLocation {
+  /** The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected. */
+  latitude?: number;
+  /** The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected. */
+  longitude?: number;
+}
+export const MerchantLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    latitude: S.optional(S.Number),
+    longitude: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "MerchantLocation",
+}) as any as S.Schema<MerchantLocation>;
+
+export type MerchantLocationList = Array<MerchantLocation>;
+export const MerchantLocationList = /*@__PURE__*/ S.Array(
+  MerchantLocation,
+) as any as S.Schema<MerchantLocationList>;
+
+export interface CallbackOptions {
+  /** The HTTPS url configured by the merchant. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot. */
+  url?: string;
+  /** URL for the merchant endpoint that would be called to request updates. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot. Deprecated. */
+  updateRequestUrl?: string;
+}
+export const CallbackOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    updateRequestUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CallbackOptions",
+}) as any as S.Schema<CallbackOptions>;
+
+export interface LatLongPoint {
+  /** The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected. */
+  latitude?: number;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#latLongPoint"`. */
+  kind?: string;
+  /** The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected. */
+  longitude?: number;
+}
+export const LatLongPoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    latitude: S.optional(S.Number),
+    kind: S.optional(S.String),
+    longitude: S.optional(S.Number),
+  }),
+).annotate({ identifier: "LatLongPoint" }) as any as S.Schema<LatLongPoint>;
+
+export type LatLongPointList = Array<LatLongPoint>;
+export const LatLongPointList = /*@__PURE__*/ S.Array(
+  LatLongPoint,
+) as any as S.Schema<LatLongPointList>;
+
+export interface AppLinkDataAppLinkInfoAppTarget {
+  /** Package name for AppTarget. For example: com.google.android.gm */
+  packageName?: string;
+  /** URI for AppTarget. The description on the URI must be set. Prefer setting package field instead, if this target is defined for your application. */
+  targetUri?: Uri;
+}
+export const AppLinkDataAppLinkInfoAppTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    packageName: S.optional(S.String),
+    targetUri: S.optional(Uri),
+  }),
+).annotate({
+  identifier: "AppLinkDataAppLinkInfoAppTarget",
+}) as any as S.Schema<AppLinkDataAppLinkInfoAppTarget>;
+
+export interface AppLinkDataAppLinkInfo {
+  /** Deprecated. Description isn't supported in the app link module. */
+  description?: LocalizedString;
+  /** Deprecated. Image isn't supported in the app link module. */
+  appLogoImage?: Image;
+  /** Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage. */
+  appTarget?: AppLinkDataAppLinkInfoAppTarget;
+  /** Deprecated. Title isn't supported in the app link module. */
+  title?: LocalizedString;
+}
+export const AppLinkDataAppLinkInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(LocalizedString),
+    appLogoImage: S.optional(Image),
+    appTarget: S.optional(AppLinkDataAppLinkInfoAppTarget),
+    title: S.optional(LocalizedString),
+  }),
+).annotate({
+  identifier: "AppLinkDataAppLinkInfo",
+}) as any as S.Schema<AppLinkDataAppLinkInfo>;
+
+export interface AppLinkData {
+  /** Optional display text for the app link button. Character limit is 30. */
+  displayText?: LocalizedString;
+  /** Optional information about the partner web link. */
+  webAppLinkInfo?: AppLinkDataAppLinkInfo;
+  /** Optional information about the partner app link. */
+  androidAppLinkInfo?: AppLinkDataAppLinkInfo;
+  /** Deprecated. Links to open iOS apps are not supported. */
+  iosAppLinkInfo?: AppLinkDataAppLinkInfo;
+}
+export const AppLinkData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayText: S.optional(LocalizedString),
+    webAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
+    androidAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
+    iosAppLinkInfo: S.optional(AppLinkDataAppLinkInfo),
+  }),
+).annotate({ identifier: "AppLinkData" }) as any as S.Schema<AppLinkData>;
+
+export type EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  | "STATUS_UNSPECIFIED"
+  | "MULTIPLE_HOLDERS"
+  | "ONE_USER_ALL_DEVICES"
+  | "ONE_USER_ONE_DEVICE"
+  | "multipleHolders"
+  | "oneUserAllDevices"
+  | "oneUserOneDevice";
+export const EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  /*@__PURE__*/ S.String;
+
+export type EventTicketClassConfirmationCodeLabelEnum =
+  | "CONFIRMATION_CODE_LABEL_UNSPECIFIED"
+  | "CONFIRMATION_CODE"
+  | "confirmationCode"
+  | "CONFIRMATION_NUMBER"
+  | "confirmationNumber"
+  | "ORDER_NUMBER"
+  | "orderNumber"
+  | "RESERVATION_NUMBER"
+  | "reservationNumber";
+export const EventTicketClassConfirmationCodeLabelEnum = /*@__PURE__*/ S.String;
+
+export type EventTicketClassRowLabelEnum =
+  | "ROW_LABEL_UNSPECIFIED"
+  | "ROW"
+  | "row";
+export const EventTicketClassRowLabelEnum = /*@__PURE__*/ S.String;
+
+export interface Review {
+  comments?: string;
+}
+export const Review = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: S.optional(S.String),
+  }),
+).annotate({ identifier: "Review" }) as any as S.Schema<Review>;
+
+/** Data for Text module. All fields are optional. Header will be displayed if available, different types of bodies will be concatenated if they are defined. */
+export interface TextModuleData {
+  /** The header of the Text Module. Recommended maximum length is 35 characters to ensure full string is displayed on smaller screens. */
+  header?: string;
+  /** Translated strings for the body. Recommended maximum length is 500 characters to ensure full string is displayed on smaller screens. */
+  localizedBody?: LocalizedString;
+  /** The ID associated with a text module. This field is here to enable ease of management of text modules and referencing them in template overrides. The ID should only include alphanumeric characters, '_', or '-'. It can not include dots, as dots are used to separate fields within FieldReference.fieldPaths in template overrides. */
+  id?: string;
+  /** Translated strings for the header. Recommended maximum length is 35 characters to ensure full string is displayed on smaller screens. */
+  localizedHeader?: LocalizedString;
+  /** The body of the Text Module, which is defined as an uninterrupted string. Recommended maximum length is 500 characters to ensure full string is displayed on smaller screens. */
+  body?: string;
+}
+export const TextModuleData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    header: S.optional(S.String),
+    localizedBody: S.optional(LocalizedString),
+    id: S.optional(S.String),
+    localizedHeader: S.optional(LocalizedString),
+    body: S.optional(S.String),
+  }),
+).annotate({ identifier: "TextModuleData" }) as any as S.Schema<TextModuleData>;
+
+export type TextModuleDataList = Array<TextModuleData>;
+export const TextModuleDataList = /*@__PURE__*/ S.Array(
+  TextModuleData,
+) as any as S.Schema<TextModuleDataList>;
+
+export interface EventVenue {
+  /** The address of the venue, such as "24 Willie Mays Plaza\nSan Francisco, CA 94107". Address lines are separated by line feed (`\n`) characters. This is required. */
+  address?: LocalizedString;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventVenue"`. */
+  kind?: string;
+  /** The name of the venue, such as "AT&T Park". This is required. */
+  name?: LocalizedString;
+}
+export const EventVenue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    address: S.optional(LocalizedString),
+    kind: S.optional(S.String),
+    name: S.optional(LocalizedString),
+  }),
+).annotate({ identifier: "EventVenue" }) as any as S.Schema<EventVenue>;
 
 export interface EventTicketClass {
-  /** A custom label to use for the section value (`eventTicketObject.seatInfo.section`) on the card detail view. This should only be used if the default "Section" label or one of the `sectionLabel` options is not sufficient. Both `sectionLabel` and `customSectionLabel` may not be set. If neither is set, the label will default to "Section", localized. If the section field is unset, this label will not be used. */
-  customSectionLabel?: LocalizedString;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
-  hexBackgroundColor?: string;
-  /** Deprecated */
-  version?: string;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
   /** View Unlock Requirement options for the event ticket. */
   viewUnlockRequirement?:
     | EventTicketClassViewUnlockRequirementEnum
     | (string & {});
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
+  /** The label to use for the section value (`eventTicketObject.seatInfo.section`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `sectionLabel` and `customSectionLabel` may not be set. If neither is set, the label will default to "Section", localized. If the section field is unset, this label will not be used. */
+  sectionLabel?: EventTicketClassSectionLabelEnum | (string & {});
+  /** A custom label to use for the section value (`eventTicketObject.seatInfo.section`) on the card detail view. This should only be used if the default "Section" label or one of the `sectionLabel` options is not sufficient. Both `sectionLabel` and `customSectionLabel` may not be set. If neither is set, the label will default to "Section", localized. If the section field is unset, this label will not be used. */
+  customSectionLabel?: LocalizedString;
+  /** The ID of the event. This ID should be unique for every event in an account. It is used to group tickets together if the user has saved multiple tickets for the same event. It can be at most 64 characters. If provided, the grouping will be stable. Be wary of unintentional collision to avoid grouping tickets that should not be grouped. If you use only one class per event, you can simply set this to the `classId` (with or without the issuer ID portion). If not provided, the platform will attempt to use other data to group tickets (potentially unstable). */
+  eventId?: string;
+  /** The label to use for the gate value (`eventTicketObject.seatInfo.gate`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `gateLabel` and `customGateLabel` may not be set. If neither is set, the label will default to "Gate", localized. If the gate field is unset, this label will not be used. */
+  gateLabel?: EventTicketClassGateLabelEnum | (string & {});
+  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  enableSmartTap?: boolean;
   /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
   reviewStatus?: EventTicketClassReviewStatusEnum | (string & {});
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** A custom label to use for the gate value (`eventTicketObject.seatInfo.gate`) on the card detail view. This should only be used if the default "Gate" label or one of the `gateLabel` options is not sufficient. Both `gateLabel` and `customGateLabel` may not be set. If neither is set, the label will default to "Gate", localized. If the gate field is unset, this label will not be used. */
+  customGateLabel?: LocalizedString;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** A custom label to use for the seat value (`eventTicketObject.seatInfo.seat`) on the card detail view. This should only be used if the default "Seat" label or one of the `seatLabel` options is not sufficient. Both `seatLabel` and `customSeatLabel` may not be set. If neither is set, the label will default to "Seat", localized. If the seat field is unset, this label will not be used. */
+  customSeatLabel?: LocalizedString;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventTicketClass"`. */
+  kind?: string;
+  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: EventTicketClassNotifyPreferenceEnum | (string & {});
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
+  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
+  allowMultipleUsersPerObject?: boolean;
+  /** Required. The name of the event, such as "LA Dodgers at SF Giants". */
+  eventName?: LocalizedString;
   /** The date & time information of the event. */
   dateTime?: EventDateTime;
-  /** The label to use for the row value (`eventTicketObject.seatInfo.row`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `rowLabel` and `customRowLabel` may not be set. If neither is set, the label will default to "Row", localized. If the row field is unset, this label will not be used. */
-  rowLabel?: EventTicketClassRowLabelEnum | (string & {});
+  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
+  heroImage?: Image;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** A custom label to use for the row value (`eventTicketObject.seatInfo.row`) on the card detail view. This should only be used if the default "Row" label or one of the `rowLabel` options is not sufficient. Both `rowLabel` and `customRowLabel` may not be set. If neither is set, the label will default to "Row", localized. If the row field is unset, this label will not be used. */
+  customRowLabel?: LocalizedString;
   /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
   countryCode?: string;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** A custom label to use for the confirmation code value (`eventTicketObject.reservationInfo.confirmationCode`) on the card detail view. This should only be used if the default "Confirmation Code" label or one of the `confirmationCodeLabel` options is not sufficient. Both `confirmationCodeLabel` and `customConfirmationCodeLabel` may not be set. If neither is set, the label will default to "Confirmation Code", localized. If the confirmation code field is unset, this label will not be used. */
+  customConfirmationCodeLabel?: LocalizedString;
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
+  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  localizedIssuerName?: LocalizedString;
+  /** The label to use for the seat value (`eventTicketObject.seatInfo.seat`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `seatLabel` and `customSeatLabel` may not be set. If neither is set, the label will default to "Seat", localized. If the seat field is unset, this label will not be used. */
+  seatLabel?: EventTicketClassSeatLabelEnum | (string & {});
+  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** The logo image of the ticket. This image is displayed in the card detail view of the app. */
+  logo?: Image;
+  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
+  callbackOptions?: CallbackOptions;
+  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
+  hexBackgroundColor?: string;
+  /** The wide logo of the ticket. When provided, this will be used in place of the logo in the top left of the card view. */
+  wideLogo?: Image;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Deprecated. */
+  wordMark?: Image;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** A custom label to use for the seat value (`eventTicketObject.seatInfo.seat`) on the card detail view. This should only be used if the default "Seat" label or one of the `seatLabel` options is not sufficient. Both `seatLabel` and `customSeatLabel` may not be set. If neither is set, the label will default to "Seat", localized. If the seat field is unset, this label will not be used. */
-  customSeatLabel?: LocalizedString;
-  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: EventTicketClassNotifyPreferenceEnum | (string & {});
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** The label to use for the gate value (`eventTicketObject.seatInfo.gate`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `gateLabel` and `customGateLabel` may not be set. If neither is set, the label will default to "Gate", localized. If the gate field is unset, this label will not be used. */
-  gateLabel?: EventTicketClassGateLabelEnum | (string & {});
-  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  localizedIssuerName?: LocalizedString;
-  /** The label to use for the section value (`eventTicketObject.seatInfo.section`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `sectionLabel` and `customSectionLabel` may not be set. If neither is set, the label will default to "Section", localized. If the section field is unset, this label will not be used. */
-  sectionLabel?: EventTicketClassSectionLabelEnum | (string & {});
-  /** The logo image of the ticket. This image is displayed in the card detail view of the app. */
-  logo?: Image;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
-  heroImage?: Image;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
-  /** The fine print, terms, or conditions of the ticket. */
-  finePrint?: LocalizedString;
-  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** A custom label to use for the gate value (`eventTicketObject.seatInfo.gate`) on the card detail view. This should only be used if the default "Gate" label or one of the `gateLabel` options is not sufficient. Both `gateLabel` and `customGateLabel` may not be set. If neither is set, the label will default to "Gate", localized. If the gate field is unset, this label will not be used. */
-  customGateLabel?: LocalizedString;
-  /** Required. The name of the event, such as "LA Dodgers at SF Giants". */
-  eventName?: LocalizedString;
-  /** Deprecated. */
-  wordMark?: Image;
-  /** The ID of the event. This ID should be unique for every event in an account. It is used to group tickets together if the user has saved multiple tickets for the same event. It can be at most 64 characters. If provided, the grouping will be stable. Be wary of unintentional collision to avoid grouping tickets that should not be grouped. If you use only one class per event, you can simply set this to the `classId` (with or without the issuer ID portion). If not provided, the platform will attempt to use other data to group tickets (potentially unstable). */
-  eventId?: string;
-  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  enableSmartTap?: boolean;
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
-  review?: Review;
-  /** A custom label to use for the row value (`eventTicketObject.seatInfo.row`) on the card detail view. This should only be used if the default "Row" label or one of the `rowLabel` options is not sufficient. Both `rowLabel` and `customRowLabel` may not be set. If neither is set, the label will default to "Row", localized. If the row field is unset, this label will not be used. */
-  customRowLabel?: LocalizedString;
-  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
-  allowMultipleUsersPerObject?: boolean;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
-  /** The label to use for the seat value (`eventTicketObject.seatInfo.seat`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `seatLabel` and `customSeatLabel` may not be set. If neither is set, the label will default to "Seat", localized. If the seat field is unset, this label will not be used. */
-  seatLabel?: EventTicketClassSeatLabelEnum | (string & {});
-  /** Event venue details. */
-  venue?: EventVenue;
-  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
-  callbackOptions?: CallbackOptions;
   /** The label to use for the confirmation code value (`eventTicketObject.reservationInfo.confirmationCode`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `confirmationCodeLabel` and `customConfirmationCodeLabel` may not be set. If neither is set, the label will default to "Confirmation Code", localized. If the confirmation code field is unset, this label will not be used. */
   confirmationCodeLabel?:
     | EventTicketClassConfirmationCodeLabelEnum
     | (string & {});
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
-  /** The wide logo of the ticket. When provided, this will be used in place of the logo in the top left of the card view. */
-  wideLogo?: Image;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventTicketClass"`. */
-  kind?: string;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** A custom label to use for the confirmation code value (`eventTicketObject.reservationInfo.confirmationCode`) on the card detail view. This should only be used if the default "Confirmation Code" label or one of the `confirmationCodeLabel` options is not sufficient. Both `confirmationCodeLabel` and `customConfirmationCodeLabel` may not be set. If neither is set, the label will default to "Confirmation Code", localized. If the confirmation code field is unset, this label will not be used. */
-  customConfirmationCodeLabel?: LocalizedString;
+  /** The fine print, terms, or conditions of the ticket. */
+  finePrint?: LocalizedString;
+  /** Deprecated */
+  version?: string;
+  /** The label to use for the row value (`eventTicketObject.seatInfo.row`) on the card detail view. Each available option maps to a set of localized strings, so that translations are shown to the user based on their locale. Both `rowLabel` and `customRowLabel` may not be set. If neither is set, the label will default to "Row", localized. If the row field is unset, this label will not be used. */
+  rowLabel?: EventTicketClassRowLabelEnum | (string & {});
+  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
+  review?: Review;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Event venue details. */
+  venue?: EventVenue;
 }
 export const EventTicketClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customSectionLabel: S.optional(LocalizedString),
-    locations: S.optional(LatLongPointList),
-    hexBackgroundColor: S.optional(S.String),
-    version: S.optional(S.String),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
     viewUnlockRequirement: S.optional(
       EventTicketClassViewUnlockRequirementEnum,
     ),
-    infoModuleData: S.optional(InfoModuleData),
+    sectionLabel: S.optional(EventTicketClassSectionLabelEnum),
+    customSectionLabel: S.optional(LocalizedString),
+    eventId: S.optional(S.String),
+    gateLabel: S.optional(EventTicketClassGateLabelEnum),
+    enableSmartTap: S.optional(S.Boolean),
     reviewStatus: S.optional(EventTicketClassReviewStatusEnum),
+    securityAnimation: S.optional(SecurityAnimation),
+    infoModuleData: S.optional(InfoModuleData),
+    customGateLabel: S.optional(LocalizedString),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    customSeatLabel: S.optional(LocalizedString),
+    imageModulesData: S.optional(ImageModuleDataList),
+    kind: S.optional(S.String),
+    notifyPreference: S.optional(EventTicketClassNotifyPreferenceEnum),
+    redemptionIssuers: S.optional(StringList),
+    messages: S.optional(MessageList),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
+    allowMultipleUsersPerObject: S.optional(S.Boolean),
+    eventName: S.optional(LocalizedString),
     dateTime: S.optional(EventDateTime),
-    rowLabel: S.optional(EventTicketClassRowLabelEnum),
+    heroImage: S.optional(Image),
+    linksModuleData: S.optional(LinksModuleData),
+    customRowLabel: S.optional(LocalizedString),
     countryCode: S.optional(S.String),
+    homepageUri: S.optional(Uri),
+    customConfirmationCodeLabel: S.optional(LocalizedString),
+    issuerName: S.optional(S.String),
+    localizedIssuerName: S.optional(LocalizedString),
+    seatLabel: S.optional(EventTicketClassSeatLabelEnum),
+    id: S.optional(S.String),
+    merchantLocations: S.optional(MerchantLocationList),
+    logo: S.optional(Image),
+    callbackOptions: S.optional(CallbackOptions),
+    hexBackgroundColor: S.optional(S.String),
+    wideLogo: S.optional(Image),
+    locations: S.optional(LatLongPointList),
+    wordMark: S.optional(Image),
+    appLinkData: S.optional(AppLinkData),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       EventTicketClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    homepageUri: S.optional(Uri),
-    issuerName: S.optional(S.String),
-    customSeatLabel: S.optional(LocalizedString),
-    notifyPreference: S.optional(EventTicketClassNotifyPreferenceEnum),
-    textModulesData: S.optional(TextModuleDataList),
-    gateLabel: S.optional(EventTicketClassGateLabelEnum),
-    localizedIssuerName: S.optional(LocalizedString),
-    sectionLabel: S.optional(EventTicketClassSectionLabelEnum),
-    logo: S.optional(Image),
-    messages: S.optional(MessageList),
-    imageModulesData: S.optional(ImageModuleDataList),
-    heroImage: S.optional(Image),
-    securityAnimation: S.optional(SecurityAnimation),
-    finePrint: S.optional(LocalizedString),
-    merchantLocations: S.optional(MerchantLocationList),
-    id: S.optional(S.String),
-    customGateLabel: S.optional(LocalizedString),
-    eventName: S.optional(LocalizedString),
-    wordMark: S.optional(Image),
-    eventId: S.optional(S.String),
-    enableSmartTap: S.optional(S.Boolean),
-    linksModuleData: S.optional(LinksModuleData),
-    review: S.optional(Review),
-    customRowLabel: S.optional(LocalizedString),
-    allowMultipleUsersPerObject: S.optional(S.Boolean),
-    appLinkData: S.optional(AppLinkData),
-    seatLabel: S.optional(EventTicketClassSeatLabelEnum),
-    venue: S.optional(EventVenue),
-    callbackOptions: S.optional(CallbackOptions),
     confirmationCodeLabel: S.optional(
       EventTicketClassConfirmationCodeLabelEnum,
     ),
-    classTemplateInfo: S.optional(ClassTemplateInfo),
-    wideLogo: S.optional(Image),
-    kind: S.optional(S.String),
-    redemptionIssuers: S.optional(StringList),
-    customConfirmationCodeLabel: S.optional(LocalizedString),
+    finePrint: S.optional(LocalizedString),
+    version: S.optional(S.String),
+    rowLabel: S.optional(EventTicketClassRowLabelEnum),
+    review: S.optional(Review),
+    textModulesData: S.optional(TextModuleDataList),
+    venue: S.optional(EventVenue),
   }),
 ).annotate({
   identifier: "EventTicketClass",
@@ -1162,10 +1162,17 @@ export const AddmessageEventticketobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageEventticketobjectRequest",
 }) as any as S.Schema<AddmessageEventticketobjectRequest>;
 
-export type RotatingBarcodeTotpDetailsAlgorithmEnum =
-  | "TOTP_ALGORITHM_UNSPECIFIED"
-  | "TOTP_SHA1";
-export const RotatingBarcodeTotpDetailsAlgorithmEnum = /*@__PURE__*/ S.String;
+export type EventTicketObjectStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "active"
+  | "COMPLETED"
+  | "completed"
+  | "EXPIRED"
+  | "expired"
+  | "INACTIVE"
+  | "inactive";
+export const EventTicketObjectStateEnum = /*@__PURE__*/ S.String;
 
 /** Configuration for the key and value length. See https://www.rfc-editor.org/rfc/rfc4226#section-5.3 */
 export interface RotatingBarcodeTotpDetailsTotpParameters {
@@ -1191,20 +1198,25 @@ export const RotatingBarcodeTotpDetailsTotpParametersList =
     RotatingBarcodeTotpDetailsTotpParameters,
   ) as any as S.Schema<RotatingBarcodeTotpDetailsTotpParametersList>;
 
+export type RotatingBarcodeTotpDetailsAlgorithmEnum =
+  | "TOTP_ALGORITHM_UNSPECIFIED"
+  | "TOTP_SHA1";
+export const RotatingBarcodeTotpDetailsAlgorithmEnum = /*@__PURE__*/ S.String;
+
 /** Configuration for the time-based OTP substitutions. See https://tools.ietf.org/html/rfc6238 */
 export interface RotatingBarcodeTotpDetails {
-  /** The TOTP algorithm used to generate the OTP. */
-  algorithm?: RotatingBarcodeTotpDetailsAlgorithmEnum | (string & {});
-  /** The TOTP parameters for each of the {totp_value_*} substitutions. The TotpParameters at index n is used for the {totp_value_n} substitution. */
-  parameters?: RotatingBarcodeTotpDetailsTotpParametersList;
   /** The time interval used for the TOTP value generation, in milliseconds. */
   periodMillis?: string;
+  /** The TOTP parameters for each of the {totp_value_*} substitutions. The TotpParameters at index n is used for the {totp_value_n} substitution. */
+  parameters?: RotatingBarcodeTotpDetailsTotpParametersList;
+  /** The TOTP algorithm used to generate the OTP. */
+  algorithm?: RotatingBarcodeTotpDetailsAlgorithmEnum | (string & {});
 }
 export const RotatingBarcodeTotpDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    algorithm: S.optional(RotatingBarcodeTotpDetailsAlgorithmEnum),
-    parameters: S.optional(RotatingBarcodeTotpDetailsTotpParametersList),
     periodMillis: S.optional(S.String),
+    parameters: S.optional(RotatingBarcodeTotpDetailsTotpParametersList),
+    algorithm: S.optional(RotatingBarcodeTotpDetailsAlgorithmEnum),
   }),
 ).annotate({
   identifier: "RotatingBarcodeTotpDetails",
@@ -1212,22 +1224,27 @@ export const RotatingBarcodeTotpDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** A payload containing many barcode values and start date/time. */
 export interface RotatingBarcodeValues {
-  /** Required. The amount of time each barcode is valid for. */
-  periodMillis?: string;
   /** Required. The date/time the first barcode is valid from. Barcodes will be rotated through using period_millis defined on the object's RotatingBarcodeValueInfo. This is an ISO 8601 extended format date/time, with an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. */
   startDateTime?: string;
   /** Required. The values to encode in the barcode. At least one value is required. */
   values?: StringList;
+  /** Required. The amount of time each barcode is valid for. */
+  periodMillis?: string;
 }
 export const RotatingBarcodeValues = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    periodMillis: S.optional(S.String),
     startDateTime: S.optional(S.String),
     values: S.optional(StringList),
+    periodMillis: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RotatingBarcodeValues",
 }) as any as S.Schema<RotatingBarcodeValues>;
+
+export type RotatingBarcodeRenderEncodingEnum =
+  | "RENDER_ENCODING_UNSPECIFIED"
+  | "UTF_8";
+export const RotatingBarcodeRenderEncodingEnum = /*@__PURE__*/ S.String;
 
 export type RotatingBarcodeTypeEnum =
   | "BARCODE_TYPE_UNSPECIFIED"
@@ -1260,68 +1277,48 @@ export type RotatingBarcodeTypeEnum =
   | "textOnly";
 export const RotatingBarcodeTypeEnum = /*@__PURE__*/ S.String;
 
-export type RotatingBarcodeRenderEncodingEnum =
-  | "RENDER_ENCODING_UNSPECIFIED"
-  | "UTF_8";
-export const RotatingBarcodeRenderEncodingEnum = /*@__PURE__*/ S.String;
-
 export interface RotatingBarcode {
   /** Details used to evaluate the {totp_value_n} substitutions. */
   totpDetails?: RotatingBarcodeTotpDetails;
-  /** An optional text that will override the default text that shows under the barcode. This field is intended for a human readable equivalent of the barcode value, used when the barcode cannot be scanned. */
-  alternateText?: string;
   /** Input only. NOTE: This feature is only available for the transit vertical. Optional set of initial rotating barcode values. This allows a small subset of barcodes to be included with the object. Further rotating barcode values must be uploaded with the UploadRotatingBarcodeValues endpoint. */
   initialRotatingBarcodeValues?: RotatingBarcodeValues;
-  /** The type of this barcode. */
-  type?: RotatingBarcodeTypeEnum | (string & {});
-  /** String encoded barcode value. This string supports the following substitutions: * {totp_value_n}: Replaced with the TOTP value (see TotpDetails.parameters). * {totp_timestamp_millis}: Replaced with the timestamp (millis since epoch) at which the barcode was generated. * {totp_timestamp_seconds}: Replaced with the timestamp (seconds since epoch) at which the barcode was generated. */
-  valuePattern?: string;
-  /** Optional text that will be shown when the barcode is hidden behind a click action. This happens in cases where a pass has Smart Tap enabled. If not specified, a default is chosen by Google. */
-  showCodeText?: LocalizedString;
   /** The render encoding for the barcode. When specified, barcode is rendered in the given encoding. Otherwise best known encoding is chosen by Google. */
   renderEncoding?: RotatingBarcodeRenderEncodingEnum | (string & {});
+  /** String encoded barcode value. This string supports the following substitutions: * {totp_value_n}: Replaced with the TOTP value (see TotpDetails.parameters). * {totp_timestamp_millis}: Replaced with the timestamp (millis since epoch) at which the barcode was generated. * {totp_timestamp_seconds}: Replaced with the timestamp (seconds since epoch) at which the barcode was generated. */
+  valuePattern?: string;
+  /** The type of this barcode. */
+  type?: RotatingBarcodeTypeEnum | (string & {});
+  /** An optional text that will override the default text that shows under the barcode. This field is intended for a human readable equivalent of the barcode value, used when the barcode cannot be scanned. */
+  alternateText?: string;
+  /** Optional text that will be shown when the barcode is hidden behind a click action. This happens in cases where a pass has Smart Tap enabled. If not specified, a default is chosen by Google. */
+  showCodeText?: LocalizedString;
 }
 export const RotatingBarcode = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     totpDetails: S.optional(RotatingBarcodeTotpDetails),
-    alternateText: S.optional(S.String),
     initialRotatingBarcodeValues: S.optional(RotatingBarcodeValues),
-    type: S.optional(RotatingBarcodeTypeEnum),
-    valuePattern: S.optional(S.String),
-    showCodeText: S.optional(LocalizedString),
     renderEncoding: S.optional(RotatingBarcodeRenderEncodingEnum),
+    valuePattern: S.optional(S.String),
+    type: S.optional(RotatingBarcodeTypeEnum),
+    alternateText: S.optional(S.String),
+    showCodeText: S.optional(LocalizedString),
   }),
 ).annotate({
   identifier: "RotatingBarcode",
 }) as any as S.Schema<RotatingBarcode>;
 
-export type EventTicketObjectStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "active"
-  | "COMPLETED"
-  | "completed"
-  | "EXPIRED"
-  | "expired"
-  | "INACTIVE"
-  | "inactive";
-export const EventTicketObjectStateEnum = /*@__PURE__*/ S.String;
-
-export interface Money {
-  /** The currency code, such as "USD" or "EUR." */
-  currencyCode?: string;
-  /** The unit of money amount in micros. For example, $1 USD would be represented as 1000000 micros. */
-  micros?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#money"`. */
-  kind?: string;
+export interface GroupingInfo {
+  /** Optional grouping ID for grouping the passes with the same ID visually together. Grouping with different types of passes is allowed. */
+  groupingId?: string;
+  /** Optional index for sorting the passes when they are grouped with other passes. Passes with lower sort index are shown before passes with higher sort index. If unspecified, the value is assumed to be INT_MAX. For two passes with the same sort index, the sorting behavior is undefined. */
+  sortIndex?: number;
 }
-export const Money = /*@__PURE__*/ S.suspend(() =>
+export const GroupingInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    currencyCode: S.optional(S.String),
-    micros: S.optional(S.String),
-    kind: S.optional(S.String),
+    groupingId: S.optional(S.String),
+    sortIndex: S.optional(S.Number),
   }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+).annotate({ identifier: "GroupingInfo" }) as any as S.Schema<GroupingInfo>;
 
 /** Defines restrictions on the object that will be verified during save. Note: this is an advanced feature, please contact Google for implementation support. */
 export interface SaveRestrictions {
@@ -1335,6 +1332,64 @@ export const SaveRestrictions = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SaveRestrictions",
 }) as any as S.Schema<SaveRestrictions>;
+
+export interface EventSeat {
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventSeat"`. */
+  kind?: string;
+  /** The section of the seat, such as "121". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
+  section?: LocalizedString;
+  /** The row of the seat, such as "1", E", "BB", or "A5". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
+  row?: LocalizedString;
+  /** The seat number, such as "1", "2", "3", or any other seat identifier. This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
+  seat?: LocalizedString;
+  /** The gate the ticket holder should enter to get to their seat, such as "A" or "West". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
+  gate?: LocalizedString;
+}
+export const EventSeat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    section: S.optional(LocalizedString),
+    row: S.optional(LocalizedString),
+    seat: S.optional(LocalizedString),
+    gate: S.optional(LocalizedString),
+  }),
+).annotate({ identifier: "EventSeat" }) as any as S.Schema<EventSeat>;
+
+export type EventTicketObjectNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const EventTicketObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
+
+export interface EventReservationInfo {
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventReservationInfo"`. */
+  kind?: string;
+  /** The confirmation code of the event reservation. This may also take the form of an "order number", "confirmation number", "reservation number", or other equivalent. */
+  confirmationCode?: string;
+}
+export const EventReservationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    confirmationCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EventReservationInfo",
+}) as any as S.Schema<EventReservationInfo>;
+
+export interface Money {
+  /** The unit of money amount in micros. For example, $1 USD would be represented as 1000000 micros. */
+  micros?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#money"`. */
+  kind?: string;
+  /** The currency code, such as "USD" or "EUR." */
+  currencyCode?: string;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    micros: S.optional(S.String),
+    kind: S.optional(S.String),
+    currencyCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
 
 export type BarcodeRenderEncodingEnum = "RENDER_ENCODING_UNSPECIFIED" | "UTF_8";
 export const BarcodeRenderEncodingEnum = /*@__PURE__*/ S.String;
@@ -1371,69 +1426,29 @@ export type BarcodeTypeEnum =
 export const BarcodeTypeEnum = /*@__PURE__*/ S.String;
 
 export interface Barcode {
-  /** Optional text that will be shown when the barcode is hidden behind a click action. This happens in cases where a pass has Smart Tap enabled. If not specified, a default is chosen by Google. */
-  showCodeText?: LocalizedString;
-  /** The value encoded in the barcode. */
-  value?: string;
-  /** The render encoding for the barcode. When specified, barcode is rendered in the given encoding. Otherwise best known encoding is chosen by Google. */
-  renderEncoding?: BarcodeRenderEncodingEnum | (string & {});
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#barcode"`. */
-  kind?: string;
   /** An optional text that will override the default text that shows under the barcode. This field is intended for a human readable equivalent of the barcode value, used when the barcode cannot be scanned. */
   alternateText?: string;
+  /** The value encoded in the barcode. */
+  value?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#barcode"`. */
+  kind?: string;
+  /** The render encoding for the barcode. When specified, barcode is rendered in the given encoding. Otherwise best known encoding is chosen by Google. */
+  renderEncoding?: BarcodeRenderEncodingEnum | (string & {});
+  /** Optional text that will be shown when the barcode is hidden behind a click action. This happens in cases where a pass has Smart Tap enabled. If not specified, a default is chosen by Google. */
+  showCodeText?: LocalizedString;
   /** The type of barcode. */
   type?: BarcodeTypeEnum | (string & {});
 }
 export const Barcode = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    showCodeText: S.optional(LocalizedString),
-    value: S.optional(S.String),
-    renderEncoding: S.optional(BarcodeRenderEncodingEnum),
-    kind: S.optional(S.String),
     alternateText: S.optional(S.String),
+    value: S.optional(S.String),
+    kind: S.optional(S.String),
+    renderEncoding: S.optional(BarcodeRenderEncodingEnum),
+    showCodeText: S.optional(LocalizedString),
     type: S.optional(BarcodeTypeEnum),
   }),
 ).annotate({ identifier: "Barcode" }) as any as S.Schema<Barcode>;
-
-export interface EventSeat {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventSeat"`. */
-  kind?: string;
-  /** The section of the seat, such as "121". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
-  section?: LocalizedString;
-  /** The gate the ticket holder should enter to get to their seat, such as "A" or "West". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
-  gate?: LocalizedString;
-  /** The row of the seat, such as "1", E", "BB", or "A5". This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
-  row?: LocalizedString;
-  /** The seat number, such as "1", "2", "3", or any other seat identifier. This field is localizable so you may translate words or use different alphabets for the characters in an identifier. */
-  seat?: LocalizedString;
-}
-export const EventSeat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    section: S.optional(LocalizedString),
-    gate: S.optional(LocalizedString),
-    row: S.optional(LocalizedString),
-    seat: S.optional(LocalizedString),
-  }),
-).annotate({ identifier: "EventSeat" }) as any as S.Schema<EventSeat>;
-
-export type EventTicketObjectNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const EventTicketObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
-export interface GroupingInfo {
-  /** Optional grouping ID for grouping the passes with the same ID visually together. Grouping with different types of passes is allowed. */
-  groupingId?: string;
-  /** Optional index for sorting the passes when they are grouped with other passes. Passes with lower sort index are shown before passes with higher sort index. If unspecified, the value is assumed to be INT_MAX. For two passes with the same sort index, the sorting behavior is undefined. */
-  sortIndex?: number;
-}
-export const GroupingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupingId: S.optional(S.String),
-    sortIndex: S.optional(S.Number),
-  }),
-).annotate({ identifier: "GroupingInfo" }) as any as S.Schema<GroupingInfo>;
 
 export type PassConstraintsNfcConstraintItemEnum =
   | "NFC_CONSTRAINT_UNSPECIFIED"
@@ -1472,133 +1487,118 @@ export const PassConstraints = /*@__PURE__*/ S.suspend(() =>
   identifier: "PassConstraints",
 }) as any as S.Schema<PassConstraints>;
 
-export interface EventReservationInfo {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventReservationInfo"`. */
-  kind?: string;
-  /** The confirmation code of the event reservation. This may also take the form of an "order number", "confirmation number", "reservation number", or other equivalent. */
-  confirmationCode?: string;
-}
-export const EventReservationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    confirmationCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EventReservationInfo",
-}) as any as S.Schema<EventReservationInfo>;
-
 export interface EventTicketObject {
-  /** The number of the ticket. This can be a unique identifier across all tickets in an issuer's system, all tickets for the event (e.g. XYZ1234512345), or all tickets in the order (1, 2, 3, etc.). */
-  ticketNumber?: string;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
   /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
   state?: EventTicketObjectStateEnum | (string & {});
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: EventTicketClass;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this event ticket object. If a user had saved this event ticket, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** The face value of the ticket, matching what would be printed on a physical version of the ticket. */
-  faceValue?: Money;
-  /** Name of the ticket holder, if the ticket is assigned to a person. E.g. "John Doe" or "Jane Doe". */
-  ticketHolderName?: string;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
   /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
   imageModulesData?: ImageModuleDataList;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
+  /** Seating details for this ticket. */
+  seatInfo?: EventSeat;
+  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: EventTicketObjectNotifyPreferenceEnum | (string & {});
+  /** Reservation details for this ticket. This is expected to be shared amongst all tickets that were purchased in the same order. */
+  reservationInfo?: EventReservationInfo;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this event ticket object. If a user had saved this event ticket, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Name of the ticket holder, if the ticket is assigned to a person. E.g. "John Doe" or "Jane Doe". */
+  ticketHolderName?: string;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** The face value of the ticket, matching what would be printed on a physical version of the ticket. */
+  faceValue?: Money;
+  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
+  heroImage?: Image;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
   /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#eventTicketObject"`. */
   kind?: string;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
-  disableExpirationNotification?: boolean;
-  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
-  validTimeInterval?: TimeInterval;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
   /** Deprecated. Use textModulesData instead. */
   infoModuleData?: InfoModuleData;
   /** Links module data. If links module data is also defined on the class, both will be displayed. */
   linksModuleData?: LinksModuleData;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** A list of offer objects linked to this event ticket. The offer objects must already exist. Offer object IDs should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. */
-  linkedOfferIds?: StringList;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
-  /** The barcode type and value. */
-  barcode?: Barcode;
-  /** Seating details for this ticket. */
-  seatInfo?: EventSeat;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
-  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: EventTicketObjectNotifyPreferenceEnum | (string & {});
-  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
-  heroImage?: Image;
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: EventTicketClass;
+  /** The number of the ticket. This can be a unique identifier across all tickets in an issuer's system, all tickets for the event (e.g. XYZ1234512345), or all tickets in the order (1, 2, 3, etc.). */
+  ticketNumber?: string;
+  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
+  validTimeInterval?: TimeInterval;
   /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
   hexBackgroundColor?: string;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
+  /** A list of offer objects linked to this event ticket. The offer objects must already exist. Offer object IDs should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. */
+  linkedOfferIds?: StringList;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** The barcode type and value. */
+  barcode?: Barcode;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
+  disableExpirationNotification?: boolean;
   /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
   valueAddedModuleData?: ValueAddedModuleDataList;
-  /** The type of the ticket, such as "Adult" or "Child", or "VIP" or "Standard". */
-  ticketType?: LocalizedString;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
   /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
   passConstraints?: PassConstraints;
   /** Deprecated */
   version?: string;
-  /** Reservation details for this ticket. This is expected to be shared amongst all tickets that were purchased in the same order. */
-  reservationInfo?: EventReservationInfo;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
+  /** The type of the ticket, such as "Adult" or "Child", or "VIP" or "Standard". */
+  ticketType?: LocalizedString;
 }
 export const EventTicketObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ticketNumber: S.optional(S.String),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    messages: S.optional(MessageList),
-    locations: S.optional(LatLongPointList),
     state: S.optional(EventTicketObjectStateEnum),
-    hasLinkedDevice: S.optional(S.Boolean),
-    classReference: S.optional(EventTicketClass),
-    linkedObjectIds: S.optional(StringList),
-    appLinkData: S.optional(AppLinkData),
-    faceValue: S.optional(Money),
-    ticketHolderName: S.optional(S.String),
+    smartTapRedemptionValue: S.optional(S.String),
+    rotatingBarcode: S.optional(RotatingBarcode),
     imageModulesData: S.optional(ImageModuleDataList),
+    locations: S.optional(LatLongPointList),
+    groupingInfo: S.optional(GroupingInfo),
+    saveRestrictions: S.optional(SaveRestrictions),
+    appLinkData: S.optional(AppLinkData),
+    hasLinkedDevice: S.optional(S.Boolean),
+    seatInfo: S.optional(EventSeat),
+    notifyPreference: S.optional(EventTicketObjectNotifyPreferenceEnum),
+    reservationInfo: S.optional(EventReservationInfo),
+    linkedObjectIds: S.optional(StringList),
+    ticketHolderName: S.optional(S.String),
+    classId: S.optional(S.String),
+    id: S.optional(S.String),
+    faceValue: S.optional(Money),
+    heroImage: S.optional(Image),
+    merchantLocations: S.optional(MerchantLocationList),
     kind: S.optional(S.String),
-    disableExpirationNotification: S.optional(S.Boolean),
-    validTimeInterval: S.optional(TimeInterval),
+    hasUsers: S.optional(S.Boolean),
     infoModuleData: S.optional(InfoModuleData),
     linksModuleData: S.optional(LinksModuleData),
-    saveRestrictions: S.optional(SaveRestrictions),
-    id: S.optional(S.String),
-    linkedOfferIds: S.optional(StringList),
-    classId: S.optional(S.String),
-    barcode: S.optional(Barcode),
-    seatInfo: S.optional(EventSeat),
-    hasUsers: S.optional(S.Boolean),
-    notifyPreference: S.optional(EventTicketObjectNotifyPreferenceEnum),
-    heroImage: S.optional(Image),
+    classReference: S.optional(EventTicketClass),
+    ticketNumber: S.optional(S.String),
+    validTimeInterval: S.optional(TimeInterval),
     hexBackgroundColor: S.optional(S.String),
-    groupingInfo: S.optional(GroupingInfo),
+    linkedOfferIds: S.optional(StringList),
+    textModulesData: S.optional(TextModuleDataList),
+    barcode: S.optional(Barcode),
+    messages: S.optional(MessageList),
+    disableExpirationNotification: S.optional(S.Boolean),
     valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    ticketType: S.optional(LocalizedString),
-    smartTapRedemptionValue: S.optional(S.String),
     passConstraints: S.optional(PassConstraints),
     version: S.optional(S.String),
-    reservationInfo: S.optional(EventReservationInfo),
-    merchantLocations: S.optional(MerchantLocationList),
-    textModulesData: S.optional(TextModuleDataList),
+    ticketType: S.optional(LocalizedString),
   }),
 ).annotate({
   identifier: "EventTicketObject",
@@ -1637,102 +1637,6 @@ export const AddmessageFlightclassRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageFlightclassRequest",
 }) as any as S.Schema<AddmessageFlightclassRequest>;
 
-export type FlightClassNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const FlightClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
-export interface FlightCarrier {
-  /** The wide logo of the airline. When provided, this will be used in place of the airline logo in the top left of the card view. */
-  wideAirlineLogo?: Image;
-  /** A logo for the airline described by carrierIataCode and localizedAirlineName. This logo will be rendered at the top of the detailed card view. */
-  airlineLogo?: Image;
-  /** Three character ICAO airline code of the marketing carrier (as opposed to operating carrier). Exactly one of this or `carrierIataCode` needs to be provided for `carrier` and `operatingCarrier`. eg: "EZY" for Easy Jet */
-  carrierIcaoCode?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightCarrier"`. */
-  kind?: string;
-  /** Two character IATA airline code of the marketing carrier (as opposed to operating carrier). Exactly one of this or `carrierIcaoCode` needs to be provided for `carrier` and `operatingCarrier`. eg: "LX" for Swiss Air */
-  carrierIataCode?: string;
-  /** A logo for the airline alliance, displayed below the QR code that the passenger scans to board. */
-  airlineAllianceLogo?: Image;
-  /** A localized name of the airline specified by carrierIataCode. If unset, `issuer_name` or `localized_issuer_name` from `FlightClass` will be used for display purposes. eg: "Swiss Air" for "LX" */
-  airlineName?: LocalizedString;
-}
-export const FlightCarrier = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    wideAirlineLogo: S.optional(Image),
-    airlineLogo: S.optional(Image),
-    carrierIcaoCode: S.optional(S.String),
-    kind: S.optional(S.String),
-    carrierIataCode: S.optional(S.String),
-    airlineAllianceLogo: S.optional(Image),
-    airlineName: S.optional(LocalizedString),
-  }),
-).annotate({ identifier: "FlightCarrier" }) as any as S.Schema<FlightCarrier>;
-
-export interface FlightHeader {
-  /** Override value to use for flight number. The default value used for display purposes is carrier + flight_number. If a different value needs to be shown to passengers, use this field to override the default behavior. eg: "XX1234 / YY576" */
-  flightNumberDisplayOverride?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightHeader"`. */
-  kind?: string;
-  /** Information about airline carrier. This is a required property of `flightHeader`. */
-  carrier?: FlightCarrier;
-  /** The flight number without IATA carrier code. This field should contain only digits. This is a required property of `flightHeader`. eg: "123" */
-  flightNumber?: string;
-  /** Information about operating airline carrier. */
-  operatingCarrier?: FlightCarrier;
-  /** The flight number used by the operating carrier without IATA carrier code. This field should contain only digits. eg: "234" */
-  operatingFlightNumber?: string;
-}
-export const FlightHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    flightNumberDisplayOverride: S.optional(S.String),
-    kind: S.optional(S.String),
-    carrier: S.optional(FlightCarrier),
-    flightNumber: S.optional(S.String),
-    operatingCarrier: S.optional(FlightCarrier),
-    operatingFlightNumber: S.optional(S.String),
-  }),
-).annotate({ identifier: "FlightHeader" }) as any as S.Schema<FlightHeader>;
-
-export interface AirportInfo {
-  /** Optional field that overrides the airport city name defined by IATA. By default, Google takes the `airportIataCode` provided and maps it to the official airport city name defined by IATA. Official IATA airport city names can be found at IATA airport city names website. For example, for the airport IATA code "LTN", IATA website tells us that the corresponding airport city is "London". If this field is not populated, Google would display "London". However, populating this field with a custom name (eg: "London Luton") would override it. */
-  airportNameOverride?: LocalizedString;
-  /** Terminal name. Eg: "INTL" or "I" */
-  terminal?: string;
-  /** Three character IATA airport code. This is a required field for `origin` and `destination`. Eg: "SFO" */
-  airportIataCode?: string;
-  /** A name of the gate. Eg: "B59" or "59" */
-  gate?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#airportInfo"`. */
-  kind?: string;
-}
-export const AirportInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    airportNameOverride: S.optional(LocalizedString),
-    terminal: S.optional(S.String),
-    airportIataCode: S.optional(S.String),
-    gate: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "AirportInfo" }) as any as S.Schema<AirportInfo>;
-
-export type FlightClassFlightStatusEnum =
-  | "FLIGHT_STATUS_UNSPECIFIED"
-  | "SCHEDULED"
-  | "scheduled"
-  | "ACTIVE"
-  | "active"
-  | "LANDED"
-  | "landed"
-  | "CANCELLED"
-  | "cancelled"
-  | "REDIRECTED"
-  | "redirected"
-  | "DIVERTED"
-  | "diverted";
-export const FlightClassFlightStatusEnum = /*@__PURE__*/ S.String;
-
 export type FlightClassReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
   | "UNDER_REVIEW"
@@ -1745,11 +1649,10 @@ export type FlightClassReviewStatusEnum =
   | "draft";
 export const FlightClassReviewStatusEnum = /*@__PURE__*/ S.String;
 
-export type FlightClassViewUnlockRequirementEnum =
-  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
-  | "UNLOCK_NOT_REQUIRED"
-  | "UNLOCK_REQUIRED_TO_VIEW";
-export const FlightClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
+export type FlightClassNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const FlightClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
 export type BoardingAndSeatingPolicySeatClassPolicyEnum =
   | "SEAT_CLASS_POLICY_UNSPECIFIED"
@@ -1778,20 +1681,36 @@ export const BoardingAndSeatingPolicyBoardingPolicyEnum =
 export interface BoardingAndSeatingPolicy {
   /** Seating policy which dictates how we display the seat class. If unset, Google will default to `cabinBased`. */
   seatClassPolicy?: BoardingAndSeatingPolicySeatClassPolicyEnum | (string & {});
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#boardingAndSeatingPolicy"`. */
-  kind?: string;
   /** Indicates the policy the airline uses for boarding. If unset, Google will default to `zoneBased`. */
   boardingPolicy?: BoardingAndSeatingPolicyBoardingPolicyEnum | (string & {});
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#boardingAndSeatingPolicy"`. */
+  kind?: string;
 }
 export const BoardingAndSeatingPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     seatClassPolicy: S.optional(BoardingAndSeatingPolicySeatClassPolicyEnum),
-    kind: S.optional(S.String),
     boardingPolicy: S.optional(BoardingAndSeatingPolicyBoardingPolicyEnum),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BoardingAndSeatingPolicy",
 }) as any as S.Schema<BoardingAndSeatingPolicy>;
+
+export type FlightClassFlightStatusEnum =
+  | "FLIGHT_STATUS_UNSPECIFIED"
+  | "SCHEDULED"
+  | "scheduled"
+  | "ACTIVE"
+  | "active"
+  | "LANDED"
+  | "landed"
+  | "CANCELLED"
+  | "cancelled"
+  | "REDIRECTED"
+  | "redirected"
+  | "DIVERTED"
+  | "diverted";
+export const FlightClassFlightStatusEnum = /*@__PURE__*/ S.String;
 
 export type FlightClassMultipleDevicesAndHoldersAllowedStatusEnum =
   | "STATUS_UNSPECIFIED"
@@ -1804,140 +1723,221 @@ export type FlightClassMultipleDevicesAndHoldersAllowedStatusEnum =
 export const FlightClassMultipleDevicesAndHoldersAllowedStatusEnum =
   /*@__PURE__*/ S.String;
 
+export interface AirportInfo {
+  /** Terminal name. Eg: "INTL" or "I" */
+  terminal?: string;
+  /** A name of the gate. Eg: "B59" or "59" */
+  gate?: string;
+  /** Three character IATA airport code. This is a required field for `origin` and `destination`. Eg: "SFO" */
+  airportIataCode?: string;
+  /** Optional field that overrides the airport city name defined by IATA. By default, Google takes the `airportIataCode` provided and maps it to the official airport city name defined by IATA. Official IATA airport city names can be found at IATA airport city names website. For example, for the airport IATA code "LTN", IATA website tells us that the corresponding airport city is "London". If this field is not populated, Google would display "London". However, populating this field with a custom name (eg: "London Luton") would override it. */
+  airportNameOverride?: LocalizedString;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#airportInfo"`. */
+  kind?: string;
+}
+export const AirportInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    terminal: S.optional(S.String),
+    gate: S.optional(S.String),
+    airportIataCode: S.optional(S.String),
+    airportNameOverride: S.optional(LocalizedString),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "AirportInfo" }) as any as S.Schema<AirportInfo>;
+
+export interface FlightCarrier {
+  /** A logo for the airline described by carrierIataCode and localizedAirlineName. This logo will be rendered at the top of the detailed card view. */
+  airlineLogo?: Image;
+  /** The wide logo of the airline. When provided, this will be used in place of the airline logo in the top left of the card view. */
+  wideAirlineLogo?: Image;
+  /** Three character ICAO airline code of the marketing carrier (as opposed to operating carrier). Exactly one of this or `carrierIataCode` needs to be provided for `carrier` and `operatingCarrier`. eg: "EZY" for Easy Jet */
+  carrierIcaoCode?: string;
+  /** Two character IATA airline code of the marketing carrier (as opposed to operating carrier). Exactly one of this or `carrierIcaoCode` needs to be provided for `carrier` and `operatingCarrier`. eg: "LX" for Swiss Air */
+  carrierIataCode?: string;
+  /** A localized name of the airline specified by carrierIataCode. If unset, `issuer_name` or `localized_issuer_name` from `FlightClass` will be used for display purposes. eg: "Swiss Air" for "LX" */
+  airlineName?: LocalizedString;
+  /** A logo for the airline alliance, displayed below the QR code that the passenger scans to board. */
+  airlineAllianceLogo?: Image;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightCarrier"`. */
+  kind?: string;
+}
+export const FlightCarrier = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    airlineLogo: S.optional(Image),
+    wideAirlineLogo: S.optional(Image),
+    carrierIcaoCode: S.optional(S.String),
+    carrierIataCode: S.optional(S.String),
+    airlineName: S.optional(LocalizedString),
+    airlineAllianceLogo: S.optional(Image),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "FlightCarrier" }) as any as S.Schema<FlightCarrier>;
+
+export interface FlightHeader {
+  /** Information about operating airline carrier. */
+  operatingCarrier?: FlightCarrier;
+  /** The flight number used by the operating carrier without IATA carrier code. This field should contain only digits. eg: "234" */
+  operatingFlightNumber?: string;
+  /** The flight number without IATA carrier code. This field should contain only digits. This is a required property of `flightHeader`. eg: "123" */
+  flightNumber?: string;
+  /** Information about airline carrier. This is a required property of `flightHeader`. */
+  carrier?: FlightCarrier;
+  /** Override value to use for flight number. The default value used for display purposes is carrier + flight_number. If a different value needs to be shown to passengers, use this field to override the default behavior. eg: "XX1234 / YY576" */
+  flightNumberDisplayOverride?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightHeader"`. */
+  kind?: string;
+}
+export const FlightHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operatingCarrier: S.optional(FlightCarrier),
+    operatingFlightNumber: S.optional(S.String),
+    flightNumber: S.optional(S.String),
+    carrier: S.optional(FlightCarrier),
+    flightNumberDisplayOverride: S.optional(S.String),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "FlightHeader" }) as any as S.Schema<FlightHeader>;
+
+export type FlightClassViewUnlockRequirementEnum =
+  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
+  | "UNLOCK_NOT_REQUIRED"
+  | "UNLOCK_REQUIRED_TO_VIEW";
+export const FlightClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
+
 export interface FlightClass {
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
-  /** The boarding time as it would be printed on the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
-  localBoardingDateTime?: string;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: FlightClassNotifyPreferenceEnum | (string & {});
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Deprecated */
-  version?: string;
-  /** Required. Information about the flight carrier and number. */
-  flightHeader?: FlightHeader;
-  /** Required. Origin airport. */
-  origin?: AirportInfo;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
-  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
-  review?: Review;
-  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected by the validator. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
-  heroImage?: Image;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Status of this flight. If unset, Google will compute status based on data from other sources, such as FlightStats, etc. Note: Google-computed status will not be returned in API responses. */
-  flightStatus?: FlightClassFlightStatusEnum | (string & {});
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
   /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
   reviewStatus?: FlightClassReviewStatusEnum | (string & {});
-  /** View Unlock Requirement options for the boarding pass. */
-  viewUnlockRequirement?: FlightClassViewUnlockRequirementEnum | (string & {});
-  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  localizedIssuerName?: LocalizedString;
-  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
-  countryCode?: string;
-  /** Deprecated. */
-  wordMark?: Image;
-  /** The estimated time the aircraft plans to reach the destination gate (not the runway) or the actual time it reached the gate. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already arrived at the gate. Google will use it to inform the user that the flight has arrived at the gate. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. */
-  localEstimatedOrActualArrivalDateTime?: string;
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
-  /** The scheduled time the aircraft plans to reach the destination gate (not the runway). Note: This field should not change too close to the flight time. For updates to departure times (delays, etc), please set `localEstimatedOrActualArrivalDateTime`. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. */
-  localScheduledArrivalDateTime?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightClass"`. */
-  kind?: string;
-  /** The estimated time the aircraft plans to pull from the gate or the actual time the aircraft already pulled from the gate. Note: This is not the runway time. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already pulled from the gate. Google will use it to inform the user when the flight actually departed. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
-  localEstimatedOrActualDepartureDateTime?: string;
+  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: FlightClassNotifyPreferenceEnum | (string & {});
   /** Policies for boarding and seating. These will inform which labels will be shown to users. */
   boardingAndSeatingPolicy?: BoardingAndSeatingPolicy;
-  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  enableSmartTap?: boolean;
-  /** Required. Destination airport. */
-  destination?: AirportInfo;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightClass"`. */
+  kind?: string;
+  /** The gate closing time as it would be printed on the boarding pass. Do not set this field if you do not want to print it in the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
+  localGateClosingDateTime?: string;
+  /** Status of this flight. If unset, Google will compute status based on data from other sources, such as FlightStats, etc. Note: Google-computed status will not be returned in API responses. */
+  flightStatus?: FlightClassFlightStatusEnum | (string & {});
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | FlightClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
-  hexBackgroundColor?: string;
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
   /** Note: This field is currently not supported to trigger geo notifications. */
   locations?: LatLongPointList;
-  /** If this field is present, boarding passes served to a user's device will always be in this language. Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
-  languageOverride?: string;
-  /** The gate closing time as it would be printed on the boarding pass. Do not set this field if you do not want to print it in the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
-  localGateClosingDateTime?: string;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
+  countryCode?: string;
+  /** Deprecated. */
+  wordMark?: Image;
+  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected by the validator. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** Deprecated */
+  version?: string;
+  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
+  heroImage?: Image;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
+  /** Required. Origin airport. */
+  origin?: AirportInfo;
+  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  localizedIssuerName?: LocalizedString;
+  /** The boarding time as it would be printed on the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
+  localBoardingDateTime?: string;
   /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
   allowMultipleUsersPerObject?: boolean;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Required. Information about the flight carrier and number. */
+  flightHeader?: FlightHeader;
+  /** The estimated time the aircraft plans to reach the destination gate (not the runway) or the actual time it reached the gate. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already arrived at the gate. Google will use it to inform the user that the flight has arrived at the gate. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. */
+  localEstimatedOrActualArrivalDateTime?: string;
+  /** View Unlock Requirement options for the boarding pass. */
+  viewUnlockRequirement?: FlightClassViewUnlockRequirementEnum | (string & {});
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
+  hexBackgroundColor?: string;
   /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
   callbackOptions?: CallbackOptions;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  enableSmartTap?: boolean;
   /** Required. The scheduled date and time when the aircraft is expected to depart the gate (not the runway) Note: This field should not change too close to the departure time. For updates to departure times (delays, etc), please set `localEstimatedOrActualDepartureDateTime`. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
   localScheduledDepartureDateTime?: string;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
   /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
   id?: string;
+  /** The scheduled time the aircraft plans to reach the destination gate (not the runway). Note: This field should not change too close to the flight time. For updates to departure times (delays, etc), please set `localEstimatedOrActualArrivalDateTime`. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. */
+  localScheduledArrivalDateTime?: string;
+  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
+  review?: Review;
+  /** Required. Destination airport. */
+  destination?: AirportInfo;
+  /** The estimated time the aircraft plans to pull from the gate or the actual time the aircraft already pulled from the gate. Note: This is not the runway time. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already pulled from the gate. Google will use it to inform the user when the flight actually departed. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. */
+  localEstimatedOrActualDepartureDateTime?: string;
+  /** If this field is present, boarding passes served to a user's device will always be in this language. Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
+  languageOverride?: string;
 }
 export const FlightClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    classTemplateInfo: S.optional(ClassTemplateInfo),
-    localBoardingDateTime: S.optional(S.String),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    redemptionIssuers: S.optional(StringList),
-    notifyPreference: S.optional(FlightClassNotifyPreferenceEnum),
-    messages: S.optional(MessageList),
-    version: S.optional(S.String),
-    flightHeader: S.optional(FlightHeader),
-    origin: S.optional(AirportInfo),
-    securityAnimation: S.optional(SecurityAnimation),
-    review: S.optional(Review),
-    merchantLocations: S.optional(MerchantLocationList),
-    heroImage: S.optional(Image),
-    textModulesData: S.optional(TextModuleDataList),
-    infoModuleData: S.optional(InfoModuleData),
-    flightStatus: S.optional(FlightClassFlightStatusEnum),
-    issuerName: S.optional(S.String),
-    appLinkData: S.optional(AppLinkData),
+    imageModulesData: S.optional(ImageModuleDataList),
     reviewStatus: S.optional(FlightClassReviewStatusEnum),
-    viewUnlockRequirement: S.optional(FlightClassViewUnlockRequirementEnum),
-    localizedIssuerName: S.optional(LocalizedString),
-    countryCode: S.optional(S.String),
-    wordMark: S.optional(Image),
-    localEstimatedOrActualArrivalDateTime: S.optional(S.String),
-    homepageUri: S.optional(Uri),
-    localScheduledArrivalDateTime: S.optional(S.String),
-    kind: S.optional(S.String),
-    localEstimatedOrActualDepartureDateTime: S.optional(S.String),
+    notifyPreference: S.optional(FlightClassNotifyPreferenceEnum),
     boardingAndSeatingPolicy: S.optional(BoardingAndSeatingPolicy),
-    enableSmartTap: S.optional(S.Boolean),
-    destination: S.optional(AirportInfo),
+    kind: S.optional(S.String),
+    localGateClosingDateTime: S.optional(S.String),
+    flightStatus: S.optional(FlightClassFlightStatusEnum),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       FlightClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    linksModuleData: S.optional(LinksModuleData),
-    hexBackgroundColor: S.optional(S.String),
+    issuerName: S.optional(S.String),
     locations: S.optional(LatLongPointList),
-    languageOverride: S.optional(S.String),
-    localGateClosingDateTime: S.optional(S.String),
+    appLinkData: S.optional(AppLinkData),
+    homepageUri: S.optional(Uri),
+    countryCode: S.optional(S.String),
+    wordMark: S.optional(Image),
+    merchantLocations: S.optional(MerchantLocationList),
+    version: S.optional(S.String),
+    heroImage: S.optional(Image),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
+    origin: S.optional(AirportInfo),
+    localizedIssuerName: S.optional(LocalizedString),
+    localBoardingDateTime: S.optional(S.String),
     allowMultipleUsersPerObject: S.optional(S.Boolean),
+    textModulesData: S.optional(TextModuleDataList),
+    flightHeader: S.optional(FlightHeader),
+    localEstimatedOrActualArrivalDateTime: S.optional(S.String),
+    viewUnlockRequirement: S.optional(FlightClassViewUnlockRequirementEnum),
+    redemptionIssuers: S.optional(StringList),
+    hexBackgroundColor: S.optional(S.String),
     callbackOptions: S.optional(CallbackOptions),
-    imageModulesData: S.optional(ImageModuleDataList),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    enableSmartTap: S.optional(S.Boolean),
     localScheduledDepartureDateTime: S.optional(S.String),
+    linksModuleData: S.optional(LinksModuleData),
+    infoModuleData: S.optional(InfoModuleData),
+    securityAnimation: S.optional(SecurityAnimation),
+    messages: S.optional(MessageList),
     id: S.optional(S.String),
+    localScheduledArrivalDateTime: S.optional(S.String),
+    review: S.optional(Review),
+    destination: S.optional(AirportInfo),
+    localEstimatedOrActualDepartureDateTime: S.optional(S.String),
+    languageOverride: S.optional(S.String),
   }),
 ).annotate({ identifier: "FlightClass" }) as any as S.Schema<FlightClass>;
 
@@ -1974,6 +1974,89 @@ export const AddmessageFlightobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageFlightobjectRequest",
 }) as any as S.Schema<AddmessageFlightobjectRequest>;
 
+export type BoardingAndSeatingInfoBoardingDoorEnum =
+  | "BOARDING_DOOR_UNSPECIFIED"
+  | "FRONT"
+  | "front"
+  | "BACK"
+  | "back";
+export const BoardingAndSeatingInfoBoardingDoorEnum = /*@__PURE__*/ S.String;
+
+export interface BoardingAndSeatingInfo {
+  /** The value of boarding group (or zone) this passenger shall board with. eg: "B" The label for this value will be determined by the `boardingPolicy` field in the `flightClass` referenced by this object. */
+  boardingGroup?: string;
+  /** The value of passenger seat. If there is no specific identifier, use `seatAssignment` instead. eg: "25A" */
+  seatNumber?: string;
+  /** The value of boarding position. eg: "76" */
+  boardingPosition?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#boardingAndSeatingInfo"`. */
+  kind?: string;
+  /** The passenger's seat assignment. To be used when there is no specific identifier to use in `seatNumber`. eg: "assigned at gate" */
+  seatAssignment?: LocalizedString;
+  /** The value of the seat class. eg: "Economy" or "Economy Plus" */
+  seatClass?: string;
+  /** Set this field only if this flight boards through more than one door or bridge and you want to explicitly print the door location on the boarding pass. Most airlines route their passengers to the right door or bridge by refering to doors/bridges by the `seatClass`. In those cases `boardingDoor` should not be set. */
+  boardingDoor?: BoardingAndSeatingInfoBoardingDoorEnum | (string & {});
+  /** A small image shown above the boarding barcode. Airlines can use it to communicate any special boarding privileges. In the event the security program logo is also set, this image might be rendered alongside the logo for that security program. */
+  boardingPrivilegeImage?: Image;
+  /** The sequence number on the boarding pass. This usually matches the sequence in which the passengers checked in. Airline might use the number for manual boarding and bag tags. eg: "49" */
+  sequenceNumber?: string;
+}
+export const BoardingAndSeatingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    boardingGroup: S.optional(S.String),
+    seatNumber: S.optional(S.String),
+    boardingPosition: S.optional(S.String),
+    kind: S.optional(S.String),
+    seatAssignment: S.optional(LocalizedString),
+    seatClass: S.optional(S.String),
+    boardingDoor: S.optional(BoardingAndSeatingInfoBoardingDoorEnum),
+    boardingPrivilegeImage: S.optional(Image),
+    sequenceNumber: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BoardingAndSeatingInfo",
+}) as any as S.Schema<BoardingAndSeatingInfo>;
+
+export interface FrequentFlyerInfo {
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#frequentFlyerInfo"`. */
+  kind?: string;
+  /** Frequent flyer program name. eg: "Lufthansa Miles & More" */
+  frequentFlyerProgramName?: LocalizedString;
+  /** Frequent flyer number. Required for each nested object of kind `walletobjects#frequentFlyerInfo`. */
+  frequentFlyerNumber?: string;
+}
+export const FrequentFlyerInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    frequentFlyerProgramName: S.optional(LocalizedString),
+    frequentFlyerNumber: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FrequentFlyerInfo",
+}) as any as S.Schema<FrequentFlyerInfo>;
+
+export interface ReservationInfo {
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#reservationInfo"`. */
+  kind?: string;
+  /** Frequent flyer membership information. */
+  frequentFlyerInfo?: FrequentFlyerInfo;
+  /** E-ticket number. */
+  eticketNumber?: string;
+  /** Confirmation code needed to check into this flight. This is the number that the passenger would enter into a kiosk at the airport to look up the flight and print a boarding pass. */
+  confirmationCode?: string;
+}
+export const ReservationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    frequentFlyerInfo: S.optional(FrequentFlyerInfo),
+    eticketNumber: S.optional(S.String),
+    confirmationCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationInfo",
+}) as any as S.Schema<ReservationInfo>;
+
 export type FlightObjectStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
@@ -1986,197 +2069,114 @@ export type FlightObjectStateEnum =
   | "inactive";
 export const FlightObjectStateEnum = /*@__PURE__*/ S.String;
 
-export type BoardingAndSeatingInfoBoardingDoorEnum =
-  | "BOARDING_DOOR_UNSPECIFIED"
-  | "FRONT"
-  | "front"
-  | "BACK"
-  | "back";
-export const BoardingAndSeatingInfoBoardingDoorEnum = /*@__PURE__*/ S.String;
-
-export interface BoardingAndSeatingInfo {
-  /** The value of boarding group (or zone) this passenger shall board with. eg: "B" The label for this value will be determined by the `boardingPolicy` field in the `flightClass` referenced by this object. */
-  boardingGroup?: string;
-  /** A small image shown above the boarding barcode. Airlines can use it to communicate any special boarding privileges. In the event the security program logo is also set, this image might be rendered alongside the logo for that security program. */
-  boardingPrivilegeImage?: Image;
-  /** The value of the seat class. eg: "Economy" or "Economy Plus" */
-  seatClass?: string;
-  /** The value of boarding position. eg: "76" */
-  boardingPosition?: string;
-  /** The value of passenger seat. If there is no specific identifier, use `seatAssignment` instead. eg: "25A" */
-  seatNumber?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#boardingAndSeatingInfo"`. */
-  kind?: string;
-  /** The sequence number on the boarding pass. This usually matches the sequence in which the passengers checked in. Airline might use the number for manual boarding and bag tags. eg: "49" */
-  sequenceNumber?: string;
-  /** Set this field only if this flight boards through more than one door or bridge and you want to explicitly print the door location on the boarding pass. Most airlines route their passengers to the right door or bridge by refering to doors/bridges by the `seatClass`. In those cases `boardingDoor` should not be set. */
-  boardingDoor?: BoardingAndSeatingInfoBoardingDoorEnum | (string & {});
-  /** The passenger's seat assignment. To be used when there is no specific identifier to use in `seatNumber`. eg: "assigned at gate" */
-  seatAssignment?: LocalizedString;
-}
-export const BoardingAndSeatingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    boardingGroup: S.optional(S.String),
-    boardingPrivilegeImage: S.optional(Image),
-    seatClass: S.optional(S.String),
-    boardingPosition: S.optional(S.String),
-    seatNumber: S.optional(S.String),
-    kind: S.optional(S.String),
-    sequenceNumber: S.optional(S.String),
-    boardingDoor: S.optional(BoardingAndSeatingInfoBoardingDoorEnum),
-    seatAssignment: S.optional(LocalizedString),
-  }),
-).annotate({
-  identifier: "BoardingAndSeatingInfo",
-}) as any as S.Schema<BoardingAndSeatingInfo>;
-
 export type FlightObjectNotifyPreferenceEnum =
   | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
   | "NOTIFY_ON_UPDATE";
 export const FlightObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
-export interface FrequentFlyerInfo {
-  /** Frequent flyer number. Required for each nested object of kind `walletobjects#frequentFlyerInfo`. */
-  frequentFlyerNumber?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#frequentFlyerInfo"`. */
-  kind?: string;
-  /** Frequent flyer program name. eg: "Lufthansa Miles & More" */
-  frequentFlyerProgramName?: LocalizedString;
-}
-export const FrequentFlyerInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frequentFlyerNumber: S.optional(S.String),
-    kind: S.optional(S.String),
-    frequentFlyerProgramName: S.optional(LocalizedString),
-  }),
-).annotate({
-  identifier: "FrequentFlyerInfo",
-}) as any as S.Schema<FrequentFlyerInfo>;
-
-export interface ReservationInfo {
-  /** Frequent flyer membership information. */
-  frequentFlyerInfo?: FrequentFlyerInfo;
-  /** E-ticket number. */
-  eticketNumber?: string;
-  /** Confirmation code needed to check into this flight. This is the number that the passenger would enter into a kiosk at the airport to look up the flight and print a boarding pass. */
-  confirmationCode?: string;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#reservationInfo"`. */
-  kind?: string;
-}
-export const ReservationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frequentFlyerInfo: S.optional(FrequentFlyerInfo),
-    eticketNumber: S.optional(S.String),
-    confirmationCode: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationInfo",
-}) as any as S.Schema<ReservationInfo>;
-
 export interface FlightObject {
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
-  /** The barcode type and value. */
-  barcode?: Barcode;
-  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
-  hexBackgroundColor?: string;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this flight object. If a user had saved this boarding pass, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for Flights. */
-  disableExpirationNotification?: boolean;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightObject"`. */
-  kind?: string;
-  /** An image for the security program that applies to the passenger. */
-  securityProgramLogo?: Image;
-  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
-  state?: FlightObjectStateEnum | (string & {});
-  /** Passenger specific information about boarding and seating. */
-  boardingAndSeatingInfo?: BoardingAndSeatingInfo;
-  /** Required. Passenger name as it would appear on the boarding pass. eg: "Dave M Gahan" or "Gahan/Dave" or "GAHAN/DAVEM" */
-  passengerName?: string;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
-  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: FlightObjectNotifyPreferenceEnum | (string & {});
-  /** Deprecated */
-  version?: string;
-  /** Links module data. If links module data is also defined on the class, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
-  validTimeInterval?: TimeInterval;
-  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
-  heroImage?: Image;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
-  passConstraints?: PassConstraints;
   /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
   textModulesData?: TextModuleDataList;
-  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: FlightClass;
-  /** Required. Information about flight reservation. */
-  reservationInfo?: ReservationInfo;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
+  /** Passenger specific information about boarding and seating. */
+  boardingAndSeatingInfo?: BoardingAndSeatingInfo;
+  /** Deprecated */
+  version?: string;
+  /** Required. Passenger name as it would appear on the boarding pass. eg: "Dave M Gahan" or "Gahan/Dave" or "GAHAN/DAVEM" */
+  passengerName?: string;
+  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
+  hexBackgroundColor?: string;
+  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
+  passConstraints?: PassConstraints;
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** The barcode type and value. */
+  barcode?: Barcode;
   /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
   messages?: MessageList;
+  /** Links module data. If links module data is also defined on the class, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#flightObject"`. */
+  kind?: string;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** Required. Information about flight reservation. */
+  reservationInfo?: ReservationInfo;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this flight object. If a user had saved this boarding pass, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
+  validTimeInterval?: TimeInterval;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for Flights. */
+  disableExpirationNotification?: boolean;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** An image for the security program that applies to the passenger. */
+  securityProgramLogo?: Image;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
+  state?: FlightObjectStateEnum | (string & {});
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: FlightClass;
+  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: FlightObjectNotifyPreferenceEnum | (string & {});
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
+  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
+  heroImage?: Image;
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
 }
 export const FlightObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hasLinkedDevice: S.optional(S.Boolean),
-    classId: S.optional(S.String),
-    barcode: S.optional(Barcode),
-    hexBackgroundColor: S.optional(S.String),
-    merchantLocations: S.optional(MerchantLocationList),
-    linkedObjectIds: S.optional(StringList),
-    disableExpirationNotification: S.optional(S.Boolean),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    smartTapRedemptionValue: S.optional(S.String),
-    locations: S.optional(LatLongPointList),
-    kind: S.optional(S.String),
-    securityProgramLogo: S.optional(Image),
-    state: S.optional(FlightObjectStateEnum),
-    boardingAndSeatingInfo: S.optional(BoardingAndSeatingInfo),
-    passengerName: S.optional(S.String),
-    hasUsers: S.optional(S.Boolean),
-    notifyPreference: S.optional(FlightObjectNotifyPreferenceEnum),
-    version: S.optional(S.String),
-    linksModuleData: S.optional(LinksModuleData),
-    id: S.optional(S.String),
-    saveRestrictions: S.optional(SaveRestrictions),
-    groupingInfo: S.optional(GroupingInfo),
-    appLinkData: S.optional(AppLinkData),
-    imageModulesData: S.optional(ImageModuleDataList),
-    validTimeInterval: S.optional(TimeInterval),
-    heroImage: S.optional(Image),
-    infoModuleData: S.optional(InfoModuleData),
-    passConstraints: S.optional(PassConstraints),
     textModulesData: S.optional(TextModuleDataList),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    classReference: S.optional(FlightClass),
-    reservationInfo: S.optional(ReservationInfo),
+    hasUsers: S.optional(S.Boolean),
+    boardingAndSeatingInfo: S.optional(BoardingAndSeatingInfo),
+    version: S.optional(S.String),
+    passengerName: S.optional(S.String),
+    hexBackgroundColor: S.optional(S.String),
+    passConstraints: S.optional(PassConstraints),
+    id: S.optional(S.String),
+    barcode: S.optional(Barcode),
     messages: S.optional(MessageList),
+    linksModuleData: S.optional(LinksModuleData),
+    kind: S.optional(S.String),
+    groupingInfo: S.optional(GroupingInfo),
+    merchantLocations: S.optional(MerchantLocationList),
+    smartTapRedemptionValue: S.optional(S.String),
+    reservationInfo: S.optional(ReservationInfo),
+    linkedObjectIds: S.optional(StringList),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    validTimeInterval: S.optional(TimeInterval),
+    appLinkData: S.optional(AppLinkData),
+    disableExpirationNotification: S.optional(S.Boolean),
+    locations: S.optional(LatLongPointList),
+    securityProgramLogo: S.optional(Image),
+    classId: S.optional(S.String),
+    imageModulesData: S.optional(ImageModuleDataList),
+    infoModuleData: S.optional(InfoModuleData),
+    saveRestrictions: S.optional(SaveRestrictions),
+    state: S.optional(FlightObjectStateEnum),
+    classReference: S.optional(FlightClass),
+    notifyPreference: S.optional(FlightObjectNotifyPreferenceEnum),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    heroImage: S.optional(Image),
+    hasLinkedDevice: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "FlightObject" }) as any as S.Schema<FlightObject>;
 
@@ -2234,56 +2234,56 @@ export const GenericClassMultipleDevicesAndHoldersAllowedStatusEnum =
 export interface GenericClass {
   /** Image module data. If `imageModulesData` is also defined on the object, both will be displayed. Only one of the image from class and one from object level will be rendered when both set. */
   imageModulesData?: ImageModuleDataList;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
-  /** View Unlock Requirement options for the generic pass. */
-  viewUnlockRequirement?: GenericClassViewUnlockRequirementEnum | (string & {});
-  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
-  enableSmartTap?: boolean;
   /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
   securityAnimation?: SecurityAnimation;
   /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
   merchantLocations?: MerchantLocationList;
+  /** View Unlock Requirement options for the generic pass. */
+  viewUnlockRequirement?: GenericClassViewUnlockRequirementEnum | (string & {});
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
+  /** Text module data. If `textModulesData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
+  textModulesData?: TextModuleDataList;
+  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
+  callbackOptions?: CallbackOptions;
+  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
+  enableSmartTap?: boolean;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | GenericClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
-  callbackOptions?: CallbackOptions;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
   /** Links module data. If `linksModuleData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
   linksModuleData?: LinksModuleData;
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
   /** Required. The unique identifier for the class. This ID must be unique across all from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`. */
   id?: string;
-  /** Text module data. If `textModulesData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
-  textModulesData?: TextModuleDataList;
 }
 export const GenericClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     imageModulesData: S.optional(ImageModuleDataList),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    classTemplateInfo: S.optional(ClassTemplateInfo),
-    redemptionIssuers: S.optional(StringList),
-    appLinkData: S.optional(AppLinkData),
-    viewUnlockRequirement: S.optional(GenericClassViewUnlockRequirementEnum),
-    enableSmartTap: S.optional(S.Boolean),
     securityAnimation: S.optional(SecurityAnimation),
     merchantLocations: S.optional(MerchantLocationList),
+    viewUnlockRequirement: S.optional(GenericClassViewUnlockRequirementEnum),
+    appLinkData: S.optional(AppLinkData),
+    textModulesData: S.optional(TextModuleDataList),
+    callbackOptions: S.optional(CallbackOptions),
+    enableSmartTap: S.optional(S.Boolean),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       GenericClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    callbackOptions: S.optional(CallbackOptions),
-    messages: S.optional(MessageList),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
     linksModuleData: S.optional(LinksModuleData),
+    redemptionIssuers: S.optional(StringList),
+    messages: S.optional(MessageList),
     id: S.optional(S.String),
-    textModulesData: S.optional(TextModuleDataList),
   }),
 ).annotate({ identifier: "GenericClass" }) as any as S.Schema<GenericClass>;
 
@@ -2321,17 +2321,18 @@ export const AddmessageGenericobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageGenericobjectRequest",
 }) as any as S.Schema<AddmessageGenericobjectRequest>;
 
-export type GenericObjectStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "active"
-  | "COMPLETED"
-  | "completed"
-  | "EXPIRED"
-  | "expired"
-  | "INACTIVE"
-  | "inactive";
-export const GenericObjectStateEnum = /*@__PURE__*/ S.String;
+/** Indicates that the issuer would like Google Wallet to send an upcoming card validity notification 1 day before card becomes valid/usable. */
+export interface UpcomingNotification {
+  /** Indicates if the object needs to have upcoming notification enabled. */
+  enableNotification?: boolean;
+}
+export const UpcomingNotification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enableNotification: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "UpcomingNotification",
+}) as any as S.Schema<UpcomingNotification>;
 
 /** Indicates that the issuer would like Google Wallet to send expiry notifications 2 days prior to the card expiration. */
 export interface ExpiryNotification {
@@ -2346,30 +2347,17 @@ export const ExpiryNotification = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExpiryNotification",
 }) as any as S.Schema<ExpiryNotification>;
 
-/** Indicates that the issuer would like Google Wallet to send an upcoming card validity notification 1 day before card becomes valid/usable. */
-export interface UpcomingNotification {
-  /** Indicates if the object needs to have upcoming notification enabled. */
-  enableNotification?: boolean;
-}
-export const UpcomingNotification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enableNotification: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UpcomingNotification",
-}) as any as S.Schema<UpcomingNotification>;
-
 /** Indicates if the object needs to have notification enabled. We support only one of ExpiryNotification/UpcomingNotification. `expiryNotification` takes precedence over `upcomingNotification`. In other words if `expiryNotification` is set, we ignore the `upcomingNotification` field. */
 export interface Notifications {
-  /** A notification would be triggered at a specific time before the card expires. */
-  expiryNotification?: ExpiryNotification;
   /** A notification would be triggered at a specific time before the card becomes usable. */
   upcomingNotification?: UpcomingNotification;
+  /** A notification would be triggered at a specific time before the card expires. */
+  expiryNotification?: ExpiryNotification;
 }
 export const Notifications = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    expiryNotification: S.optional(ExpiryNotification),
     upcomingNotification: S.optional(UpcomingNotification),
+    expiryNotification: S.optional(ExpiryNotification),
   }),
 ).annotate({ identifier: "Notifications" }) as any as S.Schema<Notifications>;
 
@@ -2396,95 +2384,107 @@ export type GenericObjectGenericTypeEnum =
   | "GENERIC_OTHER";
 export const GenericObjectGenericTypeEnum = /*@__PURE__*/ S.String;
 
+export type GenericObjectStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "active"
+  | "COMPLETED"
+  | "completed"
+  | "EXPIRED"
+  | "expired"
+  | "INACTIVE"
+  | "inactive";
+export const GenericObjectStateEnum = /*@__PURE__*/ S.String;
+
 /** Generic Object */
 export interface GenericObject {
-  /** Required. The title of the pass, such as "50% off coupon" or "Library card" or "Voucher". This field is required and appears in the title row of the pass detail view. */
-  header?: LocalizedString;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. If this is not provided, the object would be considered `ACTIVE`. */
-  state?: GenericObjectStateEnum | (string & {});
-  /** Links module data. If `linksModuleData` is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
-  linksModuleData?: LinksModuleData;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. */
-  classId?: string;
-  /** The barcode type and value. If pass does not have a barcode, we can allow the issuer to set Barcode.alternate_text and display just that. */
-  barcode?: Barcode;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
   /** Banner image displayed on the front of the card if present. The image will be displayed at 100% width. */
   heroImage?: Image;
-  /** The rotating barcode settings/details. */
-  rotatingBarcode?: RotatingBarcode;
-  /** Image module data. Only one of the image from class and one from object level will be rendered when both set. */
-  imageModulesData?: ImageModuleDataList;
-  /** The notification settings that are enabled for this object. */
-  notifications?: Notifications;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this generic object. If a user had saved this generic card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
+  /** The wide logo of the pass. When provided, this will be used in place of the logo in the top left of the card view. */
+  wideLogo?: Image;
   /** The background color for the card. If not set, the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used and if logo is not set, a color would be chosen by Google. */
   hexBackgroundColor?: string;
-  /** Required. The header of the pass. This is usually the Business name such as "XXX Gym", "AAA Insurance". This field is required and appears in the header row at the very top of the pass. */
-  cardTitle?: LocalizedString;
-  /** The time period this object will be considered valid or usable. When the time period is passed, the object will be considered expired, which will affect the rendering on user's devices. */
-  validTimeInterval?: TimeInterval;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
+  /** Image module data. Only one of the image from class and one from object level will be rendered when both set. */
+  imageModulesData?: ImageModuleDataList;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** The rotating barcode settings/details. */
+  rotatingBarcode?: RotatingBarcode;
+  /** The notification settings that are enabled for this object. */
+  notifications?: Notifications;
+  /** The barcode type and value. If pass does not have a barcode, we can allow the issuer to set Barcode.alternate_text and display just that. */
+  barcode?: Barcode;
   /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
   valueAddedModuleData?: ValueAddedModuleDataList;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this generic object. If a user had saved this generic card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** Specify which `GenericType` the card belongs to. */
+  genericType?: GenericObjectGenericTypeEnum | (string & {});
+  /** Required. The title of the pass, such as "50% off coupon" or "Library card" or "Voucher". This field is required and appears in the title row of the pass detail view. */
+  header?: LocalizedString;
+  /** Links module data. If `linksModuleData` is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
+  linksModuleData?: LinksModuleData;
+  /** The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. If this is not provided, the object would be considered `ACTIVE`. */
+  state?: GenericObjectStateEnum | (string & {});
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** The title label of the pass, such as location where this pass can be used. Appears right above the title in the title row in the pass detail view. */
+  subheader?: LocalizedString;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. */
+  classId?: string;
+  /** The time period this object will be considered valid or usable. When the time period is passed, the object will be considered expired, which will affect the rendering on user's devices. */
+  validTimeInterval?: TimeInterval;
+  /** Text module data. If `textModulesData` is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
+  textModulesData?: TextModuleDataList;
+  /** Required. The header of the pass. This is usually the Business name such as "XXX Gym", "AAA Insurance". This field is required and appears in the header row at the very top of the pass. */
+  cardTitle?: LocalizedString;
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`. */
+  id?: string;
   /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
   passConstraints?: PassConstraints;
   /** The logo image of the pass. This image is displayed in the card detail view in upper left, and also on the list/thumbnail view. If the logo is not present, the first letter of `cardTitle` would be shown as logo. */
   logo?: Image;
   /** Indicates if the object has users. This field is set by the platform. */
   hasUsers?: boolean;
-  /** The wide logo of the pass. When provided, this will be used in place of the logo in the top left of the card view. */
-  wideLogo?: Image;
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`. */
-  id?: string;
-  /** Text module data. If `textModulesData` is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object. */
-  textModulesData?: TextModuleDataList;
-  /** The title label of the pass, such as location where this pass can be used. Appears right above the title in the title row in the pass detail view. */
-  subheader?: LocalizedString;
-  /** Specify which `GenericType` the card belongs to. */
-  genericType?: GenericObjectGenericTypeEnum | (string & {});
 }
 export const GenericObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    header: S.optional(LocalizedString),
-    merchantLocations: S.optional(MerchantLocationList),
-    state: S.optional(GenericObjectStateEnum),
-    linksModuleData: S.optional(LinksModuleData),
-    smartTapRedemptionValue: S.optional(S.String),
-    classId: S.optional(S.String),
-    barcode: S.optional(Barcode),
-    appLinkData: S.optional(AppLinkData),
-    groupingInfo: S.optional(GroupingInfo),
-    messages: S.optional(MessageList),
     heroImage: S.optional(Image),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    imageModulesData: S.optional(ImageModuleDataList),
-    notifications: S.optional(Notifications),
-    linkedObjectIds: S.optional(StringList),
-    saveRestrictions: S.optional(SaveRestrictions),
+    wideLogo: S.optional(Image),
     hexBackgroundColor: S.optional(S.String),
-    cardTitle: S.optional(LocalizedString),
-    validTimeInterval: S.optional(TimeInterval),
+    groupingInfo: S.optional(GroupingInfo),
+    imageModulesData: S.optional(ImageModuleDataList),
+    saveRestrictions: S.optional(SaveRestrictions),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    notifications: S.optional(Notifications),
+    barcode: S.optional(Barcode),
     valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    linkedObjectIds: S.optional(StringList),
+    appLinkData: S.optional(AppLinkData),
+    merchantLocations: S.optional(MerchantLocationList),
+    smartTapRedemptionValue: S.optional(S.String),
+    genericType: S.optional(GenericObjectGenericTypeEnum),
+    header: S.optional(LocalizedString),
+    linksModuleData: S.optional(LinksModuleData),
+    state: S.optional(GenericObjectStateEnum),
+    messages: S.optional(MessageList),
+    subheader: S.optional(LocalizedString),
+    classId: S.optional(S.String),
+    validTimeInterval: S.optional(TimeInterval),
+    textModulesData: S.optional(TextModuleDataList),
+    cardTitle: S.optional(LocalizedString),
+    id: S.optional(S.String),
     passConstraints: S.optional(PassConstraints),
     logo: S.optional(Image),
     hasUsers: S.optional(S.Boolean),
-    wideLogo: S.optional(Image),
-    id: S.optional(S.String),
-    textModulesData: S.optional(TextModuleDataList),
-    subheader: S.optional(LocalizedString),
-    genericType: S.optional(GenericObjectGenericTypeEnum),
   }),
 ).annotate({ identifier: "GenericObject" }) as any as S.Schema<GenericObject>;
 
@@ -2522,6 +2522,17 @@ export const AddmessageGiftcardclassRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageGiftcardclassRequest",
 }) as any as S.Schema<AddmessageGiftcardclassRequest>;
 
+export type GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  | "STATUS_UNSPECIFIED"
+  | "MULTIPLE_HOLDERS"
+  | "ONE_USER_ALL_DEVICES"
+  | "ONE_USER_ONE_DEVICE"
+  | "multipleHolders"
+  | "oneUserAllDevices"
+  | "oneUserOneDevice";
+export const GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  /*@__PURE__*/ S.String;
+
 export type GiftCardClassReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
   | "UNDER_REVIEW"
@@ -2539,17 +2550,6 @@ export type GiftCardClassNotifyPreferenceEnum =
   | "NOTIFY_ON_UPDATE";
 export const GiftCardClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
-export type GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  | "STATUS_UNSPECIFIED"
-  | "MULTIPLE_HOLDERS"
-  | "ONE_USER_ALL_DEVICES"
-  | "ONE_USER_ONE_DEVICE"
-  | "multipleHolders"
-  | "oneUserAllDevices"
-  | "oneUserOneDevice";
-export const GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  /*@__PURE__*/ S.String;
-
 export type GiftCardClassViewUnlockRequirementEnum =
   | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
   | "UNLOCK_NOT_REQUIRED"
@@ -2557,138 +2557,138 @@ export type GiftCardClassViewUnlockRequirementEnum =
 export const GiftCardClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
 
 export interface GiftCardClass {
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
-  allowMultipleUsersPerObject?: boolean;
-  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
-  review?: Review;
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
-  /** The wide logo of the gift card program or company. When provided, this will be used in place of the program logo in the top left of the card view. */
-  wideProgramLogo?: Image;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
-  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
-  reviewStatus?: GiftCardClassReviewStatusEnum | (string & {});
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
+  /** Translated strings for the card_number_label. */
+  localizedCardNumberLabel?: LocalizedString;
   /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
   merchantLocations?: MerchantLocationList;
-  /** Translated strings for the event_number_label. */
-  localizedEventNumberLabel?: LocalizedString;
-  /** The label to display for the PIN, such as "4-digit PIN". */
-  pinLabel?: string;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: GiftCardClassNotifyPreferenceEnum | (string & {});
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#giftCardClass"`. */
-  kind?: string;
-  /** Determines whether the merchant supports gift card redemption using barcode. If true, app displays a barcode for the gift card on the Gift card details screen. If false, a barcode is not displayed. */
-  allowBarcodeRedemption?: boolean;
-  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  enableSmartTap?: boolean;
-  /** Translated strings for the merchant_name. The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
-  localizedMerchantName?: LocalizedString;
-  /** The label to display for event number, such as "Target Event #". */
-  eventNumberLabel?: string;
-  /** Translated strings for the pin_label. */
-  localizedPinLabel?: LocalizedString;
-  /** The label to display for the card number, such as "Card Number". */
-  cardNumberLabel?: string;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** The logo of the gift card program or company. This logo is displayed in both the details and list views of the app. */
-  programLogo?: Image;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#giftCardClass"`. */
+  kind?: string;
+  /** The logo of the gift card program or company. This logo is displayed in both the details and list views of the app. */
+  programLogo?: Image;
+  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
+  /** Merchant name, such as "Adam's Apparel". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
+  merchantName?: string;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** The label to display for the card number, such as "Card Number". */
+  cardNumberLabel?: string;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
+  allowMultipleUsersPerObject?: boolean;
+  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
+  reviewStatus?: GiftCardClassReviewStatusEnum | (string & {});
+  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: GiftCardClassNotifyPreferenceEnum | (string & {});
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
+  /** The wide logo of the gift card program or company. When provided, this will be used in place of the program logo in the top left of the card view. */
+  wideProgramLogo?: Image;
+  /** Deprecated */
+  version?: string;
+  /** Translated strings for the pin_label. */
+  localizedPinLabel?: LocalizedString;
+  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
+  hexBackgroundColor?: string;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
   /** View Unlock Requirement options for the gift card. */
   viewUnlockRequirement?:
     | GiftCardClassViewUnlockRequirementEnum
     | (string & {});
-  /** Merchant name, such as "Adam's Apparel". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
-  merchantName?: string;
   /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
   callbackOptions?: CallbackOptions;
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
-  hexBackgroundColor?: string;
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** Deprecated. */
-  wordMark?: Image;
+  /** The label to display for event number, such as "Target Event #". */
+  eventNumberLabel?: string;
   /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
   countryCode?: string;
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
   /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
   localizedIssuerName?: LocalizedString;
-  /** Deprecated */
-  version?: string;
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** Determines whether the merchant supports gift card redemption using barcode. If true, app displays a barcode for the gift card on the Gift card details screen. If false, a barcode is not displayed. */
+  allowBarcodeRedemption?: boolean;
+  /** Deprecated. */
+  wordMark?: Image;
+  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
+  review?: Review;
+  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  enableSmartTap?: boolean;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Translated strings for the event_number_label. */
+  localizedEventNumberLabel?: LocalizedString;
+  /** The label to display for the PIN, such as "4-digit PIN". */
+  pinLabel?: string;
+  /** Translated strings for the merchant_name. The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
+  localizedMerchantName?: LocalizedString;
   /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
   heroImage?: Image;
-  /** Translated strings for the card_number_label. */
-  localizedCardNumberLabel?: LocalizedString;
 }
 export const GiftCardClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    redemptionIssuers: S.optional(StringList),
-    allowMultipleUsersPerObject: S.optional(S.Boolean),
-    id: S.optional(S.String),
-    review: S.optional(Review),
-    classTemplateInfo: S.optional(ClassTemplateInfo),
-    wideProgramLogo: S.optional(Image),
-    appLinkData: S.optional(AppLinkData),
-    reviewStatus: S.optional(GiftCardClassReviewStatusEnum),
-    infoModuleData: S.optional(InfoModuleData),
-    securityAnimation: S.optional(SecurityAnimation),
+    localizedCardNumberLabel: S.optional(LocalizedString),
     merchantLocations: S.optional(MerchantLocationList),
-    localizedEventNumberLabel: S.optional(LocalizedString),
-    pinLabel: S.optional(S.String),
-    messages: S.optional(MessageList),
-    locations: S.optional(LatLongPointList),
-    notifyPreference: S.optional(GiftCardClassNotifyPreferenceEnum),
-    textModulesData: S.optional(TextModuleDataList),
-    kind: S.optional(S.String),
-    allowBarcodeRedemption: S.optional(S.Boolean),
-    enableSmartTap: S.optional(S.Boolean),
-    localizedMerchantName: S.optional(LocalizedString),
-    eventNumberLabel: S.optional(S.String),
-    localizedPinLabel: S.optional(LocalizedString),
-    cardNumberLabel: S.optional(S.String),
-    imageModulesData: S.optional(ImageModuleDataList),
-    programLogo: S.optional(Image),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       GiftCardClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    viewUnlockRequirement: S.optional(GiftCardClassViewUnlockRequirementEnum),
+    kind: S.optional(S.String),
+    programLogo: S.optional(Image),
+    id: S.optional(S.String),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
     merchantName: S.optional(S.String),
-    callbackOptions: S.optional(CallbackOptions),
-    issuerName: S.optional(S.String),
-    hexBackgroundColor: S.optional(S.String),
-    homepageUri: S.optional(Uri),
     valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    wordMark: S.optional(Image),
-    countryCode: S.optional(S.String),
-    linksModuleData: S.optional(LinksModuleData),
-    localizedIssuerName: S.optional(LocalizedString),
+    cardNumberLabel: S.optional(S.String),
+    imageModulesData: S.optional(ImageModuleDataList),
+    messages: S.optional(MessageList),
+    allowMultipleUsersPerObject: S.optional(S.Boolean),
+    reviewStatus: S.optional(GiftCardClassReviewStatusEnum),
+    notifyPreference: S.optional(GiftCardClassNotifyPreferenceEnum),
+    textModulesData: S.optional(TextModuleDataList),
+    securityAnimation: S.optional(SecurityAnimation),
+    wideProgramLogo: S.optional(Image),
     version: S.optional(S.String),
+    localizedPinLabel: S.optional(LocalizedString),
+    hexBackgroundColor: S.optional(S.String),
+    locations: S.optional(LatLongPointList),
+    appLinkData: S.optional(AppLinkData),
+    issuerName: S.optional(S.String),
+    viewUnlockRequirement: S.optional(GiftCardClassViewUnlockRequirementEnum),
+    callbackOptions: S.optional(CallbackOptions),
+    eventNumberLabel: S.optional(S.String),
+    countryCode: S.optional(S.String),
+    localizedIssuerName: S.optional(LocalizedString),
+    redemptionIssuers: S.optional(StringList),
+    homepageUri: S.optional(Uri),
+    infoModuleData: S.optional(InfoModuleData),
+    allowBarcodeRedemption: S.optional(S.Boolean),
+    wordMark: S.optional(Image),
+    review: S.optional(Review),
+    enableSmartTap: S.optional(S.Boolean),
+    linksModuleData: S.optional(LinksModuleData),
+    localizedEventNumberLabel: S.optional(LocalizedString),
+    pinLabel: S.optional(S.String),
+    localizedMerchantName: S.optional(LocalizedString),
     heroImage: S.optional(Image),
-    localizedCardNumberLabel: S.optional(LocalizedString),
   }),
 ).annotate({ identifier: "GiftCardClass" }) as any as S.Schema<GiftCardClass>;
 
@@ -2725,6 +2725,11 @@ export const AddmessageGiftcardobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageGiftcardobjectRequest",
 }) as any as S.Schema<AddmessageGiftcardobjectRequest>;
 
+export type GiftCardObjectNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const GiftCardObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
+
 export type GiftCardObjectStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
@@ -2737,113 +2742,108 @@ export type GiftCardObjectStateEnum =
   | "inactive";
 export const GiftCardObjectStateEnum = /*@__PURE__*/ S.String;
 
-export type GiftCardObjectNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const GiftCardObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
 export interface GiftCardObject {
-  /** Links module data. If links module data is also defined on the class, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
-  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
-  state?: GiftCardObjectStateEnum | (string & {});
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Deprecated */
-  version?: string;
-  /** The card's PIN. */
-  pin?: string;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
+  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
+  passConstraints?: PassConstraints;
+  /** The date and time when the balance was last updated. Offset is required. If balance is updated and this property is not provided, system will default to the current time. */
+  balanceUpdateTime?: DateTime;
+  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
+  disableExpirationNotification?: boolean;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
   /** The barcode type and value. */
   barcode?: Barcode;
   /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
   notifyPreference?: GiftCardObjectNotifyPreferenceEnum | (string & {});
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
-  heroImage?: Image;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: GiftCardClass;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this giftcard object. If a user had saved this gift card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** The date and time when the balance was last updated. Offset is required. If balance is updated and this property is not provided, system will default to the current time. */
-  balanceUpdateTime?: DateTime;
   /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
   imageModulesData?: ImageModuleDataList;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
-  /** The card's monetary balance. */
-  balance?: Money;
-  /** The card's event number, an optional field used by some gift cards. */
-  eventNumber?: string;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
   /** Required. The card's number. */
   cardNumber?: string;
-  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
-  passConstraints?: PassConstraints;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
-  disableExpirationNotification?: boolean;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#giftCardObject"`. */
-  kind?: string;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
+  state?: GiftCardObjectStateEnum | (string & {});
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** Links module data. If links module data is also defined on the class, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Deprecated */
+  version?: string;
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: GiftCardClass;
+  /** The card's monetary balance. */
+  balance?: Money;
   /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
   validTimeInterval?: TimeInterval;
+  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
+  heroImage?: Image;
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
+  /** The card's PIN. */
+  pin?: string;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this giftcard object. If a user had saved this gift card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#giftCardObject"`. */
+  kind?: string;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
+  /** The card's event number, an optional field used by some gift cards. */
+  eventNumber?: string;
   /** Note: This field is currently not supported to trigger geo notifications. */
   locations?: LatLongPointList;
 }
 export const GiftCardObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    linksModuleData: S.optional(LinksModuleData),
-    groupingInfo: S.optional(GroupingInfo),
-    state: S.optional(GiftCardObjectStateEnum),
-    infoModuleData: S.optional(InfoModuleData),
-    version: S.optional(S.String),
-    pin: S.optional(S.String),
-    classId: S.optional(S.String),
+    passConstraints: S.optional(PassConstraints),
+    balanceUpdateTime: S.optional(DateTime),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    appLinkData: S.optional(AppLinkData),
+    disableExpirationNotification: S.optional(S.Boolean),
+    textModulesData: S.optional(TextModuleDataList),
+    merchantLocations: S.optional(MerchantLocationList),
     barcode: S.optional(Barcode),
     notifyPreference: S.optional(GiftCardObjectNotifyPreferenceEnum),
-    merchantLocations: S.optional(MerchantLocationList),
-    messages: S.optional(MessageList),
-    heroImage: S.optional(Image),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    hasLinkedDevice: S.optional(S.Boolean),
-    classReference: S.optional(GiftCardClass),
-    linkedObjectIds: S.optional(StringList),
-    id: S.optional(S.String),
-    textModulesData: S.optional(TextModuleDataList),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    balanceUpdateTime: S.optional(DateTime),
     imageModulesData: S.optional(ImageModuleDataList),
-    smartTapRedemptionValue: S.optional(S.String),
-    balance: S.optional(Money),
-    eventNumber: S.optional(S.String),
-    saveRestrictions: S.optional(SaveRestrictions),
     cardNumber: S.optional(S.String),
-    passConstraints: S.optional(PassConstraints),
-    hasUsers: S.optional(S.Boolean),
-    disableExpirationNotification: S.optional(S.Boolean),
-    appLinkData: S.optional(AppLinkData),
-    kind: S.optional(S.String),
+    saveRestrictions: S.optional(SaveRestrictions),
+    state: S.optional(GiftCardObjectStateEnum),
+    infoModuleData: S.optional(InfoModuleData),
+    linksModuleData: S.optional(LinksModuleData),
+    version: S.optional(S.String),
+    classReference: S.optional(GiftCardClass),
+    balance: S.optional(Money),
     validTimeInterval: S.optional(TimeInterval),
+    heroImage: S.optional(Image),
+    id: S.optional(S.String),
+    messages: S.optional(MessageList),
+    groupingInfo: S.optional(GroupingInfo),
+    pin: S.optional(S.String),
+    linkedObjectIds: S.optional(StringList),
+    classId: S.optional(S.String),
+    hasLinkedDevice: S.optional(S.Boolean),
+    kind: S.optional(S.String),
+    smartTapRedemptionValue: S.optional(S.String),
+    hasUsers: S.optional(S.Boolean),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    eventNumber: S.optional(S.String),
     locations: S.optional(LatLongPointList),
   }),
 ).annotate({ identifier: "GiftCardObject" }) as any as S.Schema<GiftCardObject>;
@@ -2891,6 +2891,11 @@ export type LoyaltyClassMultipleDevicesAndHoldersAllowedStatusEnum =
   | "oneUserOneDevice";
 export const LoyaltyClassMultipleDevicesAndHoldersAllowedStatusEnum =
   /*@__PURE__*/ S.String;
+
+export type LoyaltyClassNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const LoyaltyClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
 export type LoyaltyClassReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
@@ -2993,11 +2998,6 @@ export const DiscoverableProgram = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiscoverableProgram",
 }) as any as S.Schema<DiscoverableProgram>;
 
-export type LoyaltyClassNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const LoyaltyClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
 export type LoyaltyClassViewUnlockRequirementEnum =
   | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
   | "UNLOCK_NOT_REQUIRED"
@@ -3005,154 +3005,154 @@ export type LoyaltyClassViewUnlockRequirementEnum =
 export const LoyaltyClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
 
 export interface LoyaltyClass {
-  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
-  callbackOptions?: CallbackOptions;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | LoyaltyClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
-  review?: Review;
-  /** Translated strings for the rewards_tier. Recommended maximum length is 7 characters to ensure full string is displayed on smaller screens. */
-  localizedRewardsTier?: LocalizedString;
-  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
-  reviewStatus?: LoyaltyClassReviewStatusEnum | (string & {});
-  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
-  heroImage?: Image;
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Information about how the class may be discovered and instantiated from within the Google Pay app. */
-  discoverableProgram?: DiscoverableProgram;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#loyaltyClass"`. */
+  kind?: string;
+  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  localizedIssuerName?: LocalizedString;
+  /** Deprecated. */
+  wordMark?: Image;
   /** The account ID label, such as "Member ID." Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
   accountIdLabel?: string;
-  /** The rewards tier label, such as "Rewards Tier." Recommended maximum length is 9 characters to ensure full string is displayed on smaller screens. */
-  rewardsTierLabel?: string;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and one of object level `smartTapRedemptionLevel`, barcode.value`, or `accountId` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  enableSmartTap?: boolean;
-  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: LoyaltyClassNotifyPreferenceEnum | (string & {});
-  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
-  allowMultipleUsersPerObject?: boolean;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
+  /** Translated strings for the account_id_label. Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
+  localizedAccountIdLabel?: LocalizedString;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Required. The logo of the loyalty program or company. This logo is displayed in both the details and list views of the app. */
+  programLogo?: Image;
+  /** Translated strings for the secondary_rewards_tier. */
+  localizedSecondaryRewardsTier?: LocalizedString;
+  /** The secondary rewards tier, such as "Gold" or "Platinum." */
+  secondaryRewardsTier?: string;
   /** The secondary rewards tier label, such as "Rewards Tier." */
   secondaryRewardsTierLabel?: string;
   /** Deprecated */
   version?: string;
   /** Translated strings for the program_name. The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
   localizedProgramName?: LocalizedString;
-  /** Translated strings for the secondary_rewards_tier. */
-  localizedSecondaryRewardsTier?: LocalizedString;
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and one of object level `smartTapRedemptionValue`, barcode.value`, or `accountId` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** The account name label, such as "Member Name." Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
+  accountNameLabel?: string;
+  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
+  allowMultipleUsersPerObject?: boolean;
+  /** The rewards tier, such as "Gold" or "Platinum." Recommended maximum length is 7 characters to ensure full string is displayed on smaller screens. */
+  rewardsTier?: string;
+  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
+  heroImage?: Image;
+  /** Required. The program name, such as "Adam's Apparel". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
+  programName?: string;
+  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
+  /** Translated strings for the account_name_label. Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
+  localizedAccountNameLabel?: LocalizedString;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: LoyaltyClassNotifyPreferenceEnum | (string & {});
+  /** The rewards tier label, such as "Rewards Tier." Recommended maximum length is 9 characters to ensure full string is displayed on smaller screens. */
+  rewardsTierLabel?: string;
+  /** Translated strings for the secondary_rewards_tier_label. */
+  localizedSecondaryRewardsTierLabel?: LocalizedString;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
+  review?: Review;
+  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and one of object level `smartTapRedemptionLevel`, barcode.value`, or `accountId` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  enableSmartTap?: boolean;
+  /** Translated strings for the rewards_tier. Recommended maximum length is 7 characters to ensure full string is displayed on smaller screens. */
+  localizedRewardsTier?: LocalizedString;
+  /** The wide logo of the loyalty program or company. When provided, this will be used in place of the program logo in the top left of the card view. */
+  wideProgramLogo?: Image;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
   /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
   hexBackgroundColor?: string;
   /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
   classTemplateInfo?: ClassTemplateInfo;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** Translated strings for the account_name_label. Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
-  localizedAccountNameLabel?: LocalizedString;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and one of object level `smartTapRedemptionValue`, barcode.value`, or `accountId` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** View Unlock Requirement options for the loyalty card. */
-  viewUnlockRequirement?: LoyaltyClassViewUnlockRequirementEnum | (string & {});
   /** Deprecated. Use textModulesData instead. */
   infoModuleData?: InfoModuleData;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#loyaltyClass"`. */
-  kind?: string;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Translated strings for the rewards_tier_label. Recommended maximum length is 9 characters to ensure full string is displayed on smaller screens. */
-  localizedRewardsTierLabel?: LocalizedString;
-  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
-  countryCode?: string;
-  /** Translated strings for the secondary_rewards_tier_label. */
-  localizedSecondaryRewardsTierLabel?: LocalizedString;
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
-  /** The account name label, such as "Member Name." Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
-  accountNameLabel?: string;
-  /** The secondary rewards tier, such as "Gold" or "Platinum." */
-  secondaryRewardsTier?: string;
-  /** The rewards tier, such as "Gold" or "Platinum." Recommended maximum length is 7 characters to ensure full string is displayed on smaller screens. */
-  rewardsTier?: string;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** Required. The program name, such as "Adam's Apparel". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens. */
-  programName?: string;
-  /** Required. The logo of the loyalty program or company. This logo is displayed in both the details and list views of the app. */
-  programLogo?: Image;
+  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
+  reviewStatus?: LoyaltyClassReviewStatusEnum | (string & {});
+  /** Information about how the class may be discovered and instantiated from within the Google Pay app. */
+  discoverableProgram?: DiscoverableProgram;
+  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
+  callbackOptions?: CallbackOptions;
   /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
   merchantLocations?: MerchantLocationList;
-  /** The wide logo of the loyalty program or company. When provided, this will be used in place of the program logo in the top left of the card view. */
-  wideProgramLogo?: Image;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
-  /** Translated strings for the account_id_label. Recommended maximum length is 15 characters to ensure full string is displayed on smaller screens. */
-  localizedAccountIdLabel?: LocalizedString;
-  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** Deprecated. */
-  wordMark?: Image;
-  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  localizedIssuerName?: LocalizedString;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** Translated strings for the rewards_tier_label. Recommended maximum length is 9 characters to ensure full string is displayed on smaller screens. */
+  localizedRewardsTierLabel?: LocalizedString;
+  /** View Unlock Requirement options for the loyalty card. */
+  viewUnlockRequirement?: LoyaltyClassViewUnlockRequirementEnum | (string & {});
+  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
+  countryCode?: string;
 }
 export const LoyaltyClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    callbackOptions: S.optional(CallbackOptions),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       LoyaltyClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    issuerName: S.optional(S.String),
-    review: S.optional(Review),
-    localizedRewardsTier: S.optional(LocalizedString),
-    reviewStatus: S.optional(LoyaltyClassReviewStatusEnum),
-    heroImage: S.optional(Image),
-    linksModuleData: S.optional(LinksModuleData),
-    discoverableProgram: S.optional(DiscoverableProgram),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    kind: S.optional(S.String),
+    localizedIssuerName: S.optional(LocalizedString),
+    wordMark: S.optional(Image),
     accountIdLabel: S.optional(S.String),
-    rewardsTierLabel: S.optional(S.String),
-    messages: S.optional(MessageList),
-    enableSmartTap: S.optional(S.Boolean),
-    notifyPreference: S.optional(LoyaltyClassNotifyPreferenceEnum),
-    allowMultipleUsersPerObject: S.optional(S.Boolean),
-    appLinkData: S.optional(AppLinkData),
+    localizedAccountIdLabel: S.optional(LocalizedString),
+    locations: S.optional(LatLongPointList),
+    programLogo: S.optional(Image),
+    localizedSecondaryRewardsTier: S.optional(LocalizedString),
+    secondaryRewardsTier: S.optional(S.String),
     secondaryRewardsTierLabel: S.optional(S.String),
     version: S.optional(S.String),
     localizedProgramName: S.optional(LocalizedString),
-    localizedSecondaryRewardsTier: S.optional(LocalizedString),
+    redemptionIssuers: S.optional(StringList),
+    accountNameLabel: S.optional(S.String),
+    allowMultipleUsersPerObject: S.optional(S.Boolean),
+    rewardsTier: S.optional(S.String),
+    heroImage: S.optional(Image),
+    programName: S.optional(S.String),
+    id: S.optional(S.String),
+    securityAnimation: S.optional(SecurityAnimation),
+    issuerName: S.optional(S.String),
+    linksModuleData: S.optional(LinksModuleData),
+    appLinkData: S.optional(AppLinkData),
+    localizedAccountNameLabel: S.optional(LocalizedString),
+    imageModulesData: S.optional(ImageModuleDataList),
+    notifyPreference: S.optional(LoyaltyClassNotifyPreferenceEnum),
+    rewardsTierLabel: S.optional(S.String),
+    localizedSecondaryRewardsTierLabel: S.optional(LocalizedString),
+    messages: S.optional(MessageList),
+    review: S.optional(Review),
+    enableSmartTap: S.optional(S.Boolean),
+    localizedRewardsTier: S.optional(LocalizedString),
+    wideProgramLogo: S.optional(Image),
+    textModulesData: S.optional(TextModuleDataList),
     hexBackgroundColor: S.optional(S.String),
     classTemplateInfo: S.optional(ClassTemplateInfo),
-    imageModulesData: S.optional(ImageModuleDataList),
-    localizedAccountNameLabel: S.optional(LocalizedString),
-    redemptionIssuers: S.optional(StringList),
-    viewUnlockRequirement: S.optional(LoyaltyClassViewUnlockRequirementEnum),
     infoModuleData: S.optional(InfoModuleData),
-    kind: S.optional(S.String),
-    textModulesData: S.optional(TextModuleDataList),
-    locations: S.optional(LatLongPointList),
-    localizedRewardsTierLabel: S.optional(LocalizedString),
-    countryCode: S.optional(S.String),
-    localizedSecondaryRewardsTierLabel: S.optional(LocalizedString),
-    homepageUri: S.optional(Uri),
-    accountNameLabel: S.optional(S.String),
-    secondaryRewardsTier: S.optional(S.String),
-    rewardsTier: S.optional(S.String),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    programName: S.optional(S.String),
-    programLogo: S.optional(Image),
+    reviewStatus: S.optional(LoyaltyClassReviewStatusEnum),
+    discoverableProgram: S.optional(DiscoverableProgram),
+    callbackOptions: S.optional(CallbackOptions),
     merchantLocations: S.optional(MerchantLocationList),
-    wideProgramLogo: S.optional(Image),
-    securityAnimation: S.optional(SecurityAnimation),
-    localizedAccountIdLabel: S.optional(LocalizedString),
-    id: S.optional(S.String),
-    wordMark: S.optional(Image),
-    localizedIssuerName: S.optional(LocalizedString),
+    homepageUri: S.optional(Uri),
+    localizedRewardsTierLabel: S.optional(LocalizedString),
+    viewUnlockRequirement: S.optional(LoyaltyClassViewUnlockRequirementEnum),
+    countryCode: S.optional(S.String),
   }),
 ).annotate({ identifier: "LoyaltyClass" }) as any as S.Schema<LoyaltyClass>;
 
@@ -3190,39 +3190,39 @@ export const AddmessageLoyaltyobjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddmessageLoyaltyobjectRequest>;
 
 export interface LoyaltyPointsBalance {
-  /** The string form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
-  string?: string;
-  /** The money form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
-  money?: Money;
   /** The integer form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
   int?: number;
+  /** The string form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
+  string?: string;
   /** The double form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
   double?: number;
+  /** The money form of a balance. Only one of these subtypes (string, int, double, money) should be populated. */
+  money?: Money;
 }
 export const LoyaltyPointsBalance = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    string: S.optional(S.String),
-    money: S.optional(Money),
     int: S.optional(S.Number),
+    string: S.optional(S.String),
     double: S.optional(S.Number),
+    money: S.optional(Money),
   }),
 ).annotate({
   identifier: "LoyaltyPointsBalance",
 }) as any as S.Schema<LoyaltyPointsBalance>;
 
 export interface LoyaltyPoints {
-  /** The loyalty points label, such as "Points". Recommended maximum length is 9 characters. */
-  label?: string;
   /** The account holder's loyalty point balance, such as "500" or "$10.00". Recommended maximum length is 7 characters. This is a required field of `loyaltyPoints` and `secondaryLoyaltyPoints`. */
   balance?: LoyaltyPointsBalance;
   /** Translated strings for the label. Recommended maximum length is 9 characters. */
   localizedLabel?: LocalizedString;
+  /** The loyalty points label, such as "Points". Recommended maximum length is 9 characters. */
+  label?: string;
 }
 export const LoyaltyPoints = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    label: S.optional(S.String),
     balance: S.optional(LoyaltyPointsBalance),
     localizedLabel: S.optional(LocalizedString),
+    label: S.optional(S.String),
   }),
 ).annotate({ identifier: "LoyaltyPoints" }) as any as S.Schema<LoyaltyPoints>;
 
@@ -3244,108 +3244,108 @@ export type LoyaltyObjectStateEnum =
 export const LoyaltyObjectStateEnum = /*@__PURE__*/ S.String;
 
 export interface LoyaltyObject {
-  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
-  heroImage?: Image;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Links module data. If links module data is also defined on the class, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
-  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this loyalty object. If a user had saved this loyalty card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** The secondary loyalty reward points label, balance, and type. Shown in addition to the primary loyalty points. */
-  secondaryLoyaltyPoints?: LoyaltyPoints;
-  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: LoyaltyObjectNotifyPreferenceEnum | (string & {});
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** A list of offer objects linked to this loyalty card. The offer objects must already exist. Offer object IDs should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. */
-  linkedOfferIds?: StringList;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
-  passConstraints?: PassConstraints;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
   /** The barcode type and value. */
   barcode?: Barcode;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
-  disableExpirationNotification?: boolean;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#loyaltyObject"`. */
-  kind?: string;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
   /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
   textModulesData?: TextModuleDataList;
-  /** The loyalty account holder name, such as "John Smith." Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  accountName?: string;
-  /** The loyalty account identifier. Recommended maximum length is 20 characters. */
-  accountId?: string;
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: LoyaltyClass;
+  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
   /** Deprecated */
   version?: string;
-  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
-  state?: LoyaltyObjectStateEnum | (string & {});
-  /** The loyalty reward points label, balance, and type. */
-  loyaltyPoints?: LoyaltyPoints;
-  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
-  validTimeInterval?: TimeInterval;
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: LoyaltyClass;
+  /** The loyalty account holder name, such as "John Smith." Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  accountName?: string;
+  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
+  passConstraints?: PassConstraints;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
   /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. If this value is not set but the class level fields `enableSmartTap` and `redemptionIssuers` are set up correctly, the `barcode.value` or the `accountId` fields are used as fallback if present. */
   smartTapRedemptionValue?: string;
+  /** Links module data. If links module data is also defined on the class, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** The secondary loyalty reward points label, balance, and type. Shown in addition to the primary loyalty points. */
+  secondaryLoyaltyPoints?: LoyaltyPoints;
+  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
+  validTimeInterval?: TimeInterval;
+  /** A list of offer objects linked to this loyalty card. The offer objects must already exist. Offer object IDs should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. */
+  linkedOfferIds?: StringList;
+  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
+  heroImage?: Image;
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
+  disableExpirationNotification?: boolean;
+  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: LoyaltyObjectNotifyPreferenceEnum | (string & {});
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this loyalty object. If a user had saved this loyalty card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#loyaltyObject"`. */
+  kind?: string;
+  /** The loyalty reward points label, balance, and type. */
+  loyaltyPoints?: LoyaltyPoints;
+  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
+  state?: LoyaltyObjectStateEnum | (string & {});
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
+  /** The loyalty account identifier. Recommended maximum length is 20 characters. */
+  accountId?: string;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
 }
 export const LoyaltyObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    heroImage: S.optional(Image),
-    appLinkData: S.optional(AppLinkData),
-    linksModuleData: S.optional(LinksModuleData),
-    hasUsers: S.optional(S.Boolean),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    groupingInfo: S.optional(GroupingInfo),
-    linkedObjectIds: S.optional(StringList),
-    merchantLocations: S.optional(MerchantLocationList),
-    hasLinkedDevice: S.optional(S.Boolean),
-    secondaryLoyaltyPoints: S.optional(LoyaltyPoints),
-    notifyPreference: S.optional(LoyaltyObjectNotifyPreferenceEnum),
-    id: S.optional(S.String),
-    linkedOfferIds: S.optional(StringList),
-    saveRestrictions: S.optional(SaveRestrictions),
-    locations: S.optional(LatLongPointList),
-    passConstraints: S.optional(PassConstraints),
-    classId: S.optional(S.String),
     barcode: S.optional(Barcode),
-    disableExpirationNotification: S.optional(S.Boolean),
-    infoModuleData: S.optional(InfoModuleData),
-    kind: S.optional(S.String),
-    imageModulesData: S.optional(ImageModuleDataList),
-    messages: S.optional(MessageList),
+    hasUsers: S.optional(S.Boolean),
     textModulesData: S.optional(TextModuleDataList),
-    accountName: S.optional(S.String),
-    accountId: S.optional(S.String),
-    classReference: S.optional(LoyaltyClass),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    infoModuleData: S.optional(InfoModuleData),
     version: S.optional(S.String),
-    state: S.optional(LoyaltyObjectStateEnum),
-    loyaltyPoints: S.optional(LoyaltyPoints),
-    validTimeInterval: S.optional(TimeInterval),
+    classReference: S.optional(LoyaltyClass),
+    accountName: S.optional(S.String),
+    passConstraints: S.optional(PassConstraints),
+    locations: S.optional(LatLongPointList),
     smartTapRedemptionValue: S.optional(S.String),
+    linksModuleData: S.optional(LinksModuleData),
+    id: S.optional(S.String),
+    messages: S.optional(MessageList),
+    secondaryLoyaltyPoints: S.optional(LoyaltyPoints),
+    validTimeInterval: S.optional(TimeInterval),
+    linkedOfferIds: S.optional(StringList),
+    heroImage: S.optional(Image),
+    disableExpirationNotification: S.optional(S.Boolean),
+    notifyPreference: S.optional(LoyaltyObjectNotifyPreferenceEnum),
+    classId: S.optional(S.String),
+    linkedObjectIds: S.optional(StringList),
+    saveRestrictions: S.optional(SaveRestrictions),
+    imageModulesData: S.optional(ImageModuleDataList),
+    merchantLocations: S.optional(MerchantLocationList),
+    kind: S.optional(S.String),
+    loyaltyPoints: S.optional(LoyaltyPoints),
+    state: S.optional(LoyaltyObjectStateEnum),
+    hasLinkedDevice: S.optional(S.Boolean),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    accountId: S.optional(S.String),
+    appLinkData: S.optional(AppLinkData),
+    groupingInfo: S.optional(GroupingInfo),
   }),
 ).annotate({ identifier: "LoyaltyObject" }) as any as S.Schema<LoyaltyObject>;
 
@@ -3382,6 +3382,12 @@ export const AddmessageOfferclassRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageOfferclassRequest",
 }) as any as S.Schema<AddmessageOfferclassRequest>;
 
+export type OfferClassViewUnlockRequirementEnum =
+  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
+  | "UNLOCK_NOT_REQUIRED"
+  | "UNLOCK_REQUIRED_TO_VIEW";
+export const OfferClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
+
 export type OfferClassMultipleDevicesAndHoldersAllowedStatusEnum =
   | "STATUS_UNSPECIFIED"
   | "MULTIPLE_HOLDERS"
@@ -3392,6 +3398,11 @@ export type OfferClassMultipleDevicesAndHoldersAllowedStatusEnum =
   | "oneUserOneDevice";
 export const OfferClassMultipleDevicesAndHoldersAllowedStatusEnum =
   /*@__PURE__*/ S.String;
+
+export type OfferClassNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const OfferClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
 export type OfferClassRedemptionChannelEnum =
   | "REDEMPTION_CHANNEL_UNSPECIFIED"
@@ -3417,157 +3428,146 @@ export type OfferClassReviewStatusEnum =
   | "draft";
 export const OfferClassReviewStatusEnum = /*@__PURE__*/ S.String;
 
-export type OfferClassNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const OfferClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
-export type OfferClassViewUnlockRequirementEnum =
-  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
-  | "UNLOCK_NOT_REQUIRED"
-  | "UNLOCK_REQUIRED_TO_VIEW";
-export const OfferClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
-
 export interface OfferClass {
-  /** The help link for the offer, such as `http://myownpersonaldomain.com/help` */
-  helpUri?: Uri;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#offerClass"`. */
-  kind?: string;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
+  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
+  callbackOptions?: CallbackOptions;
+  /** A shortened version of the title of the offer, such as "20% off," shown to users as a quick reference to the offer contents. Recommended maximum length is 20 characters. */
+  shortTitle?: string;
+  /** The details of the offer. */
+  details?: string;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
+  appLinkData?: AppLinkData;
+  /** View Unlock Requirement options for the offer. */
+  viewUnlockRequirement?: OfferClassViewUnlockRequirementEnum | (string & {});
+  /** Deprecated */
+  version?: string;
+  /** Translated strings for the title. Recommended maximum length is 60 characters to ensure full string is displayed on smaller screens. */
+  localizedTitle?: LocalizedString;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
   /** The wide title image of the offer. When provided, this will be used in place of the title image in the top left of the card view. */
   wideTitleImage?: Image;
+  /** Deprecated. */
+  wordMark?: Image;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | OfferClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
-  countryCode?: string;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
   /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
   enableSmartTap?: boolean;
-  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
-  hexBackgroundColor?: string;
-  /** Translated strings for the fine_print. */
-  localizedFinePrint?: LocalizedString;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
+  countryCode?: string;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** Required. The offer provider (either the aggregator name or merchant name). Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens. */
+  provider?: string;
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: OfferClassNotifyPreferenceEnum | (string & {});
+  /** The help link for the offer, such as `http://myownpersonaldomain.com/help` */
+  helpUri?: Uri;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
   /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
   allowMultipleUsersPerObject?: boolean;
-  /** Required. The title of the offer, such as "20% off any t-shirt." Recommended maximum length is 60 characters to ensure full string is displayed on smaller screens. */
-  title?: string;
-  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
-  heroImage?: Image;
-  /** The fine print or terms of the offer, such as "20% off any t-shirt at Adam's Apparel." */
-  finePrint?: string;
-  /** Translated strings for the details. */
-  localizedDetails?: LocalizedString;
-  /** The title image of the offer. This image is displayed in both the details and list views of the app. */
-  titleImage?: Image;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** The details of the offer. */
-  details?: string;
-  /** Deprecated */
-  version?: string;
-  /** Deprecated. */
-  wordMark?: Image;
-  /** Required. The redemption channels applicable to this offer. */
-  redemptionChannel?: OfferClassRedemptionChannelEnum | (string & {});
-  /** Required. The status of the class. This field can be set to `draft` or The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
-  reviewStatus?: OfferClassReviewStatusEnum | (string & {});
-  /** A shortened version of the title of the offer, such as "20% off," shown to users as a quick reference to the offer contents. Recommended maximum length is 20 characters. */
-  shortTitle?: string;
-  /** Translated strings for the title. Recommended maximum length is 60 characters to ensure full string is displayed on smaller screens. */
-  localizedTitle?: LocalizedString;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
-  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
-  appLinkData?: AppLinkData;
-  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
-  callbackOptions?: CallbackOptions;
   /** Note: This field is currently not supported to trigger geo notifications. */
   locations?: LatLongPointList;
   /** Translated strings for the short title. Recommended maximum length is 20 characters. */
   localizedShortTitle?: LocalizedString;
-  /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: OfferClassNotifyPreferenceEnum | (string & {});
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
+  /** Translated strings for the fine_print. */
+  localizedFinePrint?: LocalizedString;
+  /** Required. The title of the offer, such as "20% off any t-shirt." Recommended maximum length is 60 characters to ensure full string is displayed on smaller screens. */
+  title?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#offerClass"`. */
+  kind?: string;
+  /** The fine print or terms of the offer, such as "20% off any t-shirt at Adam's Apparel." */
+  finePrint?: string;
   /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
   id?: string;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
   /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
   localizedIssuerName?: LocalizedString;
-  /** Required. The offer provider (either the aggregator name or merchant name). Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens. */
-  provider?: string;
-  /** Translated strings for the provider. Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens. */
-  localizedProvider?: LocalizedString;
-  /** View Unlock Requirement options for the offer. */
-  viewUnlockRequirement?: OfferClassViewUnlockRequirementEnum | (string & {});
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
   /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
   review?: Review;
+  /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
+  hexBackgroundColor?: string;
+  /** Required. The redemption channels applicable to this offer. */
+  redemptionChannel?: OfferClassRedemptionChannelEnum | (string & {});
+  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
+  heroImage?: Image;
+  /** Translated strings for the details. */
+  localizedDetails?: LocalizedString;
+  /** The title image of the offer. This image is displayed in both the details and list views of the app. */
+  titleImage?: Image;
+  /** Translated strings for the provider. Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens. */
+  localizedProvider?: LocalizedString;
+  /** Required. The status of the class. This field can be set to `draft` or The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
+  reviewStatus?: OfferClassReviewStatusEnum | (string & {});
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
 }
 export const OfferClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    helpUri: S.optional(Uri),
-    kind: S.optional(S.String),
-    imageModulesData: S.optional(ImageModuleDataList),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    homepageUri: S.optional(Uri),
+    callbackOptions: S.optional(CallbackOptions),
+    shortTitle: S.optional(S.String),
+    details: S.optional(S.String),
+    appLinkData: S.optional(AppLinkData),
+    viewUnlockRequirement: S.optional(OfferClassViewUnlockRequirementEnum),
+    version: S.optional(S.String),
+    localizedTitle: S.optional(LocalizedString),
+    textModulesData: S.optional(TextModuleDataList),
+    securityAnimation: S.optional(SecurityAnimation),
     wideTitleImage: S.optional(Image),
+    wordMark: S.optional(Image),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       OfferClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    countryCode: S.optional(S.String),
-    messages: S.optional(MessageList),
+    linksModuleData: S.optional(LinksModuleData),
     enableSmartTap: S.optional(S.Boolean),
-    hexBackgroundColor: S.optional(S.String),
-    localizedFinePrint: S.optional(LocalizedString),
+    imageModulesData: S.optional(ImageModuleDataList),
+    countryCode: S.optional(S.String),
+    homepageUri: S.optional(Uri),
+    infoModuleData: S.optional(InfoModuleData),
+    provider: S.optional(S.String),
+    redemptionIssuers: S.optional(StringList),
+    notifyPreference: S.optional(OfferClassNotifyPreferenceEnum),
+    helpUri: S.optional(Uri),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
     allowMultipleUsersPerObject: S.optional(S.Boolean),
-    title: S.optional(S.String),
-    heroImage: S.optional(Image),
-    finePrint: S.optional(S.String),
-    localizedDetails: S.optional(LocalizedString),
-    titleImage: S.optional(Image),
-    textModulesData: S.optional(TextModuleDataList),
-    issuerName: S.optional(S.String),
-    details: S.optional(S.String),
-    version: S.optional(S.String),
-    wordMark: S.optional(Image),
-    redemptionChannel: S.optional(OfferClassRedemptionChannelEnum),
-    reviewStatus: S.optional(OfferClassReviewStatusEnum),
-    shortTitle: S.optional(S.String),
-    localizedTitle: S.optional(LocalizedString),
-    securityAnimation: S.optional(SecurityAnimation),
-    merchantLocations: S.optional(MerchantLocationList),
-    appLinkData: S.optional(AppLinkData),
-    callbackOptions: S.optional(CallbackOptions),
     locations: S.optional(LatLongPointList),
     localizedShortTitle: S.optional(LocalizedString),
-    notifyPreference: S.optional(OfferClassNotifyPreferenceEnum),
+    issuerName: S.optional(S.String),
+    localizedFinePrint: S.optional(LocalizedString),
+    title: S.optional(S.String),
+    kind: S.optional(S.String),
+    finePrint: S.optional(S.String),
     id: S.optional(S.String),
-    redemptionIssuers: S.optional(StringList),
-    linksModuleData: S.optional(LinksModuleData),
-    infoModuleData: S.optional(InfoModuleData),
-    classTemplateInfo: S.optional(ClassTemplateInfo),
     localizedIssuerName: S.optional(LocalizedString),
-    provider: S.optional(S.String),
-    localizedProvider: S.optional(LocalizedString),
-    viewUnlockRequirement: S.optional(OfferClassViewUnlockRequirementEnum),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
     review: S.optional(Review),
+    merchantLocations: S.optional(MerchantLocationList),
+    hexBackgroundColor: S.optional(S.String),
+    redemptionChannel: S.optional(OfferClassRedemptionChannelEnum),
+    heroImage: S.optional(Image),
+    localizedDetails: S.optional(LocalizedString),
+    titleImage: S.optional(Image),
+    localizedProvider: S.optional(LocalizedString),
+    reviewStatus: S.optional(OfferClassReviewStatusEnum),
+    messages: S.optional(MessageList),
   }),
 ).annotate({ identifier: "OfferClass" }) as any as S.Schema<OfferClass>;
 
@@ -3604,11 +3604,6 @@ export const AddmessageOfferobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageOfferobjectRequest",
 }) as any as S.Schema<AddmessageOfferobjectRequest>;
 
-export type OfferObjectNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const OfferObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
 export type OfferObjectStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
@@ -3621,94 +3616,99 @@ export type OfferObjectStateEnum =
   | "inactive";
 export const OfferObjectStateEnum = /*@__PURE__*/ S.String;
 
+export type OfferObjectNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const OfferObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
+
 export interface OfferObject {
-  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
-  validTimeInterval?: TimeInterval;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
-  disableExpirationNotification?: boolean;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
-  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: OfferObjectNotifyPreferenceEnum | (string & {});
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#offerObject"`. */
-  kind?: string;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
-  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
-  passConstraints?: PassConstraints;
-  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this offer object. If a user had saved this offer, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID.identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
-  /** The barcode type and value. */
-  barcode?: Barcode;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
   /** Information that controls how passes are grouped together. */
   groupingInfo?: GroupingInfo;
   /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
   messages?: MessageList;
-  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
-  heroImage?: Image;
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: OfferClass;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
-  /** Deprecated */
-  version?: string;
-  /** Links module data. If links module data is also defined on the class, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this offer object. If a user had saved this offer, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID.identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
   /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
   state?: OfferObjectStateEnum | (string & {});
+  /** The barcode type and value. */
+  barcode?: Barcode;
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: OfferClass;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
+  /** Deprecated */
+  version?: string;
+  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
+  validTimeInterval?: TimeInterval;
+  /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
+  heroImage?: Image;
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
+  disableExpirationNotification?: boolean;
+  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
+  passConstraints?: PassConstraints;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: OfferObjectNotifyPreferenceEnum | (string & {});
+  /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#offerObject"`. */
+  kind?: string;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** Links module data. If links module data is also defined on the class, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
 }
 export const OfferObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    validTimeInterval: S.optional(TimeInterval),
-    disableExpirationNotification: S.optional(S.Boolean),
-    smartTapRedemptionValue: S.optional(S.String),
-    notifyPreference: S.optional(OfferObjectNotifyPreferenceEnum),
-    kind: S.optional(S.String),
-    hasUsers: S.optional(S.Boolean),
-    passConstraints: S.optional(PassConstraints),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    locations: S.optional(LatLongPointList),
-    textModulesData: S.optional(TextModuleDataList),
-    infoModuleData: S.optional(InfoModuleData),
-    rotatingBarcode: S.optional(RotatingBarcode),
-    appLinkData: S.optional(AppLinkData),
-    id: S.optional(S.String),
-    linkedObjectIds: S.optional(StringList),
-    hasLinkedDevice: S.optional(S.Boolean),
-    classId: S.optional(S.String),
-    barcode: S.optional(Barcode),
-    merchantLocations: S.optional(MerchantLocationList),
     groupingInfo: S.optional(GroupingInfo),
     messages: S.optional(MessageList),
-    heroImage: S.optional(Image),
-    classReference: S.optional(OfferClass),
-    saveRestrictions: S.optional(SaveRestrictions),
-    version: S.optional(S.String),
-    linksModuleData: S.optional(LinksModuleData),
-    imageModulesData: S.optional(ImageModuleDataList),
+    linkedObjectIds: S.optional(StringList),
+    smartTapRedemptionValue: S.optional(S.String),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    hasLinkedDevice: S.optional(S.Boolean),
     state: S.optional(OfferObjectStateEnum),
+    barcode: S.optional(Barcode),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    infoModuleData: S.optional(InfoModuleData),
+    classReference: S.optional(OfferClass),
+    hasUsers: S.optional(S.Boolean),
+    version: S.optional(S.String),
+    validTimeInterval: S.optional(TimeInterval),
+    heroImage: S.optional(Image),
+    disableExpirationNotification: S.optional(S.Boolean),
+    passConstraints: S.optional(PassConstraints),
+    imageModulesData: S.optional(ImageModuleDataList),
+    saveRestrictions: S.optional(SaveRestrictions),
+    textModulesData: S.optional(TextModuleDataList),
+    merchantLocations: S.optional(MerchantLocationList),
+    notifyPreference: S.optional(OfferObjectNotifyPreferenceEnum),
+    id: S.optional(S.String),
+    kind: S.optional(S.String),
+    locations: S.optional(LatLongPointList),
+    classId: S.optional(S.String),
+    linksModuleData: S.optional(LinksModuleData),
+    appLinkData: S.optional(AppLinkData),
   }),
 ).annotate({ identifier: "OfferObject" }) as any as S.Schema<OfferObject>;
 
@@ -3745,19 +3745,16 @@ export const AddmessageTransitclassRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageTransitclassRequest",
 }) as any as S.Schema<AddmessageTransitclassRequest>;
 
-export type TransitClassTransitTypeEnum =
-  | "TRANSIT_TYPE_UNSPECIFIED"
-  | "BUS"
-  | "bus"
-  | "RAIL"
-  | "rail"
-  | "TRAM"
-  | "tram"
-  | "FERRY"
-  | "ferry"
-  | "OTHER"
-  | "other";
-export const TransitClassTransitTypeEnum = /*@__PURE__*/ S.String;
+export type TransitClassViewUnlockRequirementEnum =
+  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
+  | "UNLOCK_NOT_REQUIRED"
+  | "UNLOCK_REQUIRED_TO_VIEW";
+export const TransitClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
+
+export type TransitClassNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const TransitClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
 
 export type TransitClassReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
@@ -3771,10 +3768,16 @@ export type TransitClassReviewStatusEnum =
   | "draft";
 export const TransitClassReviewStatusEnum = /*@__PURE__*/ S.String;
 
-export type TransitClassNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const TransitClassNotifyPreferenceEnum = /*@__PURE__*/ S.String;
+export type TransitClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  | "STATUS_UNSPECIFIED"
+  | "MULTIPLE_HOLDERS"
+  | "ONE_USER_ALL_DEVICES"
+  | "ONE_USER_ONE_DEVICE"
+  | "multipleHolders"
+  | "oneUserAllDevices"
+  | "oneUserOneDevice";
+export const TransitClassMultipleDevicesAndHoldersAllowedStatusEnum =
+  /*@__PURE__*/ S.String;
 
 /** ActivationOptions for the class */
 export interface ActivationOptions {
@@ -3792,199 +3795,196 @@ export const ActivationOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActivationOptions",
 }) as any as S.Schema<ActivationOptions>;
 
-export type TransitClassViewUnlockRequirementEnum =
-  | "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED"
-  | "UNLOCK_NOT_REQUIRED"
-  | "UNLOCK_REQUIRED_TO_VIEW";
-export const TransitClassViewUnlockRequirementEnum = /*@__PURE__*/ S.String;
-
-export type TransitClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  | "STATUS_UNSPECIFIED"
-  | "MULTIPLE_HOLDERS"
-  | "ONE_USER_ALL_DEVICES"
-  | "ONE_USER_ONE_DEVICE"
-  | "multipleHolders"
-  | "oneUserAllDevices"
-  | "oneUserOneDevice";
-export const TransitClassMultipleDevicesAndHoldersAllowedStatusEnum =
-  /*@__PURE__*/ S.String;
+export type TransitClassTransitTypeEnum =
+  | "TRANSIT_TYPE_UNSPECIFIED"
+  | "BUS"
+  | "bus"
+  | "RAIL"
+  | "rail"
+  | "TRAM"
+  | "tram"
+  | "FERRY"
+  | "ferry"
+  | "OTHER"
+  | "other";
+export const TransitClassTransitTypeEnum = /*@__PURE__*/ S.String;
 
 export interface TransitClass {
-  /** A custom label to use for the transit discount message value (`transitObject.purchaseDetails.ticketCost.discountMessage`). */
-  customDiscountMessageLabel?: LocalizedString;
-  /** Controls the display of the single-leg itinerary for this class. By default, an itinerary will only display for multi-leg trips. */
-  enableSingleLegItinerary?: boolean;
-  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
-  heroImage?: Image;
-  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  enableSmartTap?: boolean;
-  /** A custom label to use for the boarding platform value (`transitObject.ticketLeg.platform`). */
-  customPlatformLabel?: LocalizedString;
   /** A custom label to use for the carriage value (`transitObject.ticketLeg.carriage`). */
   customCarriageLabel?: LocalizedString;
-  /** Required. The logo image of the ticket. This image is displayed in the card detail view of the app. */
-  logo?: Image;
-  /** A custom label to use for the coach value (`transitObject.ticketLeg.ticketSeat.coach`). */
-  customCoachLabel?: LocalizedString;
-  /** The name of the transit operator. */
-  transitOperatorName?: LocalizedString;
-  /** Watermark image to display on the user's device. */
-  watermark?: Image;
-  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
-  id?: string;
-  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
-  textModulesData?: TextModuleDataList;
-  /** A custom label to use for the route restrictions value (`transitObject.ticketRestrictions.routeRestrictions`). */
-  customRouteRestrictionsLabel?: LocalizedString;
-  /** A custom label to use for the transit fare name value (`transitObject.ticketLeg.fareName`). */
-  customFareNameLabel?: LocalizedString;
-  /** A custom label to use for the other restrictions value (`transitObject.ticketRestrictions.otherRestrictions`). */
-  customOtherRestrictionsLabel?: LocalizedString;
-  /** A custom label to use for the transit terminus name value (`transitObject.ticketLeg.transitTerminusName`). */
-  customTransitTerminusNameLabel?: LocalizedString;
-  /** Deprecated */
-  version?: string;
-  /** A custom label to use for the purchase face value (`transitObject.purchaseDetails.ticketCost.faceValue`). */
-  customPurchaseFaceValueLabel?: LocalizedString;
-  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
-  securityAnimation?: SecurityAnimation;
-  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  localizedIssuerName?: LocalizedString;
-  /** Required. The type of transit this class represents, such as "bus". */
-  transitType?: TransitClassTransitTypeEnum | (string & {});
-  /** A custom label to use for the fare class value (`transitObject.ticketLeg.ticketSeat.fareClass`). */
-  customFareClassLabel?: LocalizedString;
-  /** A custom label to use for the confirmation code value (`transitObject.purchaseDetails.confirmationCode`). */
-  customConfirmationCodeLabel?: LocalizedString;
-  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
-  callbackOptions?: CallbackOptions;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** If this field is present, transit tickets served to a user's device will always be in this language. Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
-  languageOverride?: string;
-  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** A custom label to use for the route restrictions details value (`transitObject.ticketRestrictions.routeRestrictionsDetails`). */
-  customRouteRestrictionsDetailsLabel?: LocalizedString;
-  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
-  issuerName?: string;
-  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
-  redemptionIssuers?: StringList;
-  /** A custom label to use for the ticket number value (`transitObject.ticketNumber`). */
-  customTicketNumberLabel?: LocalizedString;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
   /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead. */
   appLinkData?: AppLinkData;
-  /** A custom label to use for the transit concession category value (`transitObject.concessionCategory`). */
-  customConcessionCategoryLabel?: LocalizedString;
-  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
-  reviewStatus?: TransitClassReviewStatusEnum | (string & {});
-  /** A custom label to use for the purchase receipt number value (`transitObject.purchaseDetails.purchaseReceiptNumber`). */
-  customPurchaseReceiptNumberLabel?: LocalizedString;
+  /** A custom label to use for the transit discount message value (`transitObject.purchaseDetails.ticketCost.discountMessage`). */
+  customDiscountMessageLabel?: LocalizedString;
+  /** A custom label to use for the fare class value (`transitObject.ticketLeg.ticketSeat.fareClass`). */
+  customFareClassLabel?: LocalizedString;
+  /** Optional banner image displayed on the front of the card. If none is present, nothing will be displayed. The image will display at 100% width. */
+  heroImage?: Image;
+  /** A custom label to use for the seat location value (`transitObject.ticketLeg.ticketSeat.seat`). */
+  customSeatLabel?: LocalizedString;
+  /** The wide logo of the ticket. When provided, this will be used in place of the logo in the top left of the card view. */
+  wideLogo?: Image;
+  /** Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** A custom label to use for the boarding platform value (`transitObject.ticketLeg.platform`). */
+  customPlatformLabel?: LocalizedString;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
+  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
+  countryCode?: string;
+  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
+  homepageUri?: Uri;
+  /** If this field is present, transit tickets served to a user's device will always be in this language. Represents the BCP 47 language tag. Example values are "en-US", "en-GB", "de", or "de-AT". */
+  languageOverride?: string;
+  /** Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  localizedIssuerName?: LocalizedString;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** View Unlock Requirement options for the transit ticket. */
+  viewUnlockRequirement?: TransitClassViewUnlockRequirementEnum | (string & {});
   /** Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
   notifyPreference?: TransitClassNotifyPreferenceEnum | (string & {});
   /** A custom label to use for the boarding zone value (`transitObject.ticketLeg.zone`). */
   customZoneLabel?: LocalizedString;
-  /** A custom label to use for the purchase price value (`transitObject.purchaseDetails.ticketCost.purchasePrice`). */
-  customPurchasePriceLabel?: LocalizedString;
-  /** Activation options for an activatable ticket. */
-  activationOptions?: ActivationOptions;
-  /** The wide logo of the ticket. When provided, this will be used in place of the logo in the top left of the card view. */
-  wideLogo?: Image;
-  /** A custom label to use for the seat location value (`transitObject.ticketLeg.ticketSeat.seat`). */
-  customSeatLabel?: LocalizedString;
-  /** Deprecated. */
-  wordMark?: Image;
   /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
   hexBackgroundColor?: string;
-  /** View Unlock Requirement options for the transit ticket. */
-  viewUnlockRequirement?: TransitClassViewUnlockRequirementEnum | (string & {});
+  /** Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  redemptionIssuers?: StringList;
+  /** The name of the transit operator. */
+  transitOperatorName?: LocalizedString;
+  /** A custom label to use for the coach value (`transitObject.ticketLeg.ticketSeat.coach`). */
+  customCoachLabel?: LocalizedString;
+  /** A custom label to use for the purchase receipt number value (`transitObject.purchaseDetails.purchaseReceiptNumber`). */
+  customPurchaseReceiptNumberLabel?: LocalizedString;
+  /** Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. */
+  issuerName?: string;
   /** Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
   merchantLocations?: MerchantLocationList;
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
+  /** Controls the display of the single-leg itinerary for this class. By default, an itinerary will only display for multi-leg trips. */
+  enableSingleLegItinerary?: boolean;
+  /** Required. The status of the class. This field can be set to `draft` or `underReview` using the insert, patch, or update API calls. Once the review state is changed from `draft` it may not be changed back to `draft`. You should keep this field to `draft` when the class is under development. A `draft` class cannot be used to create any object. You should set this field to `underReview` when you believe the class is ready for use. The platform will automatically set this field to `approved` and it can be immediately used to create or migrate objects. When updating an already `approved` class you should keep setting this field to `underReview`. */
+  reviewStatus?: TransitClassReviewStatusEnum | (string & {});
+  /** A custom label to use for the route restrictions value (`transitObject.ticketRestrictions.routeRestrictions`). */
+  customRouteRestrictionsLabel?: LocalizedString;
+  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
+  classTemplateInfo?: ClassTemplateInfo;
   /** Identifies whether multiple users and devices will save the same object referencing this class. */
   multipleDevicesAndHoldersAllowedStatus?:
     | TransitClassMultipleDevicesAndHoldersAllowedStatusEnum
     | (string & {});
-  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
-  review?: Review;
-  /** Template information about how the class should be displayed. If unset, Google will fallback to a default set of fields to display. */
-  classTemplateInfo?: ClassTemplateInfo;
-  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
-  allowMultipleUsersPerObject?: boolean;
-  /** The URI of your application's home page. Populating the URI in this field results in the exact same behavior as populating an URI in linksModuleData (when an object is rendered, a link to the homepage is shown in what would usually be thought of as the linksModuleData section of the object). */
-  homepageUri?: Uri;
-  /** Links module data. If links module data is also defined on the object, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** Country code used to display the card's country (when the user is not in that country), as well as to display localized content when content is not available in the user's locale. */
-  countryCode?: string;
+  /** Activation options for an activatable ticket. */
+  activationOptions?: ActivationOptions;
+  /** Required. The type of transit this class represents, such as "bus". */
+  transitType?: TransitClassTransitTypeEnum | (string & {});
+  /** Deprecated. */
+  wordMark?: Image;
+  /** A custom label to use for the transit fare name value (`transitObject.ticketLeg.fareName`). */
+  customFareNameLabel?: LocalizedString;
   /** A custom label to use for the time restrictions details value (`transitObject.ticketRestrictions.timeRestrictions`). */
   customTimeRestrictionsLabel?: LocalizedString;
+  /** Identifies whether this class supports Smart Tap. The `redemptionIssuers` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap. */
+  enableSmartTap?: boolean;
+  /** Deprecated */
+  version?: string;
+  /** A custom label to use for the confirmation code value (`transitObject.purchaseDetails.confirmationCode`). */
+  customConfirmationCodeLabel?: LocalizedString;
+  /** Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead. */
+  allowMultipleUsersPerObject?: boolean;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
+  textModulesData?: TextModuleDataList;
+  /** Optional information about the security animation. If this is set a security animation will be rendered on pass details. */
+  securityAnimation?: SecurityAnimation;
+  /** Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback. */
+  callbackOptions?: CallbackOptions;
+  /** A custom label to use for the purchase face value (`transitObject.purchaseDetails.ticketCost.faceValue`). */
+  customPurchaseFaceValueLabel?: LocalizedString;
+  /** A custom label to use for the route restrictions details value (`transitObject.ticketRestrictions.routeRestrictionsDetails`). */
+  customRouteRestrictionsDetailsLabel?: LocalizedString;
+  /** The review comments set by the platform when a class is marked `approved` or `rejected`. */
+  review?: Review;
+  /** Required. The logo image of the ticket. This image is displayed in the card detail view of the app. */
+  logo?: Image;
+  /** A custom label to use for the transit terminus name value (`transitObject.ticketLeg.transitTerminusName`). */
+  customTransitTerminusNameLabel?: LocalizedString;
+  /** Links module data. If links module data is also defined on the object, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Watermark image to display on the user's device. */
+  watermark?: Image;
+  /** A custom label to use for the purchase price value (`transitObject.purchaseDetails.ticketCost.purchasePrice`). */
+  customPurchasePriceLabel?: LocalizedString;
+  /** A custom label to use for the transit concession category value (`transitObject.concessionCategory`). */
+  customConcessionCategoryLabel?: LocalizedString;
+  /** A custom label to use for the ticket number value (`transitObject.ticketNumber`). */
+  customTicketNumberLabel?: LocalizedString;
+  /** Required. The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
+  id?: string;
+  /** A custom label to use for the other restrictions value (`transitObject.ticketRestrictions.otherRestrictions`). */
+  customOtherRestrictionsLabel?: LocalizedString;
 }
 export const TransitClass = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customDiscountMessageLabel: S.optional(LocalizedString),
-    enableSingleLegItinerary: S.optional(S.Boolean),
-    heroImage: S.optional(Image),
-    enableSmartTap: S.optional(S.Boolean),
-    customPlatformLabel: S.optional(LocalizedString),
     customCarriageLabel: S.optional(LocalizedString),
-    logo: S.optional(Image),
-    customCoachLabel: S.optional(LocalizedString),
-    transitOperatorName: S.optional(LocalizedString),
-    watermark: S.optional(Image),
-    id: S.optional(S.String),
-    textModulesData: S.optional(TextModuleDataList),
-    customRouteRestrictionsLabel: S.optional(LocalizedString),
-    customFareNameLabel: S.optional(LocalizedString),
-    customOtherRestrictionsLabel: S.optional(LocalizedString),
-    customTransitTerminusNameLabel: S.optional(LocalizedString),
-    version: S.optional(S.String),
-    customPurchaseFaceValueLabel: S.optional(LocalizedString),
-    securityAnimation: S.optional(SecurityAnimation),
-    localizedIssuerName: S.optional(LocalizedString),
-    transitType: S.optional(TransitClassTransitTypeEnum),
-    customFareClassLabel: S.optional(LocalizedString),
-    customConfirmationCodeLabel: S.optional(LocalizedString),
-    callbackOptions: S.optional(CallbackOptions),
-    messages: S.optional(MessageList),
-    languageOverride: S.optional(S.String),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    customRouteRestrictionsDetailsLabel: S.optional(LocalizedString),
-    issuerName: S.optional(S.String),
-    redemptionIssuers: S.optional(StringList),
-    customTicketNumberLabel: S.optional(LocalizedString),
-    infoModuleData: S.optional(InfoModuleData),
     appLinkData: S.optional(AppLinkData),
-    customConcessionCategoryLabel: S.optional(LocalizedString),
-    reviewStatus: S.optional(TransitClassReviewStatusEnum),
-    customPurchaseReceiptNumberLabel: S.optional(LocalizedString),
+    customDiscountMessageLabel: S.optional(LocalizedString),
+    customFareClassLabel: S.optional(LocalizedString),
+    heroImage: S.optional(Image),
+    customSeatLabel: S.optional(LocalizedString),
+    wideLogo: S.optional(Image),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    infoModuleData: S.optional(InfoModuleData),
+    customPlatformLabel: S.optional(LocalizedString),
+    locations: S.optional(LatLongPointList),
+    countryCode: S.optional(S.String),
+    homepageUri: S.optional(Uri),
+    languageOverride: S.optional(S.String),
+    localizedIssuerName: S.optional(LocalizedString),
+    messages: S.optional(MessageList),
+    viewUnlockRequirement: S.optional(TransitClassViewUnlockRequirementEnum),
     notifyPreference: S.optional(TransitClassNotifyPreferenceEnum),
     customZoneLabel: S.optional(LocalizedString),
-    customPurchasePriceLabel: S.optional(LocalizedString),
-    activationOptions: S.optional(ActivationOptions),
-    wideLogo: S.optional(Image),
-    customSeatLabel: S.optional(LocalizedString),
-    wordMark: S.optional(Image),
     hexBackgroundColor: S.optional(S.String),
-    viewUnlockRequirement: S.optional(TransitClassViewUnlockRequirementEnum),
+    redemptionIssuers: S.optional(StringList),
+    transitOperatorName: S.optional(LocalizedString),
+    customCoachLabel: S.optional(LocalizedString),
+    customPurchaseReceiptNumberLabel: S.optional(LocalizedString),
+    issuerName: S.optional(S.String),
     merchantLocations: S.optional(MerchantLocationList),
-    locations: S.optional(LatLongPointList),
+    enableSingleLegItinerary: S.optional(S.Boolean),
+    reviewStatus: S.optional(TransitClassReviewStatusEnum),
+    customRouteRestrictionsLabel: S.optional(LocalizedString),
+    classTemplateInfo: S.optional(ClassTemplateInfo),
     multipleDevicesAndHoldersAllowedStatus: S.optional(
       TransitClassMultipleDevicesAndHoldersAllowedStatusEnum,
     ),
-    review: S.optional(Review),
-    classTemplateInfo: S.optional(ClassTemplateInfo),
-    allowMultipleUsersPerObject: S.optional(S.Boolean),
-    homepageUri: S.optional(Uri),
-    linksModuleData: S.optional(LinksModuleData),
-    imageModulesData: S.optional(ImageModuleDataList),
-    countryCode: S.optional(S.String),
+    activationOptions: S.optional(ActivationOptions),
+    transitType: S.optional(TransitClassTransitTypeEnum),
+    wordMark: S.optional(Image),
+    customFareNameLabel: S.optional(LocalizedString),
     customTimeRestrictionsLabel: S.optional(LocalizedString),
+    enableSmartTap: S.optional(S.Boolean),
+    version: S.optional(S.String),
+    customConfirmationCodeLabel: S.optional(LocalizedString),
+    allowMultipleUsersPerObject: S.optional(S.Boolean),
+    imageModulesData: S.optional(ImageModuleDataList),
+    textModulesData: S.optional(TextModuleDataList),
+    securityAnimation: S.optional(SecurityAnimation),
+    callbackOptions: S.optional(CallbackOptions),
+    customPurchaseFaceValueLabel: S.optional(LocalizedString),
+    customRouteRestrictionsDetailsLabel: S.optional(LocalizedString),
+    review: S.optional(Review),
+    logo: S.optional(Image),
+    customTransitTerminusNameLabel: S.optional(LocalizedString),
+    linksModuleData: S.optional(LinksModuleData),
+    watermark: S.optional(Image),
+    customPurchasePriceLabel: S.optional(LocalizedString),
+    customConcessionCategoryLabel: S.optional(LocalizedString),
+    customTicketNumberLabel: S.optional(LocalizedString),
+    id: S.optional(S.String),
+    customOtherRestrictionsLabel: S.optional(LocalizedString),
   }),
 ).annotate({ identifier: "TransitClass" }) as any as S.Schema<TransitClass>;
 
@@ -4021,91 +4021,45 @@ export const AddmessageTransitobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddmessageTransitobjectRequest",
 }) as any as S.Schema<AddmessageTransitobjectRequest>;
 
-export type TicketSeatFareClassEnum =
-  | "FARE_CLASS_UNSPECIFIED"
-  | "ECONOMY"
-  | "economy"
-  | "FIRST"
-  | "first"
-  | "BUSINESS"
-  | "business";
-export const TicketSeatFareClassEnum = /*@__PURE__*/ S.String;
-
-export interface TicketSeat {
-  /** The identifier of where the ticketed seat is located. Eg. "42". If there is no specific identifier, use `seatAssigment` instead. */
-  seat?: string;
-  /** A custome fare class to be used if no `fareClass` applies. Both `fareClass` and `customFareClass` may not be set. */
-  customFareClass?: LocalizedString;
-  /** The passenger's seat assignment. Eg. "no specific seat". To be used when there is no specific identifier to use in `seat`. */
-  seatAssignment?: LocalizedString;
-  /** The fare class of the ticketed seat. */
-  fareClass?: TicketSeatFareClassEnum | (string & {});
-  /** The identifier of the train car or coach in which the ticketed seat is located. Eg. "10" */
-  coach?: string;
+export interface TicketCost {
+  /** The actual purchase price of the ticket, after tax and/or discounts. */
+  purchasePrice?: Money;
+  /** The face value of the ticket. */
+  faceValue?: Money;
+  /** A message describing any kind of discount that was applied. */
+  discountMessage?: LocalizedString;
 }
-export const TicketSeat = /*@__PURE__*/ S.suspend(() =>
+export const TicketCost = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    seat: S.optional(S.String),
-    customFareClass: S.optional(LocalizedString),
-    seatAssignment: S.optional(LocalizedString),
-    fareClass: S.optional(TicketSeatFareClassEnum),
-    coach: S.optional(S.String),
+    purchasePrice: S.optional(Money),
+    faceValue: S.optional(Money),
+    discountMessage: S.optional(LocalizedString),
   }),
-).annotate({ identifier: "TicketSeat" }) as any as S.Schema<TicketSeat>;
+).annotate({ identifier: "TicketCost" }) as any as S.Schema<TicketCost>;
 
-export type TicketSeatList = Array<TicketSeat>;
-export const TicketSeatList = /*@__PURE__*/ S.Array(
-  TicketSeat,
-) as any as S.Schema<TicketSeatList>;
-
-export interface TicketLeg {
-  /** The reserved seat for the passenger(s). If only one seat is to be specified then use the `ticketSeat` field instead. Both `ticketSeat` and `ticketSeats` may not be set. */
-  ticketSeats?: TicketSeatList;
-  /** Terminus station or destination of the train/bus/etc. */
-  transitTerminusName?: LocalizedString;
-  /** The train or ship name/number that the passsenger needs to board. */
-  carriage?: string;
-  /** The date/time of arrival. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the destination station. For example, if the event occurs at the 20th hour of June 5th, 2018 at the destination station, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the destination station is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
-  arrivalDateTime?: string;
-  /** The platform or gate where the passenger can board the carriage. */
-  platform?: string;
-  /** The origin station code. This is required if `destinationStationCode` is present or if `originName` is not present. */
-  originStationCode?: string;
-  /** The date/time of departure. This is required if there is no validity time interval set on the transit object. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the origin station. For example, if the departure occurs at the 20th hour of June 5th, 2018 at the origin station, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the origin station is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
-  departureDateTime?: string;
-  /** The reserved seat for the passenger(s). If more than one seat is to be specified then use the `ticketSeats` field instead. Both `ticketSeat` and `ticketSeats` may not be set. */
-  ticketSeat?: TicketSeat;
-  /** The name of the transit operator that is operating this leg of a trip. */
-  transitOperatorName?: LocalizedString;
-  /** The destination name. */
-  destinationName?: LocalizedString;
-  /** Short description/name of the fare for this leg of travel. Eg "Anytime Single Use". */
-  fareName?: LocalizedString;
-  /** The destination station code. */
-  destinationStationCode?: string;
-  /** The zone of boarding within the platform. */
-  zone?: string;
-  /** The name of the origin station. This is required if `desinationName` is present or if `originStationCode` is not present. */
-  originName?: LocalizedString;
+export interface PurchaseDetails {
+  /** Receipt number/identifier for tracking the ticket purchase via the body that sold the ticket. */
+  purchaseReceiptNumber?: string;
+  /** ID of the account used to purchase the ticket. */
+  accountId?: string;
+  /** The cost of the ticket. */
+  ticketCost?: TicketCost;
+  /** The confirmation code for the purchase. This may be the same for multiple different tickets and is used to group tickets together. */
+  confirmationCode?: string;
+  /** The purchase date/time of the ticket. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. Without offset information, some rich features may not be available. */
+  purchaseDateTime?: string;
 }
-export const TicketLeg = /*@__PURE__*/ S.suspend(() =>
+export const PurchaseDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ticketSeats: S.optional(TicketSeatList),
-    transitTerminusName: S.optional(LocalizedString),
-    carriage: S.optional(S.String),
-    arrivalDateTime: S.optional(S.String),
-    platform: S.optional(S.String),
-    originStationCode: S.optional(S.String),
-    departureDateTime: S.optional(S.String),
-    ticketSeat: S.optional(TicketSeat),
-    transitOperatorName: S.optional(LocalizedString),
-    destinationName: S.optional(LocalizedString),
-    fareName: S.optional(LocalizedString),
-    destinationStationCode: S.optional(S.String),
-    zone: S.optional(S.String),
-    originName: S.optional(LocalizedString),
+    purchaseReceiptNumber: S.optional(S.String),
+    accountId: S.optional(S.String),
+    ticketCost: S.optional(TicketCost),
+    confirmationCode: S.optional(S.String),
+    purchaseDateTime: S.optional(S.String),
   }),
-).annotate({ identifier: "TicketLeg" }) as any as S.Schema<TicketLeg>;
+).annotate({
+  identifier: "PurchaseDetails",
+}) as any as S.Schema<PurchaseDetails>;
 
 export type ActivationStatusStateEnum =
   | "UNKNOWN_STATE"
@@ -4127,106 +4081,34 @@ export const ActivationStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActivationStatus",
 }) as any as S.Schema<ActivationStatus>;
 
-export type TransitObjectNotifyPreferenceEnum =
-  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
-  | "NOTIFY_ON_UPDATE";
-export const TransitObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
-
-/** Device context associated with the object. */
-export interface DeviceContext {
-  /** If set, redemption information will only be returned to the given device upon activation of the object. This should not be used as a stable identifier to trace a user's device. It can change across different passes for the same device or even across different activations for the same device. When setting this, callers must also set has_linked_device on the object being activated. */
-  deviceToken?: string;
-}
-export const DeviceContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceToken: S.optional(S.String),
-  }),
-).annotate({ identifier: "DeviceContext" }) as any as S.Schema<DeviceContext>;
-
-export interface TicketCost {
-  /** The face value of the ticket. */
-  faceValue?: Money;
-  /** A message describing any kind of discount that was applied. */
-  discountMessage?: LocalizedString;
-  /** The actual purchase price of the ticket, after tax and/or discounts. */
-  purchasePrice?: Money;
-}
-export const TicketCost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    faceValue: S.optional(Money),
-    discountMessage: S.optional(LocalizedString),
-    purchasePrice: S.optional(Money),
-  }),
-).annotate({ identifier: "TicketCost" }) as any as S.Schema<TicketCost>;
-
-export interface PurchaseDetails {
-  /** The purchase date/time of the ticket. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. Without offset information, some rich features may not be available. */
-  purchaseDateTime?: string;
-  /** The cost of the ticket. */
-  ticketCost?: TicketCost;
-  /** The confirmation code for the purchase. This may be the same for multiple different tickets and is used to group tickets together. */
-  confirmationCode?: string;
-  /** ID of the account used to purchase the ticket. */
-  accountId?: string;
-  /** Receipt number/identifier for tracking the ticket purchase via the body that sold the ticket. */
-  purchaseReceiptNumber?: string;
-}
-export const PurchaseDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    purchaseDateTime: S.optional(S.String),
-    ticketCost: S.optional(TicketCost),
-    confirmationCode: S.optional(S.String),
-    accountId: S.optional(S.String),
-    purchaseReceiptNumber: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PurchaseDetails",
-}) as any as S.Schema<PurchaseDetails>;
-
-export type TransitObjectTicketStatusEnum =
-  | "TICKET_STATUS_UNSPECIFIED"
-  | "USED"
-  | "used"
-  | "REFUNDED"
-  | "refunded"
-  | "EXCHANGED"
-  | "exchanged";
-export const TransitObjectTicketStatusEnum = /*@__PURE__*/ S.String;
-
-export type TransitObjectPassengerTypeEnum =
-  | "PASSENGER_TYPE_UNSPECIFIED"
-  | "SINGLE_PASSENGER"
-  | "singlePassenger"
-  | "MULTIPLE_PASSENGERS"
-  | "multiplePassengers";
-export const TransitObjectPassengerTypeEnum = /*@__PURE__*/ S.String;
-
-export type TransitObjectConcessionCategoryEnum =
-  | "CONCESSION_CATEGORY_UNSPECIFIED"
-  | "ADULT"
-  | "adult"
-  | "CHILD"
-  | "child"
-  | "SENIOR"
-  | "senior";
-export const TransitObjectConcessionCategoryEnum = /*@__PURE__*/ S.String;
+export type TransitObjectStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "active"
+  | "COMPLETED"
+  | "completed"
+  | "EXPIRED"
+  | "expired"
+  | "INACTIVE"
+  | "inactive";
+export const TransitObjectStateEnum = /*@__PURE__*/ S.String;
 
 export interface TicketRestrictions {
   /** Restrictions about routes that may be taken. For example, this may be the string "Reserved CrossCountry trains only". */
   routeRestrictions?: LocalizedString;
-  /** More details about the above `routeRestrictions`. */
-  routeRestrictionsDetails?: LocalizedString;
   /** Restrictions about times this ticket may be used. */
   timeRestrictions?: LocalizedString;
   /** Extra restrictions that don't fall under the "route" or "time" categories. */
   otherRestrictions?: LocalizedString;
+  /** More details about the above `routeRestrictions`. */
+  routeRestrictionsDetails?: LocalizedString;
 }
 export const TicketRestrictions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     routeRestrictions: S.optional(LocalizedString),
-    routeRestrictionsDetails: S.optional(LocalizedString),
     timeRestrictions: S.optional(LocalizedString),
     otherRestrictions: S.optional(LocalizedString),
+    routeRestrictionsDetails: S.optional(LocalizedString),
   }),
 ).annotate({
   identifier: "TicketRestrictions",
@@ -4240,156 +4122,274 @@ export type TransitObjectTripTypeEnum =
   | "oneWay";
 export const TransitObjectTripTypeEnum = /*@__PURE__*/ S.String;
 
+export type TicketSeatFareClassEnum =
+  | "FARE_CLASS_UNSPECIFIED"
+  | "ECONOMY"
+  | "economy"
+  | "FIRST"
+  | "first"
+  | "BUSINESS"
+  | "business";
+export const TicketSeatFareClassEnum = /*@__PURE__*/ S.String;
+
+export interface TicketSeat {
+  /** The fare class of the ticketed seat. */
+  fareClass?: TicketSeatFareClassEnum | (string & {});
+  /** The passenger's seat assignment. Eg. "no specific seat". To be used when there is no specific identifier to use in `seat`. */
+  seatAssignment?: LocalizedString;
+  /** A custome fare class to be used if no `fareClass` applies. Both `fareClass` and `customFareClass` may not be set. */
+  customFareClass?: LocalizedString;
+  /** The identifier of where the ticketed seat is located. Eg. "42". If there is no specific identifier, use `seatAssigment` instead. */
+  seat?: string;
+  /** The identifier of the train car or coach in which the ticketed seat is located. Eg. "10" */
+  coach?: string;
+}
+export const TicketSeat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fareClass: S.optional(TicketSeatFareClassEnum),
+    seatAssignment: S.optional(LocalizedString),
+    customFareClass: S.optional(LocalizedString),
+    seat: S.optional(S.String),
+    coach: S.optional(S.String),
+  }),
+).annotate({ identifier: "TicketSeat" }) as any as S.Schema<TicketSeat>;
+
+export type TicketSeatList = Array<TicketSeat>;
+export const TicketSeatList = /*@__PURE__*/ S.Array(
+  TicketSeat,
+) as any as S.Schema<TicketSeatList>;
+
+export interface TicketLeg {
+  /** The date/time of arrival. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the destination station. For example, if the event occurs at the 20th hour of June 5th, 2018 at the destination station, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the destination station is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
+  arrivalDateTime?: string;
+  /** The zone of boarding within the platform. */
+  zone?: string;
+  /** The reserved seat for the passenger(s). If only one seat is to be specified then use the `ticketSeat` field instead. Both `ticketSeat` and `ticketSeats` may not be set. */
+  ticketSeats?: TicketSeatList;
+  /** Short description/name of the fare for this leg of travel. Eg "Anytime Single Use". */
+  fareName?: LocalizedString;
+  /** The train or ship name/number that the passsenger needs to board. */
+  carriage?: string;
+  /** Terminus station or destination of the train/bus/etc. */
+  transitTerminusName?: LocalizedString;
+  /** The destination station code. */
+  destinationStationCode?: string;
+  /** The name of the transit operator that is operating this leg of a trip. */
+  transitOperatorName?: LocalizedString;
+  /** The reserved seat for the passenger(s). If more than one seat is to be specified then use the `ticketSeats` field instead. Both `ticketSeat` and `ticketSeats` may not be set. */
+  ticketSeat?: TicketSeat;
+  /** The date/time of departure. This is required if there is no validity time interval set on the transit object. This is an ISO 8601 extended format date/time, with or without an offset. Time may be specified up to nanosecond precision. Offsets may be specified with seconds precision (even though offset seconds is not part of ISO 8601). For example: `1985-04-12T23:20:50.52Z` would be 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC. `1985-04-12T19:20:50.52-04:00` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985, 4 hours before UTC (same instant in time as the above example). If the event were in New York, this would be the equivalent of Eastern Daylight Time (EDT). Remember that offset varies in regions that observe Daylight Saving Time (or Summer Time), depending on the time of the year. `1985-04-12T19:20:50.52` would be 20 minutes and 50.52 seconds after the 19th hour of April 12th, 1985 with no offset information. The portion of the date/time without the offset is considered the "local date/time". This should be the local date/time at the origin station. For example, if the departure occurs at the 20th hour of June 5th, 2018 at the origin station, the local date/time portion should be `2018-06-05T20:00:00`. If the local date/time at the origin station is 4 hours before UTC, an offset of `-04:00` may be appended. Without offset information, some rich features may not be available. */
+  departureDateTime?: string;
+  /** The origin station code. This is required if `destinationStationCode` is present or if `originName` is not present. */
+  originStationCode?: string;
+  /** The platform or gate where the passenger can board the carriage. */
+  platform?: string;
+  /** The name of the origin station. This is required if `desinationName` is present or if `originStationCode` is not present. */
+  originName?: LocalizedString;
+  /** The destination name. */
+  destinationName?: LocalizedString;
+}
+export const TicketLeg = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    arrivalDateTime: S.optional(S.String),
+    zone: S.optional(S.String),
+    ticketSeats: S.optional(TicketSeatList),
+    fareName: S.optional(LocalizedString),
+    carriage: S.optional(S.String),
+    transitTerminusName: S.optional(LocalizedString),
+    destinationStationCode: S.optional(S.String),
+    transitOperatorName: S.optional(LocalizedString),
+    ticketSeat: S.optional(TicketSeat),
+    departureDateTime: S.optional(S.String),
+    originStationCode: S.optional(S.String),
+    platform: S.optional(S.String),
+    originName: S.optional(LocalizedString),
+    destinationName: S.optional(LocalizedString),
+  }),
+).annotate({ identifier: "TicketLeg" }) as any as S.Schema<TicketLeg>;
+
 export type TicketLegList = Array<TicketLeg>;
 export const TicketLegList = /*@__PURE__*/ S.Array(
   TicketLeg,
 ) as any as S.Schema<TicketLegList>;
 
-export type TransitObjectStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "active"
-  | "COMPLETED"
-  | "completed"
-  | "EXPIRED"
-  | "expired"
-  | "INACTIVE"
-  | "inactive";
-export const TransitObjectStateEnum = /*@__PURE__*/ S.String;
+export type TransitObjectTicketStatusEnum =
+  | "TICKET_STATUS_UNSPECIFIED"
+  | "USED"
+  | "used"
+  | "REFUNDED"
+  | "refunded"
+  | "EXCHANGED"
+  | "exchanged";
+export const TransitObjectTicketStatusEnum = /*@__PURE__*/ S.String;
+
+/** Device context associated with the object. */
+export interface DeviceContext {
+  /** If set, redemption information will only be returned to the given device upon activation of the object. This should not be used as a stable identifier to trace a user's device. It can change across different passes for the same device or even across different activations for the same device. When setting this, callers must also set has_linked_device on the object being activated. */
+  deviceToken?: string;
+}
+export const DeviceContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceToken: S.optional(S.String),
+  }),
+).annotate({ identifier: "DeviceContext" }) as any as S.Schema<DeviceContext>;
+
+export type TransitObjectNotifyPreferenceEnum =
+  | "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED"
+  | "NOTIFY_ON_UPDATE";
+export const TransitObjectNotifyPreferenceEnum = /*@__PURE__*/ S.String;
+
+export type TransitObjectConcessionCategoryEnum =
+  | "CONCESSION_CATEGORY_UNSPECIFIED"
+  | "ADULT"
+  | "adult"
+  | "CHILD"
+  | "child"
+  | "SENIOR"
+  | "senior";
+export const TransitObjectConcessionCategoryEnum = /*@__PURE__*/ S.String;
+
+export type TransitObjectPassengerTypeEnum =
+  | "PASSENGER_TYPE_UNSPECIFIED"
+  | "SINGLE_PASSENGER"
+  | "singlePassenger"
+  | "MULTIPLE_PASSENGERS"
+  | "multiplePassengers";
+export const TransitObjectPassengerTypeEnum = /*@__PURE__*/ S.String;
 
 export interface TransitObject {
-  /** A custom concession category to use when `concessionCategory` does not provide the right option. Both `concessionCategory` and `customConcessionCategory` may not be set. */
-  customConcessionCategory?: LocalizedString;
-  /** A single ticket leg contains departure and arrival information along with boarding and seating information. If more than one leg is to be specified then use the `ticketLegs` field instead. Both `ticketLeg` and `ticketLegs` may not be set. */
-  ticketLeg?: TicketLeg;
-  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
-  disableExpirationNotification?: boolean;
-  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
-  valueAddedModuleData?: ValueAddedModuleDataList;
-  /** The name(s) of the passengers the ticket is assigned to. The above `passengerType` field is meant to give Google context on this field. */
-  passengerNames?: string;
-  /** The activation status for the object. Required if the class has `activationOptions` set. */
-  activationStatus?: ActivationStatus;
-  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
-  merchantLocations?: MerchantLocationList;
-  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
-  notifyPreference?: TransitObjectNotifyPreferenceEnum | (string & {});
   /** Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class. */
   textModulesData?: TextModuleDataList;
-  /** Information that controls how passes are grouped together. */
-  groupingInfo?: GroupingInfo;
-  /** Device context associated with the object. */
-  deviceContext?: DeviceContext;
-  /** Purchase details for this ticket. */
-  purchaseDetails?: PurchaseDetails;
-  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
-  messages?: MessageList;
-  /** The status of the ticket. For states which affect display, use the `state` field instead. */
-  ticketStatus?: TransitObjectTicketStatusEnum | (string & {});
-  /** Note: This field is currently not supported to trigger geo notifications. */
-  locations?: LatLongPointList;
-  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
-  passConstraints?: PassConstraints;
-  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
-  smartTapRedemptionValue?: string;
-  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
-  classId?: string;
-  /** The barcode type and value. */
-  barcode?: Barcode;
-  /** Deprecated. Use textModulesData instead. */
-  infoModuleData?: InfoModuleData;
-  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
-  imageModulesData?: ImageModuleDataList;
-  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
-  hasLinkedDevice?: boolean;
-  /** The number of passengers. */
-  passengerType?: TransitObjectPassengerTypeEnum | (string & {});
-  /** This id is used to group tickets together if the user has saved multiple tickets for the same trip. */
-  tripId?: string;
-  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
-  saveRestrictions?: SaveRestrictions;
-  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this transit object. If a user had saved this transit card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
-  linkedObjectIds?: StringList;
-  /** The concession category for the ticket. */
-  concessionCategory?: TransitObjectConcessionCategoryEnum | (string & {});
-  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
-  appLinkData?: AppLinkData;
-  /** Information about what kind of restrictions there are on using this ticket. For example, which days of the week it must be used, or which routes are allowed to be taken. */
-  ticketRestrictions?: TicketRestrictions;
-  /** The rotating barcode type and value. */
-  rotatingBarcode?: RotatingBarcode;
+  /** A custom concession category to use when `concessionCategory` does not provide the right option. Both `concessionCategory` and `customConcessionCategory` may not be set. */
+  customConcessionCategory?: LocalizedString;
   /** The background color for the card. If not set the dominant color of the hero image is used, and if no hero image is set, the dominant color of the logo is used. The format is #rrggbb where rrggbb is a hex RGB triplet, such as `#ffcc00`. You can also use the shorthand version of the RGB triplet which is #rgb, such as `#fc0`. */
   hexBackgroundColor?: string;
-  /** Links module data. If links module data is also defined on the class, both will be displayed. */
-  linksModuleData?: LinksModuleData;
-  /** Required. The type of trip this transit object represents. Used to determine the pass title and/or which symbol to use between the origin and destination. */
-  tripType?: TransitObjectTripTypeEnum | (string & {});
-  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
-  classReference?: TransitClass;
-  /** Each ticket may contain one or more legs. Each leg contains departure and arrival information along with boarding and seating information. If only one leg is to be specified then use the `ticketLeg` field instead. Both `ticketLeg` and `ticketLegs` may not be set. */
-  ticketLegs?: TicketLegList;
-  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
-  validTimeInterval?: TimeInterval;
-  /** A custom status to use for the ticket status value when `ticketStatus` does not provide the right option. Both `ticketStatus` and `customTicketStatus` may not be set. */
-  customTicketStatus?: LocalizedString;
-  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
-  state?: TransitObjectStateEnum | (string & {});
-  /** Deprecated */
-  version?: string;
-  /** Indicates if the object has users. This field is set by the platform. */
-  hasUsers?: boolean;
+  /** Purchase details for this ticket. */
+  purchaseDetails?: PurchaseDetails;
+  /** The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported. */
+  smartTapRedemptionValue?: string;
+  /** Pass constraints for the object. Includes limiting NFC and screenshot behaviors. */
+  passConstraints?: PassConstraints;
+  /** The activation status for the object. Required if the class has `activationOptions` set. */
+  activationStatus?: ActivationStatus;
   /** Optional banner image displayed on the front of the card. If none is present, hero image of the class, if present, will be displayed. If hero image of the class is also not present, nothing will be displayed. */
   heroImage?: Image;
+  /** Required. The state of the object. This field is used to determine how an object is displayed in the app. For example, an `inactive` object is moved to the "Expired passes" section. */
+  state?: TransitObjectStateEnum | (string & {});
+  /** Information about what kind of restrictions there are on using this ticket. For example, which days of the week it must be used, or which routes are allowed to be taken. */
+  ticketRestrictions?: TicketRestrictions;
+  /** Required. The type of trip this transit object represents. Used to determine the pass title and/or which symbol to use between the origin and destination. */
+  tripType?: TransitObjectTripTypeEnum | (string & {});
+  /** This id is used to group tickets together if the user has saved multiple tickets for the same trip. */
+  tripId?: string;
+  /** The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed. */
+  validTimeInterval?: TimeInterval;
+  /** Links module data. If links module data is also defined on the class, both will be displayed. */
+  linksModuleData?: LinksModuleData;
+  /** Required. The class associated with this object. The class must be of the same type as this object, must already exist, and must be approved. Class IDs should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. */
+  classId?: string;
+  /** Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed. */
+  appLinkData?: AppLinkData;
+  /** Note: This field is currently not supported to trigger geo notifications. */
+  locations?: LatLongPointList;
   /** Required. The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is chosen by you. The unique identifier should only include alphanumeric characters, '.', '_', or '-'. */
   id?: string;
+  /** Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed. */
+  valueAddedModuleData?: ValueAddedModuleDataList;
+  /** A custom status to use for the ticket status value when `ticketStatus` does not provide the right option. Both `ticketStatus` and `customTicketStatus` may not be set. */
+  customTicketStatus?: LocalizedString;
+  /** Each ticket may contain one or more legs. Each leg contains departure and arrival information along with boarding and seating information. If only one leg is to be specified then use the `ticketLeg` field instead. Both `ticketLeg` and `ticketLegs` may not be set. */
+  ticketLegs?: TicketLegList;
+  /** The status of the ticket. For states which affect display, use the `state` field instead. */
+  ticketStatus?: TransitObjectTicketStatusEnum | (string & {});
   /** The number of the ticket. This is a unique identifier for the ticket in the transit operator's system. */
   ticketNumber?: string;
+  /** linked_object_ids are a list of other objects such as event ticket, loyalty, offer, generic, giftcard, transit and boarding pass that should be automatically attached to this transit object. If a user had saved this transit card, then these linked_object_ids would be automatically pushed to the user's wallet (unless they turned off the setting to receive such linked passes). Make sure that objects present in linked_object_ids are already inserted - if not, calls would fail. Once linked, the linked objects cannot be unlinked. You cannot link objects belonging to another issuer. There is a limit to the number of objects that can be linked to a single object. After the limit is reached, new linked objects in the call will be ignored silently. Object IDs should follow the format issuer ID. identifier where the former is issued by Google and the latter is chosen by you. */
+  linkedObjectIds?: StringList;
+  /** Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints. */
+  merchantLocations?: MerchantLocationList;
+  /** A single ticket leg contains departure and arrival information along with boarding and seating information. If more than one leg is to be specified then use the `ticketLegs` field instead. Both `ticketLeg` and `ticketLegs` may not be set. */
+  ticketLeg?: TicketLeg;
+  /** Device context associated with the object. */
+  deviceContext?: DeviceContext;
+  /** Image module data. The maximum number of these fields displayed is 1 from object level and 1 for class object level. */
+  imageModulesData?: ImageModuleDataList;
+  /** Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass. */
+  saveRestrictions?: SaveRestrictions;
+  /** Indicates if the object has users. This field is set by the platform. */
+  hasUsers?: boolean;
+  /** Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered. */
+  notifyPreference?: TransitObjectNotifyPreferenceEnum | (string & {});
+  /** A copy of the inherited fields of the parent class. These fields are retrieved during a GET. */
+  classReference?: TransitClass;
+  /** Deprecated. Use textModulesData instead. */
+  infoModuleData?: InfoModuleData;
+  /** The concession category for the ticket. */
+  concessionCategory?: TransitObjectConcessionCategoryEnum | (string & {});
+  /** The barcode type and value. */
+  barcode?: Barcode;
+  /** The number of passengers. */
+  passengerType?: TransitObjectPassengerTypeEnum | (string & {});
+  /** Indicates if notifications should explicitly be suppressed. If this field is set to true, regardless of the `messages` field, expiration notifications to the user will be suppressed. By default, this field is set to false. Currently, this can only be set for offers. */
+  disableExpirationNotification?: boolean;
+  /** An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10. */
+  messages?: MessageList;
+  /** The rotating barcode type and value. */
+  rotatingBarcode?: RotatingBarcode;
+  /** Information that controls how passes are grouped together. */
+  groupingInfo?: GroupingInfo;
+  /** The name(s) of the passengers the ticket is assigned to. The above `passengerType` field is meant to give Google context on this field. */
+  passengerNames?: string;
+  /** Deprecated */
+  version?: string;
+  /** Whether this object is currently linked to a single device. This field is set by the platform when a user saves the object, linking it to their device. Intended for use by select partners. Contact support for additional information. */
+  hasLinkedDevice?: boolean;
 }
 export const TransitObject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customConcessionCategory: S.optional(LocalizedString),
-    ticketLeg: S.optional(TicketLeg),
-    disableExpirationNotification: S.optional(S.Boolean),
-    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
-    passengerNames: S.optional(S.String),
-    activationStatus: S.optional(ActivationStatus),
-    merchantLocations: S.optional(MerchantLocationList),
-    notifyPreference: S.optional(TransitObjectNotifyPreferenceEnum),
     textModulesData: S.optional(TextModuleDataList),
-    groupingInfo: S.optional(GroupingInfo),
-    deviceContext: S.optional(DeviceContext),
-    purchaseDetails: S.optional(PurchaseDetails),
-    messages: S.optional(MessageList),
-    ticketStatus: S.optional(TransitObjectTicketStatusEnum),
-    locations: S.optional(LatLongPointList),
-    passConstraints: S.optional(PassConstraints),
-    smartTapRedemptionValue: S.optional(S.String),
-    classId: S.optional(S.String),
-    barcode: S.optional(Barcode),
-    infoModuleData: S.optional(InfoModuleData),
-    imageModulesData: S.optional(ImageModuleDataList),
-    hasLinkedDevice: S.optional(S.Boolean),
-    passengerType: S.optional(TransitObjectPassengerTypeEnum),
-    tripId: S.optional(S.String),
-    saveRestrictions: S.optional(SaveRestrictions),
-    linkedObjectIds: S.optional(StringList),
-    concessionCategory: S.optional(TransitObjectConcessionCategoryEnum),
-    appLinkData: S.optional(AppLinkData),
-    ticketRestrictions: S.optional(TicketRestrictions),
-    rotatingBarcode: S.optional(RotatingBarcode),
+    customConcessionCategory: S.optional(LocalizedString),
     hexBackgroundColor: S.optional(S.String),
-    linksModuleData: S.optional(LinksModuleData),
-    tripType: S.optional(TransitObjectTripTypeEnum),
-    classReference: S.optional(TransitClass),
-    ticketLegs: S.optional(TicketLegList),
-    validTimeInterval: S.optional(TimeInterval),
-    customTicketStatus: S.optional(LocalizedString),
-    state: S.optional(TransitObjectStateEnum),
-    version: S.optional(S.String),
-    hasUsers: S.optional(S.Boolean),
+    purchaseDetails: S.optional(PurchaseDetails),
+    smartTapRedemptionValue: S.optional(S.String),
+    passConstraints: S.optional(PassConstraints),
+    activationStatus: S.optional(ActivationStatus),
     heroImage: S.optional(Image),
+    state: S.optional(TransitObjectStateEnum),
+    ticketRestrictions: S.optional(TicketRestrictions),
+    tripType: S.optional(TransitObjectTripTypeEnum),
+    tripId: S.optional(S.String),
+    validTimeInterval: S.optional(TimeInterval),
+    linksModuleData: S.optional(LinksModuleData),
+    classId: S.optional(S.String),
+    appLinkData: S.optional(AppLinkData),
+    locations: S.optional(LatLongPointList),
     id: S.optional(S.String),
+    valueAddedModuleData: S.optional(ValueAddedModuleDataList),
+    customTicketStatus: S.optional(LocalizedString),
+    ticketLegs: S.optional(TicketLegList),
+    ticketStatus: S.optional(TransitObjectTicketStatusEnum),
     ticketNumber: S.optional(S.String),
+    linkedObjectIds: S.optional(StringList),
+    merchantLocations: S.optional(MerchantLocationList),
+    ticketLeg: S.optional(TicketLeg),
+    deviceContext: S.optional(DeviceContext),
+    imageModulesData: S.optional(ImageModuleDataList),
+    saveRestrictions: S.optional(SaveRestrictions),
+    hasUsers: S.optional(S.Boolean),
+    notifyPreference: S.optional(TransitObjectNotifyPreferenceEnum),
+    classReference: S.optional(TransitClass),
+    infoModuleData: S.optional(InfoModuleData),
+    concessionCategory: S.optional(TransitObjectConcessionCategoryEnum),
+    barcode: S.optional(Barcode),
+    passengerType: S.optional(TransitObjectPassengerTypeEnum),
+    disableExpirationNotification: S.optional(S.Boolean),
+    messages: S.optional(MessageList),
+    rotatingBarcode: S.optional(RotatingBarcode),
+    groupingInfo: S.optional(GroupingInfo),
+    passengerNames: S.optional(S.String),
+    version: S.optional(S.String),
+    hasLinkedDevice: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "TransitObject" }) as any as S.Schema<TransitObject>;
 
@@ -4423,32 +4423,49 @@ export const DownloadMediaRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DownloadMediaRequest",
 }) as any as S.Schema<DownloadMediaRequest>;
 
+/** This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763. */
+export interface ObjectId {
+  /** Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions */
+  generation?: string;
+  /** The name of the object. */
+  objectName?: string;
+  /** The name of the bucket to which this object belongs. */
+  bucketName?: string;
+}
+export const ObjectId = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    generation: S.optional(S.String),
+    objectName: S.optional(S.String),
+    bucketName: S.optional(S.String),
+  }),
+).annotate({ identifier: "ObjectId" }) as any as S.Schema<ObjectId>;
+
 /** Information to read/write to blobstore2. */
 export interface Blobstore2Info {
-  /** The blob generation id. */
-  blobGeneration?: string;
-  /** The blob id, e.g., /blobstore/prod/playground/scotty */
-  blobId?: string;
-  /** A serialized Object Fragment List Creation Info passed from Bigstore -> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
-  uploadFragmentListCreationInfo?: string;
   /** The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call. */
   readToken?: string;
-  /** A serialized External Read Token passed from Bigstore -> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
-  downloadExternalReadToken?: string;
-  /** Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
-  uploadMetadataContainer?: string;
   /** Read handle passed from Bigstore -> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads. */
   downloadReadHandle?: string;
+  /** Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
+  uploadMetadataContainer?: string;
+  /** The blob id, e.g., /blobstore/prod/playground/scotty */
+  blobId?: string;
+  /** The blob generation id. */
+  blobGeneration?: string;
+  /** A serialized External Read Token passed from Bigstore -> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
+  downloadExternalReadToken?: string;
+  /** A serialized Object Fragment List Creation Info passed from Bigstore -> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads. */
+  uploadFragmentListCreationInfo?: string;
 }
 export const Blobstore2Info = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    blobGeneration: S.optional(S.String),
-    blobId: S.optional(S.String),
-    uploadFragmentListCreationInfo: S.optional(S.String),
     readToken: S.optional(S.String),
-    downloadExternalReadToken: S.optional(S.String),
-    uploadMetadataContainer: S.optional(S.String),
     downloadReadHandle: S.optional(S.String),
+    uploadMetadataContainer: S.optional(S.String),
+    blobId: S.optional(S.String),
+    blobGeneration: S.optional(S.String),
+    downloadExternalReadToken: S.optional(S.String),
+    uploadFragmentListCreationInfo: S.optional(S.String),
   }),
 ).annotate({ identifier: "Blobstore2Info" }) as any as S.Schema<Blobstore2Info>;
 
@@ -4460,169 +4477,58 @@ export type CompositeMediaReferenceTypeEnum =
   | "COSMO_BINARY_REFERENCE";
 export const CompositeMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
 
-/** This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763. */
-export interface ObjectId {
-  /** The name of the object. */
-  objectName?: string;
-  /** The name of the bucket to which this object belongs. */
-  bucketName?: string;
-  /** Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions */
-  generation?: string;
-}
-export const ObjectId = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectName: S.optional(S.String),
-    bucketName: S.optional(S.String),
-    generation: S.optional(S.String),
-  }),
-).annotate({ identifier: "ObjectId" }) as any as S.Schema<ObjectId>;
-
 /** A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites. */
 export interface CompositeMedia {
-  /** Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob. */
-  blobstore2Info?: Blobstore2Info;
-  /** MD5 hash for the payload. */
-  md5Hash?: string;
-  /** Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef. */
-  blobRef?: string;
-  /** Describes what the field reference contains. */
-  referenceType?: CompositeMediaReferenceTypeEnum | (string & {});
-  /** Reference to a TI Blob, set if reference_type is BIGSTORE_REF. */
-  objectId?: ObjectId;
-  /** A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field. */
-  cosmoBinaryReference?: string;
-  /** Path to the data, set if reference_type is PATH */
-  path?: string;
-  /** SHA-1 hash for the payload. */
-  sha1Hash?: string;
-  /** Size of the data, in bytes */
-  length?: string;
   /** Media data, set if reference_type is INLINE */
   inline?: string;
   /** crc32.c hash for the payload. */
   crc32cHash?: number;
+  /** SHA-1 hash for the payload. */
+  sha1Hash?: string;
+  /** A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field. */
+  cosmoBinaryReference?: string;
+  /** Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob. */
+  blobstore2Info?: Blobstore2Info;
+  /** Reference to a TI Blob, set if reference_type is BIGSTORE_REF. */
+  objectId?: ObjectId;
+  /** Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef. */
+  blobRef?: string;
+  /** MD5 hash for the payload. */
+  md5Hash?: string;
+  /** Describes what the field reference contains. */
+  referenceType?: CompositeMediaReferenceTypeEnum | (string & {});
+  /** Path to the data, set if reference_type is PATH */
+  path?: string;
+  /** Size of the data, in bytes */
+  length?: string;
 }
 export const CompositeMedia = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    blobstore2Info: S.optional(Blobstore2Info),
-    md5Hash: S.optional(S.String),
-    blobRef: S.optional(S.String),
-    referenceType: S.optional(CompositeMediaReferenceTypeEnum),
-    objectId: S.optional(ObjectId),
-    cosmoBinaryReference: S.optional(S.String),
-    path: S.optional(S.String),
-    sha1Hash: S.optional(S.String),
-    length: S.optional(S.String),
     inline: S.optional(S.String),
     crc32cHash: S.optional(S.Number),
+    sha1Hash: S.optional(S.String),
+    cosmoBinaryReference: S.optional(S.String),
+    blobstore2Info: S.optional(Blobstore2Info),
+    objectId: S.optional(ObjectId),
+    blobRef: S.optional(S.String),
+    md5Hash: S.optional(S.String),
+    referenceType: S.optional(CompositeMediaReferenceTypeEnum),
+    path: S.optional(S.String),
+    length: S.optional(S.String),
   }),
 ).annotate({ identifier: "CompositeMedia" }) as any as S.Schema<CompositeMedia>;
 
-/** Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
-export interface DiffChecksumsResponse {
-  /** The total size of the server object. */
-  objectSizeBytes?: string;
-  /** The object version of the object the checksums are being returned for. */
-  objectVersion?: string;
-  /** The chunk size of checksums. Must be a multiple of 256KB. */
-  chunkSizeBytes?: string;
-  /** Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol. */
-  checksumsLocation?: CompositeMedia;
-  /** If set, calculate the checksums based on the contents and return them to the caller. */
-  objectLocation?: CompositeMedia;
-}
-export const DiffChecksumsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectSizeBytes: S.optional(S.String),
-    objectVersion: S.optional(S.String),
-    chunkSizeBytes: S.optional(S.String),
-    checksumsLocation: S.optional(CompositeMedia),
-    objectLocation: S.optional(CompositeMedia),
-  }),
-).annotate({
-  identifier: "DiffChecksumsResponse",
-}) as any as S.Schema<DiffChecksumsResponse>;
-
-/** Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
-export interface DiffVersionResponse {
-  /** The version of the object stored at the server. */
-  objectVersion?: string;
-  /** The total size of the server object. */
-  objectSizeBytes?: string;
-}
-export const DiffVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectVersion: S.optional(S.String),
-    objectSizeBytes: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DiffVersionResponse",
-}) as any as S.Schema<DiffVersionResponse>;
-
-export type CompositeMediaList = Array<CompositeMedia>;
-export const CompositeMediaList = /*@__PURE__*/ S.Array(
-  CompositeMedia,
-) as any as S.Schema<CompositeMediaList>;
-
-/** Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
-export interface DiffDownloadResponse {
-  /** The original object location. */
-  objectLocation?: CompositeMedia;
-}
-export const DiffDownloadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectLocation: S.optional(CompositeMedia),
-  }),
-).annotate({
-  identifier: "DiffDownloadResponse",
-}) as any as S.Schema<DiffDownloadResponse>;
-
-/** Parameters specific to media downloads. */
-export interface DownloadParameters {
-  /** A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client. */
-  allowGzipCompression?: boolean;
-  /** Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty. */
-  ignoreRange?: boolean;
-}
-export const DownloadParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowGzipCompression: S.optional(S.Boolean),
-    ignoreRange: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DownloadParameters",
-}) as any as S.Schema<DownloadParameters>;
-
-/** A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
-export interface DiffUploadRequest {
-  /** The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. */
-  objectInfo?: CompositeMedia;
-  /** The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol. */
-  checksumsInfo?: CompositeMedia;
-  /** The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in. */
-  objectVersion?: string;
-}
-export const DiffUploadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectInfo: S.optional(CompositeMedia),
-    checksumsInfo: S.optional(CompositeMedia),
-    objectVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DiffUploadRequest",
-}) as any as S.Schema<DiffUploadRequest>;
-
 /** Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
 export interface DiffUploadResponse {
-  /** The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload. */
-  objectVersion?: string;
   /** The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification. */
   originalObject?: CompositeMedia;
+  /** The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload. */
+  objectVersion?: string;
 }
 export const DiffUploadResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    objectVersion: S.optional(S.String),
     originalObject: S.optional(CompositeMedia),
+    objectVersion: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DiffUploadResponse",
@@ -4644,32 +4550,126 @@ export type MediaReferenceTypeEnum =
   | "ARBITRARY_BYTES";
 export const MediaReferenceTypeEnum = /*@__PURE__*/ S.String;
 
+/** A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
+export interface DiffUploadRequest {
+  /** The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in. */
+  objectVersion?: string;
+  /** The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. */
+  objectInfo?: CompositeMedia;
+  /** The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol. */
+  checksumsInfo?: CompositeMedia;
+}
+export const DiffUploadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectVersion: S.optional(S.String),
+    objectInfo: S.optional(CompositeMedia),
+    checksumsInfo: S.optional(CompositeMedia),
+  }),
+).annotate({
+  identifier: "DiffUploadRequest",
+}) as any as S.Schema<DiffUploadRequest>;
+
+/** Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
+export interface DiffVersionResponse {
+  /** The version of the object stored at the server. */
+  objectVersion?: string;
+  /** The total size of the server object. */
+  objectSizeBytes?: string;
+}
+export const DiffVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectVersion: S.optional(S.String),
+    objectSizeBytes: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DiffVersionResponse",
+}) as any as S.Schema<DiffVersionResponse>;
+
+/** Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
+export interface DiffChecksumsResponse {
+  /** The object version of the object the checksums are being returned for. */
+  objectVersion?: string;
+  /** Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol. */
+  checksumsLocation?: CompositeMedia;
+  /** If set, calculate the checksums based on the contents and return them to the caller. */
+  objectLocation?: CompositeMedia;
+  /** The total size of the server object. */
+  objectSizeBytes?: string;
+  /** The chunk size of checksums. Must be a multiple of 256KB. */
+  chunkSizeBytes?: string;
+}
+export const DiffChecksumsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectVersion: S.optional(S.String),
+    checksumsLocation: S.optional(CompositeMedia),
+    objectLocation: S.optional(CompositeMedia),
+    objectSizeBytes: S.optional(S.String),
+    chunkSizeBytes: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DiffChecksumsResponse",
+}) as any as S.Schema<DiffChecksumsResponse>;
+
+/** Parameters specific to media downloads. */
+export interface DownloadParameters {
+  /** A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client. */
+  allowGzipCompression?: boolean;
+  /** Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty. */
+  ignoreRange?: boolean;
+}
+export const DownloadParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowGzipCompression: S.optional(S.Boolean),
+    ignoreRange: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DownloadParameters",
+}) as any as S.Schema<DownloadParameters>;
+
+export type CompositeMediaList = Array<CompositeMedia>;
+export const CompositeMediaList = /*@__PURE__*/ S.Array(
+  CompositeMedia,
+) as any as S.Schema<CompositeMediaList>;
+
+/** Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
+export interface DiffDownloadResponse {
+  /** The original object location. */
+  objectLocation?: CompositeMedia;
+}
+export const DiffDownloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectLocation: S.optional(CompositeMedia),
+  }),
+).annotate({
+  identifier: "DiffDownloadResponse",
+}) as any as S.Schema<DiffDownloadResponse>;
+
 /** Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty. */
 export interface ContentTypeInfo {
-  /** The content type of the file derived from the file extension of the original file name used by the client. */
-  fromFileName?: string;
-  /** Metadata information from Fusion ID detection. Serialized FusionIdDetectionMetadata proto. Only set if from_fusion_id is set. */
-  fusionIdDetectionMetadata?: string;
-  /** The content type of the file derived by looking at specific bytes (i.e. "magic bytes") of the actual file. */
-  fromBytes?: string;
-  /** The content type of the file as specified in the request headers, multipart headers, or RUPIO start request. */
-  fromHeader?: string;
-  /** The content type of the file detected by Fusion ID. go/fusionid */
-  fromFusionId?: string;
-  /** Scotty's best guess of what the content type of the file is. */
-  bestGuess?: string;
   /** The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API). */
   fromUrlPath?: string;
+  /** The content type of the file derived from the file extension of the original file name used by the client. */
+  fromFileName?: string;
+  /** The content type of the file as specified in the request headers, multipart headers, or RUPIO start request. */
+  fromHeader?: string;
+  /** Scotty's best guess of what the content type of the file is. */
+  bestGuess?: string;
+  /** Metadata information from Fusion ID detection. Serialized FusionIdDetectionMetadata proto. Only set if from_fusion_id is set. */
+  fusionIdDetectionMetadata?: string;
+  /** The content type of the file detected by Fusion ID. go/fusionid */
+  fromFusionId?: string;
+  /** The content type of the file derived by looking at specific bytes (i.e. "magic bytes") of the actual file. */
+  fromBytes?: string;
 }
 export const ContentTypeInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fromFileName: S.optional(S.String),
-    fusionIdDetectionMetadata: S.optional(S.String),
-    fromBytes: S.optional(S.String),
-    fromHeader: S.optional(S.String),
-    fromFusionId: S.optional(S.String),
-    bestGuess: S.optional(S.String),
     fromUrlPath: S.optional(S.String),
+    fromFileName: S.optional(S.String),
+    fromHeader: S.optional(S.String),
+    bestGuess: S.optional(S.String),
+    fusionIdDetectionMetadata: S.optional(S.String),
+    fromFusionId: S.optional(S.String),
+    fromBytes: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ContentTypeInfo",
@@ -4677,102 +4677,102 @@ export const ContentTypeInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** A reference to data stored on the filesystem, on GFS or in blobstore. */
 export interface Media {
-  /** A unique fingerprint/version id for the media data */
-  token?: string;
-  /** Set if reference_type is DIFF_CHECKSUMS_RESPONSE. */
-  diffChecksumsResponse?: DiffChecksumsResponse;
-  /** Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef. */
-  blobRef?: string;
-  /** A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field. */
-  cosmoBinaryReference?: string;
-  /** |is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence. */
-  isPotentialRetry?: boolean;
-  /** Scotty-provided SHA256 hash for an upload. */
-  sha256Hash?: string;
-  /** Set if reference_type is DIFF_VERSION_RESPONSE. */
-  diffVersionResponse?: DiffVersionResponse;
-  /** Size of the data, in bytes */
-  length?: string;
-  /** Time at which the media data was last updated, in milliseconds since UNIX epoch */
-  timestamp?: string;
   /** Scotty-provided MD5 hash for an upload. */
   md5Hash?: string;
-  /** MIME type of the data */
-  contentType?: string;
-  /** A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified. */
-  compositeMedia?: CompositeMediaList;
-  /** Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA. */
-  mediaId?: string;
-  /** Set if reference_type is DIFF_DOWNLOAD_RESPONSE. */
-  diffDownloadResponse?: DiffDownloadResponse;
-  /** For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported. */
-  crc32cHash?: number;
-  /** Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, "MD5" is the only possible value for this field. New values may be added at any time. */
-  algorithm?: string;
-  /** Parameters for a media download. */
-  downloadParameters?: DownloadParameters;
-  /** Scotty-provided SHA512 hash for an upload. */
-  sha512Hash?: string;
-  /** Path to the data, set if reference_type is PATH */
-  path?: string;
   /** Reference to a TI Blob, set if reference_type is BIGSTORE_REF. */
   objectId?: ObjectId;
-  /** Scotty-provided SHA1 hash for an upload. */
-  sha1Hash?: string;
-  /** Media data, set if reference_type is INLINE */
-  inline?: string;
-  /** Set if reference_type is DIFF_UPLOAD_REQUEST. */
-  diffUploadRequest?: DiffUploadRequest;
   /** Set if reference_type is DIFF_UPLOAD_RESPONSE. */
   diffUploadResponse?: DiffUploadResponse;
   /** Describes what the field reference contains. */
   referenceType?: MediaReferenceTypeEnum | (string & {});
-  /** Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob. */
-  blobstore2Info?: Blobstore2Info;
-  /** For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification. */
-  hashVerified?: boolean;
-  /** Original file name */
-  filename?: string;
-  /** Extended content type information provided for Scotty uploads. */
-  contentTypeInfo?: ContentTypeInfo;
+  /** Set if reference_type is DIFF_UPLOAD_REQUEST. */
+  diffUploadRequest?: DiffUploadRequest;
+  /** Set if reference_type is DIFF_VERSION_RESPONSE. */
+  diffVersionResponse?: DiffVersionResponse;
+  /** Path to the data, set if reference_type is PATH */
+  path?: string;
+  /** Set if reference_type is DIFF_CHECKSUMS_RESPONSE. */
+  diffChecksumsResponse?: DiffChecksumsResponse;
+  /** For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported. */
+  crc32cHash?: number;
+  /** MIME type of the data */
+  contentType?: string;
   /** Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media. */
   hash?: string;
+  /** Media data, set if reference_type is INLINE */
+  inline?: string;
+  /** Size of the data, in bytes */
+  length?: string;
+  /** Parameters for a media download. */
+  downloadParameters?: DownloadParameters;
+  /** For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification. */
+  hashVerified?: boolean;
+  /** A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field. */
+  cosmoBinaryReference?: string;
+  /** Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef. */
+  blobRef?: string;
+  /** Scotty-provided SHA256 hash for an upload. */
+  sha256Hash?: string;
+  /** Time at which the media data was last updated, in milliseconds since UNIX epoch */
+  timestamp?: string;
+  /** Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA. */
+  mediaId?: string;
+  /** Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob. */
+  blobstore2Info?: Blobstore2Info;
   /** Use object_id instead. */
   bigstoreObjectRef?: string;
+  /** A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified. */
+  compositeMedia?: CompositeMediaList;
+  /** Original file name */
+  filename?: string;
+  /** Scotty-provided SHA1 hash for an upload. */
+  sha1Hash?: string;
+  /** Set if reference_type is DIFF_DOWNLOAD_RESPONSE. */
+  diffDownloadResponse?: DiffDownloadResponse;
+  /** Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, "MD5" is the only possible value for this field. New values may be added at any time. */
+  algorithm?: string;
+  /** A unique fingerprint/version id for the media data */
+  token?: string;
+  /** Extended content type information provided for Scotty uploads. */
+  contentTypeInfo?: ContentTypeInfo;
+  /** Scotty-provided SHA512 hash for an upload. */
+  sha512Hash?: string;
+  /** |is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence. */
+  isPotentialRetry?: boolean;
 }
 export const Media = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.optional(S.String),
-    diffChecksumsResponse: S.optional(DiffChecksumsResponse),
-    blobRef: S.optional(S.String),
-    cosmoBinaryReference: S.optional(S.String),
-    isPotentialRetry: S.optional(S.Boolean),
-    sha256Hash: S.optional(S.String),
-    diffVersionResponse: S.optional(DiffVersionResponse),
-    length: S.optional(S.String),
-    timestamp: S.optional(S.String),
     md5Hash: S.optional(S.String),
-    contentType: S.optional(S.String),
-    compositeMedia: S.optional(CompositeMediaList),
-    mediaId: S.optional(S.String),
-    diffDownloadResponse: S.optional(DiffDownloadResponse),
-    crc32cHash: S.optional(S.Number),
-    algorithm: S.optional(S.String),
-    downloadParameters: S.optional(DownloadParameters),
-    sha512Hash: S.optional(S.String),
-    path: S.optional(S.String),
     objectId: S.optional(ObjectId),
-    sha1Hash: S.optional(S.String),
-    inline: S.optional(S.String),
-    diffUploadRequest: S.optional(DiffUploadRequest),
     diffUploadResponse: S.optional(DiffUploadResponse),
     referenceType: S.optional(MediaReferenceTypeEnum),
-    blobstore2Info: S.optional(Blobstore2Info),
-    hashVerified: S.optional(S.Boolean),
-    filename: S.optional(S.String),
-    contentTypeInfo: S.optional(ContentTypeInfo),
+    diffUploadRequest: S.optional(DiffUploadRequest),
+    diffVersionResponse: S.optional(DiffVersionResponse),
+    path: S.optional(S.String),
+    diffChecksumsResponse: S.optional(DiffChecksumsResponse),
+    crc32cHash: S.optional(S.Number),
+    contentType: S.optional(S.String),
     hash: S.optional(S.String),
+    inline: S.optional(S.String),
+    length: S.optional(S.String),
+    downloadParameters: S.optional(DownloadParameters),
+    hashVerified: S.optional(S.Boolean),
+    cosmoBinaryReference: S.optional(S.String),
+    blobRef: S.optional(S.String),
+    sha256Hash: S.optional(S.String),
+    timestamp: S.optional(S.String),
+    mediaId: S.optional(S.String),
+    blobstore2Info: S.optional(Blobstore2Info),
     bigstoreObjectRef: S.optional(S.String),
+    compositeMedia: S.optional(CompositeMediaList),
+    filename: S.optional(S.String),
+    sha1Hash: S.optional(S.String),
+    diffDownloadResponse: S.optional(DiffDownloadResponse),
+    algorithm: S.optional(S.String),
+    token: S.optional(S.String),
+    contentTypeInfo: S.optional(ContentTypeInfo),
+    sha512Hash: S.optional(S.String),
+    isPotentialRetry: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Media" }) as any as S.Schema<Media>;
 
@@ -4939,21 +4939,21 @@ export const GetIssuerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIssuerRequest>;
 
 export interface IssuerContactInfo {
-  /** The primary contact name. */
-  name?: string;
-  /** Email addresses which will receive alerts. */
-  alertsEmails?: StringList;
-  /** The primary contact phone number. */
-  phone?: string;
   /** The primary contact email address. */
   email?: string;
+  /** The primary contact name. */
+  name?: string;
+  /** The primary contact phone number. */
+  phone?: string;
+  /** Email addresses which will receive alerts. */
+  alertsEmails?: StringList;
 }
 export const IssuerContactInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    alertsEmails: S.optional(StringList),
-    phone: S.optional(S.String),
     email: S.optional(S.String),
+    name: S.optional(S.String),
+    phone: S.optional(S.String),
+    alertsEmails: S.optional(StringList),
   }),
 ).annotate({
   identifier: "IssuerContactInfo",
@@ -4961,14 +4961,14 @@ export const IssuerContactInfo = /*@__PURE__*/ S.suspend(() =>
 
 export interface AuthenticationKey {
   /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
-  id?: number;
-  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
   publicKeyPem?: string;
+  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
+  id?: number;
 }
 export const AuthenticationKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.Number),
     publicKeyPem: S.optional(S.String),
+    id: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "AuthenticationKey",
@@ -4981,41 +4981,41 @@ export const AuthenticationKeyList = /*@__PURE__*/ S.Array(
 
 export interface SmartTapMerchantData {
   /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
-  smartTapMerchantId?: string;
-  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
   authenticationKeys?: AuthenticationKeyList;
+  /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
+  smartTapMerchantId?: string;
 }
 export const SmartTapMerchantData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smartTapMerchantId: S.optional(S.String),
     authenticationKeys: S.optional(AuthenticationKeyList),
+    smartTapMerchantId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SmartTapMerchantData",
 }) as any as S.Schema<SmartTapMerchantData>;
 
 export interface Issuer {
-  /** The account name of the issuer. */
-  name?: string;
   /** The unique identifier for an issuer account. This is automatically generated when the issuer is inserted. */
   issuerId?: string;
-  /** Allows the issuer to provide their callback settings. */
-  callbackOptions?: CallbackOptions;
   /** Issuer contact information. */
   contactInfo?: IssuerContactInfo;
   /** Available only to Smart Tap enabled partners. Contact support for additional guidance. */
   smartTapMerchantData?: SmartTapMerchantData;
   /** URL for the issuer's home page. */
   homepageUrl?: string;
+  /** Allows the issuer to provide their callback settings. */
+  callbackOptions?: CallbackOptions;
+  /** The account name of the issuer. */
+  name?: string;
 }
 export const Issuer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     issuerId: S.optional(S.String),
-    callbackOptions: S.optional(CallbackOptions),
     contactInfo: S.optional(IssuerContactInfo),
     smartTapMerchantData: S.optional(SmartTapMerchantData),
     homepageUrl: S.optional(S.String),
+    callbackOptions: S.optional(CallbackOptions),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Issuer" }) as any as S.Schema<Issuer>;
 
@@ -5138,15 +5138,15 @@ export const PermissionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PermissionList>;
 
 export interface Permissions {
-  /** ID of the issuer the list of permissions refer to. */
-  issuerId?: string;
   /** The complete list of permissions for the issuer account. */
   permissions?: PermissionList;
+  /** ID of the issuer the list of permissions refer to. */
+  issuerId?: string;
 }
 export const Permissions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    issuerId: S.optional(S.String),
     permissions: S.optional(PermissionList),
+    issuerId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Permissions" }) as any as S.Schema<Permissions>;
 
@@ -5377,135 +5377,135 @@ export const InsertJwtRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InsertJwtRequest",
 }) as any as S.Schema<InsertJwtRequest>;
 
-export type EventTicketObjectList = Array<EventTicketObject>;
-export const EventTicketObjectList = /*@__PURE__*/ S.Array(
-  EventTicketObject,
-) as any as S.Schema<EventTicketObjectList>;
-
 export type EventTicketClassList = Array<EventTicketClass>;
 export const EventTicketClassList = /*@__PURE__*/ S.Array(
   EventTicketClass,
 ) as any as S.Schema<EventTicketClassList>;
-
-export type FlightObjectList = Array<FlightObject>;
-export const FlightObjectList = /*@__PURE__*/ S.Array(
-  FlightObject,
-) as any as S.Schema<FlightObjectList>;
-
-export type GenericClassList = Array<GenericClass>;
-export const GenericClassList = /*@__PURE__*/ S.Array(
-  GenericClass,
-) as any as S.Schema<GenericClassList>;
 
 export type OfferObjectList = Array<OfferObject>;
 export const OfferObjectList = /*@__PURE__*/ S.Array(
   OfferObject,
 ) as any as S.Schema<OfferObjectList>;
 
-export type TransitObjectList = Array<TransitObject>;
-export const TransitObjectList = /*@__PURE__*/ S.Array(
-  TransitObject,
-) as any as S.Schema<TransitObjectList>;
-
-export type LoyaltyObjectList = Array<LoyaltyObject>;
-export const LoyaltyObjectList = /*@__PURE__*/ S.Array(
-  LoyaltyObject,
-) as any as S.Schema<LoyaltyObjectList>;
-
-export type GenericObjectList = Array<GenericObject>;
-export const GenericObjectList = /*@__PURE__*/ S.Array(
-  GenericObject,
-) as any as S.Schema<GenericObjectList>;
+export type GiftCardObjectList = Array<GiftCardObject>;
+export const GiftCardObjectList = /*@__PURE__*/ S.Array(
+  GiftCardObject,
+) as any as S.Schema<GiftCardObjectList>;
 
 export type GiftCardClassList = Array<GiftCardClass>;
 export const GiftCardClassList = /*@__PURE__*/ S.Array(
   GiftCardClass,
 ) as any as S.Schema<GiftCardClassList>;
 
-export type TransitClassList = Array<TransitClass>;
-export const TransitClassList = /*@__PURE__*/ S.Array(
-  TransitClass,
-) as any as S.Schema<TransitClassList>;
+export type GenericClassList = Array<GenericClass>;
+export const GenericClassList = /*@__PURE__*/ S.Array(
+  GenericClass,
+) as any as S.Schema<GenericClassList>;
 
-export type FlightClassList = Array<FlightClass>;
-export const FlightClassList = /*@__PURE__*/ S.Array(
-  FlightClass,
-) as any as S.Schema<FlightClassList>;
+export type LoyaltyObjectList = Array<LoyaltyObject>;
+export const LoyaltyObjectList = /*@__PURE__*/ S.Array(
+  LoyaltyObject,
+) as any as S.Schema<LoyaltyObjectList>;
 
-export type GiftCardObjectList = Array<GiftCardObject>;
-export const GiftCardObjectList = /*@__PURE__*/ S.Array(
-  GiftCardObject,
-) as any as S.Schema<GiftCardObjectList>;
-
-export type OfferClassList = Array<OfferClass>;
-export const OfferClassList = /*@__PURE__*/ S.Array(
-  OfferClass,
-) as any as S.Schema<OfferClassList>;
+export type FlightObjectList = Array<FlightObject>;
+export const FlightObjectList = /*@__PURE__*/ S.Array(
+  FlightObject,
+) as any as S.Schema<FlightObjectList>;
 
 export type LoyaltyClassList = Array<LoyaltyClass>;
 export const LoyaltyClassList = /*@__PURE__*/ S.Array(
   LoyaltyClass,
 ) as any as S.Schema<LoyaltyClassList>;
 
+export type FlightClassList = Array<FlightClass>;
+export const FlightClassList = /*@__PURE__*/ S.Array(
+  FlightClass,
+) as any as S.Schema<FlightClassList>;
+
+export type TransitObjectList = Array<TransitObject>;
+export const TransitObjectList = /*@__PURE__*/ S.Array(
+  TransitObject,
+) as any as S.Schema<TransitObjectList>;
+
+export type GenericObjectList = Array<GenericObject>;
+export const GenericObjectList = /*@__PURE__*/ S.Array(
+  GenericObject,
+) as any as S.Schema<GenericObjectList>;
+
+export type OfferClassList = Array<OfferClass>;
+export const OfferClassList = /*@__PURE__*/ S.Array(
+  OfferClass,
+) as any as S.Schema<OfferClassList>;
+
+export type EventTicketObjectList = Array<EventTicketObject>;
+export const EventTicketObjectList = /*@__PURE__*/ S.Array(
+  EventTicketObject,
+) as any as S.Schema<EventTicketObjectList>;
+
+export type TransitClassList = Array<TransitClass>;
+export const TransitClassList = /*@__PURE__*/ S.Array(
+  TransitClass,
+) as any as S.Schema<TransitClassList>;
+
 export interface Resources {
-  /** A list of event ticket objects. */
-  eventTicketObjects?: EventTicketObjectList;
   /** A list of event ticket classes. */
   eventTicketClasses?: EventTicketClassList;
-  /** A list of flight objects. */
-  flightObjects?: FlightObjectList;
-  /** A list of generic classes. */
-  genericClasses?: GenericClassList;
   /** A list of offer objects. */
   offerObjects?: OfferObjectList;
-  /** A list of transit objects. */
-  transitObjects?: TransitObjectList;
-  /** A list of loyalty objects. */
-  loyaltyObjects?: LoyaltyObjectList;
-  /** A list of generic objects. */
-  genericObjects?: GenericObjectList;
-  /** A list of gift card classes. */
-  giftCardClasses?: GiftCardClassList;
-  /** A list of transit classes. */
-  transitClasses?: TransitClassList;
-  /** A list of flight classes. */
-  flightClasses?: FlightClassList;
   /** A list of gift card objects. */
   giftCardObjects?: GiftCardObjectList;
-  /** A list of offer classes. */
-  offerClasses?: OfferClassList;
+  /** A list of gift card classes. */
+  giftCardClasses?: GiftCardClassList;
+  /** A list of generic classes. */
+  genericClasses?: GenericClassList;
+  /** A list of loyalty objects. */
+  loyaltyObjects?: LoyaltyObjectList;
+  /** A list of flight objects. */
+  flightObjects?: FlightObjectList;
   /** A list of loyalty classes. */
   loyaltyClasses?: LoyaltyClassList;
+  /** A list of flight classes. */
+  flightClasses?: FlightClassList;
+  /** A list of transit objects. */
+  transitObjects?: TransitObjectList;
+  /** A list of generic objects. */
+  genericObjects?: GenericObjectList;
+  /** A list of offer classes. */
+  offerClasses?: OfferClassList;
+  /** A list of event ticket objects. */
+  eventTicketObjects?: EventTicketObjectList;
+  /** A list of transit classes. */
+  transitClasses?: TransitClassList;
 }
 export const Resources = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    eventTicketObjects: S.optional(EventTicketObjectList),
     eventTicketClasses: S.optional(EventTicketClassList),
-    flightObjects: S.optional(FlightObjectList),
-    genericClasses: S.optional(GenericClassList),
     offerObjects: S.optional(OfferObjectList),
-    transitObjects: S.optional(TransitObjectList),
-    loyaltyObjects: S.optional(LoyaltyObjectList),
-    genericObjects: S.optional(GenericObjectList),
-    giftCardClasses: S.optional(GiftCardClassList),
-    transitClasses: S.optional(TransitClassList),
-    flightClasses: S.optional(FlightClassList),
     giftCardObjects: S.optional(GiftCardObjectList),
-    offerClasses: S.optional(OfferClassList),
+    giftCardClasses: S.optional(GiftCardClassList),
+    genericClasses: S.optional(GenericClassList),
+    loyaltyObjects: S.optional(LoyaltyObjectList),
+    flightObjects: S.optional(FlightObjectList),
     loyaltyClasses: S.optional(LoyaltyClassList),
+    flightClasses: S.optional(FlightClassList),
+    transitObjects: S.optional(TransitObjectList),
+    genericObjects: S.optional(GenericObjectList),
+    offerClasses: S.optional(OfferClassList),
+    eventTicketObjects: S.optional(EventTicketObjectList),
+    transitClasses: S.optional(TransitClassList),
   }),
 ).annotate({ identifier: "Resources" }) as any as S.Schema<Resources>;
 
 export interface JwtInsertResponse {
-  /** Data that corresponds to the ids of the provided classes and objects in the JWT. resources will only include the non-empty arrays (i.e. if the JWT only includes eventTicketObjects, then that is the only field that will be present in resources). */
-  resources?: Resources;
   /** A URI that, when opened, will allow the end user to save the object(s) identified in the JWT to their Google account. */
   saveUri?: string;
+  /** Data that corresponds to the ids of the provided classes and objects in the JWT. resources will only include the non-empty arrays (i.e. if the JWT only includes eventTicketObjects, then that is the only field that will be present in resources). */
+  resources?: Resources;
 }
 export const JwtInsertResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resources: S.optional(Resources),
     saveUri: S.optional(S.String),
+    resources: S.optional(Resources),
   }),
 ).annotate({
   identifier: "JwtInsertResponse",
@@ -5583,14 +5583,6 @@ export const InsertOfferobjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InsertOfferobjectRequest",
 }) as any as S.Schema<InsertOfferobjectRequest>;
 
-export type IssuerToUserInfoActionEnum =
-  | "ACTION_UNSPECIFIED"
-  | "S2AP"
-  | "s2ap"
-  | "SIGN_UP"
-  | "signUp";
-export const IssuerToUserInfoActionEnum = /*@__PURE__*/ S.String;
-
 export interface SignUpInfo {
   /** ID of the class the user can sign up for. */
   classId?: string;
@@ -5601,20 +5593,28 @@ export const SignUpInfo = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SignUpInfo" }) as any as S.Schema<SignUpInfo>;
 
+export type IssuerToUserInfoActionEnum =
+  | "ACTION_UNSPECIFIED"
+  | "S2AP"
+  | "s2ap"
+  | "SIGN_UP"
+  | "signUp";
+export const IssuerToUserInfoActionEnum = /*@__PURE__*/ S.String;
+
 export interface IssuerToUserInfo {
+  /** JSON web token for action S2AP. */
+  value?: string;
+  signUpInfo?: SignUpInfo;
   /** Currently not used, consider deprecating. */
   url?: string;
   action?: IssuerToUserInfoActionEnum | (string & {});
-  signUpInfo?: SignUpInfo;
-  /** JSON web token for action S2AP. */
-  value?: string;
 }
 export const IssuerToUserInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    value: S.optional(S.String),
+    signUpInfo: S.optional(SignUpInfo),
     url: S.optional(S.String),
     action: S.optional(IssuerToUserInfoActionEnum),
-    signUpInfo: S.optional(SignUpInfo),
-    value: S.optional(S.String),
   }),
 ).annotate({
   identifier: "IssuerToUserInfo",
@@ -5626,20 +5626,20 @@ export const IssuerToUserInfoList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IssuerToUserInfoList>;
 
 export interface SmartTap {
-  /** Communication from merchant to user. */
-  infos?: IssuerToUserInfoList;
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#smartTap"`. */
-  kind?: string;
   /** The unique identifier for a smart tap. This value should follow the format issuer ID.identifier where the former is issued by Google and latter is the Smart Tap id. The Smart Tap id is a Base64 encoded string which represents the id which was generated by the Google Pay app. */
   id?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#smartTap"`. */
+  kind?: string;
+  /** Communication from merchant to user. */
+  infos?: IssuerToUserInfoList;
   /** Smart Tap merchant ID of who engaged in the Smart Tap interaction. */
   merchantId?: string;
 }
 export const SmartTap = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    infos: S.optional(IssuerToUserInfoList),
-    kind: S.optional(S.String),
     id: S.optional(S.String),
+    kind: S.optional(S.String),
+    infos: S.optional(IssuerToUserInfoList),
     merchantId: S.optional(S.String),
   }),
 ).annotate({ identifier: "SmartTap" }) as any as S.Schema<SmartTap>;
@@ -5723,49 +5723,49 @@ export const ListEventticketclassRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListEventticketclassRequest>;
 
 export interface Pagination {
-  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#pagination"`. */
-  kind?: string;
   /** Number of results returned in this page. */
   resultsPerPage?: number;
   /** Page token to send to fetch the next page. */
   nextPageToken?: string;
+  /** Identifies what kind of resource this is. Value: the fixed string `"walletobjects#pagination"`. */
+  kind?: string;
 }
 export const Pagination = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     resultsPerPage: S.optional(S.Number),
     nextPageToken: S.optional(S.String),
+    kind: S.optional(S.String),
   }),
 ).annotate({ identifier: "Pagination" }) as any as S.Schema<Pagination>;
 
 export interface EventTicketClassListResponse {
-  /** Pagination of the response. */
-  pagination?: Pagination;
   /** Resources corresponding to the list request. */
   resources?: EventTicketClassList;
+  /** Pagination of the response. */
+  pagination?: Pagination;
 }
 export const EventTicketClassListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pagination: S.optional(Pagination),
     resources: S.optional(EventTicketClassList),
+    pagination: S.optional(Pagination),
   }),
 ).annotate({
   identifier: "EventTicketClassListResponse",
 }) as any as S.Schema<EventTicketClassListResponse>;
 
 export interface ListEventticketobjectRequest {
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
+  token?: string;
   /** The ID of the class whose objects will be listed. */
   classId?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
-  token?: string;
 }
 export const ListEventticketobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    token: S.optional(S.String.pipe(T.Query())),
     classId: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5793,18 +5793,18 @@ export const EventTicketObjectListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventTicketObjectListResponse>;
 
 export interface ListFlightclassRequest {
-  /** The ID of the issuer authorized to list classes. */
-  issuerId?: string;
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
-  token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
+  token?: string;
+  /** The ID of the issuer authorized to list classes. */
+  issuerId?: string;
 }
 export const ListFlightclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    issuerId: S.optional(S.String.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
+    issuerId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5832,18 +5832,18 @@ export const FlightClassListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlightClassListResponse>;
 
 export interface ListFlightobjectRequest {
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
+  token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
   /** The ID of the class whose objects will be listed. */
   classId?: string;
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
-  token?: string;
 }
 export const ListFlightobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     classId: S.optional(S.String.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5873,16 +5873,16 @@ export const FlightObjectListResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListGenericclassRequest {
   /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
   token?: string;
-  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
-  maxResults?: number;
   /** The ID of the issuer authorized to list classes. */
   issuerId?: string;
+  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
+  maxResults?: number;
 }
 export const ListGenericclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     issuerId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5911,18 +5911,18 @@ export const GenericClassListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GenericClassListResponse>;
 
 export interface ListGenericobjectRequest {
-  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
-  maxResults?: number;
   /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
   token?: string;
   /** The ID of the class whose objects will be listed. */
   classId?: string;
+  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
+  maxResults?: number;
 }
 export const ListGenericobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     token: S.optional(S.String.pipe(T.Query())),
     classId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5936,33 +5936,33 @@ export const ListGenericobjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** List response which contains the list of all generic objects for a given issuer ID. */
 export interface GenericObjectListResponse {
-  /** Resources corresponding to the list request. */
-  resources?: GenericObjectList;
   /** Pagination of the response. */
   pagination?: Pagination;
+  /** Resources corresponding to the list request. */
+  resources?: GenericObjectList;
 }
 export const GenericObjectListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resources: S.optional(GenericObjectList),
     pagination: S.optional(Pagination),
+    resources: S.optional(GenericObjectList),
   }),
 ).annotate({
   identifier: "GenericObjectListResponse",
 }) as any as S.Schema<GenericObjectListResponse>;
 
 export interface ListGiftcardclassRequest {
-  /** The ID of the issuer authorized to list classes. */
-  issuerId?: string;
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
-  token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
+  token?: string;
+  /** The ID of the issuer authorized to list classes. */
+  issuerId?: string;
 }
 export const ListGiftcardclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    issuerId: S.optional(S.String.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
+    issuerId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -5975,15 +5975,15 @@ export const ListGiftcardclassRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGiftcardclassRequest>;
 
 export interface GiftCardClassListResponse {
-  /** Resources corresponding to the list request. */
-  resources?: GiftCardClassList;
   /** Pagination of the response. */
   pagination?: Pagination;
+  /** Resources corresponding to the list request. */
+  resources?: GiftCardClassList;
 }
 export const GiftCardClassListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resources: S.optional(GiftCardClassList),
     pagination: S.optional(Pagination),
+    resources: S.optional(GiftCardClassList),
   }),
 ).annotate({
   identifier: "GiftCardClassListResponse",
@@ -5992,16 +5992,16 @@ export const GiftCardClassListResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListGiftcardobjectRequest {
   /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
   token?: string;
-  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
-  maxResults?: number;
   /** The ID of the class whose objects will be listed. */
   classId?: string;
+  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
+  maxResults?: number;
 }
 export const ListGiftcardobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     classId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6014,15 +6014,15 @@ export const ListGiftcardobjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGiftcardobjectRequest>;
 
 export interface GiftCardObjectListResponse {
-  /** Pagination of the response. */
-  pagination?: Pagination;
   /** Resources corresponding to the list request. */
   resources?: GiftCardObjectList;
+  /** Pagination of the response. */
+  pagination?: Pagination;
 }
 export const GiftCardObjectListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pagination: S.optional(Pagination),
     resources: S.optional(GiftCardObjectList),
+    pagination: S.optional(Pagination),
   }),
 ).annotate({
   identifier: "GiftCardObjectListResponse",
@@ -6059,18 +6059,18 @@ export const IssuerListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssuerListResponse>;
 
 export interface ListLoyaltyclassRequest {
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
-  token?: string;
-  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
-  maxResults?: number;
   /** The ID of the issuer authorized to list classes. */
   issuerId?: string;
+  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
+  maxResults?: number;
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
+  token?: string;
 }
 export const ListLoyaltyclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     issuerId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6098,18 +6098,18 @@ export const LoyaltyClassListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LoyaltyClassListResponse>;
 
 export interface ListLoyaltyobjectRequest {
-  /** The ID of the class whose objects will be listed. */
-  classId?: string;
   /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
   token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
+  /** The ID of the class whose objects will be listed. */
+  classId?: string;
 }
 export const ListLoyaltyobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    classId: S.optional(S.String.pipe(T.Query())),
     token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
+    classId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6137,18 +6137,18 @@ export const LoyaltyObjectListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LoyaltyObjectListResponse>;
 
 export interface ListOfferclassRequest {
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
+  token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
   /** The ID of the issuer authorized to list classes. */
   issuerId?: string;
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
-  token?: string;
 }
 export const ListOfferclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     issuerId: S.optional(S.String.pipe(T.Query())),
-    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6215,18 +6215,18 @@ export const OfferObjectListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OfferObjectListResponse>;
 
 export interface ListTransitclassRequest {
-  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
-  maxResults?: number;
-  /** The ID of the issuer authorized to list classes. */
-  issuerId?: string;
   /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes. */
   token?: string;
+  /** The ID of the issuer authorized to list classes. */
+  issuerId?: string;
+  /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
+  maxResults?: number;
 }
 export const ListTransitclassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    issuerId: S.optional(S.String.pipe(T.Query())),
     token: S.optional(S.String.pipe(T.Query())),
+    issuerId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6239,33 +6239,33 @@ export const ListTransitclassRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTransitclassRequest>;
 
 export interface TransitClassListResponse {
-  /** Pagination of the response. */
-  pagination?: Pagination;
   /** Resources corresponding to the list request. */
   resources?: TransitClassList;
+  /** Pagination of the response. */
+  pagination?: Pagination;
 }
 export const TransitClassListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pagination: S.optional(Pagination),
     resources: S.optional(TransitClassList),
+    pagination: S.optional(Pagination),
   }),
 ).annotate({
   identifier: "TransitClassListResponse",
 }) as any as S.Schema<TransitClassListResponse>;
 
 export interface ListTransitobjectRequest {
-  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
-  token?: string;
   /** Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined. */
   maxResults?: number;
   /** The ID of the class whose objects will be listed. */
   classId?: string;
+  /** Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects. */
+  token?: string;
 }
 export const ListTransitobjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
     classId: S.optional(S.String.pipe(T.Query())),
+    token: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -6680,18 +6680,18 @@ export const PatchTransitobjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Request to send a private pass update notice information to Google, so that devices can then fetch the notice prompting the user to update a pass. */
 export interface SetPassUpdateNoticeRequest {
+  /** Required. The JWT signature of the updated pass that the issuer wants to notify Google about. Only devices that report a different JWT signature than this JWT signature will receive the update notification. */
+  updatedPassJwtSignature?: string;
   /** Required. The issuer endpoint URI the pass holder needs to follow in order to receive an updated pass JWT. It can not contain any sensitive information. The endpoint needs to authenticate the user before giving the user the updated JWT. Example update URI https://someissuer.com/update/passId=someExternalPassId */
   updateUri?: string;
   /** Required. A fully qualified identifier of the pass that the issuer wants to notify the pass holder(s) about. Formatted as . */
   externalPassId?: string;
-  /** Required. The JWT signature of the updated pass that the issuer wants to notify Google about. Only devices that report a different JWT signature than this JWT signature will receive the update notification. */
-  updatedPassJwtSignature?: string;
 }
 export const SetPassUpdateNoticeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    updatedPassJwtSignature: S.optional(S.String),
     updateUri: S.optional(S.String),
     externalPassId: S.optional(S.String),
-    updatedPassJwtSignature: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SetPassUpdateNoticeRequest",
@@ -7070,38 +7070,38 @@ export const MediaRequestInfoNotificationTypeEnum = /*@__PURE__*/ S.String;
 
 /** Extra information added to operations that support Scotty media requests. */
 export interface MediaRequestInfo {
-  /** The type of notification received from Scotty. */
-  notificationType?: MediaRequestInfoNotificationTypeEnum | (string & {});
-  /** The number of current bytes uploaded or downloaded. */
-  currentBytes?: string;
-  /** The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs. */
-  physicalHeaders?: string;
-  /** Whether the total bytes field contains an estimated data. */
-  totalBytesIsEstimated?: boolean;
-  /** Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information. */
-  diffObjectVersion?: string;
-  /** The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange() */
-  requestReceivedParamsServingInfo?: string;
-  /** The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929 */
-  finalStatus?: number;
   /** The total size of the file. */
   totalBytes?: string;
+  /** The type of notification received from Scotty. */
+  notificationType?: MediaRequestInfoNotificationTypeEnum | (string & {});
   /** Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications. */
   customData?: string;
+  /** The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange() */
+  requestReceivedParamsServingInfo?: string;
+  /** The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs. */
+  physicalHeaders?: string;
+  /** The number of current bytes uploaded or downloaded. */
+  currentBytes?: string;
+  /** The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929 */
+  finalStatus?: number;
+  /** Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information. */
+  diffObjectVersion?: string;
+  /** Whether the total bytes field contains an estimated data. */
+  totalBytesIsEstimated?: boolean;
   /** The Scotty request ID. */
   requestId?: string;
 }
 export const MediaRequestInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    notificationType: S.optional(MediaRequestInfoNotificationTypeEnum),
-    currentBytes: S.optional(S.String),
-    physicalHeaders: S.optional(S.String),
-    totalBytesIsEstimated: S.optional(S.Boolean),
-    diffObjectVersion: S.optional(S.String),
-    requestReceivedParamsServingInfo: S.optional(S.String),
-    finalStatus: S.optional(S.Number),
     totalBytes: S.optional(S.String),
+    notificationType: S.optional(MediaRequestInfoNotificationTypeEnum),
     customData: S.optional(S.String),
+    requestReceivedParamsServingInfo: S.optional(S.String),
+    physicalHeaders: S.optional(S.String),
+    currentBytes: S.optional(S.String),
+    finalStatus: S.optional(S.Number),
+    diffObjectVersion: S.optional(S.String),
+    totalBytesIsEstimated: S.optional(S.Boolean),
     requestId: S.optional(S.String),
   }),
 ).annotate({
@@ -7110,16 +7110,16 @@ export const MediaRequestInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Request to upload rotating barcode values. */
 export interface TransitObjectUploadRotatingBarcodeValuesRequest {
-  /** A reference to the rotating barcode values payload that was uploaded. */
-  blob?: Media;
   /** Extra information about the uploaded media. */
   mediaRequestInfo?: MediaRequestInfo;
+  /** A reference to the rotating barcode values payload that was uploaded. */
+  blob?: Media;
 }
 export const TransitObjectUploadRotatingBarcodeValuesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      blob: S.optional(Media),
       mediaRequestInfo: S.optional(MediaRequestInfo),
+      blob: S.optional(Media),
     }),
   ).annotate({
     identifier: "TransitObjectUploadRotatingBarcodeValuesRequest",
@@ -7168,15 +7168,15 @@ export const JsonResource = /*@__PURE__*/ S.suspend(() =>
 
 /** Request to validate the JWT or JSON representation of a pass. */
 export interface JwtValidateRequest {
-  /** Optional. A JSON representation of a pass to be validated. Either this or jwt_resource should be set. Requests setting both or neither will be rejected. */
-  jsonResource?: JsonResource;
   /** Optional. A JWT representation of a pass to be validated. Either this or json_resource should be set. Requests setting both or neither will be rejected. */
   jwtResource?: JwtResource;
+  /** Optional. A JSON representation of a pass to be validated. Either this or jwt_resource should be set. Requests setting both or neither will be rejected. */
+  jsonResource?: JsonResource;
 }
 export const JwtValidateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    jsonResource: S.optional(JsonResource),
     jwtResource: S.optional(JwtResource),
+    jsonResource: S.optional(JsonResource),
   }),
 ).annotate({
   identifier: "JwtValidateRequest",

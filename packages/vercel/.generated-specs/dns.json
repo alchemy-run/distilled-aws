@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.dns#GetRecordsRequest": {
@@ -1536,22 +1537,22 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.dns#GetRecords"
-        },
-        {
           "target": "com.vercel.dns#CreateRecord"
-        },
-        {
-          "target": "com.vercel.dns#UpdateRecord"
-        },
-        {
-          "target": "com.vercel.dns#ReplaceDomainsByDomainRecords"
         },
         {
           "target": "com.vercel.dns#GetDomainsRecordsByRecordId"
         },
         {
+          "target": "com.vercel.dns#GetRecords"
+        },
+        {
           "target": "com.vercel.dns#RemoveRecord"
+        },
+        {
+          "target": "com.vercel.dns#ReplaceDomainsByDomainRecords"
+        },
+        {
+          "target": "com.vercel.dns#UpdateRecord"
         }
       ],
       "traits": {

@@ -11,31 +11,35 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface CreateMessagingSuppressionAddSuppressionRequest {
+export interface GetMessagingSuppressionsSuppressionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** The email address to suppress. Will not receive any messages until removed. */
-  identifier: string;
+  page?: number;
+  page_size?: number;
+  /** Case-insensitive substring match on the recipient email address. */
+  search?: string;
 }
-export const CreateMessagingSuppressionAddSuppressionRequest =
+export const GetMessagingSuppressionsSuppressionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      identifier: S.String,
+      page: S.optional(S.Number.pipe(T.Query())),
+      page_size: S.optional(S.Number.pipe(T.Query())),
+      search: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/messaging_suppressions/add_suppression/",
+        method: "GET",
+        uri: "/api/projects/{project_id}/messaging_suppressions/suppressions/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "CreateMessagingSuppressionAddSuppressionRequest",
-  }) as any as S.Schema<CreateMessagingSuppressionAddSuppressionRequest>;
+    identifier: "GetMessagingSuppressionsSuppressionRequest",
+  }) as any as S.Schema<GetMessagingSuppressionsSuppressionRequest>;
 
 /** * `BOUNCE` - Bounce * `MANUAL` - Manual * `COMPLAINT` - Complaint */
-export type MessageSuppressionSourceEnum = "BOUNCE" | "MANUAL" | "COMPLAINT";
-export const MessageSuppressionSourceEnum = /*@__PURE__*/ S.String;
+export type SuppressionSourceEnum = "BOUNCE" | "MANUAL" | "COMPLAINT";
+export const SuppressionSourceEnum = /*@__PURE__*/ S.String;
 
 export interface MessageSuppression {
   /** Server-assigned UUID for this suppression entry. */
@@ -43,7 +47,7 @@ export interface MessageSuppression {
   /** Normalized recipient email address. Suppression is keyed on this value, per team. */
   identifier: string;
   /** How the entry landed on the list: `BOUNCE` for automatic (bounce-driven), `COMPLAINT` for automatic (the recipient reported a message as spam), `MANUAL` for user-added via the UI/API. * `BOUNCE` - Bounce * `MANUAL` - Manual * `COMPLAINT` - Complaint */
-  source: MessageSuppressionSourceEnum;
+  source: SuppressionSourceEnum;
   /** Human-readable reason for the suppression (e.g. 'Auto-suppressed after 5 consecutive soft bounces'). */
   reason: string | null;
   /** Rolling count of consecutive soft bounces with no successful delivery in between. Reset to 0 on any successful delivery. Ignored for MANUAL entries. */
@@ -65,7 +69,7 @@ export const MessageSuppression = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     identifier: S.String,
-    source: MessageSuppressionSourceEnum,
+    source: SuppressionSourceEnum,
     reason: S.NullOr(S.String),
     transient_bounce_count: S.Number,
     last_bounce_at: S.NullOr(S.String),
@@ -78,60 +82,6 @@ export const MessageSuppression = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MessageSuppression",
 }) as any as S.Schema<MessageSuppression>;
-
-export interface CreateMessagingSuppressionRemoveSuppressionRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The email address to suppress. Will not receive any messages until removed. */
-  identifier: string;
-}
-export const CreateMessagingSuppressionRemoveSuppressionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      identifier: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/messaging_suppressions/remove_suppression/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateMessagingSuppressionRemoveSuppressionRequest",
-  }) as any as S.Schema<CreateMessagingSuppressionRemoveSuppressionRequest>;
-
-export interface CreateMessagingSuppressionRemoveSuppressionResponse {}
-export const CreateMessagingSuppressionRemoveSuppressionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateMessagingSuppressionRemoveSuppressionResponse",
-  }) as any as S.Schema<CreateMessagingSuppressionRemoveSuppressionResponse>;
-
-export interface MessagingSuppressionsSuppressionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  page?: number;
-  page_size?: number;
-  /** Case-insensitive substring match on the recipient email address. */
-  search?: string;
-}
-export const MessagingSuppressionsSuppressionsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      page_size: S.optional(S.Number.pipe(T.Query())),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/messaging_suppressions/suppressions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MessagingSuppressionsSuppressionsRetrieveRequest",
-  }) as any as S.Schema<MessagingSuppressionsSuppressionsRetrieveRequest>;
 
 export type PaginatedMessageSuppressionResultsList = Array<MessageSuppression>;
 export const PaginatedMessageSuppressionResultsList = /*@__PURE__*/ S.Array(
@@ -159,46 +109,96 @@ export const PaginatedMessageSuppression = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedMessageSuppression",
 }) as any as S.Schema<PaginatedMessageSuppression>;
 
-export type CreateMessagingSuppressionAddSuppressionError = PosthogOpError;
-/** Manually add an email address to the suppression list Manually suppress an email address so no workflow sends to it. */
-export const createMessagingSuppressionAddSuppression: API.OperationMethod<
-  CreateMessagingSuppressionAddSuppressionRequest,
-  MessageSuppression,
-  CreateMessagingSuppressionAddSuppressionError,
+export interface MessagingSuppressionsAddSuppressionCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The email address to suppress. Will not receive any messages until removed. */
+  identifier: string;
+}
+export const MessagingSuppressionsAddSuppressionCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/messaging_suppressions/add_suppression/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "MessagingSuppressionsAddSuppressionCreateRequest",
+  }) as any as S.Schema<MessagingSuppressionsAddSuppressionCreateRequest>;
+
+export interface MessagingSuppressionsRemoveSuppressionCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The email address to suppress. Will not receive any messages until removed. */
+  identifier: string;
+}
+export const MessagingSuppressionsRemoveSuppressionCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/messaging_suppressions/remove_suppression/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "MessagingSuppressionsRemoveSuppressionCreateRequest",
+  }) as any as S.Schema<MessagingSuppressionsRemoveSuppressionCreateRequest>;
+
+export interface MessagingSuppressionsRemoveSuppressionCreateResponse {}
+export const MessagingSuppressionsRemoveSuppressionCreateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "MessagingSuppressionsRemoveSuppressionCreateResponse",
+  }) as any as S.Schema<MessagingSuppressionsRemoveSuppressionCreateResponse>;
+
+export type GetMessagingSuppressionsSuppressionError = PosthogOpError;
+/** List suppressed email addresses for the team List suppressed recipients for the team, most recently updated first. */
+export const getMessagingSuppressionsSuppression: API.OperationMethod<
+  GetMessagingSuppressionsSuppressionRequest,
+  PaginatedMessageSuppression,
+  GetMessagingSuppressionsSuppressionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateMessagingSuppressionAddSuppressionRequest,
+  input: GetMessagingSuppressionsSuppressionRequest,
+  output: PaginatedMessageSuppression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MessagingSuppressionsAddSuppressionCreateError = PosthogOpError;
+/** Manually add an email address to the suppression list Manually suppress an email address so no workflow sends to it. */
+export const messagingSuppressionsAddSuppressionCreate: API.OperationMethod<
+  MessagingSuppressionsAddSuppressionCreateRequest,
+  MessageSuppression,
+  MessagingSuppressionsAddSuppressionCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MessagingSuppressionsAddSuppressionCreateRequest,
   output: MessageSuppression,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateMessagingSuppressionRemoveSuppressionError = PosthogOpError;
+export type MessagingSuppressionsRemoveSuppressionCreateError = PosthogOpError;
 /** Remove an email address from the suppression list Remove an address from the suppression list so it can receive messages again. */
-export const createMessagingSuppressionRemoveSuppression: API.OperationMethod<
-  CreateMessagingSuppressionRemoveSuppressionRequest,
-  CreateMessagingSuppressionRemoveSuppressionResponse,
-  CreateMessagingSuppressionRemoveSuppressionError,
+export const messagingSuppressionsRemoveSuppressionCreate: API.OperationMethod<
+  MessagingSuppressionsRemoveSuppressionCreateRequest,
+  MessagingSuppressionsRemoveSuppressionCreateResponse,
+  MessagingSuppressionsRemoveSuppressionCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateMessagingSuppressionRemoveSuppressionRequest,
-  output: CreateMessagingSuppressionRemoveSuppressionResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MessagingSuppressionsSuppressionsRetrieveError = PosthogOpError;
-/** List suppressed email addresses for the team List suppressed recipients for the team, most recently updated first. */
-export const messagingSuppressionsSuppressionsRetrieve: API.OperationMethod<
-  MessagingSuppressionsSuppressionsRetrieveRequest,
-  PaginatedMessageSuppression,
-  MessagingSuppressionsSuppressionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MessagingSuppressionsSuppressionsRetrieveRequest,
-  output: PaginatedMessageSuppression,
+  input: MessagingSuppressionsRemoveSuppressionCreateRequest,
+  output: MessagingSuppressionsRemoveSuppressionCreateResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

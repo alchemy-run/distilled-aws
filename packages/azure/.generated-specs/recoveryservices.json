@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.recoveryservices#ListUsageByVaults": {
@@ -3271,7 +3272,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservices#VaultsUpdateResponseTagsMap",
+          "target": "com.azure.recoveryservices#UpdateVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3312,7 +3313,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservices#VaultsUpdateResponseTagsMap": {
+    "com.azure.recoveryservices#UpdateVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3358,7 +3359,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservices#VaultsUpdateRequestTagsMap",
+          "target": "com.azure.recoveryservices#UpdateVaultRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3529,7 +3530,7 @@
         "smithy.api#documentation": "Details for upgrading vault."
       }
     },
-    "com.azure.recoveryservices#VaultsUpdateRequestTagsMap": {
+    "com.azure.recoveryservices#UpdateVaultRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3769,7 +3770,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservices#VaultsGetResponseTagsMap",
+          "target": "com.azure.recoveryservices#GetVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3810,7 +3811,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservices#VaultsGetResponseTagsMap": {
+    "com.azure.recoveryservices#GetVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4123,13 +4124,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservices#DeletedVaultsUndelete": {
+    "com.azure.recoveryservices#UndeleteDeletedVault": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservices#DeletedVaultsUndeleteRequest"
+        "target": "com.azure.recoveryservices#UndeleteDeletedVaultRequest"
       },
       "output": {
-        "target": "com.azure.recoveryservices#DeletedVaultsUndeleteResponse"
+        "target": "com.azure.recoveryservices#UndeleteDeletedVaultResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4142,7 +4143,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.recoveryservices#DeletedVaultsUndeleteResponse": {
+    "com.azure.recoveryservices#UndeleteDeletedVaultResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4206,7 +4207,7 @@
         "smithy.api#documentation": "Properties of the DeletedVault."
       }
     },
-    "com.azure.recoveryservices#DeletedVaultsUndeleteRequest": {
+    "com.azure.recoveryservices#UndeleteDeletedVaultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4855,25 +4856,67 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservices#ListUsageByVaults"
+          "target": "com.azure.recoveryservices#CheckRecoveryServiceNameAvailability"
         },
         {
-          "target": "com.azure.recoveryservices#ListReplicationUsages"
+          "target": "com.azure.recoveryservices#CreateVaultCertificate"
         },
         {
           "target": "com.azure.recoveryservices#DeleteRegisteredIdentity"
         },
         {
-          "target": "com.azure.recoveryservices#GetPrivateLinkResource"
+          "target": "com.azure.recoveryservices#DeleteVault"
         },
         {
-          "target": "com.azure.recoveryservices#ListPrivateLinkResources"
+          "target": "com.azure.recoveryservices#GetDeletedVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetDeletedVaultOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetOperationResult"
         },
         {
           "target": "com.azure.recoveryservices#GetOperationStatus"
         },
         {
-          "target": "com.azure.recoveryservices#GetOperationResult"
+          "target": "com.azure.recoveryservices#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetVaultExtendedInfo"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListDeletedVaultBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListOperations"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListReplicationUsages"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListUsageByVaults"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListVaultByResourceGroup"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListVaultBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#RecoveryServicesCapabilities"
+        },
+        {
+          "target": "com.azure.recoveryservices#UndeleteDeletedVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#UpdateVault"
         },
         {
           "target": "com.azure.recoveryservices#UpdateVaultExtendedInfo"
@@ -4882,49 +4925,7 @@
           "target": "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdate"
         },
         {
-          "target": "com.azure.recoveryservices#GetVaultExtendedInfo"
-        },
-        {
-          "target": "com.azure.recoveryservices#CreateVaultCertificate"
-        },
-        {
-          "target": "com.azure.recoveryservices#DeleteVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#UpdateVault"
-        },
-        {
           "target": "com.azure.recoveryservices#VaultsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListVaultByResourceGroup"
-        },
-        {
-          "target": "com.azure.recoveryservices#CheckRecoveryServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListVaultBySubscriptionId"
-        },
-        {
-          "target": "com.azure.recoveryservices#DeletedVaultsUndelete"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetDeletedVaultOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetDeletedVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListDeletedVaultBySubscriptionId"
-        },
-        {
-          "target": "com.azure.recoveryservices#RecoveryServicesCapabilities"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListOperations"
         }
       ],
       "traits": {

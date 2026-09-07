@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.machinelearningservices#ServerlessEndpointsRegenerateKeys": {
+    "com.azure.machinelearningservices#RegenerateServerlessEndpointKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ServerlessEndpointsRegenerateKeysRequest"
+        "target": "com.azure.machinelearningservices#RegenerateServerlessEndpointKeysRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#EndpointAuthKeys"
@@ -58,7 +59,7 @@
         "smithy.api#documentation": "Keys for endpoint authentication."
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsRegenerateKeysRequest": {
+    "com.azure.machinelearningservices#RegenerateServerlessEndpointKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -295,7 +296,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateServerlessEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -315,7 +316,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateServerlessEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -327,7 +328,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateServerlessEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -337,7 +338,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateServerlessEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -405,7 +406,7 @@
         "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateServerlessEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -762,7 +763,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateServerlessEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -918,7 +919,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateServerlessEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1074,7 +1075,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateServerlessEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1494,7 +1495,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetServerlessEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1514,7 +1515,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetServerlessEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1526,7 +1527,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetServerlessEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -1536,7 +1537,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsGetResponseSku": {
+    "com.azure.machinelearningservices#GetServerlessEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -1572,7 +1573,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetServerlessEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1604,7 +1605,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#ServerlessEndpointsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetServerlessEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2495,7 +2496,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#SchedulesListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListSchedulesRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "Status filter for schedule."
@@ -2506,7 +2507,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#SchedulesListRequestListViewType": {
+    "com.azure.machinelearningservices#ListSchedulesRequestListViewType": {
       "type": "enum",
       "members": {
         "ENABLEDONLY": {
@@ -2581,10 +2582,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ManagedNetworkProvisionsProvisionManagedNetwork": {
+    "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ManagedNetworkProvisionsProvisionManagedNetworkRequest"
+        "target": "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetworkRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#ManagedNetworkProvisionStatus"
@@ -2637,7 +2638,7 @@
         "smithy.api#documentation": "Status for the managed network of a machine learning workspace."
       }
     },
-    "com.azure.machinelearningservices#ManagedNetworkProvisionsProvisionManagedNetworkRequest": {
+    "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3494,13 +3495,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -3512,14 +3513,14 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseTagsMap"
+          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseTagsMap"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3529,7 +3530,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseSku": {
+    "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -3565,7 +3566,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#PrivateEndpointConnectionsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetPrivateEndpointConnectionResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3938,10 +3939,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#DeleteManagedNetworkSettingRule": {
+    "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingRuleRequest"
+        "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3957,7 +3958,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#DeleteManagedNetworkSettingRuleRequest": {
+    "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4268,13 +4269,13 @@
         "smithy.api#documentation": "Outbound Rule for the managed network of a machine learning workspace."
       }
     },
-    "com.azure.machinelearningservices#GetManagedNetworkSettingRule": {
+    "com.azure.machinelearningservices#GetManagedNetworkSettingsRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#GetManagedNetworkSettingRuleRequest"
+        "target": "com.azure.machinelearningservices#GetManagedNetworkSettingsRuleRequest"
       },
       "output": {
-        "target": "com.azure.machinelearningservices#GetManagedNetworkSettingRuleResponse"
+        "target": "com.azure.machinelearningservices#GetManagedNetworkSettingsRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4287,7 +4288,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#GetManagedNetworkSettingRuleResponse": {
+    "com.azure.machinelearningservices#GetManagedNetworkSettingsRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4326,7 +4327,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#GetManagedNetworkSettingRuleRequest": {
+    "com.azure.machinelearningservices#GetManagedNetworkSettingsRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4366,10 +4367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ListManagedNetworkSettingRule": {
+    "com.azure.machinelearningservices#ListManagedNetworkSettingsRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ListManagedNetworkSettingRuleRequest"
+        "target": "com.azure.machinelearningservices#ListManagedNetworkSettingsRuleRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#OutboundRuleListResult"
@@ -4454,7 +4455,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.machinelearningservices#ListManagedNetworkSettingRuleRequest": {
+    "com.azure.machinelearningservices#ListManagedNetworkSettingsRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4486,10 +4487,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependencyEndpoints": {
+    "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#ExternalFQDNResponse"
@@ -4579,7 +4580,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4705,10 +4706,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsRegenerateKeys": {
+    "com.azure.machinelearningservices#RegenerateOnlineEndpointKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#OnlineEndpointsRegenerateKeysRequest"
+        "target": "com.azure.machinelearningservices#RegenerateOnlineEndpointKeysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4724,7 +4725,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsRegenerateKeysRequest": {
+    "com.azure.machinelearningservices#RegenerateOnlineEndpointKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5088,10 +5089,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#GetOnlineDeploymentLog": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentLogs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogRequest"
+        "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogsRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#DeploymentLogs"
@@ -5120,7 +5121,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#GetOnlineDeploymentLogRequest": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentLogsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5164,7 +5165,7 @@
           }
         },
         "containerType": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsGetLogsRequestContainerType",
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogsRequestContainerType",
           "traits": {
             "smithy.api#documentation": "The type of container to retrieve logs from."
           }
@@ -5181,7 +5182,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsGetLogsRequestContainerType": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentLogsRequestContainerType": {
       "type": "enum",
       "members": {
         "STORAGEINITIALIZER": {
@@ -5315,7 +5316,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5335,7 +5336,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5347,7 +5348,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -5357,7 +5358,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -5393,7 +5394,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5944,7 +5945,7 @@
         "smithy.api#documentation": "Configuration for a scoring code asset."
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateOnlineDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6000,7 +6001,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeploymentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6016,7 +6017,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateOnlineDeploymentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6398,7 +6399,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6418,7 +6419,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6430,7 +6431,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -6440,7 +6441,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsGetResponseSku": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -6476,7 +6477,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6508,7 +6509,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#OnlineDeploymentsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetOnlineDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6934,7 +6935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6954,7 +6955,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6966,7 +6967,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -6976,7 +6977,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateOnlineEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -7012,7 +7013,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateOnlineEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -7209,7 +7210,7 @@
         "smithy.api#documentation": "Enum to determine endpoint authentication mode."
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateOnlineEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7257,7 +7258,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7273,7 +7274,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateOnlineEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7766,7 +7767,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetOnlineEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7786,7 +7787,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetOnlineEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -7798,7 +7799,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetOnlineEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -7808,7 +7809,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsGetResponseSku": {
+    "com.azure.machinelearningservices#GetOnlineEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -7844,7 +7845,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetOnlineEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -7876,7 +7877,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetOnlineEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8169,7 +8170,7 @@
           }
         },
         "computeType": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsListRequestComputeType",
+          "target": "com.azure.machinelearningservices#ListOnlineEndpointsRequestComputeType",
           "traits": {
             "smithy.api#httpQuery": "computeType",
             "smithy.api#documentation": "EndpointComputeType to be filtered by."
@@ -8197,7 +8198,7 @@
           }
         },
         "orderBy": {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsListRequestOrderBy",
+          "target": "com.azure.machinelearningservices#ListOnlineEndpointsRequestOrderBy",
           "traits": {
             "smithy.api#httpQuery": "orderBy",
             "smithy.api#documentation": "The option to order the response."
@@ -8208,7 +8209,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#OnlineEndpointsListRequestOrderBy": {
+    "com.azure.machinelearningservices#ListOnlineEndpointsRequestOrderBy": {
       "type": "enum",
       "members": {
         "CREATEDATDESC": {
@@ -8238,7 +8239,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#OnlineEndpointsListRequestComputeType": {
+    "com.azure.machinelearningservices#ListOnlineEndpointsRequestComputeType": {
       "type": "enum",
       "members": {
         "MANAGED": {
@@ -8262,10 +8263,10 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#ModelVersionsPublish": {
+    "com.azure.machinelearningservices#PublishModelVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ModelVersionsPublishRequest"
+        "target": "com.azure.machinelearningservices#PublishModelVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8281,7 +8282,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#ModelVersionsPublishRequest": {
+    "com.azure.machinelearningservices#PublishModelVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9048,7 +9049,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#ModelVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListModelVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -9059,7 +9060,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ModelVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListModelVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -9609,7 +9610,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#ModelContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListModelContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -9620,7 +9621,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ModelContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListModelContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -10511,10 +10512,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#JobsCancel": {
+    "com.azure.machinelearningservices#CancelJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#JobsCancelRequest"
+        "target": "com.azure.machinelearningservices#CancelJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10530,7 +10531,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#JobsCancelRequest": {
+    "com.azure.machinelearningservices#CancelJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11672,7 +11673,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#JobsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListJobsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -11690,7 +11691,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#JobsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListJobsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -12309,7 +12310,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -12362,7 +12363,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#FeaturestoreEntityVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListFeaturestoreEntityVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -12916,7 +12917,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -12955,7 +12956,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#FeaturestoreEntityContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListFeaturestoreEntityContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -13375,7 +13376,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#FeaturesListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListFeaturesRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -13393,7 +13394,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#FeaturesListRequestListViewType": {
+    "com.azure.machinelearningservices#ListFeaturesRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -14518,7 +14519,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#FeaturesetVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListFeaturesetVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -14571,7 +14572,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#FeaturesetVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListFeaturesetVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -15125,7 +15126,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#FeaturesetContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListFeaturesetContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -15164,7 +15165,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#FeaturesetContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListFeaturesetContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -15295,10 +15296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#EnvironmentVersionsPublish": {
+    "com.azure.machinelearningservices#PublishEnvironmentVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#EnvironmentVersionsPublishRequest"
+        "target": "com.azure.machinelearningservices#PublishEnvironmentVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15314,7 +15315,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#EnvironmentVersionsPublishRequest": {
+    "com.azure.machinelearningservices#PublishEnvironmentVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16066,7 +16067,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#EnvironmentVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListEnvironmentVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -16077,7 +16078,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#EnvironmentVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListEnvironmentVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -16624,7 +16625,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#EnvironmentContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListEnvironmentContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -16635,7 +16636,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#EnvironmentContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListEnvironmentContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -17811,7 +17812,7 @@
           }
         },
         "names": {
-          "target": "com.azure.machinelearningservices#DatastoresListRequestNamesList",
+          "target": "com.azure.machinelearningservices#ListDatastoresRequestNamesList",
           "traits": {
             "smithy.api#httpQuery": "names",
             "smithy.api#documentation": "Names of datastores to return."
@@ -17843,17 +17844,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#DatastoresListRequestNamesList": {
+    "com.azure.machinelearningservices#ListDatastoresRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#DataVersionsPublish": {
+    "com.azure.machinelearningservices#PublishDataVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#DataVersionsPublishRequest"
+        "target": "com.azure.machinelearningservices#PublishDataVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17869,7 +17870,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#DataVersionsPublishRequest": {
+    "com.azure.machinelearningservices#PublishDataVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18481,7 +18482,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#DataVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListDataVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -18492,7 +18493,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#DataVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListDataVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -19047,7 +19048,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#DataContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListDataContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -19058,7 +19059,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#DataContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListDataContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -21330,7 +21331,7 @@
           }
         },
         "underlyingResourceAction": {
-          "target": "com.azure.machinelearningservices#ComputeDeleteRequestUnderlyingResourceAction",
+          "target": "com.azure.machinelearningservices#DeleteComputeRequestUnderlyingResourceAction",
           "traits": {
             "smithy.api#httpQuery": "underlyingResourceAction",
             "smithy.api#required": {},
@@ -21342,7 +21343,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ComputeDeleteRequestUnderlyingResourceAction": {
+    "com.azure.machinelearningservices#DeleteComputeRequestUnderlyingResourceAction": {
       "type": "enum",
       "members": {
         "DELETE": {
@@ -21419,20 +21420,20 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#ComputeUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateComputeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#ComputeUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateComputeResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#ComputeUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateComputeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -21442,7 +21443,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#ComputeUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateComputeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -21474,7 +21475,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#ComputeUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateComputeResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -21510,7 +21511,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#ComputeUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateComputeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22242,20 +22243,20 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#ComputeGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetComputeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#ComputeGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetComputeResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#ComputeGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetComputeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -22265,7 +22266,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#ComputeGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetComputeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -22297,7 +22298,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#ComputeGetResponseSku": {
+    "com.azure.machinelearningservices#GetComputeResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -22333,7 +22334,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#ComputeGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetComputeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22616,10 +22617,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ComponentVersionsPublish": {
+    "com.azure.machinelearningservices#PublishComponentVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#ComponentVersionsPublishRequest"
+        "target": "com.azure.machinelearningservices#PublishComponentVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -22635,7 +22636,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#ComponentVersionsPublishRequest": {
+    "com.azure.machinelearningservices#PublishComponentVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23213,7 +23214,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#ComponentVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListComponentVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -23224,7 +23225,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ComponentVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListComponentVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -23771,7 +23772,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#ComponentContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListComponentContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -23782,7 +23783,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#ComponentContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListComponentContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -24006,10 +24007,10 @@
         "smithy.api#documentation": "Type of storage to use for the pending upload location"
       }
     },
-    "com.azure.machinelearningservices#CodeVersionsPublish": {
+    "com.azure.machinelearningservices#PublishCodeVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#CodeVersionsPublishRequest"
+        "target": "com.azure.machinelearningservices#PublishCodeVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -24025,7 +24026,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#CodeVersionsPublishRequest": {
+    "com.azure.machinelearningservices#PublishCodeVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25965,7 +25966,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateBatchDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25985,7 +25986,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateBatchDeploymentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -25997,7 +25998,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateBatchDeploymentResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -26007,7 +26008,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateBatchDeploymentResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -26043,7 +26044,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateBatchDeploymentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -26399,7 +26400,7 @@
         "smithy.api#documentation": "Environment variables configuration for the deployment."
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateBatchDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26461,7 +26462,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateBatchDeploymentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -26471,7 +26472,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateBatchDeploymentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26868,7 +26869,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetBatchDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -26888,7 +26889,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetBatchDeploymentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -26900,7 +26901,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetBatchDeploymentResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -26910,7 +26911,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsGetResponseSku": {
+    "com.azure.machinelearningservices#GetBatchDeploymentResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -26946,7 +26947,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetBatchDeploymentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -26978,7 +26979,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#BatchDeploymentsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetBatchDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -27404,7 +27405,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -27424,7 +27425,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -27436,7 +27437,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -27446,7 +27447,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateBatchEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -27482,7 +27483,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateBatchEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -27604,7 +27605,7 @@
         "smithy.api#documentation": "Property dictionary. Properties can be added, but not removed or altered."
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateBatchEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -27652,7 +27653,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -27668,7 +27669,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateBatchEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -28097,7 +28098,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetBatchEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -28117,7 +28118,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetBatchEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -28129,7 +28130,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#BatchEndpointsGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetBatchEndpointResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -28139,7 +28140,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsGetResponseSku": {
+    "com.azure.machinelearningservices#GetBatchEndpointResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -28175,7 +28176,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetBatchEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -28207,7 +28208,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#BatchEndpointsGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetBatchEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -28616,7 +28617,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -28628,20 +28629,20 @@
           "target": "smithy.api#String"
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateResponseTagsMap"
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceResponseTagsMap"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -28651,7 +28652,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -28687,7 +28688,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -29388,7 +29389,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateRequestIdentity",
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -29400,13 +29401,13 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateRequestSku",
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags for the machine learning workspace."
           }
@@ -29416,7 +29417,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -29428,7 +29429,7 @@
         "smithy.api#documentation": "The resource tags for the machine learning workspace."
       }
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateRequestSku": {
+    "com.azure.machinelearningservices#UpdateWorkspaceRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -29634,7 +29635,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#WorkspacesUpdateRequestIdentity": {
+    "com.azure.machinelearningservices#UpdateWorkspaceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -30153,7 +30154,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#WorkspacesGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -30165,20 +30166,20 @@
           "target": "smithy.api#String"
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#WorkspacesGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#WorkspacesGetResponseTagsMap"
+          "target": "com.azure.machinelearningservices#GetWorkspaceResponseTagsMap"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#WorkspacesGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -30188,7 +30189,7 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#WorkspacesGetResponseSku": {
+    "com.azure.machinelearningservices#GetWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -30224,7 +30225,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#WorkspacesGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -30519,13 +30520,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegions": {
+    "com.azure.machinelearningservices#RemoveRegistryRegions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsRequest"
+        "target": "com.azure.machinelearningservices#RemoveRegistryRegionsRequest"
       },
       "output": {
-        "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsResponse"
+        "target": "com.azure.machinelearningservices#RemoveRegistryRegionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -30538,7 +30539,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsResponse": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -30566,7 +30567,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseTagsMap",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -30586,7 +30587,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseIdentity",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -30598,7 +30599,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseSku",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -30608,7 +30609,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseSku": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -30644,7 +30645,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseIdentity": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -31077,7 +31078,7 @@
         "smithy.api#documentation": "Details for managed resource group assigned identities."
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsResponseTagsMap": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -31089,7 +31090,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsRequest": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -31117,7 +31118,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestTagsMap",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -31137,7 +31138,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestIdentity",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -31149,7 +31150,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestSku",
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegionsRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -31159,7 +31160,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestSku": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -31195,7 +31196,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestIdentity": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -31386,7 +31387,7 @@
         "smithy.api#documentation": "The group ids"
       }
     },
-    "com.azure.machinelearningservices#RegistriesRemoveRegionsRequestTagsMap": {
+    "com.azure.machinelearningservices#RemoveRegistryRegionsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -31888,7 +31889,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryModelVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryModelVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -31899,7 +31900,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryModelVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryModelVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -32239,7 +32240,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryModelContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryModelContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -32250,7 +32251,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryModelContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryModelContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -32636,7 +32637,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -32647,7 +32648,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryEnvironmentVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryEnvironmentVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -32987,7 +32988,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -32998,7 +32999,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryEnvironmentContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryEnvironmentContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -33022,10 +33023,10 @@
       },
       "traits": {}
     },
-    "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSas": {
+    "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSAS": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSasRequest"
+        "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSASRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#GetBlobReferenceSASResponseDto"
@@ -33130,7 +33131,7 @@
         "smithy.api#documentation": "Enum to determine the DataReference credentials type."
       }
     },
-    "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSasRequest": {
+    "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSASRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -33661,7 +33662,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryDataVersionsListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryDataVersionsRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "[ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities."
@@ -33672,7 +33673,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryDataVersionsListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryDataVersionsRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -34012,7 +34013,7 @@
           }
         },
         "listViewType": {
-          "target": "com.azure.machinelearningservices#RegistryDataContainersListRequestListViewType",
+          "target": "com.azure.machinelearningservices#ListRegistryDataContainersRequestListViewType",
           "traits": {
             "smithy.api#httpQuery": "listViewType",
             "smithy.api#documentation": "View type for including/excluding (for example) archived entities."
@@ -34023,7 +34024,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistryDataContainersListRequestListViewType": {
+    "com.azure.machinelearningservices#ListRegistryDataContainersRequestListViewType": {
       "type": "enum",
       "members": {
         "ACTIVEONLY": {
@@ -35617,7 +35618,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#RegistriesUpdateResponseTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -35637,7 +35638,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#RegistriesUpdateResponseIdentity",
+          "target": "com.azure.machinelearningservices#UpdateRegistryResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -35649,7 +35650,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#RegistriesUpdateResponseSku",
+          "target": "com.azure.machinelearningservices#UpdateRegistryResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -35659,7 +35660,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesUpdateResponseSku": {
+    "com.azure.machinelearningservices#UpdateRegistryResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -35695,7 +35696,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#RegistriesUpdateResponseIdentity": {
+    "com.azure.machinelearningservices#UpdateRegistryResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -35727,7 +35728,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#RegistriesUpdateResponseTagsMap": {
+    "com.azure.machinelearningservices#UpdateRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -35779,7 +35780,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#RegistriesUpdateRequestTagsMap",
+          "target": "com.azure.machinelearningservices#UpdateRegistryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -35789,7 +35790,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesUpdateRequestTagsMap": {
+    "com.azure.machinelearningservices#UpdateRegistryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -36175,7 +36176,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearningservices#RegistriesGetResponseTagsMap",
+          "target": "com.azure.machinelearningservices#GetRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -36195,7 +36196,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.machinelearningservices#RegistriesGetResponseIdentity",
+          "target": "com.azure.machinelearningservices#GetRegistryResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -36207,7 +36208,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.machinelearningservices#RegistriesGetResponseSku",
+          "target": "com.azure.machinelearningservices#GetRegistryResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -36217,7 +36218,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#RegistriesGetResponseSku": {
+    "com.azure.machinelearningservices#GetRegistryResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -36253,7 +36254,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.machinelearningservices#RegistriesGetResponseIdentity": {
+    "com.azure.machinelearningservices#GetRegistryResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -36285,7 +36286,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.machinelearningservices#RegistriesGetResponseTagsMap": {
+    "com.azure.machinelearningservices#GetRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -37089,10 +37090,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#UpdateQuota": {
+    "com.azure.machinelearningservices#UpdateQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearningservices#UpdateQuotaRequest"
+        "target": "com.azure.machinelearningservices#UpdateQuotasRequest"
       },
       "output": {
         "target": "com.azure.machinelearningservices#UpdateWorkspaceQuotasResult"
@@ -37245,7 +37246,7 @@
         "smithy.api#documentation": "An enum describing the unit of quota measurement."
       }
     },
-    "com.azure.machinelearningservices#UpdateQuotaRequest": {
+    "com.azure.machinelearningservices#UpdateQuotasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -37265,7 +37266,7 @@
           }
         },
         "value": {
-          "target": "com.azure.machinelearningservices#QuotasUpdateRequestValueList",
+          "target": "com.azure.machinelearningservices#UpdateQuotasRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list for update quota."
           }
@@ -37275,7 +37276,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearningservices#QuotasUpdateRequestValueList": {
+    "com.azure.machinelearningservices#UpdateQuotasRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.machinelearningservices#QuotaBaseProperties"
@@ -37476,7 +37477,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.machinelearningservices#OperationsListResponseValueList",
+          "target": "com.azure.machinelearningservices#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -37492,7 +37493,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearningservices#OperationsListResponseValueList": {
+    "com.azure.machinelearningservices#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.machinelearningservices#Operation"
@@ -37616,652 +37617,652 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsRegenerateKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListServerlessEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteServerlessEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateServerlessEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetServerlessEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListServerlessEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetSchedule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListSchedules"
-        },
-        {
-          "target": "com.azure.machinelearningservices#WorkspacesResyncKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ManagedNetworkProvisionsProvisionManagedNetwork"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.machinelearningservices#WorkspacesPrepareNotebook"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ManagedNetworkSettingsRuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetManagedNetworkSettingRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListManagedNetworkSettingRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependencyEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineEndpointToken"
-        },
-        {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsRegenerateKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineDeploymentSkus"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineDeploymentLog"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineDeployments"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ModelVersionsPublish"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ModelVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListModelVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ModelContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListModelContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteMarketplaceSubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#MarketplaceSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetMarketplaceSubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListMarketplaceSubscriptions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceStorageAccountKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookAccessToken"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#JobsCancel"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteJob"
-        },
-        {
-          "target": "com.azure.machinelearningservices#JobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetJob"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListJobs"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityContainerEntity"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeature"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeatures"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetVersionsBackfill"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturesetVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturesetVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturesetVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturesetContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturesetContainerEntity"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturesetContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceFeatures"
-        },
-        {
-          "target": "com.azure.machinelearningservices#EnvironmentVersionsPublish"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#EnvironmentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListEnvironmentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#EnvironmentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListEnvironmentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#WorkspacesDiagnose"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDatastoreSecrets"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDatastore"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DatastoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDatastore"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDatastores"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DataVersionsPublish"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DataVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDataVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DataContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDataContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceConnectionSecrets"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CreateWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceConnections"
-        },
-        {
-          "target": "com.azure.machinelearningservices#StopCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#StartCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RestartCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComputeNodes"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComputeKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComputeCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComponentVersionsPublish"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComponentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComponentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComponentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComponentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeVersionsPublish"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCodeVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCodeContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCapabilityHost"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CapabilityHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCapabilityHost"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListBatchEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteBatchDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateBatchDeployment"
-        },
-        {
           "target": "com.azure.machinelearningservices#BatchDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetBatchDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListBatchDeployments"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteBatchEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateBatchEndpoint"
         },
         {
           "target": "com.azure.machinelearningservices#BatchEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#GetBatchEndpoint"
+          "target": "com.azure.machinelearningservices#CancelJob"
         },
         {
-          "target": "com.azure.machinelearningservices#ListBatchEndpoints"
+          "target": "com.azure.machinelearningservices#CapabilityHostsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteWorkspace"
+          "target": "com.azure.machinelearningservices#CodeContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#UpdateWorkspace"
+          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrGetStartPendingUpload"
         },
         {
-          "target": "com.azure.machinelearningservices#WorkspacesCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#GetWorkspace"
+          "target": "com.azure.machinelearningservices#ComponentContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#ListWorkspaceByResourceGroup"
+          "target": "com.azure.machinelearningservices#ComponentVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistriesRemoveRegions"
+          "target": "com.azure.machinelearningservices#ComputeCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrGetStartPendingUpload"
+          "target": "com.azure.machinelearningservices#CreateWorkspaceConnection"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryModelVersion"
+          "target": "com.azure.machinelearningservices#DataContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DatastoresCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryModelVersion"
+          "target": "com.azure.machinelearningservices#DataVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryModelVersions"
+          "target": "com.azure.machinelearningservices#DeleteBatchDeployment"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryModelContainer"
+          "target": "com.azure.machinelearningservices#DeleteBatchEndpoint"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryModelContainersCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteCapabilityHost"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryModelContainer"
+          "target": "com.azure.machinelearningservices#DeleteCodeContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryModelContainers"
+          "target": "com.azure.machinelearningservices#DeleteCodeVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentVersion"
+          "target": "com.azure.machinelearningservices#DeleteComponentContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentVersionsCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteComponentVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentVersion"
+          "target": "com.azure.machinelearningservices#DeleteCompute"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentVersions"
+          "target": "com.azure.machinelearningservices#DeleteDataContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentContainer"
+          "target": "com.azure.machinelearningservices#DeleteDatastore"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentContainersCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteDataVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentContainer"
+          "target": "com.azure.machinelearningservices#DeleteEnvironmentContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentContainers"
+          "target": "com.azure.machinelearningservices#DeleteEnvironmentVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSas"
+          "target": "com.azure.machinelearningservices#DeleteFeaturesetContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrGetStartPendingUpload"
+          "target": "com.azure.machinelearningservices#DeleteFeaturesetVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryDataVersion"
+          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryDataVersion"
+          "target": "com.azure.machinelearningservices#DeleteJob"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryDataVersions"
+          "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRule"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryDataContainer"
+          "target": "com.azure.machinelearningservices#DeleteMarketplaceSubscription"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryDataContainersCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteModelContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#GetRegistryDataContainer"
+          "target": "com.azure.machinelearningservices#DeleteModelVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryDataContainers"
+          "target": "com.azure.machinelearningservices#DeleteOnlineDeployment"
         },
         {
-          "target": "com.azure.machinelearningservices#DeleteRegistryComponentVersion"
+          "target": "com.azure.machinelearningservices#DeleteOnlineEndpoint"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistryComponentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryComponentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryComponentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryComponentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryCodeVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryCodeContainers"
+          "target": "com.azure.machinelearningservices#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.machinelearningservices#DeleteRegistry"
         },
         {
-          "target": "com.azure.machinelearningservices#UpdateRegistry"
+          "target": "com.azure.machinelearningservices#DeleteRegistryCodeContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#RegistriesCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#DeleteRegistryCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteServerlessEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#EnvironmentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#EnvironmentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetVersionsBackfill"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturestoreEntityContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturestoreEntityVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetBatchDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetBatchEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCapabilityHost"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCodeContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDatastore"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeature"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturesetContainerEntity"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturesetVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityContainerEntity"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetJob"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetManagedNetworkSettingsRule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetMarketplaceSubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogs"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineEndpointToken"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnection"
         },
         {
           "target": "com.azure.machinelearningservices#GetRegistry"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistries"
+          "target": "com.azure.machinelearningservices#GetRegistryCodeContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#ListWorkspaceBySubscription"
+          "target": "com.azure.machinelearningservices#GetRegistryCodeVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#ListRegistryBySubscription"
+          "target": "com.azure.machinelearningservices#GetRegistryComponentContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#ListVirtualMachineSizes"
+          "target": "com.azure.machinelearningservices#GetRegistryComponentVersion"
         },
         {
-          "target": "com.azure.machinelearningservices#ListUsages"
+          "target": "com.azure.machinelearningservices#GetRegistryDataContainer"
         },
         {
-          "target": "com.azure.machinelearningservices#UpdateQuota"
+          "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSAS"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetSchedule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetServerlessEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchDeployments"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCodeContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCodeVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComponentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComponentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComputeKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComputeNodes"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDataContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDatastores"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDatastoreSecrets"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDataVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListEnvironmentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListEnvironmentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeatures"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturesetContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturesetVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListJobs"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListManagedNetworkSettingsRule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListMarketplaceSubscriptions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListModelContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListModelVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineDeployments"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineDeploymentSkus"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOperations"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListPrivateLinkResources"
         },
         {
           "target": "com.azure.machinelearningservices#ListQuotas"
         },
         {
-          "target": "com.azure.machinelearningservices#ListOperations"
+          "target": "com.azure.machinelearningservices#ListRegistries"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryBySubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryCodeContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryCodeVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryComponentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryComponentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryDataContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryDataVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryModelContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryModelVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListSchedules"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListServerlessEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListServerlessEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListUsages"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListVirtualMachineSizes"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceConnections"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceConnectionSecrets"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceFeatures"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookAccessToken"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceStorageAccountKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ManagedNetworkSettingsRuleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#MarketplaceSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ModelContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ModelVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#OnlineDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#OnlineEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetwork"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegenerateOnlineEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegenerateServerlessEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryComponentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryComponentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryEnvironmentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryEnvironmentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RestartCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ServerlessEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#StartCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#StopCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateBatchDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateQuotas"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateRegistry"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateServerlessEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesDiagnose"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesPrepareNotebook"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesResyncKeys"
         }
       ],
       "traits": {

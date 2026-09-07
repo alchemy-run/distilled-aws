@@ -197,9 +197,9 @@ export const GetDataScannerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDataScannerRequest>;
 
 /** Managed service identity (either system assigned, or none) */
-export type DataScannersGetResponseIdentity =
+export type GetDataScannerResponseIdentity =
   DataScannersCreateOrUpdateResponseIdentity;
-export const DataScannersGetResponseIdentity =
+export const GetDataScannerResponseIdentity =
   DataScannersCreateOrUpdateResponseIdentity;
 
 export interface GetDataScannerResponse {

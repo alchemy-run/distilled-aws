@@ -26,7 +26,8 @@
       "totalCount": "total_count",
       "zoneName": "zone_name",
       "zoneTag": "zone_tag"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.rum#RulesBulkCreateRequestDeleteRulesList": {
@@ -643,34 +644,34 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.rum#RulesBulkCreate"
+          "target": "com.cloudflare.rum#BulkCreateRules"
         },
         {
-          "target": "com.cloudflare.rum#RulesCreate"
+          "target": "com.cloudflare.rum#CreateRule"
         },
         {
-          "target": "com.cloudflare.rum#RulesDelete"
+          "target": "com.cloudflare.rum#CreateSiteInfo"
         },
         {
-          "target": "com.cloudflare.rum#RulesList"
+          "target": "com.cloudflare.rum#DeleteRule"
         },
         {
-          "target": "com.cloudflare.rum#RulesUpdate"
+          "target": "com.cloudflare.rum#DeleteSiteInfo"
         },
         {
-          "target": "com.cloudflare.rum#SiteInfoCreate"
+          "target": "com.cloudflare.rum#GetSiteInfo"
         },
         {
-          "target": "com.cloudflare.rum#SiteInfoDelete"
+          "target": "com.cloudflare.rum#ListRules"
         },
         {
-          "target": "com.cloudflare.rum#SiteInfoGet"
+          "target": "com.cloudflare.rum#ListSiteInfos"
         },
         {
-          "target": "com.cloudflare.rum#SiteInfoList"
+          "target": "com.cloudflare.rum#UpdateRule"
         },
         {
-          "target": "com.cloudflare.rum#SiteInfoUpdate"
+          "target": "com.cloudflare.rum#UpdateSiteInfo"
         }
       ],
       "traits": {
@@ -796,13 +797,13 @@
         ]
       }
     },
-    "com.cloudflare.rum#CreateBulkRule": {
+    "com.cloudflare.rum#BulkCreateRules": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.rum#CreateBulkRuleRequest"
+        "target": "com.cloudflare.rum#BulkCreateRulesRequest"
       },
       "output": {
-        "target": "com.cloudflare.rum#CreateBulkRuleResponse"
+        "target": "com.cloudflare.rum#BulkCreateRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -813,7 +814,7 @@
         "smithy.api#documentation": "Modifies one or more rules in a Web Analytics ruleset with a single request."
       }
     },
-    "com.cloudflare.rum#CreateBulkRuleRequest": {
+    "com.cloudflare.rum#BulkCreateRulesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -849,7 +850,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.rum#CreateBulkRuleResponse": {
+    "com.cloudflare.rum#BulkCreateRulesResponse": {
       "type": "structure",
       "members": {
         "rules": {

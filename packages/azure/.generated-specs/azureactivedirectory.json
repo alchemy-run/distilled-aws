@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.azureactivedirectory#DeletePrivateEndpointConnection": {
@@ -858,7 +859,7 @@
           }
         },
         "tenants": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTenantsList",
+          "target": "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdResponseTenantsList",
           "traits": {
             "smithy.api#documentation": "The list of tenantIds."
           }
@@ -882,7 +883,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTagsMap",
+          "target": "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -892,7 +893,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTagsMap": {
+    "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -904,7 +905,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTenantsList": {
+    "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdResponseTenantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -941,7 +942,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequestTagsMap",
+          "target": "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags to be updated."
           }
@@ -951,7 +952,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequestTagsMap": {
+    "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAdRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1016,7 +1017,7 @@
           }
         },
         "tenants": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTenantsList",
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdResponseTenantsList",
           "traits": {
             "smithy.api#documentation": "The list of tenantIds."
           }
@@ -1040,7 +1041,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTagsMap",
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1050,7 +1051,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTagsMap": {
+    "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1062,7 +1063,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTenantsList": {
+    "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdResponseTenantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1117,7 +1118,7 @@
           }
         },
         "tenants": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTenantsList",
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdRequestTenantsList",
           "traits": {
             "smithy.api#documentation": "The list of tenantIds."
           }
@@ -1135,7 +1136,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTagsMap",
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1145,7 +1146,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTagsMap": {
+    "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1157,7 +1158,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTenantsList": {
+    "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAdRequestTenantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1219,7 +1220,7 @@
           }
         },
         "tenants": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTenantsList",
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAdResponseTenantsList",
           "traits": {
             "smithy.api#documentation": "The list of tenantIds."
           }
@@ -1243,7 +1244,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTagsMap",
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAdResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1253,7 +1254,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTagsMap": {
+    "com.azure.azureactivedirectory#GetPrivateLinkForAzureAdResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1265,7 +1266,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTenantsList": {
+    "com.azure.azureactivedirectory#GetPrivateLinkForAzureAdResponseTenantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1543,13 +1544,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azureactivedirectory#DeletePrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.azureactivedirectory#CreatePrivateEndpointConnection"
         },
         {
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAd"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#DeletePrivateLinkForAzureAd"
+        },
+        {
           "target": "com.azure.azureactivedirectory#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAd"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkResource"
         },
         {
           "target": "com.azure.azureactivedirectory#ListPrivateEndpointConnectionByPolicyName"
@@ -1561,22 +1574,10 @@
           "target": "com.azure.azureactivedirectory#ListPrivateLinkForAzureAdBySubscription"
         },
         {
-          "target": "com.azure.azureactivedirectory#DeletePrivateLinkForAzureAd"
+          "target": "com.azure.azureactivedirectory#ListPrivateLinkResourceByPrivateLinkPolicy"
         },
         {
           "target": "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAd"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAd"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAd"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#ListPrivateLinkResourceByPrivateLinkPolicy"
         }
       ],
       "traits": {

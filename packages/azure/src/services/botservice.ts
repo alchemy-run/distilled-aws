@@ -13,53 +13,12 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface BotsGetCheckNameAvailabilityRequest {
-  /** the name of the bot for which availability needs to be checked. */
-  name?: string;
-  /** the type of the bot for which availability needs to be checked */
-  type?: string;
-}
-export const BotsGetCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.BotService/checkNameAvailability",
-      code: 200,
-      apiVersion: "2022-09-15",
-    }),
-  ),
-).annotate({
-  identifier: "BotsGetCheckNameAvailabilityRequest",
-}) as any as S.Schema<BotsGetCheckNameAvailabilityRequest>;
-
-/** The response body returned for a request to Bot Service Management to check availability of a bot name. */
-export interface CheckNameAvailabilityResponseBody {
-  /** indicates if the bot name is valid. */
-  valid?: boolean;
-  /** additional message from the bot management api showing why a bot name is not available */
-  message?: string;
-  /** response code from ABS */
-  absCode?: string;
-}
-export const CheckNameAvailabilityResponseBody = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    valid: S.optional(S.Boolean),
-    message: S.optional(S.String),
-    absCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResponseBody",
-}) as any as S.Schema<CheckNameAvailabilityResponseBody>;
-
 /** Contains resource tags defined as key/value pairs. */
-export type BotsCreateRequestTagsMap = { [key: string]: string | undefined };
-export const BotsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateBotRequestTagsMap = { [key: string]: string | undefined };
+export const CreateBotRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsCreateRequestTagsMap>;
+) as any as S.Schema<CreateBotRequestTagsMap>;
 
 /** The name of SKU. */
 export type SkuName = "F0" | "S1";
@@ -216,7 +175,7 @@ export interface CreateBotRequest {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotsCreateRequestTagsMap;
+  tags?: CreateBotRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -232,7 +191,7 @@ export const CreateBotRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(BotsCreateRequestTagsMap),
+    tags: S.optional(CreateBotRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -250,11 +209,11 @@ export const CreateBotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBotRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotsCreateResponseTagsMap = { [key: string]: string | undefined };
-export const BotsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateBotResponseTagsMap = { [key: string]: string | undefined };
+export const CreateBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsCreateResponseTagsMap>;
+) as any as S.Schema<CreateBotResponseTagsMap>;
 
 /** Gets the sku tier. This is based on the SKU name. */
 export type SkuTier = "Free" | "Standard";
@@ -275,10 +234,10 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
 
 /** Entity zones */
-export type BotsCreateResponseZonesList = Array<string>;
-export const BotsCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateBotResponseZonesList = Array<string>;
+export const CreateBotResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotsCreateResponseZonesList>;
+) as any as S.Schema<CreateBotResponseZonesList>;
 
 /** Contains resource all settings defined as key/value pairs. */
 export type BotPropertiesAllSettingsMap = { [key: string]: string | undefined };
@@ -556,7 +515,7 @@ export interface CreateBotResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotsCreateResponseTagsMap;
+  tags?: CreateBotResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -564,7 +523,7 @@ export interface CreateBotResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotsCreateResponseZonesList;
+  zones?: CreateBotResponseZonesList;
   /** The set of properties specific to bot resource */
   properties?: BotProperties;
 }
@@ -574,11 +533,11 @@ export const CreateBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotsCreateResponseTagsMap),
+    tags: S.optional(CreateBotResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotsCreateResponseZonesList),
+    zones: S.optional(CreateBotResponseZonesList),
     properties: S.optional(BotProperties),
   }),
 ).annotate({
@@ -586,13 +545,13 @@ export const CreateBotResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBotResponse>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionCreateRequestTagsMap = {
+export type CreateBotConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBotConnectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotConnectionCreateRequestTagsMap>;
+) as any as S.Schema<CreateBotConnectionRequestTagsMap>;
 
 /** Extra Parameter in a Connection Setting Properties to indicate service provider specific properties */
 export interface ConnectionSettingParameter {
@@ -667,7 +626,7 @@ export interface CreateBotConnectionRequest {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionCreateRequestTagsMap;
+  tags?: CreateBotConnectionRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -684,7 +643,7 @@ export const CreateBotConnectionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceName: S.String.pipe(T.Label()),
     connectionName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(BotConnectionCreateRequestTagsMap),
+    tags: S.optional(CreateBotConnectionRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -702,19 +661,19 @@ export const CreateBotConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBotConnectionRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionCreateResponseTagsMap = {
+export type CreateBotConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBotConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotConnectionCreateResponseTagsMap>;
+) as any as S.Schema<CreateBotConnectionResponseTagsMap>;
 
 /** Entity zones */
-export type BotConnectionCreateResponseZonesList = Array<string>;
-export const BotConnectionCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateBotConnectionResponseZonesList = Array<string>;
+export const CreateBotConnectionResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotConnectionCreateResponseZonesList>;
+) as any as S.Schema<CreateBotConnectionResponseZonesList>;
 
 /** Service Provider Parameters associated with the Connection Setting */
 export type ConnectionSettingPropertiesParametersList =
@@ -773,7 +732,7 @@ export interface CreateBotConnectionResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionCreateResponseTagsMap;
+  tags?: CreateBotConnectionResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -781,7 +740,7 @@ export interface CreateBotConnectionResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotConnectionCreateResponseZonesList;
+  zones?: CreateBotConnectionResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: ConnectionSettingProperties;
 }
@@ -791,18 +750,18 @@ export const CreateBotConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotConnectionCreateResponseTagsMap),
+    tags: S.optional(CreateBotConnectionResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotConnectionCreateResponseZonesList),
+    zones: S.optional(CreateBotConnectionResponseZonesList),
     properties: S.optional(ConnectionSettingProperties),
   }),
 ).annotate({
   identifier: "CreateBotConnectionResponse",
 }) as any as S.Schema<CreateBotConnectionResponse>;
 
-export type ChannelsCreateRequestChannelName =
+export type CreateChannelRequestChannelName =
   | "AlexaChannel"
   | "FacebookChannel"
   | "EmailChannel"
@@ -822,16 +781,14 @@ export type ChannelsCreateRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const ChannelsCreateRequestChannelName = /*@__PURE__*/ S.String;
+export const CreateChannelRequestChannelName = /*@__PURE__*/ S.String;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ChannelsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateChannelRequestTagsMap = { [key: string]: string | undefined };
+export const CreateChannelRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsCreateRequestTagsMap>;
+) as any as S.Schema<CreateChannelRequestTagsMap>;
 
 /** Channel definition */
 export interface ChannelInput {
@@ -858,11 +815,11 @@ export interface CreateChannelRequest {
   /** The name of the Bot resource. */
   resourceName: string;
   /** The name of the Channel resource. */
-  channelName: ChannelsCreateRequestChannelName | (string & {});
+  channelName: CreateChannelRequestChannelName | (string & {});
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsCreateRequestTagsMap;
+  tags?: CreateChannelRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -877,9 +834,9 @@ export const CreateChannelRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    channelName: ChannelsCreateRequestChannelName.pipe(T.Label()),
+    channelName: CreateChannelRequestChannelName.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ChannelsCreateRequestTagsMap),
+    tags: S.optional(CreateChannelRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -897,19 +854,19 @@ export const CreateChannelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateChannelRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsCreateResponseTagsMap = {
+export type CreateChannelResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChannelsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateChannelResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsCreateResponseTagsMap>;
+) as any as S.Schema<CreateChannelResponseTagsMap>;
 
 /** Entity zones */
-export type ChannelsCreateResponseZonesList = Array<string>;
-export const ChannelsCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateChannelResponseZonesList = Array<string>;
+export const CreateChannelResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ChannelsCreateResponseZonesList>;
+) as any as S.Schema<CreateChannelResponseZonesList>;
 
 /** Channel definition */
 export interface Channel {
@@ -941,7 +898,7 @@ export interface CreateChannelResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsCreateResponseTagsMap;
+  tags?: CreateChannelResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -949,7 +906,7 @@ export interface CreateChannelResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: ChannelsCreateResponseZonesList;
+  zones?: CreateChannelResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: Channel;
 }
@@ -959,11 +916,11 @@ export const CreateChannelResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ChannelsCreateResponseTagsMap),
+    tags: S.optional(CreateChannelResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(ChannelsCreateResponseZonesList),
+    zones: S.optional(CreateChannelResponseZonesList),
     properties: S.optional(Channel),
   }),
 ).annotate({
@@ -1200,104 +1157,6 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export type DirectLineRegenerateKeysRequestChannelName =
-  | "WebChatChannel"
-  | "DirectLineChannel";
-export const DirectLineRegenerateKeysRequestChannelName =
-  /*@__PURE__*/ S.String;
-
-/** Determines which key is to be regenerated */
-export type DirectLineRegenerateKeysRequestKey = "key1" | "key2";
-export const DirectLineRegenerateKeysRequestKey = /*@__PURE__*/ S.String;
-
-export interface DirectLineRegenerateKeysRequest {
-  /** Azure Subscription ID. */
-  subscriptionId: string;
-  /** The name of the Bot resource group in the user subscription. */
-  resourceGroupName: string;
-  /** The name of the Bot resource. */
-  resourceName: string;
-  /** The name of the Channel resource for which keys are to be regenerated. */
-  channelName: DirectLineRegenerateKeysRequestChannelName | (string & {});
-  /** The site name */
-  siteName: string;
-  /** Determines which key is to be regenerated */
-  key: DirectLineRegenerateKeysRequestKey | (string & {});
-}
-export const DirectLineRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    channelName: DirectLineRegenerateKeysRequestChannelName.pipe(T.Label()),
-    siteName: S.String,
-    key: DirectLineRegenerateKeysRequestKey,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BotService/botServices/{resourceName}/channels/{channelName}/regeneratekeys",
-      code: 200,
-      apiVersion: "2022-09-15",
-    }),
-  ),
-).annotate({
-  identifier: "DirectLineRegenerateKeysRequest",
-}) as any as S.Schema<DirectLineRegenerateKeysRequest>;
-
-/** Contains resource tags defined as key/value pairs. */
-export type DirectLineRegenerateKeysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DirectLineRegenerateKeysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DirectLineRegenerateKeysResponseTagsMap>;
-
-/** Entity zones */
-export type DirectLineRegenerateKeysResponseZonesList = Array<string>;
-export const DirectLineRegenerateKeysResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DirectLineRegenerateKeysResponseZonesList>;
-
-export interface DirectLineRegenerateKeysResponse {
-  /** Specifies the resource ID. */
-  id?: string;
-  /** Specifies the name of the resource. */
-  name?: string;
-  /** Specifies the location of the resource. */
-  location?: string;
-  /** Specifies the type of the resource. */
-  type?: string;
-  /** Contains resource tags defined as key/value pairs. */
-  tags?: DirectLineRegenerateKeysResponseTagsMap;
-  /** Gets or sets the SKU of the resource. */
-  sku?: Sku;
-  /** Required. Gets or sets the Kind of the resource. */
-  kind?: Kind | null;
-  /** Entity Tag. */
-  etag?: string;
-  /** Entity zones */
-  zones?: DirectLineRegenerateKeysResponseZonesList;
-  /** The set of properties specific to bot channel resource */
-  properties?: Channel;
-}
-export const DirectLineRegenerateKeysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    location: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(DirectLineRegenerateKeysResponseTagsMap),
-    sku: S.optional(Sku),
-    kind: S.optional(S.NullOr(Kind)),
-    etag: S.optional(S.String),
-    zones: S.optional(DirectLineRegenerateKeysResponseZonesList),
-    properties: S.optional(Channel),
-  }),
-).annotate({
-  identifier: "DirectLineRegenerateKeysResponse",
-}) as any as S.Schema<DirectLineRegenerateKeysResponse>;
-
 export interface EmailCreateSignInUrlRequest {
   /** Azure Subscription ID. */
   subscriptionId: string;
@@ -1380,17 +1239,17 @@ export const GetBotRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetBotRequest" }) as any as S.Schema<GetBotRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotsGetResponseTagsMap = { [key: string]: string | undefined };
-export const BotsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetBotResponseTagsMap = { [key: string]: string | undefined };
+export const GetBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsGetResponseTagsMap>;
+) as any as S.Schema<GetBotResponseTagsMap>;
 
 /** Entity zones */
-export type BotsGetResponseZonesList = Array<string>;
-export const BotsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetBotResponseZonesList = Array<string>;
+export const GetBotResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotsGetResponseZonesList>;
+) as any as S.Schema<GetBotResponseZonesList>;
 
 export interface GetBotResponse {
   /** Specifies the resource ID. */
@@ -1402,7 +1261,7 @@ export interface GetBotResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotsGetResponseTagsMap;
+  tags?: GetBotResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -1410,7 +1269,7 @@ export interface GetBotResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotsGetResponseZonesList;
+  zones?: GetBotResponseZonesList;
   /** The set of properties specific to bot resource */
   properties?: BotProperties;
 }
@@ -1420,14 +1279,55 @@ export const GetBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotsGetResponseTagsMap),
+    tags: S.optional(GetBotResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotsGetResponseZonesList),
+    zones: S.optional(GetBotResponseZonesList),
     properties: S.optional(BotProperties),
   }),
 ).annotate({ identifier: "GetBotResponse" }) as any as S.Schema<GetBotResponse>;
+
+export interface GetBotCheckNameAvailabilityRequest {
+  /** the name of the bot for which availability needs to be checked. */
+  name?: string;
+  /** the type of the bot for which availability needs to be checked */
+  type?: string;
+}
+export const GetBotCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.BotService/checkNameAvailability",
+      code: 200,
+      apiVersion: "2022-09-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetBotCheckNameAvailabilityRequest",
+}) as any as S.Schema<GetBotCheckNameAvailabilityRequest>;
+
+/** The response body returned for a request to Bot Service Management to check availability of a bot name. */
+export interface CheckNameAvailabilityResponseBody {
+  /** indicates if the bot name is valid. */
+  valid?: boolean;
+  /** additional message from the bot management api showing why a bot name is not available */
+  message?: string;
+  /** response code from ABS */
+  absCode?: string;
+}
+export const CheckNameAvailabilityResponseBody = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    valid: S.optional(S.Boolean),
+    message: S.optional(S.String),
+    absCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResponseBody",
+}) as any as S.Schema<CheckNameAvailabilityResponseBody>;
 
 export interface GetBotConnectionRequest {
   /** Azure Subscription ID. */
@@ -1458,19 +1358,19 @@ export const GetBotConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBotConnectionRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionGetResponseTagsMap = {
+export type GetBotConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBotConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotConnectionGetResponseTagsMap>;
+) as any as S.Schema<GetBotConnectionResponseTagsMap>;
 
 /** Entity zones */
-export type BotConnectionGetResponseZonesList = Array<string>;
-export const BotConnectionGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetBotConnectionResponseZonesList = Array<string>;
+export const GetBotConnectionResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotConnectionGetResponseZonesList>;
+) as any as S.Schema<GetBotConnectionResponseZonesList>;
 
 export interface GetBotConnectionResponse {
   /** Specifies the resource ID. */
@@ -1482,7 +1382,7 @@ export interface GetBotConnectionResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionGetResponseTagsMap;
+  tags?: GetBotConnectionResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -1490,7 +1390,7 @@ export interface GetBotConnectionResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotConnectionGetResponseZonesList;
+  zones?: GetBotConnectionResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: ConnectionSettingProperties;
 }
@@ -1500,11 +1400,11 @@ export const GetBotConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotConnectionGetResponseTagsMap),
+    tags: S.optional(GetBotConnectionResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotConnectionGetResponseZonesList),
+    zones: S.optional(GetBotConnectionResponseZonesList),
     properties: S.optional(ConnectionSettingProperties),
   }),
 ).annotate({
@@ -1540,17 +1440,17 @@ export const GetChannelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetChannelRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ChannelsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetChannelResponseTagsMap = { [key: string]: string | undefined };
+export const GetChannelResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsGetResponseTagsMap>;
+) as any as S.Schema<GetChannelResponseTagsMap>;
 
 /** Entity zones */
-export type ChannelsGetResponseZonesList = Array<string>;
-export const ChannelsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetChannelResponseZonesList = Array<string>;
+export const GetChannelResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ChannelsGetResponseZonesList>;
+) as any as S.Schema<GetChannelResponseZonesList>;
 
 export interface GetChannelResponse {
   /** Specifies the resource ID. */
@@ -1562,7 +1462,7 @@ export interface GetChannelResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsGetResponseTagsMap;
+  tags?: GetChannelResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -1570,7 +1470,7 @@ export interface GetChannelResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: ChannelsGetResponseZonesList;
+  zones?: GetChannelResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: Channel;
 }
@@ -1580,22 +1480,22 @@ export const GetChannelResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ChannelsGetResponseTagsMap),
+    tags: S.optional(GetChannelResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(ChannelsGetResponseZonesList),
+    zones: S.optional(GetChannelResponseZonesList),
     properties: S.optional(Channel),
   }),
 ).annotate({
   identifier: "GetChannelResponse",
 }) as any as S.Schema<GetChannelResponse>;
 
-export interface GetHostSettingRequest {
+export interface GetHostSettingsRequest {
   /** Azure Subscription ID. */
   subscriptionId: string;
 }
-export const GetHostSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHostSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -1607,8 +1507,8 @@ export const GetHostSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHostSettingRequest",
-}) as any as S.Schema<GetHostSettingRequest>;
+  identifier: "GetHostSettingsRequest",
+}) as any as S.Schema<GetHostSettingsRequest>;
 
 /** The response body returned for a request to Bot Service Management to check per subscription hostSettings */
 export interface HostSettingsResponse {
@@ -1747,7 +1647,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetPrivateEndpointConnectionResponse",
 }) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface GetQnAMakerEndpointKeyRequest {
+export interface GetQnAMakerEndpointKeysRequest {
   /** Azure Subscription ID. */
   subscriptionId: string;
   /** the host name of the QnA Maker endpoint */
@@ -1755,7 +1655,7 @@ export interface GetQnAMakerEndpointKeyRequest {
   /** Subscription key which provides access to this API. */
   authkey?: string;
 }
-export const GetQnAMakerEndpointKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQnAMakerEndpointKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     hostname: S.optional(S.String),
@@ -1769,8 +1669,8 @@ export const GetQnAMakerEndpointKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQnAMakerEndpointKeyRequest",
-}) as any as S.Schema<GetQnAMakerEndpointKeyRequest>;
+  identifier: "GetQnAMakerEndpointKeysRequest",
+}) as any as S.Schema<GetQnAMakerEndpointKeysRequest>;
 
 /** Schema for EndpointKeys generate/refresh operations. */
 export interface QnAMakerEndpointKeysResponse {
@@ -2167,21 +2067,21 @@ export const ListBotConnectionWithSecretsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBotConnectionWithSecretsRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionListWithSecretsResponseTagsMap = {
+export type ListBotConnectionWithSecretsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionListWithSecretsResponseTagsMap =
+export const ListBotConnectionWithSecretsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BotConnectionListWithSecretsResponseTagsMap>;
+  ) as any as S.Schema<ListBotConnectionWithSecretsResponseTagsMap>;
 
 /** Entity zones */
-export type BotConnectionListWithSecretsResponseZonesList = Array<string>;
-export const BotConnectionListWithSecretsResponseZonesList =
+export type ListBotConnectionWithSecretsResponseZonesList = Array<string>;
+export const ListBotConnectionWithSecretsResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BotConnectionListWithSecretsResponseZonesList>;
+  ) as any as S.Schema<ListBotConnectionWithSecretsResponseZonesList>;
 
 export interface ListBotConnectionWithSecretsResponse {
   /** Specifies the resource ID. */
@@ -2193,7 +2093,7 @@ export interface ListBotConnectionWithSecretsResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionListWithSecretsResponseTagsMap;
+  tags?: ListBotConnectionWithSecretsResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -2201,7 +2101,7 @@ export interface ListBotConnectionWithSecretsResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotConnectionListWithSecretsResponseZonesList;
+  zones?: ListBotConnectionWithSecretsResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: ConnectionSettingProperties;
 }
@@ -2212,11 +2112,11 @@ export const ListBotConnectionWithSecretsResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       location: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(BotConnectionListWithSecretsResponseTagsMap),
+      tags: S.optional(ListBotConnectionWithSecretsResponseTagsMap),
       sku: S.optional(Sku),
       kind: S.optional(S.NullOr(Kind)),
       etag: S.optional(S.String),
-      zones: S.optional(BotConnectionListWithSecretsResponseZonesList),
+      zones: S.optional(ListBotConnectionWithSecretsResponseZonesList),
       properties: S.optional(ConnectionSettingProperties),
     }),
 ).annotate({
@@ -2340,7 +2240,7 @@ export const ChannelResponseList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChannelResponseList",
 }) as any as S.Schema<ChannelResponseList>;
 
-export type ChannelsListWithKeysRequestChannelName =
+export type ListChannelWithKeysRequestChannelName =
   | "AlexaChannel"
   | "FacebookChannel"
   | "EmailChannel"
@@ -2360,7 +2260,7 @@ export type ChannelsListWithKeysRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const ChannelsListWithKeysRequestChannelName = /*@__PURE__*/ S.String;
+export const ListChannelWithKeysRequestChannelName = /*@__PURE__*/ S.String;
 
 export interface ListChannelWithKeysRequest {
   /** Azure Subscription ID. */
@@ -2370,14 +2270,14 @@ export interface ListChannelWithKeysRequest {
   /** The name of the Bot resource. */
   resourceName: string;
   /** The name of the Channel resource. */
-  channelName: ChannelsListWithKeysRequestChannelName | (string & {});
+  channelName: ListChannelWithKeysRequestChannelName | (string & {});
 }
 export const ListChannelWithKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    channelName: ChannelsListWithKeysRequestChannelName.pipe(T.Label()),
+    channelName: ListChannelWithKeysRequestChannelName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2391,19 +2291,19 @@ export const ListChannelWithKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListChannelWithKeysRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsListWithKeysResponseTagsMap = {
+export type ListChannelWithKeysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChannelsListWithKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ListChannelWithKeysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsListWithKeysResponseTagsMap>;
+) as any as S.Schema<ListChannelWithKeysResponseTagsMap>;
 
 /** Entity zones */
-export type ChannelsListWithKeysResponseZonesList = Array<string>;
-export const ChannelsListWithKeysResponseZonesList = /*@__PURE__*/ S.Array(
+export type ListChannelWithKeysResponseZonesList = Array<string>;
+export const ListChannelWithKeysResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ChannelsListWithKeysResponseZonesList>;
+) as any as S.Schema<ListChannelWithKeysResponseZonesList>;
 
 /** List of Trusted Origin URLs for this site. This field is applicable only if isSecureSiteEnabled is True. */
 export type SiteTrustedOriginsList = Array<string>;
@@ -2532,7 +2432,7 @@ export interface ListChannelWithKeysResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsListWithKeysResponseTagsMap;
+  tags?: ListChannelWithKeysResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -2540,7 +2440,7 @@ export interface ListChannelWithKeysResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: ChannelsListWithKeysResponseZonesList;
+  zones?: ListChannelWithKeysResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: Channel;
   /** The set of properties specific to bot channel resource */
@@ -2560,11 +2460,11 @@ export const ListChannelWithKeysResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ChannelsListWithKeysResponseTagsMap),
+    tags: S.optional(ListChannelWithKeysResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(ChannelsListWithKeysResponseZonesList),
+    zones: S.optional(ListChannelWithKeysResponseZonesList),
     properties: S.optional(Channel),
     resource: S.optional(Channel),
     setting: S.optional(ChannelSettings),
@@ -2689,21 +2589,21 @@ export const PrivateEndpointConnection =
   BotPropertiesPrivateEndpointConnectionsItem;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsListResponseValueList =
+export type ListPrivateEndpointConnectionsResponseValueList =
   Array<BotPropertiesPrivateEndpointConnectionsItem>;
-export const PrivateEndpointConnectionsListResponseValueList =
+export const ListPrivateEndpointConnectionsResponseValueList =
   /*@__PURE__*/ S.Array(
     BotPropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<PrivateEndpointConnectionsListResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsResponseValueList>;
 
 export interface ListPrivateEndpointConnectionsResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsListResponseValueList;
+  value?: ListPrivateEndpointConnectionsResponseValueList;
 }
 export const ListPrivateEndpointConnectionsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(PrivateEndpointConnectionsListResponseValueList),
+      value: S.optional(ListPrivateEndpointConnectionsResponseValueList),
     }),
 ).annotate({
   identifier: "ListPrivateEndpointConnectionsResponse",
@@ -2795,32 +2695,130 @@ export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResource>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesListByBotResourceResponseValueList =
+export type ListPrivateLinkResourceByBotResourceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListByBotResourceResponseValueList =
+export const ListPrivateLinkResourceByBotResourceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesListByBotResourceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourceByBotResourceResponseValueList>;
 
 export interface ListPrivateLinkResourceByBotResourceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesListByBotResourceResponseValueList;
+  value?: ListPrivateLinkResourceByBotResourceResponseValueList;
 }
 export const ListPrivateLinkResourceByBotResourceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(PrivateLinkResourcesListByBotResourceResponseValueList),
+      value: S.optional(ListPrivateLinkResourceByBotResourceResponseValueList),
     }),
   ).annotate({
     identifier: "ListPrivateLinkResourceByBotResourceResponse",
   }) as any as S.Schema<ListPrivateLinkResourceByBotResourceResponse>;
 
+export type RegenerateDirectLineKeysRequestChannelName =
+  | "WebChatChannel"
+  | "DirectLineChannel";
+export const RegenerateDirectLineKeysRequestChannelName =
+  /*@__PURE__*/ S.String;
+
+/** Determines which key is to be regenerated */
+export type RegenerateDirectLineKeysRequestKey = "key1" | "key2";
+export const RegenerateDirectLineKeysRequestKey = /*@__PURE__*/ S.String;
+
+export interface RegenerateDirectLineKeysRequest {
+  /** Azure Subscription ID. */
+  subscriptionId: string;
+  /** The name of the Bot resource group in the user subscription. */
+  resourceGroupName: string;
+  /** The name of the Bot resource. */
+  resourceName: string;
+  /** The name of the Channel resource for which keys are to be regenerated. */
+  channelName: RegenerateDirectLineKeysRequestChannelName | (string & {});
+  /** The site name */
+  siteName: string;
+  /** Determines which key is to be regenerated */
+  key: RegenerateDirectLineKeysRequestKey | (string & {});
+}
+export const RegenerateDirectLineKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    channelName: RegenerateDirectLineKeysRequestChannelName.pipe(T.Label()),
+    siteName: S.String,
+    key: RegenerateDirectLineKeysRequestKey,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BotService/botServices/{resourceName}/channels/{channelName}/regeneratekeys",
+      code: 200,
+      apiVersion: "2022-09-15",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateDirectLineKeysRequest",
+}) as any as S.Schema<RegenerateDirectLineKeysRequest>;
+
 /** Contains resource tags defined as key/value pairs. */
-export type BotsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const BotsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type RegenerateDirectLineKeysResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RegenerateDirectLineKeysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsUpdateRequestTagsMap>;
+) as any as S.Schema<RegenerateDirectLineKeysResponseTagsMap>;
+
+/** Entity zones */
+export type RegenerateDirectLineKeysResponseZonesList = Array<string>;
+export const RegenerateDirectLineKeysResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RegenerateDirectLineKeysResponseZonesList>;
+
+export interface RegenerateDirectLineKeysResponse {
+  /** Specifies the resource ID. */
+  id?: string;
+  /** Specifies the name of the resource. */
+  name?: string;
+  /** Specifies the location of the resource. */
+  location?: string;
+  /** Specifies the type of the resource. */
+  type?: string;
+  /** Contains resource tags defined as key/value pairs. */
+  tags?: RegenerateDirectLineKeysResponseTagsMap;
+  /** Gets or sets the SKU of the resource. */
+  sku?: Sku;
+  /** Required. Gets or sets the Kind of the resource. */
+  kind?: Kind | null;
+  /** Entity Tag. */
+  etag?: string;
+  /** Entity zones */
+  zones?: RegenerateDirectLineKeysResponseZonesList;
+  /** The set of properties specific to bot channel resource */
+  properties?: Channel;
+}
+export const RegenerateDirectLineKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(RegenerateDirectLineKeysResponseTagsMap),
+    sku: S.optional(Sku),
+    kind: S.optional(S.NullOr(Kind)),
+    etag: S.optional(S.String),
+    zones: S.optional(RegenerateDirectLineKeysResponseZonesList),
+    properties: S.optional(Channel),
+  }),
+).annotate({
+  identifier: "RegenerateDirectLineKeysResponse",
+}) as any as S.Schema<RegenerateDirectLineKeysResponse>;
+
+/** Contains resource tags defined as key/value pairs. */
+export type UpdateBotRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateBotRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBotRequestTagsMap>;
 
 export interface UpdateBotRequest {
   /** Azure Subscription ID. */
@@ -2832,7 +2830,7 @@ export interface UpdateBotRequest {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotsUpdateRequestTagsMap;
+  tags?: UpdateBotRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -2848,7 +2846,7 @@ export const UpdateBotRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(BotsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBotRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -2866,17 +2864,17 @@ export const UpdateBotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBotRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const BotsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateBotResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBotResponseTagsMap>;
 
 /** Entity zones */
-export type BotsUpdateResponseZonesList = Array<string>;
-export const BotsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateBotResponseZonesList = Array<string>;
+export const UpdateBotResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateBotResponseZonesList>;
 
 export interface UpdateBotResponse {
   /** Specifies the resource ID. */
@@ -2888,7 +2886,7 @@ export interface UpdateBotResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotsUpdateResponseTagsMap;
+  tags?: UpdateBotResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -2896,7 +2894,7 @@ export interface UpdateBotResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotsUpdateResponseZonesList;
+  zones?: UpdateBotResponseZonesList;
   /** The set of properties specific to bot resource */
   properties?: BotProperties;
 }
@@ -2906,11 +2904,11 @@ export const UpdateBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBotResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotsUpdateResponseZonesList),
+    zones: S.optional(UpdateBotResponseZonesList),
     properties: S.optional(BotProperties),
   }),
 ).annotate({
@@ -2918,13 +2916,13 @@ export const UpdateBotResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBotResponse>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionUpdateRequestTagsMap = {
+export type UpdateBotConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBotConnectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotConnectionUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBotConnectionRequestTagsMap>;
 
 export interface UpdateBotConnectionRequest {
   /** Azure Subscription ID. */
@@ -2938,7 +2936,7 @@ export interface UpdateBotConnectionRequest {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionUpdateRequestTagsMap;
+  tags?: UpdateBotConnectionRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -2955,7 +2953,7 @@ export const UpdateBotConnectionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceName: S.String.pipe(T.Label()),
     connectionName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(BotConnectionUpdateRequestTagsMap),
+    tags: S.optional(UpdateBotConnectionRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -2973,19 +2971,19 @@ export const UpdateBotConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBotConnectionRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type BotConnectionUpdateResponseTagsMap = {
+export type UpdateBotConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BotConnectionUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBotConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotConnectionUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBotConnectionResponseTagsMap>;
 
 /** Entity zones */
-export type BotConnectionUpdateResponseZonesList = Array<string>;
-export const BotConnectionUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateBotConnectionResponseZonesList = Array<string>;
+export const UpdateBotConnectionResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<BotConnectionUpdateResponseZonesList>;
+) as any as S.Schema<UpdateBotConnectionResponseZonesList>;
 
 export interface UpdateBotConnectionResponse {
   /** Specifies the resource ID. */
@@ -2997,7 +2995,7 @@ export interface UpdateBotConnectionResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: BotConnectionUpdateResponseTagsMap;
+  tags?: UpdateBotConnectionResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -3005,7 +3003,7 @@ export interface UpdateBotConnectionResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: BotConnectionUpdateResponseZonesList;
+  zones?: UpdateBotConnectionResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: ConnectionSettingProperties;
 }
@@ -3015,18 +3013,18 @@ export const UpdateBotConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(BotConnectionUpdateResponseTagsMap),
+    tags: S.optional(UpdateBotConnectionResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(BotConnectionUpdateResponseZonesList),
+    zones: S.optional(UpdateBotConnectionResponseZonesList),
     properties: S.optional(ConnectionSettingProperties),
   }),
 ).annotate({
   identifier: "UpdateBotConnectionResponse",
 }) as any as S.Schema<UpdateBotConnectionResponse>;
 
-export type ChannelsUpdateRequestChannelName =
+export type UpdateChannelRequestChannelName =
   | "AlexaChannel"
   | "FacebookChannel"
   | "EmailChannel"
@@ -3046,16 +3044,14 @@ export type ChannelsUpdateRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const ChannelsUpdateRequestChannelName = /*@__PURE__*/ S.String;
+export const UpdateChannelRequestChannelName = /*@__PURE__*/ S.String;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ChannelsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateChannelRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateChannelRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateChannelRequestTagsMap>;
 
 export interface UpdateChannelRequest {
   /** Azure Subscription ID. */
@@ -3065,11 +3061,11 @@ export interface UpdateChannelRequest {
   /** The name of the Bot resource. */
   resourceName: string;
   /** The name of the Channel resource. */
-  channelName: ChannelsUpdateRequestChannelName | (string & {});
+  channelName: UpdateChannelRequestChannelName | (string & {});
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsUpdateRequestTagsMap;
+  tags?: UpdateChannelRequestTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: SkuInput;
   /** Required. Gets or sets the Kind of the resource. */
@@ -3084,9 +3080,9 @@ export const UpdateChannelRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    channelName: ChannelsUpdateRequestChannelName.pipe(T.Label()),
+    channelName: UpdateChannelRequestChannelName.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ChannelsUpdateRequestTagsMap),
+    tags: S.optional(UpdateChannelRequestTagsMap),
     sku: S.optional(SkuInput),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
@@ -3104,19 +3100,19 @@ export const UpdateChannelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateChannelRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ChannelsUpdateResponseTagsMap = {
+export type UpdateChannelResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChannelsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateChannelResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChannelsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateChannelResponseTagsMap>;
 
 /** Entity zones */
-export type ChannelsUpdateResponseZonesList = Array<string>;
-export const ChannelsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateChannelResponseZonesList = Array<string>;
+export const UpdateChannelResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ChannelsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateChannelResponseZonesList>;
 
 export interface UpdateChannelResponse {
   /** Specifies the resource ID. */
@@ -3128,7 +3124,7 @@ export interface UpdateChannelResponse {
   /** Specifies the type of the resource. */
   type?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ChannelsUpdateResponseTagsMap;
+  tags?: UpdateChannelResponseTagsMap;
   /** Gets or sets the SKU of the resource. */
   sku?: Sku;
   /** Required. Gets or sets the Kind of the resource. */
@@ -3136,7 +3132,7 @@ export interface UpdateChannelResponse {
   /** Entity Tag. */
   etag?: string;
   /** Entity zones */
-  zones?: ChannelsUpdateResponseZonesList;
+  zones?: UpdateChannelResponseZonesList;
   /** The set of properties specific to bot channel resource */
   properties?: Channel;
 }
@@ -3146,31 +3142,16 @@ export const UpdateChannelResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ChannelsUpdateResponseTagsMap),
+    tags: S.optional(UpdateChannelResponseTagsMap),
     sku: S.optional(Sku),
     kind: S.optional(S.NullOr(Kind)),
     etag: S.optional(S.String),
-    zones: S.optional(ChannelsUpdateResponseZonesList),
+    zones: S.optional(UpdateChannelResponseZonesList),
     properties: S.optional(Channel),
   }),
 ).annotate({
   identifier: "UpdateChannelResponse",
 }) as any as S.Schema<UpdateChannelResponse>;
-
-export type BotsGetCheckNameAvailabilityError = AzureOpError;
-/** Check whether a bot name is available. */
-export const BotsGetCheckNameAvailability: API.OperationMethod<
-  BotsGetCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResponseBody,
-  BotsGetCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BotsGetCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResponseBody,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type CreateBotError = AzureOpError;
 /** Creates a Bot Service. Bot Service is a resource group wide resource type. */
@@ -3292,21 +3273,6 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DirectLineRegenerateKeysError = AzureOpError;
-/** Regenerates secret keys and returns them for the DirectLine Channel of a particular BotService resource */
-export const DirectLineRegenerateKeys: API.OperationMethod<
-  DirectLineRegenerateKeysRequest,
-  DirectLineRegenerateKeysResponse,
-  DirectLineRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DirectLineRegenerateKeysRequest,
-  output: DirectLineRegenerateKeysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EmailCreateSignInUrlError = AzureOpError;
 /** Creates an email channel sign in url for a Bot Service */
 export const EmailCreateSignInUrl: API.OperationMethod<
@@ -3332,6 +3298,21 @@ export const GetBot: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetBotRequest,
   output: GetBotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBotCheckNameAvailabilityError = AzureOpError;
+/** Check whether a bot name is available. */
+export const GetBotCheckNameAvailability: API.OperationMethod<
+  GetBotCheckNameAvailabilityRequest,
+  CheckNameAvailabilityResponseBody,
+  GetBotCheckNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBotCheckNameAvailabilityRequest,
+  output: CheckNameAvailabilityResponseBody,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3367,15 +3348,15 @@ export const GetChannel: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetHostSettingError = AzureOpError;
+export type GetHostSettingsError = AzureOpError;
 /** Get per subscription settings needed to host bot in compute resource such as Azure App Service */
-export const GetHostSetting: API.OperationMethod<
-  GetHostSettingRequest,
+export const GetHostSettings: API.OperationMethod<
+  GetHostSettingsRequest,
   HostSettingsResponse,
-  GetHostSettingError,
+  GetHostSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHostSettingRequest,
+  input: GetHostSettingsRequest,
   output: HostSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3412,15 +3393,15 @@ export const GetPrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetQnAMakerEndpointKeyError = AzureOpError;
+export type GetQnAMakerEndpointKeysError = AzureOpError;
 /** Lists the QnA Maker endpoint keys */
-export const GetQnAMakerEndpointKey: API.OperationMethod<
-  GetQnAMakerEndpointKeyRequest,
+export const GetQnAMakerEndpointKeys: API.OperationMethod<
+  GetQnAMakerEndpointKeysRequest,
   QnAMakerEndpointKeysResponse,
-  GetQnAMakerEndpointKeyError,
+  GetQnAMakerEndpointKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQnAMakerEndpointKeyRequest,
+  input: GetQnAMakerEndpointKeysRequest,
   output: QnAMakerEndpointKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3572,6 +3553,21 @@ export const ListPrivateLinkResourceByBotResource: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListPrivateLinkResourceByBotResourceRequest,
   output: ListPrivateLinkResourceByBotResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateDirectLineKeysError = AzureOpError;
+/** Regenerates secret keys and returns them for the DirectLine Channel of a particular BotService resource */
+export const RegenerateDirectLineKeys: API.OperationMethod<
+  RegenerateDirectLineKeysRequest,
+  RegenerateDirectLineKeysResponse,
+  RegenerateDirectLineKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateDirectLineKeysRequest,
+  output: RegenerateDirectLineKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

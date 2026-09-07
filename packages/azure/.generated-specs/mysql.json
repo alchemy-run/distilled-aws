@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.mysql#ServersValidateEstimateHighAvailability": {
+    "com.azure.mysql#ValidateServerEstimateHighAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#ServersValidateEstimateHighAvailabilityRequest"
+        "target": "com.azure.mysql#ValidateServerEstimateHighAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.mysql#HighAvailabilityValidationEstimation"
@@ -62,7 +63,7 @@
         "smithy.api#documentation": "High availability validation properties of a server"
       }
     },
-    "com.azure.mysql#ServersValidateEstimateHighAvailabilityRequest": {
+    "com.azure.mysql#ValidateServerEstimateHighAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -100,10 +101,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#BackupAndExportValidateBackup": {
+    "com.azure.mysql#ValidateBackupAndExportBackup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#BackupAndExportValidateBackupRequest"
+        "target": "com.azure.mysql#ValidateBackupAndExportBackupRequest"
       },
       "output": {
         "target": "com.azure.mysql#ValidateBackupResponse"
@@ -147,7 +148,7 @@
         "smithy.api#documentation": "ValidateBackup Response Properties"
       }
     },
-    "com.azure.mysql#BackupAndExportValidateBackupRequest": {
+    "com.azure.mysql#ValidateBackupAndExportBackupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -555,7 +556,7 @@
           }
         },
         "value": {
-          "target": "com.azure.mysql#ConfigurationsBatchUpdateRequestValueList",
+          "target": "com.azure.mysql#UpdateConfigurationBatchRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list of server configurations."
           }
@@ -591,7 +592,7 @@
         "smithy.api#documentation": "Whether to reset all server parameters to default."
       }
     },
-    "com.azure.mysql#ConfigurationsBatchUpdateRequestValueList": {
+    "com.azure.mysql#UpdateConfigurationBatchRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#ConfigurationForBatchUpdate"
@@ -825,10 +826,10 @@
         "smithy.api#documentation": "Enum to indicate whether value is 'Enabled' or 'Disabled'"
       }
     },
-    "com.azure.mysql#ServersResetGtid": {
+    "com.azure.mysql#ResetServerGtid": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#ServersResetGtidRequest"
+        "target": "com.azure.mysql#ResetServerGtidRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -844,7 +845,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#ServersResetGtidRequest": {
+    "com.azure.mysql#ResetServerGtidRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -882,10 +883,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#ListReplicaByServer": {
+    "com.azure.mysql#ListReplicasByServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#ListReplicaByServerRequest"
+        "target": "com.azure.mysql#ListReplicasByServerRequest"
       },
       "output": {
         "target": "com.azure.mysql#ServerListResult"
@@ -2087,7 +2088,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.mysql#ListReplicaByServerRequest": {
+    "com.azure.mysql#ListReplicasByServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2283,7 +2284,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.mysql#PrivateLinkResourcesListByServerResponseValueList",
+          "target": "com.azure.mysql#ListPrivateLinkResourceByServerResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of private link resources"
           }
@@ -2293,7 +2294,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#PrivateLinkResourcesListByServerResponseValueList": {
+    "com.azure.mysql#ListPrivateLinkResourceByServerResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#PrivateLinkResource"
@@ -3078,13 +3079,13 @@
         "smithy.api#documentation": "The properties of a maintenance update parameter."
       }
     },
-    "com.azure.mysql#MaintenancesRead": {
+    "com.azure.mysql#ReadMaintenance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#MaintenancesReadRequest"
+        "target": "com.azure.mysql#ReadMaintenanceRequest"
       },
       "output": {
-        "target": "com.azure.mysql#MaintenancesReadResponse"
+        "target": "com.azure.mysql#ReadMaintenanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3097,7 +3098,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#MaintenancesReadResponse": {
+    "com.azure.mysql#ReadMaintenanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3136,7 +3137,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#MaintenancesReadRequest": {
+    "com.azure.mysql#ReadMaintenanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3905,13 +3906,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#ServersDetachVNet": {
+    "com.azure.mysql#DetachServerVNet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#ServersDetachVNetRequest"
+        "target": "com.azure.mysql#DetachServerVNetRequest"
       },
       "output": {
-        "target": "com.azure.mysql#ServersDetachVNetResponse"
+        "target": "com.azure.mysql#DetachServerVNetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3924,7 +3925,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#ServersDetachVNetResponse": {
+    "com.azure.mysql#DetachServerVNetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3952,7 +3953,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersDetachVNetResponseTagsMap",
+          "target": "com.azure.mysql#DetachServerVNetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3987,7 +3988,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#ServersDetachVNetResponseTagsMap": {
+    "com.azure.mysql#DetachServerVNetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3999,7 +4000,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.mysql#ServersDetachVNetRequest": {
+    "com.azure.mysql#DetachServerVNetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5371,13 +5372,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#BackupsPut": {
+    "com.azure.mysql#PutBackup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#BackupsPutRequest"
+        "target": "com.azure.mysql#PutBackupRequest"
       },
       "output": {
-        "target": "com.azure.mysql#BackupsPutResponse"
+        "target": "com.azure.mysql#PutBackupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5390,7 +5391,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#BackupsPutResponse": {
+    "com.azure.mysql#PutBackupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5454,7 +5455,7 @@
         "smithy.api#documentation": "The properties of a server backup."
       }
     },
-    "com.azure.mysql#BackupsPutRequest": {
+    "com.azure.mysql#PutBackupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5763,7 +5764,7 @@
           }
         },
         "error": {
-          "target": "com.azure.mysql#BackupAndExportCreateResponseError",
+          "target": "com.azure.mysql#CreateBackupAndExportResponseError",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
@@ -5841,7 +5842,7 @@
         "smithy.api#documentation": "The operation status"
       }
     },
-    "com.azure.mysql#BackupAndExportCreateResponseError": {
+    "com.azure.mysql#CreateBackupAndExportResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -5863,13 +5864,13 @@
           }
         },
         "details": {
-          "target": "com.azure.mysql#BackupAndExportCreateResponseErrorDetailsList",
+          "target": "com.azure.mysql#CreateBackupAndExportResponseErrorDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.mysql#BackupAndExportCreateResponseErrorAdditionalInfoList",
+          "target": "com.azure.mysql#CreateBackupAndExportResponseErrorAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -5879,7 +5880,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.mysql#BackupAndExportCreateResponseErrorAdditionalInfoList": {
+    "com.azure.mysql#CreateBackupAndExportResponseErrorAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#ErrorAdditionalInfo"
@@ -5908,7 +5909,7 @@
         "smithy.api#documentation": "The resource management error additional info."
       }
     },
-    "com.azure.mysql#BackupAndExportCreateResponseErrorDetailsList": {
+    "com.azure.mysql#CreateBackupAndExportResponseErrorDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#ErrorDetail"
@@ -6101,13 +6102,13 @@
         "smithy.api#documentation": "Backup Format for the current backup. (CollatedFormat is INTERNAL – DO NOT USE)"
       }
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSetting": {
+    "com.azure.mysql#UpdateAdvancedThreatProtectionSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingRequest"
+        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsRequest"
       },
       "output": {
-        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingResponse"
+        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6120,7 +6121,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingResponse": {
+    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6236,7 +6237,7 @@
         "smithy.api#documentation": "Specifies the state of the Advanced Threat Protection, whether it is enabled or disabled on the server."
       }
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingRequest": {
+    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6264,7 +6265,7 @@
           }
         },
         "advancedThreatProtectionName": {
-          "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdateRequestAdvancedThreatProtectionName",
+          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6297,7 +6298,7 @@
         "smithy.api#documentation": "Properties of Advanced Threat Protection that can be updated."
       }
     },
-    "com.azure.mysql#AdvancedThreatProtectionSettingsUpdateRequestAdvancedThreatProtectionName": {
+    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6309,13 +6310,13 @@
       },
       "traits": {}
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPut": {
+    "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePut": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPutRequest"
+        "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePutRequest"
       },
       "output": {
-        "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPutResponse"
+        "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePutResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6328,7 +6329,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPutResponse": {
+    "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePutResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6366,7 +6367,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPutRequest": {
+    "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePutRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6438,13 +6439,13 @@
       },
       "traits": {}
     },
-    "com.azure.mysql#GetAdvancedThreatProtectionSetting": {
+    "com.azure.mysql#GetAdvancedThreatProtectionSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#GetAdvancedThreatProtectionSettingRequest"
+        "target": "com.azure.mysql#GetAdvancedThreatProtectionSettingsRequest"
       },
       "output": {
-        "target": "com.azure.mysql#GetAdvancedThreatProtectionSettingResponse"
+        "target": "com.azure.mysql#GetAdvancedThreatProtectionSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6457,7 +6458,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#GetAdvancedThreatProtectionSettingResponse": {
+    "com.azure.mysql#GetAdvancedThreatProtectionSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6495,7 +6496,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#GetAdvancedThreatProtectionSettingRequest": {
+    "com.azure.mysql#GetAdvancedThreatProtectionSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6523,7 +6524,7 @@
           }
         },
         "advancedThreatProtectionName": {
-          "target": "com.azure.mysql#AdvancedThreatProtectionSettingsGetRequestAdvancedThreatProtectionName",
+          "target": "com.azure.mysql#GetAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6535,7 +6536,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#AdvancedThreatProtectionSettingsGetRequestAdvancedThreatProtectionName": {
+    "com.azure.mysql#GetAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6665,10 +6666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#DeleteAzureAdAdministrator": {
+    "com.azure.mysql#DeleteAzureADAdministrator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#DeleteAzureAdAdministratorRequest"
+        "target": "com.azure.mysql#DeleteAzureADAdministratorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6684,7 +6685,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#DeleteAzureAdAdministratorRequest": {
+    "com.azure.mysql#DeleteAzureADAdministratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6712,7 +6713,7 @@
           }
         },
         "administratorName": {
-          "target": "com.azure.mysql#AzureADAdministratorsDeleteRequestAdministratorName",
+          "target": "com.azure.mysql#DeleteAzureADAdministratorRequestAdministratorName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6724,7 +6725,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#AzureADAdministratorsDeleteRequestAdministratorName": {
+    "com.azure.mysql#DeleteAzureADAdministratorRequestAdministratorName": {
       "type": "enum",
       "members": {
         "ACTIVEDIRECTORY": {
@@ -6903,13 +6904,13 @@
       },
       "traits": {}
     },
-    "com.azure.mysql#GetAzureAdAdministrator": {
+    "com.azure.mysql#GetAzureADAdministrator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#GetAzureAdAdministratorRequest"
+        "target": "com.azure.mysql#GetAzureADAdministratorRequest"
       },
       "output": {
-        "target": "com.azure.mysql#GetAzureAdAdministratorResponse"
+        "target": "com.azure.mysql#GetAzureADAdministratorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6922,7 +6923,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#GetAzureAdAdministratorResponse": {
+    "com.azure.mysql#GetAzureADAdministratorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6960,7 +6961,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#GetAzureAdAdministratorRequest": {
+    "com.azure.mysql#GetAzureADAdministratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6988,7 +6989,7 @@
           }
         },
         "administratorName": {
-          "target": "com.azure.mysql#AzureADAdministratorsGetRequestAdministratorName",
+          "target": "com.azure.mysql#GetAzureADAdministratorRequestAdministratorName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -7000,7 +7001,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#AzureADAdministratorsGetRequestAdministratorName": {
+    "com.azure.mysql#GetAzureADAdministratorRequestAdministratorName": {
       "type": "enum",
       "members": {
         "ACTIVEDIRECTORY": {
@@ -7012,10 +7013,10 @@
       },
       "traits": {}
     },
-    "com.azure.mysql#ListAzureAdAdministratorByServer": {
+    "com.azure.mysql#ListAzureADAdministratorByServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#ListAzureAdAdministratorByServerRequest"
+        "target": "com.azure.mysql#ListAzureADAdministratorByServerRequest"
       },
       "output": {
         "target": "com.azure.mysql#AdministratorListResult"
@@ -7098,7 +7099,7 @@
         "smithy.api#documentation": "Represents a Administrator."
       }
     },
-    "com.azure.mysql#ListAzureAdAdministratorByServerRequest": {
+    "com.azure.mysql#ListAzureADAdministratorByServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7228,7 +7229,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersUpdateResponseTagsMap",
+          "target": "com.azure.mysql#UpdateServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7263,7 +7264,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#ServersUpdateResponseTagsMap": {
+    "com.azure.mysql#UpdateServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7321,7 +7322,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersUpdateRequestTagsMap",
+          "target": "com.azure.mysql#UpdateServerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application-specific metadata in the form of key-value pairs."
           }
@@ -7331,7 +7332,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#ServersUpdateRequestTagsMap": {
+    "com.azure.mysql#UpdateServerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7668,7 +7669,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersCreateResponseTagsMap",
+          "target": "com.azure.mysql#CreateServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7703,7 +7704,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#ServersCreateResponseTagsMap": {
+    "com.azure.mysql#CreateServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7743,7 +7744,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersCreateRequestTagsMap",
+          "target": "com.azure.mysql#CreateServerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7889,7 +7890,7 @@
         "smithy.api#documentation": "The properties of a server."
       }
     },
-    "com.azure.mysql#ServersCreateRequestTagsMap": {
+    "com.azure.mysql#CreateServerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7948,7 +7949,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.mysql#ServersGetResponseTagsMap",
+          "target": "com.azure.mysql#GetServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7983,7 +7984,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#ServersGetResponseTagsMap": {
+    "com.azure.mysql#GetServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8136,7 +8137,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.mysql#OperationResultsGetResponseOperationsList",
+          "target": "com.azure.mysql#GetOperationResultResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -8148,7 +8149,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.mysql#OperationResultsGetResponsePropertiesMap",
+          "target": "com.azure.mysql#GetOperationResultResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "The extended properties of Operation Results"
           }
@@ -8158,7 +8159,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#OperationResultsGetResponsePropertiesMap": {
+    "com.azure.mysql#GetOperationResultResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8170,7 +8171,7 @@
         "smithy.api#documentation": "The extended properties of Operation Results"
       }
     },
-    "com.azure.mysql#OperationResultsGetResponseOperationsList": {
+    "com.azure.mysql#GetOperationResultResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#OperationStatusResult"
@@ -8349,7 +8350,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.mysql#OperationProgressGetResponseOperationsList",
+          "target": "com.azure.mysql#GetOperationProgressResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -8406,7 +8407,7 @@
         "smithy.api#documentation": "Identifies the type of source operation"
       }
     },
-    "com.azure.mysql#OperationProgressGetResponseOperationsList": {
+    "com.azure.mysql#GetOperationProgressResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.mysql#OperationStatusResult"
@@ -8447,10 +8448,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#CheckVirtualNetworkSubnetUsageExecute": {
+    "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#CheckVirtualNetworkSubnetUsageExecuteRequest"
+        "target": "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsageRequest"
       },
       "output": {
         "target": "com.azure.mysql#VirtualNetworkSubnetUsageResult"
@@ -8521,7 +8522,7 @@
         "smithy.api#documentation": "Delegated subnet usage data."
       }
     },
-    "com.azure.mysql#CheckVirtualNetworkSubnetUsageExecuteRequest": {
+    "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8551,10 +8552,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#CheckNameAvailabilityExecute": {
+    "com.azure.mysql#ExecuteCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#CheckNameAvailabilityExecuteRequest"
+        "target": "com.azure.mysql#ExecuteCheckNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.mysql#NameAvailability"
@@ -8596,7 +8597,7 @@
         "smithy.api#documentation": "Represents a resource name availability."
       }
     },
-    "com.azure.mysql#CheckNameAvailabilityExecuteRequest": {
+    "com.azure.mysql#ExecuteCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8633,13 +8634,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#LocationBasedCapabilitySetGet": {
+    "com.azure.mysql#GetLocationBasedCapabilitySet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#LocationBasedCapabilitySetGetRequest"
+        "target": "com.azure.mysql#GetLocationBasedCapabilitySetRequest"
       },
       "output": {
-        "target": "com.azure.mysql#LocationBasedCapabilitySetGetResponse"
+        "target": "com.azure.mysql#GetLocationBasedCapabilitySetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8652,7 +8653,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#LocationBasedCapabilitySetGetResponse": {
+    "com.azure.mysql#GetLocationBasedCapabilitySetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8960,7 +8961,7 @@
         "smithy.api#documentation": "supported geo backup regions"
       }
     },
-    "com.azure.mysql#LocationBasedCapabilitySetGetRequest": {
+    "com.azure.mysql#GetLocationBasedCapabilitySetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8992,10 +8993,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#LocationBasedCapabilitySetList": {
+    "com.azure.mysql#ListLocationBasedCapabilitySet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#LocationBasedCapabilitySetListRequest"
+        "target": "com.azure.mysql#ListLocationBasedCapabilitySetRequest"
       },
       "output": {
         "target": "com.azure.mysql#CapabilitySetsList"
@@ -9078,7 +9079,7 @@
         "smithy.api#documentation": "Represents a location capability set."
       }
     },
-    "com.azure.mysql#LocationBasedCapabilitySetListRequest": {
+    "com.azure.mysql#ListLocationBasedCapabilitySetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9373,10 +9374,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.mysql#CheckNameAvailabilityWithoutLocationExecute": {
+    "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#CheckNameAvailabilityWithoutLocationExecuteRequest"
+        "target": "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocationRequest"
       },
       "output": {
         "target": "com.azure.mysql#NameAvailability"
@@ -9392,7 +9393,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-30"
       }
     },
-    "com.azure.mysql#CheckNameAvailabilityWithoutLocationExecuteRequest": {
+    "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9571,7 +9572,7 @@
         "smithy.api#documentation": "Display metadata associated with the operation."
       }
     },
-    "com.azure.mysql#GetPrivateDnsZoneSuffixExecute": {
+    "com.azure.mysql#ExecuteGetPrivateDnsZoneSuffix": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9604,10 +9605,10 @@
         "smithy.api#documentation": "The response of get private dns zone suffix."
       }
     },
-    "com.azure.mysql#DeleteServerKey": {
+    "com.azure.mysql#DeleteServerKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#DeleteServerKeyRequest"
+        "target": "com.azure.mysql#DeleteServerKeysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9623,7 +9624,7 @@
         "com.distilled.openapi#apiVersion": "2020-01-01"
       }
     },
-    "com.azure.mysql#DeleteServerKeyRequest": {
+    "com.azure.mysql#DeleteServerKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9842,13 +9843,13 @@
         "smithy.api#documentation": "The key type like 'AzureKeyVault'."
       }
     },
-    "com.azure.mysql#GetServerKey": {
+    "com.azure.mysql#GetServerKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#GetServerKeyRequest"
+        "target": "com.azure.mysql#GetServerKeysRequest"
       },
       "output": {
-        "target": "com.azure.mysql#GetServerKeyResponse"
+        "target": "com.azure.mysql#GetServerKeysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9861,7 +9862,7 @@
         "com.distilled.openapi#apiVersion": "2020-01-01"
       }
     },
-    "com.azure.mysql#GetServerKeyResponse": {
+    "com.azure.mysql#GetServerKeysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9899,7 +9900,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#GetServerKeyRequest": {
+    "com.azure.mysql#GetServerKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10133,211 +10134,211 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mysql#ServersValidateEstimateHighAvailability"
-        },
-        {
-          "target": "com.azure.mysql#BackupAndExportValidateBackup"
-        },
-        {
-          "target": "com.azure.mysql#UpdateConfigurationBatch"
-        },
-        {
-          "target": "com.azure.mysql#StopServer"
-        },
-        {
-          "target": "com.azure.mysql#StartServer"
-        },
-        {
-          "target": "com.azure.mysql#RestartServer"
-        },
-        {
-          "target": "com.azure.mysql#ServersResetGtid"
-        },
-        {
-          "target": "com.azure.mysql#ListReplicaByServer"
-        },
-        {
-          "target": "com.azure.mysql#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.mysql#ListPrivateLinkResourceByServer"
-        },
-        {
-          "target": "com.azure.mysql#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.mysql#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.mysql#ListPrivateEndpointConnectionByServer"
-        },
-        {
-          "target": "com.azure.mysql#UpdateMaintenance"
-        },
-        {
-          "target": "com.azure.mysql#MaintenancesRead"
-        },
-        {
-          "target": "com.azure.mysql#ListMaintenances"
-        },
-        {
-          "target": "com.azure.mysql#ListLogFileByServer"
-        },
-        {
-          "target": "com.azure.mysql#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.mysql#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.mysql#ListFirewallRuleByServer"
-        },
-        {
-          "target": "com.azure.mysql#ServersFailover"
-        },
-        {
-          "target": "com.azure.mysql#ServersDetachVNet"
-        },
-        {
-          "target": "com.azure.mysql#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.mysql#DatabasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#GetDatabase"
-        },
-        {
-          "target": "com.azure.mysql#ListDatabaseByServer"
-        },
-        {
-          "target": "com.azure.mysql#ServersMigrationCutoverMigration"
-        },
-        {
-          "target": "com.azure.mysql#UpdateConfiguration"
-        },
-        {
-          "target": "com.azure.mysql#ConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#GetConfiguration"
-        },
-        {
-          "target": "com.azure.mysql#ListConfigurationByServer"
-        },
-        {
-          "target": "com.azure.mysql#CreateLongRunningBackup"
-        },
-        {
-          "target": "com.azure.mysql#GetLongRunningBackup"
-        },
-        {
-          "target": "com.azure.mysql#ListLongRunningBackups"
-        },
-        {
-          "target": "com.azure.mysql#BackupsPut"
-        },
-        {
-          "target": "com.azure.mysql#GetBackup"
-        },
-        {
-          "target": "com.azure.mysql#ListBackupByServer"
-        },
-        {
-          "target": "com.azure.mysql#CreateBackupAndExport"
-        },
-        {
-          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSetting"
-        },
-        {
-          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettingPut"
-        },
-        {
-          "target": "com.azure.mysql#GetAdvancedThreatProtectionSetting"
-        },
-        {
-          "target": "com.azure.mysql#ListAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.mysql#DeleteAzureAdAdministrator"
+          "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePut"
         },
         {
           "target": "com.azure.mysql#AzureADAdministratorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.mysql#GetAzureAdAdministrator"
+          "target": "com.azure.mysql#ConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.mysql#ListAzureAdAdministratorByServer"
+          "target": "com.azure.mysql#CreateBackupAndExport"
         },
         {
-          "target": "com.azure.mysql#DeleteServer"
-        },
-        {
-          "target": "com.azure.mysql#UpdateServer"
+          "target": "com.azure.mysql#CreateLongRunningBackup"
         },
         {
           "target": "com.azure.mysql#CreateServer"
         },
         {
-          "target": "com.azure.mysql#GetServer"
+          "target": "com.azure.mysql#DatabasesCreateOrUpdate"
         },
         {
-          "target": "com.azure.mysql#ListServerByResourceGroup"
+          "target": "com.azure.mysql#DeleteAzureADAdministrator"
         },
         {
-          "target": "com.azure.mysql#GetOperationResult"
+          "target": "com.azure.mysql#DeleteDatabase"
+        },
+        {
+          "target": "com.azure.mysql#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.mysql#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.mysql#DeleteServer"
+        },
+        {
+          "target": "com.azure.mysql#DeleteServerKeys"
+        },
+        {
+          "target": "com.azure.mysql#DetachServerVNet"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocation"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsage"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteGetPrivateDnsZoneSuffix"
+        },
+        {
+          "target": "com.azure.mysql#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#GetAzureADAdministrator"
+        },
+        {
+          "target": "com.azure.mysql#GetBackup"
+        },
+        {
+          "target": "com.azure.mysql#GetConfiguration"
+        },
+        {
+          "target": "com.azure.mysql#GetDatabase"
+        },
+        {
+          "target": "com.azure.mysql#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.mysql#GetLocationBasedCapabilitySet"
+        },
+        {
+          "target": "com.azure.mysql#GetLongRunningBackup"
         },
         {
           "target": "com.azure.mysql#GetOperationProgress"
         },
         {
-          "target": "com.azure.mysql#CheckVirtualNetworkSubnetUsageExecute"
+          "target": "com.azure.mysql#GetOperationResult"
         },
         {
-          "target": "com.azure.mysql#CheckNameAvailabilityExecute"
+          "target": "com.azure.mysql#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.mysql#LocationBasedCapabilitySetGet"
+          "target": "com.azure.mysql#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.mysql#LocationBasedCapabilitySetList"
+          "target": "com.azure.mysql#GetServer"
+        },
+        {
+          "target": "com.azure.mysql#GetServerKeys"
+        },
+        {
+          "target": "com.azure.mysql#ListAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#ListAzureADAdministratorByServer"
+        },
+        {
+          "target": "com.azure.mysql#ListBackupByServer"
+        },
+        {
+          "target": "com.azure.mysql#ListConfigurationByServer"
+        },
+        {
+          "target": "com.azure.mysql#ListDatabaseByServer"
+        },
+        {
+          "target": "com.azure.mysql#ListFirewallRuleByServer"
         },
         {
           "target": "com.azure.mysql#ListLocationBasedCapabilities"
         },
         {
-          "target": "com.azure.mysql#ListServers"
+          "target": "com.azure.mysql#ListLocationBasedCapabilitySet"
         },
         {
-          "target": "com.azure.mysql#CheckNameAvailabilityWithoutLocationExecute"
+          "target": "com.azure.mysql#ListLogFileByServer"
+        },
+        {
+          "target": "com.azure.mysql#ListLongRunningBackups"
+        },
+        {
+          "target": "com.azure.mysql#ListMaintenances"
         },
         {
           "target": "com.azure.mysql#ListOperations"
         },
         {
-          "target": "com.azure.mysql#GetPrivateDnsZoneSuffixExecute"
+          "target": "com.azure.mysql#ListPrivateEndpointConnectionByServer"
         },
         {
-          "target": "com.azure.mysql#DeleteServerKey"
+          "target": "com.azure.mysql#ListPrivateLinkResourceByServer"
         },
         {
-          "target": "com.azure.mysql#ServerKeysCreateOrUpdate"
+          "target": "com.azure.mysql#ListReplicasByServer"
         },
         {
-          "target": "com.azure.mysql#GetServerKey"
+          "target": "com.azure.mysql#ListServerByResourceGroup"
         },
         {
           "target": "com.azure.mysql#ListServerKeys"
         },
         {
+          "target": "com.azure.mysql#ListServers"
+        },
+        {
+          "target": "com.azure.mysql#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#PutBackup"
+        },
+        {
+          "target": "com.azure.mysql#ReadMaintenance"
+        },
+        {
+          "target": "com.azure.mysql#ResetServerGtid"
+        },
+        {
+          "target": "com.azure.mysql#RestartServer"
+        },
+        {
+          "target": "com.azure.mysql#ServerKeysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#ServersFailover"
+        },
+        {
+          "target": "com.azure.mysql#ServersMigrationCutoverMigration"
+        },
+        {
           "target": "com.azure.mysql#ServersUpgrade"
+        },
+        {
+          "target": "com.azure.mysql#StartServer"
+        },
+        {
+          "target": "com.azure.mysql#StopServer"
+        },
+        {
+          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.mysql#UpdateConfigurationBatch"
+        },
+        {
+          "target": "com.azure.mysql#UpdateMaintenance"
+        },
+        {
+          "target": "com.azure.mysql#UpdateServer"
+        },
+        {
+          "target": "com.azure.mysql#ValidateBackupAndExportBackup"
+        },
+        {
+          "target": "com.azure.mysql#ValidateServerEstimateHighAvailability"
         }
       ],
       "traits": {

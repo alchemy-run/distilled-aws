@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.tasks#LegacyDesktopAccessResponse": {
@@ -37,7 +38,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CheckCodeInviteAccessRetrieve": {
+    "com.posthog.tasks#GetCodeInvitesCheckAccess": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -59,7 +60,7 @@
         "smithy.api#documentation": "Check PostHog Desktop access\n\nCompatibility endpoint for released PostHog Desktop clients."
       }
     },
-    "com.posthog.tasks#DesktopAccessRetrieveRequest": {
+    "com.posthog.tasks#GetDesktopAccessRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -116,10 +117,10 @@
         "smithy.api#documentation": "* `startup_plan` - startup_plan\n* `prepaid_credits` - prepaid_credits"
       }
     },
-    "com.posthog.tasks#DesktopAccessRetrieve": {
+    "com.posthog.tasks#GetDesktopAccess": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#DesktopAccessRetrieveRequest"
+        "target": "com.posthog.tasks#GetDesktopAccessRequest"
       },
       "output": {
         "target": "com.posthog.tasks#DesktopAccessResponse"
@@ -133,7 +134,7 @@
         "smithy.api#documentation": "Check PostHog Desktop access\n\nEvaluate Desktop access for the selected project and organization."
       }
     },
-    "com.posthog.tasks#TasksListRequestArchived": {
+    "com.posthog.tasks#ListTasksRequestArchived": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -157,7 +158,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestCiStatus": {
+    "com.posthog.tasks#ListTasksRequestCiStatus": {
       "type": "enum",
       "members": {
         "PASSING": {
@@ -187,7 +188,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestExcludeOriginProduct": {
+    "com.posthog.tasks#ListTasksRequestExcludeOriginProduct": {
       "type": "enum",
       "members": {
         "ONBOARDING": {
@@ -256,6 +257,12 @@
             "smithy.api#enumValue": "signals_scout"
           }
         },
+        "SCOUT_SUGGESTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scout_suggestions"
+          }
+        },
         "SUPPORT_REPLY": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -313,7 +320,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestInternal": {
+    "com.posthog.tasks#ListTasksRequestInternal": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -337,7 +344,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestOrdering": {
+    "com.posthog.tasks#ListTasksRequestOrdering": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -355,7 +362,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestPrState": {
+    "com.posthog.tasks#ListTasksRequestPrState": {
       "type": "enum",
       "members": {
         "OPEN": {
@@ -385,7 +392,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksListRequestStatus": {
+    "com.posthog.tasks#ListTasksRequestStatus": {
       "type": "enum",
       "members": {
         "NOT_STARTED": {
@@ -446,7 +453,7 @@
           }
         },
         "archived": {
-          "target": "com.posthog.tasks#TasksListRequestArchived",
+          "target": "com.posthog.tasks#ListTasksRequestArchived",
           "traits": {
             "smithy.api#httpQuery": "archived",
             "smithy.api#documentation": "Filter by archived state. Defaults to excluding archived tasks. Use 'true' to list only archived tasks, 'false' for the default, or 'all' to include both.\n\n* `true` - true\n* `false` - false\n* `all` - all"
@@ -460,7 +467,7 @@
           }
         },
         "ci_status": {
-          "target": "com.posthog.tasks#TasksListRequestCiStatus",
+          "target": "com.posthog.tasks#ListTasksRequestCiStatus",
           "traits": {
             "smithy.api#httpQuery": "ci_status",
             "smithy.api#documentation": "Filter tasks by the CI check rollup on their most recent run's pull request, as last observed from GitHub. 'none' means the PR has no checks.\n\n* `passing` - passing\n* `failing` - failing\n* `pending` - pending\n* `none` - none"
@@ -481,14 +488,21 @@
           }
         },
         "exclude_origin_product": {
-          "target": "com.posthog.tasks#TasksListRequestExcludeOriginProduct",
+          "target": "com.posthog.tasks#ListTasksRequestExcludeOriginProduct",
           "traits": {
             "smithy.api#httpQuery": "exclude_origin_product",
-            "smithy.api#documentation": "Exclude tasks with this origin product from the results\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+            "smithy.api#documentation": "Exclude tasks with this origin product from the results\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `scout_suggestions` - Signals Scout Suggestions\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+          }
+        },
+        "hog_flow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "hog_flow_id",
+            "smithy.api#documentation": "Filter tasks to the runs spawned by this workflow's 'Create AI task' action."
           }
         },
         "internal": {
-          "target": "com.posthog.tasks#TasksListRequestInternal",
+          "target": "com.posthog.tasks#ListTasksRequestInternal",
           "traits": {
             "smithy.api#httpQuery": "internal",
             "smithy.api#documentation": "Filter by the internal flag, which controls whether a task is shown by default, not whether it is accessible. Defaults to excluding internal tasks. Use 'all' to include both internal and user-facing tasks, or 'true' to list only internal tasks. All values are available to any team member; access stays governed by task visibility.\n\n* `true` - true\n* `false` - false\n* `all` - all"
@@ -516,7 +530,7 @@
           }
         },
         "ordering": {
-          "target": "com.posthog.tasks#TasksListRequestOrdering",
+          "target": "com.posthog.tasks#ListTasksRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "ordering",
             "smithy.api#documentation": "Sort order. '-last_activity_at' is newest activity first, where activity means a thread message or a run starting, streaming, or finishing. Defaults to '-created_at'.\n\n* `-created_at` - -created_at\n* `-last_activity_at` - -last_activity_at"
@@ -544,7 +558,7 @@
           }
         },
         "pr_state": {
-          "target": "com.posthog.tasks#TasksListRequestPrState",
+          "target": "com.posthog.tasks#ListTasksRequestPrState",
           "traits": {
             "smithy.api#httpQuery": "pr_state",
             "smithy.api#documentation": "Filter tasks by the state of their most recent run's pull request, as last observed from GitHub (webhooks plus the CI follow-up snapshot).\n\n* `open` - open\n* `draft` - draft\n* `merged` - merged\n* `closed` - closed"
@@ -572,7 +586,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.tasks#TasksListRequestStatus",
+          "target": "com.posthog.tasks#ListTasksRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter tasks by the status of their most recent run.\n\n* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress\n* `completed` - completed\n* `failed` - failed\n* `cancelled` - cancelled"
@@ -660,7 +674,7 @@
           }
         },
         "runtime": {
-          "target": "com.posthog.tasks#RuntimeEnum",
+          "target": "com.posthog.tasks#TaskRuntimeEnum",
           "traits": {
             "smithy.api#documentation": "Agent protocol and harness used for this task's runs.\n\n* `acp` - ACP\n* `pi` - Pi",
             "smithy.api#required": {}
@@ -788,7 +802,7 @@
         "smithy.api#documentation": "Detail response for a task.\n\nReads from a frozen ``TaskDetailDTO`` produced by the facade. ``github_integration`` /\n``github_user_integration`` are integration ids, ``signal_report`` is the report id, and\n``latest_run`` nests the run-detail shape. ``created_by`` mirrors core ``UserBasicSerializer``."
       }
     },
-    "com.posthog.tasks#RuntimeEnum": {
+    "com.posthog.tasks#TaskRuntimeEnum": {
       "type": "enum",
       "members": {
         "ACP": {
@@ -1580,10 +1594,10 @@
           "uri": "/api/projects/{project_id}/tasks/",
           "code": 200
         },
-        "smithy.api#documentation": "List tasks\n\nGet a list of tasks for the current project, with optional filtering by origin product, stage, organization, repository, and created_by."
+        "smithy.api#documentation": "List tasks\n\nGet a list of tasks for the current project, with optional filtering by origin product, stage, organization, repository, created_by, and the workflow (hog_flow_id) that created the task."
       }
     },
-    "com.posthog.tasks#OriginProductEnum": {
+    "com.posthog.tasks#TaskOriginProductEnum": {
       "type": "enum",
       "members": {
         "ONBOARDING": {
@@ -1652,6 +1666,12 @@
             "smithy.api#enumValue": "signals_scout"
           }
         },
+        "SCOUT_SUGGESTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scout_suggestions"
+          }
+        },
         "SUPPORT_REPLY": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -1708,10 +1728,10 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+        "smithy.api#documentation": "* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `scout_suggestions` - Signals Scout Suggestions\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
       }
     },
-    "com.posthog.tasks#TasksCreateRequestRepositoriesList": {
+    "com.posthog.tasks#CreateTaskRequestRepositoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1814,7 +1834,7 @@
         "smithy.api#documentation": "* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto\n* `read-only` - read-only\n* `full-access` - full-access"
       }
     },
-    "com.posthog.tasks#TasksCreateRequestPendingUserArtifactIdsList": {
+    "com.posthog.tasks#CreateTaskRequestPendingUserArtifactIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1853,9 +1873,9 @@
           }
         },
         "origin_product": {
-          "target": "com.posthog.tasks#OriginProductEnum",
+          "target": "com.posthog.tasks#TaskOriginProductEnum",
           "traits": {
-            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `scout_suggestions` - Signals Scout Suggestions\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
           }
         },
         "repository": {
@@ -1866,7 +1886,7 @@
           }
         },
         "repositories": {
-          "target": "com.posthog.tasks#TasksCreateRequestRepositoriesList",
+          "target": "com.posthog.tasks#CreateTaskRequestRepositoriesList",
           "traits": {
             "smithy.api#documentation": "GitHub repositories available to this task, each in `organization/repo` format."
           }
@@ -1960,7 +1980,7 @@
           }
         },
         "pending_user_artifact_ids": {
-          "target": "com.posthog.tasks#TasksCreateRequestPendingUserArtifactIdsList",
+          "target": "com.posthog.tasks#CreateTaskRequestPendingUserArtifactIdsList",
           "traits": {
             "smithy.api#documentation": "Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched."
           }
@@ -2000,7 +2020,7 @@
           }
         },
         "runtime": {
-          "target": "com.posthog.tasks#RuntimeEnum",
+          "target": "com.posthog.tasks#TaskRuntimeEnum",
           "traits": {
             "smithy.api#documentation": "Agent protocol and harness used for this task's runs. Defaults to ACP when omitted.\n\n* `acp` - ACP\n* `pi` - Pi"
           }
@@ -2038,7 +2058,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#TasksRetrieveRequest": {
+    "com.posthog.tasks#GetTaskRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2061,10 +2081,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRetrieve": {
+    "com.posthog.tasks#GetTask": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRetrieveRequest"
+        "target": "com.posthog.tasks#GetTaskRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskDetailDTO"
@@ -2086,7 +2106,7 @@
         "smithy.api#documentation": "Get task\n\nRetrieve a single task by ID."
       }
     },
-    "com.posthog.tasks#TasksUpdateRequestRepositoriesList": {
+    "com.posthog.tasks#UpdateTaskRequestRepositoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2095,7 +2115,7 @@
         "smithy.api#documentation": "GitHub repositories available to this task, each in `organization/repo` format."
       }
     },
-    "com.posthog.tasks#TasksUpdateRequestPendingUserArtifactIdsList": {
+    "com.posthog.tasks#UpdateTaskRequestPendingUserArtifactIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2141,9 +2161,9 @@
           }
         },
         "origin_product": {
-          "target": "com.posthog.tasks#OriginProductEnum",
+          "target": "com.posthog.tasks#TaskOriginProductEnum",
           "traits": {
-            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `scout_suggestions` - Signals Scout Suggestions\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
           }
         },
         "repository": {
@@ -2154,7 +2174,7 @@
           }
         },
         "repositories": {
-          "target": "com.posthog.tasks#TasksUpdateRequestRepositoriesList",
+          "target": "com.posthog.tasks#UpdateTaskRequestRepositoriesList",
           "traits": {
             "smithy.api#documentation": "GitHub repositories available to this task, each in `organization/repo` format."
           }
@@ -2248,7 +2268,7 @@
           }
         },
         "pending_user_artifact_ids": {
-          "target": "com.posthog.tasks#TasksUpdateRequestPendingUserArtifactIdsList",
+          "target": "com.posthog.tasks#UpdateTaskRequestPendingUserArtifactIdsList",
           "traits": {
             "smithy.api#documentation": "Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched."
           }
@@ -2300,7 +2320,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#TasksPartialUpdateRequestRepositoriesList": {
+    "com.posthog.tasks#UpdateTasksPartialRequestRepositoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2309,7 +2329,7 @@
         "smithy.api#documentation": "GitHub repositories available to this task, each in `organization/repo` format."
       }
     },
-    "com.posthog.tasks#TasksPartialUpdateRequestPendingUserArtifactIdsList": {
+    "com.posthog.tasks#UpdateTasksPartialRequestPendingUserArtifactIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2318,7 +2338,7 @@
         "smithy.api#documentation": "Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched."
       }
     },
-    "com.posthog.tasks#UpdateTaskPartialRequest": {
+    "com.posthog.tasks#UpdateTasksPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2355,9 +2375,9 @@
           }
         },
         "origin_product": {
-          "target": "com.posthog.tasks#OriginProductEnum",
+          "target": "com.posthog.tasks#TaskOriginProductEnum",
           "traits": {
-            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
+            "smithy.api#documentation": "PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API.\n\n* `onboarding` - Onboarding\n* `error_tracking` - Error Tracking\n* `eval_clusters` - Eval Clusters\n* `user_created` - User Created\n* `slack` - Slack\n* `support_queue` - Support Queue\n* `session_summaries` - Session Summaries\n* `posthog_ai` - PostHog AI\n* `experiments` - Experiments\n* `signal_report` - Signal Report\n* `signals_scout` - Signals Scout\n* `scout_suggestions` - Signals Scout Suggestions\n* `support_reply` - Support Reply\n* `hogdesk` - HogDesk\n* `review_hog` - ReviewHog\n* `image_builder` - Image Builder\n* `loop` - Loop\n* `mcp_analytics` - MCP Analytics\n* `signals_chat` - Signals Chat\n* `task_analysis` - Task Analysis\n* `workflow` - Workflow"
           }
         },
         "repository": {
@@ -2368,7 +2388,7 @@
           }
         },
         "repositories": {
-          "target": "com.posthog.tasks#TasksPartialUpdateRequestRepositoriesList",
+          "target": "com.posthog.tasks#UpdateTasksPartialRequestRepositoriesList",
           "traits": {
             "smithy.api#documentation": "GitHub repositories available to this task, each in `organization/repo` format."
           }
@@ -2462,7 +2482,7 @@
           }
         },
         "pending_user_artifact_ids": {
-          "target": "com.posthog.tasks#TasksPartialUpdateRequestPendingUserArtifactIdsList",
+          "target": "com.posthog.tasks#UpdateTasksPartialRequestPendingUserArtifactIdsList",
           "traits": {
             "smithy.api#documentation": "Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched."
           }
@@ -2486,10 +2506,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#UpdateTaskPartial": {
+    "com.posthog.tasks#UpdateTasksPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#UpdateTaskPartialRequest"
+        "target": "com.posthog.tasks#UpdateTasksPartialRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskDetailDTO"
@@ -2562,7 +2582,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#ListTaskArtifactsRequest": {
+    "com.posthog.tasks#ListTasksArtifactsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2634,10 +2654,10 @@
         "smithy.api#documentation": "Artifacts and canvases linked to this task."
       }
     },
-    "com.posthog.tasks#ListTaskArtifacts": {
+    "com.posthog.tasks#ListTasksArtifacts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#ListTaskArtifactsRequest"
+        "target": "com.posthog.tasks#ListTasksArtifactsRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskArtifactsResponse"
@@ -2651,7 +2671,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#ListTaskCommentsRequest": {
+    "com.posthog.tasks#ListTasksCommentsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2822,10 +2842,10 @@
         "smithy.api#documentation": "Root comments, newest first."
       }
     },
-    "com.posthog.tasks#ListTaskComments": {
+    "com.posthog.tasks#ListTasksComments": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#ListTaskCommentsRequest"
+        "target": "com.posthog.tasks#ListTasksCommentsRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskCommentsResponse"
@@ -2839,7 +2859,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#TasksCommentsRetrieveRequest": {
+    "com.posthog.tasks#GetTasksCommentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3080,10 +3100,10 @@
         "smithy.api#documentation": "Comments in this page, oldest first."
       }
     },
-    "com.posthog.tasks#TasksCommentsRetrieve": {
+    "com.posthog.tasks#GetTasksComment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksCommentsRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksCommentRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskCommentDetail"
@@ -3097,7 +3117,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#CreateTaskHandoffRequest": {
+    "com.posthog.tasks#CreateTasksHandoffRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3127,10 +3147,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskHandoff": {
+    "com.posthog.tasks#CreateTasksHandoff": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskHandoffRequest"
+        "target": "com.posthog.tasks#CreateTasksHandoffRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskDetailDTO"
@@ -3149,7 +3169,7 @@
         "smithy.api#documentation": "Hand a task off to a colleague\n\nTransfer ownership of a task to another member of the project: they take over driving it (steering, archiving, running), and future runs resolve GitHub authorship and notification recipients from them. Only the task's current owner can hand it off. Every run must be finished or canceled, and every sandbox must be shut down first. A task in a private space moves into the recipient's private space; a task in a shared space stays there."
       }
     },
-    "com.posthog.tasks#CreateTaskPinRequest": {
+    "com.posthog.tasks#CreateTasksPinRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3199,10 +3219,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskPin": {
+    "com.posthog.tasks#CreateTasksPin": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskPinRequest"
+        "target": "com.posthog.tasks#CreateTasksPinRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskPinResponse"
@@ -3216,7 +3236,7 @@
         "smithy.api#documentation": "API for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#CreateTaskPresenceRequest": {
+    "com.posthog.tasks#CreateTasksPresenceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3246,10 +3266,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskPresence": {
+    "com.posthog.tasks#CreateTasksPresence": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskPresenceRequest"
+        "target": "com.posthog.tasks#CreateTasksPresenceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3460,6 +3480,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "benjamin_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run.",
             "com.distilled.openapi#nullable": {}
           }
         }
@@ -3849,6 +3876,13 @@
             "smithy.api#documentation": "Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out.",
             "com.distilled.openapi#nullable": {}
           }
+        },
+        "benjamin_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run.",
+            "com.distilled.openapi#nullable": {}
+          }
         }
       },
       "traits": {
@@ -3995,7 +4029,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunRequest": {
+    "com.posthog.tasks#TasksRunCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4024,10 +4058,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRun": {
+    "com.posthog.tasks#TasksRunCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunRequest"
+        "target": "com.posthog.tasks#TasksRunCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskDetailDTO"
@@ -4165,7 +4199,7 @@
         "smithy.api#documentation": "Array of staged artifacts to finalize after upload"
       }
     },
-    "com.posthog.tasks#CreateTaskStagedArtifactFinalizeUploadRequest": {
+    "com.posthog.tasks#TasksStagedArtifactsFinalizeUploadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4215,10 +4249,10 @@
         "smithy.api#documentation": "Finalized staged artifacts available for attachment to a new run"
       }
     },
-    "com.posthog.tasks#CreateTaskStagedArtifactFinalizeUpload": {
+    "com.posthog.tasks#TasksStagedArtifactsFinalizeUploadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskStagedArtifactFinalizeUploadRequest"
+        "target": "com.posthog.tasks#TasksStagedArtifactsFinalizeUploadCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskStagedArtifactsFinalizeUploadResponse"
@@ -4294,7 +4328,7 @@
         "smithy.api#documentation": "Array of staged artifacts to prepare before creating a run"
       }
     },
-    "com.posthog.tasks#CreateTaskStagedArtifactPrepareUploadRequest": {
+    "com.posthog.tasks#TasksStagedArtifactsPrepareUploadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4440,10 +4474,10 @@
         "smithy.api#documentation": "Prepared staged uploads for the requested artifacts"
       }
     },
-    "com.posthog.tasks#CreateTaskStagedArtifactPrepareUpload": {
+    "com.posthog.tasks#TasksStagedArtifactsPrepareUploadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskStagedArtifactPrepareUploadRequest"
+        "target": "com.posthog.tasks#TasksStagedArtifactsPrepareUploadCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskStagedArtifactsPrepareUploadResponse"
@@ -4468,7 +4502,7 @@
         "smithy.api#documentation": "Prepare staged direct uploads for task attachments\n\nReserve S3 object keys for task attachments before creating a new run and return presigned POST forms for direct uploads."
       }
     },
-    "com.posthog.tasks#TasksUsageRetrieveRequest": {
+    "com.posthog.tasks#GetTasksUsageRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4518,10 +4552,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksUsageRetrieve": {
+    "com.posthog.tasks#GetTasksUsage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksUsageRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksUsageRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskUsageResponse"
@@ -4535,7 +4569,7 @@
         "smithy.api#documentation": "Get task usage\n\nReturn estimated model and cloud compute costs attributed to a task."
       }
     },
-    "com.posthog.tasks#CreateTaskWarmResumeRequest": {
+    "com.posthog.tasks#TasksWarmResumeCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4611,10 +4645,10 @@
         "smithy.api#documentation": "Response for a successfully warmed successor run on an existing task."
       }
     },
-    "com.posthog.tasks#CreateTaskWarmResume": {
+    "com.posthog.tasks#TasksWarmResumeCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskWarmResumeRequest"
+        "target": "com.posthog.tasks#TasksWarmResumeCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#WarmTaskResumeResponse"
@@ -4636,7 +4670,7 @@
         "smithy.api#documentation": "Warm a resumed task sandbox\n\nWarm an idling successor for the task's latest terminal Run while the user composes the next message. The successor restores the prior snapshot when compatible and waits for the normal run endpoint to activate it. Best-effort: returns an empty body when warming is disabled, capped, or the task advanced to another Run."
       }
     },
-    "com.posthog.tasks#ListTaskRunsRequest": {
+    "com.posthog.tasks#ListTasksRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4710,10 +4744,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#ListTaskRuns": {
+    "com.posthog.tasks#ListTasksRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#ListTaskRunsRequest"
+        "target": "com.posthog.tasks#ListTasksRunsRequest"
       },
       "output": {
         "target": "com.posthog.tasks#PaginatedTaskRunDetailDTOList"
@@ -4738,7 +4772,7 @@
         "smithy.api#documentation": "List task runs\n\nGet a list of runs for a specific task."
       }
     },
-    "com.posthog.tasks#TasksRunsCreateRequestImportedMcpServersList": {
+    "com.posthog.tasks#CreateTasksRunRequestImportedMcpServersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#ImportedMcpServer"
@@ -4747,7 +4781,7 @@
         "smithy.api#documentation": "Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API."
       }
     },
-    "com.posthog.tasks#TasksRunsCreateRequestRelayedMcpServersList": {
+    "com.posthog.tasks#CreateTasksRunRequestRelayedMcpServersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#RelayedMcpServer"
@@ -4776,7 +4810,7 @@
         "smithy.api#documentation": "* `local` - local\n* `cloud` - cloud"
       }
     },
-    "com.posthog.tasks#TasksRunsCreateRequest": {
+    "com.posthog.tasks#CreateTasksRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4795,14 +4829,14 @@
           }
         },
         "imported_mcp_servers": {
-          "target": "com.posthog.tasks#TasksRunsCreateRequestImportedMcpServersList",
+          "target": "com.posthog.tasks#CreateTasksRunRequestImportedMcpServersList",
           "traits": {
             "smithy.api#documentation": "Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "relayed_mcp_servers": {
-          "target": "com.posthog.tasks#TasksRunsCreateRequestRelayedMcpServersList",
+          "target": "com.posthog.tasks#CreateTasksRunRequestRelayedMcpServersList",
           "traits": {
             "smithy.api#documentation": "Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire.",
             "com.distilled.openapi#nullable": {}
@@ -4913,16 +4947,23 @@
             "smithy.api#documentation": "Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out.",
             "com.distilled.openapi#nullable": {}
           }
+        },
+        "benjamin_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run.",
+            "com.distilled.openapi#nullable": {}
+          }
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsCreate": {
+    "com.posthog.tasks#CreateTasksRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsCreateRequest"
+        "target": "com.posthog.tasks#CreateTasksRunRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -4947,7 +4988,7 @@
         "smithy.api#documentation": "Create task run\n\nCreate a new run for a specific task without starting execution."
       }
     },
-    "com.posthog.tasks#TasksRunsRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4977,10 +5018,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsRetrieve": {
+    "com.posthog.tasks#GetTasksRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -5046,7 +5087,7 @@
         "smithy.api#documentation": "* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress\n* `completed` - completed\n* `failed` - failed\n* `cancelled` - cancelled"
       }
     },
-    "com.posthog.tasks#TasksRunsPartialUpdateRequestStateRemoveKeysList": {
+    "com.posthog.tasks#UpdateTasksRunsPartialRequestStateRemoveKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5055,7 +5096,7 @@
         "smithy.api#documentation": "State keys to remove atomically before applying any state updates."
       }
     },
-    "com.posthog.tasks#TasksRunsPartialUpdateRequestStateAppendMap": {
+    "com.posthog.tasks#UpdateTasksRunsPartialRequestStateAppendMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5067,7 +5108,7 @@
         "smithy.api#documentation": "State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race."
       }
     },
-    "com.posthog.tasks#UpdateTaskRunPartialRequest": {
+    "com.posthog.tasks#UpdateTasksRunsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5125,13 +5166,13 @@
           }
         },
         "state_remove_keys": {
-          "target": "com.posthog.tasks#TasksRunsPartialUpdateRequestStateRemoveKeysList",
+          "target": "com.posthog.tasks#UpdateTasksRunsPartialRequestStateRemoveKeysList",
           "traits": {
             "smithy.api#documentation": "State keys to remove atomically before applying any state updates."
           }
         },
         "state_append": {
-          "target": "com.posthog.tasks#TasksRunsPartialUpdateRequestStateAppendMap",
+          "target": "com.posthog.tasks#UpdateTasksRunsPartialRequestStateAppendMap",
           "traits": {
             "smithy.api#documentation": "State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race."
           }
@@ -5148,10 +5189,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#UpdateTaskRunPartial": {
+    "com.posthog.tasks#UpdateTasksRunsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#UpdateTaskRunPartialRequest"
+        "target": "com.posthog.tasks#UpdateTasksRunsPartialRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -5248,7 +5289,7 @@
         "smithy.api#documentation": "* `transcript_quote` - transcript_quote\n* `command_output` - command_output\n* `measured_count` - measured_count"
       }
     },
-    "com.posthog.tasks#TasksRunsAnalysisInsightCreateRequestEvidenceList": {
+    "com.posthog.tasks#CreateTasksRunsAnalysisInsightRequestEvidenceList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#TaskAnalysisEvidence"
@@ -5454,7 +5495,7 @@
         "smithy.api#documentation": "Environment variable names only, never values."
       }
     },
-    "com.posthog.tasks#CreateTaskRunAnalysisInsightRequest": {
+    "com.posthog.tasks#CreateTasksRunsAnalysisInsightRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5492,7 +5533,7 @@
           }
         },
         "evidence": {
-          "target": "com.posthog.tasks#TasksRunsAnalysisInsightCreateRequestEvidenceList",
+          "target": "com.posthog.tasks#CreateTasksRunsAnalysisInsightRequestEvidenceList",
           "traits": {
             "smithy.api#documentation": "Quotes from the analysed log backing the observation."
           }
@@ -5557,10 +5598,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunAnalysisInsight": {
+    "com.posthog.tasks#CreateTasksRunsAnalysisInsight": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunAnalysisInsightRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsAnalysisInsightRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunAnalysisInsightResponse"
@@ -5585,7 +5626,7 @@
         "smithy.api#documentation": "Report an analysis finding\n\nStore one verified inefficiency finding on a task-analysis run. Only the run's own task-bound sandbox agent may call it, and only on a task-analysis run. The findings list is server-owned: it is not writable through the run update endpoint."
       }
     },
-    "com.posthog.tasks#CreateTaskRunAnalyzeRequest": {
+    "com.posthog.tasks#CreateTasksRunsAnalyzeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5635,10 +5676,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunAnalyze": {
+    "com.posthog.tasks#CreateTasksRunsAnalyze": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunAnalyzeRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsAnalyzeRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunAnalyzeResponse"
@@ -5663,7 +5704,7 @@
         "smithy.api#documentation": "Analyze this run\n\nCreate a PostHog-funded analysis task that reviews this run's transcript for inefficiencies and reports findings. Idempotent per run: if an analysis task already exists for this run, it is returned instead of creating another. The analysis is not billed to the customer."
       }
     },
-    "com.posthog.tasks#TasksRunsAppendLogCreateRequestEntriesItemMap": {
+    "com.posthog.tasks#CreateTasksRunsAppendLogRequestEntriesItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5673,16 +5714,16 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksRunsAppendLogCreateRequestEntriesList": {
+    "com.posthog.tasks#CreateTasksRunsAppendLogRequestEntriesList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.tasks#TasksRunsAppendLogCreateRequestEntriesItemMap"
+        "target": "com.posthog.tasks#CreateTasksRunsAppendLogRequestEntriesItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Array of log entry dictionaries to append"
       }
     },
-    "com.posthog.tasks#CreateTaskRunAppendLogRequest": {
+    "com.posthog.tasks#CreateTasksRunsAppendLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5708,7 +5749,7 @@
           }
         },
         "entries": {
-          "target": "com.posthog.tasks#TasksRunsAppendLogCreateRequestEntriesList",
+          "target": "com.posthog.tasks#CreateTasksRunsAppendLogRequestEntriesList",
           "traits": {
             "smithy.api#documentation": "Array of log entry dictionaries to append"
           }
@@ -5718,10 +5759,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunAppendLog": {
+    "com.posthog.tasks#CreateTasksRunsAppendLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunAppendLogRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsAppendLogRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -5770,7 +5811,7 @@
         "content": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Artifact contents encoded according to content_encoding"
+            "smithy.api#documentation": "Artifact contents encoded according to content_encoding. Artifacts above 14 MB must use prepare_upload instead."
           }
         },
         "content_encoding": {
@@ -5814,7 +5855,7 @@
         "smithy.api#documentation": "* `utf-8` - utf-8\n* `base64` - base64"
       }
     },
-    "com.posthog.tasks#TasksRunsArtifactsCreateRequestArtifactsList": {
+    "com.posthog.tasks#CreateTasksRunsArtifactRequestArtifactsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#TaskRunArtifactUpload"
@@ -5823,7 +5864,7 @@
         "smithy.api#documentation": "Array of artifacts to upload"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactRequest": {
+    "com.posthog.tasks#CreateTasksRunsArtifactRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5849,7 +5890,7 @@
           }
         },
         "artifacts": {
-          "target": "com.posthog.tasks#TasksRunsArtifactsCreateRequestArtifactsList",
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactRequestArtifactsList",
           "traits": {
             "smithy.api#documentation": "Array of artifacts to upload"
           }
@@ -5880,10 +5921,10 @@
         "smithy.api#documentation": "Updated list of artifacts on the run"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifact": {
+    "com.posthog.tasks#CreateTasksRunsArtifact": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsArtifactRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunArtifactsUploadResponse"
@@ -5971,7 +6012,7 @@
         "smithy.api#documentation": "Download a task run artifact by id\n\nRedirects to a short-lived presigned URL for the artifact, so callers can share a stable link instead of a raw presigned URL."
       }
     },
-    "com.posthog.tasks#TasksRunsArtifactsDismissCreateRequestArtifactIdsList": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsDismissRequestArtifactIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5980,7 +6021,7 @@
         "smithy.api#documentation": "Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it."
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactDismissRequest": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsDismissRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6006,7 +6047,7 @@
           }
         },
         "artifact_ids": {
-          "target": "com.posthog.tasks#TasksRunsArtifactsDismissCreateRequestArtifactIdsList",
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactsDismissRequestArtifactIdsList",
           "traits": {
             "smithy.api#documentation": "Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it.",
             "smithy.api#required": {}
@@ -6045,10 +6086,10 @@
         "smithy.api#documentation": "Updated list of artifacts on the run"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactDismiss": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsDismiss": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactDismissRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsArtifactsDismissRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunArtifactsDismissResponse"
@@ -6067,7 +6108,7 @@
         "smithy.api#documentation": "Dismiss or restore task run artifacts\n\nHides artifacts from clients without deleting them from storage, so a file dismissed by mistake can be restored."
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactDownloadRequest": {
+    "com.posthog.tasks#TasksRunsArtifactsDownloadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6103,10 +6144,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactDownload": {
+    "com.posthog.tasks#TasksRunsArtifactsDownloadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactDownloadRequest"
+        "target": "com.posthog.tasks#TasksRunsArtifactsDownloadCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6188,7 +6229,7 @@
         "smithy.api#documentation": "Array of uploaded artifacts to finalize"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactFinalizeUploadRequest": {
+    "com.posthog.tasks#TasksRunsArtifactsFinalizeUploadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6245,10 +6286,10 @@
         "smithy.api#documentation": "Updated list of artifacts on the run"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactFinalizeUpload": {
+    "com.posthog.tasks#TasksRunsArtifactsFinalizeUploadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactFinalizeUploadRequest"
+        "target": "com.posthog.tasks#TasksRunsArtifactsFinalizeUploadCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunArtifactsFinalizeUploadResponse"
@@ -6324,7 +6365,7 @@
         "smithy.api#documentation": "Array of artifacts to prepare"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactPrepareUploadRequest": {
+    "com.posthog.tasks#TasksRunsArtifactsPrepareUploadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6447,10 +6488,10 @@
         "smithy.api#documentation": "Prepared uploads for the requested artifacts"
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactPrepareUpload": {
+    "com.posthog.tasks#TasksRunsArtifactsPrepareUploadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactPrepareUploadRequest"
+        "target": "com.posthog.tasks#TasksRunsArtifactsPrepareUploadCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunArtifactsPrepareUploadResponse"
@@ -6475,7 +6516,7 @@
         "smithy.api#documentation": "Prepare direct uploads for task run artifacts\n\nReserve S3 object keys for task artifacts and return presigned POST forms for direct uploads."
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactPresignRequest": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsPresignRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6529,10 +6570,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunArtifactPresign": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsPresign": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactPresignRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsArtifactsPresignRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunArtifactPresignResponse"
@@ -6591,7 +6632,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksRunsArtifactsReferencesCreateRequestReferencesList": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsReferenceRequestReferencesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#TaskRunPostHogReference"
@@ -6600,7 +6641,7 @@
         "smithy.api#documentation": "PostHog object references extracted from one completed assistant message."
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactReferenceRequest": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsReferenceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6626,7 +6667,7 @@
           }
         },
         "references": {
-          "target": "com.posthog.tasks#TasksRunsArtifactsReferencesCreateRequestReferencesList",
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactsReferenceRequestReferencesList",
           "traits": {
             "smithy.api#documentation": "PostHog object references extracted from one completed assistant message.",
             "smithy.api#required": {}
@@ -6659,10 +6700,10 @@
         "smithy.api#documentation": "Updated list of artifacts on the run."
       }
     },
-    "com.posthog.tasks#CreateTaskRunArtifactReference": {
+    "com.posthog.tasks#CreateTasksRunsArtifactsReference": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunArtifactReferenceRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsArtifactsReferenceRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunPostHogReferencesResponse"
@@ -6681,7 +6722,7 @@
         "smithy.api#documentation": "Register PostHog object references for a task run\n\nAttach live PostHog object references to the run artifact manifest without uploading files."
       }
     },
-    "com.posthog.tasks#CreateTaskRunCancelRequest": {
+    "com.posthog.tasks#TasksRunsCancelCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6724,10 +6765,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunCancel": {
+    "com.posthog.tasks#TasksRunsCancelCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunCancelRequest"
+        "target": "com.posthog.tasks#TasksRunsCancelCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -6749,7 +6790,7 @@
         "smithy.api#documentation": "Cancel task run\n\nStop an active cloud run. Interrupts the agent, snapshots interactive sessions for later resume, tears down the sandbox, and marks the run cancelled. Idempotent: cancelling a finished run returns it unchanged."
       }
     },
-    "com.posthog.tasks#CreateTaskRunClearConversationRequest": {
+    "com.posthog.tasks#CreateTasksRunsClearConversationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6779,10 +6820,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunClearConversation": {
+    "com.posthog.tasks#CreateTasksRunsClearConversation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunClearConversationRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsClearConversationRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -6886,7 +6927,7 @@
         "smithy.api#documentation": "* `user_message` - user_message\n* `cancel` - cancel\n* `close` - close\n* `permission_response` - permission_response\n* `set_config_option` - set_config_option\n* `mcp_response` - mcp_response\n* `pi/rpc` - pi/rpc\n* `queue_get` - queue_get\n* `queue_clear` - queue_clear\n* `side_question` - side_question"
       }
     },
-    "com.posthog.tasks#TasksRunsCommandCreateRequestParamsMap": {
+    "com.posthog.tasks#CreateTasksRunsCommandRequestParamsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6898,7 +6939,7 @@
         "smithy.api#documentation": "Parameters for the command"
       }
     },
-    "com.posthog.tasks#CreateTaskRunCommandRequest": {
+    "com.posthog.tasks#CreateTasksRunsCommandRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6936,7 +6977,7 @@
           }
         },
         "params": {
-          "target": "com.posthog.tasks#TasksRunsCommandCreateRequestParamsMap",
+          "target": "com.posthog.tasks#CreateTasksRunsCommandRequestParamsMap",
           "traits": {
             "smithy.api#documentation": "Parameters for the command"
           }
@@ -6990,10 +7031,10 @@
         "smithy.api#documentation": "Error details on failure"
       }
     },
-    "com.posthog.tasks#CreateTaskRunCommand": {
+    "com.posthog.tasks#CreateTasksRunsCommand": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunCommandRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsCommandRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunCommandResponse"
@@ -7021,7 +7062,7 @@
         "smithy.api#documentation": "Send command to task run\n\nQueue user_message JSON-RPC commands through the task workflow and forward sandbox control commands to the agent server. Supports user_message, cancel, close, permission_response, set_config_option, mcp_response, side_question, native Pi RPC commands, and Pi queue operations."
       }
     },
-    "com.posthog.tasks#TasksRunsConnectionTokenRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsConnectionTokenRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7065,10 +7106,10 @@
         "smithy.api#documentation": "Response containing a JWT token for direct sandbox connection"
       }
     },
-    "com.posthog.tasks#TasksRunsConnectionTokenRetrieve": {
+    "com.posthog.tasks#GetTasksRunsConnectionToken": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsConnectionTokenRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsConnectionTokenRequest"
       },
       "output": {
         "target": "com.posthog.tasks#ConnectionTokenResponse"
@@ -7090,7 +7131,7 @@
         "smithy.api#documentation": "Get sandbox connection token\n\nGenerate a JWT token for direct connection to the sandbox. Valid for 24 hours."
       }
     },
-    "com.posthog.tasks#TasksRunsLogsRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7120,10 +7161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsLogsRetrieve": {
+    "com.posthog.tasks#GetTasksRunsLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsLogsRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsLogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7145,7 +7186,7 @@
         "smithy.api#documentation": "Get task run logs\n\nFetch the logs for a task run as JSONL. If the run resumes from another (state.resume_from_run_id), each ancestor's log is concatenated first (oldest ancestor → ... → this run) so resume consumers see a single continuous history."
       }
     },
-    "com.posthog.tasks#TasksRunsPeersRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsPeerRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7287,10 +7328,10 @@
         "smithy.api#documentation": "Active agent runs the requesting run may message, most recently updated first."
       }
     },
-    "com.posthog.tasks#TasksRunsPeersRetrieve": {
+    "com.posthog.tasks#GetTasksRunsPeer": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsPeersRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsPeerRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunPeersResponse"
@@ -7312,7 +7353,7 @@
         "smithy.api#documentation": "List peer agent runs\n\nAgent runs this run may send messages to: cloud Pi runs of tasks created by the same user, currently in progress or queued. Discovery and send validation share one visibility policy, so a run can only message what it can list; the per-entry `sendable` flag is the liveness contract."
       }
     },
-    "com.posthog.tasks#TasksRunsPeersMessageCreateRequestArtifactIdsList": {
+    "com.posthog.tasks#CreateTasksRunsPeersMessageRequestArtifactIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7321,7 +7362,7 @@
         "smithy.api#documentation": "Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot."
       }
     },
-    "com.posthog.tasks#CreateTaskRunPeerMessageRequest": {
+    "com.posthog.tasks#CreateTasksRunsPeersMessageRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7361,7 +7402,7 @@
           }
         },
         "artifact_ids": {
-          "target": "com.posthog.tasks#TasksRunsPeersMessageCreateRequestArtifactIdsList",
+          "target": "com.posthog.tasks#CreateTasksRunsPeersMessageRequestArtifactIdsList",
           "traits": {
             "smithy.api#documentation": "Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot."
           }
@@ -7424,10 +7465,10 @@
         "smithy.api#documentation": "* `accepted` - accepted\n* `target_finished` - target_finished\n* `rejected` - rejected"
       }
     },
-    "com.posthog.tasks#CreateTaskRunPeerMessage": {
+    "com.posthog.tasks#CreateTasksRunsPeersMessage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunPeerMessageRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsPeersMessageRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunPeerMessageResponse"
@@ -7452,7 +7493,7 @@
         "smithy.api#documentation": "Send a message to a peer agent run\n\nRelay a message from this run to a peer agent run. The body is delivered below a server-composed provenance envelope as a queued (non-steer) turn; attachments are copied into the target run's own artifact storage. `accepted` means queued for delivery, never delivered — the sandbox handoff happens later inside the target's workflow."
       }
     },
-    "com.posthog.tasks#TasksRunsPreviewRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7482,10 +7523,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsPreviewRetrieve": {
+    "com.posthog.tasks#GetTasksRunsPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsPreviewRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsPreviewRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7507,7 +7548,7 @@
         "smithy.api#documentation": "Open the dev stack preview for a task run\n\nRedirects to the PostHog dev stack running inside this run's sandbox. A fresh sandbox access token is minted on every request and carried only in the redirect target, so it is never persisted or returned in a response body. When the run has no preview, or its sandbox has stopped, this renders a short HTML page instead."
       }
     },
-    "com.posthog.tasks#TasksRunsRelayMessageCreateRequestTextPartsList": {
+    "com.posthog.tasks#CreateTasksRunsRelayMessageRequestTextPartsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7516,7 +7557,7 @@
         "smithy.api#documentation": "Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text."
       }
     },
-    "com.posthog.tasks#CreateTaskRunRelayMessageRequest": {
+    "com.posthog.tasks#CreateTasksRunsRelayMessageRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7555,7 +7596,7 @@
           }
         },
         "text_parts": {
-          "target": "com.posthog.tasks#TasksRunsRelayMessageCreateRequestTextPartsList",
+          "target": "com.posthog.tasks#CreateTasksRunsRelayMessageRequestTextPartsList",
           "traits": {
             "smithy.api#documentation": "Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text."
           }
@@ -7583,10 +7624,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunRelayMessage": {
+    "com.posthog.tasks#CreateTasksRunsRelayMessage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunRelayMessageRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsRelayMessageRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunRelayMessageResponse"
@@ -7611,7 +7652,7 @@
         "smithy.api#documentation": "Relay run message to Slack\n\nQueue a Slack relay workflow to post a run message into the mapped Slack thread."
       }
     },
-    "com.posthog.tasks#CreateTaskRunResumeInCloudRequest": {
+    "com.posthog.tasks#TasksRunsResumeInCloudCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7641,10 +7682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunResumeInCloud": {
+    "com.posthog.tasks#TasksRunsResumeInCloudCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunResumeInCloudRequest"
+        "target": "com.posthog.tasks#TasksRunsResumeInCloudCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -7669,7 +7710,7 @@
         "smithy.api#documentation": "Resume task run in cloud\n\nResume an existing task run in a cloud sandbox. Terminates any existing workflow and starts a new one."
       }
     },
-    "com.posthog.tasks#TasksRunsSessionLogsRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsSessionLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7734,10 +7775,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsSessionLogsRetrieve": {
+    "com.posthog.tasks#GetTasksRunsSessionLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsSessionLogsRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsSessionLogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7762,7 +7803,7 @@
         "smithy.api#documentation": "Get filtered task run session logs\n\nFetch session log entries for a task run with optional filtering by timestamp, event type, and limit."
       }
     },
-    "com.posthog.tasks#TasksRunsSetOutputPartialUpdateRequest": {
+    "com.posthog.tasks#UpdateTasksRunsSetOutputPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7798,10 +7839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsSetOutputPartialUpdate": {
+    "com.posthog.tasks#UpdateTasksRunsSetOutputPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsSetOutputPartialUpdateRequest"
+        "target": "com.posthog.tasks#UpdateTasksRunsSetOutputPartialRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunDetailDTO"
@@ -7905,7 +7946,7 @@
         "smithy.api#documentation": "Start task run\n\nStart an existing cloud run after any initial run-scoped attachments have been uploaded."
       }
     },
-    "com.posthog.tasks#TasksRunsStreamRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsStreamRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7942,10 +7983,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsStreamRetrieve": {
+    "com.posthog.tasks#GetTasksRunsStream": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsStreamRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsStreamRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7964,10 +8005,10 @@
           "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream/",
           "code": 200
         },
-        "smithy.api#documentation": "Server-Sent Events stream of task run events. Events carry an `id:` line (a Redis stream id) usable as a resume cursor.\n\nThe server caps each connection at 900 seconds: it emits `event: end` with `data: {\"type\": \"rotated\"}` and closes. This does NOT mean the run finished — reconnect with the `Last-Event-ID` header set to the last received event id to resume without gaps or duplicates. Only treat the stream as complete when the run itself reaches a terminal status.\n\n`?start=latest` consumers must also carry `Last-Event-ID` across reconnects: reconnecting without it re-resolves to the then-current latest event, silently skipping anything published while disconnected.\n\n**SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire stream. Use the URL builder (`getTasksRunsStreamRetrieveUrl`) with a streaming `fetch`/`EventSource`-style consumer and the `Last-Event-ID` header instead."
+        "smithy.api#documentation": "Server-Sent Events stream of task run events. Events carry an `id:` line (a Redis stream id) usable as a resume cursor.\n\nThe server caps each connection at 900 seconds: it emits `event: end` with `data: {\"type\": \"rotated\"}` and closes. This does NOT mean the run finished — reconnect with the `Last-Event-ID` header set to the last received event id to resume without gaps or duplicates. Only treat the stream as complete when the run itself reaches a terminal status.\n\nResume guarantees cover mirrored events only: on runs where live mirroring is presence-gated, events produced while no viewer was connected are not in the live stream. Reload the run's session logs to recover the agent's output; run-state and progress frames are not in those logs, so refetch the run itself for its current state.\n\n`?start=latest` consumers must also carry `Last-Event-ID` across reconnects: reconnecting without it re-resolves to the then-current latest event, silently skipping anything published while disconnected.\n\n**SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire stream. Use the URL builder (`getTasksRunsStreamRetrieveUrl`) with a streaming `fetch`/`EventSource`-style consumer and the `Last-Event-ID` header instead."
       }
     },
-    "com.posthog.tasks#TasksRunsStreamTokenRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsStreamTokenRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8020,10 +8061,10 @@
         "smithy.api#documentation": "Response containing a JWT token (and resolved base URL) for reading a task run's live event stream"
       }
     },
-    "com.posthog.tasks#TasksRunsStreamTokenRetrieve": {
+    "com.posthog.tasks#GetTasksRunsStreamToken": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsStreamTokenRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsStreamTokenRequest"
       },
       "output": {
         "target": "com.posthog.tasks#StreamReadTokenResponse"
@@ -8042,7 +8083,7 @@
         "smithy.api#documentation": "Get task run stream read token\n\nGenerate a run-scoped JWT that authorizes reading this task run's live event stream via the agent-proxy."
       }
     },
-    "com.posthog.tasks#TasksRunsTaskSessionRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRunsTaskSessionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8101,10 +8142,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksRunsTaskSessionRetrieve": {
+    "com.posthog.tasks#GetTasksRunsTaskSession": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsTaskSessionRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRunsTaskSessionRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskSessionResponse"
@@ -8123,7 +8164,7 @@
         "smithy.api#documentation": "Get active task session storage access\n\nAPI for managing task runs. Each run represents an execution of a task."
       }
     },
-    "com.posthog.tasks#CreateTaskRunTaskSessionSyncRequest": {
+    "com.posthog.tasks#CreateTasksRunsTaskSessionSyncRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8173,10 +8214,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskRunTaskSessionSync": {
+    "com.posthog.tasks#CreateTasksRunsTaskSessionSync": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunTaskSessionSyncRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsTaskSessionSyncRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskSessionSyncResponse"
@@ -8204,7 +8245,7 @@
         "smithy.api#documentation": "Replace the active native task session\n\nAPI for managing task runs. Each run represents an execution of a task."
       }
     },
-    "com.posthog.tasks#ListTaskRunLivingArtifactsRequest": {
+    "com.posthog.tasks#ListTasksRunsLivingArtifactsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8487,18 +8528,18 @@
         "smithy.api#documentation": "Living artifacts for this task run."
       }
     },
-    "com.posthog.tasks#TasksRunsLivingArtifactsListResponseBodyList": {
+    "com.posthog.tasks#ListTasksRunsLivingArtifactsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.tasks#TaskRunLivingArtifactsResponse"
       },
       "traits": {}
     },
-    "com.posthog.tasks#ListTaskRunLivingArtifactsResponse": {
+    "com.posthog.tasks#ListTasksRunsLivingArtifactsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.tasks#TasksRunsLivingArtifactsListResponseBodyList",
+          "target": "com.posthog.tasks#ListTasksRunsLivingArtifactsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8509,13 +8550,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.tasks#ListTaskRunLivingArtifacts": {
+    "com.posthog.tasks#ListTasksRunsLivingArtifacts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#ListTaskRunLivingArtifactsRequest"
+        "target": "com.posthog.tasks#ListTasksRunsLivingArtifactsRequest"
       },
       "output": {
-        "target": "com.posthog.tasks#ListTaskRunLivingArtifactsResponse"
+        "target": "com.posthog.tasks#ListTasksRunsLivingArtifactsResponse"
       },
       "errors": [
         {
@@ -8531,7 +8572,7 @@
         "smithy.api#documentation": "List living artifacts for a task run\n\nReturns stable, versioned artifact handles created by the run's task."
       }
     },
-    "com.posthog.tasks#TasksRunsLivingArtifactsCreateRequestMetadataMap": {
+    "com.posthog.tasks#CreateTasksRunsLivingArtifactRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8543,7 +8584,7 @@
         "smithy.api#documentation": "Optional metadata to persist with the living artifact."
       }
     },
-    "com.posthog.tasks#CreateTaskRunLivingArtifactRequest": {
+    "com.posthog.tasks#CreateTasksRunsLivingArtifactRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8618,7 +8659,7 @@
           }
         },
         "metadata": {
-          "target": "com.posthog.tasks#TasksRunsLivingArtifactsCreateRequestMetadataMap",
+          "target": "com.posthog.tasks#CreateTasksRunsLivingArtifactRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Optional metadata to persist with the living artifact."
           }
@@ -8628,10 +8669,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskRunLivingArtifact": {
+    "com.posthog.tasks#CreateTasksRunsLivingArtifact": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskRunLivingArtifactRequest"
+        "target": "com.posthog.tasks#CreateTasksRunsLivingArtifactRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunLivingArtifactResponse"
@@ -8842,7 +8883,7 @@
         "smithy.api#documentation": "Open a living artifact for a task run\n\nReturn a stable living artifact handle and the current content when the adapter supports reads."
       }
     },
-    "com.posthog.tasks#TasksRunsLivingArtifactsEditRequestMetadataMap": {
+    "com.posthog.tasks#EditTasksRunsLivingArtifactRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8854,7 +8895,7 @@
         "smithy.api#documentation": "Optional metadata to merge into the artifact registry record."
       }
     },
-    "com.posthog.tasks#TasksRunsLivingArtifactsEditRequest": {
+    "com.posthog.tasks#EditTasksRunsLivingArtifactRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8923,7 +8964,7 @@
           }
         },
         "metadata": {
-          "target": "com.posthog.tasks#TasksRunsLivingArtifactsEditRequestMetadataMap",
+          "target": "com.posthog.tasks#EditTasksRunsLivingArtifactRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Optional metadata to merge into the artifact registry record."
           }
@@ -8933,10 +8974,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#TasksRunsLivingArtifactsEdit": {
+    "com.posthog.tasks#EditTasksRunsLivingArtifact": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRunsLivingArtifactsEditRequest"
+        "target": "com.posthog.tasks#EditTasksRunsLivingArtifactRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRunLivingArtifactResponse"
@@ -9074,7 +9115,7 @@
         "smithy.api#documentation": "Render an insight chart and attach it as a living artifact\n\nRenders a PostHog insight (ad-hoc query JSON or a saved insight) to a PNG server-side and registers it as a slack_file living artifact in one call. Blocks until the render finishes."
       }
     },
-    "com.posthog.tasks#ListTaskThreadMessagesRequest": {
+    "com.posthog.tasks#ListTasksThreadMessagesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9226,10 +9267,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#ListTaskThreadMessages": {
+    "com.posthog.tasks#ListTasksThreadMessages": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#ListTaskThreadMessagesRequest"
+        "target": "com.posthog.tasks#ListTasksThreadMessagesRequest"
       },
       "output": {
         "target": "com.posthog.tasks#PaginatedTaskThreadMessageDTOList"
@@ -9243,7 +9284,7 @@
         "smithy.api#documentation": "List thread messages\n\nThe task's thread in chronological order."
       }
     },
-    "com.posthog.tasks#CreateTaskThreadMessageRequest": {
+    "com.posthog.tasks#CreateTasksThreadMessageRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9273,10 +9314,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskThreadMessage": {
+    "com.posthog.tasks#CreateTasksThreadMessage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskThreadMessageRequest"
+        "target": "com.posthog.tasks#CreateTasksThreadMessageRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskThreadMessageDTO"
@@ -9347,7 +9388,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskThreadMessageSendToAgentRequest": {
+    "com.posthog.tasks#TasksThreadMessagesSendToAgentCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9431,10 +9472,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tasks#CreateTaskThreadMessageSendToAgent": {
+    "com.posthog.tasks#TasksThreadMessagesSendToAgentCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskThreadMessageSendToAgentRequest"
+        "target": "com.posthog.tasks#TasksThreadMessagesSendToAgentCreateRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskThreadMessageDTO"
@@ -9453,7 +9494,224 @@
         "smithy.api#documentation": "Send a thread message to the agent\n\nTask author only: forwards the message into the task's latest live run."
       }
     },
-    "com.posthog.tasks#TasksActiveWizardRunRetrieveRequest": {
+    "com.posthog.tasks#ListTasksMeConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.tasks#TasksUserConfigResponse": {
+      "type": "structure",
+      "members": {
+        "ai_run_preferences": {
+          "target": "com.posthog.tasks#TasksAIRunPreferences",
+          "traits": {
+            "smithy.api#documentation": "The requesting user's per-project default AI run triple; all fields null when unset.",
+            "smithy.api#required": {}
+          }
+        },
+        "resolved_ai_run_defaults": {
+          "target": "com.posthog.tasks#TasksResolvedAIRunDefaults",
+          "traits": {
+            "smithy.api#documentation": "The defaults a new run will use when no explicit runtime selection is sent.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The requesting user's per-project tasks configuration."
+      }
+    },
+    "com.posthog.tasks#TasksAIRunPreferences": {
+      "type": "structure",
+      "members": {
+        "runtime_adapter": {
+          "target": "com.posthog.tasks#RuntimeAdapterEnum",
+          "traits": {
+            "smithy.api#documentation": "Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`.\n\n* `claude` - claude\n* `codex` - codex",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning_effort": {
+          "target": "com.posthog.tasks#ReasoningEffortEnum",
+          "traits": {
+            "smithy.api#documentation": "Default reasoning effort for models that expose an effort control.\n\n* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max\n* `ultracode` - ultracode",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default AI run triple stored at team or user level.\n\nWrite payload for the tasks config endpoints and the `ai_run_preferences` block of\ntheir responses. `runtime_adapter` and `model` must be set together; send all three\nas null to clear a stored preference."
+      }
+    },
+    "com.posthog.tasks#TasksResolvedAIRunDefaults": {
+      "type": "structure",
+      "members": {
+        "runtime_adapter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Effective default runtime adapter, or null when no preference is stored.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Effective default model identifier, or null when no preference is stored.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning_effort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Effective default reasoning effort, or null when unset or unsupported.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source": {
+          "target": "com.posthog.tasks#TasksResolvedAIRunDefaultsSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Preference level that supplied the default: the caller's own per-project preference ('user'), the project default ('team'), or 'none'.\n\n* `user` - user\n* `team` - team\n* `none` - none",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AI run triple a new run will effectively use when the caller pins nothing,\nplus which preference level supplied it."
+      }
+    },
+    "com.posthog.tasks#TasksResolvedAIRunDefaultsSourceEnum": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `user` - user\n* `team` - team\n* `none` - none"
+      }
+    },
+    "com.posthog.tasks#ListTasksMeConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.tasks#ListTasksMeConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.tasks#TasksUserConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/@me/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve your per-project default AI run preferences, plus the resolved defaults a new run will use when no explicit runtime selection is sent (your preference over the project default)."
+      }
+    },
+    "com.posthog.tasks#CreateTasksMeConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "runtime_adapter": {
+          "target": "com.posthog.tasks#RuntimeAdapterEnum",
+          "traits": {
+            "smithy.api#documentation": "Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`.\n\n* `claude` - claude\n* `codex` - codex",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning_effort": {
+          "target": "com.posthog.tasks#ReasoningEffortEnum",
+          "traits": {
+            "smithy.api#documentation": "Default reasoning effort for models that expose an effort control.\n\n* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max\n* `ultracode` - ultracode",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.tasks#CreateTasksMeConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.tasks#CreateTasksMeConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.tasks#TasksUserConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/@me/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set your per-project default AI run preferences; they override the project default wholesale. Send all fields as null to clear and inherit the project default."
+      }
+    },
+    "com.posthog.tasks#GetTasksActiveWizardRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9505,10 +9763,10 @@
         "smithy.api#documentation": "The team's active onboarding wizard cloud run, used to rehydrate\nthe setup-progress FAB when the run was started server-side (drop flow)."
       }
     },
-    "com.posthog.tasks#TasksActiveWizardRunRetrieve": {
+    "com.posthog.tasks#GetTasksActiveWizardRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksActiveWizardRunRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksActiveWizardRunRequest"
       },
       "output": {
         "target": "com.posthog.tasks#WizardCloudRunDTO"
@@ -9522,7 +9780,123 @@
         "smithy.api#documentation": "Get the team's active onboarding wizard cloud run\n\nReturns the most recent onboarding wizard cloud run for the current project when it is still running (or completed within the last day), so the setup-progress FAB can rehydrate after a drop-flow signup that started the run server-side. Returns 204 when there is none."
       }
     },
-    "com.posthog.tasks#TasksModelsRetrieveRequest": {
+    "com.posthog.tasks#ListTasksConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.tasks#TasksTeamConfigResponse": {
+      "type": "structure",
+      "members": {
+        "ai_run_preferences": {
+          "target": "com.posthog.tasks#TasksAIRunPreferences",
+          "traits": {
+            "smithy.api#documentation": "Project-wide default AI run triple; all fields null when unset.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team-level tasks configuration."
+      }
+    },
+    "com.posthog.tasks#ListTasksConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.tasks#ListTasksConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.tasks#TasksTeamConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the project-wide default AI run preferences for task runs."
+      }
+    },
+    "com.posthog.tasks#CreateTasksConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "runtime_adapter": {
+          "target": "com.posthog.tasks#RuntimeAdapterEnum",
+          "traits": {
+            "smithy.api#documentation": "Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`.\n\n* `claude` - claude\n* `codex` - codex",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning_effort": {
+          "target": "com.posthog.tasks#ReasoningEffortEnum",
+          "traits": {
+            "smithy.api#documentation": "Default reasoning effort for models that expose an effort control.\n\n* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max\n* `ultracode` - ultracode",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.tasks#CreateTasksConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.tasks#CreateTasksConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.tasks#TasksTeamConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the project-wide default AI run preferences applied to task runs created without an explicit runtime selection. Send all fields as null to clear."
+      }
+    },
+    "com.posthog.tasks#GetTasksModelRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9604,10 +9978,10 @@
         "smithy.api#documentation": "Every model a run may use, newest catalogue from the LLM gateway. Empty when the gateway is unreachable."
       }
     },
-    "com.posthog.tasks#TasksModelsRetrieve": {
+    "com.posthog.tasks#GetTasksModel": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksModelsRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksModelRequest"
       },
       "output": {
         "target": "com.posthog.tasks#ModelCatalogueResponse"
@@ -9621,7 +9995,7 @@
         "smithy.api#documentation": "List available models\n\nReturn the models a task run may use, with the reasoning efforts each one supports. Derived from the live LLM gateway catalogue, so a newly released model appears without a client change. An empty list means the gateway is unreachable — clients should fall back to their own default rather than treating it as 'no models exist'."
       }
     },
-    "com.posthog.tasks#TasksPinnedRetrieveRequest": {
+    "com.posthog.tasks#GetTasksPinnedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9659,10 +10033,10 @@
         "smithy.api#documentation": "Visible task IDs pinned by the requester, newest pin first."
       }
     },
-    "com.posthog.tasks#TasksPinnedRetrieve": {
+    "com.posthog.tasks#GetTasksPinned": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksPinnedRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksPinnedRequest"
       },
       "output": {
         "target": "com.posthog.tasks#PinnedTaskIdsResponse"
@@ -9676,7 +10050,7 @@
         "smithy.api#documentation": "List pinned tasks\n\nReturn the visible tasks pinned by the requester in the current project."
       }
     },
-    "com.posthog.tasks#TasksRepositoriesRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRepositoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9713,10 +10087,10 @@
         "smithy.api#documentation": "Distinct repositories in use by non-deleted, non-internal tasks for the current team."
       }
     },
-    "com.posthog.tasks#TasksRepositoriesRetrieve": {
+    "com.posthog.tasks#GetTasksRepository": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRepositoriesRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRepositoryRequest"
       },
       "output": {
         "target": "com.posthog.tasks#TaskRepositoriesResponse"
@@ -9738,7 +10112,7 @@
         "smithy.api#documentation": "List distinct task repositories\n\nReturn the set of repositories referenced by non-deleted, non-internal tasks in the current project. Used to populate repository filter pickers without being constrained by task list pagination."
       }
     },
-    "com.posthog.tasks#TasksRepositoryReadinessRetrieveRequest": {
+    "com.posthog.tasks#GetTasksRepositoryReadinessRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9980,10 +10354,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#TasksRepositoryReadinessRetrieve": {
+    "com.posthog.tasks#GetTasksRepositoryReadiness": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksRepositoryReadinessRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksRepositoryReadinessRequest"
       },
       "output": {
         "target": "com.posthog.tasks#RepositoryReadinessResponse"
@@ -10175,7 +10549,7 @@
         "smithy.api#documentation": "Search tasks, pull requests, artifacts, and spaces\n\nAPI for managing tasks within a project. Tasks represent units of work to be performed by an agent."
       }
     },
-    "com.posthog.tasks#TasksSlackThreadContextRetrieveRequest": {
+    "com.posthog.tasks#GetTasksSlackThreadContextRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10268,6 +10642,30 @@
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
+        },
+        "queue_workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporal workflow id of the per-conversation mention queue (`slack-app-mention-<workspace>:<channel>:<thread_ts>`) that serializes the thread's messages before any run exists. Null when the workspace id cannot be resolved.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "queue_workflow_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full Temporal Web UI URL for the mention queue workflow; null when `TEMPORAL_UI_HOST` is unset.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mapping_admin_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Absolute URL to the SlackThreadTaskMapping row in Django admin. Null when no mapping exists.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
         }
       },
       "traits": {
@@ -10324,6 +10722,13 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Absolute URL to the task detail page in the PostHog app.",
+            "smithy.api#required": {}
+          }
+        },
+        "admin_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Absolute URL to the Task row in Django admin.",
             "smithy.api#required": {}
           }
         }
@@ -10441,6 +10846,13 @@
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
+        },
+        "admin_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Absolute URL to the TaskRun row in Django admin (includes a log download action).",
+            "smithy.api#required": {}
+          }
         }
       },
       "traits": {
@@ -10524,10 +10936,10 @@
         "smithy.api#documentation": "All runs on the task, oldest first. Empty when no mapping was found."
       }
     },
-    "com.posthog.tasks#TasksSlackThreadContextRetrieve": {
+    "com.posthog.tasks#GetTasksSlackThreadContext": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#TasksSlackThreadContextRetrieveRequest"
+        "target": "com.posthog.tasks#GetTasksSlackThreadContextRequest"
       },
       "output": {
         "target": "com.posthog.tasks#SlackThreadContextResponse"
@@ -10552,7 +10964,7 @@
         "smithy.api#documentation": "Resolve a Slack thread to its task, runs, and Temporal workflows\n\nPostHog-internal debug tool. Resolves a Slack permalink to the linked task, its runs, the task-processing and mention-dispatch Temporal workflow ids/URLs, and presigned log URLs."
       }
     },
-    "com.posthog.tasks#TasksSummariesCreateRequestIdsList": {
+    "com.posthog.tasks#CreateTasksSummaryRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10561,7 +10973,7 @@
         "smithy.api#documentation": "Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results."
       }
     },
-    "com.posthog.tasks#CreateTaskSummaryRequest": {
+    "com.posthog.tasks#CreateTasksSummaryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10587,7 +10999,7 @@
           }
         },
         "ids": {
-          "target": "com.posthog.tasks#TasksSummariesCreateRequestIdsList",
+          "target": "com.posthog.tasks#CreateTasksSummaryRequestIdsList",
           "traits": {
             "smithy.api#documentation": "Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results.",
             "smithy.api#required": {}
@@ -10650,6 +11062,14 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "created_by_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created the task, or null for system-created tasks.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "created_at": {
           "target": "smithy.api#String",
           "traits": {
@@ -10679,6 +11099,13 @@
     "com.posthog.tasks#TaskRunSummary": {
       "type": "structure",
       "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the latest run.",
+            "smithy.api#required": {}
+          }
+        },
         "status": {
           "target": "com.posthog.tasks#TaskRunStatusEnum",
           "traits": {
@@ -10767,10 +11194,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tasks#CreateTaskSummary": {
+    "com.posthog.tasks#CreateTasksSummary": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskSummaryRequest"
+        "target": "com.posthog.tasks#CreateTasksSummaryRequest"
       },
       "output": {
         "target": "com.posthog.tasks#PaginatedTaskSummaryDTOList"
@@ -10781,10 +11208,10 @@
           "uri": "/api/projects/{project_id}/tasks/summaries/",
           "code": 200
         },
-        "smithy.api#documentation": "Fetch task summaries by ID\n\nReturns summary for the requested tasks: `id`, `title`, `repository`, `created_at`, `updated_at`, and the latest run's `status` and `environment`."
+        "smithy.api#documentation": "Fetch task summaries by ID\n\nReturns summary for the requested tasks, including the creator ID and the latest run's ID, status, and environment."
       }
     },
-    "com.posthog.tasks#TasksWarmCreateRequestRepositoriesList": {
+    "com.posthog.tasks#CreateTasksWarmRequestRepositoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10813,7 +11240,7 @@
         "smithy.api#documentation": "* `user_created` - user_created\n* `posthog_ai` - posthog_ai"
       }
     },
-    "com.posthog.tasks#CreateTaskWarmRequest": {
+    "com.posthog.tasks#CreateTasksWarmRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10832,7 +11259,7 @@
           }
         },
         "repositories": {
-          "target": "com.posthog.tasks#TasksWarmCreateRequestRepositoriesList",
+          "target": "com.posthog.tasks#CreateTasksWarmRequestRepositoriesList",
           "traits": {
             "smithy.api#documentation": "GitHub repositories to clone into the warm sandbox, each in `organization/repo` format."
           }
@@ -10840,7 +11267,7 @@
         "github_integration": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Primary key of the team's GitHub integration to clone with when a repository is selected.",
+            "smithy.api#documentation": "Primary key of the team's GitHub integration. Required when a repository is selected (it is what the sandbox clones with). Accepted without a repository too: the warm Run then boots with that integration's GitHub credentials, matching a repo-less create that carries it.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -10926,10 +11353,10 @@
         "smithy.api#documentation": "Response for a successful warm request — the draft Task + idling warm Run reused on submit."
       }
     },
-    "com.posthog.tasks#CreateTaskWarm": {
+    "com.posthog.tasks#CreateTasksWarm": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tasks#CreateTaskWarmRequest"
+        "target": "com.posthog.tasks#CreateTasksWarmRequest"
       },
       "output": {
         "target": "com.posthog.tasks#WarmTaskResponse"
@@ -11005,214 +11432,226 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.tasks#CheckCodeInviteAccessRetrieve"
+          "target": "com.posthog.tasks#CreateTask"
         },
         {
-          "target": "com.posthog.tasks#DesktopAccessRetrieve"
+          "target": "com.posthog.tasks#CreateTasksConfig"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksHandoff"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksMeConfig"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksPin"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksPresence"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRun"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsAnalysisInsight"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsAnalyze"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsAppendLog"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsArtifact"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactsDismiss"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactsPresign"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsArtifactsReference"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsClearConversation"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsCommand"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsLivingArtifact"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsPeersMessage"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsRelayMessage"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksRunsTaskSessionSync"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksSummary"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksThreadMessage"
+        },
+        {
+          "target": "com.posthog.tasks#CreateTasksWarm"
+        },
+        {
+          "target": "com.posthog.tasks#EditTasksRunsLivingArtifact"
+        },
+        {
+          "target": "com.posthog.tasks#GetCodeInvitesCheckAccess"
+        },
+        {
+          "target": "com.posthog.tasks#GetDesktopAccess"
+        },
+        {
+          "target": "com.posthog.tasks#GetTask"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksActiveWizardRun"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksComment"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksModel"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksPinned"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRepository"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRepositoryReadiness"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRun"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsConnectionToken"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsLog"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsPeer"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsPreview"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsSessionLog"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsStream"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsStreamToken"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksRunsTaskSession"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksSlackThreadContext"
+        },
+        {
+          "target": "com.posthog.tasks#GetTasksUsage"
         },
         {
           "target": "com.posthog.tasks#ListTasks"
         },
         {
-          "target": "com.posthog.tasks#CreateTask"
+          "target": "com.posthog.tasks#ListTasksArtifacts"
         },
         {
-          "target": "com.posthog.tasks#TasksRetrieve"
+          "target": "com.posthog.tasks#ListTasksComments"
         },
         {
-          "target": "com.posthog.tasks#UpdateTask"
+          "target": "com.posthog.tasks#ListTasksConfig"
         },
         {
-          "target": "com.posthog.tasks#UpdateTaskPartial"
+          "target": "com.posthog.tasks#ListTasksMeConfig"
+        },
+        {
+          "target": "com.posthog.tasks#ListTasksRuns"
+        },
+        {
+          "target": "com.posthog.tasks#ListTasksRunsLivingArtifacts"
+        },
+        {
+          "target": "com.posthog.tasks#ListTasksThreadMessages"
         },
         {
           "target": "com.posthog.tasks#TasksDestroy"
         },
         {
-          "target": "com.posthog.tasks#ListTaskArtifacts"
-        },
-        {
-          "target": "com.posthog.tasks#ListTaskComments"
-        },
-        {
-          "target": "com.posthog.tasks#TasksCommentsRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskHandoff"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskPin"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskPresence"
-        },
-        {
           "target": "com.posthog.tasks#TasksPresenceDestroy"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskRun"
+          "target": "com.posthog.tasks#TasksRunCreate"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskStagedArtifactFinalizeUpload"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskStagedArtifactPrepareUpload"
-        },
-        {
-          "target": "com.posthog.tasks#TasksUsageRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskWarmResume"
-        },
-        {
-          "target": "com.posthog.tasks#ListTaskRuns"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsCreate"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#UpdateTaskRunPartial"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunAnalysisInsight"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunAnalyze"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunAppendLog"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunArtifact"
+          "target": "com.posthog.tasks#TasksRunsArtifactsDownloadCreate"
         },
         {
           "target": "com.posthog.tasks#TasksRunsArtifactsDownloadRetrieve"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactDismiss"
+          "target": "com.posthog.tasks#TasksRunsArtifactsFinalizeUploadCreate"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactDownload"
+          "target": "com.posthog.tasks#TasksRunsArtifactsPrepareUploadCreate"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactFinalizeUpload"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactPrepareUpload"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactPresign"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunArtifactReference"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunCancel"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunClearConversation"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunCommand"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsConnectionTokenRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsLogsRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsPeersRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunPeerMessage"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsPreviewRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunRelayMessage"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunResumeInCloud"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsSessionLogsRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsSetOutputPartialUpdate"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsStartCreate"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsStreamRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsStreamTokenRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsTaskSessionRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunTaskSessionSync"
-        },
-        {
-          "target": "com.posthog.tasks#ListTaskRunLivingArtifacts"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskRunLivingArtifact"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsLivingArtifactsOpen"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRunsLivingArtifactsEdit"
+          "target": "com.posthog.tasks#TasksRunsCancelCreate"
         },
         {
           "target": "com.posthog.tasks#TasksRunsLivingArtifactsChart"
         },
         {
-          "target": "com.posthog.tasks#ListTaskThreadMessages"
+          "target": "com.posthog.tasks#TasksRunsLivingArtifactsOpen"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskThreadMessage"
+          "target": "com.posthog.tasks#TasksRunsResumeInCloudCreate"
         },
         {
-          "target": "com.posthog.tasks#TasksThreadMessagesDestroy"
-        },
-        {
-          "target": "com.posthog.tasks#CreateTaskThreadMessageSendToAgent"
-        },
-        {
-          "target": "com.posthog.tasks#TasksActiveWizardRunRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksModelsRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksPinnedRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRepositoriesRetrieve"
-        },
-        {
-          "target": "com.posthog.tasks#TasksRepositoryReadinessRetrieve"
+          "target": "com.posthog.tasks#TasksRunsStartCreate"
         },
         {
           "target": "com.posthog.tasks#TasksSearchRetrieve"
         },
         {
-          "target": "com.posthog.tasks#TasksSlackThreadContextRetrieve"
+          "target": "com.posthog.tasks#TasksStagedArtifactsFinalizeUploadCreate"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskSummary"
+          "target": "com.posthog.tasks#TasksStagedArtifactsPrepareUploadCreate"
         },
         {
-          "target": "com.posthog.tasks#CreateTaskWarm"
+          "target": "com.posthog.tasks#TasksThreadMessagesDestroy"
+        },
+        {
+          "target": "com.posthog.tasks#TasksThreadMessagesSendToAgentCreate"
+        },
+        {
+          "target": "com.posthog.tasks#TasksWarmResumeCreate"
+        },
+        {
+          "target": "com.posthog.tasks#UpdateTask"
+        },
+        {
+          "target": "com.posthog.tasks#UpdateTasksPartial"
+        },
+        {
+          "target": "com.posthog.tasks#UpdateTasksRunsPartial"
+        },
+        {
+          "target": "com.posthog.tasks#UpdateTasksRunsSetOutputPartial"
         }
       ],
       "traits": {

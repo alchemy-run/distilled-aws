@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.container#ContainerCheckpointRequest": {
@@ -232,7 +233,7 @@
         "smithy.api#documentation": "Whether to use RDMA interfaces"
       }
     },
-    "com.modal.container#ExecContainerPutInputRequest": {
+    "com.modal.container#ContainerExecPutInputRequest": {
       "type": "structure",
       "members": {
         "execId": {
@@ -246,10 +247,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.container#ExecContainerPutInput": {
+    "com.modal.container#ContainerExecPutInput": {
       "type": "operation",
       "input": {
-        "target": "com.modal.container#ExecContainerPutInputRequest"
+        "target": "com.modal.container#ContainerExecPutInputRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -949,16 +950,10 @@
           "target": "com.modal.container#ContainerCheckpoint"
         },
         {
-          "target": "com.modal.container#ExecContainer"
-        },
-        {
-          "target": "com.modal.container#ExecContainerPutInput"
+          "target": "com.modal.container#ContainerExecPutInput"
         },
         {
           "target": "com.modal.container#ContainerExecWait"
-        },
-        {
-          "target": "com.modal.container#ExecContainerFilesystem"
         },
         {
           "target": "com.modal.container#ContainerHeartbeat"
@@ -974,6 +969,12 @@
         },
         {
           "target": "com.modal.container#ContainerServerLifecycleReady"
+        },
+        {
+          "target": "com.modal.container#ExecContainer"
+        },
+        {
+          "target": "com.modal.container#ExecContainerFilesystem"
         },
         {
           "target": "com.modal.container#StopContainer"

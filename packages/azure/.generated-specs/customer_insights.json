@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.customer_insights#ListPredictionByHub": {
@@ -890,10 +891,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#GetPredictionTrainingResult": {
+    "com.azure.customer_insights#GetPredictionTrainingResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#GetPredictionTrainingResultRequest"
+        "target": "com.azure.customer_insights#GetPredictionTrainingResultsRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#PredictionTrainingResults"
@@ -1128,7 +1129,7 @@
         "smithy.api#documentation": "The definition of a prediction distribution."
       }
     },
-    "com.azure.customer_insights#GetPredictionTrainingResultRequest": {
+    "com.azure.customer_insights#GetPredictionTrainingResultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1620,10 +1621,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#GetImageUploadUrlForData": {
+    "com.azure.customer_insights#ImagesGetUploadUrlForData": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#GetImageUploadUrlForDataRequest"
+        "target": "com.azure.customer_insights#ImagesGetUploadUrlForDataRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ImageDefinition"
@@ -1665,7 +1666,7 @@
         "smithy.api#documentation": "The image definition."
       }
     },
-    "com.azure.customer_insights#GetImageUploadUrlForDataRequest": {
+    "com.azure.customer_insights#ImagesGetUploadUrlForDataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1715,10 +1716,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#GetImageUploadUrlForEntityType": {
+    "com.azure.customer_insights#ImagesGetUploadUrlForEntityType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#GetImageUploadUrlForEntityTypeRequest"
+        "target": "com.azure.customer_insights#ImagesGetUploadUrlForEntityTypeRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ImageDefinition"
@@ -1734,7 +1735,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#GetImageUploadUrlForEntityTypeRequest": {
+    "com.azure.customer_insights#ImagesGetUploadUrlForEntityTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6977,10 +6978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKey": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKeyRequest"
+        "target": "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKeyRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#AuthorizationPolicy"
@@ -7064,7 +7065,7 @@
         "smithy.api#documentation": "Supported permission types."
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKeyRequest": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7104,10 +7105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKey": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKeyRequest"
+        "target": "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKeyRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#AuthorizationPolicy"
@@ -7123,7 +7124,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKeyRequest": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10260,7 +10261,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.customer_insights#ProfilesGetEnrichingKpisResponseBodyList",
+          "target": "com.azure.customer_insights#GetProfileEnrichingKpisResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10271,7 +10272,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ProfilesGetEnrichingKpisResponseBodyList": {
+    "com.azure.customer_insights#GetProfileEnrichingKpisResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.customer_insights#KpiDefinition"
@@ -11519,7 +11520,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsUpdateResponseTagsMap",
+          "target": "com.azure.customer_insights#UpdateHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11532,7 +11533,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#HubsUpdateResponseTagsMap": {
+    "com.azure.customer_insights#UpdateHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11578,7 +11579,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsUpdateRequestTagsMap",
+          "target": "com.azure.customer_insights#UpdateHubRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11611,7 +11612,7 @@
         "smithy.api#documentation": "Properties of hub."
       }
     },
-    "com.azure.customer_insights#HubsUpdateRequestTagsMap": {
+    "com.azure.customer_insights#UpdateHubRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11801,7 +11802,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsGetResponseTagsMap",
+          "target": "com.azure.customer_insights#GetHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11814,7 +11815,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#HubsGetResponseTagsMap": {
+    "com.azure.customer_insights#GetHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11957,40 +11958,160 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.customer_insights#ListPredictionByHub"
+          "target": "com.azure.customer_insights#AuthorizationPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsModelStatus"
+          "target": "com.azure.customer_insights#ConnectorMappingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#GetPredictionModelStatus"
+          "target": "com.azure.customer_insights#ConnectorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#GetPredictionTrainingResult"
+          "target": "com.azure.customer_insights#DeleteConnector"
+        },
+        {
+          "target": "com.azure.customer_insights#DeleteConnectorMapping"
+        },
+        {
+          "target": "com.azure.customer_insights#DeleteHub"
+        },
+        {
+          "target": "com.azure.customer_insights#DeleteKpi"
+        },
+        {
+          "target": "com.azure.customer_insights#DeleteLink"
         },
         {
           "target": "com.azure.customer_insights#DeletePrediction"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsCreateOrUpdate"
+          "target": "com.azure.customer_insights#DeleteProfile"
         },
         {
-          "target": "com.azure.customer_insights#GetPrediction"
+          "target": "com.azure.customer_insights#DeleteRelationship"
         },
         {
-          "target": "com.azure.customer_insights#GetImageUploadUrlForData"
-        },
-        {
-          "target": "com.azure.customer_insights#GetImageUploadUrlForEntityType"
+          "target": "com.azure.customer_insights#DeleteRelationshipLink"
         },
         {
           "target": "com.azure.customer_insights#DeleteRoleAssignment"
         },
         {
-          "target": "com.azure.customer_insights#RoleAssignmentsCreateOrUpdate"
+          "target": "com.azure.customer_insights#DeleteView"
+        },
+        {
+          "target": "com.azure.customer_insights#GetAuthorizationPolicy"
+        },
+        {
+          "target": "com.azure.customer_insights#GetConnector"
+        },
+        {
+          "target": "com.azure.customer_insights#GetConnectorMapping"
+        },
+        {
+          "target": "com.azure.customer_insights#GetHub"
+        },
+        {
+          "target": "com.azure.customer_insights#GetInteraction"
+        },
+        {
+          "target": "com.azure.customer_insights#GetKpi"
+        },
+        {
+          "target": "com.azure.customer_insights#GetLink"
+        },
+        {
+          "target": "com.azure.customer_insights#GetPrediction"
+        },
+        {
+          "target": "com.azure.customer_insights#GetPredictionModelStatus"
+        },
+        {
+          "target": "com.azure.customer_insights#GetPredictionTrainingResults"
+        },
+        {
+          "target": "com.azure.customer_insights#GetProfile"
+        },
+        {
+          "target": "com.azure.customer_insights#GetProfileEnrichingKpis"
+        },
+        {
+          "target": "com.azure.customer_insights#GetRelationship"
+        },
+        {
+          "target": "com.azure.customer_insights#GetRelationshipLink"
         },
         {
           "target": "com.azure.customer_insights#GetRoleAssignment"
+        },
+        {
+          "target": "com.azure.customer_insights#GetView"
+        },
+        {
+          "target": "com.azure.customer_insights#GetWidgetType"
+        },
+        {
+          "target": "com.azure.customer_insights#HubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.customer_insights#ImagesGetUploadUrlForData"
+        },
+        {
+          "target": "com.azure.customer_insights#ImagesGetUploadUrlForEntityType"
+        },
+        {
+          "target": "com.azure.customer_insights#InteractionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.customer_insights#InteractionsSuggestRelationshipLinks"
+        },
+        {
+          "target": "com.azure.customer_insights#KpiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.customer_insights#KpiReprocess"
+        },
+        {
+          "target": "com.azure.customer_insights#LinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.customer_insights#ListAuthorizationPolicyByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListConnectorByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListConnectorMappingByConnector"
+        },
+        {
+          "target": "com.azure.customer_insights#ListHubByResourceGroup"
+        },
+        {
+          "target": "com.azure.customer_insights#ListHubs"
+        },
+        {
+          "target": "com.azure.customer_insights#ListInteractionByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListKpiByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListLinkByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListOperations"
+        },
+        {
+          "target": "com.azure.customer_insights#ListPredictionByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListProfileByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListRelationshipByHub"
+        },
+        {
+          "target": "com.azure.customer_insights#ListRelationshipLinkByHub"
         },
         {
           "target": "com.azure.customer_insights#ListRoleAssignmentByHub"
@@ -11999,160 +12120,40 @@
           "target": "com.azure.customer_insights#ListRoleByHub"
         },
         {
-          "target": "com.azure.customer_insights#ListLinkByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteLink"
-        },
-        {
-          "target": "com.azure.customer_insights#LinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetLink"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteView"
-        },
-        {
-          "target": "com.azure.customer_insights#ViewsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetView"
-        },
-        {
           "target": "com.azure.customer_insights#ListViewByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#GetWidgetType"
         },
         {
           "target": "com.azure.customer_insights#ListWidgetTypeByHub"
         },
         {
-          "target": "com.azure.customer_insights#ListKpiByHub"
+          "target": "com.azure.customer_insights#PredictionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#KpiReprocess"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteKpi"
-        },
-        {
-          "target": "com.azure.customer_insights#KpiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetKpi"
-        },
-        {
-          "target": "com.azure.customer_insights#ListConnectorMappingByConnector"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteConnectorMapping"
-        },
-        {
-          "target": "com.azure.customer_insights#ConnectorMappingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetConnectorMapping"
-        },
-        {
-          "target": "com.azure.customer_insights#ListConnectorByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteConnector"
-        },
-        {
-          "target": "com.azure.customer_insights#ConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetConnector"
-        },
-        {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKey"
-        },
-        {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKey"
-        },
-        {
-          "target": "com.azure.customer_insights#ListAuthorizationPolicyByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetAuthorizationPolicy"
-        },
-        {
-          "target": "com.azure.customer_insights#ListRelationshipLinkByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteRelationshipLink"
-        },
-        {
-          "target": "com.azure.customer_insights#RelationshipLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetRelationshipLink"
-        },
-        {
-          "target": "com.azure.customer_insights#ListRelationshipByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteRelationship"
-        },
-        {
-          "target": "com.azure.customer_insights#RelationshipsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetRelationship"
-        },
-        {
-          "target": "com.azure.customer_insights#InteractionsSuggestRelationshipLinks"
-        },
-        {
-          "target": "com.azure.customer_insights#ListInteractionByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#InteractionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetInteraction"
-        },
-        {
-          "target": "com.azure.customer_insights#GetProfileEnrichingKpis"
-        },
-        {
-          "target": "com.azure.customer_insights#ListProfileByHub"
-        },
-        {
-          "target": "com.azure.customer_insights#DeleteProfile"
+          "target": "com.azure.customer_insights#PredictionsModelStatus"
         },
         {
           "target": "com.azure.customer_insights#ProfilesCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#GetProfile"
+          "target": "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKey"
         },
         {
-          "target": "com.azure.customer_insights#ListHubs"
+          "target": "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKey"
         },
         {
-          "target": "com.azure.customer_insights#ListHubByResourceGroup"
+          "target": "com.azure.customer_insights#RelationshipLinksCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#DeleteHub"
+          "target": "com.azure.customer_insights#RelationshipsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.customer_insights#RoleAssignmentsCreateOrUpdate"
         },
         {
           "target": "com.azure.customer_insights#UpdateHub"
         },
         {
-          "target": "com.azure.customer_insights#HubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.customer_insights#GetHub"
-        },
-        {
-          "target": "com.azure.customer_insights#ListOperations"
+          "target": "com.azure.customer_insights#ViewsCreateOrUpdate"
         }
       ],
       "traits": {

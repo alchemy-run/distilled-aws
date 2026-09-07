@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.identity_profiles#IdentityProfileKinds": {
@@ -877,7 +878,7 @@
         }
       }
     },
-    "com.whop.identity_profiles#RetrieveIdentityProfileRequest": {
+    "com.whop.identity_profiles#GetIdentityProfileRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1249,10 +1250,10 @@
         "smithy.api#documentation": "All verification attempts attached to this identity profile, ordered most-recent first."
       }
     },
-    "com.whop.identity_profiles#RetrieveIdentityProfile": {
+    "com.whop.identity_profiles#GetIdentityProfile": {
       "type": "operation",
       "input": {
-        "target": "com.whop.identity_profiles#RetrieveIdentityProfileRequest"
+        "target": "com.whop.identity_profiles#GetIdentityProfileRequest"
       },
       "output": {
         "target": "com.whop.identity_profiles#IdentityProfile"
@@ -1554,16 +1555,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.identity_profiles#GetIdentityProfile"
+        },
+        {
           "target": "com.whop.identity_profiles#ListIdentityProfile"
         },
         {
-          "target": "com.whop.identity_profiles#RetrieveIdentityProfile"
+          "target": "com.whop.identity_profiles#ListVerificationsIdentityProfile"
         },
         {
           "target": "com.whop.identity_profiles#UnlinkIdentityProfile"
-        },
-        {
-          "target": "com.whop.identity_profiles#ListVerificationsIdentityProfile"
         }
       ],
       "traits": {

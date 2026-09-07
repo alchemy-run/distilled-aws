@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.feature_flags#ListFlagsV2RequestState": {
@@ -14589,31 +14590,52 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.feature_flags#ListFlagsV2"
-        },
-        {
-          "target": "com.vercel.feature_flags#ListFlags"
-        },
-        {
           "target": "com.vercel.feature_flags#CreateFlag"
         },
         {
-          "target": "com.vercel.feature_flags#GetFlag"
+          "target": "com.vercel.feature_flags#CreateFlagSegment"
         },
         {
-          "target": "com.vercel.feature_flags#UpdateFlag"
+          "target": "com.vercel.feature_flags#CreateSdkKey"
         },
         {
           "target": "com.vercel.feature_flags#DeleteFlag"
         },
         {
-          "target": "com.vercel.feature_flags#ListFlagVersions"
+          "target": "com.vercel.feature_flags#DeleteFlagSegment"
+        },
+        {
+          "target": "com.vercel.feature_flags#DeleteSdkKey"
+        },
+        {
+          "target": "com.vercel.feature_flags#GetDeploymentFeatureFlags"
+        },
+        {
+          "target": "com.vercel.feature_flags#GetFlag"
+        },
+        {
+          "target": "com.vercel.feature_flags#GetFlagSegment"
         },
         {
           "target": "com.vercel.feature_flags#GetFlagSettings"
         },
         {
-          "target": "com.vercel.feature_flags#UpdateFlagSettings"
+          "target": "com.vercel.feature_flags#GetSdkKeys"
+        },
+        {
+          "target": "com.vercel.feature_flags#ListFlags"
+        },
+        {
+          "target": "com.vercel.feature_flags#ListFlagSegments"
+        },
+        {
+          "target": "com.vercel.feature_flags#ListFlagsV2"
+        },
+        {
+          "target": "com.vercel.feature_flags#ListFlagVersions"
+        },
+        {
+          "target": "com.vercel.feature_flags#ListTeamFlags"
         },
         {
           "target": "com.vercel.feature_flags#ListTeamFlagSettings"
@@ -14622,34 +14644,13 @@
           "target": "com.vercel.feature_flags#ListTeamFlagsV2"
         },
         {
-          "target": "com.vercel.feature_flags#ListTeamFlags"
-        },
-        {
-          "target": "com.vercel.feature_flags#ListFlagSegments"
-        },
-        {
-          "target": "com.vercel.feature_flags#CreateFlagSegment"
-        },
-        {
-          "target": "com.vercel.feature_flags#GetFlagSegment"
+          "target": "com.vercel.feature_flags#UpdateFlag"
         },
         {
           "target": "com.vercel.feature_flags#UpdateFlagSegment"
         },
         {
-          "target": "com.vercel.feature_flags#DeleteFlagSegment"
-        },
-        {
-          "target": "com.vercel.feature_flags#GetDeploymentFeatureFlags"
-        },
-        {
-          "target": "com.vercel.feature_flags#GetSdkKeys"
-        },
-        {
-          "target": "com.vercel.feature_flags#CreateSdkKey"
-        },
-        {
-          "target": "com.vercel.feature_flags#DeleteSdkKey"
+          "target": "com.vercel.feature_flags#UpdateFlagSettings"
         }
       ],
       "traits": {

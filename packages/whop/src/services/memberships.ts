@@ -588,6 +588,18 @@ export const ExtendMembershipRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExtendMembershipRequest",
 }) as any as S.Schema<ExtendMembershipRequest>;
 
+export interface GetMembershipRequest {
+  /** Membership ID (`mem_` tag), or a software license key. */
+  id: string;
+}
+export const GetMembershipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/memberships/{id}", code: 200 })),
+).annotate({
+  identifier: "GetMembershipRequest",
+}) as any as S.Schema<GetMembershipRequest>;
+
 export interface InviteMembershipRequest {
   /** Recipient email address. Mutually exclusive with `user_id`. */
   email?: string;
@@ -775,18 +787,6 @@ export const ResyncAccessMembershipRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResyncAccessMembershipRequest",
 }) as any as S.Schema<ResyncAccessMembershipRequest>;
 
-export interface RetrieveMembershipRequest {
-  /** Membership ID (`mem_` tag), or a software license key. */
-  id: string;
-}
-export const RetrieveMembershipRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/memberships/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveMembershipRequest",
-}) as any as S.Schema<RetrieveMembershipRequest>;
-
 export interface TransferMembershipRequest {
   /** Membership ID (`mem_` tag). */
   id: string;
@@ -906,6 +906,21 @@ export const extendMembership: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetMembershipError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Membership Retrieves a membership by ID or license key. Accessible to the account and to the membership's own user. */
+export const getMembership: API.OperationMethod<
+  GetMembershipRequest,
+  Membership,
+  GetMembershipError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMembershipRequest,
+  output: Membership,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type InviteMembershipError =
   | BadRequest
   | Forbidden
@@ -1011,21 +1026,6 @@ export const resyncAccessMembership: API.OperationMethod<
   input: ResyncAccessMembershipRequest,
   output: LegacyMembership,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveMembershipError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Membership Retrieves a membership by ID or license key. Accessible to the account and to the membership's own user. */
-export const retrieveMembership: API.OperationMethod<
-  RetrieveMembershipRequest,
-  Membership,
-  RetrieveMembershipError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMembershipRequest,
-  output: Membership,
-  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

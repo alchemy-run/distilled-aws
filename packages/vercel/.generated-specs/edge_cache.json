@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.edge_cache#InvalidateByTagsRequestTagsCase0List": {
@@ -157,7 +158,7 @@
       },
       "traits": {}
     },
-    "com.vercel.edge_cache#DeleteDangerouslyByTagRequest": {
+    "com.vercel.edge_cache#DangerouslyDeleteByTagsRequest": {
       "type": "structure",
       "members": {
         "projectIdOrName": {
@@ -198,10 +199,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.edge_cache#DeleteDangerouslyByTag": {
+    "com.vercel.edge_cache#DangerouslyDeleteByTags": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.edge_cache#DeleteDangerouslyByTagRequest"
+        "target": "com.vercel.edge_cache#DangerouslyDeleteByTagsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -306,7 +307,7 @@
       },
       "traits": {}
     },
-    "com.vercel.edge_cache#DeleteDangerouslyBySrcImageRequest": {
+    "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequest": {
       "type": "structure",
       "members": {
         "projectIdOrName": {
@@ -344,10 +345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.edge_cache#DeleteDangerouslyBySrcImage": {
+    "com.vercel.edge_cache#DangerouslyDeleteBySrcImages": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.edge_cache#DeleteDangerouslyBySrcImageRequest"
+        "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -432,16 +433,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.edge_cache#InvalidateByTags"
+          "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImages"
         },
         {
-          "target": "com.vercel.edge_cache#DeleteDangerouslyByTag"
+          "target": "com.vercel.edge_cache#DangerouslyDeleteByTags"
         },
         {
           "target": "com.vercel.edge_cache#InvalidateBySrcImages"
         },
         {
-          "target": "com.vercel.edge_cache#DeleteDangerouslyBySrcImage"
+          "target": "com.vercel.edge_cache#InvalidateByTags"
         }
       ],
       "traits": {
